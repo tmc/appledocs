@@ -1,0 +1,2202 @@
+{
+  "abstract": [
+    {
+      "text": "A set of methods that a table view uses to provide data to a table view and to allow the editing of the table view’s data source object.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.appkit/documentation/AppKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.appkit/documentation/AppKit/NSTableViewDataSource"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(pl)NSTableViewDataSource",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "protocol"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "NSTableViewDataSource"
+      }
+    ],
+    "modules": [
+      {
+        "name": "AppKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "NSTableViewDataSource"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Protocol",
+    "symbolKind": "protocol",
+    "title": "NSTableViewDataSource"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSTableViewDataSource"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObjectProtocol"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Some of the methods in this protocol, such as ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTableViewDataSource/tableView(_:objectValueFor:row:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTableViewDataSource/numberOfRows(in:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " along with other methods that return data, are called frequently, so they must be efficient.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "View-based table views must not use the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTableViewDataSource/tableView(_:setObjectValue:for:row:)",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " method for setting values. Instead the views must explicitly set the values for the fields, or use Cocoa bindings. Likewise, use target/action for editing. See ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/TableView/Introduction/Introduction.html#//apple_ref/doc/uid/10000026i",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " for more information on populating view-based and cell-based table views.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you’re not using Cocoa bindings to provide data to the table view, the following methods are required:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTableViewDataSource/numberOfRows(in:)",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTableViewDataSource/tableView(_:objectValueFor:row:)",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTableViewDataSource/tableView(_:setObjectValue:for:row:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " (cell-based tables only)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To learn more about Cocoa bindings, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaBindings/CocoaBindings.html#//apple_ref/doc/uid/10000167i",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.appkit/documentation/AppKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your macOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AppKit",
+      "type": "topic",
+      "url": "/documentation/appkit"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTableViewDataSource": {
+      "abstract": [
+        {
+          "text": "A set of methods that a table view uses to provide data to a table view and to allow the editing of the table view’s data source object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSTableViewDataSource"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTableViewDataSource",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSTableViewDataSource"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSTableViewDataSource",
+      "type": "topic",
+      "url": "/documentation/appkit/nstableviewdatasource"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTableViewDataSource/numberOfRows(in:)": {
+      "abstract": [
+        {
+          "text": "Returns the number of records managed for ",
+          "type": "text"
+        },
+        {
+          "code": "aTableView",
+          "type": "codeVoice"
+        },
+        {
+          "text": " by the data source object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "numberOfRows"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSTableView",
+          "text": "NSTableView"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTableViewDataSource/numberOfRows(in:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "numberOfRowsInTableView:"
+        }
+      ],
+      "role": "symbol",
+      "title": "numberOfRows(in:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nstableviewdatasource/numberofrows(in:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTableViewDataSource/tableView(_:acceptDrop:row:dropOperation:)": {
+      "abstract": [
+        {
+          "text": "Called by ",
+          "type": "text"
+        },
+        {
+          "code": "aTableView",
+          "type": "codeVoice"
+        },
+        {
+          "text": " when the mouse button is released over a table view that previously decided to allow a drop.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "tableView"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSTableView",
+          "text": "NSTableView"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "acceptDrop"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSDraggingInfo",
+          "text": "NSDraggingInfo"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "row"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "dropOperation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSTableView",
+          "text": "NSTableView"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSTableViewDropOperation",
+          "text": "DropOperation"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTableViewDataSource/tableView(_:acceptDrop:row:dropOperation:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "tableView:acceptDrop:row:dropOperation:"
+        }
+      ],
+      "role": "symbol",
+      "title": "tableView(_:acceptDrop:row:dropOperation:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nstableviewdatasource/tableview(_:acceptdrop:row:dropoperation:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTableViewDataSource/tableView(_:draggingSession:endedAt:operation:)": {
+      "abstract": [
+        {
+          "text": "Implement this method to determine when a dragging session has ended.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "tableView"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSTableView",
+          "text": "NSTableView"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "draggingSession"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSDraggingSession",
+          "text": "NSDraggingSession"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "endedAt"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSPoint",
+          "text": "NSPoint"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "operation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSDragOperation",
+          "text": "NSDragOperation"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTableViewDataSource/tableView(_:draggingSession:endedAt:operation:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "tableView:draggingSession:endedAtPoint:operation:"
+        }
+      ],
+      "role": "symbol",
+      "title": "tableView(_:draggingSession:endedAt:operation:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nstableviewdatasource/tableview(_:draggingsession:endedat:operation:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTableViewDataSource/tableView(_:draggingSession:willBeginAt:forRowIndexes:)": {
+      "abstract": [
+        {
+          "text": "Implement this method to determine when a dragging session will begin.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "tableView"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSTableView",
+          "text": "NSTableView"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "draggingSession"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSDraggingSession",
+          "text": "NSDraggingSession"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "willBeginAt"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSPoint",
+          "text": "NSPoint"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "forRowIndexes"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation8IndexSetV",
+          "text": "IndexSet"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTableViewDataSource/tableView(_:draggingSession:willBeginAt:forRowIndexes:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "tableView:draggingSession:willBeginAtPoint:forRowIndexes:"
+        }
+      ],
+      "role": "symbol",
+      "title": "tableView(_:draggingSession:willBeginAt:forRowIndexes:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nstableviewdatasource/tableview(_:draggingsession:willbeginat:forrowindexes:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTableViewDataSource/tableView(_:namesOfPromisedFilesDroppedAtDestination:forDraggedRowsWith:)": {
+      "abstract": [
+        {
+          "text": "Returns an array of filenames that represent the ",
+          "type": "text"
+        },
+        {
+          "code": "indexSet",
+          "type": "codeVoice"
+        },
+        {
+          "text": " rows for a drag to ",
+          "type": "text"
+        },
+        {
+          "code": "dropDestination",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "tableView"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSTableView",
+          "text": "NSTableView"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "namesOfPromisedFilesDroppedAtDestination"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "forDraggedRowsWith"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation8IndexSetV",
+          "text": "IndexSet"
+        },
+        {
+          "kind": "text",
+          "text": ") -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTableViewDataSource/tableView(_:namesOfPromisedFilesDroppedAtDestination:forDraggedRowsWith:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "tableView:namesOfPromisedFilesDroppedAtDestination:forDraggedRowsWithIndexes:"
+        }
+      ],
+      "role": "symbol",
+      "title": "tableView(_:namesOfPromisedFilesDroppedAtDestination:forDraggedRowsWith:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nstableviewdatasource/tableview(_:namesofpromisedfilesdroppedatdestination:fordraggedrowswith:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTableViewDataSource/tableView(_:objectValueFor:row:)": {
+      "abstract": [
+        {
+          "text": "Called by the table view to return the data object associated with the specified row and column.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "tableView"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSTableView",
+          "text": "NSTableView"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "objectValueFor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSTableColumn",
+          "text": "NSTableColumn"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "row"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTableViewDataSource/tableView(_:objectValueFor:row:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "tableView:objectValueForTableColumn:row:"
+        }
+      ],
+      "role": "symbol",
+      "title": "tableView(_:objectValueFor:row:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nstableviewdatasource/tableview(_:objectvaluefor:row:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTableViewDataSource/tableView(_:pasteboardWriterForRow:)": {
+      "abstract": [
+        {
+          "text": "Called to allow the table to support multiple item dragging.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "tableView"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSTableView",
+          "text": "NSTableView"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "pasteboardWriterForRow"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") -> (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSPasteboardWriting",
+          "text": "NSPasteboardWriting"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTableViewDataSource/tableView(_:pasteboardWriterForRow:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "tableView:pasteboardWriterForRow:"
+        }
+      ],
+      "role": "symbol",
+      "title": "tableView(_:pasteboardWriterForRow:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nstableviewdatasource/tableview(_:pasteboardwriterforrow:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTableViewDataSource/tableView(_:setObjectValue:for:row:)": {
+      "abstract": [
+        {
+          "text": "Sets the data object for an item in the specified row and column.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "tableView"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSTableView",
+          "text": "NSTableView"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "setObjectValue"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSTableColumn",
+          "text": "NSTableColumn"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "row"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTableViewDataSource/tableView(_:setObjectValue:for:row:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "tableView:setObjectValue:forTableColumn:row:"
+        }
+      ],
+      "role": "symbol",
+      "title": "tableView(_:setObjectValue:for:row:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nstableviewdatasource/tableview(_:setobjectvalue:for:row:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTableViewDataSource/tableView(_:sortDescriptorsDidChange:)": {
+      "abstract": [
+        {
+          "text": "Called by ",
+          "type": "text"
+        },
+        {
+          "code": "aTableView",
+          "type": "codeVoice"
+        },
+        {
+          "text": " to indicate that sorting may need to be done.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "tableView"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSTableView",
+          "text": "NSTableView"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "sortDescriptorsDidChange"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSSortDescriptor",
+          "text": "NSSortDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": "])"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTableViewDataSource/tableView(_:sortDescriptorsDidChange:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "tableView:sortDescriptorsDidChange:"
+        }
+      ],
+      "role": "symbol",
+      "title": "tableView(_:sortDescriptorsDidChange:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nstableviewdatasource/tableview(_:sortdescriptorsdidchange:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTableViewDataSource/tableView(_:updateDraggingItemsForDrag:)": {
+      "abstract": [
+        {
+          "text": "Implement this method to allow the table to update dragging items as they are dragged over a view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "tableView"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSTableView",
+          "text": "NSTableView"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "updateDraggingItemsForDrag"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSDraggingInfo",
+          "text": "NSDraggingInfo"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTableViewDataSource/tableView(_:updateDraggingItemsForDrag:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "tableView:updateDraggingItemsForDrag:"
+        }
+      ],
+      "role": "symbol",
+      "title": "tableView(_:updateDraggingItemsForDrag:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nstableviewdatasource/tableview(_:updatedraggingitemsfordrag:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTableViewDataSource/tableView(_:validateDrop:proposedRow:proposedDropOperation:)": {
+      "abstract": [
+        {
+          "text": "Used by ",
+          "type": "text"
+        },
+        {
+          "code": "aTableView",
+          "type": "codeVoice"
+        },
+        {
+          "text": " to determine a valid drop target.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "tableView"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSTableView",
+          "text": "NSTableView"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "validateDrop"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSDraggingInfo",
+          "text": "NSDraggingInfo"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "proposedRow"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "proposedDropOperation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSTableView",
+          "text": "NSTableView"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSTableViewDropOperation",
+          "text": "DropOperation"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSDragOperation",
+          "text": "NSDragOperation"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTableViewDataSource/tableView(_:validateDrop:proposedRow:proposedDropOperation:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "tableView:validateDrop:proposedRow:proposedDropOperation:"
+        }
+      ],
+      "role": "symbol",
+      "title": "tableView(_:validateDrop:proposedRow:proposedDropOperation:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nstableviewdatasource/tableview(_:validatedrop:proposedrow:proposeddropoperation:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTableViewDataSource/tableView(_:writeRowsWith:to:)": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether a drag operation is allowed.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "tableView"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSTableView",
+          "text": "NSTableView"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "writeRowsWith"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation8IndexSetV",
+          "text": "IndexSet"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPasteboard",
+          "text": "NSPasteboard"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTableViewDataSource/tableView(_:writeRowsWith:to:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "tableView:writeRowsWithIndexes:toPasteboard:"
+        }
+      ],
+      "role": "symbol",
+      "title": "tableView(_:writeRowsWith:to:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nstableviewdatasource/tableview(_:writerowswith:to:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTableViewDelegate": {
+      "abstract": [
+        {
+          "text": "A set of optional methods you implement in a table view delegate to customize the behavior of the table view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSTableViewDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTableViewDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSTableViewDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSTableViewDelegate",
+      "type": "topic",
+      "url": "/documentation/appkit/nstableviewdelegate"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTableViewDiffableDataSource-c5gl": {
+      "abstract": [
+        {
+          "text": "The object you use to manage data and provide items for a table view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSTableViewDiffableDataSource"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTableViewDiffableDataSource-c5gl",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSTableViewDiffableDataSource"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSTableViewDiffableDataSource",
+      "type": "topic",
+      "url": "/documentation/appkit/nstableviewdiffabledatasource-c5gl"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTableViewDiffableDataSourceReference": {
+      "abstract": [
+        {
+          "text": "The object you use to manage data and provide items for a table view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSTableViewDiffableDataSourceReference"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTableViewDiffableDataSourceReference",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSTableViewDiffableDataSourceReference"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSTableViewDiffableDataSourceReference",
+      "type": "topic",
+      "url": "/documentation/appkit/nstableviewdiffabledatasourcereference"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/supporting-table-view-drag-and-drop-through-file-promises": {
+      "abstract": [
+        {
+          "text": "Share data between macOS apps during drag and drop by using an item provider.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/supporting-table-view-drag-and-drop-through-file-promises",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Supporting Table View Drag and Drop Through File Promises",
+      "type": "topic",
+      "url": "/documentation/appkit/supporting-table-view-drag-and-drop-through-file-promises"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaBindings/CocoaBindings.html#//apple_ref/doc/uid/10000167i": {
+      "identifier": "https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaBindings/CocoaBindings.html#//apple_ref/doc/uid/10000167i",
+      "title": "Cocoa Bindings Programming Topics",
+      "titleInlineContent": [
+        {
+          "text": "Cocoa Bindings Programming Topics",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaBindings/CocoaBindings.html#//apple_ref/doc/uid/10000167i"
+    },
+    "https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/TableView/Introduction/Introduction.html#//apple_ref/doc/uid/10000026i": {
+      "identifier": "https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/TableView/Introduction/Introduction.html#//apple_ref/doc/uid/10000026i",
+      "title": "Table View Programming Guide for Mac",
+      "titleInlineContent": [
+        {
+          "text": "Table View Programming Guide for Mac",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/TableView/Introduction/Introduction.html#//apple_ref/doc/uid/10000026i"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSTableViewDiffableDataSource-c5gl",
+        "doc://com.apple.appkit/documentation/AppKit/NSTableViewDiffableDataSourceReference"
+      ],
+      "kind": "relationships",
+      "title": "Conforming Types",
+      "type": "conformingTypes"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Management",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSTableViewDelegate",
+        "doc://com.apple.appkit/documentation/AppKit/NSTableViewDiffableDataSource-c5gl"
+      ],
+      "title": "Management"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Getting-Values",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSTableViewDataSource/numberOfRows(in:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSTableViewDataSource/tableView(_:objectValueFor:row:)"
+      ],
+      "title": "Getting Values"
+    },
+    {
+      "anchor": "Setting-Values",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSTableViewDataSource/tableView(_:setObjectValue:for:row:)"
+      ],
+      "title": "Setting Values"
+    },
+    {
+      "anchor": "Implementing-Pasteboard-Support",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSTableViewDataSource/tableView(_:pasteboardWriterForRow:)"
+      ],
+      "title": "Implementing Pasteboard Support"
+    },
+    {
+      "anchor": "Drag-and-Drop",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/supporting-table-view-drag-and-drop-through-file-promises",
+        "doc://com.apple.appkit/documentation/AppKit/NSTableViewDataSource/tableView(_:acceptDrop:row:dropOperation:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSTableViewDataSource/tableView(_:namesOfPromisedFilesDroppedAtDestination:forDraggedRowsWith:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSTableViewDataSource/tableView(_:validateDrop:proposedRow:proposedDropOperation:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSTableViewDataSource/tableView(_:writeRowsWith:to:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSTableViewDataSource/tableView(_:draggingSession:willBeginAt:forRowIndexes:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSTableViewDataSource/tableView(_:updateDraggingItemsForDrag:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSTableViewDataSource/tableView(_:draggingSession:endedAt:operation:)"
+      ],
+      "title": "Drag and Drop"
+    },
+    {
+      "anchor": "Sorting",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSTableViewDataSource/tableView(_:sortDescriptorsDidChange:)"
+      ],
+      "title": "Sorting"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "macOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Protocol"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "NSTableViewDataSource"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "protocol"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTableViewDataSource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTableViewDataSource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.appkit/documentation/AppKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Getting-Values",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSTableViewDataSource/numberOfRows(in:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSTableViewDataSource/tableView(_:objectValueFor:row:)"
+              ],
+              "title": "Getting Values"
+            },
+            {
+              "anchor": "Setting-Values",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSTableViewDataSource/tableView(_:setObjectValue:for:row:)"
+              ],
+              "title": "Setting Values"
+            },
+            {
+              "anchor": "Implementing-Pasteboard-Support",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSTableViewDataSource/tableView(_:pasteboardWriterForRow:)"
+              ],
+              "title": "Implementing Pasteboard Support"
+            },
+            {
+              "anchor": "Drag-and-Drop",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/supporting-table-view-drag-and-drop-through-file-promises",
+                "doc://com.apple.appkit/documentation/AppKit/NSTableViewDataSource/tableView(_:acceptDrop:row:dropOperation:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSTableViewDataSource/tableView(_:namesOfPromisedFilesDroppedAtDestination:forDraggedRowsWith:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSTableViewDataSource/tableView(_:validateDrop:proposedRow:proposedDropOperation:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSTableViewDataSource/tableView(_:writeRowsWith:to:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSTableViewDataSource/tableView(_:draggingSession:willBeginAt:forRowIndexes:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSTableViewDataSource/tableView(_:updateDraggingItemsForDrag:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSTableViewDataSource/tableView(_:draggingSession:endedAt:operation:)"
+              ],
+              "title": "Drag and Drop"
+            },
+            {
+              "anchor": "Sorting",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSTableViewDataSource/tableView(_:sortDescriptorsDidChange:)"
+              ],
+              "title": "Sorting"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            },
+            {
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSTableViewDiffableDataSourceReference"
+              ],
+              "kind": "relationships",
+              "title": "Conforming Types",
+              "type": "conformingTypes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Management",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSTableViewDelegate",
+                "doc://com.apple.appkit/documentation/AppKit/NSTableViewDiffableDataSourceReference"
+              ],
+              "title": "Management"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "Mac Catalyst",
+                  "macOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@protocol"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "NSTableViewDataSource"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " <"
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(pl)NSObject",
+                    "text": "NSObject"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ">"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTableViewDiffableDataSourceReference/title",
+          "value": "NSTableViewDiffableDataSource"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTableViewDiffableDataSourceReference/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTableViewDiffableDataSource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTableViewDiffableDataSourceReference/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTableViewDiffableDataSource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTableViewDataSource~1tableView(_:sortDescriptorsDidChange:)/title",
+          "value": "tableView:sortDescriptorsDidChange:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTableViewDataSource~1tableView(_:sortDescriptorsDidChange:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "tableView:sortDescriptorsDidChange:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTableViewDataSource~1tableView(_:validateDrop:proposedRow:proposedDropOperation:)/title",
+          "value": "tableView:validateDrop:proposedRow:proposedDropOperation:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTableViewDataSource~1tableView(_:validateDrop:proposedRow:proposedDropOperation:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "tableView:validateDrop:proposedRow:proposedDropOperation:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTableViewDataSource~1tableView(_:updateDraggingItemsForDrag:)/title",
+          "value": "tableView:updateDraggingItemsForDrag:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTableViewDataSource~1tableView(_:updateDraggingItemsForDrag:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "tableView:updateDraggingItemsForDrag:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTableViewDataSource/title",
+          "value": "NSTableViewDataSource"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTableViewDataSource/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTableViewDataSource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTableViewDataSource/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTableViewDataSource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTableViewDelegate/title",
+          "value": "NSTableViewDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTableViewDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTableViewDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTableViewDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTableViewDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTableViewDataSource~1numberOfRows(in:)/title",
+          "value": "numberOfRowsInTableView:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTableViewDataSource~1numberOfRows(in:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "numberOfRowsInTableView:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTableViewDataSource~1tableView(_:setObjectValue:for:row:)/title",
+          "value": "tableView:setObjectValue:forTableColumn:row:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTableViewDataSource~1tableView(_:setObjectValue:for:row:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "tableView:setObjectValue:forTableColumn:row:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTableViewDataSource~1tableView(_:objectValueFor:row:)/title",
+          "value": "tableView:objectValueForTableColumn:row:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTableViewDataSource~1tableView(_:objectValueFor:row:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "tableView:objectValueForTableColumn:row:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTableViewDataSource~1tableView(_:pasteboardWriterForRow:)/title",
+          "value": "tableView:pasteboardWriterForRow:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTableViewDataSource~1tableView(_:pasteboardWriterForRow:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "tableView:pasteboardWriterForRow:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTableViewDataSource~1tableView(_:draggingSession:endedAt:operation:)/title",
+          "value": "tableView:draggingSession:endedAtPoint:operation:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTableViewDataSource~1tableView(_:draggingSession:endedAt:operation:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "tableView:draggingSession:endedAtPoint:operation:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTableViewDataSource~1tableView(_:writeRowsWith:to:)/title",
+          "value": "tableView:writeRowsWithIndexes:toPasteboard:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTableViewDataSource~1tableView(_:writeRowsWith:to:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "tableView:writeRowsWithIndexes:toPasteboard:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTableViewDataSource~1tableView(_:acceptDrop:row:dropOperation:)/title",
+          "value": "tableView:acceptDrop:row:dropOperation:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTableViewDataSource~1tableView(_:acceptDrop:row:dropOperation:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "tableView:acceptDrop:row:dropOperation:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTableViewDataSource~1tableView(_:namesOfPromisedFilesDroppedAtDestination:forDraggedRowsWith:)/title",
+          "value": "tableView:namesOfPromisedFilesDroppedAtDestination:forDraggedRowsWithIndexes:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTableViewDataSource~1tableView(_:namesOfPromisedFilesDroppedAtDestination:forDraggedRowsWith:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "tableView:namesOfPromisedFilesDroppedAtDestination:forDraggedRowsWithIndexes:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTableViewDataSource~1tableView(_:draggingSession:willBeginAt:forRowIndexes:)/title",
+          "value": "tableView:draggingSession:willBeginAtPoint:forRowIndexes:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTableViewDataSource~1tableView(_:draggingSession:willBeginAt:forRowIndexes:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "tableView:draggingSession:willBeginAtPoint:forRowIndexes:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/appkit/nstableviewdatasource"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/appkit/nstableviewdatasource"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

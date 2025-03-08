@@ -1,0 +1,1630 @@
+{
+  "abstract": [
+    {
+      "text": "Adopt the latest privacy enhancements to deliver advanced user-privacy controls.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.photokit/documentation/PhotoKit"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.photokit/documentation/PhotoKit",
+        "doc://com.apple.photokit/documentation/PhotosUI"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.photokit/documentation/PhotoKit/delivering-an-enhanced-privacy-experience-in-your-photos-app"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "PhotosUI"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Delivering an Enhanced Privacy Experience in Your Photos App"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A user’s photos and videos are some of the most personal and private data they store on their devices. Due to built-in privacy protections, an app may only access the user’s Photos library if they explicitly authorize it to do so. Starting in iOS 14, PhotoKit further enhances user privacy controls with the addition of the limited Photos library, which lets users select specific assets and resources to share with an app. Adopt the latest PhotoKit APIs to use the limited library and deliver an enhanced privacy experience in your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "The limited Photos library affects all apps that use PhotoKit in iOS 14, including those already published to the App Store. Evaluate your app’s behavior to ensure it performs as expected when running in limited library mode.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Determine-Your-Apps-Access-Needs",
+          "level": 3,
+          "text": "Determine Your App’s Access Needs",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "With the many privacy enhancements added in iOS 14, it’s a good time to evaluate how and why your app uses PhotoKit to access the user’s library. Many apps may only need read-only access to retrieve images to share on the internet or embed in a document or email. For these purposes, the simplest way to provide an enhanced user experience is to use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.photokit/documentation/PhotosUI/PHPickerViewController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to access the Photos library.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.photokit/documentation/PhotosUI/PHPickerViewController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " is a new picker that replaces ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIImagePickerController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Its user interface matches that of the Photos app, supports search and multiple selection of photos and videos, and provides fluid zooming of content. Because the system manages its life cycle in a separate process, it’s private by default. The user doesn’t need to explicitly authorize your app to select photos, which results in a simpler and more streamlined user experience.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Session 10652: ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/videos/play/wwdc2020/10652/",
+                  "isActive": true,
+                  "type": "reference"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Describe-Your-App%CA%BCs-Photo-Library-Use",
+          "level": 3,
+          "text": "Describe Your Appʼs Photo Library Use",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your app requires PhotoKit’s advanced features, like retrieving assets and collections, or updating the library, the user must explicitly authorize it to access those features. Provide a localizable message that describes how your app interacts with the Photos library. The system presents this message to the user when it prompts them to authorize your app for access. Attempting to access the Photos library without a valid usage description causes your app to crash.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Add an entry to your ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file with the appropriate key. If your app only adds to the library, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSPhotoLibraryAddUsageDescription",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " key. For all other cases, use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSPhotoLibraryUsageDescription",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". The following shows an example ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " entry for an app that requires read/write access.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3695626",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Determine-and-Request-Authorization",
+          "level": 3,
+          "text": "Determine and Request Authorization",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To determine if the user has already authorized your app to access the library, query ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.photokit/documentation/Photos/PHPhotoLibrary",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to check your app’s current authorization status.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Check the app's authorization status (either read/write or add-only access).",
+            "let readWriteStatus = PHPhotoLibrary.authorizationStatus(for: .readWrite)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The above call returns a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.photokit/documentation/Photos/PHAuthorizationStatus",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " value that specifies the app’s current authorization status for the requested access level. A status value of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.photokit/documentation/Photos/PHAuthorizationStatus/notDetermined",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " indicates the user hasn’t yet authorized your app for access.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The first time your app performs an operation that requires authorization, the system automatically and asynchronously prompts the user for it. Avoid making PhotoKit calls when your app first launches, to avoid interrupting its startup or onboarding process. Instead, make these calls in response to direct user action. Timing the authorization prompt to coincide with a user action provides greater context to the user about why your app is requesting access.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You may also programmatically request authorization, which lets you control the timing of the prompt and determine the user’s response. Request authorization only for the level of access required. The following example shows how to request read/write access; if your app only adds photos to the library, instead, request add-only access.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Request read-write access to the user's photo library.",
+            "PHPhotoLibrary.requestAuthorization(for: .readWrite) { status in",
+            "    switch status {",
+            "    case .notDetermined:",
+            "        // The user hasn't determined this app's access.",
+            "    case .restricted:",
+            "        // The system restricted this app's access.",
+            "    case .denied:",
+            "        // The user explicitly denied this app's access.",
+            "    case .authorized:",
+            "        // The user authorized this app to access Photos data.",
+            "    case .limited:",
+            "        // The user authorized this app for limited Photos access.",
+            "    @unknown default:",
+            "        fatalError()",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After the user sets the app’s authorization status, the system remembers their choice and won’t prompt them again. However, the user can change this choice at any time using the Settings app. Prepare your app to respond appropriately when a user changes your appʼs access.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "The ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.photokit/documentation/Photos/PHPhotoLibrary/authorizationStatus()",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " and ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.photokit/documentation/Photos/PHPhotoLibrary/requestAuthorization(_:)",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " methods aren’t compatible with the limited library and return ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.photokit/documentation/Photos/PHAuthorizationStatus/authorized",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " when the user authorizes your app for limited access only. To determine whether the user has authorized your app for limited access, instead use ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.photokit/documentation/Photos/PHPhotoLibrary/authorizationStatus(for:)",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " and ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.photokit/documentation/Photos/PHPhotoLibrary/requestAuthorization(for:handler:)",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Work-with-the-Limited-Library",
+          "level": 3,
+          "text": "Work with the Limited Library",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In previous iOS releases, users either allowed or disallowed full access to their library. Most users don’t want to give apps full access to their private data, and starting in iOS 14, they can share a limited subset of their photos and videos. When the app requests authorization, the system prompts the user with a dialog like the one shown below.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3699643",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In addition to the buttons to allow or disallow all access, there’s a new Select Photos option the user can tap to open the limited-library management interface. This interface lets the user select the assets to share with your app. The selected items represent the user’s limited library selection, your app can only access these assets.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The PhotoKit APIs largely function the same regardless of whether your app interacts with the full Photos library or only the user’s limited library selection. However, be aware of the following exceptions:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The system automatically adds assets that your app creates with a ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.photokit/documentation/Photos/PHAssetCreationRequest",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to the user’s limited library selection.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You can’t create or fetch user albums. If your app requires this functionality, you’ll need to update its behavior and user interface appropriately when your app’s authorization status is ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.photokit/documentation/Photos/PHAuthorizationStatus/limited",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Present-the-Limited-Library-Selection-Interface",
+          "level": 3,
+          "text": "Present the Limited-Library Selection Interface",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "By default, the system automatically prompts the user to update their limited-library selection once per app life cycle. This automatic presentation isn’t the preferred user experience for most apps. Instead, apps need to suppress the automatic prompt and present it programmatically.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To suppress the prompt, add the following key and value to your app’s ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3695628",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To present the limited-library picker programmatically, add an affordance in your user interface so the user can update their limited-library selection. When the user taps this interface, present the limited-library picker as shown in the following code.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Present the limited-library selection user interface.",
+            "let viewController = // The UIViewController from which to present the picker.",
+            "PHPhotoLibrary.shared().presentLimitedLibraryPicker(from: viewController)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In iOS 15.0 and later, you can present the limited-library picker with a callback. The callback provides a list of local identifiers that reflect the user’s new selections. This method only works when the user enables limited-library mode.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Present the limited-library selection user interface with a callback.",
+            "let viewController = // The UIViewController from which to present the picker.",
+            "PHPhotoLibrary.shared().presentLimitedLibraryPicker(from: viewController) { identifiers in",
+            "    for newlySelectedAssetIdentifier in identifiers {",
+            "        // Stage asset for app interaction.",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To monitor changes to the user’s limited-library selection, use the standard change observer API as described in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.photokit/documentation/PhotoKit/observing-changes-in-the-photo-library",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Register your app to receive notifications and update your user interface as the system notifies it of state changes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSPhotoLibraryAddUsageDescription": {
+      "abstract": [
+        {
+          "text": "A message that tells the user why the app is requesting add-only access to the user’s photo library.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSPhotoLibraryAddUsageDescription",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSPhotoLibraryAddUsageDescription",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/NSPhotoLibraryAddUsageDescription"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSPhotoLibraryUsageDescription": {
+      "abstract": [
+        {
+          "text": "A message that tells the user why the app is requesting access to the user’s photo library.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSPhotoLibraryUsageDescription",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSPhotoLibraryUsageDescription",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/NSPhotoLibraryUsageDescription"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIImagePickerController": {
+      "abstract": [
+        {
+          "text": "A view controller that manages the system interfaces for taking pictures, recording movies, and choosing items from the user’s media library.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIImagePickerController"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIImagePickerController",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIImagePickerController",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIImagePickerController"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.photokit/documentation/PhotoKit": {
+      "abstract": [
+        {
+          "text": "Work with image and video assets that the Photos app manages, including those from iCloud Photos and Live Photos.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/PhotoKit",
+      "kind": "article",
+      "role": "collection",
+      "title": "PhotoKit",
+      "type": "topic",
+      "url": "/documentation/photokit"
+    },
+    "doc://com.apple.photokit/documentation/PhotoKit/creating-photo-editing-extensions": {
+      "abstract": [
+        {
+          "text": "Provide custom functionality in the Photos app by bundling an app extension.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/PhotoKit/creating-photo-editing-extensions",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating Photo Editing Extensions",
+      "type": "topic",
+      "url": "/documentation/photokit/creating-photo-editing-extensions"
+    },
+    "doc://com.apple.photokit/documentation/PhotoKit/displaying-live-photos": {
+      "abstract": [
+        {
+          "text": "Provide the same interactive playback of Live Photos as in the iOS Photos app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/PhotoKit/displaying-live-photos",
+      "kind": "article",
+      "role": "article",
+      "title": "Displaying Live Photos",
+      "type": "topic",
+      "url": "/documentation/photokit/displaying-live-photos"
+    },
+    "doc://com.apple.photokit/documentation/PhotoKit/fetching-objects-and-requesting-changes": {
+      "abstract": [
+        {
+          "text": "Get assets, asset collections, and collection lists matching a specified query.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/PhotoKit/fetching-objects-and-requesting-changes",
+      "kind": "article",
+      "role": "article",
+      "title": "Fetching Objects and Requesting Changes",
+      "type": "topic",
+      "url": "/documentation/photokit/fetching-objects-and-requesting-changes"
+    },
+    "doc://com.apple.photokit/documentation/PhotoKit/loading-and-caching-assets-and-thumbnails": {
+      "abstract": [
+        {
+          "text": "Request image, video, or Live Photos content, and cache for quick reuse.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/PhotoKit/loading-and-caching-assets-and-thumbnails",
+      "kind": "article",
+      "role": "article",
+      "title": "Loading and Caching Assets and Thumbnails",
+      "type": "topic",
+      "url": "/documentation/photokit/loading-and-caching-assets-and-thumbnails"
+    },
+    "doc://com.apple.photokit/documentation/PhotoKit/observing-changes-in-the-photo-library": {
+      "abstract": [
+        {
+          "text": "Register an observer to be notified of changes to the photo library.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/PhotoKit/observing-changes-in-the-photo-library",
+      "kind": "article",
+      "role": "article",
+      "title": "Observing Changes in the Photo Library",
+      "type": "topic",
+      "url": "/documentation/photokit/observing-changes-in-the-photo-library"
+    },
+    "doc://com.apple.photokit/documentation/Photos/PHAssetCreationRequest": {
+      "abstract": [
+        {
+          "text": "A request to create a new Photos asset from underlying data resources, for use in a photo library change block.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PHAssetCreationRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/Photos/PHAssetCreationRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PHAssetCreationRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHAssetCreationRequest",
+      "type": "topic",
+      "url": "/documentation/photos/phassetcreationrequest"
+    },
+    "doc://com.apple.photokit/documentation/Photos/PHAuthorizationStatus": {
+      "abstract": [
+        {
+          "text": "Information about your app’s authorization to access the user’s photo library.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PHAuthorizationStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/Photos/PHAuthorizationStatus",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PHAuthorizationStatus"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHAuthorizationStatus",
+      "type": "topic",
+      "url": "/documentation/photos/phauthorizationstatus"
+    },
+    "doc://com.apple.photokit/documentation/Photos/PHAuthorizationStatus/authorized": {
+      "abstract": [
+        {
+          "text": "The user explicitly granted this app access to the photo library.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "authorized"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/Photos/PHAuthorizationStatus/authorized",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PHAuthorizationStatusAuthorized"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHAuthorizationStatus.authorized",
+      "type": "topic",
+      "url": "/documentation/photos/phauthorizationstatus/authorized"
+    },
+    "doc://com.apple.photokit/documentation/Photos/PHAuthorizationStatus/limited": {
+      "abstract": [
+        {
+          "text": "The user authorized this app for limited photo library access.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "limited"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/Photos/PHAuthorizationStatus/limited",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PHAuthorizationStatusLimited"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHAuthorizationStatus.limited",
+      "type": "topic",
+      "url": "/documentation/photos/phauthorizationstatus/limited"
+    },
+    "doc://com.apple.photokit/documentation/Photos/PHAuthorizationStatus/notDetermined": {
+      "abstract": [
+        {
+          "text": "The user hasn’t set the app’s authorization status.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "notDetermined"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/Photos/PHAuthorizationStatus/notDetermined",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PHAuthorizationStatusNotDetermined"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHAuthorizationStatus.notDetermined",
+      "type": "topic",
+      "url": "/documentation/photos/phauthorizationstatus/notdetermined"
+    },
+    "doc://com.apple.photokit/documentation/Photos/PHPhotoLibrary": {
+      "abstract": [
+        {
+          "text": "An object that manages access and changes to the user’s photo library.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PHPhotoLibrary"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/Photos/PHPhotoLibrary",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PHPhotoLibrary"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHPhotoLibrary",
+      "type": "topic",
+      "url": "/documentation/photos/phphotolibrary"
+    },
+    "doc://com.apple.photokit/documentation/Photos/PHPhotoLibrary/authorizationStatus()": {
+      "abstract": [
+        {
+          "text": "Returns information about your app’s authorization to access the user’s photo library.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "authorizationStatus"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@PHAuthorizationStatus",
+          "text": "PHAuthorizationStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/Photos/PHPhotoLibrary/authorizationStatus()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "authorizationStatus"
+        }
+      ],
+      "role": "symbol",
+      "title": "authorizationStatus()",
+      "type": "topic",
+      "url": "/documentation/photos/phphotolibrary/authorizationstatus()"
+    },
+    "doc://com.apple.photokit/documentation/Photos/PHPhotoLibrary/authorizationStatus(for:)": {
+      "abstract": [
+        {
+          "text": "Returns the app’s authorization to access the user’s photo library for the specified access level.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "authorizationStatus"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@PHAccessLevel",
+          "text": "PHAccessLevel"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@PHAuthorizationStatus",
+          "text": "PHAuthorizationStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/Photos/PHPhotoLibrary/authorizationStatus(for:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "authorizationStatusForAccessLevel:"
+        }
+      ],
+      "role": "symbol",
+      "title": "authorizationStatus(for:)",
+      "type": "topic",
+      "url": "/documentation/photos/phphotolibrary/authorizationstatus(for:)"
+    },
+    "doc://com.apple.photokit/documentation/Photos/PHPhotoLibrary/requestAuthorization(_:)": {
+      "abstract": [
+        {
+          "text": "Requests the user’s permission, if needed, to access the photo library.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "requestAuthorization"
+        },
+        {
+          "kind": "text",
+          "text": "(("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@PHAuthorizationStatus",
+          "text": "PHAuthorizationStatus"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/Photos/PHPhotoLibrary/requestAuthorization(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "requestAuthorization:"
+        }
+      ],
+      "role": "symbol",
+      "title": "requestAuthorization(_:)",
+      "type": "topic",
+      "url": "/documentation/photos/phphotolibrary/requestauthorization(_:)"
+    },
+    "doc://com.apple.photokit/documentation/Photos/PHPhotoLibrary/requestAuthorization(for:handler:)": {
+      "abstract": [
+        {
+          "text": "Prompts the user to grant the app permission to access the photo library.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "requestAuthorization"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@PHAccessLevel",
+          "text": "PHAccessLevel"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "handler"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@PHAuthorizationStatus",
+          "text": "PHAuthorizationStatus"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/Photos/PHPhotoLibrary/requestAuthorization(for:handler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "requestAuthorizationForAccessLevel:handler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "requestAuthorization(for:handler:)",
+      "type": "topic",
+      "url": "/documentation/photos/phphotolibrary/requestauthorization(for:handler:)"
+    },
+    "doc://com.apple.photokit/documentation/PhotosUI": {
+      "abstract": [
+        {
+          "text": "Present a person’s photo library using a picker interface, display Live Photos, or extend the Photos app with custom functionality.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/PhotosUI",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "PhotosUI",
+      "type": "topic",
+      "url": "/documentation/photosui"
+    },
+    "doc://com.apple.photokit/documentation/PhotosUI/PHPickerViewController": {
+      "abstract": [
+        {
+          "text": "A view controller that provides the user interface for choosing assets from the photo library.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PHPickerViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/PhotosUI/PHPickerViewController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PHPickerViewController"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHPickerViewController",
+      "type": "topic",
+      "url": "/documentation/photosui/phpickerviewcontroller"
+    },
+    "https://developer.apple.com/videos/play/wwdc2020/10652/": {
+      "identifier": "https://developer.apple.com/videos/play/wwdc2020/10652/",
+      "title": "Meet the New Photos Picker",
+      "titleInlineContent": [
+        {
+          "text": "Meet the New Photos Picker",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/videos/play/wwdc2020/10652/"
+    },
+    "media-3695626": {
+      "alt": "A screenshot of the an app’s Info.plist that shows the Privacy -  Photo Library Usage Description entry with a red box highlighting it.",
+      "identifier": "media-3695626",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/9360541d9b87da413b9e7158a20e97e2/media-3695626@2x.png"
+        }
+      ]
+    },
+    "media-3695628": {
+      "alt": "A screenshot of the an app’s Info.plist that shows the Prevent limited photos access alert entry with a red box highlighting it.",
+      "identifier": "media-3695628",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/9a93c46ecf283396ac1da9a94b83104b/media-3695628@2x.png"
+        }
+      ]
+    },
+    "media-3699643": {
+      "alt": "A screenshot of a Photos authorization dialog, with a callout highlighting the Select Photos… button. ",
+      "identifier": "media-3699643",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/9db13b2cb4ceeb22b0cb89e63d1b27b1/media-3699643@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Articles",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.photokit/documentation/PhotoKit/fetching-objects-and-requesting-changes",
+        "doc://com.apple.photokit/documentation/PhotoKit/loading-and-caching-assets-and-thumbnails",
+        "doc://com.apple.photokit/documentation/PhotoKit/displaying-live-photos",
+        "doc://com.apple.photokit/documentation/PhotoKit/creating-photo-editing-extensions"
+      ],
+      "title": "Articles"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHPhotoLibrary~1authorizationStatus(for:)/title",
+          "value": "authorizationStatusForAccessLevel:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHPhotoLibrary~1authorizationStatus(for:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "authorizationStatusForAccessLevel:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHPhotoLibrary~1requestAuthorization(_:)/title",
+          "value": "requestAuthorization:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHPhotoLibrary~1requestAuthorization(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "requestAuthorization:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHPhotoLibrary~1requestAuthorization(for:handler:)/title",
+          "value": "requestAuthorizationForAccessLevel:handler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHPhotoLibrary~1requestAuthorization(for:handler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "requestAuthorizationForAccessLevel:handler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIImagePickerController/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIImagePickerController"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UINavigationController",
+              "text": "UINavigationController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1PhotosUI~1PHPickerViewController/title",
+          "value": "PHPickerViewController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1PhotosUI~1PHPickerViewController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHPickerViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1PhotosUI~1PHPickerViewController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHPickerViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHAuthorizationStatus~1authorized/title",
+          "value": "PHAuthorizationStatusAuthorized"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHAuthorizationStatus~1authorized/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHAuthorizationStatusAuthorized"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHAssetCreationRequest/title",
+          "value": "PHAssetCreationRequest"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHAssetCreationRequest/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHAssetCreationRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHAssetCreationRequest/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHAssetCreationRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHAuthorizationStatus/title",
+          "value": "PHAuthorizationStatus"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHAuthorizationStatus/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHAuthorizationStatus"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHAuthorizationStatus/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHAuthorizationStatus"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHAuthorizationStatus~1limited/title",
+          "value": "PHAuthorizationStatusLimited"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHAuthorizationStatus~1limited/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHAuthorizationStatusLimited"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHPhotoLibrary~1authorizationStatus()/title",
+          "value": "authorizationStatus"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHPhotoLibrary~1authorizationStatus()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "authorizationStatus"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHAuthorizationStatus~1notDetermined/title",
+          "value": "PHAuthorizationStatusNotDetermined"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHAuthorizationStatus~1notDetermined/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHAuthorizationStatusNotDetermined"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHPhotoLibrary/title",
+          "value": "PHPhotoLibrary"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHPhotoLibrary/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHPhotoLibrary"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHPhotoLibrary/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHPhotoLibrary"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1259 @@
+{
+  "abstract": [
+    {
+      "text": "Transform the user’s location that displays on a map into an informative textual description by reverse geocoding.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.mapkit/documentation/MapKit",
+        "doc://com.apple.mapkit/documentation/MapKit/mapkit-for-appkit-and-uikit",
+        "doc://com.apple.mapkit/documentation/MapKit/MKMapView"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.mapkit/documentation/MapKit",
+        "doc://com.apple.mapkit/documentation/MapKit/mapkit-for-appkit-and-uikit",
+        "doc://com.apple.mapkit/documentation/MapKit/mapkit-annotations"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.mapkit/documentation/MapKit/converting-a-user-s-location-to-a-descriptive-placemark"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "MapKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Converting a user’s location to a descriptive placemark"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can show a user’s location on a map in order to orient them to elements of your app that use map content. For instance, a user’s current location can be a point of reference for retrieving search results or calculating directions. Additionally, you can display location information outside of the map, such as a search field pre-filled with the user’s current city or street address. To provide this information in your app, configure your map view to display the user’s location, and then translate the location to informative, user-friendly data.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Display-the-user-location-annotation",
+          "level": 3,
+          "text": "Display the user location annotation",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To provide user-friendly place information, configure your map view to display the user’s current location by enabling ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKMapView/showsUserLocation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". After enabling this property, the map delegate begins receiving updates to the user’s location, represented with a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKUserLocation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object, through ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKMapViewDelegate/mapView(_:didUpdate:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Geocode-the-user-location-annotation",
+          "level": 3,
+          "text": "Geocode the user location annotation",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreLocation/CLPlacemark",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects represent user place names, and include properties for street name, city name, country or region name, and many other location identifiers. When ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKMapViewDelegate/mapView(_:didUpdate:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " receives updates on the user’s location, convert the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKUserLocation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object to a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreLocation/CLPlacemark",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " by reverse geocoding the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKUserLocation/location",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property with a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreLocation/CLGeocoder",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Readable descriptions of the user’s location are available as properties on the placemark, such as the city information stored in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreLocation/CLPlacemark/locality",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Geocoding requests are rate-limited for each app. Issue new geocoding requests only when the user has moved a significant distance and after a reasonable amount of time has passed.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "code": [
+            "func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) {",
+            "        guard let newLocation = userLocation.location else { return }",
+            "        ",
+            "        let currentTime = Date()",
+            "        let lastLocation = self.currentLocation",
+            "        self.currentLocation = newLocation",
+            "        ",
+            "        // Only get new placemark information if you don't have a previous location,",
+            "        // if the user has moved a meaningful distance from the previous location, such as 1000 meters,",
+            "        // and if it's been 60 seconds since the last geocode request.",
+            "        if let lastLocation = lastLocation,",
+            "            newLocation.distance(from: lastLocation) <= 1000,",
+            "            let lastTime = lastGeocodeTime,",
+            "            currentTime.timeIntervalSince(lastTime) < 60 {",
+            "            return",
+            "        }",
+            "        ",
+            "        // Convert the user's location to a user-friendly place name by reverse geocoding the location.",
+            "        lastGeocodeTime = currentTime",
+            "        geocoder.reverseGeocodeLocation(newLocation) { (placemarks, error) in",
+            "            guard error == nil else {",
+            "                self.handleError(error)",
+            "                return",
+            "            }",
+            "            ",
+            "            // Most geocoding requests contain only one result.",
+            "            if let firstPlacemark = placemarks?.first {",
+            "                self.mostRecentPlacemark = firstPlacemark",
+            "                self.currentCity = firstPlacemark.locality",
+            "            }",
+            "        }",
+            "    }"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/CoreLocation/CLGeocoder": {
+      "abstract": [
+        {
+          "text": "An interface for converting between geographic coordinates and place names.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CLGeocoder"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreLocation/CLGeocoder",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CLGeocoder",
+      "type": "topic",
+      "url": "/documentation/CoreLocation/CLGeocoder"
+    },
+    "doc://com.apple.documentation/documentation/CoreLocation/CLPlacemark": {
+      "abstract": [
+        {
+          "text": "A user-friendly description of a geographic coordinate, often containing the name of the place, its address, and other relevant information.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CLPlacemark"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreLocation/CLPlacemark",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CLPlacemark",
+      "type": "topic",
+      "url": "/documentation/CoreLocation/CLPlacemark"
+    },
+    "doc://com.apple.documentation/documentation/CoreLocation/CLPlacemark/locality": {
+      "abstract": [
+        {
+          "text": "The city associated with the placemark.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "locality"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "? { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreLocation/CLPlacemark/locality",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "locality",
+      "type": "topic",
+      "url": "/documentation/CoreLocation/CLPlacemark/locality"
+    },
+    "doc://com.apple.documentation/documentation/CoreLocation/converting-between-coordinates-and-user-friendly-place-names": {
+      "abstract": [
+        {
+          "text": "Convert between a latitude and longitude pair and a more user-friendly description of that location.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreLocation/converting-between-coordinates-and-user-friendly-place-names",
+      "kind": "article",
+      "role": "article",
+      "title": "Converting between coordinates and user-friendly place names",
+      "type": "topic",
+      "url": "/documentation/CoreLocation/converting-between-coordinates-and-user-friendly-place-names"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit": {
+      "abstract": [
+        {
+          "text": "Display map or satellite imagery within your app, call out points of interest, and determine placemark information for map coordinates.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "MapKit",
+      "type": "topic",
+      "url": "/documentation/mapkit"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit/MKMapView": {
+      "abstract": [
+        {
+          "text": "An embeddable map interface, similar to the one that the Maps app provides.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MKMapView"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKMapView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MKMapView"
+        }
+      ],
+      "role": "symbol",
+      "title": "MKMapView",
+      "type": "topic",
+      "url": "/documentation/mapkit/mkmapview"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit/MKMapView/isUserLocationVisible": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the user’s location is visible in the map view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isUserLocationVisible"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKMapView/isUserLocationVisible",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "userLocationVisible"
+        }
+      ],
+      "role": "symbol",
+      "title": "isUserLocationVisible",
+      "type": "topic",
+      "url": "/documentation/mapkit/mkmapview/isuserlocationvisible"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit/MKMapView/setUserTrackingMode(_:animated:)": {
+      "abstract": [
+        {
+          "text": "Sets the mode to use for tracking the user’s location, with optional animation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setUserTrackingMode"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MKUserTrackingMode",
+          "text": "MKUserTrackingMode"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "animated"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKMapView/setUserTrackingMode(_:animated:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setUserTrackingMode:animated:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setUserTrackingMode(_:animated:)",
+      "type": "topic",
+      "url": "/documentation/mapkit/mkmapview/setusertrackingmode(_:animated:)"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit/MKMapView/showsUserLocation": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the map tries to display the user’s location.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "showsUserLocation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKMapView/showsUserLocation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "showsUserLocation"
+        }
+      ],
+      "role": "symbol",
+      "title": "showsUserLocation",
+      "type": "topic",
+      "url": "/documentation/mapkit/mkmapview/showsuserlocation"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit/MKMapView/userLocation": {
+      "abstract": [
+        {
+          "text": "The annotation object that represents the user’s location.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "userLocation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MKUserLocation",
+          "text": "MKUserLocation"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKMapView/userLocation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "userLocation"
+        }
+      ],
+      "role": "symbol",
+      "title": "userLocation",
+      "type": "topic",
+      "url": "/documentation/mapkit/mkmapview/userlocation"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit/MKMapView/userTrackingMode": {
+      "abstract": [
+        {
+          "text": "The mode to use for tracking the user’s location.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "userTrackingMode"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MKUserTrackingMode",
+          "text": "MKUserTrackingMode"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKMapView/userTrackingMode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "userTrackingMode"
+        }
+      ],
+      "role": "symbol",
+      "title": "userTrackingMode",
+      "type": "topic",
+      "url": "/documentation/mapkit/mkmapview/usertrackingmode"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit/MKMapViewDelegate/mapView(_:didUpdate:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate when the map view updates the user’s location.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mapView"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MKMapView",
+          "text": "MKMapView"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didUpdate"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MKUserLocation",
+          "text": "MKUserLocation"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKMapViewDelegate/mapView(_:didUpdate:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "mapView:didUpdateUserLocation:"
+        }
+      ],
+      "role": "symbol",
+      "title": "mapView(_:didUpdate:)",
+      "type": "topic",
+      "url": "/documentation/mapkit/mkmapviewdelegate/mapview(_:didupdate:)"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit/MKUserLocation": {
+      "abstract": [
+        {
+          "text": "An annotation that reflects the user’s location on the map.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MKUserLocation"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKUserLocation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MKUserLocation"
+        }
+      ],
+      "role": "symbol",
+      "title": "MKUserLocation",
+      "type": "topic",
+      "url": "/documentation/mapkit/mkuserlocation"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit/MKUserLocation/location": {
+      "abstract": [
+        {
+          "text": "The location of the device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "location"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CLLocation",
+          "text": "CLLocation"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKUserLocation/location",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "location"
+        }
+      ],
+      "role": "symbol",
+      "title": "location",
+      "type": "topic",
+      "url": "/documentation/mapkit/mkuserlocation/location"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit/MKUserTrackingMode": {
+      "abstract": [
+        {
+          "text": "The mode to use for tracking the user’s location on the map.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MKUserTrackingMode"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKUserTrackingMode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MKUserTrackingMode"
+        }
+      ],
+      "role": "symbol",
+      "title": "MKUserTrackingMode",
+      "type": "topic",
+      "url": "/documentation/mapkit/mkusertrackingmode"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit/mapkit-annotations": {
+      "abstract": [
+        {
+          "text": "Create annotations to add indicators and additional details for specific locations on a map.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit/mapkit-annotations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "MapKit annotations",
+      "type": "topic",
+      "url": "/documentation/mapkit/mapkit-annotations"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit/mapkit-for-appkit-and-uikit": {
+      "abstract": [],
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit/mapkit-for-appkit-and-uikit",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "MapKit for AppKit and UIKit",
+      "type": "topic",
+      "url": "/documentation/mapkit/mapkit-for-appkit-and-uikit"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Related-Documentation",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/CoreLocation/converting-between-coordinates-and-user-friendly-place-names"
+      ],
+      "title": "Related Documentation"
+    },
+    {
+      "anchor": "Displaying-the-users-location",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.mapkit/documentation/MapKit/MKMapView/showsUserLocation",
+        "doc://com.apple.mapkit/documentation/MapKit/MKMapView/isUserLocationVisible",
+        "doc://com.apple.mapkit/documentation/MapKit/MKMapView/userLocation",
+        "doc://com.apple.mapkit/documentation/MapKit/MKMapView/userTrackingMode",
+        "doc://com.apple.mapkit/documentation/MapKit/MKMapView/setUserTrackingMode(_:animated:)",
+        "doc://com.apple.mapkit/documentation/MapKit/MKUserTrackingMode"
+      ],
+      "title": "Displaying the user’s location"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Related-Documentation",
+              "identifiers": [
+                "doc://com.apple.documentation/documentation/CoreLocation/converting-between-coordinates-and-user-friendly-place-names"
+              ],
+              "title": "Related Documentation"
+            },
+            {
+              "anchor": "Displaying-the-users-location",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.mapkit/documentation/MapKit/MKMapView/showsUserLocation",
+                "doc://com.apple.mapkit/documentation/MapKit/MKMapView/isUserLocationVisible",
+                "doc://com.apple.mapkit/documentation/MapKit/MKMapView/userLocation",
+                "doc://com.apple.mapkit/documentation/MapKit/MKMapView/userTrackingMode",
+                "doc://com.apple.mapkit/documentation/MapKit/MKMapView/setUserTrackingMode(_:animated:)",
+                "doc://com.apple.mapkit/documentation/MapKit/MKUserTrackingMode"
+              ],
+              "title": "Displaying the user’s location"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKMapView~1userLocation/title",
+          "value": "userLocation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKMapView~1userLocation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "userLocation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreLocation~1CLPlacemark/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CLPlacemark"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKMapView~1showsUserLocation/title",
+          "value": "showsUserLocation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKMapView~1showsUserLocation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "showsUserLocation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKMapView~1isUserLocationVisible/title",
+          "value": "userLocationVisible"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKMapView~1isUserLocationVisible/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "userLocationVisible"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKUserLocation~1location/title",
+          "value": "location"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKUserLocation~1location/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "location"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreLocation~1CLPlacemark~1locality/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "nonatomic"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "copy"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "readonly"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSString",
+              "text": "NSString"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "identifier",
+              "text": "locality"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKMapView~1userTrackingMode/title",
+          "value": "userTrackingMode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKMapView~1userTrackingMode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "userTrackingMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKUserLocation/title",
+          "value": "MKUserLocation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKUserLocation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MKUserLocation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKUserLocation/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MKUserLocation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreLocation~1CLGeocoder/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CLGeocoder"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKMapViewDelegate~1mapView(_:didUpdate:)/title",
+          "value": "mapView:didUpdateUserLocation:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKMapViewDelegate~1mapView(_:didUpdate:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "mapView:didUpdateUserLocation:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKUserTrackingMode/title",
+          "value": "MKUserTrackingMode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKUserTrackingMode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MKUserTrackingMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKUserTrackingMode/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MKUserTrackingMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKMapView/title",
+          "value": "MKMapView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKMapView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MKMapView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKMapView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MKMapView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKMapView~1setUserTrackingMode(_:animated:)/title",
+          "value": "setUserTrackingMode:animated:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKMapView~1setUserTrackingMode(_:animated:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setUserTrackingMode:animated:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/mapkit/converting-a-user-s-location-to-a-descriptive-placemark"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/mapkit/converting-a-user-s-location-to-a-descriptive-placemark"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

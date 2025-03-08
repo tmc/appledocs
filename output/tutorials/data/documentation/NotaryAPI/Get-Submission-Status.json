@@ -1,0 +1,559 @@
+{
+  "abstract": [
+    {
+      "text": "Fetch the status of a software notarization submission.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.notaryapi/documentation/NotaryAPI"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.notaryapi/documentation/NotaryAPI/Get-Submission-Status"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "rest:notaryservice:get:v2-submissions-{}",
+    "modules": [
+      {
+        "name": "Notary API"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "Get Submission Status"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "2.0.0",
+        "name": "Notary API"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Web Service Endpoint",
+    "symbolKind": "httpRequest",
+    "title": "Get Submission Status"
+  },
+  "primaryContentSections": [
+    {
+      "kind": "restEndpoint",
+      "title": "URL",
+      "tokens": [
+        {
+          "kind": "method",
+          "text": "GET"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "baseURL",
+          "text": "https://appstoreconnect.apple.com/notary/"
+        },
+        {
+          "kind": "path",
+          "text": "v2/submissions/"
+        },
+        {
+          "kind": "parameter",
+          "text": "{submissionId}"
+        }
+      ]
+    },
+    {
+      "items": [
+        {
+          "attributes": [
+            {
+              "kind": "allowedValues",
+              "values": [
+                "/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/"
+              ]
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The identifier that you receive from the notary service when you post to ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.notaryapi/documentation/NotaryAPI/Submit-Software",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " to start a new submission.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "submissionId",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "uuid"
+            }
+          ],
+          "typeDetails": [
+            {
+              "baseType": "uuid"
+            }
+          ]
+        }
+      ],
+      "kind": "restParameters",
+      "source": "path",
+      "title": "Path Parameters"
+    },
+    {
+      "items": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The status request succeeded. The response contains the status.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "OK",
+          "status": 200,
+          "type": [
+            {
+              "identifier": "doc://com.apple.notaryapi/documentation/NotaryAPI/SubmissionResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:notaryservice:SubmissionResponse",
+              "text": "SubmissionResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An authentication failure occurred.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Forbidden",
+          "status": 403,
+          "type": [
+            {
+              "identifier": "doc://com.apple.notaryapi/documentation/NotaryAPI/ErrorResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:notaryservice:ErrorResponse",
+              "text": "ErrorResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The specified identifier can’t be found.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Not Found",
+          "status": 404,
+          "type": [
+            {
+              "identifier": "doc://com.apple.notaryapi/documentation/NotaryAPI/ErrorResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:notaryservice:ErrorResponse",
+              "text": "ErrorResponse"
+            }
+          ]
+        }
+      ],
+      "kind": "restResponses",
+      "title": "Response Codes"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.notaryapi/documentation/NotaryAPI/submitting-software-for-notarization-over-the-web"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use this endpoint to fetch the status of a submission request. Form the URL for the call using the identifier that you receive in the ",
+              "type": "text"
+            },
+            {
+              "code": "id",
+              "type": "codeVoice"
+            },
+            {
+              "text": " field of the response to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.notaryapi/documentation/NotaryAPI/Submit-Software",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " endpoint. If you lose the identifier, you can get a list of the most recent 100 submissions by calling the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.notaryapi/documentation/NotaryAPI/Get-Previous-Submissions",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " endpoint.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Along with the status of the request, the response indicates the date that you initiated the request and the software name that you provided at that time.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Example",
+          "level": 3,
+          "text": "Example",
+          "type": "heading"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "https://appstoreconnect.apple.com/notary/v2/submissions/2efe2717-52ef-43a5-96dc-0797e4ca1041"
+                  ],
+                  "syntax": "https",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Request"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "{",
+                    "  \"data\": {",
+                    "    \"attributes\": {",
+                    "      \"createdDate\": \"2022-06-08T01:38:09.498Z\",",
+                    "      \"name\": \"OvernightTextEditor_11.6.8.zip\",",
+                    "      \"status\": \"Accepted\"",
+                    "    },",
+                    "    \"id\": \"2efe2717-52ef-43a5-96dc-0797e4ca1041\",",
+                    "    \"type\": \"submissions\"",
+                    "  },",
+                    "  \"meta\": {",
+                    "  }",
+                    "} "
+                  ],
+                  "syntax": "json",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Response"
+            }
+          ],
+          "type": "tabNavigator"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.notaryapi/documentation/NotaryAPI": {
+      "abstract": [
+        {
+          "text": "Submit your macOS software for notarization through a web interface.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.notaryapi/documentation/NotaryAPI",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Notary API",
+      "type": "topic",
+      "url": "/documentation/notaryapi"
+    },
+    "doc://com.apple.notaryapi/documentation/NotaryAPI/ErrorResponse": {
+      "abstract": [
+        {
+          "text": "The notary service’s response when an error occurs.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ErrorResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.notaryapi/documentation/NotaryAPI/ErrorResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ErrorResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "ErrorResponse",
+      "type": "topic",
+      "url": "/documentation/notaryapi/errorresponse"
+    },
+    "doc://com.apple.notaryapi/documentation/NotaryAPI/Get-Previous-Submissions": {
+      "abstract": [
+        {
+          "text": "Fetch a list of your team’s previous notarization submissions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.notaryapi/documentation/NotaryAPI/Get-Previous-Submissions",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Get Previous Submissions"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get Previous Submissions",
+      "type": "topic",
+      "url": "/documentation/notaryapi/get-previous-submissions"
+    },
+    "doc://com.apple.notaryapi/documentation/NotaryAPI/Get-Submission-Log": {
+      "abstract": [
+        {
+          "text": "Fetch details about a single completed notarization.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.notaryapi/documentation/NotaryAPI/Get-Submission-Log",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Get Submission Log"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get Submission Log",
+      "type": "topic",
+      "url": "/documentation/notaryapi/get-submission-log"
+    },
+    "doc://com.apple.notaryapi/documentation/NotaryAPI/Get-Submission-Status": {
+      "abstract": [
+        {
+          "text": "Fetch the status of a software notarization submission.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.notaryapi/documentation/NotaryAPI/Get-Submission-Status",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Get Submission Status"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get Submission Status",
+      "type": "topic",
+      "url": "/documentation/notaryapi/get-submission-status"
+    },
+    "doc://com.apple.notaryapi/documentation/NotaryAPI/SubmissionLogURLResponse": {
+      "abstract": [
+        {
+          "text": "The notary service’s response to a request for the log information about a completed submission.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "SubmissionLogURLResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.notaryapi/documentation/NotaryAPI/SubmissionLogURLResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SubmissionLogURLResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "SubmissionLogURLResponse",
+      "type": "topic",
+      "url": "/documentation/notaryapi/submissionlogurlresponse"
+    },
+    "doc://com.apple.notaryapi/documentation/NotaryAPI/SubmissionResponse": {
+      "abstract": [
+        {
+          "text": "The notary service’s response to a request for the status of a submission.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "SubmissionResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.notaryapi/documentation/NotaryAPI/SubmissionResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SubmissionResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "SubmissionResponse",
+      "type": "topic",
+      "url": "/documentation/notaryapi/submissionresponse"
+    },
+    "doc://com.apple.notaryapi/documentation/NotaryAPI/Submit-Software": {
+      "abstract": [
+        {
+          "text": "Start the process of uploading a new version of your software to the notary service.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.notaryapi/documentation/NotaryAPI/Submit-Software",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Submit Software"
+        }
+      ],
+      "role": "symbol",
+      "title": "Submit Software",
+      "type": "topic",
+      "url": "/documentation/notaryapi/submit-software"
+    },
+    "doc://com.apple.notaryapi/documentation/NotaryAPI/submitting-software-for-notarization-over-the-web": {
+      "abstract": [
+        {
+          "text": "Eliminate a dependency on macOS in your notarization workflow by interfacing directly with the notary service.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.notaryapi/documentation/NotaryAPI/submitting-software-for-notarization-over-the-web",
+      "kind": "article",
+      "role": "article",
+      "title": "Submitting software for notarization over the web",
+      "type": "topic",
+      "url": "/documentation/notaryapi/submitting-software-for-notarization-over-the-web"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Notarization-results",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.notaryapi/documentation/NotaryAPI/SubmissionResponse",
+        "doc://com.apple.notaryapi/documentation/NotaryAPI/Get-Submission-Log",
+        "doc://com.apple.notaryapi/documentation/NotaryAPI/SubmissionLogURLResponse"
+      ],
+      "title": "Notarization results"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/notaryapi/get-submission-status"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

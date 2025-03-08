@@ -1,0 +1,1766 @@
+{
+  "abstract": [
+    {
+      "text": "An interface for associating content with a specific map region.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.mapkit/documentation/MapKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.mapkit/documentation/MapKit/MKOverlay"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(pl)MKOverlay",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "protocol"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "MKOverlay"
+      }
+    ],
+    "modules": [
+      {
+        "name": "MapKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "MKOverlay"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "4.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "4.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.9",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.2",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Protocol",
+    "symbolKind": "protocol",
+    "title": "MKOverlay"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MKOverlay"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKAnnotation",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)MKAnnotation",
+              "text": "MKAnnotation"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Overlay objects",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " are data objects that define the geographic data to cover. MapKit defines several concrete classes that adopt this protocol and define standard shapes like rectangles, circles, and polygons. You might use overlays to define the geographic boundaries of a national park or trace a bus route along city streets. You add an overlay to your map view by calling its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKMapView/addOverlay(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method or any other map view method for adding overlays to the map. When the overlay’s region intersects the visible portion of the map, the map view calls the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKMapViewDelegate/mapView(_:rendererFor:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method of its delegate to obtain the renderer object responsible for drawing the overlay.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you add an overlay to a map view as an annotation, instead of adding it as an overlay, the map view treats your overlay as an annotation. Specifically, it displays your overlay only when its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKOverlay/coordinate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " is in the visible map region, rather than displaying the overlay when any portion of its covered area is visible.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit": {
+      "abstract": [
+        {
+          "text": "Display map or satellite imagery within your app, call out points of interest, and determine placemark information for map coordinates.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "MapKit",
+      "type": "topic",
+      "url": "/documentation/mapkit"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit/MKAnnotation": {
+      "abstract": [
+        {
+          "text": "An interface for associating your content with a specific map location.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MKAnnotation"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKAnnotation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MKAnnotation"
+        }
+      ],
+      "role": "symbol",
+      "title": "MKAnnotation",
+      "type": "topic",
+      "url": "/documentation/mapkit/mkannotation"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit/MKCircle": {
+      "abstract": [
+        {
+          "text": "A circular overlay with a configurable radius that you center on a geographic coordinate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MKCircle"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKCircle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MKCircle"
+        }
+      ],
+      "role": "symbol",
+      "title": "MKCircle",
+      "type": "topic",
+      "url": "/documentation/mapkit/mkcircle"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit/MKGeodesicPolyline": {
+      "abstract": [
+        {
+          "text": "An open polygon overlay consisting of line segments that follow the contours of the Earth to create the shortest path between the specified points.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MKGeodesicPolyline"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKGeodesicPolyline",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MKGeodesicPolyline"
+        }
+      ],
+      "role": "symbol",
+      "title": "MKGeodesicPolyline",
+      "type": "topic",
+      "url": "/documentation/mapkit/mkgeodesicpolyline"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit/MKMapView/addOverlay(_:)": {
+      "abstract": [
+        {
+          "text": "Adds a single overlay object to the map.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "addOverlay"
+        },
+        {
+          "kind": "text",
+          "text": "(any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MKOverlay",
+          "text": "MKOverlay"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKMapView/addOverlay(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "addOverlay:"
+        }
+      ],
+      "role": "symbol",
+      "title": "addOverlay(_:)",
+      "type": "topic",
+      "url": "/documentation/mapkit/mkmapview/addoverlay(_:)"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit/MKMapViewDelegate/mapView(_:rendererFor:)": {
+      "abstract": [
+        {
+          "text": "Asks the delegate for a renderer object to use when drawing the specified overlay.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mapView"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MKMapView",
+          "text": "MKMapView"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "rendererFor"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MKOverlay",
+          "text": "MKOverlay"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MKOverlayRenderer",
+          "text": "MKOverlayRenderer"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKMapViewDelegate/mapView(_:rendererFor:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "mapView:rendererForOverlay:"
+        }
+      ],
+      "role": "symbol",
+      "title": "mapView(_:rendererFor:)",
+      "type": "topic",
+      "url": "/documentation/mapkit/mkmapviewdelegate/mapview(_:rendererfor:)"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit/MKMultiPoint": {
+      "abstract": [
+        {
+          "text": "An abstract class that defines the common behavior that open and closed polygon overlays share.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MKMultiPoint"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKMultiPoint",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MKMultiPoint"
+        }
+      ],
+      "role": "symbol",
+      "title": "MKMultiPoint",
+      "type": "topic",
+      "url": "/documentation/mapkit/mkmultipoint"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit/MKMultiPolygon": {
+      "abstract": [
+        {
+          "text": "A collection of multiple closed polygon overlays.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MKMultiPolygon"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKMultiPolygon",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MKMultiPolygon"
+        }
+      ],
+      "role": "symbol",
+      "title": "MKMultiPolygon",
+      "type": "topic",
+      "url": "/documentation/mapkit/mkmultipolygon"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit/MKMultiPolyline": {
+      "abstract": [
+        {
+          "text": "A collection of multipolyline shapes, each consisting of one or more connected line segments.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MKMultiPolyline"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKMultiPolyline",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MKMultiPolyline"
+        }
+      ],
+      "role": "symbol",
+      "title": "MKMultiPolyline",
+      "type": "topic",
+      "url": "/documentation/mapkit/mkmultipolyline"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit/MKOverlay": {
+      "abstract": [
+        {
+          "text": "An interface for associating content with a specific map region.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MKOverlay"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKOverlay",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MKOverlay"
+        }
+      ],
+      "role": "symbol",
+      "title": "MKOverlay",
+      "type": "topic",
+      "url": "/documentation/mapkit/mkoverlay"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit/MKOverlay/boundingMapRect": {
+      "abstract": [
+        {
+          "text": "The projected rectangle that encompasses the overlay.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "boundingMapRect"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@MKMapRect",
+          "text": "MKMapRect"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKOverlay/boundingMapRect",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "boundingMapRect"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "boundingMapRect",
+      "type": "topic",
+      "url": "/documentation/mapkit/mkoverlay/boundingmaprect"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit/MKOverlay/canReplaceMapContent()": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether the overlay content replaces the underlying map content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "canReplaceMapContent"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKOverlay/canReplaceMapContent()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "canReplaceMapContent"
+        }
+      ],
+      "role": "symbol",
+      "title": "canReplaceMapContent()",
+      "type": "topic",
+      "url": "/documentation/mapkit/mkoverlay/canreplacemapcontent()"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit/MKOverlay/coordinate": {
+      "abstract": [
+        {
+          "text": "The approximate center point of the overlay area.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "coordinate"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CLLocationCoordinate2D",
+          "text": "CLLocationCoordinate2D"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKOverlay/coordinate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "coordinate"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "coordinate",
+      "type": "topic",
+      "url": "/documentation/mapkit/mkoverlay/coordinate"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit/MKOverlay/intersects(_:)": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether the specified rectangle intersects the overlay’s shape.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "intersects"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@MKMapRect",
+          "text": "MKMapRect"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKOverlay/intersects(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "intersectsMapRect:"
+        }
+      ],
+      "role": "symbol",
+      "title": "intersects(_:)",
+      "type": "topic",
+      "url": "/documentation/mapkit/mkoverlay/intersects(_:)"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit/MKOverlayRenderer": {
+      "abstract": [
+        {
+          "text": "The shared infrastructure for drawing overlays on the map surface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MKOverlayRenderer"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKOverlayRenderer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MKOverlayRenderer"
+        }
+      ],
+      "role": "symbol",
+      "title": "MKOverlayRenderer",
+      "type": "topic",
+      "url": "/documentation/mapkit/mkoverlayrenderer"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit/MKPlacemark": {
+      "abstract": [
+        {
+          "text": "A user-friendly description of a location on the map.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MKPlacemark"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKPlacemark",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MKPlacemark"
+        }
+      ],
+      "role": "symbol",
+      "title": "MKPlacemark",
+      "type": "topic",
+      "url": "/documentation/mapkit/mkplacemark"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit/MKPolygon": {
+      "abstract": [
+        {
+          "text": "A closed polygon overlay.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MKPolygon"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKPolygon",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MKPolygon"
+        }
+      ],
+      "role": "symbol",
+      "title": "MKPolygon",
+      "type": "topic",
+      "url": "/documentation/mapkit/mkpolygon"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit/MKPolyline": {
+      "abstract": [
+        {
+          "text": "An open polygon overlay consisting of one or more connected line segments.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MKPolyline"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKPolyline",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MKPolyline"
+        }
+      ],
+      "role": "symbol",
+      "title": "MKPolyline",
+      "type": "topic",
+      "url": "/documentation/mapkit/mkpolyline"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit/MKShape": {
+      "abstract": [
+        {
+          "text": "An abstract class that defines the basic properties for all shape-based overlay objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MKShape"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKShape",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MKShape"
+        }
+      ],
+      "role": "symbol",
+      "title": "MKShape",
+      "type": "topic",
+      "url": "/documentation/mapkit/mkshape"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit/MKTileOverlay": {
+      "abstract": [
+        {
+          "text": "An overlay that covers an area of the map with tiles of bitmap images.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MKTileOverlay"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKTileOverlay",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MKTileOverlay"
+        }
+      ],
+      "role": "symbol",
+      "title": "MKTileOverlay",
+      "type": "topic",
+      "url": "/documentation/mapkit/mktileoverlay"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.mapkit/documentation/MapKit/MKAnnotation",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.apple.mapkit/documentation/MapKit/MKCircle",
+        "doc://com.apple.mapkit/documentation/MapKit/MKGeodesicPolyline",
+        "doc://com.apple.mapkit/documentation/MapKit/MKMultiPolygon",
+        "doc://com.apple.mapkit/documentation/MapKit/MKMultiPolyline",
+        "doc://com.apple.mapkit/documentation/MapKit/MKPolygon",
+        "doc://com.apple.mapkit/documentation/MapKit/MKPolyline",
+        "doc://com.apple.mapkit/documentation/MapKit/MKTileOverlay"
+      ],
+      "kind": "relationships",
+      "title": "Conforming Types",
+      "type": "conformingTypes"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Shared-behavior",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.mapkit/documentation/MapKit/MKOverlayRenderer",
+        "doc://com.apple.mapkit/documentation/MapKit/MKShape",
+        "doc://com.apple.mapkit/documentation/MapKit/MKMultiPoint",
+        "doc://com.apple.mapkit/documentation/MapKit/MKPlacemark"
+      ],
+      "title": "Shared behavior"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Describing-the-overlay-geometry",
+      "identifiers": [
+        "doc://com.apple.mapkit/documentation/MapKit/MKOverlay/coordinate",
+        "doc://com.apple.mapkit/documentation/MapKit/MKOverlay/boundingMapRect"
+      ],
+      "title": "Describing the overlay geometry"
+    },
+    {
+      "anchor": "Determining-map-intersections",
+      "identifiers": [
+        "doc://com.apple.mapkit/documentation/MapKit/MKOverlay/intersects(_:)"
+      ],
+      "title": "Determining map intersections"
+    },
+    {
+      "anchor": "Optimizing-map-rendering",
+      "identifiers": [
+        "doc://com.apple.mapkit/documentation/MapKit/MKOverlay/canReplaceMapContent()"
+      ],
+      "title": "Optimizing map rendering"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "4.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "4.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.9",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "9.2",
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Protocol"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "MKOverlay"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "protocol"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MKOverlay"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MKOverlay"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.mapkit/documentation/MapKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Describing-the-overlay-geometry",
+              "identifiers": [
+                "doc://com.apple.mapkit/documentation/MapKit/MKOverlay/coordinate",
+                "doc://com.apple.mapkit/documentation/MapKit/MKOverlay/boundingMapRect"
+              ],
+              "title": "Describing the overlay geometry"
+            },
+            {
+              "anchor": "Determining-map-intersections",
+              "identifiers": [
+                "doc://com.apple.mapkit/documentation/MapKit/MKOverlay/intersects(_:)"
+              ],
+              "title": "Determining map intersections"
+            },
+            {
+              "anchor": "Optimizing-map-rendering",
+              "identifiers": [
+                "doc://com.apple.mapkit/documentation/MapKit/MKOverlay/canReplaceMapContent()"
+              ],
+              "title": "Optimizing map rendering"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.apple.mapkit/documentation/MapKit/MKAnnotation"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            },
+            {
+              "identifiers": [
+                "doc://com.apple.mapkit/documentation/MapKit/MKCircle",
+                "doc://com.apple.mapkit/documentation/MapKit/MKMultiPolygon",
+                "doc://com.apple.mapkit/documentation/MapKit/MKMultiPolyline",
+                "doc://com.apple.mapkit/documentation/MapKit/MKPolygon",
+                "doc://com.apple.mapkit/documentation/MapKit/MKPolyline",
+                "doc://com.apple.mapkit/documentation/MapKit/MKTileOverlay"
+              ],
+              "kind": "relationships",
+              "title": "Conforming Types",
+              "type": "conformingTypes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Shared-behavior",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.mapkit/documentation/MapKit/MKOverlayRenderer",
+                "doc://com.apple.mapkit/documentation/MapKit/MKShape",
+                "doc://com.apple.mapkit/documentation/MapKit/MKMultiPoint",
+                "doc://com.apple.mapkit/documentation/MapKit/MKPlacemark"
+              ],
+              "title": "Shared behavior"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@protocol"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "MKOverlay"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " <"
+                  },
+                  {
+                    "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKAnnotation",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(pl)MKAnnotation",
+                    "text": "MKAnnotation"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ">"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKPolygon/title",
+          "value": "MKPolygon"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKPolygon/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MKPolygon"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKPolygon/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MKPolygon"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKMultiPolyline/title",
+          "value": "MKMultiPolyline"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKMultiPolyline/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MKMultiPolyline"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKMultiPolyline/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MKMultiPolyline"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKMultiPolygon/title",
+          "value": "MKMultiPolygon"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKMultiPolygon/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MKMultiPolygon"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKMultiPolygon/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MKMultiPolygon"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKPolyline/title",
+          "value": "MKPolyline"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKPolyline/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MKPolyline"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKPolyline/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MKPolyline"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKOverlay~1canReplaceMapContent()/title",
+          "value": "canReplaceMapContent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKOverlay~1canReplaceMapContent()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "canReplaceMapContent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKOverlay/title",
+          "value": "MKOverlay"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKOverlay/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MKOverlay"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKOverlay/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MKOverlay"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKTileOverlay/title",
+          "value": "MKTileOverlay"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKTileOverlay/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MKTileOverlay"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKTileOverlay/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MKTileOverlay"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKOverlay~1coordinate/title",
+          "value": "coordinate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKOverlay~1coordinate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "coordinate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKCircle/title",
+          "value": "MKCircle"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKCircle/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MKCircle"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKCircle/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MKCircle"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKPlacemark/title",
+          "value": "MKPlacemark"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKPlacemark/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MKPlacemark"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKPlacemark/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MKPlacemark"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKMultiPoint/title",
+          "value": "MKMultiPoint"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKMultiPoint/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MKMultiPoint"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKMultiPoint/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MKMultiPoint"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKOverlay~1boundingMapRect/title",
+          "value": "boundingMapRect"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKOverlay~1boundingMapRect/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "boundingMapRect"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKGeodesicPolyline/title",
+          "value": "MKGeodesicPolyline"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKGeodesicPolyline/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MKGeodesicPolyline"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKGeodesicPolyline/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MKGeodesicPolyline"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKShape/title",
+          "value": "MKShape"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKShape/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MKShape"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKShape/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MKShape"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKOverlayRenderer/title",
+          "value": "MKOverlayRenderer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKOverlayRenderer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MKOverlayRenderer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKOverlayRenderer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MKOverlayRenderer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKOverlay~1intersects(_:)/title",
+          "value": "intersectsMapRect:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKOverlay~1intersects(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "intersectsMapRect:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKAnnotation/title",
+          "value": "MKAnnotation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKAnnotation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MKAnnotation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKAnnotation/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MKAnnotation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKMapViewDelegate~1mapView(_:rendererFor:)/title",
+          "value": "mapView:rendererForOverlay:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKMapViewDelegate~1mapView(_:rendererFor:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "mapView:rendererForOverlay:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKMapView~1addOverlay(_:)/title",
+          "value": "addOverlay:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKMapView~1addOverlay(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "addOverlay:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/mapkit/mkoverlay"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/mapkit/mkoverlay"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

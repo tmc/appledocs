@@ -1,0 +1,1095 @@
+{
+  "abstract": [
+    {
+      "text": "An object containing a list of indexes that bridges to ",
+      "type": "text"
+    },
+    {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/indexpath",
+      "isActive": true,
+      "type": "reference"
+    },
+    {
+      "text": "; use ",
+      "type": "text"
+    },
+    {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsindexpath",
+      "isActive": false,
+      "type": "reference"
+    },
+    {
+      "text": " when you need reference semantics or other Foundation-specific behavior.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/collections",
+        "doc://com.apple.documentation/documentation/foundation/indexpath"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/nsindexpath"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1408308,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSIndexPath",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "class "
+      },
+      {
+        "kind": "identifier",
+        "text": "NSIndexPath"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.4",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "NSIndexPath"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSIndexPath"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each index in an index path represents the index into an array of children from one node in the tree to another, deeper, node. For example, the index path ",
+              "type": "text"
+            },
+            {
+              "code": "1.4.3.2",
+              "type": "codeVoice"
+            },
+            {
+              "text": " specifies the path shown in ",
+              "type": "text"
+            },
+            {
+              "identifier": "link-media-1965825",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-1965825",
+              "metadata": {
+                "abstract": [
+                  {
+                    "text": "Index path 1.4.3.2",
+                    "type": "text"
+                  }
+                ],
+                "anchor": "1965825",
+                "title": "Figure 1"
+              },
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The UIKit framework adds programming interfaces to the ",
+                  "type": "text"
+                },
+                {
+                  "code": "NSIndexPath",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " class of the Foundation framework to facilitate the identification of rows and sections in ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.uikit/documentation/UIKit/UITableView",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " objects and the identification of items and sections in ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionView",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " objects. The API consists of class factory methods and properties for accessing the various indexed values. You use the factory methods to create an index path for the corresponding table view or collection view.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The Swift overlay to the Foundation framework provides the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/indexpath",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " structure, which bridges to the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/nsindexpath",
+                  "isActive": false,
+                  "type": "reference"
+                },
+                {
+                  "text": " class. For more information about value types, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "devLink-1752769",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " in ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "devLink-1752686",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "style": "important",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "devLink-1752686": {
+      "identifier": "devLink-1752686",
+      "title": "Using Swift with Cocoa and Objective-C (Swift 4.1)",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/Swift/Conceptual/BuildingCocoaApps/index.html#//apple_ref/doc/uid/TP40014216"
+    },
+    "devLink-1752769": {
+      "identifier": "devLink-1752769",
+      "title": "Working with Cocoa Frameworks",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/Swift/Conceptual/BuildingCocoaApps/WorkingWithCocoaDataTypes.html#//apple_ref/doc/uid/TP40014216-CH6"
+    },
+    "doc://com.apple.appkit/documentation/AppKit": {
+      "identifier": "doc://com.apple.appkit/documentation/AppKit",
+      "kind": "article",
+      "role": "collection",
+      "title": "AppKit",
+      "type": "topic",
+      "url": "/documentation/appkit"
+    },
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/collections": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/collections",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Collections",
+      "type": "topic",
+      "url": "/documentation/foundation/collections"
+    },
+    "doc://com.apple.documentation/documentation/foundation/indexpath": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/indexpath",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IndexPath",
+      "type": "topic",
+      "url": "/documentation/foundation/indexpath"
+    },
+    "doc://com.apple.documentation/documentation/foundation/indexpath/referencetype": {
+      "abstract": [
+        {
+          "text": "An alias for this value type's equivalent reference type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "IndexPath.ReferenceType"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/indexpath/referencetype",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IndexPath.ReferenceType",
+      "type": "topic",
+      "url": "/documentation/foundation/indexpath/referencetype"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscopying": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscopying",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCopying",
+      "type": "topic",
+      "url": "/documentation/foundation/nscopying"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsindexpath": {
+      "abstract": [
+        {
+          "text": "An object containing a list of indexes that bridges to ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/indexpath",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": "; use ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/nsindexpath",
+          "isActive": false,
+          "type": "reference"
+        },
+        {
+          "text": " when you need reference semantics or other Foundation-specific behavior.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSIndexPath"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsindexpath",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSIndexPath",
+      "type": "topic",
+      "url": "/documentation/foundation/nsindexpath"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsindexpath/1407552-compare": {
+      "abstract": [
+        {
+          "text": "Indicates the depth-first traversal order of the receiving index path and another index path.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "compare"
+        },
+        {
+          "kind": "text",
+          "text": "(IndexPath) -> ComparisonResult"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsindexpath/1407552-compare",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "compare(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsindexpath/1407552-compare"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsindexpath/1412001-length": {
+      "abstract": [
+        {
+          "text": "The number of nodes in the index path.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "length"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsindexpath/1412001-length",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "length",
+      "type": "topic",
+      "url": "/documentation/foundation/nsindexpath/1412001-length"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsindexpath/1413360-getindexes": {
+      "abstract": [
+        {
+          "text": "Copies the indexes stored in the index path from the positions specified by the position range into the specified indexes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "getIndexes"
+        },
+        {
+          "kind": "text",
+          "text": "(UnsafeMutablePointer<Int>, "
+        },
+        {
+          "kind": "identifier",
+          "text": "range"
+        },
+        {
+          "kind": "text",
+          "text": ": NSRange)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsindexpath/1413360-getindexes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getIndexes(_:range:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsindexpath/1413360-getindexes"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsindexpath/1414179-index": {
+      "abstract": [
+        {
+          "text": "Provides the value at a particular node in the index path.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "index"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "atPosition"
+        },
+        {
+          "kind": "text",
+          "text": ": Int) -> Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsindexpath/1414179-index",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "index(atPosition:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsindexpath/1414179-index"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsindexpath/1415624-removinglastindex": {
+      "abstract": [
+        {
+          "text": "Returns an index path with the nodes in the receiving index path, excluding the last one.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "removingLastIndex"
+        },
+        {
+          "kind": "text",
+          "text": "() -> IndexPath"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsindexpath/1415624-removinglastindex",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "removingLastIndex()",
+      "type": "topic",
+      "url": "/documentation/foundation/nsindexpath/1415624-removinglastindex"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsindexpath/1416855-init": {
+      "abstract": [
+        {
+          "text": "Initializes an index path with a single node.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "index"
+        },
+        {
+          "kind": "text",
+          "text": ": Int)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsindexpath/1416855-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(index:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsindexpath/1416855-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsindexpath/1416906-init": {
+      "abstract": [
+        {
+          "text": "Initializes an index path with the given nodes and length.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "indexes"
+        },
+        {
+          "kind": "text",
+          "text": ": UnsafePointer<Int>?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "length"
+        },
+        {
+          "kind": "text",
+          "text": ": Int)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsindexpath/1416906-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(indexes:length:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsindexpath/1416906-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsindexpath/1417553-adding": {
+      "abstract": [
+        {
+          "text": "Returns an index path containing the nodes in the receiving index path plus another given index.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "adding"
+        },
+        {
+          "kind": "text",
+          "text": "(Int) -> IndexPath"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsindexpath/1417553-adding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "adding(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsindexpath/1417553-adding"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsindexpath/1417753-getindexes": {
+      "abstract": [
+        {
+          "text": "Copies the objects contained in the index path into indexes.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "getIndexes"
+        },
+        {
+          "kind": "text",
+          "text": "(UnsafeMutablePointer<Int>)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsindexpath/1417753-getindexes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getIndexes(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsindexpath/1417753-getindexes"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsindexpath/1526053-init": {
+      "abstract": [
+        {
+          "text": "Initializes an index path with the indexes of a specific item and section in a collection view. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "item"
+        },
+        {
+          "kind": "text",
+          "text": ": Int, "
+        },
+        {
+          "kind": "identifier",
+          "text": "section"
+        },
+        {
+          "kind": "text",
+          "text": ": Int)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsindexpath/1526053-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(forItem:inSection:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsindexpath/1526053-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsindexpath/1528293-item": {
+      "abstract": [
+        {
+          "text": "An index number identifying an item in a section of a collection view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "item"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsindexpath/1528293-item",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "item",
+      "type": "topic",
+      "url": "/documentation/foundation/nsindexpath/1528293-item"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsindexpath/1528298-section": {
+      "abstract": [
+        {
+          "text": "An index number identifying a section in a table view or collection view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "section"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsindexpath/1528298-section",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "section",
+      "type": "topic",
+      "url": "/documentation/foundation/nsindexpath/1528298-section"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsindexpath/1614853-row": {
+      "abstract": [
+        {
+          "text": "An index number identifying a row in a section of a table view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "row"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsindexpath/1614853-row",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "row",
+      "type": "topic",
+      "url": "/documentation/foundation/nsindexpath/1614853-row"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsindexpath/1614934-init": {
+      "abstract": [
+        {
+          "text": "Initializes an index path with the indexes of a specific row and section in a table view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "row"
+        },
+        {
+          "kind": "text",
+          "text": ": Int, "
+        },
+        {
+          "kind": "identifier",
+          "text": "section"
+        },
+        {
+          "kind": "text",
+          "text": ": Int)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsindexpath/1614934-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(row:section:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsindexpath/1614934-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nssecurecoding": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nssecurecoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSecureCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nssecurecoding"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.uikit/documentation/UIKit": {
+      "identifier": "doc://com.apple.uikit/documentation/UIKit",
+      "kind": "article",
+      "role": "collection",
+      "title": "UIKit",
+      "type": "topic",
+      "url": "/documentation/uikit"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionView": {
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionView",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UICollectionView",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionview"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITableView": {
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITableView",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UITableView",
+      "type": "topic",
+      "url": "/documentation/uikit/uitableview"
+    },
+    "link-media-1965825": {
+      "identifier": "link-media-1965825",
+      "title": "Figure 1",
+      "type": "link",
+      "url": "/documentation/foundation/nsindexpath#1965825"
+    },
+    "media-1965825": {
+      "abstract": [
+        {
+          "text": "Index path 1.4.3.2",
+          "type": "text"
+        }
+      ],
+      "alt": "Index path “1.4.3.2”",
+      "identifier": "media-1965825",
+      "title": "Figure 1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1dd4b9d8e4/indexpath_df7d08bf-e846-4963-bc2c-d81442fce0e8.gif"
+        }
+      ]
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/objectivec/nsobject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nscopying",
+        "doc://com.apple.documentation/documentation/foundation/nssecurecoding"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/indexpath/referencetype"
+      ],
+      "title": "Using Reference Types"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "1651136",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsindexpath/1416855-init",
+        "doc://com.apple.documentation/documentation/foundation/nsindexpath/1416906-init"
+      ],
+      "kind": "taskGroup",
+      "title": "Creating and Initializing Index Paths"
+    },
+    {
+      "abstract": [
+        {
+          "identifier": "doc://com.apple.uikit/documentation/UIKit",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " and ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.appkit/documentation/AppKit",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " supply specialized names for the first two index path nodes for use when working with table views and collection views. ",
+          "type": "text"
+        }
+      ],
+      "anchor": "2891920",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsindexpath/1614934-init",
+        "doc://com.apple.documentation/documentation/foundation/nsindexpath/1526053-init",
+        "doc://com.apple.documentation/documentation/foundation/nsindexpath/1528298-section",
+        "doc://com.apple.documentation/documentation/foundation/nsindexpath/1614853-row",
+        "doc://com.apple.documentation/documentation/foundation/nsindexpath/1528293-item"
+      ],
+      "kind": "taskGroup",
+      "title": "Using Special Node Names"
+    },
+    {
+      "anchor": "2891921",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsindexpath/1412001-length"
+      ],
+      "kind": "taskGroup",
+      "title": "Counting Nodes"
+    },
+    {
+      "anchor": "1651271",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsindexpath/1417553-adding",
+        "doc://com.apple.documentation/documentation/foundation/nsindexpath/1415624-removinglastindex"
+      ],
+      "kind": "taskGroup",
+      "title": "Adding and Removing Nodes"
+    },
+    {
+      "anchor": "1651405",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsindexpath/1407552-compare"
+      ],
+      "kind": "taskGroup",
+      "title": "Comparing Index Paths"
+    },
+    {
+      "anchor": "2891922",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsindexpath/1414179-index",
+        "doc://com.apple.documentation/documentation/foundation/nsindexpath/1413360-getindexes",
+        "doc://com.apple.documentation/documentation/foundation/nsindexpath/1417753-getindexes"
+      ],
+      "kind": "taskGroup",
+      "title": "Working with Indexes"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nsindexpath"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/nsindexpath"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

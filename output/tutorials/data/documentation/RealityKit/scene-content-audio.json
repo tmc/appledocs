@@ -1,0 +1,1534 @@
+{
+  "abstract": [
+    {
+      "text": "Create personalized and realistic spatial audio experiences.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.RealityKit/documentation/RealityKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.RealityKit/documentation/RealityKit/scene-content-audio"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "RealityKit"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Audio"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Creating a compelling audio experience with RealityKit is as simple as playing audio on your existing RealityKit entities.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Use RealityKit’s default audio settings to create a personalized and realistic experience or utilize",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "advanced customization options to tailor the audio for the needs of your application.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Utilizing acoustic ray tracing and a personalized HRTF, RealityKit provides lifelike and high-quality sound.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can load and configure audio with an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/AudioResource",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " subclass, such as ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/AudioFileResource",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and adjust the spatial rendering with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/SpatialAudioComponent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ",",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/AmbientAudioComponent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ChannelAudioComponent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Control the audio resource playback with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/AudioPlaybackController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For real-time audio playback you can prepare a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Audio/GeneratorRenderHandler",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and control playback with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/AudioGeneratorController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You can control the playback levels of multiple resources at once with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/AudioMixGroup",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/AudioMixGroupsComponent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Hello-World-intro.png": {
+      "alt": null,
+      "identifier": "Hello-World-intro.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/770e1d0451ba3b86de3b05eb0ce728b7/Hello-World-intro@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit": {
+      "abstract": [
+        {
+          "text": "Simulate and render 3D content for use in your augmented reality apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "RealityKit",
+      "type": "topic",
+      "url": "/documentation/realitykit"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/AmbientAudioComponent": {
+      "abstract": [
+        {
+          "text": "A component that configures the ambient rendering of sounds from an entity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AmbientAudioComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/AmbientAudioComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AmbientAudioComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "AmbientAudioComponent",
+      "type": "topic",
+      "url": "/documentation/realitykit/ambientaudiocomponent"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Audio": {
+      "abstract": [
+        {
+          "text": "A namespace for types that are used commonly in audio.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Audio"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Audio",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Audio"
+        }
+      ],
+      "role": "symbol",
+      "title": "Audio",
+      "type": "topic",
+      "url": "/documentation/realitykit/audio"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Audio/Decibel": {
+      "abstract": [
+        {
+          "text": "The unit for measuring intensity of sound on a logarithmic scale.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Decibel"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Audio/Decibel",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Decibel"
+        }
+      ],
+      "role": "symbol",
+      "title": "Audio.Decibel",
+      "type": "topic",
+      "url": "/documentation/realitykit/audio/decibel"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Audio/Directivity": {
+      "abstract": [
+        {
+          "text": "The radiation pattern of sound emitted from an entity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Directivity"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Audio/Directivity",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Directivity"
+        }
+      ],
+      "role": "symbol",
+      "title": "Audio.Directivity",
+      "type": "topic",
+      "url": "/documentation/realitykit/audio/directivity"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Audio/DistanceAttenuation": {
+      "abstract": [
+        {
+          "text": "The different ways that audio intensity diminishes as the distance between the listener and the sound source increases.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DistanceAttenuation"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Audio/DistanceAttenuation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DistanceAttenuation"
+        }
+      ],
+      "role": "symbol",
+      "title": "Audio.DistanceAttenuation",
+      "type": "topic",
+      "url": "/documentation/realitykit/audio/distanceattenuation"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Audio/GeneratorRenderHandler": {
+      "abstract": [
+        {
+          "text": "A handler that generates real-time audio.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GeneratorRenderHandler"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Audio/GeneratorRenderHandler",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GeneratorRenderHandler"
+        }
+      ],
+      "role": "symbol",
+      "title": "Audio.GeneratorRenderHandler",
+      "type": "topic",
+      "url": "/documentation/realitykit/audio/generatorrenderhandler"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/AudioBufferResource": {
+      "abstract": [
+        {
+          "text": "An audio resource that you load from an ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/AVFAudio/AVAudioBuffer",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioBufferResource"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/AudioBufferResource",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioBufferResource"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioBufferResource",
+      "type": "topic",
+      "url": "/documentation/realitykit/audiobufferresource"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/AudioEvents": {
+      "abstract": [
+        {
+          "text": "Events associated with audio playback.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioEvents"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/AudioEvents",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioEvents"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioEvents",
+      "type": "topic",
+      "url": "/documentation/realitykit/audioevents"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/AudioFileGroupResource": {
+      "abstract": [
+        {
+          "text": "An audio file group.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioFileGroupResource"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/AudioFileGroupResource",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioFileGroupResource"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioFileGroupResource",
+      "type": "topic",
+      "url": "/documentation/realitykit/audiofilegroupresource"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/AudioFileResource": {
+      "abstract": [
+        {
+          "text": "An audio resource that you load from a file or from a URL.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioFileResource"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/AudioFileResource",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioFileResource"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioFileResource",
+      "type": "topic",
+      "url": "/documentation/realitykit/audiofileresource"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/AudioGeneratorConfiguration": {
+      "abstract": [
+        {
+          "text": "A container for various settings for preparing and playing an AudioGeneratorController.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioGeneratorConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/AudioGeneratorConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioGeneratorConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioGeneratorConfiguration",
+      "type": "topic",
+      "url": "/documentation/realitykit/audiogeneratorconfiguration"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/AudioGeneratorController": {
+      "abstract": [
+        {
+          "text": "A controller that manages the playback of a real-time audio stream.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioGeneratorController"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/AudioGeneratorController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioGeneratorController"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioGeneratorController",
+      "type": "topic",
+      "url": "/documentation/realitykit/audiogeneratorcontroller"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/AudioLibraryComponent": {
+      "abstract": [
+        {
+          "text": "A container for audio resources that you can look up by user-defined names.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioLibraryComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/AudioLibraryComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioLibraryComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioLibraryComponent",
+      "type": "topic",
+      "url": "/documentation/realitykit/audiolibrarycomponent"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/AudioMixGroup": {
+      "abstract": [
+        {
+          "text": "A group that manages the playback properties of multiple playing sounds.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioMixGroup"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/AudioMixGroup",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioMixGroup"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioMixGroup",
+      "type": "topic",
+      "url": "/documentation/realitykit/audiomixgroup"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/AudioMixGroupsComponent": {
+      "abstract": [
+        {
+          "text": "A component that provides functionality for controlling the playback of audio you assign to mix groups in a scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioMixGroupsComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/AudioMixGroupsComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioMixGroupsComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioMixGroupsComponent",
+      "type": "topic",
+      "url": "/documentation/realitykit/audiomixgroupscomponent"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/AudioPlaybackController": {
+      "abstract": [
+        {
+          "text": "A controller that manages an audio playback instance.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioPlaybackController"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/AudioPlaybackController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioPlaybackController"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioPlaybackController",
+      "type": "topic",
+      "url": "/documentation/realitykit/audioplaybackcontroller"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/AudioResource": {
+      "abstract": [
+        {
+          "text": "A playable audio resource",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioResource"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/AudioResource",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioResource"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioResource",
+      "type": "topic",
+      "url": "/documentation/realitykit/audioresource"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/AudioResource/Calibration": {
+      "abstract": [
+        {
+          "text": "A container for different calibration modes that can be applied for playback.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Calibration"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/AudioResource/Calibration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Calibration"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioResource.Calibration",
+      "type": "topic",
+      "url": "/documentation/realitykit/audioresource/calibration"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/AudioResource/Normalization": {
+      "abstract": [
+        {
+          "text": "Normalization adjusts the level of an audio file or buffer to be at a defined target.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Normalization"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/AudioResource/Normalization",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Normalization"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioResource.Normalization",
+      "type": "topic",
+      "url": "/documentation/realitykit/audioresource/normalization"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/ChannelAudioComponent": {
+      "abstract": [
+        {
+          "text": "A component that configures channel-based rendering of sounds from an entity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ChannelAudioComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ChannelAudioComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ChannelAudioComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "ChannelAudioComponent",
+      "type": "topic",
+      "url": "/documentation/realitykit/channelaudiocomponent"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/PlayAudioAction": {
+      "abstract": [
+        {
+          "text": "An action which plays an audio resource on the given target entity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PlayAudioAction"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/PlayAudioAction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PlayAudioAction"
+        }
+      ],
+      "role": "symbol",
+      "title": "PlayAudioAction",
+      "type": "topic",
+      "url": "/documentation/realitykit/playaudioaction"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Reverb": {
+      "abstract": [
+        {
+          "text": "The reverberation RealityKit applies to spatial audio sources.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Reverb"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Reverb",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Reverb"
+        }
+      ],
+      "role": "symbol",
+      "title": "Reverb",
+      "type": "topic",
+      "url": "/documentation/realitykit/reverb"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Reverb/Preset": {
+      "abstract": [
+        {
+          "text": "Reverbs defined by a preset environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Preset"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Reverb/Preset",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Preset"
+        }
+      ],
+      "role": "symbol",
+      "title": "Reverb.Preset",
+      "type": "topic",
+      "url": "/documentation/realitykit/reverb/preset"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/ReverbComponent": {
+      "abstract": [
+        {
+          "text": "A component that defines the reverberation of spatial audio sources.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ReverbComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ReverbComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ReverbComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "ReverbComponent",
+      "type": "topic",
+      "url": "/documentation/realitykit/reverbcomponent"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/SpatialAudioComponent": {
+      "abstract": [
+        {
+          "text": "A component that configures how sounds emit from an entity into a person’s environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SpatialAudioComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/SpatialAudioComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SpatialAudioComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "SpatialAudioComponent",
+      "type": "topic",
+      "url": "/documentation/realitykit/spatialaudiocomponent"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/combining-2d-and-3d-views-in-an-immersive-app": {
+      "abstract": [
+        {
+          "text": "Use attachments to place 2D content relative to 3D content in your visionOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/combining-2d-and-3d-views-in-an-immersive-app",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Combining 2D and 3D views in an immersive app",
+      "type": "topic",
+      "url": "/documentation/realitykit/combining-2d-and-3d-views-in-an-immersive-app"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/creating-a-spaceship-game": {
+      "abstract": [
+        {
+          "text": "Build an immersive game using RealityKit audio, simulation, and rendering features.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/creating-a-spaceship-game",
+      "images": [
+        {
+          "identifier": "spaceship_page_image.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Creating a Spaceship game",
+      "type": "topic",
+      "url": "/documentation/realitykit/creating-a-spaceship-game"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/creating-a-spatial-drawing-app-with-realitykit": {
+      "abstract": [
+        {
+          "text": "Use low-level mesh and texture APIs to achieve fast updates to a person’s brush",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "strokes by integrating RealityKit with ARKit and SwiftUI.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/creating-a-spatial-drawing-app-with-realitykit",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Creating a spatial drawing app with RealityKit",
+      "type": "topic",
+      "url": "/documentation/realitykit/creating-a-spatial-drawing-app-with-realitykit"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/generating-interactive-geometry-with-realitykit": {
+      "abstract": [
+        {
+          "text": "Create an interactive mesh with low-level mesh and low-level texture.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/generating-interactive-geometry-with-realitykit",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Generating interactive geometry with RealityKit",
+      "type": "topic",
+      "url": "/documentation/realitykit/generating-interactive-geometry-with-realitykit"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/scene-content-anchors": {
+      "abstract": [
+        {
+          "text": "Lock virtual content to the real world.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/scene-content-anchors",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Anchors",
+      "type": "topic",
+      "url": "/documentation/realitykit/scene-content-anchors"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/scene-content-content-synchronization": {
+      "abstract": [
+        {
+          "text": "Synchronize the contents of entities locally or across the network.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/scene-content-content-synchronization",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Content synchronization",
+      "type": "topic",
+      "url": "/documentation/realitykit/scene-content-content-synchronization"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/scene-content-lights-and-cameras": {
+      "abstract": [
+        {
+          "text": "Control the lighting and point of view for a scene.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/scene-content-lights-and-cameras",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Lights and cameras",
+      "type": "topic",
+      "url": "/documentation/realitykit/scene-content-lights-and-cameras"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/scene-content-materials-and-shaders": {
+      "abstract": [
+        {
+          "text": "Apply textures to the surface of your scene’s 3D objects to give each object a unique appearance.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/scene-content-materials-and-shaders",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Materials, textures, and shaders",
+      "type": "topic",
+      "url": "/documentation/realitykit/scene-content-materials-and-shaders"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/scene-content-models-and-meshes": {
+      "abstract": [
+        {
+          "text": "Display virtual objects in your scene with mesh-based models.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/scene-content-models-and-meshes",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Models and meshes",
+      "type": "topic",
+      "url": "/documentation/realitykit/scene-content-models-and-meshes"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/scene-content-videos": {
+      "abstract": [
+        {
+          "text": "Present videos in your RealityKit experiences.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/scene-content-videos",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Videos",
+      "type": "topic",
+      "url": "/documentation/realitykit/scene-content-videos"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/transforming-realitykit-entities-with-gestures": {
+      "abstract": [
+        {
+          "text": "Build a RealityKit component to support standard visionOS gestures on any entity.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/transforming-realitykit-entities-with-gestures",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Transforming RealityKit entities using gestures",
+      "type": "topic",
+      "url": "/documentation/realitykit/transforming-realitykit-entities-with-gestures"
+    },
+    "doc://com.apple.documentation/documentation/AVFAudio/AVAudioBuffer": {
+      "abstract": [
+        {
+          "text": "An object that represents a buffer of audio data with a format.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAudioBuffer"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFAudio/AVAudioBuffer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AVAudioBuffer",
+      "type": "topic",
+      "url": "/documentation/AVFAudio/AVAudioBuffer"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.documentation/documentation/visionOS/World": {
+      "abstract": [
+        {
+          "text": "Use windows, volumes, and immersive spaces to teach people about the Earth.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/visionOS/World",
+      "images": [
+        {
+          "identifier": "Hello-World-intro.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Hello World",
+      "type": "topic",
+      "url": "/documentation/visionOS/World"
+    },
+    "doc://com.apple.documentation/documentation/visionOS/enabling-video-reflections-in-an-immersive-environment": {
+      "abstract": [
+        {
+          "text": "Create a more immersive experience by adding video reflections in a custom environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/visionOS/enabling-video-reflections-in-an-immersive-environment",
+      "images": [
+        {
+          "identifier": "lightspill-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Enabling video reflections in an immersive environment",
+      "type": "topic",
+      "url": "/documentation/visionOS/enabling-video-reflections-in-an-immersive-environment"
+    },
+    "lightspill-PageImage-card.png": {
+      "alt": null,
+      "identifier": "lightspill-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/87e397de07459c756d21eb0c441569f7/lightspill-PageImage-card@2x.png"
+        }
+      ]
+    },
+    "spaceship_page_image.png": {
+      "alt": null,
+      "identifier": "spaceship_page_image.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/8f1f2f7bea09df5c78609f7bc6780ae0/spaceship_page_image.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Scene-content",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/visionOS/World",
+        "doc://com.apple.documentation/documentation/visionOS/enabling-video-reflections-in-an-immersive-environment",
+        "doc://com.apple.RealityKit/documentation/RealityKit/creating-a-spatial-drawing-app-with-realitykit",
+        "doc://com.apple.RealityKit/documentation/RealityKit/generating-interactive-geometry-with-realitykit",
+        "doc://com.apple.RealityKit/documentation/RealityKit/combining-2d-and-3d-views-in-an-immersive-app",
+        "doc://com.apple.RealityKit/documentation/RealityKit/transforming-realitykit-entities-with-gestures",
+        "doc://com.apple.RealityKit/documentation/RealityKit/scene-content-models-and-meshes",
+        "doc://com.apple.RealityKit/documentation/RealityKit/scene-content-materials-and-shaders",
+        "doc://com.apple.RealityKit/documentation/RealityKit/scene-content-anchors",
+        "doc://com.apple.RealityKit/documentation/RealityKit/scene-content-lights-and-cameras",
+        "doc://com.apple.RealityKit/documentation/RealityKit/scene-content-content-synchronization",
+        "doc://com.apple.RealityKit/documentation/RealityKit/scene-content-videos"
+      ],
+      "title": "Scene content"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Audio-source-components",
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/creating-a-spaceship-game",
+        "doc://com.apple.RealityKit/documentation/RealityKit/SpatialAudioComponent",
+        "doc://com.apple.RealityKit/documentation/RealityKit/AmbientAudioComponent",
+        "doc://com.apple.RealityKit/documentation/RealityKit/ChannelAudioComponent"
+      ],
+      "title": "Audio source components"
+    },
+    {
+      "anchor": "Playback-controllers",
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/AudioPlaybackController",
+        "doc://com.apple.RealityKit/documentation/RealityKit/AudioGeneratorController",
+        "doc://com.apple.RealityKit/documentation/RealityKit/AudioGeneratorConfiguration",
+        "doc://com.apple.RealityKit/documentation/RealityKit/AudioEvents",
+        "doc://com.apple.RealityKit/documentation/RealityKit/PlayAudioAction"
+      ],
+      "title": "Playback controllers"
+    },
+    {
+      "anchor": "Audio-resources",
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/AudioFileResource",
+        "doc://com.apple.RealityKit/documentation/RealityKit/AudioFileGroupResource",
+        "doc://com.apple.RealityKit/documentation/RealityKit/AudioBufferResource",
+        "doc://com.apple.RealityKit/documentation/RealityKit/AudioLibraryComponent",
+        "doc://com.apple.RealityKit/documentation/RealityKit/AudioResource",
+        "doc://com.apple.RealityKit/documentation/RealityKit/AudioResource/Calibration",
+        "doc://com.apple.RealityKit/documentation/RealityKit/AudioResource/Normalization"
+      ],
+      "title": "Audio resources"
+    },
+    {
+      "anchor": "Reverb",
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/Reverb",
+        "doc://com.apple.RealityKit/documentation/RealityKit/Reverb/Preset",
+        "doc://com.apple.RealityKit/documentation/RealityKit/ReverbComponent"
+      ],
+      "title": "Reverb"
+    },
+    {
+      "anchor": "Audio-mixing",
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/AudioMixGroup",
+        "doc://com.apple.RealityKit/documentation/RealityKit/AudioMixGroupsComponent"
+      ],
+      "title": "Audio mixing"
+    },
+    {
+      "anchor": "Audio-types",
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/Audio",
+        "doc://com.apple.RealityKit/documentation/RealityKit/Audio/Decibel",
+        "doc://com.apple.RealityKit/documentation/RealityKit/Audio/Directivity",
+        "doc://com.apple.RealityKit/documentation/RealityKit/Audio/DistanceAttenuation"
+      ],
+      "title": "Audio types"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFAudio~1AVAudioBuffer/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AVAudioBuffer"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/realitykit/scene-content-audio"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

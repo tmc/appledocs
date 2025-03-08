@@ -1,0 +1,379 @@
+{
+  "abstract": [
+    {
+      "text": "Recognize the rate limits that REST API responses provide and handle them in your code.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.devpubs.enterprise-api/documentation/EnterpriseProgramAPI"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.devpubs.enterprise-api/documentation/EnterpriseProgramAPI/identifying-rate-limits"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Enterprise Program API"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Identifying Rate Limits"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Enterprise Program API limits the volume of requests that you can submit within a specified timeframe. The limits apply to requests you send using the same API key.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Identify-Limits-Provided-in-the-HTTP-Header",
+          "level": 3,
+          "text": "Identify Limits Provided in the HTTP Header",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The API presents rate limits to users in an HTTP header. Every response from the API includes an ",
+              "type": "text"
+            },
+            {
+              "code": "X-Rate-Limit",
+              "type": "codeVoice"
+            },
+            {
+              "text": " HTTP header. Its value has the form:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "user-hour-lim:3500;user-hour-rem:500;"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The header info includes:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "user-hour-lim",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", which indicates the number of requests you can make per hour with the same API key.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "user-hour-rem",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", which shows the number of requests remaining.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In this example, you are limited to 3500 requests per hour, with 500 remaining. Actual limits can vary.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The time frame is a “rolling hour.” At any moment, the ",
+              "type": "text"
+            },
+            {
+              "code": "user-hour-rem",
+              "type": "codeVoice"
+            },
+            {
+              "text": " value is your per-hour limit, minus the total requests you’ve made in the previous 60 minutes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Interpret-the-Error-Response",
+          "level": 3,
+          "text": "Interpret the Error Response",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you exceed a per-hour limit, the API rejects requests with an HTTP 429 response, with the ",
+              "type": "text"
+            },
+            {
+              "code": "RATE_LIMIT_EXCEEDED",
+              "type": "codeVoice"
+            },
+            {
+              "text": " error code. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.devpubs.enterprise-api/documentation/EnterpriseProgramAPI/about-the-http-status-code",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for more information.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Handle-Exceeded-Limits-Gracefully",
+          "level": 3,
+          "text": "Handle Exceeded Limits Gracefully",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Consider rate limits as you integrate the API:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If you periodically call the API to check a value, throttle your requests to avoid exceeding the per-hour limit for that endpoint.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Manage the HTTP 429 ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "RATE_LIMIT_EXCEEDED",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " error in your error-handling process. For example, log the failure and queue the job to be processed again at a later time.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.devpubs.enterprise-api/documentation/EnterpriseProgramAPI": {
+      "abstract": [
+        {
+          "text": "Automate the tasks you perform on the Apple Developer website.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.enterprise-api/documentation/EnterpriseProgramAPI",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Enterprise Program API",
+      "type": "topic",
+      "url": "/documentation/enterpriseprogramapi"
+    },
+    "doc://com.apple.devpubs.enterprise-api/documentation/EnterpriseProgramAPI/about-the-http-status-code": {
+      "abstract": [
+        {
+          "text": "Learn how the status code helps you determine if an Enterprise Program  API request succeeded or why it failed.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.enterprise-api/documentation/EnterpriseProgramAPI/about-the-http-status-code",
+      "kind": "article",
+      "role": "article",
+      "title": "About the HTTP Status Code",
+      "type": "topic",
+      "url": "/documentation/enterpriseprogramapi/about-the-http-status-code"
+    },
+    "doc://com.apple.devpubs.enterprise-api/documentation/EnterpriseProgramAPI/creating-api-keys-for-enterprise-program-api": {
+      "abstract": [
+        {
+          "text": "Create API keys to sign JSON Web Tokens (JWTs) and authorize API requests.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.enterprise-api/documentation/EnterpriseProgramAPI/creating-api-keys-for-enterprise-program-api",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating API Keys for Enterprise Program API",
+      "type": "topic",
+      "url": "/documentation/enterpriseprogramapi/creating-api-keys-for-enterprise-program-api"
+    },
+    "doc://com.apple.devpubs.enterprise-api/documentation/EnterpriseProgramAPI/enterprise-api-release-notes": {
+      "abstract": [
+        {
+          "text": "Learn about new features and updates in the Enterprise Program API.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.enterprise-api/documentation/EnterpriseProgramAPI/enterprise-api-release-notes",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Enterprise Program API Release Notes",
+      "type": "topic",
+      "url": "/documentation/enterpriseprogramapi/enterprise-api-release-notes"
+    },
+    "doc://com.apple.devpubs.enterprise-api/documentation/EnterpriseProgramAPI/generating-tokens-for-api-requests": {
+      "abstract": [
+        {
+          "text": "Create JSON Web Tokens (JWTs) signed with your private key to authorize API requests.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.enterprise-api/documentation/EnterpriseProgramAPI/generating-tokens-for-api-requests",
+      "kind": "article",
+      "role": "article",
+      "title": "Generating Tokens for API Requests",
+      "type": "topic",
+      "url": "/documentation/enterpriseprogramapi/generating-tokens-for-api-requests"
+    },
+    "doc://com.apple.devpubs.enterprise-api/documentation/EnterpriseProgramAPI/revoking-api-keys": {
+      "abstract": [
+        {
+          "text": "Revoke unused, lost, or compromised private keys.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.enterprise-api/documentation/EnterpriseProgramAPI/revoking-api-keys",
+      "kind": "article",
+      "role": "article",
+      "title": "Revoking API Keys",
+      "type": "topic",
+      "url": "/documentation/enterpriseprogramapi/revoking-api-keys"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.devpubs.enterprise-api/documentation/EnterpriseProgramAPI/creating-api-keys-for-enterprise-program-api",
+        "doc://com.apple.devpubs.enterprise-api/documentation/EnterpriseProgramAPI/generating-tokens-for-api-requests",
+        "doc://com.apple.devpubs.enterprise-api/documentation/EnterpriseProgramAPI/revoking-api-keys",
+        "doc://com.apple.devpubs.enterprise-api/documentation/EnterpriseProgramAPI/enterprise-api-release-notes"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/enterpriseprogramapi/identifying-rate-limits"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

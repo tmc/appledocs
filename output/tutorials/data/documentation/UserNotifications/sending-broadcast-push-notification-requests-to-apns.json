@@ -1,0 +1,1226 @@
+{
+  "abstract": [
+    {
+      "text": "Transmit your broadcast notification payload to Apple Push Notifications service (APNs).",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.usernotifications/documentation/UserNotifications",
+        "doc://com.apple.usernotifications/documentation/UserNotifications/setting-up-a-remote-notification-server"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.usernotifications/documentation/UserNotifications/sending-broadcast-push-notification-requests-to-apns"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "User Notifications"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Sending broadcast push notification requests to APNs"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Starting with iOS 18 and iPadOS 18, devices can subscribe on channels to receive updates for Live Activities. You can send a single push notification to APNs on the channel to update a Live Activity event to a large audience. When you have a notification to send on a channel, your provider must construct a ",
+              "type": "text"
+            },
+            {
+              "code": "POST",
+              "type": "codeVoice"
+            },
+            {
+              "text": " request and send it to APNs. Upon receiving your server’s ",
+              "type": "text"
+            },
+            {
+              "code": "POST",
+              "type": "codeVoice"
+            },
+            {
+              "text": " request, APNs validates the request using either the provided authentication token or your server’s certificate. If authentication succeeds, APNs then validates the channel ID you’re using to send the push notification. After channel validation, APNs tries to send your ",
+              "type": "text"
+            },
+            {
+              "code": "JSON",
+              "type": "codeVoice"
+            },
+            {
+              "text": " payload to all the devices subscribed to the channel. For information on sending test notifications without setting up the environment, refer to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/testing-notifications-using-the-push-notification-console",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As a best-effort service, APNs may reorder notifications you send on the same channel. If APNs can’t deliver a notification immediately, it may store the notification based on the channel’s message storage policy specified during channel creation. Notifications with Medium and Low ",
+              "type": "text"
+            },
+            {
+              "code": "apns-priority",
+              "type": "codeVoice"
+            },
+            {
+              "text": " might get grouped and delivered in bursts to the person’s device. APNs may also throttle your notifications and, in some cases, not deliver them. The exact behavior is determined by the way the person interacts with your application and the power state of the device.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Refer to ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/viewing-the-status-of-push-notifications-using-metrics-and-apns",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Tip",
+          "style": "tip",
+          "type": "aside"
+        },
+        {
+          "anchor": "Establish-a-connection-to-APNs",
+          "level": 3,
+          "text": "Establish a connection to APNs",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use HTTP/2 and TLS 1.2 or later to establish a connection between your provider server and one of the following servers:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Development/Sandbox Environment: ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://api.sandbox.push.apple.com:443",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Production Environment: ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://api.push.apple.com:443",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more details on establishing a connection to the APNs server to send requests, refer to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/establishing-a-connection-to-apns",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Send-a-POST-request-to-APNs",
+          "level": 3,
+          "text": "Send a POST request to APNs",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Include header fields in your notifications or the system won’t be able to deliver them. In addition to the preceding data, add the following header fields in to your request. Other headers are optional or may depend on whether you’re using token-based or certificate-based authentication.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Header field",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Required",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Description",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": ":method",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Required",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The value ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "POST",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": ":path",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Required",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The value of this header is ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "/4/broadcasts/apps/<bundle ID>",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "authorization",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Required for token-based authentication.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The value of this header is bearer ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "provider_token",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", where the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "provider_token",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " is the encrypted token that authorizes you to send notifications for the specified topic. APNs ignores this header if you use certificate-based authentication. For more information, refer to ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/establishing-a-certificate-based-connection-to-apns",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "apns-request-id",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Optional",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "An optional custom request identifier that’s returned back in the response. The request identifier must be encoded as a UUID string.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "apns-channel-id",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Required",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The channel ID is a base64-encoded string that identifies the channel to publish the payload. The channel ID is generated by sending channel creation request to APNs. For more information, refer to  ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/sending-channel-management-requests-to-apns",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "apns-expiration",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Required",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The date when the notification expires. This value represents a UNIX epoch expressed in seconds (UTC). If the value is nonzero, APNs stores the notification and attempts delivery at least once, repeating as necessary until the specified date. If the value is ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "0",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", APNs attempts to deliver the notification only once and doesn’t store it. Providing a nonzero expiration for a channel created with the No Message Stored storage policy results in message rejection. ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "spacer",
+                      "type": "image"
+                    },
+                    {
+                      "text": " A single APNs attempt may involve retries over multiple network interfaces and connections of the destination device. These retries often span some time period, depending on network characteristics. Additionally, a push notification may take some time on the network after APNs sends it to the device. APNs makes best efforts to honor the expiry date without any guarantee. If the value is nonzero, the notification may deliver after the specified timestamp. If the value is ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "0",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", the notification may deliver with some delay.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "apns-priority",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Required",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The priority of the notification. ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "spacer",
+                      "type": "image"
+                    },
+                    {
+                      "text": " Specify ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "10",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to send the notification immediately. ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "spacer",
+                      "type": "image"
+                    },
+                    {
+                      "text": " Specify ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "5",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to send the notification based on power considerations on the user’s device. ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "spacer",
+                      "type": "image"
+                    },
+                    {
+                      "text": " Specify 1 to prioritize the device’s power considerations over all other factors for delivery, and prevent awakening the device.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "apns-push-type",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Required",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The allowed value is ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Liveactivity",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Put the ",
+              "type": "text"
+            },
+            {
+              "code": "JSON",
+              "type": "codeVoice"
+            },
+            {
+              "text": " payload with the notification’s content into the body of your request. Don’t use a compressed JSON payload, and the payload is limited to a maximum size of 5 KB (5,120 bytes).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The code snippet below shows a sample request constructed with an authentication token to the development enviroment.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "HEADERS",
+            "  - END_STREAM",
+            "  + END_HEADERS",
+            "  :method = POST",
+            "  :scheme = https",
+            "  :path = 4/broadcasts/apps/com.example.MyApp",
+            "  host = api-broadcast.sandbox.push.apple.com",
+            "  authorization = bearer eyAia2lkIjogIjhZTDNHM1JSWDciIH0.eyAiaXNzIjogIkM4Nk5WOUpYM0QiLCAiaWF0I",
+            "         jogIjE0NTkxNDM1ODA2NTAiIH0.MEYCIQDzqyahmH1rz1s-LFNkylXEa2lZ_aOCX4daxxTZkVEGzwIhALvkClnx5m5eAT6",
+            "         Lxw7LZtEQcH6JENhJTMArwLf3sXwi",
+            "  apns-id = eabeae54-14a8-11e5-b60b-1697f925ec7b",
+            "  apns-push-type = liveactivity",
+            "  apns-expiration = 0",
+            "  apns-priority = 10",
+            "  apns-channel-id = dHN0LXNyY2gtY2hubA==",
+            "DATA",
+            "  + END_STREAM",
+            "  {",
+            "    \"aps\": {",
+            "        \"timestamp\": 1685952000,",
+            "        \"event\": \"update\",",
+            "        \"content-state\": {",
+            "            \"currentHealthLevel\": 0.0,",
+            "            \"eventDescription\": \"Power Panda has been knocked down!\"",
+            "        },",
+            "        \"alert\": {",
+            "            \"title\": {",
+            "                \"loc-key\": \"%@ is knocked down!\",",
+            "                \"loc-args\": [\"Power Panda\"]",
+            "            },",
+            "            \"body\": {",
+            "                \"loc-key\": \"Use a potion to heal %@!\",",
+            "                \"loc-args\": [\"Power Panda\"]",
+            "            },",
+            "            \"sound\": \"HeroDown.mp4\"",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The code snippet below shows a sample request constructed for use with a certificate.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "HEADERS",
+            "  - END_STREAM",
+            "  + END_HEADERS",
+            "  :method = POST",
+            "  :scheme = https",
+            "  :path = 4/broadcasts/apps/com.example.MyApp",
+            "  host = api-broadcast.sandbox.push.apple.com",
+            "  apns-request-id = eabeae54-14a8-11e5-b60b-1697f925ec7b",
+            "  apns-push-type = liveactivity",
+            "  apns-expiration = 0",
+            "  apns-priority = 10",
+            "  apns-channel-id = dHN0LXNyY2gtY2hubA==",
+            "DATA",
+            "  + END_STREAM",
+            "  {",
+            "    \"aps\": {",
+            "        \"timestamp\": 1685952000,",
+            "        \"event\": \"update\",",
+            "        \"content-state\": {",
+            "            \"currentHealthLevel\": 0.0,",
+            "            \"eventDescription\": \"Power Panda has been knocked down!\"",
+            "        },",
+            "        \"alert\": {",
+            "            \"title\": {",
+            "                \"loc-key\": \"%@ is knocked down!\",",
+            "                \"loc-args\": [\"Power Panda\"]",
+            "            },",
+            "            \"body\": {",
+            "                \"loc-key\": \"Use a potion to heal %@!\",",
+            "                \"loc-args\": [\"Power Panda\"]",
+            "            },",
+            "            \"sound\": \"HeroDown.mp4\"",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "APNs provides a response to each POST request your server transmits. Each response contains a header with fields indicating the status of the response. If the request succeeded, the body of the response is empty. A successful request provides the following fields in the response.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Header name",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "value",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": ":status",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "200 A HTTP success status code",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "apns-request-id",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The request identifier specified in the corresponding request. If not specified, the server generates the request identifier.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "apns-unique-id",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A server-generated unique message identifier returned in case of a successful request. Specify a unique identifier when raising troubleshooting requests with Apple.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Pay attention to status returned by APNs for each push notification and take appropriate action for your application in case of error. For more information on how to handle error responses, refer to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/handling-error-responses-from-apns",
+              "isActive": true,
+              "type": "reference"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Settingup-broadcast-PageImage-card.png": {
+      "alt": "A Live Activity with two teams displayed on the lock screen of an iOS device.",
+      "identifier": "Settingup-broadcast-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/d1a4297582c3e863f33c879994cb4360/Settingup-broadcast-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/167c2ee164ee75ad9ca79dfaa0f938f9/Settingup-broadcast-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "UserNotifications-PageImage-card.png": {
+      "alt": "[A notification interface displayed on the lock screen of an iOS device.]",
+      "identifier": "UserNotifications-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/074de9a9213bf2905d67fae5eb46e4f8/UserNotifications-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5733742e1c084fc202b3c92df9083686/UserNotifications-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications": {
+      "abstract": [
+        {
+          "text": "Push user-facing notifications to the user’s device from a server, or generate them locally from your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications",
+      "images": [
+        {
+          "identifier": "UserNotifications-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "User Notifications",
+      "type": "topic",
+      "url": "/documentation/usernotifications"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/establishing-a-certificate-based-connection-to-apns": {
+      "abstract": [
+        {
+          "text": "Secure your communications with Apple Push Notification service (APNs) by installing a certificate on your provider server.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/establishing-a-certificate-based-connection-to-apns",
+      "kind": "article",
+      "role": "article",
+      "title": "Establishing a certificate-based connection to APNs",
+      "type": "topic",
+      "url": "/documentation/usernotifications/establishing-a-certificate-based-connection-to-apns"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/establishing-a-connection-to-apns": {
+      "abstract": [
+        {
+          "text": "Secure your communications with APNs to send API requests.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/establishing-a-connection-to-apns",
+      "kind": "article",
+      "role": "article",
+      "title": "Establishing a connection to Apple Push Notification service (APNs)",
+      "type": "topic",
+      "url": "/documentation/usernotifications/establishing-a-connection-to-apns"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/handling-error-responses-from-apns": {
+      "abstract": [
+        {
+          "text": "Respond to the status codes returned by APNs servers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/handling-error-responses-from-apns",
+      "kind": "article",
+      "role": "article",
+      "title": "Handling error responses from Apple Push Notification service",
+      "type": "topic",
+      "url": "/documentation/usernotifications/handling-error-responses-from-apns"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/sending-channel-management-requests-to-apns": {
+      "abstract": [
+        {
+          "text": "Manage channels that your application uses for broadcast push notifications.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/sending-channel-management-requests-to-apns",
+      "kind": "article",
+      "role": "article",
+      "title": "Sending channel management requests to APNs",
+      "type": "topic",
+      "url": "/documentation/usernotifications/sending-channel-management-requests-to-apns"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/setting-up-a-remote-notification-server": {
+      "abstract": [
+        {
+          "text": "Generate notifications and push them to user devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/setting-up-a-remote-notification-server",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Setting up a remote notification server",
+      "type": "topic",
+      "url": "/documentation/usernotifications/setting-up-a-remote-notification-server"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/setting-up-broadcast-push-notifications": {
+      "abstract": [
+        {
+          "text": "Enable broadcast capability for Apple Push Notifications service (APNs).",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/setting-up-broadcast-push-notifications",
+      "images": [
+        {
+          "identifier": "Settingup-broadcast-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "article",
+      "title": "Setting up broadcast push notifications",
+      "type": "topic",
+      "url": "/documentation/usernotifications/setting-up-broadcast-push-notifications"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/testing-notifications-using-the-push-notification-console": {
+      "abstract": [
+        {
+          "text": "Send test notifications and access delivery logs to test your app’s integration with Apple Push Notification service (APNs).",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/testing-notifications-using-the-push-notification-console",
+      "kind": "article",
+      "role": "article",
+      "title": "Testing notifications using the Push Notification Console",
+      "type": "topic",
+      "url": "/documentation/usernotifications/testing-notifications-using-the-push-notification-console"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/viewing-the-status-of-push-notifications-using-metrics-and-apns": {
+      "abstract": [
+        {
+          "text": "Monitor and interpret the status of your push notifications with Apple Push Notification service (APNs).",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/viewing-the-status-of-push-notifications-using-metrics-and-apns",
+      "kind": "article",
+      "role": "article",
+      "title": "Viewing the status of push notifications using Metrics and APNs",
+      "type": "topic",
+      "url": "/documentation/usernotifications/viewing-the-status-of-push-notifications-using-metrics-and-apns"
+    },
+    "https://api.push.apple.com:443": {
+      "identifier": "https://api.push.apple.com:443",
+      "title": "api.push.apple.com:443",
+      "titleInlineContent": [
+        {
+          "text": "api.push.apple.com:443",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://api.push.apple.com:443"
+    },
+    "https://api.sandbox.push.apple.com:443": {
+      "identifier": "https://api.sandbox.push.apple.com:443",
+      "title": "api.sandbox.push.apple.com:443",
+      "titleInlineContent": [
+        {
+          "text": "api.sandbox.push.apple.com:443",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://api.sandbox.push.apple.com:443"
+    },
+    "spacer": {
+      "alt": null,
+      "identifier": "spacer",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/67dc4b07a8d84366d4cc0e812eb40b4a/spacer.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Broadcast-push-notifications",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.usernotifications/documentation/UserNotifications/setting-up-broadcast-push-notifications",
+        "doc://com.apple.usernotifications/documentation/UserNotifications/sending-channel-management-requests-to-apns",
+        "doc://com.apple.usernotifications/documentation/UserNotifications/handling-error-responses-from-apns"
+      ],
+      "title": "Broadcast push notifications"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Broadcast-push-notifications",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.usernotifications/documentation/UserNotifications/setting-up-broadcast-push-notifications",
+                "doc://com.apple.usernotifications/documentation/UserNotifications/sending-channel-management-requests-to-apns",
+                "doc://com.apple.usernotifications/documentation/UserNotifications/handling-error-responses-from-apns"
+              ],
+              "title": "Broadcast push notifications"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/usernotifications/sending-broadcast-push-notification-requests-to-apns"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/usernotifications/sending-broadcast-push-notification-requests-to-apns"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

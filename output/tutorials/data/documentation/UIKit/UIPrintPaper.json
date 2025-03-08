@@ -1,0 +1,1903 @@
+{
+  "abstract": [
+    {
+      "text": "The size of paper for a print job and the rectangular area that the content prints within.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.uikit/documentation/UIKit/UIPrintPaper"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)UIPrintPaper",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "UIPrintPaper"
+      }
+    ],
+    "modules": [
+      {
+        "name": "UIKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "UIPrintPaper"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "4.2",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "4.2",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "UIPrintPaper"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "attribute",
+              "text": "@"
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+              "kind": "attribute",
+              "preciseIdentifier": "s:ScM",
+              "text": "MainActor"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIPrintPaper"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In most cases, UIKit automatically creates an instance of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPrintPaper",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " that is appropriate for a print job. The UIKit framework has default paper sizes based on a print job’s output type (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPrintInfo/outputType-swift.property",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " is a property of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPrintInfo",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class). If the output type is ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPrintInfo/OutputType-swift.enum/photo",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", the default paper size is 4x6 or A6 or some other standard size, depending on locale; if the output type is ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPrintInfo/OutputType-swift.enum/general",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPrintInfo/OutputType-swift.enum/grayscale",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", the default paper size is US Letter (8 1/2 by 11 inches) or A4 or some other standard size, depending on locale.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Applications may have special requirements for paper sizes. For example, a word-processing application may have items of “stationery” in which printable content must be drawn. If your application fits the special case, the delegate of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPrintInteractionController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " can implement the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPrintInteractionControllerDelegate/printInteractionController(_:choosePaper:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPrintInteractionControllerDelegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol to return a suitable print paper object. One way to do this is to call the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPrintPaper/bestPaper(forPageSize:withPapersFrom:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class method of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPrintPaper",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", passing in a array of print paper objects representing the paper sizes supported by a printer. The print paper object returned from this method represents the paper size best matched to the size requirement of the application.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The printable rectangle (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPrintPaper/printableRect",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ") is the imageable area for the printer on a paper of a given size.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you are using a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPrintPageRenderer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object to draw the content for printing, the rectangle stored in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPrintPaper/printableRect",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property is stored in the page renderer’s property of the same name and the paper size used for a print job is stored as part of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPrintPageRenderer/paperRect",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.uikit/documentation/UIKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your iOS, iPadOS, or tvOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "UIKit",
+      "type": "topic",
+      "url": "/documentation/uikit"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIPrintInfo": {
+      "abstract": [
+        {
+          "text": "Information about a print job that the system uses when it prints.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIPrintInfo"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPrintInfo",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIPrintInfo"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIPrintInfo",
+      "type": "topic",
+      "url": "/documentation/uikit/uiprintinfo"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIPrintInfo/OutputType-swift.enum/general": {
+      "abstract": [
+        {
+          "text": "Specifies that the printed content consists of mixed text, graphics, and images. The default paper is Letter, A4, or similar locale-specific designation. Output is normal quality, duplex.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "general"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPrintInfo/OutputType-swift.enum/general",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIPrintInfoOutputGeneral"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIPrintInfo.OutputType.general",
+      "type": "topic",
+      "url": "/documentation/uikit/uiprintinfo/outputtype-swift.enum/general"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIPrintInfo/OutputType-swift.enum/grayscale": {
+      "abstract": [
+        {
+          "text": "Specifies that the printed content is grayscale. Set the output type to this value when your printable content contains no color—for example, it’s black text only. The default paper is Letter/A4. Output is grayscale quality, duplex. This content type can produce a performance improvement in some cases.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "grayscale"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPrintInfo/OutputType-swift.enum/grayscale",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIPrintInfoOutputGrayscale"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIPrintInfo.OutputType.grayscale",
+      "type": "topic",
+      "url": "/documentation/uikit/uiprintinfo/outputtype-swift.enum/grayscale"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIPrintInfo/OutputType-swift.enum/photo": {
+      "abstract": [
+        {
+          "text": "Specifies that the printed content consists of black-and-white or color images. The default paper is 4x6, A6, or similar locale-specific designation. Output is high quality, simplex.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "photo"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPrintInfo/OutputType-swift.enum/photo",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIPrintInfoOutputPhoto"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIPrintInfo.OutputType.photo",
+      "type": "topic",
+      "url": "/documentation/uikit/uiprintinfo/outputtype-swift.enum/photo"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIPrintInfo/outputType-swift.property": {
+      "abstract": [
+        {
+          "text": "The kind of printable content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "outputType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIPrintInfo",
+          "text": "UIPrintInfo"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@UIPrintInfoOutputType",
+          "text": "OutputType"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPrintInfo/outputType-swift.property",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "outputType"
+        }
+      ],
+      "role": "symbol",
+      "title": "outputType",
+      "type": "topic",
+      "url": "/documentation/uikit/uiprintinfo/outputtype-swift.property"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIPrintInteractionController": {
+      "abstract": [
+        {
+          "text": "A user interface that manages the printing of documents, images, and other printable content in iOS.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIPrintInteractionController"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPrintInteractionController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIPrintInteractionController"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIPrintInteractionController",
+      "type": "topic",
+      "url": "/documentation/uikit/uiprintinteractioncontroller"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIPrintInteractionControllerDelegate": {
+      "abstract": [
+        {
+          "text": "An optional set of methods that the delegate of the shared print-interaction controller implements.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIPrintInteractionControllerDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPrintInteractionControllerDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIPrintInteractionControllerDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIPrintInteractionControllerDelegate",
+      "type": "topic",
+      "url": "/documentation/uikit/uiprintinteractioncontrollerdelegate"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIPrintInteractionControllerDelegate/printInteractionController(_:choosePaper:)": {
+      "abstract": [
+        {
+          "text": "Asks the delegate for an object that encapsulates the paper size and printing area for the print job.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "printInteractionController"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIPrintInteractionController",
+          "text": "UIPrintInteractionController"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "choosePaper"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIPrintPaper",
+          "text": "UIPrintPaper"
+        },
+        {
+          "kind": "text",
+          "text": "]) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIPrintPaper",
+          "text": "UIPrintPaper"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPrintInteractionControllerDelegate/printInteractionController(_:choosePaper:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "printInteractionController:choosePaper:"
+        }
+      ],
+      "role": "symbol",
+      "title": "printInteractionController(_:choosePaper:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiprintinteractioncontrollerdelegate/printinteractioncontroller(_:choosepaper:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIPrintPageRenderer": {
+      "abstract": [
+        {
+          "text": "An object that draws pages of content to print, with or without the assistance of print formatters.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIPrintPageRenderer"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPrintPageRenderer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIPrintPageRenderer"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIPrintPageRenderer",
+      "type": "topic",
+      "url": "/documentation/uikit/uiprintpagerenderer"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIPrintPageRenderer/paperRect": {
+      "abstract": [
+        {
+          "text": "The size of the paper for printing.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "paperRect"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGRect",
+          "text": "CGRect"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPrintPageRenderer/paperRect",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "paperRect"
+        }
+      ],
+      "role": "symbol",
+      "title": "paperRect",
+      "type": "topic",
+      "url": "/documentation/uikit/uiprintpagerenderer/paperrect"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIPrintPaper": {
+      "abstract": [
+        {
+          "text": "The size of paper for a print job and the rectangular area that the content prints within.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIPrintPaper"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPrintPaper",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIPrintPaper"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIPrintPaper",
+      "type": "topic",
+      "url": "/documentation/uikit/uiprintpaper"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIPrintPaper/bestPaper(forPageSize:withPapersFrom:)": {
+      "abstract": [
+        {
+          "text": "The print-paper object that UIKit determines to be the best for a print job based on the specified page size and the paper size–imageable area combinations specific to the printer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "bestPaper"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "forPageSize"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGSize",
+          "text": "CGSize"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "withPapersFrom"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIPrintPaper",
+          "text": "UIPrintPaper"
+        },
+        {
+          "kind": "text",
+          "text": "]) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIPrintPaper",
+          "text": "UIPrintPaper"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPrintPaper/bestPaper(forPageSize:withPapersFrom:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "bestPaperForPageSize:withPapersFromArray:"
+        }
+      ],
+      "role": "symbol",
+      "title": "bestPaper(forPageSize:withPapersFrom:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiprintpaper/bestpaper(forpagesize:withpapersfrom:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIPrintPaper/paperSize": {
+      "abstract": [
+        {
+          "text": "The size of the sheet to use for printing.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "paperSize"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGSize",
+          "text": "CGSize"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPrintPaper/paperSize",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "paperSize"
+        }
+      ],
+      "role": "symbol",
+      "title": "paperSize",
+      "type": "topic",
+      "url": "/documentation/uikit/uiprintpaper/papersize"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIPrintPaper/printRect()": {
+      "abstract": [
+        {
+          "text": "Deprecated.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "printRect"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGRect",
+          "text": "CGRect"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPrintPaper/printRect()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "printRect"
+        }
+      ],
+      "role": "symbol",
+      "title": "printRect()",
+      "type": "topic",
+      "url": "/documentation/uikit/uiprintpaper/printrect()"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIPrintPaper/printableRect": {
+      "abstract": [
+        {
+          "text": "The rectangle that represents the portion of the paper that can be imaged upon.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "printableRect"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGRect",
+          "text": "CGRect"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPrintPaper/printableRect",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "printableRect"
+        }
+      ],
+      "role": "symbol",
+      "title": "printableRect",
+      "type": "topic",
+      "url": "/documentation/uikit/uiprintpaper/printablerect"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIPrinter": {
+      "abstract": [
+        {
+          "text": "A printer on the network.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIPrinter"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPrinter",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIPrinter"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIPrinter",
+      "type": "topic",
+      "url": "/documentation/uikit/uiprinter"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:ScM": {
+      "abstract": [
+        {
+          "text": "A singleton actor whose executor is equivalent to the main dispatch queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@globalActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "final"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "actor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MainActor"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MainActor",
+      "type": "topic",
+      "url": "/documentation/Swift/MainActor"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+        "doc://com.externally.resolved.symbol/s:s8SendableP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Job-info",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIPrinter",
+        "doc://com.apple.uikit/documentation/UIKit/UIPrintInfo"
+      ],
+      "title": "Job info"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Getting-the-paper-size-and-the-printing-area",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIPrintPaper/paperSize",
+        "doc://com.apple.uikit/documentation/UIKit/UIPrintPaper/printableRect"
+      ],
+      "title": "Getting the paper size and the printing area"
+    },
+    {
+      "anchor": "Obtaining-the-best-paper-size-for-printing",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIPrintPaper/bestPaper(forPageSize:withPapersFrom:)"
+      ],
+      "title": "Obtaining the best paper size for printing"
+    },
+    {
+      "anchor": "Deprecated",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIPrintPaper/printRect()"
+      ],
+      "title": "Deprecated"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "4.2",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "4.2",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "UIPrintPaper"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIPrintPaper"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIPrintPaper"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.uikit/documentation/UIKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Getting-the-paper-size-and-the-printing-area",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIPrintPaper/paperSize",
+                "doc://com.apple.uikit/documentation/UIKit/UIPrintPaper/printableRect"
+              ],
+              "title": "Getting the paper size and the printing area"
+            },
+            {
+              "anchor": "Obtaining-the-best-paper-size-for-printing",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIPrintPaper/bestPaper(forPageSize:withPapersFrom:)"
+              ],
+              "title": "Obtaining the best paper size for printing"
+            },
+            {
+              "anchor": "Deprecated",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIPrintPaper/printRect()"
+              ],
+              "title": "Deprecated"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Job-info",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIPrinter",
+                "doc://com.apple.uikit/documentation/UIKit/UIPrintInfo"
+              ],
+              "title": "Job info"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "tvOS",
+                  "visionOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "UIPrintPaper"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPrintInfo/title",
+          "value": "UIPrintInfo"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPrintInfo/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIPrintInfo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPrintInfo/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIPrintInfo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPrintPaper/title",
+          "value": "UIPrintPaper"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPrintPaper/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIPrintPaper"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPrintPaper/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIPrintPaper"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPrintPageRenderer~1paperRect/title",
+          "value": "paperRect"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPrintPageRenderer~1paperRect/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "paperRect"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPrintInfo~1OutputType-swift.enum~1general/title",
+          "value": "UIPrintInfoOutputGeneral"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPrintInfo~1OutputType-swift.enum~1general/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIPrintInfoOutputGeneral"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPrintPaper~1printRect()/title",
+          "value": "printRect"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPrintPaper~1printRect()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "printRect"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPrintInfo~1OutputType-swift.enum~1grayscale/title",
+          "value": "UIPrintInfoOutputGrayscale"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPrintInfo~1OutputType-swift.enum~1grayscale/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIPrintInfoOutputGrayscale"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPrintPaper~1printableRect/title",
+          "value": "printableRect"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPrintPaper~1printableRect/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "printableRect"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPrinter/title",
+          "value": "UIPrinter"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPrinter/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIPrinter"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPrinter/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIPrinter"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPrintInfo~1outputType-swift.property/title",
+          "value": "outputType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPrintInfo~1outputType-swift.property/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "outputType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPrintPageRenderer/title",
+          "value": "UIPrintPageRenderer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPrintPageRenderer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIPrintPageRenderer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPrintPageRenderer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIPrintPageRenderer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPrintInteractionControllerDelegate/title",
+          "value": "UIPrintInteractionControllerDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPrintInteractionControllerDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIPrintInteractionControllerDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPrintInteractionControllerDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIPrintInteractionControllerDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPrintInfo~1OutputType-swift.enum~1photo/title",
+          "value": "UIPrintInfoOutputPhoto"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPrintInfo~1OutputType-swift.enum~1photo/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIPrintInfoOutputPhoto"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPrintInteractionControllerDelegate~1printInteractionController(_:choosePaper:)/title",
+          "value": "printInteractionController:choosePaper:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPrintInteractionControllerDelegate~1printInteractionController(_:choosePaper:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "printInteractionController:choosePaper:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPrintPaper~1bestPaper(forPageSize:withPapersFrom:)/title",
+          "value": "bestPaperForPageSize:withPapersFromArray:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPrintPaper~1bestPaper(forPageSize:withPapersFrom:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "bestPaperForPageSize:withPapersFromArray:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPrintInteractionController/title",
+          "value": "UIPrintInteractionController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPrintInteractionController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIPrintInteractionController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPrintInteractionController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIPrintInteractionController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPrintPaper~1paperSize/title",
+          "value": "paperSize"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPrintPaper~1paperSize/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "paperSize"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/uikit/uiprintpaper"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/uikit/uiprintpaper"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

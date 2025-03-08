@@ -1,0 +1,1114 @@
+{
+  "abstract": [
+    {
+      "text": "A structure that holds a buffer of audio data.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/AudioBuffer"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@S@AudioBuffer",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "struct"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "AudioBuffer"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Core Audio Types"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "AudioBuffer"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "2.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "2.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "10.0",
+        "name": "macOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "3.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "AudioBuffer"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AudioBuffer"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An audio buffer holds a single buffer of audio data in its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/AudioBuffer/mData",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " field. The buffer can represent two types of audio:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A single, monophonic, noninterleaved channel of audio",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Interleaved audio with the number of channels set by the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/AudioBuffer/mNumberChannels",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " field",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "The ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/AudioStreamPacketDescription/mDataByteSize",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " and ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/AudioBuffer/mNumberChannels",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " parameters needs to match the memory layout of ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/AudioBuffer/mData",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ", so update the size and number of channels when you update the data field.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes": {
+      "abstract": [
+        {
+          "text": "Use specialized data types to interact with audio streams, complex buffers, and audiovisual timestamps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Audio Types",
+      "type": "topic",
+      "url": "/documentation/coreaudiotypes"
+    },
+    "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/AudioBuffer": {
+      "abstract": [
+        {
+          "text": "A structure that holds a buffer of audio data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioBuffer"
+        }
+      ],
+      "identifier": "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/AudioBuffer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioBuffer"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioBuffer",
+      "type": "topic",
+      "url": "/documentation/coreaudiotypes/audiobuffer"
+    },
+    "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/AudioBuffer/init()": {
+      "abstract": [
+        {
+          "text": "Creates an empty audio buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/AudioBuffer/init()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init()",
+      "type": "topic",
+      "url": "/documentation/coreaudiotypes/audiobuffer/init()"
+    },
+    "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/AudioBuffer/init(_:numberOfChannels:)": {
+      "abstract": [
+        {
+          "text": "Initialize an ",
+          "type": "text"
+        },
+        {
+          "code": "AudioBuffer",
+          "type": "codeVoice"
+        },
+        {
+          "text": " from an",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "code": "UnsafeMutableBufferPointer<Element>",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Element"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sr",
+          "text": "UnsafeMutableBufferPointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Element"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "numberOfChannels"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/AudioBuffer/init(_:numberOfChannels:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(_:numberOfChannels:)",
+      "type": "topic",
+      "url": "/documentation/coreaudiotypes/audiobuffer/init(_:numberofchannels:)"
+    },
+    "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/AudioBuffer/init(mNumberChannels:mDataByteSize:mData:)": {
+      "abstract": [
+        {
+          "text": "Creates an audio buffer with audio data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "mNumberChannels"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "mDataByteSize"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "mData"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sv",
+          "text": "UnsafeMutableRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/AudioBuffer/init(mNumberChannels:mDataByteSize:mData:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(mNumberChannels:mDataByteSize:mData:)",
+      "type": "topic",
+      "url": "/documentation/coreaudiotypes/audiobuffer/init(mnumberchannels:mdatabytesize:mdata:)"
+    },
+    "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/AudioBuffer/mData": {
+      "abstract": [
+        {
+          "text": "A pointer to a buffer of audio data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mData"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sv",
+          "text": "UnsafeMutableRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/AudioBuffer/mData",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "mData"
+        }
+      ],
+      "role": "symbol",
+      "title": "mData",
+      "type": "topic",
+      "url": "/documentation/coreaudiotypes/audiobuffer/mdata"
+    },
+    "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/AudioBuffer/mDataByteSize": {
+      "abstract": [
+        {
+          "text": "The number of bytes in the buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mDataByteSize"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        }
+      ],
+      "identifier": "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/AudioBuffer/mDataByteSize",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "mDataByteSize"
+        }
+      ],
+      "role": "symbol",
+      "title": "mDataByteSize",
+      "type": "topic",
+      "url": "/documentation/coreaudiotypes/audiobuffer/mdatabytesize"
+    },
+    "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/AudioBuffer/mNumberChannels": {
+      "abstract": [
+        {
+          "text": "The number of interleaved channels in the buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mNumberChannels"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        }
+      ],
+      "identifier": "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/AudioBuffer/mNumberChannels",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "mNumberChannels"
+        }
+      ],
+      "role": "symbol",
+      "title": "mNumberChannels",
+      "type": "topic",
+      "url": "/documentation/coreaudiotypes/audiobuffer/mnumberchannels"
+    },
+    "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/AudioBufferList": {
+      "abstract": [
+        {
+          "text": "A structure that stores a variable-length array of audio buffers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioBufferList"
+        }
+      ],
+      "identifier": "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/AudioBufferList",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioBufferList"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioBufferList",
+      "type": "topic",
+      "url": "/documentation/coreaudiotypes/audiobufferlist"
+    },
+    "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/AudioStreamPacketDescription/mDataByteSize": {
+      "abstract": [
+        {
+          "text": "The number of bytes in the packet.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mDataByteSize"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        }
+      ],
+      "identifier": "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/AudioStreamPacketDescription/mDataByteSize",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "mDataByteSize"
+        }
+      ],
+      "role": "symbol",
+      "title": "mDataByteSize",
+      "type": "topic",
+      "url": "/documentation/coreaudiotypes/audiostreampacketdescription/mdatabytesize"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/s:s15BitwiseCopyableP": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BitwiseCopyable"
+        },
+        {
+          "kind": "text",
+          "text": " : ~Escapable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s15BitwiseCopyableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "BitwiseCopyable",
+      "type": "topic",
+      "url": "/documentation/Swift/BitwiseCopyable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s15BitwiseCopyableP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Buffers",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/AudioBufferList"
+      ],
+      "title": "Buffers"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-Buffer",
+      "identifiers": [
+        "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/AudioBuffer/init()",
+        "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/AudioBuffer/init(mNumberChannels:mDataByteSize:mData:)"
+      ],
+      "title": "Creating a Buffer"
+    },
+    {
+      "anchor": "Accessing-the-Audio",
+      "identifiers": [
+        "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/AudioBuffer/mNumberChannels",
+        "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/AudioBuffer/mDataByteSize",
+        "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/AudioBuffer/mData"
+      ],
+      "title": "Accessing the Audio"
+    },
+    {
+      "anchor": "Initializers",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/AudioBuffer/init(_:numberOfChannels:)"
+      ],
+      "title": "Initializers"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.0",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.15",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.0",
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "6.0",
+              "name": "watchOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Structure"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "AudioBuffer"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "struct"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioBuffer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioBuffer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Accessing-the-Audio",
+              "identifiers": [
+                "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/AudioBuffer/mNumberChannels",
+                "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/AudioBuffer/mDataByteSize",
+                "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/AudioBuffer/mData"
+              ],
+              "title": "Accessing the Audio"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Buffers",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.coreaudiotypes/documentation/CoreAudioTypes/AudioBufferList"
+              ],
+              "title": "Buffers"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "struct"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "AudioBuffer"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ";"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreaudiotypes~1documentation~1CoreAudioTypes~1AudioBuffer~1mData/title",
+          "value": "mData"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreaudiotypes~1documentation~1CoreAudioTypes~1AudioBuffer~1mData/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "mData"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreaudiotypes~1documentation~1CoreAudioTypes~1AudioStreamPacketDescription~1mDataByteSize/title",
+          "value": "mDataByteSize"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreaudiotypes~1documentation~1CoreAudioTypes~1AudioStreamPacketDescription~1mDataByteSize/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "mDataByteSize"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreaudiotypes~1documentation~1CoreAudioTypes~1AudioBuffer/title",
+          "value": "AudioBuffer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreaudiotypes~1documentation~1CoreAudioTypes~1AudioBuffer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioBuffer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreaudiotypes~1documentation~1CoreAudioTypes~1AudioBuffer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioBuffer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreaudiotypes~1documentation~1CoreAudioTypes~1AudioBufferList/title",
+          "value": "AudioBufferList"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreaudiotypes~1documentation~1CoreAudioTypes~1AudioBufferList/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioBufferList"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreaudiotypes~1documentation~1CoreAudioTypes~1AudioBufferList/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioBufferList"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreaudiotypes~1documentation~1CoreAudioTypes~1AudioBuffer~1mNumberChannels/title",
+          "value": "mNumberChannels"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreaudiotypes~1documentation~1CoreAudioTypes~1AudioBuffer~1mNumberChannels/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "mNumberChannels"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreaudiotypes~1documentation~1CoreAudioTypes~1AudioBuffer~1mDataByteSize/title",
+          "value": "mDataByteSize"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreaudiotypes~1documentation~1CoreAudioTypes~1AudioBuffer~1mDataByteSize/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "mDataByteSize"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/coreaudiotypes/audiobuffer"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/coreaudiotypes/audiobuffer"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

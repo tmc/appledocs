@@ -1,0 +1,901 @@
+{
+  "abstract": [
+    {
+      "text": "A description of how to convert between units using a linear equation.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/units_and_measurement"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/unitconverterlinear"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1817008,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSUnitConverterLinear",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "class "
+      },
+      {
+        "kind": "identifier",
+        "text": "UnitConverterLinear"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "10.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "10.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.12",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "10.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "3.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "UnitConverterLinear"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UnitConverterLinear"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/unitconverter",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSUnitConverter",
+              "text": "UnitConverter"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A linear equation for unit conversion takes the form ",
+              "type": "text"
+            },
+            {
+              "code": "y = mx + b",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", such that the following is true:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "y",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " is the value in terms of the base unit of the dimension.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "m",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " is the known coefficient to use for this unit's conversion.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "x",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " is the value in terms of the unit on which you call this method.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "b",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " is the known constant to use for this unit's conversion.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "baseUnitValueFromValue:",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method performs the conversion in the form of ",
+              "type": "text"
+            },
+            {
+              "code": "y = mx + b",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", where ",
+              "type": "text"
+            },
+            {
+              "code": "x",
+              "type": "codeVoice"
+            },
+            {
+              "text": " represents the value passed in and ",
+              "type": "text"
+            },
+            {
+              "code": "y",
+              "type": "codeVoice"
+            },
+            {
+              "text": " represents the value returned. The ",
+              "type": "text"
+            },
+            {
+              "code": "valueFromBaseUnitValue:",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method performs the inverse conversion in the form of ",
+              "type": "text"
+            },
+            {
+              "code": "x = (y - b) / m",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", where ",
+              "type": "text"
+            },
+            {
+              "code": "y",
+              "type": "codeVoice"
+            },
+            {
+              "text": " represents the value passed in and ",
+              "type": "text"
+            },
+            {
+              "code": "x",
+              "type": "codeVoice"
+            },
+            {
+              "text": " represents the value returned.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, consider the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/unittemperature/1690842-fahrenheit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " unit that ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/unittemperature",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " defines. The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/unitconverter/1823668-baseunitvalue",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method calculates the value in the base unit, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/unittemperature/1690766-kelvin",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", using the formula ",
+              "type": "text"
+            },
+            {
+              "code": "K = (0.55555555555556) × °F + 255.37222222222427",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/unitconverter/1823657-value",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method calculates the value in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/unittemperature/1690842-fahrenheit",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " using the formula ",
+              "type": "text"
+            },
+            {
+              "code": "°F = (K — 255.37222222222427) / (0.55555555555556)",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", where the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/unitconverterlinear/1823683-coefficient",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " is ",
+              "type": "text"
+            },
+            {
+              "code": "(0.55555555555556)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/unitconverterlinear/1823598-constant",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " is ",
+              "type": "text"
+            },
+            {
+              "code": "255.37222222222427",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let kelvinToFahrenheit = UnitConverterLinear(coefficient: 0.55555555555556, constant: 255.37222222222427)"
+          ],
+          "metadata": {
+            "anchor": "2557055",
+            "title": "Listing 1"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Units that perform conversion using only a scale factor have a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/unitconverterlinear/1823683-coefficient",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " equal to the scale factor and a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/unitconverterlinear/1823598-constant",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " equal to ",
+              "type": "text"
+            },
+            {
+              "code": "0",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". For example, consider the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/unitlength/1856106-kilometers",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " unit ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/unitlength",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " defines. The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/unitconverter/1823668-baseunitvalue",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method calculates the value in meters using the formula ",
+              "type": "text"
+            },
+            {
+              "code": "valueInMeters = 1000 * valueInKilometers + 0",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/unitconverter/1823657-value",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " calculates the value in kilometers using the formula ",
+              "type": "text"
+            },
+            {
+              "code": "valueInKilometers = (valueInMeters - 0) / 1000",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", where the coefficient is ",
+              "type": "text"
+            },
+            {
+              "code": "1000",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and the constant is ",
+              "type": "text"
+            },
+            {
+              "code": "0",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let kilometersToMeters = UnitConverterLinear(coefficient: 1000.0, constant: 0.0)"
+          ],
+          "metadata": {
+            "anchor": "2557059",
+            "title": "Listing 2"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nssecurecoding": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nssecurecoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSecureCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nssecurecoding"
+    },
+    "doc://com.apple.documentation/documentation/foundation/unitconverter": {
+      "abstract": [
+        {
+          "text": "An abstract class that provides a description of how to convert a unit to and from the base unit of its dimension.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "UnitConverter"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/unitconverter",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UnitConverter",
+      "type": "topic",
+      "url": "/documentation/foundation/unitconverter"
+    },
+    "doc://com.apple.documentation/documentation/foundation/unitconverter/1823657-value": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/unitconverter/1823657-value",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "value(fromBaseUnitValue:)",
+      "type": "topic",
+      "url": "/documentation/foundation/unitconverter/1823657-value"
+    },
+    "doc://com.apple.documentation/documentation/foundation/unitconverter/1823668-baseunitvalue": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/unitconverter/1823668-baseunitvalue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "baseUnitValue(fromValue:)",
+      "type": "topic",
+      "url": "/documentation/foundation/unitconverter/1823668-baseunitvalue"
+    },
+    "doc://com.apple.documentation/documentation/foundation/unitconverterlinear": {
+      "abstract": [
+        {
+          "text": "A description of how to convert between units using a linear equation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "UnitConverterLinear"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/unitconverterlinear",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UnitConverterLinear",
+      "type": "topic",
+      "url": "/documentation/foundation/unitconverterlinear"
+    },
+    "doc://com.apple.documentation/documentation/foundation/unitconverterlinear#2557055": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/unitconverterlinear#2557055",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/foundation/unitconverterlinear#2557055"
+    },
+    "doc://com.apple.documentation/documentation/foundation/unitconverterlinear#2557059": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/unitconverterlinear#2557059",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 2",
+      "type": "section",
+      "url": "/documentation/foundation/unitconverterlinear#2557059"
+    },
+    "doc://com.apple.documentation/documentation/foundation/unitconverterlinear/1823577-init": {
+      "abstract": [
+        {
+          "text": "Creates a unit converter with the coefficient and constant you specify.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "coefficient"
+        },
+        {
+          "kind": "text",
+          "text": ": Double, "
+        },
+        {
+          "kind": "identifier",
+          "text": "constant"
+        },
+        {
+          "kind": "text",
+          "text": ": Double)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/unitconverterlinear/1823577-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(coefficient:constant:)",
+      "type": "topic",
+      "url": "/documentation/foundation/unitconverterlinear/1823577-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/unitconverterlinear/1823598-constant": {
+      "abstract": [
+        {
+          "text": "The constant to use in the linear unit conversion calculation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "constant"
+        },
+        {
+          "kind": "text",
+          "text": ": Double"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/unitconverterlinear/1823598-constant",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "constant",
+      "type": "topic",
+      "url": "/documentation/foundation/unitconverterlinear/1823598-constant"
+    },
+    "doc://com.apple.documentation/documentation/foundation/unitconverterlinear/1823611-init": {
+      "abstract": [
+        {
+          "text": "Initializes the unit converter with the coefficient you specify.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "coefficient"
+        },
+        {
+          "kind": "text",
+          "text": ": Double)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/unitconverterlinear/1823611-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(coefficient:)",
+      "type": "topic",
+      "url": "/documentation/foundation/unitconverterlinear/1823611-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/unitconverterlinear/1823683-coefficient": {
+      "abstract": [
+        {
+          "text": "The coefficient to use in the linear unit conversion calculation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "coefficient"
+        },
+        {
+          "kind": "text",
+          "text": ": Double"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/unitconverterlinear/1823683-coefficient",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "coefficient",
+      "type": "topic",
+      "url": "/documentation/foundation/unitconverterlinear/1823683-coefficient"
+    },
+    "doc://com.apple.documentation/documentation/foundation/unitlength": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/unitlength",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UnitLength",
+      "type": "topic",
+      "url": "/documentation/foundation/unitlength"
+    },
+    "doc://com.apple.documentation/documentation/foundation/unitlength/1856106-kilometers": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/unitlength/1856106-kilometers",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kilometers",
+      "type": "topic",
+      "url": "/documentation/foundation/unitlength/1856106-kilometers"
+    },
+    "doc://com.apple.documentation/documentation/foundation/units_and_measurement": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/units_and_measurement",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Units and Measurement",
+      "type": "topic",
+      "url": "/documentation/foundation/units_and_measurement"
+    },
+    "doc://com.apple.documentation/documentation/foundation/unittemperature": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/unittemperature",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UnitTemperature",
+      "type": "topic",
+      "url": "/documentation/foundation/unittemperature"
+    },
+    "doc://com.apple.documentation/documentation/foundation/unittemperature/1690766-kelvin": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/unittemperature/1690766-kelvin",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kelvin",
+      "type": "topic",
+      "url": "/documentation/foundation/unittemperature/1690766-kelvin"
+    },
+    "doc://com.apple.documentation/documentation/foundation/unittemperature/1690842-fahrenheit": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/unittemperature/1690842-fahrenheit",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "fahrenheit",
+      "type": "topic",
+      "url": "/documentation/foundation/unittemperature/1690842-fahrenheit"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/unitconverter"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nssecurecoding"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/unitconverter"
+      ],
+      "title": "Conversion"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "1868116",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/unitconverterlinear/1823683-coefficient",
+        "doc://com.apple.documentation/documentation/foundation/unitconverterlinear/1823598-constant"
+      ],
+      "kind": "taskGroup",
+      "title": "Accessing Linear Parameters"
+    },
+    {
+      "anchor": "1868122",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/unitconverterlinear/1823611-init",
+        "doc://com.apple.documentation/documentation/foundation/unitconverterlinear/1823577-init"
+      ],
+      "kind": "taskGroup",
+      "title": "Creating Unit Converters"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nsunitconverterlinear"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/unitconverterlinear"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

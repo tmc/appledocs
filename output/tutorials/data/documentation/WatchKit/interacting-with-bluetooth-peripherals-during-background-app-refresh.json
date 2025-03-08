@@ -1,0 +1,617 @@
+{
+  "abstract": [
+    {
+      "text": "Keep your complications up-to-date by reading values from a Bluetooth peripheral while your app is running in the background.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.watchkit/documentation/WatchKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.watchkit/documentation/WatchKit/interacting-with-bluetooth-peripherals-during-background-app-refresh"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "WatchKit"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "15.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "15.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "8.0",
+        "name": "watchOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "14.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Interacting with Bluetooth peripherals during background app refresh"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "This sample code project is associated with WWDC 2022 session ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/wwdc22/10135/",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ", and with WWDC 2021 session ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/wwdc21/10005/",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Configure-the-sample-code-project",
+          "level": 3,
+          "text": "Configure the sample code project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample runs only on physical devices.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This project contains two targets: BARBluetooth for iOS and BARBluetooth WatchKit App for watchOS.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Go to your ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/account",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and create unique App IDs for BARBluetooth, BARBluetooth WatchKit App, and BARBluetooth WatchKit Extension. The IDs in the sample are already in use. You need your own unique identifiers to provision and run the app.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select the BARBluetooth target, click the Signing & Capabilities tab and change the bundle identifier to the ID you created in the previous step.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select the appropriate team from the Team pop-up menu to let Xcode automatically manage your provisioning profile.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Repeat steps 2 and 3 for the WatchKit App and the WatchKit Extension targets. The bundle IDs need to be ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "<Your iOS app bundle ID>.watchkitapp",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "<Your iOS app bundle ID>.watchkitapp.watchkitextension",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", respectively.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "For the WatchKit App target, select the Info tab, and change the value of the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "WKCompanionAppBundleIdentifier",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " key to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "<Your iOS app bundle ID>",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Info.plist",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " file of the WatchKit Extension target, choose NSExtension > NSExtensionAttributes > WKAppBundleIdentifier key, and change the value of the key to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "<Your iOS app bundle ID>.watchkitapp",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Build and run the app on both Apple Watch and iPhone.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "On the phone, allow Bluetooth access by choosing Settings > Privacy > Bluetooth > BARBluetooth, and run the app.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "On the watch, add the BARBluetooth widget to the active watch face.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "On the watch, select the Bluetooth peripheral (the phone) to connect to it.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "After connecting, tap “Send temperature alert” on the phone to demonstrate timely alerts.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "On the watch, to demonstrate the alert when the peripheral moves out of range and comes back in functionality, turn on the “Scan to alert” switch. Restart scanning and move the phone outside of Bluetooth range, then bring it back in range.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The watch app reads a characteristic value from the phone and updates the complication during background runtime. In watchOS 9, the watch app displays a notification if the peripheral (in this case, the phone app) sends a special value. The watch app also demonstrates displaying a notification as the peripheral goes in and out of advertising range.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "33e82fd380ea/InteractingWithBluetoothPeripheralsDuringBackgroundAppRefresh.zip": {
+      "checksum": "33e82fd380ea60dc20d693b92a8278a4b547fb18b041d39b576bab6e0a570db2e783256c959d9eca89b62ff6f89f8a4bf37f2d2b3d733e31b9d29b42f334c1da",
+      "identifier": "33e82fd380ea/InteractingWithBluetoothPeripheralsDuringBackgroundAppRefresh.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/33e82fd380ea/InteractingWithBluetoothPeripheralsDuringBackgroundAppRefresh.zip"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit": {
+      "abstract": [
+        {
+          "text": "Build watchOS apps that use features the app delegate monitors or controls, such as background tasks and extended runtime sessions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "WatchKit",
+      "type": "topic",
+      "url": "/documentation/watchkit"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKExtendedRuntimeSession": {
+      "abstract": [
+        {
+          "text": "A session that continues to run your app after the user has stopped interacting.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKExtendedRuntimeSession"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKExtendedRuntimeSession",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WKExtendedRuntimeSession"
+        }
+      ],
+      "role": "symbol",
+      "title": "WKExtendedRuntimeSession",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkextendedruntimesession"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/background-execution": {
+      "abstract": [
+        {
+          "text": "Manage background sessions and tasks.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/background-execution",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Background execution",
+      "type": "topic",
+      "url": "/documentation/watchkit/background-execution"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/life-cycles": {
+      "abstract": [
+        {
+          "text": "Receive and respond to life-cycle notifications.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/life-cycles",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Life cycles",
+      "type": "topic",
+      "url": "/documentation/watchkit/life-cycles"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/using-extended-runtime-sessions": {
+      "abstract": [
+        {
+          "text": "Create an extended runtime session that continues running your app after the user stops interacting with it.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/using-extended-runtime-sessions",
+      "kind": "article",
+      "role": "article",
+      "title": "Using extended runtime sessions",
+      "type": "topic",
+      "url": "/documentation/watchkit/using-extended-runtime-sessions"
+    },
+    "https://developer.apple.com/account": {
+      "identifier": "https://developer.apple.com/account",
+      "title": "Apple Developer account page",
+      "titleInlineContent": [
+        {
+          "text": "Apple Developer account page",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/account"
+    },
+    "https://developer.apple.com/wwdc21/10005/": {
+      "identifier": "https://developer.apple.com/wwdc21/10005/",
+      "title": "10005: Connect Bluetooth Devices to Apple Watch",
+      "titleInlineContent": [
+        {
+          "text": "10005: Connect Bluetooth Devices to Apple Watch",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/wwdc21/10005/"
+    },
+    "https://developer.apple.com/wwdc22/10135/": {
+      "identifier": "https://developer.apple.com/wwdc22/10135/",
+      "title": "10135: Get timely alerts from Bluetooth devices in watchOS",
+      "titleInlineContent": [
+        {
+          "text": "10135: Get timely alerts from Bluetooth devices in watchOS",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/wwdc22/10135/"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "33e82fd380ea/InteractingWithBluetoothPeripheralsDuringBackgroundAppRefresh.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Runtime-management",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.watchkit/documentation/WatchKit/background-execution",
+        "doc://com.apple.watchkit/documentation/WatchKit/life-cycles",
+        "doc://com.apple.watchkit/documentation/WatchKit/using-extended-runtime-sessions",
+        "doc://com.apple.watchkit/documentation/WatchKit/WKExtendedRuntimeSession"
+      ],
+      "title": "Runtime management"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Runtime-management",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.watchkit/documentation/WatchKit/background-execution",
+                "doc://com.apple.watchkit/documentation/WatchKit/life-cycles",
+                "doc://com.apple.watchkit/documentation/WatchKit/using-extended-runtime-sessions",
+                "doc://com.apple.watchkit/documentation/WatchKit/WKExtendedRuntimeSession"
+              ],
+              "title": "Runtime management"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKExtendedRuntimeSession/title",
+          "value": "WKExtendedRuntimeSession"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKExtendedRuntimeSession/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKExtendedRuntimeSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKExtendedRuntimeSession/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKExtendedRuntimeSession"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/watchkit/interacting-with-bluetooth-peripherals-during-background-app-refresh"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/watchkit/interacting-with-bluetooth-peripherals-during-background-app-refresh"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

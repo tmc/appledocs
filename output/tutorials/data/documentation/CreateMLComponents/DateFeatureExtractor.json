@@ -1,0 +1,1471 @@
+{
+  "abstract": [
+    {
+      "text": "A time and date feature extractor.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/DateFeatureExtractor"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:18CreateMLComponents20DateFeatureExtractorV",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "struct"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "DateFeatureExtractor"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Create ML Components"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "DateFeatureExtractor"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "18.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "18.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "18.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "18.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "2.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "11.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "DateFeatureExtractor"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "DateFeatureExtractor"
+            },
+            {
+              "kind": "text",
+              "text": "<"
+            },
+            {
+              "kind": "genericParameter",
+              "text": "Scalar"
+            },
+            {
+              "kind": "text",
+              "text": "> "
+            },
+            {
+              "kind": "keyword",
+              "text": "where"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "text": "Scalar"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:SB",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:SB",
+              "text": "BinaryFloatingPoint"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This transformer takes a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/date",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and extracts",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "floating-point feature values according to the features parameter. Every feature value is roughly between -0.5 and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "0.5. All date calculations are based on a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/calendar",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ",",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "which defaults to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/calendar/2293438-current",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents": {
+      "abstract": [
+        {
+          "text": "Create more customizable machine learning models in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Create ML Components",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/DateFeatureExtractor": {
+      "abstract": [
+        {
+          "text": "A time and date feature extractor.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DateFeatureExtractor"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/DateFeatureExtractor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DateFeatureExtractor"
+        }
+      ],
+      "role": "symbol",
+      "title": "DateFeatureExtractor",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/datefeatureextractor"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/DateFeatureExtractor/Decodable-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/DateFeatureExtractor/Decodable-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Decodable Implementations",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/datefeatureextractor/decodable-implementations"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/DateFeatureExtractor/Encodable-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/DateFeatureExtractor/Encodable-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Encodable Implementations",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/datefeatureextractor/encodable-implementations"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/DateFeatureExtractor/Input": {
+      "abstract": [
+        {
+          "text": "The input type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Input"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/DateFeatureExtractor/Input",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Input"
+        }
+      ],
+      "role": "symbol",
+      "title": "DateFeatureExtractor.Input",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/datefeatureextractor/input"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/DateFeatureExtractor/Output": {
+      "abstract": [
+        {
+          "text": "The output type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Output"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/DateFeatureExtractor/Output",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Output"
+        }
+      ],
+      "role": "symbol",
+      "title": "DateFeatureExtractor.Output",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/datefeatureextractor/output"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/DateFeatureExtractor/Transformer-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/DateFeatureExtractor/Transformer-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Transformer Implementations",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/datefeatureextractor/transformer-implementations"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/DateFeatureExtractor/applied(to:eventHandler:)": {
+      "abstract": [
+        {
+          "text": "Extracts features of a particular date.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "applied"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DateV",
+          "text": "Date"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "eventHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:18CreateMLComponents12EventHandlera",
+          "text": "EventHandler"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Scalar"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/DateFeatureExtractor/applied(to:eventHandler:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "applied(to:eventHandler:)",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/datefeatureextractor/applied(to:eventhandler:)"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/DateFeatureExtractor/calendar": {
+      "abstract": [
+        {
+          "text": "The calendar.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "calendar"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation8CalendarV",
+          "text": "Calendar"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/DateFeatureExtractor/calendar",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "calendar",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/datefeatureextractor/calendar"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/DateFeatureExtractor/features": {
+      "abstract": [
+        {
+          "text": "The date and time features.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "features"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:18CreateMLComponents12DateFeaturesV",
+          "text": "DateFeatures"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/DateFeatureExtractor/features",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "features",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/datefeatureextractor/features"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/DateFeatureExtractor/init(features:calendar:)": {
+      "abstract": [
+        {
+          "text": "Creates a date feature extractor.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "features"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:18CreateMLComponents12DateFeaturesV",
+          "text": "DateFeatures"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "calendar"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation8CalendarV",
+          "text": "Calendar"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/DateFeatureExtractor/init(features:calendar:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(features:calendar:)",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/datefeatureextractor/init(features:calendar:)"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/DateFeatures": {
+      "abstract": [
+        {
+          "text": "A set of date and time features.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DateFeatures"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/DateFeatures",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DateFeatures"
+        }
+      ],
+      "role": "symbol",
+      "title": "DateFeatures",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/datefeatures"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/Downsampler": {
+      "abstract": [
+        {
+          "text": "A temporal transformer that down samples the input stream.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Downsampler"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/Downsampler",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Downsampler"
+        }
+      ],
+      "role": "symbol",
+      "title": "Downsampler",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/downsampler"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/LinearTimeSeriesForecaster": {
+      "abstract": [
+        {
+          "text": "A time-series forecasting estimator.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LinearTimeSeriesForecaster"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/LinearTimeSeriesForecaster",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LinearTimeSeriesForecaster"
+        }
+      ],
+      "role": "symbol",
+      "title": "LinearTimeSeriesForecaster",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/lineartimeseriesforecaster"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/LinearTimeSeriesForecasterConfiguration": {
+      "abstract": [
+        {
+          "text": "The configuration for a linear time-series forecaster.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LinearTimeSeriesForecasterConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/LinearTimeSeriesForecasterConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LinearTimeSeriesForecasterConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "LinearTimeSeriesForecasterConfiguration",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/lineartimeseriesforecasterconfiguration"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/SlidingWindowTransformer": {
+      "abstract": [
+        {
+          "text": "A temporal transformer that groups input elements.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SlidingWindowTransformer"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/SlidingWindowTransformer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SlidingWindowTransformer"
+        }
+      ],
+      "role": "symbol",
+      "title": "SlidingWindowTransformer",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/slidingwindowtransformer"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/SlidingWindows": {
+      "abstract": [
+        {
+          "text": "A sequence of windows on a time series shaped array.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SlidingWindows"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/SlidingWindows",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SlidingWindows"
+        }
+      ],
+      "role": "symbol",
+      "title": "SlidingWindows",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/slidingwindows"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/TemporalFeature": {
+      "abstract": [
+        {
+          "text": "A temporal feature contains a segment identifier and a feature value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TemporalFeature"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/TemporalFeature",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TemporalFeature"
+        }
+      ],
+      "role": "symbol",
+      "title": "TemporalFeature",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/temporalfeature"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/TemporalFileSegment": {
+      "abstract": [
+        {
+          "text": "A URL and a time range identifying a specific segment of a time-based (temporal) file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TemporalFileSegment"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/TemporalFileSegment",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TemporalFileSegment"
+        }
+      ],
+      "role": "symbol",
+      "title": "TemporalFileSegment",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/temporalfilesegment"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/TemporalSegmentIdentifier": {
+      "abstract": [
+        {
+          "text": "Uniquely identifiers a segment of a temporal sequence.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TemporalSegmentIdentifier"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/TemporalSegmentIdentifier",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TemporalSegmentIdentifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "TemporalSegmentIdentifier",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/temporalsegmentidentifier"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/TemporalSequence": {
+      "abstract": [
+        {
+          "text": "Async sequence for temporal features.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TemporalSequence"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/TemporalSequence",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TemporalSequence"
+        }
+      ],
+      "role": "symbol",
+      "title": "TemporalSequence",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/temporalsequence"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/TimeSeriesForecasterAnnotatedWindows": {
+      "abstract": [
+        {
+          "text": "A sequence of forecasting windows on a time series shaped array.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TimeSeriesForecasterAnnotatedWindows"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/TimeSeriesForecasterAnnotatedWindows",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TimeSeriesForecasterAnnotatedWindows"
+        }
+      ],
+      "role": "symbol",
+      "title": "TimeSeriesForecasterAnnotatedWindows",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/timeseriesforecasterannotatedwindows"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/TimeSeriesForecasterBatches": {
+      "abstract": [
+        {
+          "text": "A sequence of forecaster batches on a time series shaped array.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TimeSeriesForecasterBatches"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/TimeSeriesForecasterBatches",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TimeSeriesForecasterBatches"
+        }
+      ],
+      "role": "symbol",
+      "title": "TimeSeriesForecasterBatches",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/timeseriesforecasterbatches"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/Transformer": {
+      "abstract": [
+        {
+          "text": "A transformer that takes an input and produces an output.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Transformer"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/Transformer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Transformer"
+        }
+      ],
+      "role": "symbol",
+      "title": "Transformer",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/transformer"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/VideoReader": {
+      "abstract": [
+        {
+          "text": "A video file reader.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VideoReader"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/VideoReader",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VideoReader"
+        }
+      ],
+      "role": "symbol",
+      "title": "VideoReader",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/videoreader"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/creating-a-time-series-classifier": {
+      "abstract": [
+        {
+          "text": "Train a machine learning model to predict the class label of time-series signals.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/creating-a-time-series-classifier",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating a time-series classifier",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/creating-a-time-series-classifier"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/creating-a-time-series-forecaster": {
+      "abstract": [
+        {
+          "text": "Forecast future data points by training a machine learning model using historical data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/creating-a-time-series-forecaster",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating a time-series forecaster",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/creating-a-time-series-forecaster"
+    },
+    "doc://com.apple.documentation/documentation/foundation/calendar": {
+      "abstract": [
+        {
+          "text": "A definition of the relationships between calendar units and absolute points in time, providing features for calculation and comparison of dates.   ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "Calendar"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/calendar",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Calendar",
+      "type": "topic",
+      "url": "/documentation/foundation/calendar"
+    },
+    "doc://com.apple.documentation/documentation/foundation/calendar/2293438-current": {
+      "abstract": [
+        {
+          "text": "The user’s current calendar.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static var "
+        },
+        {
+          "kind": "identifier",
+          "text": "current"
+        },
+        {
+          "kind": "text",
+          "text": ": Calendar"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/calendar/2293438-current",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "current",
+      "type": "topic",
+      "url": "/documentation/foundation/calendar/2293438-current"
+    },
+    "doc://com.apple.documentation/documentation/foundation/date": {
+      "abstract": [
+        {
+          "text": "A specific point in time, independent of any calendar or time zone.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "Date"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/date",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Date",
+      "type": "topic",
+      "url": "/documentation/foundation/date"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/s:SB": {
+      "abstract": [
+        {
+          "text": "A radix-2 (binary) floating-point type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BinaryFloatingPoint"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s25ExpressibleByFloatLiteralP",
+          "text": "ExpressibleByFloatLiteral"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SF",
+          "text": "FloatingPoint"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SB",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "BinaryFloatingPoint",
+      "type": "topic",
+      "url": "/documentation/Swift/BinaryFloatingPoint"
+    },
+    "doc://com.externally.resolved.symbol/s:SE": {
+      "abstract": [
+        {
+          "text": "A type that can encode itself to an external representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Encodable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SE",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Encodable",
+      "type": "topic",
+      "url": "/documentation/Swift/Encodable"
+    },
+    "doc://com.externally.resolved.symbol/s:Se": {
+      "abstract": [
+        {
+          "text": "A type that can decode itself from an external representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Decodable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:Se",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Decodable",
+      "type": "topic",
+      "url": "/documentation/Swift/Decodable"
+    },
+    "doc://com.externally.resolved.symbol/s:s8CopyableP": {
+      "abstract": [
+        {
+          "text": "A type whose values can be implicitly or explicitly copied.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Copyable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8CopyableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Copyable",
+      "type": "topic",
+      "url": "/documentation/Swift/Copyable"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s8CopyableP",
+        "doc://com.externally.resolved.symbol/s:Se",
+        "doc://com.externally.resolved.symbol/s:SE",
+        "doc://com.externally.resolved.symbol/s:s8SendableP",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/Transformer"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Time-based-components",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/creating-a-time-series-classifier",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/creating-a-time-series-forecaster",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/DateFeatures",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/LinearTimeSeriesForecaster",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/LinearTimeSeriesForecasterConfiguration",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/TimeSeriesForecasterBatches",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/TimeSeriesForecasterAnnotatedWindows",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/TemporalFeature",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/TemporalSequence",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/TemporalSegmentIdentifier",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/SlidingWindows",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/SlidingWindowTransformer",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/Downsampler",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/VideoReader",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/TemporalFileSegment"
+      ],
+      "title": "Time-based components"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Initializers",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/DateFeatureExtractor/init(features:calendar:)"
+      ],
+      "title": "Initializers"
+    },
+    {
+      "anchor": "Instance-Properties",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/DateFeatureExtractor/calendar",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/DateFeatureExtractor/features"
+      ],
+      "title": "Instance Properties"
+    },
+    {
+      "anchor": "Instance-Methods",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/DateFeatureExtractor/applied(to:eventHandler:)"
+      ],
+      "title": "Instance Methods"
+    },
+    {
+      "anchor": "Type-Aliases",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/DateFeatureExtractor/Input",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/DateFeatureExtractor/Output"
+      ],
+      "title": "Type Aliases"
+    },
+    {
+      "anchor": "Default-Implementations",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/DateFeatureExtractor/Decodable-Implementations",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/DateFeatureExtractor/Encodable-Implementations",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/DateFeatureExtractor/Transformer-Implementations"
+      ],
+      "title": "Default Implementations"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/createmlcomponents/datefeatureextractor"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

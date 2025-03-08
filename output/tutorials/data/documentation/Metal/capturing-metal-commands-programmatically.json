@@ -1,0 +1,414 @@
+{
+  "abstract": [
+    {
+      "text": "Invoke Metal’s frame capture from your app, then save the resulting GPU trace to a file or view it in Xcode.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.metal/documentation/Metal"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.metal/documentation/Metal/capturing-metal-commands-programmatically"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Metal"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "10.15",
+        "name": "macOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "11.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Capturing Metal Commands Programmatically"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "This sample code project is associated with WWDC 2019 session ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/videos/play/wwdc2019/606/",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Configure-the-Sample-Code-Project",
+          "level": 3,
+          "text": "Configure the Sample Code Project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To run the app:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Build the project with Xcode 11 or later.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Metal-Developer-Workflow-PageImage-card.png": {
+      "alt": null,
+      "identifier": "Metal-Developer-Workflow-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/713b476e42e48070365a2abf70bc49b0/Metal-Developer-Workflow-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e226f618b21dde7899eba5de3bd4641a/Metal-Developer-Workflow-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "b3b3093326a2/CapturingMetalCommandsProgrammatically.zip": {
+      "checksum": "b3b3093326a25fe5fc8f1a54f69d6da37e6059d7e0871db693ea97b851f96c9ff2f174545f49a3dafb765839e083cc47c16697a07a5b82eb3ec5467b38739143",
+      "identifier": "b3b3093326a2/CapturingMetalCommandsProgrammatically.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/b3b3093326a2/CapturingMetalCommandsProgrammatically.zip"
+    },
+    "doc://com.apple.documentation/documentation/Xcode/Analyzing-the-memory-usage-of-your-Metal-app": {
+      "abstract": [
+        {
+          "text": "Keep your app alive in the background by managing its memory footprint.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Xcode/Analyzing-the-memory-usage-of-your-Metal-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Analyzing the memory usage of your Metal app",
+      "type": "topic",
+      "url": "/documentation/Xcode/Analyzing-the-memory-usage-of-your-Metal-app"
+    },
+    "doc://com.apple.documentation/documentation/Xcode/Analyzing-the-performance-of-your-Metal-app": {
+      "abstract": [
+        {
+          "text": "Ensure consistent, smooth rendering by profiling your app’s frame time.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Xcode/Analyzing-the-performance-of-your-Metal-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Analyzing the performance of your Metal app",
+      "type": "topic",
+      "url": "/documentation/Xcode/Analyzing-the-performance-of-your-Metal-app"
+    },
+    "doc://com.apple.documentation/documentation/Xcode/Metal-debugger": {
+      "abstract": [
+        {
+          "text": "Debug and profile your Metal workload with a GPU trace.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Xcode/Metal-debugger",
+      "kind": "article",
+      "role": "article",
+      "title": "Metal debugger",
+      "type": "topic",
+      "url": "/documentation/Xcode/Metal-debugger"
+    },
+    "doc://com.apple.documentation/documentation/Xcode/Metal-developer-workflows": {
+      "abstract": [
+        {
+          "text": "Locate and fix issues related to your app’s use of the Metal API and GPU functions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Xcode/Metal-developer-workflows",
+      "images": [
+        {
+          "identifier": "Metal-Developer-Workflow-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "article",
+      "title": "Metal developer workflows",
+      "type": "topic",
+      "url": "/documentation/Xcode/Metal-developer-workflows"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.metal/documentation/Metal": {
+      "abstract": [
+        {
+          "text": "Render advanced 3D graphics and compute data in parallel with graphics processors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Metal",
+      "type": "topic",
+      "url": "/documentation/metal"
+    },
+    "doc://com.apple.metal/documentation/Metal/developing-metal-apps-that-run-in-simulator": {
+      "abstract": [
+        {
+          "text": "Prototype and test your Metal apps in Simulator.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/developing-metal-apps-that-run-in-simulator",
+      "kind": "article",
+      "role": "article",
+      "title": "Developing Metal apps that run in Simulator",
+      "type": "topic",
+      "url": "/documentation/metal/developing-metal-apps-that-run-in-simulator"
+    },
+    "doc://com.apple.metal/documentation/Metal/gpu-counters-and-counter-sample-buffers": {
+      "abstract": [
+        {
+          "text": "Retrieve runtime data from a GPU device by sampling one or more of its counters.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/gpu-counters-and-counter-sample-buffers",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "GPU Counters and Counter Sample Buffers",
+      "type": "topic",
+      "url": "/documentation/metal/gpu-counters-and-counter-sample-buffers"
+    },
+    "doc://com.apple.metal/documentation/Metal/improving-your-games-graphics-performance-and-settings": {
+      "abstract": [
+        {
+          "text": "Fix performance glitches and develop default settings for smooth experiences on Apple platforms using the powerful suite of Metal development tools.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/improving-your-games-graphics-performance-and-settings",
+      "kind": "article",
+      "role": "article",
+      "title": "Improving your game’s graphics performance and settings",
+      "type": "topic",
+      "url": "/documentation/metal/improving-your-games-graphics-performance-and-settings"
+    },
+    "doc://com.apple.metal/documentation/Metal/metal-debugging-types": {
+      "abstract": [
+        {
+          "text": "Create capture managers and capture scopes, and review a GPU device’s log after it runs a command buffer.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/metal-debugging-types",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Metal Debugging Types",
+      "type": "topic",
+      "url": "/documentation/metal/metal-debugging-types"
+    },
+    "doc://com.apple.metal/documentation/Metal/supporting-simulator-in-a-metal-app": {
+      "abstract": [
+        {
+          "text": "Configure alternative render paths in your Metal app to enable running your app in Simulator.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/supporting-simulator-in-a-metal-app",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Supporting Simulator in a Metal app",
+      "type": "topic",
+      "url": "/documentation/metal/supporting-simulator-in-a-metal-app"
+    },
+    "https://developer.apple.com/videos/play/wwdc2019/606/": {
+      "identifier": "https://developer.apple.com/videos/play/wwdc2019/606/",
+      "title": "606: Delivering Optimized Metal Apps and Games",
+      "titleInlineContent": [
+        {
+          "text": "606: Delivering Optimized Metal Apps and Games",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/videos/play/wwdc2019/606/"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "b3b3093326a2/CapturingMetalCommandsProgrammatically.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Developer-Tools",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/Xcode/Metal-developer-workflows",
+        "doc://com.apple.documentation/documentation/Xcode/Metal-debugger",
+        "doc://com.apple.metal/documentation/Metal/improving-your-games-graphics-performance-and-settings",
+        "doc://com.apple.metal/documentation/Metal/supporting-simulator-in-a-metal-app",
+        "doc://com.apple.documentation/documentation/Xcode/Analyzing-the-memory-usage-of-your-Metal-app",
+        "doc://com.apple.documentation/documentation/Xcode/Analyzing-the-performance-of-your-Metal-app",
+        "doc://com.apple.metal/documentation/Metal/developing-metal-apps-that-run-in-simulator",
+        "doc://com.apple.metal/documentation/Metal/gpu-counters-and-counter-sample-buffers",
+        "doc://com.apple.metal/documentation/Metal/metal-debugging-types"
+      ],
+      "title": "Developer Tools"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Developer-Tools",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/improving-your-games-graphics-performance-and-settings",
+                "doc://com.apple.metal/documentation/Metal/supporting-simulator-in-a-metal-app",
+                "doc://com.apple.metal/documentation/Metal/developing-metal-apps-that-run-in-simulator",
+                "doc://com.apple.metal/documentation/Metal/gpu-counters-and-counter-sample-buffers",
+                "doc://com.apple.metal/documentation/Metal/metal-debugging-types"
+              ],
+              "title": "Developer Tools"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/metal/capturing-metal-commands-programmatically"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/metal/capturing-metal-commands-programmatically"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

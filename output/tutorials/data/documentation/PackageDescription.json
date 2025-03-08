@@ -1,0 +1,567 @@
+{
+  "abstract": [
+    {
+      "text": "Create reusable code, organize it in a lightweight way, and share it across your projects and with other developers.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "PackageDescription",
+    "modules": [
+      {
+        "name": "PackageDescription"
+      }
+    ],
+    "role": "collection",
+    "roleHeading": "Framework",
+    "symbolKind": "module",
+    "title": "PackageDescription"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Swift packages are reusable components of Swift, Objective-C, Objective-C++, C, or C++ code that developers can use in their projects. They bundle source files, binaries, and resources in a way that’s easy to use in your app’s project.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each Swift package requires a ",
+              "type": "text"
+            },
+            {
+              "code": "Package.swift",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file in the main directory of the package — referred to as the package manifest. When you create a Swift package, you use the PackageDescription library in the package manifest to list dependencies, configure localized resources, and set other configuration options.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, the package manifest from the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/xcode/slothcreator_building_docc_documentation_in_xcode",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " sample project below defines the SlothCreator package, with the SlothCreator library in it. It specifies the deployment targets, and that its resources are in the ",
+              "type": "text"
+            },
+            {
+              "code": "Resources",
+              "type": "codeVoice"
+            },
+            {
+              "text": " folder.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "import PackageDescription",
+            "",
+            "let package = Package(",
+            "    name: \"SlothCreator\",",
+            "    platforms: [",
+            "        .macOS(.v11),",
+            "        .iOS(.v14),",
+            "        .watchOS(.v7),",
+            "        .tvOS(.v13)",
+            "    ],",
+            "    products: [",
+            "        .library(",
+            "            name: \"SlothCreator\",",
+            "            targets: [\"SlothCreator\"]",
+            "        )",
+            "    ],",
+            "    targets: [",
+            "        .target(",
+            "            name: \"SlothCreator\",",
+            "            resources: [",
+            "                .process(\"Resources/\")",
+            "            ]",
+            "        )",
+            "    ]",
+            ")"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The package manifest also allows you to define executable products, as well as plugins that Swift Package Manager can use to build other products in the manifest.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about adding a package dependency to your app project and creating Swift packages with Xcode, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/xcode/adding-package-dependencies-to-your-app",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/xcode/creating-a-standalone-swift-package-with-xcode",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/xcode/swift-packages",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Support for Swift packages in Xcode builds on the open-source Swift Package Manager project. To learn more about the Swift Package Manager, visit ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://www.swift.org/package-manager/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and the Swift Package Manager repository on ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://github.com/apple/swift-package-manager",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription": {
+      "abstract": [
+        {
+          "text": "Create reusable code, organize it in a lightweight way, and share it across your projects and with other developers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "PackageDescription",
+      "type": "topic",
+      "url": "/documentation/packagedescription"
+    },
+    "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Context": {
+      "abstract": [
+        {
+          "text": "The context information for a Swift package.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Context"
+        }
+      ],
+      "identifier": "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Context",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Context"
+        }
+      ],
+      "role": "symbol",
+      "title": "Context",
+      "type": "topic",
+      "url": "/documentation/packagedescription/context"
+    },
+    "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/GitInformation": {
+      "abstract": [
+        {
+          "text": "Information about the git status of a given package, if available.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GitInformation"
+        }
+      ],
+      "identifier": "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/GitInformation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GitInformation"
+        }
+      ],
+      "role": "symbol",
+      "title": "GitInformation",
+      "type": "topic",
+      "url": "/documentation/packagedescription/gitinformation"
+    },
+    "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Package": {
+      "abstract": [
+        {
+          "text": "The configuration of a Swift package.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Package"
+        }
+      ],
+      "identifier": "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Package",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Package"
+        }
+      ],
+      "role": "symbol",
+      "title": "Package",
+      "type": "topic",
+      "url": "/documentation/packagedescription/package"
+    },
+    "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/SwiftLanguageMode": {
+      "abstract": [
+        {
+          "text": "The Swift language mode used to compile Swift sources in the package",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SwiftLanguageMode"
+        }
+      ],
+      "identifier": "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/SwiftLanguageMode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SwiftLanguageMode"
+        }
+      ],
+      "role": "symbol",
+      "title": "SwiftLanguageMode",
+      "type": "topic",
+      "url": "/documentation/packagedescription/swiftlanguagemode"
+    },
+    "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Trait": {
+      "abstract": [
+        {
+          "text": "A struct representing a package’s trait.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Trait"
+        }
+      ],
+      "identifier": "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Trait",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Trait"
+        }
+      ],
+      "role": "symbol",
+      "title": "Trait",
+      "type": "topic",
+      "url": "/documentation/packagedescription/trait"
+    },
+    "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Version": {
+      "abstract": [
+        {
+          "text": "A version according to the semantic versioning specification.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Version"
+        }
+      ],
+      "identifier": "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Version",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Version"
+        }
+      ],
+      "role": "symbol",
+      "title": "Version",
+      "type": "topic",
+      "url": "/documentation/packagedescription/version"
+    },
+    "https://developer.apple.com/documentation/xcode/adding-package-dependencies-to-your-app": {
+      "identifier": "https://developer.apple.com/documentation/xcode/adding-package-dependencies-to-your-app",
+      "title": "Adding Package Dependencies to Your App",
+      "titleInlineContent": [
+        {
+          "text": "Adding Package Dependencies to Your App",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/xcode/adding-package-dependencies-to-your-app"
+    },
+    "https://developer.apple.com/documentation/xcode/creating-a-standalone-swift-package-with-xcode": {
+      "identifier": "https://developer.apple.com/documentation/xcode/creating-a-standalone-swift-package-with-xcode",
+      "title": "Creating a Standalone Swift Package with Xcode",
+      "titleInlineContent": [
+        {
+          "text": "Creating a Standalone Swift Package with Xcode",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/xcode/creating-a-standalone-swift-package-with-xcode"
+    },
+    "https://developer.apple.com/documentation/xcode/slothcreator_building_docc_documentation_in_xcode": {
+      "identifier": "https://developer.apple.com/documentation/xcode/slothcreator_building_docc_documentation_in_xcode",
+      "title": "SlothCreator: Building DocC Documentation in Xcode",
+      "titleInlineContent": [
+        {
+          "text": "SlothCreator: Building DocC Documentation in Xcode",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/xcode/slothcreator_building_docc_documentation_in_xcode"
+    },
+    "https://developer.apple.com/documentation/xcode/swift-packages": {
+      "identifier": "https://developer.apple.com/documentation/xcode/swift-packages",
+      "title": "Swift Packages",
+      "titleInlineContent": [
+        {
+          "text": "Swift Packages",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/xcode/swift-packages"
+    },
+    "https://github.com/apple/swift-package-manager": {
+      "identifier": "https://github.com/apple/swift-package-manager",
+      "title": "GitHub",
+      "titleInlineContent": [
+        {
+          "text": "GitHub",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://github.com/apple/swift-package-manager"
+    },
+    "https://www.swift.org/package-manager/": {
+      "identifier": "https://www.swift.org/package-manager/",
+      "title": "Swift.org",
+      "titleInlineContent": [
+        {
+          "text": "Swift.org",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://www.swift.org/package-manager/"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-Package",
+      "identifiers": [
+        "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Package",
+        "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Context"
+      ],
+      "title": "Creating a Package"
+    },
+    {
+      "anchor": "Structures",
+      "generated": true,
+      "identifiers": [
+        "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/GitInformation",
+        "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Trait",
+        "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Version"
+      ],
+      "title": "Structures"
+    },
+    {
+      "anchor": "Enumerations",
+      "generated": true,
+      "identifiers": [
+        "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/SwiftLanguageMode"
+      ],
+      "title": "Enumerations"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/packagedescription"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

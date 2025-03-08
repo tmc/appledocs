@@ -1,0 +1,3539 @@
+{
+  "abstract": [
+    {
+      "text": "A home automation accessory, like a garage door opener or a thermostat.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.homekit/documentation/HomeKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.homekit/documentation/HomeKit/HMAccessory"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)HMAccessory",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "HMAccessory"
+      }
+    ],
+    "modules": [
+      {
+        "name": "HomeKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "HMAccessory"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "2.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "HMAccessory"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "HMAccessory"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMAccessory",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance represents a physical device, like a garage door opener, installed in a home and assigned to a room.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You don’t create accessories directly. Instead you get them from the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMHome/accessories",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " array of an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMHome",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance when you want all the accessories in a home, or the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMRoom/accessories",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " array of an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMRoom",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance when you want all the accessories in a particular room. Each physical accessory in the home is represented by exactly one accessory instance, so that one instance appears in both a home and a room collection. This is because it’s simultaneously part of the home and in one of the home’s rooms.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you want to add new accessories, you call the home’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMHome/addAndSetupAccessories(completionHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. In response, HomeKit presents the user with an interface that steps through the process of searching for new accessories in the physical environment, naming them, and assigning them to a room.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Accessories provide one or more services, represented by instances of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMService",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", that are the features that the user can control, like the light attached to a garage door opener, or the door opener mechanism itself.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit": {
+      "abstract": [
+        {
+          "text": "Configure, control, and communicate with home automation accessories.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "HomeKit",
+      "type": "topic",
+      "url": "/documentation/homekit"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/CameraView": {
+      "abstract": [
+        {
+          "text": "A SwiftUI view into which a video stream or an image snapshot is rendered.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CameraView"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/CameraView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CameraView"
+        }
+      ],
+      "role": "symbol",
+      "title": "CameraView",
+      "type": "topic",
+      "url": "/documentation/homekit/cameraview"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMAccessory": {
+      "abstract": [
+        {
+          "text": "A home automation accessory, like a garage door opener or a thermostat.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HMAccessory"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMAccessory",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HMAccessory"
+        }
+      ],
+      "role": "symbol",
+      "title": "HMAccessory",
+      "type": "topic",
+      "url": "/documentation/homekit/hmaccessory"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMAccessory/cameraProfiles": {
+      "abstract": [
+        {
+          "text": "An array of camera profiles implemented by the accessory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "cameraProfiles"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HMCameraProfile",
+          "text": "HMCameraProfile"
+        },
+        {
+          "kind": "text",
+          "text": "]?"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMAccessory/cameraProfiles",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "cameraProfiles"
+        }
+      ],
+      "role": "symbol",
+      "title": "cameraProfiles",
+      "type": "topic",
+      "url": "/documentation/homekit/hmaccessory/cameraprofiles"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMAccessory/category": {
+      "abstract": [
+        {
+          "text": "The category to which the accessory belongs.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "category"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HMAccessoryCategory",
+          "text": "HMAccessoryCategory"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMAccessory/category",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "category"
+        }
+      ],
+      "role": "symbol",
+      "title": "category",
+      "type": "topic",
+      "url": "/documentation/homekit/hmaccessory/category"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMAccessory/delegate": {
+      "abstract": [
+        {
+          "text": "A delegate that receives updates on the state of the accessory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "delegate"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)HMAccessoryDelegate",
+          "text": "HMAccessoryDelegate"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMAccessory/delegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "delegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "delegate",
+      "type": "topic",
+      "url": "/documentation/homekit/hmaccessory/delegate"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMAccessory/firmwareVersion": {
+      "abstract": [
+        {
+          "text": "The firmware version of the accessory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "firmwareVersion"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMAccessory/firmwareVersion",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "firmwareVersion"
+        }
+      ],
+      "role": "symbol",
+      "title": "firmwareVersion",
+      "type": "topic",
+      "url": "/documentation/homekit/hmaccessory/firmwareversion"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMAccessory/identifier": {
+      "abstract": [
+        {
+          "text": "A unique identifier for the accessory.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "identifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4UUIDV",
+          "text": "UUID"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMAccessory/identifier",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "identifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "identifier",
+      "type": "topic",
+      "url": "/documentation/homekit/hmaccessory/identifier"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMAccessory/identifiersForBridgedAccessories": {
+      "abstract": [
+        {
+          "text": "An array of identifiers for accessories available through a bridge.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "identifiersForBridgedAccessories"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4UUIDV",
+          "text": "UUID"
+        },
+        {
+          "kind": "text",
+          "text": "]?"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMAccessory/identifiersForBridgedAccessories",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "identifiersForBridgedAccessories"
+        }
+      ],
+      "role": "symbol",
+      "title": "identifiersForBridgedAccessories",
+      "type": "topic",
+      "url": "/documentation/homekit/hmaccessory/identifiersforbridgedaccessories"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMAccessory/identify(completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Asks an accessory to identify itself.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "identify"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMAccessory/identify(completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "identifyWithCompletionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "identify(completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/homekit/hmaccessory/identify(completionhandler:)"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMAccessory/init()": {
+      "abstract": [],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMAccessory/init()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        }
+      ],
+      "role": "symbol",
+      "title": "init()",
+      "type": "topic",
+      "url": "/documentation/homekit/hmaccessory/init()"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMAccessory/isBlocked": {
+      "abstract": [
+        {
+          "text": "A Boolean value indicating whether the accessory is blocked.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isBlocked"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMAccessory/isBlocked",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "blocked"
+        }
+      ],
+      "role": "symbol",
+      "title": "isBlocked",
+      "type": "topic",
+      "url": "/documentation/homekit/hmaccessory/isblocked"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMAccessory/isBridged": {
+      "abstract": [
+        {
+          "text": "A Boolean that indicates whether the accessory is accessed through a bridge.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isBridged"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMAccessory/isBridged",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "bridged"
+        }
+      ],
+      "role": "symbol",
+      "title": "isBridged",
+      "type": "topic",
+      "url": "/documentation/homekit/hmaccessory/isbridged"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMAccessory/isReachable": {
+      "abstract": [
+        {
+          "text": "A Boolean value indicating whether the accessory can be communicated with in the current network environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isReachable"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMAccessory/isReachable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "reachable"
+        }
+      ],
+      "role": "symbol",
+      "title": "isReachable",
+      "type": "topic",
+      "url": "/documentation/homekit/hmaccessory/isreachable"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMAccessory/manufacturer": {
+      "abstract": [
+        {
+          "text": "The manufacturer of the accessory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "manufacturer"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMAccessory/manufacturer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "manufacturer"
+        }
+      ],
+      "role": "symbol",
+      "title": "manufacturer",
+      "type": "topic",
+      "url": "/documentation/homekit/hmaccessory/manufacturer"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMAccessory/matterNodeID-5zfqo": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "matterNodeID"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMAccessory/matterNodeID-5zfqo",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "matterNodeID",
+      "type": "topic",
+      "url": "/documentation/homekit/hmaccessory/matternodeid-5zfqo"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMAccessory/matterNodeID-67v1j": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "matterNodeID"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt64V",
+          "text": "UInt64"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMAccessory/matterNodeID-67v1j",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "matterNodeID",
+      "type": "topic",
+      "url": "/documentation/homekit/hmaccessory/matternodeid-67v1j"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMAccessory/model": {
+      "abstract": [
+        {
+          "text": "The model name of the accessory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "model"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMAccessory/model",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "model"
+        }
+      ],
+      "role": "symbol",
+      "title": "model",
+      "type": "topic",
+      "url": "/documentation/homekit/hmaccessory/model"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMAccessory/name": {
+      "abstract": [
+        {
+          "text": "The name of the accessory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "name"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMAccessory/name",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "name"
+        }
+      ],
+      "role": "symbol",
+      "title": "name",
+      "type": "topic",
+      "url": "/documentation/homekit/hmaccessory/name"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMAccessory/profiles": {
+      "abstract": [
+        {
+          "text": "An array of profiles implemented by the accessory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "profiles"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HMAccessoryProfile",
+          "text": "HMAccessoryProfile"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMAccessory/profiles",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "profiles"
+        }
+      ],
+      "role": "symbol",
+      "title": "profiles",
+      "type": "topic",
+      "url": "/documentation/homekit/hmaccessory/profiles"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMAccessory/room": {
+      "abstract": [
+        {
+          "text": "The room containing the accessory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "room"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HMRoom",
+          "text": "HMRoom"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMAccessory/room",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "room"
+        }
+      ],
+      "role": "symbol",
+      "title": "room",
+      "type": "topic",
+      "url": "/documentation/homekit/hmaccessory/room"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMAccessory/services": {
+      "abstract": [
+        {
+          "text": "An array of services provided by the accessory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "services"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HMService",
+          "text": "HMService"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMAccessory/services",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "services"
+        }
+      ],
+      "role": "symbol",
+      "title": "services",
+      "type": "topic",
+      "url": "/documentation/homekit/hmaccessory/services"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMAccessory/supportsIdentify": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the accessory supports the identify action.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "supportsIdentify"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMAccessory/supportsIdentify",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "supportsIdentify"
+        }
+      ],
+      "role": "symbol",
+      "title": "supportsIdentify",
+      "type": "topic",
+      "url": "/documentation/homekit/hmaccessory/supportsidentify"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMAccessory/uniqueIdentifier": {
+      "abstract": [
+        {
+          "text": "A unique identifier for the accessory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "uniqueIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4UUIDV",
+          "text": "UUID"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMAccessory/uniqueIdentifier",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "uniqueIdentifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "uniqueIdentifier",
+      "type": "topic",
+      "url": "/documentation/homekit/hmaccessory/uniqueidentifier"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMAccessory/uniqueIdentifiersForBridgedAccessories": {
+      "abstract": [
+        {
+          "text": "An array of unique identifiers, each of which represents an accessory vended by the bridge.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "uniqueIdentifiersForBridgedAccessories"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4UUIDV",
+          "text": "UUID"
+        },
+        {
+          "kind": "text",
+          "text": "]?"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMAccessory/uniqueIdentifiersForBridgedAccessories",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "uniqueIdentifiersForBridgedAccessories"
+        }
+      ],
+      "role": "symbol",
+      "title": "uniqueIdentifiersForBridgedAccessories",
+      "type": "topic",
+      "url": "/documentation/homekit/hmaccessory/uniqueidentifiersforbridgedaccessories"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMAccessory/updateName(_:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Changes the name of the accessory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "updateName"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMAccessory/updateName(_:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "updateName:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "updateName(_:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/homekit/hmaccessory/updatename(_:completionhandler:)"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMAccessoryBrowser": {
+      "abstract": [
+        {
+          "text": "A network browser you can use to discover new accessories in a home.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HMAccessoryBrowser"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMAccessoryBrowser",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HMAccessoryBrowser"
+        }
+      ],
+      "role": "symbol",
+      "title": "HMAccessoryBrowser",
+      "type": "topic",
+      "url": "/documentation/homekit/hmaccessorybrowser"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMAccessoryCategory": {
+      "abstract": [
+        {
+          "text": "A category for a HomeKit accessory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HMAccessoryCategory"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMAccessoryCategory",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HMAccessoryCategory"
+        }
+      ],
+      "role": "symbol",
+      "title": "HMAccessoryCategory",
+      "type": "topic",
+      "url": "/documentation/homekit/hmaccessorycategory"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMAccessoryDelegate": {
+      "abstract": [
+        {
+          "text": "A set of methods that defines the communication method for state updates from accessories to their delegates.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HMAccessoryDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMAccessoryDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HMAccessoryDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "HMAccessoryDelegate",
+      "type": "topic",
+      "url": "/documentation/homekit/hmaccessorydelegate"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMAccessoryProfile": {
+      "abstract": [
+        {
+          "text": "A profile that certain accessories implement.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HMAccessoryProfile"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMAccessoryProfile",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HMAccessoryProfile"
+        }
+      ],
+      "role": "symbol",
+      "title": "HMAccessoryProfile",
+      "type": "topic",
+      "url": "/documentation/homekit/hmaccessoryprofile"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMAccessorySetupManager": {
+      "abstract": [
+        {
+          "text": "An object that setups up new accessories.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HMAccessorySetupManager"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMAccessorySetupManager",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HMAccessorySetupManager"
+        }
+      ],
+      "role": "symbol",
+      "title": "HMAccessorySetupManager",
+      "type": "topic",
+      "url": "/documentation/homekit/hmaccessorysetupmanager"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMAccessorySetupRequest": {
+      "abstract": [
+        {
+          "text": "An object that describes how to add and setup up new accessories.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HMAccessorySetupRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMAccessorySetupRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HMAccessorySetupRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "HMAccessorySetupRequest",
+      "type": "topic",
+      "url": "/documentation/homekit/hmaccessorysetuprequest"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMAccessorySetupResult": {
+      "abstract": [
+        {
+          "text": "A result object describing information about a successful accessory setup request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HMAccessorySetupResult"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMAccessorySetupResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HMAccessorySetupResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "HMAccessorySetupResult",
+      "type": "topic",
+      "url": "/documentation/homekit/hmaccessorysetupresult"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMCameraProfile": {
+      "abstract": [
+        {
+          "text": "A camera profile that interacts with an accessory’s camera.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HMCameraProfile"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMCameraProfile",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HMCameraProfile"
+        }
+      ],
+      "role": "symbol",
+      "title": "HMCameraProfile",
+      "type": "topic",
+      "url": "/documentation/homekit/hmcameraprofile"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMCameraView": {
+      "abstract": [
+        {
+          "text": "The view into which a video stream or an image snapshot is rendered.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HMCameraView"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMCameraView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HMCameraView"
+        }
+      ],
+      "role": "symbol",
+      "title": "HMCameraView",
+      "type": "topic",
+      "url": "/documentation/homekit/hmcameraview"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMCharacteristic": {
+      "abstract": [
+        {
+          "text": "A specific characteristic of a service, like the brightness of a dimmable light or its color temperature.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HMCharacteristic"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMCharacteristic",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HMCharacteristic"
+        }
+      ],
+      "role": "symbol",
+      "title": "HMCharacteristic",
+      "type": "topic",
+      "url": "/documentation/homekit/hmcharacteristic"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMHome": {
+      "abstract": [
+        {
+          "text": "The primary unit of living space, typically composed of rooms organized into zones.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HMHome"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMHome",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HMHome"
+        }
+      ],
+      "role": "symbol",
+      "title": "HMHome",
+      "type": "topic",
+      "url": "/documentation/homekit/hmhome"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMHome/accessories": {
+      "abstract": [
+        {
+          "text": "The collection of accessories that are part of the home.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "accessories"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HMAccessory",
+          "text": "HMAccessory"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMHome/accessories",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "accessories"
+        }
+      ],
+      "role": "symbol",
+      "title": "accessories",
+      "type": "topic",
+      "url": "/documentation/homekit/hmhome/accessories"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMHome/addAndSetupAccessories(completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Finds and adds nearby accessories to the home.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "addAndSetupAccessories"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMHome/addAndSetupAccessories(completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "addAndSetupAccessoriesWithCompletionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "addAndSetupAccessories(completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/homekit/hmhome/addandsetupaccessories(completionhandler:)"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMMediaSourceDisplayOrderProfile": {
+      "abstract": [
+        {
+          "text": "An interface from which to read and, if allowed by the accessory, update the ordering of input sources.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HMMediaSourceDisplayOrderProfile"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMMediaSourceDisplayOrderProfile",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HMMediaSourceDisplayOrderProfile"
+        }
+      ],
+      "role": "symbol",
+      "title": "HMMediaSourceDisplayOrderProfile",
+      "type": "topic",
+      "url": "/documentation/homekit/hmmediasourcedisplayorderprofile"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMNetworkConfigurationProfile": {
+      "abstract": [
+        {
+          "text": "A profile that provides information about network protection for an accessory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HMNetworkConfigurationProfile"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMNetworkConfigurationProfile",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HMNetworkConfigurationProfile"
+        }
+      ],
+      "role": "symbol",
+      "title": "HMNetworkConfigurationProfile",
+      "type": "topic",
+      "url": "/documentation/homekit/hmnetworkconfigurationprofile"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMRoom": {
+      "abstract": [
+        {
+          "text": "The smallest subdivision of a home’s space.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HMRoom"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMRoom",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HMRoom"
+        }
+      ],
+      "role": "symbol",
+      "title": "HMRoom",
+      "type": "topic",
+      "url": "/documentation/homekit/hmroom"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMRoom/accessories": {
+      "abstract": [
+        {
+          "text": "The collection of accessories in the room.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "accessories"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HMAccessory",
+          "text": "HMAccessory"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMRoom/accessories",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "accessories"
+        }
+      ],
+      "role": "symbol",
+      "title": "accessories",
+      "type": "topic",
+      "url": "/documentation/homekit/hmroom/accessories"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/HMService": {
+      "abstract": [
+        {
+          "text": "A controllable feature of an accessory, like a light attached to a garage door opener.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HMService"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/HMService",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HMService"
+        }
+      ],
+      "role": "symbol",
+      "title": "HMService",
+      "type": "topic",
+      "url": "/documentation/homekit/hmservice"
+    },
+    "doc://com.apple.homekit/documentation/HomeKit/interacting-with-a-home-automation-network": {
+      "abstract": [
+        {
+          "text": "Find all the automation accessories in the primary home and control their state.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.homekit/documentation/HomeKit/interacting-with-a-home-automation-network",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Interacting with a home automation network",
+      "type": "topic",
+      "url": "/documentation/homekit/interacting-with-a-home-automation-network"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+        "doc://com.externally.resolved.symbol/s:s8SendableP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Accessories",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.homekit/documentation/HomeKit/HMAccessorySetupManager",
+        "doc://com.apple.homekit/documentation/HomeKit/HMAccessorySetupResult",
+        "doc://com.apple.homekit/documentation/HomeKit/HMAccessorySetupRequest",
+        "doc://com.apple.homekit/documentation/HomeKit/interacting-with-a-home-automation-network",
+        "doc://com.apple.homekit/documentation/HomeKit/HMService",
+        "doc://com.apple.homekit/documentation/HomeKit/HMCharacteristic",
+        "doc://com.apple.homekit/documentation/HomeKit/HMMediaSourceDisplayOrderProfile"
+      ],
+      "title": "Accessories"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Tracking-changes-to-an-accessory",
+      "identifiers": [
+        "doc://com.apple.homekit/documentation/HomeKit/HMAccessory/delegate",
+        "doc://com.apple.homekit/documentation/HomeKit/HMAccessoryDelegate"
+      ],
+      "title": "Tracking changes to an accessory"
+    },
+    {
+      "anchor": "Identifying-an-Accessory",
+      "identifiers": [
+        "doc://com.apple.homekit/documentation/HomeKit/HMAccessory/name",
+        "doc://com.apple.homekit/documentation/HomeKit/HMAccessory/updateName(_:completionHandler:)",
+        "doc://com.apple.homekit/documentation/HomeKit/HMAccessory/uniqueIdentifier",
+        "doc://com.apple.homekit/documentation/HomeKit/HMAccessory/identifier"
+      ],
+      "title": "Identifying an Accessory"
+    },
+    {
+      "anchor": "Categorizing-an-accessory",
+      "identifiers": [
+        "doc://com.apple.homekit/documentation/HomeKit/HMAccessory/category",
+        "doc://com.apple.homekit/documentation/HomeKit/HMAccessoryCategory"
+      ],
+      "title": "Categorizing an accessory"
+    },
+    {
+      "anchor": "Locating-an-accessory",
+      "identifiers": [
+        "doc://com.apple.homekit/documentation/HomeKit/HMAccessory/room",
+        "doc://com.apple.homekit/documentation/HomeKit/HMRoom"
+      ],
+      "title": "Locating an accessory"
+    },
+    {
+      "anchor": "Managing-accessory-profiles",
+      "identifiers": [
+        "doc://com.apple.homekit/documentation/HomeKit/HMAccessory/profiles",
+        "doc://com.apple.homekit/documentation/HomeKit/HMAccessoryProfile",
+        "doc://com.apple.homekit/documentation/HomeKit/HMNetworkConfigurationProfile",
+        "doc://com.apple.homekit/documentation/HomeKit/HMCameraProfile"
+      ],
+      "title": "Managing accessory profiles"
+    },
+    {
+      "anchor": "Managing-camera-profiles",
+      "identifiers": [
+        "doc://com.apple.homekit/documentation/HomeKit/CameraView",
+        "doc://com.apple.homekit/documentation/HomeKit/HMAccessory/cameraProfiles",
+        "doc://com.apple.homekit/documentation/HomeKit/HMCameraProfile",
+        "doc://com.apple.homekit/documentation/HomeKit/HMCameraView"
+      ],
+      "title": "Managing camera profiles"
+    },
+    {
+      "anchor": "Getting-accessory-state",
+      "identifiers": [
+        "doc://com.apple.homekit/documentation/HomeKit/HMAccessory/isReachable",
+        "doc://com.apple.homekit/documentation/HomeKit/HMAccessory/isBlocked"
+      ],
+      "title": "Getting accessory state"
+    },
+    {
+      "anchor": "Asking-an-accessory-to-identify-itself",
+      "identifiers": [
+        "doc://com.apple.homekit/documentation/HomeKit/HMAccessory/supportsIdentify",
+        "doc://com.apple.homekit/documentation/HomeKit/HMAccessory/identify(completionHandler:)"
+      ],
+      "title": "Asking an accessory to identify itself"
+    },
+    {
+      "anchor": "Controlling-accessory-features",
+      "identifiers": [
+        "doc://com.apple.homekit/documentation/HomeKit/HMAccessory/services",
+        "doc://com.apple.homekit/documentation/HomeKit/HMService"
+      ],
+      "title": "Controlling accessory features"
+    },
+    {
+      "anchor": "Managing-bridged-accessories",
+      "identifiers": [
+        "doc://com.apple.homekit/documentation/HomeKit/HMAccessory/isBridged",
+        "doc://com.apple.homekit/documentation/HomeKit/HMAccessory/uniqueIdentifiersForBridgedAccessories",
+        "doc://com.apple.homekit/documentation/HomeKit/HMAccessory/identifiersForBridgedAccessories"
+      ],
+      "title": "Managing bridged accessories"
+    },
+    {
+      "anchor": "Getting-manufacturer-information",
+      "identifiers": [
+        "doc://com.apple.homekit/documentation/HomeKit/HMAccessory/firmwareVersion",
+        "doc://com.apple.homekit/documentation/HomeKit/HMAccessory/manufacturer",
+        "doc://com.apple.homekit/documentation/HomeKit/HMAccessory/model"
+      ],
+      "title": "Getting manufacturer information"
+    },
+    {
+      "anchor": "Browsing-for-accessories",
+      "identifiers": [
+        "doc://com.apple.homekit/documentation/HomeKit/HMAccessoryBrowser"
+      ],
+      "title": "Browsing for accessories"
+    },
+    {
+      "anchor": "Instance-Properties",
+      "identifiers": [
+        "doc://com.apple.homekit/documentation/HomeKit/HMAccessory/matterNodeID-67v1j"
+      ],
+      "title": "Instance Properties"
+    },
+    {
+      "anchor": "Initializers",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.homekit/documentation/HomeKit/HMAccessory/init()"
+      ],
+      "title": "Initializers"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "8.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "8.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "14.0",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.0",
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "2.0",
+              "name": "watchOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "HMAccessory"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HMAccessory"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HMAccessory"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.homekit/documentation/HomeKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Tracking-changes-to-an-accessory",
+              "identifiers": [
+                "doc://com.apple.homekit/documentation/HomeKit/HMAccessory/delegate",
+                "doc://com.apple.homekit/documentation/HomeKit/HMAccessoryDelegate"
+              ],
+              "title": "Tracking changes to an accessory"
+            },
+            {
+              "anchor": "Identifying-an-Accessory",
+              "identifiers": [
+                "doc://com.apple.homekit/documentation/HomeKit/HMAccessory/name",
+                "doc://com.apple.homekit/documentation/HomeKit/HMAccessory/updateName(_:completionHandler:)",
+                "doc://com.apple.homekit/documentation/HomeKit/HMAccessory/uniqueIdentifier",
+                "doc://com.apple.homekit/documentation/HomeKit/HMAccessory/identifier"
+              ],
+              "title": "Identifying an Accessory"
+            },
+            {
+              "anchor": "Categorizing-an-accessory",
+              "identifiers": [
+                "doc://com.apple.homekit/documentation/HomeKit/HMAccessory/category",
+                "doc://com.apple.homekit/documentation/HomeKit/HMAccessoryCategory"
+              ],
+              "title": "Categorizing an accessory"
+            },
+            {
+              "anchor": "Locating-an-accessory",
+              "identifiers": [
+                "doc://com.apple.homekit/documentation/HomeKit/HMAccessory/room",
+                "doc://com.apple.homekit/documentation/HomeKit/HMRoom"
+              ],
+              "title": "Locating an accessory"
+            },
+            {
+              "anchor": "Managing-accessory-profiles",
+              "identifiers": [
+                "doc://com.apple.homekit/documentation/HomeKit/HMAccessory/profiles",
+                "doc://com.apple.homekit/documentation/HomeKit/HMAccessoryProfile",
+                "doc://com.apple.homekit/documentation/HomeKit/HMNetworkConfigurationProfile",
+                "doc://com.apple.homekit/documentation/HomeKit/HMCameraProfile"
+              ],
+              "title": "Managing accessory profiles"
+            },
+            {
+              "anchor": "Managing-camera-profiles",
+              "identifiers": [
+                "doc://com.apple.homekit/documentation/HomeKit/HMAccessory/cameraProfiles",
+                "doc://com.apple.homekit/documentation/HomeKit/HMCameraProfile",
+                "doc://com.apple.homekit/documentation/HomeKit/HMCameraView"
+              ],
+              "title": "Managing camera profiles"
+            },
+            {
+              "anchor": "Getting-accessory-state",
+              "identifiers": [
+                "doc://com.apple.homekit/documentation/HomeKit/HMAccessory/isReachable",
+                "doc://com.apple.homekit/documentation/HomeKit/HMAccessory/isBlocked"
+              ],
+              "title": "Getting accessory state"
+            },
+            {
+              "anchor": "Asking-an-accessory-to-identify-itself",
+              "identifiers": [
+                "doc://com.apple.homekit/documentation/HomeKit/HMAccessory/supportsIdentify",
+                "doc://com.apple.homekit/documentation/HomeKit/HMAccessory/identify(completionHandler:)"
+              ],
+              "title": "Asking an accessory to identify itself"
+            },
+            {
+              "anchor": "Controlling-accessory-features",
+              "identifiers": [
+                "doc://com.apple.homekit/documentation/HomeKit/HMAccessory/services",
+                "doc://com.apple.homekit/documentation/HomeKit/HMService"
+              ],
+              "title": "Controlling accessory features"
+            },
+            {
+              "anchor": "Managing-bridged-accessories",
+              "identifiers": [
+                "doc://com.apple.homekit/documentation/HomeKit/HMAccessory/isBridged",
+                "doc://com.apple.homekit/documentation/HomeKit/HMAccessory/uniqueIdentifiersForBridgedAccessories",
+                "doc://com.apple.homekit/documentation/HomeKit/HMAccessory/identifiersForBridgedAccessories"
+              ],
+              "title": "Managing bridged accessories"
+            },
+            {
+              "anchor": "Getting-manufacturer-information",
+              "identifiers": [
+                "doc://com.apple.homekit/documentation/HomeKit/HMAccessory/firmwareVersion",
+                "doc://com.apple.homekit/documentation/HomeKit/HMAccessory/manufacturer",
+                "doc://com.apple.homekit/documentation/HomeKit/HMAccessory/model"
+              ],
+              "title": "Getting manufacturer information"
+            },
+            {
+              "anchor": "Browsing-for-accessories",
+              "identifiers": [
+                "doc://com.apple.homekit/documentation/HomeKit/HMAccessoryBrowser"
+              ],
+              "title": "Browsing for accessories"
+            },
+            {
+              "anchor": "Instance-Properties",
+              "identifiers": [
+                "doc://com.apple.homekit/documentation/HomeKit/HMAccessory/matterNodeID-5zfqo"
+              ],
+              "title": "Instance Properties"
+            },
+            {
+              "anchor": "Instance-Methods",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.homekit/documentation/HomeKit/HMAccessory/init()"
+              ],
+              "title": "Instance Methods"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Accessories",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.homekit/documentation/HomeKit/HMAccessorySetupManager",
+                "doc://com.apple.homekit/documentation/HomeKit/HMAccessorySetupResult",
+                "doc://com.apple.homekit/documentation/HomeKit/HMAccessorySetupRequest",
+                "doc://com.apple.homekit/documentation/HomeKit/interacting-with-a-home-automation-network",
+                "doc://com.apple.homekit/documentation/HomeKit/HMService",
+                "doc://com.apple.homekit/documentation/HomeKit/HMCharacteristic"
+              ],
+              "title": "Accessories"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "tvOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "HMAccessory"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMAccessoryDelegate/title",
+          "value": "HMAccessoryDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMAccessoryDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HMAccessoryDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMAccessoryDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HMAccessoryDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMAccessory~1firmwareVersion/title",
+          "value": "firmwareVersion"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMAccessory~1firmwareVersion/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "firmwareVersion"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMAccessory/title",
+          "value": "HMAccessory"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMAccessory/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HMAccessory"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMAccessory/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HMAccessory"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMAccessory~1cameraProfiles/title",
+          "value": "cameraProfiles"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMAccessory~1cameraProfiles/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "cameraProfiles"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMAccessorySetupResult/title",
+          "value": "HMAccessorySetupResult"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMAccessorySetupResult/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HMAccessorySetupResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMAccessorySetupResult/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HMAccessorySetupResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMAccessory~1supportsIdentify/title",
+          "value": "supportsIdentify"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMAccessory~1supportsIdentify/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "supportsIdentify"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMAccessory~1name/title",
+          "value": "name"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMAccessory~1name/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "name"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMAccessory~1delegate/title",
+          "value": "delegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMAccessory~1delegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "delegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMNetworkConfigurationProfile/title",
+          "value": "HMNetworkConfigurationProfile"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMNetworkConfigurationProfile/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HMNetworkConfigurationProfile"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMNetworkConfigurationProfile/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HMNetworkConfigurationProfile"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMAccessory~1init()/title",
+          "value": "init"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMAccessory~1init()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "init"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMAccessory~1category/title",
+          "value": "category"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMAccessory~1category/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "category"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMAccessory~1isReachable/title",
+          "value": "reachable"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMAccessory~1isReachable/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "reachable"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMAccessory~1room/title",
+          "value": "room"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMAccessory~1room/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "room"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMRoom~1accessories/title",
+          "value": "accessories"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMRoom~1accessories/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "accessories"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMAccessory~1isBlocked/title",
+          "value": "blocked"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMAccessory~1isBlocked/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "blocked"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMAccessory~1uniqueIdentifier/title",
+          "value": "uniqueIdentifier"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMAccessory~1uniqueIdentifier/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "uniqueIdentifier"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMCameraProfile/title",
+          "value": "HMCameraProfile"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMCameraProfile/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HMCameraProfile"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMCameraProfile/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HMCameraProfile"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMAccessory~1model/title",
+          "value": "model"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMAccessory~1model/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "model"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMAccessory~1uniqueIdentifiersForBridgedAccessories/title",
+          "value": "uniqueIdentifiersForBridgedAccessories"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMAccessory~1uniqueIdentifiersForBridgedAccessories/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "uniqueIdentifiersForBridgedAccessories"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMAccessory~1identifier/title",
+          "value": "identifier"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMAccessory~1identifier/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "identifier"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMAccessory~1identify(completionHandler:)/title",
+          "value": "identifyWithCompletionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMAccessory~1identify(completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "identifyWithCompletionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMAccessory~1services/title",
+          "value": "services"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMAccessory~1services/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "services"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHome~1addAndSetupAccessories(completionHandler:)/title",
+          "value": "addAndSetupAccessoriesWithCompletionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHome~1addAndSetupAccessories(completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "addAndSetupAccessoriesWithCompletionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMCameraView/title",
+          "value": "HMCameraView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMCameraView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HMCameraView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMCameraView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HMCameraView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMRoom/title",
+          "value": "HMRoom"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMRoom/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HMRoom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMRoom/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HMRoom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMCharacteristic/title",
+          "value": "HMCharacteristic"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMCharacteristic/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HMCharacteristic"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMCharacteristic/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HMCharacteristic"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMAccessoryBrowser/title",
+          "value": "HMAccessoryBrowser"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMAccessoryBrowser/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HMAccessoryBrowser"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMAccessoryBrowser/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HMAccessoryBrowser"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMAccessory~1manufacturer/title",
+          "value": "manufacturer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMAccessory~1manufacturer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "manufacturer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMAccessorySetupRequest/title",
+          "value": "HMAccessorySetupRequest"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMAccessorySetupRequest/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HMAccessorySetupRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMAccessorySetupRequest/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HMAccessorySetupRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMAccessory~1identifiersForBridgedAccessories/title",
+          "value": "identifiersForBridgedAccessories"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMAccessory~1identifiersForBridgedAccessories/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "identifiersForBridgedAccessories"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMAccessoryProfile/title",
+          "value": "HMAccessoryProfile"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMAccessoryProfile/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HMAccessoryProfile"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMAccessoryProfile/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HMAccessoryProfile"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHome~1accessories/title",
+          "value": "accessories"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHome~1accessories/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "accessories"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHome/title",
+          "value": "HMHome"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHome/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HMHome"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMHome/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HMHome"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMService/title",
+          "value": "HMService"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMService/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HMService"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMService/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HMService"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMAccessory~1updateName(_:completionHandler:)/title",
+          "value": "updateName:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMAccessory~1updateName(_:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "updateName:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMAccessory~1isBridged/title",
+          "value": "bridged"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMAccessory~1isBridged/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "bridged"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMAccessorySetupManager/title",
+          "value": "HMAccessorySetupManager"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMAccessorySetupManager/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HMAccessorySetupManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMAccessorySetupManager/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HMAccessorySetupManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMAccessoryCategory/title",
+          "value": "HMAccessoryCategory"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMAccessoryCategory/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HMAccessoryCategory"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMAccessoryCategory/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HMAccessoryCategory"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMAccessory~1profiles/title",
+          "value": "profiles"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.homekit~1documentation~1HomeKit~1HMAccessory~1profiles/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "profiles"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/homekit/hmaccessory"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/homekit/hmaccessory"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,414 @@
+{
+  "abstract": [
+    {
+      "text": "Posted from the ",
+      "type": "text"
+    },
+    {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/port/1399521-invalidate",
+      "isActive": true,
+      "type": "reference"
+    },
+    {
+      "text": " method, which is invoked when the ",
+      "type": "text"
+    },
+    {
+      "code": "NSPort",
+      "type": "codeVoice"
+    },
+    {
+      "text": " is deallocated or when it notices that its communication channel has been damaged. The notification object is the ",
+      "type": "text"
+    },
+    {
+      "code": "NSPort",
+      "type": "codeVoice"
+    },
+    {
+      "text": " object that has become invalid. This notification does not contain a ",
+      "type": "text"
+    },
+    {
+      "code": "userInfo",
+      "type": "codeVoice"
+    },
+    {
+      "text": " dictionary.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/streams_sockets_and_ports",
+        "doc://com.apple.documentation/documentation/foundation/port"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/port/1399533-didbecomeinvalidnotification"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1399533,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@NSPortDidBecomeInvalidNotification",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "class let "
+      },
+      {
+        "kind": "identifier",
+        "text": "didBecomeInvalidNotification"
+      },
+      {
+        "kind": "text",
+        "text": ": NSNotification.Name"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "parent": {
+      "title": "Port"
+    },
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Type Property",
+    "symbolKind": "cldata",
+    "title": "didBecomeInvalidNotification"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "let"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "didBecomeInvalidNotification"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSNotification",
+              "text": "NSNotification"
+            },
+            {
+              "kind": "text",
+              "text": "."
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification/name",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@NSNotificationName",
+              "text": "Name"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An ",
+              "type": "text"
+            },
+            {
+              "code": "NSSocketPort",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object cannot detect when its connection to a remote port is lost, even if the remote port is on the same machine. Therefore, it cannot invalidate itself and post this notification. Instead, you must detect the timeout error when the next message is sent.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "NSPort",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object posting this notification is no longer useful, so all receivers should unregister themselves for any notifications involving the ",
+              "type": "text"
+            },
+            {
+              "code": "NSPort",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". A method receiving this notification should check to see which port became invalid before attempting to do anything. In particular, observers that receive all ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/port/1399533-didbecomeinvalidnotification",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " messages should be aware that communication with the window server is handled through an ",
+              "type": "text"
+            },
+            {
+              "code": "NSPort",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". If this port becomes invalid, drawing operations will cause a fatal error.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnotification": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSNotification",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnotification"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnotification/name": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification/name",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSNotification.Name",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnotification/name"
+    },
+    "doc://com.apple.documentation/documentation/foundation/port": {
+      "abstract": [
+        {
+          "text": "An abstract class that represents a communication channel.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/port",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Port",
+      "type": "topic",
+      "url": "/documentation/foundation/port"
+    },
+    "doc://com.apple.documentation/documentation/foundation/port/1399521-invalidate": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/port/1399521-invalidate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "invalidate()",
+      "type": "topic",
+      "url": "/documentation/foundation/port/1399521-invalidate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/port/1399533-didbecomeinvalidnotification": {
+      "abstract": [
+        {
+          "text": "Posted from the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/port/1399521-invalidate",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " method, which is invoked when the ",
+          "type": "text"
+        },
+        {
+          "code": "NSPort",
+          "type": "codeVoice"
+        },
+        {
+          "text": " is deallocated or when it notices that its communication channel has been damaged. The notification object is the ",
+          "type": "text"
+        },
+        {
+          "code": "NSPort",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object that has become invalid. This notification does not contain a ",
+          "type": "text"
+        },
+        {
+          "code": "userInfo",
+          "type": "codeVoice"
+        },
+        {
+          "text": " dictionary.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class let "
+        },
+        {
+          "kind": "identifier",
+          "text": "didBecomeInvalidNotification"
+        },
+        {
+          "kind": "text",
+          "text": ": NSNotification.Name"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/port/1399533-didbecomeinvalidnotification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "didBecomeInvalidNotification",
+      "type": "topic",
+      "url": "/documentation/foundation/port/1399533-didbecomeinvalidnotification"
+    },
+    "doc://com.apple.documentation/documentation/foundation/streams_sockets_and_ports": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/streams_sockets_and_ports",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Streams, Sockets, and Ports",
+      "type": "topic",
+      "url": "/documentation/foundation/streams_sockets_and_ports"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nsportdidbecomeinvalidnotification"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/port/1399533-didbecomeinvalidnotification"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

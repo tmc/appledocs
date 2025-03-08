@@ -1,0 +1,873 @@
+{
+  "abstract": [
+    {
+      "text": "An object representing a dynamic, unordered, uniquing collection, for use instead of a ",
+      "type": "text"
+    },
+    {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Set",
+      "isActive": true,
+      "type": "reference"
+    },
+    {
+      "text": " variable in cases that require reference semantics.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/object_runtime",
+        "doc://com.apple.documentation/documentation/foundation/object_runtime/classes_bridged_to_swift_standard_library_value_types"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/nsmutableset"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1413581,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSMutableSet",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "class "
+      },
+      {
+        "kind": "identifier",
+        "text": "NSMutableSet"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "NSMutableSet"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSMutableSet"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsset",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSSet",
+              "text": "NSSet"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "NSMutableSet",
+              "type": "codeVoice"
+            },
+            {
+              "text": " class declares the programmatic interface to a mutable, unordered collection of distinct objects.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nscountedset",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class, which is a concrete subclass of ",
+              "type": "text"
+            },
+            {
+              "code": "NSMutableSet",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", supports mutable sets that can contain multiple instances of the same element. The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsset",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class supports creating and managing immutable sets.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "NSMutableSet is “toll-free bridged” with its Core Foundation counterpart, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfmutableset",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". See ",
+              "type": "text"
+            },
+            {
+              "identifier": "devLink-1745091",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for more information.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "1776619",
+          "level": 3,
+          "text": "Subclassing Notes",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "There should be little need of subclassing. If you need to customize behavior, it is often better to consider composition instead of subclassing.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "1776620",
+          "level": 4,
+          "text": "Methods to Override",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In a subclass, you must override both of its primitive methods:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutableset/1407460-add",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutableset/1416085-remove",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You must also override the primitive methods of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsset",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "devLink-1745091": {
+      "identifier": "devLink-1745091",
+      "title": "Toll-Free Bridging",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/General/Conceptual/CocoaEncyclopedia/Toll-FreeBridgin/Toll-FreeBridgin.html#//apple_ref/doc/uid/TP40010810-CH2"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Set": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Set",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Set",
+      "type": "topic",
+      "url": "/documentation/swift/set"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfmutableset": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfmutableset",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFMutableSet",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfmutableset"
+    },
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscountedset": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscountedset",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCountedSet",
+      "type": "topic",
+      "url": "/documentation/foundation/nscountedset"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutableset": {
+      "abstract": [
+        {
+          "text": "An object representing a dynamic, unordered, uniquing collection, for use instead of a ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.Swift/documentation/Swift/Set",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " variable in cases that require reference semantics.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSMutableSet"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutableset",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSMutableSet",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutableset"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutableset/1407231-intersect": {
+      "abstract": [
+        {
+          "text": "Removes from the receiving set each object that isn’t a member of another given set.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "intersect"
+        },
+        {
+          "kind": "text",
+          "text": "(Set<AnyHashable>)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutableset/1407231-intersect",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "intersect(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutableset/1407231-intersect"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutableset/1407369-init": {
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "identifier",
+          "text": "coder"
+        },
+        {
+          "kind": "text",
+          "text": ": NSCoder)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutableset/1407369-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(coder:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutableset/1407369-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutableset/1407460-add": {
+      "abstract": [
+        {
+          "text": "Adds a given object to the set, if it is not already a member.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "add"
+        },
+        {
+          "kind": "text",
+          "text": "(Any)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutableset/1407460-add",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "add(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutableset/1407460-add"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutableset/1407868-filter": {
+      "abstract": [
+        {
+          "text": "Evaluates a given predicate against the set’s content and removes from the set those objects for which the predicate returns false.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "filter"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "using"
+        },
+        {
+          "kind": "text",
+          "text": ": NSPredicate)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutableset/1407868-filter",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "filter(using:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutableset/1407868-filter"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutableset/1411953-init": {
+      "abstract": [
+        {
+          "text": "Returns an initialized mutable set with a given initial capacity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "capacity"
+        },
+        {
+          "kind": "text",
+          "text": ": Int)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutableset/1411953-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(capacity:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutableset/1411953-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutableset/1413187-union": {
+      "abstract": [
+        {
+          "text": "Adds each object in another given set to the receiving set, if not present.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "union"
+        },
+        {
+          "kind": "text",
+          "text": "(Set<AnyHashable>)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutableset/1413187-union",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "union(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutableset/1413187-union"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutableset/1414345-addobjects": {
+      "abstract": [
+        {
+          "text": "Adds to the set each object contained in a given array that is not already a member.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "addObjects"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": [Any])"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutableset/1414345-addobjects",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "addObjects(from:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutableset/1414345-addobjects"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutableset/1414518-init": {
+      "abstract": [
+        {
+          "text": "Initializes a newly allocated set.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutableset/1414518-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init()",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutableset/1414518-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutableset/1416085-remove": {
+      "abstract": [
+        {
+          "text": "Removes a given object from the set.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "remove"
+        },
+        {
+          "kind": "text",
+          "text": "(Any)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutableset/1416085-remove",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "remove(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutableset/1416085-remove"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutableset/1416405-setset": {
+      "abstract": [
+        {
+          "text": "Empties the receiving set, then adds each object contained in another given set.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "setSet"
+        },
+        {
+          "kind": "text",
+          "text": "(Set<AnyHashable>)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutableset/1416405-setset",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setSet(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutableset/1416405-setset"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutableset/1416710-minus": {
+      "abstract": [
+        {
+          "text": "Removes each object in another given set from the receiving set, if present.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "minus"
+        },
+        {
+          "kind": "text",
+          "text": "(Set<AnyHashable>)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutableset/1416710-minus",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "minus(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutableset/1416710-minus"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutableset/1417497-removeallobjects": {
+      "abstract": [
+        {
+          "text": "Empties the set of all of its members.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeAllObjects"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutableset/1417497-removeallobjects",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "removeAllObjects()",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutableset/1417497-removeallobjects"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsset": {
+      "abstract": [
+        {
+          "text": "An object representing a static, unordered collection of unique objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSSet"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsset",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSet",
+      "type": "topic",
+      "url": "/documentation/foundation/nsset"
+    },
+    "doc://com.apple.documentation/documentation/foundation/object_runtime": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/object_runtime",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Object Runtime",
+      "type": "topic",
+      "url": "/documentation/foundation/object_runtime"
+    },
+    "doc://com.apple.documentation/documentation/foundation/object_runtime/classes_bridged_to_swift_standard_library_value_types": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/object_runtime/classes_bridged_to_swift_standard_library_value_types",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Classes Bridged to Swift Standard Library Value Types",
+      "type": "topic",
+      "url": "/documentation/foundation/object_runtime/classes_bridged_to_swift_standard_library_value_types"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsset"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsset"
+      ],
+      "title": "Sets"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "1653792",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsmutableset/1411953-init",
+        "doc://com.apple.documentation/documentation/foundation/nsmutableset/1414518-init"
+      ],
+      "kind": "taskGroup",
+      "title": "Creating a mutable set"
+    },
+    {
+      "anchor": "1653832",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsmutableset/1407460-add",
+        "doc://com.apple.documentation/documentation/foundation/nsmutableset/1407868-filter",
+        "doc://com.apple.documentation/documentation/foundation/nsmutableset/1416085-remove",
+        "doc://com.apple.documentation/documentation/foundation/nsmutableset/1417497-removeallobjects",
+        "doc://com.apple.documentation/documentation/foundation/nsmutableset/1414345-addobjects"
+      ],
+      "kind": "taskGroup",
+      "title": "Adding and removing entries"
+    },
+    {
+      "anchor": "1653893",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsmutableset/1413187-union",
+        "doc://com.apple.documentation/documentation/foundation/nsmutableset/1416710-minus",
+        "doc://com.apple.documentation/documentation/foundation/nsmutableset/1407231-intersect",
+        "doc://com.apple.documentation/documentation/foundation/nsmutableset/1416405-setset"
+      ],
+      "kind": "taskGroup",
+      "title": "Combining and recombining sets"
+    },
+    {
+      "anchor": "2855241",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsmutableset/1407369-init"
+      ],
+      "kind": "taskGroup",
+      "title": "Initializers"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nsmutableset"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/nsmutableset"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

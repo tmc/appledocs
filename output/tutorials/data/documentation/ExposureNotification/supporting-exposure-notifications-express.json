@@ -1,0 +1,788 @@
+{
+  "abstract": [
+    {
+      "text": "Configure servers to notify users of potential exposures to COVID-19 without an app.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.exposurenotification/documentation/ExposureNotification"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.exposurenotification/documentation/ExposureNotification/supporting-exposure-notifications-express"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Exposure Notification"
+      }
+    ],
+    "role": "collectionGroup",
+    "title": "Supporting Exposure Notifications Express"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "iOS 13.7 and later can inform people of potential exposure to COVID-19 without a dedicated Exposure Notifications app. This app-less functionality is called Exposure Notifications Express and is only available when a Public Health Authority (PHA) supports it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "iOS continues to support dedicated Exposure Notifications apps, and a PHA can offer Exposure Notifications apps and the app-less Exposure Notifications Express at the same time. When a user enables Exposure Logging, iOS uses the PHA’s app if one is installed, and falls back to the app-less experience if no app is installed and the PHA supports Exposure Notifications Express.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Deploy-Exposure-Notifications-Express-Servers",
+          "level": 3,
+          "text": "Deploy Exposure Notifications Express Servers",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To support Exposure Notifications Express, a PHA must deploy two different types of servers:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Test verification server",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": ": Validates positive diagnoses during key upload. For more information, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.exposurenotification/documentation/ExposureNotification/setting-up-an-exposure-notifications-express-test-verification-server",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Key server:",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " Handles key uploads and downloads. The same key server handles key upload and download for Exposure Notifications apps and Exposure Notifications Express. For more information, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.exposurenotification/documentation/ExposureNotification/configuring-a-key-server-for-exposure-notifications-express",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". For information on setting up a key server, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.exposurenotification/documentation/ExposureNotification/setting-up-a-key-server",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Prior to the introduction of Exposure Notifications Express in iOS 13.7, the Exposure Notifications Key Server was referred to as the “Exposure Notifications Server” or the “EN Server”.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Verify-Diagnoses-and-Send-Notifications",
+          "level": 3,
+          "text": "Verify Diagnoses and Send Notifications",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Exposure Notifications Express works by communicating with the test verification server and the key server at specific times in a defined process, as depicted in the figure below.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3680724",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Here are the steps involved with verifying and submitting a positive diagnosis with Exposure Notifications Express.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "First, a user with Exposure Notifications enabled on their iPhone running iOS 13.7 or later gets tested for COVID-19.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The test center or other health care provider determines that the user has a positive test result and reports it to the PHA.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The PHA generates a verification code using the test verification server.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The PHA sends the verification code to the user. The code may be emailed, read over the phone, or provided as a clickable deep link in a text message.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The user enters the verification code or clicks the provided link to inform their iPhone of the positive diagnosis.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The user’s iPhone contacts the test verification server to validate the verification code. If the code is valid, it receives back a long-term authentication token from the test verification server and stores it.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If necessary, the user’s iPhone prompts the user for additional information.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The user’s iPhone creates a hashed message authentication code (HMAC) calculated from the user’s exposure key data and sends it to the test verification server along with the user’s authentication token, receiving in return a certificate and additional per-key metadata. For more information on the HMAC calculation, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://github.com/google/exposure-notifications-server/blob/main/docs/design/verification_protocol.md",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The user’s iPhone validates the returned certificate and metadata and stores them.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "iPhone prompts the user for permission to submit their keys to the key server.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If the user grants permission, their iPhone uploads their temporary exposure keys to the key server along with the authentication token, certificate, and metadata received from the test verification server.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If the test verification server validates the uploaded keys, it adds them to its database and returns a revision token that can be used to upload a diagnosis change for the uploaded keys.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The validated and uploaded keys are available for download by other devices to be used for on-device exposure detection. To look at a sample implementation of a key server that supports both Exposure Notifications Express as well as Exposure Notifications client apps, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://github.com/google/exposure-notifications-server",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". To look at a sample implementation of a test verification server, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://github.com/google/exposure-notifications-verification-server",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/ENAPIVersion": {
+      "abstract": [
+        {
+          "text": "A number that specifies the version of the API to use.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/ENAPIVersion",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ENAPIVersion",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/ENAPIVersion"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/ENDeveloperRegion": {
+      "abstract": [
+        {
+          "text": "A string that specifies the region that the app supports.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/ENDeveloperRegion",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ENDeveloperRegion",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/ENDeveloperRegion"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.exposurenotification/documentation/ExposureNotification": {
+      "abstract": [
+        {
+          "text": "Implement a COVID-19 exposure notification system that protects user privacy.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.exposurenotification/documentation/ExposureNotification",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Exposure Notification",
+      "type": "topic",
+      "url": "/documentation/exposurenotification"
+    },
+    "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENManager": {
+      "abstract": [
+        {
+          "text": "A class that manages exposure notifications.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ENManager"
+        }
+      ],
+      "identifier": "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENManager",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ENManager"
+        }
+      ],
+      "role": "symbol",
+      "title": "ENManager",
+      "type": "topic",
+      "url": "/documentation/exposurenotification/enmanager"
+    },
+    "doc://com.apple.exposurenotification/documentation/ExposureNotification/building-an-app-to-notify-users-of-covid-19-exposure": {
+      "abstract": [
+        {
+          "text": "Inform people when they may have been exposed to COVID-19.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.exposurenotification/documentation/ExposureNotification/building-an-app-to-notify-users-of-covid-19-exposure",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Building an App to Notify Users of COVID-19 Exposure",
+      "type": "topic",
+      "url": "/documentation/exposurenotification/building-an-app-to-notify-users-of-covid-19-exposure"
+    },
+    "doc://com.apple.exposurenotification/documentation/ExposureNotification/changing-configuration-values-using-the-server-to-server-api": {
+      "abstract": [
+        {
+          "text": "Update Exposure Notifications configuration values from a Public Health Authority’s server.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.exposurenotification/documentation/ExposureNotification/changing-configuration-values-using-the-server-to-server-api",
+      "kind": "article",
+      "role": "article",
+      "title": "Changing Configuration Values Using the Server‑to‑Server API",
+      "type": "topic",
+      "url": "/documentation/exposurenotification/changing-configuration-values-using-the-server-to-server-api"
+    },
+    "doc://com.apple.exposurenotification/documentation/ExposureNotification/configuring-a-key-server-for-exposure-notifications-express": {
+      "abstract": [
+        {
+          "text": "Support exposure key upload and download for app-less exposure notifications.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.exposurenotification/documentation/ExposureNotification/configuring-a-key-server-for-exposure-notifications-express",
+      "kind": "article",
+      "role": "article",
+      "title": "Configuring a Key Server for Exposure Notifications Express",
+      "type": "topic",
+      "url": "/documentation/exposurenotification/configuring-a-key-server-for-exposure-notifications-express"
+    },
+    "doc://com.apple.exposurenotification/documentation/ExposureNotification/setting-up-a-key-server": {
+      "abstract": [
+        {
+          "text": "Ensure that your server meets the requirements for supporting Exposure Notifications.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.exposurenotification/documentation/ExposureNotification/setting-up-a-key-server",
+      "kind": "article",
+      "role": "article",
+      "title": "Setting Up a Key Server",
+      "type": "topic",
+      "url": "/documentation/exposurenotification/setting-up-a-key-server"
+    },
+    "doc://com.apple.exposurenotification/documentation/ExposureNotification/setting-up-an-exposure-notifications-express-test-verification-server": {
+      "abstract": [
+        {
+          "text": "Validate positive diagnoses for app-less exposure notifications.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.exposurenotification/documentation/ExposureNotification/setting-up-an-exposure-notifications-express-test-verification-server",
+      "kind": "article",
+      "role": "article",
+      "title": "Setting Up an Exposure Notifications Express Test Verification Server",
+      "type": "topic",
+      "url": "/documentation/exposurenotification/setting-up-an-exposure-notifications-express-test-verification-server"
+    },
+    "doc://com.apple.exposurenotification/documentation/ExposureNotification/supporting-exposure-notifications-in-ios-12-5": {
+      "abstract": [
+        {
+          "text": "Prepare your Exposure Notifications app to run on a previous version of iOS.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.exposurenotification/documentation/ExposureNotification/supporting-exposure-notifications-in-ios-12-5",
+      "kind": "article",
+      "role": "article",
+      "title": "Supporting Exposure Notifications in iOS 12.5",
+      "type": "topic",
+      "url": "/documentation/exposurenotification/supporting-exposure-notifications-in-ios-12-5"
+    },
+    "doc://com.apple.exposurenotification/documentation/ExposureNotification/testing-exposure-notifications-apps-in-ios-13-7-and-later": {
+      "abstract": [
+        {
+          "text": "Perform end-to-end validation of Exposure Notifications apps on a device by manually loading configuration files.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.exposurenotification/documentation/ExposureNotification/testing-exposure-notifications-apps-in-ios-13-7-and-later",
+      "kind": "article",
+      "role": "article",
+      "title": "Testing Exposure Notifications Apps in iOS 13.7 and Later",
+      "type": "topic",
+      "url": "/documentation/exposurenotification/testing-exposure-notifications-apps-in-ios-13-7-and-later"
+    },
+    "https://github.com/google/exposure-notifications-server": {
+      "identifier": "https://github.com/google/exposure-notifications-server",
+      "title": "Exposure Notifications Reference Key Server",
+      "titleInlineContent": [
+        {
+          "text": "Exposure Notifications Reference Key Server",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://github.com/google/exposure-notifications-server"
+    },
+    "https://github.com/google/exposure-notifications-server/blob/main/docs/design/verification_protocol.md": {
+      "identifier": "https://github.com/google/exposure-notifications-server/blob/main/docs/design/verification_protocol.md",
+      "title": "Public Health Authority Diagnosis Verification Protocol",
+      "titleInlineContent": [
+        {
+          "text": "Public Health Authority Diagnosis Verification Protocol",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://github.com/google/exposure-notifications-server/blob/main/docs/design/verification_protocol.md"
+    },
+    "https://github.com/google/exposure-notifications-verification-server": {
+      "identifier": "https://github.com/google/exposure-notifications-verification-server",
+      "title": "Exposure Notifications Verification System Reference Server",
+      "titleInlineContent": [
+        {
+          "text": "Exposure Notifications Verification System Reference Server",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://github.com/google/exposure-notifications-verification-server"
+    },
+    "media-3680724": {
+      "alt": "Diagram of the Exposure Notifications Express process with the actors in the steps listed in chronological order from left to right, including a PHA, a user, a test verification server, the user’s iPhone, and a key server. Underneath the icons depicting the actors is a chart of the steps the actors take with arrows indicating what direction information moves through the Exposure Notifications Express timeline.",
+      "identifier": "media-3680724",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/8dbab23b2c12fe6941a934ff7f531fd3/media-3680724@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b05a861f050f4f5111d604883a5e831d/media-3680724~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.exposurenotification/documentation/ExposureNotification/building-an-app-to-notify-users-of-covid-19-exposure",
+        "doc://com.apple.exposurenotification/documentation/ExposureNotification/setting-up-a-key-server",
+        "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENManager",
+        "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/ENDeveloperRegion",
+        "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/ENAPIVersion",
+        "doc://com.apple.exposurenotification/documentation/ExposureNotification/changing-configuration-values-using-the-server-to-server-api",
+        "doc://com.apple.exposurenotification/documentation/ExposureNotification/testing-exposure-notifications-apps-in-ios-13-7-and-later",
+        "doc://com.apple.exposurenotification/documentation/ExposureNotification/supporting-exposure-notifications-in-ios-12-5"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Server-Configuration",
+      "identifiers": [
+        "doc://com.apple.exposurenotification/documentation/ExposureNotification/setting-up-an-exposure-notifications-express-test-verification-server",
+        "doc://com.apple.exposurenotification/documentation/ExposureNotification/configuring-a-key-server-for-exposure-notifications-express"
+      ],
+      "title": "Server Configuration"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Server-Configuration",
+              "identifiers": [
+                "doc://com.apple.exposurenotification/documentation/ExposureNotification/setting-up-an-exposure-notifications-express-test-verification-server",
+                "doc://com.apple.exposurenotification/documentation/ExposureNotification/configuring-a-key-server-for-exposure-notifications-express"
+              ],
+              "title": "Server Configuration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Essentials",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.exposurenotification/documentation/ExposureNotification/setting-up-a-key-server",
+                "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENManager",
+                "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/ENDeveloperRegion",
+                "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/ENAPIVersion",
+                "doc://com.apple.exposurenotification/documentation/ExposureNotification/changing-configuration-values-using-the-server-to-server-api",
+                "doc://com.apple.exposurenotification/documentation/ExposureNotification/testing-exposure-notifications-apps-in-ios-13-7-and-later",
+                "doc://com.apple.exposurenotification/documentation/ExposureNotification/supporting-exposure-notifications-in-ios-12-5"
+              ],
+              "title": "Essentials"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.exposurenotification~1documentation~1ExposureNotification~1ENManager/title",
+          "value": "ENManager"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.exposurenotification~1documentation~1ExposureNotification~1ENManager/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ENManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.exposurenotification~1documentation~1ExposureNotification~1ENManager/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ENManager"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/exposurenotification/supporting-exposure-notifications-express"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/exposurenotification/supporting-exposure-notifications-express"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

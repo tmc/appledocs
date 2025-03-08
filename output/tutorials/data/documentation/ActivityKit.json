@@ -1,0 +1,749 @@
+{
+  "abstract": [
+    {
+      "text": "Share live updates from your app as Live Activities in the Dynamic Island, on the Lock Screen, and on the Smart Stack in watchOS.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.ActivityKit/documentation/ActivityKit"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "ActivityKit",
+    "images": [
+      {
+        "identifier": "ActivityKit-PageImage-card.png",
+        "type": "card"
+      }
+    ],
+    "modules": [
+      {
+        "name": "ActivityKit"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "16.1",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "17.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "16.1",
+        "name": "Mac Catalyst"
+      },
+      {
+        "beta": false,
+        "introducedAt": "11.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "collection",
+    "roleHeading": "Framework",
+    "symbolKind": "module",
+    "title": "ActivityKit"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "With the ActivityKit framework, you can start a Live Activity to share live updates from your app in the Dynamic Island and on the Lock Screen. Especially for apps that push the limit of notifications to provide updated information, Live Activities can offer a richer, interactive and highly glanceable way for people to keep track of an event or activity over a couple of hours. For example, a sports app might start a Live Activity that makes live information available at a glance for the duration of a game.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A Live Activity appears in highly visible contexts:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "On the Lock Screen of iPhone and iPad, it appears at the top of the list alongside notifications.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "On devices that support it, the Live Activity appears in the Dynamic Island.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "On iPhone in StandBy, it appears using a minimal presentation at the top of the screen or scaled to fill the display.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "On the Home Screen and when other apps are in use, updates appear as a banner at the top of the screen of devices that don’t support the Dynamic Island if the update includes an alert configuration.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the Smart Stack in watchOS, the leading and trailing view for the Dynamic Island appear together to form the Live Activity.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/videos/play/wwdc2023/10184",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ", ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/videos/play/wwdc2023/10185",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ", and ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/videos/play/wwdc2023/10194",
+                  "isActive": true,
+                  "type": "reference"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Related sessions from WWDC23",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In addition to viewing real-time information, people tap a Live Activity to launch your app and interact with its buttons or toggles to perform essential functionality without launching your app. In the Dynamic Island, people touch and hold the compact and minimal presentations to show an expanded presentation with more content that feels like a peek into your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "live-activity-dynamic-island",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In your app, use ActivityKit to configure, start, update, and end the Live Activity, and create the user interface of your Live Activities with a widget extension, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/WidgetKit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". As a result of using SwiftUI and WidgetKit, you can share code between widgets and Live Activities or develop them in tandem.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "However, Live Activities use a different mechanism to receive updates compared to widgets. Instead of using a timeline mechanism, Live Activities receive updated data from your app with ActivityKit and remotely with ActivityKit push notifications. Starting with iOS 17.2 and iPadOS 17.2, you can also start Live Activities with ActivityKit push notifications.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "visionOS doesn’t load WidgetKit extensions found in compatible iPad and iPhone apps. As a result, it doesn’t support Live Activities.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "ActivityKit-PageImage-card.png": {
+      "alt": "[A hero image of the ActivityKit framework.]",
+      "identifier": "ActivityKit-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2809f67730f457afbeb77d866e20466e/ActivityKit-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5cbca6adfca53a5472c0c9f4b7395c3e/ActivityKit-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "Developing-WidgetKit-Strategy-PageImage-card.png": {
+      "alt": null,
+      "identifier": "Developing-WidgetKit-Strategy-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/3be6cd9e9843fbca08a8c9ac15fcd915/Developing-WidgetKit-Strategy-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/42a248c60d951cca0502f29a151532a0/Developing-WidgetKit-Strategy-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "SwiftUI-PageImage-card.png": {
+      "alt": "A black Swift logo on a swirly blue and purple background.",
+      "identifier": "SwiftUI-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1450d0b30a6b024e10c148e3f31dafe9/SwiftUI-PageImage-card~dark@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b1de0de086f81a5d0eac3839a0af6e6f/SwiftUI-PageImage-card@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.ActivityKit/documentation/ActivityKit": {
+      "abstract": [
+        {
+          "text": "Share live updates from your app as Live Activities in the Dynamic Island, on the Lock Screen, and on the Smart Stack in watchOS.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.ActivityKit/documentation/ActivityKit",
+      "images": [
+        {
+          "identifier": "ActivityKit-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "ActivityKit",
+      "type": "topic",
+      "url": "/documentation/activitykit"
+    },
+    "doc://com.apple.ActivityKit/documentation/ActivityKit/Activity": {
+      "abstract": [
+        {
+          "text": "The object you use to start, update, and end a Live Activity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Activity"
+        }
+      ],
+      "identifier": "doc://com.apple.ActivityKit/documentation/ActivityKit/Activity",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Activity"
+        }
+      ],
+      "role": "symbol",
+      "title": "Activity",
+      "type": "topic",
+      "url": "/documentation/activitykit/activity"
+    },
+    "doc://com.apple.ActivityKit/documentation/ActivityKit/adding-accessible-descriptions-to-widgets-and-live-activities": {
+      "abstract": [
+        {
+          "text": "Describe the interface elements of your widgets and Live Activities to help people understand what they represent.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.ActivityKit/documentation/ActivityKit/adding-accessible-descriptions-to-widgets-and-live-activities",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding accessible descriptions to widgets and Live Activities",
+      "type": "topic",
+      "url": "/documentation/activitykit/adding-accessible-descriptions-to-widgets-and-live-activities"
+    },
+    "doc://com.apple.ActivityKit/documentation/ActivityKit/displaying-live-data-with-live-activities": {
+      "abstract": [
+        {
+          "text": "Display your app’s data in the Dynamic Island and on the Lock Screen and offer quick interactions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.ActivityKit/documentation/ActivityKit/displaying-live-data-with-live-activities",
+      "kind": "article",
+      "role": "article",
+      "title": "Displaying live data with Live Activities",
+      "type": "topic",
+      "url": "/documentation/activitykit/displaying-live-data-with-live-activities"
+    },
+    "doc://com.apple.ActivityKit/documentation/ActivityKit/starting-and-updating-live-activities-with-activitykit-push-notifications": {
+      "abstract": [
+        {
+          "text": "Use ActivityKit to receive push tokens and to remotely start, update, and end your Live Activity with ActivityKit notifications.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.ActivityKit/documentation/ActivityKit/starting-and-updating-live-activities-with-activitykit-push-notifications",
+      "kind": "article",
+      "role": "article",
+      "title": "Starting and updating Live Activities with ActivityKit push notifications",
+      "type": "topic",
+      "url": "/documentation/activitykit/starting-and-updating-live-activities-with-activitykit-push-notifications"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSSupportsLiveActivities": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether an app supports Live Activities.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSSupportsLiveActivities",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSupportsLiveActivities",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/NSSupportsLiveActivities"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSSupportsLiveActivitiesFrequentUpdates": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether an app can update its Live Activities frequently.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSSupportsLiveActivitiesFrequentUpdates",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSupportsLiveActivitiesFrequentUpdates",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/NSSupportsLiveActivitiesFrequentUpdates"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI": {
+      "abstract": [
+        {
+          "text": "Declare the user interface and behavior for your app on every platform.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI",
+      "images": [
+        {
+          "identifier": "SwiftUI-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SwiftUI",
+      "type": "topic",
+      "url": "/documentation/SwiftUI"
+    },
+    "doc://com.apple.documentation/documentation/Updates/ActivityKit": {
+      "abstract": [
+        {
+          "text": "Learn about important changes in ActivityKit.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Updates/ActivityKit",
+      "kind": "article",
+      "role": "article",
+      "title": "ActivityKit updates",
+      "type": "topic",
+      "url": "/documentation/Updates/ActivityKit"
+    },
+    "doc://com.apple.documentation/documentation/WidgetKit": {
+      "abstract": [
+        {
+          "text": "Extend the reach of your app by creating widgets, watch complications, Live Activities, and controls.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/WidgetKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "WidgetKit",
+      "type": "topic",
+      "url": "/documentation/WidgetKit"
+    },
+    "doc://com.apple.documentation/documentation/WidgetKit/Animating-data-updates-in-widgets-and-live-activities": {
+      "abstract": [
+        {
+          "text": "Use SwiftUI animations to indicate data updates in your widgets and Live Activities.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/WidgetKit/Animating-data-updates-in-widgets-and-live-activities",
+      "kind": "article",
+      "role": "article",
+      "title": "Animating data updates in widgets and Live Activities",
+      "type": "topic",
+      "url": "/documentation/WidgetKit/Animating-data-updates-in-widgets-and-live-activities"
+    },
+    "doc://com.apple.documentation/documentation/WidgetKit/Creating-a-Widget-Extension": {
+      "abstract": [
+        {
+          "text": "Display your app’s content in a convenient, informative widget on various devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/WidgetKit/Creating-a-Widget-Extension",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating a widget extension",
+      "type": "topic",
+      "url": "/documentation/WidgetKit/Creating-a-Widget-Extension"
+    },
+    "doc://com.apple.documentation/documentation/WidgetKit/Creating-views-for-widgets-Live-Activities-and-watch-complications": {
+      "abstract": [
+        {
+          "text": "Implement glanceable views with WidgetKit and SwiftUI.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/WidgetKit/Creating-views-for-widgets-Live-Activities-and-watch-complications",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating views for widgets, Live Activities, and watch complications",
+      "type": "topic",
+      "url": "/documentation/WidgetKit/Creating-views-for-widgets-Live-Activities-and-watch-complications"
+    },
+    "doc://com.apple.documentation/documentation/WidgetKit/Developing-a-WidgetKit-strategy": {
+      "abstract": [
+        {
+          "text": "Explore features, tasks, related frameworks, and constraints as you make a plan to implement widgets, watch complications, and Live Activities.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/WidgetKit/Developing-a-WidgetKit-strategy",
+      "images": [
+        {
+          "identifier": "Developing-WidgetKit-Strategy-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "article",
+      "title": "Developing a WidgetKit strategy",
+      "type": "topic",
+      "url": "/documentation/WidgetKit/Developing-a-WidgetKit-strategy"
+    },
+    "doc://com.apple.documentation/documentation/WidgetKit/Linking-to-specific-app-scenes-from-your-widget-or-Live-Activity": {
+      "abstract": [
+        {
+          "text": "Add deep links to your widgets and Live Activities that enable people to open a specific scene in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/WidgetKit/Linking-to-specific-app-scenes-from-your-widget-or-Live-Activity",
+      "kind": "article",
+      "role": "article",
+      "title": "Linking to specific app scenes from your widget or Live Activity",
+      "type": "topic",
+      "url": "/documentation/WidgetKit/Linking-to-specific-app-scenes-from-your-widget-or-Live-Activity"
+    },
+    "doc://com.apple.documentation/documentation/WidgetKit/emoji-rangers-supporting-live-activities-interactivity-and-animations": {
+      "abstract": [
+        {
+          "text": "Offer Live Activities, controls, animate data updates, and add interactivity to widgets.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/WidgetKit/emoji-rangers-supporting-live-activities-interactivity-and-animations",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Emoji Rangers: Supporting Live Activities, interactivity, and animations",
+      "type": "topic",
+      "url": "/documentation/WidgetKit/emoji-rangers-supporting-live-activities-interactivity-and-animations"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/videos/play/wwdc2023/10184": {
+      "identifier": "https://developer.apple.com/videos/play/wwdc2023/10184",
+      "title": "Session 10184: Meet ActivityKit",
+      "titleInlineContent": [
+        {
+          "text": "Session 10184: Meet ActivityKit",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/videos/play/wwdc2023/10184"
+    },
+    "https://developer.apple.com/videos/play/wwdc2023/10185": {
+      "identifier": "https://developer.apple.com/videos/play/wwdc2023/10185",
+      "title": "Session 10185: Update Live Activities with push notifications",
+      "titleInlineContent": [
+        {
+          "text": "Session 10185: Update Live Activities with push notifications",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/videos/play/wwdc2023/10185"
+    },
+    "https://developer.apple.com/videos/play/wwdc2023/10194": {
+      "identifier": "https://developer.apple.com/videos/play/wwdc2023/10194",
+      "title": "Session 10194: Design dynamic Live Activities",
+      "titleInlineContent": [
+        {
+          "text": "Session 10194: Design dynamic Live Activities",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/videos/play/wwdc2023/10194"
+    },
+    "live-activity-dynamic-island": {
+      "alt": "Three screenshots of iPhone that show a Live Activity for a delivery app. They show the Live Activity on the Lock Screen, in the leading and trailing presentations in the Dynamic Island, and in the expanded presentation.",
+      "identifier": "live-activity-dynamic-island",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a81e13e284bbdea7bed42f642b5d9ee5/live-activity-dynamic-island@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/673a2db3bc4d9e2ae692b9338400dbcd/live-activity-dynamic-island~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Essentials",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/WidgetKit/Developing-a-WidgetKit-strategy",
+        "doc://com.apple.documentation/documentation/Updates/ActivityKit"
+      ],
+      "title": "Essentials"
+    },
+    {
+      "anchor": "Live-Activity-implementation",
+      "identifiers": [
+        "doc://com.apple.ActivityKit/documentation/ActivityKit/displaying-live-data-with-live-activities",
+        "doc://com.apple.ActivityKit/documentation/ActivityKit/starting-and-updating-live-activities-with-activitykit-push-notifications",
+        "doc://com.apple.ActivityKit/documentation/ActivityKit/adding-accessible-descriptions-to-widgets-and-live-activities",
+        "doc://com.apple.ActivityKit/documentation/ActivityKit/Activity",
+        "doc://com.apple.documentation/documentation/WidgetKit/emoji-rangers-supporting-live-activities-interactivity-and-animations",
+        "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSSupportsLiveActivities",
+        "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSSupportsLiveActivitiesFrequentUpdates"
+      ],
+      "title": "Live Activity implementation"
+    },
+    {
+      "anchor": "Widget-extensions",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/WidgetKit",
+        "doc://com.apple.documentation/documentation/WidgetKit/Creating-a-Widget-Extension",
+        "doc://com.apple.documentation/documentation/WidgetKit/Animating-data-updates-in-widgets-and-live-activities"
+      ],
+      "title": "Widget extensions"
+    },
+    {
+      "anchor": "User-interface",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/WidgetKit/Creating-views-for-widgets-Live-Activities-and-watch-complications",
+        "doc://com.apple.documentation/documentation/WidgetKit/Linking-to-specific-app-scenes-from-your-widget-or-Live-Activity"
+      ],
+      "title": "User interface"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/activitykit"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

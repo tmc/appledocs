@@ -1,0 +1,3304 @@
+{
+  "abstract": [
+    {
+      "text": "Learn how to use Transforms to move, scale, and rotate entities in RealityKit.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.visionOS/documentation/visionOS"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.visionOS/documentation/visionOS/understanding-transforms"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Using transforms to move, scale, and rotate entities"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "RealityKit ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/RealityKit/Entity",
+              "isActive": true,
+              "overridingTitle": "Entity",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "Entity",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " objects exist in a tree, and each entity can have any number of subentities. (The entities themselves can standalone, or can be in a single container.)",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Every entity in the tree stores its own transform component.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The transform contains the ",
+              "type": "text"
+            },
+            {
+              "code": "translation",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "scale",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "code": "orientation",
+              "type": "codeVoice"
+            },
+            {
+              "text": " relative to its container entity. The ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "root",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " of each tree is an entity without a container entity.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each entity exists in its own coordinate system",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that defines the origin and orientation of the three ordinal directions (the x, y, and z axes).",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The coordinate system is relative to its container coordinate system and is defined by its transform.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Arrange-entities-with-transforms",
+          "level": 2,
+          "text": "Arrange entities with transforms",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A root entity has no parent entity.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Its location in the scene is either controlled by SwiftUI or placed via a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/RealityKit/SpatialTrackingSession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "SwiftUI provides a root entity for the volume defined by the ",
+              "type": "text"
+            },
+            {
+              "code": "RealityView",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The root entity defines the root coordinate system.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "In addition to a spatial tracking session, apps can use an ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/ARKit/ARSession",
+                  "isActive": true,
+                  "overridingTitle": "ARSession",
+                  "overridingTitleInlineContent": [
+                    {
+                      "code": "ARSession",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "reference"
+                },
+                {
+                  "text": " with any number of data providers. The available list can be found in the type ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/ARKit/DataProvider",
+                  "isActive": true,
+                  "overridingTitle": "DataProvider",
+                  "overridingTitleInlineContent": [
+                    {
+                      "code": "DataProvider",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "reference"
+                },
+                {
+                  "text": ", and a full list of anchor types is found in ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/RealityKit/AnchoringComponent/Target-swift.enum",
+                  "isActive": true,
+                  "overridingTitle": "AnchoringComponent.Target",
+                  "overridingTitleInlineContent": [
+                    {
+                      "code": "AnchoringComponent.Target",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each entity added to the tree adds a new coordinate system defined by its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/RealityKit/HasTransform/transform",
+              "isActive": true,
+              "overridingTitle": "transform",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "transform",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " and is relative to its container entity.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Each of the coordinate systems relate to each other by the hierarchy of entities and their transforms.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For example a hierarchy of entities built with this code:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "RealityView { content in",
+            "  let a = ModelEntity(mesh: .generateBox(size: 0.05), materials: [SimpleMaterial(color: .orange, isMetallic: false)])",
+            "  a.name = \"A\"",
+            "  a.transform = Transform(translation: SIMD3<Float>(0.05, 0.0, 0.0))",
+            "  content.add(a)",
+            "",
+            "  let b = ModelEntity(mesh: .generateBox(size: 0.05), materials: [SimpleMaterial(color: .purple, isMetallic: false)])",
+            "  b.name = \"B\"",
+            "  b.transform = Transform(translation: SIMD3<Float>(0.1, 0.0, 0.0))",
+            "",
+            "  a.addChild(b)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This reality view has three entities ",
+              "type": "text"
+            },
+            {
+              "code": "B",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "A",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and the root entity.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "These three entities form a tree, with one root entity at the center of the reality view’s volume.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Entity A is a subentity of the root, and B is a subentity of A.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "entity-hierarchy",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The reality view provides the root entity, which is located at the center of a volumetric window or near the floor in an immersive space.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/realitykit/realityviewcontentprotocol/add(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "  method on the ",
+              "type": "text"
+            },
+            {
+              "code": "content",
+              "type": "codeVoice"
+            },
+            {
+              "text": " supplied by the reality view to add entities as subentites of that root entity.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The coordinate system defined by ",
+              "type": "text"
+            },
+            {
+              "code": "B",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is ",
+              "type": "text"
+            },
+            {
+              "code": "0.1",
+              "type": "codeVoice"
+            },
+            {
+              "text": " units along the ",
+              "type": "text"
+            },
+            {
+              "code": "x-axis",
+              "type": "codeVoice"
+            },
+            {
+              "text": " of the coordinate system defined by ",
+              "type": "text"
+            },
+            {
+              "code": "A",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The coordinate system defined by ",
+              "type": "text"
+            },
+            {
+              "code": "A",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is ",
+              "type": "text"
+            },
+            {
+              "code": "0.05",
+              "type": "codeVoice"
+            },
+            {
+              "text": " units along the ",
+              "type": "text"
+            },
+            {
+              "code": "x-axis",
+              "type": "codeVoice"
+            },
+            {
+              "text": " defined by the root. With three entities there are three coordinate systems.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "reality-view",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In this example there are two cubes.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Each cube has eight corners, and each corner is ",
+              "type": "text"
+            },
+            {
+              "code": "0.025",
+              "type": "codeVoice"
+            },
+            {
+              "text": " units away from the origin.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The cubes appear in different locations in the scene because the system applies the ",
+              "type": "text"
+            },
+            {
+              "code": "transform",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to each corner of the cubes moving them from the local coordinate system (also called ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "model space",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ") to the world coordinate system.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For example, the top, right, forward corner of the cube is at ",
+              "type": "text"
+            },
+            {
+              "code": "{0.025, 0.025, 0.025}",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in ",
+              "type": "text"
+            },
+            {
+              "code": "model space",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". The entity is translated by ",
+              "type": "text"
+            },
+            {
+              "code": "{0.05, 0.0, 0.0}",
+              "type": "codeVoice"
+            },
+            {
+              "text": " The top-right-forward corner is then at ",
+              "type": "text"
+            },
+            {
+              "code": "{0.075, 0.025, 0.025}",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Build-a-simple-entity-to-experiment-with",
+          "level": 2,
+          "text": "Build a simple entity to experiment with",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To be visible, an entity must have a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/RealityKit/MeshDescriptor",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/RealityKit/Material",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "A ",
+              "type": "text"
+            },
+            {
+              "code": "MeshDescriptor",
+              "type": "codeVoice"
+            },
+            {
+              "text": " contains the description of a mesh. In this case, the mesh contains all of the vertices and how they connect into triangles.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "A Material specifies the color and appearance of the entity.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The previous example used ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/realitykit/meshresource/generatebox(size:cornerradius:)-2ovma",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to generate the mesh.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This convenience obscures what the transform does.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The remaining examples use a mesh built from scratch.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "All entities have a coordinate space, often called ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "model space",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This coordinate system determines the location of the ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "vertices",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The code below builds an entity with the following properties:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The entity has one material.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The mesh has 8 vertices and 12 triangles.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "Each vertex is one corner of the cube.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "Each triangle is one half of each side and involves three of the vertices.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "There are six sides, with two triangles each, for a total of 12 triangles.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "These vertices are in the model space coordinate system.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "This function builds the entity.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "code": [
+            "func createCube() -> ModelEntity? {",
+            "  let material = SimpleMaterial(color: .blue, isMetallic: false)",
+            "  var descriptor = MeshDescriptor(name: \"Simple Cube\")",
+            "  let allVerts: Array<SIMD3<Float>> = [[0.05,  0.05, -0.05], // Right-top-back vertex",
+            "                                       [-0.05,  0.05, -0.05], // Left-top-back vertex",
+            "                                       [-0.05,  0.05,  0.05], // Left-top-front vertex",
+            "                                       [0.05,  0.05,  0.05], // Right-top-front vertex",
+            "                                       [0.05, -0.05, -0.05], // Right-bottom-back vertex",
+            "                                       [-0.05, -0.05, -0.05], // Left-bottom-back vertex",
+            "                                       [-0.05, -0.05,  0.05], // Left-bottom-front vertex",
+            "                                       [0.05, -0.05,  0.05]] // Right-bottom-front vertex",
+            "  let allTris: Array<UInt32> = [",
+            "    // Index into the vertex array for the top triangles.",
+            "    0, 1, 2,",
+            "    0, 2, 3,",
+            "    // Index into the vertex array for the bottom triangles.",
+            "    4, 6, 5,",
+            "    4, 7, 6,",
+            "    // Index into the vertex array for the right triangles.",
+            "    0, 3, 7,",
+            "    7, 4, 0,",
+            "    // Index into the vertex array for the back triangles.",
+            "    0, 4, 1,",
+            "    4, 5, 1,",
+            "    // Index into the vertex array for the left triangles.",
+            "    2, 1, 5,",
+            "    5, 6, 2,",
+            "    // Index into the vertex array for the front triangles.",
+            "    3, 2, 6,",
+            "    6, 7, 3",
+            "  ]",
+            "  descriptor.positions = MeshBuffer(allVerts)",
+            "  descriptor.primitives = .triangles(allTris)",
+            "",
+            "  if let resource = try? MeshResource.generate(from: [descriptor]) {",
+            "     return ModelEntity(mesh: resource, materials: [material])",
+            "  }",
+            "  return nil",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "identifier": "cube-vertex-visualization",
+          "type": "video"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "For more information about constructing meshes, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/RealityKit/MeshDescriptor",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "When you set the ",
+                  "type": "text"
+                },
+                {
+                  "code": "transform",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " on an entity, the system transforms the mesh vertices to the new coordinate system.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Add-the-cube-entity-to-a-reality-view",
+          "level": 2,
+          "text": "Add the cube entity to a reality view",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You add the ",
+              "type": "text"
+            },
+            {
+              "code": "cube",
+              "type": "codeVoice"
+            },
+            {
+              "text": " entity to the volumetric window via SwiftUI like this:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "RealityView { content in",
+            "  if let cube = createCube() {",
+            "    content.add(cube)",
+            "  }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The cube entity appears at the center of the volume, the origin of the volume’s root entity.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Move-the-cube-with-a-transform",
+          "level": 2,
+          "text": "Move the cube with a transform",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To move the cube use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/RealityKit/Transform",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " component with the ",
+              "type": "text"
+            },
+            {
+              "code": "translation",
+              "type": "codeVoice"
+            },
+            {
+              "text": " argument:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "    cube.transform = Transform(translation: SIMD3<Float>(0.1, 0.0, 0.0))"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Applying this ",
+              "type": "text"
+            },
+            {
+              "code": "Transform",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to the cube moves all eight vertices in the ",
+              "type": "text"
+            },
+            {
+              "code": "x",
+              "type": "codeVoice"
+            },
+            {
+              "text": " direction by ",
+              "type": "text"
+            },
+            {
+              "code": "0.1",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system moves the entity from its ‘model space’ origin to the location in world space.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "To achieve that effect, RealityKit performs some linear algebra behind the scenes to ‘transform’ the points into world space.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The left matrix is the ",
+              "type": "text"
+            },
+            {
+              "code": "Transform",
+              "type": "codeVoice"
+            },
+            {
+              "text": " converted to a matrix.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The right vertex is the list of vertices.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Here is the full multiplication for the transform and the first vertex.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "                                       ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "TranslationMatrixMultiplication",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The left matrix is a direct representation of the ",
+              "type": "text"
+            },
+            {
+              "code": "Transform",
+              "type": "codeVoice"
+            },
+            {
+              "text": " you made earlier and applied to the ",
+              "type": "text"
+            },
+            {
+              "code": "cube",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The right matrix is the first vertex from the cube represented by a vector with ",
+              "type": "text"
+            },
+            {
+              "code": "1.0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in the last position.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Performing that multiplication (the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/simd/dot(_:_:)-4gb9g",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " product of each row of the matrix with the vertex) yields:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "TranslationMatrixMultiplicationResult",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The net effect is that the new vertices have ",
+              "type": "text"
+            },
+            {
+              "code": "0.1",
+              "type": "codeVoice"
+            },
+            {
+              "text": " added to their ",
+              "type": "text"
+            },
+            {
+              "code": "x",
+              "type": "codeVoice"
+            },
+            {
+              "text": " component.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This approach generalizes to all other forms of transformation that you use to manipulate entities in RealityKit:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "identifier": "translate-cube-on-x-axis",
+          "type": "video"
+        },
+        {
+          "anchor": "Scale-the-cube-with-a-transform",
+          "level": 2,
+          "text": "Scale the cube with a transform",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To scale an entity use the ",
+              "type": "text"
+            },
+            {
+              "code": "transform",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "To apply a uniform scale of 2 to the entity change the code, like this:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "  cube?.transform = Transform(scale: SIMD3<Float>(2.0, 2.0, 2.0))"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "That yields a matrix multiplication that looks like this:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "ScaleMatrixMultiplication",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After the multiplication yields a transformed vertex like this:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "ScaleMatrixMultiplicationResult",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After multiplying all of the vertices by the scale matrix, the cube is twice as large in each direction (",
+              "type": "text"
+            },
+            {
+              "code": "0.2",
+              "type": "codeVoice"
+            },
+            {
+              "text": " versus ",
+              "type": "text"
+            },
+            {
+              "code": "0.1",
+              "type": "codeVoice"
+            },
+            {
+              "text": "):",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "identifier": "scale-cube-uniform",
+          "type": "video"
+        },
+        {
+          "anchor": "Combine-transforms",
+          "level": 2,
+          "text": "Combine transforms",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "These two operations combine into a single operation with the ",
+              "type": "text"
+            },
+            {
+              "code": "Transform",
+              "type": "codeVoice"
+            },
+            {
+              "text": " type like this:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "  cube?.transform = Transform(scale: SIMD3<Float>(2.0, 2.0, 2.0), translation: SIMD3<Float>(0.1, 0.0, 0.0))"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "That transform yields a matrix multiplication for all the vertices, laid out as column vectors. The multiplication looks like this:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "CombinedMatrixMultiplication",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The order is important: scale first then translate.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Multiplying matrixes isn’t commutative, which means that ",
+                  "type": "text"
+                },
+                {
+                  "code": "A",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " * ",
+                  "type": "text"
+                },
+                {
+                  "code": "B",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " is not equal to ",
+                  "type": "text"
+                },
+                {
+                  "code": "B",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " * ",
+                  "type": "text"
+                },
+                {
+                  "code": "A",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Multiplying these two transformation matrices in the order shown above yields this result:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "Combination1MatrixMultiplication",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The result scales the model by ",
+              "type": "text"
+            },
+            {
+              "code": "2",
+              "type": "codeVoice"
+            },
+            {
+              "text": " uniformly and translates the model by ",
+              "type": "text"
+            },
+            {
+              "code": "0.1",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in the ",
+              "type": "text"
+            },
+            {
+              "code": "x",
+              "type": "codeVoice"
+            },
+            {
+              "text": " direction:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "identifier": "combo-cube-transform-with-api",
+          "type": "video"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Switching that order yields a different matrix:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "Combination2MatrixMultiplication",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This resulting matrix yields a similar uniform scale of ",
+              "type": "text"
+            },
+            {
+              "code": "2",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", but the translation is scaled by ",
+              "type": "text"
+            },
+            {
+              "code": "2",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as well.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The net result of this matrix is to scale the model uniformly by ",
+              "type": "text"
+            },
+            {
+              "code": "2",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and move it in the positive ",
+              "type": "text"
+            },
+            {
+              "code": "x",
+              "type": "codeVoice"
+            },
+            {
+              "text": " direction by ",
+              "type": "text"
+            },
+            {
+              "code": "0.2",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "identifier": "combo-cube-transform-with-switched-order",
+          "type": "video"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Matrix multiplication is associative, which means that you can move the parenthesis around.",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "So ",
+                  "type": "text"
+                },
+                {
+                  "code": "A",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " *  ",
+                  "type": "text"
+                },
+                {
+                  "code": "B",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " * ",
+                  "type": "text"
+                },
+                {
+                  "code": "C",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " can be done as ",
+                  "type": "text"
+                },
+                {
+                  "code": "A",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " *  (",
+                  "type": "text"
+                },
+                {
+                  "code": "B",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " * ",
+                  "type": "text"
+                },
+                {
+                  "code": "C",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ")  or (",
+                  "type": "text"
+                },
+                {
+                  "code": "A",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " *  ",
+                  "type": "text"
+                },
+                {
+                  "code": "B",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ") * ",
+                  "type": "text"
+                },
+                {
+                  "code": "C",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "This allows the ",
+                  "type": "text"
+                },
+                {
+                  "code": "transform",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " to be one matrix application instead of two.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Multiply the ",
+              "type": "text"
+            },
+            {
+              "code": "scale",
+              "type": "codeVoice"
+            },
+            {
+              "text": " matrix by the ",
+              "type": "text"
+            },
+            {
+              "code": "translation",
+              "type": "codeVoice"
+            },
+            {
+              "text": " matrix to get the combined ",
+              "type": "text"
+            },
+            {
+              "code": "transform",
+              "type": "codeVoice"
+            },
+            {
+              "text": " matrix.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "RealityKit then applies the combined matrix to the vertices:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "FullCombinedMatrixMultiplication",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Which yields a matrix like this:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "FullCombinedMatrixMultiplicationResult",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The scaled and translated vertices yield a cube that is twice as large in each direction and moved ",
+              "type": "text"
+            },
+            {
+              "code": "0.1",
+              "type": "codeVoice"
+            },
+            {
+              "text": " units to the right.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Rotate-entities",
+          "level": 2,
+          "text": "Rotate entities",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To rotate the cube 45° (π/4 radians), use the ",
+              "type": "text"
+            },
+            {
+              "code": "Transform",
+              "type": "codeVoice"
+            },
+            {
+              "text": " type with the ",
+              "type": "text"
+            },
+            {
+              "code": "rotation",
+              "type": "codeVoice"
+            },
+            {
+              "text": " argument like this:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "RealityView { content in",
+            "  if let cube {",
+            "    content.add(cube)",
+            "  }",
+            "  cube?.transform = Transform(rotation: simd_quatf(angle: .pi/4, axis: SIMD3<Float>(1.0, 0.0, 0.0)))",
+            " }"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This causes the cube to rotate 45° around its origin along the ",
+              "type": "text"
+            },
+            {
+              "code": "x-axis",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The matrix for this rotation looks like this:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "identifier": "rotate-cube-around-x-axis",
+          "type": "video"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Rotation around any other axis is achieved in the same way.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For example, to rotate 45° around the axis through the top-right corner of the cube you could use:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "  cube?.transform = Transform(rotation: simd_quatf(angle: .pi/4, axis: normalize(SIMD3<Float>(1.0, 1.0, 1.0))))"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/simd/normalize(_:)-3lhrd",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " function returns a vector pointing in the same direction with a length of 1.0. Make sure to normalize the ",
+                  "type": "text"
+                },
+                {
+                  "code": "axis",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " argument when creating quaternions.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "That code performs a rotation that looks like this:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "identifier": "entity-hierarchy-transform",
+          "type": "video"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Applying this transformation matrix to the full set of vertices yields this new set of transformed vertices:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "FullRotationVerticesResult",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Notice that the fourth and sixth vertex didn’t change. The axis of rotation goes through those two vertices so nothing changes on that axis.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Combine-rotation-translation-and-scale-in-one-transform",
+          "level": 2,
+          "text": "Combine rotation, translation, and scale in one transform",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Rotation combined with other transforms might yield unexpected results depending on the order of the application. You can combine all three transformations in the ",
+              "type": "text"
+            },
+            {
+              "code": "Transform",
+              "type": "codeVoice"
+            },
+            {
+              "text": " initializer like this:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "  cube?.transform = Transform(scale: SIMD3<Float>(2.0, 2.0, 2.0),",
+            "                              rotation: simd_quatf(angle: .pi/4, axis: normalize(SIMD3<Float>(1.0, 1.0, 1.0))),",
+            "                              translation: SIMD3<Float>(0.1, 0.0, 0.0))",
+            ""
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The order of these transforms is ",
+              "type": "text"
+            },
+            {
+              "code": "translation",
+              "type": "codeVoice"
+            },
+            {
+              "text": " followed by ",
+              "type": "text"
+            },
+            {
+              "code": "rotation",
+              "type": "codeVoice"
+            },
+            {
+              "text": " then ",
+              "type": "text"
+            },
+            {
+              "code": "scale",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "BOT-anist-PageImage-card.png": {
+      "alt": "A screenshot from the Apple Vision Pro simulator with a single floating window. The window contains a robot on the right side, and controls to customize the robots appearance on the left.",
+      "identifier": "BOT-anist-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/d9f7d85cd82f76e6fd53df7302f0424a/BOT-anist-PageImage-card@2x.png"
+        }
+      ]
+    },
+    "Combination1MatrixMultiplication": {
+      "alt": "A matrix multiplication with three matrices. The left most matrix is the translation matrix. The first column is 1.0, 0.0, 0.0, 0.0. The second column is 0.0, 1.0, 0.0, 0.0. The third column is 0.0, 0.0, 1.0, 0.0. The fourth column is 0.1, 0.0, 0.0, 1.0. The next matrix is the scale matrix. The first column is 2.0, 0.0, 0.0, 0.0. The second column is 0.0, 2.0, 0.0, 0.0. The third column is 0.0, 0.0, 2.0, 0.0. The fourth column is 0.0, 0.0, 0.0, 1.0. The third matrix is the result of multiplying the two matrices. The first column is 2.0, 0.0, 0.0, 0.0. The second column is 0.0, 2.0, 0.0, 0.0. The third column is 0.0, 0.0, 2.0, 0.0. The fourth column is 0.1, 0.0, 0.0, 1.0.",
+      "identifier": "Combination1MatrixMultiplication",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/3b2172f15566e6659b01e3b7cca14c5f/Combination1MatrixMultiplication@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/100bef0519fae593767908d4bb79aa98/Combination1MatrixMultiplication~dark@2x.png"
+        }
+      ]
+    },
+    "Combination2MatrixMultiplication": {
+      "alt": "A matrix multiplication with three matrices. The left matrix is the scale matrix. The first column is 2.0, 0.0, 0.0, 0.0. The second column is 0.0, 2.0, 0.0, 0.0. The third column is 0.0, 0.0, 2.0, 0.0. The fourth column is 0.0, 0.0, 0.0, 1.0. The center matrix is the translation matrix. The first column is 1.0, 0.0, 0.0, 0.0. The second column is 0.0, 1.0, 0.0, 0.0. The third column is 0.0, 0.0, 1.0, 0.0. The fourth column is 0.1, 0.0, 0.0, 1.0. The third matrix is the result of multiplying the two matrices. The first column is 2.0, 0.0, 0.0, 0.0. The second column is 0.0, 2.0, 0.0, 0.0. The third column is 0.0, 0.0, 2.0, 0.0. The fourth column is 0.2, 0.0, 0.0, 1.0.",
+      "identifier": "Combination2MatrixMultiplication",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/85271982654e6e01e5d9af80fd288486/Combination2MatrixMultiplication@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/523747da827dcd59d50af683bc48dee4/Combination2MatrixMultiplication~dark@2x.png"
+        }
+      ]
+    },
+    "CombinedMatrixMultiplication": {
+      "alt": "A matrix multiplication with three matrices. The left most matrix is the translation matrix. The first column is 1.0, 0.0, 0.0, 0.0. The second column is 0.0, 1.0, 0.0, 0.0. The third column is 0.0, 0.0, 0.0, 1.0, 0.0. The fourth column is 0.1, 0.0, 0.0, 1.0. The next matrix is the scale matrix. The first column is 2.0, 0.0, 0.0, 0.0. The second column is 0.0, 2.0, 0.0, 0.0. The third column is 0.0, 0.0, 2.0, 0.0. The fourth column is 0.0, 0.0, 0.0, 1.0. The third matrix is a four by eight matrix, each column is one vertex in the cube. The first column is 0.05, 0.05, negative 0.05, 1.0. The second column is negative 0.05, 0.05, negative 0.05, 1.0. The third column is negative 0.05, 0.05, 0.05, 1.0. The fourth column is 0.05, 0.05, 0.05, 1.0. The fifth column is 0.05, negative 0.05, negative 0.05, 1.0. The sixth column is negative 0.05, negative 0.05, negative 0.05, 1.0. The seventh column is negative 0.05, negative 0.05, 0.05, 1.0. The eighth column is 0.05, negative 0.05, 0.05, 1.0.",
+      "identifier": "CombinedMatrixMultiplication",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ed43af8502027def04bfc48497846561/CombinedMatrixMultiplication@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1dd4a7301b4731c4ceb66a723692419a/CombinedMatrixMultiplication~dark@2x.png"
+        }
+      ]
+    },
+    "Diorama-intro.png": {
+      "alt": "A screenshot showing a virtual trail map diorama in a living room setting.",
+      "identifier": "Diorama-intro.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/80d69390976dca0e5d70a493312d475a/Diorama-intro@2x.png"
+        }
+      ]
+    },
+    "FullCombinedMatrixMultiplication": {
+      "alt": "A matrix multiplication with two matrices. The left matrix is the combined scale and translation matrix. The first column is 2.0, 0.0, 0.0, 0.0. The second column is 0.0, 2.0, 0.0, 0.0. The third column is 0.0, 0.0, 1.0, 0.0. The fourth column is 0.1, 0.0, 0.0, 1.0. The right matrix is a four by eight matrix, each column is one vertex in the cube. The first column is 0.05, 0.05, negative 0.05, 1.0. The second column is negative 0.05, 0.05, negative 0.05, 1.0. The third column is negative 0.05, 0.05, 0.05, 1.0. The fourth column is 0.05, 0.05, 0.05, 1.0. The fifth column is 0.05, negative 0.05, negative 0.05, 1.0. The sixth column is negative 0.05, negative 0.05, negative 0.05, 1.0. The seventh column is negative 0.05, negative 0.05, 0.05, 1.0. The eighth column is 0.05, negative 0.05, 0.05, 1.0.",
+      "identifier": "FullCombinedMatrixMultiplication",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e3285a5105676030f95444f1a167af84/FullCombinedMatrixMultiplication@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5de6205f85c205e1860fdf8844d9c4eb/FullCombinedMatrixMultiplication~dark@2x.png"
+        }
+      ]
+    },
+    "FullCombinedMatrixMultiplicationResult": {
+      "alt": "The result of the scale and translation transformation matrix multiplied into the vertices matrix. A four by eight matrix, each column is one vertex in the transformed cube. The first column is 0.2, 0.1, negative 0.1, 1.0. The second column is 0.0, 0.1, negative 0.1, 1.0. The third column is 0.0, 0.1, 0.1, 1.0. The fourth column is 0.2, 0.1, 0.1, 1.0. The fifth column is 0.0, negative 0.1, negative 0.1, 1.0. The sixth column is 0.0, negative 0.1, negative 0.1, 1.0. The seventh column is 0.0, negative 0.1, 0.1, 1.0. The eighth column is 0.2, negative 0.1, 0.1, 1.0.",
+      "identifier": "FullCombinedMatrixMultiplicationResult",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f992ca1c45cd0266c8ed111fe571d344/FullCombinedMatrixMultiplicationResult@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f99be2ccd7eade5c699d836b64cc3a2c/FullCombinedMatrixMultiplicationResult~dark@2x.png"
+        }
+      ]
+    },
+    "FullRotationVerticesResult": {
+      "alt": "Vertices of the cube rotated around the axis pointing at the top right front corner. The matrix is four by eight, each column is one vertex of the transformed cube. The fourth column is 0.05, 0.05, 0.05, 1.0. The sixth column is negative 0.05, negative 0.05, negative 0.05, 1.0. These two columns have the same value as the untransformed vertices because they lie on the axis of rotation.",
+      "identifier": "FullRotationVerticesResult",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4f867fd9f33aa416e399c82af356acae/FullRotationVerticesResult@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c1126ad3d95006baa59c0c702b9767e1/FullRotationVerticesResult~dark@2x.png"
+        }
+      ]
+    },
+    "ScaleMatrixMultiplication": {
+      "alt": "A matrix multiplication. The left hand side is a four by four matrix. The first column is 2.0, 0.0, 0.0, 0.0. The second column is 0.0, 2.0, 0.0, 0.0, the third column is 0.0, 0.0, 2.0, 0.0. The fourth column is 0.0, 0.0, 0.0, 1.0. The right most matrix is a four by one matrix, its only column has values negative 0.05, 0.05, 0.05, 1.0. Between the matrices is the multiplication operator.",
+      "identifier": "ScaleMatrixMultiplication",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/435a83d6d9df2cf5a074390e0536b637/ScaleMatrixMultiplication@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/857f1865395bfe29d748a356766c97bd/ScaleMatrixMultiplication~dark@2x.png"
+        }
+      ]
+    },
+    "ScaleMatrixMultiplicationResult": {
+      "alt": "A four by one matrix, values in the single column are negative 0.1, 0.1, 0.1 and 1.0.",
+      "identifier": "ScaleMatrixMultiplicationResult",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ddd408abcb92785b4c4ab8b2772121fb/ScaleMatrixMultiplicationResult@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/8f56907880d1efe39c6aa791ea69847d/ScaleMatrixMultiplicationResult~dark@2x.png"
+        }
+      ]
+    },
+    "Swift-Splash-intro.png": {
+      "alt": "",
+      "identifier": "Swift-Splash-intro.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b5da9880ce266b0858346d694e3a7018/Swift-Splash-intro@2x.png"
+        }
+      ]
+    },
+    "TranslationMatrixMultiplication": {
+      "alt": "A matrix multiplication. The left hand side is a four by four matrix. The first column is 1.0, 0.0, 0.0, 0.0. The second column is 0.0, 1.0, 0.0, 0.0. The third column is 0.0, 0.0, 1.0, 0.0. The fourth column is where the the translation is found. It's values are 0.1, 0.0, 0.0, 1.0. The right-most matrix is a four by one matrix, its only column has values 0.05, 0.05, negative 0.05, 1.0. Between the matrices is the multiplication operator.",
+      "identifier": "TranslationMatrixMultiplication",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/fc953074dca39d86777887cc8f4d1f64/TranslationMatrixMultiplication@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/24133b33cb43a8ec87f7b1839667c954/TranslationMatrixMultiplication~dark@2x.png"
+        }
+      ]
+    },
+    "TranslationMatrixMultiplicationResult": {
+      "alt": "A four by one matrix, values in the single column are 0.15, 0.05, negative 0.05 and 1.0.",
+      "identifier": "TranslationMatrixMultiplicationResult",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/d8a340b6393e6446f73fc66bafd14a79/TranslationMatrixMultiplicationResult@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/443886fc5a1acd863e0ae55b4b5681d7/TranslationMatrixMultiplicationResult~dark@2x.png"
+        }
+      ]
+    },
+    "building-an-immersive-media-viewing-experience-PageImage-card.png": {
+      "alt": "A screenshot of destination video's custom studio environment.",
+      "identifier": "building-an-immersive-media-viewing-experience-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/bbc286b58cd06b23756a1cb51a493360/building-an-immersive-media-viewing-experience-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b110534afd700b8b77992bd7f4184ae6/building-an-immersive-media-viewing-experience-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "combo-cube-transform-with-api": {
+      "alt": "Animation showing the cube translated then scaled uniformly. The opening frame is of the orange cube located in the center of the scene. The action button is tapped and the orange cube scales up to twice its size and moves 0.1 units to the right.",
+      "identifier": "combo-cube-transform-with-api",
+      "poster": null,
+      "type": "video",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4df1280f1174e9b41be00a5e124ad0f0/combo-cube-transform-with-api.mp4"
+        }
+      ]
+    },
+    "combo-cube-transform-with-switched-order": {
+      "alt": "Animation showing the cube translated then scaled uniformly. The opening frame is of the orange cube located in the center of the scene. The action button is tapped and the orange cube scales up to twice its size and moves 0.2 units to the right.",
+      "identifier": "combo-cube-transform-with-switched-order",
+      "poster": null,
+      "type": "video",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/d679e6e3ec5e3fff31a73f7970fbf8a3/combo-cube-transform-with-switched-order.mp4"
+        }
+      ]
+    },
+    "cube-vertex-visualization": {
+      "alt": "Animation showing each corner of the cube. Each vertex is tapped in order from the first to the last, with each vertex displaying its values.",
+      "identifier": "cube-vertex-visualization",
+      "poster": null,
+      "type": "video",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/8ade00db63aabdff062754d691a77369/cube-vertex-visualization.mp4"
+        }
+      ]
+    },
+    "doc://com.apple.documentation/documentation/ARKit/ARSession": {
+      "abstract": [
+        {
+          "text": "The object that manages the major tasks associated with every AR experience, such as motion tracking, camera passthrough, and image analysis.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARSession"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ARKit/ARSession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ARSession",
+      "type": "topic",
+      "url": "/documentation/ARKit/ARSession"
+    },
+    "doc://com.apple.documentation/documentation/ARKit/DataProvider": {
+      "abstract": [
+        {
+          "text": "A source of live data from ARKit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DataProvider"
+        },
+        {
+          "kind": "text",
+          "text": " : AnyObject, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s23CustomStringConvertibleP",
+          "text": "CustomStringConvertible"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8SendableP",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ARKit/DataProvider",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "DataProvider",
+      "type": "topic",
+      "url": "/documentation/ARKit/DataProvider"
+    },
+    "doc://com.apple.documentation/documentation/RealityKit/AnchoringComponent/Target-swift.enum": {
+      "abstract": [
+        {
+          "text": "Defines the kinds of real world objects to which an anchor entity can be tethered.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Target"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/RealityKit/AnchoringComponent/Target-swift.enum",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AnchoringComponent.Target",
+      "type": "topic",
+      "url": "/documentation/RealityKit/AnchoringComponent/Target-swift.enum"
+    },
+    "doc://com.apple.documentation/documentation/RealityKit/Entity": {
+      "abstract": [
+        {
+          "text": "An element of a RealityKit scene to which you attach components that provide appearance and behavior characteristics for the entity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Entity"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/RealityKit/Entity",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Entity",
+      "type": "topic",
+      "url": "/documentation/RealityKit/Entity"
+    },
+    "doc://com.apple.documentation/documentation/RealityKit/HasTransform/transform": {
+      "abstract": [
+        {
+          "text": "The transform of an entity relative to its parent.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "transform"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation9TransformV",
+          "text": "Transform"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "set"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/RealityKit/HasTransform/transform",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "transform",
+      "type": "topic",
+      "url": "/documentation/RealityKit/HasTransform/transform"
+    },
+    "doc://com.apple.documentation/documentation/RealityKit/Material": {
+      "abstract": [
+        {
+          "text": "A type that describes the material aspects of a mesh, like color and texture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Material"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/RealityKit/Material",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Material",
+      "type": "topic",
+      "url": "/documentation/RealityKit/Material"
+    },
+    "doc://com.apple.documentation/documentation/RealityKit/MeshDescriptor": {
+      "abstract": [
+        {
+          "text": "Defines a 3D mesh’s structure and data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MeshDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/RealityKit/MeshDescriptor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MeshDescriptor",
+      "type": "topic",
+      "url": "/documentation/RealityKit/MeshDescriptor"
+    },
+    "doc://com.apple.documentation/documentation/RealityKit/SpatialTrackingSession": {
+      "abstract": [
+        {
+          "text": "An object that incorporates spatial tracking capabilities into your RealityKit apps.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "final"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SpatialTrackingSession"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/RealityKit/SpatialTrackingSession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SpatialTrackingSession",
+      "type": "topic",
+      "url": "/documentation/RealityKit/SpatialTrackingSession"
+    },
+    "doc://com.apple.documentation/documentation/RealityKit/Transform": {
+      "abstract": [
+        {
+          "text": "A component that defines the scale, rotation, and translation of an entity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@frozen"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Transform"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/RealityKit/Transform",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Transform",
+      "type": "topic",
+      "url": "/documentation/RealityKit/Transform"
+    },
+    "doc://com.apple.documentation/documentation/RealityKit/combining-2d-and-3d-views-in-an-immersive-app": {
+      "abstract": [
+        {
+          "text": "Use attachments to place 2D content relative to 3D content in your visionOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/RealityKit/combining-2d-and-3d-views-in-an-immersive-app",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Combining 2D and 3D views in an immersive app",
+      "type": "topic",
+      "url": "/documentation/RealityKit/combining-2d-and-3d-views-in-an-immersive-app"
+    },
+    "doc://com.apple.documentation/documentation/simd/dot(_:_:)-4gb9g": {
+      "abstract": [
+        {
+          "text": "Returns the dot product of two vectors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "dot"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "x"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5SIMD3V",
+          "text": "SIMD3"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "y"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5SIMD3V",
+          "text": "SIMD3"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/simd/dot(_:_:)-4gb9g",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dot(_:_:)",
+      "type": "topic",
+      "url": "/documentation/simd/dot(_:_:)-4gb9g"
+    },
+    "doc://com.apple.documentation/documentation/simd/normalize(_:)-3lhrd": {
+      "abstract": [
+        {
+          "text": "Returns a vector pointing in the same direction of the supplied vector with a length of 1.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "normalize"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "x"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5SIMD4V",
+          "text": "SIMD4"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5SIMD4V",
+          "text": "SIMD4"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/simd/normalize(_:)-3lhrd",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "normalize(_:)",
+      "type": "topic",
+      "url": "/documentation/simd/normalize(_:)-3lhrd"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS": {
+      "abstract": [
+        {
+          "text": "Create a new universe of apps and games for Apple Vision Pro.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS",
+      "images": [
+        {
+          "identifier": "headset-orange.svg",
+          "type": "icon"
+        },
+        {
+          "identifier": "visionOS-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "visionOS",
+      "type": "topic",
+      "url": "/documentation/visionos"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/BOT-anist": {
+      "abstract": [
+        {
+          "text": "Build a multiplatform app that uses windows, volumes, and animations to create a robot botanist’s greenhouse.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/BOT-anist",
+      "images": [
+        {
+          "identifier": "BOT-anist-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "BOT-anist",
+      "type": "topic",
+      "url": "/documentation/visionos/bot-anist"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/building-an-immersive-media-viewing-experience": {
+      "abstract": [
+        {
+          "text": "Add a deeper level of immersion to media playback in your app with RealityKit and Reality Composer Pro.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/building-an-immersive-media-viewing-experience",
+      "images": [
+        {
+          "identifier": "building-an-immersive-media-viewing-experience-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Building an immersive media viewing experience",
+      "type": "topic",
+      "url": "/documentation/visionos/building-an-immersive-media-viewing-experience"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/capturing-screenshots-and-video-from-your-apple-vision-pro-for-2d-viewing": {
+      "abstract": [
+        {
+          "text": "Create screenshots and record high-quality video of your visionOS app and its surroundings for app previews.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/capturing-screenshots-and-video-from-your-apple-vision-pro-for-2d-viewing",
+      "kind": "article",
+      "role": "article",
+      "title": "Capturing screenshots and video from Apple Vision Pro for 2D viewing",
+      "type": "topic",
+      "url": "/documentation/visionos/capturing-screenshots-and-video-from-your-apple-vision-pro-for-2d-viewing"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/designing-realitykit-content-with-reality-composer-pro": {
+      "abstract": [
+        {
+          "text": "Design RealityKit scenes for your visionOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/designing-realitykit-content-with-reality-composer-pro",
+      "kind": "article",
+      "role": "article",
+      "title": "Designing RealityKit content with Reality Composer Pro",
+      "type": "topic",
+      "url": "/documentation/visionos/designing-realitykit-content-with-reality-composer-pro"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/diorama": {
+      "abstract": [
+        {
+          "text": "Design scenes for your visionOS app using Reality Composer Pro.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/diorama",
+      "images": [
+        {
+          "identifier": "Diorama-intro.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Diorama",
+      "type": "topic",
+      "url": "/documentation/visionos/diorama"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/enabling-video-reflections-in-an-immersive-environment": {
+      "abstract": [
+        {
+          "text": "Create a more immersive experience by adding video reflections in a custom environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/enabling-video-reflections-in-an-immersive-environment",
+      "images": [
+        {
+          "identifier": "lightspill-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Enabling video reflections in an immersive environment",
+      "type": "topic",
+      "url": "/documentation/visionos/enabling-video-reflections-in-an-immersive-environment"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/implementing-object-tracking-in-your-visionOS-app": {
+      "abstract": [
+        {
+          "text": "Create engaging interactions by training models to recognize and track real-world objects in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/implementing-object-tracking-in-your-visionOS-app",
+      "images": [
+        {
+          "identifier": "implementing-object-tracking-in-your-visionOS-app.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "article",
+      "title": "Implementing object tracking in your visionOS app",
+      "type": "topic",
+      "url": "/documentation/visionos/implementing-object-tracking-in-your-visionos-app"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/placing-entities-using-head-and-device-transform": {
+      "abstract": [
+        {
+          "text": "Query and react to changes in the position and rotation of Apple Vision Pro.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/placing-entities-using-head-and-device-transform",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Placing entities using head and device transform",
+      "type": "topic",
+      "url": "/documentation/visionos/placing-entities-using-head-and-device-transform"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/swift-splash": {
+      "abstract": [
+        {
+          "text": "Use RealityKit to create an interactive ride in visionOS.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/swift-splash",
+      "images": [
+        {
+          "identifier": "Swift-Splash-intro.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Swift Splash",
+      "type": "topic",
+      "url": "/documentation/visionos/swift-splash"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/understanding-the-realitykit-modular-architecture": {
+      "abstract": [
+        {
+          "text": "Learn how everything fits together in RealityKit.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/understanding-the-realitykit-modular-architecture",
+      "kind": "article",
+      "role": "article",
+      "title": "Understanding the modular architecture of RealityKit",
+      "type": "topic",
+      "url": "/documentation/visionos/understanding-the-realitykit-modular-architecture"
+    },
+    "entity-hierarchy": {
+      "alt": "Three rectangles connected via lines. The top one is labeled Root, the second one is slightly below and to the right, is labeled A. The third one is slightly below and to the right and is labeled B.",
+      "identifier": "entity-hierarchy",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1efd2539d57715259feee9134862188d/entity-hierarchy@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/270f483beac62664c0107de79404f50f/entity-hierarchy~dark@2x.png"
+        }
+      ]
+    },
+    "entity-hierarchy-transform": {
+      "alt": "Animation showing the cube rotate around the normalized 1, 1, 1 vector. The opening scene is an orange cube in the center of the scene. The rotate to the right button is tapped and the cube rotates around the axis 45 degrees in a  clockwise direction. The rotate to the left button is tapped and the cube rotates around the axis 45 degrees in a counter-clockwise direction.",
+      "identifier": "entity-hierarchy-transform",
+      "poster": null,
+      "type": "video",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/0a6da75cf78c7845e6cf9e9d0082e162/entity-hierarchy-transform.mp4"
+        }
+      ]
+    },
+    "headset-orange.svg": {
+      "alt": "An icon representing visionOS.",
+      "identifier": "headset-orange.svg",
+      "type": "image",
+      "variants": [
+        {
+          "svgID": "a",
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/77dc6a0821bfb2da8db4a3b2033e6f6b/headset-orange.svg"
+        }
+      ]
+    },
+    "https://developer.apple.com/documentation/realitykit/meshresource/generatebox(size:cornerradius:)-2ovma": {
+      "identifier": "https://developer.apple.com/documentation/realitykit/meshresource/generatebox(size:cornerradius:)-2ovma",
+      "title": "generateBox(size:)",
+      "titleInlineContent": [
+        {
+          "code": "generateBox(size:)",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/realitykit/meshresource/generatebox(size:cornerradius:)-2ovma"
+    },
+    "https://developer.apple.com/documentation/realitykit/realityviewcontentprotocol/add(_:)": {
+      "identifier": "https://developer.apple.com/documentation/realitykit/realityviewcontentprotocol/add(_:)",
+      "title": "add(_:Entity)",
+      "titleInlineContent": [
+        {
+          "code": "add(_:Entity)",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/realitykit/realityviewcontentprotocol/add(_:)"
+    },
+    "implementing-object-tracking-in-your-visionOS-app.png": {
+      "alt": "An illustration of a globe within a bounding box.",
+      "identifier": "implementing-object-tracking-in-your-visionOS-app.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/49a7917ef036b2daf610527590ce056d/implementing-object-tracking-in-your-visionOS-app@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/3e16e39548ccdcc1d5a21b2f18755c7b/implementing-object-tracking-in-your-visionOS-app~dark@2x.png"
+        }
+      ]
+    },
+    "lightspill-PageImage-card.png": {
+      "alt": "A screenshot that shows the app's video player in the Studio environment in visionOS. The screenshot shows the contents of the video player reflecting onto the surrounding environment.",
+      "identifier": "lightspill-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/87e397de07459c756d21eb0c441569f7/lightspill-PageImage-card@2x.png"
+        }
+      ]
+    },
+    "reality-view": {
+      "alt": "Three rectangles arranged horizontally. Each rectangle has a line extending out the bottom side. There is another line that connects all the lines across their bottom extent. The left rectangle is labeled Root, the middle rectangle is labeled A, the right rectangle is labeled B. There are two labels with the distance between the respective rectangles. The distance between Root and A is 0.05 units, the distance between A and B is 0.10 units.",
+      "identifier": "reality-view",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f2f47dee78e0e2b1e60649805aceb720/reality-view@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/d86ae052e59a651d0230647a5f415bf8/reality-view~dark@2x.png"
+        }
+      ]
+    },
+    "rotate-cube-around-x-axis": {
+      "alt": "Animation showing the cube rotated 45 degrees around the x-axis. The opening frame is an orange cube sitting in the middle of the scene. The rotate to the right button is tapped and the cube rotates around the x-axis 45 degrees clockwise. The rotate to the left button is then tapped and the cube rotates around the x-axis 45 degrees counter-clockwise.",
+      "identifier": "rotate-cube-around-x-axis",
+      "poster": null,
+      "type": "video",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/8142a502f8697ae437ffc8c0dd715ca2/rotate-cube-around-x-axis.mp4"
+        }
+      ]
+    },
+    "scale-cube-uniform": {
+      "alt": "Animation showing the cube scaled uniformly. In the center of the view is an orange cube. The scale up button is tapped and the cube grows twice as large. The scale down button is tapped and the cube shrinks back to its original size.",
+      "identifier": "scale-cube-uniform",
+      "poster": null,
+      "type": "video",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/7f2610aa7a9107895b9728d5f9ad720a/scale-cube-uniform.mp4"
+        }
+      ]
+    },
+    "translate-cube-on-x-axis": {
+      "alt": "Animation showing the cube translate along the x-axis. The opening frame is an orange box near the center of the view. The x-axis is selected and the move to the right button is tapped. When tapped, the orange cube moves to the right 0.1 units. The move to the left button is tapped and the orange cube moves back to its original position, 0.1 units to the left.",
+      "identifier": "translate-cube-on-x-axis",
+      "poster": null,
+      "type": "video",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f1da063c97f8adb995e441be98640d80/translate-cube-on-x-axis.mp4"
+        }
+      ]
+    },
+    "visionOS-PageImage-card.png": {
+      "alt": "A stylized illustration of an Apple Vision Pro with the word 'hello' written across the front in cursive.",
+      "identifier": "visionOS-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/90294957b44e5508a55fe39373eea478/visionOS-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/90fe463571fd45badfabacbb07f30591/visionOS-PageImage-card~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "RealityKit-and-Reality-Composer-Pro",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.visionOS/documentation/visionOS/BOT-anist",
+        "doc://com.apple.visionOS/documentation/visionOS/swift-splash",
+        "doc://com.apple.visionOS/documentation/visionOS/diorama",
+        "doc://com.apple.visionOS/documentation/visionOS/building-an-immersive-media-viewing-experience",
+        "doc://com.apple.visionOS/documentation/visionOS/enabling-video-reflections-in-an-immersive-environment",
+        "doc://com.apple.documentation/documentation/RealityKit/combining-2d-and-3d-views-in-an-immersive-app",
+        "doc://com.apple.visionOS/documentation/visionOS/understanding-the-realitykit-modular-architecture",
+        "doc://com.apple.visionOS/documentation/visionOS/designing-realitykit-content-with-reality-composer-pro",
+        "doc://com.apple.visionOS/documentation/visionOS/capturing-screenshots-and-video-from-your-apple-vision-pro-for-2d-viewing",
+        "doc://com.apple.visionOS/documentation/visionOS/implementing-object-tracking-in-your-visionOS-app",
+        "doc://com.apple.visionOS/documentation/visionOS/placing-entities-using-head-and-device-transform"
+      ],
+      "title": "RealityKit and Reality Composer Pro"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1ARKit~1ARSession/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "ARSession"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

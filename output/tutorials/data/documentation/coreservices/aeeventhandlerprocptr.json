@@ -1,0 +1,1058 @@
+{
+  "abstract": [
+    {
+      "text": "Defines a pointer to a function that handles one or more Apple events. Your Apple event handler function performs any action requested by the Apple event, adds parameters to the reply Apple event if appropriate (possibly including error information), and returns a result code.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/coreservices",
+        "doc://com.apple.documentation/documentation/coreservices/apple_events"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/applicationservices",
+        "doc://com.apple.documentation/documentation/applicationservices/apple_event_manager"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/coreservices/aeeventhandlerprocptr"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1442870,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@T@AEEventHandlerProcPtr",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "typealias "
+      },
+      {
+        "kind": "identifier",
+        "text": "AEEventHandlerProcPtr"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Core Services"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Type Alias",
+    "symbolKind": "tdef",
+    "title": "AEEventHandlerProcPtr"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "Mac Catalyst",
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "typealias"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AEEventHandlerProcPtr"
+            },
+            {
+              "kind": "text",
+              "text": " = ("
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Swift/UnsafePointer",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:SP",
+              "text": "UnsafePointer"
+            },
+            {
+              "kind": "text",
+              "text": "<"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreservices/appleevent",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@AppleEvent",
+              "text": "AppleEvent"
+            },
+            {
+              "kind": "text",
+              "text": ">?"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Swift/UnsafeMutablePointer",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:Sp",
+              "text": "UnsafeMutablePointer"
+            },
+            {
+              "kind": "text",
+              "text": "<"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreservices/appleevent",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@AppleEvent",
+              "text": "AppleEvent"
+            },
+            {
+              "kind": "text",
+              "text": ">?"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@SRefCon",
+              "text": "SRefCon"
+            },
+            {
+              "kind": "text",
+              "text": "?"
+            },
+            {
+              "kind": "text",
+              "text": ") -> "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@OSErr",
+              "text": "OSErr"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "languages": [
+        "swift"
+      ],
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A pointer to the Apple event to handle. See ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/coreservices/appleevent",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "theAppleEvent"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A pointer to the default reply Apple event provided by the Apple Event Manager. See ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/coreservices/appleevent",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ". If no reply is expected, ",
+                  "type": "text"
+                },
+                {
+                  "code": "reply",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " has descriptor type ",
+                  "type": "text"
+                },
+                {
+                  "code": "typeNull",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "reply"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The reference constant stored in the Apple event dispatch table when you install the handler function for the Apple event. You can store any 32-bit value in the dispatch table and use it any way you want when the handler is called. The reference constant may have a value of ",
+                  "type": "text"
+                },
+                {
+                  "code": "NULL",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "handlerRefcon"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return_value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A result code. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/applicationservices/apple_event_manager#1656145",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Your handler should always return ",
+              "type": "text"
+            },
+            {
+              "code": "noErr",
+              "type": "codeVoice"
+            },
+            {
+              "text": " if it successfully handled the Apple event. If an error occurs, your handler should return either ",
+              "type": "text"
+            },
+            {
+              "code": "errAEEventNotHandled",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or some other nonzero result code. For more information, see the Discussion section.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An Apple event handler should extract any parameters and attributes from the Apple event, perform the requested action, and add parameters to the reply Apple event if appropriate. You must provide an Apple event handler for each Apple event your application supports. The ",
+              "type": "text"
+            },
+            {
+              "code": "AEProcessAppleEvent(_:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function calls one of your Apple event handlers when it processes an Apple event.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If an error occurs because your application cannot understand the event, return ",
+              "type": "text"
+            },
+            {
+              "code": "errAEEventNotHandled",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", so that the Apple Event Manager may be able to find another handler to handle the event. If the error occurs because the event is impossible to handle as specified, return the result code returned by whatever function caused the failure, or whatever other result code is appropriate.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, suppose your application receives a ",
+              "type": "text"
+            },
+            {
+              "code": "kAEGetData",
+              "type": "codeVoice"
+            },
+            {
+              "text": " event that requests the name of the current printer, and your application cannot handle such an event. In this situation, you should return ",
+              "type": "text"
+            },
+            {
+              "code": "errAEEventNotHandled",
+              "type": "codeVoice"
+            },
+            {
+              "text": " so that another handler available to the Apple Event Manager can have a chance to handle the event. This strategy allows users to take advantage of system capabilities from within your application via system handlers.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your Apple event handler calls the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreservices/1449720-aeresolve",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function and ",
+              "type": "text"
+            },
+            {
+              "code": "AEResolve",
+              "type": "codeVoice"
+            },
+            {
+              "text": " calls an object accessor function in the system object accessor dispatch table, your Apple event handler may not recognize the descriptor type of the token returned by the function. In this case, your handler should return the result code ",
+              "type": "text"
+            },
+            {
+              "code": "errAEUnknownObjectType",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". When your handler returns this result code, the Apple Event Manager attempts to locate a system Apple event handler that can recognize the token.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For additional information on dealing with error conditions, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreservices/oslgeterrdescprocptr",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To provide a pointer to your event handler callback function, you create a universal procedure pointer (UPP) of type ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreservices/aeeventhandlerupp",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", using the function ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreservices/1446862-newaeeventhandlerupp",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". You can do so with code like the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "AEEventHandlerUPP MyEventHandlerUPP;",
+            "MyEventHandlerUPP = NewAEEventHandlerUPP (&MyEventHandlerCallback)"
+          ],
+          "metadata": {
+            "anchor": "1820168",
+            "title": "Listing 1"
+          },
+          "syntax": "occ",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can then pass the UPP ",
+              "type": "text"
+            },
+            {
+              "code": "MyEventHandlerUPP",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as a parameter to any function that installs or removes a handler, such as ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreservices/1448596-aeinstalleventhandler",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". If your application installs the same event handler to handle more than one kind of event (more than one pair of event class and event ID), you can use the same UPP to install the handler multiple times.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you wish to call your event handler callback function directly, you can use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreservices/1446585-invokeaeeventhandlerupp",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you are finished with an event handler callback function, and have removed it with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreservices/1445239-aeremoveeventhandler",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function, you can dispose of the UPP with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreservices/1442066-disposeaeeventhandlerupp",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function. However, don’t dispose of the UPP if any remaining handler uses it or if you plan to install the handler again. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.Swift/documentation/Swift/UnsafeMutablePointer": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/UnsafeMutablePointer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UnsafeMutablePointer",
+      "type": "topic",
+      "url": "/documentation/swift/unsafemutablepointer"
+    },
+    "doc://com.apple.Swift/documentation/Swift/UnsafePointer": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/UnsafePointer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UnsafePointer",
+      "type": "topic",
+      "url": "/documentation/swift/unsafepointer"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Application Services",
+      "type": "topic",
+      "url": "/documentation/applicationservices"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/apple_event_manager": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/apple_event_manager",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Apple Event Manager",
+      "type": "topic",
+      "url": "/documentation/applicationservices/apple_event_manager"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/apple_event_manager#1656145": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/apple_event_manager#1656145",
+      "kind": "article",
+      "role": "task",
+      "title": "Result Codes",
+      "type": "section",
+      "url": "/documentation/applicationservices/apple_event_manager#1656145"
+    },
+    "doc://com.apple.documentation/documentation/coreservices": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Services",
+      "type": "topic",
+      "url": "/documentation/coreservices"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1442066-disposeaeeventhandlerupp": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1442066-disposeaeeventhandlerupp",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "DisposeAEEventHandlerUPP(_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1442066-disposeaeeventhandlerupp"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1445239-aeremoveeventhandler": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1445239-aeremoveeventhandler",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AERemoveEventHandler(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1445239-aeremoveeventhandler"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1446585-invokeaeeventhandlerupp": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1446585-invokeaeeventhandlerupp",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "InvokeAEEventHandlerUPP(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1446585-invokeaeeventhandlerupp"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1446862-newaeeventhandlerupp": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1446862-newaeeventhandlerupp",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NewAEEventHandlerUPP(_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1446862-newaeeventhandlerupp"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1448596-aeinstalleventhandler": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1448596-aeinstalleventhandler",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AEInstallEventHandler(_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1448596-aeinstalleventhandler"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1449720-aeresolve": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1449720-aeresolve",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AEResolve(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1449720-aeresolve"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/aecoercedescprocptr": {
+      "abstract": [
+        {
+          "text": "Defines a pointer to a function that coerces data stored in a descriptor. Your descriptor coercion callback function coerces the data from the passed descriptor to the specified type, returning the coerced data in a second descriptor.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "AECoerceDescProcPtr"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/aecoercedescprocptr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AECoerceDescProcPtr",
+      "type": "topic",
+      "url": "/documentation/coreservices/aecoercedescprocptr"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/aecoerceptrprocptr": {
+      "abstract": [
+        {
+          "text": "Defines a pointer to a function that coerces data stored in a buffer. Your pointer coercion callback routine coerces the data from the passed buffer to the specified type, returning the coerced data in a descriptor.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "AECoercePtrProcPtr"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/aecoerceptrprocptr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AECoercePtrProcPtr",
+      "type": "topic",
+      "url": "/documentation/coreservices/aecoerceptrprocptr"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/aedisposeexternalprocptr": {
+      "abstract": [
+        {
+          "text": "Defines a pointer to a function the Apple Event Manager calls to dispose of a descriptor created by the ",
+          "type": "text"
+        },
+        {
+          "code": "AECreateDescFromExternalPtr",
+          "type": "codeVoice"
+        },
+        {
+          "text": " function. Your callback function disposes of the buffer you originally passed to that function.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "AEDisposeExternalProcPtr"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/aedisposeexternalprocptr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AEDisposeExternalProcPtr",
+      "type": "topic",
+      "url": "/documentation/coreservices/aedisposeexternalprocptr"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/aeeventhandlerprocptr": {
+      "abstract": [
+        {
+          "text": "Defines a pointer to a function that handles one or more Apple events. Your Apple event handler function performs any action requested by the Apple event, adds parameters to the reply Apple event if appropriate (possibly including error information), and returns a result code.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "AEEventHandlerProcPtr"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/aeeventhandlerprocptr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AEEventHandlerProcPtr",
+      "type": "topic",
+      "url": "/documentation/coreservices/aeeventhandlerprocptr"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/aeeventhandlerprocptr#1820168": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/aeeventhandlerprocptr#1820168",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/coreservices/aeeventhandlerprocptr#1820168"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/aeeventhandlerupp": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/aeeventhandlerupp",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AEEventHandlerUPP",
+      "type": "topic",
+      "url": "/documentation/coreservices/aeeventhandlerupp"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/aeremoteprocessresolvercallback": {
+      "abstract": [
+        {
+          "text": "Defines a pointer to a function the Apple Event Manager calls when the asynchronous execution of a remote process resolver completes, either due to success or failure, after a call to the ",
+          "type": "text"
+        },
+        {
+          "code": "AERemoteProcessResolverScheduleWithRunLoop",
+          "type": "codeVoice"
+        },
+        {
+          "text": " function. Your callback function can use the reference passed to it to get the remote process information.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "AERemoteProcessResolverCallback"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/aeremoteprocessresolvercallback",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AERemoteProcessResolverCallback",
+      "type": "topic",
+      "url": "/documentation/coreservices/aeremoteprocessresolvercallback"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/apple_events": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/apple_events",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Apple Events",
+      "type": "topic",
+      "url": "/documentation/coreservices/apple_events"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/appleevent": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/appleevent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AppleEvent",
+      "type": "topic",
+      "url": "/documentation/coreservices/appleevent"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/oslaccessorprocptr": {
+      "abstract": [
+        {
+          "text": "Your object accessor function either finds elements or properties of an Apple event object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "OSLAccessorProcPtr"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/oslaccessorprocptr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSLAccessorProcPtr",
+      "type": "topic",
+      "url": "/documentation/coreservices/oslaccessorprocptr"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/osladjustmarksprocptr": {
+      "abstract": [
+        {
+          "text": "Defines a pointer to an adjust marks callback function. Your adjust marks function unmarks objects previously marked by a call to your marking function.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "OSLAdjustMarksProcPtr"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/osladjustmarksprocptr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSLAdjustMarksProcPtr",
+      "type": "topic",
+      "url": "/documentation/coreservices/osladjustmarksprocptr"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/oslcompareprocptr": {
+      "abstract": [
+        {
+          "text": "Defines a pointer to an object comparison callback function. Your object comparison function compares one Apple event object to another or to the data for a descriptor.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "OSLCompareProcPtr"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/oslcompareprocptr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSLCompareProcPtr",
+      "type": "topic",
+      "url": "/documentation/coreservices/oslcompareprocptr"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/oslcountprocptr": {
+      "abstract": [
+        {
+          "text": "Defines a pointer to an object counting callback function. Your object counting function counts the number of Apple event objects of a specified class in a specified container object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "OSLCountProcPtr"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/oslcountprocptr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSLCountProcPtr",
+      "type": "topic",
+      "url": "/documentation/coreservices/oslcountprocptr"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/osldisposetokenprocptr": {
+      "abstract": [
+        {
+          "text": "Defines a pointer to a dispose token callback function. Your dispose token function, required only if you use a complex token format, disposes of the specified token.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "OSLDisposeTokenProcPtr"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/osldisposetokenprocptr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSLDisposeTokenProcPtr",
+      "type": "topic",
+      "url": "/documentation/coreservices/osldisposetokenprocptr"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/oslgeterrdescprocptr": {
+      "abstract": [
+        {
+          "text": "Defines a pointer to an error descriptor callback function. Your error descriptor callback function supplies a pointer to an address where the Apple Event Manager can store the current descriptor if an error occurs during a call to the ",
+          "type": "text"
+        },
+        {
+          "code": "AEResolve",
+          "type": "codeVoice"
+        },
+        {
+          "text": " function.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "OSLGetErrDescProcPtr"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/oslgeterrdescprocptr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSLGetErrDescProcPtr",
+      "type": "topic",
+      "url": "/documentation/coreservices/oslgeterrdescprocptr"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/oslgetmarktokenprocptr": {
+      "abstract": [
+        {
+          "text": "Defines a pointer to a mark token callback function. Your mark token function returns a mark token.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "OSLGetMarkTokenProcPtr"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/oslgetmarktokenprocptr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSLGetMarkTokenProcPtr",
+      "type": "topic",
+      "url": "/documentation/coreservices/oslgetmarktokenprocptr"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/oslmarkprocptr": {
+      "abstract": [
+        {
+          "text": "Defines a pointer to an object marking callback function. Your object-marking function marks a specific Apple event object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "OSLMarkProcPtr"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/oslmarkprocptr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSLMarkProcPtr",
+      "type": "topic",
+      "url": "/documentation/coreservices/oslmarkprocptr"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreservices/aeremoteprocessresolvercallback",
+        "doc://com.apple.documentation/documentation/coreservices/aedisposeexternalprocptr",
+        "doc://com.apple.documentation/documentation/coreservices/aecoercedescprocptr",
+        "doc://com.apple.documentation/documentation/coreservices/aecoerceptrprocptr",
+        "doc://com.apple.documentation/documentation/coreservices/oslaccessorprocptr",
+        "doc://com.apple.documentation/documentation/coreservices/osladjustmarksprocptr",
+        "doc://com.apple.documentation/documentation/coreservices/oslcompareprocptr",
+        "doc://com.apple.documentation/documentation/coreservices/oslcountprocptr",
+        "doc://com.apple.documentation/documentation/coreservices/osldisposetokenprocptr",
+        "doc://com.apple.documentation/documentation/coreservices/oslgeterrdescprocptr",
+        "doc://com.apple.documentation/documentation/coreservices/oslgetmarktokenprocptr",
+        "doc://com.apple.documentation/documentation/coreservices/oslmarkprocptr"
+      ],
+      "title": "Callbacks"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/coreservices/aeeventhandlerprocptr"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/coreservices/aeeventhandlerprocptr"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,883 @@
+{
+  "abstract": [
+    {
+      "text": "Obtains the number of the first page to be printed.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/applicationservices",
+        "doc://com.apple.documentation/documentation/applicationservices/core_printing"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/applicationservices/1460271-pmgetfirstpage"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1460271,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@F@PMGetFirstPage",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "func "
+      },
+      {
+        "kind": "identifier",
+        "text": "PMGetFirstPage"
+      },
+      {
+        "kind": "text",
+        "text": "(PMPrintSettings, UnsafeMutablePointer<UInt32>) -> OSStatus"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Application Services"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "15.4",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Function",
+    "symbolKind": "func",
+    "title": "PMGetFirstPage(_:_:)"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "Mac Catalyst",
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "func"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "PMGetFirstPage"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "externalParam",
+              "text": "_"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "printSettings"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/applicationservices/pmprintsettings",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@PMPrintSettings",
+              "text": "PMPrintSettings"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "externalParam",
+              "text": "_"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "first"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Swift/UnsafeMutablePointer",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:Sp",
+              "text": "UnsafeMutablePointer"
+            },
+            {
+              "kind": "text",
+              "text": "<"
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Swift/UInt32",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:s6UInt32V",
+              "text": "UInt32"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            },
+            {
+              "kind": "text",
+              "text": ") -> "
+            },
+            {
+              "identifier": "symbol-1480124",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@OSStatus",
+              "text": "OSStatus"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "languages": [
+        "swift"
+      ],
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The print settings object whose first page number you want to obtain.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "printSettings"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A pointer to your ",
+                  "type": "text"
+                },
+                {
+                  "code": "UInt32",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " variable. On return, the variable contains the page number of the first page to print. The default first page number is 1.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "first"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return_value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A result code. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/applicationservices/core_printing#1670007",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can use this function to obtain the page number entered by the user in the From field of the Print dialog. If the user selects the All button, the function returns a value of 1. If the user did not enter a value, the function returns the value of the previous call to ",
+              "type": "text"
+            },
+            {
+              "code": "PMSetFirstPage",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", if any, or the default value of 1.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.Swift/documentation/Swift/UInt32": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/UInt32",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UInt32",
+      "type": "topic",
+      "url": "/documentation/swift/uint32"
+    },
+    "doc://com.apple.Swift/documentation/Swift/UnsafeMutablePointer": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/UnsafeMutablePointer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UnsafeMutablePointer",
+      "type": "topic",
+      "url": "/documentation/swift/unsafemutablepointer"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Application Services",
+      "type": "topic",
+      "url": "/documentation/applicationservices"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1458921-pmgetduplex": {
+      "abstract": [
+        {
+          "text": "Obtains the selected duplex mode.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "PMGetDuplex"
+        },
+        {
+          "kind": "text",
+          "text": "(PMPrintSettings, UnsafeMutablePointer<PMDuplexMode>) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1458921-pmgetduplex",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMGetDuplex(_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1458921-pmgetduplex"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1459088-pmprintsettingscopyasdictionary": {
+      "abstract": [
+        {
+          "text": "Creates a dictionary that contains the settings in a print settings object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "PMPrintSettingsCopyAsDictionary"
+        },
+        {
+          "kind": "text",
+          "text": "(PMPrintSettings, UnsafeMutablePointer<Unmanaged<CFDictionary>?>) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1459088-pmprintsettingscopyasdictionary",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMPrintSettingsCopyAsDictionary(_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1459088-pmprintsettingscopyasdictionary"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1459233-pmprintsettingsgetjobname": {
+      "abstract": [
+        {
+          "text": "Obtains the name of a print job.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "PMPrintSettingsGetJobName"
+        },
+        {
+          "kind": "text",
+          "text": "(PMPrintSettings, UnsafeMutablePointer<Unmanaged<CFString>?>) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1459233-pmprintsettingsgetjobname",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMPrintSettingsGetJobName(_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1459233-pmprintsettingsgetjobname"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1459324-pmgetpagerange": {
+      "abstract": [
+        {
+          "text": "Obtains the valid range of pages that can be printed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "PMGetPageRange"
+        },
+        {
+          "kind": "text",
+          "text": "(PMPrintSettings, UnsafeMutablePointer<UInt32>, UnsafeMutablePointer<UInt32>) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1459324-pmgetpagerange",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMGetPageRange(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1459324-pmgetpagerange"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1460149-pmprintsettingssetjobname": {
+      "abstract": [
+        {
+          "text": "Specifies the name of a print job.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "PMPrintSettingsSetJobName"
+        },
+        {
+          "kind": "text",
+          "text": "(PMPrintSettings, CFString) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1460149-pmprintsettingssetjobname",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMPrintSettingsSetJobName(_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1460149-pmprintsettingssetjobname"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1460271-pmgetfirstpage": {
+      "abstract": [
+        {
+          "text": "Obtains the number of the first page to be printed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "PMGetFirstPage"
+        },
+        {
+          "kind": "text",
+          "text": "(PMPrintSettings, UnsafeMutablePointer<UInt32>) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1460271-pmgetfirstpage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMGetFirstPage(_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1460271-pmgetfirstpage"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1460602-pmprintsettingsgetvalue": {
+      "abstract": [
+        {
+          "text": "Obtains the value of a setting in a print settings object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "PMPrintSettingsGetValue"
+        },
+        {
+          "kind": "text",
+          "text": "(PMPrintSettings, CFString, UnsafeMutablePointer<Unmanaged<CFTypeRef>?>) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1460602-pmprintsettingsgetvalue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMPrintSettingsGetValue(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1460602-pmprintsettingsgetvalue"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1461519-pmsetfirstpage": {
+      "abstract": [
+        {
+          "text": "Sets the default page number of the first page to be printed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "PMSetFirstPage"
+        },
+        {
+          "kind": "text",
+          "text": "(PMPrintSettings, UInt32, Bool) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1461519-pmsetfirstpage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMSetFirstPage(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1461519-pmsetfirstpage"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1461697-pmprintsettingssetvalue": {
+      "abstract": [
+        {
+          "text": "Stores the value of a setting in a print settings object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "PMPrintSettingsSetValue"
+        },
+        {
+          "kind": "text",
+          "text": "(PMPrintSettings, CFString, CFTypeRef?, Bool) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1461697-pmprintsettingssetvalue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMPrintSettingsSetValue(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1461697-pmprintsettingssetvalue"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1462000-pmsetduplex": {
+      "abstract": [
+        {
+          "text": "Sets the duplex mode.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "PMSetDuplex"
+        },
+        {
+          "kind": "text",
+          "text": "(PMPrintSettings, PMDuplexMode) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1462000-pmsetduplex",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMSetDuplex(_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1462000-pmsetduplex"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1462294-pmsetpagerange": {
+      "abstract": [
+        {
+          "text": "Sets the valid range of pages that can be printed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "PMSetPageRange"
+        },
+        {
+          "kind": "text",
+          "text": "(PMPrintSettings, UInt32, UInt32) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1462294-pmsetpagerange",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMSetPageRange(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1462294-pmsetpagerange"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1462730-pmprintsettingscopykeys": {
+      "abstract": [
+        {
+          "text": "Obtains the keys for items in a print settings object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "PMPrintSettingsCopyKeys"
+        },
+        {
+          "kind": "text",
+          "text": "(PMPrintSettings, UnsafeMutablePointer<Unmanaged<CFArray>?>) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1462730-pmprintsettingscopykeys",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMPrintSettingsCopyKeys(_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1462730-pmprintsettingscopykeys"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1462747-pmgetlastpage": {
+      "abstract": [
+        {
+          "text": "Obtains the number of the last page to be printed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "PMGetLastPage"
+        },
+        {
+          "kind": "text",
+          "text": "(PMPrintSettings, UnsafeMutablePointer<UInt32>) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1462747-pmgetlastpage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMGetLastPage(_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1462747-pmgetlastpage"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1463223-pmsetcollate": {
+      "abstract": [
+        {
+          "text": "Specifies whether the job collate option is selected.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "PMSetCollate"
+        },
+        {
+          "kind": "text",
+          "text": "(PMPrintSettings, Bool) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1463223-pmsetcollate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMSetCollate(_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1463223-pmsetcollate"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1463595-pmsetlastpage": {
+      "abstract": [
+        {
+          "text": "Sets the page number of the last page to be printed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "PMSetLastPage"
+        },
+        {
+          "kind": "text",
+          "text": "(PMPrintSettings, UInt32, Bool) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1463595-pmsetlastpage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMSetLastPage(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1463595-pmsetlastpage"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1463804-pmsetcopies": {
+      "abstract": [
+        {
+          "text": "Sets the initial value for the number of copies to be printed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "PMSetCopies"
+        },
+        {
+          "kind": "text",
+          "text": "(PMPrintSettings, UInt32, Bool) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1463804-pmsetcopies",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMSetCopies(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1463804-pmsetcopies"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1464480-pmgetcopies": {
+      "abstract": [
+        {
+          "text": "Obtains the number of copies that the user requests to be printed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "PMGetCopies"
+        },
+        {
+          "kind": "text",
+          "text": "(PMPrintSettings, UnsafeMutablePointer<UInt32>) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1464480-pmgetcopies",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMGetCopies(_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1464480-pmgetcopies"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1464492-pmgetcollate": {
+      "abstract": [
+        {
+          "text": "Obtains a Boolean value that indicates whether the job collate option is selected.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "PMGetCollate"
+        },
+        {
+          "kind": "text",
+          "text": "(PMPrintSettings, UnsafeMutablePointer<DarwinBoolean>) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1464492-pmgetcollate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMGetCollate(_:_:)",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1464492-pmgetcollate"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/core_printing": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/core_printing",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Core Printing",
+      "type": "topic",
+      "url": "/documentation/applicationservices/core_printing"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/core_printing#1670007": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/core_printing#1670007",
+      "kind": "article",
+      "role": "task",
+      "title": "Result Codes",
+      "type": "section",
+      "url": "/documentation/applicationservices/core_printing#1670007"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/pmprintsettings": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/pmprintsettings",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMPrintSettings",
+      "type": "topic",
+      "url": "/documentation/applicationservices/pmprintsettings"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/applicationservices/1461519-pmsetfirstpage",
+        "doc://com.apple.documentation/documentation/applicationservices/1462747-pmgetlastpage",
+        "doc://com.apple.documentation/documentation/applicationservices/1463595-pmsetlastpage",
+        "doc://com.apple.documentation/documentation/applicationservices/1459324-pmgetpagerange",
+        "doc://com.apple.documentation/documentation/applicationservices/1462294-pmsetpagerange",
+        "doc://com.apple.documentation/documentation/applicationservices/1459233-pmprintsettingsgetjobname",
+        "doc://com.apple.documentation/documentation/applicationservices/1460149-pmprintsettingssetjobname",
+        "doc://com.apple.documentation/documentation/applicationservices/1464480-pmgetcopies",
+        "doc://com.apple.documentation/documentation/applicationservices/1463804-pmsetcopies",
+        "doc://com.apple.documentation/documentation/applicationservices/1464492-pmgetcollate",
+        "doc://com.apple.documentation/documentation/applicationservices/1463223-pmsetcollate",
+        "doc://com.apple.documentation/documentation/applicationservices/1458921-pmgetduplex",
+        "doc://com.apple.documentation/documentation/applicationservices/1462000-pmsetduplex",
+        "doc://com.apple.documentation/documentation/applicationservices/1460602-pmprintsettingsgetvalue",
+        "doc://com.apple.documentation/documentation/applicationservices/1461697-pmprintsettingssetvalue",
+        "doc://com.apple.documentation/documentation/applicationservices/1459088-pmprintsettingscopyasdictionary",
+        "doc://com.apple.documentation/documentation/applicationservices/1462730-pmprintsettingscopykeys"
+      ],
+      "title": "Accessing Data in Print Settings Objects"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/applicationservices/1460271-pmgetfirstpage"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/applicationservices/1460271-pmgetfirstpage"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

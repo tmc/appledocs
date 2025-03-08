@@ -1,0 +1,960 @@
+{
+  "abstract": [
+    {
+      "text": "Premultiplication description for the color channels of an image.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/image_filters",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimageconversion"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsalphatype"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1648925,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@E@MPSAlphaType",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "enum "
+      },
+      {
+        "kind": "identifier",
+        "text": "MPSAlphaType"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Metal Performance Shaders"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "10.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "10.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.13",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "10.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Enumeration",
+    "symbolKind": "enum",
+    "title": "MPSAlphaType"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "enum"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MPSAlphaType"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Swift/UInt",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:Su",
+              "text": "UInt"
+            },
+            {
+              "kind": "text",
+              "text": ", @unchecked "
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Swift/Sendable",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:s8SendableP",
+              "text": "Sendable"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Some image data is premultiplied. That is to say that the color channels are stored instead as ",
+              "type": "text"
+            },
+            {
+              "code": "color*alpha",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". This is an optimization for image compositing (alpha blending), but it can get in the way of most other image filters, especially those that apply non-linear effects like the color conversion filters and functions like convolution or resampling filters that look at adjacent pixels, where the alpha may not be the same. The following are some basic conversion cases:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "metadata": {
+            "anchor": "2556911",
+            "title": "Table 1"
+          },
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Source",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Destination",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Operation",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "NonPremultiplied",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "NonPremultiplied",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "None.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "NonPremultiplied",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "AlphaIsOne",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Composite with opaque background color.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "NonPremultiplied",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "Premultiplied",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Multiply color channels by alpha.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "AlphaIsOne",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "NonPremultiplied",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Set alpha to 1.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "AlphaIsOne",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "AlphaIsOne",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Set alpha to 1.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "AlphaIsOne",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "Premultiplied",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Set alpha to 1.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "Premultiplied",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "NonPremultiplied",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Divide color channels by alpha.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "Premultiplied",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "AlphaIsOne",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Composite with opaque background color.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "Premultiplied",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "Premultiplied",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "None.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Most ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpskernel",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects require non-premultiplied or completely opaque colors to work correctly. They implictly assume that alpha is equal to 1 and do not provide functions for the user to specify alpha channel types. Currently, the only filters that can handle premultiplied data are the color conversion filters provided by ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimageconversion",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " kernels and they insert extra operations to ensure a correct conversion. Fully opaque images should use ",
+              "type": "text"
+            },
+            {
+              "code": "MPSAlphaTypeAlphaIsOne",
+              "type": "codeVoice"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.Swift/documentation/Swift/Sendable": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Sendable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/swift/sendable"
+    },
+    "doc://com.apple.Swift/documentation/Swift/UInt": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/UInt",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UInt",
+      "type": "topic",
+      "url": "/documentation/swift/uint"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/cgimagealphainfo/first": {
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgimagealphainfo/first",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGImageAlphaInfo.first",
+      "type": "topic",
+      "url": "/documentation/coregraphics/cgimagealphainfo/first"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/cgimagealphainfo/last": {
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgimagealphainfo/last",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGImageAlphaInfo.last",
+      "type": "topic",
+      "url": "/documentation/coregraphics/cgimagealphainfo/last"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/cgimagealphainfo/none": {
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgimagealphainfo/none",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGImageAlphaInfo.none",
+      "type": "topic",
+      "url": "/documentation/coregraphics/cgimagealphainfo/none"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/cgimagealphainfo/noneskipfirst": {
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgimagealphainfo/noneskipfirst",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGImageAlphaInfo.noneSkipFirst",
+      "type": "topic",
+      "url": "/documentation/coregraphics/cgimagealphainfo/noneskipfirst"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/cgimagealphainfo/noneskiplast": {
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgimagealphainfo/noneskiplast",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGImageAlphaInfo.noneSkipLast",
+      "type": "topic",
+      "url": "/documentation/coregraphics/cgimagealphainfo/noneskiplast"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/cgimagealphainfo/premultipliedfirst": {
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgimagealphainfo/premultipliedfirst",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGImageAlphaInfo.premultipliedFirst",
+      "type": "topic",
+      "url": "/documentation/coregraphics/cgimagealphainfo/premultipliedfirst"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/cgimagealphainfo/premultipliedlast": {
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgimagealphainfo/premultipliedlast",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGImageAlphaInfo.premultipliedLast",
+      "type": "topic",
+      "url": "/documentation/coregraphics/cgimagealphainfo/premultipliedlast"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders": {
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Metal Performance Shaders",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/image_filters": {
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/image_filters",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Image Filters",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/image_filters"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsalphatype": {
+      "abstract": [
+        {
+          "text": "Premultiplication description for the color channels of an image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "enum "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSAlphaType"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsalphatype",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSAlphaType",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsalphatype"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsalphatype#2556911": {
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsalphatype#2556911",
+      "kind": "article",
+      "role": "table",
+      "title": "Table 1",
+      "type": "section",
+      "url": "/documentation/metalperformanceshaders/mpsalphatype#2556911"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsalphatype/alphaisone": {
+      "abstract": [
+        {
+          "text": "Alpha is guaranteed to be 1, even if it is not encoded as 1 or not encoded at all. (",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgimagealphainfo/noneskipfirst",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "code": "/",
+          "type": "codeVoice"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgimagealphainfo/noneskiplast",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "code": ", ",
+          "type": "codeVoice"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgimagealphainfo/none",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ")",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "case "
+        },
+        {
+          "kind": "identifier",
+          "text": "alphaIsOne"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsalphatype/alphaisone",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSAlphaType.alphaIsOne",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsalphatype/alphaisone"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsalphatype/nonpremultiplied": {
+      "abstract": [
+        {
+          "text": "The image is not premultiplied by alpha. Alpha is not guaranteed to be 1. (",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgimagealphainfo/first",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "code": "/",
+          "type": "codeVoice"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgimagealphainfo/last",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ")",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "case "
+        },
+        {
+          "kind": "identifier",
+          "text": "nonPremultiplied"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsalphatype/nonpremultiplied",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSAlphaType.nonPremultiplied",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsalphatype/nonpremultiplied"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsalphatype/premultiplied": {
+      "abstract": [
+        {
+          "text": "The image is premultiplied by alpha. Alpha is not guaranteed to be 1. (",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgimagealphainfo/premultipliedfirst",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "code": "/",
+          "type": "codeVoice"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgimagealphainfo/premultipliedlast",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ")",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "case "
+        },
+        {
+          "kind": "identifier",
+          "text": "premultiplied"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsalphatype/premultiplied",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSAlphaType.premultiplied",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsalphatype/premultiplied"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimageconversion": {
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimageconversion",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSImageConversion",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsimageconversion"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimageconversion/2206722-init": {
+      "abstract": [
+        {
+          "text": "Initializes a filter that can convert texture color space, alpha, and pixel format.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "device"
+        },
+        {
+          "kind": "text",
+          "text": ": any MTLDevice, "
+        },
+        {
+          "kind": "identifier",
+          "text": "srcAlpha"
+        },
+        {
+          "kind": "text",
+          "text": ": MPSAlphaType, "
+        },
+        {
+          "kind": "identifier",
+          "text": "destAlpha"
+        },
+        {
+          "kind": "text",
+          "text": ": MPSAlphaType, "
+        },
+        {
+          "kind": "identifier",
+          "text": "backgroundColor"
+        },
+        {
+          "kind": "text",
+          "text": ": UnsafeMutablePointer<CGFloat>?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "conversionInfo"
+        },
+        {
+          "kind": "text",
+          "text": ": CGColorConversionInfo?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimageconversion/2206722-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(device:srcAlpha:destAlpha:backgroundColor:conversionInfo:)",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsimageconversion/2206722-init"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpskernel": {
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpskernel",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSKernel",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpskernel"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/Sendable"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimageconversion/2206722-init"
+      ],
+      "title": "Methods"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "1650421",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsalphatype/nonpremultiplied",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsalphatype/alphaisone",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsalphatype/premultiplied"
+      ],
+      "kind": "taskGroup",
+      "title": "Constants"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/metalperformanceshaders/mpsalphatype"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/metalperformanceshaders/mpsalphatype"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

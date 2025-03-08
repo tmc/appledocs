@@ -1,0 +1,3828 @@
+{
+  "abstract": [
+    {
+      "text": "An object used to encode data into an argument buffer.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.metal/documentation/Metal"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.metal/documentation/Metal/MTLArgumentEncoder"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(pl)MTLArgumentEncoder",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "protocol"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "MTLArgumentEncoder"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Metal"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "MTLArgumentEncoder"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "11.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "11.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.13",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "11.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Protocol",
+    "symbolKind": "protocol",
+    "title": "MTLArgumentEncoder"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MTLArgumentEncoder"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObjectProtocol"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.metal/documentation/Metal/improving-cpu-performance-by-using-argument-buffers"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLArgumentEncoder",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object encodes buffers, textures, samplers, and inlined constant data into an argument buffer. A ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLBuffer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object represents the argument buffer that you set as the encoding destination by calling the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLArgumentEncoder/setArgumentBuffer(_:offset:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The recommended way to declare an argument buffer is to define its structure in your Metal shading language code. You can assign the argument buffer to a function’s specific buffer index. To create an encoder for this type of argument buffer, call one of the following ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLFunction",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " methods:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.metal/documentation/Metal/MTLFunction/makeArgumentEncoder(bufferIndex:)",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.metal/documentation/Metal/MTLFunction/makeArgumentEncoder(bufferIndex:reflection:)",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you construct your shaders dynamically at runtime, you can still construct argument buffers as parameters for the shader. Define each argument separately and then add it to an array of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLArgumentDescriptor",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects. To create an encoder for this type of argument buffer, call the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLDevice/makeArgumentEncoder(arguments:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLDevice",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "A runtime validation error occurs if you create a ",
+                  "type": "text"
+                },
+                {
+                  "code": "MTLArgumentEncoder",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " object using structures that don’t reference any other resources and don’t provide any ",
+                  "type": "text"
+                },
+                {
+                  "code": "[[id()]]",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " annotation on any of their members.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.metal/documentation/Metal": {
+      "abstract": [
+        {
+          "text": "Render advanced 3D graphics and compute data in parallel with graphics processors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Metal",
+      "type": "topic",
+      "url": "/documentation/metal"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLArgumentDescriptor": {
+      "abstract": [
+        {
+          "text": "A representation of an argument within an argument buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLArgumentDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLArgumentDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLArgumentDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLArgumentDescriptor",
+      "type": "topic",
+      "url": "/documentation/metal/mtlargumentdescriptor"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLArgumentEncoder": {
+      "abstract": [
+        {
+          "text": "An object used to encode data into an argument buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLArgumentEncoder"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLArgumentEncoder",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLArgumentEncoder"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLArgumentEncoder",
+      "type": "topic",
+      "url": "/documentation/metal/mtlargumentencoder"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLArgumentEncoder/alignment": {
+      "abstract": [
+        {
+          "text": "The alignment, in bytes, required for storing the encoded resources of an argument buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "alignment"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLArgumentEncoder/alignment",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "alignment"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "alignment",
+      "type": "topic",
+      "url": "/documentation/metal/mtlargumentencoder/alignment"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLArgumentEncoder/constantData(at:)": {
+      "abstract": [
+        {
+          "text": "Returns a pointer for an inlined constant data argument in the argument buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "constantData"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sv",
+          "text": "UnsafeMutableRawPointer"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLArgumentEncoder/constantData(at:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "constantDataAtIndex:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "constantData(at:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlargumentencoder/constantdata(at:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLArgumentEncoder/device": {
+      "abstract": [
+        {
+          "text": "The device object that created the argument encoder.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "device"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLDevice",
+          "text": "MTLDevice"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLArgumentEncoder/device",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "device"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "device",
+      "type": "topic",
+      "url": "/documentation/metal/mtlargumentencoder/device"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLArgumentEncoder/encodedLength": {
+      "abstract": [
+        {
+          "text": "The number of bytes required to store the encoded resources of an argument buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "encodedLength"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLArgumentEncoder/encodedLength",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "encodedLength"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "encodedLength",
+      "type": "topic",
+      "url": "/documentation/metal/mtlargumentencoder/encodedlength"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLArgumentEncoder/label": {
+      "abstract": [
+        {
+          "text": "A string that identifies the argument buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "label"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLArgumentEncoder/label",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "label"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "label",
+      "type": "topic",
+      "url": "/documentation/metal/mtlargumentencoder/label"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLArgumentEncoder/makeArgumentEncoderForBuffer(atIndex:)": {
+      "abstract": [
+        {
+          "text": "Creates a new argument encoder for a nested argument buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "makeArgumentEncoderForBuffer"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "atIndex"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") -> (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLArgumentEncoder",
+          "text": "MTLArgumentEncoder"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLArgumentEncoder/makeArgumentEncoderForBuffer(atIndex:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "newArgumentEncoderForBufferAtIndex:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "makeArgumentEncoderForBuffer(atIndex:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlargumentencoder/makeargumentencoderforbuffer(atindex:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLArgumentEncoder/setAccelerationStructure(_:index:)": {
+      "abstract": [
+        {
+          "text": "Encodes a reference to an acceleration structure into the argument buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setAccelerationStructure"
+        },
+        {
+          "kind": "text",
+          "text": "((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLAccelerationStructure",
+          "text": "MTLAccelerationStructure"
+        },
+        {
+          "kind": "text",
+          "text": ")?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "index"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLArgumentEncoder/setAccelerationStructure(_:index:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setAccelerationStructure:atIndex:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "setAccelerationStructure(_:index:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlargumentencoder/setaccelerationstructure(_:index:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLArgumentEncoder/setArgumentBuffer(_:offset:)": {
+      "abstract": [
+        {
+          "text": "Specifies the position in a buffer where the encoder writes argument data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setArgumentBuffer"
+        },
+        {
+          "kind": "text",
+          "text": "((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLBuffer",
+          "text": "MTLBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ")?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "offset"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLArgumentEncoder/setArgumentBuffer(_:offset:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setArgumentBuffer:offset:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "setArgumentBuffer(_:offset:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlargumentencoder/setargumentbuffer(_:offset:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLArgumentEncoder/setArgumentBuffer(_:startOffset:arrayElement:)": {
+      "abstract": [
+        {
+          "text": "Specifies an array element within a buffer where the encoder writes argument data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setArgumentBuffer"
+        },
+        {
+          "kind": "text",
+          "text": "((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLBuffer",
+          "text": "MTLBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ")?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "startOffset"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "arrayElement"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLArgumentEncoder/setArgumentBuffer(_:startOffset:arrayElement:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setArgumentBuffer:startOffset:arrayElement:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "setArgumentBuffer(_:startOffset:arrayElement:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlargumentencoder/setargumentbuffer(_:startoffset:arrayelement:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLArgumentEncoder/setBuffer(_:offset:index:)": {
+      "abstract": [
+        {
+          "text": "Encodes a reference to a buffer into the argument buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setBuffer"
+        },
+        {
+          "kind": "text",
+          "text": "((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLBuffer",
+          "text": "MTLBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ")?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "offset"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "index"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLArgumentEncoder/setBuffer(_:offset:index:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setBuffer:offset:atIndex:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "setBuffer(_:offset:index:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlargumentencoder/setbuffer(_:offset:index:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLArgumentEncoder/setBuffers(_:offsets:range:)": {
+      "abstract": [
+        {
+          "text": "Encodes references to an array of buffers into the argument buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setBuffers"
+        },
+        {
+          "kind": "text",
+          "text": "([(any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLBuffer",
+          "text": "MTLBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ")?], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "offsets"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "range"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sn",
+          "text": "Range"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ">)"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLArgumentEncoder/setBuffers(_:offsets:range:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setBuffers(_:offsets:range:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlargumentencoder/setbuffers(_:offsets:range:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLArgumentEncoder/setBuffers:offsets:withRange:": {
+      "abstract": [
+        {
+          "text": "Encodes references to an array of buffers into the argument buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setBuffers:offsets:withRange:"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLArgumentEncoder/setBuffers:offsets:withRange:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setBuffers:offsets:withRange:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setBuffers:offsets:withRange:",
+      "type": "topic",
+      "url": "/documentation/metal/mtlargumentencoder/setbuffers:offsets:withrange:"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLArgumentEncoder/setComputePipelineState(_:at:)": {
+      "abstract": [
+        {
+          "text": "Encodes a reference to a compute pipeline state into the argument buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setComputePipelineState"
+        },
+        {
+          "kind": "text",
+          "text": "((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLComputePipelineState",
+          "text": "MTLComputePipelineState"
+        },
+        {
+          "kind": "text",
+          "text": ")?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLArgumentEncoder/setComputePipelineState(_:at:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setComputePipelineState(_:at:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlargumentencoder/setcomputepipelinestate(_:at:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLArgumentEncoder/setComputePipelineState(_:index:)": {
+      "abstract": [
+        {
+          "text": "Encodes a reference to a compute pipeline state into the argument buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setComputePipelineState"
+        },
+        {
+          "kind": "text",
+          "text": "((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLComputePipelineState",
+          "text": "MTLComputePipelineState"
+        },
+        {
+          "kind": "text",
+          "text": ")?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "index"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLArgumentEncoder/setComputePipelineState(_:index:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setComputePipelineState:atIndex:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "setComputePipelineState(_:index:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlargumentencoder/setcomputepipelinestate(_:index:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLArgumentEncoder/setComputePipelineStates(_:range:)": {
+      "abstract": [
+        {
+          "text": "Encodes references to an array of compute pipeline states into the argument buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setComputePipelineStates"
+        },
+        {
+          "kind": "text",
+          "text": "([(any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLComputePipelineState",
+          "text": "MTLComputePipelineState"
+        },
+        {
+          "kind": "text",
+          "text": ")?], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "range"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sn",
+          "text": "Range"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ">)"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLArgumentEncoder/setComputePipelineStates(_:range:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setComputePipelineStates(_:range:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlargumentencoder/setcomputepipelinestates(_:range:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLArgumentEncoder/setComputePipelineStates(_:with:)": {
+      "abstract": [
+        {
+          "text": "Encodes references to an array of compute pipeline states into the argument buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setComputePipelineStates"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<(any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLComputePipelineState",
+          "text": "MTLComputePipelineState"
+        },
+        {
+          "kind": "text",
+          "text": ")?>, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "NSRange"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLArgumentEncoder/setComputePipelineStates(_:with:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setComputePipelineStates(_:with:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlargumentencoder/setcomputepipelinestates(_:with:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLArgumentEncoder/setComputePipelineStates:withRange:": {
+      "abstract": [
+        {
+          "text": "Encodes references to an array of compute pipeline states into the argument buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setComputePipelineStates:withRange:"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLArgumentEncoder/setComputePipelineStates:withRange:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setComputePipelineStates:withRange:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setComputePipelineStates:withRange:",
+      "type": "topic",
+      "url": "/documentation/metal/mtlargumentencoder/setcomputepipelinestates:withrange:"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLArgumentEncoder/setIndirectCommandBuffer(_:index:)": {
+      "abstract": [
+        {
+          "text": "Encodes a reference to an indirect command buffer into the argument buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setIndirectCommandBuffer"
+        },
+        {
+          "kind": "text",
+          "text": "((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLIndirectCommandBuffer",
+          "text": "MTLIndirectCommandBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ")?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "index"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLArgumentEncoder/setIndirectCommandBuffer(_:index:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setIndirectCommandBuffer:atIndex:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "setIndirectCommandBuffer(_:index:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlargumentencoder/setindirectcommandbuffer(_:index:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLArgumentEncoder/setIndirectCommandBuffers(_:range:)": {
+      "abstract": [
+        {
+          "text": "Encodes an array of indirect command buffers into the argument buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setIndirectCommandBuffers"
+        },
+        {
+          "kind": "text",
+          "text": "([(any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLIndirectCommandBuffer",
+          "text": "MTLIndirectCommandBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ")?], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "range"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sn",
+          "text": "Range"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ">)"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLArgumentEncoder/setIndirectCommandBuffers(_:range:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setIndirectCommandBuffers(_:range:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlargumentencoder/setindirectcommandbuffers(_:range:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLArgumentEncoder/setIndirectCommandBuffers:withRange:": {
+      "abstract": [
+        {
+          "text": "Encodes an array of indirect command buffers into the argument buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setIndirectCommandBuffers:withRange:"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLArgumentEncoder/setIndirectCommandBuffers:withRange:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setIndirectCommandBuffers:withRange:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setIndirectCommandBuffers:withRange:",
+      "type": "topic",
+      "url": "/documentation/metal/mtlargumentencoder/setindirectcommandbuffers:withrange:"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLArgumentEncoder/setIntersectionFunctionTable(_:index:)": {
+      "abstract": [
+        {
+          "text": "Encodes a reference to a ray-tracing intersection function table into the argument buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setIntersectionFunctionTable"
+        },
+        {
+          "kind": "text",
+          "text": "((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLIntersectionFunctionTable",
+          "text": "MTLIntersectionFunctionTable"
+        },
+        {
+          "kind": "text",
+          "text": ")?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "index"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLArgumentEncoder/setIntersectionFunctionTable(_:index:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setIntersectionFunctionTable:atIndex:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "setIntersectionFunctionTable(_:index:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlargumentencoder/setintersectionfunctiontable(_:index:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLArgumentEncoder/setIntersectionFunctionTables(_:range:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setIntersectionFunctionTables"
+        },
+        {
+          "kind": "text",
+          "text": "([(any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLIntersectionFunctionTable",
+          "text": "MTLIntersectionFunctionTable"
+        },
+        {
+          "kind": "text",
+          "text": ")?], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "range"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sn",
+          "text": "Range"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ">)"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLArgumentEncoder/setIntersectionFunctionTables(_:range:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setIntersectionFunctionTables(_:range:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlargumentencoder/setintersectionfunctiontables(_:range:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLArgumentEncoder/setIntersectionFunctionTables:withRange:": {
+      "abstract": [
+        {
+          "text": "Encodes references to an array of intersection function tables into the argument buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setIntersectionFunctionTables:withRange:"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLArgumentEncoder/setIntersectionFunctionTables:withRange:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setIntersectionFunctionTables:withRange:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setIntersectionFunctionTables:withRange:",
+      "type": "topic",
+      "url": "/documentation/metal/mtlargumentencoder/setintersectionfunctiontables:withrange:"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLArgumentEncoder/setRenderPipelineState(_:index:)": {
+      "abstract": [
+        {
+          "text": "Encodes a reference to a render pipeline state into the argument buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setRenderPipelineState"
+        },
+        {
+          "kind": "text",
+          "text": "((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLRenderPipelineState",
+          "text": "MTLRenderPipelineState"
+        },
+        {
+          "kind": "text",
+          "text": ")?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "index"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLArgumentEncoder/setRenderPipelineState(_:index:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setRenderPipelineState:atIndex:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "setRenderPipelineState(_:index:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlargumentencoder/setrenderpipelinestate(_:index:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLArgumentEncoder/setRenderPipelineStates(_:range:)": {
+      "abstract": [
+        {
+          "text": "Encodes references to an array of render pipeline states into the argument buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setRenderPipelineStates"
+        },
+        {
+          "kind": "text",
+          "text": "([(any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLRenderPipelineState",
+          "text": "MTLRenderPipelineState"
+        },
+        {
+          "kind": "text",
+          "text": ")?], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "range"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sn",
+          "text": "Range"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ">)"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLArgumentEncoder/setRenderPipelineStates(_:range:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setRenderPipelineStates(_:range:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlargumentencoder/setrenderpipelinestates(_:range:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLArgumentEncoder/setRenderPipelineStates:withRange:": {
+      "abstract": [
+        {
+          "text": "Encodes references to an array of render pipeline states into the argument buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setRenderPipelineStates:withRange:"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLArgumentEncoder/setRenderPipelineStates:withRange:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setRenderPipelineStates:withRange:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setRenderPipelineStates:withRange:",
+      "type": "topic",
+      "url": "/documentation/metal/mtlargumentencoder/setrenderpipelinestates:withrange:"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLArgumentEncoder/setSamplerState(_:index:)": {
+      "abstract": [
+        {
+          "text": "Encodes a sampler into the argument buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setSamplerState"
+        },
+        {
+          "kind": "text",
+          "text": "((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLSamplerState",
+          "text": "MTLSamplerState"
+        },
+        {
+          "kind": "text",
+          "text": ")?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "index"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLArgumentEncoder/setSamplerState(_:index:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setSamplerState:atIndex:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "setSamplerState(_:index:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlargumentencoder/setsamplerstate(_:index:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLArgumentEncoder/setSamplerStates(_:range:)": {
+      "abstract": [
+        {
+          "text": "Encodes an array of samplers into the argument buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setSamplerStates"
+        },
+        {
+          "kind": "text",
+          "text": "([(any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLSamplerState",
+          "text": "MTLSamplerState"
+        },
+        {
+          "kind": "text",
+          "text": ")?], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "range"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sn",
+          "text": "Range"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ">)"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLArgumentEncoder/setSamplerStates(_:range:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setSamplerStates(_:range:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlargumentencoder/setsamplerstates(_:range:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLArgumentEncoder/setSamplerStates:withRange:": {
+      "abstract": [
+        {
+          "text": "Encodes an array of samplers into the argument buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setSamplerStates:withRange:"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLArgumentEncoder/setSamplerStates:withRange:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setSamplerStates:withRange:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setSamplerStates:withRange:",
+      "type": "topic",
+      "url": "/documentation/metal/mtlargumentencoder/setsamplerstates:withrange:"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLArgumentEncoder/setTexture(_:index:)": {
+      "abstract": [
+        {
+          "text": "Encodes a reference to a texture into the argument buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setTexture"
+        },
+        {
+          "kind": "text",
+          "text": "((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLTexture",
+          "text": "MTLTexture"
+        },
+        {
+          "kind": "text",
+          "text": ")?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "index"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLArgumentEncoder/setTexture(_:index:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setTexture:atIndex:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "setTexture(_:index:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlargumentencoder/settexture(_:index:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLArgumentEncoder/setTextures(_:range:)": {
+      "abstract": [
+        {
+          "text": "Encodes references to an array of textures into the argument buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setTextures"
+        },
+        {
+          "kind": "text",
+          "text": "([(any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLTexture",
+          "text": "MTLTexture"
+        },
+        {
+          "kind": "text",
+          "text": ")?], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "range"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sn",
+          "text": "Range"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ">)"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLArgumentEncoder/setTextures(_:range:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setTextures(_:range:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlargumentencoder/settextures(_:range:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLArgumentEncoder/setTextures:withRange:": {
+      "abstract": [
+        {
+          "text": "Encodes references to an array of textures into the argument buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setTextures:withRange:"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLArgumentEncoder/setTextures:withRange:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setTextures:withRange:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setTextures:withRange:",
+      "type": "topic",
+      "url": "/documentation/metal/mtlargumentencoder/settextures:withrange:"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLArgumentEncoder/setVisibleFunctionTable(_:index:)": {
+      "abstract": [
+        {
+          "text": "Encodes a reference to a function table into the argument buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setVisibleFunctionTable"
+        },
+        {
+          "kind": "text",
+          "text": "((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLVisibleFunctionTable",
+          "text": "MTLVisibleFunctionTable"
+        },
+        {
+          "kind": "text",
+          "text": ")?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "index"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLArgumentEncoder/setVisibleFunctionTable(_:index:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setVisibleFunctionTable:atIndex:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "setVisibleFunctionTable(_:index:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlargumentencoder/setvisiblefunctiontable(_:index:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLArgumentEncoder/setVisibleFunctionTables(_:range:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setVisibleFunctionTables"
+        },
+        {
+          "kind": "text",
+          "text": "([(any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLVisibleFunctionTable",
+          "text": "MTLVisibleFunctionTable"
+        },
+        {
+          "kind": "text",
+          "text": ")?], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "range"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sn",
+          "text": "Range"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ">)"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLArgumentEncoder/setVisibleFunctionTables(_:range:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setVisibleFunctionTables(_:range:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlargumentencoder/setvisiblefunctiontables(_:range:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLArgumentEncoder/setVisibleFunctionTables:withRange:": {
+      "abstract": [
+        {
+          "text": "Encodes references to an array of visible function tables into the argument buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setVisibleFunctionTables:withRange:"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLArgumentEncoder/setVisibleFunctionTables:withRange:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setVisibleFunctionTables:withRange:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setVisibleFunctionTables:withRange:",
+      "type": "topic",
+      "url": "/documentation/metal/mtlargumentencoder/setvisiblefunctiontables:withrange:"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLAttributeStrideStatic": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLAttributeStrideStatic"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLAttributeStrideStatic",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLAttributeStrideStatic"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLAttributeStrideStatic",
+      "type": "topic",
+      "url": "/documentation/metal/mtlattributestridestatic"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLBuffer": {
+      "abstract": [
+        {
+          "text": "A resource that stores data in a format defined by your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLBuffer"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLBuffer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLBuffer"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLBuffer",
+      "type": "topic",
+      "url": "/documentation/metal/mtlbuffer"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLDevice": {
+      "abstract": [
+        {
+          "text": "The main Metal interface to a GPU that apps use to draw graphics and run computations in parallel.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLDevice"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLDevice",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLDevice"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLDevice",
+      "type": "topic",
+      "url": "/documentation/metal/mtldevice"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLDevice/makeArgumentEncoder(arguments:)": {
+      "abstract": [
+        {
+          "text": "Creates a new argument encoder for an array of arguments.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "makeArgumentEncoder"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "arguments"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MTLArgumentDescriptor",
+          "text": "MTLArgumentDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": "]) -> (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLArgumentEncoder",
+          "text": "MTLArgumentEncoder"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLDevice/makeArgumentEncoder(arguments:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "newArgumentEncoderWithArguments:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "makeArgumentEncoder(arguments:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtldevice/makeargumentencoder(arguments:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLFunction": {
+      "abstract": [
+        {
+          "text": "An object that represents a public shader function in a Metal library.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLFunction"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLFunction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLFunction"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLFunction",
+      "type": "topic",
+      "url": "/documentation/metal/mtlfunction"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLFunction/makeArgumentEncoder(bufferIndex:)": {
+      "abstract": [
+        {
+          "text": "Creates an argument encoder for an argument buffer that’s one of this function’s arguments.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "makeArgumentEncoder"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "bufferIndex"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") -> any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLArgumentEncoder",
+          "text": "MTLArgumentEncoder"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLFunction/makeArgumentEncoder(bufferIndex:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "newArgumentEncoderWithBufferIndex:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "makeArgumentEncoder(bufferIndex:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlfunction/makeargumentencoder(bufferindex:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLFunction/makeArgumentEncoder(bufferIndex:reflection:)": {
+      "abstract": [
+        {
+          "text": "Creates an argument encoder and returns reflection information for an argument buffer that’s one of this function’s arguments",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "makeArgumentEncoder"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "bufferIndex"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "reflection"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SA",
+          "text": "AutoreleasingUnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@MTLAutoreleasedArgument",
+          "text": "MTLAutoreleasedArgument"
+        },
+        {
+          "kind": "text",
+          "text": "?>?) -> any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLArgumentEncoder",
+          "text": "MTLArgumentEncoder"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLFunction/makeArgumentEncoder(bufferIndex:reflection:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "newArgumentEncoderWithBufferIndex:reflection:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "makeArgumentEncoder(bufferIndex:reflection:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlfunction/makeargumentencoder(bufferindex:reflection:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/encoding-argument-buffers-on-the-gpu": {
+      "abstract": [
+        {
+          "text": "Use a compute pass to encode an argument buffer and access its arguments in a subsequent render pass.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/encoding-argument-buffers-on-the-gpu",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Encoding Argument Buffers on the GPU",
+      "type": "topic",
+      "url": "/documentation/metal/encoding-argument-buffers-on-the-gpu"
+    },
+    "doc://com.apple.metal/documentation/Metal/improving-cpu-performance-by-using-argument-buffers": {
+      "abstract": [
+        {
+          "text": "Optimize your app’s performance by grouping your resources into argument buffers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/improving-cpu-performance-by-using-argument-buffers",
+      "kind": "article",
+      "role": "article",
+      "title": "Improving CPU Performance by Using Argument Buffers",
+      "type": "topic",
+      "url": "/documentation/metal/improving-cpu-performance-by-using-argument-buffers"
+    },
+    "doc://com.apple.metal/documentation/Metal/indexing-argument-buffers": {
+      "abstract": [
+        {
+          "text": "Assign resource indices within an argument buffer.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/indexing-argument-buffers",
+      "kind": "article",
+      "role": "article",
+      "title": "Indexing Argument Buffers",
+      "type": "topic",
+      "url": "/documentation/metal/indexing-argument-buffers"
+    },
+    "doc://com.apple.metal/documentation/Metal/managing-groups-of-resources-with-argument-buffers": {
+      "abstract": [
+        {
+          "text": "Create argument buffers to organize related resources.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/managing-groups-of-resources-with-argument-buffers",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Managing groups of resources with argument buffers",
+      "type": "topic",
+      "url": "/documentation/metal/managing-groups-of-resources-with-argument-buffers"
+    },
+    "doc://com.apple.metal/documentation/Metal/rendering-terrain-dynamically-with-argument-buffers": {
+      "abstract": [
+        {
+          "text": "Use argument buffers to render terrain in real time with a GPU-driven pipeline.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/rendering-terrain-dynamically-with-argument-buffers",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Rendering Terrain Dynamically with Argument Buffers",
+      "type": "topic",
+      "url": "/documentation/metal/rendering-terrain-dynamically-with-argument-buffers"
+    },
+    "doc://com.apple.metal/documentation/Metal/tracking-the-resource-residency-of-argument-buffers": {
+      "abstract": [
+        {
+          "text": "Optimize resource performance within an argument buffer.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/tracking-the-resource-residency-of-argument-buffers",
+      "kind": "article",
+      "role": "article",
+      "title": "Tracking the Resource Residency of Argument Buffers",
+      "type": "topic",
+      "url": "/documentation/metal/tracking-the-resource-residency-of-argument-buffers"
+    },
+    "doc://com.apple.metal/documentation/Metal/using-argument-buffers-with-resource-heaps": {
+      "abstract": [
+        {
+          "text": "Reduce CPU overhead by using arrays inside argument buffers and combining them with resource heaps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/using-argument-buffers-with-resource-heaps",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Using Argument Buffers with Resource Heaps",
+      "type": "topic",
+      "url": "/documentation/metal/using-argument-buffers-with-resource-heaps"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Argument-Buffers",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/improving-cpu-performance-by-using-argument-buffers",
+        "doc://com.apple.metal/documentation/Metal/managing-groups-of-resources-with-argument-buffers",
+        "doc://com.apple.metal/documentation/Metal/tracking-the-resource-residency-of-argument-buffers",
+        "doc://com.apple.metal/documentation/Metal/indexing-argument-buffers",
+        "doc://com.apple.metal/documentation/Metal/rendering-terrain-dynamically-with-argument-buffers",
+        "doc://com.apple.metal/documentation/Metal/encoding-argument-buffers-on-the-gpu",
+        "doc://com.apple.metal/documentation/Metal/using-argument-buffers-with-resource-heaps",
+        "doc://com.apple.metal/documentation/Metal/MTLArgumentDescriptor",
+        "doc://com.apple.metal/documentation/Metal/MTLAttributeStrideStatic"
+      ],
+      "title": "Argument Buffers"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-an-Argument-Buffer",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLArgumentEncoder/setArgumentBuffer(_:offset:)",
+        "doc://com.apple.metal/documentation/Metal/MTLArgumentEncoder/setArgumentBuffer(_:startOffset:arrayElement:)",
+        "doc://com.apple.metal/documentation/Metal/MTLArgumentEncoder/encodedLength"
+      ],
+      "title": "Creating an Argument Buffer"
+    },
+    {
+      "anchor": "Encoding-Buffers",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLArgumentEncoder/setBuffer(_:offset:index:)",
+        "doc://com.apple.metal/documentation/Metal/MTLArgumentEncoder/setBuffers(_:offsets:range:)"
+      ],
+      "title": "Encoding Buffers"
+    },
+    {
+      "anchor": "Encoding-Textures",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLArgumentEncoder/setTexture(_:index:)",
+        "doc://com.apple.metal/documentation/Metal/MTLArgumentEncoder/setTextures(_:range:)"
+      ],
+      "title": "Encoding Textures"
+    },
+    {
+      "anchor": "Encoding-Samplers",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLArgumentEncoder/setSamplerState(_:index:)",
+        "doc://com.apple.metal/documentation/Metal/MTLArgumentEncoder/setSamplerStates(_:range:)"
+      ],
+      "title": "Encoding Samplers"
+    },
+    {
+      "anchor": "Encoding-Pipeline-States",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLArgumentEncoder/setRenderPipelineState(_:index:)",
+        "doc://com.apple.metal/documentation/Metal/MTLArgumentEncoder/setRenderPipelineStates(_:range:)",
+        "doc://com.apple.metal/documentation/Metal/MTLArgumentEncoder/setComputePipelineState(_:index:)",
+        "doc://com.apple.metal/documentation/Metal/MTLArgumentEncoder/setComputePipelineStates(_:with:)",
+        "doc://com.apple.metal/documentation/Metal/MTLArgumentEncoder/setComputePipelineState(_:at:)",
+        "doc://com.apple.metal/documentation/Metal/MTLArgumentEncoder/setComputePipelineStates(_:range:)"
+      ],
+      "title": "Encoding Pipeline States"
+    },
+    {
+      "anchor": "Encoding-Inlined-Constant-Data",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLArgumentEncoder/constantData(at:)"
+      ],
+      "title": "Encoding Inlined Constant Data"
+    },
+    {
+      "anchor": "Encoding-Indirect-Command-Buffers",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLArgumentEncoder/setIndirectCommandBuffer(_:index:)",
+        "doc://com.apple.metal/documentation/Metal/MTLArgumentEncoder/setIndirectCommandBuffers(_:range:)"
+      ],
+      "title": "Encoding Indirect Command Buffers"
+    },
+    {
+      "anchor": "Encoding-Acceleration-Structures",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLArgumentEncoder/setAccelerationStructure(_:index:)"
+      ],
+      "title": "Encoding Acceleration Structures"
+    },
+    {
+      "anchor": "Encoding-Function-Tables",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLArgumentEncoder/setVisibleFunctionTable(_:index:)",
+        "doc://com.apple.metal/documentation/Metal/MTLArgumentEncoder/setIntersectionFunctionTable(_:index:)",
+        "doc://com.apple.metal/documentation/Metal/MTLArgumentEncoder/setIntersectionFunctionTables(_:range:)",
+        "doc://com.apple.metal/documentation/Metal/MTLArgumentEncoder/setVisibleFunctionTables(_:range:)"
+      ],
+      "title": "Encoding Function Tables"
+    },
+    {
+      "anchor": "Creating-a-Nested-Argument-Encoder",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLArgumentEncoder/makeArgumentEncoderForBuffer(atIndex:)"
+      ],
+      "title": "Creating a Nested Argument Encoder"
+    },
+    {
+      "anchor": "Querying-Alignment",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLArgumentEncoder/alignment"
+      ],
+      "title": "Querying Alignment"
+    },
+    {
+      "anchor": "Identifying-the-Argument-Encoder",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLArgumentEncoder/label",
+        "doc://com.apple.metal/documentation/Metal/MTLArgumentEncoder/device"
+      ],
+      "title": "Identifying the Argument Encoder"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "11.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "11.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.13",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "11.0",
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Protocol"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "MTLArgumentEncoder"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "protocol"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLArgumentEncoder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLArgumentEncoder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.metal/documentation/Metal"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Creating-an-Argument-Buffer",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLArgumentEncoder/setArgumentBuffer(_:offset:)",
+                "doc://com.apple.metal/documentation/Metal/MTLArgumentEncoder/setArgumentBuffer(_:startOffset:arrayElement:)",
+                "doc://com.apple.metal/documentation/Metal/MTLArgumentEncoder/encodedLength"
+              ],
+              "title": "Creating an Argument Buffer"
+            },
+            {
+              "anchor": "Encoding-Buffers",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLArgumentEncoder/setBuffer(_:offset:index:)",
+                "doc://com.apple.metal/documentation/Metal/MTLArgumentEncoder/setBuffers:offsets:withRange:"
+              ],
+              "title": "Encoding Buffers"
+            },
+            {
+              "anchor": "Encoding-Textures",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLArgumentEncoder/setTexture(_:index:)",
+                "doc://com.apple.metal/documentation/Metal/MTLArgumentEncoder/setTextures:withRange:"
+              ],
+              "title": "Encoding Textures"
+            },
+            {
+              "anchor": "Encoding-Samplers",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLArgumentEncoder/setSamplerState(_:index:)",
+                "doc://com.apple.metal/documentation/Metal/MTLArgumentEncoder/setSamplerStates:withRange:"
+              ],
+              "title": "Encoding Samplers"
+            },
+            {
+              "anchor": "Encoding-Pipeline-States",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLArgumentEncoder/setRenderPipelineState(_:index:)",
+                "doc://com.apple.metal/documentation/Metal/MTLArgumentEncoder/setRenderPipelineStates:withRange:",
+                "doc://com.apple.metal/documentation/Metal/MTLArgumentEncoder/setComputePipelineState(_:index:)",
+                "doc://com.apple.metal/documentation/Metal/MTLArgumentEncoder/setComputePipelineStates:withRange:"
+              ],
+              "title": "Encoding Pipeline States"
+            },
+            {
+              "anchor": "Encoding-Inlined-Constant-Data",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLArgumentEncoder/constantData(at:)"
+              ],
+              "title": "Encoding Inlined Constant Data"
+            },
+            {
+              "anchor": "Encoding-Indirect-Command-Buffers",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLArgumentEncoder/setIndirectCommandBuffer(_:index:)",
+                "doc://com.apple.metal/documentation/Metal/MTLArgumentEncoder/setIndirectCommandBuffers:withRange:"
+              ],
+              "title": "Encoding Indirect Command Buffers"
+            },
+            {
+              "anchor": "Encoding-Acceleration-Structures",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLArgumentEncoder/setAccelerationStructure(_:index:)"
+              ],
+              "title": "Encoding Acceleration Structures"
+            },
+            {
+              "anchor": "Encoding-Function-Tables",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLArgumentEncoder/setVisibleFunctionTable(_:index:)",
+                "doc://com.apple.metal/documentation/Metal/MTLArgumentEncoder/setVisibleFunctionTables:withRange:",
+                "doc://com.apple.metal/documentation/Metal/MTLArgumentEncoder/setIntersectionFunctionTable(_:index:)",
+                "doc://com.apple.metal/documentation/Metal/MTLArgumentEncoder/setIntersectionFunctionTables:withRange:"
+              ],
+              "title": "Encoding Function Tables"
+            },
+            {
+              "anchor": "Creating-a-Nested-Argument-Encoder",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLArgumentEncoder/makeArgumentEncoderForBuffer(atIndex:)"
+              ],
+              "title": "Creating a Nested Argument Encoder"
+            },
+            {
+              "anchor": "Querying-Alignment",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLArgumentEncoder/alignment"
+              ],
+              "title": "Querying Alignment"
+            },
+            {
+              "anchor": "Identifying-the-Argument-Encoder",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLArgumentEncoder/label",
+                "doc://com.apple.metal/documentation/Metal/MTLArgumentEncoder/device"
+              ],
+              "title": "Identifying the Argument Encoder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Argument-Buffers",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/improving-cpu-performance-by-using-argument-buffers",
+                "doc://com.apple.metal/documentation/Metal/managing-groups-of-resources-with-argument-buffers",
+                "doc://com.apple.metal/documentation/Metal/tracking-the-resource-residency-of-argument-buffers",
+                "doc://com.apple.metal/documentation/Metal/indexing-argument-buffers",
+                "doc://com.apple.metal/documentation/Metal/rendering-terrain-dynamically-with-argument-buffers",
+                "doc://com.apple.metal/documentation/Metal/encoding-argument-buffers-on-the-gpu",
+                "doc://com.apple.metal/documentation/Metal/using-argument-buffers-with-resource-heaps",
+                "doc://com.apple.metal/documentation/Metal/MTLArgumentDescriptor",
+                "doc://com.apple.metal/documentation/Metal/MTLAttributeStrideStatic"
+              ],
+              "title": "Argument Buffers"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@protocol"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "MTLArgumentEncoder"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " <"
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(pl)NSObject",
+                    "text": "NSObject"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ">"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLArgumentDescriptor/title",
+          "value": "MTLArgumentDescriptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLArgumentDescriptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLArgumentDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLArgumentDescriptor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLArgumentDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice/title",
+          "value": "MTLDevice"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLDevice"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLDevice"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLArgumentEncoder~1setIntersectionFunctionTable(_:index:)/title",
+          "value": "setIntersectionFunctionTable:atIndex:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLArgumentEncoder~1setIntersectionFunctionTable(_:index:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setIntersectionFunctionTable:atIndex:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLArgumentEncoder~1makeArgumentEncoderForBuffer(atIndex:)/title",
+          "value": "newArgumentEncoderForBufferAtIndex:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLArgumentEncoder~1makeArgumentEncoderForBuffer(atIndex:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "newArgumentEncoderForBufferAtIndex:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLArgumentEncoder~1setAccelerationStructure(_:index:)/title",
+          "value": "setAccelerationStructure:atIndex:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLArgumentEncoder~1setAccelerationStructure(_:index:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setAccelerationStructure:atIndex:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLArgumentEncoder~1device/title",
+          "value": "device"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLArgumentEncoder~1device/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "device"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLArgumentEncoder~1setComputePipelineState(_:index:)/title",
+          "value": "setComputePipelineState:atIndex:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLArgumentEncoder~1setComputePipelineState(_:index:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setComputePipelineState:atIndex:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLArgumentEncoder~1setRenderPipelineState(_:index:)/title",
+          "value": "setRenderPipelineState:atIndex:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLArgumentEncoder~1setRenderPipelineState(_:index:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setRenderPipelineState:atIndex:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLArgumentEncoder~1encodedLength/title",
+          "value": "encodedLength"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLArgumentEncoder~1encodedLength/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "encodedLength"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLFunction~1makeArgumentEncoder(bufferIndex:)/title",
+          "value": "newArgumentEncoderWithBufferIndex:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLFunction~1makeArgumentEncoder(bufferIndex:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "newArgumentEncoderWithBufferIndex:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLArgumentEncoder~1setArgumentBuffer(_:offset:)/title",
+          "value": "setArgumentBuffer:offset:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLArgumentEncoder~1setArgumentBuffer(_:offset:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setArgumentBuffer:offset:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLArgumentEncoder~1setIndirectCommandBuffer(_:index:)/title",
+          "value": "setIndirectCommandBuffer:atIndex:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLArgumentEncoder~1setIndirectCommandBuffer(_:index:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setIndirectCommandBuffer:atIndex:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLArgumentEncoder~1setVisibleFunctionTable(_:index:)/title",
+          "value": "setVisibleFunctionTable:atIndex:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLArgumentEncoder~1setVisibleFunctionTable(_:index:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setVisibleFunctionTable:atIndex:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLArgumentEncoder/title",
+          "value": "MTLArgumentEncoder"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLArgumentEncoder/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLArgumentEncoder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLArgumentEncoder/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLArgumentEncoder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice~1makeArgumentEncoder(arguments:)/title",
+          "value": "newArgumentEncoderWithArguments:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice~1makeArgumentEncoder(arguments:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "newArgumentEncoderWithArguments:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLArgumentEncoder~1setTexture(_:index:)/title",
+          "value": "setTexture:atIndex:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLArgumentEncoder~1setTexture(_:index:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setTexture:atIndex:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLBuffer/title",
+          "value": "MTLBuffer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLBuffer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLBuffer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLBuffer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLBuffer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLArgumentEncoder~1setArgumentBuffer(_:startOffset:arrayElement:)/title",
+          "value": "setArgumentBuffer:startOffset:arrayElement:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLArgumentEncoder~1setArgumentBuffer(_:startOffset:arrayElement:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setArgumentBuffer:startOffset:arrayElement:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLFunction~1makeArgumentEncoder(bufferIndex:reflection:)/title",
+          "value": "newArgumentEncoderWithBufferIndex:reflection:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLFunction~1makeArgumentEncoder(bufferIndex:reflection:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "newArgumentEncoderWithBufferIndex:reflection:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLArgumentEncoder~1label/title",
+          "value": "label"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLArgumentEncoder~1label/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "label"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLFunction/title",
+          "value": "MTLFunction"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLFunction/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLFunction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLFunction/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLFunction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLArgumentEncoder~1alignment/title",
+          "value": "alignment"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLArgumentEncoder~1alignment/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "alignment"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAttributeStrideStatic/title",
+          "value": "MTLAttributeStrideStatic"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAttributeStrideStatic/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLAttributeStrideStatic"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLArgumentEncoder~1setBuffer(_:offset:index:)/title",
+          "value": "setBuffer:offset:atIndex:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLArgumentEncoder~1setBuffer(_:offset:index:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setBuffer:offset:atIndex:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLArgumentEncoder~1setSamplerState(_:index:)/title",
+          "value": "setSamplerState:atIndex:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLArgumentEncoder~1setSamplerState(_:index:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setSamplerState:atIndex:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLArgumentEncoder~1constantData(at:)/title",
+          "value": "constantDataAtIndex:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLArgumentEncoder~1constantData(at:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "constantDataAtIndex:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/metal/mtlargumentencoder"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/metal/mtlargumentencoder"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,2469 @@
+{
+  "abstract": [
+    {
+      "text": "Learn about important changes to Accessibility.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Updates/documentation/Updates"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Updates/documentation/Updates/Accessibility"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Updates"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Accessibility updates"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Browse notable changes in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Accessibility",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "June-2024",
+          "level": 2,
+          "text": "June 2024",
+          "type": "heading"
+        },
+        {
+          "anchor": "General",
+          "level": 3,
+          "text": "General",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Enhance music with tactile feedback for people who are deaf or hard of hearing by playing Apple-generated haptic tracks along with music tracks. Add the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/MusicHapticsSupported",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Info.plist",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " key to notify the system that your app supports the Music Haptics feature. Specify which song is playing using the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/MediaPlayer/MPNowPlayingInfoPropertyInternationalStandardRecordingCode",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". Music Haptics uses the International Standard Recording Code (ISRC) to choose the correct Music Haptics track to play at the same time. Observe and respond to the status of the haptic track playback using ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/MediaAccessibility/MAMusicHapticsManager",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Open the Settings app to a specific section of Accessibility settings using ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Accessibility/AccessibilitySettings/openSettings(for:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Support people’s preference to reduce the blinking animation of the text insertion indicator for custom cursor implementations. Check the value of the preference with ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Accessibility/AccessibilitySettings/prefersNonBlinkingTextInsertionIndicator",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", and observe when people change that preference with ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Accessibility/AccessibilitySettings/prefersNonBlinkingTextInsertionIndicatorDidChangeNotification",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Check if a device uses Assistive Access with ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Accessibility/AccessibilitySettings/isAssistiveAccessEnabled",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " if you need to remove workflows or UI elements that aren’t appropriate in the context of Assistive Access.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "SwiftUI",
+          "level": 3,
+          "text": "SwiftUI",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Add accessibility custom actions to interactive widgets or custom controls using new accessibility action modifiers such as ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "doc://com.apple.documentation/documentation/swiftui/view/accessibilityaction(named:intent:)-26k7g",
+                      "type": "text"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Improve the drag-and-drop experience for accessibility clients such as VoiceOver. Define the location of a drag or drop point and a textual description of the kind of drag or drop available using ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "doc://com.apple.documentation/documentation/SwiftUI/View/accessibilityDragPoint(_:description:)-81e6u",
+                      "type": "text"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "doc://com.apple.documentation/documentation/SwiftUI/View/accessibilityDropPoint(_:description:)-65k1c",
+                      "type": "text"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Specify that your accessibility element behaves as a tab bar using the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/AccessibilityTraits/isTabBar",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " accessibility trait with the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/accessibilityAddTraits(_:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " modifier. In UIKit, use ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIAccessibilityTraits/tabBar",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Enhance how you structure accessibility labels by appending custom content using ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/accessibilityLabel(content:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Generate a localized description of a color in a string interpolation by adding ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "accessibilityName:",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", such as ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "\"\\(accessibilityName: myColor)\"",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". Pass that string to any accessibility modifier.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Provide accessibility information conditionally with new modifiers such as ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "doc://com.apple.documentation/documentation/swiftui/view/accessibilitylabel(_:isenabled:)-83vyj",
+                      "type": "text"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "June-2023",
+          "level": 2,
+          "text": "June 2023",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Provide a great experience for your app in Assistive Access, an accessibility feature that tailors the iOS and iPadOS experience for people with cognitive disabilities. Adopt ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/UISupportsFullScreenInAssistiveAccess",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to allow your app’s UI to expand into all the available space above the Back button in Assistive Access.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Personalize your app with Personal Voice, a new feature that lets people record and recreate their voice directly on their iOS and macOS devices. Personal voices appear alongside system voices and are available for Live Speech, a type-to-speak feature that lets a person synthesize speech on the fly. Request access to synthesize speech with personal voices using a new request authorization API in ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/AVFAudio/AVSpeechSynthesizer",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Detect and mitigate sequences of flashing effects in your video content when the Dim Flashing Lights setting is on. If your app performs custom video drawing instead of using AVFoundation APIs, implement this behavior using ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/MediaAccessibility/MAFlashingLightsProcessor",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Pause animated images in your app when a person turns off the Animated Images setting on their device. Check the value of this setting using ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/EnvironmentValues/accessibilityPlayAnimatedImages",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Send announcement, layout change, screen change, and page scroll accessibility notifications with greater ease in multiplatform apps using the new Swift type ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Accessibility/AccessibilityNotification",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". Make sure people receive the most important information first by specifying a default, low, or high priority for announcements.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Enhance custom accessibility elements by specifying the combination of traits and behaviors that best characterizes the element. Add the new trait ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/AccessibilityTraits/isToggle",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to controls that toggle on and off, and the new action ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/accessibilityZoomAction(_:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to content that can zoom in and out.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Configure new direct touch options through ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/accessibilityDirectTouch(_:options:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to provide the best experience for elements that support direct touch interactions in your app. Specify the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/AccessibilityDirectTouchOptions/silentOnTouch",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " option to ensure VoiceOver is silent when a person interacts with the direct touch area so your app can provide its own audio feedback. Specify the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/AccessibilityDirectTouchOptions/requiresActivation",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " option to make the direct touch area require VoiceOver to activate the element before touch passthrough happens.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Simplify how you maintain your UIKit accessibility code with block-based setters for accessibility attributes.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Ensure robust testing of your app’s accessibility experience by performing accessibility audits using ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/XCTest/XCUIApplication",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Assign automation elements to expose certain UI elements specifically for the purpose of automation without affecting the accessibility of those elements.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Accessibility-PageImage-card.png": {
+      "alt": "",
+      "identifier": "Accessibility-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/718b8a161d77a3423dde2dd53ac35ffb/Accessibility-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ed433f19cfa41ebf0c9f495a066b6bbd/Accessibility-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "Apple-Intelligence-updates-page-PageImage-card.png": {
+      "alt": "A stylistic image of the Apple Intelligence logo.",
+      "identifier": "Apple-Intelligence-updates-page-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/582fe08f6f69a366c2f1b35cd91e3c52/Apple-Intelligence-updates-page-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/d4b11a932a5a2c7880eccd8043a1c524/Apple-Intelligence-updates-page-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Updates/documentation/Updates": {
+      "abstract": [
+        {
+          "text": "View major documentation updates and highlights from WWDC, browse ongoing updates from a set of framework releases over time, and jump to the latest release notes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Updates/documentation/Updates",
+      "images": [
+        {
+          "identifier": "featured.svg",
+          "type": "icon"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Updates",
+      "type": "topic",
+      "url": "/documentation/updates"
+    },
+    "doc://com.apple.Updates/documentation/Updates/ARKit": {
+      "abstract": [
+        {
+          "text": "Learn about important changes to ARKit.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Updates/documentation/Updates/ARKit",
+      "kind": "article",
+      "role": "article",
+      "title": "ARKit updates",
+      "type": "topic",
+      "url": "/documentation/updates/arkit"
+    },
+    "doc://com.apple.Updates/documentation/Updates/AVFAudio": {
+      "abstract": [
+        {
+          "text": "Learn about important changes to AVFAudio.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Updates/documentation/Updates/AVFAudio",
+      "kind": "article",
+      "role": "article",
+      "title": "AVFAudio updates",
+      "type": "topic",
+      "url": "/documentation/updates/avfaudio"
+    },
+    "doc://com.apple.Updates/documentation/Updates/AVFoundation": {
+      "abstract": [
+        {
+          "text": "Learn about important changes to AVFoundation.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Updates/documentation/Updates/AVFoundation",
+      "kind": "article",
+      "role": "article",
+      "title": "AVFoundation updates",
+      "type": "topic",
+      "url": "/documentation/updates/avfoundation"
+    },
+    "doc://com.apple.Updates/documentation/Updates/Accelerate": {
+      "abstract": [
+        {
+          "text": "Learn about important changes to Accelerate.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Updates/documentation/Updates/Accelerate",
+      "kind": "article",
+      "role": "article",
+      "title": "Accelerate updates",
+      "type": "topic",
+      "url": "/documentation/updates/accelerate"
+    },
+    "doc://com.apple.Updates/documentation/Updates/ActivityKit": {
+      "abstract": [
+        {
+          "text": "Learn about important changes in ActivityKit.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Updates/documentation/Updates/ActivityKit",
+      "kind": "article",
+      "role": "article",
+      "title": "ActivityKit updates",
+      "type": "topic",
+      "url": "/documentation/updates/activitykit"
+    },
+    "doc://com.apple.Updates/documentation/Updates/AdAttributionKit": {
+      "abstract": [
+        {
+          "text": "Learn about important changes to AdAttributionKit.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Updates/documentation/Updates/AdAttributionKit",
+      "kind": "article",
+      "role": "article",
+      "title": "AdAttributionKit Updates",
+      "type": "topic",
+      "url": "/documentation/updates/adattributionkit"
+    },
+    "doc://com.apple.Updates/documentation/Updates/AppIntents": {
+      "abstract": [
+        {
+          "text": "Learn about important changes in App Intents.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Updates/documentation/Updates/AppIntents",
+      "kind": "article",
+      "role": "article",
+      "title": "App Intents updates",
+      "type": "topic",
+      "url": "/documentation/updates/appintents"
+    },
+    "doc://com.apple.Updates/documentation/Updates/AppKit": {
+      "abstract": [
+        {
+          "text": "Learn about important changes to AppKit.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Updates/documentation/Updates/AppKit",
+      "kind": "article",
+      "role": "article",
+      "title": "AppKit updates",
+      "type": "topic",
+      "url": "/documentation/updates/appkit"
+    },
+    "doc://com.apple.Updates/documentation/Updates/Apple-Intelligence": {
+      "abstract": [
+        {
+          "text": "Learn about important changes to Apple Intelligence.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Updates/documentation/Updates/Apple-Intelligence",
+      "images": [
+        {
+          "identifier": "Apple-Intelligence-updates-page-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "article",
+      "title": "Apple Intelligence updates",
+      "type": "topic",
+      "url": "/documentation/updates/apple-intelligence"
+    },
+    "doc://com.apple.Updates/documentation/Updates/ApplePencil": {
+      "abstract": [
+        {
+          "text": "Learn about important changes to Apple Pencil.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Updates/documentation/Updates/ApplePencil",
+      "kind": "article",
+      "role": "article",
+      "title": "Apple Pencil updates",
+      "type": "topic",
+      "url": "/documentation/updates/applepencil"
+    },
+    "doc://com.apple.Updates/documentation/Updates/AudioToolbox": {
+      "abstract": [
+        {
+          "text": "Learn about important changes to Audio Toolbox.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Updates/documentation/Updates/AudioToolbox",
+      "kind": "article",
+      "role": "article",
+      "title": "Audio Toolbox updates",
+      "type": "topic",
+      "url": "/documentation/updates/audiotoolbox"
+    },
+    "doc://com.apple.Updates/documentation/Updates/AuthenticationServices": {
+      "abstract": [
+        {
+          "text": "Learn about important changes to AuthenticationServices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Updates/documentation/Updates/AuthenticationServices",
+      "kind": "article",
+      "role": "article",
+      "title": "AuthenticationServices updates",
+      "type": "topic",
+      "url": "/documentation/updates/authenticationservices"
+    },
+    "doc://com.apple.Updates/documentation/Updates/BundleResources": {
+      "abstract": [
+        {
+          "text": "Learn about important changes to Bundle Resources.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Updates/documentation/Updates/BundleResources",
+      "kind": "article",
+      "role": "article",
+      "title": "Bundle Resources updates",
+      "type": "topic",
+      "url": "/documentation/updates/bundleresources"
+    },
+    "doc://com.apple.Updates/documentation/Updates/ContactsUI": {
+      "abstract": [
+        {
+          "text": "Learn about important changes to ContactsUI.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Updates/documentation/Updates/ContactsUI",
+      "kind": "article",
+      "role": "article",
+      "title": "ContactsUI updates",
+      "type": "topic",
+      "url": "/documentation/updates/contactsui"
+    },
+    "doc://com.apple.Updates/documentation/Updates/CoreLocation": {
+      "abstract": [
+        {
+          "text": "Learn about important changes to Core Location.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Updates/documentation/Updates/CoreLocation",
+      "kind": "article",
+      "role": "article",
+      "title": "Core Location updates",
+      "type": "topic",
+      "url": "/documentation/updates/corelocation"
+    },
+    "doc://com.apple.documentation/documentation/AVFAudio/AVSpeechSynthesizer": {
+      "abstract": [
+        {
+          "text": "An object that produces synthesized speech from text utterances and enables monitoring or controlling of ongoing speech.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVSpeechSynthesizer"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFAudio/AVSpeechSynthesizer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AVSpeechSynthesizer",
+      "type": "topic",
+      "url": "/documentation/AVFAudio/AVSpeechSynthesizer"
+    },
+    "doc://com.apple.documentation/documentation/Accessibility": {
+      "abstract": [
+        {
+          "text": "Make your apps accessible to everyone who uses Apple devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Accessibility",
+      "images": [
+        {
+          "identifier": "Accessibility-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Accessibility",
+      "type": "topic",
+      "url": "/documentation/Accessibility"
+    },
+    "doc://com.apple.documentation/documentation/Accessibility/AccessibilityNotification": {
+      "abstract": [
+        {
+          "text": "Types of accessibility notifications that an app can post.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AccessibilityNotification"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Accessibility/AccessibilityNotification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AccessibilityNotification",
+      "type": "topic",
+      "url": "/documentation/Accessibility/AccessibilityNotification"
+    },
+    "doc://com.apple.documentation/documentation/Accessibility/AccessibilitySettings/isAssistiveAccessEnabled": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether Assistive Access is running.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isAssistiveAccessEnabled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Accessibility/AccessibilitySettings/isAssistiveAccessEnabled",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isAssistiveAccessEnabled",
+      "type": "topic",
+      "url": "/documentation/Accessibility/AccessibilitySettings/isAssistiveAccessEnabled"
+    },
+    "doc://com.apple.documentation/documentation/Accessibility/AccessibilitySettings/openSettings(for:)": {
+      "abstract": [
+        {
+          "text": "Opens the Settings app to a specific section of Accessibility settings.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "openSettings"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "feature"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@AccessibilitySettings",
+          "text": "AccessibilitySettings"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@AXSettingsFeature",
+          "text": "Feature"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Accessibility/AccessibilitySettings/openSettings(for:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "openSettings(for:)",
+      "type": "topic",
+      "url": "/documentation/Accessibility/AccessibilitySettings/openSettings(for:)"
+    },
+    "doc://com.apple.documentation/documentation/Accessibility/AccessibilitySettings/prefersNonBlinkingTextInsertionIndicator": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the system setting to prefer a nonblinking cursor in editable text fields is on.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "prefersNonBlinkingTextInsertionIndicator"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Accessibility/AccessibilitySettings/prefersNonBlinkingTextInsertionIndicator",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "prefersNonBlinkingTextInsertionIndicator",
+      "type": "topic",
+      "url": "/documentation/Accessibility/AccessibilitySettings/prefersNonBlinkingTextInsertionIndicator"
+    },
+    "doc://com.apple.documentation/documentation/Accessibility/AccessibilitySettings/prefersNonBlinkingTextInsertionIndicatorDidChangeNotification": {
+      "abstract": [
+        {
+          "text": "A notification that posts when the system setting to prefer a nonblinking cursor in editable text fields changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "prefersNonBlinkingTextInsertionIndicatorDidChangeNotification"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSNotification",
+          "text": "NSNotification"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSNotificationName",
+          "text": "Name"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Accessibility/AccessibilitySettings/prefersNonBlinkingTextInsertionIndicatorDidChangeNotification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "prefersNonBlinkingTextInsertionIndicatorDidChangeNotification",
+      "type": "topic",
+      "url": "/documentation/Accessibility/AccessibilitySettings/prefersNonBlinkingTextInsertionIndicatorDidChangeNotification"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/MusicHapticsSupported": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates to the system that your app supports the Music Haptics feature.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/MusicHapticsSupported",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MusicHapticsSupported",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/MusicHapticsSupported"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/UISupportsFullScreenInAssistiveAccess": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates if an iOS or iPadOS app appears as full screen in Assistive Access.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/UISupportsFullScreenInAssistiveAccess",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UISupportsFullScreenInAssistiveAccess",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/UISupportsFullScreenInAssistiveAccess"
+    },
+    "doc://com.apple.documentation/documentation/MediaAccessibility/MAFlashingLightsProcessor": {
+      "abstract": [
+        {
+          "text": "A class that processes a framebuffer object to detect and dim sequences of flashing lights.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MAFlashingLightsProcessor"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/MediaAccessibility/MAFlashingLightsProcessor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MAFlashingLightsProcessor",
+      "type": "topic",
+      "url": "/documentation/MediaAccessibility/MAFlashingLightsProcessor"
+    },
+    "doc://com.apple.documentation/documentation/MediaAccessibility/MAMusicHapticsManager": {
+      "abstract": [
+        {
+          "text": "A class that reports information about the Music Haptics feature.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MAMusicHapticsManager"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/MediaAccessibility/MAMusicHapticsManager",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MAMusicHapticsManager",
+      "type": "topic",
+      "url": "/documentation/MediaAccessibility/MAMusicHapticsManager"
+    },
+    "doc://com.apple.documentation/documentation/MediaPlayer/MPNowPlayingInfoPropertyInternationalStandardRecordingCode": {
+      "abstract": [
+        {
+          "text": "The International Standard Recording Code (ISRC) of the Now Playing item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPNowPlayingInfoPropertyInternationalStandardRecordingCode"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/MediaPlayer/MPNowPlayingInfoPropertyInternationalStandardRecordingCode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPNowPlayingInfoPropertyInternationalStandardRecordingCode",
+      "type": "topic",
+      "url": "/documentation/MediaPlayer/MPNowPlayingInfoPropertyInternationalStandardRecordingCode"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/AccessibilityDirectTouchOptions/requiresActivation": {
+      "abstract": [
+        {
+          "text": "Prevents touch passthrough with the direct touch area until an assistive technology, such as VoiceOver, has activated the direct touch area through a user action, for example a double tap.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "requiresActivation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI31AccessibilityDirectTouchOptionsV",
+          "text": "AccessibilityDirectTouchOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/AccessibilityDirectTouchOptions/requiresActivation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "requiresActivation",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/AccessibilityDirectTouchOptions/requiresActivation"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/AccessibilityDirectTouchOptions/silentOnTouch": {
+      "abstract": [
+        {
+          "text": "Allows a direct touch area to immediately receive touch events without an assitive technology, such as VoiceOver, speaking. Appropriate for apps that provide direct audio feedback on touch that would conflict with speech feedback.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "silentOnTouch"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI31AccessibilityDirectTouchOptionsV",
+          "text": "AccessibilityDirectTouchOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/AccessibilityDirectTouchOptions/silentOnTouch",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "silentOnTouch",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/AccessibilityDirectTouchOptions/silentOnTouch"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/AccessibilityTraits/isTabBar": {
+      "abstract": [
+        {
+          "text": "The accessibility element is a tab bar",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isTabBar"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI19AccessibilityTraitsV",
+          "text": "AccessibilityTraits"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/AccessibilityTraits/isTabBar",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isTabBar",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/AccessibilityTraits/isTabBar"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/AccessibilityTraits/isToggle": {
+      "abstract": [
+        {
+          "text": "The accessibility element is a toggle.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isToggle"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI19AccessibilityTraitsV",
+          "text": "AccessibilityTraits"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/AccessibilityTraits/isToggle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isToggle",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/AccessibilityTraits/isToggle"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/EnvironmentValues/accessibilityPlayAnimatedImages": {
+      "abstract": [
+        {
+          "text": "Whether the setting for playing animations in an animated image is on. When this value is false, any presented image that contains animation should not play automatically.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "accessibilityPlayAnimatedImages"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/EnvironmentValues/accessibilityPlayAnimatedImages",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "accessibilityPlayAnimatedImages",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/EnvironmentValues/accessibilityPlayAnimatedImages"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/View/accessibilityAddTraits(_:)": {
+      "abstract": [
+        {
+          "text": "Adds the given traits to the view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "accessibilityAddTraits"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "traits"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI19AccessibilityTraitsV",
+          "text": "AccessibilityTraits"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI15ModifiedContentV",
+          "text": "ModifiedContent"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI31AccessibilityAttachmentModifierV",
+          "text": "AccessibilityAttachmentModifier"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/accessibilityAddTraits(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "accessibilityAddTraits(_:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View/accessibilityAddTraits(_:)"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/View/accessibilityDirectTouch(_:options:)": {
+      "abstract": [
+        {
+          "text": "Explicitly set whether this accessibility element is a direct touch area. Direct touch areas passthrough touch events to the app rather than being handled through an assistive technology, such as VoiceOver. The modifier accepts an optional `AccessibilityDirectTouchOptions` option set to customize the functionality of the direct touch area.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "accessibilityDirectTouch"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "isDirectTouchArea"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": " = true, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI31AccessibilityDirectTouchOptionsV",
+          "text": "AccessibilityDirectTouchOptions"
+        },
+        {
+          "kind": "text",
+          "text": " = []) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI15ModifiedContentV",
+          "text": "ModifiedContent"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI31AccessibilityAttachmentModifierV",
+          "text": "AccessibilityAttachmentModifier"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/accessibilityDirectTouch(_:options:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "accessibilityDirectTouch(_:options:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View/accessibilityDirectTouch(_:options:)"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/View/accessibilityLabel(content:)": {
+      "abstract": [
+        {
+          "text": "Adds a label to the view that describes its contents.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "accessibilityLabel"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "V"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:7SwiftUI11ViewBuilderV",
+          "text": "ViewBuilder"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "externalParam",
+          "text": "content"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI22PlaceholderContentViewV",
+          "text": "PlaceholderContentView"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "V"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "V"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/accessibilityLabel(content:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "accessibilityLabel(content:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View/accessibilityLabel(content:)"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/View/accessibilityZoomAction(_:)": {
+      "abstract": [
+        {
+          "text": "Adds an accessibility zoom action to the view. Actions allow assistive technologies, such as VoiceOver, to interact with the view by invoking the action.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "accessibilityZoomAction"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "handler"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "@escaping"
+        },
+        {
+          "kind": "text",
+          "text": " ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI30AccessibilityZoomGestureActionV",
+          "text": "AccessibilityZoomGestureAction"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI15ModifiedContentV",
+          "text": "ModifiedContent"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI31AccessibilityAttachmentModifierV",
+          "text": "AccessibilityAttachmentModifier"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/accessibilityZoomAction(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "accessibilityZoomAction(_:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View/accessibilityZoomAction(_:)"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIAccessibilityTraits/tabBar": {
+      "abstract": [
+        {
+          "text": "The accessibility element behaves like a tab bar.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "tabBar"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@UIAccessibilityTraits",
+          "text": "UIAccessibilityTraits"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIAccessibilityTraits/tabBar",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "tabBar",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIAccessibilityTraits/tabBar"
+    },
+    "doc://com.apple.documentation/documentation/XCTest/XCUIApplication": {
+      "abstract": [
+        {
+          "text": "A proxy that can launch, monitor, and terminate a test application.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "XCUIApplication"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/XCTest/XCUIApplication",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "XCUIApplication",
+      "type": "topic",
+      "url": "/documentation/XCTest/XCUIApplication"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "featured.svg": {
+      "alt": "An icon, with a star and a speech bubble around it, representing updates.",
+      "identifier": "featured.svg",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/70c10a18eb39cac81bd40849ad68cbff/featured.svg"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Technology-updates",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Updates/documentation/Updates/Accelerate",
+        "doc://com.apple.Updates/documentation/Updates/ActivityKit",
+        "doc://com.apple.Updates/documentation/Updates/AdAttributionKit",
+        "doc://com.apple.Updates/documentation/Updates/AppIntents",
+        "doc://com.apple.Updates/documentation/Updates/AppKit",
+        "doc://com.apple.Updates/documentation/Updates/Apple-Intelligence",
+        "doc://com.apple.Updates/documentation/Updates/ApplePencil",
+        "doc://com.apple.Updates/documentation/Updates/ARKit",
+        "doc://com.apple.Updates/documentation/Updates/AudioToolbox",
+        "doc://com.apple.Updates/documentation/Updates/AuthenticationServices",
+        "doc://com.apple.Updates/documentation/Updates/AVFAudio",
+        "doc://com.apple.Updates/documentation/Updates/AVFoundation",
+        "doc://com.apple.Updates/documentation/Updates/BundleResources",
+        "doc://com.apple.Updates/documentation/Updates/ContactsUI",
+        "doc://com.apple.Updates/documentation/Updates/CoreLocation"
+      ],
+      "title": "Technology updates"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1MediaAccessibility~1MAFlashingLightsProcessor/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MAFlashingLightsProcessor"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1MediaPlayer~1MPNowPlayingInfoPropertyInternationalStandardRecordingCode/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSString",
+              "text": "NSString"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "keyword",
+              "text": "const"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MPNowPlayingInfoPropertyInternationalStandardRecordingCode"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFAudio~1AVSpeechSynthesizer/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AVSpeechSynthesizer"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Accessibility~1AccessibilitySettings~1isAssistiveAccessEnabled/title",
+          "value": "AXAssistiveAccessEnabled"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Accessibility~1AccessibilitySettings~1isAssistiveAccessEnabled/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@BOOL",
+              "text": "BOOL"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AXAssistiveAccessEnabled"
+            },
+            {
+              "kind": "text",
+              "text": "();"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1XCTest~1XCUIApplication/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "XCUIApplication"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)XCUIElement",
+              "text": "XCUIElement"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Accessibility~1AccessibilitySettings~1prefersNonBlinkingTextInsertionIndicatorDidChangeNotification/title",
+          "value": "AXPrefersNonBlinkingTextInsertionIndicatorDidChangeNotification"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Accessibility~1AccessibilitySettings~1prefersNonBlinkingTextInsertionIndicatorDidChangeNotification/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@NSNotificationName",
+              "text": "NSNotificationName"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "const"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AXPrefersNonBlinkingTextInsertionIndicatorDidChangeNotification"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1MediaAccessibility~1MAMusicHapticsManager/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MAMusicHapticsManager"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIAccessibilityTraits~1tabBar/title",
+          "value": "UIAccessibilityTraitTabBar"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIAccessibilityTraits~1tabBar/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "const"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@UIAccessibilityTraits",
+              "text": "UIAccessibilityTraits"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIAccessibilityTraitTabBar"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/updates/accessibility"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

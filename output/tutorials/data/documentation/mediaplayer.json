@@ -1,0 +1,3137 @@
+{
+  "abstract": [
+    {
+      "text": "Find and play songs, audio podcasts, audio books, and more from within your app.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.mediaplayer/documentation/MediaPlayer"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "MediaPlayer",
+    "modules": [
+      {
+        "name": "Media Player"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "2.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "2.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst"
+      },
+      {
+        "beta": false,
+        "introducedAt": "10.12.1",
+        "name": "macOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "5.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "collection",
+    "roleHeading": "Framework",
+    "symbolKind": "module",
+    "title": "Media Player"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the Media Player framework, which is part of ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/musickit/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", to control playback of the user’s media from your app. If your app incorporates music, you can use this framework to search for audio content, such as songs, podcasts, and books, in the user’s library. You can then play that content directly or ask the system Music app to play it. For example, a game might give users the option to play their own music while completing a particular game level.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "To protect user privacy, users need to grant permission for your app to access their media library. Add the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSAppleMusicUsageDescription",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " key to your app’s ",
+                  "type": "text"
+                },
+                {
+                  "code": "Info.plist",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " file, and include a description of how you intend to use the user’s library. If this key isn’t present, the system terminates your app when it tries to access the user’s library.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To play content from the user’s library using the Media Player framework, use one of the built-in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMusicPlayerController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "An ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "application player",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": " plays music locally within your app. Use this player when you want greater control over the audio you play for the user. This player doesn’t change the state of the built-in Music app.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "system player",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": " employs the Music app to play audio on your behalf. Use this player when you want audio to continue playing even when the user switches away from your app.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use media queries to retrieve the items you want to play and to populate the queue for the media player you select. After a user gives your app permission to access their Apple Music account, it can add songs, create playlists, and play songs from Apple Music. If your app detects that the user isn’t an Apple Music subscriber, it can offer a trial.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can’t play video media items directly using the Media Player framework. To play videos containing ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaItem",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects, use an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVPlayer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object from ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFoundation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". The system player also provides a way to play video items using the system apps.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Only use this framework to facilitate playback of the user’s audio content within your app. Don’t gather information about the user’s audio content for any other purpose. For more information about accessing Apple Music content, see the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/app-store/review/guidelines/#apple-sites-and-services",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/AVFoundation": {
+      "abstract": [
+        {
+          "text": "Work with audiovisual assets, control device cameras, process audio, and configure system audio interactions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFoundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AVFoundation",
+      "type": "topic",
+      "url": "/documentation/AVFoundation"
+    },
+    "doc://com.apple.documentation/documentation/AVFoundation/AVPlayer": {
+      "abstract": [
+        {
+          "text": "An object that provides the interface to control the player’s transport behavior.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVPlayer"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVPlayer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AVPlayer",
+      "type": "topic",
+      "url": "/documentation/AVFoundation/AVPlayer"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSAppleMusicUsageDescription": {
+      "abstract": [
+        {
+          "text": "A message that tells the user why the app is requesting access to the user’s media library.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSAppleMusicUsageDescription",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSAppleMusicUsageDescription",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/NSAppleMusicUsageDescription"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer": {
+      "abstract": [
+        {
+          "text": "Find and play songs, audio podcasts, audio books, and more from within your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Media Player",
+      "type": "topic",
+      "url": "/documentation/mediaplayer"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPContentItem": {
+      "abstract": [
+        {
+          "text": "An object that contains the information for a displayed media item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPContentItem"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPContentItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MPContentItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "MPContentItem",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpcontentitem"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPError": {
+      "abstract": [
+        {
+          "text": "A structure that represents a framework error.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPError"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MPError"
+        }
+      ],
+      "role": "symbol",
+      "title": "MPError",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mperror"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPError/Code": {
+      "abstract": [
+        {
+          "text": "An enumeration that represents error codes for framework operations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Code"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPError/Code",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Code"
+        }
+      ],
+      "role": "symbol",
+      "title": "MPError.Code",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mperror/code"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPErrorDomain": {
+      "abstract": [
+        {
+          "text": "The Media Player framework error domain.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPErrorDomain"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPErrorDomain",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MPErrorDomain"
+        }
+      ],
+      "role": "symbol",
+      "title": "MPErrorDomain",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mperrordomain"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaEntity": {
+      "abstract": [
+        {
+          "text": "The abstract superclass for media items, media item collections, and media playlist instances.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPMediaEntity"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaEntity",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MPMediaEntity"
+        }
+      ],
+      "role": "symbol",
+      "title": "MPMediaEntity",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpmediaentity"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaItem": {
+      "abstract": [
+        {
+          "text": "A collection of properties that represents a single item in the media library.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPMediaItem"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MPMediaItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "MPMediaItem",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpmediaitem"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaItemArtwork": {
+      "abstract": [
+        {
+          "text": "A graphical image, such as music album cover art, associated with a media item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPMediaItemArtwork"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaItemArtwork",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MPMediaItemArtwork"
+        }
+      ],
+      "role": "symbol",
+      "title": "MPMediaItemArtwork",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpmediaitemartwork"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaItemCollection": {
+      "abstract": [
+        {
+          "text": "A sorted set of media items from the media library.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPMediaItemCollection"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaItemCollection",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MPMediaItemCollection"
+        }
+      ],
+      "role": "symbol",
+      "title": "MPMediaItemCollection",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpmediaitemcollection"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaLibrary": {
+      "abstract": [
+        {
+          "text": "An object that represents the state of synced media items on a device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPMediaLibrary"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaLibrary",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MPMediaLibrary"
+        }
+      ],
+      "role": "symbol",
+      "title": "MPMediaLibrary",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpmedialibrary"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaPickerController": {
+      "abstract": [
+        {
+          "text": "A specialized view controller that provides a graphical interface for selecting media items.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPMediaPickerController"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaPickerController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MPMediaPickerController"
+        }
+      ],
+      "role": "symbol",
+      "title": "MPMediaPickerController",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpmediapickercontroller"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaPlayback": {
+      "abstract": [
+        {
+          "text": "A protocol that defines the interface for controlling audio media playback.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPMediaPlayback"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaPlayback",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MPMediaPlayback"
+        }
+      ],
+      "role": "symbol",
+      "title": "MPMediaPlayback",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpmediaplayback"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaPlaylist": {
+      "abstract": [
+        {
+          "text": "A playable collection of related media items.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPMediaPlaylist"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaPlaylist",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MPMediaPlaylist"
+        }
+      ],
+      "role": "symbol",
+      "title": "MPMediaPlaylist",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpmediaplaylist"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaPlaylistCreationMetadata": {
+      "abstract": [
+        {
+          "text": "A set of attributes for describing a playlist when creating it.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPMediaPlaylistCreationMetadata"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaPlaylistCreationMetadata",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MPMediaPlaylistCreationMetadata"
+        }
+      ],
+      "role": "symbol",
+      "title": "MPMediaPlaylistCreationMetadata",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpmediaplaylistcreationmetadata"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaPredicate": {
+      "abstract": [
+        {
+          "text": "An abstract class that defines classes for filtering media in a media query.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPMediaPredicate"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaPredicate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MPMediaPredicate"
+        }
+      ],
+      "role": "symbol",
+      "title": "MPMediaPredicate",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpmediapredicate"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaPropertyPredicate": {
+      "abstract": [
+        {
+          "text": "A set of predicates for defining a filter in a media query.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPMediaPropertyPredicate"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaPropertyPredicate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MPMediaPropertyPredicate"
+        }
+      ],
+      "role": "symbol",
+      "title": "MPMediaPropertyPredicate",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpmediapropertypredicate"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaQuery": {
+      "abstract": [
+        {
+          "text": "A query that specifies a set of media items from the device’s media library using a filter and a grouping type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPMediaQuery"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaQuery",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MPMediaQuery"
+        }
+      ],
+      "role": "symbol",
+      "title": "MPMediaQuery",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpmediaquery"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaQuerySection": {
+      "abstract": [
+        {
+          "text": "A range of media items or media item collections from within a media query.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPMediaQuerySection"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaQuerySection",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MPMediaQuerySection"
+        }
+      ],
+      "role": "symbol",
+      "title": "MPMediaQuerySection",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpmediaquerysection"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMusicPlayerApplicationController": {
+      "abstract": [
+        {
+          "text": "A media player object that you use to revise the queue that’s currently playing.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPMusicPlayerApplicationController"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMusicPlayerApplicationController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MPMusicPlayerApplicationController"
+        }
+      ],
+      "role": "symbol",
+      "title": "MPMusicPlayerApplicationController",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpmusicplayerapplicationcontroller"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMusicPlayerController": {
+      "abstract": [
+        {
+          "text": "An object that plays audio media items from the device’s Music app library.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPMusicPlayerController"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMusicPlayerController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MPMusicPlayerController"
+        }
+      ],
+      "role": "symbol",
+      "title": "MPMusicPlayerController",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpmusicplayercontroller"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMusicPlayerControllerMutableQueue": {
+      "abstract": [
+        {
+          "text": "A mutable queue containing the media items to play.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPMusicPlayerControllerMutableQueue"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMusicPlayerControllerMutableQueue",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MPMusicPlayerControllerMutableQueue"
+        }
+      ],
+      "role": "symbol",
+      "title": "MPMusicPlayerControllerMutableQueue",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpmusicplayercontrollermutablequeue"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMusicPlayerControllerQueue": {
+      "abstract": [
+        {
+          "text": "An immutable queue containing the media items to play.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPMusicPlayerControllerQueue"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMusicPlayerControllerQueue",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MPMusicPlayerControllerQueue"
+        }
+      ],
+      "role": "symbol",
+      "title": "MPMusicPlayerControllerQueue",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpmusicplayercontrollerqueue"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMusicPlayerMediaItemQueueDescriptor": {
+      "abstract": [
+        {
+          "text": "A set of properties and methods for modifying audio media items in the player’s media queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPMusicPlayerMediaItemQueueDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMusicPlayerMediaItemQueueDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MPMusicPlayerMediaItemQueueDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "MPMusicPlayerMediaItemQueueDescriptor",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpmusicplayermediaitemqueuedescriptor"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMusicPlayerPlayParametersQueueDescriptor": {
+      "abstract": [
+        {
+          "text": "A set of properties and methods for modifying how to play items, based on play parameters the framework returns.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPMusicPlayerPlayParametersQueueDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMusicPlayerPlayParametersQueueDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MPMusicPlayerPlayParametersQueueDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "MPMusicPlayerPlayParametersQueueDescriptor",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpmusicplayerplayparametersqueuedescriptor"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMusicPlayerQueueDescriptor": {
+      "abstract": [
+        {
+          "text": "The abstract base class for audio media item and store queue descriptors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPMusicPlayerQueueDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMusicPlayerQueueDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MPMusicPlayerQueueDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "MPMusicPlayerQueueDescriptor",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpmusicplayerqueuedescriptor"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMusicPlayerStoreQueueDescriptor": {
+      "abstract": [
+        {
+          "text": "A set of properties and methods for modifying items, based on their store identifier, in the player’s queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPMusicPlayerStoreQueueDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMusicPlayerStoreQueueDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MPMusicPlayerStoreQueueDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "MPMusicPlayerStoreQueueDescriptor",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpmusicplayerstorequeuedescriptor"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPNowPlayingInfoCenter": {
+      "abstract": [
+        {
+          "text": "An object for setting the Now Playing information for media that your app plays.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPNowPlayingInfoCenter"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPNowPlayingInfoCenter",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MPNowPlayingInfoCenter"
+        }
+      ],
+      "role": "symbol",
+      "title": "MPNowPlayingInfoCenter",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpnowplayinginfocenter"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPNowPlayingInfoLanguageOption": {
+      "abstract": [
+        {
+          "text": "A set of interfaces for setting the language option for the Now Playing item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPNowPlayingInfoLanguageOption"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPNowPlayingInfoLanguageOption",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MPNowPlayingInfoLanguageOption"
+        }
+      ],
+      "role": "symbol",
+      "title": "MPNowPlayingInfoLanguageOption",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpnowplayinginfolanguageoption"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPNowPlayingInfoLanguageOptionGroup": {
+      "abstract": [
+        {
+          "text": "A grouped set of language options where only a single language option can be active at a time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPNowPlayingInfoLanguageOptionGroup"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPNowPlayingInfoLanguageOptionGroup",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MPNowPlayingInfoLanguageOptionGroup"
+        }
+      ],
+      "role": "symbol",
+      "title": "MPNowPlayingInfoLanguageOptionGroup",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpnowplayinginfolanguageoptiongroup"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPNowPlayingSession": {
+      "abstract": [
+        {
+          "text": "An object that manages Now Playing information and remote commands for multiple players.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPNowPlayingSession"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPNowPlayingSession",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MPNowPlayingSession"
+        }
+      ],
+      "role": "symbol",
+      "title": "MPNowPlayingSession",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpnowplayingsession"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPSystemMusicPlayerController": {
+      "abstract": [
+        {
+          "text": "A protocol for playing videos in the Music app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSystemMusicPlayerController"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPSystemMusicPlayerController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MPSystemMusicPlayerController"
+        }
+      ],
+      "role": "symbol",
+      "title": "MPSystemMusicPlayerController",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpsystemmusicplayercontroller"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPVolumeView": {
+      "abstract": [
+        {
+          "text": "A slider control for setting the system audio output volume, and a button for choosing the audio output route.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPVolumeView"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPVolumeView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MPVolumeView"
+        }
+      ],
+      "role": "symbol",
+      "title": "MPVolumeView",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpvolumeview"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MP_API": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "MP_API"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MP_API",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MP_API",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mp_api"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MP_API_BEGIN": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "MP_API_BEGIN"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MP_API_BEGIN",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MP_API_BEGIN",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mp_api_begin"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MP_API_END": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "MP_API_END"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MP_API_END",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MP_API_END",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mp_api_end"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MP_COMPLETION": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "MP_COMPLETION"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MP_COMPLETION",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MP_COMPLETION",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mp_completion"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MP_DEPRECATED": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "MP_DEPRECATED"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MP_DEPRECATED",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MP_DEPRECATED",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mp_deprecated"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MP_DEPRECATED_BEGIN": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "MP_DEPRECATED_BEGIN"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MP_DEPRECATED_BEGIN",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MP_DEPRECATED_BEGIN",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mp_deprecated_begin"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MP_DEPRECATED_END": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "MP_DEPRECATED_END"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MP_DEPRECATED_END",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MP_DEPRECATED_END",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mp_deprecated_end"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MP_DEPRECATED_WITH_REPLACEMENT": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "MP_DEPRECATED_WITH_REPLACEMENT"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MP_DEPRECATED_WITH_REPLACEMENT",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MP_DEPRECATED_WITH_REPLACEMENT",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mp_deprecated_with_replacement"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MP_DEPRECATED_WITH_REPLACEMENT_BEGIN": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "MP_DEPRECATED_WITH_REPLACEMENT_BEGIN"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MP_DEPRECATED_WITH_REPLACEMENT_BEGIN",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MP_DEPRECATED_WITH_REPLACEMENT_BEGIN",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mp_deprecated_with_replacement_begin"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MP_DEPRECATED_WITH_REPLACEMENT_END": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "MP_DEPRECATED_WITH_REPLACEMENT_END"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MP_DEPRECATED_WITH_REPLACEMENT_END",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MP_DEPRECATED_WITH_REPLACEMENT_END",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mp_deprecated_with_replacement_end"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MP_EXTERN": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "MP_EXTERN"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MP_EXTERN",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MP_EXTERN",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mp_extern"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MP_FALLTHROUGH": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "MP_FALLTHROUGH"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MP_FALLTHROUGH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MP_FALLTHROUGH",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mp_fallthrough"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MP_FINAL_CLASS": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "MP_FINAL_CLASS"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MP_FINAL_CLASS",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MP_FINAL_CLASS",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mp_final_class"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MP_HAS": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "MP_HAS"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MP_HAS",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MP_HAS",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mp_has"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MP_HAS_HEADER": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "MP_HAS_HEADER"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MP_HAS_HEADER",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MP_HAS_HEADER",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mp_has_header"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MP_INIT_UNAVAILABLE": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "MP_INIT_UNAVAILABLE"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MP_INIT_UNAVAILABLE",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MP_INIT_UNAVAILABLE",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mp_init_unavailable"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MP_OVERLOAD": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "MP_OVERLOAD"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MP_OVERLOAD",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MP_OVERLOAD",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mp_overload"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MP_SWIFT_ERROR_NULLABLE_RESULT": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "MP_SWIFT_ERROR_NULLABLE_RESULT"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MP_SWIFT_ERROR_NULLABLE_RESULT",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MP_SWIFT_ERROR_NULLABLE_RESULT",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mp_swift_error_nullable_result"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MP_SWIFT_MAIN_ACTOR": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "MP_SWIFT_MAIN_ACTOR"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MP_SWIFT_MAIN_ACTOR",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MP_SWIFT_MAIN_ACTOR",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mp_swift_main_actor"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MP_TYPE_PROTOCOL": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "MP_TYPE_PROTOCOL"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MP_TYPE_PROTOCOL",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MP_TYPE_PROTOCOL",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mp_type_protocol"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MP_UNAVAILABLE": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "MP_UNAVAILABLE"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MP_UNAVAILABLE",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MP_UNAVAILABLE",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mp_unavailable"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MP_UNAVAILABLE_BEGIN": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "MP_UNAVAILABLE_BEGIN"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MP_UNAVAILABLE_BEGIN",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MP_UNAVAILABLE_BEGIN",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mp_unavailable_begin"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MP_UNAVAILABLE_END": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "MP_UNAVAILABLE_END"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MP_UNAVAILABLE_END",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MP_UNAVAILABLE_END",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mp_unavailable_end"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/becoming-a-now-playable-app": {
+      "abstract": [
+        {
+          "text": "Ensure your app is eligible to become the Now Playing app by adopting best practices for providing Now Playing info and registering for remote command center actions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/becoming-a-now-playable-app",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Becoming a now playable app",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/becoming-a-now-playable-app"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/deprecated-types": {
+      "abstract": [
+        {
+          "text": "Review deprecated symbols and avoid using them in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/deprecated-types",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Deprecated types",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/deprecated-types"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/displaying-a-media-picker-from-your-app": {
+      "abstract": [
+        {
+          "text": "Let users choose the music they want to play by displaying a media picker interface from within your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/displaying-a-media-picker-from-your-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Displaying a media picker from your app",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/displaying-a-media-picker-from-your-app"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/feedback-and-rating-events": {
+      "abstract": [
+        {
+          "text": "Respond to incoming feedback and rating events.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/feedback-and-rating-events",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Feedback and rating events",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/feedback-and-rating-events"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/handling-external-player-events-notifications": {
+      "abstract": [
+        {
+          "text": "Handle events for external media players.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/handling-external-player-events-notifications",
+      "kind": "article",
+      "role": "article",
+      "title": "Handling external player events notifications",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/handling-external-player-events-notifications"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/language-option-characteristic-constants": {
+      "abstract": [
+        {
+          "text": "The constants for defining language characteristics.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/language-option-characteristic-constants",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Language option characteristic constants",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/language-option-characteristic-constants"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/media-playback-mode-events": {
+      "abstract": [
+        {
+          "text": "Respond to changes in the way media items play.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/media-playback-mode-events",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Media playback mode events",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/media-playback-mode-events"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/playing-audio-using-the-built-in-music-player": {
+      "abstract": [
+        {
+          "text": "Create a media player inside your app to play audio from the user’s media library.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/playing-audio-using-the-built-in-music-player",
+      "kind": "article",
+      "role": "article",
+      "title": "Playing audio using the built-in music player",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/playing-audio-using-the-built-in-music-player"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/remote-command-center-events": {
+      "abstract": [
+        {
+          "text": "Set up the remote command center to handle media player events.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/remote-command-center-events",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Remote command center events",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/remote-command-center-events"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/track-navigation-events": {
+      "abstract": [
+        {
+          "text": "Respond to requests to change which part of a media item plays.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/track-navigation-events",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Track navigation events",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/track-navigation-events"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/using-filters-to-create-specialized-queries": {
+      "abstract": [
+        {
+          "text": "Add a filter set to a query before populating a music player queue.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/using-filters-to-create-specialized-queries",
+      "kind": "article",
+      "role": "article",
+      "title": "Using filters to create specialized queries",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/using-filters-to-create-specialized-queries"
+    },
+    "https://developer.apple.com/app-store/review/guidelines/#apple-sites-and-services": {
+      "identifier": "https://developer.apple.com/app-store/review/guidelines/#apple-sites-and-services",
+      "title": "App Store review guidelines",
+      "titleInlineContent": [
+        {
+          "text": "App Store review guidelines",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/app-store/review/guidelines/#apple-sites-and-services"
+    },
+    "https://developer.apple.com/musickit/": {
+      "identifier": "https://developer.apple.com/musickit/",
+      "title": "MusicKit",
+      "titleInlineContent": [
+        {
+          "text": "MusicKit",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/musickit/"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Essentials",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSAppleMusicUsageDescription"
+      ],
+      "title": "Essentials"
+    },
+    {
+      "anchor": "Built-in-music-playback",
+      "identifiers": [
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/playing-audio-using-the-built-in-music-player",
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMusicPlayerController",
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaPlayback",
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPSystemMusicPlayerController"
+      ],
+      "title": "Built-in music playback"
+    },
+    {
+      "anchor": "Media-library-synchronization",
+      "identifiers": [
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaLibrary"
+      ],
+      "title": "Media library synchronization"
+    },
+    {
+      "anchor": "Media-item-queries",
+      "identifiers": [
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/using-filters-to-create-specialized-queries",
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaQuery",
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaQuerySection",
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaPropertyPredicate",
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaPredicate"
+      ],
+      "title": "Media item queries"
+    },
+    {
+      "anchor": "Media-player-queues",
+      "identifiers": [
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMusicPlayerControllerQueue",
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMusicPlayerControllerMutableQueue",
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMusicPlayerApplicationController",
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMusicPlayerMediaItemQueueDescriptor",
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMusicPlayerStoreQueueDescriptor",
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMusicPlayerPlayParametersQueueDescriptor",
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMusicPlayerQueueDescriptor"
+      ],
+      "title": "Media player queues"
+    },
+    {
+      "anchor": "Media-items-and-playlists",
+      "identifiers": [
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaItem",
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaItemArtwork",
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaItemCollection",
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaPlaylist",
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaPlaylistCreationMetadata",
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaEntity"
+      ],
+      "title": "Media items and playlists"
+    },
+    {
+      "anchor": "Media-player-user-interface",
+      "identifiers": [
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/displaying-a-media-picker-from-your-app",
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaPickerController",
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPVolumeView"
+      ],
+      "title": "Media player user interface"
+    },
+    {
+      "abstract": [
+        {
+          "text": "Provide information about the current track.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Now-Playing-information",
+      "identifiers": [
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/becoming-a-now-playable-app",
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPNowPlayingSession",
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPNowPlayingInfoCenter",
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPNowPlayingInfoLanguageOption",
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPNowPlayingInfoLanguageOptionGroup",
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/language-option-characteristic-constants"
+      ],
+      "title": "Now Playing information"
+    },
+    {
+      "abstract": [
+        {
+          "text": "Support playback controls on external media players or system-provided controls.",
+          "type": "text"
+        }
+      ],
+      "anchor": "External-player-and-system-event-handling",
+      "identifiers": [
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/handling-external-player-events-notifications",
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/remote-command-center-events",
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/track-navigation-events",
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/media-playback-mode-events",
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/feedback-and-rating-events"
+      ],
+      "title": "External player and system event handling"
+    },
+    {
+      "abstract": [
+        {
+          "text": "Provide content and interact with external media players.",
+          "type": "text"
+        }
+      ],
+      "anchor": "External-media-player-items",
+      "identifiers": [
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPContentItem"
+      ],
+      "title": "External media player items"
+    },
+    {
+      "anchor": "Media-player-errors",
+      "identifiers": [
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPError",
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPError/Code",
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPErrorDomain"
+      ],
+      "title": "Media player errors"
+    },
+    {
+      "anchor": "Deprecated",
+      "identifiers": [
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/deprecated-types"
+      ],
+      "title": "Deprecated"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Essentials",
+              "identifiers": [
+                "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSAppleMusicUsageDescription"
+              ],
+              "title": "Essentials"
+            },
+            {
+              "anchor": "Built-in-music-playback",
+              "identifiers": [
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/playing-audio-using-the-built-in-music-player",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMusicPlayerController",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaPlayback",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPSystemMusicPlayerController"
+              ],
+              "title": "Built-in music playback"
+            },
+            {
+              "anchor": "Media-library-synchronization",
+              "identifiers": [
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaLibrary"
+              ],
+              "title": "Media library synchronization"
+            },
+            {
+              "anchor": "Media-item-queries",
+              "identifiers": [
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/using-filters-to-create-specialized-queries",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaQuery",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaQuerySection",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaPropertyPredicate",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaPredicate"
+              ],
+              "title": "Media item queries"
+            },
+            {
+              "anchor": "Media-player-queues",
+              "identifiers": [
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMusicPlayerControllerQueue",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMusicPlayerControllerMutableQueue",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMusicPlayerApplicationController",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMusicPlayerMediaItemQueueDescriptor",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMusicPlayerStoreQueueDescriptor",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMusicPlayerPlayParametersQueueDescriptor",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMusicPlayerQueueDescriptor"
+              ],
+              "title": "Media player queues"
+            },
+            {
+              "anchor": "Media-items-and-playlists",
+              "identifiers": [
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaItem",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaItemArtwork",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaItemCollection",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaPlaylist",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaPlaylistCreationMetadata",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaEntity"
+              ],
+              "title": "Media items and playlists"
+            },
+            {
+              "anchor": "Media-player-user-interface",
+              "identifiers": [
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/displaying-a-media-picker-from-your-app",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaPickerController",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPVolumeView"
+              ],
+              "title": "Media player user interface"
+            },
+            {
+              "abstract": [
+                {
+                  "text": "Provide information about the current track.",
+                  "type": "text"
+                }
+              ],
+              "anchor": "Now-Playing-information",
+              "identifiers": [
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/becoming-a-now-playable-app",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPNowPlayingSession",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPNowPlayingInfoCenter",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPNowPlayingInfoLanguageOption",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPNowPlayingInfoLanguageOptionGroup",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/language-option-characteristic-constants"
+              ],
+              "title": "Now Playing information"
+            },
+            {
+              "abstract": [
+                {
+                  "text": "Support playback controls on external media players or system-provided controls.",
+                  "type": "text"
+                }
+              ],
+              "anchor": "External-player-and-system-event-handling",
+              "identifiers": [
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/handling-external-player-events-notifications",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/remote-command-center-events",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/track-navigation-events",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/media-playback-mode-events",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/feedback-and-rating-events"
+              ],
+              "title": "External player and system event handling"
+            },
+            {
+              "abstract": [
+                {
+                  "text": "Provide content and interact with external media players.",
+                  "type": "text"
+                }
+              ],
+              "anchor": "External-media-player-items",
+              "identifiers": [
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPContentItem"
+              ],
+              "title": "External media player items"
+            },
+            {
+              "anchor": "Media-player-errors",
+              "identifiers": [
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPError/Code",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPErrorDomain"
+              ],
+              "title": "Media player errors"
+            },
+            {
+              "anchor": "Deprecated",
+              "identifiers": [
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/deprecated-types"
+              ],
+              "title": "Deprecated"
+            },
+            {
+              "anchor": "Macros",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MP_API",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MP_API_BEGIN",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MP_API_END",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MP_COMPLETION",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MP_DEPRECATED",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MP_DEPRECATED_BEGIN",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MP_DEPRECATED_END",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MP_DEPRECATED_WITH_REPLACEMENT",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MP_DEPRECATED_WITH_REPLACEMENT_BEGIN",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MP_DEPRECATED_WITH_REPLACEMENT_END",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MP_EXTERN",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MP_FALLTHROUGH",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MP_FINAL_CLASS",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MP_HAS",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MP_HAS_HEADER",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MP_INIT_UNAVAILABLE",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MP_OVERLOAD",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MP_SWIFT_ERROR_NULLABLE_RESULT",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MP_SWIFT_MAIN_ACTOR",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MP_TYPE_PROTOCOL",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MP_UNAVAILABLE",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MP_UNAVAILABLE_BEGIN",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MP_UNAVAILABLE_END"
+              ],
+              "title": "Macros"
+            }
+          ]
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPErrorDomain/title",
+          "value": "MPErrorDomain"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPErrorDomain/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPErrorDomain"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMusicPlayerPlayParametersQueueDescriptor/title",
+          "value": "MPMusicPlayerPlayParametersQueueDescriptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMusicPlayerPlayParametersQueueDescriptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPMusicPlayerPlayParametersQueueDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMusicPlayerPlayParametersQueueDescriptor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPMusicPlayerPlayParametersQueueDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPSystemMusicPlayerController/title",
+          "value": "MPSystemMusicPlayerController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPSystemMusicPlayerController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPSystemMusicPlayerController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPSystemMusicPlayerController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPSystemMusicPlayerController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMusicPlayerMediaItemQueueDescriptor/title",
+          "value": "MPMusicPlayerMediaItemQueueDescriptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMusicPlayerMediaItemQueueDescriptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPMusicPlayerMediaItemQueueDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMusicPlayerMediaItemQueueDescriptor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPMusicPlayerMediaItemQueueDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFoundation~1AVPlayer/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AVPlayer"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMediaItemCollection/title",
+          "value": "MPMediaItemCollection"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMediaItemCollection/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPMediaItemCollection"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMediaItemCollection/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPMediaItemCollection"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMusicPlayerControllerMutableQueue/title",
+          "value": "MPMusicPlayerControllerMutableQueue"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMusicPlayerControllerMutableQueue/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPMusicPlayerControllerMutableQueue"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMusicPlayerControllerMutableQueue/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPMusicPlayerControllerMutableQueue"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPContentItem/title",
+          "value": "MPContentItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPContentItem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPContentItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPContentItem/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPContentItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMusicPlayerControllerQueue/title",
+          "value": "MPMusicPlayerControllerQueue"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMusicPlayerControllerQueue/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPMusicPlayerControllerQueue"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMusicPlayerControllerQueue/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPMusicPlayerControllerQueue"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMediaItemArtwork/title",
+          "value": "MPMediaItemArtwork"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMediaItemArtwork/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPMediaItemArtwork"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMediaItemArtwork/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPMediaItemArtwork"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPNowPlayingInfoCenter/title",
+          "value": "MPNowPlayingInfoCenter"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPNowPlayingInfoCenter/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPNowPlayingInfoCenter"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPNowPlayingInfoCenter/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPNowPlayingInfoCenter"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPNowPlayingSession/title",
+          "value": "MPNowPlayingSession"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPNowPlayingSession/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPNowPlayingSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPNowPlayingSession/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPNowPlayingSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPError~1Code/title",
+          "value": "MPErrorCode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPError~1Code/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPErrorCode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPError~1Code/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPErrorCode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMediaPlaylist/title",
+          "value": "MPMediaPlaylist"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMediaPlaylist/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPMediaPlaylist"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMediaPlaylist/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPMediaPlaylist"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPNowPlayingInfoLanguageOption/title",
+          "value": "MPNowPlayingInfoLanguageOption"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPNowPlayingInfoLanguageOption/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPNowPlayingInfoLanguageOption"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPNowPlayingInfoLanguageOption/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPNowPlayingInfoLanguageOption"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMediaPropertyPredicate/title",
+          "value": "MPMediaPropertyPredicate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMediaPropertyPredicate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPMediaPropertyPredicate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMediaPropertyPredicate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPMediaPropertyPredicate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMediaEntity/title",
+          "value": "MPMediaEntity"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMediaEntity/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPMediaEntity"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMediaEntity/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPMediaEntity"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMusicPlayerController/title",
+          "value": "MPMusicPlayerController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMusicPlayerController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPMusicPlayerController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMusicPlayerController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPMusicPlayerController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMediaPlaylistCreationMetadata/title",
+          "value": "MPMediaPlaylistCreationMetadata"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMediaPlaylistCreationMetadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPMediaPlaylistCreationMetadata"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMediaPlaylistCreationMetadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPMediaPlaylistCreationMetadata"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMusicPlayerApplicationController/title",
+          "value": "MPMusicPlayerApplicationController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMusicPlayerApplicationController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPMusicPlayerApplicationController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMusicPlayerApplicationController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPMusicPlayerApplicationController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMusicPlayerStoreQueueDescriptor/title",
+          "value": "MPMusicPlayerStoreQueueDescriptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMusicPlayerStoreQueueDescriptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPMusicPlayerStoreQueueDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMusicPlayerStoreQueueDescriptor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPMusicPlayerStoreQueueDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMediaPredicate/title",
+          "value": "MPMediaPredicate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMediaPredicate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPMediaPredicate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMediaPredicate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPMediaPredicate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMediaItem/title",
+          "value": "MPMediaItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMediaItem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPMediaItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMediaItem/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPMediaItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMediaPickerController/title",
+          "value": "MPMediaPickerController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMediaPickerController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPMediaPickerController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMediaPickerController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPMediaPickerController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPVolumeView/title",
+          "value": "MPVolumeView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPVolumeView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPVolumeView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPVolumeView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPVolumeView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMediaLibrary/title",
+          "value": "MPMediaLibrary"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMediaLibrary/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPMediaLibrary"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMediaLibrary/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPMediaLibrary"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMediaQuery/title",
+          "value": "MPMediaQuery"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMediaQuery/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPMediaQuery"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMediaQuery/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPMediaQuery"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPNowPlayingInfoLanguageOptionGroup/title",
+          "value": "MPNowPlayingInfoLanguageOptionGroup"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPNowPlayingInfoLanguageOptionGroup/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPNowPlayingInfoLanguageOptionGroup"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPNowPlayingInfoLanguageOptionGroup/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPNowPlayingInfoLanguageOptionGroup"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMediaPlayback/title",
+          "value": "MPMediaPlayback"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMediaPlayback/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPMediaPlayback"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMediaPlayback/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPMediaPlayback"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMediaQuerySection/title",
+          "value": "MPMediaQuerySection"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMediaQuerySection/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPMediaQuerySection"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMediaQuerySection/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPMediaQuerySection"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMusicPlayerQueueDescriptor/title",
+          "value": "MPMusicPlayerQueueDescriptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMusicPlayerQueueDescriptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPMusicPlayerQueueDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMusicPlayerQueueDescriptor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPMusicPlayerQueueDescriptor"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/mediaplayer"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/mediaplayer"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,836 @@
+{
+  "abstract": [
+    {
+      "text": "Connect Xcode Cloud to Slack to keep your team informed about the latest Xcode Cloud builds.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Xcode/documentation/Xcode",
+        "doc://com.apple.Xcode/documentation/Xcode/Xcode-Cloud"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Xcode/documentation/Xcode/Connecting-Xcode-Cloud-to-Slack"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Connecting Xcode Cloud to Slack"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Many teams use ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://slack.com",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to collaborate and expect other tools to support and integrate with Slack. And because collaboration is an important part of using Xcode Cloud, you can easily connect it to Slack and receive its notifications in your team’s Slack workspace.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "By connecting Xcode Cloud to Slack, you can:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Receive Xcode Cloud notifications in Slack that contain a build’s status and links to the build report.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Configure Xcode Cloud to send notifications to you as direct messages, or choose a Slack channel for team-level notifications.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use different Slack channels for different workflows.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use Xcode or ",
+              "type": "text"
+            },
+            {
+              "identifier": "htts://appstoreconnect.apple.com",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to connect Xcode Cloud to a single Slack workspace.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Depending on your team’s Slack workspace settings, you may need to ask your team’s Slack administrator to connect Xcode Cloud to Slack. For more information, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.Xcode/documentation/Xcode/Connecting-Xcode-Cloud-to-Slack#Install-the-Slack-app-for-Xcode-Cloud-using-App-Store-Connect",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Install-the-Slack-app-for-Xcode-Cloud-using-Xcode",
+          "level": 3,
+          "text": "Install the Slack app for Xcode Cloud using Xcode",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To connect Xcode Cloud to Slack, you’ll need to install the Slack app Apple provides into your Slack workspace. The app manages access to your team’s Slack workspace.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To install the Slack app using Xcode:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Choose Integrate > Manage Workflows to open the Manage Workflows sheet.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Double-click a workflow to open.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click the Add button (+) next to Post-Actions and choose Notify to add a post-action for sending notifications.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "Connecting-Xcode-Cloud-to-Slack-1",
+                      "type": "image"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click the Add button in the Slack section of the post-action you added.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Provide the name of your Slack workspace, then click Connect. This opens your team’s Slack workspace in your browser.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Sign in to your Slack workspace if you aren’t signed in already, and then review the permissions that the Slack app for Xcode Cloud requests.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click Allow to install the app into your Slack workspace. This takes you to Xcode where you can now configure the Notify post-action to send build notifications to your team’s Slack channels as described in ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Connecting-Xcode-Cloud-to-Slack#Choose-a-Slack-channel",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Configure Xcode Cloud to send build notifications to yourself as direct messages (DMs) in Slack. Navigate to your account in App Store Connect, select the Xcode Cloud tab, choose Notifications in the sidebar, and select the checkbox next to Slack.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Tip",
+          "style": "tip",
+          "type": "aside"
+        },
+        {
+          "anchor": "Install-the-Slack-app-for-Xcode-Cloud-using-App-Store-Connect",
+          "level": 3,
+          "text": "Install the Slack app for Xcode Cloud using App Store Connect",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Another way to configure Xcode Cloud to send notifications to Slack is by setting up that connection in ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://appstoreconnect.apple.com",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". It’s especially convenient if you need to work with your team’s Slack administrator to connect Xcode Cloud to Slack, because they don’t need to be familiar with Xcode.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you work with your team’s Slack administrator, add them to your Apple Development team, and assign them one of the following roles: App Manager, Admin, or Account Holder. With the proper role set in App Store Connect, they can connect Xcode Cloud to Slack.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To connect Xcode Cloud to your team’s Slack workspace in App Store Connect:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Navigate to your app’s page in App Store Connect and select the Xcode Cloud tab.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Choose Manage Workflows in the sidebar and open a workflow by clicking its name.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click the Add button next to Post-Actions and choose Notify to add a post-action for sending notifications.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click Edit in the Slack section of the post-action you added.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Enter the name of your team’s Slack workspace, then click Connect. This opens your team’s Slack workspace.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Sign in to your Slack workspace if you aren’t signed in already, and then review the permissions that the Slack for Xcode Cloud requests.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click Allow to install the app into your Slack workspace. This takes you back to your workflow in App Store Connect where you can now configure the Notify post-action to send build notifications to your team’s Slack channels.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can also connect Xcode Cloud to Slack by clicking on your account in the top-right corner of the App Store Connect website and choosing Edit Profile. In your profile settings, select the Xcode Cloud tab, then click Connect next to Slack and install the Xcode Cloud app into your Slack workspace.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Grant-Xcode-Cloud-access-to-your-Slack-account",
+          "level": 3,
+          "text": "Grant Xcode Cloud access to your Slack account",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you personally connected Xcode Cloud to Slack, you can configure Xcode Cloud to send build status notifications to your team’s Slack channels. You can also choose to receive build status notifications as direct messages. However, someone else may have connected Xcode Cloud to Slack; for example, the administrator of your team’s Slack workspace. In this case, you’ll receive build status notifications in Slack channels that your team member configured, but you need to authorize Xcode Cloud to use your Slack account before you can make changes to a workflow’s Notify post-action.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To authorize Xcode Cloud to access your Slack account:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Open a workflow in Xcode or App Store Connect.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Navigate to the Notify post-action.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Follow the guidance by Xcode or App Store Connect to grand Xcode Cloud access to your Slack account.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After authorizing Xcode Cloud to access your Slack account, you can make changes to your workflow’s Notify post-action and configure personal build notifications for Slack.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Choose-a-Slack-channel",
+          "level": 3,
+          "text": "Choose a Slack channel",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Depending on your project, you can direct all Xcode Cloud notifications to the same Slack channel or to set up different Slack channels to receive the notifications. For example, use a single Slack channel for all Xcode Cloud notifications if you’re a solo developer or your team only works on one app. In contrast, large teams may use one Slack channel per app, or use different Slack channels for builds from pull requests, for workflows that distribute nightly builds, and so on.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To configure a workflow to send a build notification to a Slack channel:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Open a workflow in Xcode or App Store Connect.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Add a post-action by clicking the Add button and choosing Notify, or choose an existing Notify post-action.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click the Add button in the post-action’s Slack section.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Choose a channel in the popover and click OK. If you’re a member of many Slack channels, filter the channels to find the one you’re looking for.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Configure any notification settings; for example, choose to only receive notifications for build failures, then save your changes.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If you configure Xcode Cloud to send build status notifications to a private Slack channel, Xcode Cloud redacts its name for team members who aren’t members of the private channel.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Connecting-Xcode-Cloud-to-Slack-1": {
+      "alt": "A screenshot of workflow in Xcode where the Notify - Successes and Failures post-action is visible.",
+      "identifier": "Connecting-Xcode-Cloud-to-Slack-1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/8613e5cc41a84566c0f05c7590bc6ff0/Connecting-Xcode-Cloud-to-Slack-1@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/83530e72eabf88d588a44dcce37bdaba/Connecting-Xcode-Cloud-to-Slack-1~dark@2x.png"
+        }
+      ]
+    },
+    "Xcode-PageImage-card.png": {
+      "alt": "The Xcode logo on a blue gradient background.",
+      "identifier": "Xcode-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cc63eacd8f7f660388b46204d1d9bbcb/Xcode-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/62dba87d5f60ec96eb48882c9dff86d8/Xcode-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Xcode/documentation/Xcode": {
+      "abstract": [
+        {
+          "text": "Build, test, and submit your app with Apple’s integrated development environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode",
+      "images": [
+        {
+          "identifier": "Xcode-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Configuring-Webhooks-in-Xcode-Cloud": {
+      "abstract": [
+        {
+          "text": "Configure webhooks that connect Xcode Cloud to other services and tools.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Configuring-Webhooks-in-Xcode-Cloud",
+      "kind": "article",
+      "role": "article",
+      "title": "Configuring webhooks in Xcode Cloud",
+      "type": "topic",
+      "url": "/documentation/xcode/configuring-webhooks-in-xcode-cloud"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Connecting-Xcode-Cloud-to-Slack#Choose-a-Slack-channel": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Connecting-Xcode-Cloud-to-Slack#Choose-a-Slack-channel",
+      "kind": "section",
+      "title": "Choose a Slack channel",
+      "type": "topic",
+      "url": "/documentation/xcode/connecting-xcode-cloud-to-slack#Choose-a-Slack-channel"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Connecting-Xcode-Cloud-to-Slack#Install-the-Slack-app-for-Xcode-Cloud-using-App-Store-Connect": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Connecting-Xcode-Cloud-to-Slack#Install-the-Slack-app-for-Xcode-Cloud-using-App-Store-Connect",
+      "kind": "section",
+      "title": "Install the Slack app for Xcode Cloud using App Store Connect",
+      "type": "topic",
+      "url": "/documentation/xcode/connecting-xcode-cloud-to-slack#Install-the-Slack-app-for-Xcode-Cloud-using-App-Store-Connect"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Webhook-Payload": {
+      "abstract": [
+        {
+          "text": "Review details of the webhook payload that Xcode Cloud sends, including the product, workflow, build, actions, results, and SCM metadata associated with it.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Webhook-Payload",
+      "kind": "article",
+      "role": "article",
+      "title": "Xcode Cloud webhook payload reference",
+      "type": "topic",
+      "url": "/documentation/xcode/webhook-payload"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Xcode-Cloud": {
+      "abstract": [
+        {
+          "text": "Automatically build, test, and distribute your apps with Xcode Cloud to verify changes and create high-quality apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Xcode-Cloud",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Xcode Cloud",
+      "type": "topic",
+      "url": "/documentation/xcode/xcode-cloud"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://appstoreconnect.apple.com": {
+      "identifier": "https://appstoreconnect.apple.com",
+      "title": "App Store Connect",
+      "titleInlineContent": [
+        {
+          "text": "App Store Connect",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://appstoreconnect.apple.com"
+    },
+    "https://slack.com": {
+      "identifier": "https://slack.com",
+      "title": "Slack",
+      "titleInlineContent": [
+        {
+          "text": "Slack",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://slack.com"
+    },
+    "htts://appstoreconnect.apple.com": {
+      "identifier": "htts://appstoreconnect.apple.com",
+      "title": "App Store Connect",
+      "titleInlineContent": [
+        {
+          "text": "App Store Connect",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "htts://appstoreconnect.apple.com"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Notifications",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Xcode/documentation/Xcode/Configuring-Webhooks-in-Xcode-Cloud",
+        "doc://com.apple.Xcode/documentation/Xcode/Webhook-Payload"
+      ],
+      "title": "Notifications"
+    }
+  ]
+}

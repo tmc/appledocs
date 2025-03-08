@@ -1,0 +1,1230 @@
+{
+  "abstract": [
+    {
+      "text": "Receive rendered media (movies), editing descriptions for project timelines, library archives, and FCPXML for other Final Cut Pro items in your app.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/content-and-metadata-exchanges-with-final-cut-pro"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/receiving-media-and-data-through-a-custom-share-destination"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Professional Video Applications"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Receiving Media and Data Through a Custom Share Destination"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After your users have finished working on their project in Final Cut Pro, they’re ready to bring it over to your app for final processing. Maybe your users plan to upload their project to an asset management server, or perhaps they need to archive or catalog the entire Final Cut Pro library.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "With a Final Cut Pro ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "custom share destination",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " (and support from your app), your users can receive rendered output from a Final Cut Pro project, along with FCPXML descriptions for the project’s editing decisions and other items, such as keywords, ratings, and markers. Your app can also request a copy of the library containing these items to use for archiving.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3878516",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In Final Cut Pro, a ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "share destination",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " provides a set of preconfigured export settings. When a user shares one or more projects or clips, these settings determine the format and other characteristics of the exported media. A ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "custom share destination",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " serves a similar purpose, but it specifies an app that knows how to interact with Final Cut Pro as the ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "target application",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " in the Final Cut Pro export settings.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Once you set up a custom share destination for your users, they see the custom share destination you created as one of the choices for sharing a project in Final Cut Pro.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3234183",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Setting up your app is the first step in providing a custom share destination for your users. Edit your app’s ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file to indicate that your app is capable of interacting with Final Cut Pro to configure the share operation (see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/receiving-media-and-data-through-a-custom-share-destination#Signal-Your-Apps-Capabilities",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "). Supply the scripting definitions required by Final Cut Pro to interact with your app through Apple events (see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/receiving-media-and-data-through-a-custom-share-destination#Describe-Your-Scripting-Terminology",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ") and add support so your app can respond to the series of Apple events sent by Final Cut Pro (see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/receiving-media-and-data-through-a-custom-share-destination#Provide-Responses-to-Apple-Events",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ").",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Once you’ve configured your app, create a custom share destination in Final Cut Pro. This is the destination that lets your users share their projects with your app (see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/receiving-media-and-data-through-a-custom-share-destination#Create-a-Custom-Share-Destination-in-Final-Cut-Pro",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "). You distribute this custom share destination along with your app so users can add it to their own Final Cut Pro installation (see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/receiving-media-and-data-through-a-custom-share-destination#Distribute-a-Custom-Share-Destination-to-Your-Users",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ").",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When your users have finished editing their projects in Final Cut Pro and want to continue their work in your app, they just select the project in Final Cut Pro, choose File > Share, and select your app’s custom share destination from the list of destinations. (See ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://support.apple.com/guide/final-cut-pro/intro-to-sharing-projects-ver9d10063a/mac",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for more information.) Final Cut Pro conveys the request to your app, and your app responds with the information Final Cut Pro needs to perform the export operation.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "When you create the custom share destination for your app in Final Cut Pro, use that opportunity to test the communications between Final Cut Pro and your app. As your own first user, you can identify and fix any bugs before you distribute the custom share destination file to your users.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Tip",
+          "style": "tip",
+          "type": "aside"
+        },
+        {
+          "anchor": "Signal-Your-Apps-Capabilities",
+          "level": 3,
+          "text": "Signal Your App’s Capabilities",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your app must advertise its ability to interact with Final Cut Pro and provide the information necessary for sharing a project. Add the following entry to the ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file in your app’s bundle:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "<key>com.apple.proapps.MediaAssetProtocol</key>",
+            "<dict>",
+            "</dict>"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The value for this entry is an empty dictionary; the content is reserved for future use by Final Cut Pro.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Describe-Your-Scripting-Terminology",
+          "level": 3,
+          "text": "Describe Your Scripting Terminology",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your app must supply scripting definitions for the events, object classes, and associated properties that Final Cut Pro uses to interact with your app. Specifically, your app must:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create scripting definitions for events, object classes, and record types. This includes definitions for the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "asset",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " class as a representation of the media in your app. It also includes the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "make",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " event that Final Cut Pro sends to tell your app to create an ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "asset",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " object as a placeholder. (See ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/creating-scripting-definitions-for-custom-share-destinations",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " for the scripting definitions you need to provide.)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Implement the command-handler classes that are referenced from the scripting definitions. Specifically, implement the command handler for the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "make",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " event using the Cocoa class name specified in your scripting definition. (See ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/ScriptableCocoaApplications/SApps_intro/SAppsIntro.html#//apple_ref/doc/uid/TP40002164",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " for more information.)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Implement the object classes and associated properties according to key-value coding (KVC) and other conventions. Specifically, implement the object class for the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "asset",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " object class, using the Cocoa class name specified in the scripting definition. (See ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/ScriptableCocoaApplications/SApps_intro/SAppsIntro.html#//apple_ref/doc/uid/TP40002164",
+                      "isActive": true,
+                      "overridingTitle": "Cocoa Scripting Guide",
+                      "overridingTitleInlineContent": [
+                        {
+                          "text": "Cocoa Scripting Guide",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "reference"
+                    },
+                    {
+                      "text": " for details.) Cocoa Scripting support gets the properties’ values when Final Cut Pro asks for those properties through ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Get",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Property",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Apple",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " events.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Provide-Responses-to-Apple-Events",
+          "level": 3,
+          "text": "Provide Responses to Apple Events",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Once Final Cut Pro confirms that your app can interact with it through Apple events, it sends your app a series of Apple events. Your app responds by telling Final Cut Pro what kind of data your users want to receive and by providing a location for the data. Specifically, Final Cut Pro uses Apple events to find out:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Whether your user wants to receive rendered media, editing decisions in FCPXML, or both",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Whether your user wants a library archive",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Which share metadata keys and values your user wants in the exported media files",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Which DTD version to use for the exported media files",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "What Final Cut Pro metadata view to use to filter the metadata keys included in the exported media files",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For information about responding to each of these Apple events, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/responding-to-apple-events-from-final-cut-pro",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-a-Custom-Share-Destination-in-Final-Cut-Pro",
+          "level": 3,
+          "text": "Create a Custom Share Destination in Final Cut Pro",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Once your app is set up to interact with Final Cut Pro, it’s time to create the actual share destination that your users will select in Final Cut Pro. (For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://support.apple.com/guide/final-cut-pro/create-share-destinations-ver9fd008a21/mac",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".)",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create a new custom share destination. In Final Cut Pro, choose File > Share > Add Destination. Drag the Export File destination from the right side of the Destinations list to the left side.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Give the new destination a name and specify the format and other settings. Choose the format your app requires and then specify the related settings, such as Video codec and Resolution. (For details about each option, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://support.apple.com/guide/final-cut-pro/export-file-destination-ver13664388c/10.4.7/mac/10.14",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Designate your app as the target application. From the “Open with” pop-up menu, choose Other. In the Applications folder, select your app and click Open.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3234547",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Distribute-a-Custom-Share-Destination-to-Your-Users",
+          "level": 3,
+          "text": "Distribute a Custom Share Destination to Your Users",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your users need the custom share destination you created for your app installed on their own systems so that it’s available in the list of share destinations in Final Cut Pro. (See ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://support.apple.com/guide/final-cut-pro/create-share-destinations-ver9fd008a21/10.4.7/mac/10.14",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for more information.)",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select your custom share destination. In Final Cut Pro, choose Final Cut Pro > Preferences, select the Destinations pane, and then select the custom share destination for your app.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Drag your custom share destination to a location in the Finder. Final Cut Pro creates an ",
+                      "type": "text"
+                    },
+                    {
+                      "code": ".fcpxdest",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " file for your custom share destination in that location.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you’re ready to deliver the ",
+              "type": "text"
+            },
+            {
+              "code": ".fcpxdest",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file to your users (perhaps along with your app), instruct them to install the ",
+              "type": "text"
+            },
+            {
+              "code": ".fcpxdest",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file in Final Cut Pro in any of these ways:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Double-click the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": ".fcpxdest",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " file in the Finder.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Drag the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": ".fcpxdest",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " file to the Destinations pane in Final Cut Pro > Preferences.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Place the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": ".fcpxdest",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " file in either of the following locations:",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "/Library/Application Support/ProApps/Share Destinations/\u2028~/Library/Application Support/ProApps/Share Destinations/",
+              "type": "codeVoice"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "You can use the ",
+                  "type": "text"
+                },
+                {
+                  "code": "Open",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "code": "Document",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " Apple event to send your ",
+                  "type": "text"
+                },
+                {
+                  "code": ".fcpxdest",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " file programmatically and have Final Cut Pro open it. Final Cut Pro will then install your custom share destination, making it available to your users. Use the steps in ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/sending-data-programmatically-to-final-cut-pro#Send-an-FCPXML-File-Using-an-Apple-Event",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ", but substitute ",
+                  "type": "text"
+                },
+                {
+                  "code": ".fcpxdest",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " file for the ",
+                  "type": "text"
+                },
+                {
+                  "code": ".fcpxml",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " file.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Tip",
+          "style": "tip",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/content-and-metadata-exchanges-with-final-cut-pro": {
+      "abstract": [
+        {
+          "text": "Send media assets and timeline sequences to Final Cut Pro for editing, and receive rendered media and editing decisions in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/content-and-metadata-exchanges-with-final-cut-pro",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Content and Metadata Exchanges with Final Cut Pro",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/content-and-metadata-exchanges-with-final-cut-pro"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/creating-scripting-definitions-for-custom-share-destinations": {
+      "abstract": [
+        {
+          "text": "Define the record types, object classes, and event types that let your app interact with Final Cut Pro.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/creating-scripting-definitions-for-custom-share-destinations",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating Scripting Definitions for Custom Share Destinations",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/creating-scripting-definitions-for-custom-share-destinations"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/receiving-media-and-data-through-a-custom-share-destination#Create-a-Custom-Share-Destination-in-Final-Cut-Pro": {
+      "abstract": [],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/receiving-media-and-data-through-a-custom-share-destination#Create-a-Custom-Share-Destination-in-Final-Cut-Pro",
+      "kind": "section",
+      "title": "Create a Custom Share Destination in Final Cut Pro",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/receiving-media-and-data-through-a-custom-share-destination#Create-a-Custom-Share-Destination-in-Final-Cut-Pro"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/receiving-media-and-data-through-a-custom-share-destination#Describe-Your-Scripting-Terminology": {
+      "abstract": [],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/receiving-media-and-data-through-a-custom-share-destination#Describe-Your-Scripting-Terminology",
+      "kind": "section",
+      "title": "Describe Your Scripting Terminology",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/receiving-media-and-data-through-a-custom-share-destination#Describe-Your-Scripting-Terminology"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/receiving-media-and-data-through-a-custom-share-destination#Distribute-a-Custom-Share-Destination-to-Your-Users": {
+      "abstract": [],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/receiving-media-and-data-through-a-custom-share-destination#Distribute-a-Custom-Share-Destination-to-Your-Users",
+      "kind": "section",
+      "title": "Distribute a Custom Share Destination to Your Users",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/receiving-media-and-data-through-a-custom-share-destination#Distribute-a-Custom-Share-Destination-to-Your-Users"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/receiving-media-and-data-through-a-custom-share-destination#Provide-Responses-to-Apple-Events": {
+      "abstract": [],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/receiving-media-and-data-through-a-custom-share-destination#Provide-Responses-to-Apple-Events",
+      "kind": "section",
+      "title": "Provide Responses to Apple Events",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/receiving-media-and-data-through-a-custom-share-destination#Provide-Responses-to-Apple-Events"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/receiving-media-and-data-through-a-custom-share-destination#Signal-Your-Apps-Capabilities": {
+      "abstract": [],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/receiving-media-and-data-through-a-custom-share-destination#Signal-Your-Apps-Capabilities",
+      "kind": "section",
+      "title": "Signal Your App’s Capabilities",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/receiving-media-and-data-through-a-custom-share-destination#Signal-Your-Apps-Capabilities"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/responding-to-apple-events-from-final-cut-pro": {
+      "abstract": [
+        {
+          "text": "Tell Final Cut Pro about the kind of data your users want to receive in your app through a custom share destination.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/responding-to-apple-events-from-final-cut-pro",
+      "kind": "article",
+      "role": "article",
+      "title": "Responding to Apple Events from Final Cut Pro",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/responding-to-apple-events-from-final-cut-pro"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/sending-data-programmatically-to-final-cut-pro#Send-an-FCPXML-File-Using-an-Apple-Event": {
+      "abstract": [],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/sending-data-programmatically-to-final-cut-pro#Send-an-FCPXML-File-Using-an-Apple-Event",
+      "kind": "section",
+      "title": "Send an FCPXML File Using an Apple Event",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/sending-data-programmatically-to-final-cut-pro#Send-an-FCPXML-File-Using-an-Apple-Event"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/supporting-conversions-with-scripting-class-extensions": {
+      "abstract": [
+        {
+          "text": "Support conversions between the Apple event descriptor types and Foundation object classes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/supporting-conversions-with-scripting-class-extensions",
+      "kind": "article",
+      "role": "article",
+      "title": "Supporting Conversions with Scripting Class Extensions",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/supporting-conversions-with-scripting-class-extensions"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/supporting-drag-and-drop-to-receive-final-cut-pro-data": {
+      "abstract": [
+        {
+          "text": "Add drag and drop support in your app to give users an intuitive way to receive clips, projects, and other items from Final Cut Pro.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/supporting-drag-and-drop-to-receive-final-cut-pro-data",
+      "kind": "article",
+      "role": "article",
+      "title": "Supporting Drag and Drop to Receive Final Cut Pro Data",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/supporting-drag-and-drop-to-receive-final-cut-pro-data"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications": {
+      "abstract": [
+        {
+          "text": "Exchange data with Final Cut Pro, and create effects plug-ins for Final Cut Pro and Motion.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Professional Video Applications",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications"
+    },
+    "https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/ScriptableCocoaApplications/SApps_intro/SAppsIntro.html#//apple_ref/doc/uid/TP40002164": {
+      "identifier": "https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/ScriptableCocoaApplications/SApps_intro/SAppsIntro.html#//apple_ref/doc/uid/TP40002164",
+      "title": "Cocoa Scripting Guide",
+      "titleInlineContent": [
+        {
+          "text": "Cocoa Scripting Guide",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/ScriptableCocoaApplications/SApps_intro/SAppsIntro.html#//apple_ref/doc/uid/TP40002164"
+    },
+    "https://support.apple.com/guide/final-cut-pro/create-share-destinations-ver9fd008a21/10.4.7/mac/10.14": {
+      "identifier": "https://support.apple.com/guide/final-cut-pro/create-share-destinations-ver9fd008a21/10.4.7/mac/10.14",
+      "title": "Create share destinations in Final Cut Pro: Share destinations between Final Cut Pro users",
+      "titleInlineContent": [
+        {
+          "text": "Create share destinations in Final Cut Pro: Share destinations between Final Cut Pro users",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://support.apple.com/guide/final-cut-pro/create-share-destinations-ver9fd008a21/10.4.7/mac/10.14"
+    },
+    "https://support.apple.com/guide/final-cut-pro/create-share-destinations-ver9fd008a21/mac": {
+      "identifier": "https://support.apple.com/guide/final-cut-pro/create-share-destinations-ver9fd008a21/mac",
+      "title": "Create share destinations in Final Cut Pro",
+      "titleInlineContent": [
+        {
+          "text": "Create share destinations in Final Cut Pro",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://support.apple.com/guide/final-cut-pro/create-share-destinations-ver9fd008a21/mac"
+    },
+    "https://support.apple.com/guide/final-cut-pro/export-file-destination-ver13664388c/10.4.7/mac/10.14": {
+      "identifier": "https://support.apple.com/guide/final-cut-pro/export-file-destination-ver13664388c/10.4.7/mac/10.14",
+      "title": "Export File destination in Final Cut Pro",
+      "titleInlineContent": [
+        {
+          "text": "Export File destination in Final Cut Pro",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://support.apple.com/guide/final-cut-pro/export-file-destination-ver13664388c/10.4.7/mac/10.14"
+    },
+    "https://support.apple.com/guide/final-cut-pro/intro-to-sharing-projects-ver9d10063a/mac": {
+      "identifier": "https://support.apple.com/guide/final-cut-pro/intro-to-sharing-projects-ver9d10063a/mac",
+      "title": "Intro to sharing projects in Final Cut Pro",
+      "titleInlineContent": [
+        {
+          "text": "Intro to sharing projects in Final Cut Pro",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://support.apple.com/guide/final-cut-pro/intro-to-sharing-projects-ver9d10063a/mac"
+    },
+    "media-3234183": {
+      "alt": "Screenshot showing File > Share menus with the custom share destination called MyAppCustomDestination selected.",
+      "identifier": "media-3234183",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a21e778f7e0b73b2b5f55026a0851c78/media-3234183.png"
+        }
+      ]
+    },
+    "media-3234547": {
+      "alt": "Screenshot of the Destinations pane in Final Cut Pro Preferences. In the Destinations list on the left, MyAppCustomDestination is selected as the custom share destination for your app. The “Open with” field on the right shows MyApp as the target application. ",
+      "identifier": "media-3234547",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/306a98a9b302244c1d72bb77920825bf/media-3234547.png"
+        }
+      ]
+    },
+    "media-3878516": {
+      "alt": "Illustration showing a Final Cut Pro custom share destination sending both FCPXML and QuickTime Movies to your app.",
+      "identifier": "media-3878516",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/fca324aa98297a58d6a1707165b79dec/media-3878516@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Data-Received-in-Your-App-from-Final-Cut-Pro",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/supporting-drag-and-drop-to-receive-final-cut-pro-data"
+      ],
+      "title": "Data Received in Your App from Final Cut Pro"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Handling-Apple-Events",
+      "identifiers": [
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/responding-to-apple-events-from-final-cut-pro",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/supporting-conversions-with-scripting-class-extensions",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/creating-scripting-definitions-for-custom-share-destinations"
+      ],
+      "title": "Handling Apple Events"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Handling-Apple-Events",
+              "identifiers": [
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/responding-to-apple-events-from-final-cut-pro",
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/supporting-conversions-with-scripting-class-extensions",
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/creating-scripting-definitions-for-custom-share-destinations"
+              ],
+              "title": "Handling Apple Events"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Data-Received-in-Your-App-from-Final-Cut-Pro",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/supporting-drag-and-drop-to-receive-final-cut-pro-data"
+              ],
+              "title": "Data Received in Your App from Final Cut Pro"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/professional-video-applications/receiving-media-and-data-through-a-custom-share-destination"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/professional-video-applications/receiving-media-and-data-through-a-custom-share-destination"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

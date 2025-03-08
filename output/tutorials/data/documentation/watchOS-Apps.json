@@ -1,0 +1,1672 @@
+{
+  "abstract": [
+    {
+      "text": "Build watchOS apps that combine complications, notifications, and Siri to create",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "a personal experience on Apple Watch.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "images": [
+      {
+        "identifier": "watchOSApps-PageImage-card.png",
+        "type": "card"
+      }
+    ],
+    "role": "collection",
+    "title": "watchOS apps"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Apple Watch provides easy access to vital information on someone’s wrist. The",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "watchOS experience focuses on quick actions that achieve useful tasks through",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "brief, punctuated interactions.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "WatchKit-1",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "On Apple Watch, keep interactions as short as possible. Provide vital",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "information at a glance, encouraging the wearer to respond with just a few",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "taps, and then drop their wrist and move on. They don’t need to wait to see if",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the action succeeds; instead, the watchOS app automatically notifies them of",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "any important updates.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For watchOS, expect to spend more time planning, designing, and refining your",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "app’s experience than writing the actual code. For design guidance, see",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/design/human-interface-guidelines/platforms/designing-for-watchos/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When designing a watchOS app, mix a combination of the following technologies",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to create a richer experience.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "The-watchOS-app",
+          "level": 2,
+          "text": "The watchOS app",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The main app serves as the foundation for your watchOS app experience. Anyone",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "can launch and interact with your app directly. However, the app’s interface",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "isn’t necessarily the primary way people interact with your app. Many may prefer",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to interact through complications or notifications, and may never explicitly",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "launch your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "app",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Complications",
+          "level": 2,
+          "text": "Complications",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Complications provide small glimpses into your app’s data directly on the watch",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "face. People can add complications to most watch faces, but space is limited.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Design complications to show information that is timely, up to date, and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "useful. People can also launch the watchOS app quickly and easily by tapping",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a complication.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "complications",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Notifications",
+          "level": 2,
+          "text": "Notifications",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use notifications to alert people of significant events. You can also provide",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "actions so that people can respond immediately without opening your app. You can",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "use either local or remote notifications to communicate, even when your app",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "isn’t running.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "notification",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Siri",
+          "level": 2,
+          "text": "Siri",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use SiriKit and App intents to expand the ways people can interact with your",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "app. If your app uses domains like messaging or media, use",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SiriKit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to add Siri support to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "your app. For other features, use",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppIntents",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to expose your app’s",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "functionality to system services like Siri and the Shortcuts app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "siri",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Accessibility-PageImage-card.png": {
+      "alt": "",
+      "identifier": "Accessibility-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/718b8a161d77a3423dde2dd53ac35ffb/Accessibility-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ed433f19cfa41ebf0c9f495a066b6bbd/Accessibility-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "SwiftUI-PageImage-card.png": {
+      "alt": "A black Swift logo on a swirly blue and purple background.",
+      "identifier": "SwiftUI-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1450d0b30a6b024e10c148e3f31dafe9/SwiftUI-PageImage-card~dark@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b1de0de086f81a5d0eac3839a0af6e6f/SwiftUI-PageImage-card@2x.png"
+        }
+      ]
+    },
+    "WatchKit-1": {
+      "alt": "An illustration showing an Apple Watch surrounded by icons representing common features, including creating user interfaces, playing background audio, and displaying custom notifications.",
+      "identifier": "WatchKit-1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/338a988aa783dd6f74046d0101407df4/WatchKit-1@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a8f016bcfc47dad8e81e85a90fe110b1/WatchKit-1~dark@2x.png"
+        }
+      ]
+    },
+    "app": {
+      "alt": "An illustration of a watch face showing four watchOS app icons.",
+      "identifier": "app",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c54dd895f3e9d547684408b76e0e797e/app@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b08b68b84364f005167fed14e0ae19b3/app~dark@2x.png"
+        }
+      ]
+    },
+    "complications": {
+      "alt": "An illustration of a watch face with the corners highlighted to represent corner complications.",
+      "identifier": "complications",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a9fbf6cf8c536511a2692372542da3b5/complications@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a650f26c1358390a48d498fd2b004109/complications~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.documentation/documentation/Accessibility": {
+      "abstract": [
+        {
+          "text": "Make your apps accessible to everyone who uses Apple devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Accessibility",
+      "images": [
+        {
+          "identifier": "Accessibility-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Accessibility",
+      "type": "topic",
+      "url": "/documentation/Accessibility"
+    },
+    "doc://com.apple.documentation/documentation/AppIntents": {
+      "abstract": [
+        {
+          "text": "Make your app’s content and actions discoverable with system experiences like Spotlight, widgets, and enhanced action capabilities of Siri, powered by Apple Intelligence.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppIntents",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "App Intents",
+      "type": "topic",
+      "url": "/documentation/AppIntents"
+    },
+    "doc://com.apple.documentation/documentation/AppIntents/ActionButtonArticle": {
+      "abstract": [
+        {
+          "text": "Use App Intents to register actions for your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppIntents/ActionButtonArticle",
+      "kind": "article",
+      "role": "article",
+      "title": "Responding to the Action button on Apple Watch Ultra",
+      "type": "topic",
+      "url": "/documentation/AppIntents/ActionButtonArticle"
+    },
+    "doc://com.apple.documentation/documentation/AppIntents/Making-actions-and-content-discoverable-and-widely-available": {
+      "abstract": [
+        {
+          "text": "Adopt App Intents to make your app discoverable with Siri and Apple Intelligence, Spotlight, controls, widgets, and the Action button.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppIntents/Making-actions-and-content-discoverable-and-widely-available",
+      "kind": "article",
+      "role": "article",
+      "title": "Making actions and content discoverable and widely available",
+      "type": "topic",
+      "url": "/documentation/AppIntents/Making-actions-and-content-discoverable-and-widely-available"
+    },
+    "doc://com.apple.documentation/documentation/HealthKit": {
+      "abstract": [
+        {
+          "text": "Access and share health and fitness data while maintaining the user’s privacy and control.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/HealthKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "HealthKit",
+      "type": "topic",
+      "url": "/documentation/HealthKit"
+    },
+    "doc://com.apple.documentation/documentation/HealthKit/authorizing-access-to-health-data": {
+      "abstract": [
+        {
+          "text": "Request permission to read and share data in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/HealthKit/authorizing-access-to-health-data",
+      "kind": "article",
+      "role": "article",
+      "title": "Authorizing access to health data",
+      "type": "topic",
+      "url": "/documentation/HealthKit/authorizing-access-to-health-data"
+    },
+    "doc://com.apple.documentation/documentation/HealthKit/build-a-workout-app-for-apple-watch": {
+      "abstract": [
+        {
+          "text": "Create your own workout app, quickly and easily, with HealthKit and SwiftUI.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/HealthKit/build-a-workout-app-for-apple-watch",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Build a workout app for Apple Watch",
+      "type": "topic",
+      "url": "/documentation/HealthKit/build-a-workout-app-for-apple-watch"
+    },
+    "doc://com.apple.documentation/documentation/HealthKit/reading-data-from-healthkit": {
+      "abstract": [
+        {
+          "text": "Use queries to request sample data from HealthKit.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/HealthKit/reading-data-from-healthkit",
+      "kind": "article",
+      "role": "article",
+      "title": "Reading data from HealthKit",
+      "type": "topic",
+      "url": "/documentation/HealthKit/reading-data-from-healthkit"
+    },
+    "doc://com.apple.documentation/documentation/HealthKit/saving-data-to-healthkit": {
+      "abstract": [
+        {
+          "text": "Create and share HealthKit samples.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/HealthKit/saving-data-to-healthkit",
+      "kind": "article",
+      "role": "article",
+      "title": "Saving data to HealthKit",
+      "type": "topic",
+      "url": "/documentation/HealthKit/saving-data-to-healthkit"
+    },
+    "doc://com.apple.documentation/documentation/HealthKit/setting-up-healthkit": {
+      "abstract": [
+        {
+          "text": "Set up and configure your HealthKit store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/HealthKit/setting-up-healthkit",
+      "kind": "article",
+      "role": "article",
+      "title": "Setting up HealthKit",
+      "type": "topic",
+      "url": "/documentation/HealthKit/setting-up-healthkit"
+    },
+    "doc://com.apple.documentation/documentation/SiriKit": {
+      "abstract": [
+        {
+          "text": "Empower users to interact with their devices through voice, intelligent suggestions, and personalized workflows.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SiriKit",
+      "kind": "article",
+      "role": "collection",
+      "title": "SiriKit",
+      "type": "topic",
+      "url": "/documentation/SiriKit"
+    },
+    "doc://com.apple.documentation/documentation/SiriKit/creating-an-intents-app-extension": {
+      "abstract": [
+        {
+          "text": "Add and configure an Intents app extension in your Xcode project.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SiriKit/creating-an-intents-app-extension",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating an Intents App Extension",
+      "type": "topic",
+      "url": "/documentation/SiriKit/creating-an-intents-app-extension"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI": {
+      "abstract": [
+        {
+          "text": "Declare the user interface and behavior for your app on every platform.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI",
+      "images": [
+        {
+          "identifier": "SwiftUI-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SwiftUI",
+      "type": "topic",
+      "url": "/documentation/SwiftUI"
+    },
+    "doc://com.apple.documentation/documentation/Updates/watchos": {
+      "abstract": [
+        {
+          "text": "Learn about important changes to watchOS.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Updates/watchos",
+      "kind": "article",
+      "role": "article",
+      "title": "watchOS updates",
+      "type": "topic",
+      "url": "/documentation/Updates/watchos"
+    },
+    "doc://com.apple.documentation/documentation/WatchKit": {
+      "abstract": [
+        {
+          "text": "Build watchOS apps that use features the app delegate monitors or controls, such as background tasks and extended runtime sessions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/WatchKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "WatchKit",
+      "type": "topic",
+      "url": "/documentation/WatchKit"
+    },
+    "doc://com.apple.documentation/documentation/WatchKit/background-execution": {
+      "abstract": [
+        {
+          "text": "Manage background sessions and tasks.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/WatchKit/background-execution",
+      "kind": "article",
+      "role": "article",
+      "title": "Background execution",
+      "type": "topic",
+      "url": "/documentation/WatchKit/background-execution"
+    },
+    "doc://com.apple.documentation/documentation/WatchKit/interacting-with-bluetooth-peripherals-during-background-app-refresh": {
+      "abstract": [
+        {
+          "text": "Keep your complications up-to-date by reading values from a Bluetooth peripheral while your app is running in the background.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/WatchKit/interacting-with-bluetooth-peripherals-during-background-app-refresh",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Interacting with Bluetooth peripherals during background app refresh",
+      "type": "topic",
+      "url": "/documentation/WatchKit/interacting-with-bluetooth-peripherals-during-background-app-refresh"
+    },
+    "doc://com.apple.documentation/documentation/WatchKit/life-cycles": {
+      "abstract": [
+        {
+          "text": "Receive and respond to life-cycle notifications.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/WatchKit/life-cycles",
+      "kind": "article",
+      "role": "article",
+      "title": "Life cycles",
+      "type": "topic",
+      "url": "/documentation/WatchKit/life-cycles"
+    },
+    "doc://com.apple.documentation/documentation/WatchKit/using-extended-runtime-sessions": {
+      "abstract": [
+        {
+          "text": "Create an extended runtime session that continues running your app after the user stops interacting with it.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/WatchKit/using-extended-runtime-sessions",
+      "kind": "article",
+      "role": "article",
+      "title": "Using extended runtime sessions",
+      "type": "topic",
+      "url": "/documentation/WatchKit/using-extended-runtime-sessions"
+    },
+    "doc://com.apple.documentation/documentation/WidgetKit": {
+      "abstract": [
+        {
+          "text": "Extend the reach of your app by creating widgets, watch complications, Live Activities, and controls.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/WidgetKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "WidgetKit",
+      "type": "topic",
+      "url": "/documentation/WidgetKit"
+    },
+    "doc://com.apple.documentation/documentation/WidgetKit/Converting-A-ClockKit-App": {
+      "abstract": [
+        {
+          "text": "Leverage WidgetKit’s API to create watchOS complications using SwiftUI.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/WidgetKit/Converting-A-ClockKit-App",
+      "kind": "article",
+      "role": "article",
+      "title": "Migrating ClockKit complications to WidgetKit",
+      "type": "topic",
+      "url": "/documentation/WidgetKit/Converting-A-ClockKit-App"
+    },
+    "doc://com.apple.documentation/documentation/WidgetKit/Creating-a-Widget-Extension": {
+      "abstract": [
+        {
+          "text": "Display your app’s content in a convenient, informative widget on various devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/WidgetKit/Creating-a-Widget-Extension",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating a widget extension",
+      "type": "topic",
+      "url": "/documentation/WidgetKit/Creating-a-Widget-Extension"
+    },
+    "doc://com.apple.documentation/documentation/WidgetKit/Creating-accessory-widgets-and-watch-complications": {
+      "abstract": [
+        {
+          "text": "Support accessory widgets that appear on the Lock Screen and as complications on Apple Watch.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/WidgetKit/Creating-accessory-widgets-and-watch-complications",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating accessory widgets and watch complications",
+      "type": "topic",
+      "url": "/documentation/WidgetKit/Creating-accessory-widgets-and-watch-complications"
+    },
+    "doc://com.apple.documentation/documentation/WidgetKit/Keeping-a-Widget-Up-To-Date": {
+      "abstract": [
+        {
+          "text": "Plan your widget’s timeline to show timely, relevant information using dynamic views, and update the timeline when things change.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/WidgetKit/Keeping-a-Widget-Up-To-Date",
+      "kind": "article",
+      "role": "article",
+      "title": "Keeping a widget up to date",
+      "type": "topic",
+      "url": "/documentation/WidgetKit/Keeping-a-Widget-Up-To-Date"
+    },
+    "doc://com.apple.documentation/documentation/WidgetKit/Widget-Suggestions-In-Smart-Stacks": {
+      "abstract": [
+        {
+          "text": "Donate intents and indicate relevance to automatically show your widget in Smart Stacks when it has useful information to display.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/WidgetKit/Widget-Suggestions-In-Smart-Stacks",
+      "kind": "article",
+      "role": "article",
+      "title": "Increasing the visibility of widgets in Smart Stacks",
+      "type": "topic",
+      "url": "/documentation/WidgetKit/Widget-Suggestions-In-Smart-Stacks"
+    },
+    "doc://com.apple.documentation/documentation/XCTest": {
+      "abstract": [
+        {
+          "text": "Create and run unit tests, performance tests, and UI tests for your Xcode project.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/XCTest",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "XCTest",
+      "type": "topic",
+      "url": "/documentation/XCTest"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsession": {
+      "abstract": [
+        {
+          "text": "An object that coordinates a group of related, network data transfer tasks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "URLSession"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLSession",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsession"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.documentation/documentation/watchos-apps/building_a_productivity_app_for_apple_watch": {
+      "abstract": [
+        {
+          "text": "Create a watch app to manage and share a task list and visualize the status with a chart.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/watchos-apps/building_a_productivity_app_for_apple_watch",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Building a productivity app for Apple Watch",
+      "type": "topic",
+      "url": "/documentation/watchos-apps/building_a_productivity_app_for_apple_watch"
+    },
+    "doc://com.apple.documentation/documentation/watchos-apps/create_accessible_experiences_for_watchos": {
+      "abstract": [
+        {
+          "text": "Learn how to make your watchOS app more accessible.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/watchos-apps/create_accessible_experiences_for_watchos",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Create accessible experiences for watchOS",
+      "type": "topic",
+      "url": "/documentation/watchos-apps/create_accessible_experiences_for_watchos"
+    },
+    "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/authenticating-users-on-apple-watch": {
+      "abstract": [
+        {
+          "text": "Create an account sign-up and sign-in strategy for your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/authenticating-users-on-apple-watch",
+      "kind": "article",
+      "role": "article",
+      "title": "Authenticating users on Apple Watch",
+      "type": "topic",
+      "url": "/documentation/watchos-apps/authenticating-users-on-apple-watch"
+    },
+    "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/building_a_watchos_app": {
+      "abstract": [
+        {
+          "text": "Set up your app’s life cycle and create its user interface with SwiftUI.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/building_a_watchos_app",
+      "kind": "article",
+      "role": "article",
+      "title": "Building a watchOS app",
+      "type": "topic",
+      "url": "/documentation/watchos-apps/building_a_watchos_app"
+    },
+    "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/creating-an-intuitive-and-effective-ui-in-watchos-10": {
+      "abstract": [
+        {
+          "text": "Provide an even more streamlined, consistent, and glanceable user experience with new design features.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/creating-an-intuitive-and-effective-ui-in-watchos-10",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating an intuitive and effective UI in watchOS 10",
+      "type": "topic",
+      "url": "/documentation/watchos-apps/creating-an-intuitive-and-effective-ui-in-watchos-10"
+    },
+    "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/creating-independent-watchos-apps": {
+      "abstract": [
+        {
+          "text": "Set up a watchOS app that installs and runs without a companion iOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/creating-independent-watchos-apps",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating independent watchOS apps",
+      "type": "topic",
+      "url": "/documentation/watchos-apps/creating-independent-watchos-apps"
+    },
+    "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/designing-your-app-for-the-always-on-state": {
+      "abstract": [
+        {
+          "text": "Customize your watchOS app’s user interface for continuous display.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/designing-your-app-for-the-always-on-state",
+      "kind": "article",
+      "role": "article",
+      "title": "Designing your app for the Always On state",
+      "type": "topic",
+      "url": "/documentation/watchos-apps/designing-your-app-for-the-always-on-state"
+    },
+    "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/enabling-double-tap": {
+      "abstract": [
+        {
+          "text": "Customize your app’s response to the double-tap gesture on Apple Watch.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/enabling-double-tap",
+      "images": [
+        {
+          "identifier": "enabling-double-tap-on-watch-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "article",
+      "title": "Enabling the double-tap gesture on Apple Watch",
+      "type": "topic",
+      "url": "/documentation/watchos-apps/enabling-double-tap"
+    },
+    "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/keeping-your-watchos-app-s-content-up-to-date": {
+      "abstract": [
+        {
+          "text": "Ensure that your app’s content is relevant and up to date.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/keeping-your-watchos-app-s-content-up-to-date",
+      "kind": "article",
+      "role": "article",
+      "title": "Keeping your watchOS content up to date",
+      "type": "topic",
+      "url": "/documentation/watchos-apps/keeping-your-watchos-app-s-content-up-to-date"
+    },
+    "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/making-background-requests": {
+      "abstract": [
+        {
+          "text": "Send requests from your app when it’s running in the background.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/making-background-requests",
+      "kind": "article",
+      "role": "article",
+      "title": "Making background requests",
+      "type": "topic",
+      "url": "/documentation/watchos-apps/making-background-requests"
+    },
+    "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/making-default-and-ephemeral-requests": {
+      "abstract": [
+        {
+          "text": "Send requests from your app when it’s running in the foreground.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/making-default-and-ephemeral-requests",
+      "kind": "article",
+      "role": "article",
+      "title": "Making default and ephemeral requests",
+      "type": "topic",
+      "url": "/documentation/watchos-apps/making-default-and-ephemeral-requests"
+    },
+    "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/notifications": {
+      "abstract": [
+        {
+          "text": "Communicate with users even when your app isn’t running.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/notifications",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Notifications",
+      "type": "topic",
+      "url": "/documentation/watchos-apps/notifications"
+    },
+    "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/setting-the-app-s-accent-color": {
+      "abstract": [
+        {
+          "text": "Set your app’s accent color.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/setting-the-app-s-accent-color",
+      "kind": "article",
+      "role": "article",
+      "title": "Setting the app’s accent color",
+      "type": "topic",
+      "url": "/documentation/watchos-apps/setting-the-app-s-accent-color"
+    },
+    "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/setting-up-a-watchos-project": {
+      "abstract": [
+        {
+          "text": "Create a new watchOS project or add a watch target to an existing iOS project.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/setting-up-a-watchos-project",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Setting up a watchOS project",
+      "type": "topic",
+      "url": "/documentation/watchos-apps/setting-up-a-watchos-project"
+    },
+    "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/setting-up-tests-for-your-watchos-app": {
+      "abstract": [
+        {
+          "text": "Configure your watch-only project with unit tests and user interface tests.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/setting-up-tests-for-your-watchos-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Setting up tests for your watchOS app",
+      "type": "topic",
+      "url": "/documentation/watchos-apps/setting-up-tests-for-your-watchos-app"
+    },
+    "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/supporting-multiple-watch-sizes": {
+      "abstract": [
+        {
+          "text": "Customize the layout of your user interface to support all Apple Watch sizes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/supporting-multiple-watch-sizes",
+      "kind": "article",
+      "role": "article",
+      "title": "Supporting multiple watch sizes",
+      "type": "topic",
+      "url": "/documentation/watchos-apps/supporting-multiple-watch-sizes"
+    },
+    "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/updating-watchos-apps-with-timelines": {
+      "abstract": [
+        {
+          "text": "Seamlessly schedule updates to your user interface, even while it’s inactive.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/updating-watchos-apps-with-timelines",
+      "kind": "article",
+      "role": "article",
+      "title": "Updating watchOS apps with timelines",
+      "type": "topic",
+      "url": "/documentation/watchos-apps/updating-watchos-apps-with-timelines"
+    },
+    "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/updating-your-app-and-widgets-for-watchos-10": {
+      "abstract": [
+        {
+          "text": "Integrate SwiftUI elements and watch-specific features, and build widgets for the Smart Stack.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/updating-your-app-and-widgets-for-watchos-10",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Updating your app and widgets for watchOS 10",
+      "type": "topic",
+      "url": "/documentation/watchos-apps/updating-your-app-and-widgets-for-watchos-10"
+    },
+    "enabling-double-tap-on-watch-PageImage-card.png": {
+      "alt": "A stylistic representation of the double tap gesture on Apple Watch.",
+      "identifier": "enabling-double-tap-on-watch-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/31d5e805205ce0e598c55fdb76989025/enabling-double-tap-on-watch-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/235637bc0a7bc531746ce17b9ed199b3/enabling-double-tap-on-watch-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "https://developer.apple.com/design/human-interface-guidelines/platforms/designing-for-watchos/": {
+      "identifier": "https://developer.apple.com/design/human-interface-guidelines/platforms/designing-for-watchos/",
+      "title": "Designing for watchOS",
+      "titleInlineContent": [
+        {
+          "text": "Designing for",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "watchOS",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/design/human-interface-guidelines/platforms/designing-for-watchos/"
+    },
+    "notification": {
+      "alt": "An illustration of a watch face showing a notification icon and two bars representing notification text.",
+      "identifier": "notification",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/68f83998b0e0117749ab87023203291c/notification@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ffe09862a5101ed832681cb4cf6e569f/notification~dark@2x.png"
+        }
+      ]
+    },
+    "siri": {
+      "alt": "An illustration of a watch face showing the Siri icon and the text What can I help you with?",
+      "identifier": "siri",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/55a6be7ce63438fdc13d04ae6b715a30/siri@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/63fe56d3f44647621d245f159c77d763/siri~dark@2x.png"
+        }
+      ]
+    },
+    "watchOSApps-PageImage-card.png": {
+      "alt": null,
+      "identifier": "watchOSApps-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5e043ca96ec9c9e5579649124c448c35/watchOSApps-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2e82e5f258fb084d7b684889cabbe515/watchOSApps-PageImage-card~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "abstract": [
+        {
+          "text": "Create your first watchOS app.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Essentials",
+      "identifiers": [
+        "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/creating-an-intuitive-and-effective-ui-in-watchos-10",
+        "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/updating-your-app-and-widgets-for-watchos-10",
+        "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/building_a_watchos_app",
+        "doc://com.apple.documentation/documentation/Updates/watchos"
+      ],
+      "title": "Essentials"
+    },
+    {
+      "abstract": [
+        {
+          "text": "Craft a complete app experience on the wearer’s wrist.",
+          "type": "text"
+        }
+      ],
+      "anchor": "App-experience",
+      "identifiers": [
+        "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/setting-up-a-watchos-project",
+        "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/creating-independent-watchos-apps",
+        "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/keeping-your-watchos-app-s-content-up-to-date",
+        "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/updating-watchos-apps-with-timelines",
+        "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/authenticating-users-on-apple-watch",
+        "doc://com.apple.documentation/documentation/AppIntents/ActionButtonArticle",
+        "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/enabling-double-tap"
+      ],
+      "title": "App experience"
+    },
+    {
+      "abstract": [
+        {
+          "text": "Build accessibility into your app’s initial design. For a detailed discussion",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "about helping a wide range of people more easily interact with your app, see",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/Accessibility",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "anchor": "Accessibility",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/watchos-apps/create_accessible_experiences_for_watchos"
+      ],
+      "title": "Accessibility"
+    },
+    {
+      "abstract": [
+        {
+          "text": "Design an adaptive interface that highlights your app’s most important data. For",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "a detailed discussion about building user interfaces, see",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/SwiftUI",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "anchor": "User-interface",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/watchos-apps/building_a_productivity_app_for_apple_watch",
+        "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/supporting-multiple-watch-sizes",
+        "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/designing-your-app-for-the-always-on-state",
+        "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/setting-the-app-s-accent-color"
+      ],
+      "title": "User interface"
+    },
+    {
+      "abstract": [
+        {
+          "text": "Use WidgetKit to create complications on the watch face that provide quick",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "access to useful information from your app. For a detailed discussion on",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "creating and updating complications, see",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/WidgetKit",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "anchor": "Complications",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/WidgetKit/Creating-accessory-widgets-and-watch-complications",
+        "doc://com.apple.documentation/documentation/WidgetKit/Converting-A-ClockKit-App",
+        "doc://com.apple.documentation/documentation/WidgetKit/Creating-a-Widget-Extension",
+        "doc://com.apple.documentation/documentation/WidgetKit/Keeping-a-Widget-Up-To-Date",
+        "doc://com.apple.documentation/documentation/WidgetKit/Widget-Suggestions-In-Smart-Stacks"
+      ],
+      "title": "Complications"
+    },
+    {
+      "abstract": [
+        {
+          "text": "Use notifications to string together longer workflows.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Notifications",
+      "identifiers": [
+        "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/notifications"
+      ],
+      "title": "Notifications"
+    },
+    {
+      "abstract": [
+        {
+          "text": "Build a voice-based interface for your app. For a detailed discussion about",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "exposing your app’s features to system services like Siri and the Shortcut app,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "see ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/AppIntents",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " and",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/SiriKit",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "anchor": "Siri",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/AppIntents/Making-actions-and-content-discoverable-and-widely-available",
+        "doc://com.apple.documentation/documentation/SiriKit/creating-an-intents-app-extension"
+      ],
+      "title": "Siri"
+    },
+    {
+      "abstract": [
+        {
+          "text": "Create health and fitness apps for watchOS. For detailed information about",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "designing health and fitness apps, see",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/HealthKit",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "anchor": "Health-and-fitness",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/HealthKit/setting-up-healthkit",
+        "doc://com.apple.documentation/documentation/HealthKit/authorizing-access-to-health-data",
+        "doc://com.apple.documentation/documentation/HealthKit/saving-data-to-healthkit",
+        "doc://com.apple.documentation/documentation/HealthKit/reading-data-from-healthkit",
+        "doc://com.apple.documentation/documentation/HealthKit/build-a-workout-app-for-apple-watch"
+      ],
+      "title": "Health and fitness"
+    },
+    {
+      "abstract": [
+        {
+          "text": "Extend your watch’s ability to run even when no one is interacting with it. For",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "the complete API, see ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/WatchKit",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "anchor": "Runtime-management",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/WatchKit/background-execution",
+        "doc://com.apple.documentation/documentation/WatchKit/life-cycles",
+        "doc://com.apple.documentation/documentation/WatchKit/using-extended-runtime-sessions",
+        "doc://com.apple.documentation/documentation/WatchKit/interacting-with-bluetooth-peripherals-during-background-app-refresh"
+      ],
+      "title": "Runtime management"
+    },
+    {
+      "abstract": [
+        {
+          "text": "Download information directly to the watch. For a detailed discussion about",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "downloading and uploading data, see",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "anchor": "Network-requests",
+      "identifiers": [
+        "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/making-default-and-ephemeral-requests",
+        "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/making-background-requests"
+      ],
+      "title": "Network requests"
+    },
+    {
+      "abstract": [
+        {
+          "text": "Build and run unit tests for your watchOS app. For a detailed discussion about",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "creating unit tests, see ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/XCTest",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "anchor": "Unit-tests",
+      "identifiers": [
+        "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/setting-up-tests-for-your-watchos-app"
+      ],
+      "title": "Unit tests"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1urlsession/title",
+          "value": "NSURLSession"
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

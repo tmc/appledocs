@@ -1,0 +1,963 @@
+{
+  "abstract": [
+    {
+      "text": "A DriverKit provider object that manages communications with an audio device.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.audiodriverkit/documentation/AudioDriverKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/IOUserAudioDriver"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@S@IOUserAudioDriver",
+    "fragments": [
+      {
+        "kind": "identifier",
+        "text": "IOUserAudioDriver"
+      }
+    ],
+    "modules": [
+      {
+        "name": "AudioDriverKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "IOUserAudioDriver"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "21.0",
+        "name": "DriverKit"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "IOUserAudioDriver"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "Unsupported OS: driverkit"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "IOUserAudioDriver"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For the Core Audio host to match against this driver, add the following keys to ",
+              "type": "text"
+            },
+            {
+              "code": "IOKitPersonalities",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", in the driver’s ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            " <key>IOUserAudioDriverUserClientProperties</key>",
+            " <dict>",
+            "     <key>IOClass</key>",
+            "     <string>IOUserUserClient</string>",
+            "     <key>IOUserClass</key>",
+            "     <string>IOUserAudioDriverUserClient</string>",
+            " </dict>"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After matching the host with the driver, the AudioDriverKit framework creates the connection to the Core Audio HAL as soon as the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/driverkit/ioservice",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " calls ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/IOUserAudioDriver/NewUserClient",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". The driver extension must have the ",
+              "type": "text"
+            },
+            {
+              "code": "com.apple.developer.driverkit.allow-any-userclient-access",
+              "type": "codeVoice"
+            },
+            {
+              "text": " entitlement.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.audiodriverkit/documentation/AudioDriverKit": {
+      "abstract": [
+        {
+          "text": "Develop drivers for audio devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiodriverkit/documentation/AudioDriverKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AudioDriverKit",
+      "type": "topic",
+      "url": "/documentation/audiodriverkit"
+    },
+    "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/AudioDriverKit/IOUserAudioClassID": {
+      "abstract": [
+        {
+          "text": "An identifier for the type of audio object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "IOUserAudioClassID"
+        }
+      ],
+      "identifier": "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/AudioDriverKit/IOUserAudioClassID",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOUserAudioClassID",
+      "type": "topic",
+      "url": "/documentation/audiodriverkit/audiodriverkit/iouseraudioclassid"
+    },
+    "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/AudioDriverKit/IOUserAudioObjectID": {
+      "abstract": [
+        {
+          "text": "An identifier that provides a handle on a specific audio object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "IOUserAudioObjectID"
+        }
+      ],
+      "identifier": "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/AudioDriverKit/IOUserAudioObjectID",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOUserAudioObjectID",
+      "type": "topic",
+      "url": "/documentation/audiodriverkit/audiodriverkit/iouseraudioobjectid"
+    },
+    "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/AudioDriverKit/IOUserAudioObjectPropertySelector": {
+      "abstract": [
+        {
+          "text": "A four character code which, along with the scope and element, specific piece of information about an audio object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "IOUserAudioObjectPropertySelector"
+        }
+      ],
+      "identifier": "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/AudioDriverKit/IOUserAudioObjectPropertySelector",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOUserAudioObjectPropertySelector",
+      "type": "topic",
+      "url": "/documentation/audiodriverkit/audiodriverkit/iouseraudioobjectpropertyselector"
+    },
+    "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/AudioDriverKit/IOUserAudioStartStopFlags": {
+      "abstract": [
+        {
+          "text": "Values that indicate I/O starts or stops.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "IOUserAudioStartStopFlags"
+        }
+      ],
+      "identifier": "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/AudioDriverKit/IOUserAudioStartStopFlags",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOUserAudioStartStopFlags",
+      "type": "topic",
+      "url": "/documentation/audiodriverkit/audiodriverkit/iouseraudiostartstopflags"
+    },
+    "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/AudioDriverKit/IOUserAudioTransportType": {
+      "abstract": [
+        {
+          "text": "The type of transport to deliver audio.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "IOUserAudioTransportType"
+        }
+      ],
+      "identifier": "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/AudioDriverKit/IOUserAudioTransportType",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOUserAudioTransportType",
+      "type": "topic",
+      "url": "/documentation/audiodriverkit/audiodriverkit/iouseraudiotransporttype"
+    },
+    "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/AudioDriverKit/kIOUserAudioObjectIDDriver": {
+      "abstract": [
+        {
+          "text": "The audio object ID of the driver.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "kIOUserAudioObjectIDDriver"
+        }
+      ],
+      "identifier": "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/AudioDriverKit/kIOUserAudioObjectIDDriver",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kIOUserAudioObjectIDDriver",
+      "type": "topic",
+      "url": "/documentation/audiodriverkit/audiodriverkit/kiouseraudioobjectiddriver"
+    },
+    "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/IOUserAudioCustomProperty": {
+      "abstract": [
+        {
+          "text": "A custom property to associate with audio objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "IOUserAudioCustomProperty"
+        }
+      ],
+      "identifier": "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/IOUserAudioCustomProperty",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOUserAudioCustomProperty",
+      "type": "topic",
+      "url": "/documentation/audiodriverkit/iouseraudiocustomproperty"
+    },
+    "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/IOUserAudioDriver": {
+      "abstract": [
+        {
+          "text": "A DriverKit provider object that manages communications with an audio device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "IOUserAudioDriver"
+        }
+      ],
+      "identifier": "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/IOUserAudioDriver",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOUserAudioDriver",
+      "type": "topic",
+      "url": "/documentation/audiodriverkit/iouseraudiodriver"
+    },
+    "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/IOUserAudioDriver/AddCustomProperty": {
+      "abstract": [
+        {
+          "text": "Adds a custom property object to the driver.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "AddCustomProperty"
+        }
+      ],
+      "identifier": "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/IOUserAudioDriver/AddCustomProperty",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AddCustomProperty",
+      "type": "topic",
+      "url": "/documentation/audiodriverkit/iouseraudiodriver/addcustomproperty"
+    },
+    "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/IOUserAudioDriver/AddObject": {
+      "abstract": [
+        {
+          "text": "Adds an audio object to the driver.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "AddObject"
+        }
+      ],
+      "identifier": "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/IOUserAudioDriver/AddObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AddObject",
+      "type": "topic",
+      "url": "/documentation/audiodriverkit/iouseraudiodriver/addobject"
+    },
+    "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/IOUserAudioDriver/GetAudioObjectForObjectID": {
+      "abstract": [
+        {
+          "text": "Gets a pointer to an audio object, given the object’s identifier.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "GetAudioObjectForObjectID"
+        }
+      ],
+      "identifier": "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/IOUserAudioDriver/GetAudioObjectForObjectID",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GetAudioObjectForObjectID",
+      "type": "topic",
+      "url": "/documentation/audiodriverkit/iouseraudiodriver/getaudioobjectforobjectid"
+    },
+    "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/IOUserAudioDriver/GetBaseClassID": {
+      "abstract": [
+        {
+          "text": "Gets the audio class identifier of the base class object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "GetBaseClassID"
+        }
+      ],
+      "identifier": "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/IOUserAudioDriver/GetBaseClassID",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GetBaseClassID",
+      "type": "topic",
+      "url": "/documentation/audiodriverkit/iouseraudiodriver/getbaseclassid"
+    },
+    "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/IOUserAudioDriver/GetClassID": {
+      "abstract": [
+        {
+          "text": "Gets the audio class identifier of the object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "GetClassID"
+        }
+      ],
+      "identifier": "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/IOUserAudioDriver/GetClassID",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GetClassID",
+      "type": "topic",
+      "url": "/documentation/audiodriverkit/iouseraudiodriver/getclassid"
+    },
+    "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/IOUserAudioDriver/GetName": {
+      "abstract": [
+        {
+          "text": "Gets the name of the driver.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "GetName"
+        }
+      ],
+      "identifier": "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/IOUserAudioDriver/GetName",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GetName",
+      "type": "topic",
+      "url": "/documentation/audiodriverkit/iouseraudiodriver/getname"
+    },
+    "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/IOUserAudioDriver/GetTransportType": {
+      "abstract": [
+        {
+          "text": "Gets the transport type of the driver.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "GetTransportType"
+        }
+      ],
+      "identifier": "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/IOUserAudioDriver/GetTransportType",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GetTransportType",
+      "type": "topic",
+      "url": "/documentation/audiodriverkit/iouseraudiodriver/gettransporttype"
+    },
+    "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/IOUserAudioDriver/GetWorkQueue": {
+      "abstract": [
+        {
+          "text": "Gets the work queue created by the audio object, as a pointer to a dispatch queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "GetWorkQueue"
+        }
+      ],
+      "identifier": "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/IOUserAudioDriver/GetWorkQueue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GetWorkQueue",
+      "type": "topic",
+      "url": "/documentation/audiodriverkit/iouseraudiodriver/getworkqueue"
+    },
+    "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/IOUserAudioDriver/NewUserClient": {
+      "abstract": [
+        {
+          "text": "Requests the creation of a new user client for the service.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "NewUserClient"
+        }
+      ],
+      "identifier": "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/IOUserAudioDriver/NewUserClient",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NewUserClient",
+      "type": "topic",
+      "url": "/documentation/audiodriverkit/iouseraudiodriver/newuserclient"
+    },
+    "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/IOUserAudioDriver/PropertiesChanged": {
+      "abstract": [
+        {
+          "text": "Informs the host when the state of an object in the driver changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "PropertiesChanged"
+        }
+      ],
+      "identifier": "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/IOUserAudioDriver/PropertiesChanged",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PropertiesChanged",
+      "type": "topic",
+      "url": "/documentation/audiodriverkit/iouseraudiodriver/propertieschanged"
+    },
+    "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/IOUserAudioDriver/RemoveCustomProperty": {
+      "abstract": [
+        {
+          "text": "Removes a previously-added custom property object from the driver.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "RemoveCustomProperty"
+        }
+      ],
+      "identifier": "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/IOUserAudioDriver/RemoveCustomProperty",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "RemoveCustomProperty",
+      "type": "topic",
+      "url": "/documentation/audiodriverkit/iouseraudiodriver/removecustomproperty"
+    },
+    "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/IOUserAudioDriver/RemoveObject": {
+      "abstract": [
+        {
+          "text": "Removes an audio object from the driver.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "RemoveObject"
+        }
+      ],
+      "identifier": "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/IOUserAudioDriver/RemoveObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "RemoveObject",
+      "type": "topic",
+      "url": "/documentation/audiodriverkit/iouseraudiodriver/removeobject"
+    },
+    "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/IOUserAudioDriver/SetName": {
+      "abstract": [
+        {
+          "text": "Sets the name of the driver.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SetName"
+        }
+      ],
+      "identifier": "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/IOUserAudioDriver/SetName",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SetName",
+      "type": "topic",
+      "url": "/documentation/audiodriverkit/iouseraudiodriver/setname"
+    },
+    "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/IOUserAudioDriver/SetTransportType": {
+      "abstract": [
+        {
+          "text": "Set the transport type of the driver.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SetTransportType"
+        }
+      ],
+      "identifier": "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/IOUserAudioDriver/SetTransportType",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SetTransportType",
+      "type": "topic",
+      "url": "/documentation/audiodriverkit/iouseraudiodriver/settransporttype"
+    },
+    "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/IOUserAudioDriver/Start": {
+      "abstract": [
+        {
+          "text": "Starts the current service and associates it with the specified provider.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "Start"
+        }
+      ],
+      "identifier": "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/IOUserAudioDriver/Start",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Start",
+      "type": "topic",
+      "url": "/documentation/audiodriverkit/iouseraudiodriver/start"
+    },
+    "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/IOUserAudioDriver/StartDevice": {
+      "abstract": [
+        {
+          "text": "Tells the driver to start I/O on an audio device or audio clock device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "StartDevice"
+        }
+      ],
+      "identifier": "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/IOUserAudioDriver/StartDevice",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "StartDevice",
+      "type": "topic",
+      "url": "/documentation/audiodriverkit/iouseraudiodriver/startdevice"
+    },
+    "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/IOUserAudioDriver/Stop": {
+      "abstract": [
+        {
+          "text": "Stops the service associated with the specified provider.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "Stop"
+        }
+      ],
+      "identifier": "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/IOUserAudioDriver/Stop",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Stop",
+      "type": "topic",
+      "url": "/documentation/audiodriverkit/iouseraudiodriver/stop"
+    },
+    "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/IOUserAudioDriver/StopDevice": {
+      "abstract": [
+        {
+          "text": "Tells the driver to stop I/O on an audio device or audio clock device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "StopDevice"
+        }
+      ],
+      "identifier": "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/IOUserAudioDriver/StopDevice",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "StopDevice",
+      "type": "topic",
+      "url": "/documentation/audiodriverkit/iouseraudiodriver/stopdevice"
+    },
+    "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/IOUserAudioDriver/free": {
+      "abstract": [
+        {
+          "text": "Performs any final cleanup for the service.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "free"
+        }
+      ],
+      "identifier": "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/IOUserAudioDriver/free",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "free",
+      "type": "topic",
+      "url": "/documentation/audiodriverkit/iouseraudiodriver/free"
+    },
+    "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/IOUserAudioDriver/init": {
+      "abstract": [
+        {
+          "text": "Handles the basic initialization of the service.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        }
+      ],
+      "identifier": "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/IOUserAudioDriver/init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init",
+      "type": "topic",
+      "url": "/documentation/audiodriverkit/iouseraudiodriver/init"
+    },
+    "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/IOUserAudioObject": {
+      "abstract": [
+        {
+          "text": "The base class for most classes in the framework.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "IOUserAudioObject"
+        }
+      ],
+      "identifier": "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/IOUserAudioObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOUserAudioObject",
+      "type": "topic",
+      "url": "/documentation/audiodriverkit/iouseraudioobject"
+    },
+    "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/creating-an-audio-device-driver": {
+      "abstract": [
+        {
+          "text": "Implement a configurable audio input source as a driver extension that runs in user space in macOS and iPadOS.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/creating-an-audio-device-driver",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Creating an audio device driver",
+      "type": "topic",
+      "url": "/documentation/audiodriverkit/creating-an-audio-device-driver"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.family.audio": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the device supports audio functionality.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.family.audio",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "DriverKit Audio Family",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.family.audio"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/ioservice": {
+      "abstract": [
+        {
+          "text": "The base class for managing the setup and registration of your driver.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/ioservice",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOService",
+      "type": "topic",
+      "url": "/documentation/driverkit/ioservice"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:@S@IOService": {
+      "abstract": [
+        {
+          "text": "The base class for managing the setup and registration of your driver.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:@S@IOService",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOService",
+      "type": "topic",
+      "url": "/documentation/driverkit/ioservice"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:@S@IOService"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/IOUserAudioObject",
+        "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.family.audio",
+        "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/creating-an-audio-device-driver"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Running-the-Driver-Service",
+      "identifiers": [
+        "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/IOUserAudioDriver/init",
+        "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/IOUserAudioDriver/Start",
+        "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/IOUserAudioDriver/Stop",
+        "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/IOUserAudioDriver/free"
+      ],
+      "title": "Running the Driver Service"
+    },
+    {
+      "anchor": "Getting-Information-About-the-Class",
+      "identifiers": [
+        "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/IOUserAudioDriver/GetClassID",
+        "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/IOUserAudioDriver/GetBaseClassID",
+        "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/AudioDriverKit/IOUserAudioClassID",
+        "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/IOUserAudioDriver/GetWorkQueue",
+        "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/IOUserAudioDriver/GetName",
+        "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/IOUserAudioDriver/SetName"
+      ],
+      "title": "Getting Information About the Class"
+    },
+    {
+      "anchor": "Getting-the-Drivers-Audio-Object-Identifier",
+      "identifiers": [
+        "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/AudioDriverKit/kIOUserAudioObjectIDDriver"
+      ],
+      "title": "Getting the Driver’s Audio Object Identifier"
+    },
+    {
+      "anchor": "Starting-and-Stopping-the-Driver",
+      "identifiers": [
+        "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/IOUserAudioDriver/StartDevice",
+        "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/IOUserAudioDriver/StopDevice",
+        "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/AudioDriverKit/IOUserAudioObjectID",
+        "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/AudioDriverKit/IOUserAudioStartStopFlags"
+      ],
+      "title": "Starting and Stopping the Driver"
+    },
+    {
+      "anchor": "Creating-a-New-Client",
+      "identifiers": [
+        "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/IOUserAudioDriver/NewUserClient"
+      ],
+      "title": "Creating a New Client"
+    },
+    {
+      "anchor": "Working-with-Transport-Type",
+      "identifiers": [
+        "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/IOUserAudioDriver/GetTransportType",
+        "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/IOUserAudioDriver/SetTransportType",
+        "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/AudioDriverKit/IOUserAudioTransportType"
+      ],
+      "title": "Working with Transport Type"
+    },
+    {
+      "anchor": "Working-with-Audio-Objects",
+      "identifiers": [
+        "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/IOUserAudioDriver/AddObject",
+        "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/IOUserAudioDriver/RemoveObject",
+        "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/IOUserAudioDriver/GetAudioObjectForObjectID"
+      ],
+      "title": "Working with Audio Objects"
+    },
+    {
+      "anchor": "Communicating-with-the-Host",
+      "identifiers": [
+        "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/IOUserAudioDriver/PropertiesChanged",
+        "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/AudioDriverKit/IOUserAudioObjectPropertySelector"
+      ],
+      "title": "Communicating with the Host"
+    },
+    {
+      "anchor": "Working-with-Custom-Properties",
+      "identifiers": [
+        "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/IOUserAudioDriver/AddCustomProperty",
+        "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/IOUserAudioDriver/RemoveCustomProperty",
+        "doc://com.apple.audiodriverkit/documentation/AudioDriverKit/IOUserAudioCustomProperty"
+      ],
+      "title": "Working with Custom Properties"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/audiodriverkit/iouseraudiodriver"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

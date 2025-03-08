@@ -1,0 +1,693 @@
+{
+  "abstract": [
+    {
+      "text": "Enable broadcast capability for Apple Push Notifications service (APNs).",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.usernotifications/documentation/UserNotifications",
+        "doc://com.apple.usernotifications/documentation/UserNotifications/setting-up-a-remote-notification-server"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.usernotifications/documentation/UserNotifications/setting-up-broadcast-push-notifications"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "images": [
+      {
+        "identifier": "Settingup-broadcast-PageImage-card.png",
+        "type": "card"
+      }
+    ],
+    "modules": [
+      {
+        "name": "User Notifications"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Setting up broadcast push notifications"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Broadcast push notifications provide an effective way to reach a large audience with Live Activities. Starting in iOS 18 and iPadOS 18, people can subscribe to receive updates on a channel for a Live Activity.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Determine-if-your-app-needs-broadcast-capability",
+          "level": 3,
+          "text": "Determine if your app needs broadcast capability",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Instead of using a device token to update a Live Activity for an individual person, you can publish a single broadcast request to APNs to reach everyone interested in receiving an update. This capability removes the need to manage device tokens and send updates to each person with a device token. Broadcast push notifications for Live Activities are effective for updating a multitude of people interested in receiving information about the same activity or event in real time. For example, use broadcast push for flight status updates or sports coverage. When Live Activity updates impact only one person, such as for an order delivery or a ride share, send push notifications directly to the device token. For more information, refer to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/sending-notification-requests-to-apns",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Broadcast push notifications are only available on Live Activities.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Refer to ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/viewing-the-status-of-push-notifications-using-metrics-and-apns",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Tip",
+          "style": "tip",
+          "type": "aside"
+        },
+        {
+          "anchor": "Enable-broadcast-capability",
+          "level": 3,
+          "text": "Enable broadcast capability",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To utilize broadcast capability to power Live Activities for your app, first ensure you have enabled push notifications. For more information on how to enable push notification in your app, refer to ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://help.apple.com/xcode/mac/current/#/devdfd3d04a1",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". You can enable Broadcast Capability by signing on to developer.apple.com.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Go to Certificates, IDs & Profiles > Identifiers",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select the topic you want to enable Broadcast Capability",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Enable Broadcast Capability under Push Notifications",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To disable broadcast capability, go to the developer portal and unselect the Broadcast Capability, confirm your choice, and Save. Once you delete the capability, APNs deletes all channels and broadcast-related configurations for the topic. You can’t reverse this action: channel IDs are unique every time they’re created, and all the channels in use would be invalidated.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Examine-broadcast-push-notification-metrics",
+          "level": 3,
+          "text": "Examine broadcast push notification metrics",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Overview tab of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://icloud.developer.apple.com/dashboard",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " provides comprehensive reports of broadcast push notifications for your app. You can view a four-week history of your application’s broadcast push notification metrics.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Metrics provide information on the number of broadcast push notifications published, the number of devices that received them, and a snapshot count of all devices subscribed to receive broadcast push notifications. The insight you gain from metrics can improve your understanding of usage patterns for Live Activity push notifications. Metrics are collected and aggregated on daily basis.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Metrics only record in the production environment; they aren’t available in the development environment.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Channels tab provides broadcast push notification metrics for the channels of your app. If you recently deleted a channel, you can still see its metrics in the Push Notifications Console. You can only view a one-week history of your channel’s metrics, and broadcast push notification metrics aren’t displayed for channels with very few subscribers.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following table describes the metrics for the aggregated broadcast push notification.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Metric",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Description",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Notifications published",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The number of broadcast push notifications accepted by APNs.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Notifications delivered",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The number of broadcast push notifications delivered by APNs.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Total subscriptions",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A snapshot count of the device subscriptions. APNs records subscription snapshots throughout the day and reports the highest value for each day.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Unique subscribers",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Only available for application metrics. ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "spacer",
+                      "type": "image"
+                    },
+                    {
+                      "text": " A snapshot count of unique devices subscribed to at least one channel for your app. APNs records subscription snapshots throughout the day and reports the highest value for each day.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Settingup-broadcast-PageImage-card.png": {
+      "alt": null,
+      "identifier": "Settingup-broadcast-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/d1a4297582c3e863f33c879994cb4360/Settingup-broadcast-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/167c2ee164ee75ad9ca79dfaa0f938f9/Settingup-broadcast-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "UserNotifications-PageImage-card.png": {
+      "alt": "[A notification interface displayed on the lock screen of an iOS device.]",
+      "identifier": "UserNotifications-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/074de9a9213bf2905d67fae5eb46e4f8/UserNotifications-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5733742e1c084fc202b3c92df9083686/UserNotifications-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications": {
+      "abstract": [
+        {
+          "text": "Push user-facing notifications to the user’s device from a server, or generate them locally from your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications",
+      "images": [
+        {
+          "identifier": "UserNotifications-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "User Notifications",
+      "type": "topic",
+      "url": "/documentation/usernotifications"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/handling-error-responses-from-apns": {
+      "abstract": [
+        {
+          "text": "Respond to the status codes returned by APNs servers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/handling-error-responses-from-apns",
+      "kind": "article",
+      "role": "article",
+      "title": "Handling error responses from Apple Push Notification service",
+      "type": "topic",
+      "url": "/documentation/usernotifications/handling-error-responses-from-apns"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/sending-broadcast-push-notification-requests-to-apns": {
+      "abstract": [
+        {
+          "text": "Transmit your broadcast notification payload to Apple Push Notifications service (APNs).",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/sending-broadcast-push-notification-requests-to-apns",
+      "kind": "article",
+      "role": "article",
+      "title": "Sending broadcast push notification requests to APNs",
+      "type": "topic",
+      "url": "/documentation/usernotifications/sending-broadcast-push-notification-requests-to-apns"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/sending-channel-management-requests-to-apns": {
+      "abstract": [
+        {
+          "text": "Manage channels that your application uses for broadcast push notifications.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/sending-channel-management-requests-to-apns",
+      "kind": "article",
+      "role": "article",
+      "title": "Sending channel management requests to APNs",
+      "type": "topic",
+      "url": "/documentation/usernotifications/sending-channel-management-requests-to-apns"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/sending-notification-requests-to-apns": {
+      "abstract": [
+        {
+          "text": "Transmit your remote notification payload and device token information to Apple Push Notification service (APNs).",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/sending-notification-requests-to-apns",
+      "kind": "article",
+      "role": "article",
+      "title": "Sending notification requests to APNs",
+      "type": "topic",
+      "url": "/documentation/usernotifications/sending-notification-requests-to-apns"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/setting-up-a-remote-notification-server": {
+      "abstract": [
+        {
+          "text": "Generate notifications and push them to user devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/setting-up-a-remote-notification-server",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Setting up a remote notification server",
+      "type": "topic",
+      "url": "/documentation/usernotifications/setting-up-a-remote-notification-server"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/viewing-the-status-of-push-notifications-using-metrics-and-apns": {
+      "abstract": [
+        {
+          "text": "Monitor and interpret the status of your push notifications with Apple Push Notification service (APNs).",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/viewing-the-status-of-push-notifications-using-metrics-and-apns",
+      "kind": "article",
+      "role": "article",
+      "title": "Viewing the status of push notifications using Metrics and APNs",
+      "type": "topic",
+      "url": "/documentation/usernotifications/viewing-the-status-of-push-notifications-using-metrics-and-apns"
+    },
+    "https://help.apple.com/xcode/mac/current/#/devdfd3d04a1": {
+      "identifier": "https://help.apple.com/xcode/mac/current/#/devdfd3d04a1",
+      "title": "Enable push notifications",
+      "titleInlineContent": [
+        {
+          "text": "Enable push notifications",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://help.apple.com/xcode/mac/current/#/devdfd3d04a1"
+    },
+    "https://icloud.developer.apple.com/dashboard": {
+      "identifier": "https://icloud.developer.apple.com/dashboard",
+      "title": "Push Notification Console",
+      "titleInlineContent": [
+        {
+          "text": "Push Notification Console",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://icloud.developer.apple.com/dashboard"
+    },
+    "spacer": {
+      "alt": null,
+      "identifier": "spacer",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/67dc4b07a8d84366d4cc0e812eb40b4a/spacer.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Broadcast-push-notifications",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.usernotifications/documentation/UserNotifications/sending-channel-management-requests-to-apns",
+        "doc://com.apple.usernotifications/documentation/UserNotifications/sending-broadcast-push-notification-requests-to-apns",
+        "doc://com.apple.usernotifications/documentation/UserNotifications/handling-error-responses-from-apns"
+      ],
+      "title": "Broadcast push notifications"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Broadcast-push-notifications",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.usernotifications/documentation/UserNotifications/sending-channel-management-requests-to-apns",
+                "doc://com.apple.usernotifications/documentation/UserNotifications/sending-broadcast-push-notification-requests-to-apns",
+                "doc://com.apple.usernotifications/documentation/UserNotifications/handling-error-responses-from-apns"
+              ],
+              "title": "Broadcast push notifications"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/usernotifications/setting-up-broadcast-push-notifications"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/usernotifications/setting-up-broadcast-push-notifications"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1914 @@
+{
+  "abstract": [
+    {
+      "text": "The principal class for a filter control provider extension.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.networkextension/documentation/NetworkExtension"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterControlProvider"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NEFilterControlProvider",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "NEFilterControlProvider"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Network Extension"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "NEFilterControlProvider"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "NEFilterControlProvider"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NEFilterControlProvider"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Filter Control Provider’s primary responsibility is to provide information to the associated Filter Data Provider so that it can perform its task of accurately filtering network content. There are several ways in which the Filter Control Provider provides data to the associated Filter Data Provider:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "By writing information to disk. For example, the Filter Control Provider can maintain a database of filtering rules on disk in a location where the Filter Data Provider can read from the database.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "By defining a dictionary that maps keys to sets of customization parameters to be used when generating the block page. The Filter Data Provider gives the system the key for the desired customization parameters, and the system uses that key to get the customization parameters from the Filter Control Provider and generate the customized block page.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "By defining a dictionary that maps keys to strings to be appended to URLs. The Filter Data Provider gives the system the key for the string to be appended, and the system uses that key to get the string to be appended from the Filter Control Provider and appends the string to the URL.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "To use the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterControlProvider",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " class, you must enable the Network Extensions capability in Xcode and select the Content Filter capability. See ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "http://help.apple.com/xcode/mac/current/#/dev0b2ef6f08",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Creating-a-Filter-Control-Provider-Extension",
+          "level": 3,
+          "text": "Creating a Filter Control Provider Extension",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Filter Control Providers run as App Extensions for the ",
+              "type": "text"
+            },
+            {
+              "code": "com.apple.networkextension.filter-control",
+              "type": "codeVoice"
+            },
+            {
+              "text": " extension point.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create a Filter Control Provider extension, first create a new App Extension target in your project.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For an example of an Xcode build target for this app extension, see the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/library/archive/samplecode/SimpleTunnel/Introduction/Intro.html#//apple_ref/doc/uid/TP40016140",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " sample code project.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Once you have a Filter Control Provider extension target, create a sub-class of ",
+              "type": "text"
+            },
+            {
+              "code": "NEFilterControlProvider",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". Then, set the ",
+              "type": "text"
+            },
+            {
+              "code": "NSExtensionPrincipalClass",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key in the the extension’s ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to the name of your subclass.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If it is not already, set the ",
+              "type": "text"
+            },
+            {
+              "code": "NSExtensionPointIdentifier",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key in the extension’s ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to ",
+              "type": "text"
+            },
+            {
+              "code": "com.apple.networkextension.filter-control",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Here is an example of the ",
+              "type": "text"
+            },
+            {
+              "code": "NSExtension",
+              "type": "codeVoice"
+            },
+            {
+              "text": " dictionary in a Filter Control Provider extension’s ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "<key>NSExtension</key>",
+            "<dict>",
+            "    <key>NSExtensionPointIdentifier</key>",
+            "    <string>com.apple.networkextension.filter-control</string>",
+            "    <key>NSExtensionPrincipalClass</key>",
+            "    <string>MyCustomFilterControlProvider</string>",
+            "</dict>"
+          ],
+          "syntax": "xml",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Finally, add your Filter Control Provider extension target to your app’s Embed App Extensions build phase.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension": {
+      "abstract": [
+        {
+          "text": "Customize and extend core networking features.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Network Extension",
+      "type": "topic",
+      "url": "/documentation/networkextension"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterControlProvider": {
+      "abstract": [
+        {
+          "text": "The principal class for a filter control provider extension.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NEFilterControlProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterControlProvider",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NEFilterControlProvider"
+        }
+      ],
+      "role": "symbol",
+      "title": "NEFilterControlProvider",
+      "type": "topic",
+      "url": "/documentation/networkextension/nefiltercontrolprovider"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterControlProvider/handleNewFlow(_:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Handle a request for new filtering rules.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "handleNewFlow"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NEFilterFlow",
+          "text": "NEFilterFlow"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NEFilterControlVerdict",
+          "text": "NEFilterControlVerdict"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterControlProvider/handleNewFlow(_:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "handleNewFlow:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "handleNewFlow(_:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/networkextension/nefiltercontrolprovider/handlenewflow(_:completionhandler:)"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterControlProvider/handleRemediation(for:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Handle a request for remediation from the user.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "handleRemediation"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NEFilterFlow",
+          "text": "NEFilterFlow"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NEFilterControlVerdict",
+          "text": "NEFilterControlVerdict"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterControlProvider/handleRemediation(for:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "handleRemediationForFlow:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "handleRemediation(for:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/networkextension/nefiltercontrolprovider/handleremediation(for:completionhandler:)"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterControlProvider/notifyRulesChanged()": {
+      "abstract": [
+        {
+          "text": "Notify the Filter Data Provider that the filtering rules have changed on disk.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "notifyRulesChanged"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterControlProvider/notifyRulesChanged()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "notifyRulesChanged"
+        }
+      ],
+      "role": "symbol",
+      "title": "notifyRulesChanged()",
+      "type": "topic",
+      "url": "/documentation/networkextension/nefiltercontrolprovider/notifyruleschanged()"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterControlProvider/remediationMap": {
+      "abstract": [
+        {
+          "text": "A dictionary containing sets of strings used to customize the remediation portion of the block page.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "remediationMap"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSObject",
+          "text": "NSObject"
+        },
+        {
+          "kind": "text",
+          "text": "]]?"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterControlProvider/remediationMap",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "remediationMap"
+        }
+      ],
+      "role": "symbol",
+      "title": "remediationMap",
+      "type": "topic",
+      "url": "/documentation/networkextension/nefiltercontrolprovider/remediationmap"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterControlProvider/urlAppendStringMap": {
+      "abstract": [
+        {
+          "text": "A dictionary containing strings to be appended to URLs.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "urlAppendStringMap"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "]?"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterControlProvider/urlAppendStringMap",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "URLAppendStringMap"
+        }
+      ],
+      "role": "symbol",
+      "title": "urlAppendStringMap",
+      "type": "topic",
+      "url": "/documentation/networkextension/nefiltercontrolprovider/urlappendstringmap"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterDataProvider": {
+      "abstract": [
+        {
+          "text": "The principal class for a filter data provider extension.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NEFilterDataProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterDataProvider",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NEFilterDataProvider"
+        }
+      ],
+      "role": "symbol",
+      "title": "NEFilterDataProvider",
+      "type": "topic",
+      "url": "/documentation/networkextension/nefilterdataprovider"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterPacketProvider": {
+      "abstract": [
+        {
+          "text": "A filter provider that evaluates network packets and decides whether to block, allow, or delay the packets.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NEFilterPacketProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterPacketProvider",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NEFilterPacketProvider"
+        }
+      ],
+      "role": "symbol",
+      "title": "NEFilterPacketProvider",
+      "type": "topic",
+      "url": "/documentation/networkextension/nefilterpacketprovider"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterProvider": {
+      "abstract": [
+        {
+          "text": "An abstract base class shared by content filters.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NEFilterProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterProvider",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NEFilterProvider"
+        }
+      ],
+      "role": "symbol",
+      "title": "NEFilterProvider",
+      "type": "topic",
+      "url": "/documentation/networkextension/nefilterprovider"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterProviderRemediationMapRemediationButtonTexts": {
+      "abstract": [
+        {
+          "text": "A key in the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterControlProvider/remediationMap",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " dictionary. The value of this key should be set to a dictionary that maps button text string identifiers to the text to display for the remediation URL link in the block page. The button text string identifiers are defined by the Filter Control Provider app extension.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NEFilterProviderRemediationMapRemediationButtonTexts"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterProviderRemediationMapRemediationButtonTexts",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NEFilterProviderRemediationMapRemediationButtonTexts"
+        }
+      ],
+      "role": "symbol",
+      "title": "NEFilterProviderRemediationMapRemediationButtonTexts",
+      "type": "topic",
+      "url": "/documentation/networkextension/nefilterproviderremediationmapremediationbuttontexts"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterProviderRemediationMapRemediationURLs": {
+      "abstract": [
+        {
+          "text": "A key in the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterControlProvider/remediationMap",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " dictionary. The value of this key should be set to a dictionary that maps URL identifiers to remediation URLs to be inserted into the block page. The URL identifiers are defined by the Filter Control Provider app extension.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NEFilterProviderRemediationMapRemediationURLs"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterProviderRemediationMapRemediationURLs",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NEFilterProviderRemediationMapRemediationURLs"
+        }
+      ],
+      "role": "symbol",
+      "title": "NEFilterProviderRemediationMapRemediationURLs",
+      "type": "topic",
+      "url": "/documentation/networkextension/nefilterproviderremediationmapremediationurls"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterProviderRemediationURLFlowURL": {
+      "abstract": [
+        {
+          "text": "This string will be replaced with the full URL of the flow.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NEFilterProviderRemediationURLFlowURL"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterProviderRemediationURLFlowURL",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NEFilterProviderRemediationURLFlowURL"
+        }
+      ],
+      "role": "symbol",
+      "title": "NEFilterProviderRemediationURLFlowURL",
+      "type": "topic",
+      "url": "/documentation/networkextension/nefilterproviderremediationurlflowurl"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterProviderRemediationURLFlowURLHostname": {
+      "abstract": [
+        {
+          "text": "This string will be replaced with the hostname portion of the flow’s URL.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NEFilterProviderRemediationURLFlowURLHostname"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterProviderRemediationURLFlowURLHostname",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NEFilterProviderRemediationURLFlowURLHostname"
+        }
+      ],
+      "role": "symbol",
+      "title": "NEFilterProviderRemediationURLFlowURLHostname",
+      "type": "topic",
+      "url": "/documentation/networkextension/nefilterproviderremediationurlflowurlhostname"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterProviderRemediationURLOrganization": {
+      "abstract": [
+        {
+          "text": "This string will be replaced with the value of the organization property set in the filter configuration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NEFilterProviderRemediationURLOrganization"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterProviderRemediationURLOrganization",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NEFilterProviderRemediationURLOrganization"
+        }
+      ],
+      "role": "symbol",
+      "title": "NEFilterProviderRemediationURLOrganization",
+      "type": "topic",
+      "url": "/documentation/networkextension/nefilterproviderremediationurlorganization"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterProviderRemediationURLUsername": {
+      "abstract": [
+        {
+          "text": "This string will be replaced with the value of the username property set in the filter configuration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NEFilterProviderRemediationURLUsername"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterProviderRemediationURLUsername",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NEFilterProviderRemediationURLUsername"
+        }
+      ],
+      "role": "symbol",
+      "title": "NEFilterProviderRemediationURLUsername",
+      "type": "topic",
+      "url": "/documentation/networkextension/nefilterproviderremediationurlusername"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    },
+    "http://help.apple.com/xcode/mac/current/#/dev0b2ef6f08": {
+      "identifier": "http://help.apple.com/xcode/mac/current/#/dev0b2ef6f08",
+      "title": "Configure network extensions",
+      "titleInlineContent": [
+        {
+          "text": "Configure network extensions",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "http://help.apple.com/xcode/mac/current/#/dev0b2ef6f08"
+    },
+    "https://developer.apple.com/library/archive/samplecode/SimpleTunnel/Introduction/Intro.html#//apple_ref/doc/uid/TP40016140": {
+      "identifier": "https://developer.apple.com/library/archive/samplecode/SimpleTunnel/Introduction/Intro.html#//apple_ref/doc/uid/TP40016140",
+      "title": "SimpleTunnel: Customized Networking Using the NetworkExtension Framework",
+      "titleInlineContent": [
+        {
+          "text": "SimpleTunnel: Customized Networking Using the NetworkExtension Framework",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/samplecode/SimpleTunnel/Introduction/Intro.html#//apple_ref/doc/uid/TP40016140"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterProvider"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Data-and-control-providers",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterDataProvider",
+        "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterPacketProvider",
+        "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterProvider"
+      ],
+      "title": "Data and control providers"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Handling-requests-for-new-rules",
+      "identifiers": [
+        "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterControlProvider/handleNewFlow(_:completionHandler:)",
+        "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterControlProvider/notifyRulesChanged()"
+      ],
+      "title": "Handling requests for new rules"
+    },
+    {
+      "anchor": "Handling-remediation",
+      "identifiers": [
+        "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterControlProvider/handleRemediation(for:completionHandler:)",
+        "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterControlProvider/remediationMap",
+        "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterProviderRemediationMapRemediationButtonTexts",
+        "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterProviderRemediationMapRemediationURLs",
+        "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterProviderRemediationURLFlowURL",
+        "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterProviderRemediationURLFlowURLHostname",
+        "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterProviderRemediationURLOrganization",
+        "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterProviderRemediationURLUsername",
+        "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterControlProvider/urlAppendStringMap"
+      ],
+      "title": "Handling remediation"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "9.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "9.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "NEFilterControlProvider"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEFilterControlProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEFilterControlProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.networkextension/documentation/NetworkExtension"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Handling-requests-for-new-rules",
+              "identifiers": [
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterControlProvider/handleNewFlow(_:completionHandler:)",
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterControlProvider/notifyRulesChanged()"
+              ],
+              "title": "Handling requests for new rules"
+            },
+            {
+              "anchor": "Handling-remediation",
+              "identifiers": [
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterControlProvider/handleRemediation(for:completionHandler:)",
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterControlProvider/remediationMap",
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterProviderRemediationMapRemediationButtonTexts",
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterProviderRemediationMapRemediationURLs",
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterProviderRemediationURLFlowURL",
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterProviderRemediationURLFlowURLHostname",
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterProviderRemediationURLOrganization",
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterProviderRemediationURLUsername",
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterControlProvider/urlAppendStringMap"
+              ],
+              "title": "Handling remediation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterProvider"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Data-and-control-providers",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterDataProvider",
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterPacketProvider",
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterProvider"
+              ],
+              "title": "Data and control providers"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "NEFilterControlProvider"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterProvider",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NEFilterProvider",
+                    "text": "NEFilterProvider"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEFilterControlProvider/title",
+          "value": "NEFilterControlProvider"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEFilterControlProvider/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEFilterControlProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEFilterControlProvider/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEFilterControlProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEFilterProviderRemediationURLFlowURLHostname/title",
+          "value": "NEFilterProviderRemediationURLFlowURLHostname"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEFilterProviderRemediationURLFlowURLHostname/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEFilterProviderRemediationURLFlowURLHostname"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEFilterProviderRemediationMapRemediationButtonTexts/title",
+          "value": "NEFilterProviderRemediationMapRemediationButtonTexts"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEFilterProviderRemediationMapRemediationButtonTexts/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEFilterProviderRemediationMapRemediationButtonTexts"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEFilterProviderRemediationURLUsername/title",
+          "value": "NEFilterProviderRemediationURLUsername"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEFilterProviderRemediationURLUsername/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEFilterProviderRemediationURLUsername"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEFilterControlProvider~1notifyRulesChanged()/title",
+          "value": "notifyRulesChanged"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEFilterControlProvider~1notifyRulesChanged()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "notifyRulesChanged"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEFilterControlProvider~1handleNewFlow(_:completionHandler:)/title",
+          "value": "handleNewFlow:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEFilterControlProvider~1handleNewFlow(_:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "handleNewFlow:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEFilterControlProvider~1handleRemediation(for:completionHandler:)/title",
+          "value": "handleRemediationForFlow:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEFilterControlProvider~1handleRemediation(for:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "handleRemediationForFlow:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEFilterDataProvider/title",
+          "value": "NEFilterDataProvider"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEFilterDataProvider/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEFilterDataProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEFilterDataProvider/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEFilterDataProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEFilterProvider/title",
+          "value": "NEFilterProvider"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEFilterProvider/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEFilterProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEFilterProvider/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEFilterProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEFilterControlProvider~1urlAppendStringMap/title",
+          "value": "URLAppendStringMap"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEFilterControlProvider~1urlAppendStringMap/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "URLAppendStringMap"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEFilterControlProvider~1remediationMap/title",
+          "value": "remediationMap"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEFilterControlProvider~1remediationMap/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "remediationMap"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEFilterProviderRemediationURLFlowURL/title",
+          "value": "NEFilterProviderRemediationURLFlowURL"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEFilterProviderRemediationURLFlowURL/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEFilterProviderRemediationURLFlowURL"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEFilterProviderRemediationMapRemediationURLs/title",
+          "value": "NEFilterProviderRemediationMapRemediationURLs"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEFilterProviderRemediationMapRemediationURLs/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEFilterProviderRemediationMapRemediationURLs"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEFilterPacketProvider/title",
+          "value": "NEFilterPacketProvider"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEFilterPacketProvider/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEFilterPacketProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEFilterPacketProvider/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEFilterPacketProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEFilterProviderRemediationURLOrganization/title",
+          "value": "NEFilterProviderRemediationURLOrganization"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEFilterProviderRemediationURLOrganization/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEFilterProviderRemediationURLOrganization"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/networkextension/nefiltercontrolprovider"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/networkextension/nefiltercontrolprovider"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

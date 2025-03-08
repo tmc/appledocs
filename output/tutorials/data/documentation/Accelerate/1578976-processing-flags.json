@@ -1,0 +1,1310 @@
+{
+  "abstract": [
+    {
+      "text": "Set flags on vImage operations to specify processing options.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.accelerate/documentation/Accelerate",
+        "doc://com.apple.accelerate/documentation/Accelerate/vimage-library",
+        "doc://com.apple.accelerate/documentation/Accelerate/data-types-and-constants"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.accelerate/documentation/Accelerate/1578976-processing-flags"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Accelerate"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Processing Flags"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can pass multiple flags to a function by adding the flag values together. For example, to leave alpha unchanged and turn off tiling, you can pass:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "kvImageLeaveAlphaUnchanged + kvImageDoNotTile"
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Three of the flags are mutually exclusive: ",
+              "type": "text"
+            },
+            {
+              "code": "kvImageCopyInPlace",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "kvImageBackgroundColorFill",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "code": "kvImageEdgeExtend",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". Never pass more than one of these flag values in the same flag parameter.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When passing flags to a function, do not set values for flags that are not used by the function. If the function requires you to set certain flag values, do so. For example, for the convolution function, you must set exactly one of ",
+              "type": "text"
+            },
+            {
+              "code": "kvImageCopyInPlace",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "kvImageBackgroundColorFill",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "code": "kvImageEdgeExtend",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".  Otherwise the function may return an error. If you don’t want to set flag values, pass ",
+              "type": "text"
+            },
+            {
+              "code": "kvImageNoFlags",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.accelerate/documentation/Accelerate": {
+      "abstract": [
+        {
+          "text": "Make large-scale mathematical computations and image calculations, optimized for high performance and low energy consumption.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Accelerate",
+      "type": "topic",
+      "url": "/documentation/accelerate"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/1498271-core-video-image-format-errors": {
+      "abstract": [],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/1498271-core-video-image-format-errors",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Core Video Image Format Errors",
+      "type": "topic",
+      "url": "/documentation/accelerate/1498271-core-video-image-format-errors"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/1533233-dithering-methods": {
+      "abstract": [
+        {
+          "text": "Specify the dithering method some vImage conversion functions use.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/1533233-dithering-methods",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Dithering Methods",
+      "type": "topic",
+      "url": "/documentation/accelerate/1533233-dithering-methods"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/1578972-error-codes": {
+      "abstract": [
+        {
+          "text": "Error codes that vImage functions return when an operation fails.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/1578972-error-codes",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Error codes",
+      "type": "topic",
+      "url": "/documentation/accelerate/1578972-error-codes"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/availability-flags": {
+      "abstract": [
+        {
+          "text": "Obtain the availability of particular vImage features.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/availability-flags",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Availability Flags",
+      "type": "topic",
+      "url": "/documentation/accelerate/availability-flags"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/buffer-types": {
+      "abstract": [
+        {
+          "text": "Look up buffer type codes vImage conversions provide.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/buffer-types",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Buffer Types",
+      "type": "topic",
+      "url": "/documentation/accelerate/buffer-types"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/data-types-and-constants": {
+      "abstract": [
+        {
+          "text": "Look up type aliases, data types, and constants the vImage library uses.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/data-types-and-constants",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Data Types and Constants",
+      "type": "topic",
+      "url": "/documentation/accelerate/data-types-and-constants"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/decode-arrays": {
+      "abstract": [
+        {
+          "text": "Specify the decode array constant to use with 16Q12-formatted data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/decode-arrays",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Decode Arrays",
+      "type": "topic",
+      "url": "/documentation/accelerate/decode-arrays"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/kvImageBackgroundColorFill": {
+      "abstract": [
+        {
+          "text": "A flag that uses the background color for missing pixels.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kvImageBackgroundColorFill"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/kvImageBackgroundColorFill",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kvImageBackgroundColorFill"
+        }
+      ],
+      "role": "symbol",
+      "title": "kvImageBackgroundColorFill",
+      "type": "topic",
+      "url": "/documentation/accelerate/kvimagebackgroundcolorfill"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/kvImageCopyInPlace": {
+      "abstract": [
+        {
+          "text": "A flag that copies the value of the edge pixel in the source to the destination.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kvImageCopyInPlace"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/kvImageCopyInPlace",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kvImageCopyInPlace"
+        }
+      ],
+      "role": "symbol",
+      "title": "kvImageCopyInPlace",
+      "type": "topic",
+      "url": "/documentation/accelerate/kvimagecopyinplace"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/kvImageDoNotClamp": {
+      "abstract": [
+        {
+          "text": "A flag that disables clamping in some conversions to floating-point formats.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kvImageDoNotClamp"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/kvImageDoNotClamp",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kvImageDoNotClamp"
+        }
+      ],
+      "role": "symbol",
+      "title": "kvImageDoNotClamp",
+      "type": "topic",
+      "url": "/documentation/accelerate/kvimagedonotclamp"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/kvImageDoNotTile": {
+      "abstract": [
+        {
+          "text": "A flag that disables vImage internal tiling routines.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kvImageDoNotTile"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/kvImageDoNotTile",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kvImageDoNotTile"
+        }
+      ],
+      "role": "symbol",
+      "title": "kvImageDoNotTile",
+      "type": "topic",
+      "url": "/documentation/accelerate/kvimagedonottile"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/kvImageEdgeExtend": {
+      "abstract": [
+        {
+          "text": "A flag that extends the edges of the image infinitely.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kvImageEdgeExtend"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/kvImageEdgeExtend",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kvImageEdgeExtend"
+        }
+      ],
+      "role": "symbol",
+      "title": "kvImageEdgeExtend",
+      "type": "topic",
+      "url": "/documentation/accelerate/kvimageedgeextend"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/kvImageGetTempBufferSize": {
+      "abstract": [
+        {
+          "text": "A flag that returns the minimum temporary buffer size for the operation, given the parameters provided.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kvImageGetTempBufferSize"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/kvImageGetTempBufferSize",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kvImageGetTempBufferSize"
+        }
+      ],
+      "role": "symbol",
+      "title": "kvImageGetTempBufferSize",
+      "type": "topic",
+      "url": "/documentation/accelerate/kvimagegettempbuffersize"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/kvImageHDRContent": {
+      "abstract": [
+        {
+          "text": "A flag that uses HDR-aware methods.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kvImageHDRContent"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/kvImageHDRContent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kvImageHDRContent"
+        }
+      ],
+      "role": "symbol",
+      "title": "kvImageHDRContent",
+      "type": "topic",
+      "url": "/documentation/accelerate/kvimagehdrcontent"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/kvImageHighQualityResampling": {
+      "abstract": [
+        {
+          "text": "A flag that uses a higher-quality, slower resampling filter for geometry operations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kvImageHighQualityResampling"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/kvImageHighQualityResampling",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kvImageHighQualityResampling"
+        }
+      ],
+      "role": "symbol",
+      "title": "kvImageHighQualityResampling",
+      "type": "topic",
+      "url": "/documentation/accelerate/kvimagehighqualityresampling"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/kvImageLeaveAlphaUnchanged": {
+      "abstract": [
+        {
+          "text": "A flag that restricts the operation to red, green, and blue channels only.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kvImageLeaveAlphaUnchanged"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/kvImageLeaveAlphaUnchanged",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kvImageLeaveAlphaUnchanged"
+        }
+      ],
+      "role": "symbol",
+      "title": "kvImageLeaveAlphaUnchanged",
+      "type": "topic",
+      "url": "/documentation/accelerate/kvimageleavealphaunchanged"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/kvImageNoAllocate": {
+      "abstract": [
+        {
+          "text": "A flag that prevents vImage from allocating additional storage.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kvImageNoAllocate"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/kvImageNoAllocate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kvImageNoAllocate"
+        }
+      ],
+      "role": "symbol",
+      "title": "kvImageNoAllocate",
+      "type": "topic",
+      "url": "/documentation/accelerate/kvimagenoallocate"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/kvImageNoFlags": {
+      "abstract": [
+        {
+          "text": "A flag that sets the behavior to the default.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kvImageNoFlags"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/kvImageNoFlags",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kvImageNoFlags"
+        }
+      ],
+      "role": "symbol",
+      "title": "kvImageNoFlags",
+      "type": "topic",
+      "url": "/documentation/accelerate/kvimagenoflags"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/kvImagePrintDiagnosticsToConsole": {
+      "abstract": [
+        {
+          "text": "A flag that prints a debug message if the operation fails.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kvImagePrintDiagnosticsToConsole"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/kvImagePrintDiagnosticsToConsole",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kvImagePrintDiagnosticsToConsole"
+        }
+      ],
+      "role": "symbol",
+      "title": "kvImagePrintDiagnosticsToConsole",
+      "type": "topic",
+      "url": "/documentation/accelerate/kvimageprintdiagnosticstoconsole"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/kvImageTruncateKernel": {
+      "abstract": [
+        {
+          "text": "A flag that uses only the part of the kernel that overlaps the image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kvImageTruncateKernel"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/kvImageTruncateKernel",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kvImageTruncateKernel"
+        }
+      ],
+      "role": "symbol",
+      "title": "kvImageTruncateKernel",
+      "type": "topic",
+      "url": "/documentation/accelerate/kvimagetruncatekernel"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/kvImageUseFP16Accumulator": {
+      "abstract": [
+        {
+          "text": "A flag that specifies vImage uses faster but lower-precision internal arithmetic for floating-point 16-bit operations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kvImageUseFP16Accumulator"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/kvImageUseFP16Accumulator",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kvImageUseFP16Accumulator"
+        }
+      ],
+      "role": "symbol",
+      "title": "kvImageUseFP16Accumulator",
+      "type": "topic",
+      "url": "/documentation/accelerate/kvimageusefp16accumulator"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage/Options": {
+      "abstract": [
+        {
+          "text": "Set flags on vImage operations to specify processing options.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Options"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/Options",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Options"
+        }
+      ],
+      "role": "symbol",
+      "title": "vImage.Options",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage/options"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImageMatrixType": {
+      "abstract": [
+        {
+          "text": "An enumeration of RGB -> Y’CbCr conversion matrix types.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vImageMatrixType"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImageMatrixType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vImageMatrixType"
+        }
+      ],
+      "role": "symbol",
+      "title": "vImageMatrixType",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimagematrixtype"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage_WarpInterpolation": {
+      "abstract": [
+        {
+          "text": "Constants for selecting the interpolation mode",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vImage_WarpInterpolation"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage_WarpInterpolation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vImage_WarpInterpolation"
+        }
+      ],
+      "role": "symbol",
+      "title": "vImage_WarpInterpolation",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage_warpinterpolation"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vimage-library": {
+      "abstract": [
+        {
+          "text": "Manipulate large images using the CPU’s vector processor.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vimage-library",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "vImage",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage-library"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Constants",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/1578972-error-codes",
+        "doc://com.apple.accelerate/documentation/Accelerate/1498271-core-video-image-format-errors",
+        "doc://com.apple.accelerate/documentation/Accelerate/1533233-dithering-methods",
+        "doc://com.apple.accelerate/documentation/Accelerate/availability-flags",
+        "doc://com.apple.accelerate/documentation/Accelerate/decode-arrays",
+        "doc://com.apple.accelerate/documentation/Accelerate/buffer-types",
+        "doc://com.apple.accelerate/documentation/Accelerate/vImageMatrixType",
+        "doc://com.apple.accelerate/documentation/Accelerate/vImage_WarpInterpolation"
+      ],
+      "title": "Constants"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Constants",
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/vImage/Options",
+        "doc://com.apple.accelerate/documentation/Accelerate/kvImageNoFlags",
+        "doc://com.apple.accelerate/documentation/Accelerate/kvImageLeaveAlphaUnchanged",
+        "doc://com.apple.accelerate/documentation/Accelerate/kvImageDoNotTile",
+        "doc://com.apple.accelerate/documentation/Accelerate/kvImageHighQualityResampling",
+        "doc://com.apple.accelerate/documentation/Accelerate/kvImageGetTempBufferSize",
+        "doc://com.apple.accelerate/documentation/Accelerate/kvImagePrintDiagnosticsToConsole",
+        "doc://com.apple.accelerate/documentation/Accelerate/kvImageNoAllocate",
+        "doc://com.apple.accelerate/documentation/Accelerate/kvImageHDRContent",
+        "doc://com.apple.accelerate/documentation/Accelerate/kvImageDoNotClamp",
+        "doc://com.apple.accelerate/documentation/Accelerate/kvImageUseFP16Accumulator"
+      ],
+      "title": "Constants"
+    },
+    {
+      "anchor": "Edging-Modes",
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/kvImageCopyInPlace",
+        "doc://com.apple.accelerate/documentation/Accelerate/kvImageBackgroundColorFill",
+        "doc://com.apple.accelerate/documentation/Accelerate/kvImageEdgeExtend",
+        "doc://com.apple.accelerate/documentation/Accelerate/kvImageTruncateKernel"
+      ],
+      "title": "Edging Modes"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1kvImageNoFlags/title",
+          "value": "kvImageNoFlags"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1kvImageNoFlags/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kvImageNoFlags"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1kvImageNoAllocate/title",
+          "value": "kvImageNoAllocate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1kvImageNoAllocate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kvImageNoAllocate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1kvImageTruncateKernel/title",
+          "value": "kvImageTruncateKernel"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1kvImageTruncateKernel/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kvImageTruncateKernel"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1kvImageLeaveAlphaUnchanged/title",
+          "value": "kvImageLeaveAlphaUnchanged"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1kvImageLeaveAlphaUnchanged/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kvImageLeaveAlphaUnchanged"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1kvImageGetTempBufferSize/title",
+          "value": "kvImageGetTempBufferSize"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1kvImageGetTempBufferSize/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kvImageGetTempBufferSize"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1kvImageDoNotClamp/title",
+          "value": "kvImageDoNotClamp"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1kvImageDoNotClamp/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kvImageDoNotClamp"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1kvImageHighQualityResampling/title",
+          "value": "kvImageHighQualityResampling"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1kvImageHighQualityResampling/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kvImageHighQualityResampling"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1kvImageUseFP16Accumulator/title",
+          "value": "kvImageUseFP16Accumulator"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1kvImageUseFP16Accumulator/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kvImageUseFP16Accumulator"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1kvImageDoNotTile/title",
+          "value": "kvImageDoNotTile"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1kvImageDoNotTile/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kvImageDoNotTile"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1kvImageHDRContent/title",
+          "value": "kvImageHDRContent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1kvImageHDRContent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kvImageHDRContent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1kvImageCopyInPlace/title",
+          "value": "kvImageCopyInPlace"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1kvImageCopyInPlace/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kvImageCopyInPlace"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1kvImagePrintDiagnosticsToConsole/title",
+          "value": "kvImagePrintDiagnosticsToConsole"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1kvImagePrintDiagnosticsToConsole/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kvImagePrintDiagnosticsToConsole"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1kvImageBackgroundColorFill/title",
+          "value": "kvImageBackgroundColorFill"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1kvImageBackgroundColorFill/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kvImageBackgroundColorFill"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImage_WarpInterpolation/title",
+          "value": "vImage_WarpInterpolation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImage_WarpInterpolation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vImage_WarpInterpolation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImage_WarpInterpolation/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vImage_WarpInterpolation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImageMatrixType/title",
+          "value": "vImageMatrixType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImageMatrixType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vImageMatrixType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImageMatrixType/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vImageMatrixType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1kvImageEdgeExtend/title",
+          "value": "kvImageEdgeExtend"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1kvImageEdgeExtend/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kvImageEdgeExtend"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

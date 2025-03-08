@@ -1,0 +1,2047 @@
+{
+  "abstract": [
+    {
+      "text": "Use the fluid zoom transition to provide a continuously interactive and responsive experience in your app.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit",
+        "doc://com.apple.uikit/documentation/UIKit/animation-and-haptics",
+        "doc://com.apple.uikit/documentation/UIKit/view-controller-transitions"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.uikit/documentation/UIKit/enhancing-your-app-with-fluid-transitions"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "UIKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Enhancing your app with fluid transitions"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "iOS 18 introduces a fluent, continuously interactive zoom transition. You can use this transition when your app navigates from a large cell or thumbnail to increase the sense of continuity in your app. People can then grab, drag, and control the transitions when they begin and anytime during their animation.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-4422984",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, someone taps a thumbnail and your app pushes the corresponding view controller onto the navigation stack. If you’re using the zoom transition, they can stop the transition or drag it to slow it down or reverse it. Both your app’s state and the transition animation seamlessly change based on a person’s gestures.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The fluid zoom transitions are available on iPhone and iPad, including iPad apps running in visionOS. The API is available on other platforms, but the system uses the default transitions based on the current context instead.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Set-up-a-zoom-transition",
+          "level": 3,
+          "text": "Set up a zoom transition",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To use the zoom transition, set the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/preferredTransition",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/Transition/zoom(options:sourceViewProvider:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " on a new view controller, and pass a closure that returns the view you’re zooming from. Then push the view controller onto the navigation stack.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Create a detail view controller for the selected item.",
+            "let detailViewController = MyDetailViewController(itemID: itemID)",
+            "",
+            "// Set the preferred transition to zoom.",
+            "detailViewController.preferredTransition = .zoom { [self] _ in",
+            "    ",
+            "    // Return the thumbnail view for the selected item.",
+            "    return thumbnail(for: itemID)",
+            "}",
+            "",
+            "// Push the detail view controller onto the navigation stack.",
+            "navigationController?.pushViewController(detailViewController, animated: true)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Because the transition runs on both zoom in and zoom out, use a stable identifier to look up the view in the closure instead of capturing a ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.uikit/documentation/UIKit/UIView",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " or ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/indexpath",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " instance.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your app lets people swipe between different items without leaving the detail view, the thumbnail you want to zoom back to can change. To look up the correct thumbnail, use the context that the system passes to the closure.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Create a detail view controller for the selected item.",
+            "let detailViewController = MyDetailViewController(itemID: itemID)",
+            "",
+            "// Set the preferred transition to zoom.",
+            "detailViewController.preferredTransition = .zoom { context in",
+            "    ",
+            "    // Use the context to determine the current item.",
+            "    guard let controller = context.zoomedViewController as? MyDetailViewController else {",
+            "        fatalError(\"Unable to access the current view controller.\")",
+            "    }",
+            "    ",
+            "    // Return the thumbnail for the current item.",
+            "    return self.thumbnail(for: controller.itemID)",
+            "}",
+            "",
+            "// Push the detail view controller onto the navigation stack.",
+            "navigationController?.pushViewController(detailViewController, animated: true)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "You can also use the ",
+                  "type": "text"
+                },
+                {
+                  "code": "preferredTransition",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " property for other system transitions, such as ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/Transition/coverVertical",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ", ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/Transition/flipHorizontal",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ", ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/Transition/crossDissolve",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ", and ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/Transition/partialCurl",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Work-with-state-changes-and-callbacks",
+          "level": 3,
+          "text": "Work with state changes and callbacks",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "View controllers go through a number of state changes when pushing them onto or popping them off the navigation stack.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-4414969",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you push a view controller onto the navigation stack, the controller begins in the ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "disappeared",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " state. As it transitions to the ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "appeared",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " state, the system performs the following steps:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Calls ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSViewController/viewWillAppear()",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Adds the controller’s view to the view hierarchy.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Calls ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/viewIsAppearing(_:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Transitions to the ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "appearing",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": " state.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Calls ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSViewController/viewDidAppear()",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Ends in the appeared state.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-4422525",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you pop a view controller off the navigation stack, it starts in the appeared state. The system then performs the following steps:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Calls ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSViewController/viewWillDisappear()",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Transitions to the ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "disappearing",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": " state.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Removes the view from the view hierarchy.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Calls ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSViewController/viewDidDisappear()",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Ends in the disappeared state.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-4422524",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When someone interrupts the fluid zoom transition, the sequence of events changes. If a person cancels a navigation pop, the system calls ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppKit/NSViewController/viewWillDisappear()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and transitions to the disappearing state. At that point, the system transitions directly to the appearing state and calls ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppKit/NSViewController/viewDidAppear()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " before ending in the appeared state. This transition occurs within one cycle of the run loop, so new events can’t interrupt it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-4422527",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "However, if someone interrupts a navigation push, the system doesn’t cancel push transitions. Instead, the system completes the transition to the appeared state and begins the navigation pop within one cycle of the run loop. The pop transition then proceeds as before, and either runs to completion or gets interrupted again.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-4422526",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "The system handles the push and pop transitions differently. It doesn’t cancel a push — instead, it converts it to a pop. This ensures that the view controller reaches the appeared state, and calls the full cycle of appear and disappear callbacks.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Maintain-seamless-transitions",
+          "level": 3,
+          "text": "Maintain seamless transitions",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When using continuously interactive transitions, your app needs to be ready for a new transition to start or stop at any time. Follow these guidelines to help your transitions run seamlessly and smoothly:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Don’t avoid starting a new navigation push or pop based on whether a transition is currently running. Let the new push or pop start, and the system handles the transitions.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Keep temporary transition state to a minimum, and avoid making other code dependent on that state.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Implement your callback methods so that the system can safely call them multiple times. The system might call these methods more than once before calling anything that uses or cleans up the results.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If you need to track some state during a transition, clean it up in ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSViewController/viewDidAppear()",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSViewController/viewDidDisappear()",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". The system calls these at the end of the transition.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If you’re using a navigation control delegate, you can use ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/UINavigationControllerDelegate/navigationController(_:willShow:animated:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/UINavigationControllerDelegate/navigationController(_:didShow:animated:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to clean up instead of the view controller callback methods.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/AppKit/NSViewController/viewDidAppear()": {
+      "abstract": [
+        {
+          "text": "Called when the view controller’s view is fully transitioned onto the screen.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "viewDidAppear"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSViewController/viewDidAppear()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "viewDidAppear()",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSViewController/viewDidAppear()"
+    },
+    "doc://com.apple.documentation/documentation/AppKit/NSViewController/viewDidDisappear()": {
+      "abstract": [
+        {
+          "text": "Called after the view controller’s view is removed from the view hierarchy in a window.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "viewDidDisappear"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSViewController/viewDidDisappear()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "viewDidDisappear()",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSViewController/viewDidDisappear()"
+    },
+    "doc://com.apple.documentation/documentation/AppKit/NSViewController/viewWillAppear()": {
+      "abstract": [
+        {
+          "text": "Called after the view controller’s view has been loaded into memory is about to be added to the view hierarchy in the window.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "viewWillAppear"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSViewController/viewWillAppear()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "viewWillAppear()",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSViewController/viewWillAppear()"
+    },
+    "doc://com.apple.documentation/documentation/AppKit/NSViewController/viewWillDisappear()": {
+      "abstract": [
+        {
+          "text": "Called when the view controller’s view is about to be removed from the view hierarchy in the window.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "viewWillDisappear"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSViewController/viewWillDisappear()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "viewWillDisappear()",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSViewController/viewWillDisappear()"
+    },
+    "doc://com.apple.documentation/documentation/foundation/indexpath": {
+      "abstract": [
+        {
+          "text": "A list of indexes that together represent the path to a specific location in a tree of nested arrays. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "IndexPath"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/indexpath",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IndexPath",
+      "type": "topic",
+      "url": "/documentation/foundation/indexpath"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.uikit/documentation/UIKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your iOS, iPadOS, or tvOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "UIKit",
+      "type": "topic",
+      "url": "/documentation/uikit"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UINavigationControllerDelegate/navigationController(_:didShow:animated:)": {
+      "abstract": [
+        {
+          "text": "Notifies the delegate after the navigation controller displays a view controller’s view and navigation item properties.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "navigationController"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UINavigationController",
+          "text": "UINavigationController"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didShow"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIViewController",
+          "text": "UIViewController"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "animated"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UINavigationControllerDelegate/navigationController(_:didShow:animated:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "navigationController:didShowViewController:animated:"
+        }
+      ],
+      "role": "symbol",
+      "title": "navigationController(_:didShow:animated:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uinavigationcontrollerdelegate/navigationcontroller(_:didshow:animated:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UINavigationControllerDelegate/navigationController(_:willShow:animated:)": {
+      "abstract": [
+        {
+          "text": "Notifies the delegate before the navigation controller displays a view controller’s view and navigation item properties.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "navigationController"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UINavigationController",
+          "text": "UINavigationController"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "willShow"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIViewController",
+          "text": "UIViewController"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "animated"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UINavigationControllerDelegate/navigationController(_:willShow:animated:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "navigationController:willShowViewController:animated:"
+        }
+      ],
+      "role": "symbol",
+      "title": "navigationController(_:willShow:animated:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uinavigationcontrollerdelegate/navigationcontroller(_:willshow:animated:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIView": {
+      "abstract": [
+        {
+          "text": "An object that manages the content for a rectangular area on the screen.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIView"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIView"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIView",
+      "type": "topic",
+      "url": "/documentation/uikit/uiview"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIViewController/Transition/coverVertical": {
+      "abstract": [
+        {
+          "text": "A transition where the new view slides up from the bottom of the screen.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "coverVertical"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/Transition/coverVertical",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "coverVertical",
+      "type": "topic",
+      "url": "/documentation/uikit/uiviewcontroller/transition/coververtical"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIViewController/Transition/crossDissolve": {
+      "abstract": [
+        {
+          "text": "A transition where the current view fades out while the new view fades in at the same time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "crossDissolve"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/Transition/crossDissolve",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "crossDissolve",
+      "type": "topic",
+      "url": "/documentation/uikit/uiviewcontroller/transition/crossdissolve"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIViewController/Transition/flipHorizontal": {
+      "abstract": [
+        {
+          "text": "A transition where the current view flips horizontally to reveal the new view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "flipHorizontal"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/Transition/flipHorizontal",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "flipHorizontal",
+      "type": "topic",
+      "url": "/documentation/uikit/uiviewcontroller/transition/fliphorizontal"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIViewController/Transition/partialCurl": {
+      "abstract": [
+        {
+          "text": "A transition where one corner of the current view curls up, revealing the new view underneath.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "partialCurl"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/Transition/partialCurl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "partialCurl",
+      "type": "topic",
+      "url": "/documentation/uikit/uiviewcontroller/transition/partialcurl"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIViewController/Transition/zoom(options:sourceViewProvider:)": {
+      "abstract": [
+        {
+          "text": "Creates a zoom transition from the view that the source provider specifies.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "zoom"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIViewController",
+          "text": "UIViewController"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIViewControllerTransition",
+          "text": "Transition"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIZoomTransitionOptions",
+          "text": "ZoomOptions"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "sourceViewProvider"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIViewController",
+          "text": "UIViewController"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIViewControllerTransition",
+          "text": "Transition"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIZoomTransitionSourceViewProviderContext",
+          "text": "ZoomSourceViewProviderContext"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIView",
+          "text": "UIView"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/Transition/zoom(options:sourceViewProvider:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "zoom(options:sourceViewProvider:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiviewcontroller/transition/zoom(options:sourceviewprovider:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIViewController/preferredTransition": {
+      "abstract": [
+        {
+          "text": "An object that defines the transition animation when switching to the view controller.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "preferredTransition"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIViewController",
+          "text": "UIViewController"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIViewControllerTransition",
+          "text": "Transition"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/preferredTransition",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "preferredTransition"
+        }
+      ],
+      "role": "symbol",
+      "title": "preferredTransition",
+      "type": "topic",
+      "url": "/documentation/uikit/uiviewcontroller/preferredtransition"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIViewController/viewIsAppearing(_:)": {
+      "abstract": [
+        {
+          "text": "Notifies the view controller that the system is adding the view controller’s view to a view hierarchy.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "viewIsAppearing"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/viewIsAppearing(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "viewIsAppearing:"
+        }
+      ],
+      "role": "symbol",
+      "title": "viewIsAppearing(_:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiviewcontroller/viewisappearing(_:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/animation-and-haptics": {
+      "abstract": [
+        {
+          "text": "Provide feedback to users using view-based animations and haptics.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/animation-and-haptics",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Animation and haptics",
+      "type": "topic",
+      "url": "/documentation/uikit/animation-and-haptics"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/view-controller-transitions": {
+      "abstract": [
+        {
+          "text": "Define custom transitions from one view controller to another.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/view-controller-transitions",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "View controller transitions",
+      "type": "topic",
+      "url": "/documentation/uikit/view-controller-transitions"
+    },
+    "media-4414969": {
+      "alt": "An illustration that shows the relationship between the view controller states, the transitions, and the callback methods. The illustration has four states: disappeared, appearing, appeared, and disappearing. When transitioning from disappeared to appearing, the system calls viewWillAppear, adds the view to the view hierarchy, and then calls viewIsAppearing. When transitioning from appearing to appeared, it calls viewDidAppear. When transitioning from appeared to disappearing, it calls viewWillDisappear. Finally, when transitioning from disappearing to disappeared, it removes the view from the view hierarchy, and then calls viewDidDisappear.",
+      "identifier": "media-4414969",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e97461b40b52ce1a5a9f78c0b8bfeed8/media-4414969@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/0657466067edf9c15b31cdd86157fc4e/media-4414969~dark@2x.png"
+        }
+      ]
+    },
+    "media-4422524": {
+      "alt": "An illustration that shows the view controller’s state changes during a pop transition. It starts in the appeared state. The system calls viewWillDisappear as the controller moves to the disappearing state. The system then removes the view from the view hierarchy and calls viewDidDisappear as the view controller transitions to the disappeared state.",
+      "identifier": "media-4422524",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/be3392ac981e83490758da2b05c8eadb/media-4422524@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/262472dd081647fe127cabd35e8d6dc8/media-4422524~dark@2x.png"
+        }
+      ]
+    },
+    "media-4422525": {
+      "alt": "An illustration that shows the view controller’s state changes during a push transition. It starts in the disappeared state. The system calls viewWillAppear, adds the view to the view hierarchy, and then calls viewIsAppearing as the controller moves to the appearing state. The system then calls viewDidAppear as the controller moves to the appeared state.",
+      "identifier": "media-4422525",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c291f5d39a4710a35a376032ddc8a36a/media-4422525@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b8d3a7a591348f7c03bf6efb9203b39f/media-4422525~dark@2x.png"
+        }
+      ]
+    },
+    "media-4422526": {
+      "alt": "An illustration that shows the view controller state changes when someone interrupts a push transition, converting it to a pop transition. The push transition starts in the disappeared state and progresses to the appeared state, even after the push transition is interrupted. It then begins a pop transition, moving from the appeared state back to the disappeared state. The system performs all the actions in the cycle: calls viewWillAppear, adds the view to the view hierarchy, calls viewIsAppearing, calls viewDidAppear, calls viewWillDisappear, removes the view from the view hierarchy, and calls viewDidDisappear.",
+      "identifier": "media-4422526",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/46c46c5d95d188e3dc5d7c6d8e514a72/media-4422526@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/7b8f3cc8337ccdb88e391e22ebe82b74/media-4422526~dark@2x.png"
+        }
+      ]
+    },
+    "media-4422527": {
+      "alt": "An illustration that shows the view controller’s state changes when someone cancels a pop transition. The view controller starts in the appeared state. The system calls viewWillDisappear as the controller transitions to the disappearing state. Then the view controller transitions directly to the appearing state. The system calls viewDidAppear, and the view controller transitions to the appeared state.",
+      "identifier": "media-4422527",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/bcf6a36e70e75b1a165c3369e2f40f16/media-4422527@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4c9e396fd80d7879ba6937230cae75e5/media-4422527~dark@2x.png"
+        }
+      ]
+    },
+    "media-4422984": {
+      "alt": null,
+      "identifier": "media-4422984",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/bd50d0379034d35e5c72efaca38e8530/media-4422984@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController~1preferredTransition/title",
+          "value": "preferredTransition"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController~1preferredTransition/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "preferredTransition"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSViewController~1viewWillDisappear()/title",
+          "value": "viewWillDisappear"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSViewController~1viewWillDisappear()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "viewWillDisappear"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSViewController~1viewWillAppear()/title",
+          "value": "viewWillAppear"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSViewController~1viewWillAppear()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "viewWillAppear"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSViewController~1viewDidAppear()/title",
+          "value": "viewDidAppear"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSViewController~1viewDidAppear()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "viewDidAppear"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController~1viewIsAppearing(_:)/title",
+          "value": "viewIsAppearing:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController~1viewIsAppearing(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "viewIsAppearing:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSViewController~1viewDidDisappear()/title",
+          "value": "viewDidDisappear"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSViewController~1viewDidDisappear()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "viewDidDisappear"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIView/title",
+          "value": "UIView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationControllerDelegate~1navigationController(_:didShow:animated:)/title",
+          "value": "navigationController:didShowViewController:animated:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationControllerDelegate~1navigationController(_:didShow:animated:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "navigationController:didShowViewController:animated:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationControllerDelegate~1navigationController(_:willShow:animated:)/title",
+          "value": "navigationController:willShowViewController:animated:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINavigationControllerDelegate~1navigationController(_:willShow:animated:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "navigationController:willShowViewController:animated:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/uikit/enhancing-your-app-with-fluid-transitions"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/uikit/enhancing-your-app-with-fluid-transitions"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

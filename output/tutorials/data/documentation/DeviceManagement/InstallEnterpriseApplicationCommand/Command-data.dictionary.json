@@ -1,0 +1,907 @@
+{
+  "abstract": [
+    {
+      "text": "The request dictionary to install an enterprise app.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/InstallEnterpriseApplicationCommand"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.devicemanagement/documentation/DeviceManagement/InstallEnterpriseApplicationCommand/Command-data.dictionary"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "mdm-commands:InstallEnterpriseApplicationCommand.Command",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "object "
+      },
+      {
+        "kind": "identifier",
+        "text": "InstallEnterpriseApplicationCommand.Command"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Device Management"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "InstallEnterpriseApplicationCommand.Command"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.13.6",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "Device Assignment Services",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "VPP License Management",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Device Management Command",
+    "symbolKind": "dictionary",
+    "title": "InstallEnterpriseApplicationCommand.Command"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "data"
+          ],
+          "platforms": [
+            "Unsupported OS: macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "text",
+              "text": "object "
+            },
+            {
+              "kind": "identifier",
+              "text": "InstallEnterpriseApplicationCommand.Command"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "items": [
+        {
+          "attributes": [
+            {
+              "kind": "allowedValues",
+              "values": [
+                "Managed"
+              ]
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The change management state. This value doesn’t work with the User Enrollment feature introduced in iOS 13. The only possible value is:",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "items": [
+                {
+                  "definition": {
+                    "content": [
+                      {
+                        "inlineContent": [
+                          {
+                            "text": "Take management of the app if the user installed it already and ",
+                            "type": "text"
+                          },
+                          {
+                            "code": "InstallAsManaged",
+                            "type": "codeVoice"
+                          },
+                          {
+                            "text": " is ",
+                            "type": "text"
+                          },
+                          {
+                            "code": "true",
+                            "type": "codeVoice"
+                          },
+                          {
+                            "text": ".",
+                            "type": "text"
+                          }
+                        ],
+                        "type": "paragraph"
+                      }
+                    ]
+                  },
+                  "term": {
+                    "inlineContent": [
+                      {
+                        "code": "Managed",
+                        "type": "codeVoice"
+                      }
+                    ]
+                  }
+                }
+              ],
+              "type": "termList"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Available in macOS 11 and later.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "10.13.6",
+          "name": "ChangeManagementState",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A dictionary that contains the initial configuration of the app, if you choose to provide it. Available in macOS 11 and later.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "10.13.6",
+          "name": "Configuration",
+          "required": false,
+          "type": [
+            {
+              "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/InstallEnterpriseApplicationCommand/Command-data.dictionary/Configuration-data.dictionary",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "mdm-commands:InstallEnterpriseApplicationCommand.Command.Configuration",
+              "text": "InstallEnterpriseApplicationCommand.Command.Configuration"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "default",
+              "value": "false"
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If ",
+                  "type": "text"
+                },
+                {
+                  "code": "true",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", install the app as a managed app. Otherwise, the system installs the app as unmanaged. If you reinstall a manged app and omit this value or set it to ",
+                  "type": "text"
+                },
+                {
+                  "code": "false",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", the app becomes unmanaged.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "For manifest-based installs, if ",
+                  "type": "text"
+                },
+                {
+                  "code": "true",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", the system only considers apps installed in ",
+                  "type": "text"
+                },
+                {
+                  "code": "/Applications",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " as managed. In macOS 11 through 13, the system requires that the ",
+                  "type": "text"
+                },
+                {
+                  "code": "pkg",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " only contains a single signed app.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Available in macOS 11 and later.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "10.13.6",
+          "name": "InstallAsManaged",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "boolean"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "default",
+              "value": "false"
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If ",
+                  "type": "text"
+                },
+                {
+                  "code": "true",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", the app is an iOS app that can run on an Apple silicon in macOS 11 and later.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "10.13.6",
+          "name": "iOSApp",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "boolean"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "allowedValues",
+              "values": [
+                "1"
+              ]
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The management flags. The possible values are:",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "items": [
+                {
+                  "definition": {
+                    "content": [
+                      {
+                        "inlineContent": [
+                          {
+                            "text": "If ",
+                            "type": "text"
+                          },
+                          {
+                            "code": "InstallAsManaged",
+                            "type": "codeVoice"
+                          },
+                          {
+                            "text": " is ",
+                            "type": "text"
+                          },
+                          {
+                            "code": "true",
+                            "type": "codeVoice"
+                          },
+                          {
+                            "text": ", remove the app upon removal of the MDM profile.",
+                            "type": "text"
+                          }
+                        ],
+                        "type": "paragraph"
+                      }
+                    ]
+                  },
+                  "term": {
+                    "inlineContent": [
+                      {
+                        "code": "1",
+                        "type": "codeVoice"
+                      }
+                    ]
+                  }
+                }
+              ],
+              "type": "termList"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Available in macOS 11 and later.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "10.13.6",
+          "name": "ManagementFlags",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "integer"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A dictionary that specifies where to download the app. This value is backward-compatible with the manifest for the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/InstallApplicationCommand",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": "; however, it also allows you to specify ",
+                  "type": "text"
+                },
+                {
+                  "code": "sha256s",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " and ",
+                  "type": "text"
+                },
+                {
+                  "code": "sha256-size",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " for SHA-256 hashes.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "10.13.6",
+          "name": "Manifest",
+          "required": false,
+          "type": [
+            {
+              "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/InstallEnterpriseApplicationCommand/Command-data.dictionary/Manifest-data.dictionary",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "mdm-commands:InstallEnterpriseApplicationCommand.Command.Manifest",
+              "text": "InstallEnterpriseApplicationCommand.Command.Manifest"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The URL of the app manifest, which needs to begin with ",
+                  "type": "text"
+                },
+                {
+                  "code": "https:",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "10.13.6",
+          "name": "ManifestURL",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An array of DER-encoded certificates to pin the connection when fetching the ",
+                  "type": "text"
+                },
+                {
+                  "code": "ManifestURL",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "10.13.6",
+          "name": "ManifestURLPinningCerts",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "[data]"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "default",
+              "value": "false"
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If ",
+                  "type": "text"
+                },
+                {
+                  "code": "true",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", certificate revocation checks require a positive response when using certificate pinning with ",
+                  "type": "text"
+                },
+                {
+                  "code": "ManifestURLPinningCerts",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "10.13.6",
+          "name": "PinningRevocationCheckRequired",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "boolean"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "default",
+              "value": "false"
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If ",
+                  "type": "text"
+                },
+                {
+                  "code": "true",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", the device needs to be network-tethered to run the command.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "10.13.6",
+          "name": "RequestRequiresNetworkTether",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "boolean"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "allowedValues",
+              "values": [
+                "InstallEnterpriseApplication"
+              ]
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The request type to install an enterprise managed app.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "10.13.6",
+          "name": "RequestType",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        }
+      ],
+      "kind": "properties",
+      "title": "Properties"
+    }
+  ],
+  "references": {
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement": {
+      "abstract": [
+        {
+          "text": "Manage your organization’s devices remotely.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Device Management",
+      "type": "topic",
+      "url": "/documentation/devicemanagement"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/InstallApplicationCommand": {
+      "abstract": [
+        {
+          "text": "The command to install an app on a device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "InstallApplicationCommand"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/InstallApplicationCommand",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "InstallApplicationCommand"
+        }
+      ],
+      "role": "symbol",
+      "title": "InstallApplicationCommand",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/installapplicationcommand"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/InstallEnterpriseApplicationCommand": {
+      "abstract": [
+        {
+          "text": "The command to install an enterprise app on a device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "InstallEnterpriseApplicationCommand"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/InstallEnterpriseApplicationCommand",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "InstallEnterpriseApplicationCommand"
+        }
+      ],
+      "role": "symbol",
+      "title": "InstallEnterpriseApplicationCommand",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/installenterpriseapplicationcommand"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/InstallEnterpriseApplicationCommand/Command-data.dictionary": {
+      "abstract": [
+        {
+          "text": "The request dictionary to install an enterprise app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "InstallEnterpriseApplicationCommand.Command"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/InstallEnterpriseApplicationCommand/Command-data.dictionary",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "InstallEnterpriseApplicationCommand.Command"
+        }
+      ],
+      "role": "symbol",
+      "title": "InstallEnterpriseApplicationCommand.Command",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/installenterpriseapplicationcommand/command-data.dictionary"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/InstallEnterpriseApplicationCommand/Command-data.dictionary/Configuration-data.dictionary": {
+      "abstract": [
+        {
+          "text": "A dictionary that contains the configuration to install an enterprise app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "InstallEnterpriseApplicationCommand.Command.Configuration"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/InstallEnterpriseApplicationCommand/Command-data.dictionary/Configuration-data.dictionary",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "InstallEnterpriseApplicationCommand.Command.Configuration"
+        }
+      ],
+      "role": "symbol",
+      "title": "InstallEnterpriseApplicationCommand.Command.Configuration",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/installenterpriseapplicationcommand/command-data.dictionary/configuration-data.dictionary"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/InstallEnterpriseApplicationCommand/Command-data.dictionary/Manifest-data.dictionary": {
+      "abstract": [
+        {
+          "text": "A dictionary that contains a manifest.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "InstallEnterpriseApplicationCommand.Command.Manifest"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/InstallEnterpriseApplicationCommand/Command-data.dictionary/Manifest-data.dictionary",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "InstallEnterpriseApplicationCommand.Command.Manifest"
+        }
+      ],
+      "role": "symbol",
+      "title": "InstallEnterpriseApplicationCommand.Command.Manifest",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/installenterpriseapplicationcommand/command-data.dictionary/manifest-data.dictionary"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/ManifestURL": {
+      "abstract": [
+        {
+          "text": "The URL to the app manifest.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ManifestURL"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/ManifestURL",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ManifestURL"
+        }
+      ],
+      "role": "symbol",
+      "title": "ManifestURL",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/manifesturl"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/ManifestURL/ItemsItem/Metadata-data.dictionary": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ManifestURL.ItemsItem.Metadata"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/ManifestURL/ItemsItem/Metadata-data.dictionary",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ManifestURL.ItemsItem.Metadata"
+        }
+      ],
+      "role": "symbol",
+      "title": "ManifestURL.ItemsItem.Metadata",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/manifesturl/itemsitem/metadata-data.dictionary"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Commands",
+      "identifiers": [
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/InstallEnterpriseApplicationCommand/Command-data.dictionary/Configuration-data.dictionary",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/InstallEnterpriseApplicationCommand/Command-data.dictionary/Manifest-data.dictionary",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/ManifestURL",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/ManifestURL/ItemsItem/Metadata-data.dictionary"
+      ],
+      "title": "Commands"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/devicemanagement/installenterpriseapplicationcommand/command-data.dictionary"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

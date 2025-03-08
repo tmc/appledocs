@@ -1,0 +1,1479 @@
+{
+  "abstract": [
+    {
+      "text": "Leverage a Full Space to create a fun game using ARKit.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.visionOS/documentation/visionOS"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.visionOS/documentation/visionOS/happybeam"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "images": [
+      {
+        "identifier": "Happy-Beam-intro.png",
+        "type": "card"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "2.0",
+        "name": "visionOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "16.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Happy Beam"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In visionOS, you can create fun, dynamic games and apps using several different frameworks to create new kinds of spatial experiences: RealityKit, ARKit, SwiftUI, and Group Activities. This sample introduces Happy Beam, a game where you and your friends can hop on a FaceTime call and play together.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You’ll learn the mechanics of the game where grumpy clouds float around in the space, and people play by making a heart shape with their hands to project a beam. People aim the beam at the clouds to cheer them up, and a score counter keeps track of how well each player does cheering up the clouds.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "identifier": "Happy-Beam-overview.mp4",
+          "type": "video"
+        },
+        {
+          "anchor": "Design-the-game-interface-in-SwiftUI",
+          "level": 2,
+          "text": "Design the game interface in SwiftUI",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Most apps in visionOS launch as a window that opens different scene types depending on the needs of the app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Here you see how Happy Beam presents a fun interface to people by using several SwiftUI views that display a welcome screen, a coaching screen that gives instructions, a scoreboard, and a game-ending screen.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "HB-welcome.png",
+                      "type": "image"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              "title": "Welcome window"
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "HB-instructions.png",
+                      "type": "image"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              "title": "Instructions"
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "HB-scoreboard.png",
+                      "type": "image"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              "title": "Scoreboard"
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "HB-ending.png",
+                      "type": "image"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              "title": "Ending window"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following shows you the primary view in the app that displays each phase of gameplay:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct HappyBeam: View {",
+            "    @Environment(\\.openImmersiveSpace) private var openImmersiveSpace",
+            "    @Environment(GameModel.self) var gameModel",
+            "    ",
+            "    @State private var session: GroupSession<HeartProjection>? = nil",
+            "    @State private var timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()",
+            "    @State private var subscriptions = Set<AnyCancellable>()",
+            "    ",
+            "    var body: some View {",
+            "        let gameState = GameScreen.from(state: gameModel)",
+            "        VStack {",
+            "            Spacer()",
+            "            Group {",
+            "                switch gameState {",
+            "                case .start:",
+            "                    Start()",
+            "                case .soloPlay:",
+            "                    SoloPlay()",
+            "                case .lobby:",
+            "                    Lobby()",
+            "                case .soloScore:",
+            "                    SoloScore()",
+            "                case .multiPlay:",
+            "                    MultiPlay()",
+            "                case .multiScore:",
+            "                    MultiScore()",
+            "                }",
+            "            }",
+            "            .glassBackgroundEffect(",
+            "                in: RoundedRectangle(",
+            "                    cornerRadius: 32,",
+            "                    style: .continuous",
+            "                )",
+            "            )",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When 3D content starts to appear, the game opens an immersive space to present content outside of the main window and in a person’s surroundings.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@main",
+            "struct HappyBeamApp: App {",
+            "    @State private var gameModel = GameModel()",
+            "    @State private var immersionState: ImmersionStyle = .mixed",
+            "    ",
+            "    var body: some SwiftUI.Scene {",
+            "        WindowGroup(\"HappyBeam\", id: \"happyBeamApp\") {",
+            "            HappyBeam()",
+            "                .environmentObject(gameModel)",
+            "        }",
+            "        .windowStyle(.plain)",
+            "        ",
+            "        ImmersiveSpace(id: \"happyBeam\") {",
+            "            HappyBeamSpace(gestureModel: HeartGestureModelContainer.heartGestureModel)",
+            "                .environmentObject(gameModel)",
+            "        }",
+            "        .immersionStyle(selection: $immersionState, in: .mixed)",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "HappyBeam",
+              "type": "codeVoice"
+            },
+            {
+              "text": " container view declares a dependency on ",
+              "type": "text"
+            },
+            {
+              "code": "openImmersiveSpace",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@Environment(\\.openImmersiveSpace) private var openImmersiveSpace"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "It later uses that dependency to open the space from the app’s declaration when it’s time to start showing 3D content:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "if gameModel.countDown == 0 {",
+            "    Task {",
+            "        await openImmersiveSpace(id: \"happyBeam\")",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Detect-a-heart-gesture-with-ARKit",
+          "level": 2,
+          "text": "Detect a heart gesture with ARKit",
+          "type": "heading"
+        },
+        {
+          "columns": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The Happy Beam app recognizes the central ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "heart-shaped hands",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": " gesture using ARKit’s support for 3D hand tracking in visionOS. Using hand tracking requires a running session and authorization from the wearer. It uses the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NSHandsTrackingUsageDescription",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " user info key to explain to players why the app requests permission for hand tracking.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              "size": 1
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "HB-custom-gestures.png",
+                      "type": "image"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              "size": 1
+            }
+          ],
+          "numberOfColumns": 2,
+          "type": "row"
+        },
+        {
+          "code": [
+            "Task {",
+            "    do {",
+            "        try await session.run([handTrackingProvider])",
+            "    } catch {",
+            "        print(\"ARKitSession error:\", error)",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Hand-tracking data isn’t available when your app is only displaying a window or volume. Instead, it’s available when you present an immersive space, as in the previous example.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can detect gestures using ARKit data with a level of accuracy that depends on your use case and intended experience. For example, Happy Beam could require strict positioning of finger joints to closely resemble a heart shape. Instead, however, it prompts people to make a heart shape and uses a heuristic to indicate when the gesture is close enough.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following checks whether a person’s thumbs and index fingers are almost touching:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Get the position of all joints in world coordinates.",
+            "let originFromLeftHandThumbKnuckleTransform = matrix_multiply(",
+            "    leftHandAnchor.originFromAnchorTransform, leftHandThumbKnuckle.anchorFromJointTransform",
+            ").columns.3.xyz",
+            "let originFromLeftHandThumbTipTransform = matrix_multiply(",
+            "    leftHandAnchor.originFromAnchorTransform, leftHandThumbTipPosition.anchorFromJointTransform",
+            ").columns.3.xyz",
+            "let originFromLeftHandIndexFingerTipTransform = matrix_multiply(",
+            "    leftHandAnchor.originFromAnchorTransform, leftHandIndexFingerTip.anchorFromJointTransform",
+            ").columns.3.xyz",
+            "let originFromRightHandThumbKnuckleTransform = matrix_multiply(",
+            "    rightHandAnchor.originFromAnchorTransform, rightHandThumbKnuckle.anchorFromJointTransform",
+            ").columns.3.xyz",
+            "let originFromRightHandThumbTipTransform = matrix_multiply(",
+            "    rightHandAnchor.originFromAnchorTransform, rightHandThumbTipPosition.anchorFromJointTransform",
+            ").columns.3.xyz",
+            "let originFromRightHandIndexFingerTipTransform = matrix_multiply(",
+            "    rightHandAnchor.originFromAnchorTransform, rightHandIndexFingerTip.anchorFromJointTransform",
+            ").columns.3.xyz",
+            "",
+            "let indexFingersDistance = distance(originFromLeftHandIndexFingerTipTransform, originFromRightHandIndexFingerTipTransform)",
+            "let thumbsDistance = distance(originFromLeftHandThumbTipTransform, originFromRightHandThumbTipTransform)",
+            "",
+            "// Heart gesture detection is true when the distance between the index finger tips centers",
+            "// and the distance between the thumb tip centers is each less than four centimeters.",
+            "let isHeartShapeGesture = indexFingersDistance < 0.04 && thumbsDistance < 0.04",
+            "if !isHeartShapeGesture {",
+            "    return nil",
+            "}",
+            "",
+            "// Compute a position in the middle of the heart gesture.",
+            "let halfway = (originFromRightHandIndexFingerTipTransform - originFromLeftHandThumbTipTransform) / 2",
+            "let heartMidpoint = originFromRightHandIndexFingerTipTransform - halfway",
+            "",
+            "// Compute the vector from left thumb knuckle to right thumb knuckle and normalize (X axis).",
+            "let xAxis = normalize(originFromRightHandThumbKnuckleTransform - originFromLeftHandThumbKnuckleTransform)",
+            "",
+            "// Compute the vector from right thumb tip to right index finger tip and normalize (Y axis).",
+            "let yAxis = normalize(originFromRightHandIndexFingerTipTransform - originFromRightHandThumbTipTransform)",
+            "",
+            "let zAxis = normalize(cross(xAxis, yAxis))",
+            "",
+            "// Create the final transform for the heart gesture from the three axes and midpoint vector.",
+            "let heartMidpointWorldTransform = simd_matrix(",
+            "    SIMD4(xAxis.x, xAxis.y, xAxis.z, 0),",
+            "    SIMD4(yAxis.x, yAxis.y, yAxis.z, 0),",
+            "    SIMD4(zAxis.x, zAxis.y, zAxis.z, 0),",
+            "    SIMD4(heartMidpoint.x, heartMidpoint.y, heartMidpoint.z, 1)",
+            ")",
+            "return heartMidpointWorldTransform"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Support-several-kinds-of-input",
+          "level": 2,
+          "text": "Support several kinds of input",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To support accessibility features and general user preferences, include multiple kinds of input in an app that uses hand tracking as one form of input.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Happy Beam supports several kinds of input:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "columns": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "HB-interactive-hands.png",
+                      "metadata": {
+                        "abstract": [
+                          {
+                            "text": "Interactive hands input from ARKit with the custom heart gesture.",
+                            "type": "text"
+                          }
+                        ]
+                      },
+                      "type": "image"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              "size": 1
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "HB-turret.png",
+                      "metadata": {
+                        "abstract": [
+                          {
+                            "text": "Drag gesture input to rotate the stationary beam on its platform.",
+                            "type": "text"
+                          }
+                        ]
+                      },
+                      "type": "image"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              "size": 1
+            }
+          ],
+          "numberOfColumns": 2,
+          "type": "row"
+        },
+        {
+          "columns": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "HB-accessibility.png",
+                      "metadata": {
+                        "abstract": [
+                          {
+                            "text": "Accessibility components from RealityKit to support custom actions for cheering up the clouds.",
+                            "type": "text"
+                          }
+                        ]
+                      },
+                      "type": "image"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              "size": 1
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "HB-controller.png",
+                      "metadata": {
+                        "abstract": [
+                          {
+                            "text": "Game Controller support to make control over the beam more interactive from Switch Control.",
+                            "type": "text"
+                          }
+                        ]
+                      },
+                      "type": "image"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              "size": 1
+            }
+          ],
+          "numberOfColumns": 2,
+          "type": "row"
+        },
+        {
+          "anchor": "Display-3D-content-with-RealityKit",
+          "level": 2,
+          "text": "Display 3D content with RealityKit",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The 3D content in the app comes in the form of assets that you can export from Reality Composer Pro. You place each asset in the ",
+              "type": "text"
+            },
+            {
+              "code": "RealityView",
+              "type": "codeVoice"
+            },
+            {
+              "text": " that represents your immersive space.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following shows how Happy Beam generates clouds when the game starts, as well as materials for the floor-based beam projector. Because the game uses collision detection to keep score — the beam cheers up grumpy clouds when they collide — you make collision shapes for each model that might be involved.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@MainActor",
+            "func placeCloud(start: Point3D, end: Point3D, speed: Double) async throws -> Entity {",
+            "    let cloud = await loadFromRealityComposerPro(",
+            "        named: BundleAssets.cloudEntity,",
+            "        fromSceneNamed: BundleAssets.cloudScene",
+            "    )!",
+            "        .clone(recursive: true)",
+            "    ",
+            "    cloud.generateCollisionShapes(recursive: true)",
+            "    cloud.components[PhysicsBodyComponent.self] = PhysicsBodyComponent()",
+            "    ",
+            "    var accessibilityComponent = AccessibilityComponent()",
+            "    accessibilityComponent.label = \"Cloud\"",
+            "    accessibilityComponent.value = \"Grumpy\"",
+            "    accessibilityComponent.isAccessibilityElement = true",
+            "    accessibilityComponent.traits = [.button, .playsSound]",
+            "    accessibilityComponent.systemActions = [.activate]",
+            "    cloud.components[AccessibilityComponent.self] = accessibilityComponent",
+            "    ",
+            "    let animation = cloudMovementAnimations[cloudPathsIndex]",
+            "    ",
+            "    cloud.playAnimation(animation, transitionDuration: 1.0, startsPaused: false)",
+            "    cloudAnimate(cloud, kind: .sadBlink, shouldRepeat: false)",
+            "    spaceOrigin.addChild(cloud)",
+            "    ",
+            "    return cloud",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Add-SharePlay-support-for-multiplayer-gaming-experiences",
+          "level": 2,
+          "text": "Add SharePlay support for multiplayer gaming experiences",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You use the Group Activities framework in visionOS to support SharePlay during a FaceTime call. Happy Beam uses Group Activities to sync the score, active players list, and the position of each player’s projected beam.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Developers using the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/visionos/work-with-apple/",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " can test spatial SharePlay experiences on-device by installing the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/download/all/?q=persona",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use a reliable channel to send information that’s important to be correct, even if it can be slightly delayed as a result. The following shows how Happy Beam updates the game model’s score state in response to a score message:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "sessionInfo.reliableMessenger = GroupSessionMessenger(session: newSession, deliveryMode: .reliable)",
+            "",
+            "Task {",
+            "    for await (message, sender) in sessionInfo!.reliableMessenger!.messages(of: ScoreMessage.self) {",
+            "        gameModel.clouds[message.cloudID].isHappy = true",
+            "        gameModel",
+            "            .players",
+            "            .filter { $0.name == sender.source.id.asPlayerName }",
+            "            .first!",
+            "            .score += 1",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use an unreliable messenger for sending data with low-latency requirements. Because the delivery mode is unreliable, some messages might not make it. Happy Beam uses the unreliable mode to send live updates to the position of the beam when each participant in the call chooses the Spatial option in FaceTime.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "sessionInfo.messenger = GroupSessionMessenger(session: newSession, deliveryMode: .unreliable)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following shows how Happy Beam serializes beam data for each message:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Send each player's beam data during FaceTime calls where players have selected the Spatial option.",
+            "func sendBeamPositionUpdate(_ pose: Pose3D) {",
+            "    if let sessionInfo = sessionInfo, let session = sessionInfo.session, let messenger = sessionInfo.messenger {",
+            "        let everyoneElse = session.activeParticipants.subtracting([session.localParticipant])",
+            "        ",
+            "        if isShowingBeam, gameModel.isSpatial {",
+            "            messenger.send(BeamMessage(pose: pose), to: .only(everyoneElse)) { error in",
+            "                if let error = error { print(\"Message failure:\", error) }",
+            "            }",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "columns": [
+            {
+              "content": [
+                {
+                  "anchor": "See-Also",
+                  "level": 2,
+                  "text": "See Also",
+                  "type": "heading"
+                }
+              ],
+              "size": 1
+            }
+          ],
+          "numberOfColumns": 1,
+          "type": "row"
+        },
+        {
+          "anchor": "Related-samples",
+          "level": 4,
+          "text": "Related samples",
+          "type": "heading"
+        },
+        {
+          "items": [
+            "doc://com.apple.visionOS/documentation/visionOS/incorporating-real-world-surroundings-in-an-immersive-experience",
+            "doc://com.apple.visionOS/documentation/visionOS/World",
+            "doc://com.apple.visionOS/documentation/visionOS/destination-video",
+            "doc://com.apple.visionOS/documentation/visionOS/diorama"
+          ],
+          "style": "list",
+          "type": "links"
+        },
+        {
+          "anchor": "Related-articles",
+          "level": 4,
+          "text": "Related articles",
+          "type": "heading"
+        },
+        {
+          "items": [
+            "doc://com.apple.visionOS/documentation/visionOS/setting-up-access-to-arkit-data",
+            "doc://com.apple.visionOS/documentation/visionOS/placing-content-on-detected-planes",
+            "doc://com.apple.visionOS/documentation/visionOS/tracking-points-in-world-space",
+            "doc://com.apple.visionOS/documentation/visionOS/tracking-images-in-3d-space"
+          ],
+          "style": "list",
+          "type": "links"
+        },
+        {
+          "anchor": "Related-videos",
+          "level": 4,
+          "text": "Related videos",
+          "type": "heading"
+        },
+        {
+          "items": [
+            "doc://com.apple.documentation/videos/play/wwdc2023/10082",
+            "doc://com.apple.documentation/videos/play/wwdc2023/10096",
+            "doc://com.apple.documentation/videos/play/wwdc2023/10034",
+            "doc://com.apple.documentation/videos/play/wwdc2023/10087"
+          ],
+          "style": "compactGrid",
+          "type": "links"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "1D881D72-B569-4C13-9A67-F2AC2BF2BC90": {
+      "alt": null,
+      "identifier": "1D881D72-B569-4C13-9A67-F2AC2BF2BC90",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x"
+          ],
+          "url": "https://devimages-cdn.apple.com/wwdc-services/images/D35E0E85-CCB6-41A1-B227-7995ECD83ED5/1D881D72-B569-4C13-9A67-F2AC2BF2BC90/8136_wide_250x141_1x.jpg"
+        },
+        {
+          "traits": [
+            "2x"
+          ],
+          "url": "https://devimages-cdn.apple.com/wwdc-services/images/D35E0E85-CCB6-41A1-B227-7995ECD83ED5/1D881D72-B569-4C13-9A67-F2AC2BF2BC90/8136_wide_250x141_2x.jpg"
+        },
+        {
+          "traits": [
+            "3x"
+          ],
+          "url": "https://devimages-cdn.apple.com/wwdc-services/images/D35E0E85-CCB6-41A1-B227-7995ECD83ED5/1D881D72-B569-4C13-9A67-F2AC2BF2BC90/8136_wide_250x141_3x.jpg"
+        }
+      ]
+    },
+    "8650c3b94efb/HappyBeam.zip": {
+      "checksum": "8650c3b94efb69ca8dd9194c8dff2719676321c29833eb2e25fb6bc4866e7f59d02e8202ca471e00c0ec72cb40957087f15abe574307c9fa8f8b0ba0ab103648",
+      "identifier": "8650c3b94efb/HappyBeam.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/8650c3b94efb/HappyBeam.zip"
+    },
+    "C3E03092-D805-440E-80E1-78F9144818D1": {
+      "alt": null,
+      "identifier": "C3E03092-D805-440E-80E1-78F9144818D1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x"
+          ],
+          "url": "https://devimages-cdn.apple.com/wwdc-services/images/D35E0E85-CCB6-41A1-B227-7995ECD83ED5/C3E03092-D805-440E-80E1-78F9144818D1/8141_wide_250x141_1x.jpg"
+        },
+        {
+          "traits": [
+            "2x"
+          ],
+          "url": "https://devimages-cdn.apple.com/wwdc-services/images/D35E0E85-CCB6-41A1-B227-7995ECD83ED5/C3E03092-D805-440E-80E1-78F9144818D1/8141_wide_250x141_2x.jpg"
+        },
+        {
+          "traits": [
+            "3x"
+          ],
+          "url": "https://devimages-cdn.apple.com/wwdc-services/images/D35E0E85-CCB6-41A1-B227-7995ECD83ED5/C3E03092-D805-440E-80E1-78F9144818D1/8141_wide_250x141_3x.jpg"
+        }
+      ]
+    },
+    "D1866B0D-617B-4A78-A645-915F82BC0B78": {
+      "alt": null,
+      "identifier": "D1866B0D-617B-4A78-A645-915F82BC0B78",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x"
+          ],
+          "url": "https://devimages-cdn.apple.com/wwdc-services/images/D35E0E85-CCB6-41A1-B227-7995ECD83ED5/D1866B0D-617B-4A78-A645-915F82BC0B78/8062_wide_250x141_1x.jpg"
+        },
+        {
+          "traits": [
+            "2x"
+          ],
+          "url": "https://devimages-cdn.apple.com/wwdc-services/images/D35E0E85-CCB6-41A1-B227-7995ECD83ED5/D1866B0D-617B-4A78-A645-915F82BC0B78/8062_wide_250x141_2x.jpg"
+        },
+        {
+          "traits": [
+            "3x"
+          ],
+          "url": "https://devimages-cdn.apple.com/wwdc-services/images/D35E0E85-CCB6-41A1-B227-7995ECD83ED5/D1866B0D-617B-4A78-A645-915F82BC0B78/8062_wide_250x141_3x.jpg"
+        }
+      ]
+    },
+    "DCA568AC-19D3-44FD-A13D-7A5281DC42D8": {
+      "alt": null,
+      "identifier": "DCA568AC-19D3-44FD-A13D-7A5281DC42D8",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x"
+          ],
+          "url": "https://devimages-cdn.apple.com/wwdc-services/images/D35E0E85-CCB6-41A1-B227-7995ECD83ED5/DCA568AC-19D3-44FD-A13D-7A5281DC42D8/8150_wide_250x141_1x.jpg"
+        },
+        {
+          "traits": [
+            "2x"
+          ],
+          "url": "https://devimages-cdn.apple.com/wwdc-services/images/D35E0E85-CCB6-41A1-B227-7995ECD83ED5/DCA568AC-19D3-44FD-A13D-7A5281DC42D8/8150_wide_250x141_2x.jpg"
+        },
+        {
+          "traits": [
+            "3x"
+          ],
+          "url": "https://devimages-cdn.apple.com/wwdc-services/images/D35E0E85-CCB6-41A1-B227-7995ECD83ED5/DCA568AC-19D3-44FD-A13D-7A5281DC42D8/8150_wide_250x141_3x.jpg"
+        }
+      ]
+    },
+    "Destination-Video-intro.png": {
+      "alt": "An image showing Destination Video on visionOS.",
+      "identifier": "Destination-Video-intro.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/648c665254129674ce04bbc64dbeeb2d/Destination-Video-intro@2x.png"
+        }
+      ]
+    },
+    "Diorama-intro.png": {
+      "alt": "A screenshot showing a virtual trail map diorama in a living room setting.",
+      "identifier": "Diorama-intro.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/80d69390976dca0e5d70a493312d475a/Diorama-intro@2x.png"
+        }
+      ]
+    },
+    "HB-accessibility.png": {
+      "alt": "A screenshot showing someone using VoiceOver to play Happy Beam. A picture-in-picture shows someone with their hands in their lap making the VoiceOver gesture to activate an element. In the game, one of the clouds displays a cheer up animation and VoiceOver highlights that cloud in a rectangle to show that it's the focused element.",
+      "identifier": "HB-accessibility.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/7b08dd9be3dd8a0a12386d29ebd5e654/HB-accessibility@2x.png"
+        }
+      ]
+    },
+    "HB-controller.png": {
+      "alt": "A screenshot showing someone using a game controller to play Happy Beam.",
+      "identifier": "HB-controller.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/846e5d397ba2a3e6e8550090b033e958/HB-controller@2x.png"
+        }
+      ]
+    },
+    "HB-custom-gestures.png": {
+      "alt": "A screenshot showing someone making a heart gesture with their hands. A beam projects from the center of the player's hands and extends into a living room where grumpy clouds float toward the player.",
+      "identifier": "HB-custom-gestures.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1d628bd12b2b0b094fea1fba46ed9545/HB-custom-gestures@2x.png"
+        }
+      ]
+    },
+    "HB-ending.png": {
+      "alt": "A screenshot showing the final score window. It shows some happy clouds, how many clouds you cheered up, and has options for playing again and going back to the main menu.",
+      "identifier": "HB-ending.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/658efc9a3068fd8f3e815d448db59ebc/HB-ending@2x.png"
+        }
+      ]
+    },
+    "HB-instructions.png": {
+      "alt": "A screenshot showing the two input options in the game: Make a heart with two hands, or use a pinch gesture or a compatible device.",
+      "identifier": "HB-instructions.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/61d185d073ca3656c70068c897317b92/HB-instructions@2x.png"
+        }
+      ]
+    },
+    "HB-interactive-hands.png": {
+      "alt": "A screenshot showing someone making a heart gesture with their hands. A beam projects from the center of the player's hands and extends into a living room where grumpy clouds float toward the player.",
+      "identifier": "HB-interactive-hands.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f8a2fed7cbcfb2cc62c0a3996bee40a0/HB-interactive-hands@2x.png"
+        }
+      ]
+    },
+    "HB-scoreboard.png": {
+      "alt": "A screenshot showing the in-game scoreboard window with a backdrop of a living room populated by the game's grumpy clouds. The scoreboard shows the score, a back button, a mute button, a time left indicator, and a pause button.",
+      "identifier": "HB-scoreboard.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/79c888c096819fd9309e3427e1a5d05a/HB-scoreboard@2x.png"
+        }
+      ]
+    },
+    "HB-turret.png": {
+      "alt": "A screenshot showing a 3D heart perched on top of a tower that holds it.",
+      "identifier": "HB-turret.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/9fd7384ba167df2a7b8547c4814faf8f/HB-turret@2x.png"
+        }
+      ]
+    },
+    "HB-welcome.png": {
+      "alt": "A screenshot showing the welcome screen window. It instructs people to cheer up grumpy clouds by shining a happy beam with your heart. There are two buttons: Play Solo and Play with Friends.",
+      "identifier": "HB-welcome.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a4a95e6a952a19f93222788b422649e2/HB-welcome@2x.png"
+        }
+      ]
+    },
+    "Happy-Beam-intro.png": {
+      "alt": null,
+      "identifier": "Happy-Beam-intro.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/52b497b6d705af322726d7371dee6ddd/Happy-Beam-intro@2x.png"
+        }
+      ]
+    },
+    "Happy-Beam-overview-poster.png": {
+      "alt": null,
+      "identifier": "Happy-Beam-overview-poster.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f8efcb60be21621beefc612fffb79af8/Happy-Beam-overview-poster@2x.png"
+        }
+      ]
+    },
+    "Happy-Beam-overview.mp4": {
+      "alt": "A video that shows the Happy Beam app. Someone navigates the interface and plays the 3D game by making a heart gesture with their hands to project a beam that cheers up grumpy clouds that appear in the room. Upbeat music plays throughout and the clouds make a cheerful sound when they make contact with the beam.",
+      "identifier": "Happy-Beam-overview.mp4",
+      "poster": "Happy-Beam-overview-poster.png",
+      "type": "video",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/299cd298aee541a80039720b4f488cf5/Happy-Beam-overview.mp4"
+        }
+      ]
+    },
+    "Hello-World-intro.png": {
+      "alt": "",
+      "identifier": "Hello-World-intro.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/770e1d0451ba3b86de3b05eb0ce728b7/Hello-World-intro@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.documentation/videos/play/wwdc2023/10034": {
+      "abstract": [
+        {
+          "text": "Learn how you can make spatial computing apps that work well for everyone. Like all Apple platforms, visionOS is designed for accessibility: We’ll share how we’ve reimagined assistive technologies like VoiceOver and Pointer Control and designed features like Dwell Control to help people interact in the way that works best for them. Learn best practices for vision, motor, cognitive, and hearing accessibility and help everyone enjoy immersive experiences for visionOS.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/videos/play/wwdc2023/10034",
+      "images": [
+        {
+          "identifier": "D1866B0D-617B-4A78-A645-915F82BC0B78",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "article",
+      "title": "Create accessible spatial experiences",
+      "type": "topic",
+      "url": "https://developer.apple.com/videos/play/wwdc2023/10034"
+    },
+    "doc://com.apple.documentation/videos/play/wwdc2023/10082": {
+      "abstract": [
+        {
+          "text": "Discover how you can use ARKit’s tracking and scene understanding features to develop a whole new universe of immersive apps and games. Learn how visionOS and ARKit work together to help you create apps that understand a person’s surroundings — all while preserving privacy. Explore the latest updates to the ARKit API and follow along as we demonstrate how to take advantage of hand tracking and scene geometry in your apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/videos/play/wwdc2023/10082",
+      "images": [
+        {
+          "identifier": "1D881D72-B569-4C13-9A67-F2AC2BF2BC90",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "article",
+      "title": "Meet ARKit for spatial computing",
+      "type": "topic",
+      "url": "https://developer.apple.com/videos/play/wwdc2023/10082"
+    },
+    "doc://com.apple.documentation/videos/play/wwdc2023/10087": {
+      "abstract": [
+        {
+          "text": "Discover how you can use the GroupActivities framework to build unique sharing and collaboration experiences for visionOS. We’ll introduce you to SharePlay on this platform, learn how to create experiences that make people feel present as if they were in the same space, and explore how immersive apps can respect shared context between participants.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/videos/play/wwdc2023/10087",
+      "images": [
+        {
+          "identifier": "C3E03092-D805-440E-80E1-78F9144818D1",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "article",
+      "title": "Build spatial SharePlay experiences",
+      "type": "topic",
+      "url": "https://developer.apple.com/videos/play/wwdc2023/10087"
+    },
+    "doc://com.apple.documentation/videos/play/wwdc2023/10096": {
+      "abstract": [
+        {
+          "text": "Find out how you can develop great gaming experiences for visionOS. We’ll share some of the key building blocks that help you create games for this platform, explore how your experiences can fluidly move between levels of immersion, and provide a roadmap for exploring ARKit, RealityKit, Reality Composer Pro, Unity, Metal, and Compositor.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/videos/play/wwdc2023/10096",
+      "images": [
+        {
+          "identifier": "DCA568AC-19D3-44FD-A13D-7A5281DC42D8",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "article",
+      "title": "Build great games for spatial computing",
+      "type": "topic",
+      "url": "https://developer.apple.com/videos/play/wwdc2023/10096"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS": {
+      "abstract": [
+        {
+          "text": "Create a new universe of apps and games for Apple Vision Pro.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS",
+      "images": [
+        {
+          "identifier": "headset-orange.svg",
+          "type": "icon"
+        },
+        {
+          "identifier": "visionOS-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "visionOS",
+      "type": "topic",
+      "url": "/documentation/visionos"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/World": {
+      "abstract": [
+        {
+          "text": "Use windows, volumes, and immersive spaces to teach people about the Earth.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/World",
+      "images": [
+        {
+          "identifier": "Hello-World-intro.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Hello World",
+      "type": "topic",
+      "url": "/documentation/visionos/world"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/destination-video": {
+      "abstract": [
+        {
+          "text": "Leverage SwiftUI to build an immersive media experience in a multiplatform app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/destination-video",
+      "images": [
+        {
+          "identifier": "Destination-Video-intro.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Destination Video",
+      "type": "topic",
+      "url": "/documentation/visionos/destination-video"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/diorama": {
+      "abstract": [
+        {
+          "text": "Design scenes for your visionOS app using Reality Composer Pro.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/diorama",
+      "images": [
+        {
+          "identifier": "Diorama-intro.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Diorama",
+      "type": "topic",
+      "url": "/documentation/visionos/diorama"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/incorporating-real-world-surroundings-in-an-immersive-experience": {
+      "abstract": [
+        {
+          "text": "Create an immersive experience by making your app’s content respond to the local shape of the world.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/incorporating-real-world-surroundings-in-an-immersive-experience",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Incorporating real-world surroundings in an immersive experience",
+      "type": "topic",
+      "url": "/documentation/visionos/incorporating-real-world-surroundings-in-an-immersive-experience"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/placing-content-on-detected-planes": {
+      "abstract": [
+        {
+          "text": "Detect horizontal surfaces like tables and floors, as well as vertical planes like walls and doors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/placing-content-on-detected-planes",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Placing content on detected planes",
+      "type": "topic",
+      "url": "/documentation/visionos/placing-content-on-detected-planes"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/setting-up-access-to-arkit-data": {
+      "abstract": [
+        {
+          "text": "Check whether your app can use ARKit and respect people’s privacy.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/setting-up-access-to-arkit-data",
+      "kind": "article",
+      "role": "article",
+      "title": "Setting up access to ARKit data",
+      "type": "topic",
+      "url": "/documentation/visionos/setting-up-access-to-arkit-data"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/tracking-images-in-3d-space": {
+      "abstract": [
+        {
+          "text": "Place content based on the current position of a known image in a person’s surroundings.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/tracking-images-in-3d-space",
+      "kind": "article",
+      "role": "article",
+      "title": "Tracking preregistered images in 3D space",
+      "type": "topic",
+      "url": "/documentation/visionos/tracking-images-in-3d-space"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/tracking-points-in-world-space": {
+      "abstract": [
+        {
+          "text": "Retrieve the position and orientation of anchors your app stores in ARKit.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/tracking-points-in-world-space",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Tracking specific points in world space",
+      "type": "topic",
+      "url": "/documentation/visionos/tracking-points-in-world-space"
+    },
+    "headset-orange.svg": {
+      "alt": "An icon representing visionOS.",
+      "identifier": "headset-orange.svg",
+      "type": "image",
+      "variants": [
+        {
+          "svgID": "a",
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/77dc6a0821bfb2da8db4a3b2033e6f6b/headset-orange.svg"
+        }
+      ]
+    },
+    "https://developer.apple.com/download/all/?q=persona": {
+      "identifier": "https://developer.apple.com/download/all/?q=persona",
+      "title": "Persona Preview Profile",
+      "titleInlineContent": [
+        {
+          "text": "Persona Preview Profile",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/download/all/?q=persona"
+    },
+    "https://developer.apple.com/visionos/work-with-apple/": {
+      "identifier": "https://developer.apple.com/visionos/work-with-apple/",
+      "title": "Apple Vision Pro developer kit",
+      "titleInlineContent": [
+        {
+          "text": "Apple Vision Pro developer kit",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/visionos/work-with-apple/"
+    },
+    "visionOS-PageImage-card.png": {
+      "alt": "A stylized illustration of an Apple Vision Pro with the word 'hello' written across the front in cursive.",
+      "identifier": "visionOS-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/90294957b44e5508a55fe39373eea478/visionOS-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/90fe463571fd45badfabacbb07f30591/visionOS-PageImage-card~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "8650c3b94efb/HappyBeam.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": []
+}

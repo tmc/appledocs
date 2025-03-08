@@ -1,0 +1,815 @@
+{
+  "abstract": [
+    {
+      "text": "Produces the path to the file in which it appears.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Swift/documentation/Swift"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Swift/documentation/Swift/file()"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:s4filexycs26ExpressibleByStringLiteralRzlufm",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "macro"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "file"
+      },
+      {
+        "kind": "text",
+        "text": "<"
+      },
+      {
+        "kind": "genericParameter",
+        "text": "T"
+      },
+      {
+        "kind": "text",
+        "text": ">() -> "
+      },
+      {
+        "kind": "typeIdentifier",
+        "text": "T"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Swift"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.10",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "2.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Macro",
+    "symbolKind": "macro",
+    "title": "file()"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "attribute",
+              "text": "@freestanding"
+            },
+            {
+              "kind": "text",
+              "text": "(expression) "
+            },
+            {
+              "kind": "keyword",
+              "text": "macro"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "file"
+            },
+            {
+              "kind": "text",
+              "text": "<"
+            },
+            {
+              "kind": "genericParameter",
+              "text": "T"
+            },
+            {
+              "kind": "text",
+              "text": ">() -> "
+            },
+            {
+              "kind": "typeIdentifier",
+              "text": "T"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "where"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "text": "T"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Swift/ExpressibleByStringLiteral",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:s26ExpressibleByStringLiteralP",
+              "text": "ExpressibleByStringLiteral"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The string value from ",
+              "type": "text"
+            },
+            {
+              "code": "#file",
+              "type": "codeVoice"
+            },
+            {
+              "text": " depends on the language version,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to enable migration from the old ",
+              "type": "text"
+            },
+            {
+              "code": "#filePath",
+              "type": "codeVoice"
+            },
+            {
+              "text": " behavior",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to the new ",
+              "type": "text"
+            },
+            {
+              "code": "#fileID",
+              "type": "codeVoice"
+            },
+            {
+              "text": " behavior.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Currently, ",
+              "type": "text"
+            },
+            {
+              "code": "#file",
+              "type": "codeVoice"
+            },
+            {
+              "text": " has the same value as ",
+              "type": "text"
+            },
+            {
+              "code": "#filePath",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "In a future version of Swift,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "#file",
+              "type": "codeVoice"
+            },
+            {
+              "text": " will have the same value as ",
+              "type": "text"
+            },
+            {
+              "code": "#fileID",
+              "type": "codeVoice"
+            },
+            {
+              "text": " instead.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "To adopt the future behavior,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "replace ",
+              "type": "text"
+            },
+            {
+              "code": "#file",
+              "type": "codeVoice"
+            },
+            {
+              "text": " with ",
+              "type": "text"
+            },
+            {
+              "code": "#fileID",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "code": "#filePath",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as appropriate.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This macro’s value can be changed by ",
+              "type": "text"
+            },
+            {
+              "code": "#sourceLocation",
+              "type": "codeVoice"
+            },
+            {
+              "text": ",",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "as described in ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://docs.swift.org/swift-book/documentation/the-swift-programming-language/statements#Line-Control-Statement",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "identifier": "https://docs.swift.org/swift-book/",
+                  "isActive": true,
+                  "type": "reference"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Swift-PageImage-card.png": {
+      "alt": "An orange Swift logo on a gradient background.",
+      "identifier": "Swift-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/81257762cf893d205c049e3021340e5f/Swift-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4d2ed632470b4616483901941fae4098/Swift-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Swift/documentation/Swift": {
+      "abstract": [
+        {
+          "text": "Build apps using a powerful open language.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift",
+      "images": [
+        {
+          "identifier": "Swift-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Swift",
+      "type": "topic",
+      "url": "/documentation/swift"
+    },
+    "doc://com.apple.Swift/documentation/Swift/ExpressibleByStringLiteral": {
+      "abstract": [
+        {
+          "text": "A type that can be initialized with a string literal.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ExpressibleByStringLiteral"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/ExpressibleByStringLiteral",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ExpressibleByStringLiteral"
+        }
+      ],
+      "role": "symbol",
+      "title": "ExpressibleByStringLiteral",
+      "type": "topic",
+      "url": "/documentation/swift/expressiblebystringliteral"
+    },
+    "doc://com.apple.Swift/documentation/Swift/column()": {
+      "abstract": [
+        {
+          "text": "Produces the column number in which the macro begins.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "macro"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "column"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/column()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "column()",
+      "type": "topic",
+      "url": "/documentation/swift/column()"
+    },
+    "doc://com.apple.Swift/documentation/Swift/file()": {
+      "abstract": [
+        {
+          "text": "Produces the path to the file in which it appears.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "macro"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "file"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/file()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "file()",
+      "type": "topic",
+      "url": "/documentation/swift/file()"
+    },
+    "doc://com.apple.Swift/documentation/Swift/fileID()": {
+      "abstract": [
+        {
+          "text": "Produces a unique identifier for the source file in which the macro appears.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "macro"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "fileID"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/fileID()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "fileID()",
+      "type": "topic",
+      "url": "/documentation/swift/fileid()"
+    },
+    "doc://com.apple.Swift/documentation/Swift/filePath()": {
+      "abstract": [
+        {
+          "text": "Produces the complete path to the file in which the macro appears.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "macro"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "filePath"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/filePath()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "filePath()",
+      "type": "topic",
+      "url": "/documentation/swift/filepath()"
+    },
+    "doc://com.apple.Swift/documentation/Swift/function()": {
+      "abstract": [
+        {
+          "text": "Produces the name of the declaration in which it appears.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "macro"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "function"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/function()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "function()",
+      "type": "topic",
+      "url": "/documentation/swift/function()"
+    },
+    "doc://com.apple.Swift/documentation/Swift/line()": {
+      "abstract": [
+        {
+          "text": "Produces the line number on which it appears.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "macro"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "line"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/line()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "line()",
+      "type": "topic",
+      "url": "/documentation/swift/line()"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://docs.swift.org/swift-book/": {
+      "identifier": "https://docs.swift.org/swift-book/",
+      "title": "The Swift Programming Language",
+      "titleInlineContent": [
+        {
+          "text": "The Swift Programming Language",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://docs.swift.org/swift-book/"
+    },
+    "https://docs.swift.org/swift-book/documentation/the-swift-programming-language/statements#Line-Control-Statement": {
+      "identifier": "https://docs.swift.org/swift-book/documentation/the-swift-programming-language/statements#Line-Control-Statement",
+      "title": "Line Control Statement",
+      "titleInlineContent": [
+        {
+          "text": "Line Control Statement",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://docs.swift.org/swift-book/documentation/the-swift-programming-language/statements#Line-Control-Statement"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Getting-Source-Location-Information",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/fileID()",
+        "doc://com.apple.Swift/documentation/Swift/filePath()",
+        "doc://com.apple.Swift/documentation/Swift/function()",
+        "doc://com.apple.Swift/documentation/Swift/line()",
+        "doc://com.apple.Swift/documentation/Swift/column()"
+      ],
+      "title": "Getting Source Location Information"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/swift/file()"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,847 @@
+{
+  "abstract": [
+    {
+      "text": "OSSerialize coordinates serialization of Libkern C++ objects into an XML stream.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/kernel",
+        "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals",
+        "doc://com.apple.documentation/documentation/kernel/libkern/data_types"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/kernel",
+        "doc://com.apple.documentation/documentation/kernel/libkern",
+        "doc://com.apple.documentation/documentation/kernel/libkern/data_types"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/kernel/osserialize"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1448252,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@S@OSSerialize",
+    "modules": [
+      {
+        "name": "Kernel"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "15.4",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "OSSerialize"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "OSSerialize"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/osobject",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@S@OSObject",
+              "text": "OSObject"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This class is for the most part internal to the OSContainer classes, used for transferring property tables between the kernel and user space. It should not be used directly. Classes that participate in serialization override the OSObject::serialize . function.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Use Restrictions",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "With very few exceptions in the I/O Kit, all Libkern-based C++ classes, functions, and macros are ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "unsafe",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            },
+            {
+              "text": " to use in a primary interrupt context. Consult the I/O Kit documentation related to primary interrupts for more information.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "OSSerialize provides no concurrency protection; it's up to the usage context to provide any protection necessary. Some portions of the I/O Kit, such as IORegistryEntry, handle synchronization via defined member functions for serializing properties.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/kernel": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Kernel",
+      "type": "topic",
+      "url": "/documentation/kernel"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "IOKit Fundamentals",
+      "type": "topic",
+      "url": "/documentation/kernel/iokit_fundamentals"
+    },
+    "doc://com.apple.documentation/documentation/kernel/libkern": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/libkern",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "libkern",
+      "type": "topic",
+      "url": "/documentation/kernel/libkern"
+    },
+    "doc://com.apple.documentation/documentation/kernel/libkern/data_types": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/libkern/data_types",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Data Types",
+      "type": "topic",
+      "url": "/documentation/kernel/libkern/data_types"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osobject": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSObject",
+      "type": "topic",
+      "url": "/documentation/kernel/osobject"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osserialize": {
+      "abstract": [
+        {
+          "text": "OSSerialize coordinates serialization of Libkern C++ objects into an XML stream.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osserialize",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSSerialize",
+      "type": "topic",
+      "url": "/documentation/kernel/osserialize"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osserialize/1575007-setcapacityincrement": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setCapacityIncrement"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osserialize/1575007-setcapacityincrement",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setCapacityIncrement",
+      "type": "topic",
+      "url": "/documentation/kernel/osserialize/1575007-setcapacityincrement"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osserialize/1575009-binarywithcapacity": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "binaryWithCapacity"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osserialize/1575009-binarywithcapacity",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "binaryWithCapacity",
+      "type": "topic",
+      "url": "/documentation/kernel/osserialize/1575009-binarywithcapacity"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osserialize/1575012-getlength": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getLength"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osserialize/1575012-getlength",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getLength",
+      "type": "topic",
+      "url": "/documentation/kernel/osserialize/1575012-getlength"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osserialize/1575013-getmetaclass": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getMetaClass"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osserialize/1575013-getmetaclass",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getMetaClass",
+      "type": "topic",
+      "url": "/documentation/kernel/osserialize/1575013-getmetaclass"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osserialize/1575014-addstring": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "addString"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osserialize/1575014-addstring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "addString",
+      "type": "topic",
+      "url": "/documentation/kernel/osserialize/1575014-addstring"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osserialize/1575016-text": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osserialize/1575016-text",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "text",
+      "type": "topic",
+      "url": "/documentation/kernel/osserialize/1575016-text"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osserialize/1575017-binaryserialize": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "binarySerialize"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osserialize/1575017-binaryserialize",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "binarySerialize",
+      "type": "topic",
+      "url": "/documentation/kernel/osserialize/1575017-binaryserialize"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osserialize/1575018-previouslyserialized": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "previouslySerialized"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osserialize/1575018-previouslyserialized",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "previouslySerialized",
+      "type": "topic",
+      "url": "/documentation/kernel/osserialize/1575018-previouslyserialized"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osserialize/1575019-addbinary": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "addBinary"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osserialize/1575019-addbinary",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "addBinary",
+      "type": "topic",
+      "url": "/documentation/kernel/osserialize/1575019-addbinary"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osserialize/1575020-free": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "free"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osserialize/1575020-free",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "free",
+      "type": "topic",
+      "url": "/documentation/kernel/osserialize/1575020-free"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osserialize/1575022-withcapacity": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "withCapacity"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osserialize/1575022-withcapacity",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "withCapacity",
+      "type": "topic",
+      "url": "/documentation/kernel/osserialize/1575022-withcapacity"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osserialize/1575023-initwithcapacity": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "initWithCapacity"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osserialize/1575023-initwithcapacity",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "initWithCapacity",
+      "type": "topic",
+      "url": "/documentation/kernel/osserialize/1575023-initwithcapacity"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osserialize/1575024-cleartext": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "clearText"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osserialize/1575024-cleartext",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "clearText",
+      "type": "topic",
+      "url": "/documentation/kernel/osserialize/1575024-cleartext"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osserialize/1575026-addxmlstarttag": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "addXMLStartTag"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osserialize/1575026-addxmlstarttag",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "addXMLStartTag",
+      "type": "topic",
+      "url": "/documentation/kernel/osserialize/1575026-addxmlstarttag"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osserialize/1575027-addbinaryobject": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "addBinaryObject"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osserialize/1575027-addbinaryobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "addBinaryObject",
+      "type": "topic",
+      "url": "/documentation/kernel/osserialize/1575027-addbinaryobject"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osserialize/1575028-ensurecapacity": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "ensureCapacity"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osserialize/1575028-ensurecapacity",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ensureCapacity",
+      "type": "topic",
+      "url": "/documentation/kernel/osserialize/1575028-ensurecapacity"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osserialize/1575029-addxmlendtag": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "addXMLEndTag"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osserialize/1575029-addxmlendtag",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "addXMLEndTag",
+      "type": "topic",
+      "url": "/documentation/kernel/osserialize/1575029-addxmlendtag"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osserialize/1575030-getcapacity": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getCapacity"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osserialize/1575030-getcapacity",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getCapacity",
+      "type": "topic",
+      "url": "/documentation/kernel/osserialize/1575030-getcapacity"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osserialize/1575031-getcapacityincrement": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getCapacityIncrement"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osserialize/1575031-getcapacityincrement",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getCapacityIncrement",
+      "type": "topic",
+      "url": "/documentation/kernel/osserialize/1575031-getcapacityincrement"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osserialize/1575032-addchar": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "addChar"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osserialize/1575032-addchar",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "addChar",
+      "type": "topic",
+      "url": "/documentation/kernel/osserialize/1575032-addchar"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osserialize/1808034-addchar": {
+      "abstract": [
+        {
+          "text": "Appends a single character to the XML stream.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osserialize/1808034-addchar",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "addChar",
+      "type": "topic",
+      "url": "/documentation/kernel/osserialize/1808034-addchar"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osserialize/1808045-addstring": {
+      "abstract": [
+        {
+          "text": "Appends a C string to the XML stream.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osserialize/1808045-addstring",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "addString",
+      "type": "topic",
+      "url": "/documentation/kernel/osserialize/1808045-addstring"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osserialize/1808061-addxmlendtag": {
+      "abstract": [
+        {
+          "text": "Appends an XML end tag to the XML stream.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osserialize/1808061-addxmlendtag",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "addXMLEndTag",
+      "type": "topic",
+      "url": "/documentation/kernel/osserialize/1808061-addxmlendtag"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osserialize/1808073-addxmlstarttag": {
+      "abstract": [
+        {
+          "text": "Appends an XML start tag to the XML stream.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osserialize/1808073-addxmlstarttag",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "addXMLStartTag",
+      "type": "topic",
+      "url": "/documentation/kernel/osserialize/1808073-addxmlstarttag"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osserialize/1808086-cleartext": {
+      "abstract": [
+        {
+          "text": "Resets the OSSerialize object.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osserialize/1808086-cleartext",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "clearText",
+      "type": "topic",
+      "url": "/documentation/kernel/osserialize/1808086-cleartext"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osserialize/1808096-previouslyserialized": {
+      "abstract": [
+        {
+          "text": "Checks whether the object has already been serialized into the XML stream, emitting a reference if it has.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osserialize/1808096-previouslyserialized",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "previouslySerialized",
+      "type": "topic",
+      "url": "/documentation/kernel/osserialize/1808096-previouslyserialized"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osserialize/1808110-text": {
+      "abstract": [
+        {
+          "text": "Returns the XML text serialized so far.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osserialize/1808110-text",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "text",
+      "type": "topic",
+      "url": "/documentation/kernel/osserialize/1808110-text"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osserialize/1808120-withcapacity": {
+      "abstract": [
+        {
+          "text": "Creates and initializes an empty OSSerialize object.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osserialize/1808120-withcapacity",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "withCapacity",
+      "type": "topic",
+      "url": "/documentation/kernel/osserialize/1808120-withcapacity"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osserialize/3075326-binaryserializeinternal": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "binarySerializeInternal"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osserialize/3075326-binaryserializeinternal",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "binarySerializeInternal",
+      "type": "topic",
+      "url": "/documentation/kernel/osserialize/3075326-binaryserializeinternal"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osserialize/3075327-endbinarycollection": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "endBinaryCollection"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osserialize/3075327-endbinarycollection",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "endBinaryCollection",
+      "type": "topic",
+      "url": "/documentation/kernel/osserialize/3075327-endbinarycollection"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osserialize/3075328-setindexed": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setIndexed"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osserialize/3075328-setindexed",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setIndexed",
+      "type": "topic",
+      "url": "/documentation/kernel/osserialize/3075328-setindexed"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osserializer": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osserializer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSSerializer",
+      "type": "topic",
+      "url": "/documentation/kernel/osserializer"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/osobject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/osserializer"
+      ],
+      "title": "Serialization"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "1673562",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/osserialize/1808034-addchar",
+        "doc://com.apple.documentation/documentation/kernel/osserialize/1808045-addstring",
+        "doc://com.apple.documentation/documentation/kernel/osserialize/1808061-addxmlendtag",
+        "doc://com.apple.documentation/documentation/kernel/osserialize/1808073-addxmlstarttag",
+        "doc://com.apple.documentation/documentation/kernel/osserialize/1808086-cleartext",
+        "doc://com.apple.documentation/documentation/kernel/osserialize/1808096-previouslyserialized",
+        "doc://com.apple.documentation/documentation/kernel/osserialize/1808110-text",
+        "doc://com.apple.documentation/documentation/kernel/osserialize/1808120-withcapacity"
+      ],
+      "kind": "taskGroup",
+      "title": "Miscellaneous"
+    },
+    {
+      "anchor": "3516987",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/osserialize/1575019-addbinary",
+        "doc://com.apple.documentation/documentation/kernel/osserialize/1575027-addbinaryobject",
+        "doc://com.apple.documentation/documentation/kernel/osserialize/1575032-addchar",
+        "doc://com.apple.documentation/documentation/kernel/osserialize/1575014-addstring",
+        "doc://com.apple.documentation/documentation/kernel/osserialize/1575029-addxmlendtag",
+        "doc://com.apple.documentation/documentation/kernel/osserialize/1575026-addxmlstarttag",
+        "doc://com.apple.documentation/documentation/kernel/osserialize/1575017-binaryserialize",
+        "doc://com.apple.documentation/documentation/kernel/osserialize/3075326-binaryserializeinternal",
+        "doc://com.apple.documentation/documentation/kernel/osserialize/1575024-cleartext",
+        "doc://com.apple.documentation/documentation/kernel/osserialize/3075327-endbinarycollection",
+        "doc://com.apple.documentation/documentation/kernel/osserialize/1575028-ensurecapacity",
+        "doc://com.apple.documentation/documentation/kernel/osserialize/1575020-free",
+        "doc://com.apple.documentation/documentation/kernel/osserialize/1575030-getcapacity",
+        "doc://com.apple.documentation/documentation/kernel/osserialize/1575031-getcapacityincrement",
+        "doc://com.apple.documentation/documentation/kernel/osserialize/1575012-getlength",
+        "doc://com.apple.documentation/documentation/kernel/osserialize/1575013-getmetaclass",
+        "doc://com.apple.documentation/documentation/kernel/osserialize/1575023-initwithcapacity",
+        "doc://com.apple.documentation/documentation/kernel/osserialize/1575018-previouslyserialized",
+        "doc://com.apple.documentation/documentation/kernel/osserialize/1575007-setcapacityincrement",
+        "doc://com.apple.documentation/documentation/kernel/osserialize/3075328-setindexed",
+        "doc://com.apple.documentation/documentation/kernel/osserialize/1575016-text"
+      ],
+      "kind": "taskGroup",
+      "title": "Instance Methods"
+    },
+    {
+      "anchor": "3516988",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/osserialize/1575009-binarywithcapacity",
+        "doc://com.apple.documentation/documentation/kernel/osserialize/1575022-withcapacity"
+      ],
+      "kind": "taskGroup",
+      "title": "Type Methods"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/kernel/osserialize"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1573 @@
+{
+  "abstract": [
+    {
+      "text": "Capture touches as a series of strokes and render them efficiently on a drawing canvas.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit",
+        "doc://com.apple.uikit/documentation/UIKit/touches-presses-and-gestures"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.uikit/documentation/UIKit/leveraging-touch-input-for-drawing-apps"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "UIKit"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "10.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "10.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "11.3",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Leveraging touch input for drawing apps"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample project, Speed Sketch, shows how to render a series of strokes a user makes by moving their finger or Apple Pencil across the screen. The project also demonstrates how to:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Distinguish between finger and Apple Pencil touches.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Improve drawing performance.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Enhance the app for Apple Pencil.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Distinguish-between-finger-and-Apple-Pencil-touches",
+          "level": 3,
+          "text": "Distinguish between finger and Apple Pencil touches",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "With Speed Sketch, users can draw by moving their finger or Apple Pencil across the screen, and the system reports the touches to the app. Speed Sketch captures these touches using the custom gesture recognizer, ",
+              "type": "text"
+            },
+            {
+              "code": "StrokeGestureRecognizer",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The stroke gesture recognizer receives each touch event, and appends data from the touches to an array of data samples.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {",
+            "    if trackedTouch == nil {",
+            "        trackedTouch = touches.first",
+            "        initialTimestamp = trackedTouch?.timestamp",
+            "        collectForce = trackedTouch!.type == .pencil || view?.traitCollection.forceTouchCapability == .available",
+            "        if !isForPencil {",
+            "            // Give other gestures, such as pan and pinch, a chance by",
+            "            // slightly delaying the `.begin.",
+            "            fingerStartTimer = Timer.scheduledTimer(",
+            "                withTimeInterval: cancellationTimeInterval,",
+            "                repeats: false,",
+            "                block: { [weak self] (timer) in",
+            "                    guard let strongSelf = self else { return }",
+            "                    if strongSelf.state == .possible {",
+            "                        strongSelf.state = .began",
+            "                    }",
+            "                }",
+            "            )",
+            "        }",
+            "    }",
+            "    if append(touches: touches, event: event) {",
+            "        if isForPencil {",
+            "            state = .began",
+            "        }",
+            "    }",
+            "}",
+            "",
+            "override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {",
+            "    if append(touches: touches, event: event) {",
+            "        if state == .began {",
+            "            state = .changed",
+            "        }",
+            "    }",
+            "}",
+            "",
+            "override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {",
+            "    if append(touches: touches, event: event) {",
+            "        stroke.state = .done",
+            "        state = .ended",
+            "    }",
+            "}",
+            "",
+            "override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {",
+            "    if append(touches: touches, event: event) {",
+            "        stroke.state = .cancelled",
+            "        state = .failed",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIGestureRecognizer/touchesBegan(_:with:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method sets a timer to give other gesture recognizers, such as pan and pinch, time to handle touches that the user makes with their finger. This behavior is unique to drawing apps such as Speed Sketch that start capturing and drawing a stroke the moment the user touches the screen.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In order to track finger and Apple Pencil touches separately, Speed Sketch uses two instances of ",
+              "type": "text"
+            },
+            {
+              "code": "StrokeGestureRecognizer",
+              "type": "codeVoice"
+            },
+            {
+              "text": ": one for finger touches and the other to track touches coming from Apple Pencil.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "self.fingerStrokeRecognizer = setupStrokeGestureRecognizer(isForPencil: false)",
+            "self.pencilStrokeRecognizer = setupStrokeGestureRecognizer(isForPencil: true)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To simplify the code, the app uses a helper method to create the gesture recognizers.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func setupStrokeGestureRecognizer(isForPencil: Bool) -> StrokeGestureRecognizer {",
+            "    let recognizer = StrokeGestureRecognizer(target: self, action: #selector(strokeUpdated(_:)))",
+            "    recognizer.delegate = self",
+            "    recognizer.cancelsTouchesInView = false",
+            "    scrollView.addGestureRecognizer(recognizer)",
+            "    recognizer.coordinateSpaceView = cgView",
+            "    recognizer.isForPencil = isForPencil",
+            "    return recognizer",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The gesture recognizer distinguishes between the touch types by setting the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIGestureRecognizer/allowedTouchTypes",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITouch/TouchType/pencil",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " when tracking Apple Pencil touches, and to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITouch/TouchType/direct",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " when tracking touches from a finger.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "var isForPencil: Bool = false {",
+            "    didSet {",
+            "        if isForPencil {",
+            "            allowedTouchTypes = [UITouch.TouchType.pencil.rawValue as NSNumber]",
+            "        } else {",
+            "            allowedTouchTypes = [UITouch.TouchType.direct.rawValue as NSNumber]",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each time the user draws a stroke on the screen, the stroke gesture recognizer calls the ",
+              "type": "text"
+            },
+            {
+              "code": "strokeUpdate(_:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method. This method checks to see if the recognizer is for Apple Pencil, and if so, puts the app into pencil mode. While the app is in pencil mode, the user can use one finger to pan the drawing canvas. When the app isn’t in pencil mode—that is, when the user is drawing with their finger—the user uses two fingers to pan the drawing canvas.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "var pencilMode = false {",
+            "    didSet {",
+            "        if pencilMode {",
+            "            scrollView.panGestureRecognizer.minimumNumberOfTouches = 1",
+            "            pencilButton.isHidden = false",
+            "            if let view = fingerStrokeRecognizer.view {",
+            "                view.removeGestureRecognizer(fingerStrokeRecognizer)",
+            "            }",
+            "        } else {",
+            "            scrollView.panGestureRecognizer.minimumNumberOfTouches = 2",
+            "            pencilButton.isHidden = true",
+            "            if fingerStrokeRecognizer.view == nil {",
+            "                scrollView.addGestureRecognizer(fingerStrokeRecognizer)",
+            "            }",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Improve-drawing-performance",
+          "level": 3,
+          "text": "Improve drawing performance",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The stroke gesture recognizer receives touch events from the system. For most apps, the time span between each touch event is enough to handle the gesture. However, users of drawing apps expect greater precision, which requires the app to gather all the touches reported since the last delivered touch event.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To gather the additional touches, Speed Sketch calls the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIEvent/coalescedTouches(for:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. This method returns an array of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITouch",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects representing the touches received by the system but not delivered in the last event. The additional touches allow Speed Sketch to provide a smoother rendering of the stroke by storing the coalesced touches as part of the stroke’s data sample.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "if collectsCoalescedTouches {",
+            "    if let event = event {",
+            "        let coalescedTouches = event.coalescedTouches(for: touchToAppend)!",
+            "        let lastIndex = coalescedTouches.count - 1",
+            "        for index in 0..<lastIndex {",
+            "            saveStrokeSample(stroke: stroke, touch: coalescedTouches[index], view: view, coalesced: true, predicted: false)",
+            "        }",
+            "        saveStrokeSample(stroke: stroke, touch: coalescedTouches[lastIndex], view: view, coalesced: false, predicted: false)",
+            "    }",
+            "} else {",
+            "    saveStrokeSample(stroke: stroke, touch: touchToAppend, view: view, coalesced: false, predicted: false)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In addition to coalesced touches, Speed Sketch uses touch data predicted by the system as a way to enhance the perceived accuracy of the app’s drawing capabilities. Speed Sketch retrieves the predicted touches by calling the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIEvent/predictedTouches(for:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method for the event, then saves the touches as part of the data sample for the stroke.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "if usesPredictedSamples && stroke.state == .active {",
+            "    if let predictedTouches = event?.predictedTouches(for: touchToAppend) {",
+            "        for touch in predictedTouches {",
+            "            saveStrokeSample(stroke: stroke, touch: touch, view: view, coalesced: false, predicted: true)",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app replaces the predicted touches with actual touches as they become available.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "override func touchesEstimatedPropertiesUpdated(_ touches: Set<UITouch>) {",
+            "    for touch in touches {",
+            "        guard let index = touch.estimationUpdateIndex else {",
+            "            continue",
+            "        }",
+            "        if let (stroke, sampleIndex) = outstandingUpdateIndexes[Int(index.intValue)] {",
+            "            var sample = stroke.samples[sampleIndex]",
+            "            let expectedUpdates = sample.estimatedPropertiesExpectingUpdates",
+            "            if expectedUpdates.contains(.force) {",
+            "                sample.force = touch.force",
+            "                if !touch.estimatedProperties.contains(.force) {",
+            "                    // Only remove the estimate flag if the new value isn't estimated as well.",
+            "                    sample.estimatedProperties.remove(.force)",
+            "                }",
+            "            }",
+            "            sample.estimatedPropertiesExpectingUpdates = touch.estimatedPropertiesExpectingUpdates",
+            "            if touch.estimatedPropertiesExpectingUpdates == [] {",
+            "                outstandingUpdateIndexes.removeValue(forKey: sampleIndex)",
+            "            }",
+            "            stroke.update(sample: sample, at: sampleIndex)",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Enhance-for-Apple-Pencil",
+          "level": 3,
+          "text": "Enhance for Apple Pencil",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Apple Pencil can sense tilt (altitude), force (pressure), and orientation (azimuth), which drawing apps can use to affect the appearance of strokes. For instance, Speed Sketch uses azimuth to enhance the strokes when using the app’s Calligraphy drawing tool.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func drawCalligraphy(in context: CGContext,",
+            "                     toSample: StrokeSample,",
+            "                     fromSample: StrokeSample,",
+            "                     forceAccessBlock: (_ sample: StrokeSample) -> CGFloat) {",
+            "",
+            "    var fromAzimuthUnitVector = Stroke.calligraphyFallbackAzimuthUnitVector",
+            "    var toAzimuthUnitVector = Stroke.calligraphyFallbackAzimuthUnitVector",
+            "",
+            "    if fromSample.azimuth != nil {",
+            "",
+            "        if lockedAzimuthUnitVector == nil {",
+            "            lockedAzimuthUnitVector = fromSample.azimuthUnitVector",
+            "        }",
+            "        fromAzimuthUnitVector = fromSample.azimuthUnitVector",
+            "        toAzimuthUnitVector = toSample.azimuthUnitVector",
+            "        if fromSample.altitude! > azimuthLockAltitudeThreshold {",
+            "            fromAzimuthUnitVector = lockedAzimuthUnitVector!",
+            "        }",
+            "        if toSample.altitude! > azimuthLockAltitudeThreshold {",
+            "            toAzimuthUnitVector = lockedAzimuthUnitVector!",
+            "        } else {",
+            "            lockedAzimuthUnitVector = toAzimuthUnitVector",
+            "        }",
+            "",
+            "    }",
+            "    // Rotate 90 degrees",
+            "    let calligraphyTransform = CGAffineTransform(rotationAngle: CGFloat.pi / 2.0)",
+            "    fromAzimuthUnitVector = fromAzimuthUnitVector.applying(calligraphyTransform)",
+            "    toAzimuthUnitVector = toAzimuthUnitVector.applying(calligraphyTransform)",
+            "",
+            "    let fromUnitVector = fromAzimuthUnitVector * forceAccessBlock(fromSample)",
+            "    let toUnitVector = toAzimuthUnitVector * forceAccessBlock(toSample)",
+            "",
+            "    context.beginPath()",
+            "    context.addLines(between: [",
+            "        fromSample.location + fromUnitVector,",
+            "        toSample.location + toUnitVector,",
+            "        toSample.location - toUnitVector,",
+            "        fromSample.location - fromUnitVector",
+            "        ])",
+            "    context.closePath()",
+            "",
+            "    context.drawPath(using: .fillStroke)",
+            "",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Speed Sketch also displays the altitude and azimuth data as part of the stroke when the user selects the Debug drawing tool.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func drawDebugMarkings(in context: CGContext, fromSample: StrokeSample) {",
+            "",
+            "    let isEstimated = fromSample.estimatedProperties.contains(.azimuth)",
+            "    guard displayOptions == .debug,",
+            "        fromSample.predicted == false,",
+            "        fromSample.azimuth != nil,",
+            "        (!fromSample.coalesced || isEstimated) else {",
+            "            return",
+            "    }",
+            "",
+            "    let length = CGFloat(20.0)",
+            "    let azimuthUnitVector = fromSample.azimuthUnitVector",
+            "    let azimuthTarget = fromSample.location + azimuthUnitVector * length",
+            "    let altitudeStart = azimuthTarget + (azimuthUnitVector * (length / -2.0))",
+            "    let transformToApply = CGAffineTransform(rotationAngle: fromSample.altitude!)",
+            "    let altitudeTarget = altitudeStart + (azimuthUnitVector * (length / 2.0)).applying(transformToApply)",
+            "",
+            "    // Draw altitude as black line coming from the center of the azimuth.",
+            "    altitudeSettings(in: context)",
+            "    context.beginPath()",
+            "    context.move(to: altitudeStart)",
+            "    context.addLine(to: altitudeTarget)",
+            "    context.strokePath()",
+            "",
+            "    // Draw azimuth as blue (or orange if estimated) line.",
+            "    azimuthSettings(in: context)",
+            "    if isEstimated {",
+            "        context.setStrokeColor(UIColor.orange.cgColor)",
+            "    }",
+            "    context.beginPath()",
+            "    context.move(to: fromSample.location)",
+            "    context.addLine(to: azimuthTarget)",
+            "    context.strokePath()",
+            "",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Starting with the second generation Apple Pencil, users can double-tap their finger on Apple Pencil to request an action from the app (see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/apple-pencil-interactions",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for more information). When possible, apps should honor the system settings for double-tap actions on Apple Pencil, which include:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Switching to the eraser or the last used tool",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Displaying a color pallet",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Ignoring double tap",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Speed Sketch doesn’t have an eraser tool or color pallet, but it does have different drawing tools: Calligraphy, Ink, and Debug. When the user’s preferred double-tap action is ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPencilPreferredAction/switchPrevious",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and the user double-taps their finger on Apple Pencil, Speed Sketch switches to the tool last used by the user. The sample app ignores the other preferred actions.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func pencilInteractionDidTap(_ interaction: UIPencilInteraction) {",
+            "    if UIPencilInteraction.preferredTapAction == .switchPrevious {",
+            "        leftRingControl.switchToPreviousTool()",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In order for Speed Sketch to receive the double-tap event, it adds a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPencilInteraction",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object to the canvas view.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let pencilInteraction = UIPencilInteraction()",
+            "pencilInteraction.delegate = self",
+            "view.addInteraction(pencilInteraction)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For additional information on supporting touch input in drawing apps and Apple Pencil, watch the WWDC 2016 session video ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/videos/play/wwdc2016/220",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and the Tech Talks session video ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/videos/play/tech-talks/804/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "72f431f71f59/LeveragingTouchInputForDrawingApps.zip": {
+      "checksum": "72f431f71f59fbbe022cd25e9076a614c95b32ea2e0c6fc98a2351987654b3dd4c1cd38f7f99c6677228e19de1e8345feb4abe4819c1f308d7f045b0f0043eb5",
+      "identifier": "72f431f71f59/LeveragingTouchInputForDrawingApps.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/72f431f71f59/LeveragingTouchInputForDrawingApps.zip"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.uikit/documentation/UIKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your iOS, iPadOS, or tvOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "UIKit",
+      "type": "topic",
+      "url": "/documentation/uikit"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIEvent/coalescedTouches(for:)": {
+      "abstract": [
+        {
+          "text": "Returns all of the touches associated with the specified main touch.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "coalescedTouches"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UITouch",
+          "text": "UITouch"
+        },
+        {
+          "kind": "text",
+          "text": ") -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UITouch",
+          "text": "UITouch"
+        },
+        {
+          "kind": "text",
+          "text": "]?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIEvent/coalescedTouches(for:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "coalescedTouchesForTouch:"
+        }
+      ],
+      "role": "symbol",
+      "title": "coalescedTouches(for:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uievent/coalescedtouches(for:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIEvent/predictedTouches(for:)": {
+      "abstract": [
+        {
+          "text": "Returns an array of touches that are predicted to occur for the specified touch.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "predictedTouches"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UITouch",
+          "text": "UITouch"
+        },
+        {
+          "kind": "text",
+          "text": ") -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UITouch",
+          "text": "UITouch"
+        },
+        {
+          "kind": "text",
+          "text": "]?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIEvent/predictedTouches(for:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "predictedTouchesForTouch:"
+        }
+      ],
+      "role": "symbol",
+      "title": "predictedTouches(for:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uievent/predictedtouches(for:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIGestureRecognizer/allowedTouchTypes": {
+      "abstract": [
+        {
+          "text": "An array of touch types used to distinguish type of touches.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "allowedTouchTypes"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSNumber",
+          "text": "NSNumber"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIGestureRecognizer/allowedTouchTypes",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "allowedTouchTypes"
+        }
+      ],
+      "role": "symbol",
+      "title": "allowedTouchTypes",
+      "type": "topic",
+      "url": "/documentation/uikit/uigesturerecognizer/allowedtouchtypes"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIGestureRecognizer/touchesBegan(_:with:)": {
+      "abstract": [
+        {
+          "text": "Sent to the gesture recognizer when one or more fingers touch down in the associated view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "touchesBegan"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sh",
+          "text": "Set"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UITouch",
+          "text": "UITouch"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIEvent",
+          "text": "UIEvent"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIGestureRecognizer/touchesBegan(_:with:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "touchesBegan:withEvent:"
+        }
+      ],
+      "role": "symbol",
+      "title": "touchesBegan(_:with:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uigesturerecognizer/touchesbegan(_:with:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIPencilInteraction": {
+      "abstract": [
+        {
+          "text": "An interaction that tells your app when a person double-taps or squeezes Apple Pencil.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIPencilInteraction"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPencilInteraction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIPencilInteraction"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIPencilInteraction",
+      "type": "topic",
+      "url": "/documentation/uikit/uipencilinteraction"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIPencilPreferredAction/switchPrevious": {
+      "abstract": [
+        {
+          "text": "An action that switches between the current tool and the last used tool.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "switchPrevious"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPencilPreferredAction/switchPrevious",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIPencilPreferredActionSwitchPrevious"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIPencilPreferredAction.switchPrevious",
+      "type": "topic",
+      "url": "/documentation/uikit/uipencilpreferredaction/switchprevious"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITouch": {
+      "abstract": [
+        {
+          "text": "An object representing the location, size, movement, and force of a touch occurring on the screen.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITouch"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITouch",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITouch"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITouch",
+      "type": "topic",
+      "url": "/documentation/uikit/uitouch"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITouch/TouchType/direct": {
+      "abstract": [
+        {
+          "text": "A touch resulting from direct contact with the screen.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "direct"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITouch/TouchType/direct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITouchTypeDirect"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITouch.TouchType.direct",
+      "type": "topic",
+      "url": "/documentation/uikit/uitouch/touchtype/direct"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITouch/TouchType/pencil": {
+      "abstract": [
+        {
+          "text": "A touch from Apple Pencil.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "pencil"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITouch/TouchType/pencil",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITouchTypePencil"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITouch.TouchType.pencil",
+      "type": "topic",
+      "url": "/documentation/uikit/uitouch/touchtype/pencil"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/apple-pencil-interactions": {
+      "abstract": [
+        {
+          "text": "Handle user interactions like double tap and squeeze on Apple Pencil.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/apple-pencil-interactions",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Apple Pencil interactions",
+      "type": "topic",
+      "url": "/documentation/uikit/apple-pencil-interactions"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/handling-input-from-apple-pencil": {
+      "abstract": [
+        {
+          "text": "Learn how to detect and respond to touches from Apple Pencil.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/handling-input-from-apple-pencil",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Handling input from Apple Pencil",
+      "type": "topic",
+      "url": "/documentation/uikit/handling-input-from-apple-pencil"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/handling-touches-in-your-view": {
+      "abstract": [
+        {
+          "text": "Use touch events directly on a view subclass if touch handling is intricately linked to the view’s content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/handling-touches-in-your-view",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Handling touches in your view",
+      "type": "topic",
+      "url": "/documentation/uikit/handling-touches-in-your-view"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/illustrating-the-force-altitude-and-azimuth-properties-of-touch-input": {
+      "abstract": [
+        {
+          "text": "Capture Apple Pencil and touch input in views.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/illustrating-the-force-altitude-and-azimuth-properties-of-touch-input",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Illustrating the force, altitude, and azimuth properties of touch input",
+      "type": "topic",
+      "url": "/documentation/uikit/illustrating-the-force-altitude-and-azimuth-properties-of-touch-input"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/touches-presses-and-gestures": {
+      "abstract": [
+        {
+          "text": "Encapsulate your app’s event-handling logic in gesture recognizers so that you can reuse that code throughout your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/touches-presses-and-gestures",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Touches, presses, and gestures",
+      "type": "topic",
+      "url": "/documentation/uikit/touches-presses-and-gestures"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/tracking-the-force-of-3d-touch-events": {
+      "abstract": [
+        {
+          "text": "Manipulate your content based on the force of touches.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/tracking-the-force-of-3d-touch-events",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Tracking the force of 3D Touch events",
+      "type": "topic",
+      "url": "/documentation/uikit/tracking-the-force-of-3d-touch-events"
+    },
+    "https://developer.apple.com/videos/play/tech-talks/804/": {
+      "identifier": "https://developer.apple.com/videos/play/tech-talks/804/",
+      "title": "Designing for iPad Pro and Apple Pencil",
+      "titleInlineContent": [
+        {
+          "text": "Designing for iPad Pro and Apple Pencil",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/videos/play/tech-talks/804/"
+    },
+    "https://developer.apple.com/videos/play/wwdc2016/220": {
+      "identifier": "https://developer.apple.com/videos/play/wwdc2016/220",
+      "title": "Leveraging Touch Input on iOS",
+      "titleInlineContent": [
+        {
+          "text": "Leveraging Touch Input on iOS",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/videos/play/wwdc2016/220"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "72f431f71f59/LeveragingTouchInputForDrawingApps.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Touches",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/handling-touches-in-your-view",
+        "doc://com.apple.uikit/documentation/UIKit/handling-input-from-apple-pencil",
+        "doc://com.apple.uikit/documentation/UIKit/tracking-the-force-of-3d-touch-events",
+        "doc://com.apple.uikit/documentation/UIKit/illustrating-the-force-altitude-and-azimuth-properties-of-touch-input",
+        "doc://com.apple.uikit/documentation/UIKit/UITouch"
+      ],
+      "title": "Touches"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Touches",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/handling-touches-in-your-view",
+                "doc://com.apple.uikit/documentation/UIKit/handling-input-from-apple-pencil",
+                "doc://com.apple.uikit/documentation/UIKit/tracking-the-force-of-3d-touch-events",
+                "doc://com.apple.uikit/documentation/UIKit/illustrating-the-force-altitude-and-azimuth-properties-of-touch-input",
+                "doc://com.apple.uikit/documentation/UIKit/UITouch"
+              ],
+              "title": "Touches"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIGestureRecognizer~1touchesBegan(_:with:)/title",
+          "value": "touchesBegan:withEvent:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIGestureRecognizer~1touchesBegan(_:with:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "touchesBegan:withEvent:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPencilPreferredAction~1switchPrevious/title",
+          "value": "UIPencilPreferredActionSwitchPrevious"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPencilPreferredAction~1switchPrevious/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIPencilPreferredActionSwitchPrevious"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIGestureRecognizer~1allowedTouchTypes/title",
+          "value": "allowedTouchTypes"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIGestureRecognizer~1allowedTouchTypes/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "allowedTouchTypes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITouch~1TouchType~1direct/title",
+          "value": "UITouchTypeDirect"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITouch~1TouchType~1direct/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITouchTypeDirect"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITouch/title",
+          "value": "UITouch"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITouch/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITouch"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITouch/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITouch"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIEvent~1predictedTouches(for:)/title",
+          "value": "predictedTouchesForTouch:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIEvent~1predictedTouches(for:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "predictedTouchesForTouch:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPencilInteraction/title",
+          "value": "UIPencilInteraction"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPencilInteraction/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIPencilInteraction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPencilInteraction/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIPencilInteraction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIEvent~1coalescedTouches(for:)/title",
+          "value": "coalescedTouchesForTouch:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIEvent~1coalescedTouches(for:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "coalescedTouchesForTouch:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITouch~1TouchType~1pencil/title",
+          "value": "UITouchTypePencil"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITouch~1TouchType~1pencil/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITouchTypePencil"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/uikit/leveraging-touch-input-for-drawing-apps"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/uikit/leveraging-touch-input-for-drawing-apps"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

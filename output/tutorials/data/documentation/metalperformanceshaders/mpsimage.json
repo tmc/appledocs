@@ -1,0 +1,3189 @@
+{
+  "abstract": [
+    {
+      "text": "A texture that may have more than four channels for use in convolutional neural networks.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/convolutional_neural_network_kernels",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnkernel",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnpadding"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/objects_that_simplify_the_creation_of_neural_networks",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnfilternode",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnpadding"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1648840,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)MPSImage",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "class "
+      },
+      {
+        "kind": "identifier",
+        "text": "MPSImage"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Metal Performance Shaders"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "10.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "10.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.13",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "10.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "MPSImage"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MPSImage"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Some image types, such as those found in convolutional neural networks (CNN), differ from a standard texture in that they may have more than 4 channels per pixel. While the channels could hold RGBA data, they will more commonly hold a number of structural permutations upon an RGBA image as the neural network progresses. It is not uncommon for each pixel to have 32 or 64 channels in it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Since a standard ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLTexture",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object cannot have more than 4 channels, the additional channels are stored in slices of a 2D texture array (i.e. a texture of type ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLTextureType/type2DArray",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ") such that 4 consecutive channels are stored in each slice of this array. If the number of feature channels is ",
+              "type": "text"
+            },
+            {
+              "code": "N",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", the number of array slices needed is ",
+              "type": "text"
+            },
+            {
+              "code": "(N+3)/4",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". For example, a 9-channel CNN image with a width of 3 and a height of 2 will be stored as follows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-2556907",
+              "metadata": {
+                "abstract": [
+                  {
+                    "text": "The layout of a 9-channel CNN image with a width of 3 and a height of 2.",
+                    "type": "text"
+                  }
+                ],
+                "anchor": "2556907",
+                "title": "Figure 1"
+              },
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Thus, the width and height of the underlying 2D texture array is the same as the width and height of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " object and the array length is equal to  ",
+              "type": "text"
+            },
+            {
+              "code": "(",
+              "type": "codeVoice"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimagedescriptor/1648918-featurechannels",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "code": "+3)/4",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". (Channels marked with a ",
+              "type": "text"
+            },
+            {
+              "code": "?",
+              "type": "codeVoice"
+            },
+            {
+              "text": " are just for padding and should not contain ",
+              "type": "text"
+            },
+            {
+              "code": "NaN",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "code": "INF",
+              "type": "codeVoice"
+            },
+            {
+              "text": " values.)",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " object can contain multiple CNN images for batch processing. In order to create an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " object that contains ",
+              "type": "text"
+            },
+            {
+              "code": "N",
+              "type": "codeVoice"
+            },
+            {
+              "text": " images, create an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimagedescriptor",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimagedescriptor/1648846-numberofimages",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property set to ",
+              "type": "text"
+            },
+            {
+              "code": "N",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". The length of the 2D texture array (i.e. the number of slices) will be equal to ",
+              "type": "text"
+            },
+            {
+              "code": "((",
+              "type": "codeVoice"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimagedescriptor/1648918-featurechannels",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "code": "+3)/4)*",
+              "type": "codeVoice"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimagedescriptor/1648846-numberofimages",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", where consecutive ",
+              "type": "text"
+            },
+            {
+              "code": "(featureChannels+3)/4",
+              "type": "codeVoice"
+            },
+            {
+              "text": " slices of this array represent one image.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Although an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " object can contain more than one image, the actual number of images among these processed by an ",
+              "type": "text"
+            },
+            {
+              "identifier": "link-2528269",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object is controlled by the ",
+              "type": "text"
+            },
+            {
+              "code": "z",
+              "type": "codeVoice"
+            },
+            {
+              "text": " dimension of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "link-2528270",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property. (A kernel processes ",
+              "type": "text"
+            },
+            {
+              "code": "n=clipRect.size.depth",
+              "type": "codeVoice"
+            },
+            {
+              "text": " images from this collection.)",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The starting index of the image to process from the source ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " object is given by ",
+              "type": "text"
+            },
+            {
+              "code": "offset.z",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". The starting index of the image in the destination ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " object where this processed image is written to is given by ",
+              "type": "text"
+            },
+            {
+              "code": "clipRect.origin.z",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". Thus, an ",
+              "type": "text"
+            },
+            {
+              "identifier": "link-2528269",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object takes the ",
+              "type": "text"
+            },
+            {
+              "code": "n=clipRect.size.depth",
+              "type": "codeVoice"
+            },
+            {
+              "text": " image from the source at indices ",
+              "type": "text"
+            },
+            {
+              "code": "[offset.z, offset.z+n]",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", processes each independently, and stores the result in the destination at indices ",
+              "type": "text"
+            },
+            {
+              "code": "[clipRect.origin.z, clipRect.origin.z+n]",
+              "type": "codeVoice"
+            },
+            {
+              "text": " respectively. Thus, ",
+              "type": "text"
+            },
+            {
+              "code": "offset.z+n",
+              "type": "codeVoice"
+            },
+            {
+              "text": " should be ",
+              "type": "text"
+            },
+            {
+              "code": "<=[source numberOfImages]",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "clipRect.origin.z+n",
+              "type": "codeVoice"
+            },
+            {
+              "text": " should be ",
+              "type": "text"
+            },
+            {
+              "code": "<=[destination numberOfImages]",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "code": "offset.z",
+              "type": "codeVoice"
+            },
+            {
+              "text": " must be ",
+              "type": "text"
+            },
+            {
+              "code": ">=0",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, suppose an ",
+              "type": "text"
+            },
+            {
+              "identifier": "link-2528271",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object takes an input image with 16 channels and outputs an image with 32 channels. The number of slices needed in the source 2D texture array is 4 and the number of slices needed in the destination 2D texture array is 8. Suppose the source batch size is 5 and the destination batch size is 4. Thus, the number of source slices will be ",
+              "type": "text"
+            },
+            {
+              "code": "4*5=20",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and the number of destination slices will be ",
+              "type": "text"
+            },
+            {
+              "code": "8*4=32",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". If you want to process image 2 and 3 of the source and store the result at index 1 and 2 in the destination, you can achieve this by setting ",
+              "type": "text"
+            },
+            {
+              "code": "offset.z=2",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "clipRect.origin.z=1",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "code": "clipRect.size.depth=2",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". The ",
+              "type": "text"
+            },
+            {
+              "identifier": "link-2528271",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object will take, in this case, slices 4 and 5 of the source and produce slices 4 to 7 of the destination. Similarly, slices 6 and 7 will be used to produce slices 8 to 11 of the destination.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "All ",
+              "type": "text"
+            },
+            {
+              "identifier": "link-2528269",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects process images in the batch independently. That is, calling a ",
+              "type": "text"
+            },
+            {
+              "identifier": "link-2528269",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object on a batch is formally the same as calling it on each image in the batch sequentially. Computational and GPU work submission overhead will be amortized over more work if batch processing is used. This is especially important for better performance on small images.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If ",
+              "type": "text"
+            },
+            {
+              "code": "featureChannels<=4",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "numberOfImages=1",
+              "type": "codeVoice"
+            },
+            {
+              "text": " (i.e. only one slice is needed to represent the image), the underlying metal texture type is chosen to be ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLTextureType/type2D",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " rather than ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLTextureType/type2DArray",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " as explained above.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The framework also provides ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpstemporaryimage",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects, intended for very short-lived image data that is produced and consumed immediately in the same ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object. They are a useful way to minimize CPU-side texture allocation costs and greatly reduce the amount of memory used by your image pipeline.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Creation of the underlying texture may occur lazily in some cases. In general, you should avoid calling the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage/1648903-texture",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property to avoid materializing memory for longer than necessary. When possible, use the other ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " properties to get information about the object instead.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "2530623",
+          "level": 3,
+          "text": "The MPSImage Class",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLBuffer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLTexture",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects are commonly used in Metal apps and are used directly by the Metal Performance Shaders framework when possible. In apps that use CNN, kernels may need more than the four data channels that a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLTexture",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object can provide. In these cases, an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object is used instead as an abstraction layer on top of a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLTexture",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object. When more than 4 channels are needed, additional textures in the 2D texture array are added to hold additional channels in sets of four. An ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object tracks this information as the number of ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "feature channels",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " in an image.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "2530625",
+          "level": 3,
+          "text": "CNN Images",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "link-2528269",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects operate on ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects. ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects are at their core ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLTexture",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects; however, whereas ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLTexture",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects commonly represent image or texel data, an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object is a more abstract representation of image features. The channels within an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " do not necessarily correspond to colors in a color space (although they can, if necessary). As a result, there can be many more than four of them. Having 32 or 64 channels per pixel is not uncommon in CNN. This is achieved on the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLTexture",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object abstraction by inserting extra RGBA pixels to handle the additional feature channels (if any) beyond 4. These extra pixels are stored as multiple slices of a 2D image array. Thus, each CNN pixel in a 32-channel image is represented as 8 array slices, with 4-channels stored per-pixel in each slice. The width and height of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLTexture",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object is the same as the width and height of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object. The number of slices in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLTexture",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object is given by the number of feature channels rounded up to a multiple of 4.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects can be created from existing ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLTexture",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects. They may also be created anew from an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimagedescriptor",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and backed with either standard texture memory, or as ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpstemporaryimage",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects using memory drawn from the framework’s internal cached texture backing store. ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpstemporaryimage",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects can provide great memory usage and CPU time savings, but come with significant restrictions that should be understood before using them. For example, their contents are only valid during the GPU-side execution of a single ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object and can not be read from or written to by the CPU. They are provided as an efficient way to hold CNN computations that are used immediately within the scope of the same ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object and then discarded. Concatenation is also supported by allowing you to define from which destination feature channel to start writing the output of the current layer. In this way, your app can make a large ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpstemporaryimage",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object and fill in parts of it with multiple layers (as long as the destination feature channel offset is a multiple of 4).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "2793364",
+          "level": 3,
+          "text": "Supported Pixel Formats",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage#2793365",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " shows pixel formats supported by ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "header": "none",
+          "metadata": {
+            "abstract": [
+              {
+                "text": "MPSImage supported pixel formats",
+                "type": "text"
+              }
+            ],
+            "anchor": "2793365",
+            "title": "Table 1"
+          },
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.metal/documentation/Metal/MTLPixelFormat/r8Unorm",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.metal/documentation/Metal/MTLPixelFormat/rg8Unorm",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.metal/documentation/Metal/MTLPixelFormat/rgba8Unorm",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.metal/documentation/Metal/MTLPixelFormat/bgra8Unorm",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.metal/documentation/Metal/MTLPixelFormat/r8Unorm_srgb",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.metal/documentation/Metal/MTLPixelFormat/rg8Unorm_srgb",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.metal/documentation/Metal/MTLPixelFormat/rgba8Unorm_srgb",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.metal/documentation/Metal/MTLPixelFormat/bgra8Unorm_srgb",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.metal/documentation/Metal/MTLPixelFormat/r16Unorm",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.metal/documentation/Metal/MTLPixelFormat/rg16Unorm",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.metal/documentation/Metal/MTLPixelFormat/rgba16Unorm",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.metal/documentation/Metal/MTLPixelFormat/r16Float",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.metal/documentation/Metal/MTLPixelFormat/rg16Float",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.metal/documentation/Metal/MTLPixelFormat/rgba16Float",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.metal/documentation/Metal/MTLPixelFormat/r32Float",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.metal/documentation/Metal/MTLPixelFormat/rg32Float",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.metal/documentation/Metal/MTLPixelFormat/rgba32Float",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/metal/mtlpixelformat": {
+      "abstract": [
+        {
+          "text": "The data formats that describe the organization and characteristics of individual pixels in a texture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "enum "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLPixelFormat"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metal/mtlpixelformat",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MTLPixelFormat",
+      "type": "topic",
+      "url": "/documentation/metal/mtlpixelformat"
+    },
+    "doc://com.apple.documentation/documentation/metal/mtltexture": {
+      "abstract": [
+        {
+          "text": "A resource that holds formatted image data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLTexture"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metal/mtltexture",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MTLTexture",
+      "type": "topic",
+      "url": "/documentation/metal/mtltexture"
+    },
+    "doc://com.apple.documentation/documentation/metal/mtltexturetype": {
+      "abstract": [
+        {
+          "text": "The dimension of each image, including whether multiple images are arranged into an array or a cube.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "enum "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLTextureType"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metal/mtltexturetype",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MTLTextureType",
+      "type": "topic",
+      "url": "/documentation/metal/mtltexturetype"
+    },
+    "doc://com.apple.documentation/documentation/metal/mtltextureusage": {
+      "abstract": [
+        {
+          "text": "An enumeration for the various options that determine how you can use a texture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLTextureUsage"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metal/mtltextureusage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MTLTextureUsage",
+      "type": "topic",
+      "url": "/documentation/metal/mtltextureusage"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders": {
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Metal Performance Shaders",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/convolutional_neural_network_kernels": {
+      "abstract": [
+        {
+          "text": "Build neural networks with layers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/convolutional_neural_network_kernels",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Convolutional Neural Network Kernels",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/convolutional_neural_network_kernels"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnkernel": {
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnkernel",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSCNNKernel",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpscnnkernel"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsdatalayout": {
+      "abstract": [
+        {
+          "text": "Options that define how buffer data is arranged.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "enum "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSDataLayout"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsdatalayout",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSDataLayout",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsdatalayout"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage": {
+      "abstract": [
+        {
+          "text": "A texture that may have more than four channels for use in convolutional neural networks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSImage"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSImage",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsimage"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage#2793365": {
+      "abstract": [
+        {
+          "text": "MPSImage supported pixel formats",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage#2793365",
+      "kind": "article",
+      "role": "table",
+      "title": "Table 1",
+      "type": "section",
+      "url": "/documentation/metalperformanceshaders/mpsimage#2793365"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage/1648820-setpurgeablestate": {
+      "abstract": [
+        {
+          "text": "Set (or query) the purgeable state of the image’s underlying texture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "setPurgeableState"
+        },
+        {
+          "kind": "text",
+          "text": "(MPSPurgeableState) -> MPSPurgeableState"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage/1648820-setpurgeablestate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setPurgeableState(_:)",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsimage/1648820-setpurgeablestate"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage/1648828-usage": {
+      "abstract": [
+        {
+          "text": "The intended usage of the underlying texture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "usage"
+        },
+        {
+          "kind": "text",
+          "text": ": MTLTextureUsage"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage/1648828-usage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "usage",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsimage/1648828-usage"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage/1648844-pixelformat": {
+      "abstract": [
+        {
+          "text": "The pixel format of the underlying texture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "pixelFormat"
+        },
+        {
+          "kind": "text",
+          "text": ": MTLPixelFormat"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage/1648844-pixelformat",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "pixelFormat",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsimage/1648844-pixelformat"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage/1648854-pixelsize": {
+      "abstract": [
+        {
+          "text": "The number of bytes from the first byte of one pixel to the first byte of the next pixel, in storage order. (Includes padding.)",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "pixelSize"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage/1648854-pixelsize",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "pixelSize",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsimage/1648854-pixelsize"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage/1648857-device": {
+      "abstract": [
+        {
+          "text": "The device on which the image will be used.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "device"
+        },
+        {
+          "kind": "text",
+          "text": ": any MTLDevice"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage/1648857-device",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "device",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsimage/1648857-device"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage/1648880-precision": {
+      "abstract": [
+        {
+          "text": "The number of bits of numeric precision available for each feature channel.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "precision"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage/1648880-precision",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "precision",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsimage/1648880-precision"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage/1648884-width": {
+      "abstract": [
+        {
+          "text": "The formal width of the image, in pixels.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "width"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage/1648884-width",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "width",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsimage/1648884-width"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage/1648899-label": {
+      "abstract": [
+        {
+          "text": "A string to help identify this object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "label"
+        },
+        {
+          "kind": "text",
+          "text": ": String?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage/1648899-label",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "label",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsimage/1648899-label"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage/1648900-numberofimages": {
+      "abstract": [
+        {
+          "text": "The number of images for batch processing.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "numberOfImages"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage/1648900-numberofimages",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "numberOfImages",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsimage/1648900-numberofimages"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage/1648901-featurechannels": {
+      "abstract": [
+        {
+          "text": "The number of feature channels per pixel.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "featureChannels"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage/1648901-featurechannels",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "featureChannels",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsimage/1648901-featurechannels"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage/1648903-texture": {
+      "abstract": [
+        {
+          "text": "The underlying texture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "texture"
+        },
+        {
+          "kind": "text",
+          "text": ": any MTLTexture"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage/1648903-texture",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "texture",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsimage/1648903-texture"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage/1648920-init": {
+      "abstract": [
+        {
+          "text": "Initializes an empty image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "device"
+        },
+        {
+          "kind": "text",
+          "text": ": any MTLDevice, "
+        },
+        {
+          "kind": "identifier",
+          "text": "imageDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": ": MPSImageDescriptor)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage/1648920-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(device:imageDescriptor:)",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsimage/1648920-init"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage/1648948-texturetype": {
+      "abstract": [
+        {
+          "text": "The type of the underlying texture, typically ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.metal/documentation/Metal/MTLTextureType/type2D",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " or ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.metal/documentation/Metal/MTLTextureType/type2DArray",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "textureType"
+        },
+        {
+          "kind": "text",
+          "text": ": MTLTextureType"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage/1648948-texturetype",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "textureType",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsimage/1648948-texturetype"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage/1648952-height": {
+      "abstract": [
+        {
+          "text": "The formal height of the image, in pixels.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "height"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage/1648952-height",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "height",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsimage/1648952-height"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage/2097547-init": {
+      "abstract": [
+        {
+          "text": "Initializes an image from a texture. The user-allocated texture has been created for a specific number of feature channels and number of images.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "texture"
+        },
+        {
+          "kind": "text",
+          "text": ": any MTLTexture, "
+        },
+        {
+          "kind": "identifier",
+          "text": "featureChannels"
+        },
+        {
+          "kind": "text",
+          "text": ": Int)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage/2097547-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(texture:featureChannels:)",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsimage/2097547-init"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage/2867055-writebytes": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "writeBytes"
+        },
+        {
+          "kind": "text",
+          "text": "(UnsafeRawPointer, "
+        },
+        {
+          "kind": "identifier",
+          "text": "dataLayout"
+        },
+        {
+          "kind": "text",
+          "text": ": MPSDataLayout, "
+        },
+        {
+          "kind": "identifier",
+          "text": "bytesPerRow"
+        },
+        {
+          "kind": "text",
+          "text": ": Int, "
+        },
+        {
+          "kind": "identifier",
+          "text": "region"
+        },
+        {
+          "kind": "text",
+          "text": ": MTLRegion, "
+        },
+        {
+          "kind": "identifier",
+          "text": "featureChannelInfo"
+        },
+        {
+          "kind": "text",
+          "text": ": MPSImageReadWriteParams, "
+        },
+        {
+          "kind": "identifier",
+          "text": "imageIndex"
+        },
+        {
+          "kind": "text",
+          "text": ": Int)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage/2867055-writebytes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "writeBytes(_:dataLayout:bytesPerRow:region:featureChannelInfo:imageIndex:)",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsimage/2867055-writebytes"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage/2867105-readbytes": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "readBytes"
+        },
+        {
+          "kind": "text",
+          "text": "(UnsafeMutableRawPointer, "
+        },
+        {
+          "kind": "identifier",
+          "text": "dataLayout"
+        },
+        {
+          "kind": "text",
+          "text": ": MPSDataLayout, "
+        },
+        {
+          "kind": "identifier",
+          "text": "bytesPerRow"
+        },
+        {
+          "kind": "text",
+          "text": ": Int, "
+        },
+        {
+          "kind": "identifier",
+          "text": "region"
+        },
+        {
+          "kind": "text",
+          "text": ": MTLRegion, "
+        },
+        {
+          "kind": "identifier",
+          "text": "featureChannelInfo"
+        },
+        {
+          "kind": "text",
+          "text": ": MPSImageReadWriteParams, "
+        },
+        {
+          "kind": "identifier",
+          "text": "imageIndex"
+        },
+        {
+          "kind": "text",
+          "text": ": Int)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage/2867105-readbytes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "readBytes(_:dataLayout:bytesPerRow:region:featureChannelInfo:imageIndex:)",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsimage/2867105-readbytes"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage/2867148-defaultallocator": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "defaultAllocator"
+        },
+        {
+          "kind": "text",
+          "text": "() -> any MPSImageAllocator"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage/2867148-defaultallocator",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "defaultAllocator()",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsimage/2867148-defaultallocator"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage/2867188-readbytes": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "readBytes"
+        },
+        {
+          "kind": "text",
+          "text": "(UnsafeMutableRawPointer, "
+        },
+        {
+          "kind": "identifier",
+          "text": "dataLayout"
+        },
+        {
+          "kind": "text",
+          "text": ": MPSDataLayout, "
+        },
+        {
+          "kind": "identifier",
+          "text": "imageIndex"
+        },
+        {
+          "kind": "text",
+          "text": ": Int)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage/2867188-readbytes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "readBytes(_:dataLayout:imageIndex:)",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsimage/2867188-readbytes"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage/2867189-writebytes": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "writeBytes"
+        },
+        {
+          "kind": "text",
+          "text": "(UnsafeRawPointer, "
+        },
+        {
+          "kind": "identifier",
+          "text": "dataLayout"
+        },
+        {
+          "kind": "text",
+          "text": ": MPSDataLayout, "
+        },
+        {
+          "kind": "identifier",
+          "text": "imageIndex"
+        },
+        {
+          "kind": "text",
+          "text": ": Int)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage/2867189-writebytes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "writeBytes(_:dataLayout:imageIndex:)",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsimage/2867189-writebytes"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage/2942488-subimage": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "subImage"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "withFeatureChannelRange"
+        },
+        {
+          "kind": "text",
+          "text": ": NSRange) -> MPSImage"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage/2942488-subimage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "subImage(withFeatureChannelRange:)",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsimage/2942488-subimage"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage/2942490-parent": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "parent"
+        },
+        {
+          "kind": "text",
+          "text": ": MPSImage?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage/2942490-parent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "parent",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsimage/2942490-parent"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage/2942491-synchronize": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "synchronize"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "on"
+        },
+        {
+          "kind": "text",
+          "text": ": any MTLCommandBuffer)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage/2942491-synchronize",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "synchronize(on:)",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsimage/2942491-synchronize"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage/2942492-batchrepresentation": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "batchRepresentation"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "withSubRange"
+        },
+        {
+          "kind": "text",
+          "text": ": NSRange) -> [MPSImage]"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage/2942492-batchrepresentation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "batchRepresentation(withSubRange:)",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsimage/2942492-batchrepresentation"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage/2942493-init": {
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "parentImage"
+        },
+        {
+          "kind": "text",
+          "text": ": MPSImage, "
+        },
+        {
+          "kind": "identifier",
+          "text": "sliceRange"
+        },
+        {
+          "kind": "text",
+          "text": ": NSRange, "
+        },
+        {
+          "kind": "identifier",
+          "text": "featureChannels"
+        },
+        {
+          "kind": "text",
+          "text": ": Int)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage/2942493-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(parentImage:sliceRange:featureChannels:)",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsimage/2942493-init"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage/2942494-resourcesize": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "resourceSize"
+        },
+        {
+          "kind": "text",
+          "text": "() -> Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage/2942494-resourcesize",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "resourceSize()",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsimage/2942494-resourcesize"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage/2942495-batchrepresentation": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "batchRepresentation"
+        },
+        {
+          "kind": "text",
+          "text": "() -> [MPSImage]"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage/2942495-batchrepresentation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "batchRepresentation()",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsimage/2942495-batchrepresentation"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage/2951914-readbytes": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "readBytes"
+        },
+        {
+          "kind": "text",
+          "text": "(UnsafeMutableRawPointer, "
+        },
+        {
+          "kind": "identifier",
+          "text": "dataLayout"
+        },
+        {
+          "kind": "text",
+          "text": ": MPSDataLayout, "
+        },
+        {
+          "kind": "identifier",
+          "text": "bytesPerRow"
+        },
+        {
+          "kind": "text",
+          "text": ": Int, "
+        },
+        {
+          "kind": "identifier",
+          "text": "bytesPerImage"
+        },
+        {
+          "kind": "text",
+          "text": ": Int, "
+        },
+        {
+          "kind": "identifier",
+          "text": "region"
+        },
+        {
+          "kind": "text",
+          "text": ": MTLRegion, "
+        },
+        {
+          "kind": "identifier",
+          "text": "featureChannelInfo"
+        },
+        {
+          "kind": "text",
+          "text": ": MPSImageReadWriteParams, "
+        },
+        {
+          "kind": "identifier",
+          "text": "imageIndex"
+        },
+        {
+          "kind": "text",
+          "text": ": Int)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage/2951914-readbytes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "readBytes(_:dataLayout:bytesPerRow:bytesPerImage:region:featureChannelInfo:imageIndex:)",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsimage/2951914-readbytes"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage/2951915-writebytes": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "writeBytes"
+        },
+        {
+          "kind": "text",
+          "text": "(UnsafeRawPointer, "
+        },
+        {
+          "kind": "identifier",
+          "text": "dataLayout"
+        },
+        {
+          "kind": "text",
+          "text": ": MPSDataLayout, "
+        },
+        {
+          "kind": "identifier",
+          "text": "bytesPerRow"
+        },
+        {
+          "kind": "text",
+          "text": ": Int, "
+        },
+        {
+          "kind": "identifier",
+          "text": "bytesPerImage"
+        },
+        {
+          "kind": "text",
+          "text": ": Int, "
+        },
+        {
+          "kind": "identifier",
+          "text": "region"
+        },
+        {
+          "kind": "text",
+          "text": ": MTLRegion, "
+        },
+        {
+          "kind": "identifier",
+          "text": "featureChannelInfo"
+        },
+        {
+          "kind": "text",
+          "text": ": MPSImageReadWriteParams, "
+        },
+        {
+          "kind": "identifier",
+          "text": "imageIndex"
+        },
+        {
+          "kind": "text",
+          "text": ": Int)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage/2951915-writebytes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "writeBytes(_:dataLayout:bytesPerRow:bytesPerImage:region:featureChannelInfo:imageIndex:)",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsimage/2951915-writebytes"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage/3131715-featurechannelformat": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "featureChannelFormat"
+        },
+        {
+          "kind": "text",
+          "text": ": MPSImageFeatureChannelFormat"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage/3131715-featurechannelformat",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "featureChannelFormat",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsimage/3131715-featurechannelformat"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage/3143488-writebytes": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "writeBytes"
+        },
+        {
+          "kind": "text",
+          "text": "(UnsafeRawPointer, "
+        },
+        {
+          "kind": "identifier",
+          "text": "dataLayout"
+        },
+        {
+          "kind": "text",
+          "text": ": MPSDataLayout, "
+        },
+        {
+          "kind": "identifier",
+          "text": "bytesPerColumn"
+        },
+        {
+          "kind": "text",
+          "text": ": Int, "
+        },
+        {
+          "kind": "identifier",
+          "text": "bytesPerRow"
+        },
+        {
+          "kind": "text",
+          "text": ": Int, "
+        },
+        {
+          "kind": "identifier",
+          "text": "bytesPerImage"
+        },
+        {
+          "kind": "text",
+          "text": ": Int, "
+        },
+        {
+          "kind": "identifier",
+          "text": "region"
+        },
+        {
+          "kind": "text",
+          "text": ": MTLRegion, "
+        },
+        {
+          "kind": "identifier",
+          "text": "featureChannelInfo"
+        },
+        {
+          "kind": "text",
+          "text": ": MPSImageReadWriteParams, "
+        },
+        {
+          "kind": "identifier",
+          "text": "imageIndex"
+        },
+        {
+          "kind": "text",
+          "text": ": Int)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage/3143488-writebytes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "writeBytes(_:dataLayout:bytesPerColumn:bytesPerRow:bytesPerImage:region:featureChannelInfo:imageIndex:)",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsimage/3143488-writebytes"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimageallocator": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSImageAllocator"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimageallocator",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSImageAllocator",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsimageallocator"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimagedescriptor": {
+      "abstract": [
+        {
+          "text": "A description of the attributes used to create an ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSImageDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimagedescriptor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSImageDescriptor",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsimagedescriptor"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimagedescriptor/1648846-numberofimages": {
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimagedescriptor/1648846-numberofimages",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "numberOfImages",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsimagedescriptor/1648846-numberofimages"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimagedescriptor/1648918-featurechannels": {
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimagedescriptor/1648918-featurechannels",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "featureChannels",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsimagedescriptor/1648918-featurechannels"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimagereadwriteparams": {
+      "abstract": [
+        {
+          "text": "Parameters that control reading and writing of a particular set of feature channels.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSImageReadWriteParams"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimagereadwriteparams",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSImageReadWriteParams",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsimagereadwriteparams"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnfilternode": {
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnfilternode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSNNFilterNode",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsnnfilternode"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnpadding": {
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnpadding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSNNPadding",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsnnpadding"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpspurgeablestate": {
+      "abstract": [
+        {
+          "text": "The purgeable state of an image’s underlying texture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "enum "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSPurgeableState"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpspurgeablestate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSPurgeableState",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpspurgeablestate"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpstemporaryimage": {
+      "abstract": [
+        {
+          "text": "A texture for use in convolutional neural networks that stores transient data to be used and discarded promptly.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSTemporaryImage"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpstemporaryimage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSTemporaryImage",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpstemporaryimage"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/objects_that_simplify_the_creation_of_neural_networks": {
+      "abstract": [
+        {
+          "text": "Simplify the creation of neural networks using networks of filter, image, and state nodes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/objects_that_simplify_the_creation_of_neural_networks",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Objects that Simplify the Creation of Neural Networks",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/objects_that_simplify_the_creation_of_neural_networks"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/recurrent_neural_networks": {
+      "abstract": [
+        {
+          "text": "Create recurrent neural networks.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/recurrent_neural_networks",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Recurrent Neural Networks",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/recurrent_neural_networks"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/training_a_neural_network_with_metal_performance_shaders": {
+      "abstract": [
+        {
+          "text": "Use an MPS neural network graph to train a simple neural network digit classifier.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/training_a_neural_network_with_metal_performance_shaders",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Training a Neural Network with Metal Performance Shaders",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/training_a_neural_network_with_metal_performance_shaders"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLBuffer": {
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLBuffer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MTLBuffer",
+      "type": "topic",
+      "url": "/documentation/metal/mtlbuffer"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer": {
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MTLCommandBuffer",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcommandbuffer"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLPixelFormat/bgra8Unorm": {
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLPixelFormat/bgra8Unorm",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MTLPixelFormat.bgra8Unorm",
+      "type": "topic",
+      "url": "/documentation/metal/mtlpixelformat/bgra8unorm"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLPixelFormat/bgra8Unorm_srgb": {
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLPixelFormat/bgra8Unorm_srgb",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MTLPixelFormat.bgra8Unorm_srgb",
+      "type": "topic",
+      "url": "/documentation/metal/mtlpixelformat/bgra8unorm_srgb"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLPixelFormat/r16Float": {
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLPixelFormat/r16Float",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MTLPixelFormat.r16Float",
+      "type": "topic",
+      "url": "/documentation/metal/mtlpixelformat/r16float"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLPixelFormat/r16Unorm": {
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLPixelFormat/r16Unorm",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MTLPixelFormat.r16Unorm",
+      "type": "topic",
+      "url": "/documentation/metal/mtlpixelformat/r16unorm"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLPixelFormat/r32Float": {
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLPixelFormat/r32Float",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MTLPixelFormat.r32Float",
+      "type": "topic",
+      "url": "/documentation/metal/mtlpixelformat/r32float"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLPixelFormat/r8Unorm": {
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLPixelFormat/r8Unorm",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MTLPixelFormat.r8Unorm",
+      "type": "topic",
+      "url": "/documentation/metal/mtlpixelformat/r8unorm"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLPixelFormat/r8Unorm_srgb": {
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLPixelFormat/r8Unorm_srgb",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MTLPixelFormat.r8Unorm_srgb",
+      "type": "topic",
+      "url": "/documentation/metal/mtlpixelformat/r8unorm_srgb"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLPixelFormat/rg16Float": {
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLPixelFormat/rg16Float",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MTLPixelFormat.rg16Float",
+      "type": "topic",
+      "url": "/documentation/metal/mtlpixelformat/rg16float"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLPixelFormat/rg16Unorm": {
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLPixelFormat/rg16Unorm",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MTLPixelFormat.rg16Unorm",
+      "type": "topic",
+      "url": "/documentation/metal/mtlpixelformat/rg16unorm"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLPixelFormat/rg32Float": {
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLPixelFormat/rg32Float",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MTLPixelFormat.rg32Float",
+      "type": "topic",
+      "url": "/documentation/metal/mtlpixelformat/rg32float"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLPixelFormat/rg8Unorm": {
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLPixelFormat/rg8Unorm",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MTLPixelFormat.rg8Unorm",
+      "type": "topic",
+      "url": "/documentation/metal/mtlpixelformat/rg8unorm"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLPixelFormat/rg8Unorm_srgb": {
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLPixelFormat/rg8Unorm_srgb",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MTLPixelFormat.rg8Unorm_srgb",
+      "type": "topic",
+      "url": "/documentation/metal/mtlpixelformat/rg8unorm_srgb"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLPixelFormat/rgba16Float": {
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLPixelFormat/rgba16Float",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MTLPixelFormat.rgba16Float",
+      "type": "topic",
+      "url": "/documentation/metal/mtlpixelformat/rgba16float"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLPixelFormat/rgba16Unorm": {
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLPixelFormat/rgba16Unorm",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MTLPixelFormat.rgba16Unorm",
+      "type": "topic",
+      "url": "/documentation/metal/mtlpixelformat/rgba16unorm"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLPixelFormat/rgba32Float": {
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLPixelFormat/rgba32Float",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MTLPixelFormat.rgba32Float",
+      "type": "topic",
+      "url": "/documentation/metal/mtlpixelformat/rgba32float"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLPixelFormat/rgba8Unorm": {
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLPixelFormat/rgba8Unorm",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MTLPixelFormat.rgba8Unorm",
+      "type": "topic",
+      "url": "/documentation/metal/mtlpixelformat/rgba8unorm"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLPixelFormat/rgba8Unorm_srgb": {
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLPixelFormat/rgba8Unorm_srgb",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MTLPixelFormat.rgba8Unorm_srgb",
+      "type": "topic",
+      "url": "/documentation/metal/mtlpixelformat/rgba8unorm_srgb"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLTexture": {
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLTexture",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MTLTexture",
+      "type": "topic",
+      "url": "/documentation/metal/mtltexture"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLTextureType/type2D": {
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLTextureType/type2D",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MTLTextureType.type2D",
+      "type": "topic",
+      "url": "/documentation/metal/mtltexturetype/type2d"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLTextureType/type2DArray": {
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLTextureType/type2DArray",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MTLTextureType.type2DArray",
+      "type": "topic",
+      "url": "/documentation/metal/mtltexturetype/type2darray"
+    },
+    "link-2528269": {
+      "identifier": "link-2528269",
+      "kind": "article",
+      "role": "link",
+      "title": "MPSCNNKernel",
+      "type": "topic",
+      "url": "https://developer.apple.com/reference/metalperformanceshaders/mpscnnkernel"
+    },
+    "link-2528270": {
+      "identifier": "link-2528270",
+      "kind": "article",
+      "role": "link",
+      "title": "clipRect",
+      "type": "topic",
+      "url": "https://developer.apple.com/reference/metalperformanceshaders/mpscnnkernel/1648911-cliprect"
+    },
+    "link-2528271": {
+      "identifier": "link-2528271",
+      "kind": "article",
+      "role": "link",
+      "title": "MPSCNNConvolution",
+      "type": "topic",
+      "url": "https://developer.apple.com/reference/metalperformanceshaders/mpscnnconvolution"
+    },
+    "link-media-2556907": {
+      "identifier": "link-media-2556907",
+      "title": "Figure 1",
+      "type": "link",
+      "url": "/documentation/metalperformanceshaders/mpsimage#2556907"
+    },
+    "media-2556907": {
+      "abstract": [
+        {
+          "text": "The layout of a 9-channel CNN image with a width of 3 and a height of 2.",
+          "type": "text"
+        }
+      ],
+      "identifier": "media-2556907",
+      "title": "Figure 1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/48ad0af3fd/b6d1d091-162c-418d-bc2e-0b6f3105c126.png"
+        }
+      ]
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/objectivec/nsobject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/training_a_neural_network_with_metal_performance_shaders",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpstemporaryimage",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/objects_that_simplify_the_creation_of_neural_networks",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/convolutional_neural_network_kernels",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/recurrent_neural_networks"
+      ],
+      "title": "Neural Networks"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "2890163",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage/1648920-init",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimagedescriptor",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage/2097547-init",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage/2942493-init"
+      ],
+      "kind": "taskGroup",
+      "title": "Initializers"
+    },
+    {
+      "anchor": "2317503",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage/1648820-setpurgeablestate",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpspurgeablestate"
+      ],
+      "kind": "taskGroup",
+      "title": "Methods"
+    },
+    {
+      "anchor": "2888190",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage/2867105-readbytes",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage/2867188-readbytes",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage/2867055-writebytes",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage/2867189-writebytes",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimagereadwriteparams",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsdatalayout"
+      ],
+      "kind": "taskGroup",
+      "title": "Methods to Read and Write Raw Data"
+    },
+    {
+      "anchor": "2888191",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage/2867148-defaultallocator",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimageallocator"
+      ],
+      "kind": "taskGroup",
+      "title": "Methods to Get an Image Allocator"
+    },
+    {
+      "anchor": "2317504",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage/1648857-device",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage/1648884-width",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage/1648952-height",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage/1648901-featurechannels",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage/1648900-numberofimages",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage/1648948-texturetype",
+        "doc://com.apple.documentation/documentation/metal/mtltexturetype",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage/1648844-pixelformat",
+        "doc://com.apple.documentation/documentation/metal/mtlpixelformat",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage/1648880-precision",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage/1648828-usage",
+        "doc://com.apple.documentation/documentation/metal/mtltextureusage",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage/1648854-pixelsize",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage/1648903-texture",
+        "doc://com.apple.documentation/documentation/metal/mtltexture",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage/1648899-label"
+      ],
+      "kind": "taskGroup",
+      "title": "Properties"
+    },
+    {
+      "anchor": "2942943",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage/3131715-featurechannelformat",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage/2942490-parent"
+      ],
+      "kind": "taskGroup",
+      "title": "Instance Properties"
+    },
+    {
+      "anchor": "2942944",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage/2942495-batchrepresentation",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage/2942492-batchrepresentation",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage/2951914-readbytes",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage/2942494-resourcesize",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage/2942488-subimage",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage/2942491-synchronize",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage/3143488-writebytes",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage/2951915-writebytes"
+      ],
+      "kind": "taskGroup",
+      "title": "Instance Methods"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/metalperformanceshaders/mpsimage"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/metalperformanceshaders/mpsimage"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

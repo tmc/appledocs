@@ -1,0 +1,1629 @@
+{
+  "abstract": [
+    {
+      "text": "Apply dithering to simulate colors that are unavailable in reduced bit depths.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.accelerate/documentation/Accelerate"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.accelerate/documentation/Accelerate",
+        "doc://com.apple.accelerate/documentation/Accelerate/vimage-library"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.accelerate/documentation/Accelerate/improving-the-quality-of-quantized-images-with-dithering"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Accelerate"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "13.3",
+        "name": "macOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "14.3",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Improving the quality of quantized images with dithering"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you convert images to lower bit depths, some colors may be unavailable in the destination bit depth. As a solution, the vImage library provides options to apply dithering, a process that uses a pattern of random pixels to simulate unavailable colors. For example, a mid-gray color from an 8-bit grayscale image that’s quantized to 1 bit returns data that contains 50% white pixels and 50% black pixels.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample code app converts an 8-bit grayscale image to a 1-bit dithered image and provides a user interface to select between different dithering types.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The example below shows an image with continuous tones (left) and the same image with dithering applied (right):",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "dither_comparison.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before exploring the code, try building and running the app to familiarize yourself with the effect of the different dithering algorithms on the image.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Define-the-source-and-destination-Core-Graphics-image-formats",
+          "level": 3,
+          "text": "Define the source and destination Core Graphics image formats",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample code defines two ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage_CGImageFormat",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " structures that represent the source and destination image formats. The ",
+              "type": "text"
+            },
+            {
+              "code": "sourceFormat",
+              "type": "codeVoice"
+            },
+            {
+              "text": " structure is an 8-bit grayscale format that supports 256 levels of gray. The ",
+              "type": "text"
+            },
+            {
+              "code": "destinationFormat",
+              "type": "codeVoice"
+            },
+            {
+              "text": " structure is a 1-bit format with pixels that are either black or white.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let sourceFormat = vImage_CGImageFormat(",
+            "    bitsPerComponent: 8,",
+            "    bitsPerPixel: 8,",
+            "    colorSpace: CGColorSpaceCreateDeviceGray(),",
+            "    bitmapInfo: .init(rawValue: CGImageAlphaInfo.none.rawValue))!",
+            "",
+            "let destinationFormat = vImage_CGImageFormat(",
+            "    bitsPerComponent: 1,",
+            "    bitsPerPixel: 1,",
+            "    colorSpace: CGColorSpaceCreateDeviceGray(),",
+            "    bitmapInfo: .init(rawValue: CGImageAlphaInfo.none.rawValue))!"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Allocate-the-source-and-destination-image-buffers",
+          "level": 3,
+          "text": "Allocate the source and destination image buffers",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The code populates the contents of the source ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage_Buffer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " structure with a grayscale version of the source image. Because the code passes a populated ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage_CGImageFormat",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " structure to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage_Buffer/init(cgImage:format:flags:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " initializer, vImage converts the source image to an 8-bit grayscale format.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The call to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage_Buffer/init(size:bitsPerPixel:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " creates the destination buffer, which is the same size as the source buffer but with only 1 bit per pixel.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "sourceBuffer = try vImage_Buffer(",
+            "    cgImage: sourceImage,",
+            "    format: sourceFormat)",
+            "",
+            "destinationBuffer = try vImage_Buffer(",
+            "    size: sourceBuffer.size,",
+            "    bitsPerPixel: destinationFormat.bitsPerPixel)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Create-a-dither-type-enumeration",
+          "level": 3,
+          "text": "Create a dither-type enumeration",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To support dither-type selection in the user interface, the sample code includes an enumeration that wraps the available vImage dithering algorithms.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "enum DitheringType: String, CaseIterable {",
+            "    case none = \"None\"",
+            "    case orderedGaussian = \"Ordered Gaussian\"",
+            "    case orderedUniform = \"Ordered Uniform\"",
+            "    case floydSteinberg = \"Floyd Steinberg\"",
+            "    case atkinson = \"Atkinson\"",
+            "    ",
+            "    var dither: Int32 {",
+            "        switch self {",
+            "            case .none:",
+            "                return Int32(kvImageConvert_DitherNone)",
+            "            case .orderedGaussian:",
+            "                return Int32(kvImageConvert_DitherOrdered | kvImageConvert_OrderedGaussianBlue)",
+            "            case .orderedUniform:",
+            "                return Int32(kvImageConvert_DitherOrdered | kvImageConvert_OrderedUniformBlue)",
+            "            case .floydSteinberg:",
+            "                return Int32(kvImageConvert_DitherFloydSteinberg)",
+            "            case .atkinson:",
+            "                return Int32(kvImageConvert_DitherAtkinson)",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample code app supports the following dithering types:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/kvImageConvert_DitherNone",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ": Doesn’t apply any dithering. This algorithm rounds the input values to the nearest representable value in the destination format.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/kvImageConvert_DitherOrdered",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ": Adds precomputed blue noise to the source image before it rounds the input values to the nearest representable value in the destination format. The vImage conversion functions support uniform and Gaussian noise by including ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/kvImageConvert_OrderedUniformBlue",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/kvImageConvert_OrderedGaussianBlue",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", respectively.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/kvImageConvert_DitherFloydSteinberg",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ": Applies Floyd-Steinberg dithering to the image.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/kvImageConvert_DitherAtkinson",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " Applies Atkinson dithering to the image.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The vImage library also includes ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/kvImageConvert_DitherOrderedReproducible",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", which returns the same result as ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/kvImageConvert_DitherOrdered",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " but uses the same offset into the blue noise for each call.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Apply-dithering-to-the-image",
+          "level": 3,
+          "text": "Apply dithering to the image",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImageConvert_Planar8toPlanar1(_:_:_:_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function converts the 8-bit grayscale to a 1-bit image using the dithering type that the user interface defines.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "withUnsafePointer(to: sourceBuffer) { src in",
+            "    withUnsafePointer(to: destinationBuffer) { dest in",
+            "        _ = vImageConvert_Planar8toPlanar1(",
+            "            src, dest,",
+            "            nil,",
+            "            ditheringType.dither,",
+            "            vImage_Flags(kvImageNoFlags))",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "On return, the destination buffer contains the 1-bit dithered version of the source image.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The vImage library provides dithering options for many conversion functions, such as ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImageConvert_ARGBFFFFtoARGB8888_dithered(_:_:_:_:_:_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", which converts a 32-bit-per-pixel ARGB image to an 8-bit-per-pixel ARGB image. Refer to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/conversion",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for more details.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "dither_comparison.png": {
+      "alt": "A comparison of the original image of a plant with its dithered counterpart. The original image contains continuous tones of gray. In the dithered image, the gray tones are simulated by black and white pixels.",
+      "identifier": "dither_comparison.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/31a959725f91a45ecc16eb2d8e562ab8/dither_comparison.png"
+        }
+      ]
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate": {
+      "abstract": [
+        {
+          "text": "Make large-scale mathematical computations and image calculations, optimized for high performance and low energy consumption.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Accelerate",
+      "type": "topic",
+      "url": "/documentation/accelerate"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/applying-vimage-operations-to-video-sample-buffers": {
+      "abstract": [
+        {
+          "text": "Use the vImage convert-any-to-any functionality to perform real-time image processing of video frames streamed from your device’s camera.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/applying-vimage-operations-to-video-sample-buffers",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Applying vImage operations to video sample buffers",
+      "type": "topic",
+      "url": "/documentation/accelerate/applying-vimage-operations-to-video-sample-buffers"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/conversion": {
+      "abstract": [
+        {
+          "text": "Convert an image to a different format.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/conversion",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Conversion",
+      "type": "topic",
+      "url": "/documentation/accelerate/conversion"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/core-video-interoperability": {
+      "abstract": [
+        {
+          "text": "Pass image data between Core Video and vImage.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/core-video-interoperability",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Core Video interoperability",
+      "type": "topic",
+      "url": "/documentation/accelerate/core-video-interoperability"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/integrating-vimage-pixel-buffers-into-a-core-image-workflow": {
+      "abstract": [
+        {
+          "text": "Share image data between Core Video pixel buffers and vImage buffers to integrate vImage operations into a Core Image workflow.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/integrating-vimage-pixel-buffers-into-a-core-image-workflow",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Integrating vImage pixel buffers into a Core Image workflow",
+      "type": "topic",
+      "url": "/documentation/accelerate/integrating-vimage-pixel-buffers-into-a-core-image-workflow"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/kvImageConvert_DitherAtkinson": {
+      "abstract": [
+        {
+          "text": "A constant that indicates the conversion will add Atkinson dithering to the image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kvImageConvert_DitherAtkinson"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/kvImageConvert_DitherAtkinson",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kvImageConvert_DitherAtkinson"
+        }
+      ],
+      "role": "symbol",
+      "title": "kvImageConvert_DitherAtkinson",
+      "type": "topic",
+      "url": "/documentation/accelerate/kvimageconvert_ditheratkinson"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/kvImageConvert_DitherFloydSteinberg": {
+      "abstract": [
+        {
+          "text": "A constant that indicates the conversion will add Floyd-Steinberg dithering to the image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kvImageConvert_DitherFloydSteinberg"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/kvImageConvert_DitherFloydSteinberg",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kvImageConvert_DitherFloydSteinberg"
+        }
+      ],
+      "role": "symbol",
+      "title": "kvImageConvert_DitherFloydSteinberg",
+      "type": "topic",
+      "url": "/documentation/accelerate/kvimageconvert_ditherfloydsteinberg"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/kvImageConvert_DitherNone": {
+      "abstract": [
+        {
+          "text": "A constant that indicates the conversion will not apply dithering.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kvImageConvert_DitherNone"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/kvImageConvert_DitherNone",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kvImageConvert_DitherNone"
+        }
+      ],
+      "role": "symbol",
+      "title": "kvImageConvert_DitherNone",
+      "type": "topic",
+      "url": "/documentation/accelerate/kvimageconvert_dithernone"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/kvImageConvert_DitherOrdered": {
+      "abstract": [
+        {
+          "text": "A constant that indicates the conversion will add randomized, pre-computed blue noise to the image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kvImageConvert_DitherOrdered"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/kvImageConvert_DitherOrdered",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kvImageConvert_DitherOrdered"
+        }
+      ],
+      "role": "symbol",
+      "title": "kvImageConvert_DitherOrdered",
+      "type": "topic",
+      "url": "/documentation/accelerate/kvimageconvert_ditherordered"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/kvImageConvert_DitherOrderedReproducible": {
+      "abstract": [
+        {
+          "text": "A constant that indicates the conversion will add reproducible, pre-computed blue noise to the image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kvImageConvert_DitherOrderedReproducible"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/kvImageConvert_DitherOrderedReproducible",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kvImageConvert_DitherOrderedReproducible"
+        }
+      ],
+      "role": "symbol",
+      "title": "kvImageConvert_DitherOrderedReproducible",
+      "type": "topic",
+      "url": "/documentation/accelerate/kvimageconvert_ditherorderedreproducible"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/kvImageConvert_OrderedGaussianBlue": {
+      "abstract": [
+        {
+          "text": "A constant that indicates the conversion will distribute the noise according to a Gaussian distribution.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kvImageConvert_OrderedGaussianBlue"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/kvImageConvert_OrderedGaussianBlue",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kvImageConvert_OrderedGaussianBlue"
+        }
+      ],
+      "role": "symbol",
+      "title": "kvImageConvert_OrderedGaussianBlue",
+      "type": "topic",
+      "url": "/documentation/accelerate/kvimageconvert_orderedgaussianblue"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/kvImageConvert_OrderedUniformBlue": {
+      "abstract": [
+        {
+          "text": "A constant that indicates the conversion will distribute the noise uniformly.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kvImageConvert_OrderedUniformBlue"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/kvImageConvert_OrderedUniformBlue",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kvImageConvert_OrderedUniformBlue"
+        }
+      ],
+      "role": "symbol",
+      "title": "kvImageConvert_OrderedUniformBlue",
+      "type": "topic",
+      "url": "/documentation/accelerate/kvimageconvert_ordereduniformblue"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/using-vimage-pixel-buffers-to-generate-video-effects": {
+      "abstract": [
+        {
+          "text": "Render real-time video effects with the vImage Pixel Buffer.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/using-vimage-pixel-buffers-to-generate-video-effects",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Using vImage pixel buffers to generate video effects",
+      "type": "topic",
+      "url": "/documentation/accelerate/using-vimage-pixel-buffers-to-generate-video-effects"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImageConvert_ARGBFFFFtoARGB8888_dithered(_:_:_:_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Converts a floating-point 32-bit-per-channel, 4-channel buffer to an 8-bit-per-channel, 4-channel buffer using the specified dithering algorithm.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vImageConvert_ARGBFFFFtoARGB8888_dithered"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@vImage_Buffer",
+          "text": "vImage_Buffer"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@vImage_Buffer",
+          "text": "vImage_Buffer"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5UInt8V",
+          "text": "UInt8"
+        },
+        {
+          "kind": "text",
+          "text": ">!, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vImage_Flags",
+          "text": "vImage_Flags"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vImage_Error",
+          "text": "vImage_Error"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImageConvert_ARGBFFFFtoARGB8888_dithered(_:_:_:_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vImageConvert_ARGBFFFFtoARGB8888_dithered"
+        }
+      ],
+      "role": "symbol",
+      "title": "vImageConvert_ARGBFFFFtoARGB8888_dithered(_:_:_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimageconvert_argbfffftoargb8888_dithered(_:_:_:_:_:_:_:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImageConvert_Planar8toPlanar1(_:_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Converts an 8-bit planar buffer to a 1-bit planar buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vImageConvert_Planar8toPlanar1"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@vImage_Buffer",
+          "text": "vImage_Buffer"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@vImage_Buffer",
+          "text": "vImage_Buffer"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sv",
+          "text": "UnsafeMutableRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": "!, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vImage_Flags",
+          "text": "vImage_Flags"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vImage_Error",
+          "text": "vImage_Error"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImageConvert_Planar8toPlanar1(_:_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vImageConvert_Planar8toPlanar1"
+        }
+      ],
+      "role": "symbol",
+      "title": "vImageConvert_Planar8toPlanar1(_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimageconvert_planar8toplanar1(_:_:_:_:_:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage_Buffer": {
+      "abstract": [
+        {
+          "text": "An image buffer that stores an image’s pixel data, dimensions, and row stride.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vImage_Buffer"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage_Buffer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vImage_Buffer"
+        }
+      ],
+      "role": "symbol",
+      "title": "vImage_Buffer",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage_buffer"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage_Buffer/init(cgImage:format:flags:)": {
+      "abstract": [
+        {
+          "text": "Creates a new buffer with the contents of a Core Graphics image using the supplied image format.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "cgImage"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CGImageRef",
+          "text": "CGImage"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "format"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@vImage_CGImageFormat",
+          "text": "vImage_CGImageFormat"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "flags"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO",
+          "text": "vImage"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO7OptionsV",
+          "text": "Options"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage_Buffer/init(cgImage:format:flags:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(cgImage:format:flags:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage_buffer/init(cgimage:format:flags:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage_Buffer/init(size:bitsPerPixel:)": {
+      "abstract": [
+        {
+          "text": "Creates a new buffer with the specified size and bits per pixel.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "size"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGSize",
+          "text": "CGSize"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "bitsPerPixel"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage_Buffer/init(size:bitsPerPixel:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(size:bitsPerPixel:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage_buffer/init(size:bitsperpixel:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage_CGImageFormat": {
+      "abstract": [
+        {
+          "text": "The description of a Core Graphics image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vImage_CGImageFormat"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage_CGImageFormat",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vImage_CGImageFormat"
+        }
+      ],
+      "role": "symbol",
+      "title": "vImage_CGImageFormat",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage_cgimageformat"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vimage-library": {
+      "abstract": [
+        {
+          "text": "Manipulate large images using the CPU’s vector processor.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vimage-library",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "vImage",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage-library"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "ff985379a586/ImprovingTheQualityOfQuantizedImagesWithDithering.zip": {
+      "checksum": "ff985379a586e2902b374084946b8a595fdc010001a07c0139370cb664e29903ca3b1c166b35d5d1ae1c07007cac3850d57b9992ad86f2b2b777923ae2232e6a",
+      "identifier": "ff985379a586/ImprovingTheQualityOfQuantizedImagesWithDithering.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/ff985379a586/ImprovingTheQualityOfQuantizedImagesWithDithering.zip"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "ff985379a586/ImprovingTheQualityOfQuantizedImagesWithDithering.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Core-Video-Interoperation",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/using-vimage-pixel-buffers-to-generate-video-effects",
+        "doc://com.apple.accelerate/documentation/Accelerate/integrating-vimage-pixel-buffers-into-a-core-image-workflow",
+        "doc://com.apple.accelerate/documentation/Accelerate/applying-vimage-operations-to-video-sample-buffers",
+        "doc://com.apple.accelerate/documentation/Accelerate/core-video-interoperability"
+      ],
+      "title": "Core Video Interoperation"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImage_CGImageFormat/title",
+          "value": "vImage_CGImageFormat"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImage_CGImageFormat/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vImage_CGImageFormat"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImage_CGImageFormat/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vImage_CGImageFormat"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImageConvert_Planar8toPlanar1(_:_:_:_:_:)/title",
+          "value": "vImageConvert_Planar8toPlanar1"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImageConvert_Planar8toPlanar1(_:_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vImageConvert_Planar8toPlanar1"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1kvImageConvert_DitherAtkinson/title",
+          "value": "kvImageConvert_DitherAtkinson"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1kvImageConvert_DitherAtkinson/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kvImageConvert_DitherAtkinson"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1kvImageConvert_DitherNone/title",
+          "value": "kvImageConvert_DitherNone"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1kvImageConvert_DitherNone/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kvImageConvert_DitherNone"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1kvImageConvert_DitherFloydSteinberg/title",
+          "value": "kvImageConvert_DitherFloydSteinberg"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1kvImageConvert_DitherFloydSteinberg/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kvImageConvert_DitherFloydSteinberg"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImage_Buffer/title",
+          "value": "vImage_Buffer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImage_Buffer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vImage_Buffer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImage_Buffer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vImage_Buffer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1kvImageConvert_DitherOrdered/title",
+          "value": "kvImageConvert_DitherOrdered"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1kvImageConvert_DitherOrdered/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kvImageConvert_DitherOrdered"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1kvImageConvert_OrderedUniformBlue/title",
+          "value": "kvImageConvert_OrderedUniformBlue"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1kvImageConvert_OrderedUniformBlue/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kvImageConvert_OrderedUniformBlue"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1kvImageConvert_OrderedGaussianBlue/title",
+          "value": "kvImageConvert_OrderedGaussianBlue"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1kvImageConvert_OrderedGaussianBlue/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kvImageConvert_OrderedGaussianBlue"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImageConvert_ARGBFFFFtoARGB8888_dithered(_:_:_:_:_:_:_:)/title",
+          "value": "vImageConvert_ARGBFFFFtoARGB8888_dithered"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImageConvert_ARGBFFFFtoARGB8888_dithered(_:_:_:_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vImageConvert_ARGBFFFFtoARGB8888_dithered"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1kvImageConvert_DitherOrderedReproducible/title",
+          "value": "kvImageConvert_DitherOrderedReproducible"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1kvImageConvert_DitherOrderedReproducible/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kvImageConvert_DitherOrderedReproducible"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

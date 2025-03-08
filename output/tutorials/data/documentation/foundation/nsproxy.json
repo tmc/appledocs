@@ -1,0 +1,685 @@
+{
+  "abstract": [
+    {
+      "text": "An abstract superclass defining an API for objects that act as stand-ins for other objects or for objects that don’t exist yet.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/object_runtime"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/nsproxy"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1415237,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSProxy",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "class "
+      },
+      {
+        "kind": "identifier",
+        "text": "NSProxy"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "NSProxy"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSProxy"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Typically, a message to a proxy is forwarded to the real object or causes the proxy to load (or transform itself into) the real object. Subclasses of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsproxy",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " can be used to implement transparent distributed messaging (for example, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsdistantobject",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ") or for lazy instantiation of objects that are expensive to create.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsproxy",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " implements the basic methods required of a root class, including those defined in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobjectprotocol",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol. However, as an abstract class it doesn’t provide an initialization method, and it raises an exception upon receiving any message it doesn’t respond to. A concrete subclass must therefore provide an initialization or creation method and override the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsproxy/1416417-forwardinvocation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsproxy/1589828-methodsignatureforselector",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " methods to handle messages that it doesn’t implement itself. A subclass’s implementation of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsproxy/1416417-forwardinvocation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " should do whatever is needed to process the invocation, such as forwarding the invocation over the network or loading the real object and passing it the invocation. ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsproxy/1589828-methodsignatureforselector",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " is required to provide argument type information for a given message; a subclass’s implementation should be able to determine the argument types for the messages it needs to forward and should construct an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsmethodsignature",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object accordingly. See the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsdistantobject",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsinvocation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsmethodsignature",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class specifications for more information.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdistantobject": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdistantobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSDistantObject",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdistantobject"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsinvocation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsinvocation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSInvocation",
+      "type": "topic",
+      "url": "/documentation/foundation/nsinvocation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmethodsignature": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmethodsignature",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSMethodSignature",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmethodsignature"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsproxy": {
+      "abstract": [
+        {
+          "text": "An abstract superclass defining an API for objects that act as stand-ins for other objects or for objects that don’t exist yet.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSProxy"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsproxy",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSProxy",
+      "type": "topic",
+      "url": "/documentation/foundation/nsproxy"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsproxy/1407155-class": {
+      "abstract": [
+        {
+          "text": "Returns ",
+          "type": "text"
+        },
+        {
+          "code": "self",
+          "type": "codeVoice"
+        },
+        {
+          "text": " (the class object).",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "`class`"
+        },
+        {
+          "kind": "text",
+          "text": "() -> AnyClass"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsproxy/1407155-class",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "class()",
+      "type": "topic",
+      "url": "/documentation/foundation/nsproxy/1407155-class"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsproxy/1408505-alloc": {
+      "abstract": [
+        {
+          "text": "Returns a new instance of the receiving class ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "alloc"
+        },
+        {
+          "kind": "text",
+          "text": "() -> Self"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsproxy/1408505-alloc",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "alloc()",
+      "type": "topic",
+      "url": "/documentation/foundation/nsproxy/1408505-alloc"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsproxy/1415375-responds": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether the receiving class responds to a given selector.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "responds"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": Selector) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsproxy/1415375-responds",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "responds(to:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsproxy/1415375-responds"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsproxy/1416087-finalize": {
+      "abstract": [
+        {
+          "text": "The garbage collector invokes this method on the receiver before disposing of the memory it uses.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "finalize"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsproxy/1416087-finalize",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "finalize()",
+      "type": "topic",
+      "url": "/documentation/foundation/nsproxy/1416087-finalize"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsproxy/1416346-description": {
+      "abstract": [
+        {
+          "text": "A string containing the real class name and the id of the receiver as a hexadecimal number.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "description"
+        },
+        {
+          "kind": "text",
+          "text": ": String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsproxy/1416346-description",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "description",
+      "type": "topic",
+      "url": "/documentation/foundation/nsproxy/1416346-description"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsproxy/1416366-debugdescription": {
+      "abstract": [
+        {
+          "text": "A string containing the real class name and the id of the receiver as a hexadecimal number.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "debugDescription"
+        },
+        {
+          "kind": "text",
+          "text": ": String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsproxy/1416366-debugdescription",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "debugDescription",
+      "type": "topic",
+      "url": "/documentation/foundation/nsproxy/1416366-debugdescription"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsproxy/1416417-forwardinvocation": {
+      "abstract": [
+        {
+          "text": "Passes a given invocation to the real object the proxy represents.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "forwardInvocation"
+        },
+        {
+          "kind": "text",
+          "text": "(NSInvocation)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsproxy/1416417-forwardinvocation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "forwardInvocation(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsproxy/1416417-forwardinvocation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsproxy/1589828-methodsignatureforselector": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "methodSignatureForSelector:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsproxy/1589828-methodsignatureforselector",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "methodSignatureForSelector:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsproxy/1589828-methodsignatureforselector"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsproxy/1589830-dealloc": {
+      "abstract": [
+        {
+          "text": "Deallocates the memory occupied by the receiver.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "dealloc"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsproxy/1589830-dealloc",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dealloc()",
+      "type": "topic",
+      "url": "/documentation/foundation/nsproxy/1589830-dealloc"
+    },
+    "doc://com.apple.documentation/documentation/foundation/object_runtime": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/object_runtime",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Object Runtime",
+      "type": "topic",
+      "url": "/documentation/foundation/object_runtime"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobjectprotocol": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobjectprotocol",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/objectivec/nsobjectprotocol"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "1651092",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsproxy/1408505-alloc"
+      ],
+      "kind": "taskGroup",
+      "title": "Creating Instances"
+    },
+    {
+      "anchor": "1651132",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsproxy/1416087-finalize"
+      ],
+      "kind": "taskGroup",
+      "title": "Finalizing an Object"
+    },
+    {
+      "anchor": "1651145",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsproxy/1416417-forwardinvocation"
+      ],
+      "kind": "taskGroup",
+      "title": "Handling Unimplemented Methods"
+    },
+    {
+      "anchor": "1651177",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsproxy/1415375-responds"
+      ],
+      "kind": "taskGroup",
+      "title": "Introspecting a Proxy Class"
+    },
+    {
+      "anchor": "1651203",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsproxy/1407155-class",
+        "doc://com.apple.documentation/documentation/foundation/nsproxy/1416346-description",
+        "doc://com.apple.documentation/documentation/foundation/nsproxy/1416366-debugdescription"
+      ],
+      "kind": "taskGroup",
+      "title": "Describing a Proxy Class or Object"
+    },
+    {
+      "anchor": "3517002",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsproxy/1589830-dealloc"
+      ],
+      "kind": "taskGroup",
+      "title": "Instance Methods"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nsproxy"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/nsproxy"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

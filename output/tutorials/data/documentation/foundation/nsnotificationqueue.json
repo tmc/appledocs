@@ -1,0 +1,467 @@
+{
+  "abstract": [
+    {
+      "text": "A notification center buffer.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/notifications"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/foundation/nsnotificationqueue"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1408796,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSNotificationQueue",
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "NSNotificationQueue"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSNotificationQueue"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/1418956-nsobject",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Whereas a notification center distributes notifications when posted, notifications placed into the queue can be delayed until the end of the current pass through the run loop or until the run loop is idle. Duplicate notifications can be coalesced so that only one notification is sent although multiple notifications are posted. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A notification queue maintains notifications in first in, first out (FIFO) order. When a notification moves to the front of the queue, the queue posts it to the notification center, which in turn dispatches the notification to all objects registered as observers.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Every thread has a default notification queue, which is associated with the default notification center for the process. You can create your own notification queues and have multiple queues per center and thread.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/notifications": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/notifications",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Notifications",
+      "type": "topic",
+      "url": "/documentation/foundation/notifications"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnotification": {
+      "abstract": [
+        {
+          "text": "A container for information broadcast through a notification center to all registered observers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSNotification",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnotification"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnotificationcenter": {
+      "abstract": [
+        {
+          "text": "A notification dispatch mechanism that enables the broadcast of information to registered observers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotificationcenter",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSNotificationCenter",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnotificationcenter"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnotificationcoalescing": {
+      "abstract": [
+        {
+          "text": "The constants that specify how notifications are coalesced.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotificationcoalescing",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSNotificationCoalescing",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnotificationcoalescing"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnotificationqueue": {
+      "abstract": [
+        {
+          "text": "A notification center buffer.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotificationqueue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSNotificationQueue",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnotificationqueue"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnotificationqueue/1410062-initwithnotificationcenter": {
+      "abstract": [
+        {
+          "text": "Initializes and returns a notification queue for the specified notification center.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "initWithNotificationCenter:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotificationqueue/1410062-initwithnotificationcenter",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "initWithNotificationCenter:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnotificationqueue/1410062-initwithnotificationcenter"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnotificationqueue/1412392-defaultqueue": {
+      "abstract": [
+        {
+          "text": "Returns the default notification queue for the current thread.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotificationqueue/1412392-defaultqueue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "defaultQueue",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnotificationqueue/1412392-defaultqueue"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnotificationqueue/1413873-enqueuenotification": {
+      "abstract": [
+        {
+          "text": "Adds a notification to the notification queue with a specified posting style, criteria for coalescing, and run loop mode.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "enqueueNotification:postingStyle:coalesceMask:forModes:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotificationqueue/1413873-enqueuenotification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "enqueueNotification:postingStyle:coalesceMask:forModes:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnotificationqueue/1413873-enqueuenotification"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnotificationqueue/1416340-enqueuenotification": {
+      "abstract": [
+        {
+          "text": "Adds a notification to the notification queue with a specified posting style.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "enqueueNotification:postingStyle:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotificationqueue/1416340-enqueuenotification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "enqueueNotification:postingStyle:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnotificationqueue/1416340-enqueuenotification"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnotificationqueue/1416688-dequeuenotificationsmatching": {
+      "abstract": [
+        {
+          "text": "Removes all notifications from the queue that match a provided notification using provided matching criteria.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "dequeueNotificationsMatching:coalesceMask:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotificationqueue/1416688-dequeuenotificationsmatching",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dequeueNotificationsMatching:coalesceMask:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnotificationqueue/1416688-dequeuenotificationsmatching"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nspostingstyle": {
+      "abstract": [
+        {
+          "text": "The constants that specify when notifications are posted.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nspostingstyle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSPostingStyle",
+      "type": "topic",
+      "url": "/documentation/foundation/nspostingstyle"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/1418956-nsobject": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/1418956-nsobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/1418956-nsobject"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/objectivec/nsobject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsnotification",
+        "doc://com.apple.documentation/documentation/foundation/nsnotificationcenter"
+      ],
+      "title": "Notifications"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "1653702",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsnotificationqueue/1410062-initwithnotificationcenter"
+      ],
+      "kind": "taskGroup",
+      "title": "Creating Notification Queues"
+    },
+    {
+      "anchor": "1653728",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsnotificationqueue/1412392-defaultqueue"
+      ],
+      "kind": "taskGroup",
+      "title": "Getting the Default Queue"
+    },
+    {
+      "anchor": "1653752",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsnotificationqueue/1413873-enqueuenotification",
+        "doc://com.apple.documentation/documentation/foundation/nsnotificationqueue/1416340-enqueuenotification",
+        "doc://com.apple.documentation/documentation/foundation/nsnotificationqueue/1416688-dequeuenotificationsmatching"
+      ],
+      "kind": "taskGroup",
+      "title": "Managing Notifications"
+    },
+    {
+      "anchor": "1653790",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsnotificationcoalescing",
+        "doc://com.apple.documentation/documentation/foundation/nspostingstyle"
+      ],
+      "kind": "taskGroup",
+      "title": "Constants"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nsnotificationqueue"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/notificationqueue"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

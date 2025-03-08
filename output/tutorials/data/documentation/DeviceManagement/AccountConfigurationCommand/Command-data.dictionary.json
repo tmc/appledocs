@@ -1,0 +1,735 @@
+{
+  "abstract": [
+    {
+      "text": "The request dictionary to create a local administrator account.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/AccountConfigurationCommand"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.devicemanagement/documentation/DeviceManagement/AccountConfigurationCommand/Command-data.dictionary"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "mdm-commands:AccountConfigurationCommand.Command",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "object "
+      },
+      {
+        "kind": "identifier",
+        "text": "AccountConfigurationCommand.Command"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Device Management"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "AccountConfigurationCommand.Command"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.11",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "Device Assignment Services",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "VPP License Management",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Device Management Command",
+    "symbolKind": "dictionary",
+    "title": "AccountConfigurationCommand.Command"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "data"
+          ],
+          "platforms": [
+            "Unsupported OS: macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "text",
+              "text": "object "
+            },
+            {
+              "kind": "identifier",
+              "text": "AccountConfigurationCommand.Command"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "items": [
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A dictionary that describes the administrator account to create with Setup Assistant, which uses the first element and ignores additional elements.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "10.11.0",
+          "name": "AutoSetupAdminAccounts",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "["
+            },
+            {
+              "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/AccountConfigurationCommand/Command-data.dictionary/AutoSetupAdminAccountItem",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "mdm-commands:AccountConfigurationCommand.Command.AutoSetupAdminAccountItem",
+              "text": "AccountConfigurationCommand.Command.AutoSetupAdminAccountItem"
+            },
+            {
+              "kind": "text",
+              "text": "]"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "default",
+              "value": "false"
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If ",
+                  "type": "text"
+                },
+                {
+                  "code": "true",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", Setup Assistant ignores the primary account information and requires the user to enter that information. If ",
+                  "type": "text"
+                },
+                {
+                  "code": "false",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", Setup Assistant prefills the Full Name field with ",
+                  "type": "text"
+                },
+                {
+                  "code": "PrimaryAccountFullName",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " and the User Name field with ",
+                  "type": "text"
+                },
+                {
+                  "code": "PrimaryAccountUserName",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ". This value is available in macOS 10.15 and later.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "10.11.0",
+          "name": "DontAutoPopulatePrimaryAccountInfo",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "boolean"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "default",
+              "value": "false"
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If ",
+                  "type": "text"
+                },
+                {
+                  "code": "true",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", and you provide values for ",
+                  "type": "text"
+                },
+                {
+                  "code": "PrimaryAccountFullName",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " or ",
+                  "type": "text"
+                },
+                {
+                  "code": "PrimaryAccountUserName",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", Setup Assistant disables editing for the corresponding fields. ",
+                  "type": "text"
+                },
+                {
+                  "code": "DontAutoPopulatePrimaryAccountInfo",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " must also be 0 (or missing).",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "If the user’s password is also available from authentication through ConfigurationURL, Setup Assistant automatically creates the primary account with that information and skips showing the user interface to view or edit these fields.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "This value is available in macOS 10.15 and later.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "10.11.0",
+          "name": "LockPrimaryAccountInfo",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "boolean"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If present, this is the short name of the local account to manage, which can also be the account that results from setting ",
+                  "type": "text"
+                },
+                {
+                  "code": "AutoSetupAdminAccounts",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " to ",
+                  "type": "text"
+                },
+                {
+                  "code": "true",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ". Otherwise, only the local account that Setup Assistant creates is a managed account. This value is available in macOS 11 and later.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "10.11.0",
+          "name": "ManagedLocalUserShortName",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The full name for the primary account. If present, Setup Assistant uses this value to prefill the Full Name field. However, Setup Assistant ignores this value if ",
+                  "type": "text"
+                },
+                {
+                  "code": "DontAutoPopulatePrimaryAccountInfo",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " is ",
+                  "type": "text"
+                },
+                {
+                  "code": "true",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ". This value is available in macOS 10.15 and later.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "10.11.0",
+          "name": "PrimaryAccountFullName",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The account name for the primary account. If present, Setup Assistant uses this value to prefill the User Name field. However, Setup Assistant ignores this value if ",
+                  "type": "text"
+                },
+                {
+                  "code": "DontAutoPopulatePrimaryAccountInfo",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " is ",
+                  "type": "text"
+                },
+                {
+                  "code": "true",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ". This value is available in macOS 10.15 and later.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "10.11.0",
+          "name": "PrimaryAccountUserName",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "allowedValues",
+              "values": [
+                "AccountConfiguration"
+              ]
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The request type to create a local administrator account.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "10.11.0",
+          "name": "RequestType",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "default",
+              "value": "false"
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If ",
+                  "type": "text"
+                },
+                {
+                  "code": "true",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", the device must be network-tethered to run the command.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "10.11.0",
+          "name": "RequestRequiresNetworkTether",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "boolean"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "default",
+              "value": "false"
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If ",
+                  "type": "text"
+                },
+                {
+                  "code": "true",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", Setup Assistant creates the primary accounts as regular users, and you must specify a value for ",
+                  "type": "text"
+                },
+                {
+                  "code": "AutoSetupAdminAccounts",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "10.11.0",
+          "name": "SetPrimarySetupAccountAsRegularUser",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "boolean"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "default",
+              "value": "false"
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If ",
+                  "type": "text"
+                },
+                {
+                  "code": "true",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", Setup Assistant skips the user interface for setting up primary accounts and disables autologin. If ",
+                  "type": "text"
+                },
+                {
+                  "code": "true",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", you must specify a value for ",
+                  "type": "text"
+                },
+                {
+                  "code": "AutoSetupAdminAccounts",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "10.11.0",
+          "name": "SkipPrimarySetupAccountCreation",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "boolean"
+            }
+          ]
+        }
+      ],
+      "kind": "properties",
+      "title": "Properties"
+    }
+  ],
+  "references": {
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement": {
+      "abstract": [
+        {
+          "text": "Manage your organization’s devices remotely.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Device Management",
+      "type": "topic",
+      "url": "/documentation/devicemanagement"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/AccountConfigurationCommand": {
+      "abstract": [
+        {
+          "text": "The command to create a local administrator account on a device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "AccountConfigurationCommand"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/AccountConfigurationCommand",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AccountConfigurationCommand"
+        }
+      ],
+      "role": "symbol",
+      "title": "AccountConfigurationCommand",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/accountconfigurationcommand"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/AccountConfigurationCommand/Command-data.dictionary": {
+      "abstract": [
+        {
+          "text": "The request dictionary to create a local administrator account.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "AccountConfigurationCommand.Command"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/AccountConfigurationCommand/Command-data.dictionary",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AccountConfigurationCommand.Command"
+        }
+      ],
+      "role": "symbol",
+      "title": "AccountConfigurationCommand.Command",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/accountconfigurationcommand/command-data.dictionary"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/AccountConfigurationCommand/Command-data.dictionary/AutoSetupAdminAccountItem": {
+      "abstract": [
+        {
+          "text": "A dictionary that describes the administrator account to create with Setup Assistant, which uses the first element and ignores additional elements.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "AccountConfigurationCommand.Command.AutoSetupAdminAccountItem"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/AccountConfigurationCommand/Command-data.dictionary/AutoSetupAdminAccountItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AccountConfigurationCommand.Command.AutoSetupAdminAccountItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "AccountConfigurationCommand.Command.AutoSetupAdminAccountItem",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/accountconfigurationcommand/command-data.dictionary/autosetupadminaccountitem"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/PasswordHash": {
+      "abstract": [
+        {
+          "text": "A dictionary that contains the password hash for the account.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "PasswordHash"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/PasswordHash",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PasswordHash"
+        }
+      ],
+      "role": "symbol",
+      "title": "PasswordHash",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/passwordhash"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Commands",
+      "identifiers": [
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/AccountConfigurationCommand/Command-data.dictionary/AutoSetupAdminAccountItem",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/PasswordHash"
+      ],
+      "title": "Commands"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/devicemanagement/accountconfigurationcommand/command-data.dictionary"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

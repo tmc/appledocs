@@ -1,0 +1,1712 @@
+{
+  "abstract": [
+    {
+      "text": "Obtain information about a point of interest that persists over its lifetime.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.mapkit/documentation/MapKit",
+        "doc://com.apple.mapkit/documentation/MapKit/mapkit-for-appkit-and-uikit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.mapkit/documentation/MapKit/identifying-unique-locations-with-place-ids"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "MapKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Identifying unique locations with Place IDs"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.mapkit/documentation/MapKit/mapkit-for-appkit-and-uikit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/MapKitJS",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppleMapsServerAPI",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " provide a way for you to store and share references to places that matter to your application: the Place ID. A Place ID is an opaque string that semantically represents references to points of interest in the world, rather than particular coordinates or addresses.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A Place ID is a great feature for referencing a place’s information, even after that place’s information changes. Place IDs are also useful for displaying a place on a map. Use Place IDs to maintain unique collections of places that are important to your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Place IDs are exempt from the storage restrictions in Section 2.5 of Attachment 6 to the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/support/terms/apple-developer-program-license-agreement/",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Obtain-a-Place-ID",
+          "level": 3,
+          "text": "Obtain a Place ID",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You obtain a Place ID by using Geocoder Lookup, Search, Search Autocomplete, Point-of-Interest Search, or choosing a place from Maps. You can also use a Place ID as a primary key or as part of a composite key in a database, or share Place IDs with other apps.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKMapItem",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in MapKit for AppKit and UIKit, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/MapKitJS/Place",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in MapKit JS, and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppleMapsServerAPI/Place",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects in Apple Maps Server API include Place IDs that you can read and store. Additionally, you can obtain Place IDs for specific points of interest interactively from ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/maps/place-id-lookup/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Look-up-referenced-place-information",
+          "level": 3,
+          "text": "Look up referenced place information",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "All MapKit platforms support using a Place ID to obtain the referenced place’s latest information, whether by issuing an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKMapItemRequest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in MapKit for AppKit and UIKit, a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/MapKitJS/mapkit.PlaceLookup",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in MapKit JS, or a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppleMapsServerAPI/-v1-place",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " request in Apple Maps Server API. These always return the most recent information for the place that the Place ID refers to, even if that information changed since you originally obtained it. You don’t have to track these changes or even update the stored Place ID.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A once-valid Place ID might fail to resolve from a lookup. However, this only happens when the referred place is no longer pertinent to Apple Maps. For instance, lookup failure might occur if a place has long been closed or simply no longer exists in the world in any meaningful way.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Display-a-referenced-place",
+          "level": 3,
+          "text": "Display a referenced place",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use Place IDs to display annotations with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKMapItemAnnotation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " from MapKit for AppKit and UIKit or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/MapKitJS/mapkit.PlaceAnnotation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " from MapKit JS.  You can also use Place IDs to show more detailed selection accessories, such as popups that automatically display a place’s name, address, hours, and more, with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKSelectionAccessory",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " from MapKit for AppKit and UIKit and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/MapKitJS/mapkit.PlaceSelectionAccessory",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " from MapKit JS.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Maintain-a-unique-collection-of-places",
+          "level": 3,
+          "text": "Maintain a unique collection of places",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Although Place IDs themselves are unique, they might not uniquely refer to a place. Multiple different Place IDs might refer to the same place. Because of this, storing collections of  Place IDs, where each Place ID refers to a unique place (for example, a user’s favorite place list that shouldn’t contain the same place twice) is more complicated than simply making sure that each ID is bitwise-unique with every other ID in the set.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To aid with this task, place objects don’t just contain a Place ID in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKMapItem/identifier-swift.property",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". They also contain a set of alternate Place IDs. For ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.mapkit/documentation/MapKit/mapkit-for-appkit-and-uikit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " it’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKMapItem/alternateIdentifiers",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and for ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/MapKitJS",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " it’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/mapkitjs/place/4408163-alternateids",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". This list is a nonexhaustive set of alternate Place IDs referring to the place.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This list is critical in maintaining a set of Place IDs that refer to unique places. When adding a new Place ID to an existing set of Place IDs meant to refer to unique places, consult the list of alternate Place IDs for the new Place ID. If your set already contains any of the alternate Place IDs, don’t add the new Place ID to the set because it would be a duplicate.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The procedure of checking for the presence of alternate Place IDs before insertion into an existing set works to minimize duplicate references. However, in rare cases, because alternate Place ID lists aren’t exhaustive, duplicates might occasionally occur. Ensure that your set of Place IDs doesn’t contain two Place IDs that refer to the same place by performing the following steps:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create an empty set of Place IDs. This is the temporary set.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "For each Place ID, look up its alternate IDs and check if the temporary set contains either the Place ID itself or any of its alternates. If the existing set already contains any of those IDs, remove the Place ID from the existing set, as it’s a duplicate. Otherwise, add the Place ID and all alternates to the temporary set.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you’ve completed the above steps, delete the temporary set you used to ensure that there were no duplicates amongst Place IDs and their alternates. The existing set now has all duplicates removed.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To maintain performance, use these steps to perform de-duplication on a periodic basis. Alternatively, use Apple Maps Server API’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppleMapsServerAPI/-v1-place-alternateIds",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for an efficient way of performing de-duplication.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/AppleMapsServerAPI": {
+      "abstract": [
+        {
+          "text": "Reduce API calls and conserve device power by streamlining your app’s georelated searches.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppleMapsServerAPI",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Apple Maps Server API",
+      "type": "topic",
+      "url": "/documentation/AppleMapsServerAPI"
+    },
+    "doc://com.apple.documentation/documentation/AppleMapsServerAPI/-v1-place": {
+      "abstract": [
+        {
+          "text": "Obtain a set of Place objects for a given set of Place IDs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppleMapsServerAPI/-v1-place",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Search for places using mulitple identifiers",
+      "type": "topic",
+      "url": "/documentation/AppleMapsServerAPI/-v1-place"
+    },
+    "doc://com.apple.documentation/documentation/AppleMapsServerAPI/-v1-place-alternateIds": {
+      "abstract": [
+        {
+          "text": "Get a list of alternate Place IDs given one or more Place IDs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppleMapsServerAPI/-v1-place-alternateIds",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Obtain a list of alternate place identifiers",
+      "type": "topic",
+      "url": "/documentation/AppleMapsServerAPI/-v1-place-alternateIds"
+    },
+    "doc://com.apple.documentation/documentation/AppleMapsServerAPI/Place": {
+      "abstract": [
+        {
+          "text": "An object that describes a place in terms of a variety of spatial, administrative, and qualitative properties.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Place"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppleMapsServerAPI/Place",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Place",
+      "type": "topic",
+      "url": "/documentation/AppleMapsServerAPI/Place"
+    },
+    "doc://com.apple.documentation/documentation/MapKitJS": {
+      "abstract": [
+        {
+          "text": "Embed interactive Apple Maps on your website, annotate points of interest, and perform georelated searches.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/MapKitJS",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "MapKit JS",
+      "type": "topic",
+      "url": "/documentation/MapKitJS"
+    },
+    "doc://com.apple.documentation/documentation/MapKitJS/Place": {
+      "abstract": [
+        {
+          "text": "A place object that returns from a geocoder lookup, a reverse lookup, or a fetch request for points of interest.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "dictionary"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "text",
+          "text": "Place"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "text",
+          "text": "{"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        },
+        {
+          "kind": "text",
+          "text": "\t"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "string"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "text",
+          "text": "name"
+        },
+        {
+          "kind": "text",
+          "text": ";"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        },
+        {
+          "kind": "text",
+          "text": "\t"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "string?"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "text",
+          "text": "id"
+        },
+        {
+          "kind": "text",
+          "text": ";"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        },
+        {
+          "kind": "text",
+          "text": "\t"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "string[]?"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "text",
+          "text": "alternateIds"
+        },
+        {
+          "kind": "text",
+          "text": ";"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        },
+        {
+          "kind": "text",
+          "text": "\t"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "instctr/mapkit.Coordinate/mapkit.Coordinate",
+          "text": "mapkit.Coordinate"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "text",
+          "text": "coordinate"
+        },
+        {
+          "kind": "text",
+          "text": ";"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        },
+        {
+          "kind": "text",
+          "text": "\t"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "string"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "text",
+          "text": "formattedAddress"
+        },
+        {
+          "kind": "text",
+          "text": ";"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        },
+        {
+          "kind": "text",
+          "text": "\t"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "instctr/mapkit.CoordinateRegion/mapkit.CoordinateRegion",
+          "text": "mapkit.CoordinateRegion"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "text",
+          "text": "region"
+        },
+        {
+          "kind": "text",
+          "text": ";"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        },
+        {
+          "kind": "text",
+          "text": "\t"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "string"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "text",
+          "text": "countryCode"
+        },
+        {
+          "kind": "text",
+          "text": ";"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        },
+        {
+          "kind": "text",
+          "text": "\t"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "enum/mapkit.PointOfInterestCategory",
+          "text": "mapkit.PointOfInterestCategory"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "text",
+          "text": "pointOfInterestCategory"
+        },
+        {
+          "kind": "text",
+          "text": ";"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        },
+        {
+          "kind": "text",
+          "text": "\t"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "string?"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "text",
+          "text": "country"
+        },
+        {
+          "kind": "text",
+          "text": ";"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        },
+        {
+          "kind": "text",
+          "text": "\t"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "string?"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "text",
+          "text": "administrativeArea"
+        },
+        {
+          "kind": "text",
+          "text": ";"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        },
+        {
+          "kind": "text",
+          "text": "\t"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "string?"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "text",
+          "text": "administrativeAreaCode"
+        },
+        {
+          "kind": "text",
+          "text": ";"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        },
+        {
+          "kind": "text",
+          "text": "\t"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "string?"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "text",
+          "text": "locality"
+        },
+        {
+          "kind": "text",
+          "text": ";"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        },
+        {
+          "kind": "text",
+          "text": "\t"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "string?"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "text",
+          "text": "postCode"
+        },
+        {
+          "kind": "text",
+          "text": ";"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        },
+        {
+          "kind": "text",
+          "text": "\t"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "string?"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "text",
+          "text": "subLocality"
+        },
+        {
+          "kind": "text",
+          "text": ";"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        },
+        {
+          "kind": "text",
+          "text": "\t"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "string?"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "text",
+          "text": "thoroughfare"
+        },
+        {
+          "kind": "text",
+          "text": ";"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        },
+        {
+          "kind": "text",
+          "text": "\t"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "string?"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "text",
+          "text": "subThoroughfare"
+        },
+        {
+          "kind": "text",
+          "text": ";"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        },
+        {
+          "kind": "text",
+          "text": "\t"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "string?"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "text",
+          "text": "fullThoroughfare"
+        },
+        {
+          "kind": "text",
+          "text": ";"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        },
+        {
+          "kind": "text",
+          "text": "\t"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "string[]?"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "text",
+          "text": "areasOfInterest"
+        },
+        {
+          "kind": "text",
+          "text": ";"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        },
+        {
+          "kind": "text",
+          "text": "\t"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "string[]?"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "text",
+          "text": "dependentLocalities"
+        },
+        {
+          "kind": "text",
+          "text": ";"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        },
+        {
+          "kind": "text",
+          "text": "}"
+        },
+        {
+          "kind": "text",
+          "text": ";"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/MapKitJS/Place",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Place",
+      "type": "topic",
+      "url": "/documentation/MapKitJS/Place"
+    },
+    "doc://com.apple.documentation/documentation/MapKitJS/mapkit.PlaceAnnotation": {
+      "abstract": [
+        {
+          "text": "An annotation for a place.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "interface"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "text",
+          "text": "mapkit.PlaceAnnotation"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/MapKitJS/mapkit.PlaceAnnotation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "mapkit.PlaceAnnotation",
+      "type": "topic",
+      "url": "/documentation/MapKitJS/mapkit.PlaceAnnotation"
+    },
+    "doc://com.apple.documentation/documentation/MapKitJS/mapkit.PlaceLookup": {
+      "abstract": [
+        {
+          "text": "An object that provides the ability to look up place information for a specified Place ID.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "interface"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "text",
+          "text": "mapkit.PlaceLookup"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/MapKitJS/mapkit.PlaceLookup",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "mapkit.PlaceLookup",
+      "type": "topic",
+      "url": "/documentation/MapKitJS/mapkit.PlaceLookup"
+    },
+    "doc://com.apple.documentation/documentation/MapKitJS/mapkit.PlaceSelectionAccessory": {
+      "abstract": [
+        {
+          "text": "The accessory that conveys information about a place associated with an annotation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "interface"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "text",
+          "text": "mapkit.PlaceSelectionAccessory"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/MapKitJS/mapkit.PlaceSelectionAccessory",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "mapkit.PlaceSelectionAccessory",
+      "type": "topic",
+      "url": "/documentation/MapKitJS/mapkit.PlaceSelectionAccessory"
+    },
+    "doc://com.apple.documentation/documentation/mapkitjs/place/4408163-alternateids": {
+      "abstract": [
+        {
+          "text": "A list of alternate Place IDs referencing a feature.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/mapkitjs/place/4408163-alternateids",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "alternateIds",
+      "type": "topic",
+      "url": "/documentation/mapkitjs/place/4408163-alternateids"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit": {
+      "abstract": [
+        {
+          "text": "Display map or satellite imagery within your app, call out points of interest, and determine placemark information for map coordinates.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "MapKit",
+      "type": "topic",
+      "url": "/documentation/mapkit"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit/MKMapItem": {
+      "abstract": [
+        {
+          "text": "A point of interest on the map.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MKMapItem"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKMapItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MKMapItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "MKMapItem",
+      "type": "topic",
+      "url": "/documentation/mapkit/mkmapitem"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit/MKMapItem/alternateIdentifiers": {
+      "abstract": [
+        {
+          "text": "A set of alternative identifiers for a place.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "alternateIdentifiers"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sh",
+          "text": "Set"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MKMapItem",
+          "text": "MKMapItem"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MKMapItemIdentifier",
+          "text": "Identifier"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKMapItem/alternateIdentifiers",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "alternateIdentifiers"
+        }
+      ],
+      "role": "symbol",
+      "title": "alternateIdentifiers",
+      "type": "topic",
+      "url": "/documentation/mapkit/mkmapitem/alternateidentifiers"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit/MKMapItem/identifier-swift.property": {
+      "abstract": [
+        {
+          "text": "A unique identifier for a place.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "identifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MKMapItem",
+          "text": "MKMapItem"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MKMapItemIdentifier",
+          "text": "Identifier"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKMapItem/identifier-swift.property",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "identifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "identifier",
+      "type": "topic",
+      "url": "/documentation/mapkit/mkmapitem/identifier-swift.property"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit/MKMapItemAnnotation": {
+      "abstract": [
+        {
+          "text": "An annotation that represents a map item",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MKMapItemAnnotation"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKMapItemAnnotation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MKMapItemAnnotation"
+        }
+      ],
+      "role": "symbol",
+      "title": "MKMapItemAnnotation",
+      "type": "topic",
+      "url": "/documentation/mapkit/mkmapitemannotation"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit/MKMapItemRequest": {
+      "abstract": [
+        {
+          "text": "A utility class you use to request additional information about a map feature.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MKMapItemRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKMapItemRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MKMapItemRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "MKMapItemRequest",
+      "type": "topic",
+      "url": "/documentation/mapkit/mkmapitemrequest"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit/MKMapView": {
+      "abstract": [
+        {
+          "text": "An embeddable map interface, similar to the one that the Maps app provides.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MKMapView"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKMapView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MKMapView"
+        }
+      ],
+      "role": "symbol",
+      "title": "MKMapView",
+      "type": "topic",
+      "url": "/documentation/mapkit/mkmapview"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit/MKSelectionAccessory": {
+      "abstract": [
+        {
+          "text": "The type of accessory to display for a selected annotation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MKSelectionAccessory"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKSelectionAccessory",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MKSelectionAccessory"
+        }
+      ],
+      "role": "symbol",
+      "title": "MKSelectionAccessory",
+      "type": "topic",
+      "url": "/documentation/mapkit/mkselectionaccessory"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit/enabling-maps-capability-in-xcode": {
+      "abstract": [
+        {
+          "text": "Configure your routing app to support providing directions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit/enabling-maps-capability-in-xcode",
+      "kind": "article",
+      "role": "article",
+      "title": "Enabling Maps capability in Xcode",
+      "type": "topic",
+      "url": "/documentation/mapkit/enabling-maps-capability-in-xcode"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit/mapkit-for-appkit-and-uikit": {
+      "abstract": [],
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit/mapkit-for-appkit-and-uikit",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "MapKit for AppKit and UIKit",
+      "type": "topic",
+      "url": "/documentation/mapkit/mapkit-for-appkit-and-uikit"
+    },
+    "https://developer.apple.com/maps/place-id-lookup/": {
+      "identifier": "https://developer.apple.com/maps/place-id-lookup/",
+      "title": "Place ID Lookup",
+      "titleInlineContent": [
+        {
+          "text": "Place ID Lookup",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/maps/place-id-lookup/"
+    },
+    "https://developer.apple.com/support/terms/apple-developer-program-license-agreement/": {
+      "identifier": "https://developer.apple.com/support/terms/apple-developer-program-license-agreement/",
+      "title": "Apple Developer Program License Agreement",
+      "titleInlineContent": [
+        {
+          "text": "Apple Developer Program License Agreement",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/support/terms/apple-developer-program-license-agreement/"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.mapkit/documentation/MapKit/enabling-maps-capability-in-xcode",
+        "doc://com.apple.mapkit/documentation/MapKit/MKMapView",
+        "doc://com.apple.mapkit/documentation/MapKit/MKMapItem"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Essentials",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.mapkit/documentation/MapKit/enabling-maps-capability-in-xcode",
+                "doc://com.apple.mapkit/documentation/MapKit/MKMapView",
+                "doc://com.apple.mapkit/documentation/MapKit/MKMapItem"
+              ],
+              "title": "Essentials"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKMapItem~1identifier-swift.property/title",
+          "value": "identifier"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKMapItem~1identifier-swift.property/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "identifier"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKSelectionAccessory/title",
+          "value": "MKSelectionAccessory"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKSelectionAccessory/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MKSelectionAccessory"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKSelectionAccessory/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MKSelectionAccessory"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKMapItem~1alternateIdentifiers/title",
+          "value": "alternateIdentifiers"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKMapItem~1alternateIdentifiers/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "alternateIdentifiers"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKMapItemRequest/title",
+          "value": "MKMapItemRequest"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKMapItemRequest/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MKMapItemRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKMapItemRequest/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MKMapItemRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKMapItem/title",
+          "value": "MKMapItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKMapItem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MKMapItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKMapItem/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MKMapItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKMapItemAnnotation/title",
+          "value": "MKMapItemAnnotation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKMapItemAnnotation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MKMapItemAnnotation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKMapItemAnnotation/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MKMapItemAnnotation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKMapView/title",
+          "value": "MKMapView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKMapView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MKMapView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKMapView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MKMapView"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/mapkit/identifying-unique-locations-with-place-ids"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/mapkit/identifying-unique-locations-with-place-ids"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

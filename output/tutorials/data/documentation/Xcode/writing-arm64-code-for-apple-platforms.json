@@ -1,0 +1,2526 @@
+{
+  "abstract": [
+    {
+      "text": "Create 64-bit ARM assembly language instructions that adhere to the application binary",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "interface (ABI) that Apple platforms support.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Xcode/documentation/Xcode",
+        "doc://com.apple.Xcode/documentation/Xcode/application-binary-interfaces"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Xcode/documentation/Xcode/writing-arm64-code-for-apple-platforms"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Writing ARM64 code for Apple platforms"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ARM architecture defines rules for how to call functions, manage the stack, and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "perform other operations. If part of your code includes ARM assembly instructions,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "you must adhere to these rules in order for your code to interoperate correctly with",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "compiler-generated code. Similarly, if you write a compiler, the machine instructions",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "you generate must adhere to these rules. If you don’t adhere to them, your code may",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "behave unexpectedly or even crash.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Apple platforms diverge from the standard 64-bit ARM architecture in a few specific",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "ways. Apart from these small differences, iOS, tvOS, and macOS adhere to the rest",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of the 64-bit ARM specification. For information about the ARM64 specification, including",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the Procedure Call Standard for the ARM 64-bit Architecture (AArch64), go to ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.arm.com",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Respect-the-purpose-of-specific-CPU-registers",
+          "level": 3,
+          "text": "Respect the purpose of specific CPU registers",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ARM standard delegates certain decisions to platform designers. Apple platforms",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "adhere to the following choices:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The platforms reserve register ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "x18",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". Don’t use this register.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The frame pointer register (",
+                      "type": "text"
+                    },
+                    {
+                      "code": "x29",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ") must always address a valid frame record. Some",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "functions — such as leaf functions or tail calls — may opt not to create an entry",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "in this list. As a result, stack traces are always meaningful, even without debug",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "information.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Handle-data-types-and-data-alignment-properly",
+          "level": 3,
+          "text": "Handle data types and data alignment properly",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Some fundamental types of the C language have slightly different implementations:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "wchar_t",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " type is 32 bit and is a signed type.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "char",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " type is a signed type.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "long",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " type is 64 bit.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "__fp16",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " type uses the IEEE754-2008 format, where applicable.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "long",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "double",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " type is a double precision IEEE754 binary floating-point type,",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "which makes it identical to the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "double",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " type. This behavior contrasts to the standard",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "specification, in which a ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "long",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "double",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " is a quad-precision, IEEE754 binary, floating-point",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "type.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following table lists the integer data types, their sizes, and their natural",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "alignments on Apple platforms.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Data type",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Size (in bytes)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Natural alignment (in bytes)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "BOOL",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "bool",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "1",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "1",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "char",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "1",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "1",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "short",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "2",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "2",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "int",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "4",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "4",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "long",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "8",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "8",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "long long",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "8",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "8",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "pointer",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "8",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "8",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "size_t",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "8",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "8",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "NSInteger",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "8",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "8",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "CFIndex",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "8",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "8",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "fpos_t",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "8",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "8",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "off_t",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "8",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "8",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "anchor": "Respect-the-stacks-red-zone",
+          "level": 3,
+          "text": "Respect the stack’s red zone",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ARM64 red zone consists of the 128 bytes immediately below the stack pointer.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Apple platforms don’t modify these bytes during exceptions. User-mode programs can",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "rely on the bytes below the stack pointer to not change unexpectedly, and can potentially",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "make use of the space for local variables.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If a function calls itself, the caller must assume that the callee modifies",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "the contents of its red zone. The caller must therefore create a proper stack frame.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Pass-arguments-to-functions-correctly",
+          "level": 3,
+          "text": "Pass arguments to functions correctly",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The stack pointer on Apple platforms follows the ARM64 standard ABI and requires",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "16-byte alignment. When passing arguments to functions, Apple platforms diverge from",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the ARM64 standard ABI in the following ways:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Function arguments may consume slots on the stack that are not multiples of 8 bytes.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "If the total number of bytes for stack-based arguments is not a multiple of 8 bytes,",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "insert padding on the stack to maintain the 8-byte alignment requirements.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "When passing an argument with 16-byte alignment in integer registers, Apple platforms",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "allow the argument to start in an odd-numbered ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "xN",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " register. The standard ABI requires",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "it to begin in an even-numbered ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "xN",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " register.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The caller of a function is responsible for signing or zero-extending any argument",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "with fewer than 32 bits. The standard ABI expects the callee to sign or zero-extend",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "those arguments.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Functions may ignore parameters that contain empty struct types. This behavior",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "applies to the GNU extension in C and, where permitted by the language, in C++. The",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "AArch64 documentation doesn’t address the issue of empty structures as parameters,",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "but Apple chose this path for its implementation.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following example illustrates how Apple platforms specify stack-based arguments",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that are not multiples of 8 bytes. On entry to the function, ",
+              "type": "text"
+            },
+            {
+              "code": "s0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " occupies one byte",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "at the current stack pointer (",
+              "type": "text"
+            },
+            {
+              "code": "sp",
+              "type": "codeVoice"
+            },
+            {
+              "text": "), and ",
+              "type": "text"
+            },
+            {
+              "code": "s1",
+              "type": "codeVoice"
+            },
+            {
+              "text": " occupies one byte at ",
+              "type": "text"
+            },
+            {
+              "code": "sp+1",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". The compiler",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "still adds padding after ",
+              "type": "text"
+            },
+            {
+              "code": "s1",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to satisfy the stack’s 16-byte alignment requirements.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "void two_stack_args(char w0, char w1, char w2, char w3, char w4, char w5, char w6, char w7, char s0, char s1) {}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following example shows a function whose second argument requires 16-byte alignment.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The standard ABI requires placing the second argument in the ",
+              "type": "text"
+            },
+            {
+              "code": "x2",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "x3",
+              "type": "codeVoice"
+            },
+            {
+              "text": " registers,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "but Apple platforms allow it to be in the ",
+              "type": "text"
+            },
+            {
+              "code": "x1",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "x2",
+              "type": "codeVoice"
+            },
+            {
+              "text": " registers.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "void large_type(int x0, __int128 x1_x2) {} "
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Update-code-that-passes-arguments-to-variadic-functions",
+          "level": 3,
+          "text": "Update code that passes arguments to variadic functions",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For functions that contain a variable number of parameters, Apple initializes the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "relevant registers (Stage A) and determines how to pad or extend arguments (Stage",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "B) as usual. When it’s time to assign arguments to registers and stack slots, Apple",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "platforms use the following rules for each variadic argument:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Round up the Next SIMD and Floating-point Register Number (NSRN) to the next multiple",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "of 8 bytes.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Assign the variadic argument to the appropriate number of 8-byte stack slots.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because of these changes, the type ",
+              "type": "text"
+            },
+            {
+              "code": "va_list",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is an alias for ",
+              "type": "text"
+            },
+            {
+              "code": "char*",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and not for",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the struct type in the generic procedure call standard. The type also isn’t in the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "std",
+              "type": "codeVoice"
+            },
+            {
+              "text": " namespace when compiling C++ code.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The C language requires the promotion of arguments smaller than int before",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "a call. Beyond that, the Apple platforms ABI doesn’t add unused bytes to the stack.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Handle-C++-differences",
+          "level": 3,
+          "text": "Handle C++ differences",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The generic ARM64 C++ ABI mirrors the Itanium C++ ABI, which many UNIX-like systems",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "use. Apple’s C++ ABI differs from this ABI in the following ways:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The mangled name of the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "va_list",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " type is ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Pc",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", and not ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "St9__va_list",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". This difference",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "occurs because ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "va_list",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " is an alias for ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "char *",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", and uses the same name-mangling",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "conventions.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The mangled names for NEON vector types match their 32-bit ARM counterparts, rather",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "than using the 64-bit scheme. For example, Apple platforms use ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "17__simd128_int32_t",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "instead of the generic ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "11_int32x4_t",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "When passing parameters to a function, Apple platforms ignore empty structures",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "unless those structures have a nontrivial destructor or copy constructor. When passing",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "such nontrivial structures, treat them as aggregates with one byte member in the",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "generic manner.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ABI requires the complete object (C1) and base-object (C2) constructors to",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "return this to their callers. Similarly, the complete object (D1) and base-object",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "(D2) destructors return this. This behavior matches the ARM 32-bit C++ ABI.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ABI provides a fixed layout of two ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "size_t",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " words for array cookies, with no",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "extra alignment requirements. This behavior matches the ARM 32-bit C++ ABI.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Object initialization guards are nominally ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "uint64_t",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", rather than ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "int64_t",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". This",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "behavior affects the prototypes of functions ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "__cxa_guard_acquire",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "__cxa_guard_release",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ",",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "__cxa_guard_abort",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A pointer to a function declared as ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "extern “C”",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " isn’t interchangeable with a function",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "declared as ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "extern “c++”",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". This behavior differs from the ARM64 ABI, in which the",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "functions are interchangeable.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about the generic ARM64 C++ ABI, see “C++ Application Binary",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Interface Standard for the ARM 64-bit architecture” at developer.arm.com.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Enable-DIT-for-constant-time-cryptographic-operations",
+          "level": 3,
+          "text": "Enable DIT for constant-time cryptographic operations",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Certain instructions on ARM64, including but not limited to those described in ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.arm.com/documentation/ddi0601/2020-12/AArch64-Registers/DIT--Data-Independent-Timing",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", may take a different amount of time to run depending on the data values on which they operate. Malicious code running on the device might use this property to infer information about the data the CPU processes, such as cryptographic keys, or other sensitive data.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Apple silicon provides ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "data-independent timing",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " (DIT), in which the processor completes certain instructions in a constant amount of time. With DIT enabled, the processor uses the longer, worst-case amount of time to complete the instruction, regardless of the input data. When you write software specifically to avoid leaking internal information and to run code in constant time, enabling DIT — and restricting your code to instructions that support DIT — before loading cryptographic key material, performing cryptographic operations, or processing sensitive data ensures the timing of specific instructions doesn’t reveal information about the data being processed.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Enable DIT in specialized situations, such as cryptographic routines. Because DIT can slow down your code, only enable it in situations where you write software to run in constant time with respect to sensitive data, and to avoid leaking sensitive information. Apple cryptographic routines implemented in the operating system, and which are made available in APIs such as Apple CryptoKit, enable DIT internally.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "While DIT ensures the timing of certain instructions don’t reveal information about the data, you need additional programming practices to prevent other changes to the processor’s microarchitectural state from providing an adversary with signals about secret values. For example, avoid conditional branches and memory access locations based on the value of the secret data.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In iOS 18.2, iPadOS 18.2, macOS 15.2, tvOS 18.2, watchOS 11.2, and visionOS 2.2 and later, two new function calls are available to control and optimize DIT for Apple devices. The functions are available on all devices regardless of whether they support DIT, but only turn on DIT on supported devices.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You protect a set of cryptographic operations by calling ",
+              "type": "text"
+            },
+            {
+              "code": "timingsafe_enable_if_supported",
+              "type": "codeVoice"
+            },
+            {
+              "text": " unconditionally to turn on DIT. Internally, the function uses safeguards adequate for the device CPU to limit the speculative computation; for example, ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "speculation barriers",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " (SB). The API function is optimized so the device runs the most efficient safeguards automatically and you avoid several compile and runtime checks. If the timing-safe features aren’t supported they are ignored and the function has no effect.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The function returns an opaque token you use to restore the previous state. Store the returned token and when the timing sensitive operations are done, pass the token to ",
+              "type": "text"
+            },
+            {
+              "code": "timingsafe_restore_if_supported",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to restore the CPU to its previous state.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If DIT is on prior to calling ",
+              "type": "text"
+            },
+            {
+              "code": "timingsafe_enable_if_supported",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", it remains on after calling ",
+              "type": "text"
+            },
+            {
+              "code": "timingsafe_restore_if_supported",
+              "type": "codeVoice"
+            },
+            {
+              "text": "; otherwise, it’s turned off.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To turn on timing-safe mode before performing constant-time cryptographic operations, and subsequently restore the CPU’s previous state, use the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "#include <timingsafe.h>",
+            "",
+            "int cryptographic_routine() {",
+            "    timingsafe_token_t restore_token = timingsafe_enable_if_supported();",
+            "    // Perform constant-time cryptographic operations here.",
+            "    timingsafe_restore_if_supported(restore_token);",
+            "    return 0;",
+            "}"
+          ],
+          "syntax": "c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Alternatively, to turn on DIT with older SDKs or platforms where the APIs aren’t available, you need to check whether DIT is defined and supported by the CPU and then use low-level kernel and CPU registers. To test whether the APIs are available, use the compiler’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://clang.llvm.org/docs/LanguageExtensions.html#objective-c-available",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " directive.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To determine whether a device’s CPU supports DIT, test the ",
+              "type": "text"
+            },
+            {
+              "code": "hw.optional.arm.FEAT_DIT",
+              "type": "codeVoice"
+            },
+            {
+              "text": " system control using ",
+              "type": "text"
+            },
+            {
+              "text": "doc://com.apple.documentation/documentation/kernel/1387446-sysctlbyname",
+              "type": "text"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "#include <sys/sysctl.h>",
+            "#include <stdbool.h>",
+            "",
+            "",
+            "bool is_DIT_supported(void) {",
+            "    static int has_DIT = -1;",
+            "    if (has_DIT == -1) {",
+            "        size_t has_DIT_size = sizeof(has_DIT);",
+            "        if (sysctlbyname(\"hw.optional.arm.FEAT_DIT\", &has_DIT, &has_DIT_size, NULL, 0) == -1) {",
+            "            has_DIT = 0;",
+            "        }",
+            "    }",
+            "    return has_DIT;",
+            "}"
+          ],
+          "syntax": "c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This function returns ",
+              "type": "text"
+            },
+            {
+              "code": "1",
+              "type": "codeVoice"
+            },
+            {
+              "text": " if DIT is available; ",
+              "type": "text"
+            },
+            {
+              "code": "0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " otherwise.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To check whether DIT is turned on for the current thread, test the ",
+              "type": "text"
+            },
+            {
+              "code": "dit",
+              "type": "codeVoice"
+            },
+            {
+              "text": " bit (bit 24) of the processor state register. The ",
+              "type": "text"
+            },
+            {
+              "code": "dit",
+              "type": "codeVoice"
+            },
+            {
+              "text": " bit is only defined on certain devices and you can set an attribute for the function to avoid errors when compiling for unsupported devices:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "#ifdef __arm64__",
+            "__attribute__((target(\"dit\")))",
+            "bool get_DIT_enabled(void) {",
+            "    return (__builtin_arm_rsr64(\"dit\") >> 24) & 1;",
+            "}",
+            "#endif"
+          ],
+          "syntax": "c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Turn on DIT for the current thread by setting the ",
+              "type": "text"
+            },
+            {
+              "code": "dit",
+              "type": "codeVoice"
+            },
+            {
+              "text": " processor state register’s value to ",
+              "type": "text"
+            },
+            {
+              "code": "1",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". To ensure that subsequent instruction timing reflects the updated DIT processor state, add a speculation barrier after turning on DIT. Use the ",
+              "type": "text"
+            },
+            {
+              "code": "sb",
+              "type": "codeVoice"
+            },
+            {
+              "text": " instruction to add a speculation barrier:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "#ifdef __arm64__",
+            "__attribute__((target(\"sb\")))",
+            "void inst_dit_speculation_barrier(void) {",
+            "  __asm__ __volatile__(\"sb\" ::: \"memory\");",
+            "}",
+            "#endif"
+          ],
+          "syntax": "c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To restore the state of DIT after the sensitive operation, read and return its current status before turning on DIT:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "#ifdef __arm64__",
+            "__attribute__((target(\"dit\")))",
+            "bool set_DIT_enabled(void) {",
+            "    bool was_DIT_enabled = get_DIT_enabled();",
+            "    __asm__ __volatile__(\"msr dit, #1\");",
+            "    inst_dit_speculation_barrier();",
+            "    return was_DIT_enabled;",
+            "}",
+            "#endif"
+          ],
+          "syntax": "c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To turn off DIT for the current thread, set the ",
+              "type": "text"
+            },
+            {
+              "code": "dit",
+              "type": "codeVoice"
+            },
+            {
+              "text": " processor state register’s value to ",
+              "type": "text"
+            },
+            {
+              "code": "0",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". To prevent turning off DIT inadvertently in nested calls, restore DIT to its previous value instead of unconditionally turning it off. Store the initial value in thread-local storage, as you can turn DIT on or off separately on different threads. If the DIT value record before turning on DIT is ",
+              "type": "text"
+            },
+            {
+              "code": "0",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", set the DIT value to ",
+              "type": "text"
+            },
+            {
+              "code": "0",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "#ifdef __arm64__",
+            "__attribute__((target(\"dit\")))",
+            "void restore_DIT(bool was_DIT_enabled) {",
+            "    if (was_DIT_enabled == false) {",
+            "        __asm__ __volatile__(\"msr dit, #0\");",
+            "    }",
+            "}",
+            "#endif"
+          ],
+          "syntax": "c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To test the availability of speculation barriers, use a mechanism similar to DIT, above:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "bool is_SB_supported(void) {",
+            "    static int has_SB = -1;",
+            "    if (has_SB == -1) {",
+            "        size_t has_SB_size = sizeof(has_SB);",
+            "        if (sysctlbyname(\"hw.optional.arm.FEAT_SB\", &has_SB, &has_SB_size, NULL, 0) == -1) {",
+            "            has_SB = 0;",
+            "        }",
+            "    }",
+            "    return has_SB;",
+            "}"
+          ],
+          "syntax": "c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When speculation barriers aren’t supported, use:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "#ifdef __arm64__",
+            "void inst_dit_speculation_barrier_unsupported(void) {",
+            "  __asm__ __volatile__ (\"dsb nsh\" ::: \"memory\");",
+            "  __asm__ __volatile__ (\"isb sy\" ::: \"memory\");",
+            "}",
+            "#endif"
+          ],
+          "syntax": "c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create functions that are available across all devices — whether they support DIT and speculation barriers — define function pointers. If the device supports DIT, set the function pointers to functions that test and change the processor state register. When DIT isn’t supported, set the function pointers to functions that do nothing, and follow the same pattern with speculation barriers:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "bool(* set_DIT_enabled_if_supported)(void);",
+            "void(* restore_DIT_if_supported)(bool);",
+            "bool(* get_DIT_enabled_if_supported)(void);",
+            "void(* inst_dit_speculation_barrier_if_supported)(void);",
+            "",
+            "bool set_DIT_enabled(void);",
+            "void restore_DIT(bool);",
+            "bool get_DIT_enabled(void);",
+            "void inst_dit_speculation_barrier(void);",
+            "",
+            "bool set_DIT_enabled_unsupported(void);",
+            "void restore_DIT_unsupported(__unused bool was_DIT_enabled);",
+            "bool get_DIT_enabled_unsupported(void);",
+            "void inst_dit_speculation_barrier_unsupported(void);",
+            "",
+            "void init_DIT_control(void);",
+            "",
+            "#ifdef __arm64__",
+            "__attribute__((target(\"dit\")))",
+            "bool set_DIT_enabled(void) {",
+            "    bool was_DIT_enabled = get_DIT_enabled();",
+            "    __asm__ __volatile__(\"msr dit, #1\");",
+            "    inst_dit_speculation_barrier_if_supported();",
+            "    return was_DIT_enabled;",
+            "}",
+            "#endif",
+            "",
+            "bool get_DIT_enabled_unsupported(void) {",
+            "    return false;",
+            "}",
+            "",
+            "bool set_DIT_enabled_unsupported(void) {",
+            "    return false;",
+            "}",
+            "",
+            "void restore_DIT_unsupported(__unused bool was_DIT_enabled) {",
+            "    return;",
+            "}",
+            "",
+            "void init_DIT_control(void) {",
+            "#ifdef __arm64__",
+            "    if (is_SB_supported()) {",
+            "        inst_dit_speculation_barrier_if_supported = inst_dit_speculation_barrier; ",
+            "    }",
+            "    else {",
+            "        inst_dit_speculation_barrier_if_supported = inst_dit_speculation_barrier_unsupported;",
+            "    }",
+            "",
+            "    if (is_DIT_supported()) {",
+            "        set_DIT_enabled_if_supported = set_DIT_enabled;",
+            "        restore_DIT_if_supported = restore_DIT;",
+            "        get_DIT_enabled_if_supported = get_DIT_enabled;",
+            "    } else",
+            "#endif",
+            "    {",
+            "        set_DIT_enabled_if_supported = set_DIT_enabled_unsupported;",
+            "        restore_DIT_if_supported = restore_DIT_unsupported;",
+            "        get_DIT_enabled_if_supported = get_DIT_enabled_unsupported;",
+            "    }",
+            "#ifdef __arm64__",
+            "    inst_dit_speculation_barrier_if_supported();",
+            "#endif",
+            "}"
+          ],
+          "syntax": "c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Altogether, you protect a set of cryptographic instructions by calling the abstracted DIT enablement function prior to the cryptographic operation, and restore the previous DIT state after:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "#if __has_include(<timingsafe.h>)",
+            "#include <timingsafe.h>",
+            "#endif",
+            "",
+            "int main(void) {",
+            "    init_DIT_control();",
+            "    // Run the rest of your program.",
+            "    return 0;",
+            "}",
+            "",
+            "int cryptographic_routine(void) {",
+            "#if __has_include(<timingsafe.h>)",
+            "    if (__builtin_available(macOS 15.2, iOS 18.2, visionOS 2.2, tvOS 18.2, watchOS 11.2, *)) {",
+            "        // API-based DIT control.",
+            "        timingsafe_token_t token = timingsafe_enable_if_supported();",
+            "        // Perform constant time cryptographic operations here.",
+            "        timingsafe_restore_if_supported(token);",
+            "    } else ",
+            "#endif",
+            "    {",
+            "        // Fallback on earlier DIT control versions.",
+            "        bool was_DIT_enabled = set_DIT_enabled_if_supported();",
+            "        // Perform constant time cryptographic operations here.",
+            "        restore_DIT_if_supported(was_DIT_enabled);",
+            "    }",
+            "    return 0;",
+            "}"
+          ],
+          "syntax": "c",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Xcode-PageImage-card.png": {
+      "alt": "The Xcode logo on a blue gradient background.",
+      "identifier": "Xcode-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cc63eacd8f7f660388b46204d1d9bbcb/Xcode-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/62dba87d5f60ec96eb48882c9dff86d8/Xcode-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Xcode/documentation/Xcode": {
+      "abstract": [
+        {
+          "text": "Build, test, and submit your app with Apple’s integrated development environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode",
+      "images": [
+        {
+          "identifier": "Xcode-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/application-binary-interfaces": {
+      "abstract": [
+        {
+          "text": "Write assembly instructions that adhere to the application binary interfaces of Apple platforms.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/application-binary-interfaces",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Application binary interfaces",
+      "type": "topic",
+      "url": "/documentation/xcode/application-binary-interfaces"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/writing-64-bit-intel-code-for-apple-platforms": {
+      "abstract": [
+        {
+          "text": "Create 64-bit Intel assembly language instructions that adhere to the application binary interface (ABI) that Apple platforms support.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/writing-64-bit-intel-code-for-apple-platforms",
+      "kind": "article",
+      "role": "article",
+      "title": "Writing 64-bit Intel code for Apple Platforms",
+      "type": "topic",
+      "url": "/documentation/xcode/writing-64-bit-intel-code-for-apple-platforms"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://clang.llvm.org/docs/LanguageExtensions.html#objective-c-available": {
+      "identifier": "https://clang.llvm.org/docs/LanguageExtensions.html#objective-c-available",
+      "title": "__builtin_available",
+      "titleInlineContent": [
+        {
+          "code": "__builtin_available",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://clang.llvm.org/docs/LanguageExtensions.html#objective-c-available"
+    },
+    "https://developer.arm.com": {
+      "identifier": "https://developer.arm.com",
+      "title": "https://developer.arm.com",
+      "titleInlineContent": [
+        {
+          "text": "https://developer.arm.com",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.arm.com"
+    },
+    "https://developer.arm.com/documentation/ddi0601/2020-12/AArch64-Registers/DIT--Data-Independent-Timing": {
+      "identifier": "https://developer.arm.com/documentation/ddi0601/2020-12/AArch64-Registers/DIT--Data-Independent-Timing",
+      "title": "Arm Architecture Registers for Future Architecture Technologies",
+      "titleInlineContent": [
+        {
+          "text": "Arm Architecture Registers for Future Architecture Technologies",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.arm.com/documentation/ddi0601/2020-12/AArch64-Registers/DIT--Data-Independent-Timing"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "64-bit-interfaces",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Xcode/documentation/Xcode/writing-64-bit-intel-code-for-apple-platforms"
+      ],
+      "title": "64-bit interfaces"
+    }
+  ]
+}

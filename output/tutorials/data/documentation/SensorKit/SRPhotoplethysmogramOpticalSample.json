@@ -1,0 +1,2752 @@
+{
+  "abstract": [
+    {
+      "text": "A data sample from the photoplethysmogram (PPG) optical sensor.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.sensorkit/documentation/SensorKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.sensorkit/documentation/SensorKit/SRPhotoplethysmogramOpticalSample"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)SRPhotoplethysmogramOpticalSample",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "SRPhotoplethysmogramOpticalSample"
+      }
+    ],
+    "modules": [
+      {
+        "name": "SensorKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "SRPhotoplethysmogramOpticalSample"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.4",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.4",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.4",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "SRPhotoplethysmogramOpticalSample"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "SRPhotoplethysmogramOpticalSample"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To get the PPG waveform, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.sensorkit/documentation/SensorKit/SRPhotoplethysmogramOpticalSample/normalizedReflectance-9aidm",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property. Apple Watch uses an arrangement of emitters and photodiodes to measure the PPG waveform.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Interpret-second-generation-PPG-sensors-data",
+          "level": 3,
+          "text": "Interpret second-generation PPG sensors data",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Second-generation optical heart sensors, in Apple Watch 4, 5, and SE models, use green or infrared (IR) LED lights paired with light-sensitive photodiodes. The active photodiode’s indices show which photodiode or combination of photodiodes the Apple Watch uses.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-4403032",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For the second-generation sensors, the mapping of the optical heart sensor (SE, Series 4 and 5) emitter is:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Emitter index",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "LED arrangement",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "0",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "0, Infrared (940 nm)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "1",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "1, Infrared (940 nm)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "2",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "2, Green (525 nm)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "3",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "3, Green (525 nm)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "4",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "4, Green (525 nm)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "5",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "5, Green (525 nm)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "anchor": "Interpret-third-generation-PPG-sensors",
+          "level": 3,
+          "text": "Interpret third-generation PPG sensors",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Third-generation optical heart sensor, in Apple Watch Series 6 and later, plus Apple Watch Ultra and Ultra 2, use an additional red LED with a different arrangement of emitters and photodiodes than the second-generation PPG sensors. The active photodiodes indices show which photodiode or combination of photodiodes the Apple Watch uses.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-4403033",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For the third-generation sensors, the mapping of the optical heart sensor (Series 6, 7, 8, 9, Ultra, and Ultra 2) emitter is:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Emitter index",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "LED arrangement",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "0",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "0, Infrared (850 nm)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "1",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "1, Infrared (850 nm)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "2",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "2, Infrared (850 nm)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "3",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "3, Infrared (850 nm)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "4",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "4, Infrared (940 nm)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "5",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "5, Red (660 nm)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "6",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "6, Red (660 nm)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "7",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "7, Red (660 nm)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "8",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "8, Red (660 nm)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "9",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "9, Green (525 nm)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "10",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "10, Green (525 nm)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "11",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "11, Green (525 nm)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "12",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "12, Green (525 nm)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.sensorkit/documentation/SensorKit": {
+      "abstract": [
+        {
+          "text": "Retrieve data and derived metrics from sensors on an iPhone, or paired Apple Watch.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sensorkit/documentation/SensorKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SensorKit",
+      "type": "topic",
+      "url": "/documentation/sensorkit"
+    },
+    "doc://com.apple.sensorkit/documentation/SensorKit/SRPhotoplethysmogramAccelerometerSample": {
+      "abstract": [
+        {
+          "text": "A data sample from the photoplethysmogram (PPG) accelerometer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SRPhotoplethysmogramAccelerometerSample"
+        }
+      ],
+      "identifier": "doc://com.apple.sensorkit/documentation/SensorKit/SRPhotoplethysmogramAccelerometerSample",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SRPhotoplethysmogramAccelerometerSample"
+        }
+      ],
+      "role": "symbol",
+      "title": "SRPhotoplethysmogramAccelerometerSample",
+      "type": "topic",
+      "url": "/documentation/sensorkit/srphotoplethysmogramaccelerometersample"
+    },
+    "doc://com.apple.sensorkit/documentation/SensorKit/SRPhotoplethysmogramOpticalSample": {
+      "abstract": [
+        {
+          "text": "A data sample from the photoplethysmogram (PPG) optical sensor.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SRPhotoplethysmogramOpticalSample"
+        }
+      ],
+      "identifier": "doc://com.apple.sensorkit/documentation/SensorKit/SRPhotoplethysmogramOpticalSample",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SRPhotoplethysmogramOpticalSample"
+        }
+      ],
+      "role": "symbol",
+      "title": "SRPhotoplethysmogramOpticalSample",
+      "type": "topic",
+      "url": "/documentation/sensorkit/srphotoplethysmogramopticalsample"
+    },
+    "doc://com.apple.sensorkit/documentation/SensorKit/SRPhotoplethysmogramOpticalSample/Condition": {
+      "abstract": [
+        {
+          "text": "The conditions that may occur when recording photoplethysmogram optical data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Condition"
+        }
+      ],
+      "identifier": "doc://com.apple.sensorkit/documentation/SensorKit/SRPhotoplethysmogramOpticalSample/Condition",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Condition"
+        }
+      ],
+      "role": "symbol",
+      "title": "SRPhotoplethysmogramOpticalSample.Condition",
+      "type": "topic",
+      "url": "/documentation/sensorkit/srphotoplethysmogramopticalsample/condition"
+    },
+    "doc://com.apple.sensorkit/documentation/SensorKit/SRPhotoplethysmogramOpticalSample/NoiseTerms-swift.struct": {
+      "abstract": [
+        {
+          "text": "The mathematical terms that you use to compute the photoplethysmogram (PPG) noise.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NoiseTerms"
+        }
+      ],
+      "identifier": "doc://com.apple.sensorkit/documentation/SensorKit/SRPhotoplethysmogramOpticalSample/NoiseTerms-swift.struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NoiseTerms"
+        }
+      ],
+      "role": "symbol",
+      "title": "SRPhotoplethysmogramOpticalSample.NoiseTerms",
+      "type": "topic",
+      "url": "/documentation/sensorkit/srphotoplethysmogramopticalsample/noiseterms-swift.struct"
+    },
+    "doc://com.apple.sensorkit/documentation/SensorKit/SRPhotoplethysmogramOpticalSample/activePhotodiodeIndexes": {
+      "abstract": [
+        {
+          "text": "The set of photodiodes in use during the sample.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "activePhotodiodeIndexes"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation8IndexSetV",
+          "text": "IndexSet"
+        }
+      ],
+      "identifier": "doc://com.apple.sensorkit/documentation/SensorKit/SRPhotoplethysmogramOpticalSample/activePhotodiodeIndexes",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "activePhotodiodeIndexes"
+        }
+      ],
+      "role": "symbol",
+      "title": "activePhotodiodeIndexes",
+      "type": "topic",
+      "url": "/documentation/sensorkit/srphotoplethysmogramopticalsample/activephotodiodeindexes"
+    },
+    "doc://com.apple.sensorkit/documentation/SensorKit/SRPhotoplethysmogramOpticalSample/backgroundNoise": {
+      "abstract": [
+        {
+          "text": "An estimate of the ambient noise intrusion of the sensor.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "backgroundNoise"
+        }
+      ],
+      "identifier": "doc://com.apple.sensorkit/documentation/SensorKit/SRPhotoplethysmogramOpticalSample/backgroundNoise",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "backgroundNoise",
+      "type": "topic",
+      "url": "/documentation/sensorkit/srphotoplethysmogramopticalsample/backgroundnoise"
+    },
+    "doc://com.apple.sensorkit/documentation/SensorKit/SRPhotoplethysmogramOpticalSample/backgroundNoiseOffset": {
+      "abstract": [
+        {
+          "text": "An estimate of the electronics noise floor level of the sensor.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "backgroundNoiseOffset"
+        }
+      ],
+      "identifier": "doc://com.apple.sensorkit/documentation/SensorKit/SRPhotoplethysmogramOpticalSample/backgroundNoiseOffset",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "backgroundNoiseOffset",
+      "type": "topic",
+      "url": "/documentation/sensorkit/srphotoplethysmogramopticalsample/backgroundnoiseoffset"
+    },
+    "doc://com.apple.sensorkit/documentation/SensorKit/SRPhotoplethysmogramOpticalSample/conditions": {
+      "abstract": [
+        {
+          "text": "The sensor context or conditions that may affect the sample.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "conditions"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SRPhotoplethysmogramOpticalSample",
+          "text": "SRPhotoplethysmogramOpticalSample"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SRPhotoplethysmogramOpticalSampleCondition",
+          "text": "Condition"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.sensorkit/documentation/SensorKit/SRPhotoplethysmogramOpticalSample/conditions",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "conditions"
+        }
+      ],
+      "role": "symbol",
+      "title": "conditions",
+      "type": "topic",
+      "url": "/documentation/sensorkit/srphotoplethysmogramopticalsample/conditions"
+    },
+    "doc://com.apple.sensorkit/documentation/SensorKit/SRPhotoplethysmogramOpticalSample/effectiveWavelength": {
+      "abstract": [
+        {
+          "text": "A temperature-compensated wavelength estimate in nanometers that the emitter produces.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "effectiveWavelength"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation11MeasurementV",
+          "text": "Measurement"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSUnitLength",
+          "text": "UnitLength"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.sensorkit/documentation/SensorKit/SRPhotoplethysmogramOpticalSample/effectiveWavelength",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "effectiveWavelength"
+        }
+      ],
+      "role": "symbol",
+      "title": "effectiveWavelength",
+      "type": "topic",
+      "url": "/documentation/sensorkit/srphotoplethysmogramopticalsample/effectivewavelength"
+    },
+    "doc://com.apple.sensorkit/documentation/SensorKit/SRPhotoplethysmogramOpticalSample/emitter": {
+      "abstract": [
+        {
+          "text": "The index of the LED in use during the sample.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "emitter"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.sensorkit/documentation/SensorKit/SRPhotoplethysmogramOpticalSample/emitter",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "emitter"
+        }
+      ],
+      "role": "symbol",
+      "title": "emitter",
+      "type": "topic",
+      "url": "/documentation/sensorkit/srphotoplethysmogramopticalsample/emitter"
+    },
+    "doc://com.apple.sensorkit/documentation/SensorKit/SRPhotoplethysmogramOpticalSample/nanosecondsSinceStart": {
+      "abstract": [
+        {
+          "text": "The time in nanoseconds since the system turns on the sensor.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "nanosecondsSinceStart"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int64V",
+          "text": "Int64"
+        }
+      ],
+      "identifier": "doc://com.apple.sensorkit/documentation/SensorKit/SRPhotoplethysmogramOpticalSample/nanosecondsSinceStart",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "nanosecondsSinceStart"
+        }
+      ],
+      "role": "symbol",
+      "title": "nanosecondsSinceStart",
+      "type": "topic",
+      "url": "/documentation/sensorkit/srphotoplethysmogramopticalsample/nanosecondssincestart"
+    },
+    "doc://com.apple.sensorkit/documentation/SensorKit/SRPhotoplethysmogramOpticalSample/noiseTerms-swift.property": {
+      "abstract": [
+        {
+          "text": "The mathematical terms for computing the noise in this sample.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "noiseTerms"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SRPhotoplethysmogramOpticalSample",
+          "text": "SRPhotoplethysmogramOpticalSample"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:So33SRPhotoplethysmogramOpticalSampleC9SensorKitE10NoiseTermsV",
+          "text": "NoiseTerms"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.sensorkit/documentation/SensorKit/SRPhotoplethysmogramOpticalSample/noiseTerms-swift.property",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "noiseTerms",
+      "type": "topic",
+      "url": "/documentation/sensorkit/srphotoplethysmogramopticalsample/noiseterms-swift.property"
+    },
+    "doc://com.apple.sensorkit/documentation/SensorKit/SRPhotoplethysmogramOpticalSample/nominalWavelength": {
+      "abstract": [
+        {
+          "text": "The wavelength in nanometers that the emitter produces while operating at a specific temperature.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "nominalWavelength"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation11MeasurementV",
+          "text": "Measurement"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSUnitLength",
+          "text": "UnitLength"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.sensorkit/documentation/SensorKit/SRPhotoplethysmogramOpticalSample/nominalWavelength",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "nominalWavelength"
+        }
+      ],
+      "role": "symbol",
+      "title": "nominalWavelength",
+      "type": "topic",
+      "url": "/documentation/sensorkit/srphotoplethysmogramopticalsample/nominalwavelength"
+    },
+    "doc://com.apple.sensorkit/documentation/SensorKit/SRPhotoplethysmogramOpticalSample/normalizedReflectance-15f2k": {
+      "abstract": [
+        {
+          "text": "The normalized photoplethysmogram (PPG) waveform.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "normalizedReflectance"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.sensorkit/documentation/SensorKit/SRPhotoplethysmogramOpticalSample/normalizedReflectance-15f2k",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "normalizedReflectance",
+      "type": "topic",
+      "url": "/documentation/sensorkit/srphotoplethysmogramopticalsample/normalizedreflectance-15f2k"
+    },
+    "doc://com.apple.sensorkit/documentation/SensorKit/SRPhotoplethysmogramOpticalSample/normalizedReflectance-9aidm": {
+      "abstract": [
+        {
+          "text": "The normalized photoplethysmogram (PPG) waveform.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "normalizedReflectance"
+        }
+      ],
+      "identifier": "doc://com.apple.sensorkit/documentation/SensorKit/SRPhotoplethysmogramOpticalSample/normalizedReflectance-9aidm",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "normalizedReflectance",
+      "type": "topic",
+      "url": "/documentation/sensorkit/srphotoplethysmogramopticalsample/normalizedreflectance-9aidm"
+    },
+    "doc://com.apple.sensorkit/documentation/SensorKit/SRPhotoplethysmogramOpticalSample/pinkNoise": {
+      "abstract": [
+        {
+          "text": "An estimate of the pink noise of the sensor.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "pinkNoise"
+        }
+      ],
+      "identifier": "doc://com.apple.sensorkit/documentation/SensorKit/SRPhotoplethysmogramOpticalSample/pinkNoise",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "pinkNoise",
+      "type": "topic",
+      "url": "/documentation/sensorkit/srphotoplethysmogramopticalsample/pinknoise"
+    },
+    "doc://com.apple.sensorkit/documentation/SensorKit/SRPhotoplethysmogramOpticalSample/samplingFrequency": {
+      "abstract": [
+        {
+          "text": "The sampling frequency of the photoplethysmogram (PPG) data in hertz.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "samplingFrequency"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation11MeasurementV",
+          "text": "Measurement"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSUnitFrequency",
+          "text": "UnitFrequency"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.sensorkit/documentation/SensorKit/SRPhotoplethysmogramOpticalSample/samplingFrequency",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "samplingFrequency"
+        }
+      ],
+      "role": "symbol",
+      "title": "samplingFrequency",
+      "type": "topic",
+      "url": "/documentation/sensorkit/srphotoplethysmogramopticalsample/samplingfrequency"
+    },
+    "doc://com.apple.sensorkit/documentation/SensorKit/SRPhotoplethysmogramOpticalSample/signalIdentifier": {
+      "abstract": [
+        {
+          "text": "The identifier for a signal that photodiodes and emitters produce.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "signalIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.sensorkit/documentation/SensorKit/SRPhotoplethysmogramOpticalSample/signalIdentifier",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "signalIdentifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "signalIdentifier",
+      "type": "topic",
+      "url": "/documentation/sensorkit/srphotoplethysmogramopticalsample/signalidentifier"
+    },
+    "doc://com.apple.sensorkit/documentation/SensorKit/SRPhotoplethysmogramOpticalSample/whiteNoise": {
+      "abstract": [
+        {
+          "text": "An estimate of the white noise of the sensor.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "whiteNoise"
+        }
+      ],
+      "identifier": "doc://com.apple.sensorkit/documentation/SensorKit/SRPhotoplethysmogramOpticalSample/whiteNoise",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "whiteNoise",
+      "type": "topic",
+      "url": "/documentation/sensorkit/srphotoplethysmogramopticalsample/whitenoise"
+    },
+    "doc://com.apple.sensorkit/documentation/SensorKit/SRPhotoplethysmogramSample/Usage-swift.struct": {
+      "abstract": [
+        {
+          "text": "The possible ways that a person or the system may take a photoplethysmogram (PPG) reading.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Usage"
+        }
+      ],
+      "identifier": "doc://com.apple.sensorkit/documentation/SensorKit/SRPhotoplethysmogramSample/Usage-swift.struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Usage"
+        }
+      ],
+      "role": "symbol",
+      "title": "SRPhotoplethysmogramSample.Usage",
+      "type": "topic",
+      "url": "/documentation/sensorkit/srphotoplethysmogramsample/usage-swift.struct"
+    },
+    "doc://com.apple.sensorkit/documentation/SensorKit/SRPhotoplethysmogramSample/accelerometerSamples": {
+      "abstract": [
+        {
+          "text": "The samples recorded by the photoplethysmogram (PPG) accelerometer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "accelerometerSamples"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SRPhotoplethysmogramAccelerometerSample",
+          "text": "SRPhotoplethysmogramAccelerometerSample"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.sensorkit/documentation/SensorKit/SRPhotoplethysmogramSample/accelerometerSamples",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "accelerometerSamples"
+        }
+      ],
+      "role": "symbol",
+      "title": "accelerometerSamples",
+      "type": "topic",
+      "url": "/documentation/sensorkit/srphotoplethysmogramsample/accelerometersamples"
+    },
+    "doc://com.apple.sensorkit/documentation/SensorKit/SRPhotoplethysmogramSample/nanosecondsSinceStart": {
+      "abstract": [
+        {
+          "text": "The time in nanoseconds since the start of the data recording.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "nanosecondsSinceStart"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int64V",
+          "text": "Int64"
+        }
+      ],
+      "identifier": "doc://com.apple.sensorkit/documentation/SensorKit/SRPhotoplethysmogramSample/nanosecondsSinceStart",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "nanosecondsSinceStart"
+        }
+      ],
+      "role": "symbol",
+      "title": "nanosecondsSinceStart",
+      "type": "topic",
+      "url": "/documentation/sensorkit/srphotoplethysmogramsample/nanosecondssincestart"
+    },
+    "doc://com.apple.sensorkit/documentation/SensorKit/SRPhotoplethysmogramSample/opticalSamples": {
+      "abstract": [
+        {
+          "text": "The samples recorded by the photoplethysmogram (PPG) optical sensor.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "opticalSamples"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SRPhotoplethysmogramOpticalSample",
+          "text": "SRPhotoplethysmogramOpticalSample"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.sensorkit/documentation/SensorKit/SRPhotoplethysmogramSample/opticalSamples",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "opticalSamples"
+        }
+      ],
+      "role": "symbol",
+      "title": "opticalSamples",
+      "type": "topic",
+      "url": "/documentation/sensorkit/srphotoplethysmogramsample/opticalsamples"
+    },
+    "doc://com.apple.sensorkit/documentation/SensorKit/SRPhotoplethysmogramSample/startDate": {
+      "abstract": [
+        {
+          "text": "The start date of the photoplethysmogram (PPG) sensor data recording.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "startDate"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DateV",
+          "text": "Date"
+        }
+      ],
+      "identifier": "doc://com.apple.sensorkit/documentation/SensorKit/SRPhotoplethysmogramSample/startDate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "startDate"
+        }
+      ],
+      "role": "symbol",
+      "title": "startDate",
+      "type": "topic",
+      "url": "/documentation/sensorkit/srphotoplethysmogramsample/startdate"
+    },
+    "doc://com.apple.sensorkit/documentation/SensorKit/SRPhotoplethysmogramSample/temperature": {
+      "abstract": [
+        {
+          "text": "The samples recorded by the photoplethysmogram (PPG) thermometer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "temperature"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation11MeasurementV",
+          "text": "Measurement"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSUnitTemperature",
+          "text": "UnitTemperature"
+        },
+        {
+          "kind": "text",
+          "text": ">?"
+        }
+      ],
+      "identifier": "doc://com.apple.sensorkit/documentation/SensorKit/SRPhotoplethysmogramSample/temperature",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "temperature"
+        }
+      ],
+      "role": "symbol",
+      "title": "temperature",
+      "type": "topic",
+      "url": "/documentation/sensorkit/srphotoplethysmogramsample/temperature"
+    },
+    "doc://com.apple.sensorkit/documentation/SensorKit/SRPhotoplethysmogramSample/usage-swift.property": {
+      "abstract": [
+        {
+          "text": "The method that the person or system uses to take the reading.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "usage"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SRPhotoplethysmogramSample",
+          "text": "SRPhotoplethysmogramSample"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SRPhotoplethysmogramSampleUsage",
+          "text": "Usage"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.sensorkit/documentation/SensorKit/SRPhotoplethysmogramSample/usage-swift.property",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "usage"
+        }
+      ],
+      "role": "symbol",
+      "title": "usage",
+      "type": "topic",
+      "url": "/documentation/sensorkit/srphotoplethysmogramsample/usage-swift.property"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables an object to be encoded and decoded for archiving and distribution.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCoding"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoding"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying": {
+      "abstract": [
+        {
+          "text": "A protocol that objects adopt to provide functional copies of themselves.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCopying"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCopying",
+      "type": "topic",
+      "url": "/documentation/foundation/nscopying"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables encoding and decoding in a manner that is robust against object substitution attacks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSSecureCoding"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSecureCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nssecurecoding"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    },
+    "media-4403032": {
+      "alt": "Two diagrams of the back of Apple Watch 4, 5, and SE models that show the location of infrared LED lights and light-sensitive photodiodes.",
+      "identifier": "media-4403032",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/8a99680724a958fe34132ab0ee2e1eab/media-4403032@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5c78854397f4fa4fe8f472bc4914e1f6/media-4403032~dark@2x.png"
+        }
+      ]
+    },
+    "media-4403033": {
+      "alt": "Two diagrams of Apple Series 6 and later, plus Apple Watch Ultra and Ultra 2, that show the location of the emitters and photodiodes.",
+      "identifier": "media-4403033",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/bbb8e9fd04ab00febe5fda750f633c8f/media-4403033@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/bbb8e9fd04ab00febe5fda750f633c8f/media-4403033~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding",
+        "doc://com.externally.resolved.symbol/s:s8SendableP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Accessing-PPG-data",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.sensorkit/documentation/SensorKit/SRPhotoplethysmogramSample/startDate",
+        "doc://com.apple.sensorkit/documentation/SensorKit/SRPhotoplethysmogramSample/nanosecondsSinceStart",
+        "doc://com.apple.sensorkit/documentation/SensorKit/SRPhotoplethysmogramSample/usage-swift.property",
+        "doc://com.apple.sensorkit/documentation/SensorKit/SRPhotoplethysmogramSample/Usage-swift.struct",
+        "doc://com.apple.sensorkit/documentation/SensorKit/SRPhotoplethysmogramSample/opticalSamples",
+        "doc://com.apple.sensorkit/documentation/SensorKit/SRPhotoplethysmogramSample/accelerometerSamples",
+        "doc://com.apple.sensorkit/documentation/SensorKit/SRPhotoplethysmogramAccelerometerSample",
+        "doc://com.apple.sensorkit/documentation/SensorKit/SRPhotoplethysmogramSample/temperature"
+      ],
+      "title": "Accessing PPG data"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Accessing-optical-data",
+      "identifiers": [
+        "doc://com.apple.sensorkit/documentation/SensorKit/SRPhotoplethysmogramOpticalSample/emitter",
+        "doc://com.apple.sensorkit/documentation/SensorKit/SRPhotoplethysmogramOpticalSample/activePhotodiodeIndexes",
+        "doc://com.apple.sensorkit/documentation/SensorKit/SRPhotoplethysmogramOpticalSample/signalIdentifier",
+        "doc://com.apple.sensorkit/documentation/SensorKit/SRPhotoplethysmogramOpticalSample/nominalWavelength",
+        "doc://com.apple.sensorkit/documentation/SensorKit/SRPhotoplethysmogramOpticalSample/effectiveWavelength",
+        "doc://com.apple.sensorkit/documentation/SensorKit/SRPhotoplethysmogramOpticalSample/samplingFrequency",
+        "doc://com.apple.sensorkit/documentation/SensorKit/SRPhotoplethysmogramOpticalSample/nanosecondsSinceStart",
+        "doc://com.apple.sensorkit/documentation/SensorKit/SRPhotoplethysmogramOpticalSample/conditions",
+        "doc://com.apple.sensorkit/documentation/SensorKit/SRPhotoplethysmogramOpticalSample/Condition",
+        "doc://com.apple.sensorkit/documentation/SensorKit/SRPhotoplethysmogramOpticalSample/noiseTerms-swift.property",
+        "doc://com.apple.sensorkit/documentation/SensorKit/SRPhotoplethysmogramOpticalSample/NoiseTerms-swift.struct",
+        "doc://com.apple.sensorkit/documentation/SensorKit/SRPhotoplethysmogramOpticalSample/normalizedReflectance-15f2k"
+      ],
+      "title": "Accessing optical data"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "17.4",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "17.4",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "17.4",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "SRPhotoplethysmogramOpticalSample"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SRPhotoplethysmogramOpticalSample"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SRPhotoplethysmogramOpticalSample"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.sensorkit/documentation/SensorKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Accessing-optical-data",
+              "identifiers": [
+                "doc://com.apple.sensorkit/documentation/SensorKit/SRPhotoplethysmogramOpticalSample/emitter",
+                "doc://com.apple.sensorkit/documentation/SensorKit/SRPhotoplethysmogramOpticalSample/activePhotodiodeIndexes",
+                "doc://com.apple.sensorkit/documentation/SensorKit/SRPhotoplethysmogramOpticalSample/signalIdentifier",
+                "doc://com.apple.sensorkit/documentation/SensorKit/SRPhotoplethysmogramOpticalSample/nominalWavelength",
+                "doc://com.apple.sensorkit/documentation/SensorKit/SRPhotoplethysmogramOpticalSample/effectiveWavelength",
+                "doc://com.apple.sensorkit/documentation/SensorKit/SRPhotoplethysmogramOpticalSample/samplingFrequency",
+                "doc://com.apple.sensorkit/documentation/SensorKit/SRPhotoplethysmogramOpticalSample/nanosecondsSinceStart",
+                "doc://com.apple.sensorkit/documentation/SensorKit/SRPhotoplethysmogramOpticalSample/conditions",
+                "doc://com.apple.sensorkit/documentation/SensorKit/SRPhotoplethysmogramOpticalSample/Condition",
+                "doc://com.apple.sensorkit/documentation/SensorKit/SRPhotoplethysmogramOpticalSample/whiteNoise",
+                "doc://com.apple.sensorkit/documentation/SensorKit/SRPhotoplethysmogramOpticalSample/pinkNoise",
+                "doc://com.apple.sensorkit/documentation/SensorKit/SRPhotoplethysmogramOpticalSample/backgroundNoise",
+                "doc://com.apple.sensorkit/documentation/SensorKit/SRPhotoplethysmogramOpticalSample/backgroundNoiseOffset",
+                "doc://com.apple.sensorkit/documentation/SensorKit/SRPhotoplethysmogramOpticalSample/normalizedReflectance-9aidm"
+              ],
+              "title": "Accessing optical data"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            },
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+                "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding"
+              ],
+              "kind": "relationships",
+              "title": "Conforms To",
+              "type": "conformsTo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Accessing-PPG-data",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.sensorkit/documentation/SensorKit/SRPhotoplethysmogramSample/startDate",
+                "doc://com.apple.sensorkit/documentation/SensorKit/SRPhotoplethysmogramSample/nanosecondsSinceStart",
+                "doc://com.apple.sensorkit/documentation/SensorKit/SRPhotoplethysmogramSample/usage-swift.property",
+                "doc://com.apple.sensorkit/documentation/SensorKit/SRPhotoplethysmogramSample/Usage-swift.struct",
+                "doc://com.apple.sensorkit/documentation/SensorKit/SRPhotoplethysmogramSample/opticalSamples",
+                "doc://com.apple.sensorkit/documentation/SensorKit/SRPhotoplethysmogramSample/accelerometerSamples",
+                "doc://com.apple.sensorkit/documentation/SensorKit/SRPhotoplethysmogramAccelerometerSample",
+                "doc://com.apple.sensorkit/documentation/SensorKit/SRPhotoplethysmogramSample/temperature"
+              ],
+              "title": "Accessing PPG data"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "SRPhotoplethysmogramOpticalSample"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRPhotoplethysmogramSample~1opticalSamples/title",
+          "value": "opticalSamples"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRPhotoplethysmogramSample~1opticalSamples/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "opticalSamples"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRPhotoplethysmogramSample~1usage-swift.property/title",
+          "value": "usage"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRPhotoplethysmogramSample~1usage-swift.property/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "usage"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRPhotoplethysmogramOpticalSample~1signalIdentifier/title",
+          "value": "signalIdentifier"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRPhotoplethysmogramOpticalSample~1signalIdentifier/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "signalIdentifier"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRPhotoplethysmogramSample~1startDate/title",
+          "value": "startDate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRPhotoplethysmogramSample~1startDate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "startDate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRPhotoplethysmogramOpticalSample~1samplingFrequency/title",
+          "value": "samplingFrequency"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRPhotoplethysmogramOpticalSample~1samplingFrequency/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "samplingFrequency"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRPhotoplethysmogramSample~1temperature/title",
+          "value": "temperature"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRPhotoplethysmogramSample~1temperature/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "temperature"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRPhotoplethysmogramOpticalSample~1nanosecondsSinceStart/title",
+          "value": "nanosecondsSinceStart"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRPhotoplethysmogramOpticalSample~1nanosecondsSinceStart/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "nanosecondsSinceStart"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRPhotoplethysmogramOpticalSample~1Condition/title",
+          "value": "SRPhotoplethysmogramOpticalSampleCondition"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRPhotoplethysmogramOpticalSample~1Condition/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SRPhotoplethysmogramOpticalSampleCondition"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRPhotoplethysmogramOpticalSample~1Condition/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SRPhotoplethysmogramOpticalSampleCondition"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRPhotoplethysmogramOpticalSample~1conditions/title",
+          "value": "conditions"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRPhotoplethysmogramOpticalSample~1conditions/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "conditions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRPhotoplethysmogramOpticalSample~1nominalWavelength/title",
+          "value": "nominalWavelength"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRPhotoplethysmogramOpticalSample~1nominalWavelength/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "nominalWavelength"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRPhotoplethysmogramOpticalSample~1effectiveWavelength/title",
+          "value": "effectiveWavelength"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRPhotoplethysmogramOpticalSample~1effectiveWavelength/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "effectiveWavelength"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRPhotoplethysmogramSample~1nanosecondsSinceStart/title",
+          "value": "nanosecondsSinceStart"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRPhotoplethysmogramSample~1nanosecondsSinceStart/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "nanosecondsSinceStart"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRPhotoplethysmogramOpticalSample~1activePhotodiodeIndexes/title",
+          "value": "activePhotodiodeIndexes"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRPhotoplethysmogramOpticalSample~1activePhotodiodeIndexes/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "activePhotodiodeIndexes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRPhotoplethysmogramAccelerometerSample/title",
+          "value": "SRPhotoplethysmogramAccelerometerSample"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRPhotoplethysmogramAccelerometerSample/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SRPhotoplethysmogramAccelerometerSample"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRPhotoplethysmogramAccelerometerSample/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SRPhotoplethysmogramAccelerometerSample"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRPhotoplethysmogramOpticalSample/title",
+          "value": "SRPhotoplethysmogramOpticalSample"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRPhotoplethysmogramOpticalSample/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SRPhotoplethysmogramOpticalSample"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRPhotoplethysmogramOpticalSample/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SRPhotoplethysmogramOpticalSample"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRPhotoplethysmogramSample~1accelerometerSamples/title",
+          "value": "accelerometerSamples"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRPhotoplethysmogramSample~1accelerometerSamples/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "accelerometerSamples"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRPhotoplethysmogramOpticalSample~1emitter/title",
+          "value": "emitter"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRPhotoplethysmogramOpticalSample~1emitter/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "emitter"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRPhotoplethysmogramSample~1Usage-swift.struct/title",
+          "value": "SRPhotoplethysmogramSampleUsage"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRPhotoplethysmogramSample~1Usage-swift.struct/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SRPhotoplethysmogramSampleUsage"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sensorkit~1documentation~1SensorKit~1SRPhotoplethysmogramSample~1Usage-swift.struct/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SRPhotoplethysmogramSampleUsage"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/sensorkit/srphotoplethysmogramopticalsample"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/sensorkit/srphotoplethysmogramopticalsample"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

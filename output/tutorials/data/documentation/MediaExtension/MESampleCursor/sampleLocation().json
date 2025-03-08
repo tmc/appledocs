@@ -1,0 +1,1174 @@
+{
+  "abstract": [
+    {
+      "text": "Returns the location and byte source of the sample indicated by the cursor.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.mediaextension/documentation/MediaExtension",
+        "doc://com.apple.mediaextension/documentation/MediaExtension/MESampleCursor"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.mediaextension/documentation/MediaExtension/MESampleCursor/sampleLocation()"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(pl)MESampleCursor(im)sampleLocationReturningError:",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "func"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "sampleLocation"
+      },
+      {
+        "kind": "text",
+        "text": "() "
+      },
+      {
+        "kind": "keyword",
+        "text": "throws"
+      },
+      {
+        "kind": "text",
+        "text": " -> "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "c:objc(cs)MESampleLocation",
+        "text": "MESampleLocation"
+      }
+    ],
+    "modules": [
+      {
+        "name": "MediaExtension"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "sampleLocationReturningError:"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Method",
+    "symbolKind": "method",
+    "title": "sampleLocation()"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "optional"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "func"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "sampleLocation"
+            },
+            {
+              "kind": "text",
+              "text": "() "
+            },
+            {
+              "kind": "keyword",
+              "text": "throws"
+            },
+            {
+              "kind": "text",
+              "text": " -> "
+            },
+            {
+              "identifier": "doc://com.apple.mediaextension/documentation/MediaExtension/MESampleLocation",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)MESampleLocation",
+              "text": "MESampleLocation"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "return-value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A sample location.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Sample data needs to be contiguous. If the sample data isn’t contiguous or the cursor doesn’t support this method, it fails with the error ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.mediaextension/documentation/MediaExtension/MEError-swift.struct/Code/locationNotAvailable",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". In this case, use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.mediaextension/documentation/MediaExtension/MESampleCursor/loadSampleBufferContainingSamples(to:completionHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to load the data.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If it’s not possible to implement this method, implement ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.mediaextension/documentation/MediaExtension/MESampleCursor/estimatedSampleLocation()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to get an estimated sample location, and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.mediaextension/documentation/MediaExtension/MESampleCursor/refineSampleLocation(_:refinementData:refinementDataLength:refinedLocation:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to analyze this data and provide precise location and size info.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.mediaextension/documentation/MediaExtension": {
+      "abstract": [
+        {
+          "text": "This framework provides a means for developers to create format readers, video decoders, and RAW processors for media that the system doesn’t natively support.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaextension/documentation/MediaExtension",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "MediaExtension",
+      "type": "topic",
+      "url": "/documentation/mediaextension"
+    },
+    "doc://com.apple.mediaextension/documentation/MediaExtension/MEError-swift.struct/Code/locationNotAvailable": {
+      "abstract": [
+        {
+          "text": "An error code that indicates specific sample isn’t contiguous, spans more than one file, or is for some other reason unsuitable for reading directly from a file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "locationNotAvailable"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaextension/documentation/MediaExtension/MEError-swift.struct/Code/locationNotAvailable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MEErrorLocationNotAvailable"
+        }
+      ],
+      "role": "symbol",
+      "title": "MEError.Code.locationNotAvailable",
+      "type": "topic",
+      "url": "/documentation/mediaextension/meerror-swift.struct/code/locationnotavailable"
+    },
+    "doc://com.apple.mediaextension/documentation/MediaExtension/MESampleCursor": {
+      "abstract": [
+        {
+          "text": "A protocol that defines the information to provide about samples within a track of a media asset, and enables stepping through samples in the track in decode or presentation order.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MESampleCursor"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaextension/documentation/MediaExtension/MESampleCursor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MESampleCursor"
+        }
+      ],
+      "role": "symbol",
+      "title": "MESampleCursor",
+      "type": "topic",
+      "url": "/documentation/mediaextension/mesamplecursor"
+    },
+    "doc://com.apple.mediaextension/documentation/MediaExtension/MESampleCursor/chunkDetails()": {
+      "abstract": [
+        {
+          "text": "Returns information about the chunk that holds the sample indicated by the cursor.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "chunkDetails"
+        },
+        {
+          "kind": "text",
+          "text": "() "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MESampleCursorChunk",
+          "text": "MESampleCursorChunk"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaextension/documentation/MediaExtension/MESampleCursor/chunkDetails()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "chunkDetailsReturningError:"
+        }
+      ],
+      "role": "symbol",
+      "title": "chunkDetails()",
+      "type": "topic",
+      "url": "/documentation/mediaextension/mesamplecursor/chunkdetails()"
+    },
+    "doc://com.apple.mediaextension/documentation/MediaExtension/MESampleCursor/estimatedSampleLocation()": {
+      "abstract": [
+        {
+          "text": "Returns an estimate of the sample location indicated by the cursor.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "estimatedSampleLocation"
+        },
+        {
+          "kind": "text",
+          "text": "() "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MEEstimatedSampleLocation",
+          "text": "MEEstimatedSampleLocation"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaextension/documentation/MediaExtension/MESampleCursor/estimatedSampleLocation()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "estimatedSampleLocationReturningError:"
+        }
+      ],
+      "role": "symbol",
+      "title": "estimatedSampleLocation()",
+      "type": "topic",
+      "url": "/documentation/mediaextension/mesamplecursor/estimatedsamplelocation()"
+    },
+    "doc://com.apple.mediaextension/documentation/MediaExtension/MESampleCursor/loadSampleBufferContainingSamples(to:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Builds a sample buffer that contains the samples at the cursor that you specify.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "loadSampleBufferContainingSamples"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MESampleCursor",
+          "text": "MESampleCursor"
+        },
+        {
+          "kind": "text",
+          "text": ")?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMSampleBufferRef",
+          "text": "CMSampleBuffer"
+        },
+        {
+          "kind": "text",
+          "text": "?, (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaextension/documentation/MediaExtension/MESampleCursor/loadSampleBufferContainingSamples(to:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "loadSampleBufferContainingSamplesToEndCursor:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "loadSampleBufferContainingSamples(to:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/mediaextension/mesamplecursor/loadsamplebuffercontainingsamples(to:completionhandler:)"
+    },
+    "doc://com.apple.mediaextension/documentation/MediaExtension/MESampleCursor/refineSampleLocation(_:refinementData:refinementDataLength:refinedLocation:)": {
+      "abstract": [
+        {
+          "text": "Produces an exact sample location based on the estimated sample location and refinement data that you specify.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "refineSampleLocation"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@AVSampleCursorStorageRange",
+          "text": "AVSampleCursorStorageRange"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "refinementData"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5UInt8V",
+          "text": "UInt8"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "refinementDataLength"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "refinedLocation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@AVSampleCursorStorageRange",
+          "text": "AVSampleCursorStorageRange"
+        },
+        {
+          "kind": "text",
+          "text": ">) "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaextension/documentation/MediaExtension/MESampleCursor/refineSampleLocation(_:refinementData:refinementDataLength:refinedLocation:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "refineSampleLocation:refinementData:refinementDataLength:refinedLocation:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "refineSampleLocation(_:refinementData:refinementDataLength:refinedLocation:)",
+      "type": "topic",
+      "url": "/documentation/mediaextension/mesamplecursor/refinesamplelocation(_:refinementdata:refinementdatalength:refinedlocation:)"
+    },
+    "doc://com.apple.mediaextension/documentation/MediaExtension/MESampleCursor/sampleLocation()": {
+      "abstract": [
+        {
+          "text": "Returns the location and byte source of the sample indicated by the cursor.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sampleLocation"
+        },
+        {
+          "kind": "text",
+          "text": "() "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MESampleLocation",
+          "text": "MESampleLocation"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaextension/documentation/MediaExtension/MESampleCursor/sampleLocation()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "sampleLocationReturningError:"
+        }
+      ],
+      "role": "symbol",
+      "title": "sampleLocation()",
+      "type": "topic",
+      "url": "/documentation/mediaextension/mesamplecursor/samplelocation()"
+    },
+    "doc://com.apple.mediaextension/documentation/MediaExtension/MESampleLocation": {
+      "abstract": [
+        {
+          "text": "An object that provides information about the sample location with the media.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MESampleLocation"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaextension/documentation/MediaExtension/MESampleLocation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MESampleLocation"
+        }
+      ],
+      "role": "symbol",
+      "title": "MESampleLocation",
+      "type": "topic",
+      "url": "/documentation/mediaextension/mesamplelocation"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSError": {
+      "abstract": [
+        {
+          "text": "Information about an error condition including a domain, a domain-specific error code, and application-specific information.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSError"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSError",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSError",
+      "type": "topic",
+      "url": "/documentation/foundation/nserror"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Sending-samples-to-a-pipeline",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.mediaextension/documentation/MediaExtension/MESampleCursor/chunkDetails()",
+        "doc://com.apple.mediaextension/documentation/MediaExtension/MESampleCursor/loadSampleBufferContainingSamples(to:completionHandler:)"
+      ],
+      "title": "Sending samples to a pipeline"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "14.0",
+              "name": "macOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Instance Method"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "sampleLocationReturningError:"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "method"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "sampleLocationReturningError:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.mediaextension/documentation/MediaExtension",
+                "doc://com.apple.mediaextension/documentation/MediaExtension/MESampleCursor"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Sending-samples-to-a-pipeline",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.mediaextension/documentation/MediaExtension/MESampleCursor/chunkDetails()",
+                "doc://com.apple.mediaextension/documentation/MediaExtension/MESampleCursor/loadSampleBufferContainingSamples(to:completionHandler:)"
+              ],
+              "title": "Sending samples to a pipeline"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "Mac Catalyst",
+                  "macOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "text",
+                    "text": "- ("
+                  },
+                  {
+                    "identifier": "doc://com.apple.mediaextension/documentation/MediaExtension/MESampleLocation",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)MESampleLocation",
+                    "text": "MESampleLocation"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " *) "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "sampleLocationReturningError:"
+                  },
+                  {
+                    "kind": "text",
+                    "text": "("
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSError",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSError",
+                    "text": "NSError"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " * *) "
+                  },
+                  {
+                    "kind": "internalParam",
+                    "text": "error"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ";"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "add",
+          "path": "/primaryContentSections/1",
+          "value": {
+            "kind": "parameters",
+            "parameters": [
+              {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "On output, a pointer to an error object that describes why the method failed, or ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "nil",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " if no error occurred. If you are not interested in the error information, pass ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "nil",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " for this parameter.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ],
+                "name": "error"
+              }
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/2",
+          "value": {
+            "content": [
+              {
+                "anchor": "return-value",
+                "level": 2,
+                "text": "Return Value",
+                "type": "heading"
+              },
+              {
+                "inlineContent": [
+                  {
+                    "text": "A sample location.",
+                    "type": "text"
+                  },
+                  {
+                    "text": " On failure, this method returns ",
+                    "type": "text"
+                  },
+                  {
+                    "code": "nil",
+                    "type": "codeVoice"
+                  },
+                  {
+                    "text": ".",
+                    "type": "text"
+                  }
+                ],
+                "type": "paragraph"
+              }
+            ],
+            "kind": "content"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaextension~1documentation~1MediaExtension~1MESampleCursor~1sampleLocation()/title",
+          "value": "sampleLocationReturningError:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaextension~1documentation~1MediaExtension~1MESampleCursor~1sampleLocation()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "sampleLocationReturningError:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaextension~1documentation~1MediaExtension~1MESampleCursor~1loadSampleBufferContainingSamples(to:completionHandler:)/title",
+          "value": "loadSampleBufferContainingSamplesToEndCursor:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaextension~1documentation~1MediaExtension~1MESampleCursor~1loadSampleBufferContainingSamples(to:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "loadSampleBufferContainingSamplesToEndCursor:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaextension~1documentation~1MediaExtension~1MEError-swift.struct~1Code~1locationNotAvailable/title",
+          "value": "MEErrorLocationNotAvailable"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaextension~1documentation~1MediaExtension~1MEError-swift.struct~1Code~1locationNotAvailable/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MEErrorLocationNotAvailable"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaextension~1documentation~1MediaExtension~1MESampleCursor~1estimatedSampleLocation()/title",
+          "value": "estimatedSampleLocationReturningError:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaextension~1documentation~1MediaExtension~1MESampleCursor~1estimatedSampleLocation()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "estimatedSampleLocationReturningError:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaextension~1documentation~1MediaExtension~1MESampleCursor~1refineSampleLocation(_:refinementData:refinementDataLength:refinedLocation:)/title",
+          "value": "refineSampleLocation:refinementData:refinementDataLength:refinedLocation:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaextension~1documentation~1MediaExtension~1MESampleCursor~1refineSampleLocation(_:refinementData:refinementDataLength:refinedLocation:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "refineSampleLocation:refinementData:refinementDataLength:refinedLocation:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaextension~1documentation~1MediaExtension~1MESampleCursor~1chunkDetails()/title",
+          "value": "chunkDetailsReturningError:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaextension~1documentation~1MediaExtension~1MESampleCursor~1chunkDetails()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "chunkDetailsReturningError:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaextension~1documentation~1MediaExtension~1MESampleLocation/title",
+          "value": "MESampleLocation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaextension~1documentation~1MediaExtension~1MESampleLocation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MESampleLocation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaextension~1documentation~1MediaExtension~1MESampleLocation/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MESampleLocation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaextension~1documentation~1MediaExtension~1MESampleCursor/title",
+          "value": "MESampleCursor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaextension~1documentation~1MediaExtension~1MESampleCursor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MESampleCursor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaextension~1documentation~1MediaExtension~1MESampleCursor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MESampleCursor"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/mediaextension/mesamplecursor/samplelocation()"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/mediaextension/mesamplecursor/samplelocation()"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

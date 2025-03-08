@@ -1,0 +1,1644 @@
+{
+  "abstract": [
+    {
+      "text": "An object that transfers app-specific data between the devices joined in a group session.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.GroupActivities/documentation/GroupActivities"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSessionMessenger"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:15GroupActivities0A16SessionMessengerC",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "GroupSessionMessenger"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Group Activities"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "GroupSessionMessenger"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "12.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "GroupSessionMessenger"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "final"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "GroupSessionMessenger"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.GroupActivities/documentation/GroupActivities/synchronizing-data-during-a-shareplay-activity"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use a ",
+              "type": "text"
+            },
+            {
+              "code": "GroupSessionMessenger",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object to coordinate your app’s behavior across",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the devices attached to a group session. This object leverages the existing",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "FaceTime communication channel to send app-specific data related",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to a SharePlay experience. For example, a movie-watching app might share user",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "comments or tags while the movie plays.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You create a ",
+              "type": "text"
+            },
+            {
+              "code": "GroupSessionMessenger",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object directly and use it to send and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "receive app data. Create the messenger using an active ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "which manages the underlying communication channel. Store a strong reference",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to your ",
+              "type": "text"
+            },
+            {
+              "code": "GroupSessionMessenger",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object for the lifetime of the session. The following",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "example shows a custom object for managing a movie-watching experience. The",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "object stores the GroupSession object associated with the experience and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "creates a ",
+              "type": "text"
+            },
+            {
+              "code": "GroupSessionMessenger",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for sending messages between participants.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "class CowatchingExperience : ObservableObject {",
+            "    let groupSession: GroupSession<Trailer>",
+            "    let messenger: GroupSessionMessenger",
+            "",
+            "    init(groupSession: GroupSession<Trailer>, item: Trailer) {",
+            "        self.groupSession = groupSession",
+            "        self.messenger = GroupSessionMessenger(session: groupSession)",
+            "",
+            "        self.groupSession.join()",
+            "        // …",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about establishing a group session, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Receive-Messages-from-Other-Devices",
+          "level": 3,
+          "text": "Receive Messages from Other Devices",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system delivers messages to your app asynchronously when they arrive and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "adds them to a message sequence. Use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSessionMessenger/messages(of:)-626qo",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSessionMessenger/messages(of:)-jvoz",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to retrieve the sequence you want and iterate",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "over its results. Use a ",
+              "type": "text"
+            },
+            {
+              "code": "for",
+              "type": "codeVoice"
+            },
+            {
+              "text": "-",
+              "type": "text"
+            },
+            {
+              "code": "in",
+              "type": "codeVoice"
+            },
+            {
+              "text": " loop with the ",
+              "type": "text"
+            },
+            {
+              "code": "await",
+              "type": "codeVoice"
+            },
+            {
+              "text": " keyword to iterate",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "asynchronously over the results. The following example shows how a Tic Tac Toe",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "game might retrieve moves sent by the current opponent. After receiving each",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "move, the code adds that move to the current participant’s board.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let sessionMessenger = GroupSessionMessenger(session: groupSession)",
+            "",
+            "async {",
+            "    for await move in sessionMessenger.messages(of: TicTacToe.Move.self) {",
+            "        self.board.addMove(move)",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.GroupActivities/documentation/GroupActivities": {
+      "abstract": [
+        {
+          "text": "Create app-specific activities your users can share and experience together.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Group Activities",
+      "type": "topic",
+      "url": "/documentation/groupactivities"
+    },
+    "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSession": {
+      "abstract": [
+        {
+          "text": "A session for an in-progress activity that synchronizes content among participant devices.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GroupSession"
+        }
+      ],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSession",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GroupSession"
+        }
+      ],
+      "role": "symbol",
+      "title": "GroupSession",
+      "type": "topic",
+      "url": "/documentation/groupactivities/groupsession"
+    },
+    "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSessionJournal": {
+      "abstract": [
+        {
+          "text": "An object that manages file and data transfers between participants",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "joined in a group session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GroupSessionJournal"
+        }
+      ],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSessionJournal",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GroupSessionJournal"
+        }
+      ],
+      "role": "symbol",
+      "title": "GroupSessionJournal",
+      "type": "topic",
+      "url": "/documentation/groupactivities/groupsessionjournal"
+    },
+    "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSessionMessenger": {
+      "abstract": [
+        {
+          "text": "An object that transfers app-specific data between the devices joined in a group session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GroupSessionMessenger"
+        }
+      ],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSessionMessenger",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GroupSessionMessenger"
+        }
+      ],
+      "role": "symbol",
+      "title": "GroupSessionMessenger",
+      "type": "topic",
+      "url": "/documentation/groupactivities/groupsessionmessenger"
+    },
+    "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSessionMessenger/DeliveryMode-swift.enum": {
+      "abstract": [
+        {
+          "text": "The transmission characteristics to apply to the delivery of messages.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DeliveryMode"
+        }
+      ],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSessionMessenger/DeliveryMode-swift.enum",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DeliveryMode"
+        }
+      ],
+      "role": "symbol",
+      "title": "GroupSessionMessenger.DeliveryMode",
+      "type": "topic",
+      "url": "/documentation/groupactivities/groupsessionmessenger/deliverymode-swift.enum"
+    },
+    "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSessionMessenger/DeliveryMode-swift.enum/reliable": {
+      "abstract": [
+        {
+          "text": "An attempt to ensure the delivery of messages to known participants.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "reliable"
+        }
+      ],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSessionMessenger/DeliveryMode-swift.enum/reliable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GroupSessionMessenger.DeliveryMode.reliable",
+      "type": "topic",
+      "url": "/documentation/groupactivities/groupsessionmessenger/deliverymode-swift.enum/reliable"
+    },
+    "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSessionMessenger/MessageContext": {
+      "abstract": [
+        {
+          "text": "A structure that contains additional information about an incoming message, such as which device sent it.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MessageContext"
+        }
+      ],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSessionMessenger/MessageContext",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MessageContext"
+        }
+      ],
+      "role": "symbol",
+      "title": "GroupSessionMessenger.MessageContext",
+      "type": "topic",
+      "url": "/documentation/groupactivities/groupsessionmessenger/messagecontext"
+    },
+    "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSessionMessenger/Messages": {
+      "abstract": [
+        {
+          "text": "An asynchronous sequence of messages sent to the session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Messages"
+        }
+      ],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSessionMessenger/Messages",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Messages"
+        }
+      ],
+      "role": "symbol",
+      "title": "GroupSessionMessenger.Messages",
+      "type": "topic",
+      "url": "/documentation/groupactivities/groupsessionmessenger/messages"
+    },
+    "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSessionMessenger/deliveryMode-swift.property": {
+      "abstract": [
+        {
+          "text": "The ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSessionMessenger/DeliveryMode-swift.enum",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " specified at initialization time (defaults to ",
+          "type": "text"
+        },
+        {
+          "code": "reliable",
+          "type": "codeVoice"
+        },
+        {
+          "text": ").",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "deliveryMode"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:15GroupActivities0A16SessionMessengerC",
+          "text": "GroupSessionMessenger"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:15GroupActivities0A16SessionMessengerC12DeliveryModeO",
+          "text": "DeliveryMode"
+        }
+      ],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSessionMessenger/deliveryMode-swift.property",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "deliveryMode",
+      "type": "topic",
+      "url": "/documentation/groupactivities/groupsessionmessenger/deliverymode-swift.property"
+    },
+    "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSessionMessenger/init(session:)": {
+      "abstract": [
+        {
+          "text": "Creates a new group session messenger with",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSessionMessenger/DeliveryMode-swift.enum/reliable",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "delivery mode and associates it with the specified session object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Activity"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "session"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:15GroupActivities0A7SessionC",
+          "text": "GroupSession"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Activity"
+        },
+        {
+          "kind": "text",
+          "text": ">)"
+        }
+      ],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSessionMessenger/init(session:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(session:)",
+      "type": "topic",
+      "url": "/documentation/groupactivities/groupsessionmessenger/init(session:)"
+    },
+    "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSessionMessenger/init(session:deliveryMode:)": {
+      "abstract": [
+        {
+          "text": "Creates a new group session messenger with the specified delivery mode,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSessionMessenger/DeliveryMode-swift.enum",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ",",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "and associates it with the specified session object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Activity"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "session"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:15GroupActivities0A7SessionC",
+          "text": "GroupSession"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Activity"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "deliveryMode"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:15GroupActivities0A16SessionMessengerC",
+          "text": "GroupSessionMessenger"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:15GroupActivities0A16SessionMessengerC12DeliveryModeO",
+          "text": "DeliveryMode"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSessionMessenger/init(session:deliveryMode:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(session:deliveryMode:)",
+      "type": "topic",
+      "url": "/documentation/groupactivities/groupsessionmessenger/init(session:deliverymode:)"
+    },
+    "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSessionMessenger/messages(of:)-626qo": {
+      "abstract": [
+        {
+          "text": "Returns the asynchronous sequence of messages that contain a generic data object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "messages"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "of"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": ".Type) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:15GroupActivities0A16SessionMessengerC",
+          "text": "GroupSessionMessenger"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:15GroupActivities0A16SessionMessengerC8MessagesV",
+          "text": "Messages"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSessionMessenger/messages(of:)-626qo",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "messages(of:)",
+      "type": "topic",
+      "url": "/documentation/groupactivities/groupsessionmessenger/messages(of:)-626qo"
+    },
+    "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSessionMessenger/messages(of:)-jvoz": {
+      "abstract": [
+        {
+          "text": "Returns the asynchronous sequence of messages that match the app-specific type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "messages"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Message"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "of"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Message"
+        },
+        {
+          "kind": "text",
+          "text": ".Type) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:15GroupActivities0A16SessionMessengerC",
+          "text": "GroupSessionMessenger"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:15GroupActivities0A16SessionMessengerC8MessagesV",
+          "text": "Messages"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Message"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSessionMessenger/messages(of:)-jvoz",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "messages(of:)",
+      "type": "topic",
+      "url": "/documentation/groupactivities/groupsessionmessenger/messages(of:)-jvoz"
+    },
+    "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSessionMessenger/send(_:to:)-2a4ku": {
+      "abstract": [
+        {
+          "text": "Sends a custom type asynchronously to other participants in the group session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "send"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Message"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Message"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:15GroupActivities12ParticipantsO",
+          "text": "Participants"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSessionMessenger/send(_:to:)-2a4ku",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "send(_:to:)",
+      "type": "topic",
+      "url": "/documentation/groupactivities/groupsessionmessenger/send(_:to:)-2a4ku"
+    },
+    "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSessionMessenger/send(_:to:)-4o52m": {
+      "abstract": [
+        {
+          "text": "Sends a standard data object asynchronously to other participants in the group session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "send"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:15GroupActivities12ParticipantsO",
+          "text": "Participants"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSessionMessenger/send(_:to:)-4o52m",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "send(_:to:)",
+      "type": "topic",
+      "url": "/documentation/groupactivities/groupsessionmessenger/send(_:to:)-4o52m"
+    },
+    "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSessionMessenger/send(_:to:completion:)-9e0sn": {
+      "abstract": [
+        {
+          "text": "Sends a custom type to other participants in the group session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "send"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Message"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Message"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:15GroupActivities12ParticipantsO",
+          "text": "Participants"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completion"
+        },
+        {
+          "kind": "text",
+          "text": ": ((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSessionMessenger/send(_:to:completion:)-9e0sn",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "send(_:to:completion:)",
+      "type": "topic",
+      "url": "/documentation/groupactivities/groupsessionmessenger/send(_:to:completion:)-9e0sn"
+    },
+    "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSessionMessenger/send(_:to:completion:)-zufl": {
+      "abstract": [
+        {
+          "text": "Sends a standard data object to other participants in the group session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "send"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:15GroupActivities12ParticipantsO",
+          "text": "Participants"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completion"
+        },
+        {
+          "kind": "text",
+          "text": ": ((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSessionMessenger/send(_:to:completion:)-zufl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "send(_:to:completion:)",
+      "type": "topic",
+      "url": "/documentation/groupactivities/groupsessionmessenger/send(_:to:completion:)-zufl"
+    },
+    "doc://com.apple.GroupActivities/documentation/GroupActivities/Participants": {
+      "abstract": [
+        {
+          "text": "The set of participants to include in messages.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Participants"
+        }
+      ],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/Participants",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Participants"
+        }
+      ],
+      "role": "symbol",
+      "title": "Participants",
+      "type": "topic",
+      "url": "/documentation/groupactivities/participants"
+    },
+    "doc://com.apple.GroupActivities/documentation/GroupActivities/synchronizing-data-during-a-shareplay-activity": {
+      "abstract": [
+        {
+          "text": "Send custom messages and data between devices to synchronize content for",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "your activity, and incorporate messages your app receives from other",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "participants.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.GroupActivities/documentation/GroupActivities/synchronizing-data-during-a-shareplay-activity",
+      "kind": "article",
+      "role": "article",
+      "title": "Synchronizing data during a SharePlay activity",
+      "type": "topic",
+      "url": "/documentation/groupactivities/synchronizing-data-during-a-shareplay-activity"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s8SendableP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "File-and-data-transfer",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.GroupActivities/documentation/GroupActivities/synchronizing-data-during-a-shareplay-activity",
+        "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSessionJournal"
+      ],
+      "title": "File and data transfer"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-group-session-messenger",
+      "identifiers": [
+        "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSessionMessenger/init(session:)"
+      ],
+      "title": "Creating a group session messenger"
+    },
+    {
+      "anchor": "Sending-data-to-the-group",
+      "identifiers": [
+        "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSessionMessenger/send(_:to:)-4o52m",
+        "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSessionMessenger/send(_:to:)-2a4ku",
+        "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSessionMessenger/send(_:to:completion:)-zufl",
+        "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSessionMessenger/send(_:to:completion:)-9e0sn",
+        "doc://com.apple.GroupActivities/documentation/GroupActivities/Participants"
+      ],
+      "title": "Sending data to the group"
+    },
+    {
+      "anchor": "Receiving-data-from-other-participants",
+      "identifiers": [
+        "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSessionMessenger/messages(of:)-626qo",
+        "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSessionMessenger/messages(of:)-jvoz",
+        "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSessionMessenger/Messages",
+        "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSessionMessenger/MessageContext"
+      ],
+      "title": "Receiving data from other participants"
+    },
+    {
+      "anchor": "Initializers",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSessionMessenger/init(session:deliveryMode:)"
+      ],
+      "title": "Initializers"
+    },
+    {
+      "anchor": "Instance-Properties",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSessionMessenger/deliveryMode-swift.property"
+      ],
+      "title": "Instance Properties"
+    },
+    {
+      "anchor": "Enumerations",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.GroupActivities/documentation/GroupActivities/GroupSessionMessenger/DeliveryMode-swift.enum"
+      ],
+      "title": "Enumerations"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/groupactivities/groupsessionmessenger"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

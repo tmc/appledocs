@@ -1,0 +1,1090 @@
+{
+  "abstract": [
+    {
+      "text": "An object that manages a fixed-size named buffer.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/kernel",
+        "doc://com.apple.documentation/documentation/kernel/hardware_families",
+        "doc://com.apple.documentation/documentation/kernel/hardware_families/network"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/kernel/ionetworkdata"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1423547,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@S@IONetworkData",
+    "modules": [
+      {
+        "name": "Kernel"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "15.4",
+        "introducedAt": "10.6",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "IONetworkData"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "IONetworkData"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/osobject",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@S@OSObject",
+              "text": "OSObject"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An IONetworkData object manages a fixed-size named buffer. This object provides external access methods that can be used to access the contents of the data buffer. In addition, serialization is supported, and therefore this object can be added to a property table to publish the data object. An unique name must be assigned to the object during initialization. An OSSymbol key will be created based on the assigned name, and this key can be used when the object is added to a dictionary.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The level of access granted to the access methods can be restricted, by specifying a set of supported access types when the object is initialized, or modified later by calling setAccessTypes(). By default, each IONetworkData object created will support serialization, and will also allow its data buffer to be read through the read() access method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An access notification handler, in the form of a 'C' function, can be registered to receive a call each time the data buffer is accessed through an access method. Arguments provided to the handler will identify the data object and the type of access that triggered the notification. The handler can therefore perform lazy update of the data buffer until an interested party tries to read or serialize the data. The notification handler can also take over the default action performed by the access methods when the buffer type is set to kIONetworkDataBufferTypeNone. This will prevent the access methods from accessing the data buffer, and allow the handler to override the access protocol.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This object is primarily used by IONetworkInterface to export interface properties to user space.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/kernel": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Kernel",
+      "type": "topic",
+      "url": "/documentation/kernel"
+    },
+    "doc://com.apple.documentation/documentation/kernel/hardware_families": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/hardware_families",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Hardware Families",
+      "type": "topic",
+      "url": "/documentation/kernel/hardware_families"
+    },
+    "doc://com.apple.documentation/documentation/kernel/hardware_families/network": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/hardware_families/network",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Network",
+      "type": "topic",
+      "url": "/documentation/kernel/hardware_families/network"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkdata": {
+      "abstract": [
+        {
+          "text": "An object that manages a fixed-size named buffer.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkdata",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IONetworkData",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkdata"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkdata/1423489-clearbuffer": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "clearBuffer"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkdata/1423489-clearbuffer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "clearBuffer",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkdata/1423489-clearbuffer"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkdata/1423491-writebytes": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "writeBytes"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkdata/1423491-writebytes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "writeBytes",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkdata/1423491-writebytes"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkdata/1423495-getaccesstypes": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getAccessTypes"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkdata/1423495-getaccesstypes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getAccessTypes",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkdata/1423495-getaccesstypes"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkdata/1423497-init": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkdata/1423497-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkdata/1423497-init"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkdata/1423501-serialize": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "serialize"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkdata/1423501-serialize",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "serialize",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkdata/1423501-serialize"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkdata/1423503-getkey": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getKey"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkdata/1423503-getkey",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getKey",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkdata/1423503-getkey"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkdata/1423510-getnotificationaction": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getNotificationAction"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkdata/1423510-getnotificationaction",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getNotificationAction",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkdata/1423510-getnotificationaction"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkdata/1423512-readbytes": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "readBytes"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkdata/1423512-readbytes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "readBytes",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkdata/1423512-readbytes"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkdata/1423514-setaccesstypes": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setAccessTypes"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkdata/1423514-setaccesstypes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setAccessTypes",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkdata/1423514-setaccesstypes"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkdata/1423516-free": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "free"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkdata/1423516-free",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "free",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkdata/1423516-free"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkdata/1423520-getbuffertype": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getBufferType"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkdata/1423520-getbuffertype",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getBufferType",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkdata/1423520-getbuffertype"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkdata/1423522-write": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "write"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkdata/1423522-write",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "write",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkdata/1423522-write"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkdata/1423526-withinternalbuffer": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "withInternalBuffer"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkdata/1423526-withinternalbuffer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "withInternalBuffer",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkdata/1423526-withinternalbuffer"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkdata/1423527-getnotificationtarget": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getNotificationTarget"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkdata/1423527-getnotificationtarget",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getNotificationTarget",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkdata/1423527-getnotificationtarget"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkdata/1423529-read": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "read"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkdata/1423529-read",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "read",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkdata/1423529-read"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkdata/1423532-setnotificationtarget": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setNotificationTarget"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkdata/1423532-setnotificationtarget",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setNotificationTarget",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkdata/1423532-setnotificationtarget"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkdata/1423534-reset": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "reset"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkdata/1423534-reset",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "reset",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkdata/1423534-reset"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkdata/1423536-getbuffer": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getBuffer"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkdata/1423536-getbuffer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getBuffer",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkdata/1423536-getbuffer"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkdata/1423538-withnobuffer": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "withNoBuffer"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkdata/1423538-withnobuffer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "withNoBuffer",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkdata/1423538-withnobuffer"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkdata/1423542-withexternalbuffer": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "withExternalBuffer"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkdata/1423542-withexternalbuffer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "withExternalBuffer",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkdata/1423542-withexternalbuffer"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkdata/1423545-getmetaclass": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getMetaClass"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkdata/1423545-getmetaclass",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getMetaClass",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkdata/1423545-getmetaclass"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkdata/1423551-getnotificationparameter": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getNotificationParameter"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkdata/1423551-getnotificationparameter",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getNotificationParameter",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkdata/1423551-getnotificationparameter"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkdata/1423554-getsize": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getSize"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkdata/1423554-getsize",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getSize",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkdata/1423554-getsize"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkdata/1812449-clearbuffer": {
+      "abstract": [
+        {
+          "text": "Clears the data buffer by filling it with zeroes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkdata/1812449-clearbuffer",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "clearBuffer",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkdata/1812449-clearbuffer"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkdata/1812455-free": {
+      "abstract": [
+        {
+          "text": "Frees the IONetworkData object.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkdata/1812455-free",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "free",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkdata/1812455-free"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkdata/1812461-getaccesstypes": {
+      "abstract": [
+        {
+          "text": "Gets the types of data access supported by this object.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkdata/1812461-getaccesstypes",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getAccessTypes",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkdata/1812461-getaccesstypes"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkdata/1812470-getbuffer": {
+      "abstract": [
+        {
+          "text": "Gets a pointer to the data buffer.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkdata/1812470-getbuffer",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getBuffer",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkdata/1812470-getbuffer"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkdata/1812479-getbuffertype": {
+      "abstract": [
+        {
+          "text": "Gets the type of data buffer managed by this object.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkdata/1812479-getbuffertype",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getBufferType",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkdata/1812479-getbuffertype"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkdata/1812486-getkey": {
+      "abstract": [
+        {
+          "text": "Gets a unique OSSymbol key associated with this object.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkdata/1812486-getkey",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getKey",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkdata/1812486-getkey"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkdata/1812491-getnotificationaction": {
+      "abstract": [
+        {
+          "text": "Gets the C function that was registered to handle access notifications sent from this object.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkdata/1812491-getnotificationaction",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getNotificationAction",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkdata/1812491-getnotificationaction"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkdata/1812494-getnotificationparameter": {
+      "abstract": [
+        {
+          "text": "Gets the parameter that will be passed to the access notification handler.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkdata/1812494-getnotificationparameter",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getNotificationParameter",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkdata/1812494-getnotificationparameter"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkdata/1812497-getnotificationtarget": {
+      "abstract": [
+        {
+          "text": "Gets the first parameter that will be passed to the access notification handler.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkdata/1812497-getnotificationtarget",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getNotificationTarget",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkdata/1812497-getnotificationtarget"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkdata/1812500-getsize": {
+      "abstract": [
+        {
+          "text": "Gets the size of the data buffer.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkdata/1812500-getsize",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getSize",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkdata/1812500-getsize"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkdata/1812508-init": {
+      "abstract": [
+        {
+          "text": "Initializes an IONetworkData object.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkdata/1812508-init",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "init",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkdata/1812508-init"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkdata/1812511-read": {
+      "abstract": [
+        {
+          "text": "An access method that reads from the data buffer.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkdata/1812511-read",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "read",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkdata/1812511-read"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkdata/1812517-readbytes": {
+      "abstract": [
+        {
+          "text": "Reads from the data buffer and copies the data to a destination buffer provided by the caller.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkdata/1812517-readbytes",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "readBytes",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkdata/1812517-readbytes"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkdata/1812524-reset": {
+      "abstract": [
+        {
+          "text": "An access method that resets the data buffer.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkdata/1812524-reset",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "reset",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkdata/1812524-reset"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkdata/1812531-serialize": {
+      "abstract": [
+        {
+          "text": "Serializes the IONetworkData object.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkdata/1812531-serialize",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "serialize",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkdata/1812531-serialize"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkdata/1812540-setaccesstypes": {
+      "abstract": [
+        {
+          "text": "Sets the types of access that are permitted on the data buffer.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkdata/1812540-setaccesstypes",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setAccessTypes",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkdata/1812540-setaccesstypes"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkdata/1812552-setnotificationtarget": {
+      "abstract": [
+        {
+          "text": "Registers a C function to handle access notifications sent from this object.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkdata/1812552-setnotificationtarget",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setNotificationTarget",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkdata/1812552-setnotificationtarget"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkdata/1812563-withexternalbuffer": {
+      "abstract": [
+        {
+          "text": "Factory method that constructs and initializes an IONetworkData object with an external data buffer.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkdata/1812563-withexternalbuffer",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "withExternalBuffer",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkdata/1812563-withexternalbuffer"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkdata/1812581-withinternalbuffer": {
+      "abstract": [
+        {
+          "text": "Factory method that constructs and initializes an IONetworkData object with an internal data buffer.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkdata/1812581-withinternalbuffer",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "withInternalBuffer",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkdata/1812581-withinternalbuffer"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkdata/1812601-withnobuffer": {
+      "abstract": [
+        {
+          "text": "Factory method that constructs and initializes an IONetworkData object without a data buffer.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkdata/1812601-withnobuffer",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "withNoBuffer",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkdata/1812601-withnobuffer"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkdata/1812620-write": {
+      "abstract": [
+        {
+          "text": "An access method that writes to the data buffer.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkdata/1812620-write",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "write",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkdata/1812620-write"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkdata/1812640-writebytes": {
+      "abstract": [
+        {
+          "text": "Writes to the data buffer with data from a source buffer provided by the caller.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkdata/1812640-writebytes",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "writeBytes",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkdata/1812640-writebytes"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkdata/reserved": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkdata/reserved",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "_reserved",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkdata/reserved"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkmedium": {
+      "abstract": [
+        {
+          "text": "An object that encapsulates information about a network medium (i.e. 10Base-T, or 100Base-T Full Duplex).",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkmedium",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IONetworkMedium",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkmedium"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopacketbufferconstraints": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopacketbufferconstraints",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOPacketBufferConstraints",
+      "type": "topic",
+      "url": "/documentation/kernel/iopacketbufferconstraints"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopacketqueue": {
+      "abstract": [
+        {
+          "text": "Implements a bounded FIFO queue of mbuf packets.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopacketqueue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOPacketQueue",
+      "type": "topic",
+      "url": "/documentation/kernel/iopacketqueue"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioworkloop/action": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioworkloop/action",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "Action",
+      "type": "topic",
+      "url": "/documentation/kernel/ioworkloop/action"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osobject": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSObject",
+      "type": "topic",
+      "url": "/documentation/kernel/osobject"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/osobject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/ionetworkmedium",
+        "doc://com.apple.documentation/documentation/kernel/iopacketqueue",
+        "doc://com.apple.documentation/documentation/kernel/iopacketbufferconstraints"
+      ],
+      "title": "Network Data"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "1818685",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/ionetworkdata/1812449-clearbuffer",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkdata/1812455-free",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkdata/1812461-getaccesstypes",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkdata/1812470-getbuffer",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkdata/1812479-getbuffertype",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkdata/1812486-getkey",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkdata/1812491-getnotificationaction",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkdata/1812494-getnotificationparameter",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkdata/1812497-getnotificationtarget",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkdata/1812500-getsize",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkdata/1812508-init",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkdata/1812511-read",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkdata/1812517-readbytes",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkdata/1812524-reset",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkdata/1812531-serialize",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkdata/1812540-setaccesstypes",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkdata/1812552-setnotificationtarget",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkdata/1812563-withexternalbuffer",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkdata/1812581-withinternalbuffer",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkdata/1812601-withnobuffer",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkdata/1812620-write",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkdata/1812640-writebytes"
+      ],
+      "kind": "taskGroup",
+      "title": "Miscellaneous"
+    },
+    {
+      "anchor": "1818700",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/ioworkloop/action"
+      ],
+      "kind": "taskGroup",
+      "title": "Callbacks"
+    },
+    {
+      "anchor": "1818702",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/ionetworkdata/reserved"
+      ],
+      "kind": "taskGroup",
+      "title": "Instance Variables"
+    },
+    {
+      "anchor": "2861139",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/ionetworkdata/1423489-clearbuffer",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkdata/1423516-free",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkdata/1423495-getaccesstypes",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkdata/1423536-getbuffer",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkdata/1423520-getbuffertype",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkdata/1423503-getkey",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkdata/1423545-getmetaclass",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkdata/1423510-getnotificationaction",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkdata/1423551-getnotificationparameter",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkdata/1423527-getnotificationtarget",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkdata/1423554-getsize",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkdata/1423497-init",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkdata/1423529-read",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkdata/1423512-readbytes",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkdata/1423534-reset",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkdata/1423501-serialize",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkdata/1423514-setaccesstypes",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkdata/1423532-setnotificationtarget",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkdata/1423522-write",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkdata/1423491-writebytes"
+      ],
+      "kind": "taskGroup",
+      "title": "Instance Methods"
+    },
+    {
+      "anchor": "2861140",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/ionetworkdata/1423542-withexternalbuffer",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkdata/1423526-withinternalbuffer",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkdata/1423538-withnobuffer"
+      ],
+      "kind": "taskGroup",
+      "title": "Type Methods"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/kernel/ionetworkdata"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

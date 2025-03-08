@@ -1,0 +1,466 @@
+{
+  "abstract": [
+    {
+      "text": "Improve the security of your macOS app by limiting the ways its components can run.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.security/documentation/Security"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.security/documentation/Security/constraining-a-tool's-launch-environment"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Security"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "14.0",
+        "name": "macOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "15.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Constraining a tool’s launch environment"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample code project contains a factored macOS app. The app target, Launch Constraints Sample App, contains a UI for adding two numbers. It communicates with a separate process, Helper Tool, which does the calculation.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Helper Tool has a constrained launch environment, which limits the parent processes that are allowed to launch the helper. The launch constraint is defined in the property list file ",
+              "type": "text"
+            },
+            {
+              "code": "helper_parent.coderequirement",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". It restricts the code-signing identifier of the parent process to be the same as the bundle identifier of Launch Constraints Sample App, and the team identifier of the parent process to be your Apple Developer team.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When a process launches Helper Tool, the kernel checks whether the process’s code signing identifier and team identifier have the expected values. If they do, then the Helper Tool runs normally; otherwise, it doesn’t run.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Configure-the-sample-code-project",
+          "level": 3,
+          "text": "Configure the sample code project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To configure the sample code project, do the following in Xcode:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select the Xcode project in the Project navigator.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select the Launch Constraints Sample App target in the Project editor.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Switch to the Signing & Capabilities tab.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Choose your team in the Signing Team drop-down menu.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Copy the value of the macOS Bundle Identifier build setting.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select the file Helper Tool > ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "helper_parent.coderequirement",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " in the Project navigator.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Paste the value you copied in step 5 into the Value field for the Signing identifier key.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Copy your team identifier. This is a string of letters and numbers — such as B97A5CM278 — that follows ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "com.example.apple-samplecode.constraining-a-tools-launch-environment",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " in the signing identifier.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Paste the value you copied in step 8 into the Value field for the Team identifier key.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Save the file.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "anchor": "Run-the-Helper-Tool-as-part-of-the-apps-workflow",
+          "level": 3,
+          "text": "Run the Helper Tool as part of the app’s workflow",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In Xcode, ensure the Launch Constraints Sample App scheme is selected in the scheme drop-down menu, and choose Product > Run. Xcode launches the sample app. Verify that you can enter numbers into the left-most two text fields and click Calculate to compute their sum.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you click Calculate, the ",
+              "type": "text"
+            },
+            {
+              "code": "sum",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function uses ",
+              "type": "text"
+            },
+            {
+              "code": "Process",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to launch its Helper Tool, and sets up a pair of ",
+              "type": "text"
+            },
+            {
+              "code": "Pipe",
+              "type": "codeVoice"
+            },
+            {
+              "text": " objects to send input to the tool and receive its output. You use this design pattern to create GUI “wrappers” for command-line tools, such as database administration tools.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app can launch the Helper Tool because when Xcode signs the app, it sets the app binary’s signing identifier to the app’s bundle ID, and embeds your Apple Developer team identifier. The Helper Tool’s launch constraint tests that its parent process — in this case, the app — has that signing identifier and team identifier.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Run-the-Helper-Tool-as-a-standalone-tool",
+          "level": 3,
+          "text": "Run the Helper Tool as a standalone tool",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In Xcode, switch to the Helper Tool scheme in the scheme drop-down menu, and choose Product > Run. Xcode doesn’t run the Helper Tool, and an error appears in the debugger’s output:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "Message from debugger: Terminated due to code signing error",
+            "Program ended with exit code: 9"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This error indicates that the Helper Tool’s launch constraint, defined in ",
+              "type": "text"
+            },
+            {
+              "code": "helper_parent.coderequirement",
+              "type": "codeVoice"
+            },
+            {
+              "text": " was violated, and the operating system didn’t allow it to run. In this situation, the parent process of the Helper Tool is the debugger (",
+              "type": "text"
+            },
+            {
+              "code": "lldb",
+              "type": "codeVoice"
+            },
+            {
+              "text": "), which doesn’t have the signing identifier expressed in the parent process launch constraint, and is signed by a different Apple Developer team.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.security/documentation/Security": {
+      "abstract": [
+        {
+          "text": "Secure the data your app manages, and control access to your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Security",
+      "type": "topic",
+      "url": "/documentation/security"
+    },
+    "e78b2eb10802/ConstrainingAToolsLaunchEnvironment.zip": {
+      "checksum": "e78b2eb108021ab92cf38692ce9aea0e43406c12e51324bbaf3322d3d5d843d3b152685a979a34f7b14a5cba487eacc6f1396bf06f024deb24a5b2cd52c2f5d8",
+      "identifier": "e78b2eb10802/ConstrainingAToolsLaunchEnvironment.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/e78b2eb10802/ConstrainingAToolsLaunchEnvironment.zip"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "e78b2eb10802/ConstrainingAToolsLaunchEnvironment.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/security/constraining-a-tool's-launch-environment"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/security/constraining-a-tool's-launch-environment"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

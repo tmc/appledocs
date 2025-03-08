@@ -1,0 +1,1611 @@
+{
+  "abstract": [
+    {
+      "text": "Enable Apple Intelligence to summarize and prioritize app",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "content using Spotlight extensions.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.corespotlight/documentation/CoreSpotlight"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.corespotlight/documentation/CoreSpotlight/enable-apple-intelligence-summaries"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Core Spotlight"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Enabling Apple Intelligence summarization and prioritization"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In iOS 18.4 and macOS 15.4 and later, Apple Intelligence can optionally provide summarization of mail, messages, and audio transcripts, and prioritize mail and messages content when you provide this content to Core Spotlight.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Enable this functionality by providing a Spotlight delegate app extension for",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "your app to enable Spotlight to provide summarization and prioritization.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following example demonstrates the addition of summarization and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "prioritization for a messaging app. The process you use to add a Spotlight",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "app extension is the same for other kinds of apps; the difference is the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "content type of the items that the system indexes to Spotlight.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-a-Spotlight-delegate-app-extension",
+          "level": 2,
+          "text": "Create a Spotlight delegate app extension",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create a Spotlight delegate app extension, add a new target to your app’s",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Xcode project and select “CoreSpotlight Delegate”.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the app extension, override the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreSpotlight/CSSearchableIndexDelegate/searchableItemsDidUpdate(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to write to the app’s shared group information store, such as a database:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "override func searchableItemsDidUpdate(_ items: [CSSearchableItem]) {",
+            "    for item in items {",
+            "        if let isPriority = item.attributeSet.isPriority {",
+            "            // Item has a priority classification.",
+            "        }",
+            "        if let summary = item.attributeSet.textContentSummary {",
+            "           // Item has a summary.",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Spotlight calls this method whenever a mail, message, or audio transcript you",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "provide finishes processing and Apple Intelligence updates it with a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "summary or priority.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-a-searchable-item-in-your-app",
+          "level": 2,
+          "text": "Create a searchable item in your app",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In your messaging app, you create a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableItem",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " that contains the content Spotlight indexes:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let attributeSet = CSSearchableItemAttributeSet(contentType: UTType.message)",
+            "attributeSet.contentType = UTType.message.identifier",
+            "attributeSet.textContent = \"You should replace this attribute with the text content for this particular message item. The length of this content must be at least 200 characters for it to be eligible for single-message summarization.\"",
+            "attributeSet.domainIdentifier = \"conversationId\"",
+            "attributeSet.contentCreationDate = Date.now",
+            "attributeSet.authors = [CSPerson(displayName: \"Test Person\", handles: [\"1234567890\"], handleIdentifier: \"phoneNumbers\")]",
+            "",
+            "let csItem = CSSearchableItem(uniqueIdentifier: \"uniqueId\", domainIdentifier: \"uniqueId\", attributeSet: attributeSet)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app then sets the listener flag to include summarization or prioritization (or both):",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "csItem.updateListenerOptions.insert(.summarization)",
+            "csItem.updateListenerOptions.insert(.priority)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "And, lastly, the app adds the ",
+              "type": "text"
+            },
+            {
+              "code": "CSSearchableItem",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to Spotlight:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "try await CSSearchableIndex.default().indexSearchableItems([csItem])"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Select-the-correct-attributes-for-your-default-app",
+          "level": 2,
+          "text": "Select the correct attributes for your default app",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In order for Apple Intelligence to summarize or prioritize a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "CSSearchableItem",
+              "type": "codeVoice"
+            },
+            {
+              "text": " you need to set the following attributes, based",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "on the type of default app:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Mail apps",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Messaging apps",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Audio Transcripts",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "authors",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "authors",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "contentCreationDate",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "contentCreationDate",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "contentCreationDate",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "domainIdentifier",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "domainIdentifier",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "domainIdentifier",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "htmlContentData",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "textContent",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "textContent",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "transcribedTextContent",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "uniqueIdentifier",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "uniqueIdentifier",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "uniqueIdentifier",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the case of a default messaging app, the ",
+              "type": "text"
+            },
+            {
+              "code": "domainIdentifier",
+              "type": "codeVoice"
+            },
+            {
+              "text": " needs be the  conversation ID and your app needs to adopt ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Intents/INSearchForMessagesIntent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to support ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "multiple message summarization",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", which is summarizing together all the unread messages from the same conversation.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Ensure-your-searchable-item-sets-the-necessary-options-and-is-eligible-for-summarization-or-prioritization",
+          "level": 2,
+          "text": "Ensure your searchable item sets the necessary options and is eligible for summarization or prioritization",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Apple Intelligence only considers items for",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "summarization or prioritization, when all of the following are true:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The  ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/CoreSpotlight/CSSearchableItemAttributeSet/contentType",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " contains one of the following UTI types:",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/UniformTypeIdentifiers/UTType-swift.struct/message",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": "  or ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/UniformTypeIdentifiers/UTType-swift.struct/emailMessage",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "public.voice-audio",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The item has either the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "CSSearchableItemFlagNeedsSummary",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " or",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "CSSearchableItemFlagNeedsPriority",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " options set.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "contentCreationDate",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " is not older than 24 hours.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The content is not empty; this applies specifically to",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "textContent",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " for messages, ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "textContent",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "htmlContentData",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " for mail,",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "transcribedTextContent",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": "for voice audio transcripts.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "For summarization, the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "CSSearchableItemFlagNeedsSummary",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " option is",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "set to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "true",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and the content is at least ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "200",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " characters in length.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If you adopt ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Intents/INSearchForMessagesIntent",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to support multiple message summarization, Apple Intelligence uses the combined content length of the",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "unread message history, which must be at least 200 characters, to be eligible",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "for summarization.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "For prioritization, the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "CSSearchableItemFlagNeedsPriority",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " option is set.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Mail or messages need ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/corespotlight/cssearchableitemattributeset/1621608-authors",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", and the system doesn’t summarize the same ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/CoreSpotlight/CSSearchableItem",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " twice, even if you present the item to Core Spotlight again.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Only mail or messages support priority classification, not audio",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "transcripts. The ",
+                  "type": "text"
+                },
+                {
+                  "code": "contentType",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " must conform to  one of the following types: ",
+                  "type": "text"
+                },
+                {
+                  "code": "message",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " or",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "code": "emailMessage",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.corespotlight/documentation/CoreSpotlight": {
+      "abstract": [
+        {
+          "text": "Add search capabilities to your app, and index your content so",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "people can find it from Spotlight and Safari.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.corespotlight/documentation/CoreSpotlight",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Spotlight",
+      "type": "topic",
+      "url": "/documentation/corespotlight"
+    },
+    "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableItem": {
+      "abstract": [
+        {
+          "text": "The details of your app-specific content that someone might search",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "for on their devices.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CSSearchableItem"
+        }
+      ],
+      "identifier": "doc://com.apple.corespotlight/documentation/CoreSpotlight/CSSearchableItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CSSearchableItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "CSSearchableItem",
+      "type": "topic",
+      "url": "/documentation/corespotlight/cssearchableitem"
+    },
+    "doc://com.apple.corespotlight/documentation/CoreSpotlight/adding-your-app-s-content-to-spotlight-indexes": {
+      "abstract": [
+        {
+          "text": "Create a description for your app’s content and add it to a Spotlight",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "index to make it searchable.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.corespotlight/documentation/CoreSpotlight/adding-your-app-s-content-to-spotlight-indexes",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding your app’s content to Spotlight indexes",
+      "type": "topic",
+      "url": "/documentation/corespotlight/adding-your-app-s-content-to-spotlight-indexes"
+    },
+    "doc://com.apple.documentation/documentation/CoreSpotlight/CSSearchableIndexDelegate/searchableItemsDidUpdate(_:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that the framework updated the list of searchable items.",
+          "type": "text"
+        }
+      ],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "optional"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "searchableItemsDidUpdate"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "items"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CSSearchableItem",
+          "text": "CSSearchableItem"
+        },
+        {
+          "kind": "text",
+          "text": "])"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreSpotlight/CSSearchableIndexDelegate/searchableItemsDidUpdate(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "searchableItemsDidUpdate(_:)",
+      "type": "topic",
+      "url": "/documentation/CoreSpotlight/CSSearchableIndexDelegate/searchableItemsDidUpdate(_:)"
+    },
+    "doc://com.apple.documentation/documentation/CoreSpotlight/CSSearchableItem": {
+      "abstract": [
+        {
+          "text": "The details of your app-specific content that someone might search for on their devices.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CSSearchableItem"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreSpotlight/CSSearchableItem",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CSSearchableItem",
+      "type": "topic",
+      "url": "/documentation/CoreSpotlight/CSSearchableItem"
+    },
+    "doc://com.apple.documentation/documentation/CoreSpotlight/CSSearchableItemAttributeSet/contentType": {
+      "abstract": [
+        {
+          "text": "The uniform type identifier (UTI) of the item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "contentType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "? { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "set"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreSpotlight/CSSearchableItemAttributeSet/contentType",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "contentType",
+      "type": "topic",
+      "url": "/documentation/CoreSpotlight/CSSearchableItemAttributeSet/contentType"
+    },
+    "doc://com.apple.documentation/documentation/Intents/INSearchForMessagesIntent": {
+      "abstract": [
+        {
+          "text": "A request to list the messages that match the specified criteria.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INSearchForMessagesIntent"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Intents/INSearchForMessagesIntent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "INSearchForMessagesIntent",
+      "type": "topic",
+      "url": "/documentation/Intents/INSearchForMessagesIntent"
+    },
+    "doc://com.apple.documentation/documentation/UniformTypeIdentifiers/UTType-swift.struct/emailMessage": {
+      "abstract": [
+        {
+          "text": "A type that represents an email message.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "emailMessage"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:22UniformTypeIdentifiers6UTTypeV",
+          "text": "UTType"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UniformTypeIdentifiers/UTType-swift.struct/emailMessage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "emailMessage",
+      "type": "topic",
+      "url": "/documentation/UniformTypeIdentifiers/UTType-swift.struct/emailMessage"
+    },
+    "doc://com.apple.documentation/documentation/UniformTypeIdentifiers/UTType-swift.struct/message": {
+      "abstract": [
+        {
+          "text": "A base type that represents a message.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "message"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:22UniformTypeIdentifiers6UTTypeV",
+          "text": "UTType"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UniformTypeIdentifiers/UTType-swift.struct/message",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "message",
+      "type": "topic",
+      "url": "/documentation/UniformTypeIdentifiers/UTType-swift.struct/message"
+    },
+    "doc://com.apple.documentation/documentation/corespotlight/cssearchableitemattributeset/1621608-authors": {
+      "abstract": [
+        {
+          "text": "An array of  objects representing the content of the From: field in an item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "authors"
+        },
+        {
+          "kind": "text",
+          "text": ": [CSPerson]?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corespotlight/cssearchableitemattributeset/1621608-authors",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "authors",
+      "type": "topic",
+      "url": "/documentation/corespotlight/cssearchableitemattributeset/1621608-authors"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.corespotlight/documentation/CoreSpotlight/adding-your-app-s-content-to-spotlight-indexes"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Essentials",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.corespotlight/documentation/CoreSpotlight/adding-your-app-s-content-to-spotlight-indexes"
+              ],
+              "title": "Essentials"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Intents~1INSearchForMessagesIntent/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "INSearchForMessagesIntent"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)INIntent",
+              "text": "INIntent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreSpotlight~1CSSearchableItem/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CSSearchableItem"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreSpotlight~1CSSearchableItemAttributeSet~1contentType/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "copy"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSString",
+              "text": "NSString"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "identifier",
+              "text": "contentType"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corespotlight~1documentation~1CoreSpotlight~1CSSearchableItem/title",
+          "value": "CSSearchableItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corespotlight~1documentation~1CoreSpotlight~1CSSearchableItem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CSSearchableItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corespotlight~1documentation~1CoreSpotlight~1CSSearchableItem/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CSSearchableItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreSpotlight~1CSSearchableIndexDelegate~1searchableItemsDidUpdate(_:)/title",
+          "value": "searchableItemsDidUpdate:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreSpotlight~1CSSearchableIndexDelegate~1searchableItemsDidUpdate(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "searchableItemsDidUpdate:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:Q$objc(cs)NSArray",
+              "text": "NSArray<CSSearchableItem *>"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "items"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/corespotlight/enable-apple-intelligence-summaries"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/corespotlight/enable-apple-intelligence-summaries"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

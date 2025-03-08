@@ -1,0 +1,765 @@
+{
+  "abstract": [
+    {
+      "text": "Ensure a positive user experience when presenting a view controller as a sheet.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit",
+        "doc://com.apple.uikit/documentation/UIKit/view-controllers"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.uikit/documentation/UIKit/disabling-the-pull-down-gesture-for-a-sheet"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "UIKit"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "13.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "13.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "12.3",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Disabling the pull-down gesture for a sheet"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "By default, a user can use a pull-down gesture to dismiss a view controller that presents as a sheet. UIKit allows you to disable the pull-down gesture in situations where using it might cause the user to lose data or recent changes. It’s also possible to explain why the user is unable to dismiss the view controller presentation by presenting an instance of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIAlertController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Disable-the-ability-to-dismiss-a-presentation",
+          "level": 3,
+          "text": "Disable the ability to dismiss a presentation",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To disable dismissal of a view controller presentation, set ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/isModalInPresentation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to ",
+              "type": "text"
+            },
+            {
+              "code": "true",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// If there are unsaved changes, enable the Save button and disable the ability to",
+            "// dismiss using the pull-down gesture.",
+            "saveButton.isEnabled = hasChanges",
+            "isModalInPresentation = hasChanges"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "It’s also possible to return ",
+              "type": "text"
+            },
+            {
+              "code": "false",
+              "type": "codeVoice"
+            },
+            {
+              "text": " from the presentation delegate’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIAdaptivePresentationControllerDelegate/presentationControllerShouldDismiss(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. However, the system doesn’t call this method if ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/isModalInPresentation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " is ",
+              "type": "text"
+            },
+            {
+              "code": "true",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or when dismissing the presentation programmatically.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Explain-why-the-user-cant-dismiss-a-presentation",
+          "level": 3,
+          "text": "Explain why the user can’t dismiss a presentation",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To perform an action when the user attempts to dismiss a presentation that has a disabled dismissal, set the presentation’s delegate as the code below shows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Set the editViewController to be the delegate of the presentationController for this presentation.",
+            "// editViewController can then respond to attempted dismissals.",
+            "navigationController.presentationController?.delegate = editViewController"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After setting the delegate, implement ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIAdaptivePresentationControllerDelegate/presentationControllerDidAttemptToDismiss(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and perform the action. The example below shows the presentation of an instance of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIAlertController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func presentationControllerDidAttemptToDismiss(_ presentationController: UIPresentationController) {",
+            "    // The system calls this delegate method whenever the user attempts to pull",
+            "    // down to dismiss and `isModalInPresentation` is false.",
+            "    // Clarify the user's intent by asking whether they want to cancel or save.",
+            "    confirmCancel(showingSave: true)",
+            "}",
+            "",
+            "// MARK: - Cancellation Confirmation",
+            "",
+            "func confirmCancel(showingSave: Bool) {",
+            "    // Present a UIAlertController as an action sheet to have the user confirm losing any",
+            "    // recent changes.",
+            "    let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)",
+            "    ",
+            "    // Only ask if the user wants to save if they attempt to pull to dismiss, not if they tap Cancel.",
+            "    if showingSave {",
+            "        alert.addAction(UIAlertAction(title: \"Save\", style: .default) { _ in",
+            "            self.delegate?.editViewControllerDidFinish(self)",
+            "        })",
+            "    }",
+            "    ",
+            "    alert.addAction(UIAlertAction(title: \"Discard Changes\", style: .destructive) { _ in",
+            "        self.delegate?.editViewControllerDidCancel(self)",
+            "    })",
+            "    ",
+            "    alert.addAction(UIAlertAction(title: \"Cancel\", style: .cancel, handler: nil))",
+            "    ",
+            "    // If presenting the alert controller as a popover, point the popover at the Cancel button.",
+            "    alert.popoverPresentationController?.barButtonItem = cancelButton",
+            "    ",
+            "    present(alert, animated: true, completion: nil)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "2afc84a1a7e9/DisablingThePullDownGestureForASheet.zip": {
+      "checksum": "2afc84a1a7e988bf3608fbadc7214aae859a6111e6b03dee7405224815d955d33e4a4061e785ad3dfbb4fe5bc9555e4a08f4337b0a2f0fdaf27ea83391fbb380",
+      "identifier": "2afc84a1a7e9/DisablingThePullDownGestureForASheet.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/2afc84a1a7e9/DisablingThePullDownGestureForASheet.zip"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.uikit/documentation/UIKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your iOS, iPadOS, or tvOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "UIKit",
+      "type": "topic",
+      "url": "/documentation/uikit"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIAdaptivePresentationControllerDelegate/presentationControllerDidAttemptToDismiss(_:)": {
+      "abstract": [
+        {
+          "text": "Notifies the delegate that a user-initiated attempt to dismiss a view was prevented.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "presentationControllerDidAttemptToDismiss"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIPresentationController",
+          "text": "UIPresentationController"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIAdaptivePresentationControllerDelegate/presentationControllerDidAttemptToDismiss(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "presentationControllerDidAttemptToDismiss:"
+        }
+      ],
+      "role": "symbol",
+      "title": "presentationControllerDidAttemptToDismiss(_:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiadaptivepresentationcontrollerdelegate/presentationcontrollerdidattempttodismiss(_:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIAdaptivePresentationControllerDelegate/presentationControllerShouldDismiss(_:)": {
+      "abstract": [
+        {
+          "text": "Asks the delegate for permission to dismiss the presentation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "presentationControllerShouldDismiss"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIPresentationController",
+          "text": "UIPresentationController"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIAdaptivePresentationControllerDelegate/presentationControllerShouldDismiss(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "presentationControllerShouldDismiss:"
+        }
+      ],
+      "role": "symbol",
+      "title": "presentationControllerShouldDismiss(_:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiadaptivepresentationcontrollerdelegate/presentationcontrollershoulddismiss(_:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIAlertController": {
+      "abstract": [
+        {
+          "text": "An object that displays an alert message.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIAlertController"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIAlertController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIAlertController"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIAlertController",
+      "type": "topic",
+      "url": "/documentation/uikit/uialertcontroller"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIPresentationController": {
+      "abstract": [
+        {
+          "text": "An object that manages the transition animations and the presentation of view controllers onscreen.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIPresentationController"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPresentationController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIPresentationController"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIPresentationController",
+      "type": "topic",
+      "url": "/documentation/uikit/uipresentationcontroller"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UISheetPresentationController": {
+      "abstract": [
+        {
+          "text": "A presentation controller that manages the appearance and behavior of a sheet.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UISheetPresentationController"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UISheetPresentationController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UISheetPresentationController"
+        }
+      ],
+      "role": "symbol",
+      "title": "UISheetPresentationController",
+      "type": "topic",
+      "url": "/documentation/uikit/uisheetpresentationcontroller"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIViewController/isModalInPresentation": {
+      "abstract": [
+        {
+          "text": "A Boolean value indicating whether the view controller enforces a modal behavior.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isModalInPresentation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/isModalInPresentation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "modalInPresentation"
+        }
+      ],
+      "role": "symbol",
+      "title": "isModalInPresentation",
+      "type": "topic",
+      "url": "/documentation/uikit/uiviewcontroller/ismodalinpresentation"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/view-controllers": {
+      "abstract": [
+        {
+          "text": "Manage your interface using view controllers and facilitate navigation around your app’s content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/view-controllers",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "View controllers",
+      "type": "topic",
+      "url": "/documentation/uikit/view-controllers"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "2afc84a1a7e9/DisablingThePullDownGestureForASheet.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Presentation-management",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIPresentationController",
+        "doc://com.apple.uikit/documentation/UIKit/UISheetPresentationController"
+      ],
+      "title": "Presentation management"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Presentation-management",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIPresentationController",
+                "doc://com.apple.uikit/documentation/UIKit/UISheetPresentationController"
+              ],
+              "title": "Presentation management"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAlertController/title",
+          "value": "UIAlertController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAlertController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIAlertController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAlertController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIAlertController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAdaptivePresentationControllerDelegate~1presentationControllerShouldDismiss(_:)/title",
+          "value": "presentationControllerShouldDismiss:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAdaptivePresentationControllerDelegate~1presentationControllerShouldDismiss(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "presentationControllerShouldDismiss:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAdaptivePresentationControllerDelegate~1presentationControllerDidAttemptToDismiss(_:)/title",
+          "value": "presentationControllerDidAttemptToDismiss:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAdaptivePresentationControllerDelegate~1presentationControllerDidAttemptToDismiss(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "presentationControllerDidAttemptToDismiss:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPresentationController/title",
+          "value": "UIPresentationController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPresentationController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIPresentationController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPresentationController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIPresentationController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISheetPresentationController/title",
+          "value": "UISheetPresentationController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISheetPresentationController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UISheetPresentationController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISheetPresentationController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UISheetPresentationController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController~1isModalInPresentation/title",
+          "value": "modalInPresentation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController~1isModalInPresentation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "modalInPresentation"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/uikit/disabling-the-pull-down-gesture-for-a-sheet"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/uikit/disabling-the-pull-down-gesture-for-a-sheet"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

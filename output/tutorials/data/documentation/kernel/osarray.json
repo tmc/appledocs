@@ -1,0 +1,1524 @@
+{
+  "abstract": [
+    {
+      "text": "OSArray provides an indexed store of objects.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/kernel",
+        "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals",
+        "doc://com.apple.documentation/documentation/kernel/libkern/data_types"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/kernel",
+        "doc://com.apple.documentation/documentation/kernel/libkern",
+        "doc://com.apple.documentation/documentation/kernel/libkern/data_types"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/kernel/osarray"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1412872,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@S@OSArray",
+    "modules": [
+      {
+        "name": "Kernel"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "15.4",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "OSArray"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "OSArray"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/oscollection",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@S@OSCollection",
+              "text": "OSCollection"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "OSArray is a container for Libkern C++ objects (those derived from OSMetaClassBase, in particular OSObject). Storage and access are by array index.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You must generally cast retrieved objects from ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/osobject",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to the desired class using OSDynamicCast. This macro returns the object cast to the desired class, or ",
+              "type": "text"
+            },
+            {
+              "code": "NULL",
+              "type": "codeVoice"
+            },
+            {
+              "text": " if the object isn't derived from that class.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As with all Libkern collection classes, OSArray retains objects added to it, and releases objects removed from it (or replaced). An OSArray also grows as necessary to accommodate new objects, ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "unlike",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " Core Foundation collections (it does not, however, shrink).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Use Restrictions",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "With very few exceptions in the I/O Kit, all Libkern-based C++ classes, functions, and macros are ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "unsafe",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            },
+            {
+              "text": " to use in a primary interrupt context. Consult the I/O Kit documentation related to primary interrupts for more information.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "OSArray provides no concurrency protection; it's up to the usage context to provide any protection necessary. Some portions of the I/O Kit, such as IORegistryEntry, handle synchronization via defined member functions for setting properties.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/kernel": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Kernel",
+      "type": "topic",
+      "url": "/documentation/kernel"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "IOKit Fundamentals",
+      "type": "topic",
+      "url": "/documentation/kernel/iokit_fundamentals"
+    },
+    "doc://com.apple.documentation/documentation/kernel/libkern": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/libkern",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "libkern",
+      "type": "topic",
+      "url": "/documentation/kernel/libkern"
+    },
+    "doc://com.apple.documentation/documentation/kernel/libkern/data_types": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/libkern/data_types",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Data Types",
+      "type": "topic",
+      "url": "/documentation/kernel/libkern/data_types"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osarray": {
+      "abstract": [
+        {
+          "text": "OSArray provides an indexed store of objects.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osarray",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSArray",
+      "type": "topic",
+      "url": "/documentation/kernel/osarray"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osarray/1448198-initwitharray": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "initWithArray"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osarray/1448198-initwitharray",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "initWithArray",
+      "type": "topic",
+      "url": "/documentation/kernel/osarray/1448198-initwitharray"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osarray/1448201-inititerator": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "initIterator"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osarray/1448201-inititerator",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "initIterator",
+      "type": "topic",
+      "url": "/documentation/kernel/osarray/1448201-inititerator"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osarray/1448205-serialize": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "serialize"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osarray/1448205-serialize",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "serialize",
+      "type": "topic",
+      "url": "/documentation/kernel/osarray/1448205-serialize"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osarray/1448214-getmetaclass": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getMetaClass"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osarray/1448214-getmetaclass",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getMetaClass",
+      "type": "topic",
+      "url": "/documentation/kernel/osarray/1448214-getmetaclass"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osarray/1448218-initwithcapacity": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "initWithCapacity"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osarray/1448218-initwithcapacity",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "initWithCapacity",
+      "type": "topic",
+      "url": "/documentation/kernel/osarray/1448218-initwithcapacity"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osarray/1448224-getnextobjectforiterator": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getNextObjectForIterator"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osarray/1448224-getnextobjectforiterator",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getNextObjectForIterator",
+      "type": "topic",
+      "url": "/documentation/kernel/osarray/1448224-getnextobjectforiterator"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osarray/1448229-iteratorsize": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "iteratorSize"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osarray/1448229-iteratorsize",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "iteratorSize",
+      "type": "topic",
+      "url": "/documentation/kernel/osarray/1448229-iteratorsize"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osarray/1448234-copycollection": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "copyCollection"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osarray/1448234-copycollection",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "copyCollection",
+      "type": "topic",
+      "url": "/documentation/kernel/osarray/1448234-copycollection"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osarray/1448240-getcapacityincrement": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getCapacityIncrement"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osarray/1448240-getcapacityincrement",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getCapacityIncrement",
+      "type": "topic",
+      "url": "/documentation/kernel/osarray/1448240-getcapacityincrement"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osarray/1448245-setoptions": {
+      "abstract": [
+        {
+          "text": "Recursively sets option bits in an array and all child collections.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osarray/1448245-setoptions",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setOptions",
+      "type": "topic",
+      "url": "/documentation/kernel/osarray/1448245-setoptions"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osarray/1448250-setcapacityincrement": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setCapacityIncrement"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osarray/1448250-setcapacityincrement",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setCapacityIncrement",
+      "type": "topic",
+      "url": "/documentation/kernel/osarray/1448250-setcapacityincrement"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osarray/1448254-initwithobjects": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "initWithObjects"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osarray/1448254-initwithobjects",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "initWithObjects",
+      "type": "topic",
+      "url": "/documentation/kernel/osarray/1448254-initwithobjects"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osarray/1808122-copycollection": {
+      "abstract": [
+        {
+          "text": "Creates a deep copy of an array and its child collections.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osarray/1808122-copycollection",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "copyCollection",
+      "type": "topic",
+      "url": "/documentation/kernel/osarray/1808122-copycollection"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osarray/1808132-ensurecapacity": {
+      "abstract": [
+        {
+          "text": "Ensures the array has enough space to store the requested number of objects.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osarray/1808132-ensurecapacity",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "ensureCapacity",
+      "type": "topic",
+      "url": "/documentation/kernel/osarray/1808132-ensurecapacity"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osarray/1808145-flushcollection": {
+      "abstract": [
+        {
+          "text": "Removes and releases all objects within the array.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osarray/1808145-flushcollection",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "flushCollection",
+      "type": "topic",
+      "url": "/documentation/kernel/osarray/1808145-flushcollection"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osarray/1808156-free": {
+      "abstract": [
+        {
+          "text": "Deallocates or releases any resources used by the OSArray instance.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osarray/1808156-free",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "free",
+      "type": "topic",
+      "url": "/documentation/kernel/osarray/1808156-free"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osarray/1808168-getcapacity": {
+      "abstract": [
+        {
+          "text": "Returns the number of objects the array can store without reallocating.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osarray/1808168-getcapacity",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getCapacity",
+      "type": "topic",
+      "url": "/documentation/kernel/osarray/1808168-getcapacity"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osarray/1808174-getcapacityincrement": {
+      "abstract": [
+        {
+          "text": "Returns the storage increment of the array.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osarray/1808174-getcapacityincrement",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getCapacityIncrement",
+      "type": "topic",
+      "url": "/documentation/kernel/osarray/1808174-getcapacityincrement"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osarray/1808184-getcount": {
+      "abstract": [
+        {
+          "text": "Returns the current number of objects within the array.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osarray/1808184-getcount",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getCount",
+      "type": "topic",
+      "url": "/documentation/kernel/osarray/1808184-getcount"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osarray/1808193-getlastobject": {
+      "abstract": [
+        {
+          "text": "Returns the last object in the array.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osarray/1808193-getlastobject",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getLastObject",
+      "type": "topic",
+      "url": "/documentation/kernel/osarray/1808193-getlastobject"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osarray/1808202-getnextindexofobject": {
+      "abstract": [
+        {
+          "text": "Scans the array for the next instance of a specific object at or beyond a given index.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osarray/1808202-getnextindexofobject",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getNextIndexOfObject",
+      "type": "topic",
+      "url": "/documentation/kernel/osarray/1808202-getnextindexofobject"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osarray/1808210-getobject": {
+      "abstract": [
+        {
+          "text": "Return the object stored at a given index.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osarray/1808210-getobject",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getObject",
+      "type": "topic",
+      "url": "/documentation/kernel/osarray/1808210-getobject"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osarray/1808216-initwitharray": {
+      "abstract": [
+        {
+          "text": "Initializes a new OSArray populated with the contents of another array.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osarray/1808216-initwitharray",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "initWithArray",
+      "type": "topic",
+      "url": "/documentation/kernel/osarray/1808216-initwitharray"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osarray/1808222-initwithcapacity": {
+      "abstract": [
+        {
+          "text": "Initializes a new instance of OSArray.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osarray/1808222-initwithcapacity",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "initWithCapacity",
+      "type": "topic",
+      "url": "/documentation/kernel/osarray/1808222-initwithcapacity"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osarray/1808226-initwithobjects": {
+      "abstract": [
+        {
+          "text": "Initializes a new OSArray populated with objects provided.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osarray/1808226-initwithobjects",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "initWithObjects",
+      "type": "topic",
+      "url": "/documentation/kernel/osarray/1808226-initwithobjects"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osarray/1808231-isequalto": {
+      "abstract": [
+        {
+          "text": "Tests the equality of two OSArray objects.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osarray/1808231-isequalto",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "isEqualTo(const OSArray *)",
+      "type": "topic",
+      "url": "/documentation/kernel/osarray/1808231-isequalto"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osarray/1808236-isequalto": {
+      "abstract": [
+        {
+          "text": "Tests the equality of an OSArray to an arbitrary object.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osarray/1808236-isequalto",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "isEqualTo(const OSMetaClassBase *)",
+      "type": "topic",
+      "url": "/documentation/kernel/osarray/1808236-isequalto"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osarray/1808242-merge": {
+      "abstract": [
+        {
+          "text": "Appends the contents of an array onto the receiving array.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osarray/1808242-merge",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "merge",
+      "type": "topic",
+      "url": "/documentation/kernel/osarray/1808242-merge"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osarray/1808246-removeobject": {
+      "abstract": [
+        {
+          "text": "Removes an object from the array.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osarray/1808246-removeobject",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "removeObject",
+      "type": "topic",
+      "url": "/documentation/kernel/osarray/1808246-removeobject"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osarray/1808249-replaceobject": {
+      "abstract": [
+        {
+          "text": "Replaces an object in an array at a given index.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osarray/1808249-replaceobject",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "replaceObject",
+      "type": "topic",
+      "url": "/documentation/kernel/osarray/1808249-replaceobject"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osarray/1808255-serialize": {
+      "abstract": [
+        {
+          "text": "Archives the receiver into the provided OSSerialize object.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osarray/1808255-serialize",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "serialize",
+      "type": "topic",
+      "url": "/documentation/kernel/osarray/1808255-serialize"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osarray/1808259-setcapacityincrement": {
+      "abstract": [
+        {
+          "text": "Sets the storage increment of the array.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osarray/1808259-setcapacityincrement",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setCapacityIncrement",
+      "type": "topic",
+      "url": "/documentation/kernel/osarray/1808259-setcapacityincrement"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osarray/1808261-setobject": {
+      "abstract": [
+        {
+          "text": "Appends an object onto the end of the array, increasing storage if necessary.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osarray/1808261-setobject",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setObject(const OSMetaClassBase *)",
+      "type": "topic",
+      "url": "/documentation/kernel/osarray/1808261-setobject"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osarray/1808266-setobject": {
+      "abstract": [
+        {
+          "text": "Inserts or appends an object into the array at a particular index.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osarray/1808266-setobject",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setObject(unsigned int, const OSMetaClassBase *)",
+      "type": "topic",
+      "url": "/documentation/kernel/osarray/1808266-setobject"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osarray/1808272-witharray": {
+      "abstract": [
+        {
+          "text": "Creates and initializes an OSArray populated with the contents of another array.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osarray/1808272-witharray",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "withArray",
+      "type": "topic",
+      "url": "/documentation/kernel/osarray/1808272-witharray"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osarray/1808279-withcapacity": {
+      "abstract": [
+        {
+          "text": "Creates and initializes an empty OSArray.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osarray/1808279-withcapacity",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "withCapacity",
+      "type": "topic",
+      "url": "/documentation/kernel/osarray/1808279-withcapacity"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osarray/1808285-withobjects": {
+      "abstract": [
+        {
+          "text": "Creates and initializes an OSArray populated with objects provided.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osarray/1808285-withobjects",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "withObjects",
+      "type": "topic",
+      "url": "/documentation/kernel/osarray/1808285-withobjects"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osarray/3180809-ensurecapacity": {
+      "abstract": [
+        {
+          "text": "Allocates capacity for members in array.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "ensureCapacity"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osarray/3180809-ensurecapacity",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ensureCapacity",
+      "type": "topic",
+      "url": "/documentation/kernel/osarray/3180809-ensurecapacity"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osarray/3180810-flushcollection": {
+      "abstract": [
+        {
+          "text": "Removes and drops references to all members of array.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "flushCollection"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osarray/3180810-flushcollection",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "flushCollection",
+      "type": "topic",
+      "url": "/documentation/kernel/osarray/3180810-flushcollection"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osarray/3180811-free": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "free"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osarray/3180811-free",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "free",
+      "type": "topic",
+      "url": "/documentation/kernel/osarray/3180811-free"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osarray/3180812-getcapacity": {
+      "abstract": [
+        {
+          "text": "Returns count of currently allocated capacity for members in array.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getCapacity"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osarray/3180812-getcapacity",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getCapacity",
+      "type": "topic",
+      "url": "/documentation/kernel/osarray/3180812-getcapacity"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osarray/3180813-getcount": {
+      "abstract": [
+        {
+          "text": "Returns count of members in array.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getCount"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osarray/3180813-getcount",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getCount",
+      "type": "topic",
+      "url": "/documentation/kernel/osarray/3180813-getcount"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osarray/3180814-getlastobject": {
+      "abstract": [
+        {
+          "text": "Returns the last member of the array.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getLastObject"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osarray/3180814-getlastobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getLastObject",
+      "type": "topic",
+      "url": "/documentation/kernel/osarray/3180814-getlastobject"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osarray/3180815-getnextindexofobject": {
+      "abstract": [
+        {
+          "text": "Searches the array for an object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getNextIndexOfObject"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osarray/3180815-getnextindexofobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getNextIndexOfObject",
+      "type": "topic",
+      "url": "/documentation/kernel/osarray/3180815-getnextindexofobject"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osarray/3180816-getobject": {
+      "abstract": [
+        {
+          "text": "Returns a member of the array.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getObject"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osarray/3180816-getobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getObject",
+      "type": "topic",
+      "url": "/documentation/kernel/osarray/3180816-getobject"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osarray/3180817-isequalto": {
+      "abstract": [
+        {
+          "text": "Compares all members of two arrays with isEqualTo().",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "isEqualTo"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osarray/3180817-isequalto",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isEqualTo",
+      "type": "topic",
+      "url": "/documentation/kernel/osarray/3180817-isequalto"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osarray/3180819-merge": {
+      "abstract": [
+        {
+          "text": "Appends all members of an array to this array.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "merge"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osarray/3180819-merge",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "merge",
+      "type": "topic",
+      "url": "/documentation/kernel/osarray/3180819-merge"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osarray/3180820-removeobject": {
+      "abstract": [
+        {
+          "text": "Removes a current member of the array.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeObject"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osarray/3180820-removeobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "removeObject",
+      "type": "topic",
+      "url": "/documentation/kernel/osarray/3180820-removeobject"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osarray/3180821-replaceobject": {
+      "abstract": [
+        {
+          "text": "Removes a current member of the array and replaces it with another object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "replaceObject"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osarray/3180821-replaceobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "replaceObject",
+      "type": "topic",
+      "url": "/documentation/kernel/osarray/3180821-replaceobject"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osarray/3180822-setobject": {
+      "abstract": [
+        {
+          "text": "Appends an object as the last member of the array.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setObject"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osarray/3180822-setobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setObject",
+      "type": "topic",
+      "url": "/documentation/kernel/osarray/3180822-setobject"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osarray/3180823-witharray": {
+      "abstract": [
+        {
+          "text": "Allocates an OSArray object with given members and preallocated capacity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "withArray"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osarray/3180823-witharray",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "withArray",
+      "type": "topic",
+      "url": "/documentation/kernel/osarray/3180823-witharray"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osarray/3180824-withcapacity": {
+      "abstract": [
+        {
+          "text": "Allocates an OSArray object with preallocated capacity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "withCapacity"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osarray/3180824-withcapacity",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "withCapacity",
+      "type": "topic",
+      "url": "/documentation/kernel/osarray/3180824-withcapacity"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osarray/3180825-withobjects": {
+      "abstract": [
+        {
+          "text": "Allocates an OSArray object with given members and preallocated capacity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "withObjects"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osarray/3180825-withobjects",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "withObjects",
+      "type": "topic",
+      "url": "/documentation/kernel/osarray/3180825-withobjects"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osarray/3433839-isequalto": {
+      "abstract": [
+        {
+          "text": "Compares the array with an OSObject",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "isEqualTo"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osarray/3433839-isequalto",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isEqualTo",
+      "type": "topic",
+      "url": "/documentation/kernel/osarray/3433839-isequalto"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osarray/3433840-setobject": {
+      "abstract": [
+        {
+          "text": "Sets an object as the member of the array at a given index.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setObject"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osarray/3433840-setobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setObject",
+      "type": "topic",
+      "url": "/documentation/kernel/osarray/3433840-setobject"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osarray/3567165-replaceobject": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "replaceObject"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osarray/3567165-replaceobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "replaceObject",
+      "type": "topic",
+      "url": "/documentation/kernel/osarray/3567165-replaceobject"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osarray/3567166-setobject": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setObject"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osarray/3567166-setobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setObject",
+      "type": "topic",
+      "url": "/documentation/kernel/osarray/3567166-setobject"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osarray/3567167-setobject": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setObject"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osarray/3567167-setobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setObject",
+      "type": "topic",
+      "url": "/documentation/kernel/osarray/3567167-setobject"
+    },
+    "doc://com.apple.documentation/documentation/kernel/oscollection": {
+      "abstract": [
+        {
+          "text": "The abstract superclass for Libkern collections.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/oscollection",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSCollection",
+      "type": "topic",
+      "url": "/documentation/kernel/oscollection"
+    },
+    "doc://com.apple.documentation/documentation/kernel/oscollectioniterator": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/oscollectioniterator",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSCollectionIterator",
+      "type": "topic",
+      "url": "/documentation/kernel/oscollectioniterator"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osdictionary": {
+      "abstract": [
+        {
+          "text": "OSDictionary provides an associative store using strings for keys.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osdictionary",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSDictionary",
+      "type": "topic",
+      "url": "/documentation/kernel/osdictionary"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ositerator": {
+      "abstract": [
+        {
+          "text": "The abstract superclass for Libkern iterators.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ositerator",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSIterator",
+      "type": "topic",
+      "url": "/documentation/kernel/ositerator"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osobject": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSObject",
+      "type": "topic",
+      "url": "/documentation/kernel/osobject"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osorderedset": {
+      "abstract": [
+        {
+          "text": "OSOrderedSet provides an ordered set store of objects.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osorderedset",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSOrderedSet",
+      "type": "topic",
+      "url": "/documentation/kernel/osorderedset"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osset": {
+      "abstract": [
+        {
+          "text": "OSSet provides an unordered set store of objects.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osset",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSSet",
+      "type": "topic",
+      "url": "/documentation/kernel/osset"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/oscollection"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/osdictionary",
+        "doc://com.apple.documentation/documentation/kernel/osset",
+        "doc://com.apple.documentation/documentation/kernel/osorderedset",
+        "doc://com.apple.documentation/documentation/kernel/oscollection",
+        "doc://com.apple.documentation/documentation/kernel/oscollectioniterator",
+        "doc://com.apple.documentation/documentation/kernel/ositerator"
+      ],
+      "title": "Collections"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "1673651",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/osarray/1808122-copycollection",
+        "doc://com.apple.documentation/documentation/kernel/osarray/1808132-ensurecapacity",
+        "doc://com.apple.documentation/documentation/kernel/osarray/1808145-flushcollection",
+        "doc://com.apple.documentation/documentation/kernel/osarray/1808156-free",
+        "doc://com.apple.documentation/documentation/kernel/osarray/1808168-getcapacity",
+        "doc://com.apple.documentation/documentation/kernel/osarray/1808174-getcapacityincrement",
+        "doc://com.apple.documentation/documentation/kernel/osarray/1808184-getcount",
+        "doc://com.apple.documentation/documentation/kernel/osarray/1808193-getlastobject",
+        "doc://com.apple.documentation/documentation/kernel/osarray/1808202-getnextindexofobject",
+        "doc://com.apple.documentation/documentation/kernel/osarray/1808210-getobject",
+        "doc://com.apple.documentation/documentation/kernel/osarray/1808216-initwitharray",
+        "doc://com.apple.documentation/documentation/kernel/osarray/1808222-initwithcapacity",
+        "doc://com.apple.documentation/documentation/kernel/osarray/1808226-initwithobjects",
+        "doc://com.apple.documentation/documentation/kernel/osarray/1808231-isequalto",
+        "doc://com.apple.documentation/documentation/kernel/osarray/1808236-isequalto",
+        "doc://com.apple.documentation/documentation/kernel/osarray/1808242-merge",
+        "doc://com.apple.documentation/documentation/kernel/osarray/1808246-removeobject",
+        "doc://com.apple.documentation/documentation/kernel/osarray/1808249-replaceobject",
+        "doc://com.apple.documentation/documentation/kernel/osarray/1808255-serialize",
+        "doc://com.apple.documentation/documentation/kernel/osarray/1808259-setcapacityincrement",
+        "doc://com.apple.documentation/documentation/kernel/osarray/1808261-setobject",
+        "doc://com.apple.documentation/documentation/kernel/osarray/1808266-setobject",
+        "doc://com.apple.documentation/documentation/kernel/osarray/1808272-witharray",
+        "doc://com.apple.documentation/documentation/kernel/osarray/1808279-withcapacity",
+        "doc://com.apple.documentation/documentation/kernel/osarray/1808285-withobjects"
+      ],
+      "kind": "taskGroup",
+      "title": "Miscellaneous"
+    },
+    {
+      "anchor": "3516975",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/osarray/1448234-copycollection",
+        "doc://com.apple.documentation/documentation/kernel/osarray/3180809-ensurecapacity",
+        "doc://com.apple.documentation/documentation/kernel/osarray/3180810-flushcollection",
+        "doc://com.apple.documentation/documentation/kernel/osarray/3180811-free",
+        "doc://com.apple.documentation/documentation/kernel/osarray/3180812-getcapacity",
+        "doc://com.apple.documentation/documentation/kernel/osarray/1448240-getcapacityincrement",
+        "doc://com.apple.documentation/documentation/kernel/osarray/3180813-getcount",
+        "doc://com.apple.documentation/documentation/kernel/osarray/3180814-getlastobject",
+        "doc://com.apple.documentation/documentation/kernel/osarray/1448214-getmetaclass",
+        "doc://com.apple.documentation/documentation/kernel/osarray/3180815-getnextindexofobject",
+        "doc://com.apple.documentation/documentation/kernel/osarray/1448224-getnextobjectforiterator",
+        "doc://com.apple.documentation/documentation/kernel/osarray/3180816-getobject",
+        "doc://com.apple.documentation/documentation/kernel/osarray/1448201-inititerator",
+        "doc://com.apple.documentation/documentation/kernel/osarray/1448198-initwitharray",
+        "doc://com.apple.documentation/documentation/kernel/osarray/1448218-initwithcapacity",
+        "doc://com.apple.documentation/documentation/kernel/osarray/1448254-initwithobjects",
+        "doc://com.apple.documentation/documentation/kernel/osarray/3180817-isequalto",
+        "doc://com.apple.documentation/documentation/kernel/osarray/3433839-isequalto",
+        "doc://com.apple.documentation/documentation/kernel/osarray/1448229-iteratorsize",
+        "doc://com.apple.documentation/documentation/kernel/osarray/3180819-merge",
+        "doc://com.apple.documentation/documentation/kernel/osarray/3180820-removeobject",
+        "doc://com.apple.documentation/documentation/kernel/osarray/3180821-replaceobject",
+        "doc://com.apple.documentation/documentation/kernel/osarray/3567165-replaceobject",
+        "doc://com.apple.documentation/documentation/kernel/osarray/1448205-serialize",
+        "doc://com.apple.documentation/documentation/kernel/osarray/1448250-setcapacityincrement",
+        "doc://com.apple.documentation/documentation/kernel/osarray/3180822-setobject",
+        "doc://com.apple.documentation/documentation/kernel/osarray/3433840-setobject",
+        "doc://com.apple.documentation/documentation/kernel/osarray/3567166-setobject",
+        "doc://com.apple.documentation/documentation/kernel/osarray/3567167-setobject",
+        "doc://com.apple.documentation/documentation/kernel/osarray/1448245-setoptions"
+      ],
+      "kind": "taskGroup",
+      "title": "Instance Methods"
+    },
+    {
+      "anchor": "3516976",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/osarray/3180823-witharray",
+        "doc://com.apple.documentation/documentation/kernel/osarray/3180824-withcapacity",
+        "doc://com.apple.documentation/documentation/kernel/osarray/3180825-withobjects"
+      ],
+      "kind": "taskGroup",
+      "title": "Type Methods"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/kernel/osarray"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

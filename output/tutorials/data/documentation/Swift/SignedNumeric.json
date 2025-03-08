@@ -1,0 +1,1238 @@
+{
+  "abstract": [
+    {
+      "text": "A numeric type with a negation operation.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Swift/documentation/Swift"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Swift/documentation/Swift/SignedNumeric"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:s13SignedNumericP",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "protocol"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "SignedNumeric"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Swift"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "SignedNumeric"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.10",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "2.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Protocol",
+    "symbolKind": "protocol",
+    "title": "SignedNumeric"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "SignedNumeric"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Swift/Numeric",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:Sj",
+              "text": "Numeric"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "SignedNumeric",
+              "type": "codeVoice"
+            },
+            {
+              "text": " protocol extends the operations defined by the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "Numeric",
+              "type": "codeVoice"
+            },
+            {
+              "text": " protocol to include a value’s additive inverse.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Conforming-to-the-SignedNumeric-Protocol",
+          "level": 1,
+          "text": "Conforming to the SignedNumeric Protocol",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because the ",
+              "type": "text"
+            },
+            {
+              "code": "SignedNumeric",
+              "type": "codeVoice"
+            },
+            {
+              "text": " protocol provides default implementations of",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "both of its required methods, you don’t need to do anything beyond",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "declaring conformance to the protocol and ensuring that the values of your",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "type support negation. To customize your type’s implementation, provide",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "your own mutating ",
+              "type": "text"
+            },
+            {
+              "code": "negate()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the additive inverse of a value is unrepresentable in a conforming",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "type, the operation should either trap or return an exceptional value. For",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "example, using the negation operator (prefix ",
+              "type": "text"
+            },
+            {
+              "code": "-",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") with ",
+              "type": "text"
+            },
+            {
+              "code": "Int.min",
+              "type": "codeVoice"
+            },
+            {
+              "text": " results in",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a runtime error.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let x = Int.min",
+            "let y = -x",
+            "// Overflow error"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Swift-PageImage-card.png": {
+      "alt": "An orange Swift logo on a gradient background.",
+      "identifier": "Swift-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/81257762cf893d205c049e3021340e5f/Swift-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4d2ed632470b4616483901941fae4098/Swift-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Swift/documentation/Swift": {
+      "abstract": [
+        {
+          "text": "Build apps using a powerful open language.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift",
+      "images": [
+        {
+          "identifier": "Swift-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Swift",
+      "type": "topic",
+      "url": "/documentation/swift"
+    },
+    "doc://com.apple.Swift/documentation/Swift/AdditiveArithmetic": {
+      "abstract": [
+        {
+          "text": "A type with values that support addition and subtraction.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AdditiveArithmetic"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/AdditiveArithmetic",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AdditiveArithmetic"
+        }
+      ],
+      "role": "symbol",
+      "title": "AdditiveArithmetic",
+      "type": "topic",
+      "url": "/documentation/swift/additivearithmetic"
+    },
+    "doc://com.apple.Swift/documentation/Swift/BinaryFloatingPoint": {
+      "abstract": [
+        {
+          "text": "A radix-2 (binary) floating-point type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BinaryFloatingPoint"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/BinaryFloatingPoint",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BinaryFloatingPoint"
+        }
+      ],
+      "role": "symbol",
+      "title": "BinaryFloatingPoint",
+      "type": "topic",
+      "url": "/documentation/swift/binaryfloatingpoint"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Double": {
+      "abstract": [
+        {
+          "text": "A double-precision, floating-point value type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Double"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Double",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Double"
+        }
+      ],
+      "role": "symbol",
+      "title": "Double",
+      "type": "topic",
+      "url": "/documentation/swift/double"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Equatable": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Equatable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/swift/equatable"
+    },
+    "doc://com.apple.Swift/documentation/Swift/ExpressibleByIntegerLiteral": {
+      "abstract": [
+        {
+          "text": "A type that can be initialized with an integer literal.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ExpressibleByIntegerLiteral"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/ExpressibleByIntegerLiteral",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ExpressibleByIntegerLiteral"
+        }
+      ],
+      "role": "symbol",
+      "title": "ExpressibleByIntegerLiteral",
+      "type": "topic",
+      "url": "/documentation/swift/expressiblebyintegerliteral"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Float": {
+      "abstract": [
+        {
+          "text": "A single-precision, floating-point value type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Float"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Float",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Float"
+        }
+      ],
+      "role": "symbol",
+      "title": "Float",
+      "type": "topic",
+      "url": "/documentation/swift/float"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Float16": {
+      "abstract": [
+        {
+          "text": "A half-precision (16b), floating-point value type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Float16"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Float16",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Float16"
+        }
+      ],
+      "role": "symbol",
+      "title": "Float16",
+      "type": "topic",
+      "url": "/documentation/swift/float16"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Float80": {
+      "abstract": [
+        {
+          "text": "An extended-precision, floating-point value type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Float80"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Float80",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Float80"
+        }
+      ],
+      "role": "symbol",
+      "title": "Float80",
+      "type": "topic",
+      "url": "/documentation/swift/float80"
+    },
+    "doc://com.apple.Swift/documentation/Swift/FloatingPoint": {
+      "abstract": [
+        {
+          "text": "A floating-point numeric type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FloatingPoint"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/FloatingPoint",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FloatingPoint"
+        }
+      ],
+      "role": "symbol",
+      "title": "FloatingPoint",
+      "type": "topic",
+      "url": "/documentation/swift/floatingpoint"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Int": {
+      "abstract": [
+        {
+          "text": "A signed integer value type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Int",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Int"
+        }
+      ],
+      "role": "symbol",
+      "title": "Int",
+      "type": "topic",
+      "url": "/documentation/swift/int"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Int128": {
+      "abstract": [
+        {
+          "text": "A 128-bit signed integer value type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Int128"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Int128",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Int128"
+        }
+      ],
+      "role": "symbol",
+      "title": "Int128",
+      "type": "topic",
+      "url": "/documentation/swift/int128"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Int16": {
+      "abstract": [
+        {
+          "text": "A 16-bit signed integer value",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Int16"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Int16",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Int16"
+        }
+      ],
+      "role": "symbol",
+      "title": "Int16",
+      "type": "topic",
+      "url": "/documentation/swift/int16"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Int32": {
+      "abstract": [
+        {
+          "text": "A 32-bit signed integer value",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Int32"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Int32",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Int32"
+        }
+      ],
+      "role": "symbol",
+      "title": "Int32",
+      "type": "topic",
+      "url": "/documentation/swift/int32"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Int64": {
+      "abstract": [
+        {
+          "text": "A 64-bit signed integer value",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Int64"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Int64",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Int64"
+        }
+      ],
+      "role": "symbol",
+      "title": "Int64",
+      "type": "topic",
+      "url": "/documentation/swift/int64"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Int8": {
+      "abstract": [
+        {
+          "text": "An 8-bit signed integer value",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Int8"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Int8",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Int8"
+        }
+      ],
+      "role": "symbol",
+      "title": "Int8",
+      "type": "topic",
+      "url": "/documentation/swift/int8"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Numeric": {
+      "abstract": [
+        {
+          "text": "A type with values that support multiplication.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Numeric"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Numeric",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Numeric"
+        }
+      ],
+      "role": "symbol",
+      "title": "Numeric",
+      "type": "topic",
+      "url": "/documentation/swift/numeric"
+    },
+    "doc://com.apple.Swift/documentation/Swift/SignedInteger": {
+      "abstract": [
+        {
+          "text": "An integer type that can represent both positive and negative values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SignedInteger"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/SignedInteger",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SignedInteger"
+        }
+      ],
+      "role": "symbol",
+      "title": "SignedInteger",
+      "type": "topic",
+      "url": "/documentation/swift/signedinteger"
+    },
+    "doc://com.apple.Swift/documentation/Swift/SignedNumeric": {
+      "abstract": [
+        {
+          "text": "A numeric type with a negation operation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SignedNumeric"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/SignedNumeric",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SignedNumeric"
+        }
+      ],
+      "role": "symbol",
+      "title": "SignedNumeric",
+      "type": "topic",
+      "url": "/documentation/swift/signednumeric"
+    },
+    "doc://com.apple.Swift/documentation/Swift/SignedNumeric/-(_:)": {
+      "abstract": [
+        {
+          "text": "Returns the additive inverse of the specified value.",
+          "type": "text"
+        }
+      ],
+      "defaultImplementations": 1,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "-"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/SignedNumeric/-(_:)",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "-(_:)",
+      "type": "topic",
+      "url": "/documentation/swift/signednumeric/-(_:)"
+    },
+    "doc://com.apple.Swift/documentation/Swift/SignedNumeric/negate()": {
+      "abstract": [
+        {
+          "text": "Replaces this value with its additive inverse.",
+          "type": "text"
+        }
+      ],
+      "defaultImplementations": 1,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "negate"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/SignedNumeric/negate()",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "negate()",
+      "type": "topic",
+      "url": "/documentation/swift/signednumeric/negate()"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Strideable": {
+      "abstract": [
+        {
+          "text": "A type representing continuous, one-dimensional values that can be offset",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "and measured.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Strideable"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Strideable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Strideable"
+        }
+      ],
+      "role": "symbol",
+      "title": "Strideable",
+      "type": "topic",
+      "url": "/documentation/swift/strideable"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/AdditiveArithmetic",
+        "doc://com.apple.Swift/documentation/Swift/Equatable",
+        "doc://com.apple.Swift/documentation/Swift/ExpressibleByIntegerLiteral",
+        "doc://com.apple.Swift/documentation/Swift/Numeric"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/BinaryFloatingPoint",
+        "doc://com.apple.Swift/documentation/Swift/FloatingPoint",
+        "doc://com.apple.Swift/documentation/Swift/SignedInteger"
+      ],
+      "kind": "relationships",
+      "title": "Inherited By",
+      "type": "inheritedBy"
+    },
+    {
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/Double",
+        "doc://com.apple.Swift/documentation/Swift/Float",
+        "doc://com.apple.Swift/documentation/Swift/Float16",
+        "doc://com.apple.Swift/documentation/Swift/Float80",
+        "doc://com.apple.Swift/documentation/Swift/Int",
+        "doc://com.apple.Swift/documentation/Swift/Int128",
+        "doc://com.apple.Swift/documentation/Swift/Int16",
+        "doc://com.apple.Swift/documentation/Swift/Int32",
+        "doc://com.apple.Swift/documentation/Swift/Int64",
+        "doc://com.apple.Swift/documentation/Swift/Int8"
+      ],
+      "kind": "relationships",
+      "title": "Conforming Types",
+      "type": "conformingTypes"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Basic-Arithmetic",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/AdditiveArithmetic",
+        "doc://com.apple.Swift/documentation/Swift/Numeric",
+        "doc://com.apple.Swift/documentation/Swift/Strideable"
+      ],
+      "title": "Basic Arithmetic"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Operators",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/SignedNumeric/-(_:)"
+      ],
+      "title": "Operators"
+    },
+    {
+      "anchor": "Instance-Methods",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/SignedNumeric/negate()"
+      ],
+      "title": "Instance Methods"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/swift/signednumeric"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

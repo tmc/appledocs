@@ -1,0 +1,1741 @@
+{
+  "abstract": [
+    {
+      "text": "Encapsulate your app’s event-handling logic in gesture recognizers so that you can reuse that code throughout your app.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.uikit/documentation/UIKit/touches-presses-and-gestures"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "UIKit"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Touches, presses, and gestures"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you build your apps using standard UIKit views and controls, UIKit automatically handles touch events (including Multitouch events) for you. However, if you use custom views to display your content, you must handle all touch events that occur in your views. There are two ways to handle touch events yourself.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use gesture recognizers to track the touches; see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/handling-uikit-gestures",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Track the touches directly in your ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIView",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " subclass; see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/handling-touches-in-your-view",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.uikit/documentation/UIKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your iOS, iPadOS, or tvOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "UIKit",
+      "type": "topic",
+      "url": "/documentation/uikit"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIEvent": {
+      "abstract": [
+        {
+          "text": "An object that describes a single user interaction with your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIEvent"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIEvent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIEvent"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIEvent",
+      "type": "topic",
+      "url": "/documentation/uikit/uievent"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIGestureRecognizer": {
+      "abstract": [
+        {
+          "text": "The base class for concrete gesture recognizers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIGestureRecognizer"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIGestureRecognizer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIGestureRecognizer"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIGestureRecognizer",
+      "type": "topic",
+      "url": "/documentation/uikit/uigesturerecognizer"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIGestureRecognizerDelegate": {
+      "abstract": [
+        {
+          "text": "A set of methods implemented by the delegate of a gesture recognizer to fine-tune an app’s gesture-recognition behavior.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIGestureRecognizerDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIGestureRecognizerDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIGestureRecognizerDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIGestureRecognizerDelegate",
+      "type": "topic",
+      "url": "/documentation/uikit/uigesturerecognizerdelegate"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIHoverGestureRecognizer": {
+      "abstract": [
+        {
+          "text": "A continuous gesture recognizer that interprets pointer movement over a view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIHoverGestureRecognizer"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIHoverGestureRecognizer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIHoverGestureRecognizer"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIHoverGestureRecognizer",
+      "type": "topic",
+      "url": "/documentation/uikit/uihovergesturerecognizer"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UILongPressGestureRecognizer": {
+      "abstract": [
+        {
+          "text": "A continuous gesture recognizer that interprets long-press gestures.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UILongPressGestureRecognizer"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UILongPressGestureRecognizer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UILongPressGestureRecognizer"
+        }
+      ],
+      "role": "symbol",
+      "title": "UILongPressGestureRecognizer",
+      "type": "topic",
+      "url": "/documentation/uikit/uilongpressgesturerecognizer"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIPanGestureRecognizer": {
+      "abstract": [
+        {
+          "text": "A continuous gesture recognizer that interprets panning gestures.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIPanGestureRecognizer"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPanGestureRecognizer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIPanGestureRecognizer"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIPanGestureRecognizer",
+      "type": "topic",
+      "url": "/documentation/uikit/uipangesturerecognizer"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIPinchGestureRecognizer": {
+      "abstract": [
+        {
+          "text": "A continuous gesture recognizer that interprets pinching gestures involving two touches.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIPinchGestureRecognizer"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPinchGestureRecognizer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIPinchGestureRecognizer"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIPinchGestureRecognizer",
+      "type": "topic",
+      "url": "/documentation/uikit/uipinchgesturerecognizer"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIPress": {
+      "abstract": [
+        {
+          "text": "An object that represents the presence or movement of a button press on the screen for a particular event.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIPress"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPress",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIPress"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIPress",
+      "type": "topic",
+      "url": "/documentation/uikit/uipress"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIPressesEvent": {
+      "abstract": [
+        {
+          "text": "An event that describes the state of a set of physical buttons that are available to the device, such as those on an associated remote or game controller.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIPressesEvent"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPressesEvent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIPressesEvent"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIPressesEvent",
+      "type": "topic",
+      "url": "/documentation/uikit/uipressesevent"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIPreviewActionItem": {
+      "abstract": [
+        {
+          "text": "A set of methods that defines the styles you can apply to peek quick actions and peek quick action groups, and defines a read-only accessor for the user-visible title of a peek quick action.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIPreviewActionItem"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPreviewActionItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIPreviewActionItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIPreviewActionItem",
+      "type": "topic",
+      "url": "/documentation/uikit/uipreviewactionitem"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIPreviewInteraction": {
+      "abstract": [
+        {
+          "text": "A class that registers a view to provide a custom user experience in response to 3D Touch interactions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIPreviewInteraction"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPreviewInteraction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIPreviewInteraction"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIPreviewInteraction",
+      "type": "topic",
+      "url": "/documentation/uikit/uipreviewinteraction"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIPreviewInteractionDelegate": {
+      "abstract": [
+        {
+          "text": "A set of methods for communicating the progress of a preview interaction.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIPreviewInteractionDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPreviewInteractionDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIPreviewInteractionDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIPreviewInteractionDelegate",
+      "type": "topic",
+      "url": "/documentation/uikit/uipreviewinteractiondelegate"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIResponder": {
+      "abstract": [
+        {
+          "text": "An abstract interface for responding to and handling events.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIResponder"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIResponder",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIResponder"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIResponder",
+      "type": "topic",
+      "url": "/documentation/uikit/uiresponder"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIRotationGestureRecognizer": {
+      "abstract": [
+        {
+          "text": "A continuous gesture recognizer that interprets rotation gestures involving two touches.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIRotationGestureRecognizer"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIRotationGestureRecognizer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIRotationGestureRecognizer"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIRotationGestureRecognizer",
+      "type": "topic",
+      "url": "/documentation/uikit/uirotationgesturerecognizer"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIScreenEdgePanGestureRecognizer": {
+      "abstract": [
+        {
+          "text": "A continuous gesture recognizer that interprets panning gestures that start near an edge of the screen.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIScreenEdgePanGestureRecognizer"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIScreenEdgePanGestureRecognizer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIScreenEdgePanGestureRecognizer"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIScreenEdgePanGestureRecognizer",
+      "type": "topic",
+      "url": "/documentation/uikit/uiscreenedgepangesturerecognizer"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UISwipeGestureRecognizer": {
+      "abstract": [
+        {
+          "text": "A discrete gesture recognizer that interprets swiping gestures in one or more directions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UISwipeGestureRecognizer"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UISwipeGestureRecognizer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UISwipeGestureRecognizer"
+        }
+      ],
+      "role": "symbol",
+      "title": "UISwipeGestureRecognizer",
+      "type": "topic",
+      "url": "/documentation/uikit/uiswipegesturerecognizer"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITapGestureRecognizer": {
+      "abstract": [
+        {
+          "text": "A discrete gesture recognizer that interprets single or multiple taps.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITapGestureRecognizer"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITapGestureRecognizer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITapGestureRecognizer"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITapGestureRecognizer",
+      "type": "topic",
+      "url": "/documentation/uikit/uitapgesturerecognizer"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITouch": {
+      "abstract": [
+        {
+          "text": "An object representing the location, size, movement, and force of a touch occurring on the screen.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITouch"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITouch",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITouch"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITouch",
+      "type": "topic",
+      "url": "/documentation/uikit/uitouch"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIView": {
+      "abstract": [
+        {
+          "text": "An object that manages the content for a rectangular area on the screen.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIView"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIView"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIView",
+      "type": "topic",
+      "url": "/documentation/uikit/uiview"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/accessibility-for-uikit": {
+      "abstract": [
+        {
+          "text": "Make your UIKit apps accessible to everyone who uses iOS and tvOS.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/accessibility-for-uikit",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Accessibility for UIKit",
+      "type": "topic",
+      "url": "/documentation/uikit/accessibility-for-uikit"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/adopting-hover-support-for-apple-pencil": {
+      "abstract": [
+        {
+          "text": "Enhance user feedback for your iPadOS app with a hover preview for",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "Apple Pencil input.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/adopting-hover-support-for-apple-pencil",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Adopting hover support for Apple Pencil",
+      "type": "topic",
+      "url": "/documentation/uikit/adopting-hover-support-for-apple-pencil"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/apple-pencil-interactions": {
+      "abstract": [
+        {
+          "text": "Handle user interactions like double tap and squeeze on Apple Pencil.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/apple-pencil-interactions",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Apple Pencil interactions",
+      "type": "topic",
+      "url": "/documentation/uikit/apple-pencil-interactions"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/coordinating-multiple-gesture-recognizers": {
+      "abstract": [
+        {
+          "text": "Discover how to use multiple gesture recognizers on the same view.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/coordinating-multiple-gesture-recognizers",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Coordinating multiple gesture recognizers",
+      "type": "topic",
+      "url": "/documentation/uikit/coordinating-multiple-gesture-recognizers"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/drag-and-drop": {
+      "abstract": [
+        {
+          "text": "Bring drag and drop to your app by using interaction APIs with your views.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/drag-and-drop",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Drag and drop",
+      "type": "topic",
+      "url": "/documentation/uikit/drag-and-drop"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/focus-based-navigation": {
+      "abstract": [
+        {
+          "text": "Navigate the interface of your UIKit app using a remote, game controller, or keyboard.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/focus-based-navigation",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Focus-based navigation",
+      "type": "topic",
+      "url": "/documentation/uikit/focus-based-navigation"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/handling-input-from-apple-pencil": {
+      "abstract": [
+        {
+          "text": "Learn how to detect and respond to touches from Apple Pencil.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/handling-input-from-apple-pencil",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Handling input from Apple Pencil",
+      "type": "topic",
+      "url": "/documentation/uikit/handling-input-from-apple-pencil"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/handling-touches-in-your-view": {
+      "abstract": [
+        {
+          "text": "Use touch events directly on a view subclass if touch handling is intricately linked to the view’s content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/handling-touches-in-your-view",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Handling touches in your view",
+      "type": "topic",
+      "url": "/documentation/uikit/handling-touches-in-your-view"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/handling-uikit-gestures": {
+      "abstract": [
+        {
+          "text": "Use gesture recognizers to simplify touch handling and create a consistent user experience.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/handling-uikit-gestures",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Handling UIKit gestures",
+      "type": "topic",
+      "url": "/documentation/uikit/handling-uikit-gestures"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/illustrating-the-force-altitude-and-azimuth-properties-of-touch-input": {
+      "abstract": [
+        {
+          "text": "Capture Apple Pencil and touch input in views.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/illustrating-the-force-altitude-and-azimuth-properties-of-touch-input",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Illustrating the force, altitude, and azimuth properties of touch input",
+      "type": "topic",
+      "url": "/documentation/uikit/illustrating-the-force-altitude-and-azimuth-properties-of-touch-input"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/implementing-a-custom-gesture-recognizer": {
+      "abstract": [
+        {
+          "text": "Discover when and how to build your own gesture recognizers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/implementing-a-custom-gesture-recognizer",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Implementing a custom gesture recognizer",
+      "type": "topic",
+      "url": "/documentation/uikit/implementing-a-custom-gesture-recognizer"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/leveraging-touch-input-for-drawing-apps": {
+      "abstract": [
+        {
+          "text": "Capture touches as a series of strokes and render them efficiently on a drawing canvas.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/leveraging-touch-input-for-drawing-apps",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Leveraging touch input for drawing apps",
+      "type": "topic",
+      "url": "/documentation/uikit/leveraging-touch-input-for-drawing-apps"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/menus-and-shortcuts": {
+      "abstract": [
+        {
+          "text": "Simplify interactions with your app using menu systems, contextual menus, Home Screen quick actions, and keyboard shortcuts.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/menus-and-shortcuts",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Menus and shortcuts",
+      "type": "topic",
+      "url": "/documentation/uikit/menus-and-shortcuts"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/pointer-interactions": {
+      "abstract": [
+        {
+          "text": "Support pointer interactions in your custom controls and views.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/pointer-interactions",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Pointer interactions",
+      "type": "topic",
+      "url": "/documentation/uikit/pointer-interactions"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/supporting-gesture-interaction-in-your-apps": {
+      "abstract": [
+        {
+          "text": "Enrich your app’s user experience by supporting standard and custom gesture interaction.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/supporting-gesture-interaction-in-your-apps",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Supporting gesture interaction in your apps",
+      "type": "topic",
+      "url": "/documentation/uikit/supporting-gesture-interaction-in-your-apps"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/tracking-the-force-of-3d-touch-events": {
+      "abstract": [
+        {
+          "text": "Manipulate your content based on the force of touches.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/tracking-the-force-of-3d-touch-events",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Tracking the force of 3D Touch events",
+      "type": "topic",
+      "url": "/documentation/uikit/tracking-the-force-of-3d-touch-events"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/using-responders-and-the-responder-chain-to-handle-events": {
+      "abstract": [
+        {
+          "text": "Learn how to handle events that propagate through your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/using-responders-and-the-responder-chain-to-handle-events",
+      "kind": "article",
+      "role": "article",
+      "title": "Using responders and the responder chain to handle events",
+      "type": "topic",
+      "url": "/documentation/uikit/using-responders-and-the-responder-chain-to-handle-events"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "User-interactions",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/menus-and-shortcuts",
+        "doc://com.apple.uikit/documentation/UIKit/drag-and-drop",
+        "doc://com.apple.uikit/documentation/UIKit/pointer-interactions",
+        "doc://com.apple.uikit/documentation/UIKit/apple-pencil-interactions",
+        "doc://com.apple.uikit/documentation/UIKit/focus-based-navigation",
+        "doc://com.apple.uikit/documentation/UIKit/accessibility-for-uikit"
+      ],
+      "title": "User interactions"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Essentials",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/using-responders-and-the-responder-chain-to-handle-events",
+        "doc://com.apple.uikit/documentation/UIKit/UIResponder",
+        "doc://com.apple.uikit/documentation/UIKit/UIEvent"
+      ],
+      "title": "Essentials"
+    },
+    {
+      "anchor": "Touches",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/handling-touches-in-your-view",
+        "doc://com.apple.uikit/documentation/UIKit/handling-input-from-apple-pencil",
+        "doc://com.apple.uikit/documentation/UIKit/tracking-the-force-of-3d-touch-events",
+        "doc://com.apple.uikit/documentation/UIKit/illustrating-the-force-altitude-and-azimuth-properties-of-touch-input",
+        "doc://com.apple.uikit/documentation/UIKit/leveraging-touch-input-for-drawing-apps",
+        "doc://com.apple.uikit/documentation/UIKit/UITouch"
+      ],
+      "title": "Touches"
+    },
+    {
+      "anchor": "Button-presses",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIPress",
+        "doc://com.apple.uikit/documentation/UIKit/UIPressesEvent"
+      ],
+      "title": "Button presses"
+    },
+    {
+      "anchor": "Standard-gestures",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/handling-uikit-gestures",
+        "doc://com.apple.uikit/documentation/UIKit/coordinating-multiple-gesture-recognizers",
+        "doc://com.apple.uikit/documentation/UIKit/adopting-hover-support-for-apple-pencil",
+        "doc://com.apple.uikit/documentation/UIKit/supporting-gesture-interaction-in-your-apps",
+        "doc://com.apple.uikit/documentation/UIKit/UIHoverGestureRecognizer",
+        "doc://com.apple.uikit/documentation/UIKit/UILongPressGestureRecognizer",
+        "doc://com.apple.uikit/documentation/UIKit/UIPanGestureRecognizer",
+        "doc://com.apple.uikit/documentation/UIKit/UIPinchGestureRecognizer",
+        "doc://com.apple.uikit/documentation/UIKit/UIRotationGestureRecognizer",
+        "doc://com.apple.uikit/documentation/UIKit/UIScreenEdgePanGestureRecognizer",
+        "doc://com.apple.uikit/documentation/UIKit/UISwipeGestureRecognizer",
+        "doc://com.apple.uikit/documentation/UIKit/UITapGestureRecognizer"
+      ],
+      "title": "Standard gestures"
+    },
+    {
+      "anchor": "Custom-gestures",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/implementing-a-custom-gesture-recognizer",
+        "doc://com.apple.uikit/documentation/UIKit/UIGestureRecognizer",
+        "doc://com.apple.uikit/documentation/UIKit/UIGestureRecognizerDelegate",
+        "doc://com.apple.uikit/documentation/UIKit/supporting-gesture-interaction-in-your-apps"
+      ],
+      "title": "Custom gestures"
+    },
+    {
+      "anchor": "3D-Touch-interactions",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIPreviewInteraction",
+        "doc://com.apple.uikit/documentation/UIKit/UIPreviewInteractionDelegate",
+        "doc://com.apple.uikit/documentation/UIKit/UIPreviewActionItem"
+      ],
+      "title": "3D Touch interactions"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Essentials",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/using-responders-and-the-responder-chain-to-handle-events",
+                "doc://com.apple.uikit/documentation/UIKit/UIResponder",
+                "doc://com.apple.uikit/documentation/UIKit/UIEvent"
+              ],
+              "title": "Essentials"
+            },
+            {
+              "anchor": "Touches",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/handling-touches-in-your-view",
+                "doc://com.apple.uikit/documentation/UIKit/handling-input-from-apple-pencil",
+                "doc://com.apple.uikit/documentation/UIKit/tracking-the-force-of-3d-touch-events",
+                "doc://com.apple.uikit/documentation/UIKit/illustrating-the-force-altitude-and-azimuth-properties-of-touch-input",
+                "doc://com.apple.uikit/documentation/UIKit/leveraging-touch-input-for-drawing-apps",
+                "doc://com.apple.uikit/documentation/UIKit/UITouch"
+              ],
+              "title": "Touches"
+            },
+            {
+              "anchor": "Button-presses",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIPress",
+                "doc://com.apple.uikit/documentation/UIKit/UIPressesEvent"
+              ],
+              "title": "Button presses"
+            },
+            {
+              "anchor": "Standard-gestures",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/handling-uikit-gestures",
+                "doc://com.apple.uikit/documentation/UIKit/coordinating-multiple-gesture-recognizers",
+                "doc://com.apple.uikit/documentation/UIKit/adopting-hover-support-for-apple-pencil",
+                "doc://com.apple.uikit/documentation/UIKit/supporting-gesture-interaction-in-your-apps",
+                "doc://com.apple.uikit/documentation/UIKit/UIHoverGestureRecognizer",
+                "doc://com.apple.uikit/documentation/UIKit/UILongPressGestureRecognizer",
+                "doc://com.apple.uikit/documentation/UIKit/UIPanGestureRecognizer",
+                "doc://com.apple.uikit/documentation/UIKit/UIPinchGestureRecognizer",
+                "doc://com.apple.uikit/documentation/UIKit/UIRotationGestureRecognizer",
+                "doc://com.apple.uikit/documentation/UIKit/UIScreenEdgePanGestureRecognizer",
+                "doc://com.apple.uikit/documentation/UIKit/UISwipeGestureRecognizer",
+                "doc://com.apple.uikit/documentation/UIKit/UITapGestureRecognizer"
+              ],
+              "title": "Standard gestures"
+            },
+            {
+              "anchor": "Custom-gestures",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/implementing-a-custom-gesture-recognizer",
+                "doc://com.apple.uikit/documentation/UIKit/UIGestureRecognizer",
+                "doc://com.apple.uikit/documentation/UIKit/UIGestureRecognizerDelegate",
+                "doc://com.apple.uikit/documentation/UIKit/supporting-gesture-interaction-in-your-apps"
+              ],
+              "title": "Custom gestures"
+            },
+            {
+              "anchor": "3D-Touch-interactions",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIPreviewInteraction",
+                "doc://com.apple.uikit/documentation/UIKit/UIPreviewInteractionDelegate",
+                "doc://com.apple.uikit/documentation/UIKit/UIPreviewActionItem"
+              ],
+              "title": "3D Touch interactions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "User-interactions",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/menus-and-shortcuts",
+                "doc://com.apple.uikit/documentation/UIKit/drag-and-drop",
+                "doc://com.apple.uikit/documentation/UIKit/pointer-interactions",
+                "doc://com.apple.uikit/documentation/UIKit/apple-pencil-interactions",
+                "doc://com.apple.uikit/documentation/UIKit/focus-based-navigation",
+                "doc://com.apple.uikit/documentation/UIKit/accessibility-for-uikit"
+              ],
+              "title": "User interactions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPreviewInteractionDelegate/title",
+          "value": "UIPreviewInteractionDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPreviewInteractionDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIPreviewInteractionDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPreviewInteractionDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIPreviewInteractionDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UILongPressGestureRecognizer/title",
+          "value": "UILongPressGestureRecognizer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UILongPressGestureRecognizer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UILongPressGestureRecognizer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UILongPressGestureRecognizer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UILongPressGestureRecognizer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIResponder/title",
+          "value": "UIResponder"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIResponder/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIResponder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIResponder/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIResponder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPinchGestureRecognizer/title",
+          "value": "UIPinchGestureRecognizer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPinchGestureRecognizer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIPinchGestureRecognizer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPinchGestureRecognizer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIPinchGestureRecognizer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIRotationGestureRecognizer/title",
+          "value": "UIRotationGestureRecognizer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIRotationGestureRecognizer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIRotationGestureRecognizer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIRotationGestureRecognizer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIRotationGestureRecognizer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITouch/title",
+          "value": "UITouch"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITouch/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITouch"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITouch/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITouch"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIEvent/title",
+          "value": "UIEvent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIEvent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIEvent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIEvent/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIEvent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIView/title",
+          "value": "UIView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPanGestureRecognizer/title",
+          "value": "UIPanGestureRecognizer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPanGestureRecognizer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIPanGestureRecognizer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPanGestureRecognizer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIPanGestureRecognizer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIGestureRecognizerDelegate/title",
+          "value": "UIGestureRecognizerDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIGestureRecognizerDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIGestureRecognizerDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIGestureRecognizerDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIGestureRecognizerDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITapGestureRecognizer/title",
+          "value": "UITapGestureRecognizer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITapGestureRecognizer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITapGestureRecognizer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITapGestureRecognizer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITapGestureRecognizer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIHoverGestureRecognizer/title",
+          "value": "UIHoverGestureRecognizer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIHoverGestureRecognizer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIHoverGestureRecognizer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIHoverGestureRecognizer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIHoverGestureRecognizer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIGestureRecognizer/title",
+          "value": "UIGestureRecognizer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIGestureRecognizer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIGestureRecognizer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIGestureRecognizer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIGestureRecognizer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPress/title",
+          "value": "UIPress"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPress/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIPress"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPress/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIPress"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPreviewInteraction/title",
+          "value": "UIPreviewInteraction"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPreviewInteraction/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIPreviewInteraction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPreviewInteraction/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIPreviewInteraction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPressesEvent/title",
+          "value": "UIPressesEvent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPressesEvent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIPressesEvent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPressesEvent/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIPressesEvent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISwipeGestureRecognizer/title",
+          "value": "UISwipeGestureRecognizer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISwipeGestureRecognizer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UISwipeGestureRecognizer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISwipeGestureRecognizer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UISwipeGestureRecognizer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIScreenEdgePanGestureRecognizer/title",
+          "value": "UIScreenEdgePanGestureRecognizer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIScreenEdgePanGestureRecognizer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIScreenEdgePanGestureRecognizer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIScreenEdgePanGestureRecognizer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIScreenEdgePanGestureRecognizer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPreviewActionItem/title",
+          "value": "UIPreviewActionItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPreviewActionItem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIPreviewActionItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPreviewActionItem/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIPreviewActionItem"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/uikit/touches-presses-and-gestures"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/uikit/touches-presses-and-gestures"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

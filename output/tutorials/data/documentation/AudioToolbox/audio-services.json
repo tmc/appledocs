@@ -1,0 +1,1828 @@
+{
+  "abstract": [
+    {
+      "text": "Play short sounds or trigger a vibration effect on iOS devices with the appropriate hardware.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-services"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Audio Toolbox"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Audio Services"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "System Sound Services provides a C interface for playing short sounds and for invoking vibration on iOS devices that support vibration.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can use System Sound Services to play short (30 seconds or shorter) sounds. The interface does not provide level, positioning, looping, or timing control, and does not support simultaneous playback: You can play only one sound at a time. You can use System Sound Services to provide audible alerts. On some iOS devices, alerts can include vibration.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox": {
+      "abstract": [
+        {
+          "text": "Record or play audio, convert formats, parse audio streams, and configure your audio session.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Audio Toolbox",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1405208-audio-hardware-services-properti": {
+      "abstract": [
+        {
+          "text": "Property identifiers that apply to HAL audio objects only when accessed via the Audio Hardware Services.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1405208-audio-hardware-services-properti",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Audio Hardware Services Properties",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/1405208-audio-hardware-services-properti"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1405222-system-sounds": {
+      "abstract": [],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1405222-system-sounds",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "System Sounds",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/1405222-system-sounds"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1405232-audio-services-errors": {
+      "abstract": [],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1405232-audio-services-errors",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Audio Services Errors",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/1405232-audio-services-errors"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1405268-system-sound-services-property-i": {
+      "abstract": [
+        {
+          "text": "Property identifiers used when playing alerts with System Sound Services.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1405268-system-sound-services-property-i",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "System Sound Services Property Identifiers",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/1405268-system-sound-services-property-i"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1618202-alert-sound-identifiers": {
+      "abstract": [
+        {
+          "text": "Identifiers for alert sounds and alternatives to sounds, for use with the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioServicesPlayAlertSound(_:)",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " function.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1618202-alert-sound-identifiers",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Alert Sound Identifiers",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/1618202-alert-sound-identifiers"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioServicesAddSystemSoundCompletion(_:_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Registers a callback function that is invoked when a specified system sound finishes playing.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioServicesAddSystemSoundCompletion"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SystemSoundID",
+          "text": "SystemSoundID"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFRunLoopRef",
+          "text": "CFRunLoop"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioServicesSystemSoundCompletionProc",
+          "text": "AudioServicesSystemSoundCompletionProc"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sv",
+          "text": "UnsafeMutableRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioServicesAddSystemSoundCompletion(_:_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioServicesAddSystemSoundCompletion"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioServicesAddSystemSoundCompletion(_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audioservicesaddsystemsoundcompletion(_:_:_:_:_:)"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioServicesCreateSystemSoundID(_:_:)": {
+      "abstract": [
+        {
+          "text": "Creates a system sound object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioServicesCreateSystemSoundID"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFURLRef",
+          "text": "CFURL"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SystemSoundID",
+          "text": "SystemSoundID"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioServicesCreateSystemSoundID(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioServicesCreateSystemSoundID"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioServicesCreateSystemSoundID(_:_:)",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audioservicescreatesystemsoundid(_:_:)"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioServicesDisposeSystemSoundID(_:)": {
+      "abstract": [
+        {
+          "text": "Disposes of a system sound object and associated resources.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioServicesDisposeSystemSoundID"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SystemSoundID",
+          "text": "SystemSoundID"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioServicesDisposeSystemSoundID(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioServicesDisposeSystemSoundID"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioServicesDisposeSystemSoundID(_:)",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audioservicesdisposesystemsoundid(_:)"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioServicesGetProperty(_:_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Gets a specified System Sound Services property value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioServicesGetProperty"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioServicesPropertyID",
+          "text": "AudioServicesPropertyID"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SV",
+          "text": "UnsafeRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sv",
+          "text": "UnsafeMutableRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioServicesGetProperty(_:_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioServicesGetProperty"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioServicesGetProperty(_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audioservicesgetproperty(_:_:_:_:_:)"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioServicesGetPropertyInfo(_:_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Gets information about a System Sound Services property.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioServicesGetPropertyInfo"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioServicesPropertyID",
+          "text": "AudioServicesPropertyID"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SV",
+          "text": "UnsafeRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ">?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6Darwin0A7BooleanV",
+          "text": "DarwinBoolean"
+        },
+        {
+          "kind": "text",
+          "text": ">?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioServicesGetPropertyInfo(_:_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioServicesGetPropertyInfo"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioServicesGetPropertyInfo(_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audioservicesgetpropertyinfo(_:_:_:_:_:)"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioServicesPlayAlertSound(_:)": {
+      "abstract": [
+        {
+          "text": "Plays a system sound as an alert.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioServicesPlayAlertSound"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SystemSoundID",
+          "text": "SystemSoundID"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioServicesPlayAlertSound(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioServicesPlayAlertSound"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioServicesPlayAlertSound(_:)",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audioservicesplayalertsound(_:)"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioServicesPlayAlertSoundWithCompletion(_:_:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioServicesPlayAlertSoundWithCompletion"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SystemSoundID",
+          "text": "SystemSoundID"
+        },
+        {
+          "kind": "text",
+          "text": ", (() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")?)"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioServicesPlayAlertSoundWithCompletion(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioServicesPlayAlertSoundWithCompletion"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioServicesPlayAlertSoundWithCompletion(_:_:)",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audioservicesplayalertsoundwithcompletion(_:_:)"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioServicesPlaySystemSound(_:)": {
+      "abstract": [
+        {
+          "text": "Plays a system sound object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioServicesPlaySystemSound"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SystemSoundID",
+          "text": "SystemSoundID"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioServicesPlaySystemSound(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioServicesPlaySystemSound"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioServicesPlaySystemSound(_:)",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audioservicesplaysystemsound(_:)"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioServicesPlaySystemSoundWithCompletion(_:_:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioServicesPlaySystemSoundWithCompletion"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SystemSoundID",
+          "text": "SystemSoundID"
+        },
+        {
+          "kind": "text",
+          "text": ", (() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")?)"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioServicesPlaySystemSoundWithCompletion(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioServicesPlaySystemSoundWithCompletion"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioServicesPlaySystemSoundWithCompletion(_:_:)",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audioservicesplaysystemsoundwithcompletion(_:_:)"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioServicesPropertyID": {
+      "abstract": [
+        {
+          "text": "The data type for a system sound property identifier.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioServicesPropertyID"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioServicesPropertyID",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioServicesPropertyID"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioServicesPropertyID",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audioservicespropertyid"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioServicesRemoveSystemSoundCompletion(_:)": {
+      "abstract": [
+        {
+          "text": "Unregisters any completion callback functions that were registered for a specified system sound.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioServicesRemoveSystemSoundCompletion"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SystemSoundID",
+          "text": "SystemSoundID"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioServicesRemoveSystemSoundCompletion(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioServicesRemoveSystemSoundCompletion"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioServicesRemoveSystemSoundCompletion(_:)",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audioservicesremovesystemsoundcompletion(_:)"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioServicesSetProperty(_:_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Sets the value for a specified System Sound Services property.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioServicesSetProperty"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioServicesPropertyID",
+          "text": "AudioServicesPropertyID"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SV",
+          "text": "UnsafeRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SV",
+          "text": "UnsafeRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioServicesSetProperty(_:_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioServicesSetProperty"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioServicesSetProperty(_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audioservicessetproperty(_:_:_:_:_:)"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioServicesSystemSoundCompletionProc": {
+      "abstract": [
+        {
+          "text": "A function the system invokes when a system sound finishes playing.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioServicesSystemSoundCompletionProc"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioServicesSystemSoundCompletionProc",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioServicesSystemSoundCompletionProc"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioServicesSystemSoundCompletionProc",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audioservicessystemsoundcompletionproc"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/SystemSoundID": {
+      "abstract": [
+        {
+          "text": "A system sound object, identified with a sound file you want to play.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SystemSoundID"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/SystemSoundID",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SystemSoundID"
+        }
+      ],
+      "role": "symbol",
+      "title": "SystemSoundID",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/systemsoundid"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-queue-services": {
+      "abstract": [
+        {
+          "text": "Connect to audio hardware and manage the recording or playback process.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-queue-services",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Audio Queue Services",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audio-queue-services"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioServicesBadPropertySizeError": {
+      "abstract": [
+        {
+          "text": "The size of the property data was not correct.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAudioServicesBadPropertySizeError"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioServicesBadPropertySizeError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kAudioServicesBadPropertySizeError"
+        }
+      ],
+      "role": "symbol",
+      "title": "kAudioServicesBadPropertySizeError",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kaudioservicesbadpropertysizeerror"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioServicesBadSpecifierSizeError": {
+      "abstract": [
+        {
+          "text": "The size of the specifier data was not correct.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAudioServicesBadSpecifierSizeError"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioServicesBadSpecifierSizeError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kAudioServicesBadSpecifierSizeError"
+        }
+      ],
+      "role": "symbol",
+      "title": "kAudioServicesBadSpecifierSizeError",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kaudioservicesbadspecifiersizeerror"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioServicesNoError": {
+      "abstract": [
+        {
+          "text": "No error has occurred.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAudioServicesNoError"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioServicesNoError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kAudioServicesNoError"
+        }
+      ],
+      "role": "symbol",
+      "title": "kAudioServicesNoError",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kaudioservicesnoerror"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioServicesSystemSoundClientTimedOutError": {
+      "abstract": [
+        {
+          "text": "System sound client message timed out.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAudioServicesSystemSoundClientTimedOutError"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioServicesSystemSoundClientTimedOutError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kAudioServicesSystemSoundClientTimedOutError"
+        }
+      ],
+      "role": "symbol",
+      "title": "kAudioServicesSystemSoundClientTimedOutError",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kaudioservicessystemsoundclienttimedouterror"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioServicesSystemSoundUnspecifiedError": {
+      "abstract": [
+        {
+          "text": "An unspecified error has occurred.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAudioServicesSystemSoundUnspecifiedError"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioServicesSystemSoundUnspecifiedError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kAudioServicesSystemSoundUnspecifiedError"
+        }
+      ],
+      "role": "symbol",
+      "title": "kAudioServicesSystemSoundUnspecifiedError",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kaudioservicessystemsoundunspecifiederror"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioServicesUnsupportedPropertyError": {
+      "abstract": [
+        {
+          "text": "The property is not supported.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAudioServicesUnsupportedPropertyError"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioServicesUnsupportedPropertyError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kAudioServicesUnsupportedPropertyError"
+        }
+      ],
+      "role": "symbol",
+      "title": "kAudioServicesUnsupportedPropertyError",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kaudioservicesunsupportedpropertyerror"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/music-player": {
+      "abstract": [
+        {
+          "text": "Create and play a sequence of tracks, and manage aspects of playback in response to standard events.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/music-player",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Music Player",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/music-player"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Playback-and-Recording",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-queue-services",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/music-player"
+      ],
+      "title": "Playback and Recording"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-and-Disposing-of-System-Sound-Objects",
+      "identifiers": [
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioServicesCreateSystemSoundID(_:_:)",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioServicesDisposeSystemSoundID(_:)",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/SystemSoundID",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1405222-system-sounds",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1618202-alert-sound-identifiers"
+      ],
+      "title": "Creating and Disposing of System Sound Objects"
+    },
+    {
+      "anchor": "Playing-Sounds",
+      "identifiers": [
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioServicesPlayAlertSoundWithCompletion(_:_:)",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioServicesPlaySystemSoundWithCompletion(_:_:)",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioServicesPlayAlertSound(_:)",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioServicesPlaySystemSound(_:)"
+      ],
+      "title": "Playing Sounds"
+    },
+    {
+      "anchor": "Adding-and-Removing-System-Sound-Callbacks",
+      "identifiers": [
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioServicesAddSystemSoundCompletion(_:_:_:_:_:)",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioServicesRemoveSystemSoundCompletion(_:)",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioServicesSystemSoundCompletionProc"
+      ],
+      "title": "Adding and Removing System Sound Callbacks"
+    },
+    {
+      "anchor": "Managing-System-Sound-Services-Properties",
+      "identifiers": [
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioServicesGetPropertyInfo(_:_:_:_:_:)",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioServicesGetProperty(_:_:_:_:_:)",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioServicesSetProperty(_:_:_:_:_:)",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioServicesPropertyID",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1405268-system-sound-services-property-i",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1405208-audio-hardware-services-properti"
+      ],
+      "title": "Managing System Sound Services Properties"
+    },
+    {
+      "abstract": [
+        {
+          "text": "This table lists the result codes defined for System Sound Services.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Getting-Error-Codes",
+      "identifiers": [
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1405232-audio-services-errors",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioServicesNoError",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioServicesUnsupportedPropertyError",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioServicesBadPropertySizeError",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioServicesBadSpecifierSizeError",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioServicesSystemSoundUnspecifiedError",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioServicesSystemSoundClientTimedOutError"
+      ],
+      "title": "Getting Error Codes"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Creating-and-Disposing-of-System-Sound-Objects",
+              "identifiers": [
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioServicesCreateSystemSoundID(_:_:)",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioServicesDisposeSystemSoundID(_:)",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/SystemSoundID",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1405222-system-sounds",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1618202-alert-sound-identifiers"
+              ],
+              "title": "Creating and Disposing of System Sound Objects"
+            },
+            {
+              "anchor": "Playing-Sounds",
+              "identifiers": [
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioServicesPlayAlertSoundWithCompletion(_:_:)",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioServicesPlaySystemSoundWithCompletion(_:_:)",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioServicesPlayAlertSound(_:)",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioServicesPlaySystemSound(_:)"
+              ],
+              "title": "Playing Sounds"
+            },
+            {
+              "anchor": "Adding-and-Removing-System-Sound-Callbacks",
+              "identifiers": [
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioServicesAddSystemSoundCompletion(_:_:_:_:_:)",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioServicesRemoveSystemSoundCompletion(_:)",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioServicesSystemSoundCompletionProc"
+              ],
+              "title": "Adding and Removing System Sound Callbacks"
+            },
+            {
+              "anchor": "Managing-System-Sound-Services-Properties",
+              "identifiers": [
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioServicesGetPropertyInfo(_:_:_:_:_:)",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioServicesGetProperty(_:_:_:_:_:)",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioServicesSetProperty(_:_:_:_:_:)",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioServicesPropertyID",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1405268-system-sound-services-property-i",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1405208-audio-hardware-services-properti"
+              ],
+              "title": "Managing System Sound Services Properties"
+            },
+            {
+              "abstract": [
+                {
+                  "text": "This table lists the result codes defined for System Sound Services.",
+                  "type": "text"
+                }
+              ],
+              "anchor": "Getting-Error-Codes",
+              "identifiers": [
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1405232-audio-services-errors",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioServicesNoError",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioServicesUnsupportedPropertyError",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioServicesBadPropertySizeError",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioServicesBadSpecifierSizeError",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioServicesSystemSoundUnspecifiedError",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioServicesSystemSoundClientTimedOutError"
+              ],
+              "title": "Getting Error Codes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Playback-and-Recording",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-queue-services",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/music-player"
+              ],
+              "title": "Playback and Recording"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioServicesRemoveSystemSoundCompletion(_:)/title",
+          "value": "AudioServicesRemoveSystemSoundCompletion"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioServicesRemoveSystemSoundCompletion(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioServicesRemoveSystemSoundCompletion"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1SystemSoundID/title",
+          "value": "SystemSoundID"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1SystemSoundID/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SystemSoundID"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1SystemSoundID/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SystemSoundID"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioServicesSystemSoundCompletionProc/title",
+          "value": "AudioServicesSystemSoundCompletionProc"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioServicesSystemSoundCompletionProc/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioServicesSystemSoundCompletionProc"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioServicesSystemSoundCompletionProc/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioServicesSystemSoundCompletionProc"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioServicesPlayAlertSoundWithCompletion(_:_:)/title",
+          "value": "AudioServicesPlayAlertSoundWithCompletion"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioServicesPlayAlertSoundWithCompletion(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioServicesPlayAlertSoundWithCompletion"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioServicesPropertyID/title",
+          "value": "AudioServicesPropertyID"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioServicesPropertyID/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioServicesPropertyID"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioServicesPropertyID/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioServicesPropertyID"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioServicesDisposeSystemSoundID(_:)/title",
+          "value": "AudioServicesDisposeSystemSoundID"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioServicesDisposeSystemSoundID(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioServicesDisposeSystemSoundID"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioServicesPlayAlertSound(_:)/title",
+          "value": "AudioServicesPlayAlertSound"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioServicesPlayAlertSound(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioServicesPlayAlertSound"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioServicesPlaySystemSound(_:)/title",
+          "value": "AudioServicesPlaySystemSound"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioServicesPlaySystemSound(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioServicesPlaySystemSound"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioServicesCreateSystemSoundID(_:_:)/title",
+          "value": "AudioServicesCreateSystemSoundID"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioServicesCreateSystemSoundID(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioServicesCreateSystemSoundID"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioServicesGetProperty(_:_:_:_:_:)/title",
+          "value": "AudioServicesGetProperty"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioServicesGetProperty(_:_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioServicesGetProperty"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioServicesPlaySystemSoundWithCompletion(_:_:)/title",
+          "value": "AudioServicesPlaySystemSoundWithCompletion"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioServicesPlaySystemSoundWithCompletion(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioServicesPlaySystemSoundWithCompletion"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioServicesAddSystemSoundCompletion(_:_:_:_:_:)/title",
+          "value": "AudioServicesAddSystemSoundCompletion"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioServicesAddSystemSoundCompletion(_:_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioServicesAddSystemSoundCompletion"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioServicesGetPropertyInfo(_:_:_:_:_:)/title",
+          "value": "AudioServicesGetPropertyInfo"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioServicesGetPropertyInfo(_:_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioServicesGetPropertyInfo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioServicesSystemSoundClientTimedOutError/title",
+          "value": "kAudioServicesSystemSoundClientTimedOutError"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioServicesSystemSoundClientTimedOutError/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kAudioServicesSystemSoundClientTimedOutError"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioServicesNoError/title",
+          "value": "kAudioServicesNoError"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioServicesNoError/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kAudioServicesNoError"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioServicesSystemSoundUnspecifiedError/title",
+          "value": "kAudioServicesSystemSoundUnspecifiedError"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioServicesSystemSoundUnspecifiedError/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kAudioServicesSystemSoundUnspecifiedError"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioServicesBadPropertySizeError/title",
+          "value": "kAudioServicesBadPropertySizeError"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioServicesBadPropertySizeError/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kAudioServicesBadPropertySizeError"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioServicesUnsupportedPropertyError/title",
+          "value": "kAudioServicesUnsupportedPropertyError"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioServicesUnsupportedPropertyError/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kAudioServicesUnsupportedPropertyError"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioServicesSetProperty(_:_:_:_:_:)/title",
+          "value": "AudioServicesSetProperty"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioServicesSetProperty(_:_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioServicesSetProperty"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioServicesBadSpecifierSizeError/title",
+          "value": "kAudioServicesBadSpecifierSizeError"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioServicesBadSpecifierSizeError/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kAudioServicesBadSpecifierSizeError"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/audiotoolbox/audio-services"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/audiotoolbox/audio-services"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

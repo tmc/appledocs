@@ -1,0 +1,3758 @@
+{
+  "abstract": [
+    {
+      "text": "Values indicating the organization and format of data for function attributes.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.metal/documentation/Metal"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@E@MTLAttributeFormat",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "enum"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "MTLAttributeFormat"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Metal"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "MTLAttributeFormat"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.12",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Enumeration",
+    "symbolKind": "enum",
+    "title": "MTLAttributeFormat"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "enum"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MTLAttributeFormat"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "All data formats are least significant bit first (little-endian). For compute functions which manipulate data consumed by other parts of your app, ensure that the data exposed to the GPU is byte- and bit-aligned correctly to the source format. Your compute function’s attributes can be of a different type than the original source data, so long as they use the same number of bits. For example, your compute function can interpret a 128-bit little-endian integer as ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/uint4",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "When manipulating pixel data in a compute function for a future pipeline stage, use an exact match for the underlying pixel data to avoid visual corruption.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.metal/documentation/Metal": {
+      "abstract": [
+        {
+          "text": "Render advanced 3D graphics and compute data in parallel with graphics processors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Metal",
+      "type": "topic",
+      "url": "/documentation/metal"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLAttributeDescriptor/bufferIndex": {
+      "abstract": [
+        {
+          "text": "The index in the buffer argument table for the buffer that contains the data for this attribute.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "bufferIndex"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLAttributeDescriptor/bufferIndex",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "bufferIndex"
+        }
+      ],
+      "role": "symbol",
+      "title": "bufferIndex",
+      "type": "topic",
+      "url": "/documentation/metal/mtlattributedescriptor/bufferindex"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLAttributeDescriptor/format": {
+      "abstract": [
+        {
+          "text": "The format of the attribute’s data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "format"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MTLAttributeFormat",
+          "text": "MTLAttributeFormat"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLAttributeDescriptor/format",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "format"
+        }
+      ],
+      "role": "symbol",
+      "title": "format",
+      "type": "topic",
+      "url": "/documentation/metal/mtlattributedescriptor/format"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLAttributeDescriptor/offset": {
+      "abstract": [
+        {
+          "text": "The offset, in bytes, from the start of the buffer containing the attribute data to the start of the data itself.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "offset"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLAttributeDescriptor/offset",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "offset"
+        }
+      ],
+      "role": "symbol",
+      "title": "offset",
+      "type": "topic",
+      "url": "/documentation/metal/mtlattributedescriptor/offset"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat": {
+      "abstract": [
+        {
+          "text": "Values indicating the organization and format of data for function attributes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLAttributeFormat"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLAttributeFormat"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLAttributeFormat",
+      "type": "topic",
+      "url": "/documentation/metal/mtlattributeformat"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/char": {
+      "abstract": [
+        {
+          "text": "One signed 8-bit two’s complement value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "char"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/char",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLAttributeFormatChar"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLAttributeFormat.char",
+      "type": "topic",
+      "url": "/documentation/metal/mtlattributeformat/char"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/char2": {
+      "abstract": [
+        {
+          "text": "Two signed 8-bit two’s complement values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "char2"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/char2",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLAttributeFormatChar2"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLAttributeFormat.char2",
+      "type": "topic",
+      "url": "/documentation/metal/mtlattributeformat/char2"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/char2Normalized": {
+      "abstract": [
+        {
+          "text": "Two signed normalized 8-bit two’s complement values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "char2Normalized"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/char2Normalized",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLAttributeFormatChar2Normalized"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLAttributeFormat.char2Normalized",
+      "type": "topic",
+      "url": "/documentation/metal/mtlattributeformat/char2normalized"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/char3": {
+      "abstract": [
+        {
+          "text": "Three signed 8-bit two’s complement values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "char3"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/char3",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLAttributeFormatChar3"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLAttributeFormat.char3",
+      "type": "topic",
+      "url": "/documentation/metal/mtlattributeformat/char3"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/char3Normalized": {
+      "abstract": [
+        {
+          "text": "Three signed normalized 8-bit two’s complement values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "char3Normalized"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/char3Normalized",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLAttributeFormatChar3Normalized"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLAttributeFormat.char3Normalized",
+      "type": "topic",
+      "url": "/documentation/metal/mtlattributeformat/char3normalized"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/char4": {
+      "abstract": [
+        {
+          "text": "Four signed 8-bit two’s complement values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "char4"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/char4",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLAttributeFormatChar4"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLAttributeFormat.char4",
+      "type": "topic",
+      "url": "/documentation/metal/mtlattributeformat/char4"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/char4Normalized": {
+      "abstract": [
+        {
+          "text": "Four signed normalized 8-bit two’s complement values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "char4Normalized"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/char4Normalized",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLAttributeFormatChar4Normalized"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLAttributeFormat.char4Normalized",
+      "type": "topic",
+      "url": "/documentation/metal/mtlattributeformat/char4normalized"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/charNormalized": {
+      "abstract": [
+        {
+          "text": "One signed normalized 8-bit two’s complement value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "charNormalized"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/charNormalized",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLAttributeFormatCharNormalized"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLAttributeFormat.charNormalized",
+      "type": "topic",
+      "url": "/documentation/metal/mtlattributeformat/charnormalized"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/float": {
+      "abstract": [
+        {
+          "text": "One single-precision floating-point value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "float"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/float",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLAttributeFormatFloat"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLAttributeFormat.float",
+      "type": "topic",
+      "url": "/documentation/metal/mtlattributeformat/float"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/float2": {
+      "abstract": [
+        {
+          "text": "Two single-precision floating-point values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "float2"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/float2",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLAttributeFormatFloat2"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLAttributeFormat.float2",
+      "type": "topic",
+      "url": "/documentation/metal/mtlattributeformat/float2"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/float3": {
+      "abstract": [
+        {
+          "text": "Three single-precision floating-point values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "float3"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/float3",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLAttributeFormatFloat3"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLAttributeFormat.float3",
+      "type": "topic",
+      "url": "/documentation/metal/mtlattributeformat/float3"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/float4": {
+      "abstract": [
+        {
+          "text": "Four single-precision floating-point values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "float4"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/float4",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLAttributeFormatFloat4"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLAttributeFormat.float4",
+      "type": "topic",
+      "url": "/documentation/metal/mtlattributeformat/float4"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/floatRG11B10": {
+      "abstract": [
+        {
+          "text": "One packed 32-bit value representing pixel data containing 11-bit float red and green channels, and a 10-bit float blue channel.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "floatRG11B10"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/floatRG11B10",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLAttributeFormatFloatRG11B10"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLAttributeFormat.floatRG11B10",
+      "type": "topic",
+      "url": "/documentation/metal/mtlattributeformat/floatrg11b10"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/floatRGB9E5": {
+      "abstract": [
+        {
+          "text": "One packed 32-bit value representing pixel data containing 9-bit float red, green, and blue channels, and a 5-bit float shared exponent channel.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "floatRGB9E5"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/floatRGB9E5",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLAttributeFormatFloatRGB9E5"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLAttributeFormat.floatRGB9E5",
+      "type": "topic",
+      "url": "/documentation/metal/mtlattributeformat/floatrgb9e5"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/half": {
+      "abstract": [
+        {
+          "text": "One half-precision floating-point value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "half"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/half",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLAttributeFormatHalf"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLAttributeFormat.half",
+      "type": "topic",
+      "url": "/documentation/metal/mtlattributeformat/half"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/half2": {
+      "abstract": [
+        {
+          "text": "Two half-precision floating-point values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "half2"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/half2",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLAttributeFormatHalf2"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLAttributeFormat.half2",
+      "type": "topic",
+      "url": "/documentation/metal/mtlattributeformat/half2"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/half3": {
+      "abstract": [
+        {
+          "text": "Three half-precision floating-point values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "half3"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/half3",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLAttributeFormatHalf3"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLAttributeFormat.half3",
+      "type": "topic",
+      "url": "/documentation/metal/mtlattributeformat/half3"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/half4": {
+      "abstract": [
+        {
+          "text": "Four half-precision floating-point values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "half4"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/half4",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLAttributeFormatHalf4"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLAttributeFormat.half4",
+      "type": "topic",
+      "url": "/documentation/metal/mtlattributeformat/half4"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/init(rawValue:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "externalParam",
+          "text": "rawValue"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Su",
+          "text": "UInt"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/init(rawValue:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(rawValue:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlattributeformat/init(rawvalue:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/int": {
+      "abstract": [
+        {
+          "text": "One signed 32-bit two’s complement value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "int"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/int",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLAttributeFormatInt"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLAttributeFormat.int",
+      "type": "topic",
+      "url": "/documentation/metal/mtlattributeformat/int"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/int1010102Normalized": {
+      "abstract": [
+        {
+          "text": "One packed 32-bit value with four normalized signed two’s complement integer values, arranged as 10 bits, 10 bits, 10 bits, and 2 bits.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "int1010102Normalized"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/int1010102Normalized",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLAttributeFormatInt1010102Normalized"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLAttributeFormat.int1010102Normalized",
+      "type": "topic",
+      "url": "/documentation/metal/mtlattributeformat/int1010102normalized"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/int2": {
+      "abstract": [
+        {
+          "text": "Two signed 32-bit two’s complement values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "int2"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/int2",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLAttributeFormatInt2"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLAttributeFormat.int2",
+      "type": "topic",
+      "url": "/documentation/metal/mtlattributeformat/int2"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/int3": {
+      "abstract": [
+        {
+          "text": "Three signed 32-bit two’s complement values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "int3"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/int3",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLAttributeFormatInt3"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLAttributeFormat.int3",
+      "type": "topic",
+      "url": "/documentation/metal/mtlattributeformat/int3"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/int4": {
+      "abstract": [
+        {
+          "text": "Four signed 32-bit two’s complement values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "int4"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/int4",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLAttributeFormatInt4"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLAttributeFormat.int4",
+      "type": "topic",
+      "url": "/documentation/metal/mtlattributeformat/int4"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/invalid": {
+      "abstract": [
+        {
+          "text": "An invalid format.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "invalid"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/invalid",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLAttributeFormatInvalid"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLAttributeFormat.invalid",
+      "type": "topic",
+      "url": "/documentation/metal/mtlattributeformat/invalid"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/short": {
+      "abstract": [
+        {
+          "text": "One signed 16-bit two’s complement value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "short"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/short",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLAttributeFormatShort"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLAttributeFormat.short",
+      "type": "topic",
+      "url": "/documentation/metal/mtlattributeformat/short"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/short2": {
+      "abstract": [
+        {
+          "text": "Two signed 16-bit two’s complement values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "short2"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/short2",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLAttributeFormatShort2"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLAttributeFormat.short2",
+      "type": "topic",
+      "url": "/documentation/metal/mtlattributeformat/short2"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/short2Normalized": {
+      "abstract": [
+        {
+          "text": "Two signed normalized 16-bit two’s complement values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "short2Normalized"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/short2Normalized",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLAttributeFormatShort2Normalized"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLAttributeFormat.short2Normalized",
+      "type": "topic",
+      "url": "/documentation/metal/mtlattributeformat/short2normalized"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/short3": {
+      "abstract": [
+        {
+          "text": "Three signed 16-bit two’s complement values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "short3"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/short3",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLAttributeFormatShort3"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLAttributeFormat.short3",
+      "type": "topic",
+      "url": "/documentation/metal/mtlattributeformat/short3"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/short3Normalized": {
+      "abstract": [
+        {
+          "text": "Three signed normalized 16-bit two’s complement values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "short3Normalized"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/short3Normalized",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLAttributeFormatShort3Normalized"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLAttributeFormat.short3Normalized",
+      "type": "topic",
+      "url": "/documentation/metal/mtlattributeformat/short3normalized"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/short4": {
+      "abstract": [
+        {
+          "text": "Four signed 16-bit two’s complement values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "short4"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/short4",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLAttributeFormatShort4"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLAttributeFormat.short4",
+      "type": "topic",
+      "url": "/documentation/metal/mtlattributeformat/short4"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/short4Normalized": {
+      "abstract": [
+        {
+          "text": "Four signed normalized 16-bit two’s complement values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "short4Normalized"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/short4Normalized",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLAttributeFormatShort4Normalized"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLAttributeFormat.short4Normalized",
+      "type": "topic",
+      "url": "/documentation/metal/mtlattributeformat/short4normalized"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/shortNormalized": {
+      "abstract": [
+        {
+          "text": "One signed normalized 16-bit two’s complement value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "shortNormalized"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/shortNormalized",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLAttributeFormatShortNormalized"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLAttributeFormat.shortNormalized",
+      "type": "topic",
+      "url": "/documentation/metal/mtlattributeformat/shortnormalized"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/uchar": {
+      "abstract": [
+        {
+          "text": "One unsigned 8-bit value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "uchar"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/uchar",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLAttributeFormatUChar"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLAttributeFormat.uchar",
+      "type": "topic",
+      "url": "/documentation/metal/mtlattributeformat/uchar"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/uchar2": {
+      "abstract": [
+        {
+          "text": "Two unsigned 8-bit values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "uchar2"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/uchar2",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLAttributeFormatUChar2"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLAttributeFormat.uchar2",
+      "type": "topic",
+      "url": "/documentation/metal/mtlattributeformat/uchar2"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/uchar2Normalized": {
+      "abstract": [
+        {
+          "text": "Two unsigned normalized 8-bit values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "uchar2Normalized"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/uchar2Normalized",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLAttributeFormatUChar2Normalized"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLAttributeFormat.uchar2Normalized",
+      "type": "topic",
+      "url": "/documentation/metal/mtlattributeformat/uchar2normalized"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/uchar3": {
+      "abstract": [
+        {
+          "text": "Three unsigned 8-bit values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "uchar3"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/uchar3",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLAttributeFormatUChar3"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLAttributeFormat.uchar3",
+      "type": "topic",
+      "url": "/documentation/metal/mtlattributeformat/uchar3"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/uchar3Normalized": {
+      "abstract": [
+        {
+          "text": "Three unsigned normalized 8-bit values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "uchar3Normalized"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/uchar3Normalized",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLAttributeFormatUChar3Normalized"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLAttributeFormat.uchar3Normalized",
+      "type": "topic",
+      "url": "/documentation/metal/mtlattributeformat/uchar3normalized"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/uchar4": {
+      "abstract": [
+        {
+          "text": "Four unsigned 8-bit values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "uchar4"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/uchar4",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLAttributeFormatUChar4"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLAttributeFormat.uchar4",
+      "type": "topic",
+      "url": "/documentation/metal/mtlattributeformat/uchar4"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/uchar4Normalized": {
+      "abstract": [
+        {
+          "text": "Four unsigned normalized 8-bit values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "uchar4Normalized"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/uchar4Normalized",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLAttributeFormatUChar4Normalized"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLAttributeFormat.uchar4Normalized",
+      "type": "topic",
+      "url": "/documentation/metal/mtlattributeformat/uchar4normalized"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/uchar4Normalized_bgra": {
+      "abstract": [
+        {
+          "text": "Four unsigned normalized 8-bit values, arranged as blue, green, red, and alpha components.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "uchar4Normalized_bgra"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/uchar4Normalized_bgra",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLAttributeFormatUChar4Normalized_BGRA"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLAttributeFormat.uchar4Normalized_bgra",
+      "type": "topic",
+      "url": "/documentation/metal/mtlattributeformat/uchar4normalized_bgra"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/ucharNormalized": {
+      "abstract": [
+        {
+          "text": "One unsigned normalized 8-bit value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ucharNormalized"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/ucharNormalized",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLAttributeFormatUCharNormalized"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLAttributeFormat.ucharNormalized",
+      "type": "topic",
+      "url": "/documentation/metal/mtlattributeformat/ucharnormalized"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/uint": {
+      "abstract": [
+        {
+          "text": "One unsigned 32-bit value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "uint"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/uint",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLAttributeFormatUInt"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLAttributeFormat.uint",
+      "type": "topic",
+      "url": "/documentation/metal/mtlattributeformat/uint"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/uint1010102Normalized": {
+      "abstract": [
+        {
+          "text": "One packed 32-bit value with four normalized unsigned integer values, arranged as 10 bits, 10 bits, 10 bits, and 2 bits.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "uint1010102Normalized"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/uint1010102Normalized",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLAttributeFormatUInt1010102Normalized"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLAttributeFormat.uint1010102Normalized",
+      "type": "topic",
+      "url": "/documentation/metal/mtlattributeformat/uint1010102normalized"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/uint2": {
+      "abstract": [
+        {
+          "text": "Two unsigned 32-bit values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "uint2"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/uint2",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLAttributeFormatUInt2"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLAttributeFormat.uint2",
+      "type": "topic",
+      "url": "/documentation/metal/mtlattributeformat/uint2"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/uint3": {
+      "abstract": [
+        {
+          "text": "Three unsigned 32-bit values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "uint3"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/uint3",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLAttributeFormatUInt3"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLAttributeFormat.uint3",
+      "type": "topic",
+      "url": "/documentation/metal/mtlattributeformat/uint3"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/uint4": {
+      "abstract": [
+        {
+          "text": "Four unsigned 32-bit values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "uint4"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/uint4",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLAttributeFormatUInt4"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLAttributeFormat.uint4",
+      "type": "topic",
+      "url": "/documentation/metal/mtlattributeformat/uint4"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/ushort": {
+      "abstract": [
+        {
+          "text": "One unsigned 16-bit value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ushort"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/ushort",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLAttributeFormatUShort"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLAttributeFormat.ushort",
+      "type": "topic",
+      "url": "/documentation/metal/mtlattributeformat/ushort"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/ushort2": {
+      "abstract": [
+        {
+          "text": "Two unsigned 16-bit values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ushort2"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/ushort2",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLAttributeFormatUShort2"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLAttributeFormat.ushort2",
+      "type": "topic",
+      "url": "/documentation/metal/mtlattributeformat/ushort2"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/ushort2Normalized": {
+      "abstract": [
+        {
+          "text": "Two unsigned normalized 16-bit values",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ushort2Normalized"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/ushort2Normalized",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLAttributeFormatUShort2Normalized"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLAttributeFormat.ushort2Normalized",
+      "type": "topic",
+      "url": "/documentation/metal/mtlattributeformat/ushort2normalized"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/ushort3": {
+      "abstract": [
+        {
+          "text": "Three unsigned 16-bit values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ushort3"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/ushort3",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLAttributeFormatUShort3"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLAttributeFormat.ushort3",
+      "type": "topic",
+      "url": "/documentation/metal/mtlattributeformat/ushort3"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/ushort3Normalized": {
+      "abstract": [
+        {
+          "text": "Three unsigned normalized 16-bit values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ushort3Normalized"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/ushort3Normalized",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLAttributeFormatUShort3Normalized"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLAttributeFormat.ushort3Normalized",
+      "type": "topic",
+      "url": "/documentation/metal/mtlattributeformat/ushort3normalized"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/ushort4": {
+      "abstract": [
+        {
+          "text": "Four unsigned 16-bit values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ushort4"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/ushort4",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLAttributeFormatUShort4"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLAttributeFormat.ushort4",
+      "type": "topic",
+      "url": "/documentation/metal/mtlattributeformat/ushort4"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/ushort4Normalized": {
+      "abstract": [
+        {
+          "text": "Four unsigned normalized 16-bit values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ushort4Normalized"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/ushort4Normalized",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLAttributeFormatUShort4Normalized"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLAttributeFormat.ushort4Normalized",
+      "type": "topic",
+      "url": "/documentation/metal/mtlattributeformat/ushort4normalized"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/ushortNormalized": {
+      "abstract": [
+        {
+          "text": "One unsigned normalized 16-bit value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ushortNormalized"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/ushortNormalized",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLAttributeFormatUShortNormalized"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLAttributeFormat.ushortNormalized",
+      "type": "topic",
+      "url": "/documentation/metal/mtlattributeformat/ushortnormalized"
+    },
+    "doc://com.externally.resolved.symbol/c:@T@NSUInteger": {
+      "abstract": [
+        {
+          "text": "Describes an unsigned integer.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:@T@NSUInteger",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSUInteger",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsuinteger"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:SY": {
+      "abstract": [
+        {
+          "text": "A type that can be converted to and from an associated raw value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RawRepresentable"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SY8RawValueQa",
+          "text": "RawValue"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SY",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "RawRepresentable",
+      "type": "topic",
+      "url": "/documentation/Swift/RawRepresentable"
+    },
+    "doc://com.externally.resolved.symbol/s:s15BitwiseCopyableP": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BitwiseCopyable"
+        },
+        {
+          "kind": "text",
+          "text": " : ~Escapable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s15BitwiseCopyableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "BitwiseCopyable",
+      "type": "topic",
+      "url": "/documentation/Swift/BitwiseCopyable"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s15BitwiseCopyableP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/s:SY",
+        "doc://com.externally.resolved.symbol/s:s8SendableP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Defining-Attribute-Location",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLAttributeDescriptor/bufferIndex",
+        "doc://com.apple.metal/documentation/Metal/MTLAttributeDescriptor/offset",
+        "doc://com.apple.metal/documentation/Metal/MTLAttributeDescriptor/format"
+      ],
+      "title": "Defining Attribute Location"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Invalid-format",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/invalid"
+      ],
+      "title": "Invalid format"
+    },
+    {
+      "anchor": "Character-data-formats",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/uchar",
+        "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/uchar2",
+        "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/uchar3",
+        "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/uchar4",
+        "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/char",
+        "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/char2",
+        "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/char3",
+        "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/char4",
+        "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/ucharNormalized",
+        "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/uchar2Normalized",
+        "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/uchar3Normalized",
+        "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/uchar4Normalized",
+        "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/charNormalized",
+        "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/char2Normalized",
+        "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/char3Normalized",
+        "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/char4Normalized"
+      ],
+      "title": "Character data formats"
+    },
+    {
+      "anchor": "16-bit-integer-data-formats",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/ushort",
+        "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/ushort2",
+        "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/ushort3",
+        "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/ushort4",
+        "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/short",
+        "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/short2",
+        "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/short3",
+        "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/short4",
+        "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/ushortNormalized",
+        "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/ushort2Normalized",
+        "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/ushort3Normalized",
+        "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/ushort4Normalized",
+        "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/shortNormalized",
+        "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/short2Normalized",
+        "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/short3Normalized",
+        "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/short4Normalized"
+      ],
+      "title": "16- bit integer data formats"
+    },
+    {
+      "anchor": "32-bit-integer-data-formats",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/uint",
+        "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/uint2",
+        "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/uint3",
+        "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/uint4",
+        "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/int",
+        "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/int2",
+        "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/int3",
+        "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/int4",
+        "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/int1010102Normalized",
+        "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/uint1010102Normalized"
+      ],
+      "title": "32-bit integer data formats"
+    },
+    {
+      "anchor": "16-bit-floating-point-formats",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/half",
+        "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/half2",
+        "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/half3",
+        "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/half4"
+      ],
+      "title": "16-bit floating point formats"
+    },
+    {
+      "anchor": "32-bit-floating-point-formats",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/float",
+        "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/float2",
+        "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/float3",
+        "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/float4"
+      ],
+      "title": "32-bit floating point formats"
+    },
+    {
+      "anchor": "Pixel-data-types",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/uchar4Normalized_bgra",
+        "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/floatRG11B10",
+        "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/floatRGB9E5"
+      ],
+      "title": "Pixel data types"
+    },
+    {
+      "anchor": "Initializers",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/init(rawValue:)"
+      ],
+      "title": "Initializers"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.12",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.0",
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Enumeration"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "MTLAttributeFormat"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "enum"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLAttributeFormat"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLAttributeFormat"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.metal/documentation/Metal"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Invalid-format",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/invalid"
+              ],
+              "title": "Invalid format"
+            },
+            {
+              "anchor": "Character-data-formats",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/uchar",
+                "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/uchar2",
+                "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/uchar3",
+                "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/uchar4",
+                "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/char",
+                "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/char2",
+                "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/char3",
+                "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/char4",
+                "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/ucharNormalized",
+                "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/uchar2Normalized",
+                "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/uchar3Normalized",
+                "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/uchar4Normalized",
+                "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/charNormalized",
+                "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/char2Normalized",
+                "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/char3Normalized",
+                "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/char4Normalized"
+              ],
+              "title": "Character data formats"
+            },
+            {
+              "anchor": "16-bit-integer-data-formats",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/ushort",
+                "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/ushort2",
+                "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/ushort3",
+                "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/ushort4",
+                "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/short",
+                "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/short2",
+                "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/short3",
+                "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/short4",
+                "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/ushortNormalized",
+                "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/ushort2Normalized",
+                "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/ushort3Normalized",
+                "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/ushort4Normalized",
+                "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/shortNormalized",
+                "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/short2Normalized",
+                "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/short3Normalized",
+                "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/short4Normalized"
+              ],
+              "title": "16- bit integer data formats"
+            },
+            {
+              "anchor": "32-bit-integer-data-formats",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/uint",
+                "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/uint2",
+                "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/uint3",
+                "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/uint4",
+                "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/int",
+                "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/int2",
+                "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/int3",
+                "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/int4",
+                "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/int1010102Normalized",
+                "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/uint1010102Normalized"
+              ],
+              "title": "32-bit integer data formats"
+            },
+            {
+              "anchor": "16-bit-floating-point-formats",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/half",
+                "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/half2",
+                "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/half3",
+                "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/half4"
+              ],
+              "title": "16-bit floating point formats"
+            },
+            {
+              "anchor": "32-bit-floating-point-formats",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/float",
+                "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/float2",
+                "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/float3",
+                "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/float4"
+              ],
+              "title": "32-bit floating point formats"
+            },
+            {
+              "anchor": "Pixel-data-types",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/uchar4Normalized_bgra",
+                "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/floatRG11B10",
+                "doc://com.apple.metal/documentation/Metal/MTLAttributeFormat/floatRGB9E5"
+              ],
+              "title": "Pixel data types"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Defining-Attribute-Location",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLAttributeDescriptor/bufferIndex",
+                "doc://com.apple.metal/documentation/Metal/MTLAttributeDescriptor/offset",
+                "doc://com.apple.metal/documentation/Metal/MTLAttributeDescriptor/format"
+              ],
+              "title": "Defining Attribute Location"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "enum"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "MTLAttributeFormat"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:@T@NSUInteger",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:@T@NSUInteger",
+                    "text": "NSUInteger"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ";"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAttributeFormat~1half4/title",
+          "value": "MTLAttributeFormatHalf4"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAttributeFormat~1half4/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLAttributeFormatHalf4"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAttributeFormat~1char/title",
+          "value": "MTLAttributeFormatChar"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAttributeFormat~1char/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLAttributeFormatChar"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAttributeFormat~1uchar2Normalized/title",
+          "value": "MTLAttributeFormatUChar2Normalized"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAttributeFormat~1uchar2Normalized/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLAttributeFormatUChar2Normalized"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAttributeFormat~1float3/title",
+          "value": "MTLAttributeFormatFloat3"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAttributeFormat~1float3/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLAttributeFormatFloat3"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAttributeFormat~1int4/title",
+          "value": "MTLAttributeFormatInt4"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAttributeFormat~1int4/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLAttributeFormatInt4"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAttributeFormat~1charNormalized/title",
+          "value": "MTLAttributeFormatCharNormalized"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAttributeFormat~1charNormalized/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLAttributeFormatCharNormalized"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAttributeFormat~1uchar2/title",
+          "value": "MTLAttributeFormatUChar2"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAttributeFormat~1uchar2/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLAttributeFormatUChar2"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAttributeFormat~1float/title",
+          "value": "MTLAttributeFormatFloat"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAttributeFormat~1float/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLAttributeFormatFloat"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAttributeFormat~1ushortNormalized/title",
+          "value": "MTLAttributeFormatUShortNormalized"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAttributeFormat~1ushortNormalized/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLAttributeFormatUShortNormalized"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAttributeFormat~1ushort3Normalized/title",
+          "value": "MTLAttributeFormatUShort3Normalized"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAttributeFormat~1ushort3Normalized/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLAttributeFormatUShort3Normalized"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAttributeFormat~1uchar4Normalized_bgra/title",
+          "value": "MTLAttributeFormatUChar4Normalized_BGRA"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAttributeFormat~1uchar4Normalized_bgra/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLAttributeFormatUChar4Normalized_BGRA"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAttributeFormat~1ushort/title",
+          "value": "MTLAttributeFormatUShort"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAttributeFormat~1ushort/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLAttributeFormatUShort"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAttributeFormat~1shortNormalized/title",
+          "value": "MTLAttributeFormatShortNormalized"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAttributeFormat~1shortNormalized/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLAttributeFormatShortNormalized"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAttributeFormat~1char2/title",
+          "value": "MTLAttributeFormatChar2"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAttributeFormat~1char2/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLAttributeFormatChar2"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAttributeDescriptor~1bufferIndex/title",
+          "value": "bufferIndex"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAttributeDescriptor~1bufferIndex/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "bufferIndex"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAttributeFormat~1uchar3Normalized/title",
+          "value": "MTLAttributeFormatUChar3Normalized"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAttributeFormat~1uchar3Normalized/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLAttributeFormatUChar3Normalized"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAttributeFormat~1uint/title",
+          "value": "MTLAttributeFormatUInt"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAttributeFormat~1uint/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLAttributeFormatUInt"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAttributeFormat~1int2/title",
+          "value": "MTLAttributeFormatInt2"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAttributeFormat~1int2/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLAttributeFormatInt2"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAttributeFormat~1char4Normalized/title",
+          "value": "MTLAttributeFormatChar4Normalized"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAttributeFormat~1char4Normalized/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLAttributeFormatChar4Normalized"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAttributeFormat~1short4Normalized/title",
+          "value": "MTLAttributeFormatShort4Normalized"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAttributeFormat~1short4Normalized/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLAttributeFormatShort4Normalized"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAttributeFormat~1char2Normalized/title",
+          "value": "MTLAttributeFormatChar2Normalized"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAttributeFormat~1char2Normalized/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLAttributeFormatChar2Normalized"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAttributeFormat~1int/title",
+          "value": "MTLAttributeFormatInt"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAttributeFormat~1int/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLAttributeFormatInt"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAttributeFormat~1int1010102Normalized/title",
+          "value": "MTLAttributeFormatInt1010102Normalized"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAttributeFormat~1int1010102Normalized/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLAttributeFormatInt1010102Normalized"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAttributeFormat~1short4/title",
+          "value": "MTLAttributeFormatShort4"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAttributeFormat~1short4/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLAttributeFormatShort4"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAttributeFormat~1ushort2/title",
+          "value": "MTLAttributeFormatUShort2"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAttributeFormat~1ushort2/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLAttributeFormatUShort2"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAttributeFormat~1uchar4Normalized/title",
+          "value": "MTLAttributeFormatUChar4Normalized"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAttributeFormat~1uchar4Normalized/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLAttributeFormatUChar4Normalized"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAttributeFormat~1short2/title",
+          "value": "MTLAttributeFormatShort2"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAttributeFormat~1short2/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLAttributeFormatShort2"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAttributeDescriptor~1format/title",
+          "value": "format"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAttributeDescriptor~1format/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "format"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAttributeFormat~1uint4/title",
+          "value": "MTLAttributeFormatUInt4"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAttributeFormat~1uint4/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLAttributeFormatUInt4"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAttributeFormat~1ushort3/title",
+          "value": "MTLAttributeFormatUShort3"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAttributeFormat~1ushort3/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLAttributeFormatUShort3"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAttributeFormat/title",
+          "value": "MTLAttributeFormat"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAttributeFormat/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLAttributeFormat"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAttributeFormat/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLAttributeFormat"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAttributeDescriptor~1offset/title",
+          "value": "offset"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAttributeDescriptor~1offset/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "offset"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAttributeFormat~1uchar3/title",
+          "value": "MTLAttributeFormatUChar3"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAttributeFormat~1uchar3/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLAttributeFormatUChar3"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAttributeFormat~1half/title",
+          "value": "MTLAttributeFormatHalf"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAttributeFormat~1half/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLAttributeFormatHalf"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAttributeFormat~1short3Normalized/title",
+          "value": "MTLAttributeFormatShort3Normalized"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAttributeFormat~1short3Normalized/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLAttributeFormatShort3Normalized"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAttributeFormat~1char4/title",
+          "value": "MTLAttributeFormatChar4"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAttributeFormat~1char4/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLAttributeFormatChar4"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAttributeFormat~1ucharNormalized/title",
+          "value": "MTLAttributeFormatUCharNormalized"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAttributeFormat~1ucharNormalized/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLAttributeFormatUCharNormalized"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAttributeFormat~1ushort4/title",
+          "value": "MTLAttributeFormatUShort4"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAttributeFormat~1ushort4/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLAttributeFormatUShort4"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAttributeFormat~1short/title",
+          "value": "MTLAttributeFormatShort"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAttributeFormat~1short/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLAttributeFormatShort"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAttributeFormat~1char3Normalized/title",
+          "value": "MTLAttributeFormatChar3Normalized"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAttributeFormat~1char3Normalized/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLAttributeFormatChar3Normalized"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAttributeFormat~1char3/title",
+          "value": "MTLAttributeFormatChar3"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAttributeFormat~1char3/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLAttributeFormatChar3"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAttributeFormat~1uchar4/title",
+          "value": "MTLAttributeFormatUChar4"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAttributeFormat~1uchar4/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLAttributeFormatUChar4"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAttributeFormat~1ushort2Normalized/title",
+          "value": "MTLAttributeFormatUShort2Normalized"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAttributeFormat~1ushort2Normalized/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLAttributeFormatUShort2Normalized"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAttributeFormat~1float4/title",
+          "value": "MTLAttributeFormatFloat4"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAttributeFormat~1float4/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLAttributeFormatFloat4"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAttributeFormat~1invalid/title",
+          "value": "MTLAttributeFormatInvalid"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAttributeFormat~1invalid/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLAttributeFormatInvalid"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAttributeFormat~1float2/title",
+          "value": "MTLAttributeFormatFloat2"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAttributeFormat~1float2/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLAttributeFormatFloat2"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAttributeFormat~1uint3/title",
+          "value": "MTLAttributeFormatUInt3"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAttributeFormat~1uint3/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLAttributeFormatUInt3"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAttributeFormat~1half2/title",
+          "value": "MTLAttributeFormatHalf2"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAttributeFormat~1half2/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLAttributeFormatHalf2"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAttributeFormat~1uint1010102Normalized/title",
+          "value": "MTLAttributeFormatUInt1010102Normalized"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAttributeFormat~1uint1010102Normalized/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLAttributeFormatUInt1010102Normalized"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAttributeFormat~1floatRGB9E5/title",
+          "value": "MTLAttributeFormatFloatRGB9E5"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAttributeFormat~1floatRGB9E5/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLAttributeFormatFloatRGB9E5"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAttributeFormat~1floatRG11B10/title",
+          "value": "MTLAttributeFormatFloatRG11B10"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAttributeFormat~1floatRG11B10/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLAttributeFormatFloatRG11B10"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAttributeFormat~1ushort4Normalized/title",
+          "value": "MTLAttributeFormatUShort4Normalized"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAttributeFormat~1ushort4Normalized/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLAttributeFormatUShort4Normalized"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAttributeFormat~1half3/title",
+          "value": "MTLAttributeFormatHalf3"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAttributeFormat~1half3/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLAttributeFormatHalf3"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAttributeFormat~1int3/title",
+          "value": "MTLAttributeFormatInt3"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAttributeFormat~1int3/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLAttributeFormatInt3"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAttributeFormat~1short2Normalized/title",
+          "value": "MTLAttributeFormatShort2Normalized"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAttributeFormat~1short2Normalized/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLAttributeFormatShort2Normalized"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAttributeFormat~1short3/title",
+          "value": "MTLAttributeFormatShort3"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAttributeFormat~1short3/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLAttributeFormatShort3"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAttributeFormat~1uint2/title",
+          "value": "MTLAttributeFormatUInt2"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAttributeFormat~1uint2/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLAttributeFormatUInt2"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAttributeFormat~1uchar/title",
+          "value": "MTLAttributeFormatUChar"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAttributeFormat~1uchar/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLAttributeFormatUChar"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/metal/mtlattributeformat"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/metal/mtlattributeformat"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

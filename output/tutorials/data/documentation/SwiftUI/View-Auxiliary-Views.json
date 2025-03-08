@@ -1,0 +1,3484 @@
+{
+  "abstract": [
+    {
+      "text": "Add and configure supporting views, like toolbars and context menus.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View-fundamentals",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.SwiftUI/documentation/SwiftUI/View-Auxiliary-Views"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "SwiftUI"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Auxiliary view modifiers"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use these modifiers to manage supplemental views that present context-specific",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "controls and information. For example, you can add titles and buttons",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to navigation bars, manage the status bar, create context menus, and add",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "badges many different kinds of views.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "SwiftUI-PageImage-card.png": {
+      "alt": "A black Swift logo on a swirly blue and purple background.",
+      "identifier": "SwiftUI-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b1de0de086f81a5d0eac3839a0af6e6f/SwiftUI-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1450d0b30a6b024e10c148e3f31dafe9/SwiftUI-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "View-Fundamentals-PageImage-card.png": {
+      "alt": "A conceptual illustration showing a view decomposed into different components.",
+      "identifier": "View-Fundamentals-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a9155d8ac081b19cb86c95247d8b043d/View-Fundamentals-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c29763670d863f869160a7df932dc4e1/View-Fundamentals-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI": {
+      "abstract": [
+        {
+          "text": "Declare the user interface and behavior for your app on every platform.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI",
+      "images": [
+        {
+          "identifier": "SwiftUI-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SwiftUI",
+      "type": "topic",
+      "url": "/documentation/swiftui"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Configure-Your-Apps-Navigation-Titles": {
+      "abstract": [
+        {
+          "text": "Use a navigation title to display the current navigation state of an",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "interface.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Configure-Your-Apps-Navigation-Titles",
+      "kind": "article",
+      "role": "article",
+      "title": "Configure your apps navigation titles",
+      "type": "topic",
+      "url": "/documentation/swiftui/configure-your-apps-navigation-titles"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Menus-and-commands": {
+      "abstract": [
+        {
+          "text": "Provide space-efficient, context-dependent access to commands and controls.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Menus-and-commands",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Menus and commands",
+      "type": "topic",
+      "url": "/documentation/swiftui/menus-and-commands"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/NavigationStack": {
+      "abstract": [
+        {
+          "text": "A view that displays a root view and enables you to present additional",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "views over the root view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NavigationStack"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/NavigationStack",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NavigationStack"
+        }
+      ],
+      "role": "symbol",
+      "title": "NavigationStack",
+      "type": "topic",
+      "url": "/documentation/swiftui/navigationstack"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Toolbars": {
+      "abstract": [
+        {
+          "text": "Provide immediate access to frequently used commands and controls.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Toolbars",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Toolbars",
+      "type": "topic",
+      "url": "/documentation/swiftui/toolbars"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View": {
+      "abstract": [
+        {
+          "text": "A type that represents part of your app’s user interface and provides",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "modifiers that you use to configure views.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "View"
+        }
+      ],
+      "role": "symbol",
+      "title": "View",
+      "type": "topic",
+      "url": "/documentation/swiftui/view"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View-Accessibility": {
+      "abstract": [
+        {
+          "text": "Make your SwiftUI apps accessible to everyone, including people with",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "disabilities.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View-Accessibility",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Accessibility modifiers",
+      "type": "topic",
+      "url": "/documentation/swiftui/view-accessibility"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View-Appearance": {
+      "abstract": [
+        {
+          "text": "Configure a view’s foreground and background styles, controls, and visibility.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View-Appearance",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Appearance modifiers",
+      "type": "topic",
+      "url": "/documentation/swiftui/view-appearance"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View-Chart-View": {
+      "abstract": [
+        {
+          "text": "Configure charts that you declare with Swift Charts.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View-Chart-View",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Chart view modifiers",
+      "type": "topic",
+      "url": "/documentation/swiftui/view-chart-view"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View-Text-and-Symbols": {
+      "abstract": [
+        {
+          "text": "Manage the rendering, selection, and entry of text in your view.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View-Text-and-Symbols",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Text and symbol modifiers",
+      "type": "topic",
+      "url": "/documentation/swiftui/view-text-and-symbols"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View-fundamentals": {
+      "abstract": [
+        {
+          "text": "Define the visual elements of your app using a hierarchy of views.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View-fundamentals",
+      "images": [
+        {
+          "identifier": "View-Fundamentals-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "View fundamentals",
+      "type": "topic",
+      "url": "/documentation/swiftui/view-fundamentals"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/badge(_:)": {
+      "abstract": [
+        {
+          "text": "Generates a badge for the view from an integer value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "badge"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": ":)"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/badge(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "badge(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/badge(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/badgeProminence(_:)": {
+      "abstract": [
+        {
+          "text": "Specifies the prominence of badges created by this view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "badgeProminence"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI15BadgeProminenceV",
+          "text": "BadgeProminence"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/badgeProminence(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "badgeProminence(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/badgeprominence(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/contextMenu(forSelectionType:menu:primaryAction:)": {
+      "abstract": [
+        {
+          "text": "Adds an item-based context menu to a view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "contextMenu"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "I"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "M"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "forSelectionType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "I"
+        },
+        {
+          "kind": "text",
+          "text": ".Type, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "menu"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sh",
+          "text": "Set"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "I"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "M"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "primaryAction"
+        },
+        {
+          "kind": "text",
+          "text": ": (("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sh",
+          "text": "Set"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "I"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/contextMenu(forSelectionType:menu:primaryAction:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "contextMenu(forSelectionType:menu:primaryAction:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/contextmenu(forselectiontype:menu:primaryaction:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/contextMenu(menuItems:)": {
+      "abstract": [
+        {
+          "text": "Adds a context menu to a view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "contextMenu"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "MenuItems"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "menuItems"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "MenuItems"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/contextMenu(menuItems:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "contextMenu(menuItems:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/contextmenu(menuitems:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/contextMenu(menuItems:preview:)": {
+      "abstract": [
+        {
+          "text": "Adds a context menu with a custom preview to a view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "contextMenu"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "M"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "P"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "menuItems"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "M"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "preview"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "P"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/contextMenu(menuItems:preview:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "contextMenu(menuItems:preview:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/contextmenu(menuitems:preview:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/defaultAdaptableTabBarPlacement(_:)": {
+      "abstract": [
+        {
+          "text": "Specifies the default placement for the tabs in a tab view using the",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "adaptable sidebar style.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "defaultAdaptableTabBarPlacement"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI24AdaptableTabBarPlacementV",
+          "text": "AdaptableTabBarPlacement"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/defaultAdaptableTabBarPlacement(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "defaultAdaptableTabBarPlacement(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/defaultadaptabletabbarplacement(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/help(_:)": {
+      "abstract": [
+        {
+          "text": "Adds help text to a view using a text view that you provide.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "help"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": ":)"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/help(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "help(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/help(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/navigationBarBackButtonHidden(_:)": {
+      "abstract": [
+        {
+          "text": "Hides the navigation bar back button for the view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "navigationBarBackButtonHidden"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/navigationBarBackButtonHidden(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "navigationBarBackButtonHidden(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/navigationbarbackbuttonhidden(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/navigationBarTitleDisplayMode(_:)": {
+      "abstract": [
+        {
+          "text": "Configures the title display mode for this view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "navigationBarTitleDisplayMode"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI17NavigationBarItemV",
+          "text": "NavigationBarItem"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI17NavigationBarItemV16TitleDisplayModeO",
+          "text": "TitleDisplayMode"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/navigationBarTitleDisplayMode(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "navigationBarTitleDisplayMode(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/navigationbartitledisplaymode(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/navigationDestination(for:destination:)": {
+      "abstract": [
+        {
+          "text": "Associates a destination view with a presented data type for use within",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "a navigation stack.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "navigationDestination"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "D"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "C"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "D"
+        },
+        {
+          "kind": "text",
+          "text": ".Type, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "destination"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "D"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/navigationDestination(for:destination:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "navigationDestination(for:destination:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/navigationdestination(for:destination:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/navigationDestination(isPresented:destination:)": {
+      "abstract": [
+        {
+          "text": "Associates a destination view with a binding that can be used to push",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "the view onto a ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/NavigationStack",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "navigationDestination"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "V"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "isPresented"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI7BindingV",
+          "text": "Binding"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "destination"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "V"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/navigationDestination(isPresented:destination:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "navigationDestination(isPresented:destination:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/navigationdestination(ispresented:destination:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/navigationDestination(item:destination:)": {
+      "abstract": [
+        {
+          "text": "Associates a destination view with a bound value for use within a",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "navigation stack or navigation split view",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "navigationDestination"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "D"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "C"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "item"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI7BindingV",
+          "text": "Binding"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sq",
+          "text": "Optional"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "D"
+        },
+        {
+          "kind": "text",
+          "text": ">>, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "destination"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "D"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/navigationDestination(item:destination:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "navigationDestination(item:destination:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/navigationdestination(item:destination:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/navigationDocument(_:)": {
+      "abstract": [
+        {
+          "text": "Configures the view’s document for purposes of navigation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "navigationDocument"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": ":)"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/navigationDocument(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "navigationDocument(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/navigationdocument(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/navigationDocument(_:preview:)": {
+      "abstract": [
+        {
+          "text": "Configures the view’s document for purposes of navigation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "navigationDocument"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": ":"
+        },
+        {
+          "kind": "externalParam",
+          "text": "preview"
+        },
+        {
+          "kind": "text",
+          "text": ":)"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/navigationDocument(_:preview:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "navigationDocument(_:preview:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/navigationdocument(_:preview:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/navigationSplitViewColumnWidth(_:)": {
+      "abstract": [
+        {
+          "text": "Sets a fixed, preferred width for the column containing this view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "navigationSplitViewColumnWidth"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/navigationSplitViewColumnWidth(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "navigationSplitViewColumnWidth(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/navigationsplitviewcolumnwidth(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/navigationSplitViewColumnWidth(min:ideal:max:)": {
+      "abstract": [
+        {
+          "text": "Sets a flexible, preferred width for the column containing this view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "navigationSplitViewColumnWidth"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "min"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "ideal"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "max"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/navigationSplitViewColumnWidth(min:ideal:max:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "navigationSplitViewColumnWidth(min:ideal:max:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/navigationsplitviewcolumnwidth(min:ideal:max:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/navigationSubtitle(_:)": {
+      "abstract": [
+        {
+          "text": "Configures the view’s subtitle for purposes of navigation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "navigationSubtitle"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": ":)"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/navigationSubtitle(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "navigationSubtitle(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/navigationsubtitle(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/navigationTitle(_:)": {
+      "abstract": [
+        {
+          "text": "Configures the view’s title for purposes of navigation, using a string",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "binding.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "navigationTitle"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": ":)"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/navigationTitle(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "navigationTitle(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/navigationtitle(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/ornament(visibility:attachmentAnchor:contentAlignment:ornament:)": {
+      "abstract": [
+        {
+          "text": "Presents an ornament.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ornament"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "visibility"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI10VisibilityO",
+          "text": "Visibility"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "attachmentAnchor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI24OrnamentAttachmentAnchorV",
+          "text": "OrnamentAttachmentAnchor"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "contentAlignment"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI9AlignmentV",
+          "text": "Alignment"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "ornament"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/ornament(visibility:attachmentAnchor:contentAlignment:ornament:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ornament(visibility:attachmentAnchor:contentAlignment:ornament:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/ornament(visibility:attachmentanchor:contentalignment:ornament:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/sectionActions(content:)": {
+      "abstract": [
+        {
+          "text": "Adds custom actions to a section.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sectionActions"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "content"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/sectionActions(content:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sectionActions(content:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/sectionactions(content:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/statusBarHidden(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the visibility of the status bar.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "statusBarHidden"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/statusBarHidden(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "statusBarHidden(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/statusbarhidden(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/tabViewCustomization(_:)": {
+      "abstract": [
+        {
+          "text": "Specifies the customizations to apply to the sidebar representation",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "of the tab view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "tabViewCustomization"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI7BindingV",
+          "text": "Binding"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI20TabViewCustomizationV",
+          "text": "TabViewCustomization"
+        },
+        {
+          "kind": "text",
+          "text": ">?) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/tabViewCustomization(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "tabViewCustomization(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/tabviewcustomization(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/tabViewSidebarBottomBar(content:)": {
+      "abstract": [
+        {
+          "text": "Adds a custom bottom bar to the sidebar of a tab view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "tabViewSidebarBottomBar"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "content"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/tabViewSidebarBottomBar(content:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "tabViewSidebarBottomBar(content:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/tabviewsidebarbottombar(content:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/tabViewSidebarFooter(content:)": {
+      "abstract": [
+        {
+          "text": "Adds a custom footer to the sidebar of a tab view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "tabViewSidebarFooter"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "content"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/tabViewSidebarFooter(content:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "tabViewSidebarFooter(content:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/tabviewsidebarfooter(content:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/tabViewSidebarHeader(content:)": {
+      "abstract": [
+        {
+          "text": "Adds a custom header to the sidebar of a tab view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "tabViewSidebarHeader"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "content"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/tabViewSidebarHeader(content:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "tabViewSidebarHeader(content:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/tabviewsidebarheader(content:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/toolbar(_:for:)": {
+      "abstract": [
+        {
+          "text": "Specifies the visibility of a bar managed by SwiftUI.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "toolbar"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI10VisibilityO",
+          "text": "Visibility"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI16ToolbarPlacementV",
+          "text": "ToolbarPlacement"
+        },
+        {
+          "kind": "text",
+          "text": "...) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/toolbar(_:for:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "toolbar(_:for:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/toolbar(_:for:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/toolbar(content:)": {
+      "abstract": [
+        {
+          "text": "Populates the toolbar or navigation bar with the specified items.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "toolbar"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "content"
+        },
+        {
+          "kind": "text",
+          "text": ":)"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/toolbar(content:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "toolbar(content:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/toolbar(content:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/toolbar(id:content:)": {
+      "abstract": [
+        {
+          "text": "Populates the toolbar or navigation bar with the specified items,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "allowing for user customization.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "toolbar"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "id"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "content"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/toolbar(id:content:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "toolbar(id:content:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/toolbar(id:content:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/toolbar(removing:)": {
+      "abstract": [
+        {
+          "text": "Remove a toolbar item present by default",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "toolbar"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "removing"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI22ToolbarDefaultItemKindV",
+          "text": "ToolbarDefaultItemKind"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/toolbar(removing:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "toolbar(removing:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/toolbar(removing:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/toolbarBackground(_:for:)": {
+      "abstract": [
+        {
+          "text": "Specifies the preferred shape style of the background of a bar managed",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "by SwiftUI.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "toolbarBackground"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": ":"
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ":)"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/toolbarBackground(_:for:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "toolbarBackground(_:for:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/toolbarbackground(_:for:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/toolbarBackgroundVisibility(_:for:)": {
+      "abstract": [
+        {
+          "text": "Specifies the preferred visibility of backgrounds on a bar managed by",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "SwiftUI.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "toolbarBackgroundVisibility"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI10VisibilityO",
+          "text": "Visibility"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI16ToolbarPlacementV",
+          "text": "ToolbarPlacement"
+        },
+        {
+          "kind": "text",
+          "text": "...) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/toolbarBackgroundVisibility(_:for:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "toolbarBackgroundVisibility(_:for:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/toolbarbackgroundvisibility(_:for:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/toolbarColorScheme(_:for:)": {
+      "abstract": [
+        {
+          "text": "Specifies the preferred color scheme of a bar managed by SwiftUI.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "toolbarColorScheme"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI11ColorSchemeO",
+          "text": "ColorScheme"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI16ToolbarPlacementV",
+          "text": "ToolbarPlacement"
+        },
+        {
+          "kind": "text",
+          "text": "...) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/toolbarColorScheme(_:for:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "toolbarColorScheme(_:for:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/toolbarcolorscheme(_:for:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/toolbarForegroundStyle(_:for:)": {
+      "abstract": [
+        {
+          "text": "Specifies the preferred foreground style of bars managed by SwiftUI.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "toolbarForegroundStyle"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI16ToolbarPlacementV",
+          "text": "ToolbarPlacement"
+        },
+        {
+          "kind": "text",
+          "text": "...) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/toolbarForegroundStyle(_:for:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "toolbarForegroundStyle(_:for:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/toolbarforegroundstyle(_:for:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/toolbarRole(_:)": {
+      "abstract": [
+        {
+          "text": "Configures the semantic role for the content populating the toolbar.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "toolbarRole"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI11ToolbarRoleV",
+          "text": "ToolbarRole"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/toolbarRole(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "toolbarRole(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/toolbarrole(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/toolbarTitleDisplayMode(_:)": {
+      "abstract": [
+        {
+          "text": "Configures the toolbar title display mode for this view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "toolbarTitleDisplayMode"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI23ToolbarTitleDisplayModeV",
+          "text": "ToolbarTitleDisplayMode"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/toolbarTitleDisplayMode(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "toolbarTitleDisplayMode(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/toolbartitledisplaymode(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/toolbarTitleMenu(content:)": {
+      "abstract": [
+        {
+          "text": "Configure the title menu of a toolbar.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "toolbarTitleMenu"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "C"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "content"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/toolbarTitleMenu(content:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "toolbarTitleMenu(content:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/toolbartitlemenu(content:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/toolbarVisibility(_:for:)": {
+      "abstract": [
+        {
+          "text": "Specifies the visibility of a bar managed by SwiftUI.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "toolbarVisibility"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI10VisibilityO",
+          "text": "Visibility"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI16ToolbarPlacementV",
+          "text": "ToolbarPlacement"
+        },
+        {
+          "kind": "text",
+          "text": "...) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/toolbarVisibility(_:for:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "toolbarVisibility(_:for:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/toolbarvisibility(_:for:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/touchBar(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the Touch Bar content to be shown in the Touch Bar when applicable.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "touchBar"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI8TouchBarV",
+          "text": "TouchBar"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/touchBar(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "touchBar(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/touchbar(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/touchBar(content:)": {
+      "abstract": [
+        {
+          "text": "Sets the content that the Touch Bar displays.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "touchBar"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "content"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/touchBar(content:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "touchBar(content:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/touchbar(content:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/touchBarCustomizationLabel(_:)": {
+      "abstract": [
+        {
+          "text": "Sets a user-visible string that identifies the view’s functionality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "touchBarCustomizationLabel"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4TextV",
+          "text": "Text"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/touchBarCustomizationLabel(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "touchBarCustomizationLabel(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/touchbarcustomizationlabel(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/touchBarItemPresence(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the behavior of the user-customized view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "touchBarItemPresence"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI20TouchBarItemPresenceO",
+          "text": "TouchBarItemPresence"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/touchBarItemPresence(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "touchBarItemPresence(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/touchbaritempresence(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/touchBarItemPrincipal(_:)": {
+      "abstract": [
+        {
+          "text": "Sets principal views that have special significance to this Touch Bar.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "touchBarItemPrincipal"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/touchBarItemPrincipal(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "touchBarItemPrincipal(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/touchbaritemprincipal(_:)"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Configuring-view-elements",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View-Accessibility",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View-Appearance",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View-Text-and-Symbols",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View-Chart-View"
+      ],
+      "title": "Configuring view elements"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Navigation-titles",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Configure-Your-Apps-Navigation-Titles",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/navigationTitle(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/navigationSubtitle(_:)"
+      ],
+      "title": "Navigation titles"
+    },
+    {
+      "anchor": "Navigation-title-configuration",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/navigationDocument(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/navigationDocument(_:preview:)"
+      ],
+      "title": "Navigation title configuration"
+    },
+    {
+      "anchor": "Navigation-bars",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/navigationBarBackButtonHidden(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/navigationBarTitleDisplayMode(_:)"
+      ],
+      "title": "Navigation bars"
+    },
+    {
+      "anchor": "Navigation-stacks-and-columns",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/navigationDestination(for:destination:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/navigationDestination(isPresented:destination:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/navigationDestination(item:destination:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/navigationSplitViewColumnWidth(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/navigationSplitViewColumnWidth(min:ideal:max:)"
+      ],
+      "title": "Navigation stacks and columns"
+    },
+    {
+      "anchor": "Tab-views",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/tabViewCustomization(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/defaultAdaptableTabBarPlacement(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/tabViewSidebarHeader(content:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/tabViewSidebarFooter(content:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/tabViewSidebarBottomBar(content:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/sectionActions(content:)"
+      ],
+      "title": "Tab views"
+    },
+    {
+      "abstract": [
+        {
+          "text": "For information about toolbars, see ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Toolbars",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "anchor": "Toolbars",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/toolbar(content:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/toolbar(id:content:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/toolbar(_:for:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/toolbar(removing:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/toolbarVisibility(_:for:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/toolbarBackground(_:for:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/toolbarBackgroundVisibility(_:for:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/toolbarForegroundStyle(_:for:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/toolbarColorScheme(_:for:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/toolbarRole(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/toolbarTitleMenu(content:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/toolbarTitleDisplayMode(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/ornament(visibility:attachmentAnchor:contentAlignment:ornament:)"
+      ],
+      "title": "Toolbars"
+    },
+    {
+      "abstract": [
+        {
+          "text": "For information about menus in your app, see ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Menus-and-commands",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "anchor": "Context-menus",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/contextMenu(menuItems:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/contextMenu(menuItems:preview:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/contextMenu(forSelectionType:menu:primaryAction:)"
+      ],
+      "title": "Context menus"
+    },
+    {
+      "anchor": "Badges",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/badge(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/badgeProminence(_:)"
+      ],
+      "title": "Badges"
+    },
+    {
+      "anchor": "Help-text",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/help(_:)"
+      ],
+      "title": "Help text"
+    },
+    {
+      "anchor": "Status-bar",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/statusBarHidden(_:)"
+      ],
+      "title": "Status bar"
+    },
+    {
+      "anchor": "Touch-Bar",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/touchBar(content:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/touchBar(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/touchBarItemPrincipal(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/touchBarCustomizationLabel(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/touchBarItemPresence(_:)"
+      ],
+      "title": "Touch Bar"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/swiftui/view-auxiliary-views"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

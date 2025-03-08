@@ -1,0 +1,1036 @@
+{
+  "abstract": [
+    {
+      "text": "Select media assets by using a Photos picker view that SwiftUI provides.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.photokit/documentation/PhotoKit"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.photokit/documentation/PhotoKit",
+        "doc://com.apple.photokit/documentation/PhotosUI"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.photokit/documentation/PhotoKit/bringing-photos-picker-to-your-swiftui-app"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "PhotosUI"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "16.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "16.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "13.0",
+        "name": "macOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "9.0",
+        "name": "watchOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "14.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Bringing Photos picker to your SwiftUI app"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample shows how to use the SwiftUI Photos picker to browse and select a photo from your photo library. The app displays an interface that allows you to fill in customer profile details, and includes a button to select a photo from the Photos library. The sample explores how to retrieve a SwiftUI image by using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreTransferable/Transferable",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " — a new SwiftUI protocol you use to move data.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "This sample code project is associated with WWDC22 session ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/wwdc22/10023",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Configure-the-Sample-Code-Project",
+          "level": 3,
+          "text": "Configure the Sample Code Project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before you run the sample code project in Xcode, ensure you’re using iOS 16 or later, watchOS 9 or later, macOS 13 or later.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You must use a physical device when building the watchOS target in Xcode.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-a-Photos-picker-view",
+          "level": 3,
+          "text": "Add a Photos picker view",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To display the picker, the sample adds a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.photokit/documentation/PhotosUI/PhotosPicker",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " view as an overlay to a profile image. The view provides a label that describes the action of choosing an item from the photo library. The sample displays assets that match the image type. In iOS 16 or later, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.photokit/documentation/PhotosUI/PHPickerFilter-swift.struct",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " contains new filters for ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.photokit/documentation/PhotosUI/PHPickerFilter-swift.struct/bursts",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.photokit/documentation/PhotosUI/PHPickerFilter-swift.struct/cinematicVideos",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.photokit/documentation/PhotosUI/PHPickerFilter-swift.struct/depthEffectPhotos",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "CircularProfileImage(imageState: viewModel.imageState)",
+            "\t.overlay(alignment: .bottomTrailing) {",
+            "\t\tPhotosPicker(selection: $viewModel.imageSelection,",
+            "\t\t\t\t\t matching: .images,",
+            "\t\t\t\t\t photoLibrary: .shared()) {",
+            "\t\t\tImage(systemName: \"pencil.circle.fill\")",
+            "\t\t\t\t.symbolRenderingMode(.multicolor)",
+            "\t\t\t\t.font(.system(size: 30))",
+            "\t\t\t\t.foregroundColor(.accentColor)",
+            "\t\t}",
+            "\t\t.buttonStyle(.borderless)",
+            "\t}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Load-an-image-from-the-selection",
+          "level": 3,
+          "text": "Load an image from the selection",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample contains an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/PhotosUI/PhotosPickerItem",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " that contains the selection. The selection only contains a placeholder object. Some large files may take a long time to download, so the sample shows an inline loading indicator instead of an indicator that blocks execution.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@Published var imageSelection: PhotosPickerItem? = nil {",
+            "    didSet {",
+            "        if let imageSelection {",
+            "            let progress = loadTransferable(from: imageSelection)",
+            "            imageState = .loading(progress)",
+            "        } else {",
+            "            imageState = .empty",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To load the asset data, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.photokit/documentation/PhotosUI/PhotosPickerItem",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " adopts ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreTransferable/Transferable",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". The sample attempts to retrieve the SwiftUI ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Image",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " from the item. A failure can occur when the system attempts to retrieve the data. For example, if the picker tries to download data from iCloud Photos without a network connection.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "private func loadTransferable(from imageSelection: PhotosPickerItem) -> Progress {",
+            "    return imageSelection.loadTransferable(type: ProfileImage.self) { result in",
+            "        DispatchQueue.main.async {",
+            "            guard imageSelection == self.imageSelection else {",
+            "                print(\"Failed to get the selected item.\")",
+            "                return",
+            "            }",
+            "            switch result {",
+            "            case .success(let profileImage?):",
+            "                self.imageState = .success(profileImage.image)",
+            "            case .success(nil):",
+            "                self.imageState = .empty",
+            "            case .failure(let error):",
+            "                self.imageState = .failure(error)",
+            "            }",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In advanced data transfer cases, an app can control the type of data to load by defining a custom model object that conforms to the ",
+              "type": "text"
+            },
+            {
+              "code": "Transferable",
+              "type": "codeVoice"
+            },
+            {
+              "text": " protocol. The sample creates a model ",
+              "type": "text"
+            },
+            {
+              "code": "ProfileImage",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to handle loading a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreTransferable/DataRepresentation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " of an image, and converts it to a ",
+              "type": "text"
+            },
+            {
+              "code": "UIImage",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "code": "NSImage",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct ProfileImage: Transferable {",
+            "    let image: Image",
+            "    ",
+            "    static var transferRepresentation: some TransferRepresentation {",
+            "        DataRepresentation(importedContentType: .image) { data in",
+            "        #if canImport(AppKit)",
+            "            guard let nsImage = NSImage(data: data) else {",
+            "                throw TransferError.importFailed",
+            "            }",
+            "            let image = Image(nsImage: nsImage)",
+            "            return ProfileImage(image: image)",
+            "        #elseif canImport(UIKit)",
+            "            guard let uiImage = UIImage(data: data) else {",
+            "                throw TransferError.importFailed",
+            "            }",
+            "            let image = Image(uiImage: uiImage)",
+            "            return ProfileImage(image: image)",
+            "        #else",
+            "            throw TransferError.importFailed",
+            "        #endif",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When handling many items at the same time, or large assets, use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreTransferable/FileRepresentation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to load assets as files and reduce memory usage. When loading assets as files, copy them to an app directory and remove them when they’re no longer needed.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "00f942c6d60a/BringingPhotosPickerToYourSwiftUIApp.zip": {
+      "checksum": "00f942c6d60a77bab7a53ae81d016090e805c74c7935e6b741aa8088be25f29c984f33b6898529c647438312be4e0790b3d11369062475c7fcf7440e958da30f",
+      "identifier": "00f942c6d60a/BringingPhotosPickerToYourSwiftUIApp.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/00f942c6d60a/BringingPhotosPickerToYourSwiftUIApp.zip"
+    },
+    "doc://com.apple.documentation/documentation/CoreTransferable/DataRepresentation": {
+      "abstract": [
+        {
+          "text": "A transfer representation for types that provide their own binary data conversion.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DataRepresentation"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Item"
+        },
+        {
+          "kind": "text",
+          "text": "> "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Item"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:16CoreTransferable0B0P",
+          "text": "Transferable"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreTransferable/DataRepresentation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "DataRepresentation",
+      "type": "topic",
+      "url": "/documentation/CoreTransferable/DataRepresentation"
+    },
+    "doc://com.apple.documentation/documentation/CoreTransferable/FileRepresentation": {
+      "abstract": [
+        {
+          "text": "A transfer representation for types that transfer as a file URL.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FileRepresentation"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Item"
+        },
+        {
+          "kind": "text",
+          "text": "> "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Item"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:16CoreTransferable0B0P",
+          "text": "Transferable"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreTransferable/FileRepresentation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FileRepresentation",
+      "type": "topic",
+      "url": "/documentation/CoreTransferable/FileRepresentation"
+    },
+    "doc://com.apple.documentation/documentation/CoreTransferable/Transferable": {
+      "abstract": [
+        {
+          "text": "A protocol that describes how a type interacts with transport APIs such as drag and drop or copy and paste.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Transferable"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreTransferable/Transferable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Transferable",
+      "type": "topic",
+      "url": "/documentation/CoreTransferable/Transferable"
+    },
+    "doc://com.apple.documentation/documentation/PhotosUI/PhotosPickerItem": {
+      "abstract": [
+        {
+          "text": "A type that represents an item you use with a Photos picker.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PhotosPickerItem"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/PhotosUI/PhotosPickerItem",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PhotosPickerItem",
+      "type": "topic",
+      "url": "/documentation/PhotosUI/PhotosPickerItem"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/Image": {
+      "abstract": [
+        {
+          "text": "A view that displays an image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@frozen"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Image"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Image",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Image",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/Image"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.photokit/documentation/PhotoKit": {
+      "abstract": [
+        {
+          "text": "Work with image and video assets that the Photos app manages, including those from iCloud Photos and Live Photos.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/PhotoKit",
+      "kind": "article",
+      "role": "collection",
+      "title": "PhotoKit",
+      "type": "topic",
+      "url": "/documentation/photokit"
+    },
+    "doc://com.apple.photokit/documentation/PhotoKit/browsing-and-modifying-photo-albums": {
+      "abstract": [
+        {
+          "text": "Help users organize their photos into albums and browse photo collections in a grid-based layout using PhotoKit.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/PhotoKit/browsing-and-modifying-photo-albums",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Browsing and Modifying Photo Albums",
+      "type": "topic",
+      "url": "/documentation/photokit/browsing-and-modifying-photo-albums"
+    },
+    "doc://com.apple.photokit/documentation/PhotoKit/creating-a-slideshow-project-extension-for-photos": {
+      "abstract": [
+        {
+          "text": "Augment the macOS Photos app with extensions that support project creation.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/PhotoKit/creating-a-slideshow-project-extension-for-photos",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Creating a Slideshow Project Extension for Photos",
+      "type": "topic",
+      "url": "/documentation/photokit/creating-a-slideshow-project-extension-for-photos"
+    },
+    "doc://com.apple.photokit/documentation/PhotoKit/implementing-an-inline-photos-picker": {
+      "abstract": [
+        {
+          "text": "Embed a system-provided, half-height Photos picker into your app’s view.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/PhotoKit/implementing-an-inline-photos-picker",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Implementing an inline Photos picker",
+      "type": "topic",
+      "url": "/documentation/photokit/implementing-an-inline-photos-picker"
+    },
+    "doc://com.apple.photokit/documentation/PhotoKit/selecting-photos-and-videos-in-ios": {
+      "abstract": [
+        {
+          "text": "Improve the user experience of finding and selecting assets by using the Photos picker.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/PhotoKit/selecting-photos-and-videos-in-ios",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Selecting Photos and Videos in iOS",
+      "type": "topic",
+      "url": "/documentation/photokit/selecting-photos-and-videos-in-ios"
+    },
+    "doc://com.apple.photokit/documentation/PhotosUI": {
+      "abstract": [
+        {
+          "text": "Present a person’s photo library using a picker interface, display Live Photos, or extend the Photos app with custom functionality.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/PhotosUI",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "PhotosUI",
+      "type": "topic",
+      "url": "/documentation/photosui"
+    },
+    "doc://com.apple.photokit/documentation/PhotosUI/PHPickerFilter-swift.struct": {
+      "abstract": [
+        {
+          "text": "A type that defines the filter to apply to the photo library.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PHPickerFilter"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/PhotosUI/PHPickerFilter-swift.struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PHPickerFilter"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHPickerFilter",
+      "type": "topic",
+      "url": "/documentation/photosui/phpickerfilter-swift.struct"
+    },
+    "doc://com.apple.photokit/documentation/PhotosUI/PHPickerFilter-swift.struct/bursts": {
+      "abstract": [
+        {
+          "text": "A filter that represents assets with multiple high-speed photos.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "bursts"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8PhotosUI14PHPickerFilterV",
+          "text": "PHPickerFilter"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/PhotosUI/PHPickerFilter-swift.struct/bursts",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "bursts",
+      "type": "topic",
+      "url": "/documentation/photosui/phpickerfilter-swift.struct/bursts"
+    },
+    "doc://com.apple.photokit/documentation/PhotosUI/PHPickerFilter-swift.struct/cinematicVideos": {
+      "abstract": [
+        {
+          "text": "A filter that represents videos with a shallow depth of field and focus transitions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "cinematicVideos"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8PhotosUI14PHPickerFilterV",
+          "text": "PHPickerFilter"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/PhotosUI/PHPickerFilter-swift.struct/cinematicVideos",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cinematicVideos",
+      "type": "topic",
+      "url": "/documentation/photosui/phpickerfilter-swift.struct/cinematicvideos"
+    },
+    "doc://com.apple.photokit/documentation/PhotosUI/PHPickerFilter-swift.struct/depthEffectPhotos": {
+      "abstract": [
+        {
+          "text": "A filter that represents photos with depth information.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "depthEffectPhotos"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8PhotosUI14PHPickerFilterV",
+          "text": "PHPickerFilter"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/PhotosUI/PHPickerFilter-swift.struct/depthEffectPhotos",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "depthEffectPhotos",
+      "type": "topic",
+      "url": "/documentation/photosui/phpickerfilter-swift.struct/deptheffectphotos"
+    },
+    "doc://com.apple.photokit/documentation/PhotosUI/PhotosPicker": {
+      "abstract": [
+        {
+          "text": "A view that displays a Photos picker for choosing assets from the photo library.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PhotosPicker"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/PhotosUI/PhotosPicker",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PhotosPicker"
+        }
+      ],
+      "role": "symbol",
+      "title": "PhotosPicker",
+      "type": "topic",
+      "url": "/documentation/photosui/photospicker"
+    },
+    "doc://com.apple.photokit/documentation/PhotosUI/PhotosPickerItem": {
+      "abstract": [
+        {
+          "text": "A type that represents an item you use with a Photos picker.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PhotosPickerItem"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/PhotosUI/PhotosPickerItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PhotosPickerItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "PhotosPickerItem",
+      "type": "topic",
+      "url": "/documentation/photosui/photospickeritem"
+    },
+    "https://developer.apple.com/wwdc22/10023": {
+      "identifier": "https://developer.apple.com/wwdc22/10023",
+      "title": "10023: What’s new in the Photos picker",
+      "titleInlineContent": [
+        {
+          "text": "10023: What’s new in the Photos picker",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/wwdc22/10023"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "00f942c6d60a/BringingPhotosPickerToYourSwiftUIApp.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Sample-code",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.photokit/documentation/PhotoKit/browsing-and-modifying-photo-albums",
+        "doc://com.apple.photokit/documentation/PhotoKit/selecting-photos-and-videos-in-ios",
+        "doc://com.apple.photokit/documentation/PhotoKit/implementing-an-inline-photos-picker",
+        "doc://com.apple.photokit/documentation/PhotoKit/creating-a-slideshow-project-extension-for-photos"
+      ],
+      "title": "Sample code"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

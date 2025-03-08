@@ -1,0 +1,998 @@
+{
+  "abstract": [
+    {
+      "text": "Update users’ calendars and inform suggestions from Siri with reservation data embedded in email and webpages.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.sirieventsuggestionsmarkup/documentation/SiriEventSuggestionsMarkup"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "SiriEventSuggestionsMarkup",
+    "modules": [
+      {
+        "name": "Siri Event Suggestions Markup"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "1.0",
+        "name": "Siri Event Suggestions Markup"
+      }
+    ],
+    "role": "collection",
+    "roleHeading": "Framework",
+    "symbolKind": "module",
+    "title": "Siri Event Suggestions Markup"
+  },
+  "primaryContentSections": [
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.sirieventsuggestionsmarkup/documentation/SiriEventSuggestionsMarkup/providing-trusted-data"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can use the Siri Event Suggestions Markup data format to provide event details in webpages and emails. Siri parses travel arrangements, shows, restaurant reservations, and social events in order to augment related activities, like suggesting driving directions or a ride share to a scheduled event and activating Do Not Disturb just before a show starts.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When Mail receives an email or Safari loads a webpage with reservation markup, Siri also adds the event to the user’s Siri Event Suggestions calendar. Mail and Safari also inform the user that the content they’re viewing includes a reservation, so the user can accept or reject the event without leaving their current activity.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3672141",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Include reservation markup data when you communicate about confirmed reservations with your users. Use a consistent ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.sirieventsuggestionsmarkup/documentation/SiriEventSuggestionsMarkup/reservationId",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " each time, so the system can manage duplicates between Safari and Mail and across the user’s devices.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Fill out the form at ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/contact/request/siri-events/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to request inclusion in the domain allow list for event suggestion processing. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.sirieventsuggestionsmarkup/documentation/SiriEventSuggestionsMarkup/checking-your-reservation-markup",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for more details about testing your implementation before you apply.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Donate reservation information from your app as well, if you have one. For more information about providing event suggestions from your app, see ",
+                  "type": "text"
+                },
+                {
+                  "text": "doc://com.apple.documentation/documentation/sirikit/siri_event_suggestions",
+                  "type": "text"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Tip",
+          "style": "tip",
+          "type": "aside"
+        },
+        {
+          "anchor": "Format-Reservation-Data",
+          "level": 3,
+          "text": "Format Reservation Data",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you offer reservations on a website or email reservation confirmations to users, you may provide reservation information embedded in HTML documents as either JSON-LD or Microdata. For JSON-LD, specify the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.sirieventsuggestionsmarkup/documentation/SiriEventSuggestionsMarkup/@context",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "@type,",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as shown in this example:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "<script type=\"application/ld+json\">",
+            "{",
+            "  \"@context\": \"http://schema.org\", ",
+            "  \"@type\": \"TrainReservation\",",
+            "  \"reservationId\": \"ASDF1234\"",
+            "  /* more data goes here */    ",
+            "}",
+            "</script>"
+          ],
+          "syntax": "xml",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For Microdata, provide the schema.org URL for the reservation in an ",
+              "type": "text"
+            },
+            {
+              "code": "itemtype",
+              "type": "codeVoice"
+            },
+            {
+              "text": " attribute like this:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "<section itemscope itemtype=\"http://schema.org/TrainReservation\">",
+            "Your reservation",
+            "<span itemprop=\"reservationId\">ASDF1234</span>",
+            "is confirmed!",
+            "/* more data goes here */",
+            "</section>"
+          ],
+          "syntax": "xml",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.sirieventsuggestionsmarkup/documentation/SiriEventSuggestionsMarkup": {
+      "abstract": [
+        {
+          "text": "Update users’ calendars and inform suggestions from Siri with reservation data embedded in email and webpages.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirieventsuggestionsmarkup/documentation/SiriEventSuggestionsMarkup",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Siri Event Suggestions Markup",
+      "type": "topic",
+      "url": "/documentation/sirieventsuggestionsmarkup"
+    },
+    "doc://com.apple.sirieventsuggestionsmarkup/documentation/SiriEventSuggestionsMarkup/@context": {
+      "abstract": [
+        {
+          "text": "The open standard reference for interpreting the markup contents.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "@context"
+        }
+      ],
+      "identifier": "doc://com.apple.sirieventsuggestionsmarkup/documentation/SiriEventSuggestionsMarkup/@context",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "@context"
+        }
+      ],
+      "role": "symbol",
+      "title": "@context",
+      "type": "topic",
+      "url": "/documentation/sirieventsuggestionsmarkup/@context"
+    },
+    "doc://com.apple.sirieventsuggestionsmarkup/documentation/SiriEventSuggestionsMarkup/BoatReservation": {
+      "abstract": [
+        {
+          "text": "A reservation for boat travel.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "BoatReservation"
+        }
+      ],
+      "identifier": "doc://com.apple.sirieventsuggestionsmarkup/documentation/SiriEventSuggestionsMarkup/BoatReservation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BoatReservation"
+        }
+      ],
+      "role": "symbol",
+      "title": "BoatReservation",
+      "type": "topic",
+      "url": "/documentation/sirieventsuggestionsmarkup/boatreservation"
+    },
+    "doc://com.apple.sirieventsuggestionsmarkup/documentation/SiriEventSuggestionsMarkup/BusReservation": {
+      "abstract": [
+        {
+          "text": "A reservation for bus travel.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "BusReservation"
+        }
+      ],
+      "identifier": "doc://com.apple.sirieventsuggestionsmarkup/documentation/SiriEventSuggestionsMarkup/BusReservation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BusReservation"
+        }
+      ],
+      "role": "symbol",
+      "title": "BusReservation",
+      "type": "topic",
+      "url": "/documentation/sirieventsuggestionsmarkup/busreservation"
+    },
+    "doc://com.apple.sirieventsuggestionsmarkup/documentation/SiriEventSuggestionsMarkup/EventReservation": {
+      "abstract": [
+        {
+          "text": "A reservation for a movie, sporting event, live show, or other scheduled event.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "EventReservation"
+        }
+      ],
+      "identifier": "doc://com.apple.sirieventsuggestionsmarkup/documentation/SiriEventSuggestionsMarkup/EventReservation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "EventReservation"
+        }
+      ],
+      "role": "symbol",
+      "title": "EventReservation",
+      "type": "topic",
+      "url": "/documentation/sirieventsuggestionsmarkup/eventreservation"
+    },
+    "doc://com.apple.sirieventsuggestionsmarkup/documentation/SiriEventSuggestionsMarkup/FlightReservation": {
+      "abstract": [
+        {
+          "text": "An airplane flight reservation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "FlightReservation"
+        }
+      ],
+      "identifier": "doc://com.apple.sirieventsuggestionsmarkup/documentation/SiriEventSuggestionsMarkup/FlightReservation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FlightReservation"
+        }
+      ],
+      "role": "symbol",
+      "title": "FlightReservation",
+      "type": "topic",
+      "url": "/documentation/sirieventsuggestionsmarkup/flightreservation"
+    },
+    "doc://com.apple.sirieventsuggestionsmarkup/documentation/SiriEventSuggestionsMarkup/FoodEstablishmentReservation": {
+      "abstract": [
+        {
+          "text": "A restaurant reservation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "FoodEstablishmentReservation"
+        }
+      ],
+      "identifier": "doc://com.apple.sirieventsuggestionsmarkup/documentation/SiriEventSuggestionsMarkup/FoodEstablishmentReservation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FoodEstablishmentReservation"
+        }
+      ],
+      "role": "symbol",
+      "title": "FoodEstablishmentReservation",
+      "type": "topic",
+      "url": "/documentation/sirieventsuggestionsmarkup/foodestablishmentreservation"
+    },
+    "doc://com.apple.sirieventsuggestionsmarkup/documentation/SiriEventSuggestionsMarkup/LodgingReservation": {
+      "abstract": [
+        {
+          "text": "A hotel reservation or other booking for a place to stay.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "LodgingReservation"
+        }
+      ],
+      "identifier": "doc://com.apple.sirieventsuggestionsmarkup/documentation/SiriEventSuggestionsMarkup/LodgingReservation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LodgingReservation"
+        }
+      ],
+      "role": "symbol",
+      "title": "LodgingReservation",
+      "type": "topic",
+      "url": "/documentation/sirieventsuggestionsmarkup/lodgingreservation"
+    },
+    "doc://com.apple.sirieventsuggestionsmarkup/documentation/SiriEventSuggestionsMarkup/Organization": {
+      "abstract": [
+        {
+          "text": "A business, transportation provider, or event organizer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Organization"
+        }
+      ],
+      "identifier": "doc://com.apple.sirieventsuggestionsmarkup/documentation/SiriEventSuggestionsMarkup/Organization",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Organization"
+        }
+      ],
+      "role": "symbol",
+      "title": "Organization",
+      "type": "topic",
+      "url": "/documentation/sirieventsuggestionsmarkup/organization"
+    },
+    "doc://com.apple.sirieventsuggestionsmarkup/documentation/SiriEventSuggestionsMarkup/Person": {
+      "abstract": [
+        {
+          "text": "A passenger, diner, lodging guest, or event attendee.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Person"
+        }
+      ],
+      "identifier": "doc://com.apple.sirieventsuggestionsmarkup/documentation/SiriEventSuggestionsMarkup/Person",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Person"
+        }
+      ],
+      "role": "symbol",
+      "title": "Person",
+      "type": "topic",
+      "url": "/documentation/sirieventsuggestionsmarkup/person"
+    },
+    "doc://com.apple.sirieventsuggestionsmarkup/documentation/SiriEventSuggestionsMarkup/Place": {
+      "abstract": [
+        {
+          "text": "A business, transportation hub, or event venue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Place"
+        }
+      ],
+      "identifier": "doc://com.apple.sirieventsuggestionsmarkup/documentation/SiriEventSuggestionsMarkup/Place",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Place"
+        }
+      ],
+      "role": "symbol",
+      "title": "Place",
+      "type": "topic",
+      "url": "/documentation/sirieventsuggestionsmarkup/place"
+    },
+    "doc://com.apple.sirieventsuggestionsmarkup/documentation/SiriEventSuggestionsMarkup/PostalAddress": {
+      "abstract": [
+        {
+          "text": "A specific geographic location.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "PostalAddress"
+        }
+      ],
+      "identifier": "doc://com.apple.sirieventsuggestionsmarkup/documentation/SiriEventSuggestionsMarkup/PostalAddress",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PostalAddress"
+        }
+      ],
+      "role": "symbol",
+      "title": "PostalAddress",
+      "type": "topic",
+      "url": "/documentation/sirieventsuggestionsmarkup/postaladdress"
+    },
+    "doc://com.apple.sirieventsuggestionsmarkup/documentation/SiriEventSuggestionsMarkup/RentalCarReservation": {
+      "abstract": [
+        {
+          "text": "A reservation to rent a car.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "RentalCarReservation"
+        }
+      ],
+      "identifier": "doc://com.apple.sirieventsuggestionsmarkup/documentation/SiriEventSuggestionsMarkup/RentalCarReservation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RentalCarReservation"
+        }
+      ],
+      "role": "symbol",
+      "title": "RentalCarReservation",
+      "type": "topic",
+      "url": "/documentation/sirieventsuggestionsmarkup/rentalcarreservation"
+    },
+    "doc://com.apple.sirieventsuggestionsmarkup/documentation/SiriEventSuggestionsMarkup/Seat": {
+      "abstract": [
+        {
+          "text": "The specific location reserved for the passenger.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Seat"
+        }
+      ],
+      "identifier": "doc://com.apple.sirieventsuggestionsmarkup/documentation/SiriEventSuggestionsMarkup/Seat",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Seat"
+        }
+      ],
+      "role": "symbol",
+      "title": "Seat",
+      "type": "topic",
+      "url": "/documentation/sirieventsuggestionsmarkup/seat"
+    },
+    "doc://com.apple.sirieventsuggestionsmarkup/documentation/SiriEventSuggestionsMarkup/Ticket": {
+      "abstract": [
+        {
+          "text": "Details about a ticket for transportation or an event.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Ticket"
+        }
+      ],
+      "identifier": "doc://com.apple.sirieventsuggestionsmarkup/documentation/SiriEventSuggestionsMarkup/Ticket",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Ticket"
+        }
+      ],
+      "role": "symbol",
+      "title": "Ticket",
+      "type": "topic",
+      "url": "/documentation/sirieventsuggestionsmarkup/ticket"
+    },
+    "doc://com.apple.sirieventsuggestionsmarkup/documentation/SiriEventSuggestionsMarkup/TrainReservation": {
+      "abstract": [
+        {
+          "text": "A reservation for train travel.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "TrainReservation"
+        }
+      ],
+      "identifier": "doc://com.apple.sirieventsuggestionsmarkup/documentation/SiriEventSuggestionsMarkup/TrainReservation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TrainReservation"
+        }
+      ],
+      "role": "symbol",
+      "title": "TrainReservation",
+      "type": "topic",
+      "url": "/documentation/sirieventsuggestionsmarkup/trainreservation"
+    },
+    "doc://com.apple.sirieventsuggestionsmarkup/documentation/SiriEventSuggestionsMarkup/URL": {
+      "abstract": [
+        {
+          "text": "The address of a webpage.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "URL"
+        }
+      ],
+      "identifier": "doc://com.apple.sirieventsuggestionsmarkup/documentation/SiriEventSuggestionsMarkup/URL",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "URL"
+        }
+      ],
+      "role": "symbol",
+      "title": "URL",
+      "type": "topic",
+      "url": "/documentation/sirieventsuggestionsmarkup/url"
+    },
+    "doc://com.apple.sirieventsuggestionsmarkup/documentation/SiriEventSuggestionsMarkup/checking-your-reservation-markup": {
+      "abstract": [
+        {
+          "text": "Preview your reservation event data before the Allow List includes your domain.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirieventsuggestionsmarkup/documentation/SiriEventSuggestionsMarkup/checking-your-reservation-markup",
+      "kind": "article",
+      "role": "article",
+      "title": "Checking Your Reservation Markup",
+      "type": "topic",
+      "url": "/documentation/sirieventsuggestionsmarkup/checking-your-reservation-markup"
+    },
+    "doc://com.apple.sirieventsuggestionsmarkup/documentation/SiriEventSuggestionsMarkup/dateTimeISO8601": {
+      "abstract": [
+        {
+          "text": "A time and date in the ISO-8601 format.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "dateTimeISO8601"
+        }
+      ],
+      "identifier": "doc://com.apple.sirieventsuggestionsmarkup/documentation/SiriEventSuggestionsMarkup/dateTimeISO8601",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "dateTimeISO8601"
+        }
+      ],
+      "role": "symbol",
+      "title": "dateTimeISO8601",
+      "type": "topic",
+      "url": "/documentation/sirieventsuggestionsmarkup/datetimeiso8601"
+    },
+    "doc://com.apple.sirieventsuggestionsmarkup/documentation/SiriEventSuggestionsMarkup/providing-trusted-data": {
+      "abstract": [
+        {
+          "text": "Sign your content and avoid sending unnecessary or inaccurate information.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirieventsuggestionsmarkup/documentation/SiriEventSuggestionsMarkup/providing-trusted-data",
+      "kind": "article",
+      "role": "article",
+      "title": "Providing Trusted Data",
+      "type": "topic",
+      "url": "/documentation/sirieventsuggestionsmarkup/providing-trusted-data"
+    },
+    "doc://com.apple.sirieventsuggestionsmarkup/documentation/SiriEventSuggestionsMarkup/reservationId": {
+      "abstract": [
+        {
+          "text": "A stable, unique identifier for the reservation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "reservationId"
+        }
+      ],
+      "identifier": "doc://com.apple.sirieventsuggestionsmarkup/documentation/SiriEventSuggestionsMarkup/reservationId",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "reservationId"
+        }
+      ],
+      "role": "symbol",
+      "title": "reservationId",
+      "type": "topic",
+      "url": "/documentation/sirieventsuggestionsmarkup/reservationid"
+    },
+    "doc://com.apple.sirieventsuggestionsmarkup/documentation/SiriEventSuggestionsMarkup/reservationStatus": {
+      "abstract": [
+        {
+          "text": "A string indicating that the reservation has been confirmed or canceled.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "reservationStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.sirieventsuggestionsmarkup/documentation/SiriEventSuggestionsMarkup/reservationStatus",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "reservationStatus"
+        }
+      ],
+      "role": "symbol",
+      "title": "reservationStatus",
+      "type": "topic",
+      "url": "/documentation/sirieventsuggestionsmarkup/reservationstatus"
+    },
+    "doc://com.apple.sirieventsuggestionsmarkup/documentation/SiriEventSuggestionsMarkup/telephone": {
+      "abstract": [
+        {
+          "text": "A phone number.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "telephone"
+        }
+      ],
+      "identifier": "doc://com.apple.sirieventsuggestionsmarkup/documentation/SiriEventSuggestionsMarkup/telephone",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "telephone"
+        }
+      ],
+      "role": "symbol",
+      "title": "telephone",
+      "type": "topic",
+      "url": "/documentation/sirieventsuggestionsmarkup/telephone"
+    },
+    "https://developer.apple.com/contact/request/siri-events/": {
+      "identifier": "https://developer.apple.com/contact/request/siri-events/",
+      "title": "Siri Event Suggestions Markup Information",
+      "titleInlineContent": [
+        {
+          "text": "Siri Event Suggestions Markup Information",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/contact/request/siri-events/"
+    },
+    "media-3672141": {
+      "alt": "A diagram of the Siri Event Suggestions Markup process, which begins with a graphic representing a piece of reservation data. An arrow points from the reservation graphic to a Siri icon, and from the Siri icon to a calendar, a driving directions graphic, and a Siri Suggestion containing the text “Time to check-in” and “Reservation found in Mail”.",
+      "identifier": "media-3672141",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/7f308882e351d5cd4cdb42492120db61/media-3672141@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Essentials",
+      "identifiers": [
+        "doc://com.apple.sirieventsuggestionsmarkup/documentation/SiriEventSuggestionsMarkup/providing-trusted-data",
+        "doc://com.apple.sirieventsuggestionsmarkup/documentation/SiriEventSuggestionsMarkup/checking-your-reservation-markup"
+      ],
+      "title": "Essentials"
+    },
+    {
+      "anchor": "Transportation",
+      "identifiers": [
+        "doc://com.apple.sirieventsuggestionsmarkup/documentation/SiriEventSuggestionsMarkup/FlightReservation",
+        "doc://com.apple.sirieventsuggestionsmarkup/documentation/SiriEventSuggestionsMarkup/TrainReservation",
+        "doc://com.apple.sirieventsuggestionsmarkup/documentation/SiriEventSuggestionsMarkup/BusReservation",
+        "doc://com.apple.sirieventsuggestionsmarkup/documentation/SiriEventSuggestionsMarkup/BoatReservation",
+        "doc://com.apple.sirieventsuggestionsmarkup/documentation/SiriEventSuggestionsMarkup/RentalCarReservation"
+      ],
+      "title": "Transportation"
+    },
+    {
+      "anchor": "Food-Lodging-and-Events",
+      "identifiers": [
+        "doc://com.apple.sirieventsuggestionsmarkup/documentation/SiriEventSuggestionsMarkup/EventReservation",
+        "doc://com.apple.sirieventsuggestionsmarkup/documentation/SiriEventSuggestionsMarkup/FoodEstablishmentReservation",
+        "doc://com.apple.sirieventsuggestionsmarkup/documentation/SiriEventSuggestionsMarkup/LodgingReservation"
+      ],
+      "title": "Food, Lodging, and Events"
+    },
+    {
+      "anchor": "Common-Reservation-Data",
+      "identifiers": [
+        "doc://com.apple.sirieventsuggestionsmarkup/documentation/SiriEventSuggestionsMarkup/Person",
+        "doc://com.apple.sirieventsuggestionsmarkup/documentation/SiriEventSuggestionsMarkup/Ticket",
+        "doc://com.apple.sirieventsuggestionsmarkup/documentation/SiriEventSuggestionsMarkup/Seat",
+        "doc://com.apple.sirieventsuggestionsmarkup/documentation/SiriEventSuggestionsMarkup/Organization",
+        "doc://com.apple.sirieventsuggestionsmarkup/documentation/SiriEventSuggestionsMarkup/Place",
+        "doc://com.apple.sirieventsuggestionsmarkup/documentation/SiriEventSuggestionsMarkup/PostalAddress"
+      ],
+      "title": "Common Reservation Data"
+    },
+    {
+      "anchor": "Basic-Data-Types",
+      "identifiers": [
+        "doc://com.apple.sirieventsuggestionsmarkup/documentation/SiriEventSuggestionsMarkup/@context",
+        "doc://com.apple.sirieventsuggestionsmarkup/documentation/SiriEventSuggestionsMarkup/dateTimeISO8601",
+        "doc://com.apple.sirieventsuggestionsmarkup/documentation/SiriEventSuggestionsMarkup/reservationId",
+        "doc://com.apple.sirieventsuggestionsmarkup/documentation/SiriEventSuggestionsMarkup/reservationStatus",
+        "doc://com.apple.sirieventsuggestionsmarkup/documentation/SiriEventSuggestionsMarkup/URL",
+        "doc://com.apple.sirieventsuggestionsmarkup/documentation/SiriEventSuggestionsMarkup/telephone"
+      ],
+      "title": "Basic Data Types"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/sirieventsuggestionsmarkup"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

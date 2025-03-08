@@ -1,0 +1,1050 @@
+{
+  "abstract": [
+    {
+      "text": "An object that signals your app’s intention to make exclusive use of the device’s contactless features.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "added",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://SecureElementCredential/documentation/SecureElementCredential",
+        "doc://SecureElementCredential/documentation/SecureElementCredential/CredentialSession"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://SecureElementCredential/documentation/SecureElementCredential/CredentialSession/PresentmentIntentAssertion"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "extendedModule": "SecureElementCredential",
+    "externalID": "s:23SecureElementCredential0C7SessionC26PresentmentIntentAssertionC",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "PresentmentIntentAssertion"
+      }
+    ],
+    "modules": [
+      {
+        "name": "SecureElementCredential"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "PresentmentIntentAssertion"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "18.1",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "18.1",
+        "name": "iPadOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "CredentialSession.PresentmentIntentAssertion"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "final"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "PresentmentIntentAssertion"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://SecureElementCredential/documentation/SecureElementCredential/Accessing-and-Using-Secure-Element-Credentials"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Create an instance of this type to obtain exclusive use of the user interface for a selected credential. This prevents interruptions to your app from Wallet, any other default contactless app, or other apps using the ",
+              "type": "text"
+            },
+            {
+              "code": "SecureElementCredential",
+              "type": "codeVoice"
+            },
+            {
+              "text": " framework. The assertion expires when any of the following occur:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The assertion instance deinitializes.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You call the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://SecureElementCredential/documentation/SecureElementCredential/CredentialSession/PresentmentIntentAssertion/relinquish()",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method to indicate that you no longer need the assertion.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The system’s 60-second timeout expires.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The session encounters a ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://SecureElementCredential/documentation/SecureElementCredential/CredentialSession/Event/cardEmulationTimeout",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", potentially caused by one of the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "performTransaction",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " methods.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Apps can only acquire an assertion 15 seconds after relinquishing the previous assertion.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Any of the ",
+              "type": "text"
+            },
+            {
+              "code": "transaction",
+              "type": "codeVoice"
+            },
+            {
+              "text": " methods automatically acquire an internal instance of the ",
+              "type": "text"
+            },
+            {
+              "code": "PresentmentIntentAssertion",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". Because of this, call ",
+              "type": "text"
+            },
+            {
+              "code": "relinquish()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " prior to using the transaction methods. The following sequence shows how this works in a SwiftUI application:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Call ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://SecureElementCredential/documentation/SecureElementCredential/CredentialSession/acquirePresentmentAssertion()",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " before showing any proprietary payment UI.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Call ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://SecureElementCredential/documentation/SecureElementCredential/CredentialSession/PresentmentIntentAssertion/relinquish()",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to stop using the assertion before invoking the transaction method.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Invoke ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://SecureElementCredential/documentation/SecureElementCredential/CredentialSession/configuration()",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to start a ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "transactionTask",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Perform the transaction with the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "transactionTask",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Call ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://SecureElementCredential/documentation/SecureElementCredential/CredentialTransaction/Configuration/invalidate()",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " after presenting the credential.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Optionally, call ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://SecureElementCredential/documentation/SecureElementCredential/CredentialSession/acquirePresentmentAssertion()",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to finish up any proprietary payment UI.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Call ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://SecureElementCredential/documentation/SecureElementCredential/CredentialSession/PresentmentIntentAssertion/relinquish()",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " again to end use of the assertion.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In a UIKit app, use the following approach:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Call ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://SecureElementCredential/documentation/SecureElementCredential/CredentialSession/acquirePresentmentAssertion()",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " prior to showing any proprietary payment UI.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Call ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://SecureElementCredential/documentation/SecureElementCredential/CredentialSession/PresentmentIntentAssertion/relinquish()",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to stop using the assertion before invoking the transaction API.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Perform the transaction task.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Optionally, call ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://SecureElementCredential/documentation/SecureElementCredential/CredentialSession/acquirePresentmentAssertion()",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to finish up any proprietary payment UI.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Call ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://SecureElementCredential/documentation/SecureElementCredential/CredentialSession/PresentmentIntentAssertion/relinquish()",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " again to end use of the assertion.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://SecureElementCredential/documentation/SecureElementCredential": {
+      "abstract": [
+        {
+          "text": "Allow access to credentials inside the Secure Element on device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://SecureElementCredential/documentation/SecureElementCredential",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SecureElementCredential",
+      "type": "topic",
+      "url": "/documentation/secureelementcredential"
+    },
+    "doc://SecureElementCredential/documentation/SecureElementCredential/Accessing-and-Using-Secure-Element-Credentials": {
+      "abstract": [
+        {
+          "text": "Manage and use payment cards and other credentials.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://SecureElementCredential/documentation/SecureElementCredential/Accessing-and-Using-Secure-Element-Credentials",
+      "kind": "article",
+      "role": "article",
+      "title": "Accessing and using secure element credentials",
+      "type": "topic",
+      "url": "/documentation/secureelementcredential/accessing-and-using-secure-element-credentials"
+    },
+    "doc://SecureElementCredential/documentation/SecureElementCredential/CredentialSession": {
+      "abstract": [
+        {
+          "text": "A class for performing actions on a credential stored in the Secure Element.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "actor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CredentialSession"
+        }
+      ],
+      "identifier": "doc://SecureElementCredential/documentation/SecureElementCredential/CredentialSession",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CredentialSession"
+        }
+      ],
+      "role": "symbol",
+      "title": "CredentialSession",
+      "type": "topic",
+      "url": "/documentation/secureelementcredential/credentialsession"
+    },
+    "doc://SecureElementCredential/documentation/SecureElementCredential/CredentialSession/Event/cardEmulationTimeout": {
+      "abstract": [
+        {
+          "text": "The session’s card emulation timer expired.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "cardEmulationTimeout"
+        }
+      ],
+      "identifier": "doc://SecureElementCredential/documentation/SecureElementCredential/CredentialSession/Event/cardEmulationTimeout",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CredentialSession.Event.cardEmulationTimeout",
+      "type": "topic",
+      "url": "/documentation/secureelementcredential/credentialsession/event/cardemulationtimeout"
+    },
+    "doc://SecureElementCredential/documentation/SecureElementCredential/CredentialSession/PresentmentIntentAssertion": {
+      "abstract": [
+        {
+          "text": "An object that signals your app’s intention to make exclusive use of the device’s contactless features.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PresentmentIntentAssertion"
+        }
+      ],
+      "identifier": "doc://SecureElementCredential/documentation/SecureElementCredential/CredentialSession/PresentmentIntentAssertion",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PresentmentIntentAssertion"
+        }
+      ],
+      "role": "symbol",
+      "title": "CredentialSession.PresentmentIntentAssertion",
+      "type": "topic",
+      "url": "/documentation/secureelementcredential/credentialsession/presentmentintentassertion"
+    },
+    "doc://SecureElementCredential/documentation/SecureElementCredential/CredentialSession/PresentmentIntentAssertion/State-swift.enum": {
+      "abstract": [
+        {
+          "text": "An enumeration of possible states of a presentment intent assertion.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "State"
+        }
+      ],
+      "identifier": "doc://SecureElementCredential/documentation/SecureElementCredential/CredentialSession/PresentmentIntentAssertion/State-swift.enum",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "State"
+        }
+      ],
+      "role": "symbol",
+      "title": "CredentialSession.PresentmentIntentAssertion.State",
+      "type": "topic",
+      "url": "/documentation/secureelementcredential/credentialsession/presentmentintentassertion/state-swift.enum"
+    },
+    "doc://SecureElementCredential/documentation/SecureElementCredential/CredentialSession/PresentmentIntentAssertion/relinquish()": {
+      "abstract": [
+        {
+          "text": "End the presentment intent assertion.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "relinquish"
+        },
+        {
+          "kind": "text",
+          "text": "() "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://SecureElementCredential/documentation/SecureElementCredential/CredentialSession/PresentmentIntentAssertion/relinquish()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "relinquish()",
+      "type": "topic",
+      "url": "/documentation/secureelementcredential/credentialsession/presentmentintentassertion/relinquish()"
+    },
+    "doc://SecureElementCredential/documentation/SecureElementCredential/CredentialSession/PresentmentIntentAssertion/state-swift.property": {
+      "abstract": [
+        {
+          "text": "The state of a presentment intent assertion, indicating whether it’s currently valid.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "state"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:23SecureElementCredential0C7SessionC",
+          "text": "CredentialSession"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:23SecureElementCredential0C7SessionC26PresentmentIntentAssertionC",
+          "text": "PresentmentIntentAssertion"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:23SecureElementCredential0C7SessionC26PresentmentIntentAssertionC5StateO",
+          "text": "State"
+        }
+      ],
+      "identifier": "doc://SecureElementCredential/documentation/SecureElementCredential/CredentialSession/PresentmentIntentAssertion/state-swift.property",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "state",
+      "type": "topic",
+      "url": "/documentation/secureelementcredential/credentialsession/presentmentintentassertion/state-swift.property"
+    },
+    "doc://SecureElementCredential/documentation/SecureElementCredential/CredentialSession/acquirePresentmentAssertion()": {
+      "abstract": [
+        {
+          "text": "Indicates that the app intends to present a credential to a contactless interface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "acquirePresentmentAssertion"
+        },
+        {
+          "kind": "text",
+          "text": "() "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:23SecureElementCredential0C7SessionC",
+          "text": "CredentialSession"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:23SecureElementCredential0C7SessionC26PresentmentIntentAssertionC",
+          "text": "PresentmentIntentAssertion"
+        }
+      ],
+      "identifier": "doc://SecureElementCredential/documentation/SecureElementCredential/CredentialSession/acquirePresentmentAssertion()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "acquirePresentmentAssertion()",
+      "type": "topic",
+      "url": "/documentation/secureelementcredential/credentialsession/acquirepresentmentassertion()"
+    },
+    "doc://SecureElementCredential/documentation/SecureElementCredential/CredentialSession/configuration()": {
+      "abstract": [
+        {
+          "text": "Retrieves a transaction configuration related to this session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "configuration"
+        },
+        {
+          "kind": "text",
+          "text": "() "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:32_SecureElementCredential_SwiftUI0C11TransactionC",
+          "text": "CredentialTransaction"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:32_SecureElementCredential_SwiftUI0C11TransactionC13ConfigurationC",
+          "text": "Configuration"
+        }
+      ],
+      "identifier": "doc://SecureElementCredential/documentation/SecureElementCredential/CredentialSession/configuration()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "configuration()",
+      "type": "topic",
+      "url": "/documentation/secureelementcredential/credentialsession/configuration()"
+    },
+    "doc://SecureElementCredential/documentation/SecureElementCredential/CredentialTransaction/Configuration/invalidate()": {
+      "abstract": [
+        {
+          "text": "Invalidates the configuration and transitions the underlying session state to management.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "invalidate"
+        },
+        {
+          "kind": "text",
+          "text": "() "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://SecureElementCredential/documentation/SecureElementCredential/CredentialTransaction/Configuration/invalidate()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "invalidate()",
+      "type": "topic",
+      "url": "/documentation/secureelementcredential/credentialtransaction/configuration/invalidate()"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Acquiring-exclusive-foreground-privileges",
+      "generated": true,
+      "identifiers": [
+        "doc://SecureElementCredential/documentation/SecureElementCredential/CredentialSession/acquirePresentmentAssertion()"
+      ],
+      "title": "Acquiring exclusive foreground privileges"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Inspecting-assertion-state",
+      "identifiers": [
+        "doc://SecureElementCredential/documentation/SecureElementCredential/CredentialSession/PresentmentIntentAssertion/state-swift.property",
+        "doc://SecureElementCredential/documentation/SecureElementCredential/CredentialSession/PresentmentIntentAssertion/State-swift.enum"
+      ],
+      "title": "Inspecting assertion state"
+    },
+    {
+      "anchor": "Relinquishing-presentment-intent",
+      "identifiers": [
+        "doc://SecureElementCredential/documentation/SecureElementCredential/CredentialSession/PresentmentIntentAssertion/relinquish()"
+      ],
+      "title": "Relinquishing presentment intent"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/secureelementcredential/credentialsession/presentmentintentassertion"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

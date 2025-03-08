@@ -1,0 +1,622 @@
+{
+  "abstract": [
+    {
+      "text": "Test hardware device-specific scenarios, such as Face ID or Touch ID authentication, fall detection, getting a memory warning, or location changes.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Xcode/documentation/Xcode",
+        "doc://com.apple.Xcode/documentation/Xcode/devices-and-simulator"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Xcode/documentation/Xcode/testing-complex-hardware-device-scenarios-in-simulator"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Testing complex hardware device scenarios in Simulator"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Some features that you support in your app can be challenging to test thoroughly on a hardware device. For example:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Face ID and Touch ID each require a setup process. To test how your app handles the case when Face ID or Touch ID isn’t set up on a device, you would have to remove fingerprints or faces from your device, and then set them up again after that test.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fall detection requires significant setup and preparation to do repeated tests safely.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To trigger a memory warning in your app on a device, you need to open up a number of other apps that consume memory, and coordinate it in such a way that your app receives the memory warning.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "iCloud syncing on a device may not happen as frequently as you need during your testing.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Testing how your app responds to different locations or how it responds as you traverse a route can be time-consuming and difficult, especially in areas with poor cellular service.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Test these and other scenarios with Simulator’s hardware device feature support.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Test-Face-ID-or-Touch-ID-authentication",
+          "level": 3,
+          "text": "Test Face ID or Touch ID authentication",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Since Face ID and Touch ID each require a setup process, you need to test both how your app handles authentication when the user hasn’t configured Face ID or Touch ID yet, and when the user has configured them. To test the preconfigured state, choose Features > Face ID or Features > Touch ID, and deselect the Enrolled option. Select the Enrolled option to test the configured state.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When your app requests authentication, try a matching ID with Features > Face ID > Matching Face or Features > Touch ID > Matching Touch, or a non-matching ID with Features > Face ID > Non-matching Face or Features > Touch ID > Non-matching Touch.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Test-a-simulated-fall",
+          "level": 3,
+          "text": "Test a simulated fall",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To test how your app responds to a detected fall in Simulator, choose Features > Simulate Fall, then choose one of the following fall response options to simulate:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Confirmed",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Dismissed",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Rejected",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Unresponsive",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Test-a-memory-warning",
+          "level": 3,
+          "text": "Test a memory warning",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Navigate to a place in your app where you’ve added code that responds to a memory warning, then choose Debug > Simulate Memory Warning. Confirm that your app responds appropriately.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Test-iCloud-sync",
+          "level": 3,
+          "text": "Test iCloud sync",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use Simulator to test data synchronization between iCloud and the simulated device. Use hardware devices for performance testing.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Create and use a separate Apple Account specifically for testing iCloud in Simulator. Sign in to iCloud on the simulated device.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Then, prepare your app as needed, and choose Features > Trigger iCloud Sync to trigger the system to synchronize updates with the server.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "You must trigger synchronization manually because Simulator doesn’t support  notifications that trigger automatic data synchronization.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Test-changing-locations",
+          "level": 3,
+          "text": "Test changing locations",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Test how your app handles moving to a specific location, or moving along a route in Simulator.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Simulator contains some preset locations and routes. Choose Features > Location, and then select one of these options:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Sets the location to the Apple Infinite Loop campus in Cupertino.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Apple",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Simulates the user taking a bicycle ride in Cupertino. The route repeats until you change the location.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "City Bicycle Ride",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Simulates the user taking a run in Cupertino. The route repeats until you change the location.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "City Run",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Simulates the user driving from Cupertino to San Francisco. The route repeats until you change the location.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Freeway Drive",
+                    "type": "text"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To set the location to a specific latitude and longitude:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Choose Features > Location > Custom Location…",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Enter your location’s latitude and longitude in the dialog box.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click OK to set the location.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To clear the location so that the simulated device has no location, choose Features > Location > None.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "View-the-system-log",
+          "level": 3,
+          "text": "View the system log",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the system log to find errors, warnings, and other issues with your application. Choose Debug > Open System Log to open the system log for the simulated device in the Console app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Xcode-PageImage-card.png": {
+      "alt": "The Xcode logo on a blue gradient background.",
+      "identifier": "Xcode-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cc63eacd8f7f660388b46204d1d9bbcb/Xcode-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/62dba87d5f60ec96eb48882c9dff86d8/Xcode-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Xcode/documentation/Xcode": {
+      "abstract": [
+        {
+          "text": "Build, test, and submit your app with Apple’s integrated development environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode",
+      "images": [
+        {
+          "identifier": "Xcode-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/devices-and-simulator": {
+      "abstract": [
+        {
+          "text": "Configure and manage devices connected to your Mac or devices in Simulator and use them to run your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/devices-and-simulator",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Devices and Simulator",
+      "type": "topic",
+      "url": "/documentation/xcode/devices-and-simulator"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/identifying-graphics-and-animations-issues-in-simulator": {
+      "abstract": [
+        {
+          "text": "Reveal performance and display issues in your views with color overlays, and slow down animations to debug and improve them.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/identifying-graphics-and-animations-issues-in-simulator",
+      "kind": "article",
+      "role": "article",
+      "title": "Identifying graphics and animations issues in Simulator",
+      "type": "topic",
+      "url": "/documentation/xcode/identifying-graphics-and-animations-issues-in-simulator"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/sharing-data-with-simulator": {
+      "abstract": [
+        {
+          "text": "Enter text directly in Simulator, or share location data, images, web addresses, files, or data from the clipboard with Simulator.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/sharing-data-with-simulator",
+      "kind": "article",
+      "role": "article",
+      "title": "Sharing data with Simulator",
+      "type": "topic",
+      "url": "/documentation/xcode/sharing-data-with-simulator"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/testing-in-simulator-versus-testing-on-hardware-devices": {
+      "abstract": [
+        {
+          "text": "Review the differences between Simulator and hardware devices to determine which you should choose to test a scenario.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/testing-in-simulator-versus-testing-on-hardware-devices",
+      "kind": "article",
+      "role": "article",
+      "title": "Testing in Simulator versus testing on hardware devices",
+      "type": "topic",
+      "url": "/documentation/xcode/testing-in-simulator-versus-testing-on-hardware-devices"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Simulator-testing-considerations",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Xcode/documentation/Xcode/testing-in-simulator-versus-testing-on-hardware-devices",
+        "doc://com.apple.Xcode/documentation/Xcode/sharing-data-with-simulator",
+        "doc://com.apple.Xcode/documentation/Xcode/identifying-graphics-and-animations-issues-in-simulator"
+      ],
+      "title": "Simulator testing considerations"
+    }
+  ]
+}

@@ -1,0 +1,441 @@
+{
+  "abstract": [
+    {
+      "text": "Use the ",
+      "type": "text"
+    },
+    {
+      "code": "NS_SWIFT_UNAVAILABLE",
+      "type": "codeVoice"
+    },
+    {
+      "text": " macro to prevent an API from being used in Swift.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Swift/documentation/Swift",
+        "doc://com.apple.Swift/documentation/Swift/objective-c-and-c-code-customization"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Swift/documentation/Swift/making-objective-c-apis-unavailable-in-swift"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Swift"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Making Objective-C APIs Unavailable in Swift"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If parts of an Objective-C API aren’t suitable for Swift, you can make those parts",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "unavailable in Swift. You make part of an API unavailable in Swift as part of introducing",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "new Swift APIs that supersede parts of the existing Objective-C API. For example,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "you might replace an Objective-C constant with a Swift constant that’s nested inside",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a containing Swift type.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Prevent-an-Objective-C-API-from-Being-Imported",
+          "level": 3,
+          "text": "Prevent an Objective-C API from Being Imported",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To prevent a declaration in an Objective-C API from being imported, pass a single",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "parameter to the ",
+              "type": "text"
+            },
+            {
+              "code": "NS_SWIFT_UNAVAILABLE",
+              "type": "codeVoice"
+            },
+            {
+              "text": " macro. The parameter indicates what a developer",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "using Swift should do instead of using the part of the API you’re making unavailable.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In this example, an Objective-C class that provides a convenience initializer that",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "takes variadic arguments for key-value pairs suggests using a dictionary literal",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "instead:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "+ (instancetype)collectionWithValues:(NSArray *)values",
+            "                             forKeys:(NSArray<NSCopying> *)keys",
+            "NS_SWIFT_UNAVAILABLE(\"Use a dictionary literal instead.\");"
+          ],
+          "syntax": "occ",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Attempting to call the ",
+              "type": "text"
+            },
+            {
+              "code": "collectionWithValues:forKeys:",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method in Swift results in",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a compiler error.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Make-an-API-Unavailable-in-Both-Languages",
+          "level": 3,
+          "text": "Make an API Unavailable in Both Languages",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To make an Objective-C declaration unavailable at compile time in both Swift and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Objective-C, use the ",
+              "type": "text"
+            },
+            {
+              "code": "NS_UNAVAILABLE",
+              "type": "codeVoice"
+            },
+            {
+              "text": " macro. The macro behaves just like the ",
+              "type": "text"
+            },
+            {
+              "code": "NS_SWIFT_UNAVAILABLE",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "macro except that it doesn’t support the customizable error message and it restricts",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "compile-time access to the declaration in Objective-C code.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Swift-PageImage-card.png": {
+      "alt": "An orange Swift logo on a gradient background.",
+      "identifier": "Swift-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/81257762cf893d205c049e3021340e5f/Swift-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4d2ed632470b4616483901941fae4098/Swift-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Swift/documentation/Swift": {
+      "abstract": [
+        {
+          "text": "Build apps using a powerful open language.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift",
+      "images": [
+        {
+          "identifier": "Swift-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Swift",
+      "type": "topic",
+      "url": "/documentation/swift"
+    },
+    "doc://com.apple.Swift/documentation/Swift/designating-nullability-in-objective-c-apis": {
+      "abstract": [
+        {
+          "text": "Use nullability annotations or mark regions as annotated to control how Objective-C",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "declarations are imported into Swift.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/designating-nullability-in-objective-c-apis",
+      "kind": "article",
+      "role": "article",
+      "title": "Designating Nullability in Objective-C APIs",
+      "type": "topic",
+      "url": "/documentation/swift/designating-nullability-in-objective-c-apis"
+    },
+    "doc://com.apple.Swift/documentation/Swift/grouping-related-objective-c-constants": {
+      "abstract": [
+        {
+          "text": "Add macros to your Objective-C types to group their values in Swift.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/grouping-related-objective-c-constants",
+      "kind": "article",
+      "role": "article",
+      "title": "Grouping Related Objective-C Constants",
+      "type": "topic",
+      "url": "/documentation/swift/grouping-related-objective-c-constants"
+    },
+    "doc://com.apple.Swift/documentation/Swift/improving-objective-c-api-declarations-for-swift": {
+      "abstract": [
+        {
+          "text": "Use the ",
+          "type": "text"
+        },
+        {
+          "code": "NS_REFINED_FOR_SWIFT",
+          "type": "codeVoice"
+        },
+        {
+          "text": " macro to change how an API is imported into Swift.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/improving-objective-c-api-declarations-for-swift",
+      "kind": "article",
+      "role": "article",
+      "title": "Improving Objective-C API Declarations for Swift",
+      "type": "topic",
+      "url": "/documentation/swift/improving-objective-c-api-declarations-for-swift"
+    },
+    "doc://com.apple.Swift/documentation/Swift/marking-api-availability-in-objective-c": {
+      "abstract": [
+        {
+          "text": "Use ",
+          "type": "text"
+        },
+        {
+          "code": "a",
+          "type": "codeVoice"
+        },
+        {
+          "text": " macro to denote the availability of an Objective-C API.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/marking-api-availability-in-objective-c",
+      "kind": "article",
+      "role": "article",
+      "title": "Marking API Availability in Objective-C",
+      "type": "topic",
+      "url": "/documentation/swift/marking-api-availability-in-objective-c"
+    },
+    "doc://com.apple.Swift/documentation/Swift/objective-c-and-c-code-customization": {
+      "abstract": [
+        {
+          "text": "Apply macros to your Objective-C APIs to customize how they’re imported into Swift.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/objective-c-and-c-code-customization",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Objective-C and C Code Customization",
+      "type": "topic",
+      "url": "/documentation/swift/objective-c-and-c-code-customization"
+    },
+    "doc://com.apple.Swift/documentation/Swift/renaming-objective-c-apis-for-swift": {
+      "abstract": [
+        {
+          "text": "Use the ",
+          "type": "text"
+        },
+        {
+          "code": "NS_SWIFT_NAME",
+          "type": "codeVoice"
+        },
+        {
+          "text": " macro to customize API names for Swift.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/renaming-objective-c-apis-for-swift",
+      "kind": "article",
+      "role": "article",
+      "title": "Renaming Objective-C APIs for Swift",
+      "type": "topic",
+      "url": "/documentation/swift/renaming-objective-c-apis-for-swift"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Customizing-Objective-C-APIs",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/designating-nullability-in-objective-c-apis",
+        "doc://com.apple.Swift/documentation/Swift/renaming-objective-c-apis-for-swift",
+        "doc://com.apple.Swift/documentation/Swift/improving-objective-c-api-declarations-for-swift",
+        "doc://com.apple.Swift/documentation/Swift/grouping-related-objective-c-constants",
+        "doc://com.apple.Swift/documentation/Swift/marking-api-availability-in-objective-c"
+      ],
+      "title": "Customizing Objective-C APIs"
+    }
+  ]
+}

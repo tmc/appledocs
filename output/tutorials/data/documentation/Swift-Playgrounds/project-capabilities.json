@@ -1,0 +1,1415 @@
+{
+  "abstract": [
+    {
+      "text": "Request access for your app to protected resources, services, or device hardware such as sensors.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Swift-Playgrounds/documentation/swift-playgrounds"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/project-capabilities"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Requesting access to capabilities for your app playground"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your app can access many of the powerful hardware features and system services — capabilities — that are available on a device. For example, you could use the microphone together with speech recognition services to provide a voice interface, or you could access geolocation services for navigation.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Think of these capabilities as belonging to the person on whose device your app is running. Before using a capability, you ask their permission for access. For instance, if your app uses the camera to recognize landmarks, your app must explicitly ask permission to use the camera for that purpose. This is done with an alert from which the person can grant or deny your app access to that capability by tapping or clicking a button.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about capabilities, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/xcode/adding-capabilities-to-your-app",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Import-the-framework",
+          "level": 3,
+          "text": "Import the framework",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To use a capability, your code needs access to the relevant code module — usually a system framework. Start off by importing the framework at the top of your source file. For example, to access the user’s contacts, import the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/contacts/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " framework.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "import Contacts"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Request-permission-from-the-user",
+          "level": 3,
+          "text": "Request permission from the user",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Many capabilities involve access to sensitive data, or use particular hardware features — such as finding a contact, or taking a photo. Before using one of these capabilities, you must explicitly request permission from the user. Do this when the person first tries to use the capability, so that the request makes most sense at the time.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Depending on the specific framework, your code for the request may look like this:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "do {",
+            "    let store = CNContactStore()",
+            "    if try await store.requestAccess(for: .contacts) {",
+            "        // Do something with Contacts.",
+            "    } else {",
+            "        // Handle if Contacts access is denied.",
+            "    }",
+            "} catch {",
+            "    // Handle any error.",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The preceding code shows an alert asking the user to grant your app permission to access their contacts. The alert displays a message — or purpose string — that explains why your app is requesting access to the capability, so the person can feel confident granting permission. People only need to grant access to the capability once. You should also consider what to do if they deny your app access to the capability. Your app may need to restrict available features, and provide appropriate messaging.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following table provides a list of the capabilities supported in Swift Playgrounds. Each of these capabilities has a default purpose string, so you can use them by importing the framework and making the necessary access request.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Capability",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Framework or Class",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Description",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "App Tracking Transparency",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "https://developer.apple.com/documentation/apptrackingtransparency/",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Required if your app uses the AppTrackingTransparency framework to collect data about end users and shares it with other companies for purposes of tracking across apps and websites.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "https://developer.apple.com/documentation/bundleresources/information_property_list/nsapptransportsecurity",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "N/A",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Required if your app needs to adjust default security settings for HTTP connections.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Bluetooth",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "https://developer.apple.com/bluetooth/",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Required if your app uses Bluetooth.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Calendars",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "https://developer.apple.com/documentation/eventkit",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Required if your app accesses Calendar.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Camera",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "https://developer.apple.com/documentation/avfoundation/cameras_and_media_capture",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Required if your app needs to use the device’s cameras.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Contacts",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "https://developer.apple.com/documentation/contacts/",
+                      "isActive": true,
+                      "overridingTitle": "Contacts",
+                      "overridingTitleInlineContent": [
+                        {
+                          "text": "Contacts",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Required if your app accesses Contacts.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Core Location Always",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "https://developer.apple.com/documentation/corelocation/",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/documentation/mapkit/",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Required if your app needs access to the user’s location at all times.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Core Location When in Use",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "https://developer.apple.com/documentation/corelocation/",
+                      "isActive": true,
+                      "overridingTitle": "Core Location",
+                      "overridingTitleInlineContent": [
+                        {
+                          "text": "Core Location",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/documentation/mapkit/",
+                      "isActive": true,
+                      "overridingTitle": "MapKit",
+                      "overridingTitleInlineContent": [
+                        {
+                          "text": "MapKit",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Required if your app accesses the user’s location when the app is in use.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Core Motion",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "https://developer.apple.com/documentation/coremotion/",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Required if your app accesses the motion data.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Face ID",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "https://developer.apple.com/documentation/localauthentication",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Required if your app uses Face ID for authentication.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "File Access (macOS)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "https://developer.apple.com/documentation/foundation/filemanager",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " in ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/documentation/foundation",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Required if your app needs to access files on the disk.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Local Network",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "https://developer.apple.com/documentation/multipeerconnectivity/",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/documentation/network/",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Any app that uses the local network, directly or indirectly, should include this description. This includes apps that use Bonjour and services implemented with Bonjour, as well as direct unicast or multicast connections to local hosts.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Media Library",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "https://developer.apple.com/documentation/mediaplayer",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Required if your app needs access to the user’s iCloud Music library or Apple Music catalog.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Microphone",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "https://developer.apple.com/documentation/avfoundation/cameras_and_media_capture",
+                      "isActive": true,
+                      "overridingTitle": "AVFoundation",
+                      "overridingTitleInlineContent": [
+                        {
+                          "text": "AVFoundation",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Required if your app accesses the device’s microphone.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Nearby Interaction",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "https://developer.apple.com/documentation/nearbyinteraction/",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Required if your app uses the Nearby Interaction framework. Applies only to devices with a U1 chip.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Network Connections (macOS)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "https://developer.apple.com/documentation/foundation/urlsession",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " in ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/documentation/foundation",
+                      "isActive": true,
+                      "overridingTitle": "Foundation",
+                      "overridingTitleInlineContent": [
+                        {
+                          "text": "Foundation",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Required if your app needs to receive incoming or perform outgoing network connections.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Photo Library",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "https://developer.apple.com/documentation/photokit",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Required if your app needs access to the user’s photo library.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Photo Library (Add Only)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "https://developer.apple.com/documentation/photokit",
+                      "isActive": true,
+                      "overridingTitle": "PhotoKit",
+                      "overridingTitleInlineContent": [
+                        {
+                          "text": "PhotoKit",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Required if your app only needs access to the user’s photo library to add photos.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Reminders",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "https://developer.apple.com/documentation/eventkit",
+                      "isActive": true,
+                      "overridingTitle": "EventKit",
+                      "overridingTitleInlineContent": [
+                        {
+                          "text": "EventKit",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Required if your app accesses Reminders.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Speech Recognition",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "https://developer.apple.com/documentation/speech",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Required to perform speech recognition using Apple’s servers.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "anchor": "Add-a-custom-purpose-string",
+          "level": 3,
+          "text": "Add a custom purpose string",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can supply your own custom purpose string to explain why your app requires a particular capability. Be specific and use straightforward language in your purpose string, so anyone using your app can clearly understand why they are being asked to grant permission for that capability. Here’s an example:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "MyApp uses the camera to identify landmarks as you explore new places."
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In Swift Playgrounds you can add custom purpose strings by selecting App Settings in the sidebar, and then Capabilities. Tap or click the Add button (＋) to add the capabilities you need.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Prepare-your-app-for-distribution",
+          "level": 3,
+          "text": "Prepare your app for distribution",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you want to submit your app to TestFlight or to the App Store, you must add your own custom purpose string for each of the capabilities you use in your app before submitting your app to App Store Connect. You can do this in Swift Playgrounds by selecting App Settings in the sidebar, and then Capabilities.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/add-a-swift-package": {
+      "abstract": [
+        {
+          "text": "Extend the functionality of your app playground by finding and adding a publicly available Swift package.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/add-a-swift-package",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding a Swift package to your app playground",
+      "type": "topic",
+      "url": "/documentation/swift-playgrounds/add-a-swift-package"
+    },
+    "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/console-print-debugging": {
+      "abstract": [
+        {
+          "text": "Learn different methods to debug your code using console output.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/console-print-debugging",
+      "kind": "article",
+      "role": "article",
+      "title": "Debugging an App Playground using the Console",
+      "type": "topic",
+      "url": "/documentation/swift-playgrounds/console-print-debugging"
+    },
+    "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/live-preview": {
+      "abstract": [
+        {
+          "text": "Use the canvas in Swift Playgrounds to see a live preview of the SwiftUI views in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/live-preview",
+      "kind": "article",
+      "role": "article",
+      "title": "Previewing SwiftUI views in Swift Playgrounds",
+      "type": "topic",
+      "url": "/documentation/swift-playgrounds/live-preview"
+    },
+    "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/using-content-in-user-projects": {
+      "abstract": [
+        {
+          "text": "Learn how to bring sample code into your app playground.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/using-content-in-user-projects",
+      "kind": "article",
+      "role": "article",
+      "title": "Importing sample content into user app playgrounds",
+      "type": "topic",
+      "url": "/documentation/swift-playgrounds/using-content-in-user-projects"
+    },
+    "doc://com.apple.Swift-Playgrounds/documentation/swift-playgrounds": {
+      "abstract": [
+        {
+          "text": "Learn to write apps, repurpose sample code, create, and share learning experiences in Swift Playgrounds.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift-Playgrounds/documentation/swift-playgrounds",
+      "kind": "article",
+      "role": "collection",
+      "title": "Swift Playgrounds",
+      "type": "topic",
+      "url": "/documentation/swift-playgrounds"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/bluetooth/": {
+      "identifier": "https://developer.apple.com/bluetooth/",
+      "title": "Core Bluetooth",
+      "titleInlineContent": [
+        {
+          "text": "Core Bluetooth",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/bluetooth/"
+    },
+    "https://developer.apple.com/documentation/apptrackingtransparency/": {
+      "identifier": "https://developer.apple.com/documentation/apptrackingtransparency/",
+      "title": "App Tracking Transparency",
+      "titleInlineContent": [
+        {
+          "text": "App Tracking Transparency",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/apptrackingtransparency/"
+    },
+    "https://developer.apple.com/documentation/avfoundation/cameras_and_media_capture": {
+      "identifier": "https://developer.apple.com/documentation/avfoundation/cameras_and_media_capture",
+      "title": "AVFoundation",
+      "titleInlineContent": [
+        {
+          "text": "AVFoundation",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/avfoundation/cameras_and_media_capture"
+    },
+    "https://developer.apple.com/documentation/bundleresources/information_property_list/nsapptransportsecurity": {
+      "identifier": "https://developer.apple.com/documentation/bundleresources/information_property_list/nsapptransportsecurity",
+      "title": "App Transport Security",
+      "titleInlineContent": [
+        {
+          "text": "App Transport Security",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/bundleresources/information_property_list/nsapptransportsecurity"
+    },
+    "https://developer.apple.com/documentation/contacts/": {
+      "identifier": "https://developer.apple.com/documentation/contacts/",
+      "title": "Contacts",
+      "titleInlineContent": [
+        {
+          "text": "Contacts",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/contacts/"
+    },
+    "https://developer.apple.com/documentation/corelocation/": {
+      "identifier": "https://developer.apple.com/documentation/corelocation/",
+      "title": "Core Location",
+      "titleInlineContent": [
+        {
+          "text": "Core Location",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/corelocation/"
+    },
+    "https://developer.apple.com/documentation/coremotion/": {
+      "identifier": "https://developer.apple.com/documentation/coremotion/",
+      "title": "Core Motion",
+      "titleInlineContent": [
+        {
+          "text": "Core Motion",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/coremotion/"
+    },
+    "https://developer.apple.com/documentation/eventkit": {
+      "identifier": "https://developer.apple.com/documentation/eventkit",
+      "title": "EventKit",
+      "titleInlineContent": [
+        {
+          "text": "EventKit",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/eventkit"
+    },
+    "https://developer.apple.com/documentation/foundation": {
+      "identifier": "https://developer.apple.com/documentation/foundation",
+      "title": "Foundation",
+      "titleInlineContent": [
+        {
+          "text": "Foundation",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/foundation"
+    },
+    "https://developer.apple.com/documentation/foundation/filemanager": {
+      "identifier": "https://developer.apple.com/documentation/foundation/filemanager",
+      "title": "FileManager",
+      "titleInlineContent": [
+        {
+          "text": "FileManager",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/foundation/filemanager"
+    },
+    "https://developer.apple.com/documentation/foundation/urlsession": {
+      "identifier": "https://developer.apple.com/documentation/foundation/urlsession",
+      "title": "URLSession",
+      "titleInlineContent": [
+        {
+          "text": "URLSession",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/foundation/urlsession"
+    },
+    "https://developer.apple.com/documentation/localauthentication": {
+      "identifier": "https://developer.apple.com/documentation/localauthentication",
+      "title": "Local Authentication",
+      "titleInlineContent": [
+        {
+          "text": "Local Authentication",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/localauthentication"
+    },
+    "https://developer.apple.com/documentation/mapkit/": {
+      "identifier": "https://developer.apple.com/documentation/mapkit/",
+      "title": "MapKit",
+      "titleInlineContent": [
+        {
+          "text": "MapKit",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/mapkit/"
+    },
+    "https://developer.apple.com/documentation/mediaplayer": {
+      "identifier": "https://developer.apple.com/documentation/mediaplayer",
+      "title": "Media Player",
+      "titleInlineContent": [
+        {
+          "text": "Media Player",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/mediaplayer"
+    },
+    "https://developer.apple.com/documentation/multipeerconnectivity/": {
+      "identifier": "https://developer.apple.com/documentation/multipeerconnectivity/",
+      "title": "Multipeer Connectivity",
+      "titleInlineContent": [
+        {
+          "text": "Multipeer Connectivity",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/multipeerconnectivity/"
+    },
+    "https://developer.apple.com/documentation/nearbyinteraction/": {
+      "identifier": "https://developer.apple.com/documentation/nearbyinteraction/",
+      "title": "Nearby Interaction",
+      "titleInlineContent": [
+        {
+          "text": "Nearby Interaction",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/nearbyinteraction/"
+    },
+    "https://developer.apple.com/documentation/network/": {
+      "identifier": "https://developer.apple.com/documentation/network/",
+      "title": "Network",
+      "titleInlineContent": [
+        {
+          "text": "Network",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/network/"
+    },
+    "https://developer.apple.com/documentation/photokit": {
+      "identifier": "https://developer.apple.com/documentation/photokit",
+      "title": "PhotoKit",
+      "titleInlineContent": [
+        {
+          "text": "PhotoKit",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/photokit"
+    },
+    "https://developer.apple.com/documentation/speech": {
+      "identifier": "https://developer.apple.com/documentation/speech",
+      "title": "Speech",
+      "titleInlineContent": [
+        {
+          "text": "Speech",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/speech"
+    },
+    "https://developer.apple.com/documentation/xcode/adding-capabilities-to-your-app": {
+      "identifier": "https://developer.apple.com/documentation/xcode/adding-capabilities-to-your-app",
+      "title": "Adding Capabilities to Your App",
+      "titleInlineContent": [
+        {
+          "text": "Adding Capabilities to Your App",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/xcode/adding-capabilities-to-your-app"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "App-playgrounds",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/add-a-swift-package",
+        "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/console-print-debugging",
+        "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/live-preview",
+        "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/using-content-in-user-projects"
+      ],
+      "title": "App playgrounds"
+    }
+  ]
+}

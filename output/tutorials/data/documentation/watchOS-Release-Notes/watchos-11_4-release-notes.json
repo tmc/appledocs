@@ -1,0 +1,787 @@
+{
+  "abstract": [
+    {
+      "text": "Update your apps to use new features, and test your apps against API changes.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.watchOS-Release-Notes/documentation/watchos-release-notes"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.watchOS-Release-Notes/documentation/watchOS-Release-Notes/watchos-11_4-release-notes"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "watchOS 11.4 Beta 2 Release Notes"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The watchOS 11.4 SDK provides support to develop watchOS apps for Apple Watch devices running watchOS 11.4 beta 2. The SDK comes bundled with Xcode 16.3, available from the Mac App Store. For information on the compatibility requirements for Xcode 16.3, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "/documentation/Xcode-Release-Notes/xcode-16_3-release-notes",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "libxml2",
+          "level": 3,
+          "text": "libxml2",
+          "type": "heading"
+        },
+        {
+          "anchor": "Deprecations",
+          "level": 4,
+          "text": "Deprecations",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The custom allocation API for libxml2 is deprecated starting in macOS Sequoia 15.4, iOS 18.4, tvOS 18.4, visionOS 2.4, and tvOS 18.4.  If this API is not used, no changes are required.  If this API is currently used, make changes to call ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "malloc()",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " instead of ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "xmlMalloc()",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "xmlMallocAtomic()",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": "; call ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "realloc()",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " instead of ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "xmlRealloc()",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": "; call ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "free()",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " instead of ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "xmlFree()",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and call ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "strdup()",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " instead of ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "xmlMemStrdup()",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".  Stop calling ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "xmlMemSetup()",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "xmlMemGet()",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "xmlGcMemSetup()",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "xmlGcMemGet()",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to set custom allocation functions.  Do not set global variables ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "xmlMalloc",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "xmlMallocAtomic",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "xmlRealloc",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "xmlFree",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "xmlMemStrdup",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".  Internally, libxml2 and libxslt will now use the system allocator instead of this API, so do not rely on these libraries using the custom allocation API.  (138404994)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "StoreKit",
+          "level": 3,
+          "text": "StoreKit",
+          "type": "heading"
+        },
+        {
+          "anchor": "New-Features",
+          "level": 4,
+          "text": "New Features",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "New StoreKit APIs support ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/in-app-purchase/advanced-commerce-api/",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " in-app purchases.  (118528943)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "By using the new purchase option API ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "introductoryOfferEligibility(compactJWS:)",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", you can now set a preference for whether an introductory offer should be redeemed during a purchase. This API requires you to sign a payload on your server in order to either apply the offer (even if the customer is not eligible) or block it.  (136152740)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "New properties ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "appTransactionID",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "originalPlatform",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "period",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " are now available in ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/documentation/storekit/apptransaction",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/documentation/storekit/transaction",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/documentation/storekit/transaction/offer-swift.struct",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", and ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/documentation/storekit/product/subscriptioninfo/renewalinfo",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".  (136395697)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Resolved-Issues",
+          "level": 4,
+          "text": "Resolved Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed: The ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Platform",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " symbol used by originalPlatform in AppTransaction has been moved to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "AppStore.Platform",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".  (143632084)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed: The introductory offer eligibility preference API in PurchaseOption has been renamed to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "introductoryOfferEligibility(compactJWS:)",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".  (143905053)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Deprecations",
+          "level": 4,
+          "text": "Deprecations",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "https://developer.apple.com/documentation/storekit/transaction/currententitlement(for:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " is now deprecated. This API returns the latest transaction that entitles the user to a product, which may not include transactions originated for family shared subscriptions. Use the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Transaction.currentEntitlements(for:)",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " method to get all the transactions that entitle the user to a product.  (138320205)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "SwiftUI",
+          "level": 3,
+          "text": "SwiftUI",
+          "type": "heading"
+        },
+        {
+          "anchor": "Resolved-Issues",
+          "level": 4,
+          "text": "Resolved Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed: A color set by the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "tint(_:)",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " modifier does not override the tint color of buttons in that view’s confirmation dialogs and alerts.  (138774306)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed: For apps compiled against iOS 18.4 beta, applying ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "defaultVisibility(.hidden)",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to customizable toolbar items does not hide the item by default on iOS.  (139815290)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed: When NavigationStack or NavigationSplitView content updates, the environment is not invalidated unless properties in the environment have changed.  (139855826)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed: ",
+                      "type": "text"
+                    },
+                    {
+                      "code": ".onPreferenceChange",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " modifier’s closure argument is required to be ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "@Sendable",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". This might cause concurrency diagnostics that’s unnecessary if the closure needs to access main actor-isolated values. This particular closure shouldn’t have to be this restrictive.  (145238570)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "System-Calls",
+          "level": 3,
+          "text": "System Calls",
+          "type": "heading"
+        },
+        {
+          "anchor": "New-Features",
+          "level": 4,
+          "text": "New Features",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "fileport_makeport(2) and fileport_makefd(2) are now APIs with manual pages.  (66571768) (FB8270900)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "/documentation/Xcode-Release-Notes/xcode-16_3-release-notes": {
+      "identifier": "/documentation/Xcode-Release-Notes/xcode-16_3-release-notes",
+      "title": "Xcode 16.3 Release Notes",
+      "titleInlineContent": [
+        {
+          "text": "Xcode 16.3 Release Notes",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "/documentation/Xcode-Release-Notes/xcode-16_3-release-notes"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.watchOS-Release-Notes/documentation/watchOS-Release-Notes/watchos-11-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.watchOS-Release-Notes/documentation/watchOS-Release-Notes/watchos-11-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "watchOS 11 Release Notes",
+      "type": "topic",
+      "url": "/documentation/watchos-release-notes/watchos-11-release-notes"
+    },
+    "doc://com.apple.watchOS-Release-Notes/documentation/watchOS-Release-Notes/watchos-11_1-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.watchOS-Release-Notes/documentation/watchOS-Release-Notes/watchos-11_1-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "watchOS 11.1 Release Notes",
+      "type": "topic",
+      "url": "/documentation/watchos-release-notes/watchos-11_1-release-notes"
+    },
+    "doc://com.apple.watchOS-Release-Notes/documentation/watchOS-Release-Notes/watchos-11_2-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.watchOS-Release-Notes/documentation/watchOS-Release-Notes/watchos-11_2-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "watchOS 11.2 Release Notes",
+      "type": "topic",
+      "url": "/documentation/watchos-release-notes/watchos-11_2-release-notes"
+    },
+    "doc://com.apple.watchOS-Release-Notes/documentation/watchOS-Release-Notes/watchos-11_3-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.watchOS-Release-Notes/documentation/watchOS-Release-Notes/watchos-11_3-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "watchOS 11.3 Release Notes",
+      "type": "topic",
+      "url": "/documentation/watchos-release-notes/watchos-11_3-release-notes"
+    },
+    "doc://com.apple.watchOS-Release-Notes/documentation/watchos-release-notes": {
+      "abstract": [
+        {
+          "text": "Learn about changes to the watchOS SDK.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.watchOS-Release-Notes/documentation/watchos-release-notes",
+      "kind": "article",
+      "role": "collection",
+      "title": "watchOS Release Notes",
+      "type": "topic",
+      "url": "/documentation/watchos-release-notes"
+    },
+    "https://developer.apple.com/documentation/storekit/apptransaction": {
+      "identifier": "https://developer.apple.com/documentation/storekit/apptransaction",
+      "title": "AppTransaction",
+      "titleInlineContent": [
+        {
+          "text": "AppTransaction",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/storekit/apptransaction"
+    },
+    "https://developer.apple.com/documentation/storekit/product/subscriptioninfo/renewalinfo": {
+      "identifier": "https://developer.apple.com/documentation/storekit/product/subscriptioninfo/renewalinfo",
+      "title": "Product.SubscriptionInfo.RenewalInfo",
+      "titleInlineContent": [
+        {
+          "text": "Product.SubscriptionInfo.RenewalInfo",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/storekit/product/subscriptioninfo/renewalinfo"
+    },
+    "https://developer.apple.com/documentation/storekit/transaction": {
+      "identifier": "https://developer.apple.com/documentation/storekit/transaction",
+      "title": "Transaction",
+      "titleInlineContent": [
+        {
+          "text": "Transaction",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/storekit/transaction"
+    },
+    "https://developer.apple.com/documentation/storekit/transaction/currententitlement(for:)": {
+      "identifier": "https://developer.apple.com/documentation/storekit/transaction/currententitlement(for:)",
+      "title": "Transaction.currentEntitlement(for:)",
+      "titleInlineContent": [
+        {
+          "code": "Transaction.currentEntitlement(for:)",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/storekit/transaction/currententitlement(for:)"
+    },
+    "https://developer.apple.com/documentation/storekit/transaction/offer-swift.struct": {
+      "identifier": "https://developer.apple.com/documentation/storekit/transaction/offer-swift.struct",
+      "title": "Transaction.Offer",
+      "titleInlineContent": [
+        {
+          "text": "Transaction.Offer",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/storekit/transaction/offer-swift.struct"
+    },
+    "https://developer.apple.com/in-app-purchase/advanced-commerce-api/": {
+      "identifier": "https://developer.apple.com/in-app-purchase/advanced-commerce-api/",
+      "title": "Advanced Commerce API",
+      "titleInlineContent": [
+        {
+          "text": "Advanced Commerce API",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/in-app-purchase/advanced-commerce-api/"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "watchOS-11",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.watchOS-Release-Notes/documentation/watchOS-Release-Notes/watchos-11_3-release-notes",
+        "doc://com.apple.watchOS-Release-Notes/documentation/watchOS-Release-Notes/watchos-11_2-release-notes",
+        "doc://com.apple.watchOS-Release-Notes/documentation/watchOS-Release-Notes/watchos-11_1-release-notes",
+        "doc://com.apple.watchOS-Release-Notes/documentation/watchOS-Release-Notes/watchos-11-release-notes"
+      ],
+      "title": "watchOS 11"
+    }
+  ]
+}

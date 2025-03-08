@@ -1,0 +1,732 @@
+{
+  "abstract": [
+    {
+      "text": "Set preferences for smart card authentication operations, including those on managed devices.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/configuring-smart-card-authentication"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "CryptoTokenKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Configuring Smart Card Authentication"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you use the CryptoTokenKit framework to manage hardware tokens as two-factor authentication devices, as ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/authenticating-users-with-a-cryptographic-token",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " describes, the authentication process is subject to certain configuration options.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Set-Smart-Card-Preferences",
+          "level": 3,
+          "text": "Set Smart Card Preferences",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Configure smart card authentication preferences by setting values in the ",
+              "type": "text"
+            },
+            {
+              "code": "com.apple.security.smartcard",
+              "type": "codeVoice"
+            },
+            {
+              "text": " preferences domain. For each setting, the framework first tries to read from mobile device management (MDM) settings. Next, it looks at systemwide preferences. Finally, it falls back on default values for any remaining unspecificed values.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "The framework ignores individual user preferences.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The framework looks for and responds to the following preference keys:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A Boolean that defaults to true.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  },
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "If set, when a user inserts an unpaired card into the system and the card appears suitable for authentication, the system prompts the user to associate the card with the current user. The system requires an administrative user to authorize the association.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  },
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "When you want to manage the associations between users and tokens on a computer, use the ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "sc_auth",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " command line utility. See the ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "sc_auth(8)",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " man page for details.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "UserPairing",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "strong"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A Boolean that defaults to true.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  },
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "When disabled, the system doesn’t attempt to use smart cards for user authentication (login, keychain unlock, and so on). However, smart cards are still accessible for other purposes, like signing emails.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "allowSmartCard",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "strong"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A Boolean that defaults to false.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  },
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "When enabled, the system allows the host application to pair a user with only a single smart card. Enabling this feature doesn’t affect any existing pairings in the system. A user already paired with multiple smart cards doesn’t become unpaired.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "oneCardPerUser",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "strong"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A Boolean that defaults to false.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  },
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "When enabled, the system requires smart card authentication for login, authorization, or screensaver unlock. Other authentication methods like passwords and Touch ID fail. In some cases, such as preference sheets that always require a password, the user may receive two prompts: one for the smart card, followed by one for the password.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "enforceSmartCard",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "strong"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "An integer that defaults to ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "0",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  },
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Indicates how the framework handles certificates, with settings ranging from least to most secure.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "checkCertificateTrust",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "strong"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The values for ",
+              "type": "text"
+            },
+            {
+              "code": "checkCertificateTrust:",
+              "type": "codeVoice"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "0",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " — Trust every certificate. Although this setting is the default, it’s suitable only for users with self-signed certificates. Corporate systems must typically use a more secure setting.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "1",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " — Test that certificates are within their validity period and that the system trusts the issuer.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "2",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " — Test that the certificates are within the validity period, test that the system trusts the issuer, and test against a soft revocation check. A soft revocation check means that as long as the certificate revocation check doesn’t explicitly reject the certificate, it remains valid. When the system can’t complete a check, the certificate remains valid.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "3",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " — Test that the certificates are within the validity period, test that the system trusts the issuer, and test against a hard revocation check. Unless a certificate revocation check explicitly validates the certificate, it’s considered invalid.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit": {
+      "abstract": [
+        {
+          "text": "Access security tokens and the cryptographic assets they store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "CryptoTokenKit",
+      "type": "topic",
+      "url": "/documentation/cryptotokenkit"
+    },
+    "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCardToken": {
+      "abstract": [
+        {
+          "text": "A representation of a smart card based cryptographic token.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TKSmartCardToken"
+        }
+      ],
+      "identifier": "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCardToken",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TKSmartCardToken"
+        }
+      ],
+      "role": "symbol",
+      "title": "TKSmartCardToken",
+      "type": "topic",
+      "url": "/documentation/cryptotokenkit/tksmartcardtoken"
+    },
+    "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCardTokenDriver": {
+      "abstract": [
+        {
+          "text": "The driver that acts as an entry point for smart card app extensions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TKSmartCardTokenDriver"
+        }
+      ],
+      "identifier": "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCardTokenDriver",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TKSmartCardTokenDriver"
+        }
+      ],
+      "role": "symbol",
+      "title": "TKSmartCardTokenDriver",
+      "type": "topic",
+      "url": "/documentation/cryptotokenkit/tksmartcardtokendriver"
+    },
+    "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCardTokenSession": {
+      "abstract": [
+        {
+          "text": "A token session that is based on a smart card token.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TKSmartCardTokenSession"
+        }
+      ],
+      "identifier": "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCardTokenSession",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TKSmartCardTokenSession"
+        }
+      ],
+      "role": "symbol",
+      "title": "TKSmartCardTokenSession",
+      "type": "topic",
+      "url": "/documentation/cryptotokenkit/tksmartcardtokensession"
+    },
+    "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/authenticating-users-with-a-cryptographic-token": {
+      "abstract": [
+        {
+          "text": "Grant access to user accounts and the keychain by creating a smart card app extension.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/authenticating-users-with-a-cryptographic-token",
+      "kind": "article",
+      "role": "article",
+      "title": "Authenticating Users with a Cryptographic Token",
+      "type": "topic",
+      "url": "/documentation/cryptotokenkit/authenticating-users-with-a-cryptographic-token"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Smart-Card-App-Extensions",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/authenticating-users-with-a-cryptographic-token",
+        "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCardTokenDriver",
+        "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCardToken",
+        "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCardTokenSession"
+      ],
+      "title": "Smart Card App Extensions"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Smart-Card-App-Extensions",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/authenticating-users-with-a-cryptographic-token",
+                "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCardTokenDriver",
+                "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCardToken",
+                "doc://com.apple.cryptotokenkit/documentation/CryptoTokenKit/TKSmartCardTokenSession"
+              ],
+              "title": "Smart Card App Extensions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cryptotokenkit~1documentation~1CryptoTokenKit~1TKSmartCardTokenSession/title",
+          "value": "TKSmartCardTokenSession"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cryptotokenkit~1documentation~1CryptoTokenKit~1TKSmartCardTokenSession/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "TKSmartCardTokenSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cryptotokenkit~1documentation~1CryptoTokenKit~1TKSmartCardTokenSession/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "TKSmartCardTokenSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cryptotokenkit~1documentation~1CryptoTokenKit~1TKSmartCardToken/title",
+          "value": "TKSmartCardToken"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cryptotokenkit~1documentation~1CryptoTokenKit~1TKSmartCardToken/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "TKSmartCardToken"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cryptotokenkit~1documentation~1CryptoTokenKit~1TKSmartCardToken/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "TKSmartCardToken"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cryptotokenkit~1documentation~1CryptoTokenKit~1TKSmartCardTokenDriver/title",
+          "value": "TKSmartCardTokenDriver"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cryptotokenkit~1documentation~1CryptoTokenKit~1TKSmartCardTokenDriver/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "TKSmartCardTokenDriver"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cryptotokenkit~1documentation~1CryptoTokenKit~1TKSmartCardTokenDriver/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "TKSmartCardTokenDriver"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/cryptotokenkit/configuring-smart-card-authentication"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/cryptotokenkit/configuring-smart-card-authentication"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

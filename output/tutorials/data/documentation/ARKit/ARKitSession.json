@@ -1,0 +1,1144 @@
+{
+  "abstract": [
+    {
+      "text": "The main entry point for receiving data from ARKit.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.arkit/documentation/ARKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.arkit/documentation/ARKit/ARKitSession"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:5ARKit0A7SessionC",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "ARKitSession"
+      }
+    ],
+    "modules": [
+      {
+        "name": "ARKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "ARKitSession"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "ARKitSession"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "final"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "ARKitSession"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Sessions in ARKit require either implicit or explicit authorization. To explicitly ask for permission for a particular kind of data and choose when a person is prompted for that permission, call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARKitSession/requestAuthorization(for:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " before ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARKitSession/run(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following shows a session that starts by requesting implicit authorization to use world sensing:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let planeData = PlaneDetectionProvider(alignments: [.horizontal, .vertical])",
+            "",
+            "Task {",
+            "    do {",
+            "        try await self.session.run([planeData])",
+            "        // Update app based on the planeData.anchorUpdates async sequence.",
+            "    } catch {",
+            "        print(\"ARKitSession error:\", error)",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/PlaneDetectionProvider",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance’s required authorizations include ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARKitSession/AuthorizationType/worldSensing",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", the system asks someone using your app to permit world sensing before ARKit supplies any of that kind of data.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "ARKit stops sessions when they’re deinitialized; keep a reference to a session instance for as long as the session needs to run.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.arkit/documentation/ARKit": {
+      "abstract": [
+        {
+          "text": "Integrate hardware sensing features to produce augmented reality apps and games.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "ARKit",
+      "type": "topic",
+      "url": "/documentation/arkit"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARKitSession": {
+      "abstract": [
+        {
+          "text": "The main entry point for receiving data from ARKit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARKitSession"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARKitSession",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARKitSession"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARKitSession",
+      "type": "topic",
+      "url": "/documentation/arkit/arkitsession"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARKitSession/AuthorizationStatus": {
+      "abstract": [
+        {
+          "text": "The authorization states for a type of ARKit data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AuthorizationStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARKitSession/AuthorizationStatus",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AuthorizationStatus"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARKitSession.AuthorizationStatus",
+      "type": "topic",
+      "url": "/documentation/arkit/arkitsession/authorizationstatus"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARKitSession/AuthorizationType": {
+      "abstract": [
+        {
+          "text": "The authorization types you can request from ARKit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AuthorizationType"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARKitSession/AuthorizationType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AuthorizationType"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARKitSession.AuthorizationType",
+      "type": "topic",
+      "url": "/documentation/arkit/arkitsession/authorizationtype"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARKitSession/AuthorizationType/worldSensing": {
+      "abstract": [
+        {
+          "text": "The authorization for access to plane detection, scene reconstruction, and image tracking.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "worldSensing"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARKitSession/AuthorizationType/worldSensing",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ARKitSession.AuthorizationType.worldSensing",
+      "type": "topic",
+      "url": "/documentation/arkit/arkitsession/authorizationtype/worldsensing"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARKitSession/Error": {
+      "abstract": [
+        {
+          "text": "An error that might occur when running data providers on an ARKit session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Error"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARKitSession/Error",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Error"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARKitSession.Error",
+      "type": "topic",
+      "url": "/documentation/arkit/arkitsession/error"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARKitSession/Event": {
+      "abstract": [
+        {
+          "text": "The kinds of events that can occur in a session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Event"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARKitSession/Event",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Event"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARKitSession.Event",
+      "type": "topic",
+      "url": "/documentation/arkit/arkitsession/event"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARKitSession/Events-swift.struct": {
+      "abstract": [
+        {
+          "text": "A sequence of events.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Events"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARKitSession/Events-swift.struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Events"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARKitSession.Events",
+      "type": "topic",
+      "url": "/documentation/arkit/arkitsession/events-swift.struct"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARKitSession/description": {
+      "abstract": [
+        {
+          "text": "A textual representation of this session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "description"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARKitSession/description",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "description",
+      "type": "topic",
+      "url": "/documentation/arkit/arkitsession/description"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARKitSession/events-swift.property": {
+      "abstract": [
+        {
+          "text": "An asynchronous sequence of events that provide updates to the current authorization status of the session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "events"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:5ARKit0A7SessionC",
+          "text": "ARKitSession"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:5ARKit0A7SessionC6EventsV",
+          "text": "Events"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARKitSession/events-swift.property",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "events",
+      "type": "topic",
+      "url": "/documentation/arkit/arkitsession/events-swift.property"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARKitSession/init()": {
+      "abstract": [
+        {
+          "text": "Creates a new session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "convenience"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARKitSession/init()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init()",
+      "type": "topic",
+      "url": "/documentation/arkit/arkitsession/init()"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARKitSession/queryAuthorization(for:)": {
+      "abstract": [
+        {
+          "text": "Checks whether the current session is authorized for particular authorization types without requesting authorization.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "queryAuthorization"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:5ARKit0A7SessionC",
+          "text": "ARKitSession"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:5ARKit0A7SessionC17AuthorizationTypeO",
+          "text": "AuthorizationType"
+        },
+        {
+          "kind": "text",
+          "text": "]) "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:5ARKit0A7SessionC",
+          "text": "ARKitSession"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:5ARKit0A7SessionC17AuthorizationTypeO",
+          "text": "AuthorizationType"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:5ARKit0A7SessionC",
+          "text": "ARKitSession"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:5ARKit0A7SessionC19AuthorizationStatusO",
+          "text": "AuthorizationStatus"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARKitSession/queryAuthorization(for:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "queryAuthorization(for:)",
+      "type": "topic",
+      "url": "/documentation/arkit/arkitsession/queryauthorization(for:)"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARKitSession/requestAuthorization(for:)": {
+      "abstract": [
+        {
+          "text": "Requests authorization from the user to use the specified kinds of ARKit data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "requestAuthorization"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:5ARKit0A7SessionC",
+          "text": "ARKitSession"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:5ARKit0A7SessionC17AuthorizationTypeO",
+          "text": "AuthorizationType"
+        },
+        {
+          "kind": "text",
+          "text": "]) "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:5ARKit0A7SessionC",
+          "text": "ARKitSession"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:5ARKit0A7SessionC17AuthorizationTypeO",
+          "text": "AuthorizationType"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:5ARKit0A7SessionC",
+          "text": "ARKitSession"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:5ARKit0A7SessionC19AuthorizationStatusO",
+          "text": "AuthorizationStatus"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARKitSession/requestAuthorization(for:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "requestAuthorization(for:)",
+      "type": "topic",
+      "url": "/documentation/arkit/arkitsession/requestauthorization(for:)"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARKitSession/run(_:)": {
+      "abstract": [
+        {
+          "text": "Runs a session with the data providers you supply.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "run"
+        },
+        {
+          "kind": "text",
+          "text": "([any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:5ARKit12DataProviderP",
+          "text": "DataProvider"
+        },
+        {
+          "kind": "text",
+          "text": "]) "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARKitSession/run(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "run(_:)",
+      "type": "topic",
+      "url": "/documentation/arkit/arkitsession/run(_:)"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARKitSession/stop()": {
+      "abstract": [
+        {
+          "text": "Stops all data providers running in this session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "stop"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARKitSession/stop()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "stop()",
+      "type": "topic",
+      "url": "/documentation/arkit/arkitsession/stop()"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/Anchor": {
+      "abstract": [
+        {
+          "text": "The identity, location, and orientation of an object in world space.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Anchor"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/Anchor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Anchor"
+        }
+      ],
+      "role": "symbol",
+      "title": "Anchor",
+      "type": "topic",
+      "url": "/documentation/arkit/anchor"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/DataProvider": {
+      "abstract": [
+        {
+          "text": "A source of live data from ARKit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DataProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/DataProvider",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DataProvider"
+        }
+      ],
+      "role": "symbol",
+      "title": "DataProvider",
+      "type": "topic",
+      "url": "/documentation/arkit/dataprovider"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/PlaneDetectionProvider": {
+      "abstract": [
+        {
+          "text": "A source of live data about planes in a person’s surroundings.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PlaneDetectionProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/PlaneDetectionProvider",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PlaneDetectionProvider"
+        }
+      ],
+      "role": "symbol",
+      "title": "PlaneDetectionProvider",
+      "type": "topic",
+      "url": "/documentation/arkit/planedetectionprovider"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/arkit-in-visionos": {
+      "abstract": [
+        {
+          "text": "Create immersive augmented reality experiences.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/arkit-in-visionos",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "ARKit in visionOS",
+      "type": "topic",
+      "url": "/documentation/arkit/arkit-in-visionos"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.documentation/documentation/visionOS/setting-up-access-to-arkit-data": {
+      "abstract": [
+        {
+          "text": "Check whether your app can use ARKit and respect people’s privacy.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/visionOS/setting-up-access-to-arkit-data",
+      "kind": "article",
+      "role": "article",
+      "title": "Setting up access to ARKit data",
+      "type": "topic",
+      "url": "/documentation/visionOS/setting-up-access-to-arkit-data"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s8SendableP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "visionOS",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/visionOS/setting-up-access-to-arkit-data",
+        "doc://com.apple.arkit/documentation/ARKit/DataProvider",
+        "doc://com.apple.arkit/documentation/ARKit/Anchor",
+        "doc://com.apple.arkit/documentation/ARKit/arkit-in-visionos"
+      ],
+      "title": "visionOS"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Starting-and-stopping-a-session",
+      "identifiers": [
+        "doc://com.apple.arkit/documentation/ARKit/ARKitSession/init()",
+        "doc://com.apple.arkit/documentation/ARKit/ARKitSession/run(_:)",
+        "doc://com.apple.arkit/documentation/ARKit/ARKitSession/stop()",
+        "doc://com.apple.arkit/documentation/ARKit/ARKitSession/Error"
+      ],
+      "title": "Starting and stopping a session"
+    },
+    {
+      "anchor": "Getting-authorization",
+      "identifiers": [
+        "doc://com.apple.arkit/documentation/ARKit/ARKitSession/requestAuthorization(for:)",
+        "doc://com.apple.arkit/documentation/ARKit/ARKitSession/AuthorizationType",
+        "doc://com.apple.arkit/documentation/ARKit/ARKitSession/queryAuthorization(for:)",
+        "doc://com.apple.arkit/documentation/ARKit/ARKitSession/AuthorizationStatus"
+      ],
+      "title": "Getting authorization"
+    },
+    {
+      "anchor": "Observing-a-session",
+      "identifiers": [
+        "doc://com.apple.arkit/documentation/ARKit/ARKitSession/events-swift.property",
+        "doc://com.apple.arkit/documentation/ARKit/ARKitSession/Events-swift.struct",
+        "doc://com.apple.arkit/documentation/ARKit/ARKitSession/Event",
+        "doc://com.apple.arkit/documentation/ARKit/ARKitSession/description"
+      ],
+      "title": "Observing a session"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/arkit/arkitsession"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

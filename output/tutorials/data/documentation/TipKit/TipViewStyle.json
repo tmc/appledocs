@@ -1,0 +1,865 @@
+{
+  "abstract": [
+    {
+      "text": "A type that applies custom appearance to all tips within a view hierarchy.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.TipKit/documentation/TipKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.TipKit/documentation/TipKit/TipViewStyle"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:6TipKit0A9ViewStyleP",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "protocol"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "TipViewStyle"
+      }
+    ],
+    "modules": [
+      {
+        "name": "TipKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "TipViewStyle"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Protocol",
+    "symbolKind": "protocol",
+    "title": "TipViewStyle"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "TipViewStyle"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To configure the current style for tips in a view hierarchy, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/tipViewStyle(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " modifier and specify a type that conforms to ",
+              "type": "text"
+            },
+            {
+              "code": "TipViewStyle",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "tipviewstyle_headline-style",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Customize the layout and style of your tips by creating a custom ",
+              "type": "text"
+            },
+            {
+              "code": "TipViewStyle",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct HeadlineTipViewStyle: TipViewStyle {",
+            "    func makeBody(configuration: TipViewStyle.Configuration) -> some View {",
+            "        VStack(alignment: .leading) {",
+            "            HStack {",
+            "                Text(\"TIP\").font(.system(.headline).smallCaps())",
+            "                Spacer()",
+            "                Button(action: { configuration.tip.invalidate(reason: .tipClosed) }) {",
+            "                    Image(systemName: \"xmark\").scaledToFit()",
+            "                }",
+            "            }",
+            "",
+            "            Divider().frame(height: 1.0)",
+            "",
+            "            HStack(alignment: .top) {",
+            "                configuration.image?",
+            "                    .resizable()",
+            "                    .aspectRatio(contentMode: .fit)",
+            "                    .frame(width: 48.0, height: 48.0)",
+            "",
+            "                VStack(alignment: .leading, spacing: 8.0) {",
+            "                    configuration.title?.font(.headline)",
+            "                    configuration.message?.font(.subheadline)",
+            "",
+            "                    ForEach(configuration.actions) { action in",
+            "                        Button(action: action.handler) {",
+            "                            action.label().foregroundStyle(.blue)",
+            "                        }",
+            "                    }",
+            "                }",
+            "            }",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/tipViewStyle(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " modifier to apply your style to all tips within a view hierarchy:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct AddWorkoutView: View {",
+            "    var body: some View {",
+            "        VStack {",
+            "            TipView(AddWorkoutTip())",
+            "                .tipViewStyle(HeadlineTipViewStyle())",
+            "",
+            "            Text(\"Workout Samples\")",
+            "            WorkoutSampleList()",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For UIKit and AppKit apps, the ",
+              "type": "text"
+            },
+            {
+              "code": "viewStyle",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property can be used for specifying a custom ",
+              "type": "text"
+            },
+            {
+              "code": "TipViewStyle",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let addWorkoutTipView = TipUIView(AddWorkoutTip())",
+            "addWorkoutTipView.viewStyle = HeadlineTipViewStyle()",
+            "addSubview(addWorkoutTipView)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.TipKit/documentation/TipKit": {
+      "abstract": [
+        {
+          "text": "Display tips that help people discover features in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.TipKit/documentation/TipKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "TipKit",
+      "type": "topic",
+      "url": "/documentation/tipkit"
+    },
+    "doc://com.apple.TipKit/documentation/TipKit/MiniTipViewStyle": {
+      "abstract": [
+        {
+          "text": "The default style for a TipView.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MiniTipViewStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.TipKit/documentation/TipKit/MiniTipViewStyle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MiniTipViewStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "MiniTipViewStyle",
+      "type": "topic",
+      "url": "/documentation/tipkit/minitipviewstyle"
+    },
+    "doc://com.apple.TipKit/documentation/TipKit/TipViewStyle": {
+      "abstract": [
+        {
+          "text": "A type that applies custom appearance to all tips within a view hierarchy.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TipViewStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.TipKit/documentation/TipKit/TipViewStyle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TipViewStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "TipViewStyle",
+      "type": "topic",
+      "url": "/documentation/tipkit/tipviewstyle"
+    },
+    "doc://com.apple.TipKit/documentation/TipKit/TipViewStyle/Body": {
+      "abstract": [
+        {
+          "text": "The user interface element of the tip.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "associatedtype"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Body"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.TipKit/documentation/TipKit/TipViewStyle/Body",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "Body",
+      "type": "topic",
+      "url": "/documentation/tipkit/tipviewstyle/body"
+    },
+    "doc://com.apple.TipKit/documentation/TipKit/TipViewStyle/Configuration": {
+      "abstract": [
+        {
+          "text": "The tip style’s configuration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Configuration"
+        }
+      ],
+      "identifier": "doc://com.apple.TipKit/documentation/TipKit/TipViewStyle/Configuration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Configuration"
+        }
+      ],
+      "role": "symbol",
+      "title": "TipViewStyle.Configuration",
+      "type": "topic",
+      "url": "/documentation/tipkit/tipviewstyle/configuration"
+    },
+    "doc://com.apple.TipKit/documentation/TipKit/TipViewStyle/makeBody(configuration:)": {
+      "abstract": [
+        {
+          "text": "A builder that makes the body of the tip view based on a style configuration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "makeBody"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "configuration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6TipKit0A9ViewStyleP13Configurationa",
+          "text": "Configuration"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6TipKit0A9ViewStyleP4BodyQa",
+          "text": "Body"
+        }
+      ],
+      "identifier": "doc://com.apple.TipKit/documentation/TipKit/TipViewStyle/makeBody(configuration:)",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "makeBody(configuration:)",
+      "type": "topic",
+      "url": "/documentation/tipkit/tipviewstyle/makebody(configuration:)"
+    },
+    "doc://com.apple.TipKit/documentation/TipKit/TipViewStyle/miniTip": {
+      "abstract": [
+        {
+          "text": "The default style for a tip view.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Self",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "MiniTipViewStyle",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "miniTip"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6TipKit04MiniA9ViewStyleV",
+          "text": "MiniTipViewStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.TipKit/documentation/TipKit/TipViewStyle/miniTip",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "miniTip",
+      "type": "topic",
+      "url": "/documentation/tipkit/tipviewstyle/minitip"
+    },
+    "doc://com.apple.TipKit/documentation/TipKit/TipViewStyleConfiguration": {
+      "abstract": [
+        {
+          "text": "The container type that holds a tip’s configuration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TipViewStyleConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.TipKit/documentation/TipKit/TipViewStyleConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TipViewStyleConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "TipViewStyleConfiguration",
+      "type": "topic",
+      "url": "/documentation/tipkit/tipviewstyleconfiguration"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/View/tipViewStyle(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the given style for TipView within the view hierarchy.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "tipViewStyle"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "style"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6TipKit0A9ViewStyleP",
+          "text": "TipViewStyle"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/tipViewStyle(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "tipViewStyle(_:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View/tipViewStyle(_:)"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "tipviewstyle_headline-style": {
+      "alt": "An image of a tip view with a custom style.",
+      "identifier": "tipviewstyle_headline-style",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1d23e6a05e6d5bd02044a8ae7f981218/tipviewstyle_headline-style@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2872f3b054d37eed0892922cb05e373e/tipviewstyle_headline-style~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.TipKit/documentation/TipKit/MiniTipViewStyle"
+      ],
+      "kind": "relationships",
+      "title": "Conforming Types",
+      "type": "conformingTypes"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "View-Style",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/SwiftUI/View/tipViewStyle(_:)",
+        "doc://com.apple.TipKit/documentation/TipKit/TipViewStyleConfiguration",
+        "doc://com.apple.TipKit/documentation/TipKit/MiniTipViewStyle"
+      ],
+      "title": "View Style"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Associated-Types",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.TipKit/documentation/TipKit/TipViewStyle/Body"
+      ],
+      "title": "Associated Types"
+    },
+    {
+      "anchor": "Instance-Methods",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.TipKit/documentation/TipKit/TipViewStyle/makeBody(configuration:)"
+      ],
+      "title": "Instance Methods"
+    },
+    {
+      "anchor": "Type-Aliases",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.TipKit/documentation/TipKit/TipViewStyle/Configuration"
+      ],
+      "title": "Type Aliases"
+    },
+    {
+      "anchor": "Type-Properties",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.TipKit/documentation/TipKit/TipViewStyle/miniTip"
+      ],
+      "title": "Type Properties"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/tipkit/tipviewstyle"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

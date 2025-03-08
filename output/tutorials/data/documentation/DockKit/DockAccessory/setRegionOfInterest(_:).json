@@ -1,0 +1,677 @@
+{
+  "abstract": [
+    {
+      "text": "Sets the area in the video frame in which the dock accessory tracks a subject.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.DockKit/documentation/DockKit",
+        "doc://com.apple.DockKit/documentation/DockKit/DockAccessory"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/setRegionOfInterest(_:)"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:7DockKit0A9AccessoryC19setRegionOfInterestyySo6CGRectVYaKF",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "func"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "setRegionOfInterest"
+      },
+      {
+        "kind": "text",
+        "text": "("
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "c:@S@CGRect",
+        "text": "CGRect"
+      },
+      {
+        "kind": "text",
+        "text": ") "
+      },
+      {
+        "kind": "keyword",
+        "text": "async"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "keyword",
+        "text": "throws"
+      }
+    ],
+    "modules": [
+      {
+        "name": "DockKit"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Method",
+    "symbolKind": "method",
+    "title": "setRegionOfInterest(_:)"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "Mac Catalyst",
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "final"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "func"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "setRegionOfInterest"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "externalParam",
+              "text": "_"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "region"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:@S@CGRect",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@S@CGRect",
+              "text": "CGRect"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "keyword",
+              "text": "async"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "throws"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The area in the video frame in which the dock accessory tracks a subject.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "region"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The region of interest is an limited area within the video frame that DockKit tracks a subject in. The default value is",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "(0,0,1,1)",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", which indicates that the whole frame is of interest.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you disable system tracking, this configuration change applies to any custom tracking for this dock accessory.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The configuration applies to any camera stream the app has open if system tracking is enabled.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The region of interest doesn’t persist; it resets to the entire video frame any time an app exits, backgrounds, or stops tracking.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.DockKit/documentation/DockKit/DockKitError/notConnected",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " if device isn’t connected, or ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.DockKit/documentation/DockKit/DockKitError/notSupported",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " if called on macOS.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Throws",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.DockKit/documentation/DockKit": {
+      "abstract": [
+        {
+          "text": "Interact with accessories that track subjects on camera as they move around.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.DockKit/documentation/DockKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "DockKit",
+      "type": "topic",
+      "url": "/documentation/dockkit"
+    },
+    "doc://com.apple.DockKit/documentation/DockKit/DockAccessory": {
+      "abstract": [
+        {
+          "text": "Obtain accessory information and control tracking behavior.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DockAccessory"
+        }
+      ],
+      "identifier": "doc://com.apple.DockKit/documentation/DockKit/DockAccessory",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DockAccessory"
+        }
+      ],
+      "role": "symbol",
+      "title": "DockAccessory",
+      "type": "topic",
+      "url": "/documentation/dockkit/dockaccessory"
+    },
+    "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/Animation": {
+      "abstract": [
+        {
+          "text": "Character animations that describe how to move the dock accessory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Animation"
+        }
+      ],
+      "identifier": "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/Animation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Animation"
+        }
+      ],
+      "role": "symbol",
+      "title": "DockAccessory.Animation",
+      "type": "topic",
+      "url": "/documentation/dockkit/dockaccessory/animation"
+    },
+    "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/animate(motion:)": {
+      "abstract": [
+        {
+          "text": "Starts an animation sequence.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "animate"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "motion"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7DockKit0A9AccessoryC",
+          "text": "DockAccessory"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7DockKit0A9AccessoryC9AnimationO",
+          "text": "Animation"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSProgress",
+          "text": "Progress"
+        }
+      ],
+      "identifier": "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/animate(motion:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "animate(motion:)",
+      "type": "topic",
+      "url": "/documentation/dockkit/dockaccessory/animate(motion:)"
+    },
+    "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/regionOfInterest": {
+      "abstract": [
+        {
+          "text": "The area in the video frame in which the dock accessory tracks a subject.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "regionOfInterest"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGRect",
+          "text": "CGRect"
+        }
+      ],
+      "identifier": "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/regionOfInterest",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "regionOfInterest",
+      "type": "topic",
+      "url": "/documentation/dockkit/dockaccessory/regionofinterest"
+    },
+    "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/setRegionOfInterest(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the area in the video frame in which the dock accessory tracks a subject.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setRegionOfInterest"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGRect",
+          "text": "CGRect"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/setRegionOfInterest(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setRegionOfInterest(_:)",
+      "type": "topic",
+      "url": "/documentation/dockkit/dockaccessory/setregionofinterest(_:)"
+    },
+    "doc://com.apple.DockKit/documentation/DockKit/DockKitError/notConnected": {
+      "abstract": [
+        {
+          "text": "The dock accessory isn’t connected to a device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "notConnected"
+        }
+      ],
+      "identifier": "doc://com.apple.DockKit/documentation/DockKit/DockKitError/notConnected",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "DockKitError.notConnected",
+      "type": "topic",
+      "url": "/documentation/dockkit/dockkiterror/notconnected"
+    },
+    "doc://com.apple.DockKit/documentation/DockKit/DockKitError/notSupported": {
+      "abstract": [
+        {
+          "text": "The method isn’t supported on a specific platform.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "notSupported"
+        }
+      ],
+      "identifier": "doc://com.apple.DockKit/documentation/DockKit/DockKitError/notSupported",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "DockKitError.notSupported",
+      "type": "topic",
+      "url": "/documentation/dockkit/dockkiterror/notsupported"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:@S@CGRect": {
+      "abstract": [
+        {
+          "text": "A structure that contains the location and dimensions of a rectangle.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "CGRect"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:@S@CGRect",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGRect",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cgrect"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Performing-animation",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/animate(motion:)",
+        "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/regionOfInterest",
+        "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/Animation"
+      ],
+      "title": "Performing animation"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/dockkit/dockaccessory/setregionofinterest(_:)"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

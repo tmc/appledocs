@@ -1,0 +1,3672 @@
+{
+  "abstract": [
+    {
+      "text": "An object that manages access and changes to the user’s photo library.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.photokit/documentation/Photos"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.photokit/documentation/Photos/PHPhotoLibrary"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)PHPhotoLibrary",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "PHPhotoLibrary"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Photos"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "PHPhotoLibrary"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.13",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "PHPhotoLibrary"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "PHPhotoLibrary"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.photokit/documentation/PhotoKit/editing-asset-content",
+        "doc://com.apple.photokit/documentation/PhotoKit/fetching-assets",
+        "doc://com.apple.photokit/documentation/PhotoKit/delivering-an-enhanced-privacy-experience-in-your-photos-app",
+        "doc://com.apple.photokit/documentation/PhotoKit/fetching-objects-and-requesting-changes",
+        "doc://com.apple.photokit/documentation/PhotoKit/observing-changes-in-the-photo-library"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The object represents the entire set of assets and collections that the Photos app manages, including assets stored on the local device and those stored in iCloud Photos. Use this object for the following tasks:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Retrieving or verifying the user’s permission for your app to access Photos content",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Making changes to assets and collections; for example, editing asset metadata or content, inserting new assets, or rearranging the members of a collection",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Determining which records change since a previous state of the Photos library",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Registering for update messages the system sends when the library changes",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.photokit/documentation/PhotoKit/delivering-an-enhanced-privacy-experience-in-your-photos-app": {
+      "abstract": [
+        {
+          "text": "Adopt the latest privacy enhancements to deliver advanced user-privacy controls.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/PhotoKit/delivering-an-enhanced-privacy-experience-in-your-photos-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Delivering an Enhanced Privacy Experience in Your Photos App",
+      "type": "topic",
+      "url": "/documentation/photokit/delivering-an-enhanced-privacy-experience-in-your-photos-app"
+    },
+    "doc://com.apple.photokit/documentation/PhotoKit/editing-asset-content": {
+      "abstract": [
+        {
+          "text": "Make a request to modify and save a photo or video asset.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/PhotoKit/editing-asset-content",
+      "kind": "article",
+      "role": "article",
+      "title": "Editing Asset Content",
+      "type": "topic",
+      "url": "/documentation/photokit/editing-asset-content"
+    },
+    "doc://com.apple.photokit/documentation/PhotoKit/fetching-assets": {
+      "abstract": [
+        {
+          "text": "Retrieve asset metadata or request full asset content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/PhotoKit/fetching-assets",
+      "kind": "article",
+      "role": "article",
+      "title": "Fetching Assets",
+      "type": "topic",
+      "url": "/documentation/photokit/fetching-assets"
+    },
+    "doc://com.apple.photokit/documentation/PhotoKit/fetching-objects-and-requesting-changes": {
+      "abstract": [
+        {
+          "text": "Get assets, asset collections, and collection lists matching a specified query.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/PhotoKit/fetching-objects-and-requesting-changes",
+      "kind": "article",
+      "role": "article",
+      "title": "Fetching Objects and Requesting Changes",
+      "type": "topic",
+      "url": "/documentation/photokit/fetching-objects-and-requesting-changes"
+    },
+    "doc://com.apple.photokit/documentation/PhotoKit/observing-changes-in-the-photo-library": {
+      "abstract": [
+        {
+          "text": "Register an observer to be notified of changes to the photo library.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/PhotoKit/observing-changes-in-the-photo-library",
+      "kind": "article",
+      "role": "article",
+      "title": "Observing Changes in the Photo Library",
+      "type": "topic",
+      "url": "/documentation/photokit/observing-changes-in-the-photo-library"
+    },
+    "doc://com.apple.photokit/documentation/PhotoKit/requesting-changes-to-the-photo-library": {
+      "abstract": [
+        {
+          "text": "Create, delete, or modify assets and collections in a photo library by making change requests.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/PhotoKit/requesting-changes-to-the-photo-library",
+      "kind": "article",
+      "role": "article",
+      "title": "Requesting Changes to the Photo Library",
+      "type": "topic",
+      "url": "/documentation/photokit/requesting-changes-to-the-photo-library"
+    },
+    "doc://com.apple.photokit/documentation/Photos": {
+      "abstract": [
+        {
+          "text": "Work with image and video assets that the Photos app manages, including those from iCloud Photos and Live Photos.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/Photos",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Photos",
+      "type": "topic",
+      "url": "/documentation/photos"
+    },
+    "doc://com.apple.photokit/documentation/Photos/PHAccessLevel": {
+      "abstract": [
+        {
+          "text": "The app’s level of access to the user’s photo library.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PHAccessLevel"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/Photos/PHAccessLevel",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PHAccessLevel"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHAccessLevel",
+      "type": "topic",
+      "url": "/documentation/photos/phaccesslevel"
+    },
+    "doc://com.apple.photokit/documentation/Photos/PHAssetChangeRequest": {
+      "abstract": [
+        {
+          "text": "A request to create, delete, change metadata for, or edit the content of a Photos asset, for use in a photo library change block.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PHAssetChangeRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/Photos/PHAssetChangeRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PHAssetChangeRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHAssetChangeRequest",
+      "type": "topic",
+      "url": "/documentation/photos/phassetchangerequest"
+    },
+    "doc://com.apple.photokit/documentation/Photos/PHAssetCollectionChangeRequest": {
+      "abstract": [
+        {
+          "text": "A request to create, delete, or modify a Photos asset collection, for use in a photo library change block.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PHAssetCollectionChangeRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/Photos/PHAssetCollectionChangeRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PHAssetCollectionChangeRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHAssetCollectionChangeRequest",
+      "type": "topic",
+      "url": "/documentation/photos/phassetcollectionchangerequest"
+    },
+    "doc://com.apple.photokit/documentation/Photos/PHAuthorizationStatus": {
+      "abstract": [
+        {
+          "text": "Information about your app’s authorization to access the user’s photo library.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PHAuthorizationStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/Photos/PHAuthorizationStatus",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PHAuthorizationStatus"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHAuthorizationStatus",
+      "type": "topic",
+      "url": "/documentation/photos/phauthorizationstatus"
+    },
+    "doc://com.apple.photokit/documentation/Photos/PHChange": {
+      "abstract": [
+        {
+          "text": "A description of a change that occurred in the photo library.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PHChange"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/Photos/PHChange",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PHChange"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHChange",
+      "type": "topic",
+      "url": "/documentation/photos/phchange"
+    },
+    "doc://com.apple.photokit/documentation/Photos/PHChangeRequest": {
+      "abstract": [
+        {
+          "text": "The abstract base class of the framework’s photo library change requests.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PHChangeRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/Photos/PHChangeRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PHChangeRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHChangeRequest",
+      "type": "topic",
+      "url": "/documentation/photos/phchangerequest"
+    },
+    "doc://com.apple.photokit/documentation/Photos/PHCloudIdentifier": {
+      "abstract": [
+        {
+          "text": "An object that identifies an asset or collection that syncs through iCloud Photos.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PHCloudIdentifier"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/Photos/PHCloudIdentifier",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PHCloudIdentifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHCloudIdentifier",
+      "type": "topic",
+      "url": "/documentation/photos/phcloudidentifier"
+    },
+    "doc://com.apple.photokit/documentation/Photos/PHCloudIdentifierMapping": {
+      "abstract": [
+        {
+          "text": "An object that contains the cloud identifier result from looking up a local identifier, or an error indicating why the lookup failed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "PHCloudIdentifierMapping"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/Photos/PHCloudIdentifierMapping",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PHCloudIdentifierMapping",
+      "type": "topic",
+      "url": "/documentation/photos/phcloudidentifiermapping"
+    },
+    "doc://com.apple.photokit/documentation/Photos/PHCollectionListChangeRequest": {
+      "abstract": [
+        {
+          "text": "A request to create, delete, or modify a Photos collection list, for use in a photo library change block.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PHCollectionListChangeRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/Photos/PHCollectionListChangeRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PHCollectionListChangeRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHCollectionListChangeRequest",
+      "type": "topic",
+      "url": "/documentation/photos/phcollectionlistchangerequest"
+    },
+    "doc://com.apple.photokit/documentation/Photos/PHFetchResultChangeDetails": {
+      "abstract": [
+        {
+          "text": "A description of changes that occurred in the set of asset or collection objects listed in a fetch result.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PHFetchResultChangeDetails"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/Photos/PHFetchResultChangeDetails",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PHFetchResultChangeDetails"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHFetchResultChangeDetails",
+      "type": "topic",
+      "url": "/documentation/photos/phfetchresultchangedetails"
+    },
+    "doc://com.apple.photokit/documentation/Photos/PHLocalIdentifierMapping": {
+      "abstract": [
+        {
+          "text": "An object that contains the local identifier result from looking up a cloud identifier, or an error indicating why the lookup failed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "PHLocalIdentifierMapping"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/Photos/PHLocalIdentifierMapping",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PHLocalIdentifierMapping",
+      "type": "topic",
+      "url": "/documentation/photos/phlocalidentifiermapping"
+    },
+    "doc://com.apple.photokit/documentation/Photos/PHLocalIdentifierNotFound": {
+      "abstract": [
+        {
+          "text": "A constant value that indicates that the system can’t resolve a local object from a global identifier.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PHLocalIdentifierNotFound"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/Photos/PHLocalIdentifierNotFound",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PHLocalIdentifierNotFound"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHLocalIdentifierNotFound",
+      "type": "topic",
+      "url": "/documentation/photos/phlocalidentifiernotfound"
+    },
+    "doc://com.apple.photokit/documentation/Photos/PHObjectChangeDetails": {
+      "abstract": [
+        {
+          "text": "A description of changes that occurred in an asset or collection object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PHObjectChangeDetails"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/Photos/PHObjectChangeDetails",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PHObjectChangeDetails"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHObjectChangeDetails",
+      "type": "topic",
+      "url": "/documentation/photos/phobjectchangedetails"
+    },
+    "doc://com.apple.photokit/documentation/Photos/PHObjectPlaceholder": {
+      "abstract": [
+        {
+          "text": "A read-only proxy object that represents a Photos asset or collection to create.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PHObjectPlaceholder"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/Photos/PHObjectPlaceholder",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PHObjectPlaceholder"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHObjectPlaceholder",
+      "type": "topic",
+      "url": "/documentation/photos/phobjectplaceholder"
+    },
+    "doc://com.apple.photokit/documentation/Photos/PHPersistentChangeFetchResult": {
+      "abstract": [
+        {
+          "text": "An object that represents a fetch result and allows you to enumerate a very large set of change records.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PHPersistentChangeFetchResult"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/Photos/PHPersistentChangeFetchResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PHPersistentChangeFetchResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHPersistentChangeFetchResult",
+      "type": "topic",
+      "url": "/documentation/photos/phpersistentchangefetchresult"
+    },
+    "doc://com.apple.photokit/documentation/Photos/PHPersistentChangeToken": {
+      "abstract": [
+        {
+          "text": "An opaque object that tracks the state of the Photos library between runs, and that you can copy and serialize for future use.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PHPersistentChangeToken"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/Photos/PHPersistentChangeToken",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PHPersistentChangeToken"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHPersistentChangeToken",
+      "type": "topic",
+      "url": "/documentation/photos/phpersistentchangetoken"
+    },
+    "doc://com.apple.photokit/documentation/Photos/PHPhotoLibrary": {
+      "abstract": [
+        {
+          "text": "An object that manages access and changes to the user’s photo library.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PHPhotoLibrary"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/Photos/PHPhotoLibrary",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PHPhotoLibrary"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHPhotoLibrary",
+      "type": "topic",
+      "url": "/documentation/photos/phphotolibrary"
+    },
+    "doc://com.apple.photokit/documentation/Photos/PHPhotoLibrary/authorizationStatus()": {
+      "abstract": [
+        {
+          "text": "Returns information about your app’s authorization to access the user’s photo library.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "authorizationStatus"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@PHAuthorizationStatus",
+          "text": "PHAuthorizationStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/Photos/PHPhotoLibrary/authorizationStatus()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "authorizationStatus"
+        }
+      ],
+      "role": "symbol",
+      "title": "authorizationStatus()",
+      "type": "topic",
+      "url": "/documentation/photos/phphotolibrary/authorizationstatus()"
+    },
+    "doc://com.apple.photokit/documentation/Photos/PHPhotoLibrary/authorizationStatus(for:)": {
+      "abstract": [
+        {
+          "text": "Returns the app’s authorization to access the user’s photo library for the specified access level.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "authorizationStatus"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@PHAccessLevel",
+          "text": "PHAccessLevel"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@PHAuthorizationStatus",
+          "text": "PHAuthorizationStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/Photos/PHPhotoLibrary/authorizationStatus(for:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "authorizationStatusForAccessLevel:"
+        }
+      ],
+      "role": "symbol",
+      "title": "authorizationStatus(for:)",
+      "type": "topic",
+      "url": "/documentation/photos/phphotolibrary/authorizationstatus(for:)"
+    },
+    "doc://com.apple.photokit/documentation/Photos/PHPhotoLibrary/cloudIdentifierMappings(forLocalIdentifiers:)": {
+      "abstract": [
+        {
+          "text": "Retrieves the cloud identifier mappings for the list of local identifiers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "cloudIdentifierMappings"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "forLocalIdentifiers"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "]) -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6ResultO",
+          "text": "Result"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PHCloudIdentifier",
+          "text": "PHCloudIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ", any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ">]"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/Photos/PHPhotoLibrary/cloudIdentifierMappings(forLocalIdentifiers:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cloudIdentifierMappings(forLocalIdentifiers:)",
+      "type": "topic",
+      "url": "/documentation/photos/phphotolibrary/cloudidentifiermappings(forlocalidentifiers:)"
+    },
+    "doc://com.apple.photokit/documentation/Photos/PHPhotoLibrary/cloudIdentifierMappingsForLocalIdentifiers:": {
+      "abstract": [
+        {
+          "text": "Retrieves the cloud identifier mappings for the list of local identifiers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "cloudIdentifierMappingsForLocalIdentifiers:"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/Photos/PHPhotoLibrary/cloudIdentifierMappingsForLocalIdentifiers:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "cloudIdentifierMappingsForLocalIdentifiers:"
+        }
+      ],
+      "role": "symbol",
+      "title": "cloudIdentifierMappingsForLocalIdentifiers:",
+      "type": "topic",
+      "url": "/documentation/photos/phphotolibrary/cloudidentifiermappingsforlocalidentifiers:"
+    },
+    "doc://com.apple.photokit/documentation/Photos/PHPhotoLibrary/cloudIdentifiers(forLocalIdentifiers:)": {
+      "abstract": [
+        {
+          "text": "Retrieves the equivalent iCloud identifiers for the list of local identifiers.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "cloudIdentifiers"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "forLocalIdentifiers"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "]) -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PHCloudIdentifier",
+          "text": "PHCloudIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/Photos/PHPhotoLibrary/cloudIdentifiers(forLocalIdentifiers:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "cloudIdentifiersForLocalIdentifiers:"
+        }
+      ],
+      "role": "symbol",
+      "title": "cloudIdentifiers(forLocalIdentifiers:)",
+      "type": "topic",
+      "url": "/documentation/photos/phphotolibrary/cloudidentifiers(forlocalidentifiers:)"
+    },
+    "doc://com.apple.photokit/documentation/Photos/PHPhotoLibrary/currentChangeToken": {
+      "abstract": [
+        {
+          "text": "The opaque token that represents the current state of the Photos library.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "currentChangeToken"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PHPersistentChangeToken",
+          "text": "PHPersistentChangeToken"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/Photos/PHPhotoLibrary/currentChangeToken",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "currentChangeToken"
+        }
+      ],
+      "role": "symbol",
+      "title": "currentChangeToken",
+      "type": "topic",
+      "url": "/documentation/photos/phphotolibrary/currentchangetoken"
+    },
+    "doc://com.apple.photokit/documentation/Photos/PHPhotoLibrary/fetchPersistentChanges(since:)": {
+      "abstract": [
+        {
+          "text": "Retrieves the Photos library changes since the token you specify.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "fetchPersistentChanges"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "since"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PHPersistentChangeToken",
+          "text": "PHPersistentChangeToken"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PHPersistentChangeFetchResult",
+          "text": "PHPersistentChangeFetchResult"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/Photos/PHPhotoLibrary/fetchPersistentChanges(since:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "fetchPersistentChangesSinceToken:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "fetchPersistentChanges(since:)",
+      "type": "topic",
+      "url": "/documentation/photos/phphotolibrary/fetchpersistentchanges(since:)"
+    },
+    "doc://com.apple.photokit/documentation/Photos/PHPhotoLibrary/localIdentifierMappings(for:)": {
+      "abstract": [
+        {
+          "text": "Retrieves the local identifier mappings for the list of cloud identifiers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "localIdentifierMappings"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PHCloudIdentifier",
+          "text": "PHCloudIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": "]) -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PHCloudIdentifier",
+          "text": "PHCloudIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6ResultO",
+          "text": "Result"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ">]"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/Photos/PHPhotoLibrary/localIdentifierMappings(for:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "localIdentifierMappings(for:)",
+      "type": "topic",
+      "url": "/documentation/photos/phphotolibrary/localidentifiermappings(for:)"
+    },
+    "doc://com.apple.photokit/documentation/Photos/PHPhotoLibrary/localIdentifierMappingsForCloudIdentifiers:": {
+      "abstract": [
+        {
+          "text": "Retrieves the local identifier mappings for the list of cloud identifiers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "localIdentifierMappingsForCloudIdentifiers:"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/Photos/PHPhotoLibrary/localIdentifierMappingsForCloudIdentifiers:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "localIdentifierMappingsForCloudIdentifiers:"
+        }
+      ],
+      "role": "symbol",
+      "title": "localIdentifierMappingsForCloudIdentifiers:",
+      "type": "topic",
+      "url": "/documentation/photos/phphotolibrary/localidentifiermappingsforcloudidentifiers:"
+    },
+    "doc://com.apple.photokit/documentation/Photos/PHPhotoLibrary/localIdentifiers(for:)": {
+      "abstract": [
+        {
+          "text": "Retrieves the equivalent local identifiers for the list of iCloud identifiers.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "localIdentifiers"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PHCloudIdentifier",
+          "text": "PHCloudIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": "]) -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/Photos/PHPhotoLibrary/localIdentifiers(for:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "localIdentifiersForCloudIdentifiers:"
+        }
+      ],
+      "role": "symbol",
+      "title": "localIdentifiers(for:)",
+      "type": "topic",
+      "url": "/documentation/photos/phphotolibrary/localidentifiers(for:)"
+    },
+    "doc://com.apple.photokit/documentation/Photos/PHPhotoLibrary/performChanges(_:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Asynchronously runs a block that requests changes to the photo library.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "performChanges"
+        },
+        {
+          "kind": "text",
+          "text": "(() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": (("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")?)"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/Photos/PHPhotoLibrary/performChanges(_:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "performChanges:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "performChanges(_:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/photos/phphotolibrary/performchanges(_:completionhandler:)"
+    },
+    "doc://com.apple.photokit/documentation/Photos/PHPhotoLibrary/performChangesAndWait(_:)": {
+      "abstract": [
+        {
+          "text": "Synchronously runs a block that requests changes to be performed in the photo library.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "performChangesAndWait"
+        },
+        {
+          "kind": "text",
+          "text": "(() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/Photos/PHPhotoLibrary/performChangesAndWait(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "performChangesAndWait:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "performChangesAndWait(_:)",
+      "type": "topic",
+      "url": "/documentation/photos/phphotolibrary/performchangesandwait(_:)"
+    },
+    "doc://com.apple.photokit/documentation/Photos/PHPhotoLibrary/presentLimitedLibraryPicker(from:)": {
+      "abstract": [
+        {
+          "text": "Prompts the user to update their limited library selection.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "presentLimitedLibraryPicker"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIViewController",
+          "text": "UIViewController"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/Photos/PHPhotoLibrary/presentLimitedLibraryPicker(from:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "presentLimitedLibraryPickerFromViewController:"
+        }
+      ],
+      "role": "symbol",
+      "title": "presentLimitedLibraryPicker(from:)",
+      "type": "topic",
+      "url": "/documentation/photos/phphotolibrary/presentlimitedlibrarypicker(from:)"
+    },
+    "doc://com.apple.photokit/documentation/Photos/PHPhotoLibrary/presentLimitedLibraryPicker(from:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Prompts the user to update their limited library selection with a callback providing newly selected identifiers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "presentLimitedLibraryPicker"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIViewController",
+          "text": "UIViewController"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": (["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "]) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/Photos/PHPhotoLibrary/presentLimitedLibraryPicker(from:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "presentLimitedLibraryPickerFromViewController:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "presentLimitedLibraryPicker(from:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/photos/phphotolibrary/presentlimitedlibrarypicker(from:completionhandler:)"
+    },
+    "doc://com.apple.photokit/documentation/Photos/PHPhotoLibrary/register(_:)-6y3b9": {
+      "abstract": [
+        {
+          "text": "Registers an object to receive messages when objects in the photo library change.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "register"
+        },
+        {
+          "kind": "text",
+          "text": "(any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)PHPhotoLibraryChangeObserver",
+          "text": "PHPhotoLibraryChangeObserver"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/Photos/PHPhotoLibrary/register(_:)-6y3b9",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "registerChangeObserver:"
+        }
+      ],
+      "role": "symbol",
+      "title": "register(_:)",
+      "type": "topic",
+      "url": "/documentation/photos/phphotolibrary/register(_:)-6y3b9"
+    },
+    "doc://com.apple.photokit/documentation/Photos/PHPhotoLibrary/register(_:)-gm0a": {
+      "abstract": [
+        {
+          "text": "Registers an object to observe changes to the photo library’s availability.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "register"
+        },
+        {
+          "kind": "text",
+          "text": "(any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)PHPhotoLibraryAvailabilityObserver",
+          "text": "PHPhotoLibraryAvailabilityObserver"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/Photos/PHPhotoLibrary/register(_:)-gm0a",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "registerAvailabilityObserver:"
+        }
+      ],
+      "role": "symbol",
+      "title": "register(_:)",
+      "type": "topic",
+      "url": "/documentation/photos/phphotolibrary/register(_:)-gm0a"
+    },
+    "doc://com.apple.photokit/documentation/Photos/PHPhotoLibrary/requestAuthorization(_:)": {
+      "abstract": [
+        {
+          "text": "Requests the user’s permission, if needed, to access the photo library.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "requestAuthorization"
+        },
+        {
+          "kind": "text",
+          "text": "(("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@PHAuthorizationStatus",
+          "text": "PHAuthorizationStatus"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/Photos/PHPhotoLibrary/requestAuthorization(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "requestAuthorization:"
+        }
+      ],
+      "role": "symbol",
+      "title": "requestAuthorization(_:)",
+      "type": "topic",
+      "url": "/documentation/photos/phphotolibrary/requestauthorization(_:)"
+    },
+    "doc://com.apple.photokit/documentation/Photos/PHPhotoLibrary/requestAuthorization(for:handler:)": {
+      "abstract": [
+        {
+          "text": "Prompts the user to grant the app permission to access the photo library.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "requestAuthorization"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@PHAccessLevel",
+          "text": "PHAccessLevel"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "handler"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@PHAuthorizationStatus",
+          "text": "PHAuthorizationStatus"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/Photos/PHPhotoLibrary/requestAuthorization(for:handler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "requestAuthorizationForAccessLevel:handler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "requestAuthorization(for:handler:)",
+      "type": "topic",
+      "url": "/documentation/photos/phphotolibrary/requestauthorization(for:handler:)"
+    },
+    "doc://com.apple.photokit/documentation/Photos/PHPhotoLibrary/shared()": {
+      "abstract": [
+        {
+          "text": "Retrieves the shared photo library object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "shared"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PHPhotoLibrary",
+          "text": "PHPhotoLibrary"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/Photos/PHPhotoLibrary/shared()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "sharedPhotoLibrary"
+        }
+      ],
+      "role": "symbol",
+      "title": "shared()",
+      "type": "topic",
+      "url": "/documentation/photos/phphotolibrary/shared()"
+    },
+    "doc://com.apple.photokit/documentation/Photos/PHPhotoLibrary/unavailabilityReason": {
+      "abstract": [
+        {
+          "text": "An error that describes the reason the photo library isn’t available.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "unavailabilityReason"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/Photos/PHPhotoLibrary/unavailabilityReason",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "unavailabilityReason"
+        }
+      ],
+      "role": "symbol",
+      "title": "unavailabilityReason",
+      "type": "topic",
+      "url": "/documentation/photos/phphotolibrary/unavailabilityreason"
+    },
+    "doc://com.apple.photokit/documentation/Photos/PHPhotoLibrary/unregisterAvailabilityObserver(_:)": {
+      "abstract": [
+        {
+          "text": "Unregisters an object from observing changes to the photo library’s availability.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "unregisterAvailabilityObserver"
+        },
+        {
+          "kind": "text",
+          "text": "(any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)PHPhotoLibraryAvailabilityObserver",
+          "text": "PHPhotoLibraryAvailabilityObserver"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/Photos/PHPhotoLibrary/unregisterAvailabilityObserver(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "unregisterAvailabilityObserver:"
+        }
+      ],
+      "role": "symbol",
+      "title": "unregisterAvailabilityObserver(_:)",
+      "type": "topic",
+      "url": "/documentation/photos/phphotolibrary/unregisteravailabilityobserver(_:)"
+    },
+    "doc://com.apple.photokit/documentation/Photos/PHPhotoLibrary/unregisterChangeObserver(_:)": {
+      "abstract": [
+        {
+          "text": "Unregisters an object so that it no longer receives change messages.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "unregisterChangeObserver"
+        },
+        {
+          "kind": "text",
+          "text": "(any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)PHPhotoLibraryChangeObserver",
+          "text": "PHPhotoLibraryChangeObserver"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/Photos/PHPhotoLibrary/unregisterChangeObserver(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "unregisterChangeObserver:"
+        }
+      ],
+      "role": "symbol",
+      "title": "unregisterChangeObserver(_:)",
+      "type": "topic",
+      "url": "/documentation/photos/phphotolibrary/unregisterchangeobserver(_:)"
+    },
+    "doc://com.apple.photokit/documentation/Photos/PHPhotoLibraryAvailabilityObserver": {
+      "abstract": [
+        {
+          "text": "A protocol to adopt to have the system notify your app when the availability of a photo library changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PHPhotoLibraryAvailabilityObserver"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/Photos/PHPhotoLibraryAvailabilityObserver",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PHPhotoLibraryAvailabilityObserver"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHPhotoLibraryAvailabilityObserver",
+      "type": "topic",
+      "url": "/documentation/photos/phphotolibraryavailabilityobserver"
+    },
+    "doc://com.apple.photokit/documentation/Photos/PHPhotoLibraryChangeObserver": {
+      "abstract": [
+        {
+          "text": "A protocol to adopt to have the system notify your app of changes to the photo library.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PHPhotoLibraryChangeObserver"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/Photos/PHPhotoLibraryChangeObserver",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PHPhotoLibraryChangeObserver"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHPhotoLibraryChangeObserver",
+      "type": "topic",
+      "url": "/documentation/photos/phphotolibrarychangeobserver"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+        "doc://com.externally.resolved.symbol/s:s8SendableP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Verifying-Authorization",
+      "identifiers": [
+        "doc://com.apple.photokit/documentation/Photos/PHPhotoLibrary/authorizationStatus(for:)",
+        "doc://com.apple.photokit/documentation/Photos/PHPhotoLibrary/requestAuthorization(for:handler:)",
+        "doc://com.apple.photokit/documentation/Photos/PHAccessLevel",
+        "doc://com.apple.photokit/documentation/Photos/PHAuthorizationStatus",
+        "doc://com.apple.photokit/documentation/Photos/PHPhotoLibrary/authorizationStatus()",
+        "doc://com.apple.photokit/documentation/Photos/PHPhotoLibrary/requestAuthorization(_:)"
+      ],
+      "title": "Verifying Authorization"
+    },
+    {
+      "anchor": "Accessing-the-Shared-Library",
+      "identifiers": [
+        "doc://com.apple.photokit/documentation/Photos/PHPhotoLibrary/shared()"
+      ],
+      "title": "Accessing the Shared Library"
+    },
+    {
+      "anchor": "Presenting-the-Limited-Library-Picker",
+      "identifiers": [
+        "doc://com.apple.photokit/documentation/Photos/PHPhotoLibrary/presentLimitedLibraryPicker(from:)",
+        "doc://com.apple.photokit/documentation/Photos/PHPhotoLibrary/presentLimitedLibraryPicker(from:completionHandler:)"
+      ],
+      "title": "Presenting the Limited Library Picker"
+    },
+    {
+      "anchor": "Updating-the-Library",
+      "identifiers": [
+        "doc://com.apple.photokit/documentation/PhotoKit/requesting-changes-to-the-photo-library",
+        "doc://com.apple.photokit/documentation/Photos/PHPhotoLibrary/performChanges(_:completionHandler:)",
+        "doc://com.apple.photokit/documentation/Photos/PHPhotoLibrary/performChangesAndWait(_:)",
+        "doc://com.apple.photokit/documentation/Photos/PHChangeRequest",
+        "doc://com.apple.photokit/documentation/Photos/PHAssetChangeRequest",
+        "doc://com.apple.photokit/documentation/Photos/PHAssetCollectionChangeRequest",
+        "doc://com.apple.photokit/documentation/Photos/PHCollectionListChangeRequest",
+        "doc://com.apple.photokit/documentation/Photos/PHObjectPlaceholder"
+      ],
+      "title": "Updating the Library"
+    },
+    {
+      "anchor": "Fetching-Change-History",
+      "identifiers": [
+        "doc://com.apple.photokit/documentation/Photos/PHPhotoLibrary/fetchPersistentChanges(since:)",
+        "doc://com.apple.photokit/documentation/Photos/PHPersistentChangeFetchResult",
+        "doc://com.apple.photokit/documentation/Photos/PHPhotoLibrary/currentChangeToken",
+        "doc://com.apple.photokit/documentation/Photos/PHPersistentChangeToken"
+      ],
+      "title": "Fetching Change History"
+    },
+    {
+      "anchor": "Observing-Library-Changes",
+      "identifiers": [
+        "doc://com.apple.photokit/documentation/PhotoKit/observing-changes-in-the-photo-library",
+        "doc://com.apple.photokit/documentation/Photos/PHPhotoLibrary/register(_:)-6y3b9",
+        "doc://com.apple.photokit/documentation/Photos/PHPhotoLibrary/unregisterChangeObserver(_:)",
+        "doc://com.apple.photokit/documentation/Photos/PHPhotoLibraryChangeObserver",
+        "doc://com.apple.photokit/documentation/Photos/PHChange",
+        "doc://com.apple.photokit/documentation/Photos/PHObjectChangeDetails",
+        "doc://com.apple.photokit/documentation/Photos/PHFetchResultChangeDetails"
+      ],
+      "title": "Observing Library Changes"
+    },
+    {
+      "anchor": "Observing-Library-Availability",
+      "identifiers": [
+        "doc://com.apple.photokit/documentation/Photos/PHPhotoLibrary/register(_:)-gm0a",
+        "doc://com.apple.photokit/documentation/Photos/PHPhotoLibrary/unregisterAvailabilityObserver(_:)",
+        "doc://com.apple.photokit/documentation/Photos/PHPhotoLibraryAvailabilityObserver",
+        "doc://com.apple.photokit/documentation/Photos/PHPhotoLibrary/unavailabilityReason"
+      ],
+      "title": "Observing Library Availability"
+    },
+    {
+      "anchor": "Converting-Between-Local-and-iCloud-Identifiers",
+      "identifiers": [
+        "doc://com.apple.photokit/documentation/Photos/PHPhotoLibrary/cloudIdentifierMappings(forLocalIdentifiers:)",
+        "doc://com.apple.photokit/documentation/Photos/PHPhotoLibrary/localIdentifierMappings(for:)",
+        "doc://com.apple.photokit/documentation/Photos/PHCloudIdentifier",
+        "doc://com.apple.photokit/documentation/Photos/PHPhotoLibrary/cloudIdentifiers(forLocalIdentifiers:)",
+        "doc://com.apple.photokit/documentation/Photos/PHPhotoLibrary/localIdentifiers(for:)",
+        "doc://com.apple.photokit/documentation/Photos/PHLocalIdentifierNotFound"
+      ],
+      "title": "Converting Between Local and iCloud Identifiers"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "8.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "8.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.13",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.0",
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "PHPhotoLibrary"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHPhotoLibrary"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHPhotoLibrary"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.photokit/documentation/Photos"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Verifying-Authorization",
+              "identifiers": [
+                "doc://com.apple.photokit/documentation/Photos/PHPhotoLibrary/authorizationStatus(for:)",
+                "doc://com.apple.photokit/documentation/Photos/PHPhotoLibrary/requestAuthorization(for:handler:)",
+                "doc://com.apple.photokit/documentation/Photos/PHAccessLevel",
+                "doc://com.apple.photokit/documentation/Photos/PHAuthorizationStatus",
+                "doc://com.apple.photokit/documentation/Photos/PHPhotoLibrary/authorizationStatus()",
+                "doc://com.apple.photokit/documentation/Photos/PHPhotoLibrary/requestAuthorization(_:)"
+              ],
+              "title": "Verifying Authorization"
+            },
+            {
+              "anchor": "Accessing-the-Shared-Library",
+              "identifiers": [
+                "doc://com.apple.photokit/documentation/Photos/PHPhotoLibrary/shared()"
+              ],
+              "title": "Accessing the Shared Library"
+            },
+            {
+              "anchor": "Presenting-the-Limited-Library-Picker",
+              "identifiers": [
+                "doc://com.apple.photokit/documentation/Photos/PHPhotoLibrary/presentLimitedLibraryPicker(from:)",
+                "doc://com.apple.photokit/documentation/Photos/PHPhotoLibrary/presentLimitedLibraryPicker(from:completionHandler:)"
+              ],
+              "title": "Presenting the Limited Library Picker"
+            },
+            {
+              "anchor": "Updating-the-Library",
+              "identifiers": [
+                "doc://com.apple.photokit/documentation/PhotoKit/requesting-changes-to-the-photo-library",
+                "doc://com.apple.photokit/documentation/Photos/PHPhotoLibrary/performChanges(_:completionHandler:)",
+                "doc://com.apple.photokit/documentation/Photos/PHPhotoLibrary/performChangesAndWait(_:)",
+                "doc://com.apple.photokit/documentation/Photos/PHChangeRequest",
+                "doc://com.apple.photokit/documentation/Photos/PHAssetChangeRequest",
+                "doc://com.apple.photokit/documentation/Photos/PHAssetCollectionChangeRequest",
+                "doc://com.apple.photokit/documentation/Photos/PHCollectionListChangeRequest",
+                "doc://com.apple.photokit/documentation/Photos/PHObjectPlaceholder"
+              ],
+              "title": "Updating the Library"
+            },
+            {
+              "anchor": "Fetching-Change-History",
+              "identifiers": [
+                "doc://com.apple.photokit/documentation/Photos/PHPhotoLibrary/fetchPersistentChanges(since:)",
+                "doc://com.apple.photokit/documentation/Photos/PHPersistentChangeFetchResult",
+                "doc://com.apple.photokit/documentation/Photos/PHPhotoLibrary/currentChangeToken",
+                "doc://com.apple.photokit/documentation/Photos/PHPersistentChangeToken"
+              ],
+              "title": "Fetching Change History"
+            },
+            {
+              "anchor": "Observing-Library-Changes",
+              "identifiers": [
+                "doc://com.apple.photokit/documentation/PhotoKit/observing-changes-in-the-photo-library",
+                "doc://com.apple.photokit/documentation/Photos/PHPhotoLibrary/register(_:)-6y3b9",
+                "doc://com.apple.photokit/documentation/Photos/PHPhotoLibrary/unregisterChangeObserver(_:)",
+                "doc://com.apple.photokit/documentation/Photos/PHPhotoLibraryChangeObserver",
+                "doc://com.apple.photokit/documentation/Photos/PHChange",
+                "doc://com.apple.photokit/documentation/Photos/PHObjectChangeDetails",
+                "doc://com.apple.photokit/documentation/Photos/PHFetchResultChangeDetails"
+              ],
+              "title": "Observing Library Changes"
+            },
+            {
+              "anchor": "Observing-Library-Availability",
+              "identifiers": [
+                "doc://com.apple.photokit/documentation/Photos/PHPhotoLibrary/register(_:)-gm0a",
+                "doc://com.apple.photokit/documentation/Photos/PHPhotoLibrary/unregisterAvailabilityObserver(_:)",
+                "doc://com.apple.photokit/documentation/Photos/PHPhotoLibraryAvailabilityObserver",
+                "doc://com.apple.photokit/documentation/Photos/PHPhotoLibrary/unavailabilityReason"
+              ],
+              "title": "Observing Library Availability"
+            },
+            {
+              "anchor": "Converting-Between-Local-and-iCloud-Identifiers",
+              "identifiers": [
+                "doc://com.apple.photokit/documentation/Photos/PHPhotoLibrary/cloudIdentifierMappingsForLocalIdentifiers:",
+                "doc://com.apple.photokit/documentation/Photos/PHPhotoLibrary/localIdentifierMappingsForCloudIdentifiers:",
+                "doc://com.apple.photokit/documentation/Photos/PHCloudIdentifier",
+                "doc://com.apple.photokit/documentation/Photos/PHCloudIdentifierMapping",
+                "doc://com.apple.photokit/documentation/Photos/PHLocalIdentifierMapping",
+                "doc://com.apple.photokit/documentation/Photos/PHPhotoLibrary/cloudIdentifiers(forLocalIdentifiers:)",
+                "doc://com.apple.photokit/documentation/Photos/PHPhotoLibrary/localIdentifiers(for:)",
+                "doc://com.apple.photokit/documentation/Photos/PHLocalIdentifierNotFound"
+              ],
+              "title": "Converting Between Local and iCloud Identifiers"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "PHPhotoLibrary"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHPhotoLibrary/title",
+          "value": "PHPhotoLibrary"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHPhotoLibrary/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHPhotoLibrary"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHPhotoLibrary/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHPhotoLibrary"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHPhotoLibrary~1presentLimitedLibraryPicker(from:completionHandler:)/title",
+          "value": "presentLimitedLibraryPickerFromViewController:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHPhotoLibrary~1presentLimitedLibraryPicker(from:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "presentLimitedLibraryPickerFromViewController:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHPhotoLibrary~1presentLimitedLibraryPicker(from:)/title",
+          "value": "presentLimitedLibraryPickerFromViewController:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHPhotoLibrary~1presentLimitedLibraryPicker(from:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "presentLimitedLibraryPickerFromViewController:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHPersistentChangeFetchResult/title",
+          "value": "PHPersistentChangeFetchResult"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHPersistentChangeFetchResult/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHPersistentChangeFetchResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHPersistentChangeFetchResult/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHPersistentChangeFetchResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHAssetChangeRequest/title",
+          "value": "PHAssetChangeRequest"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHAssetChangeRequest/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHAssetChangeRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHAssetChangeRequest/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHAssetChangeRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHPhotoLibrary~1localIdentifiers(for:)/title",
+          "value": "localIdentifiersForCloudIdentifiers:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHPhotoLibrary~1localIdentifiers(for:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "localIdentifiersForCloudIdentifiers:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHPhotoLibrary~1unavailabilityReason/title",
+          "value": "unavailabilityReason"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHPhotoLibrary~1unavailabilityReason/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "unavailabilityReason"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHPhotoLibrary~1currentChangeToken/title",
+          "value": "currentChangeToken"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHPhotoLibrary~1currentChangeToken/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "currentChangeToken"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHObjectPlaceholder/title",
+          "value": "PHObjectPlaceholder"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHObjectPlaceholder/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHObjectPlaceholder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHObjectPlaceholder/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHObjectPlaceholder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHPhotoLibrary~1unregisterChangeObserver(_:)/title",
+          "value": "unregisterChangeObserver:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHPhotoLibrary~1unregisterChangeObserver(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "unregisterChangeObserver:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHPhotoLibrary~1performChangesAndWait(_:)/title",
+          "value": "performChangesAndWait:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHPhotoLibrary~1performChangesAndWait(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "performChangesAndWait:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHCloudIdentifier/title",
+          "value": "PHCloudIdentifier"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHCloudIdentifier/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHCloudIdentifier"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHCloudIdentifier/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHCloudIdentifier"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHPhotoLibrary~1requestAuthorization(for:handler:)/title",
+          "value": "requestAuthorizationForAccessLevel:handler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHPhotoLibrary~1requestAuthorization(for:handler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "requestAuthorizationForAccessLevel:handler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHObjectChangeDetails/title",
+          "value": "PHObjectChangeDetails"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHObjectChangeDetails/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHObjectChangeDetails"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHObjectChangeDetails/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHObjectChangeDetails"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHPhotoLibrary~1authorizationStatus(for:)/title",
+          "value": "authorizationStatusForAccessLevel:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHPhotoLibrary~1authorizationStatus(for:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "authorizationStatusForAccessLevel:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHAssetCollectionChangeRequest/title",
+          "value": "PHAssetCollectionChangeRequest"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHAssetCollectionChangeRequest/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHAssetCollectionChangeRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHAssetCollectionChangeRequest/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHAssetCollectionChangeRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHPersistentChangeToken/title",
+          "value": "PHPersistentChangeToken"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHPersistentChangeToken/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHPersistentChangeToken"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHPersistentChangeToken/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHPersistentChangeToken"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHPhotoLibrary~1fetchPersistentChanges(since:)/title",
+          "value": "fetchPersistentChangesSinceToken:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHPhotoLibrary~1fetchPersistentChanges(since:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "fetchPersistentChangesSinceToken:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHFetchResultChangeDetails/title",
+          "value": "PHFetchResultChangeDetails"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHFetchResultChangeDetails/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHFetchResultChangeDetails"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHFetchResultChangeDetails/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHFetchResultChangeDetails"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHPhotoLibrary~1requestAuthorization(_:)/title",
+          "value": "requestAuthorization:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHPhotoLibrary~1requestAuthorization(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "requestAuthorization:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHPhotoLibrary~1performChanges(_:completionHandler:)/title",
+          "value": "performChanges:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHPhotoLibrary~1performChanges(_:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "performChanges:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHPhotoLibraryAvailabilityObserver/title",
+          "value": "PHPhotoLibraryAvailabilityObserver"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHPhotoLibraryAvailabilityObserver/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHPhotoLibraryAvailabilityObserver"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHPhotoLibraryAvailabilityObserver/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHPhotoLibraryAvailabilityObserver"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHCollectionListChangeRequest/title",
+          "value": "PHCollectionListChangeRequest"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHCollectionListChangeRequest/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHCollectionListChangeRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHCollectionListChangeRequest/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHCollectionListChangeRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHPhotoLibrary~1unregisterAvailabilityObserver(_:)/title",
+          "value": "unregisterAvailabilityObserver:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHPhotoLibrary~1unregisterAvailabilityObserver(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "unregisterAvailabilityObserver:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHPhotoLibrary~1register(_:)-6y3b9/title",
+          "value": "registerChangeObserver:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHPhotoLibrary~1register(_:)-6y3b9/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "registerChangeObserver:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHPhotoLibrary~1shared()/title",
+          "value": "sharedPhotoLibrary"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHPhotoLibrary~1shared()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "sharedPhotoLibrary"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHChangeRequest/title",
+          "value": "PHChangeRequest"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHChangeRequest/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHChangeRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHChangeRequest/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHChangeRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHAuthorizationStatus/title",
+          "value": "PHAuthorizationStatus"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHAuthorizationStatus/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHAuthorizationStatus"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHAuthorizationStatus/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHAuthorizationStatus"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHPhotoLibrary~1register(_:)-gm0a/title",
+          "value": "registerAvailabilityObserver:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHPhotoLibrary~1register(_:)-gm0a/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "registerAvailabilityObserver:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHChange/title",
+          "value": "PHChange"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHChange/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHChange"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHChange/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHChange"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHPhotoLibrary~1cloudIdentifiers(forLocalIdentifiers:)/title",
+          "value": "cloudIdentifiersForLocalIdentifiers:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHPhotoLibrary~1cloudIdentifiers(forLocalIdentifiers:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "cloudIdentifiersForLocalIdentifiers:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHPhotoLibrary~1authorizationStatus()/title",
+          "value": "authorizationStatus"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHPhotoLibrary~1authorizationStatus()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "authorizationStatus"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHAccessLevel/title",
+          "value": "PHAccessLevel"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHAccessLevel/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHAccessLevel"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHAccessLevel/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHAccessLevel"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHPhotoLibraryChangeObserver/title",
+          "value": "PHPhotoLibraryChangeObserver"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHPhotoLibraryChangeObserver/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHPhotoLibraryChangeObserver"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHPhotoLibraryChangeObserver/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHPhotoLibraryChangeObserver"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHLocalIdentifierNotFound/title",
+          "value": "PHLocalIdentifierNotFound"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHLocalIdentifierNotFound/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHLocalIdentifierNotFound"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/photos/phphotolibrary"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/photos/phphotolibrary"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

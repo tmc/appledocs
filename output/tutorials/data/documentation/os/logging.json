@@ -1,0 +1,933 @@
+{
+  "abstract": [
+    {
+      "text": "Capture telemetry from your app for debugging and performance analysis using the unified logging system.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 1"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 1"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.os/documentation/os"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.os/documentation/os/logging"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "os"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Logging"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When debugging problems in your app, it’s helpful to record the exact sequence of events that occurred, along with supplemental data about those events. Log messages provide a continuous record of your app’s runtime behavior, and make it easier to identify problems that can’t be caught easily using other techniques. Specifically, you might use log messages:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "When you are unable to attach a debugger to the app, such as when you’re diagnosing problems on a user’s machine.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "When the problem is intermittent, and is difficult to catch in the debugger.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "When you want to get a general sense of your app’s behavior—for example, you want to know when certain tasks start and end.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The unified logging system provides a comprehensive and performant API to capture telemetry across all levels of the system. This system centralizes the storage of log data in memory and on disk, rather than writing that data to a text-based log file. You view log messages using the Console app, ",
+              "type": "text"
+            },
+            {
+              "code": "log",
+              "type": "codeVoice"
+            },
+            {
+              "text": " command-line tool, or Xcode debug console. You can also access log messages programmatically using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/OSLog",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " framework.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "The unified logging system is available in iOS 10.0 and later, macOS 10.12 and later, tvOS 10.0 and later, and watchOS 3.0 and later. This system supersedes the Apple System Logger (ASL) and Syslog APIs.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/OSLog": {
+      "abstract": [
+        {
+          "text": "A unified logging system for the reading of historical data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/OSLog",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "OSLog",
+      "type": "topic",
+      "url": "/documentation/OSLog"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.os/documentation/os": {
+      "abstract": [
+        {
+          "text": "Coordinate the scheduling and synchronization of your app’s tasks, and log information to the console to diagnose issues.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "os",
+      "type": "topic",
+      "url": "/documentation/os"
+    },
+    "doc://com.apple.os/documentation/os/Logger": {
+      "abstract": [
+        {
+          "text": "An object for writing interpolated string messages to the unified logging system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Logger"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/Logger",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Logger"
+        }
+      ],
+      "role": "symbol",
+      "title": "Logger",
+      "type": "topic",
+      "url": "/documentation/os/logger"
+    },
+    "doc://com.apple.os/documentation/os/OSLogType": {
+      "abstract": [
+        {
+          "text": "The various log levels that the unified logging system provides.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "OSLogType"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/OSLogType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "OSLogType"
+        }
+      ],
+      "role": "symbol",
+      "title": "OSLogType",
+      "type": "topic",
+      "url": "/documentation/os/oslogtype"
+    },
+    "doc://com.apple.os/documentation/os/OSSignpostType": {
+      "abstract": [
+        {
+          "text": "The different kinds of signpost.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "OSSignpostType"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/OSSignpostType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "OSSignpostType"
+        }
+      ],
+      "role": "symbol",
+      "title": "OSSignpostType",
+      "type": "topic",
+      "url": "/documentation/os/ossignposttype"
+    },
+    "doc://com.apple.os/documentation/os/OSSignposter": {
+      "abstract": [
+        {
+          "text": "An object for measuring task performance using the unified logging system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "OSSignposter"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/OSSignposter",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "OSSignposter"
+        }
+      ],
+      "role": "symbol",
+      "title": "OSSignposter",
+      "type": "topic",
+      "url": "/documentation/os/ossignposter"
+    },
+    "doc://com.apple.os/documentation/os/collecting-log-messages-in-activities": {
+      "abstract": [
+        {
+          "text": "Find messages related to a specific user action or application event.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/collecting-log-messages-in-activities",
+      "kind": "article",
+      "role": "article",
+      "title": "Collecting Log Messages in Activities",
+      "type": "topic",
+      "url": "/documentation/os/collecting-log-messages-in-activities"
+    },
+    "doc://com.apple.os/documentation/os/customizing-logging-behavior-while-debugging": {
+      "abstract": [
+        {
+          "text": "Control which log events are recorded.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/customizing-logging-behavior-while-debugging",
+      "kind": "article",
+      "role": "article",
+      "title": "Customizing Logging Behavior While Debugging",
+      "type": "topic",
+      "url": "/documentation/os/customizing-logging-behavior-while-debugging"
+    },
+    "doc://com.apple.os/documentation/os/generating-log-messages-from-your-code": {
+      "abstract": [
+        {
+          "text": "Record useful debugging and analysis information, and include dynamic content in your messages.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/generating-log-messages-from-your-code",
+      "kind": "article",
+      "role": "article",
+      "title": "Generating Log Messages from Your Code",
+      "type": "topic",
+      "url": "/documentation/os/generating-log-messages-from-your-code"
+    },
+    "doc://com.apple.os/documentation/os/legacy-logging-symbols": {
+      "abstract": [
+        {
+          "text": "Migrate your code away from using these legacy symbols.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/legacy-logging-symbols",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Legacy Logging Symbols",
+      "type": "topic",
+      "url": "/documentation/os/legacy-logging-symbols"
+    },
+    "doc://com.apple.os/documentation/os/legacy-signpost-symbols": {
+      "abstract": [
+        {
+          "text": "Migrate your code away from using these legacy symbols.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/legacy-signpost-symbols",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Legacy Signpost Symbols",
+      "type": "topic",
+      "url": "/documentation/os/legacy-signpost-symbols"
+    },
+    "doc://com.apple.os/documentation/os/message-argument-formatters": {
+      "abstract": [
+        {
+          "text": "Manage the privacy and presentation of the message’s interpolated values using type-aware formatters.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/message-argument-formatters",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Message Argument Formatters",
+      "type": "topic",
+      "url": "/documentation/os/message-argument-formatters"
+    },
+    "doc://com.apple.os/documentation/os/os-activity-t": {
+      "abstract": [
+        {
+          "text": "An object that represents an activity triggered by the user.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/os-activity-t",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "os_activity_t",
+      "type": "topic",
+      "url": "/documentation/os/os-activity-t"
+    },
+    "doc://com.apple.os/documentation/os/os-log-t": {
+      "abstract": [
+        {
+          "text": "A log object that you pass to logging functions to send messages to that log.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/os-log-t",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "os_log_t",
+      "type": "topic",
+      "url": "/documentation/os/os-log-t"
+    },
+    "doc://com.apple.os/documentation/os/os_log": {
+      "abstract": [
+        {
+          "text": "Sends a default-level message to the logging system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "os_log"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/os_log",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "os_log",
+      "type": "topic",
+      "url": "/documentation/os/os_log"
+    },
+    "doc://com.apple.os/documentation/os/os_log_debug": {
+      "abstract": [
+        {
+          "text": "Sends a debug-level message to the logging system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "os_log_debug"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/os_log_debug",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "os_log_debug",
+      "type": "topic",
+      "url": "/documentation/os/os_log_debug"
+    },
+    "doc://com.apple.os/documentation/os/os_log_error": {
+      "abstract": [
+        {
+          "text": "Sends an error-level message to the logging system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "os_log_error"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/os_log_error",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "os_log_error",
+      "type": "topic",
+      "url": "/documentation/os/os_log_error"
+    },
+    "doc://com.apple.os/documentation/os/os_log_fault": {
+      "abstract": [
+        {
+          "text": "Sends a fault-level message to the logging system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "os_log_fault"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/os_log_fault",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "os_log_fault",
+      "type": "topic",
+      "url": "/documentation/os/os_log_fault"
+    },
+    "doc://com.apple.os/documentation/os/os_log_info": {
+      "abstract": [
+        {
+          "text": "Sends an info-level message to the logging system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "os_log_info"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/os_log_info",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "os_log_info",
+      "type": "topic",
+      "url": "/documentation/os/os_log_info"
+    },
+    "doc://com.apple.os/documentation/os/os_log_with_type": {
+      "abstract": [
+        {
+          "text": "Sends a message at a specific logging level, such as default, info, debug, error, or fault, to the logging system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "os_log_with_type"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/os_log_with_type",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "os_log_with_type",
+      "type": "topic",
+      "url": "/documentation/os/os_log_with_type"
+    },
+    "doc://com.apple.os/documentation/os/os_signpost_emit_with_type": {
+      "abstract": [
+        {
+          "text": "Logs a point of interest in your code as a time interval or as an event for debugging performance in Instruments.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "os_signpost_emit_with_type"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/os_signpost_emit_with_type",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "os_signpost_emit_with_type",
+      "type": "topic",
+      "url": "/documentation/os/os_signpost_emit_with_type"
+    },
+    "doc://com.apple.os/documentation/os/os_signpost_event_emit": {
+      "abstract": [
+        {
+          "text": "Marks a point of interest in time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "os_signpost_event_emit"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/os_signpost_event_emit",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "os_signpost_event_emit",
+      "type": "topic",
+      "url": "/documentation/os/os_signpost_event_emit"
+    },
+    "doc://com.apple.os/documentation/os/os_signpost_id_t": {
+      "abstract": [
+        {
+          "text": "An identifier you use to distinguish between signposts that have the same name and destination log.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "os_signpost_id_t"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/os_signpost_id_t",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "os_signpost_id_t"
+        }
+      ],
+      "role": "symbol",
+      "title": "os_signpost_id_t",
+      "type": "topic",
+      "url": "/documentation/os/os_signpost_id_t"
+    },
+    "doc://com.apple.os/documentation/os/os_signpost_interval_begin": {
+      "abstract": [
+        {
+          "text": "Marks the start of a time interval in your code using a signpost.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "os_signpost_interval_begin"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/os_signpost_interval_begin",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "os_signpost_interval_begin",
+      "type": "topic",
+      "url": "/documentation/os/os_signpost_interval_begin"
+    },
+    "doc://com.apple.os/documentation/os/os_signpost_interval_end": {
+      "abstract": [
+        {
+          "text": "Marks the end of a time interval in your code using a signpost.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "os_signpost_interval_end"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/os_signpost_interval_end",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "os_signpost_interval_end",
+      "type": "topic",
+      "url": "/documentation/os/os_signpost_interval_end"
+    },
+    "doc://com.apple.os/documentation/os/recording-performance-data": {
+      "abstract": [
+        {
+          "text": "Add signposts to record interesting time-based events.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/recording-performance-data",
+      "kind": "article",
+      "role": "article",
+      "title": "Recording Performance Data",
+      "type": "topic",
+      "url": "/documentation/os/recording-performance-data"
+    },
+    "doc://com.apple.os/documentation/os/viewing-log-messages": {
+      "abstract": [
+        {
+          "text": "Use various tools to retrieve log information.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os/viewing-log-messages",
+      "kind": "article",
+      "role": "article",
+      "title": "Viewing Log Messages",
+      "type": "topic",
+      "url": "/documentation/os/viewing-log-messages"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Essentials",
+      "identifiers": [
+        "doc://com.apple.os/documentation/os/generating-log-messages-from-your-code",
+        "doc://com.apple.os/documentation/os/viewing-log-messages",
+        "doc://com.apple.os/documentation/os/customizing-logging-behavior-while-debugging"
+      ],
+      "title": "Essentials"
+    },
+    {
+      "anchor": "Log-Messages",
+      "identifiers": [
+        "doc://com.apple.os/documentation/os/Logger",
+        "doc://com.apple.os/documentation/os/message-argument-formatters",
+        "doc://com.apple.os/documentation/os/OSLogType"
+      ],
+      "title": "Log Messages"
+    },
+    {
+      "anchor": "Measure-Events",
+      "identifiers": [
+        "doc://com.apple.os/documentation/os/recording-performance-data",
+        "doc://com.apple.os/documentation/os/OSSignposter",
+        "doc://com.apple.os/documentation/os/legacy-signpost-symbols",
+        "doc://com.apple.os/documentation/os/OSSignpostType",
+        "doc://com.apple.os/documentation/os/os_signpost_id_t"
+      ],
+      "title": "Measure Events"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Essentials",
+              "identifiers": [
+                "doc://com.apple.os/documentation/os/generating-log-messages-from-your-code",
+                "doc://com.apple.os/documentation/os/viewing-log-messages",
+                "doc://com.apple.os/documentation/os/customizing-logging-behavior-while-debugging"
+              ],
+              "title": "Essentials"
+            },
+            {
+              "anchor": "Log-Messages",
+              "identifiers": [
+                "doc://com.apple.os/documentation/os/message-argument-formatters",
+                "doc://com.apple.os/documentation/os/legacy-logging-symbols",
+                "doc://com.apple.os/documentation/os/os-log-t",
+                "doc://com.apple.os/documentation/os/os_log_with_type",
+                "doc://com.apple.os/documentation/os/OSLogType",
+                "doc://com.apple.os/documentation/os/os_log",
+                "doc://com.apple.os/documentation/os/os_log_info",
+                "doc://com.apple.os/documentation/os/os_log_debug",
+                "doc://com.apple.os/documentation/os/os_log_error",
+                "doc://com.apple.os/documentation/os/os_log_fault"
+              ],
+              "title": "Log Messages"
+            },
+            {
+              "anchor": "Measure-Events",
+              "identifiers": [
+                "doc://com.apple.os/documentation/os/recording-performance-data",
+                "doc://com.apple.os/documentation/os/legacy-signpost-symbols",
+                "doc://com.apple.os/documentation/os/os_signpost_emit_with_type",
+                "doc://com.apple.os/documentation/os/OSSignpostType",
+                "doc://com.apple.os/documentation/os/os_signpost_interval_begin",
+                "doc://com.apple.os/documentation/os/os_signpost_interval_end",
+                "doc://com.apple.os/documentation/os/os_signpost_event_emit",
+                "doc://com.apple.os/documentation/os/os_signpost_id_t"
+              ],
+              "title": "Measure Events"
+            },
+            {
+              "anchor": "Trace-Activities",
+              "identifiers": [
+                "doc://com.apple.os/documentation/os/collecting-log-messages-in-activities",
+                "doc://com.apple.os/documentation/os/os-activity-t"
+              ],
+              "title": "Trace Activities"
+            }
+          ]
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.os~1documentation~1os~1OSSignpostType/title",
+          "value": "os_signpost_type_t"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.os~1documentation~1os~1OSSignpostType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "os_signpost_type_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.os~1documentation~1os~1OSSignpostType/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "os_signpost_type_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.os~1documentation~1os~1OSLogType/title",
+          "value": "os_log_type_t"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.os~1documentation~1os~1OSLogType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "os_log_type_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.os~1documentation~1os~1OSLogType/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "os_log_type_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.os~1documentation~1os~1os_signpost_id_t/title",
+          "value": "os_signpost_id_t"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.os~1documentation~1os~1os_signpost_id_t/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "os_signpost_id_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.os~1documentation~1os~1os_signpost_id_t/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "os_signpost_id_t"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/os/logging"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/os/logging"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

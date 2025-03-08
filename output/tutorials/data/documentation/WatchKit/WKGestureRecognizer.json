@@ -1,0 +1,2136 @@
+{
+  "abstract": [
+    {
+      "text": "The base class for all other gesture recognizer classes.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.watchkit/documentation/WatchKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.watchkit/documentation/WatchKit/WKGestureRecognizer"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)WKGestureRecognizer",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "WKGestureRecognizer"
+      }
+    ],
+    "modules": [
+      {
+        "name": "WatchKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "WKGestureRecognizer"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "3.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "WKGestureRecognizer"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "WKGestureRecognizer"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Gesture recognizers simplify the event-handling process by tracking touch events for you and calling your custom code when those events match a specific pattern. Gesture recognizers report the results of their tracking to an action method that you define.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You do not subclass ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKGestureRecognizer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or create instances of it directly. Instead, you add concrete gesture recognizer objects to your Watch app’s storyboard file and connect that gesture recognizer to your custom action method. At runtime, you use the methods of this class to get and set the state of your gesture recognizer. The concrete gesture recognizer classes are as follows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKLongPressGestureRecognizer",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKPanGestureRecognizer",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKSwipeGestureRecognizer",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKTapGestureRecognizer",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Executing-Code-in-Response-to-a-Gesture",
+          "level": 3,
+          "text": "Executing Code in Response to a Gesture",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A gesture recognizer has an associated action method that it calls during the recognition process to report on its progress. You define the action method in your interface controller and connect it to the gesture recognizer in Interface Builder. Action methods must conform to one of the following signatures:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "@IBAction func handleGesture()",
+                    "@IBAction func handleGesture(gestureRecognizer : WKGestureRecognizer)"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "- (IBAction)handleGesture",
+                    "- (IBAction)handleGesture:(WKGestureRecognizer*)gestureRecognizer"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The gesture recognizer calls your action method whenever the value in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKGestureRecognizer/state",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property changes in a significant way. All gesture recognizers start out in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKGestureRecognizerState/possible",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " state and move to other states as appropriate based on the type of gesture. Gesture recognizers do not call your action method for every state change. For information about when the action method is called, see the constant descriptions of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKGestureRecognizerState",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " type.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "watchOS supports two broad categories of gesture recognizers: continuous gesture recognizers and discrete gesture recognizer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Continuous-Gesture-Recognizers",
+          "level": 4,
+          "text": "Continuous Gesture Recognizers",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-2557562",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Continuous gesture recognizers—for example, pan or long touch recognizers—track the user’s gesture and call the action method multiple times during a single gesture. They typically call the action method once when the gesture begins, one or more times as the gesture progresses, and once when the gesture either ends or is canceled. In your action method, use the gesture recognizer’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKGestureRecognizer/state",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property to perform appropriate tasks based on the current state. For example:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKGestureRecognizerState/began",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". Alter the user interface’s appearance to indicate that a gesture has begun.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKGestureRecognizerState/changed",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". Update the user interface based on the current touch location.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKGestureRecognizerState/ended",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". Return to the normal user interface appearance, indicating that the gesture has ended. Keep any updates.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKGestureRecognizerState/cancelled",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". Return to the normal user interface appearance, indicating that the gesture has ended. Discard any updates.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Discrete-Gesture-Recognizers",
+          "level": 4,
+          "text": "Discrete Gesture Recognizers",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-2557566",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Discrete gesture recognizers—for example, tap or swipe recognizers—only trigger a single event as soon as the gesture is recognized. For example, discrete recognizers call their action method when they enter the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKGestureRecognizerState/recognized",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " state. If they enter the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKGestureRecognizerState/failed",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " state, they fail silently.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Interface-Builder-Attributes",
+          "level": 3,
+          "text": "Interface Builder Attributes",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Xcode lets you configure information about your gesture recognizer in your storyboard file. The following table lists the attributes you can configure in your storyboard and their meaning.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Attribute",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Description",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "State",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A checkbox indicating whether the gesture recognizer is enabled. You can also configure this value programmatically using the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKGestureRecognizer/isEnabled",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " property.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Behavior",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Checkboxes indicating additional gesture recognizer behaviors. Use these options to specify how the gesture recognizer responds to touch events.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Must Fail First",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Gesture recognizers that must fail before the current one can succeed. Drag from this option to the gesture recognizers in your storyboard file.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit": {
+      "abstract": [
+        {
+          "text": "Build watchOS apps that use features the app delegate monitors or controls, such as background tasks and extended runtime sessions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "WatchKit",
+      "type": "topic",
+      "url": "/documentation/watchkit"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKCrownDelegate": {
+      "abstract": [
+        {
+          "text": "A collection of methods you can implement to track the user’s interaction with the digital crown, receiving notifications when the user rotates the crown or when rotation stops.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKCrownDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKCrownDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WKCrownDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "WKCrownDelegate",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkcrowndelegate"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKCrownSequencer": {
+      "abstract": [
+        {
+          "text": "An object that reports the current state of the digital crown, including its rotational speed when it is in motion.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKCrownSequencer"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKCrownSequencer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WKCrownSequencer"
+        }
+      ],
+      "role": "symbol",
+      "title": "WKCrownSequencer",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkcrownsequencer"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKGestureRecognizer": {
+      "abstract": [
+        {
+          "text": "The base class for all other gesture recognizer classes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKGestureRecognizer"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKGestureRecognizer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WKGestureRecognizer"
+        }
+      ],
+      "role": "symbol",
+      "title": "WKGestureRecognizer",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkgesturerecognizer"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKGestureRecognizer/isEnabled": {
+      "abstract": [
+        {
+          "text": "A Boolean value indicating whether the gesture recognizer is enabled.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isEnabled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKGestureRecognizer/isEnabled",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "enabled"
+        }
+      ],
+      "role": "symbol",
+      "title": "isEnabled",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkgesturerecognizer/isenabled"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKGestureRecognizer/locationInObject()": {
+      "abstract": [
+        {
+          "text": "Returns the point computed as the current position of the touch event.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "locationInObject"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGPoint",
+          "text": "CGPoint"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKGestureRecognizer/locationInObject()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "locationInObject"
+        }
+      ],
+      "role": "symbol",
+      "title": "locationInObject()",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkgesturerecognizer/locationinobject()"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKGestureRecognizer/objectBounds()": {
+      "abstract": [
+        {
+          "text": "Returns the dimensions of the interface object (measured in points) associated with the gesture recognizer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "objectBounds"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGRect",
+          "text": "CGRect"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKGestureRecognizer/objectBounds()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "objectBounds"
+        }
+      ],
+      "role": "symbol",
+      "title": "objectBounds()",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkgesturerecognizer/objectbounds()"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKGestureRecognizer/state": {
+      "abstract": [
+        {
+          "text": "The current state of the gesture recognizer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "state"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@WKGestureRecognizerState",
+          "text": "WKGestureRecognizerState"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKGestureRecognizer/state",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "state"
+        }
+      ],
+      "role": "symbol",
+      "title": "state",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkgesturerecognizer/state"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKGestureRecognizerState": {
+      "abstract": [
+        {
+          "text": "Constants describing the possible states of a gesture recognizer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKGestureRecognizerState"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKGestureRecognizerState",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WKGestureRecognizerState"
+        }
+      ],
+      "role": "symbol",
+      "title": "WKGestureRecognizerState",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkgesturerecognizerstate"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKGestureRecognizerState/began": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "began"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKGestureRecognizerState/began",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WKGestureRecognizerStateBegan"
+        }
+      ],
+      "role": "symbol",
+      "title": "WKGestureRecognizerState.began",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkgesturerecognizerstate/began"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKGestureRecognizerState/cancelled": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "cancelled"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKGestureRecognizerState/cancelled",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WKGestureRecognizerStateCancelled"
+        }
+      ],
+      "role": "symbol",
+      "title": "WKGestureRecognizerState.cancelled",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkgesturerecognizerstate/cancelled"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKGestureRecognizerState/changed": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "changed"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKGestureRecognizerState/changed",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WKGestureRecognizerStateChanged"
+        }
+      ],
+      "role": "symbol",
+      "title": "WKGestureRecognizerState.changed",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkgesturerecognizerstate/changed"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKGestureRecognizerState/ended": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ended"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKGestureRecognizerState/ended",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WKGestureRecognizerStateEnded"
+        }
+      ],
+      "role": "symbol",
+      "title": "WKGestureRecognizerState.ended",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkgesturerecognizerstate/ended"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKGestureRecognizerState/failed": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "failed"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKGestureRecognizerState/failed",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WKGestureRecognizerStateFailed"
+        }
+      ],
+      "role": "symbol",
+      "title": "WKGestureRecognizerState.failed",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkgesturerecognizerstate/failed"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKGestureRecognizerState/possible": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "possible"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKGestureRecognizerState/possible",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WKGestureRecognizerStatePossible"
+        }
+      ],
+      "role": "symbol",
+      "title": "WKGestureRecognizerState.possible",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkgesturerecognizerstate/possible"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKGestureRecognizerState/recognized": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "recognized"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKGestureRecognizerState/recognized",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WKGestureRecognizerStateRecognized"
+        }
+      ],
+      "role": "symbol",
+      "title": "WKGestureRecognizerState.recognized",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkgesturerecognizerstate/recognized"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKLongPressGestureRecognizer": {
+      "abstract": [
+        {
+          "text": "A gesture recognizer that interprets a touch event that occurs in the same relative area for an extended period of time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKLongPressGestureRecognizer"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKLongPressGestureRecognizer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WKLongPressGestureRecognizer"
+        }
+      ],
+      "role": "symbol",
+      "title": "WKLongPressGestureRecognizer",
+      "type": "topic",
+      "url": "/documentation/watchkit/wklongpressgesturerecognizer"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKPanGestureRecognizer": {
+      "abstract": [
+        {
+          "text": "A gesture recognizer that interprets a touch event that moves around the screen.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKPanGestureRecognizer"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKPanGestureRecognizer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WKPanGestureRecognizer"
+        }
+      ],
+      "role": "symbol",
+      "title": "WKPanGestureRecognizer",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkpangesturerecognizer"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKSwipeGestureRecognizer": {
+      "abstract": [
+        {
+          "text": "A gesture recognizer that interprets swiping gestures in one or more directions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKSwipeGestureRecognizer"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKSwipeGestureRecognizer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WKSwipeGestureRecognizer"
+        }
+      ],
+      "role": "symbol",
+      "title": "WKSwipeGestureRecognizer",
+      "type": "topic",
+      "url": "/documentation/watchkit/wkswipegesturerecognizer"
+    },
+    "doc://com.apple.watchkit/documentation/WatchKit/WKTapGestureRecognizer": {
+      "abstract": [
+        {
+          "text": "A gesture recognizer that interprets a touch event occurring and ending in approximately the same area on the screen.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKTapGestureRecognizer"
+        }
+      ],
+      "identifier": "doc://com.apple.watchkit/documentation/WatchKit/WKTapGestureRecognizer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WKTapGestureRecognizer"
+        }
+      ],
+      "role": "symbol",
+      "title": "WKTapGestureRecognizer",
+      "type": "topic",
+      "url": "/documentation/watchkit/wktapgesturerecognizer"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    },
+    "media-2557562": {
+      "alt": null,
+      "identifier": "media-2557562",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/eadbf2c2039e5658266f0bc849dbbbdc/media-2557562@2x.png"
+        }
+      ]
+    },
+    "media-2557566": {
+      "alt": null,
+      "identifier": "media-2557566",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cb3692b76f000fb3b3a265280f7fdb70/media-2557566@2x.png"
+        }
+      ]
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.apple.watchkit/documentation/WatchKit/WKLongPressGestureRecognizer",
+        "doc://com.apple.watchkit/documentation/WatchKit/WKPanGestureRecognizer",
+        "doc://com.apple.watchkit/documentation/WatchKit/WKSwipeGestureRecognizer",
+        "doc://com.apple.watchkit/documentation/WatchKit/WKTapGestureRecognizer"
+      ],
+      "kind": "relationships",
+      "title": "Inherited By",
+      "type": "inheritedBy"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Event-handling",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.watchkit/documentation/WatchKit/WKCrownSequencer",
+        "doc://com.apple.watchkit/documentation/WatchKit/WKCrownDelegate",
+        "doc://com.apple.watchkit/documentation/WatchKit/WKLongPressGestureRecognizer",
+        "doc://com.apple.watchkit/documentation/WatchKit/WKPanGestureRecognizer",
+        "doc://com.apple.watchkit/documentation/WatchKit/WKSwipeGestureRecognizer",
+        "doc://com.apple.watchkit/documentation/WatchKit/WKTapGestureRecognizer"
+      ],
+      "title": "Event handling"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Getting-the-Touch-Information",
+      "identifiers": [
+        "doc://com.apple.watchkit/documentation/WatchKit/WKGestureRecognizer/locationInObject()",
+        "doc://com.apple.watchkit/documentation/WatchKit/WKGestureRecognizer/objectBounds()"
+      ],
+      "title": "Getting the Touch Information"
+    },
+    {
+      "anchor": "Getting-the-Gesture-Recognizers-State",
+      "identifiers": [
+        "doc://com.apple.watchkit/documentation/WatchKit/WKGestureRecognizer/state",
+        "doc://com.apple.watchkit/documentation/WatchKit/WKGestureRecognizer/isEnabled"
+      ],
+      "title": "Getting the Gesture Recognizer’s State"
+    },
+    {
+      "anchor": "Constants",
+      "identifiers": [
+        "doc://com.apple.watchkit/documentation/WatchKit/WKGestureRecognizerState"
+      ],
+      "title": "Constants"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "3.0",
+              "name": "watchOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "WKGestureRecognizer"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKGestureRecognizer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKGestureRecognizer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.watchkit/documentation/WatchKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Getting-the-Touch-Information",
+              "identifiers": [
+                "doc://com.apple.watchkit/documentation/WatchKit/WKGestureRecognizer/locationInObject()",
+                "doc://com.apple.watchkit/documentation/WatchKit/WKGestureRecognizer/objectBounds()"
+              ],
+              "title": "Getting the Touch Information"
+            },
+            {
+              "anchor": "Getting-the-Gesture-Recognizers-State",
+              "identifiers": [
+                "doc://com.apple.watchkit/documentation/WatchKit/WKGestureRecognizer/state",
+                "doc://com.apple.watchkit/documentation/WatchKit/WKGestureRecognizer/isEnabled"
+              ],
+              "title": "Getting the Gesture Recognizer’s State"
+            },
+            {
+              "anchor": "Constants",
+              "identifiers": [
+                "doc://com.apple.watchkit/documentation/WatchKit/WKGestureRecognizerState"
+              ],
+              "title": "Constants"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            },
+            {
+              "identifiers": [
+                "doc://com.apple.watchkit/documentation/WatchKit/WKLongPressGestureRecognizer",
+                "doc://com.apple.watchkit/documentation/WatchKit/WKPanGestureRecognizer",
+                "doc://com.apple.watchkit/documentation/WatchKit/WKSwipeGestureRecognizer",
+                "doc://com.apple.watchkit/documentation/WatchKit/WKTapGestureRecognizer"
+              ],
+              "kind": "relationships",
+              "title": "Inherited By",
+              "type": "inheritedBy"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Event-handling",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.watchkit/documentation/WatchKit/WKCrownSequencer",
+                "doc://com.apple.watchkit/documentation/WatchKit/WKCrownDelegate",
+                "doc://com.apple.watchkit/documentation/WatchKit/WKLongPressGestureRecognizer",
+                "doc://com.apple.watchkit/documentation/WatchKit/WKPanGestureRecognizer",
+                "doc://com.apple.watchkit/documentation/WatchKit/WKSwipeGestureRecognizer",
+                "doc://com.apple.watchkit/documentation/WatchKit/WKTapGestureRecognizer"
+              ],
+              "title": "Event handling"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "WKGestureRecognizer"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKGestureRecognizerState~1began/title",
+          "value": "WKGestureRecognizerStateBegan"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKGestureRecognizerState~1began/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKGestureRecognizerStateBegan"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKTapGestureRecognizer/title",
+          "value": "WKTapGestureRecognizer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKTapGestureRecognizer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKTapGestureRecognizer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKTapGestureRecognizer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKTapGestureRecognizer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKPanGestureRecognizer/title",
+          "value": "WKPanGestureRecognizer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKPanGestureRecognizer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKPanGestureRecognizer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKPanGestureRecognizer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKPanGestureRecognizer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKGestureRecognizer~1objectBounds()/title",
+          "value": "objectBounds"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKGestureRecognizer~1objectBounds()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "objectBounds"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKSwipeGestureRecognizer/title",
+          "value": "WKSwipeGestureRecognizer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKSwipeGestureRecognizer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKSwipeGestureRecognizer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKSwipeGestureRecognizer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKSwipeGestureRecognizer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKGestureRecognizerState~1failed/title",
+          "value": "WKGestureRecognizerStateFailed"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKGestureRecognizerState~1failed/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKGestureRecognizerStateFailed"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKGestureRecognizer~1state/title",
+          "value": "state"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKGestureRecognizer~1state/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "state"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKGestureRecognizerState~1changed/title",
+          "value": "WKGestureRecognizerStateChanged"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKGestureRecognizerState~1changed/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKGestureRecognizerStateChanged"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKGestureRecognizerState~1cancelled/title",
+          "value": "WKGestureRecognizerStateCancelled"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKGestureRecognizerState~1cancelled/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKGestureRecognizerStateCancelled"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKCrownDelegate/title",
+          "value": "WKCrownDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKCrownDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKCrownDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKCrownDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKCrownDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKGestureRecognizerState/title",
+          "value": "WKGestureRecognizerState"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKGestureRecognizerState/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKGestureRecognizerState"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKGestureRecognizerState/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKGestureRecognizerState"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKGestureRecognizerState~1possible/title",
+          "value": "WKGestureRecognizerStatePossible"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKGestureRecognizerState~1possible/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKGestureRecognizerStatePossible"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKGestureRecognizer/title",
+          "value": "WKGestureRecognizer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKGestureRecognizer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKGestureRecognizer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKGestureRecognizer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKGestureRecognizer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKGestureRecognizer~1isEnabled/title",
+          "value": "enabled"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKGestureRecognizer~1isEnabled/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "enabled"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKGestureRecognizer~1locationInObject()/title",
+          "value": "locationInObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKGestureRecognizer~1locationInObject()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "locationInObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKGestureRecognizerState~1ended/title",
+          "value": "WKGestureRecognizerStateEnded"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKGestureRecognizerState~1ended/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKGestureRecognizerStateEnded"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKGestureRecognizerState~1recognized/title",
+          "value": "WKGestureRecognizerStateRecognized"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKGestureRecognizerState~1recognized/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKGestureRecognizerStateRecognized"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKCrownSequencer/title",
+          "value": "WKCrownSequencer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKCrownSequencer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKCrownSequencer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKCrownSequencer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKCrownSequencer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKLongPressGestureRecognizer/title",
+          "value": "WKLongPressGestureRecognizer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKLongPressGestureRecognizer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKLongPressGestureRecognizer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.watchkit~1documentation~1WatchKit~1WKLongPressGestureRecognizer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKLongPressGestureRecognizer"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/watchkit/wkgesturerecognizer"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/watchkit/wkgesturerecognizer"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,2728 @@
+{
+  "abstract": [
+    {
+      "text": "An interface that you use to manage interactions between Writing Tools",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "and your custom text view.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "beta": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.3 beta 1",
+        "16.3 beta 2"
+      ]
+    },
+    "major": {
+      "change": "added",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit",
+        "doc://com.apple.uikit/documentation/UIKit/UIWritingToolsCoordinator"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.uikit/documentation/UIKit/UIWritingToolsCoordinator/Delegate-swift.protocol"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "extendedModule": "UIKit",
+    "externalID": "c:objc(pl)UIWritingToolsCoordinatorDelegate",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "protocol"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "Delegate"
+      }
+    ],
+    "modules": [
+      {
+        "name": "UIKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "Delegate"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "18.2",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "18.2",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "18.2",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": true,
+        "deprecated": false,
+        "introducedAt": "2.4",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Protocol",
+    "symbolKind": "protocol",
+    "title": "UIWritingToolsCoordinator.Delegate"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "Delegate"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObjectProtocol"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.uikit/documentation/UIKit/adding-writing-tools-support-to-a-custom-uiview"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Adopt the ",
+              "type": "text"
+            },
+            {
+              "code": "UIWritingToolsCoordinator.Delegate",
+              "type": "codeVoice"
+            },
+            {
+              "text": " protocol in the type you",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "use to manage your custom text view. When you add a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIWritingToolsCoordinator",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "object to your view, the coordinator uses this protocol to communicate",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "with that view. The protocol lets Writing Tools fetch your view’s text,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "report suggested changes back to your view, and deliver visual feedback",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "when Writing Tools features are active. Make sure the type that adopts",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "this protocol has access to your view’s text storage and can perform",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "relevant tasks on behalf of the view.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Writing Tools expects you to call the provided handler blocks at the end",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of your delegate methods. It’s crucial that you execute these blocks in a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "timely manner to allow Writing Tools to perform subsequent tasks. For example,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Writing Tools waits for you to execute the handlers for animation-related methods",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "before moving on to the next stage of the animations.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.uikit/documentation/UIKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your iOS, iPadOS, or tvOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "UIKit",
+      "type": "topic",
+      "url": "/documentation/uikit"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIWritingToolsCoordinator": {
+      "abstract": [
+        {
+          "text": "An object that manages interactions between Writing Tools and",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "your custom text view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIWritingToolsCoordinator"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIWritingToolsCoordinator",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIWritingToolsCoordinator"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIWritingToolsCoordinator",
+      "type": "topic",
+      "url": "/documentation/uikit/uiwritingtoolscoordinator"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIWritingToolsCoordinator/AnimationParameters": {
+      "abstract": [
+        {
+          "text": "An object you use to configure additional tasks or animations to",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "run alongside the Writing Tools animations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AnimationParameters"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIWritingToolsCoordinator/AnimationParameters",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AnimationParameters"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIWritingToolsCoordinator.AnimationParameters",
+      "type": "topic",
+      "url": "/documentation/uikit/uiwritingtoolscoordinator/animationparameters"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIWritingToolsCoordinator/Context": {
+      "abstract": [
+        {
+          "text": "A data object that you use to share your custom view’s text with Writing Tools.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Context"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIWritingToolsCoordinator/Context",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Context"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIWritingToolsCoordinator.Context",
+      "type": "topic",
+      "url": "/documentation/uikit/uiwritingtoolscoordinator/context"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIWritingToolsCoordinator/Delegate-swift.protocol": {
+      "abstract": [
+        {
+          "text": "An interface that you use to manage interactions between Writing Tools",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "and your custom text view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Delegate"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIWritingToolsCoordinator/Delegate-swift.protocol",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Delegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIWritingToolsCoordinator.Delegate",
+      "type": "topic",
+      "url": "/documentation/uikit/uiwritingtoolscoordinator/delegate-swift.protocol"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIWritingToolsCoordinator/Delegate-swift.protocol/writingToolsCoordinator(_:finish:for:in:completion:)": {
+      "abstract": [
+        {
+          "text": "Asks the delegate to clean up any state related to the specified",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "Writing Tools animation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "writingToolsCoordinator"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIWritingToolsCoordinator",
+          "text": "UIWritingToolsCoordinator"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "finish"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIWritingToolsCoordinator",
+          "text": "UIWritingToolsCoordinator"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@UIWritingToolsCoordinatorTextAnimation",
+          "text": "TextAnimation"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "NSRange"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIWritingToolsCoordinator",
+          "text": "UIWritingToolsCoordinator"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIWritingToolsCoordinatorContext",
+          "text": "Context"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completion"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIWritingToolsCoordinator/Delegate-swift.protocol/writingToolsCoordinator(_:finish:for:in:completion:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "writingToolsCoordinator:finishTextAnimation:forRange:inContext:completion:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "writingToolsCoordinator(_:finish:for:in:completion:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiwritingtoolscoordinator/delegate-swift.protocol/writingtoolscoordinator(_:finish:for:in:completion:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIWritingToolsCoordinator/Delegate-swift.protocol/writingToolsCoordinator(_:prepareFor:for:in:completion:)": {
+      "abstract": [
+        {
+          "text": "Prepare for animations for the content that Writing Tools is evaluating.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "writingToolsCoordinator"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIWritingToolsCoordinator",
+          "text": "UIWritingToolsCoordinator"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "prepareFor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIWritingToolsCoordinator",
+          "text": "UIWritingToolsCoordinator"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@UIWritingToolsCoordinatorTextAnimation",
+          "text": "TextAnimation"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "NSRange"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIWritingToolsCoordinator",
+          "text": "UIWritingToolsCoordinator"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIWritingToolsCoordinatorContext",
+          "text": "Context"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completion"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIWritingToolsCoordinator/Delegate-swift.protocol/writingToolsCoordinator(_:prepareFor:for:in:completion:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "writingToolsCoordinator:prepareForTextAnimation:forRange:inContext:completion:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "writingToolsCoordinator(_:prepareFor:for:in:completion:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiwritingtoolscoordinator/delegate-swift.protocol/writingtoolscoordinator(_:preparefor:for:in:completion:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIWritingToolsCoordinator/Delegate-swift.protocol/writingToolsCoordinator(_:replace:in:proposedText:reason:animationParameters:completion:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that there are text changes to incorporate into the view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "writingToolsCoordinator"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIWritingToolsCoordinator",
+          "text": "UIWritingToolsCoordinator"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "replace"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "NSRange"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIWritingToolsCoordinator",
+          "text": "UIWritingToolsCoordinator"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIWritingToolsCoordinatorContext",
+          "text": "Context"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "proposedText"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSAttributedString",
+          "text": "NSAttributedString"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "reason"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIWritingToolsCoordinator",
+          "text": "UIWritingToolsCoordinator"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@UIWritingToolsCoordinatorTextReplacementReason",
+          "text": "TextReplacementReason"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "animationParameters"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIWritingToolsCoordinator",
+          "text": "UIWritingToolsCoordinator"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIWritingToolsCoordinatorAnimationParameters",
+          "text": "AnimationParameters"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completion"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSAttributedString",
+          "text": "NSAttributedString"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIWritingToolsCoordinator/Delegate-swift.protocol/writingToolsCoordinator(_:replace:in:proposedText:reason:animationParameters:completion:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "writingToolsCoordinator:replaceRange:inContext:proposedText:reason:animationParameters:completion:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "writingToolsCoordinator(_:replace:in:proposedText:reason:animationParameters:completion:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiwritingtoolscoordinator/delegate-swift.protocol/writingtoolscoordinator(_:replace:in:proposedtext:reason:animationparameters:completion:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIWritingToolsCoordinator/Delegate-swift.protocol/writingToolsCoordinator(_:requestsBoundingBezierPathsFor:in:completion:)": {
+      "abstract": [
+        {
+          "text": "Asks the delegate to provide the bounding paths for the specified",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "text in your view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "writingToolsCoordinator"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIWritingToolsCoordinator",
+          "text": "UIWritingToolsCoordinator"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "requestsBoundingBezierPathsFor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "NSRange"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIWritingToolsCoordinator",
+          "text": "UIWritingToolsCoordinator"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIWritingToolsCoordinatorContext",
+          "text": "Context"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completion"
+        },
+        {
+          "kind": "text",
+          "text": ": (["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIBezierPath",
+          "text": "UIBezierPath"
+        },
+        {
+          "kind": "text",
+          "text": "]) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIWritingToolsCoordinator/Delegate-swift.protocol/writingToolsCoordinator(_:requestsBoundingBezierPathsFor:in:completion:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "writingToolsCoordinator:requestsBoundingBezierPathsForRange:inContext:completion:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "writingToolsCoordinator(_:requestsBoundingBezierPathsFor:in:completion:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiwritingtoolscoordinator/delegate-swift.protocol/writingtoolscoordinator(_:requestsboundingbezierpathsfor:in:completion:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIWritingToolsCoordinator/Delegate-swift.protocol/writingToolsCoordinator(_:requestsContextsFor:completion:)": {
+      "abstract": [
+        {
+          "text": "Asks your delegate to provide the text to evaluate during the Writing Tools",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "operation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "writingToolsCoordinator"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIWritingToolsCoordinator",
+          "text": "UIWritingToolsCoordinator"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "requestsContextsFor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIWritingToolsCoordinator",
+          "text": "UIWritingToolsCoordinator"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@UIWritingToolsCoordinatorContextScope",
+          "text": "ContextScope"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completion"
+        },
+        {
+          "kind": "text",
+          "text": ": (["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIWritingToolsCoordinator",
+          "text": "UIWritingToolsCoordinator"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIWritingToolsCoordinatorContext",
+          "text": "Context"
+        },
+        {
+          "kind": "text",
+          "text": "]) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIWritingToolsCoordinator/Delegate-swift.protocol/writingToolsCoordinator(_:requestsContextsFor:completion:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "writingToolsCoordinator:requestsContextsForScope:completion:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "writingToolsCoordinator(_:requestsContextsFor:completion:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiwritingtoolscoordinator/delegate-swift.protocol/writingtoolscoordinator(_:requestscontextsfor:completion:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIWritingToolsCoordinator/Delegate-swift.protocol/writingToolsCoordinator(_:requestsDecorationContainerViewFor:in:completion:)": {
+      "abstract": [
+        {
+          "text": "Asks the delegate to provide a decoration view for the specified range of text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "writingToolsCoordinator"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIWritingToolsCoordinator",
+          "text": "UIWritingToolsCoordinator"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "requestsDecorationContainerViewFor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "NSRange"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIWritingToolsCoordinator",
+          "text": "UIWritingToolsCoordinator"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIWritingToolsCoordinatorContext",
+          "text": "Context"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completion"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIView",
+          "text": "UIView"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIWritingToolsCoordinator/Delegate-swift.protocol/writingToolsCoordinator(_:requestsDecorationContainerViewFor:in:completion:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "writingToolsCoordinator:requestsDecorationContainerViewForRange:inContext:completion:"
+        }
+      ],
+      "role": "symbol",
+      "title": "writingToolsCoordinator(_:requestsDecorationContainerViewFor:in:completion:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiwritingtoolscoordinator/delegate-swift.protocol/writingtoolscoordinator(_:requestsdecorationcontainerviewfor:in:completion:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIWritingToolsCoordinator/Delegate-swift.protocol/writingToolsCoordinator(_:requestsPreviewFor:of:in:completion:)": {
+      "abstract": [
+        {
+          "text": "Asks the delegate for a preview image and layout information for the",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "specified text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "writingToolsCoordinator"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIWritingToolsCoordinator",
+          "text": "UIWritingToolsCoordinator"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "requestsPreviewFor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIWritingToolsCoordinator",
+          "text": "UIWritingToolsCoordinator"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@UIWritingToolsCoordinatorTextAnimation",
+          "text": "TextAnimation"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "of"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "NSRange"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIWritingToolsCoordinator",
+          "text": "UIWritingToolsCoordinator"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIWritingToolsCoordinatorContext",
+          "text": "Context"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completion"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UITargetedPreview",
+          "text": "UITargetedPreview"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIWritingToolsCoordinator/Delegate-swift.protocol/writingToolsCoordinator(_:requestsPreviewFor:of:in:completion:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "writingToolsCoordinator:requestsPreviewForTextAnimation:ofRange:inContext:completion:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "writingToolsCoordinator(_:requestsPreviewFor:of:in:completion:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiwritingtoolscoordinator/delegate-swift.protocol/writingtoolscoordinator(_:requestspreviewfor:of:in:completion:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIWritingToolsCoordinator/Delegate-swift.protocol/writingToolsCoordinator(_:requestsRangeInContextWithIdentifierFor:completion:)": {
+      "abstract": [
+        {
+          "text": "Asks the delegate to provide the location of the character at the",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "specified point in your view’s coordinate system.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "writingToolsCoordinator"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIWritingToolsCoordinator",
+          "text": "UIWritingToolsCoordinator"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "requestsRangeInContextWithIdentifierFor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGPoint",
+          "text": "CGPoint"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completion"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "NSRange"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4UUIDV",
+          "text": "UUID"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIWritingToolsCoordinator/Delegate-swift.protocol/writingToolsCoordinator(_:requestsRangeInContextWithIdentifierFor:completion:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "writingToolsCoordinator:requestsRangeInContextWithIdentifierForPoint:completion:"
+        }
+      ],
+      "role": "symbol",
+      "title": "writingToolsCoordinator(_:requestsRangeInContextWithIdentifierFor:completion:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiwritingtoolscoordinator/delegate-swift.protocol/writingtoolscoordinator(_:requestsrangeincontextwithidentifierfor:completion:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIWritingToolsCoordinator/Delegate-swift.protocol/writingToolsCoordinator(_:requestsSingleContainerSubrangesOf:in:completion:)": {
+      "abstract": [
+        {
+          "text": "Asks the delegate to divide the specified range of text into the separate",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "containers that render that text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "writingToolsCoordinator"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIWritingToolsCoordinator",
+          "text": "UIWritingToolsCoordinator"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "requestsSingleContainerSubrangesOf"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "NSRange"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIWritingToolsCoordinator",
+          "text": "UIWritingToolsCoordinator"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIWritingToolsCoordinatorContext",
+          "text": "Context"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completion"
+        },
+        {
+          "kind": "text",
+          "text": ": (["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSValue",
+          "text": "NSValue"
+        },
+        {
+          "kind": "text",
+          "text": "]) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIWritingToolsCoordinator/Delegate-swift.protocol/writingToolsCoordinator(_:requestsSingleContainerSubrangesOf:in:completion:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "writingToolsCoordinator:requestsSingleContainerSubrangesOfRange:inContext:completion:"
+        }
+      ],
+      "role": "symbol",
+      "title": "writingToolsCoordinator(_:requestsSingleContainerSubrangesOf:in:completion:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiwritingtoolscoordinator/delegate-swift.protocol/writingtoolscoordinator(_:requestssinglecontainersubrangesof:in:completion:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIWritingToolsCoordinator/Delegate-swift.protocol/writingToolsCoordinator(_:requestsUnderlinePathsFor:in:completion:)": {
+      "abstract": [
+        {
+          "text": "Asks the delegate to provide an underline shape for the specified text",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "during a proofreading session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "writingToolsCoordinator"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIWritingToolsCoordinator",
+          "text": "UIWritingToolsCoordinator"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "requestsUnderlinePathsFor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "NSRange"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIWritingToolsCoordinator",
+          "text": "UIWritingToolsCoordinator"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIWritingToolsCoordinatorContext",
+          "text": "Context"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completion"
+        },
+        {
+          "kind": "text",
+          "text": ": (["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIBezierPath",
+          "text": "UIBezierPath"
+        },
+        {
+          "kind": "text",
+          "text": "]) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIWritingToolsCoordinator/Delegate-swift.protocol/writingToolsCoordinator(_:requestsUnderlinePathsFor:in:completion:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "writingToolsCoordinator:requestsUnderlinePathsForRange:inContext:completion:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "writingToolsCoordinator(_:requestsUnderlinePathsFor:in:completion:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiwritingtoolscoordinator/delegate-swift.protocol/writingtoolscoordinator(_:requestsunderlinepathsfor:in:completion:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIWritingToolsCoordinator/Delegate-swift.protocol/writingToolsCoordinator(_:select:in:completion:)": {
+      "abstract": [
+        {
+          "text": "Asks the delegate to update your view’s current text selection.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "writingToolsCoordinator"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIWritingToolsCoordinator",
+          "text": "UIWritingToolsCoordinator"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "select"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSValue",
+          "text": "NSValue"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIWritingToolsCoordinator",
+          "text": "UIWritingToolsCoordinator"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIWritingToolsCoordinatorContext",
+          "text": "Context"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completion"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIWritingToolsCoordinator/Delegate-swift.protocol/writingToolsCoordinator(_:select:in:completion:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "writingToolsCoordinator:selectRanges:inContext:completion:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "writingToolsCoordinator(_:select:in:completion:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiwritingtoolscoordinator/delegate-swift.protocol/writingtoolscoordinator(_:select:in:completion:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIWritingToolsCoordinator/Delegate-swift.protocol/writingToolsCoordinator(_:willChangeTo:completion:)": {
+      "abstract": [
+        {
+          "text": "Notifies your delegate of relevant state changes when Writing Tools",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "is running in your view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "writingToolsCoordinator"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIWritingToolsCoordinator",
+          "text": "UIWritingToolsCoordinator"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "willChangeTo"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIWritingToolsCoordinator",
+          "text": "UIWritingToolsCoordinator"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@UIWritingToolsCoordinatorState",
+          "text": "State"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completion"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIWritingToolsCoordinator/Delegate-swift.protocol/writingToolsCoordinator(_:willChangeTo:completion:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "writingToolsCoordinator:willChangeToState:completion:"
+        }
+      ],
+      "role": "symbol",
+      "title": "writingToolsCoordinator(_:willChangeTo:completion:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiwritingtoolscoordinator/delegate-swift.protocol/writingtoolscoordinator(_:willchangeto:completion:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/adding-writing-tools-support-to-a-custom-uiview": {
+      "abstract": [
+        {
+          "text": "Add Writing Tools support, including support for inline replacement animations,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "to your custom iOS views that contain text.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/adding-writing-tools-support-to-a-custom-uiview",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding Writing Tools support to a custom UIKit view",
+      "type": "topic",
+      "url": "/documentation/uikit/adding-writing-tools-support-to-a-custom-uiview"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Writing-Tools-for-custom-views",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/adding-writing-tools-support-to-a-custom-uiview",
+        "doc://com.apple.uikit/documentation/UIKit/UIWritingToolsCoordinator",
+        "doc://com.apple.uikit/documentation/UIKit/UIWritingToolsCoordinator/Context",
+        "doc://com.apple.uikit/documentation/UIKit/UIWritingToolsCoordinator/AnimationParameters"
+      ],
+      "title": "Writing Tools for custom views"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Starting-a-Writing-Tools-operation",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIWritingToolsCoordinator/Delegate-swift.protocol/writingToolsCoordinator(_:requestsContextsFor:completion:)"
+      ],
+      "title": "Starting a Writing Tools operation"
+    },
+    {
+      "anchor": "Incorporating-Writing-Tools-suggestions",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIWritingToolsCoordinator/Delegate-swift.protocol/writingToolsCoordinator(_:replace:in:proposedText:reason:animationParameters:completion:)",
+        "doc://com.apple.uikit/documentation/UIKit/UIWritingToolsCoordinator/Delegate-swift.protocol/writingToolsCoordinator(_:select:in:completion:)"
+      ],
+      "title": "Incorporating Writing Tools suggestions"
+    },
+    {
+      "anchor": "Responding-to-lifecycle-changes",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIWritingToolsCoordinator/Delegate-swift.protocol/writingToolsCoordinator(_:willChangeTo:completion:)"
+      ],
+      "title": "Responding to lifecycle changes"
+    },
+    {
+      "anchor": "Animating-inline-text-changes",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIWritingToolsCoordinator/Delegate-swift.protocol/writingToolsCoordinator(_:requestsPreviewFor:of:in:completion:)",
+        "doc://com.apple.uikit/documentation/UIKit/UIWritingToolsCoordinator/Delegate-swift.protocol/writingToolsCoordinator(_:prepareFor:for:in:completion:)",
+        "doc://com.apple.uikit/documentation/UIKit/UIWritingToolsCoordinator/Delegate-swift.protocol/writingToolsCoordinator(_:finish:for:in:completion:)"
+      ],
+      "title": "Animating inline text changes"
+    },
+    {
+      "anchor": "Displaying-proofreading-marks",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIWritingToolsCoordinator/Delegate-swift.protocol/writingToolsCoordinator(_:requestsRangeInContextWithIdentifierFor:completion:)",
+        "doc://com.apple.uikit/documentation/UIKit/UIWritingToolsCoordinator/Delegate-swift.protocol/writingToolsCoordinator(_:requestsBoundingBezierPathsFor:in:completion:)",
+        "doc://com.apple.uikit/documentation/UIKit/UIWritingToolsCoordinator/Delegate-swift.protocol/writingToolsCoordinator(_:requestsUnderlinePathsFor:in:completion:)"
+      ],
+      "title": "Displaying proofreading marks"
+    },
+    {
+      "anchor": "Providing-animation-container-views-dynamically",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIWritingToolsCoordinator/Delegate-swift.protocol/writingToolsCoordinator(_:requestsSingleContainerSubrangesOf:in:completion:)",
+        "doc://com.apple.uikit/documentation/UIKit/UIWritingToolsCoordinator/Delegate-swift.protocol/writingToolsCoordinator(_:requestsDecorationContainerViewFor:in:completion:)"
+      ],
+      "title": "Providing animation container views dynamically"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "18.2",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "18.2",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "18.2",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": true,
+              "deprecated": false,
+              "introducedAt": "2.4",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Protocol"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "UIWritingToolsCoordinatorDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "protocol"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIWritingToolsCoordinatorDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIWritingToolsCoordinatorDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.uikit/documentation/UIKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Starting-a-Writing-Tools-operation",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIWritingToolsCoordinator/Delegate-swift.protocol/writingToolsCoordinator(_:requestsContextsFor:completion:)"
+              ],
+              "title": "Starting a Writing Tools operation"
+            },
+            {
+              "anchor": "Incorporating-Writing-Tools-suggestions",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIWritingToolsCoordinator/Delegate-swift.protocol/writingToolsCoordinator(_:replace:in:proposedText:reason:animationParameters:completion:)",
+                "doc://com.apple.uikit/documentation/UIKit/UIWritingToolsCoordinator/Delegate-swift.protocol/writingToolsCoordinator(_:select:in:completion:)"
+              ],
+              "title": "Incorporating Writing Tools suggestions"
+            },
+            {
+              "anchor": "Responding-to-lifecycle-changes",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIWritingToolsCoordinator/Delegate-swift.protocol/writingToolsCoordinator(_:willChangeTo:completion:)"
+              ],
+              "title": "Responding to lifecycle changes"
+            },
+            {
+              "anchor": "Animating-inline-text-changes",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIWritingToolsCoordinator/Delegate-swift.protocol/writingToolsCoordinator(_:requestsPreviewFor:of:in:completion:)",
+                "doc://com.apple.uikit/documentation/UIKit/UIWritingToolsCoordinator/Delegate-swift.protocol/writingToolsCoordinator(_:prepareFor:for:in:completion:)",
+                "doc://com.apple.uikit/documentation/UIKit/UIWritingToolsCoordinator/Delegate-swift.protocol/writingToolsCoordinator(_:finish:for:in:completion:)"
+              ],
+              "title": "Animating inline text changes"
+            },
+            {
+              "anchor": "Displaying-proofreading-marks",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIWritingToolsCoordinator/Delegate-swift.protocol/writingToolsCoordinator(_:requestsRangeInContextWithIdentifierFor:completion:)",
+                "doc://com.apple.uikit/documentation/UIKit/UIWritingToolsCoordinator/Delegate-swift.protocol/writingToolsCoordinator(_:requestsBoundingBezierPathsFor:in:completion:)",
+                "doc://com.apple.uikit/documentation/UIKit/UIWritingToolsCoordinator/Delegate-swift.protocol/writingToolsCoordinator(_:requestsUnderlinePathsFor:in:completion:)"
+              ],
+              "title": "Displaying proofreading marks"
+            },
+            {
+              "anchor": "Providing-animation-container-views-dynamically",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIWritingToolsCoordinator/Delegate-swift.protocol/writingToolsCoordinator(_:requestsSingleContainerSubrangesOf:in:completion:)",
+                "doc://com.apple.uikit/documentation/UIKit/UIWritingToolsCoordinator/Delegate-swift.protocol/writingToolsCoordinator(_:requestsDecorationContainerViewFor:in:completion:)"
+              ],
+              "title": "Providing animation container views dynamically"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Writing-Tools-for-custom-views",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/adding-writing-tools-support-to-a-custom-uiview",
+                "doc://com.apple.uikit/documentation/UIKit/UIWritingToolsCoordinator",
+                "doc://com.apple.uikit/documentation/UIKit/UIWritingToolsCoordinator/Context",
+                "doc://com.apple.uikit/documentation/UIKit/UIWritingToolsCoordinator/AnimationParameters"
+              ],
+              "title": "Writing Tools for custom views"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "tvOS",
+                  "visionOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@protocol"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "UIWritingToolsCoordinatorDelegate"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " <"
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(pl)NSObject",
+                    "text": "NSObject"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ">"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIWritingToolsCoordinator/title",
+          "value": "UIWritingToolsCoordinator"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIWritingToolsCoordinator/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIWritingToolsCoordinator"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIWritingToolsCoordinator/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIWritingToolsCoordinator"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIWritingToolsCoordinator~1Delegate-swift.protocol~1writingToolsCoordinator(_:requestsRangeInContextWithIdentifierFor:completion:)/title",
+          "value": "writingToolsCoordinator:requestsRangeInContextWithIdentifierForPoint:completion:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIWritingToolsCoordinator~1Delegate-swift.protocol~1writingToolsCoordinator(_:requestsRangeInContextWithIdentifierFor:completion:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "writingToolsCoordinator:requestsRangeInContextWithIdentifierForPoint:completion:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIWritingToolsCoordinator~1Delegate-swift.protocol~1writingToolsCoordinator(_:requestsDecorationContainerViewFor:in:completion:)/title",
+          "value": "writingToolsCoordinator:requestsDecorationContainerViewForRange:inContext:completion:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIWritingToolsCoordinator~1Delegate-swift.protocol~1writingToolsCoordinator(_:requestsDecorationContainerViewFor:in:completion:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "writingToolsCoordinator:requestsDecorationContainerViewForRange:inContext:completion:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIWritingToolsCoordinator~1Delegate-swift.protocol~1writingToolsCoordinator(_:replace:in:proposedText:reason:animationParameters:completion:)/title",
+          "value": "writingToolsCoordinator:replaceRange:inContext:proposedText:reason:animationParameters:completion:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIWritingToolsCoordinator~1Delegate-swift.protocol~1writingToolsCoordinator(_:replace:in:proposedText:reason:animationParameters:completion:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "writingToolsCoordinator:replaceRange:inContext:proposedText:reason:animationParameters:completion:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIWritingToolsCoordinator~1Delegate-swift.protocol~1writingToolsCoordinator(_:willChangeTo:completion:)/title",
+          "value": "writingToolsCoordinator:willChangeToState:completion:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIWritingToolsCoordinator~1Delegate-swift.protocol~1writingToolsCoordinator(_:willChangeTo:completion:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "writingToolsCoordinator:willChangeToState:completion:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIWritingToolsCoordinator~1Context/title",
+          "value": "UIWritingToolsCoordinatorContext"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIWritingToolsCoordinator~1Context/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIWritingToolsCoordinatorContext"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIWritingToolsCoordinator~1Context/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIWritingToolsCoordinatorContext"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIWritingToolsCoordinator~1Delegate-swift.protocol~1writingToolsCoordinator(_:finish:for:in:completion:)/title",
+          "value": "writingToolsCoordinator:finishTextAnimation:forRange:inContext:completion:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIWritingToolsCoordinator~1Delegate-swift.protocol~1writingToolsCoordinator(_:finish:for:in:completion:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "writingToolsCoordinator:finishTextAnimation:forRange:inContext:completion:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIWritingToolsCoordinator~1Delegate-swift.protocol~1writingToolsCoordinator(_:requestsUnderlinePathsFor:in:completion:)/title",
+          "value": "writingToolsCoordinator:requestsUnderlinePathsForRange:inContext:completion:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIWritingToolsCoordinator~1Delegate-swift.protocol~1writingToolsCoordinator(_:requestsUnderlinePathsFor:in:completion:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "writingToolsCoordinator:requestsUnderlinePathsForRange:inContext:completion:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIWritingToolsCoordinator~1AnimationParameters/title",
+          "value": "UIWritingToolsCoordinatorAnimationParameters"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIWritingToolsCoordinator~1AnimationParameters/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIWritingToolsCoordinatorAnimationParameters"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIWritingToolsCoordinator~1AnimationParameters/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIWritingToolsCoordinatorAnimationParameters"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIWritingToolsCoordinator~1Delegate-swift.protocol~1writingToolsCoordinator(_:requestsBoundingBezierPathsFor:in:completion:)/title",
+          "value": "writingToolsCoordinator:requestsBoundingBezierPathsForRange:inContext:completion:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIWritingToolsCoordinator~1Delegate-swift.protocol~1writingToolsCoordinator(_:requestsBoundingBezierPathsFor:in:completion:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "writingToolsCoordinator:requestsBoundingBezierPathsForRange:inContext:completion:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIWritingToolsCoordinator~1Delegate-swift.protocol~1writingToolsCoordinator(_:prepareFor:for:in:completion:)/title",
+          "value": "writingToolsCoordinator:prepareForTextAnimation:forRange:inContext:completion:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIWritingToolsCoordinator~1Delegate-swift.protocol~1writingToolsCoordinator(_:prepareFor:for:in:completion:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "writingToolsCoordinator:prepareForTextAnimation:forRange:inContext:completion:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIWritingToolsCoordinator~1Delegate-swift.protocol~1writingToolsCoordinator(_:select:in:completion:)/title",
+          "value": "writingToolsCoordinator:selectRanges:inContext:completion:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIWritingToolsCoordinator~1Delegate-swift.protocol~1writingToolsCoordinator(_:select:in:completion:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "writingToolsCoordinator:selectRanges:inContext:completion:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIWritingToolsCoordinator~1Delegate-swift.protocol~1writingToolsCoordinator(_:requestsPreviewFor:of:in:completion:)/title",
+          "value": "writingToolsCoordinator:requestsPreviewForTextAnimation:ofRange:inContext:completion:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIWritingToolsCoordinator~1Delegate-swift.protocol~1writingToolsCoordinator(_:requestsPreviewFor:of:in:completion:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "writingToolsCoordinator:requestsPreviewForTextAnimation:ofRange:inContext:completion:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIWritingToolsCoordinator~1Delegate-swift.protocol/title",
+          "value": "UIWritingToolsCoordinatorDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIWritingToolsCoordinator~1Delegate-swift.protocol/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIWritingToolsCoordinatorDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIWritingToolsCoordinator~1Delegate-swift.protocol/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIWritingToolsCoordinatorDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIWritingToolsCoordinator~1Delegate-swift.protocol~1writingToolsCoordinator(_:requestsContextsFor:completion:)/title",
+          "value": "writingToolsCoordinator:requestsContextsForScope:completion:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIWritingToolsCoordinator~1Delegate-swift.protocol~1writingToolsCoordinator(_:requestsContextsFor:completion:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "writingToolsCoordinator:requestsContextsForScope:completion:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIWritingToolsCoordinator~1Delegate-swift.protocol~1writingToolsCoordinator(_:requestsSingleContainerSubrangesOf:in:completion:)/title",
+          "value": "writingToolsCoordinator:requestsSingleContainerSubrangesOfRange:inContext:completion:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIWritingToolsCoordinator~1Delegate-swift.protocol~1writingToolsCoordinator(_:requestsSingleContainerSubrangesOf:in:completion:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "writingToolsCoordinator:requestsSingleContainerSubrangesOfRange:inContext:completion:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/uikit/uiwritingtoolscoordinator/delegate-swift.protocol"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/uikit/uiwritingtoolscoordinator/delegate-swift.protocol"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

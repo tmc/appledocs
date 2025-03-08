@@ -1,0 +1,1408 @@
+{
+  "abstract": [
+    {
+      "text": "Improve your app’s shader performance by examining and editing your shaders.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Xcode/documentation/Xcode",
+        "doc://com.apple.Xcode/documentation/Xcode/debugging",
+        "doc://com.apple.Xcode/documentation/Xcode/Metal-debugger"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Xcode/documentation/Xcode/Inspecting-shaders"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Inspecting shaders"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Metal debugger allows you to view and edit shaders with the Shader editor.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "After opening a shader, you can view and edit its source code, or the source code of any other file within the Metal library that the executed function requires. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/Inspecting-the-bound-resources-for-a-command",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you profile the Metal workload, you can see per-line performance metrics.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "As you make changes, you can reload the shader to update the Metal workload and performance numbers.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Include source code when you capture a Metal workload because the Shader editor needs it to function correctly.",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "For more information, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.Xcode/documentation/Xcode/Building-your-project-with-embedded-shader-sources",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Navigate-your-shader",
+          "level": 3,
+          "text": "Navigate your shader",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Shader editor shows your source code in the context of an executed function, and includes familiar Xcode source-editing abilities, like ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Xcode/fixing-issues-in-your-code-as-you-type",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In addition to the source containing the executed function, you can also edit other files within the Metal library that the executed function requires.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Click the Toggle Left Sidebar button on the bottom left to reveal the source files outline.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Then, select another file.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gputools-metal-debugger-se-source.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "View-per-line-performance-metrics",
+          "level": 3,
+          "text": "View per-line performance metrics",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can view per-line performance metrics in the Shader editor after profiling finishes.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This happens automatically if you select Profile after Replay in the Metal Capture popover (see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/Capturing-a-Metal-workload-in-Xcode",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ") or Profile GPU Trace in the Replay window (see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/Replaying-a-GPU-trace-file",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ").",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Alternatively, you can profile directly within the Shader editor by clicking the Generate button in the top right corner.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gputools-metal-debugger-se-profile-generate.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Then, wait for profiling to finish.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You can see its status in the activity bar at the top of your Xcode window.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After profiling your Metal workload, the Shader editor shows statistics on each line.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For devices with a GPU in the Apple 4 family or later, there’s a pie chart to the right of the numeric statistics to help you improve the performance for a function or a line of code.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For more information on Apple GPU family 4 devices, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Metal/tailor-your-apps-for-apple-gpus-and-tile-based-deferred-rendering",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/metal/Metal-Feature-Set-Tables.pdf",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gputools-metal-debugger-se-numbers.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can hover the pointer over the pie chart to enlarge it and show more detail about the work that the GPU performed while executing the line of code.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The work a GPU performs can be categorized as memory, ALU, synchronization, or control flow.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gputools-metal-debugger-se-profiler-numbers.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "By understanding the activities that the GPU executes for each line in your shader, you can infer any necessary code changes to improve the shader performance.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "GPU activity",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Explanation and recommendations",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "ALU",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The amount of time that the GPU spends in the arithmetic logic unit. Change floats to half-floats where possible to reduce the time in the ALU. Also, try to minimize your use of complex instructions like ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "sqrt",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "sin",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "cos",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "recip",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Memory",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The amount of time that the GPU spends waiting for access to your app’s buffers or texture memory. Reduce time by downsampling textures, or, if you’re not spending much time in memory, improve your texture resolution instead.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Control flow",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The amount of time that the GPU spends in conditional, increment, or jump instructions as a result of branches or loops in your shader. Use a constant iteration count to minimize control flow time for loops because the Metal compiler can generate optimized code in those cases.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Synchronization",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The amount of time that the GPU spends waiting for a required resource or event before execution can begin. Synchronization types are described below.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Synchronization (wait memory)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The amount of time that the GPU spends waiting for dependent memory accesses, such as texture sampling or buffer read/write.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Synchronization (wait pixel)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The amount of time that the GPU spends waiting for underlying pixels to release resources. In addition to color attachments, pixels can come from depth or stencil buffers or user-defined resources. Blending is a common cause of pixel waiting. Use raster order groups to reduce the wait time.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Synchronization (barrier)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The amount of time that the GPU spends when a thread reaches a barrier and the GPU waits for remaining threads in the same group to arrive at the barrier before proceeding.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Synchronization (atomics)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The amount of time that the GPU spends on atomic instructions.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To ensure you see the most up-to-date profiling numbers, set your app’s deployment target to the matching OS version, even if temporarily.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The Shader editor displays a warning at the top if the deployment target doesn’t match your OS version.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gputools-metal-debugger-se-profile-warnings.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can change the deployment target in the Xcode project settings. If you change the deployment target temporarily, don’t forget to change it back before deploying your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gputools-metal-debugger-se-deployment-target.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Update-your-shader",
+          "level": 3,
+          "text": "Update your shader",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After changing a shader, you can update the captured frame with the new source code by clicking the Reload Shaders button in the debug bar.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gputools-metal-debugger-se-reload.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After updating the captured frame, Xcode does the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Redraws the app window.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Updates the profiler statistics and pie charts.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Redraws attachments in the assistant editor.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Maintains your place in the captured frame, providing an interactive environment to enhance your shader performance tuning.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "To avoid getting misleading results between different runs, using a consistent performance state is useful when iterating on your shader.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can profile using a specific performance state by clicking the GPU Profiler button in the debug bar.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gputools-metal-debugger-se-induce-performance-0.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Then, select your desired performance state.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gputools-metal-debugger-se-induce-performance-1.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your shader is producing incorrect results, you can also debug it.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/Debugging-the-shaders-within-a-draw-command-or-compute-dispatch",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Xcode-PageImage-card.png": {
+      "alt": "The Xcode logo on a blue gradient background.",
+      "identifier": "Xcode-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cc63eacd8f7f660388b46204d1d9bbcb/Xcode-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/62dba87d5f60ec96eb48882c9dff86d8/Xcode-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Xcode/documentation/Xcode": {
+      "abstract": [
+        {
+          "text": "Build, test, and submit your app with Apple’s integrated development environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode",
+      "images": [
+        {
+          "identifier": "Xcode-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Building-your-project-with-embedded-shader-sources": {
+      "abstract": [
+        {
+          "text": "Prepare to debug your project’s shaders by including source code in the build.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Building-your-project-with-embedded-shader-sources",
+      "kind": "article",
+      "role": "article",
+      "title": "Building your project with embedded shader sources",
+      "type": "topic",
+      "url": "/documentation/xcode/building-your-project-with-embedded-shader-sources"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Capturing-a-Metal-workload-in-Xcode": {
+      "abstract": [
+        {
+          "text": "Analyze your app’s performance by configuring your project to use the Metal debugger.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Capturing-a-Metal-workload-in-Xcode",
+      "kind": "article",
+      "role": "article",
+      "title": "Capturing a Metal workload in Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode/capturing-a-metal-workload-in-xcode"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Debugging-the-shaders-within-a-draw-command-or-compute-dispatch": {
+      "abstract": [
+        {
+          "text": "Identify and fix problematic shaders in your app using the shader debugger.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Debugging-the-shaders-within-a-draw-command-or-compute-dispatch",
+      "kind": "article",
+      "role": "article",
+      "title": "Debugging the shaders within a draw command or compute dispatch",
+      "type": "topic",
+      "url": "/documentation/xcode/debugging-the-shaders-within-a-draw-command-or-compute-dispatch"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Inspecting-acceleration-structures": {
+      "abstract": [
+        {
+          "text": "Reveal ray intersection bottlenecks by examining your acceleration structures.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Inspecting-acceleration-structures",
+      "kind": "article",
+      "role": "article",
+      "title": "Inspecting acceleration structures",
+      "type": "topic",
+      "url": "/documentation/xcode/inspecting-acceleration-structures"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Inspecting-buffers": {
+      "abstract": [
+        {
+          "text": "Confirm your buffer formats by examining buffer content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Inspecting-buffers",
+      "kind": "article",
+      "role": "article",
+      "title": "Inspecting buffers",
+      "type": "topic",
+      "url": "/documentation/xcode/inspecting-buffers"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Inspecting-pipeline-states": {
+      "abstract": [
+        {
+          "text": "Determine how your render and compute passes behave by examining their properties.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Inspecting-pipeline-states",
+      "kind": "article",
+      "role": "article",
+      "title": "Inspecting pipeline states",
+      "type": "topic",
+      "url": "/documentation/xcode/inspecting-pipeline-states"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Inspecting-sampler-states": {
+      "abstract": [
+        {
+          "text": "Verify your sampler state configurations by examining their properties.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Inspecting-sampler-states",
+      "kind": "article",
+      "role": "article",
+      "title": "Inspecting sampler states",
+      "type": "topic",
+      "url": "/documentation/xcode/inspecting-sampler-states"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Inspecting-textures": {
+      "abstract": [
+        {
+          "text": "Discover issues in your textures by examining their content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Inspecting-textures",
+      "kind": "article",
+      "role": "article",
+      "title": "Inspecting textures",
+      "type": "topic",
+      "url": "/documentation/xcode/inspecting-textures"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Inspecting-the-bound-resources-for-a-command": {
+      "abstract": [
+        {
+          "text": "Discover issues by examining the bound resources at any point in an encoder.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Inspecting-the-bound-resources-for-a-command",
+      "kind": "article",
+      "role": "article",
+      "title": "Inspecting the bound resources for a command",
+      "type": "topic",
+      "url": "/documentation/xcode/inspecting-the-bound-resources-for-a-command"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Metal-debugger": {
+      "abstract": [
+        {
+          "text": "Debug and profile your Metal workload with a GPU trace.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Metal-debugger",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Metal debugger",
+      "type": "topic",
+      "url": "/documentation/xcode/metal-debugger"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Replaying-a-GPU-trace-file": {
+      "abstract": [
+        {
+          "text": "Debug and profile your app’s performance using a GPU trace file in the Metal debugger.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Replaying-a-GPU-trace-file",
+      "kind": "article",
+      "role": "article",
+      "title": "Replaying a GPU trace file",
+      "type": "topic",
+      "url": "/documentation/xcode/replaying-a-gpu-trace-file"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/debugging": {
+      "abstract": [
+        {
+          "text": "Identify and address issues in your app using the Xcode debugger, Xcode Organizer, Metal debugger, and Instruments.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/debugging",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Debugging",
+      "type": "topic",
+      "url": "/documentation/xcode/debugging"
+    },
+    "doc://com.apple.documentation/documentation/Metal/tailor-your-apps-for-apple-gpus-and-tile-based-deferred-rendering": {
+      "abstract": [
+        {
+          "text": "Learn about characteristic Apple GPU features, including imageblocks, tile shaders, and raster order groups.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Metal/tailor-your-apps-for-apple-gpus-and-tile-based-deferred-rendering",
+      "kind": "article",
+      "role": "article",
+      "title": "Tailor Your Apps for Apple GPUs and Tile-Based Deferred Rendering",
+      "type": "topic",
+      "url": "/documentation/Metal/tailor-your-apps-for-apple-gpus-and-tile-based-deferred-rendering"
+    },
+    "doc://com.apple.documentation/documentation/Xcode/fixing-issues-in-your-code-as-you-type": {
+      "abstract": [
+        {
+          "text": "Minimize typing-related errors using code completion, and let Xcode fix common mistakes for you.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Xcode/fixing-issues-in-your-code-as-you-type",
+      "kind": "article",
+      "role": "article",
+      "title": "Fixing issues in your code as you type",
+      "type": "topic",
+      "url": "/documentation/Xcode/fixing-issues-in-your-code-as-you-type"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "gputools-metal-debugger-se-deployment-target.png": {
+      "alt": "A screenshot of the Xcode project editor showing the drop-down menu to choose a minimum deployment target.",
+      "identifier": "gputools-metal-debugger-se-deployment-target.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/50c1c5bc7766f8fd754a50ee7214563e/gputools-metal-debugger-se-deployment-target.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c2400502e7aeb292ef214224d02589ab/gputools-metal-debugger-se-deployment-target@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/51b3e2c6416ac8684b877a869a1ea60b/gputools-metal-debugger-se-deployment-target~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e7ce49bd6bcce8bf9a98a046641a4643/gputools-metal-debugger-se-deployment-target~dark@2x.png"
+        }
+      ]
+    },
+    "gputools-metal-debugger-se-induce-performance-0.png": {
+      "alt": "A screenshot of the GPU Profiler button.",
+      "identifier": "gputools-metal-debugger-se-induce-performance-0.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/8183f595a9a41b3ee1f0599997f171cc/gputools-metal-debugger-se-induce-performance-0.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/68df1c3d2ba412e5c521788ae7a981a1/gputools-metal-debugger-se-induce-performance-0@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c6cddd9a1ccb7b066e7e57be57b4db33/gputools-metal-debugger-se-induce-performance-0~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4b54d7838f9e1e97cfe3bc0f61350a24/gputools-metal-debugger-se-induce-performance-0~dark@2x.png"
+        }
+      ]
+    },
+    "gputools-metal-debugger-se-induce-performance-1.png": {
+      "alt": "A screenshot of the GPU Profiler popover to choose a performance state.",
+      "identifier": "gputools-metal-debugger-se-induce-performance-1.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5478d42eb6f4a5f0ee79a461ef09a326/gputools-metal-debugger-se-induce-performance-1.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/61daf532caabadf630af1cb1f3cd3bbf/gputools-metal-debugger-se-induce-performance-1@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/7aa316f437b9f6e4943ee31c1d639c33/gputools-metal-debugger-se-induce-performance-1~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/7ab8d1c563203d747be029207c9b6244/gputools-metal-debugger-se-induce-performance-1~dark@2x.png"
+        }
+      ]
+    },
+    "gputools-metal-debugger-se-numbers.png": {
+      "alt": "A screenshot of the Shader editor highlighting the per-line shader profiling data next to the source code. It displays weights in percentages and categorical breakdowns in pie charts.",
+      "identifier": "gputools-metal-debugger-se-numbers.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/09836723ad5d8c563f7327210383495a/gputools-metal-debugger-se-numbers.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/3deba516335f4981cfc8c4c13c3e8073/gputools-metal-debugger-se-numbers@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/7048424540a8a57e25f4c918a52059e2/gputools-metal-debugger-se-numbers~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e3b6cc37397005248e2b47edc3f776e7/gputools-metal-debugger-se-numbers~dark@2x.png"
+        }
+      ]
+    },
+    "gputools-metal-debugger-se-profile-generate.png": {
+      "alt": "A screenshot of the Shader editor highlighting the Generate button at the top right.",
+      "identifier": "gputools-metal-debugger-se-profile-generate.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1e8c65b113fb66cf9fc9c3e9c8fbf372/gputools-metal-debugger-se-profile-generate.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/0a3618d437b6f53d12ed4a946db4314d/gputools-metal-debugger-se-profile-generate@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e34fafc95b6c260266b9fe1b4a5e2853/gputools-metal-debugger-se-profile-generate~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/516a6ac4b3514707887970a23125d5c0/gputools-metal-debugger-se-profile-generate~dark@2x.png"
+        }
+      ]
+    },
+    "gputools-metal-debugger-se-profile-warnings.png": {
+      "alt": "A screenshot showing a warning about a mismatching deployment target and OS version.",
+      "identifier": "gputools-metal-debugger-se-profile-warnings.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/239bc3b9ac579de3148843e43697eee5/gputools-metal-debugger-se-profile-warnings.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/8f28d38c613b07944bf8035498be374d/gputools-metal-debugger-se-profile-warnings@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/85c2c759f6ddc8cc553a32403897dcf7/gputools-metal-debugger-se-profile-warnings~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f24eda97555a3cf6bd8b7ac000f0361f/gputools-metal-debugger-se-profile-warnings~dark@2x.png"
+        }
+      ]
+    },
+    "gputools-metal-debugger-se-profiler-numbers.png": {
+      "alt": "A screenshot of the Shader editor showing the categorical performance breakdown of a shader line in the popover.",
+      "identifier": "gputools-metal-debugger-se-profiler-numbers.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/67c596febb56d02ac3544b9d58372c63/gputools-metal-debugger-se-profiler-numbers.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/dd7ed266d6266e81a5bb9e9cb0837ce4/gputools-metal-debugger-se-profiler-numbers@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/318434b1fa30f1c7b5dbfbfb1bbc9544/gputools-metal-debugger-se-profiler-numbers~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/8d94d2d4d933a7e42037a4ee0255ae56/gputools-metal-debugger-se-profiler-numbers~dark@2x.png"
+        }
+      ]
+    },
+    "gputools-metal-debugger-se-reload.png": {
+      "alt": "A screenshot of the Reload Shaders button in the debug bar.",
+      "identifier": "gputools-metal-debugger-se-reload.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/50af276811335fc3cc1ffe15b561edc3/gputools-metal-debugger-se-reload.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/3772f6e2fc52fa9d8f2252a384c418df/gputools-metal-debugger-se-reload@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4bb25bae36e5e645e1445f378330973e/gputools-metal-debugger-se-reload~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/fe4b2bdb9a88deac665c9169874d9959/gputools-metal-debugger-se-reload~dark@2x.png"
+        }
+      ]
+    },
+    "gputools-metal-debugger-se-source.png": {
+      "alt": "A screenshot of the Shader editor showing a list of shader source files on the left and the contents of the selected shader source file on the right.",
+      "identifier": "gputools-metal-debugger-se-source.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/7f5b90a34014ea16d01ddbcf47b0e42a/gputools-metal-debugger-se-source.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2676ede9b5b80647e96166d46d3c2027/gputools-metal-debugger-se-source@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/36b0d2441959f35e485630bfc3f16f31/gputools-metal-debugger-se-source~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/49e4daafcca8f400c5357efc9dfa6bdb/gputools-metal-debugger-se-source~dark@2x.png"
+        }
+      ]
+    },
+    "https://developer.apple.com/metal/Metal-Feature-Set-Tables.pdf": {
+      "identifier": "https://developer.apple.com/metal/Metal-Feature-Set-Tables.pdf",
+      "title": "Metal feature set tables",
+      "titleInlineContent": [
+        {
+          "text": "Metal feature set tables",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/metal/Metal-Feature-Set-Tables.pdf"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Metal-resource-inspection",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Xcode/documentation/Xcode/Inspecting-acceleration-structures",
+        "doc://com.apple.Xcode/documentation/Xcode/Inspecting-buffers",
+        "doc://com.apple.Xcode/documentation/Xcode/Inspecting-pipeline-states",
+        "doc://com.apple.Xcode/documentation/Xcode/Inspecting-sampler-states",
+        "doc://com.apple.Xcode/documentation/Xcode/Inspecting-textures"
+      ],
+      "title": "Metal resource inspection"
+    }
+  ]
+}

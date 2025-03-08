@@ -1,0 +1,916 @@
+{
+  "abstract": [
+    {
+      "text": "Construct a composite image from images that capture the same scene.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.vision/documentation/Vision",
+        "doc://com.apple.vision/documentation/Vision/original-objective-c-and-swift-api"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.vision/documentation/Vision/aligning-similar-images"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Vision"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "14.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "14.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "11.0",
+        "name": "macOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "12.4",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Aligning Similar Images"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample app uses image registration requests from the Vision framework to calculate an alignment transform between two images of the same scene that are slightly different. The sample app uses the alignment transform to construct a single, composite image that contains the aligned content of both images.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Provide-Input-Images",
+          "level": 3,
+          "text": "Provide Input Images",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Image registration requests require two images, a reference image and a floating image. The best alignment occurs when the content of the input images is very similar. In this sample app, the input images simulate an image capture of the same scene from a slightly different perspective. The two images are nearly identical — one has a slight warp and is offset from the other. The sample app displays the input images next to the aligned composite image for visual comparison in the ",
+              "type": "text"
+            },
+            {
+              "code": "registrationImages",
+              "type": "codeVoice"
+            },
+            {
+              "text": " view.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Select-a-Registration-Mechanism",
+          "level": 3,
+          "text": "Select a Registration Mechanism",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Vision framework provides a translational image registration mechanism, ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/vision/vntranslationalimageregistrationrequest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and a homographic image registration mechanism, ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/vision/vnhomographicimageregistrationrequest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". The sample app provides a toggle between these two image registration mechanisms to visually demonstrate the differences in their image alignment observations.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Apply-the-Alignment-Observation",
+          "level": 3,
+          "text": "Apply the Alignment Observation",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This project applies the alignment observation for each image registration mechanism in the ",
+              "type": "text"
+            },
+            {
+              "code": "register",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function, and returns an image that contains the composited result. The ",
+              "type": "text"
+            },
+            {
+              "code": "register",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function uses the ",
+              "type": "text"
+            },
+            {
+              "code": "makeAlignedImage",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function to transform the floating image.  The sample uses the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/coreimage/ciimage/1438203-transformed",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to apply the translational transform for the translational image registration mechanism, and uses the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/coreimage/ciperspectivetransform",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " filter to apply the pespective transform for the homographic image registration mechanism.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "af283219b3d2/AligningSimilarImages.zip": {
+      "checksum": "af283219b3d2561e709859fa05ce6d07a9aafd2fb1aeb42a8817b14a1cc521d8f2349f5fe8890fe477e63776aa0fafb496d730cd78dce1299891fa1291e00ea0",
+      "identifier": "af283219b3d2/AligningSimilarImages.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/af283219b3d2/AligningSimilarImages.zip"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.vision/documentation/Vision": {
+      "abstract": [
+        {
+          "text": "Apply computer vision algorithms to perform a variety of tasks on input images and videos.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Vision",
+      "type": "topic",
+      "url": "/documentation/vision"
+    },
+    "doc://com.apple.vision/documentation/Vision/VNHomographicImageRegistrationRequest": {
+      "abstract": [
+        {
+          "text": "An image-analysis request that determines the perspective warp matrix necessary to align the content of two images.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VNHomographicImageRegistrationRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/VNHomographicImageRegistrationRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VNHomographicImageRegistrationRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "VNHomographicImageRegistrationRequest",
+      "type": "topic",
+      "url": "/documentation/vision/vnhomographicimageregistrationrequest"
+    },
+    "doc://com.apple.vision/documentation/Vision/VNImageAlignmentObservation": {
+      "abstract": [
+        {
+          "text": "The abstract superclass for image-analysis results that describe the relative alignment of two images.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VNImageAlignmentObservation"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/VNImageAlignmentObservation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VNImageAlignmentObservation"
+        }
+      ],
+      "role": "symbol",
+      "title": "VNImageAlignmentObservation",
+      "type": "topic",
+      "url": "/documentation/vision/vnimagealignmentobservation"
+    },
+    "doc://com.apple.vision/documentation/Vision/VNImageHomographicAlignmentObservation": {
+      "abstract": [
+        {
+          "text": "An object that represents a perspective warp transformation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VNImageHomographicAlignmentObservation"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/VNImageHomographicAlignmentObservation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VNImageHomographicAlignmentObservation"
+        }
+      ],
+      "role": "symbol",
+      "title": "VNImageHomographicAlignmentObservation",
+      "type": "topic",
+      "url": "/documentation/vision/vnimagehomographicalignmentobservation"
+    },
+    "doc://com.apple.vision/documentation/Vision/VNImageRegistrationRequest": {
+      "abstract": [
+        {
+          "text": "The abstract superclass for image-analysis requests that align images according to their content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VNImageRegistrationRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/VNImageRegistrationRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VNImageRegistrationRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "VNImageRegistrationRequest",
+      "type": "topic",
+      "url": "/documentation/vision/vnimageregistrationrequest"
+    },
+    "doc://com.apple.vision/documentation/Vision/VNImageTranslationAlignmentObservation": {
+      "abstract": [
+        {
+          "text": "Affine transform information that an image-alignment request produces.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VNImageTranslationAlignmentObservation"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/VNImageTranslationAlignmentObservation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VNImageTranslationAlignmentObservation"
+        }
+      ],
+      "role": "symbol",
+      "title": "VNImageTranslationAlignmentObservation",
+      "type": "topic",
+      "url": "/documentation/vision/vnimagetranslationalignmentobservation"
+    },
+    "doc://com.apple.vision/documentation/Vision/VNTargetedImageRequest": {
+      "abstract": [
+        {
+          "text": "The abstract superclass for image analysis requests that operate on both the processed image and a secondary image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VNTargetedImageRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/VNTargetedImageRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VNTargetedImageRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "VNTargetedImageRequest",
+      "type": "topic",
+      "url": "/documentation/vision/vntargetedimagerequest"
+    },
+    "doc://com.apple.vision/documentation/Vision/VNTrackHomographicImageRegistrationRequest": {
+      "abstract": [
+        {
+          "text": "An image-analysis request, as a stateful request you track over time, that determines the perspective warp matrix necessary to align the content of two images.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VNTrackHomographicImageRegistrationRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/VNTrackHomographicImageRegistrationRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VNTrackHomographicImageRegistrationRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "VNTrackHomographicImageRegistrationRequest",
+      "type": "topic",
+      "url": "/documentation/vision/vntrackhomographicimageregistrationrequest"
+    },
+    "doc://com.apple.vision/documentation/Vision/VNTrackTranslationalImageRegistrationRequest": {
+      "abstract": [
+        {
+          "text": "An image-analysis request, as a stateful request you track over time, that determines the affine transform necessary to align the content of two images.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VNTrackTranslationalImageRegistrationRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/VNTrackTranslationalImageRegistrationRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VNTrackTranslationalImageRegistrationRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "VNTrackTranslationalImageRegistrationRequest",
+      "type": "topic",
+      "url": "/documentation/vision/vntracktranslationalimageregistrationrequest"
+    },
+    "doc://com.apple.vision/documentation/Vision/VNTranslationalImageRegistrationRequest": {
+      "abstract": [
+        {
+          "text": "An image-analysis request that determines the affine transform necessary to align the content of two images.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VNTranslationalImageRegistrationRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/VNTranslationalImageRegistrationRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VNTranslationalImageRegistrationRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "VNTranslationalImageRegistrationRequest",
+      "type": "topic",
+      "url": "/documentation/vision/vntranslationalimageregistrationrequest"
+    },
+    "doc://com.apple.vision/documentation/Vision/original-objective-c-and-swift-api": {
+      "abstract": [],
+      "identifier": "doc://com.apple.vision/documentation/Vision/original-objective-c-and-swift-api",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Original Objective-C and Swift API",
+      "type": "topic",
+      "url": "/documentation/vision/original-objective-c-and-swift-api"
+    },
+    "https://developer.apple.com/documentation/coreimage/ciimage/1438203-transformed": {
+      "identifier": "https://developer.apple.com/documentation/coreimage/ciimage/1438203-transformed",
+      "title": "transformed(by:)",
+      "titleInlineContent": [
+        {
+          "text": "transformed(by:)",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/coreimage/ciimage/1438203-transformed"
+    },
+    "https://developer.apple.com/documentation/coreimage/ciperspectivetransform": {
+      "identifier": "https://developer.apple.com/documentation/coreimage/ciperspectivetransform",
+      "title": "CIPerspectiveTransform",
+      "titleInlineContent": [
+        {
+          "text": "CIPerspectiveTransform",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/coreimage/ciperspectivetransform"
+    },
+    "https://developer.apple.com/documentation/vision/vnhomographicimageregistrationrequest": {
+      "identifier": "https://developer.apple.com/documentation/vision/vnhomographicimageregistrationrequest",
+      "title": "VNHomographicImageRegistrationRequest",
+      "titleInlineContent": [
+        {
+          "text": "VNHomographicImageRegistrationRequest",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/vision/vnhomographicimageregistrationrequest"
+    },
+    "https://developer.apple.com/documentation/vision/vntranslationalimageregistrationrequest": {
+      "identifier": "https://developer.apple.com/documentation/vision/vntranslationalimageregistrationrequest",
+      "title": "VNTranslationalImageRegistrationRequest",
+      "titleInlineContent": [
+        {
+          "text": "VNTranslationalImageRegistrationRequest",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/vision/vntranslationalimageregistrationrequest"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "af283219b3d2/AligningSimilarImages.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Image-alignment",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.vision/documentation/Vision/VNTargetedImageRequest",
+        "doc://com.apple.vision/documentation/Vision/VNImageRegistrationRequest",
+        "doc://com.apple.vision/documentation/Vision/VNTranslationalImageRegistrationRequest",
+        "doc://com.apple.vision/documentation/Vision/VNTrackTranslationalImageRegistrationRequest",
+        "doc://com.apple.vision/documentation/Vision/VNHomographicImageRegistrationRequest",
+        "doc://com.apple.vision/documentation/Vision/VNTrackHomographicImageRegistrationRequest",
+        "doc://com.apple.vision/documentation/Vision/VNImageAlignmentObservation",
+        "doc://com.apple.vision/documentation/Vision/VNImageTranslationAlignmentObservation",
+        "doc://com.apple.vision/documentation/Vision/VNImageHomographicAlignmentObservation"
+      ],
+      "title": "Image alignment"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Image-alignment",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.vision/documentation/Vision/VNTargetedImageRequest",
+                "doc://com.apple.vision/documentation/Vision/VNImageRegistrationRequest",
+                "doc://com.apple.vision/documentation/Vision/VNTranslationalImageRegistrationRequest",
+                "doc://com.apple.vision/documentation/Vision/VNTrackTranslationalImageRegistrationRequest",
+                "doc://com.apple.vision/documentation/Vision/VNHomographicImageRegistrationRequest",
+                "doc://com.apple.vision/documentation/Vision/VNTrackHomographicImageRegistrationRequest",
+                "doc://com.apple.vision/documentation/Vision/VNImageAlignmentObservation",
+                "doc://com.apple.vision/documentation/Vision/VNImageTranslationAlignmentObservation",
+                "doc://com.apple.vision/documentation/Vision/VNImageHomographicAlignmentObservation"
+              ],
+              "title": "Image alignment"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNTargetedImageRequest/title",
+          "value": "VNTargetedImageRequest"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNTargetedImageRequest/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VNTargetedImageRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNTargetedImageRequest/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VNTargetedImageRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNImageAlignmentObservation/title",
+          "value": "VNImageAlignmentObservation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNImageAlignmentObservation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VNImageAlignmentObservation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNImageAlignmentObservation/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VNImageAlignmentObservation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNTrackTranslationalImageRegistrationRequest/title",
+          "value": "VNTrackTranslationalImageRegistrationRequest"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNTrackTranslationalImageRegistrationRequest/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VNTrackTranslationalImageRegistrationRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNTrackTranslationalImageRegistrationRequest/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VNTrackTranslationalImageRegistrationRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNImageTranslationAlignmentObservation/title",
+          "value": "VNImageTranslationAlignmentObservation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNImageTranslationAlignmentObservation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VNImageTranslationAlignmentObservation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNImageTranslationAlignmentObservation/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VNImageTranslationAlignmentObservation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNTranslationalImageRegistrationRequest/title",
+          "value": "VNTranslationalImageRegistrationRequest"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNTranslationalImageRegistrationRequest/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VNTranslationalImageRegistrationRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNTranslationalImageRegistrationRequest/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VNTranslationalImageRegistrationRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNImageRegistrationRequest/title",
+          "value": "VNImageRegistrationRequest"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNImageRegistrationRequest/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VNImageRegistrationRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNImageRegistrationRequest/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VNImageRegistrationRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNTrackHomographicImageRegistrationRequest/title",
+          "value": "VNTrackHomographicImageRegistrationRequest"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNTrackHomographicImageRegistrationRequest/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VNTrackHomographicImageRegistrationRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNTrackHomographicImageRegistrationRequest/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VNTrackHomographicImageRegistrationRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNImageHomographicAlignmentObservation/title",
+          "value": "VNImageHomographicAlignmentObservation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNImageHomographicAlignmentObservation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VNImageHomographicAlignmentObservation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNImageHomographicAlignmentObservation/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VNImageHomographicAlignmentObservation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNHomographicImageRegistrationRequest/title",
+          "value": "VNHomographicImageRegistrationRequest"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNHomographicImageRegistrationRequest/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VNHomographicImageRegistrationRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNHomographicImageRegistrationRequest/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VNHomographicImageRegistrationRequest"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/vision/aligning-similar-images"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/vision/aligning-similar-images"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

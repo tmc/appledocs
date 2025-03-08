@@ -1,0 +1,1264 @@
+{
+  "abstract": [
+    {
+      "text": "Observe audio session notifications to ensure that your app responds appropriately to interruptions.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.avfaudio/documentation/AVFAudio"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.avfaudio/documentation/AVFAudio/handling-audio-interruptions"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "AVFAudio"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Handling audio interruptions"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Interruptions are a common part of the iOS and watchOS user experiences. For example, consider the scenario of receiving a phone call while you’re watching a movie in the TV app on your iPhone. In this case, the movie’s audio fades out, playback pauses, and the sound of the call’s ringtone fades in. If you decline the call, control returns to the TV app, and playback begins again as the movie’s audio fades in.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "At the center of this behavior is your app’s audio session. As interruptions begin and end, the audio session notifies any registered observers so they can take appropriate action. For example, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVPlayer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " monitors your app’s audio session and automatically pauses playback in response to interruption events. You can monitor these changes by key-value observing the player’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVPlayer/timeControlStatus-swift.property",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property, and update your user interface as necessary when the player pauses and resumes playback.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Customize-the-interruption-behavior",
+          "level": 3,
+          "text": "Customize the interruption behavior",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Most apps rely on the system’s default interruption behavior. However, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " provides ways to customize the default behavior to better accommodate your app’s needs:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Recent iPad models provide a feature that mutes the built-in microphone at the hardware level when the user closes the device’s Smart Folio cover. If your app plays and records audio, you may want to continue playback even if the system mutes the microphone. You can disable the default interruption behavior by setting the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSession/CategoryOptions-swift.struct/overrideMutedMicrophoneInterruption",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " option when configuring your audio session.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "System alerts, such as receiving an incoming phone call, interrupt the active audio session. If you prefer that the system not interrupt your app’s audio session in these cases, you can indicate this preference by setting a value for the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSession/setPrefersNoInterruptionsFromSystemAlerts(_:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Observe-audio-session-interruptions",
+          "level": 3,
+          "text": "Observe audio session interruptions",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can directly observe interruption notifications that ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " posts. This might be useful if you want to know when the system pauses playback due to an interruption or another reason, such as a route change. To observe audio interruptions, begin by registering to observe notifications of type ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSession/interruptionNotification",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func setupNotifications() {",
+            "    // Get the default notification center instance.",
+            "    let nc = NotificationCenter.default",
+            "    nc.addObserver(self,",
+            "                   selector: #selector(handleInterruption),",
+            "                   name: AVAudioSession.interruptionNotification,",
+            "                   object: AVAudioSession.sharedInstance())",
+            "}",
+            "",
+            "@objc func handleInterruption(notification: Notification) {",
+            "    // To implement.",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Handle-audio-session-interruptions",
+          "level": 3,
+          "text": "Handle audio session interruptions",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The posted ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/notification",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object contains a populated user-information dictionary that provides the details of the interruption. You determine the type of interruption by retrieving the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSession/InterruptionType",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " value from the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/notification/1779652-userinfo",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " dictionary. The interruption type indicates whether the interruption is beginning or ending.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@objc func handleInterruption(notification: Notification) {",
+            "    guard let userInfo = notification.userInfo,",
+            "        let typeValue = userInfo[AVAudioSessionInterruptionTypeKey] as? UInt,",
+            "        let type = AVAudioSession.InterruptionType(rawValue: typeValue) else {",
+            "            return",
+            "    }",
+            "",
+            "    // Switch over the interruption type.",
+            "    switch type {",
+            "",
+            "    case .began:",
+            "        // An interruption began. Update the UI as necessary.",
+            "",
+            "    case .ended:",
+            "       // An interruption ended. Resume playback, if appropriate.",
+            "",
+            "        guard let optionsValue = userInfo[AVAudioSessionInterruptionOptionKey] as? UInt else { return }",
+            "        let options = AVAudioSession.InterruptionOptions(rawValue: optionsValue)",
+            "        if options.contains(.shouldResume) {",
+            "            // An interruption ended. Resume playback.",
+            "        } else {",
+            "            // An interruption ended. Don't resume playback.",
+            "        }",
+            "",
+            "    default: ()",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the interruption type is ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSession/InterruptionType/ended",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/notification/1779652-userinfo",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " dictionary contains an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSession/InterruptionOptions",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " value, which you use to determine whether playback automatically resumes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.avfaudio/documentation/AVFAudio": {
+      "abstract": [
+        {
+          "text": "Play, record, and process audio; configure your app’s system audio behavior.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AVFAudio",
+      "type": "topic",
+      "url": "/documentation/avfaudio"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioApplication": {
+      "abstract": [
+        {
+          "text": "An object that manages one or more audio sessions that belong to an app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAudioApplication"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioApplication",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAudioApplication"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAudioApplication",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudioapplication"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioRoutingArbiter": {
+      "abstract": [
+        {
+          "text": "An object for configuring macOS apps to participate in AirPods Automatic Switching.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAudioRoutingArbiter"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioRoutingArbiter",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAudioRoutingArbiter"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAudioRoutingArbiter",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudioroutingarbiter"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSession": {
+      "abstract": [
+        {
+          "text": "An object that communicates to the system how you intend to use audio in your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAudioSession"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSession",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAudioSession"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAudioSession",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudiosession"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSession/CategoryOptions-swift.struct/overrideMutedMicrophoneInterruption": {
+      "abstract": [
+        {
+          "text": "An option that indicates whether the system interrupts the audio session when it mutes the built-in microphone.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "overrideMutedMicrophoneInterruption"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVAudioSession",
+          "text": "AVAudioSession"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@AVAudioSessionCategoryOptions",
+          "text": "CategoryOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSession/CategoryOptions-swift.struct/overrideMutedMicrophoneInterruption",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAudioSessionCategoryOptionOverrideMutedMicrophoneInterruption"
+        }
+      ],
+      "role": "symbol",
+      "title": "overrideMutedMicrophoneInterruption",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudiosession/categoryoptions-swift.struct/overridemutedmicrophoneinterruption"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSession/InterruptionOptions": {
+      "abstract": [
+        {
+          "text": "Constants that indicate the state of an audio session after an interruption.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "InterruptionOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSession/InterruptionOptions",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "InterruptionOptions"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAudioSession.InterruptionOptions",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudiosession/interruptionoptions"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSession/InterruptionType": {
+      "abstract": [
+        {
+          "text": "Constants that describe the type of an audio interruption.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "InterruptionType"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSession/InterruptionType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "InterruptionType"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAudioSession.InterruptionType",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudiosession/interruptiontype"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSession/InterruptionType/ended": {
+      "abstract": [
+        {
+          "text": "A type that indicates that the operating system ended interrupting the audio session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ended"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSession/InterruptionType/ended",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAudioSessionInterruptionTypeEnded"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAudioSession.InterruptionType.ended",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudiosession/interruptiontype/ended"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSession/interruptionNotification": {
+      "abstract": [
+        {
+          "text": "A notification the system posts when an audio interruption occurs.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "interruptionNotification"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSNotification",
+          "text": "NSNotification"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSNotificationName",
+          "text": "Name"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSession/interruptionNotification",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAudioSessionInterruptionNotification"
+        }
+      ],
+      "role": "symbol",
+      "title": "interruptionNotification",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudiosession/interruptionnotification"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSession/setPrefersNoInterruptionsFromSystemAlerts(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the preference for not interrupting the audio session with system alerts.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setPrefersNoInterruptionsFromSystemAlerts"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSession/setPrefersNoInterruptionsFromSystemAlerts(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setPrefersNoInterruptionsFromSystemAlerts:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setPrefersNoInterruptionsFromSystemAlerts(_:)",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudiosession/setprefersnointerruptionsfromsystemalerts(_:)"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/Adding-synthesized-speech-to-calls": {
+      "abstract": [
+        {
+          "text": "Provide a more accessible experience by adding your app’s audio to a call.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/Adding-synthesized-speech-to-calls",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Adding synthesized speech to calls",
+      "type": "topic",
+      "url": "/documentation/avfaudio/adding-synthesized-speech-to-calls"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/capturing-stereo-audio-from-built-in-microphones": {
+      "abstract": [
+        {
+          "text": "Configure an iOS device’s built-in microphones to add stereo recording capabilities to your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/capturing-stereo-audio-from-built-in-microphones",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Capturing stereo audio from built-In microphones",
+      "type": "topic",
+      "url": "/documentation/avfaudio/capturing-stereo-audio-from-built-in-microphones"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/responding-to-audio-route-changes": {
+      "abstract": [
+        {
+          "text": "Observe audio session notifications to ensure that your app responds appropriately to route changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/responding-to-audio-route-changes",
+      "kind": "article",
+      "role": "article",
+      "title": "Responding to audio route changes",
+      "type": "topic",
+      "url": "/documentation/avfaudio/responding-to-audio-route-changes"
+    },
+    "doc://com.apple.documentation/documentation/AVFoundation/AVPlayer": {
+      "abstract": [
+        {
+          "text": "An object that provides the interface to control the player’s transport behavior.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVPlayer"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVPlayer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AVPlayer",
+      "type": "topic",
+      "url": "/documentation/AVFoundation/AVPlayer"
+    },
+    "doc://com.apple.documentation/documentation/AVFoundation/AVPlayer/timeControlStatus-swift.property": {
+      "abstract": [
+        {
+          "text": "A value that indicates whether playback is in progress, paused indefinitely, or waiting for network conditions to improve.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "timeControlStatus"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVPlayer",
+          "text": "AVPlayer"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@AVPlayerTimeControlStatus",
+          "text": "TimeControlStatus"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVPlayer/timeControlStatus-swift.property",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "timeControlStatus",
+      "type": "topic",
+      "url": "/documentation/AVFoundation/AVPlayer/timeControlStatus-swift.property"
+    },
+    "doc://com.apple.documentation/documentation/foundation/notification": {
+      "abstract": [
+        {
+          "text": "A container for information broadcast through a notification center to all registered observers. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "Notification"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/notification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Notification",
+      "type": "topic",
+      "url": "/documentation/foundation/notification"
+    },
+    "doc://com.apple.documentation/documentation/foundation/notification/1779652-userinfo": {
+      "abstract": [
+        {
+          "text": "Storage for values or objects related to this notification.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "userInfo"
+        },
+        {
+          "kind": "text",
+          "text": ": [AnyHashable : Any]?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/notification/1779652-userinfo",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "userInfo",
+      "type": "topic",
+      "url": "/documentation/foundation/notification/1779652-userinfo"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "System-audio",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.avfaudio/documentation/AVFAudio/responding-to-audio-route-changes",
+        "doc://com.apple.avfaudio/documentation/AVFAudio/Adding-synthesized-speech-to-calls",
+        "doc://com.apple.avfaudio/documentation/AVFAudio/capturing-stereo-audio-from-built-in-microphones",
+        "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSession",
+        "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioApplication",
+        "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioRoutingArbiter"
+      ],
+      "title": "System audio"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "System-audio",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.avfaudio/documentation/AVFAudio/responding-to-audio-route-changes",
+                "doc://com.apple.avfaudio/documentation/AVFAudio/Adding-synthesized-speech-to-calls",
+                "doc://com.apple.avfaudio/documentation/AVFAudio/capturing-stereo-audio-from-built-in-microphones",
+                "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioSession",
+                "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioApplication",
+                "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioRoutingArbiter"
+              ],
+              "title": "System audio"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioRoutingArbiter/title",
+          "value": "AVAudioRoutingArbiter"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioRoutingArbiter/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioRoutingArbiter"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioRoutingArbiter/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioRoutingArbiter"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFoundation~1AVPlayer~1timeControlStatus-swift.property/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "readonly"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@E@AVPlayerTimeControlStatus",
+              "text": "AVPlayerTimeControlStatus"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "timeControlStatus"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioSession~1CategoryOptions-swift.struct~1overrideMutedMicrophoneInterruption/title",
+          "value": "AVAudioSessionCategoryOptionOverrideMutedMicrophoneInterruption"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioSession~1CategoryOptions-swift.struct~1overrideMutedMicrophoneInterruption/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioSessionCategoryOptionOverrideMutedMicrophoneInterruption"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioSession~1InterruptionOptions/title",
+          "value": "AVAudioSessionInterruptionOptions"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioSession~1InterruptionOptions/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioSessionInterruptionOptions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioSession~1InterruptionOptions/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioSessionInterruptionOptions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioSession~1interruptionNotification/title",
+          "value": "AVAudioSessionInterruptionNotification"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioSession~1interruptionNotification/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioSessionInterruptionNotification"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioSession~1setPrefersNoInterruptionsFromSystemAlerts(_:)/title",
+          "value": "setPrefersNoInterruptionsFromSystemAlerts:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioSession~1setPrefersNoInterruptionsFromSystemAlerts(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setPrefersNoInterruptionsFromSystemAlerts:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFoundation~1AVPlayer/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AVPlayer"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioSession~1InterruptionType/title",
+          "value": "AVAudioSessionInterruptionType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioSession~1InterruptionType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioSessionInterruptionType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioSession~1InterruptionType/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioSessionInterruptionType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioSession~1InterruptionType~1ended/title",
+          "value": "AVAudioSessionInterruptionTypeEnded"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioSession~1InterruptionType~1ended/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioSessionInterruptionTypeEnded"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioSession/title",
+          "value": "AVAudioSession"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioSession/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioSession/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioApplication/title",
+          "value": "AVAudioApplication"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioApplication/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioApplication"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioApplication/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioApplication"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/avfaudio/handling-audio-interruptions"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/avfaudio/handling-audio-interruptions"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

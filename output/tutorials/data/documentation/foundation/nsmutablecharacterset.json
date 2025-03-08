@@ -1,0 +1,1519 @@
+{
+  "abstract": [
+    {
+      "text": "An object representing a mutable set of Unicode character values that bridges to ",
+      "type": "text"
+    },
+    {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/characterset",
+      "isActive": true,
+      "type": "reference"
+    },
+    {
+      "text": "; use ",
+      "type": "text"
+    },
+    {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutablecharacterset",
+      "isActive": false,
+      "type": "reference"
+    },
+    {
+      "text": " when you need reference semantics or other Foundation-specific behavior.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/strings_and_text",
+        "doc://com.apple.documentation/documentation/foundation/characterset"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/nsmutablecharacterset"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1408095,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSMutableCharacterSet",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "class "
+      },
+      {
+        "kind": "identifier",
+        "text": "NSMutableCharacterSet"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "NSMutableCharacterSet"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSMutableCharacterSet"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nscharacterset",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSCharacterSet",
+              "text": "NSCharacterSet"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "NSMutableCharacterSet",
+              "type": "codeVoice"
+            },
+            {
+              "text": " class declares the programmatic interface to objects that manage a modifiable set of Unicode characters. You can add or remove characters from a mutable character set as numeric values in ",
+              "type": "text"
+            },
+            {
+              "code": "NSRange",
+              "type": "codeVoice"
+            },
+            {
+              "text": " structures or as character values in strings, combine character sets by union or intersection, and invert a character set.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Mutable character sets are less efficient to use than immutable character sets. If you don’t need to change a character set after creating it, create an immutable copy with ",
+              "type": "text"
+            },
+            {
+              "code": "copy",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and use that.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "NSMutableCharacterSet",
+              "type": "codeVoice"
+            },
+            {
+              "text": " defines no primitive methods. Subclasses must implement all methods declared by this class in addition to the primitives of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nscharacterset",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". They must also implement ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutablecopying/1414175-mutablecopy",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "NSMutableCharacterSet",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is “toll-free bridged” with its Core Foundation counterpart, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfmutablecharacterset",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". See ",
+              "type": "text"
+            },
+            {
+              "identifier": "devLink-1745091",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for more information.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The Swift overlay to the Foundation framework provides the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/characterset",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " structure, which bridges to the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutablecharacterset",
+                  "isActive": false,
+                  "type": "reference"
+                },
+                {
+                  "text": " class and its immutable superclass, ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/nscharacterset",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".  For more information about value types, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "devLink-1752769",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " in ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "devLink-1752686",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "style": "important",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "devLink-1745091": {
+      "identifier": "devLink-1745091",
+      "title": "Toll-Free Bridging",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/General/Conceptual/CocoaEncyclopedia/Toll-FreeBridgin/Toll-FreeBridgin.html#//apple_ref/doc/uid/TP40010810-CH2"
+    },
+    "devLink-1752686": {
+      "identifier": "devLink-1752686",
+      "title": "Using Swift with Cocoa and Objective-C (Swift 4.1)",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/Swift/Conceptual/BuildingCocoaApps/index.html#//apple_ref/doc/uid/TP40014216"
+    },
+    "devLink-1752769": {
+      "identifier": "devLink-1752769",
+      "title": "Working with Cocoa Frameworks",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/Swift/Conceptual/BuildingCocoaApps/WorkingWithCocoaDataTypes.html#//apple_ref/doc/uid/TP40014216-CH6"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfmutablecharacterset": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfmutablecharacterset",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFMutableCharacterSet",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfmutablecharacterset"
+    },
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/characterset": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/characterset",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CharacterSet",
+      "type": "topic",
+      "url": "/documentation/foundation/characterset"
+    },
+    "doc://com.apple.documentation/documentation/foundation/characterset/referencetype": {
+      "abstract": [
+        {
+          "text": "An alias for this value type's equivalent reference type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "CharacterSet.ReferenceType"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/characterset/referencetype",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CharacterSet.ReferenceType",
+      "type": "topic",
+      "url": "/documentation/foundation/characterset/referencetype"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscharacterset": {
+      "abstract": [
+        {
+          "text": "An object representing a fixed set of Unicode character values that bridges to a ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/characterset",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": "; use ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/nscharacterset",
+          "isActive": false,
+          "type": "reference"
+        },
+        {
+          "text": " when you need reference semantics or other Foundation-specific behavior.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCharacterSet"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscharacterset",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCharacterSet",
+      "type": "topic",
+      "url": "/documentation/foundation/nscharacterset"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscopying": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscopying",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCopying",
+      "type": "topic",
+      "url": "/documentation/foundation/nscopying"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutablecharacterset": {
+      "abstract": [
+        {
+          "text": "An object representing a mutable set of Unicode character values that bridges to ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/characterset",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": "; use ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutablecharacterset",
+          "isActive": false,
+          "type": "reference"
+        },
+        {
+          "text": " when you need reference semantics or other Foundation-specific behavior.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSMutableCharacterSet"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutablecharacterset",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSMutableCharacterSet",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutablecharacterset"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutablecharacterset/1407361-letter": {
+      "abstract": [
+        {
+          "text": "Returns a character set containing the characters in Unicode General Category L* & M*.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "letter"
+        },
+        {
+          "kind": "text",
+          "text": "() -> NSMutableCharacterSet"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutablecharacterset/1407361-letter",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "letter()",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutablecharacterset/1407361-letter"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutablecharacterset/1408001-symbol": {
+      "abstract": [
+        {
+          "text": "Returns a character set containing the characters in Unicode General Category S*.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "symbol"
+        },
+        {
+          "kind": "text",
+          "text": "() -> NSMutableCharacterSet"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutablecharacterset/1408001-symbol",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "symbol()",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutablecharacterset/1408001-symbol"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutablecharacterset/1408380-formunion": {
+      "abstract": [
+        {
+          "text": "Modifies the receiver so it contains all characters that exist in either the receiver or another set.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "formUnion"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": CharacterSet)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutablecharacterset/1408380-formunion",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "formUnion(with:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutablecharacterset/1408380-formunion"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutablecharacterset/1409262-nonbase": {
+      "abstract": [
+        {
+          "text": "Returns a character set containing the characters in Unicode General Category M*.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "nonBase"
+        },
+        {
+          "kind": "text",
+          "text": "() -> NSMutableCharacterSet"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutablecharacterset/1409262-nonbase",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "nonBase()",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutablecharacterset/1409262-nonbase"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutablecharacterset/1409923-newline": {
+      "abstract": [
+        {
+          "text": "Returns a character set containing the newline characters (",
+          "type": "text"
+        },
+        {
+          "code": "U+000A",
+          "type": "codeVoice"
+        },
+        {
+          "text": " ~ ",
+          "type": "text"
+        },
+        {
+          "code": "U+000D",
+          "type": "codeVoice"
+        },
+        {
+          "text": ", ",
+          "type": "text"
+        },
+        {
+          "code": "U+0085",
+          "type": "codeVoice"
+        },
+        {
+          "text": ", ",
+          "type": "text"
+        },
+        {
+          "code": "U+2028",
+          "type": "codeVoice"
+        },
+        {
+          "text": ", and ",
+          "type": "text"
+        },
+        {
+          "code": "U+2029",
+          "type": "codeVoice"
+        },
+        {
+          "text": ").",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "newline"
+        },
+        {
+          "kind": "text",
+          "text": "() -> NSMutableCharacterSet"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutablecharacterset/1409923-newline",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "newline()",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutablecharacterset/1409923-newline"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutablecharacterset/1410070-init": {
+      "abstract": [
+        {
+          "text": "Returns a character set containing characters with Unicode values in a given range.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "range"
+        },
+        {
+          "kind": "text",
+          "text": ": NSRange)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutablecharacterset/1410070-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(range:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutablecharacterset/1410070-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutablecharacterset/1410977-invert": {
+      "abstract": [
+        {
+          "text": "Replaces all the characters in the receiver with all the characters it didn’t previously contain.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "invert"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutablecharacterset/1410977-invert",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "invert()",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutablecharacterset/1410977-invert"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutablecharacterset/1411410-lowercaseletter": {
+      "abstract": [
+        {
+          "text": "Returns a character set containing the characters in Unicode General Category Ll.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "lowercaseLetter"
+        },
+        {
+          "kind": "text",
+          "text": "() -> NSMutableCharacterSet"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutablecharacterset/1411410-lowercaseletter",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "lowercaseLetter()",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutablecharacterset/1411410-lowercaseletter"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutablecharacterset/1412225-addcharacters": {
+      "abstract": [
+        {
+          "text": "Adds to the receiver the characters whose Unicode values are in a given range.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "addCharacters"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": NSRange)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutablecharacterset/1412225-addcharacters",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "addCharacters(in:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutablecharacterset/1412225-addcharacters"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutablecharacterset/1412512-formintersection": {
+      "abstract": [
+        {
+          "text": "Modifies the receiver so it contains only characters that exist in both the receiver and another set.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "formIntersection"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": CharacterSet)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutablecharacterset/1412512-formintersection",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "formIntersection(with:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutablecharacterset/1412512-formintersection"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutablecharacterset/1412583-whitespaceandnewline": {
+      "abstract": [
+        {
+          "text": "Returns a character set containing characters in Unicode General Category Z*, ",
+          "type": "text"
+        },
+        {
+          "code": "U+000A",
+          "type": "codeVoice"
+        },
+        {
+          "text": " ~ ",
+          "type": "text"
+        },
+        {
+          "code": "U+000D",
+          "type": "codeVoice"
+        },
+        {
+          "text": ", and ",
+          "type": "text"
+        },
+        {
+          "code": "U+0085",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "whitespaceAndNewline"
+        },
+        {
+          "kind": "text",
+          "text": "() -> NSMutableCharacterSet"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutablecharacterset/1412583-whitespaceandnewline",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "whitespaceAndNewline()",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutablecharacterset/1412583-whitespaceandnewline"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutablecharacterset/1413024-illegal": {
+      "abstract": [
+        {
+          "text": "Returns a character set containing values in the category of Non-Characters or that have not yet been defined in version 3.2 of the Unicode standard.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "illegal"
+        },
+        {
+          "kind": "text",
+          "text": "() -> NSMutableCharacterSet"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutablecharacterset/1413024-illegal",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "illegal()",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutablecharacterset/1413024-illegal"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutablecharacterset/1413503-decomposable": {
+      "abstract": [
+        {
+          "text": "Returns a character set containing individual Unicode characters that can also be represented as composed character sequences (such as for letters with accents), by the definition of “standard decomposition” in version 3.2 of the Unicode character encoding standard.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "decomposable"
+        },
+        {
+          "kind": "text",
+          "text": "() -> NSMutableCharacterSet"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutablecharacterset/1413503-decomposable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "decomposable()",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutablecharacterset/1413503-decomposable"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutablecharacterset/1413999-addcharacters": {
+      "abstract": [
+        {
+          "text": "Adds to the receiver the characters in a given string.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "addCharacters"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": String)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutablecharacterset/1413999-addcharacters",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "addCharacters(in:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutablecharacterset/1413999-addcharacters"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutablecharacterset/1414233-init": {
+      "abstract": [
+        {
+          "text": "Returns a character set read from the bitmap representation stored in the file a given path.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "identifier",
+          "text": "contentsOfFile"
+        },
+        {
+          "kind": "text",
+          "text": ": String)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutablecharacterset/1414233-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(contentsOfFile:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutablecharacterset/1414233-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutablecharacterset/1414334-control": {
+      "abstract": [
+        {
+          "text": "Returns a character set containing the characters in Unicode General Category Cc and Cf.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "control"
+        },
+        {
+          "kind": "text",
+          "text": "() -> NSMutableCharacterSet"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutablecharacterset/1414334-control",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "control()",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutablecharacterset/1414334-control"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutablecharacterset/1414812-removecharacters": {
+      "abstract": [
+        {
+          "text": "Removes from the receiver the characters in a given string.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeCharacters"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": String)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutablecharacterset/1414812-removecharacters",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "removeCharacters(in:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutablecharacterset/1414812-removecharacters"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutablecharacterset/1414972-whitespace": {
+      "abstract": [
+        {
+          "text": "Returns a character set containing the characters in Unicode General Category Zs and ",
+          "type": "text"
+        },
+        {
+          "code": "CHARACTER TABULATION",
+          "type": "codeVoice"
+        },
+        {
+          "text": " (",
+          "type": "text"
+        },
+        {
+          "code": "U+0009",
+          "type": "codeVoice"
+        },
+        {
+          "text": ").",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "whitespace"
+        },
+        {
+          "kind": "text",
+          "text": "() -> NSMutableCharacterSet"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutablecharacterset/1414972-whitespace",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "whitespace()",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutablecharacterset/1414972-whitespace"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutablecharacterset/1415296-decimaldigit": {
+      "abstract": [
+        {
+          "text": "Returns a character set containing the characters in the category of decimal numbers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "decimalDigit"
+        },
+        {
+          "kind": "text",
+          "text": "() -> NSMutableCharacterSet"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutablecharacterset/1415296-decimaldigit",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "decimalDigit()",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutablecharacterset/1415296-decimaldigit"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutablecharacterset/1415362-init": {
+      "abstract": [
+        {
+          "text": "Returns a character set containing the characters in a given string.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "charactersIn"
+        },
+        {
+          "kind": "text",
+          "text": ": String)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutablecharacterset/1415362-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(charactersIn:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutablecharacterset/1415362-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutablecharacterset/1415715-init": {
+      "abstract": [
+        {
+          "text": "Returns a character set containing characters determined by a given bitmap representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "bitmapRepresentation"
+        },
+        {
+          "kind": "text",
+          "text": ": Data)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutablecharacterset/1415715-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(bitmapRepresentation:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutablecharacterset/1415715-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutablecharacterset/1416987-removecharacters": {
+      "abstract": [
+        {
+          "text": "Removes from the receiver the characters whose Unicode values are in a given range.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeCharacters"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": NSRange)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutablecharacterset/1416987-removecharacters",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "removeCharacters(in:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutablecharacterset/1416987-removecharacters"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutablecharacterset/1417049-capitalizedletter": {
+      "abstract": [
+        {
+          "text": "Returns a character set containing the characters in Unicode General Category Lt.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "capitalizedLetter"
+        },
+        {
+          "kind": "text",
+          "text": "() -> NSMutableCharacterSet"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutablecharacterset/1417049-capitalizedletter",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "capitalizedLetter()",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutablecharacterset/1417049-capitalizedletter"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutablecharacterset/1417591-alphanumeric": {
+      "abstract": [
+        {
+          "text": "Returns a character set containing the characters in Unicode General Categories L*, M*, and N*.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "alphanumeric"
+        },
+        {
+          "kind": "text",
+          "text": "() -> NSMutableCharacterSet"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutablecharacterset/1417591-alphanumeric",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "alphanumeric()",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutablecharacterset/1417591-alphanumeric"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutablecharacterset/1417626-punctuation": {
+      "abstract": [
+        {
+          "text": "Returns a character set containing the characters in Unicode General Category P*.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "punctuation"
+        },
+        {
+          "kind": "text",
+          "text": "() -> NSMutableCharacterSet"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutablecharacterset/1417626-punctuation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "punctuation()",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutablecharacterset/1417626-punctuation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutablecharacterset/1418201-uppercaseletter": {
+      "abstract": [
+        {
+          "text": "Returns a character set containing the characters in Unicode General Category Lu and Lt.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "uppercaseLetter"
+        },
+        {
+          "kind": "text",
+          "text": "() -> NSMutableCharacterSet"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutablecharacterset/1418201-uppercaseletter",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "uppercaseLetter()",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutablecharacterset/1418201-uppercaseletter"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutablecopying": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutablecopying",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSMutableCopying",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutablecopying"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutablecopying/1414175-mutablecopy": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutablecopying/1414175-mutablecopy",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "mutableCopy(with:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutablecopying/1414175-mutablecopy"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nssecurecoding": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nssecurecoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSecureCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nssecurecoding"
+    },
+    "doc://com.apple.documentation/documentation/foundation/strings_and_text": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/strings_and_text",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Strings and Text",
+      "type": "topic",
+      "url": "/documentation/foundation/strings_and_text"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nscharacterset"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nscopying",
+        "doc://com.apple.documentation/documentation/foundation/nsmutablecopying",
+        "doc://com.apple.documentation/documentation/foundation/nssecurecoding"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nscharacterset",
+        "doc://com.apple.documentation/documentation/foundation/characterset/referencetype"
+      ],
+      "title": "Using Reference Types"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "2859945",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsmutablecharacterset/1417591-alphanumeric",
+        "doc://com.apple.documentation/documentation/foundation/nsmutablecharacterset/1417049-capitalizedletter",
+        "doc://com.apple.documentation/documentation/foundation/nsmutablecharacterset/1414334-control",
+        "doc://com.apple.documentation/documentation/foundation/nsmutablecharacterset/1415296-decimaldigit",
+        "doc://com.apple.documentation/documentation/foundation/nsmutablecharacterset/1413503-decomposable",
+        "doc://com.apple.documentation/documentation/foundation/nsmutablecharacterset/1413024-illegal",
+        "doc://com.apple.documentation/documentation/foundation/nsmutablecharacterset/1407361-letter",
+        "doc://com.apple.documentation/documentation/foundation/nsmutablecharacterset/1411410-lowercaseletter",
+        "doc://com.apple.documentation/documentation/foundation/nsmutablecharacterset/1409923-newline",
+        "doc://com.apple.documentation/documentation/foundation/nsmutablecharacterset/1409262-nonbase",
+        "doc://com.apple.documentation/documentation/foundation/nsmutablecharacterset/1417626-punctuation",
+        "doc://com.apple.documentation/documentation/foundation/nsmutablecharacterset/1408001-symbol",
+        "doc://com.apple.documentation/documentation/foundation/nsmutablecharacterset/1418201-uppercaseletter",
+        "doc://com.apple.documentation/documentation/foundation/nsmutablecharacterset/1412583-whitespaceandnewline",
+        "doc://com.apple.documentation/documentation/foundation/nsmutablecharacterset/1414972-whitespace"
+      ],
+      "kind": "taskGroup",
+      "title": "Getting Standard Character Sets"
+    },
+    {
+      "anchor": "2859944",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsmutablecharacterset/1415362-init",
+        "doc://com.apple.documentation/documentation/foundation/nsmutablecharacterset/1410070-init",
+        "doc://com.apple.documentation/documentation/foundation/nsmutablecharacterset/1415715-init",
+        "doc://com.apple.documentation/documentation/foundation/nsmutablecharacterset/1414233-init"
+      ],
+      "kind": "taskGroup",
+      "title": "Creating Custom Character Sets"
+    },
+    {
+      "anchor": "1681089",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsmutablecharacterset/1412225-addcharacters",
+        "doc://com.apple.documentation/documentation/foundation/nsmutablecharacterset/1416987-removecharacters",
+        "doc://com.apple.documentation/documentation/foundation/nsmutablecharacterset/1413999-addcharacters",
+        "doc://com.apple.documentation/documentation/foundation/nsmutablecharacterset/1414812-removecharacters"
+      ],
+      "kind": "taskGroup",
+      "title": "Adding and Removing Characters"
+    },
+    {
+      "anchor": "1681136",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsmutablecharacterset/1412512-formintersection",
+        "doc://com.apple.documentation/documentation/foundation/nsmutablecharacterset/1408380-formunion"
+      ],
+      "kind": "taskGroup",
+      "title": "Combining Character Sets"
+    },
+    {
+      "anchor": "1681153",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsmutablecharacterset/1410977-invert"
+      ],
+      "kind": "taskGroup",
+      "title": "Inverting a Character Set"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nsmutablecharacterset"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/nsmutablecharacterset"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

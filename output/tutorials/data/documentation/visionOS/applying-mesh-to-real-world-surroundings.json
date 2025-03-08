@@ -1,0 +1,1052 @@
+{
+  "abstract": [
+    {
+      "text": "Add a layer of mesh to objects in the real world, using scene reconstruction in ARKit.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.visionOS/documentation/visionOS",
+        "doc://com.apple.visionOS/documentation/visionOS/introductory-visionOS-samples"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.visionOS/documentation/visionOS/applying-mesh-to-real-world-surroundings"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "images": [
+      {
+        "identifier": "sample-scene-reconstruction-1-main-view.png",
+        "type": "card"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "2.0",
+        "name": "visionOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "16.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Applying mesh to real-world surroundings"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "With ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/ARKit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in visionOS, you can create immersive experiences that integrate with real-world environments. This sample demonstrates how to use ARKit’s scene-reconstruction capability to construct and display a layer of mesh on real-world objects, like the scene in the following video:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "identifier": "sample-scene-reconstruction-1-main-view.mov",
+          "type": "video"
+        },
+        {
+          "anchor": "Capture-the-anchors-from-the-scene",
+          "level": 3,
+          "text": "Capture the anchors from the scene",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample uses the ",
+              "type": "text"
+            },
+            {
+              "code": "MeshAnchorGenerator",
+              "type": "codeVoice"
+            },
+            {
+              "text": " class to retrieve anchor information from ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/ARKit/SceneReconstructionProvider",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". In the following code snippet, the generator takes in the root entity from the reality view to perform actions on the entities and create a dictionary to store the collection of anchors:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "import SwiftUI",
+            "import RealityKit",
+            "import ARKit",
+            "",
+            "class MeshAnchorGenerator {",
+            "    /// The root entity of the view.",
+            "    var root: Entity",
+            "",
+            "    /// The collection of anchors.",
+            "    private var anchors: [UUID : Entity] = [:]",
+            "",
+            "    init(root: Entity) {",
+            "        self.root = root",
+            "    }",
+            "",
+            "    // ...",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "run(_:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method processes all anchor updates asynchronously from the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/ARKit/SceneReconstructionProvider",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". When an anchor detects either an ",
+              "type": "text"
+            },
+            {
+              "code": ".added",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or an ",
+              "type": "text"
+            },
+            {
+              "code": ".updated",
+              "type": "codeVoice"
+            },
+            {
+              "text": " event, it creates a new entity if one isn’t already present, and it updates its mesh, material, and transform properties:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@MainActor",
+            "func run(_ sceneRec: SceneReconstructionProvider) async {",
+            "    // Loop to process all anchor updates that the provider detects.",
+            "    for await update in sceneRec.anchorUpdates {",
+            "        switch update.event {",
+            "        case .added, .updated:",
+            "            // Retrives the entity from the anchor collection based on the anchor ID.",
+            "            // If it doesn't exist, creates and adds a new entity to the collection.",
+            "            let entity = anchors[update.anchor.id] ?? {",
+            "                let entity = Entity()",
+            "                root.addChild(entity)",
+            "                anchors[update.anchor.id] = entity",
+            "",
+            "                return entity",
+            "            }()",
+            "",
+            "            /// The material for the mesh to update.",
+            "            let material = SimpleMaterial(color: .cyan.withAlphaComponent(0.8), isMetallic: false)",
+            "",
+            "            /// The mesh from an anchor.",
+            "            guard let mesh = try? await MeshResource(from: update.anchor) else { return }",
+            "",
+            "            await MainActor.run {",
+            "                // Update the entity mesh and apply the material.",
+            "                entity.components.set(ModelComponent(mesh: mesh, materials: [material]))",
+            "",
+            "                // Set the transform matrix on its position relative to the anchor.",
+            "                entity.setTransformMatrix(update.anchor.originFromAnchorTransform, relativeTo: nil)",
+            "            }",
+            "",
+            "            // ...",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When an anchor detects a ",
+              "type": "text"
+            },
+            {
+              "code": ".removed",
+              "type": "codeVoice"
+            },
+            {
+              "text": " event, the app removes the entity from the ",
+              "type": "text"
+            },
+            {
+              "code": "root",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and the anchor collection:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@MainActor",
+            "func run(_ sceneRec: SceneReconstructionProvider) async {",
+            "    for await update in sceneRec.anchorUpdates {",
+            "        switch update.event {",
+            "",
+            "        // ...",
+            "",
+            "        case .removed:",
+            "            // Remove the entity from the root if it exists.",
+            "            anchors[update.anchor.id]?.removeFromParent()",
+            "",
+            "            // Remove the anchor entry from the dictionary.",
+            "            anchors[update.anchor.id] = nil",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "To use the ",
+                  "type": "text"
+                },
+                {
+                  "code": "SceneReconstructionProvider",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", you must add the ",
+                  "type": "text"
+                },
+                {
+                  "code": "NSWorldSensingUsageDescription",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " property key list entry to the ",
+                  "type": "text"
+                },
+                {
+                  "code": "info.plist",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Add-scene-reconstruction-to-the-view",
+          "level": 3,
+          "text": "Add scene reconstruction to the view",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To track the anchors, the app must start an ",
+              "type": "text"
+            },
+            {
+              "code": "ARKitSession",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". The app creates the ",
+              "type": "text"
+            },
+            {
+              "code": "root",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to store all the entities, the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/ARKit/ARKitSession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance, and the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/ARKit/SceneReconstructionProvider",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance to perform scene reconstruction:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "import SwiftUI",
+            "import RealityKit",
+            "",
+            "struct SceneReconstructionView: View {",
+            "    var body: some View {",
+            "        RealityView { content in",
+            "            /// The root entity.",
+            "            let root = Entity()",
+            "",
+            "            /// The `ARKitSession` instance for scene reconstruction.",
+            "            let arSession = ARKitSession()",
+            "",
+            "            /// The provider instance for scene reconstruction.",
+            "            let sceneReconstruction = SceneReconstructionProvider()",
+            "    ",
+            "            // ...",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the properties are in place, the app constructs the ",
+              "type": "text"
+            },
+            {
+              "code": "MeshAnchorGenerator",
+              "type": "codeVoice"
+            },
+            {
+              "text": " class with the root. It initiates the ",
+              "type": "text"
+            },
+            {
+              "code": "ARKitSession",
+              "type": "codeVoice"
+            },
+            {
+              "text": " while handling any potential errors. Finally, the app proceeds with the generation process by invoking the ",
+              "type": "text"
+            },
+            {
+              "code": "run(_:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method with the ",
+              "type": "text"
+            },
+            {
+              "code": "sceneReconstruction",
+              "type": "codeVoice"
+            },
+            {
+              "text": " instance:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "import SwiftUI",
+            "import RealityKit",
+            "",
+            "struct SceneReconstructionView: View {",
+            "    var body: some View {",
+            "        RealityView { content in",
+            "",
+            "            // ...",
+            "",
+            "            Task {",
+            "                /// The generator to store the root with unlit materials.",
+            "                let generator = MeshAnchorGenerator(root: root)",
+            "",
+            "                // Check if the device supports scene reconstruction.",
+            "                guard SceneReconstructionProvider.isSupported else {",
+            "                    print(\"SceneReconstructionProvider is not supported on this device.\")",
+            "                    return",
+            "                }",
+            "",
+            "                do {",
+            "                    // Start the `ARKitSession` and run the `SceneReconstructionProvider`.",
+            "                    try await arSession.run([sceneReconstruction])",
+            "                } catch let error as ARKitSession.Error {",
+            "                    // Handle any `ARKitSession` errors.",
+            "                    print(\"Encountered an error while running providers: \\(error.localizedDescription)\")",
+            "                } catch let error {",
+            "                    // Handle other errors.",
+            "                    print(\"Encountered an unexpected error: \\(error.localizedDescription)\")",
+            "                }",
+            "",
+            "                // Start the generator if the session runs successfully.",
+            "                await generator.run(sceneReconstruction)",
+            "            }",
+            "",
+            "            // Add the root entity to the `RealityView`.",
+            "            content.add(root)",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Set-up-the-immersive-space",
+          "level": 3,
+          "text": "Set up the immersive space",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For ",
+              "type": "text"
+            },
+            {
+              "code": "ARKit",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "SceneReconstructionProvider",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to work, the app requires an immersive space. The sample creates an immersive scene in the app’s entry point:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "import SwiftUI",
+            "",
+            "@main",
+            "struct EntryPoint: App {",
+            "    var body: some Scene {",
+            "        WindowGroup {",
+            "            MainView()",
+            "        }",
+            "",
+            "        ImmersiveSpace(id: \"SceneReconstruction\") {",
+            "            SceneReconstructionView()",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "MainView",
+              "type": "codeVoice"
+            },
+            {
+              "text": " launches the immersive space with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/EnvironmentValues/openImmersiveSpace",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " after it appears:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "import SwiftUI",
+            "",
+            "struct MainView: View {",
+            "    @Environment(\\.openImmersiveSpace) var openImmersiveSpace",
+            "",
+            "    var body: some View {",
+            "        Text(\"Scene Reconstruction Example\")",
+            "            .onAppear {",
+            "                Task {",
+            "                    await openImmersiveSpace(id: \"SceneReconstruction\")",
+            "                }",
+            "            }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/ARKit": {
+      "abstract": [
+        {
+          "text": "Integrate hardware sensing features to produce augmented reality apps and games.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ARKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "ARKit",
+      "type": "topic",
+      "url": "/documentation/ARKit"
+    },
+    "doc://com.apple.documentation/documentation/ARKit/ARKitSession": {
+      "abstract": [
+        {
+          "text": "The main entry point for receiving data from ARKit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "final"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARKitSession"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ARKit/ARKitSession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ARKitSession",
+      "type": "topic",
+      "url": "/documentation/ARKit/ARKitSession"
+    },
+    "doc://com.apple.documentation/documentation/ARKit/SceneReconstructionProvider": {
+      "abstract": [
+        {
+          "text": "A source of live data about the shape of a person’s surroundings.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "final"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SceneReconstructionProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ARKit/SceneReconstructionProvider",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SceneReconstructionProvider",
+      "type": "topic",
+      "url": "/documentation/ARKit/SceneReconstructionProvider"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/EnvironmentValues/openImmersiveSpace": {
+      "abstract": [
+        {
+          "text": "An action that presents an immersive space.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "openImmersiveSpace"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI24OpenImmersiveSpaceActionV",
+          "text": "OpenImmersiveSpaceAction"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/EnvironmentValues/openImmersiveSpace",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "openImmersiveSpace",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/EnvironmentValues/openImmersiveSpace"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS": {
+      "abstract": [
+        {
+          "text": "Create a new universe of apps and games for Apple Vision Pro.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS",
+      "images": [
+        {
+          "identifier": "headset-orange.svg",
+          "type": "icon"
+        },
+        {
+          "identifier": "visionOS-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "visionOS",
+      "type": "topic",
+      "url": "/documentation/visionos"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/creating-a-painting-space-in-visionos": {
+      "abstract": [
+        {
+          "text": "Implement a painting canvas entity, and update its mesh to represent a stroke.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/creating-a-painting-space-in-visionos",
+      "images": [
+        {
+          "identifier": "sample-painting-1-main-view-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Creating a 3D painting space",
+      "type": "topic",
+      "url": "/documentation/visionos/creating-a-painting-space-in-visionos"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/displaying-a-3D-object-that-moves-to-stay-in-a-person's-view": {
+      "abstract": [
+        {
+          "text": "Create an entity that tracks and follows head movement in an immersive scene.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/displaying-a-3D-object-that-moves-to-stay-in-a-person's-view",
+      "images": [
+        {
+          "identifier": "sample-head-tracking-1-main-view.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Displaying an entity that follows a person’s view",
+      "type": "topic",
+      "url": "/documentation/visionos/displaying-a-3d-object-that-moves-to-stay-in-a-person's-view"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/introductory-visionOS-samples": {
+      "abstract": [
+        {
+          "text": "Learn the fundamentals of building apps for visionOS with beginner-friendly sample code projects.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/introductory-visionOS-samples",
+      "images": [
+        {
+          "identifier": "introductory-visionOS-samples.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Introductory visionOS samples",
+      "type": "topic",
+      "url": "/documentation/visionos/introductory-visionos-samples"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/obscuring-virtual-items-in-a-scene-behind-real-world-items": {
+      "abstract": [
+        {
+          "text": "Increase the realism of an immersive experience by adding entities with invisible materials  real-world objects.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/obscuring-virtual-items-in-a-scene-behind-real-world-items",
+      "images": [
+        {
+          "identifier": "sample-worldocclusion-1-main-view-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Obscuring virtual items in a scene behind real-world items",
+      "type": "topic",
+      "url": "/documentation/visionos/obscuring-virtual-items-in-a-scene-behind-real-world-items"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/tracking-and-visualizing-hand-movement": {
+      "abstract": [
+        {
+          "text": "Use hand-tracking anchors to display a visual representation of hand transforms in visionOS.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/tracking-and-visualizing-hand-movement",
+      "images": [
+        {
+          "identifier": "sample-visualize-hand-tracking-in-visionos-with-arkit-poster.jpg",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Tracking and visualizing hand movement",
+      "type": "topic",
+      "url": "/documentation/visionos/tracking-and-visualizing-hand-movement"
+    },
+    "f97546eebe73/ApplyingMeshToRealWorldSurroundings.zip": {
+      "checksum": "f97546eebe732486111ec94c5e12eae131dda266b73604b11dcaf6a2e76b672023b23bcbc6edb4036600c27e38c6af90a872ca387498565a1be9394b57050cd5",
+      "identifier": "f97546eebe73/ApplyingMeshToRealWorldSurroundings.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/f97546eebe73/ApplyingMeshToRealWorldSurroundings.zip"
+    },
+    "headset-orange.svg": {
+      "alt": "An icon representing visionOS.",
+      "identifier": "headset-orange.svg",
+      "type": "image",
+      "variants": [
+        {
+          "svgID": "a",
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/77dc6a0821bfb2da8db4a3b2033e6f6b/headset-orange.svg"
+        }
+      ]
+    },
+    "introductory-visionOS-samples.png": {
+      "alt": "A translucent window displaying five white, three-dimensional entities in a horizontal row. From left to right, the shapes are a box, a rounded box, a right sphere, a cone, and a cylinder that all top-align.",
+      "identifier": "introductory-visionOS-samples.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/3d386622a70e5f41179e6a4c98a125c7/introductory-visionOS-samples@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/58fa94f103305452c567401d648dedc5/introductory-visionOS-samples~dark@2x.png"
+        }
+      ]
+    },
+    "sample-head-tracking-1-main-view.png": {
+      "alt": "",
+      "identifier": "sample-head-tracking-1-main-view.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/337cbec01d13e02d7ce87083e99aa238/sample-head-tracking-1-main-view.png"
+        }
+      ]
+    },
+    "sample-painting-1-main-view-card.png": {
+      "alt": "",
+      "identifier": "sample-painting-1-main-view-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5935efa03ec190fbbe60c69bd0cd017c/sample-painting-1-main-view-card.png"
+        }
+      ]
+    },
+    "sample-scene-reconstruction-1-main-view.mov": {
+      "alt": "A four-second video of a visionOS app in Simulator, displaying a translucent window labeled 'Scene Reconstruction Example'. The camera pans arounds to showcase a light cyan color covering the walls and ceiling of a room.",
+      "identifier": "sample-scene-reconstruction-1-main-view.mov",
+      "poster": null,
+      "type": "video",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/dee7e56df4c885a8f8aacbc76b495627/sample-scene-reconstruction-1-main-view.mov"
+        }
+      ]
+    },
+    "sample-scene-reconstruction-1-main-view.png": {
+      "alt": null,
+      "identifier": "sample-scene-reconstruction-1-main-view.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ca107fadb52f294d3f7d41e02c6bd321/sample-scene-reconstruction-1-main-view.png"
+        }
+      ]
+    },
+    "sample-visualize-hand-tracking-in-visionos-with-arkit-poster.jpg": {
+      "alt": "A screenshot of a visionOS app with a translucent window with the label 'Hand Tracking Example', displaying two hands with spheres that appear affixed to each bone joint.",
+      "identifier": "sample-visualize-hand-tracking-in-visionos-with-arkit-poster.jpg",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/49cfdbaa10faf75abd68af3af7b9bbec/sample-visualize-hand-tracking-in-visionos-with-arkit-poster@2x.jpg"
+        }
+      ]
+    },
+    "sample-worldocclusion-1-main-view-card.png": {
+      "alt": "",
+      "identifier": "sample-worldocclusion-1-main-view-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4da9a072fd905e705906481890384b51/sample-worldocclusion-1-main-view-card.png"
+        }
+      ]
+    },
+    "visionOS-PageImage-card.png": {
+      "alt": "A stylized illustration of an Apple Vision Pro with the word 'hello' written across the front in cursive.",
+      "identifier": "visionOS-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/90294957b44e5508a55fe39373eea478/visionOS-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/90fe463571fd45badfabacbb07f30591/visionOS-PageImage-card~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "f97546eebe73/ApplyingMeshToRealWorldSurroundings.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Integrating-ARKit",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.visionOS/documentation/visionOS/creating-a-painting-space-in-visionos",
+        "doc://com.apple.visionOS/documentation/visionOS/tracking-and-visualizing-hand-movement",
+        "doc://com.apple.visionOS/documentation/visionOS/displaying-a-3D-object-that-moves-to-stay-in-a-person's-view",
+        "doc://com.apple.visionOS/documentation/visionOS/obscuring-virtual-items-in-a-scene-behind-real-world-items"
+      ],
+      "title": "Integrating ARKit"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Integrating-ARKit",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.visionOS/documentation/visionOS/displaying-a-3D-object-that-moves-to-stay-in-a-person's-view"
+              ],
+              "title": "Integrating ARKit"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,592 @@
+{
+  "abstract": [
+    {
+      "text": "Begins a print job that, by default, draws into a QuickDraw graphics port, and suppresses the printing status dialog.",
+      "type": "text"
+    }
+  ],
+  "deprecationSummary": [
+    {
+      "inlineContent": [
+        {
+          "text": "Use ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/applicationservices/1460101-pmsessionbegincgdocumentnodialog",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " instead.",
+          "type": "text"
+        }
+      ],
+      "type": "paragraph"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/applicationservices",
+        "doc://com.apple.documentation/documentation/applicationservices/core_printing"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/applicationservices/core_printing/1805538-pmsessionbegindocumentnodialog"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1805538,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Application Services"
+      }
+    ],
+    "role": "pseudoSymbol",
+    "symbolKind": "func",
+    "title": "PMSessionBeginDocumentNoDialog"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [],
+          "tokens": [
+            {
+              "kind": "text",
+              "text": "OSStatus PMSessionBeginDocumentNoDialog ("
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": "   PMPrintSession printSession,"
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": "   PMPrintSettings printSettings,"
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": "   PMPageFormat pageFormat"
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": ");"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "languages": [
+        "occ"
+      ],
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The printing session that provides a context for the new print job.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "printSession"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The print settings to use for the new print job.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "printSettings"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The page format to use for the new print job.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "pageFormat"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return_value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A result code. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/applicationservices/core_printing#1670007",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The function ",
+              "type": "text"
+            },
+            {
+              "code": "PMSessionBeginDocumentNoDialog",
+              "type": "codeVoice"
+            },
+            {
+              "text": " starts a print job and should be called within your application’s print loop. This function is similar to the function PMSessionBeginDocument except that the printing status dialog is suppressed.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You must call this function between the creation and release of a printing session. See the function ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/applicationservices/1463247-pmcreatesession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". If you present a printing dialog before you call ",
+              "type": "text"
+            },
+            {
+              "code": "PMSessionBeginDocumentNoDialog",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", when calling this function you should use the same ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/applicationservices/pmprintsession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object you used to present the dialog.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before you call ",
+              "type": "text"
+            },
+            {
+              "code": "PMSessionBeginDocumentNoDialog",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", you should call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/applicationservices/1458994-pmsessionvalidateprintsettings",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/applicationservices/1459090-pmsessionvalidatepageformat",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to make sure the specified print settings and page format objects are updated and valid. After you call ",
+              "type": "text"
+            },
+            {
+              "code": "PMSessionBeginDocumentNoDialog",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", if you call a function that changes the specified print settings or page format object, the change is ignored for the current print job.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This function must be called before its corresponding ",
+              "type": "text"
+            },
+            {
+              "code": "End",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/applicationservices/1464527-pmsessionenddocumentnodialog",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "). If the function ",
+              "type": "text"
+            },
+            {
+              "code": "PMSessionBeginDocumentNoDialog",
+              "type": "codeVoice"
+            },
+            {
+              "text": " returns ",
+              "type": "text"
+            },
+            {
+              "code": "noErr",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", you must call the ",
+              "type": "text"
+            },
+            {
+              "code": "End",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function, even if errors occur within the scope of the ",
+              "type": "text"
+            },
+            {
+              "code": "Begin",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "End",
+              "type": "codeVoice"
+            },
+            {
+              "text": " functions.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The printing system automatically handles printing multiple copies. Your application does not need to perform any tasks other than specifying the number of copies in the printing session.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "1819431",
+          "level": 3,
+          "text": "Special Considerations",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In macOS 10.4 and later, Apple recommends using the function ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/applicationservices/1460101-pmsessionbegincgdocumentnodialog",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instead of this function. QuickDraw is deprecated and your application should be using Quartz 2D for its rendering.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/applicationservices": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Application Services",
+      "type": "topic",
+      "url": "/documentation/applicationservices"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1458994-pmsessionvalidateprintsettings": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1458994-pmsessionvalidateprintsettings",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMSessionValidatePrintSettings",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1458994-pmsessionvalidateprintsettings"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1459090-pmsessionvalidatepageformat": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1459090-pmsessionvalidatepageformat",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMSessionValidatePageFormat",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1459090-pmsessionvalidatepageformat"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1460101-pmsessionbegincgdocumentnodialog": {
+      "abstract": [
+        {
+          "text": "Begins a print job that draws into a Quartz graphics context and suppresses the printing status dialog.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1460101-pmsessionbegincgdocumentnodialog",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMSessionBeginCGDocumentNoDialog",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1460101-pmsessionbegincgdocumentnodialog"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1462014-pmsessionendpagenodialog": {
+      "abstract": [
+        {
+          "text": "Indicates the end of drawing the current page for the specified printing session.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1462014-pmsessionendpagenodialog",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMSessionEndPageNoDialog",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1462014-pmsessionendpagenodialog"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1463247-pmcreatesession": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1463247-pmcreatesession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMCreateSession",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1463247-pmcreatesession"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1463416-pmsessionbeginpagenodialog": {
+      "abstract": [
+        {
+          "text": "Starts a new page for printing in the specified printing session and suppresses the printing status dialog.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1463416-pmsessionbeginpagenodialog",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMSessionBeginPageNoDialog",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1463416-pmsessionbeginpagenodialog"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/1464527-pmsessionenddocumentnodialog": {
+      "abstract": [
+        {
+          "text": "Ends a print job started by calling the function ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/applicationservices/1460101-pmsessionbegincgdocumentnodialog",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " or ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/applicationservices/core_printing/1805538-pmsessionbegindocumentnodialog",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/1464527-pmsessionenddocumentnodialog",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMSessionEndDocumentNoDialog",
+      "type": "topic",
+      "url": "/documentation/applicationservices/1464527-pmsessionenddocumentnodialog"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/core_printing": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/core_printing",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Core Printing",
+      "type": "topic",
+      "url": "/documentation/applicationservices/core_printing"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/core_printing#1670007": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/core_printing#1670007",
+      "kind": "article",
+      "role": "task",
+      "title": "Result Codes",
+      "type": "section",
+      "url": "/documentation/applicationservices/core_printing#1670007"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/core_printing/1805538-pmsessionbegindocumentnodialog": {
+      "abstract": [
+        {
+          "text": "Begins a print job that, by default, draws into a QuickDraw graphics port, and suppresses the printing status dialog.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/core_printing/1805538-pmsessionbegindocumentnodialog",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "PMSessionBeginDocumentNoDialog",
+      "type": "topic",
+      "url": "/documentation/applicationservices/core_printing/1805538-pmsessionbegindocumentnodialog"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/core_printing/1805540-pmsessionsetidleproc": {
+      "abstract": [
+        {
+          "text": "Installs an idle callback function in your print loop.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/core_printing/1805540-pmsessionsetidleproc",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "PMSessionSetIdleProc",
+      "type": "topic",
+      "url": "/documentation/applicationservices/core_printing/1805540-pmsessionsetidleproc"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/pmprintsession": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/pmprintsession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PMPrintSession",
+      "type": "topic",
+      "url": "/documentation/applicationservices/pmprintsession"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/applicationservices/1460101-pmsessionbegincgdocumentnodialog",
+        "doc://com.apple.documentation/documentation/applicationservices/1464527-pmsessionenddocumentnodialog",
+        "doc://com.apple.documentation/documentation/applicationservices/1463416-pmsessionbeginpagenodialog",
+        "doc://com.apple.documentation/documentation/applicationservices/1462014-pmsessionendpagenodialog",
+        "doc://com.apple.documentation/documentation/applicationservices/core_printing/1805540-pmsessionsetidleproc"
+      ],
+      "title": "Print Loop Functions"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/applicationservices/core_printing/1805538-pmsessionbegindocumentnodialog"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

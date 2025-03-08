@@ -1,0 +1,1355 @@
+{
+  "abstract": [
+    {
+      "text": "The interface a file coordinator uses to inform an object presenting a file about changes to that file made elsewhere in the system.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/file_system"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/nsfilepresenter"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1409755,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(pl)NSFilePresenter",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "protocol "
+      },
+      {
+        "kind": "identifier",
+        "text": "NSFilePresenter"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "5.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "5.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.7",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Protocol",
+    "symbolKind": "intf",
+    "title": "NSFilePresenter"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSFilePresenter"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Objects that allow the user to view or edit the content of files or directories should adopt the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsfilepresenter",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " protocol. You use file presenters in conjunction with an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsfilecoordinator",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object to coordinate access to a file or directory among the objects of your application and between your application and other processes. When changes to an item occur, the system notifies objects that adopt this protocol and gives them a chance to respond appropriately. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the methods of this protocol to respond to actions about to be taken on the presented file or directory. When another object or process uses a file coordinator to begin reading or writing a file or directory, the file coordinator notifies all presented objects interested in the item first. It notifies the presenter objects by invoking one of the methods defined by this protocol on that object. The actual invocation of that method occurs on the operation queue in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsfilepresenter/1415250-presenteditemoperationqueue",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property. Your file presenter must provide this queue. If your queue supports the concurrent execution of operations, the methods of your presenter object must be thread-safe and able to run in multiple queues simultaneously.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can use file presenters to coordinate access to a file or directory among your application’s objects. If another process uses a file coordinator for the same file or directory, your presenter objects are similarly notified whenever the other process makes its changes. Your presenter objects are not notified about changes made directly using low-level read and write calls to the file. Only changes that go through a file coordinator result in notifications.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For information about how to use file presenters with a file coordinator object, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsfilecoordinator",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "1673868",
+          "level": 3,
+          "text": "File Presenters and iOS",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your app enters the background with an active file presenter, any other processes that perform a coordinated read or write on the presented file can deadlock. To prevent this situation, call the coordinator's ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsfilecoordinator/1414924-removefilepresenter",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " type method to remove the file presenter in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIApplicationDelegate/applicationDidEnterBackground(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method or in response to a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIApplication/didEnterBackgroundNotification",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " notification. Call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsfilecoordinator/1417120-addfilepresenter",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to add the file presenter again in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIApplicationDelegate/applicationWillEnterForeground(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method or in response to a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIApplication/willEnterForegroundNotification",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " notification.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDocument",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " class automatically removes itself when your app goes to the background. It automatically adds itself again when your app returns to the foreground.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.appkit/documentation/AppKit/NSDocument": {
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSDocument",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSDocument",
+      "type": "topic",
+      "url": "/documentation/appkit/nsdocument"
+    },
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/file_system": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/file_system",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "File System",
+      "type": "topic",
+      "url": "/documentation/foundation/file_system"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsfileaccessintent": {
+      "abstract": [
+        {
+          "text": "The details of a coordinated-read or coordinated-write operation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSFileAccessIntent"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsfileaccessintent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSFileAccessIntent",
+      "type": "topic",
+      "url": "/documentation/foundation/nsfileaccessintent"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsfilecoordinator": {
+      "abstract": [
+        {
+          "text": "An object that coordinates the reading and writing of files and directories among file presenters.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSFileCoordinator"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsfilecoordinator",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSFileCoordinator",
+      "type": "topic",
+      "url": "/documentation/foundation/nsfilecoordinator"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsfilecoordinator/1414924-removefilepresenter": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsfilecoordinator/1414924-removefilepresenter",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "removeFilePresenter(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsfilecoordinator/1414924-removefilepresenter"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsfilecoordinator/1417120-addfilepresenter": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsfilecoordinator/1417120-addfilepresenter",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "addFilePresenter(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsfilecoordinator/1417120-addfilepresenter"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsfilepresenter": {
+      "abstract": [
+        {
+          "text": "The interface a file coordinator uses to inform an object presenting a file about changes to that file made elsewhere in the system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSFilePresenter"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsfilepresenter",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSFilePresenter",
+      "type": "topic",
+      "url": "/documentation/foundation/nsfilepresenter"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsfilepresenter/1408642-presentedsubitemdidappear": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that an item was added to the presented directory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "presentedSubitemDidAppear"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": URL)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsfilepresenter/1408642-presentedsubitemdidappear",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "presentedSubitemDidAppear(at:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsfilepresenter/1408642-presentedsubitemdidappear"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsfilepresenter/1409465-presentedsubitem": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that an item in the presented directory moved to a new location.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "presentedSubitem"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": URL, "
+        },
+        {
+          "kind": "identifier",
+          "text": "didMoveTo"
+        },
+        {
+          "kind": "text",
+          "text": ": URL)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsfilepresenter/1409465-presentedsubitem",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "presentedSubitem(at:didMoveTo:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsfilepresenter/1409465-presentedsubitem"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsfilepresenter/1410743-relinquishpresenteditem": {
+      "abstract": [
+        {
+          "text": "Notifies your object that another object or process wants to read the presented file or directory. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "relinquishPresentedItem"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "toReader"
+        },
+        {
+          "kind": "text",
+          "text": ": (() -> Void)?) -> Void)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsfilepresenter/1410743-relinquishpresenteditem",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "relinquishPresentedItem(toReader:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsfilepresenter/1410743-relinquishpresenteditem"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsfilepresenter/1411135-presentedsubitemdidchange": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that the contents or attributes of the specified item changed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "presentedSubitemDidChange"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": URL)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsfilepresenter/1411135-presentedsubitemdidchange",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "presentedSubitemDidChange(at:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsfilepresenter/1411135-presentedsubitemdidchange"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsfilepresenter/1413688-relinquishpresenteditem": {
+      "abstract": [
+        {
+          "text": "Notifies your object that another object or process wants to write to the presented file or directory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "relinquishPresentedItem"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "toWriter"
+        },
+        {
+          "kind": "text",
+          "text": ": (() -> Void)?) -> Void)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsfilepresenter/1413688-relinquishpresenteditem",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "relinquishPresentedItem(toWriter:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsfilepresenter/1413688-relinquishpresenteditem"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsfilepresenter/1413957-presentedsubitem": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that the item inside the presented directory lost an existing version.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "presentedSubitem"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": URL, "
+        },
+        {
+          "kind": "identifier",
+          "text": "didLose"
+        },
+        {
+          "kind": "text",
+          "text": ": NSFileVersion)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsfilepresenter/1413957-presentedsubitem",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "presentedSubitem(at:didLose:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsfilepresenter/1413957-presentedsubitem"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsfilepresenter/1414407-savepresenteditemchanges": {
+      "abstract": [
+        {
+          "text": "Tells your object to save any unsaved changes for the presented item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "savePresentedItemChanges"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ((any Error)?) -> Void)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsfilepresenter/1414407-savepresenteditemchanges",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "savePresentedItemChanges(completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsfilepresenter/1414407-savepresenteditemchanges"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsfilepresenter/1414732-accommodatepresenteditemdeletion": {
+      "abstract": [
+        {
+          "text": "Tells your object that its presented item is about to be deleted.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "accommodatePresentedItemDeletion"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ((any Error)?) -> Void)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsfilepresenter/1414732-accommodatepresenteditemdeletion",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "accommodatePresentedItemDeletion(completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsfilepresenter/1414732-accommodatepresenteditemdeletion"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsfilepresenter/1414861-presenteditemurl": {
+      "abstract": [
+        {
+          "text": "The URL of the presented file or directory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "presentedItemURL"
+        },
+        {
+          "kind": "text",
+          "text": ": URL?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsfilepresenter/1414861-presenteditemurl",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "presentedItemURL",
+      "type": "topic",
+      "url": "/documentation/foundation/nsfilepresenter/1414861-presenteditemurl"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsfilepresenter/1415018-presenteditemdidgain": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that a new version of the file or file package was added. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "presentedItemDidGain"
+        },
+        {
+          "kind": "text",
+          "text": "(NSFileVersion)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsfilepresenter/1415018-presenteditemdidgain",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "presentedItemDidGain(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsfilepresenter/1415018-presenteditemdidgain"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsfilepresenter/1415250-presenteditemoperationqueue": {
+      "abstract": [
+        {
+          "text": "The operation queue in which to execute presenter-related messages. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "presentedItemOperationQueue"
+        },
+        {
+          "kind": "text",
+          "text": ": OperationQueue"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsfilepresenter/1415250-presenteditemoperationqueue",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "presentedItemOperationQueue",
+      "type": "topic",
+      "url": "/documentation/foundation/nsfilepresenter/1415250-presenteditemoperationqueue"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsfilepresenter/1415415-primarypresenteditemurl": {
+      "abstract": [
+        {
+          "text": "The URL of a secondary item’s primary presented file or directory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "primaryPresentedItemURL"
+        },
+        {
+          "kind": "text",
+          "text": ": URL?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsfilepresenter/1415415-primarypresenteditemurl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "primaryPresentedItemURL",
+      "type": "topic",
+      "url": "/documentation/foundation/nsfilepresenter/1415415-primarypresenteditemurl"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsfilepresenter/1415472-presentedsubitem": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that the item inside the presented directory gained a new version.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "presentedSubitem"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": URL, "
+        },
+        {
+          "kind": "identifier",
+          "text": "didGain"
+        },
+        {
+          "kind": "text",
+          "text": ": NSFileVersion)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsfilepresenter/1415472-presentedsubitem",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "presentedSubitem(at:didGain:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsfilepresenter/1415472-presentedsubitem"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsfilepresenter/1415657-accommodatepresentedsubitemdelet": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that some entity wants to delete an item that is inside of a presented directory. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "accommodatePresentedSubitemDeletion"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": URL, "
+        },
+        {
+          "kind": "identifier",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ((any Error)?) -> Void)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsfilepresenter/1415657-accommodatepresentedsubitemdelet",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "accommodatePresentedSubitemDeletion(at:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsfilepresenter/1415657-accommodatepresentedsubitemdelet"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsfilepresenter/1416103-presenteditemdidchange": {
+      "abstract": [
+        {
+          "text": "Tells your object that the presented item’s contents or attributes changed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "presentedItemDidChange"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsfilepresenter/1416103-presenteditemdidchange",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "presentedItemDidChange()",
+      "type": "topic",
+      "url": "/documentation/foundation/nsfilepresenter/1416103-presenteditemdidchange"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsfilepresenter/1416913-presentedsubitem": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that the item inside the presented directory had a version conflict resolved by an outside entity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "presentedSubitem"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": URL, "
+        },
+        {
+          "kind": "identifier",
+          "text": "didResolve"
+        },
+        {
+          "kind": "text",
+          "text": ": NSFileVersion)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsfilepresenter/1416913-presentedsubitem",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "presentedSubitem(at:didResolve:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsfilepresenter/1416913-presentedsubitem"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsfilepresenter/1417258-presenteditemdidlose": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that a version of the file or file package was removed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "presentedItemDidLose"
+        },
+        {
+          "kind": "text",
+          "text": "(NSFileVersion)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsfilepresenter/1417258-presenteditemdidlose",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "presentedItemDidLose(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsfilepresenter/1417258-presenteditemdidlose"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsfilepresenter/1417861-presenteditemdidmove": {
+      "abstract": [
+        {
+          "text": "Tells your object that the presented item moved or was renamed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "presentedItemDidMove"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": URL)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsfilepresenter/1417861-presenteditemdidmove",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "presentedItemDidMove(to:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsfilepresenter/1417861-presenteditemdidmove"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsfilepresenter/1418445-presenteditemdidresolveconflict": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that some other entity resolved a version conflict for the presenter’s file or file package. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "presentedItemDidResolveConflict"
+        },
+        {
+          "kind": "text",
+          "text": "(NSFileVersion)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsfilepresenter/1418445-presenteditemdidresolveconflict",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "presentedItemDidResolveConflict(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsfilepresenter/1418445-presenteditemdidresolveconflict"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsfilepresenter/2909021-presenteditemdidchangeubiquityat": {
+      "abstract": [
+        {
+          "text": "Tells your object that the file or file package's ubiquity attributes have changed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "presentedItemDidChangeUbiquityAttributes"
+        },
+        {
+          "kind": "text",
+          "text": "(Set<URLResourceKey>)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsfilepresenter/2909021-presenteditemdidchangeubiquityat",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "presentedItemDidChangeUbiquityAttributes(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsfilepresenter/2909021-presenteditemdidchangeubiquityat"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsfilepresenter/2909022-observedpresenteditemubiquityatt": {
+      "abstract": [
+        {
+          "text": "A list of ubiquity attributes used to generate and send notifications whenever an attribute in the list changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "observedPresentedItemUbiquityAttributes"
+        },
+        {
+          "kind": "text",
+          "text": ": Set<URLResourceKey>"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsfilepresenter/2909022-observedpresenteditemubiquityatt",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "observedPresentedItemUbiquityAttributes",
+      "type": "topic",
+      "url": "/documentation/foundation/nsfilepresenter/2909022-observedpresenteditemubiquityatt"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsfilepresenter/4325324-accommodatepresenteditemeviction": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "accommodatePresentedItemEviction"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ((any Error)?) -> Void)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsfilepresenter/4325324-accommodatepresenteditemeviction",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "accommodatePresentedItemEviction(completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsfilepresenter/4325324-accommodatepresenteditemeviction"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobjectprotocol": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobjectprotocol",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIApplication/didEnterBackgroundNotification": {
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIApplication/didEnterBackgroundNotification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "didEnterBackgroundNotification",
+      "type": "topic",
+      "url": "/documentation/uikit/uiapplication/didenterbackgroundnotification"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIApplication/willEnterForegroundNotification": {
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIApplication/willEnterForegroundNotification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "willEnterForegroundNotification",
+      "type": "topic",
+      "url": "/documentation/uikit/uiapplication/willenterforegroundnotification"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIApplicationDelegate/applicationDidEnterBackground(_:)": {
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIApplicationDelegate/applicationDidEnterBackground(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "applicationDidEnterBackground(_:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiapplicationdelegate/applicationdidenterbackground(_:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIApplicationDelegate/applicationWillEnterForeground(_:)": {
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIApplicationDelegate/applicationWillEnterForeground(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "applicationWillEnterForeground(_:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiapplicationdelegate/applicationwillenterforeground(_:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIDocument": {
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDocument",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIDocument",
+      "type": "topic",
+      "url": "/documentation/uikit/uidocument"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/objectivec/nsobjectprotocol"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSDocument",
+        "doc://com.apple.uikit/documentation/UIKit/UIDocument"
+      ],
+      "kind": "relationships",
+      "title": "Conforming Types",
+      "type": "conformingTypes"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsfileaccessintent",
+        "doc://com.apple.documentation/documentation/foundation/nsfilecoordinator"
+      ],
+      "title": "Coordinated file access"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "1661409",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsfilepresenter/1414861-presenteditemurl",
+        "doc://com.apple.documentation/documentation/foundation/nsfilepresenter/1415250-presenteditemoperationqueue",
+        "doc://com.apple.documentation/documentation/foundation/nsfilepresenter/1415415-primarypresenteditemurl"
+      ],
+      "kind": "taskGroup",
+      "title": "Accessing File Presenter Attributes"
+    },
+    {
+      "anchor": "1661435",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsfilepresenter/1410743-relinquishpresenteditem",
+        "doc://com.apple.documentation/documentation/foundation/nsfilepresenter/1413688-relinquishpresenteditem"
+      ],
+      "kind": "taskGroup",
+      "title": "Relinquishing Managed Files"
+    },
+    {
+      "anchor": "1661460",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsfilepresenter/1414407-savepresenteditemchanges",
+        "doc://com.apple.documentation/documentation/foundation/nsfilepresenter/1414732-accommodatepresenteditemdeletion",
+        "doc://com.apple.documentation/documentation/foundation/nsfilepresenter/1417861-presenteditemdidmove",
+        "doc://com.apple.documentation/documentation/foundation/nsfilepresenter/1416103-presenteditemdidchange"
+      ],
+      "kind": "taskGroup",
+      "title": "Handling Changes to Files"
+    },
+    {
+      "anchor": "1661502",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsfilepresenter/1415018-presenteditemdidgain",
+        "doc://com.apple.documentation/documentation/foundation/nsfilepresenter/1417258-presenteditemdidlose",
+        "doc://com.apple.documentation/documentation/foundation/nsfilepresenter/1418445-presenteditemdidresolveconflict",
+        "doc://com.apple.documentation/documentation/foundation/nsfilepresenter/1415472-presentedsubitem",
+        "doc://com.apple.documentation/documentation/foundation/nsfilepresenter/1413957-presentedsubitem",
+        "doc://com.apple.documentation/documentation/foundation/nsfilepresenter/1416913-presentedsubitem"
+      ],
+      "kind": "taskGroup",
+      "title": "Responding to Version Changes"
+    },
+    {
+      "anchor": "1661553",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsfilepresenter/1415657-accommodatepresentedsubitemdelet",
+        "doc://com.apple.documentation/documentation/foundation/nsfilepresenter/1408642-presentedsubitemdidappear",
+        "doc://com.apple.documentation/documentation/foundation/nsfilepresenter/1409465-presentedsubitem",
+        "doc://com.apple.documentation/documentation/foundation/nsfilepresenter/1411135-presentedsubitemdidchange"
+      ],
+      "kind": "taskGroup",
+      "title": "Handling Changes to a Presented Directory"
+    },
+    {
+      "anchor": "2928642",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsfilepresenter/2909022-observedpresenteditemubiquityatt",
+        "doc://com.apple.documentation/documentation/foundation/nsfilepresenter/2909021-presenteditemdidchangeubiquityat"
+      ],
+      "kind": "taskGroup",
+      "title": "Ubiquity Change Notifications"
+    },
+    {
+      "anchor": "4325547",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsfilepresenter/4325324-accommodatepresenteditemeviction"
+      ],
+      "kind": "taskGroup",
+      "title": "Instance Methods"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nsfilepresenter"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/nsfilepresenter"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,619 @@
+{
+  "abstract": [
+    {
+      "text": "Create a JSON Web Token to authorize your requests to Apple Media Feed API.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://org.swift.docc.AppleMusicFeed/documentation/AppleMusicFeed"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://org.swift.docc.AppleMusicFeed/documentation/AppleMusicFeed/Generating-Developer-Tokens"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Apple Music Feed"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Generating developer tokens"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The header of each Apple Media Feed API request requires authorization in the form of a developer token. A developer token is a signed token that authenticates you as a trusted developer and member of the Apple Developer Program.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Apple Media Feed API limits the number of requests you can make using a developer token within a specific period of time. If you exceed this limit, you temporarily receive ",
+              "type": "text"
+            },
+            {
+              "code": "429 Too Many Requests",
+              "type": "codeVoice"
+            },
+            {
+              "text": " error responses for requests that use the token. This error resolves itself shortly after the request rate reduces.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-your-developer-token",
+          "level": 2,
+          "text": "Create your developer token",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "https://developer.apple.com/help/account/manage-service-configurations/apple-music-feed",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " using your developer account allows you to obtain a key ID to use in your developer token.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Apple Media Feed API supports the JSON Web Token (JWT) specification, so you can pass statements and metadata called ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "claims",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ". For more information, see the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://tools.ietf.org/html/rfc7519",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and the available libraries for generating signed JWTs.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Create a developer token as a JSON object with a header that includes the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The algorithm you use to sign the token, which requires the value of ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "ES256",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "alg",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A 10-character key ID that you obtain from your developer account.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "kid",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Apple Media Feed API supports only developer tokens signed with the ES256 algorithm. Unsecured developer tokens or developer tokens signed with other algorithms reject with a ",
+                  "type": "text"
+                },
+                {
+                  "code": "401",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " error code.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the claims payload of the token, include the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The ",
+                        "type": "text"
+                      },
+                      {
+                        "inlineContent": [
+                          {
+                            "text": "issuer",
+                            "type": "text"
+                          }
+                        ],
+                        "type": "emphasis"
+                      },
+                      {
+                        "text": " registered claim key, a 10-character Team ID from your developer account.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "iss",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The ",
+                        "type": "text"
+                      },
+                      {
+                        "inlineContent": [
+                          {
+                            "text": "issued at",
+                            "type": "text"
+                          }
+                        ],
+                        "type": "emphasis"
+                      },
+                      {
+                        "text": " registered claim key. This value indicates the time that the system generated the token, in UNIX time.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "iat",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The ",
+                        "type": "text"
+                      },
+                      {
+                        "inlineContent": [
+                          {
+                            "text": "expiration time",
+                            "type": "text"
+                          }
+                        ],
+                        "type": "emphasis"
+                      },
+                      {
+                        "text": " registered claim key. This value can’t be greater than ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "15777000",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " (6 months in seconds) from the current UNIX time on the server.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "exp",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "(Optional) The ",
+                        "type": "text"
+                      },
+                      {
+                        "inlineContent": [
+                          {
+                            "text": "origin",
+                            "type": "text"
+                          }
+                        ],
+                        "type": "emphasis"
+                      },
+                      {
+                        "text": " claim, recommended for web clients. Only use this JWT if the origin header of the request matches one of the values in the array. This addition helps prevent unauthorized use of the tokens. For example: ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "“origin“:[“https://example.com“,“https://music.example.com“]",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "origin",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "To locate your Team ID, sign in to your developer account, and click “Membership details” at the top of the page.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Tip",
+          "style": "tip",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A decoded developer token has the following format:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "     \"alg\": \"ES256\",",
+            "     \"kid\": \"ABC123DEFG\"",
+            "}",
+            "{",
+            "     \"iss\": \"DEF123GHIJ\",",
+            "     \"iat\": 1437179036,",
+            "     \"exp\": 1493298100",
+            "}"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you create the token, sign it with your private key using the ES256 algorithm.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "ES256 is the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://datatracker.ietf.org/doc/html/rfc7518",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " name for the Elliptic Curve Digital Signature Algorithm (ECDSA) with the P-256 curve and the SHA-256 hash.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Authorize-requests",
+          "level": 2,
+          "text": "Authorize requests",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you manage request authorization directly, in all requests, pass the ",
+              "type": "text"
+            },
+            {
+              "code": "Authorization: Bearer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " header set to the developer token.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "curl -v -H 'Authorization: Bearer [developer token]' \"https://api.ent.apple.com/v1/test\""
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://org.swift.docc.AppleMusicFeed/documentation/AppleMusicFeed": {
+      "abstract": [
+        {
+          "text": "Access the content of the Apple Music Catalog in bulk.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://org.swift.docc.AppleMusicFeed/documentation/AppleMusicFeed",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Apple Music Feed",
+      "type": "topic",
+      "url": "/documentation/applemusicfeed"
+    },
+    "doc://org.swift.docc.AppleMusicFeed/documentation/AppleMusicFeed/Interpreting-Responses": {
+      "abstract": [
+        {
+          "text": "Learn about responses from Apple Media Feed API to your Apple Music Feed requests.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://org.swift.docc.AppleMusicFeed/documentation/AppleMusicFeed/Interpreting-Responses",
+      "kind": "article",
+      "role": "article",
+      "title": "Interpreting responses",
+      "type": "topic",
+      "url": "/documentation/applemusicfeed/interpreting-responses"
+    },
+    "doc://org.swift.docc.AppleMusicFeed/documentation/AppleMusicFeed/Requesting-A-Feed-Export": {
+      "abstract": [
+        {
+          "text": "Create requests for Apple Music Catalog metadata.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://org.swift.docc.AppleMusicFeed/documentation/AppleMusicFeed/Requesting-A-Feed-Export",
+      "kind": "article",
+      "role": "article",
+      "title": "Requesting a feed export",
+      "type": "topic",
+      "url": "/documentation/applemusicfeed/requesting-a-feed-export"
+    },
+    "https://datatracker.ietf.org/doc/html/rfc7518": {
+      "identifier": "https://datatracker.ietf.org/doc/html/rfc7518",
+      "title": "JSON Web Algorithms (JWA)",
+      "titleInlineContent": [
+        {
+          "text": "JSON Web Algorithms (JWA)",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://datatracker.ietf.org/doc/html/rfc7518"
+    },
+    "https://developer.apple.com/help/account/manage-service-configurations/apple-music-feed": {
+      "identifier": "https://developer.apple.com/help/account/manage-service-configurations/apple-music-feed",
+      "title": "Configuring a media identifier and authorization key",
+      "titleInlineContent": [
+        {
+          "text": "Configuring a media identifier and authorization key",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/help/account/manage-service-configurations/apple-music-feed"
+    },
+    "https://tools.ietf.org/html/rfc7519": {
+      "identifier": "https://tools.ietf.org/html/rfc7519",
+      "title": "JWT specification",
+      "titleInlineContent": [
+        {
+          "text": "JWT specification",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://tools.ietf.org/html/rfc7519"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://org.swift.docc.AppleMusicFeed/documentation/AppleMusicFeed/Requesting-A-Feed-Export",
+        "doc://org.swift.docc.AppleMusicFeed/documentation/AppleMusicFeed/Interpreting-Responses"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/applemusicfeed/generating-developer-tokens"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

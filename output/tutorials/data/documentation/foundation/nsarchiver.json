@@ -1,0 +1,778 @@
+{
+  "abstract": [
+    {
+      "text": "A coder that stores an object's data to an archive.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/archives_and_serialization"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/nsarchiver"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1413557,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSArchiver",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "class "
+      },
+      {
+        "kind": "identifier",
+        "text": "NSArchiver"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "deprecated": true,
+        "deprecatedAt": "13.1",
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "deprecated": true,
+        "deprecatedAt": "10.13",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "NSArchiver"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "Mac Catalyst",
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSArchiver"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSCoder",
+              "text": "NSCoder"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsarchiver",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": ", a concrete subclass of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", provides a way to encode objects into an architecture-independent format that can be stored in a file. When you archive a graph of objects, the class information and instance variables for each object are written to the archive. The companion class ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsunarchiver",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " decodes the data in an archive and creates a graph of objects equivalent to the original set.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsarchiver",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " stores the archive data in a mutable data object (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutabledata",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "). After encoding the objects, you can have the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsarchiver",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " object write this mutable data object immediately to a file, or you can retrieve the mutable data object for some other use.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In macOS 10.2 and later, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsarchiver",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsunarchiver",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " have been replaced by ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nskeyedarchiver",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nskeyedunarchiver",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " respectively—see ",
+              "type": "text"
+            },
+            {
+              "identifier": "devLink-1695370",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "devLink-1695370": {
+      "identifier": "devLink-1695370",
+      "title": "Archives and Serializations Programming Guide",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/Archiving/Archiving.html#//apple_ref/doc/uid/10000047i"
+    },
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/archives_and_serialization": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/archives_and_serialization",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Archives and Serialization",
+      "type": "topic",
+      "url": "/documentation/foundation/archives_and_serialization"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsarchiver": {
+      "abstract": [
+        {
+          "text": "A coder that stores an object's data to an archive.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSArchiver"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsarchiver",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSArchiver",
+      "type": "topic",
+      "url": "/documentation/foundation/nsarchiver"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsarchiver/1407200-init": {
+      "abstract": [
+        {
+          "text": "Returns an archiver, initialized to encode stream and version information into a given mutable data object.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forWritingWith"
+        },
+        {
+          "kind": "text",
+          "text": ": NSMutableData)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsarchiver/1407200-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(forWritingWith:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsarchiver/1407200-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsarchiver/1408143-encodeconditionalobject": {
+      "abstract": [
+        {
+          "text": "Conditionally archives a given object.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "encodeConditionalObject"
+        },
+        {
+          "kind": "text",
+          "text": "(Any?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsarchiver/1408143-encodeconditionalobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "encodeConditionalObject(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsarchiver/1408143-encodeconditionalobject"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsarchiver/1413612-replace": {
+      "abstract": [
+        {
+          "text": "Causes the receiver to treat subsequent requests to encode a given object as though they were requests to encode another given object.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "replace"
+        },
+        {
+          "kind": "text",
+          "text": "(Any, "
+        },
+        {
+          "kind": "identifier",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": Any)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsarchiver/1413612-replace",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "replace(_:with:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsarchiver/1413612-replace"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsarchiver/1414268-archiverdata": {
+      "abstract": [
+        {
+          "text": "The receiver's archive data.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "archiverData"
+        },
+        {
+          "kind": "text",
+          "text": ": NSMutableData"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsarchiver/1414268-archiverdata",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "archiverData",
+      "type": "topic",
+      "url": "/documentation/foundation/nsarchiver/1414268-archiverdata"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsarchiver/1414941-archiverootobject": {
+      "abstract": [
+        {
+          "text": "Creates a temporary instance of ",
+          "type": "text"
+        },
+        {
+          "code": "NSArchiver",
+          "type": "codeVoice"
+        },
+        {
+          "text": " and archives an object graph by encoding it into a data object and writing the resulting data object to a specified file.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "archiveRootObject"
+        },
+        {
+          "kind": "text",
+          "text": "(Any, "
+        },
+        {
+          "kind": "identifier",
+          "text": "toFile"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsarchiver/1414941-archiverootobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "archiveRootObject(_:toFile:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsarchiver/1414941-archiverootobject"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsarchiver/1415147-classnameencoded": {
+      "abstract": [
+        {
+          "text": "Returns the name of the class used to archive instances of the class with a given true name.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "classNameEncoded"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forTrueClassName"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> String?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsarchiver/1415147-classnameencoded",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "classNameEncoded(forTrueClassName:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsarchiver/1415147-classnameencoded"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsarchiver/1415273-encodeclassname": {
+      "abstract": [
+        {
+          "text": "Encodes a substitute name for the class with a given true name.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "encodeClassName"
+        },
+        {
+          "kind": "text",
+          "text": "(String, "
+        },
+        {
+          "kind": "identifier",
+          "text": "intoClassName"
+        },
+        {
+          "kind": "text",
+          "text": ": String)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsarchiver/1415273-encodeclassname",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "encodeClassName(_:intoClassName:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsarchiver/1415273-encodeclassname"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsarchiver/1416109-archiveddata": {
+      "abstract": [
+        {
+          "text": "Returns a data object containing the encoded form of the object graph whose root object is given.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "archivedData"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "withRootObject"
+        },
+        {
+          "kind": "text",
+          "text": ": Any) -> Data"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsarchiver/1416109-archiveddata",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "archivedData(withRootObject:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsarchiver/1416109-archiveddata"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsarchiver/1416342-encoderootobject": {
+      "abstract": [
+        {
+          "text": "Archives a given object along with all the objects to which it is connected.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "encodeRootObject"
+        },
+        {
+          "kind": "text",
+          "text": "(Any)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsarchiver/1416342-encoderootobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "encodeRootObject(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsarchiver/1416342-encoderootobject"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsarchiver/archiving_exception_names": {
+      "abstract": [
+        {
+          "text": "Raised by ",
+          "type": "text"
+        },
+        {
+          "code": "NSArchiver",
+          "type": "codeVoice"
+        },
+        {
+          "text": " if there are problems initializing or encoding.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsarchiver/archiving_exception_names",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Archiving Exception Names",
+      "type": "topic",
+      "url": "/documentation/foundation/nsarchiver/archiving_exception_names"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscoder": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscoder",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCoder",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoder"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nskeyedarchiver": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nskeyedarchiver",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSKeyedArchiver",
+      "type": "topic",
+      "url": "/documentation/foundation/nskeyedarchiver"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nskeyedunarchiver": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nskeyedunarchiver",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSKeyedUnarchiver",
+      "type": "topic",
+      "url": "/documentation/foundation/nskeyedunarchiver"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutabledata": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutabledata",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSMutableData",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutabledata"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsunarchiver": {
+      "abstract": [
+        {
+          "text": "A decoder that restores data from an archive.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSUnarchiver"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsunarchiver",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSUnarchiver",
+      "type": "topic",
+      "url": "/documentation/foundation/nsunarchiver"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nscoder"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsunarchiver"
+      ],
+      "title": "Deprecated"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "1651558",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsarchiver/1407200-init"
+      ],
+      "kind": "taskGroup",
+      "title": "Initializing an NSArchiver"
+    },
+    {
+      "anchor": "1651573",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsarchiver/1416109-archiveddata",
+        "doc://com.apple.documentation/documentation/foundation/nsarchiver/1414941-archiverootobject",
+        "doc://com.apple.documentation/documentation/foundation/nsarchiver/1416342-encoderootobject",
+        "doc://com.apple.documentation/documentation/foundation/nsarchiver/1408143-encodeconditionalobject"
+      ],
+      "kind": "taskGroup",
+      "title": "Archiving data"
+    },
+    {
+      "anchor": "1651610",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsarchiver/1414268-archiverdata"
+      ],
+      "kind": "taskGroup",
+      "title": "Getting the archived data"
+    },
+    {
+      "anchor": "1651625",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsarchiver/1415147-classnameencoded",
+        "doc://com.apple.documentation/documentation/foundation/nsarchiver/1415273-encodeclassname",
+        "doc://com.apple.documentation/documentation/foundation/nsarchiver/1413612-replace"
+      ],
+      "kind": "taskGroup",
+      "title": "Substituting classes or objects"
+    },
+    {
+      "anchor": "1680411",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsarchiver/archiving_exception_names"
+      ],
+      "kind": "taskGroup",
+      "title": "Constants"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nsarchiver"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/nsarchiver"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

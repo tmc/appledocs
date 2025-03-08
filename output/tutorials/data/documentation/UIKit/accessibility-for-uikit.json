@@ -1,0 +1,4159 @@
+{
+  "abstract": [
+    {
+      "text": "Make your UIKit apps accessible to everyone who uses iOS and tvOS.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.uikit/documentation/UIKit/accessibility-for-uikit"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "UIKit"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Accessibility for UIKit"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Making your app accessible means making it usable by everyone. By designing your app with accessibility in mind, you make it possible for everyone to enjoy your app. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Accessibility",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "UIKit controls and views come with built-in accessibility, providing an accessible user experience by default. Typically, you don’t need to do extra work to enable the standard accessibility features.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In some cases, you might want to modify the default values to better represent your app, to provide additional context, or to modify the user’s flow through the app. UIKit makes these customizations straightforward, involving a few lines of code or Interface Builder adjustments as you define your user interface. For more information about customizing accessibility for UIKit elements, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/uiaccessibility-protocol",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your app contains custom user interface elements that don’t inherit from ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or one of the other UIKit classes with built-in accessibility, make those elements accessible by subclassing ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIAccessibilityElement",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you build your app with SwiftUI, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View-Accessibility",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Accessibility-PageImage-card.png": {
+      "alt": "",
+      "identifier": "Accessibility-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/718b8a161d77a3423dde2dd53ac35ffb/Accessibility-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ed433f19cfa41ebf0c9f495a066b6bbd/Accessibility-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.documentation/documentation/Accessibility": {
+      "abstract": [
+        {
+          "text": "Make your apps accessible to everyone who uses Apple devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Accessibility",
+      "images": [
+        {
+          "identifier": "Accessibility-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Accessibility",
+      "type": "topic",
+      "url": "/documentation/Accessibility"
+    },
+    "doc://com.apple.documentation/documentation/Accessibility/delivering_an_exceptional_accessibility_experience": {
+      "abstract": [
+        {
+          "text": "Make improvements to your app’s interaction model to support assistive technologies such as VoiceOver.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Accessibility/delivering_an_exceptional_accessibility_experience",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Delivering an exceptional accessibility experience",
+      "type": "topic",
+      "url": "/documentation/Accessibility/delivering_an_exceptional_accessibility_experience"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/View-Accessibility": {
+      "abstract": [
+        {
+          "text": "Make your SwiftUI apps accessible to everyone, including people with disabilities.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View-Accessibility",
+      "kind": "article",
+      "role": "article",
+      "title": "Accessibility modifiers",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View-Accessibility"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/uiaccessibility-protocol": {
+      "abstract": [
+        {
+          "text": "A set of methods that provides accessibility information about views and controls in an app’s user interface.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/uiaccessibility-protocol",
+      "kind": "article",
+      "role": "article",
+      "title": "UIAccessibility",
+      "type": "topic",
+      "url": "/documentation/UIKit/uiaccessibility-protocol"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject/uiaccessibilityaction": {
+      "abstract": [
+        {
+          "text": "A set of methods that accessibility elements can use to support specific actions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/uiaccessibilityaction",
+      "kind": "article",
+      "role": "article",
+      "title": "UIAccessibilityAction",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject/uiaccessibilityaction"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject/uiaccessibilityfocus": {
+      "abstract": [
+        {
+          "text": "An informal protocol that provides a way to determine whether an assistive app, such as VoiceOver, has focus on an accessible element.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/uiaccessibilityfocus",
+      "kind": "article",
+      "role": "article",
+      "title": "UIAccessibilityFocus",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject/uiaccessibilityfocus"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.uikit/documentation/UIKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your iOS, iPadOS, or tvOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "UIKit",
+      "type": "topic",
+      "url": "/documentation/uikit"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIAccessibility/GuidedAccessError/Code": {
+      "abstract": [
+        {
+          "text": "Error codes for Guided Access.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Code"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIAccessibility/GuidedAccessError/Code",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Code"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIAccessibility.GuidedAccessError.Code",
+      "type": "topic",
+      "url": "/documentation/uikit/uiaccessibility/guidedaccesserror/code"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIAccessibility/HearingDeviceEar": {
+      "abstract": [
+        {
+          "text": "Constants that specify how a person is using a hearing device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HearingDeviceEar"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIAccessibility/HearingDeviceEar",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HearingDeviceEar"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIAccessibility.HearingDeviceEar",
+      "type": "topic",
+      "url": "/documentation/uikit/uiaccessibility/hearingdeviceear"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIAccessibility/buttonShapesEnabled": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the Button Shapes setting is in an enabled state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "buttonShapesEnabled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIAccessibility/buttonShapesEnabled",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIAccessibilityButtonShapesEnabled"
+        }
+      ],
+      "role": "symbol",
+      "title": "buttonShapesEnabled",
+      "type": "topic",
+      "url": "/documentation/uikit/uiaccessibility/buttonshapesenabled"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIAccessibility/configureForGuidedAccess(features:enabled:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Enables or disables the specified accessibility features while using Guided Access.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "configureForGuidedAccess"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "features"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@UIGuidedAccessAccessibilityFeature",
+          "text": "UIGuidedAccessAccessibilityFeature"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "enabled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIAccessibility/configureForGuidedAccess(features:enabled:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIGuidedAccessConfigureAccessibilityFeatures"
+        }
+      ],
+      "role": "symbol",
+      "title": "configureForGuidedAccess(features:enabled:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiaccessibility/configureforguidedaccess(features:enabled:completionhandler:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIAccessibility/convertToScreenCoordinates(_:in:)-6dx4a": {
+      "abstract": [
+        {
+          "text": "Converts the specified path object to screen coordinates and returns a new path object with the results.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "convertToScreenCoordinates"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIBezierPath",
+          "text": "UIBezierPath"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIView",
+          "text": "UIView"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIBezierPath",
+          "text": "UIBezierPath"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIAccessibility/convertToScreenCoordinates(_:in:)-6dx4a",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIAccessibilityConvertPathToScreenCoordinates"
+        }
+      ],
+      "role": "symbol",
+      "title": "convertToScreenCoordinates(_:in:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiaccessibility/converttoscreencoordinates(_:in:)-6dx4a"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIAccessibility/convertToScreenCoordinates(_:in:)-9ziiu": {
+      "abstract": [
+        {
+          "text": "Converts the specified rectangle from view coordinates to screen coordinates.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "convertToScreenCoordinates"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGRect",
+          "text": "CGRect"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIView",
+          "text": "UIView"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGRect",
+          "text": "CGRect"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIAccessibility/convertToScreenCoordinates(_:in:)-9ziiu",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIAccessibilityConvertFrameToScreenCoordinates"
+        }
+      ],
+      "role": "symbol",
+      "title": "convertToScreenCoordinates(_:in:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiaccessibility/converttoscreencoordinates(_:in:)-9ziiu"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIAccessibility/focusedElement(using:)": {
+      "abstract": [
+        {
+          "text": "Returns the accessibility element that’s currently in focus by the specified assistive app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "focusedElement"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "using"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@UIAccessibility",
+          "text": "UIAccessibility"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@UIAccessibilityAssistiveTechnologyIdentifier",
+          "text": "AssistiveTechnologyIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIAccessibility/focusedElement(using:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIAccessibilityFocusedElement"
+        }
+      ],
+      "role": "symbol",
+      "title": "focusedElement(using:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiaccessibility/focusedelement(using:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIAccessibility/hearingDevicePairedEar": {
+      "abstract": [
+        {
+          "text": "The current pairing status of Made for iPhone hearing devices.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "hearingDevicePairedEar"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@UIAccessibility",
+          "text": "UIAccessibility"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@UIAccessibilityHearingDeviceEar",
+          "text": "HearingDeviceEar"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIAccessibility/hearingDevicePairedEar",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIAccessibilityHearingDevicePairedEar"
+        }
+      ],
+      "role": "symbol",
+      "title": "hearingDevicePairedEar",
+      "type": "topic",
+      "url": "/documentation/uikit/uiaccessibility/hearingdevicepairedear"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIAccessibility/isAssistiveTouchRunning": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether AssistiveTouch is in an enabled state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isAssistiveTouchRunning"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIAccessibility/isAssistiveTouchRunning",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIAccessibilityIsAssistiveTouchRunning"
+        }
+      ],
+      "role": "symbol",
+      "title": "isAssistiveTouchRunning",
+      "type": "topic",
+      "url": "/documentation/uikit/uiaccessibility/isassistivetouchrunning"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIAccessibility/isBoldTextEnabled": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the Bold Text setting is in an enabled state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isBoldTextEnabled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIAccessibility/isBoldTextEnabled",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIAccessibilityIsBoldTextEnabled"
+        }
+      ],
+      "role": "symbol",
+      "title": "isBoldTextEnabled",
+      "type": "topic",
+      "url": "/documentation/uikit/uiaccessibility/isboldtextenabled"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIAccessibility/isClosedCaptioningEnabled": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the Closed Captions + SDH setting is in an enabled state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isClosedCaptioningEnabled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIAccessibility/isClosedCaptioningEnabled",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIAccessibilityIsClosedCaptioningEnabled"
+        }
+      ],
+      "role": "symbol",
+      "title": "isClosedCaptioningEnabled",
+      "type": "topic",
+      "url": "/documentation/uikit/uiaccessibility/isclosedcaptioningenabled"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIAccessibility/isDarkerSystemColorsEnabled": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the Increase Contrast setting is in an enabled state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isDarkerSystemColorsEnabled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIAccessibility/isDarkerSystemColorsEnabled",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIAccessibilityDarkerSystemColorsEnabled"
+        }
+      ],
+      "role": "symbol",
+      "title": "isDarkerSystemColorsEnabled",
+      "type": "topic",
+      "url": "/documentation/uikit/uiaccessibility/isdarkersystemcolorsenabled"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIAccessibility/isGrayscaleEnabled": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the Color Filters and the Grayscale settings are in an enabled state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isGrayscaleEnabled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIAccessibility/isGrayscaleEnabled",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIAccessibilityIsGrayscaleEnabled"
+        }
+      ],
+      "role": "symbol",
+      "title": "isGrayscaleEnabled",
+      "type": "topic",
+      "url": "/documentation/uikit/uiaccessibility/isgrayscaleenabled"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIAccessibility/isGuidedAccessEnabled": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the Guided Access setting is in an enabled state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isGuidedAccessEnabled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIAccessibility/isGuidedAccessEnabled",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIAccessibilityIsGuidedAccessEnabled"
+        }
+      ],
+      "role": "symbol",
+      "title": "isGuidedAccessEnabled",
+      "type": "topic",
+      "url": "/documentation/uikit/uiaccessibility/isguidedaccessenabled"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIAccessibility/isInvertColorsEnabled": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the Classic Invert setting is in an enabled state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isInvertColorsEnabled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIAccessibility/isInvertColorsEnabled",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIAccessibilityIsInvertColorsEnabled"
+        }
+      ],
+      "role": "symbol",
+      "title": "isInvertColorsEnabled",
+      "type": "topic",
+      "url": "/documentation/uikit/uiaccessibility/isinvertcolorsenabled"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIAccessibility/isMonoAudioEnabled": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the Mono Audio setting is in an enabled state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isMonoAudioEnabled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIAccessibility/isMonoAudioEnabled",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIAccessibilityIsMonoAudioEnabled"
+        }
+      ],
+      "role": "symbol",
+      "title": "isMonoAudioEnabled",
+      "type": "topic",
+      "url": "/documentation/uikit/uiaccessibility/ismonoaudioenabled"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIAccessibility/isOnOffSwitchLabelsEnabled": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the On/Off Labels setting is in an enabled state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isOnOffSwitchLabelsEnabled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIAccessibility/isOnOffSwitchLabelsEnabled",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIAccessibilityIsOnOffSwitchLabelsEnabled"
+        }
+      ],
+      "role": "symbol",
+      "title": "isOnOffSwitchLabelsEnabled",
+      "type": "topic",
+      "url": "/documentation/uikit/uiaccessibility/isonoffswitchlabelsenabled"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIAccessibility/isReduceMotionEnabled": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the Reduce Motion setting is in an enabled state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isReduceMotionEnabled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIAccessibility/isReduceMotionEnabled",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIAccessibilityIsReduceMotionEnabled"
+        }
+      ],
+      "role": "symbol",
+      "title": "isReduceMotionEnabled",
+      "type": "topic",
+      "url": "/documentation/uikit/uiaccessibility/isreducemotionenabled"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIAccessibility/isReduceTransparencyEnabled": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the Reduce Transparency setting is in an enabled state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isReduceTransparencyEnabled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIAccessibility/isReduceTransparencyEnabled",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIAccessibilityIsReduceTransparencyEnabled"
+        }
+      ],
+      "role": "symbol",
+      "title": "isReduceTransparencyEnabled",
+      "type": "topic",
+      "url": "/documentation/uikit/uiaccessibility/isreducetransparencyenabled"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIAccessibility/isShakeToUndoEnabled": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the Shake to Undo setting is in an enabled state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isShakeToUndoEnabled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIAccessibility/isShakeToUndoEnabled",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIAccessibilityIsShakeToUndoEnabled"
+        }
+      ],
+      "role": "symbol",
+      "title": "isShakeToUndoEnabled",
+      "type": "topic",
+      "url": "/documentation/uikit/uiaccessibility/isshaketoundoenabled"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIAccessibility/isSpeakScreenEnabled": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the Speak Screen setting is in an enabled state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isSpeakScreenEnabled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIAccessibility/isSpeakScreenEnabled",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIAccessibilityIsSpeakScreenEnabled"
+        }
+      ],
+      "role": "symbol",
+      "title": "isSpeakScreenEnabled",
+      "type": "topic",
+      "url": "/documentation/uikit/uiaccessibility/isspeakscreenenabled"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIAccessibility/isSpeakSelectionEnabled": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the Speak Selection setting is in an enabled state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isSpeakSelectionEnabled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIAccessibility/isSpeakSelectionEnabled",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIAccessibilityIsSpeakSelectionEnabled"
+        }
+      ],
+      "role": "symbol",
+      "title": "isSpeakSelectionEnabled",
+      "type": "topic",
+      "url": "/documentation/uikit/uiaccessibility/isspeakselectionenabled"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIAccessibility/isSwitchControlRunning": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the Switch Control setting is in an enabled state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isSwitchControlRunning"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIAccessibility/isSwitchControlRunning",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIAccessibilityIsSwitchControlRunning"
+        }
+      ],
+      "role": "symbol",
+      "title": "isSwitchControlRunning",
+      "type": "topic",
+      "url": "/documentation/uikit/uiaccessibility/isswitchcontrolrunning"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIAccessibility/isVideoAutoplayEnabled": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the Auto-Play Video Previews setting is in an enabled state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isVideoAutoplayEnabled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIAccessibility/isVideoAutoplayEnabled",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIAccessibilityIsVideoAutoplayEnabled"
+        }
+      ],
+      "role": "symbol",
+      "title": "isVideoAutoplayEnabled",
+      "type": "topic",
+      "url": "/documentation/uikit/uiaccessibility/isvideoautoplayenabled"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIAccessibility/isVoiceOverRunning": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether VoiceOver is in an enabled state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isVoiceOverRunning"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIAccessibility/isVoiceOverRunning",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIAccessibilityIsVoiceOverRunning"
+        }
+      ],
+      "role": "symbol",
+      "title": "isVoiceOverRunning",
+      "type": "topic",
+      "url": "/documentation/uikit/uiaccessibility/isvoiceoverrunning"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIAccessibility/post(notification:argument:)": {
+      "abstract": [
+        {
+          "text": "Posts a notification to assistive apps.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "post"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "notification"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@UIAccessibility",
+          "text": "UIAccessibility"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@UIAccessibilityNotifications",
+          "text": "Notification"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "argument"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIAccessibility/post(notification:argument:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIAccessibilityPostNotification"
+        }
+      ],
+      "role": "symbol",
+      "title": "post(notification:argument:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiaccessibility/post(notification:argument:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIAccessibility/prefersCrossFadeTransitions": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the Reduce Motion and the Prefer Cross-Fade Transitions settings are in an enabled state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "prefersCrossFadeTransitions"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIAccessibility/prefersCrossFadeTransitions",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIAccessibilityPrefersCrossFadeTransitions"
+        }
+      ],
+      "role": "symbol",
+      "title": "prefersCrossFadeTransitions",
+      "type": "topic",
+      "url": "/documentation/uikit/uiaccessibility/preferscrossfadetransitions"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIAccessibility/registerGestureConflictWithZoom()": {
+      "abstract": [
+        {
+          "text": "Warns users that app-specific gestures conflict with the system-defined Zoom accessibility gestures.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "registerGestureConflictWithZoom"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIAccessibility/registerGestureConflictWithZoom()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIAccessibilityRegisterGestureConflictWithZoom"
+        }
+      ],
+      "role": "symbol",
+      "title": "registerGestureConflictWithZoom()",
+      "type": "topic",
+      "url": "/documentation/uikit/uiaccessibility/registergestureconflictwithzoom()"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIAccessibility/requestGuidedAccessSession(enabled:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Transitions the app to or from Single App mode asynchronously.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "requestGuidedAccessSession"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "enabled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIAccessibility/requestGuidedAccessSession(enabled:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIAccessibilityRequestGuidedAccessSession"
+        }
+      ],
+      "role": "symbol",
+      "title": "requestGuidedAccessSession(enabled:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiaccessibility/requestguidedaccesssession(enabled:completionhandler:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIAccessibility/shouldDifferentiateWithoutColor": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the Differentiate Without Color setting is in an enabled state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "shouldDifferentiateWithoutColor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIAccessibility/shouldDifferentiateWithoutColor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIAccessibilityShouldDifferentiateWithoutColor"
+        }
+      ],
+      "role": "symbol",
+      "title": "shouldDifferentiateWithoutColor",
+      "type": "topic",
+      "url": "/documentation/uikit/uiaccessibility/shoulddifferentiatewithoutcolor"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIAccessibility/zoomFocusChanged(zoomType:toFrame:in:)": {
+      "abstract": [
+        {
+          "text": "Notifies the system when the app’s focus changes to a new location.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "zoomFocusChanged"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "zoomType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@UIAccessibility",
+          "text": "UIAccessibility"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@UIAccessibilityZoomType",
+          "text": "ZoomType"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "toFrame"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGRect",
+          "text": "CGRect"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIView",
+          "text": "UIView"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIAccessibility/zoomFocusChanged(zoomType:toFrame:in:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIAccessibilityZoomFocusChanged"
+        }
+      ],
+      "role": "symbol",
+      "title": "zoomFocusChanged(zoomType:toFrame:in:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiaccessibility/zoomfocuschanged(zoomtype:toframe:in:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIAccessibilityContainerDataTable": {
+      "abstract": [
+        {
+          "text": "Methods that convey information about the contents of a table.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIAccessibilityContainerDataTable"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIAccessibilityContainerDataTable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIAccessibilityContainerDataTable"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIAccessibilityContainerDataTable",
+      "type": "topic",
+      "url": "/documentation/uikit/uiaccessibilitycontainerdatatable"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIAccessibilityContainerDataTableCell": {
+      "abstract": [
+        {
+          "text": "Methods that provide the location of a cell in a table.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIAccessibilityContainerDataTableCell"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIAccessibilityContainerDataTableCell",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIAccessibilityContainerDataTableCell"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIAccessibilityContainerDataTableCell",
+      "type": "topic",
+      "url": "/documentation/uikit/uiaccessibilitycontainerdatatablecell"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIAccessibilityContainerType": {
+      "abstract": [
+        {
+          "text": "Constants that indicate the type of content in a data-based container.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIAccessibilityContainerType"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIAccessibilityContainerType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIAccessibilityContainerType"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIAccessibilityContainerType",
+      "type": "topic",
+      "url": "/documentation/uikit/uiaccessibilitycontainertype"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIAccessibilityContentSizeCategoryImageAdjusting": {
+      "abstract": [
+        {
+          "text": "Methods to determine when to adjust images for different content size categories.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIAccessibilityContentSizeCategoryImageAdjusting"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIAccessibilityContentSizeCategoryImageAdjusting",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIAccessibilityContentSizeCategoryImageAdjusting"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIAccessibilityContentSizeCategoryImageAdjusting",
+      "type": "topic",
+      "url": "/documentation/uikit/uiaccessibilitycontentsizecategoryimageadjusting"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIAccessibilityCustomAction": {
+      "abstract": [
+        {
+          "text": "A custom action to perform on an accessible object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIAccessibilityCustomAction"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIAccessibilityCustomAction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIAccessibilityCustomAction"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIAccessibilityCustomAction",
+      "type": "topic",
+      "url": "/documentation/uikit/uiaccessibilitycustomaction"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIAccessibilityCustomAction/Handler": {
+      "abstract": [
+        {
+          "text": "A closure type that defines a handler to perform for an action.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Handler"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIAccessibilityCustomAction/Handler",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Handler"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIAccessibilityCustomAction.Handler",
+      "type": "topic",
+      "url": "/documentation/uikit/uiaccessibilitycustomaction/handler"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIAccessibilityCustomRotor": {
+      "abstract": [
+        {
+          "text": "A context-sensitive function that helps VoiceOver users find the next instance of a related element.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIAccessibilityCustomRotor"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIAccessibilityCustomRotor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIAccessibilityCustomRotor"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIAccessibilityCustomRotor",
+      "type": "topic",
+      "url": "/documentation/uikit/uiaccessibilitycustomrotor"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIAccessibilityCustomRotorItemResult": {
+      "abstract": [
+        {
+          "text": "A target element that a custom rotor references.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIAccessibilityCustomRotorItemResult"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIAccessibilityCustomRotorItemResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIAccessibilityCustomRotorItemResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIAccessibilityCustomRotorItemResult",
+      "type": "topic",
+      "url": "/documentation/uikit/uiaccessibilitycustomrotoritemresult"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIAccessibilityCustomRotorSearchPredicate": {
+      "abstract": [
+        {
+          "text": "The search parameters that help determine the next matching custom rotor item result.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIAccessibilityCustomRotorSearchPredicate"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIAccessibilityCustomRotorSearchPredicate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIAccessibilityCustomRotorSearchPredicate"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIAccessibilityCustomRotorSearchPredicate",
+      "type": "topic",
+      "url": "/documentation/uikit/uiaccessibilitycustomrotorsearchpredicate"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIAccessibilityElement": {
+      "abstract": [
+        {
+          "text": "An element that should be accessible to users with disabilities, but that isn’t accessible by default.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIAccessibilityElement"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIAccessibilityElement",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIAccessibilityElement"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIAccessibilityElement",
+      "type": "topic",
+      "url": "/documentation/uikit/uiaccessibilityelement"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIAccessibilityIdentification": {
+      "abstract": [
+        {
+          "text": "Methods that associate a unique identifier with elements in your user interface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIAccessibilityIdentification"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIAccessibilityIdentification",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIAccessibilityIdentification"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIAccessibilityIdentification",
+      "type": "topic",
+      "url": "/documentation/uikit/uiaccessibilityidentification"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIAccessibilityLocationDescriptor": {
+      "abstract": [
+        {
+          "text": "An accessibility descriptor for a specific geometric point of interest within a view, for use by assistive apps.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIAccessibilityLocationDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIAccessibilityLocationDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIAccessibilityLocationDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIAccessibilityLocationDescriptor",
+      "type": "topic",
+      "url": "/documentation/uikit/uiaccessibilitylocationdescriptor"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIAccessibilityReadingContent": {
+      "abstract": [
+        {
+          "text": "Methods to implement for an object that represents content that users read, such as a book or an article.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIAccessibilityReadingContent"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIAccessibilityReadingContent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIAccessibilityReadingContent"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIAccessibilityReadingContent",
+      "type": "topic",
+      "url": "/documentation/uikit/uiaccessibilityreadingcontent"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIAccessibilityTextualContext": {
+      "abstract": [
+        {
+          "text": "Constants that describe a named context that helps identify and classify the type of text inside an element.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIAccessibilityTextualContext"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIAccessibilityTextualContext",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIAccessibilityTextualContext"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIAccessibilityTextualContext",
+      "type": "topic",
+      "url": "/documentation/uikit/uiaccessibilitytextualcontext"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIGuidedAccessAccessibilityFeature": {
+      "abstract": [
+        {
+          "text": "Constants that describe accessibility features for Guided Access.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIGuidedAccessAccessibilityFeature"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIGuidedAccessAccessibilityFeature",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIGuidedAccessAccessibilityFeature"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIGuidedAccessAccessibilityFeature",
+      "type": "topic",
+      "url": "/documentation/uikit/uiguidedaccessaccessibilityfeature"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIPickerViewAccessibilityDelegate": {
+      "abstract": [
+        {
+          "text": "A set of methods you can implement to provide accessibility information for individual components of a picker view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIPickerViewAccessibilityDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPickerViewAccessibilityDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIPickerViewAccessibilityDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIPickerViewAccessibilityDelegate",
+      "type": "topic",
+      "url": "/documentation/uikit/uipickerviewaccessibilitydelegate"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIScrollViewAccessibilityDelegate": {
+      "abstract": [
+        {
+          "text": "A set of methods you can implement to provide accessibility information for a scroll view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIScrollViewAccessibilityDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIScrollViewAccessibilityDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIScrollViewAccessibilityDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIScrollViewAccessibilityDelegate",
+      "type": "topic",
+      "url": "/documentation/uikit/uiscrollviewaccessibilitydelegate"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIView": {
+      "abstract": [
+        {
+          "text": "An object that manages the content for a rectangular area on the screen.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIView"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIView"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIView",
+      "type": "topic",
+      "url": "/documentation/uikit/uiview"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/apple-pencil-interactions": {
+      "abstract": [
+        {
+          "text": "Handle user interactions like double tap and squeeze on Apple Pencil.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/apple-pencil-interactions",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Apple Pencil interactions",
+      "type": "topic",
+      "url": "/documentation/uikit/apple-pencil-interactions"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/drag-and-drop": {
+      "abstract": [
+        {
+          "text": "Bring drag and drop to your app by using interaction APIs with your views.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/drag-and-drop",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Drag and drop",
+      "type": "topic",
+      "url": "/documentation/uikit/drag-and-drop"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/focus-based-navigation": {
+      "abstract": [
+        {
+          "text": "Navigate the interface of your UIKit app using a remote, game controller, or keyboard.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/focus-based-navigation",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Focus-based navigation",
+      "type": "topic",
+      "url": "/documentation/uikit/focus-based-navigation"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/menus-and-shortcuts": {
+      "abstract": [
+        {
+          "text": "Simplify interactions with your app using menu systems, contextual menus, Home Screen quick actions, and keyboard shortcuts.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/menus-and-shortcuts",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Menus and shortcuts",
+      "type": "topic",
+      "url": "/documentation/uikit/menus-and-shortcuts"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/notification-dictionary-keys": {
+      "abstract": [
+        {
+          "text": "Handle notifications with keys in the user info dictionary.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/notification-dictionary-keys",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Notification dictionary keys",
+      "type": "topic",
+      "url": "/documentation/uikit/notification-dictionary-keys"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/notification-names": {
+      "abstract": [
+        {
+          "text": "The names of notifications that the accessibility system generates.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/notification-names",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Notification names",
+      "type": "topic",
+      "url": "/documentation/uikit/notification-names"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/pointer-interactions": {
+      "abstract": [
+        {
+          "text": "Support pointer interactions in your custom controls and views.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/pointer-interactions",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Pointer interactions",
+      "type": "topic",
+      "url": "/documentation/uikit/pointer-interactions"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/supporting-voiceover-in-your-app": {
+      "abstract": [
+        {
+          "text": "Add VoiceOver support to make your iOS app more accessible to users who are blind or have low vision.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/supporting-voiceover-in-your-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Supporting VoiceOver in your app",
+      "type": "topic",
+      "url": "/documentation/uikit/supporting-voiceover-in-your-app"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/touches-presses-and-gestures": {
+      "abstract": [
+        {
+          "text": "Encapsulate your app’s event-handling logic in gesture recognizers so that you can reuse that code throughout your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/touches-presses-and-gestures",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Touches, presses, and gestures",
+      "type": "topic",
+      "url": "/documentation/uikit/touches-presses-and-gestures"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/uiaccessibility-protocol": {
+      "abstract": [
+        {
+          "text": "A set of methods that provides accessibility information about views and controls in an app’s user interface.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/uiaccessibility-protocol",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "UIAccessibility",
+      "type": "topic",
+      "url": "/documentation/uikit/uiaccessibility-protocol"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/uiaccessibilitycontainer": {
+      "abstract": [
+        {
+          "text": "Provide a set of methods that view subclasses use to make subcomponents accessible as separate elements.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/uiaccessibilitycontainer",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "UIAccessibilityContainer",
+      "type": "topic",
+      "url": "/documentation/uikit/uiaccessibilitycontainer"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "User-interactions",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/touches-presses-and-gestures",
+        "doc://com.apple.uikit/documentation/UIKit/menus-and-shortcuts",
+        "doc://com.apple.uikit/documentation/UIKit/drag-and-drop",
+        "doc://com.apple.uikit/documentation/UIKit/pointer-interactions",
+        "doc://com.apple.uikit/documentation/UIKit/apple-pencil-interactions",
+        "doc://com.apple.uikit/documentation/UIKit/focus-based-navigation"
+      ],
+      "title": "User interactions"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Essentials",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/uiaccessibility-protocol",
+        "doc://com.apple.uikit/documentation/UIKit/uiaccessibilitycontainer",
+        "doc://com.apple.uikit/documentation/UIKit/supporting-voiceover-in-your-app"
+      ],
+      "title": "Essentials"
+    },
+    {
+      "anchor": "Behaviors",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/objectivec/nsobject/uiaccessibilityfocus",
+        "doc://com.apple.uikit/documentation/UIKit/UIAccessibilityIdentification",
+        "doc://com.apple.uikit/documentation/UIKit/UIAccessibilityReadingContent",
+        "doc://com.apple.uikit/documentation/UIKit/UIAccessibilityContentSizeCategoryImageAdjusting",
+        "doc://com.apple.uikit/documentation/UIKit/UIAccessibilityTextualContext"
+      ],
+      "title": "Behaviors"
+    },
+    {
+      "anchor": "Guided-Access",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIAccessibility/configureForGuidedAccess(features:enabled:completionHandler:)",
+        "doc://com.apple.uikit/documentation/UIKit/UIGuidedAccessAccessibilityFeature",
+        "doc://com.apple.uikit/documentation/UIKit/UIAccessibility/GuidedAccessError/Code"
+      ],
+      "title": "Guided Access"
+    },
+    {
+      "anchor": "Actions",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/objectivec/nsobject/uiaccessibilityaction",
+        "doc://com.apple.uikit/documentation/UIKit/UIAccessibilityCustomAction",
+        "doc://com.apple.uikit/documentation/UIKit/UIAccessibilityCustomAction/Handler",
+        "doc://com.apple.documentation/documentation/Accessibility/delivering_an_exceptional_accessibility_experience"
+      ],
+      "title": "Actions"
+    },
+    {
+      "anchor": "Elements",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIAccessibilityElement",
+        "doc://com.apple.uikit/documentation/UIKit/UIScrollViewAccessibilityDelegate",
+        "doc://com.apple.uikit/documentation/UIKit/UIPickerViewAccessibilityDelegate"
+      ],
+      "title": "Elements"
+    },
+    {
+      "anchor": "Containers",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIAccessibilityContainerDataTable",
+        "doc://com.apple.uikit/documentation/UIKit/UIAccessibilityContainerDataTableCell",
+        "doc://com.apple.uikit/documentation/UIKit/UIAccessibilityContainerType"
+      ],
+      "title": "Containers"
+    },
+    {
+      "anchor": "Navigation",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIAccessibilityCustomRotor",
+        "doc://com.apple.uikit/documentation/UIKit/UIAccessibilityCustomRotorItemResult",
+        "doc://com.apple.uikit/documentation/UIKit/UIAccessibilityCustomRotorSearchPredicate"
+      ],
+      "title": "Navigation"
+    },
+    {
+      "anchor": "Drag-and-drop-support",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIAccessibilityLocationDescriptor"
+      ],
+      "title": "Drag and drop support"
+    },
+    {
+      "anchor": "Notifications",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/notification-names",
+        "doc://com.apple.uikit/documentation/UIKit/notification-dictionary-keys",
+        "doc://com.apple.uikit/documentation/UIKit/UIAccessibility/post(notification:argument:)"
+      ],
+      "title": "Notifications"
+    },
+    {
+      "anchor": "Conversions",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIAccessibility/convertToScreenCoordinates(_:in:)-9ziiu",
+        "doc://com.apple.uikit/documentation/UIKit/UIAccessibility/convertToScreenCoordinates(_:in:)-6dx4a"
+      ],
+      "title": "Conversions"
+    },
+    {
+      "anchor": "Convenience-functions",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIAccessibility/focusedElement(using:)",
+        "doc://com.apple.uikit/documentation/UIKit/UIAccessibility/hearingDevicePairedEar",
+        "doc://com.apple.uikit/documentation/UIKit/UIAccessibility/HearingDeviceEar",
+        "doc://com.apple.uikit/documentation/UIKit/UIAccessibility/registerGestureConflictWithZoom()",
+        "doc://com.apple.uikit/documentation/UIKit/UIAccessibility/requestGuidedAccessSession(enabled:completionHandler:)",
+        "doc://com.apple.uikit/documentation/UIKit/UIAccessibility/zoomFocusChanged(zoomType:toFrame:in:)"
+      ],
+      "title": "Convenience functions"
+    },
+    {
+      "anchor": "Capabilities",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIAccessibility/isAssistiveTouchRunning",
+        "doc://com.apple.uikit/documentation/UIKit/UIAccessibility/isVoiceOverRunning",
+        "doc://com.apple.uikit/documentation/UIKit/UIAccessibility/isSwitchControlRunning",
+        "doc://com.apple.uikit/documentation/UIKit/UIAccessibility/isShakeToUndoEnabled",
+        "doc://com.apple.uikit/documentation/UIKit/UIAccessibility/isClosedCaptioningEnabled",
+        "doc://com.apple.uikit/documentation/UIKit/UIAccessibility/isBoldTextEnabled",
+        "doc://com.apple.uikit/documentation/UIKit/UIAccessibility/isDarkerSystemColorsEnabled",
+        "doc://com.apple.uikit/documentation/UIKit/UIAccessibility/isGrayscaleEnabled",
+        "doc://com.apple.uikit/documentation/UIKit/UIAccessibility/isGuidedAccessEnabled",
+        "doc://com.apple.uikit/documentation/UIKit/UIAccessibility/isInvertColorsEnabled",
+        "doc://com.apple.uikit/documentation/UIKit/UIAccessibility/isMonoAudioEnabled",
+        "doc://com.apple.uikit/documentation/UIKit/UIAccessibility/isReduceMotionEnabled",
+        "doc://com.apple.uikit/documentation/UIKit/UIAccessibility/isReduceTransparencyEnabled",
+        "doc://com.apple.uikit/documentation/UIKit/UIAccessibility/isSpeakScreenEnabled",
+        "doc://com.apple.uikit/documentation/UIKit/UIAccessibility/isSpeakSelectionEnabled",
+        "doc://com.apple.uikit/documentation/UIKit/UIAccessibility/isOnOffSwitchLabelsEnabled",
+        "doc://com.apple.uikit/documentation/UIKit/UIAccessibility/isVideoAutoplayEnabled",
+        "doc://com.apple.uikit/documentation/UIKit/UIAccessibility/buttonShapesEnabled",
+        "doc://com.apple.uikit/documentation/UIKit/UIAccessibility/prefersCrossFadeTransitions",
+        "doc://com.apple.uikit/documentation/UIKit/UIAccessibility/shouldDifferentiateWithoutColor"
+      ],
+      "title": "Capabilities"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Essentials",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/uiaccessibility-protocol",
+                "doc://com.apple.uikit/documentation/UIKit/uiaccessibilitycontainer",
+                "doc://com.apple.uikit/documentation/UIKit/supporting-voiceover-in-your-app"
+              ],
+              "title": "Essentials"
+            },
+            {
+              "anchor": "Behaviors",
+              "identifiers": [
+                "doc://com.apple.documentation/documentation/objectivec/nsobject/uiaccessibilityfocus",
+                "doc://com.apple.uikit/documentation/UIKit/UIAccessibilityIdentification",
+                "doc://com.apple.uikit/documentation/UIKit/UIAccessibilityReadingContent",
+                "doc://com.apple.uikit/documentation/UIKit/UIAccessibilityContentSizeCategoryImageAdjusting",
+                "doc://com.apple.uikit/documentation/UIKit/UIAccessibilityTextualContext"
+              ],
+              "title": "Behaviors"
+            },
+            {
+              "anchor": "Guided-Access",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIAccessibility/configureForGuidedAccess(features:enabled:completionHandler:)",
+                "doc://com.apple.uikit/documentation/UIKit/UIGuidedAccessAccessibilityFeature",
+                "doc://com.apple.uikit/documentation/UIKit/UIAccessibility/GuidedAccessError/Code"
+              ],
+              "title": "Guided Access"
+            },
+            {
+              "anchor": "Actions",
+              "identifiers": [
+                "doc://com.apple.documentation/documentation/objectivec/nsobject/uiaccessibilityaction",
+                "doc://com.apple.uikit/documentation/UIKit/UIAccessibilityCustomAction",
+                "doc://com.apple.uikit/documentation/UIKit/UIAccessibilityCustomAction/Handler",
+                "doc://com.apple.documentation/documentation/Accessibility/delivering_an_exceptional_accessibility_experience"
+              ],
+              "title": "Actions"
+            },
+            {
+              "anchor": "Elements",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIAccessibilityElement",
+                "doc://com.apple.uikit/documentation/UIKit/UIScrollViewAccessibilityDelegate",
+                "doc://com.apple.uikit/documentation/UIKit/UIPickerViewAccessibilityDelegate"
+              ],
+              "title": "Elements"
+            },
+            {
+              "anchor": "Containers",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIAccessibilityContainerDataTable",
+                "doc://com.apple.uikit/documentation/UIKit/UIAccessibilityContainerDataTableCell",
+                "doc://com.apple.uikit/documentation/UIKit/UIAccessibilityContainerType"
+              ],
+              "title": "Containers"
+            },
+            {
+              "anchor": "Navigation",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIAccessibilityCustomRotor",
+                "doc://com.apple.uikit/documentation/UIKit/UIAccessibilityCustomRotorItemResult",
+                "doc://com.apple.uikit/documentation/UIKit/UIAccessibilityCustomRotorSearchPredicate"
+              ],
+              "title": "Navigation"
+            },
+            {
+              "anchor": "Drag-and-drop-support",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIAccessibilityLocationDescriptor"
+              ],
+              "title": "Drag and drop support"
+            },
+            {
+              "anchor": "Notifications",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/notification-names",
+                "doc://com.apple.uikit/documentation/UIKit/notification-dictionary-keys",
+                "doc://com.apple.uikit/documentation/UIKit/UIAccessibility/post(notification:argument:)"
+              ],
+              "title": "Notifications"
+            },
+            {
+              "anchor": "Conversions",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIAccessibility/convertToScreenCoordinates(_:in:)-9ziiu",
+                "doc://com.apple.uikit/documentation/UIKit/UIAccessibility/convertToScreenCoordinates(_:in:)-6dx4a"
+              ],
+              "title": "Conversions"
+            },
+            {
+              "anchor": "Convenience-functions",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIAccessibility/focusedElement(using:)",
+                "doc://com.apple.uikit/documentation/UIKit/UIAccessibility/hearingDevicePairedEar",
+                "doc://com.apple.uikit/documentation/UIKit/UIAccessibility/HearingDeviceEar",
+                "doc://com.apple.uikit/documentation/UIKit/UIAccessibility/registerGestureConflictWithZoom()",
+                "doc://com.apple.uikit/documentation/UIKit/UIAccessibility/requestGuidedAccessSession(enabled:completionHandler:)",
+                "doc://com.apple.uikit/documentation/UIKit/UIAccessibility/zoomFocusChanged(zoomType:toFrame:in:)"
+              ],
+              "title": "Convenience functions"
+            },
+            {
+              "anchor": "Capabilities",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIAccessibility/isAssistiveTouchRunning",
+                "doc://com.apple.uikit/documentation/UIKit/UIAccessibility/isVoiceOverRunning",
+                "doc://com.apple.uikit/documentation/UIKit/UIAccessibility/isSwitchControlRunning",
+                "doc://com.apple.uikit/documentation/UIKit/UIAccessibility/isShakeToUndoEnabled",
+                "doc://com.apple.uikit/documentation/UIKit/UIAccessibility/isClosedCaptioningEnabled",
+                "doc://com.apple.uikit/documentation/UIKit/UIAccessibility/isBoldTextEnabled",
+                "doc://com.apple.uikit/documentation/UIKit/UIAccessibility/isDarkerSystemColorsEnabled",
+                "doc://com.apple.uikit/documentation/UIKit/UIAccessibility/isGrayscaleEnabled",
+                "doc://com.apple.uikit/documentation/UIKit/UIAccessibility/isGuidedAccessEnabled",
+                "doc://com.apple.uikit/documentation/UIKit/UIAccessibility/isInvertColorsEnabled",
+                "doc://com.apple.uikit/documentation/UIKit/UIAccessibility/isMonoAudioEnabled",
+                "doc://com.apple.uikit/documentation/UIKit/UIAccessibility/isReduceMotionEnabled",
+                "doc://com.apple.uikit/documentation/UIKit/UIAccessibility/isReduceTransparencyEnabled",
+                "doc://com.apple.uikit/documentation/UIKit/UIAccessibility/isSpeakScreenEnabled",
+                "doc://com.apple.uikit/documentation/UIKit/UIAccessibility/isSpeakSelectionEnabled",
+                "doc://com.apple.uikit/documentation/UIKit/UIAccessibility/isOnOffSwitchLabelsEnabled",
+                "doc://com.apple.uikit/documentation/UIKit/UIAccessibility/isVideoAutoplayEnabled",
+                "doc://com.apple.uikit/documentation/UIKit/UIAccessibility/buttonShapesEnabled",
+                "doc://com.apple.uikit/documentation/UIKit/UIAccessibility/prefersCrossFadeTransitions",
+                "doc://com.apple.uikit/documentation/UIKit/UIAccessibility/shouldDifferentiateWithoutColor"
+              ],
+              "title": "Capabilities"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "User-interactions",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/touches-presses-and-gestures",
+                "doc://com.apple.uikit/documentation/UIKit/menus-and-shortcuts",
+                "doc://com.apple.uikit/documentation/UIKit/drag-and-drop",
+                "doc://com.apple.uikit/documentation/UIKit/pointer-interactions",
+                "doc://com.apple.uikit/documentation/UIKit/apple-pencil-interactions",
+                "doc://com.apple.uikit/documentation/UIKit/focus-based-navigation"
+              ],
+              "title": "User interactions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAccessibilityCustomRotor/title",
+          "value": "UIAccessibilityCustomRotor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAccessibilityCustomRotor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIAccessibilityCustomRotor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAccessibilityCustomRotor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIAccessibilityCustomRotor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAccessibility~1post(notification:argument:)/title",
+          "value": "UIAccessibilityPostNotification"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAccessibility~1post(notification:argument:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIAccessibilityPostNotification"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAccessibility~1isVoiceOverRunning/title",
+          "value": "UIAccessibilityIsVoiceOverRunning"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAccessibility~1isVoiceOverRunning/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIAccessibilityIsVoiceOverRunning"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAccessibility~1isInvertColorsEnabled/title",
+          "value": "UIAccessibilityIsInvertColorsEnabled"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAccessibility~1isInvertColorsEnabled/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIAccessibilityIsInvertColorsEnabled"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAccessibility~1isAssistiveTouchRunning/title",
+          "value": "UIAccessibilityIsAssistiveTouchRunning"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAccessibility~1isAssistiveTouchRunning/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIAccessibilityIsAssistiveTouchRunning"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAccessibility~1isBoldTextEnabled/title",
+          "value": "UIAccessibilityIsBoldTextEnabled"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAccessibility~1isBoldTextEnabled/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIAccessibilityIsBoldTextEnabled"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIGuidedAccessAccessibilityFeature/title",
+          "value": "UIGuidedAccessAccessibilityFeature"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIGuidedAccessAccessibilityFeature/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIGuidedAccessAccessibilityFeature"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIGuidedAccessAccessibilityFeature/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIGuidedAccessAccessibilityFeature"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAccessibility~1HearingDeviceEar/title",
+          "value": "UIAccessibilityHearingDeviceEar"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAccessibility~1HearingDeviceEar/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIAccessibilityHearingDeviceEar"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAccessibility~1HearingDeviceEar/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIAccessibilityHearingDeviceEar"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAccessibilityCustomAction/title",
+          "value": "UIAccessibilityCustomAction"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAccessibilityCustomAction/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIAccessibilityCustomAction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAccessibilityCustomAction/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIAccessibilityCustomAction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAccessibilityContainerDataTableCell/title",
+          "value": "UIAccessibilityContainerDataTableCell"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAccessibilityContainerDataTableCell/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIAccessibilityContainerDataTableCell"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAccessibilityContainerDataTableCell/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIAccessibilityContainerDataTableCell"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAccessibility~1prefersCrossFadeTransitions/title",
+          "value": "UIAccessibilityPrefersCrossFadeTransitions"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAccessibility~1prefersCrossFadeTransitions/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIAccessibilityPrefersCrossFadeTransitions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAccessibilityContentSizeCategoryImageAdjusting/title",
+          "value": "UIAccessibilityContentSizeCategoryImageAdjusting"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAccessibilityContentSizeCategoryImageAdjusting/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIAccessibilityContentSizeCategoryImageAdjusting"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAccessibilityContentSizeCategoryImageAdjusting/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIAccessibilityContentSizeCategoryImageAdjusting"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAccessibilityCustomAction~1Handler/title",
+          "value": "UIAccessibilityCustomActionHandler"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAccessibilityCustomAction~1Handler/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIAccessibilityCustomActionHandler"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAccessibilityCustomAction~1Handler/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIAccessibilityCustomActionHandler"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAccessibility~1focusedElement(using:)/title",
+          "value": "UIAccessibilityFocusedElement"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAccessibility~1focusedElement(using:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIAccessibilityFocusedElement"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAccessibility~1zoomFocusChanged(zoomType:toFrame:in:)/title",
+          "value": "UIAccessibilityZoomFocusChanged"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAccessibility~1zoomFocusChanged(zoomType:toFrame:in:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIAccessibilityZoomFocusChanged"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAccessibilityContainerDataTable/title",
+          "value": "UIAccessibilityContainerDataTable"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAccessibilityContainerDataTable/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIAccessibilityContainerDataTable"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAccessibilityContainerDataTable/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIAccessibilityContainerDataTable"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAccessibility~1isGrayscaleEnabled/title",
+          "value": "UIAccessibilityIsGrayscaleEnabled"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAccessibility~1isGrayscaleEnabled/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIAccessibilityIsGrayscaleEnabled"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAccessibility~1registerGestureConflictWithZoom()/title",
+          "value": "UIAccessibilityRegisterGestureConflictWithZoom"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAccessibility~1registerGestureConflictWithZoom()/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIAccessibilityRegisterGestureConflictWithZoom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAccessibilityCustomRotorSearchPredicate/title",
+          "value": "UIAccessibilityCustomRotorSearchPredicate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAccessibilityCustomRotorSearchPredicate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIAccessibilityCustomRotorSearchPredicate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAccessibilityCustomRotorSearchPredicate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIAccessibilityCustomRotorSearchPredicate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAccessibilityCustomRotorItemResult/title",
+          "value": "UIAccessibilityCustomRotorItemResult"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAccessibilityCustomRotorItemResult/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIAccessibilityCustomRotorItemResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAccessibilityCustomRotorItemResult/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIAccessibilityCustomRotorItemResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAccessibility~1isSpeakSelectionEnabled/title",
+          "value": "UIAccessibilityIsSpeakSelectionEnabled"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAccessibility~1isSpeakSelectionEnabled/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIAccessibilityIsSpeakSelectionEnabled"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIView/title",
+          "value": "UIView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAccessibilityReadingContent/title",
+          "value": "UIAccessibilityReadingContent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAccessibilityReadingContent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIAccessibilityReadingContent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAccessibilityReadingContent/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIAccessibilityReadingContent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAccessibility~1buttonShapesEnabled/title",
+          "value": "UIAccessibilityButtonShapesEnabled"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAccessibility~1buttonShapesEnabled/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIAccessibilityButtonShapesEnabled"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAccessibilityContainerType/title",
+          "value": "UIAccessibilityContainerType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAccessibilityContainerType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIAccessibilityContainerType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAccessibilityContainerType/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIAccessibilityContainerType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAccessibility~1isReduceTransparencyEnabled/title",
+          "value": "UIAccessibilityIsReduceTransparencyEnabled"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAccessibility~1isReduceTransparencyEnabled/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIAccessibilityIsReduceTransparencyEnabled"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAccessibility~1convertToScreenCoordinates(_:in:)-6dx4a/title",
+          "value": "UIAccessibilityConvertPathToScreenCoordinates"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAccessibility~1convertToScreenCoordinates(_:in:)-6dx4a/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIAccessibilityConvertPathToScreenCoordinates"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAccessibilityElement/title",
+          "value": "UIAccessibilityElement"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAccessibilityElement/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIAccessibilityElement"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAccessibilityElement/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIAccessibilityElement"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAccessibilityLocationDescriptor/title",
+          "value": "UIAccessibilityLocationDescriptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAccessibilityLocationDescriptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIAccessibilityLocationDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAccessibilityLocationDescriptor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIAccessibilityLocationDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAccessibility~1requestGuidedAccessSession(enabled:completionHandler:)/title",
+          "value": "UIAccessibilityRequestGuidedAccessSession"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAccessibility~1requestGuidedAccessSession(enabled:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIAccessibilityRequestGuidedAccessSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAccessibility~1isClosedCaptioningEnabled/title",
+          "value": "UIAccessibilityIsClosedCaptioningEnabled"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAccessibility~1isClosedCaptioningEnabled/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIAccessibilityIsClosedCaptioningEnabled"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAccessibilityIdentification/title",
+          "value": "UIAccessibilityIdentification"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAccessibilityIdentification/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIAccessibilityIdentification"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAccessibilityIdentification/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIAccessibilityIdentification"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIScrollViewAccessibilityDelegate/title",
+          "value": "UIScrollViewAccessibilityDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIScrollViewAccessibilityDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIScrollViewAccessibilityDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIScrollViewAccessibilityDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIScrollViewAccessibilityDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAccessibility~1isDarkerSystemColorsEnabled/title",
+          "value": "UIAccessibilityDarkerSystemColorsEnabled"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAccessibility~1isDarkerSystemColorsEnabled/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIAccessibilityDarkerSystemColorsEnabled"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAccessibility~1GuidedAccessError~1Code/title",
+          "value": "UIGuidedAccessErrorCode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAccessibility~1GuidedAccessError~1Code/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIGuidedAccessErrorCode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAccessibility~1GuidedAccessError~1Code/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIGuidedAccessErrorCode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAccessibility~1configureForGuidedAccess(features:enabled:completionHandler:)/title",
+          "value": "UIGuidedAccessConfigureAccessibilityFeatures"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAccessibility~1configureForGuidedAccess(features:enabled:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIGuidedAccessConfigureAccessibilityFeatures"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAccessibility~1isVideoAutoplayEnabled/title",
+          "value": "UIAccessibilityIsVideoAutoplayEnabled"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAccessibility~1isVideoAutoplayEnabled/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIAccessibilityIsVideoAutoplayEnabled"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAccessibility~1isReduceMotionEnabled/title",
+          "value": "UIAccessibilityIsReduceMotionEnabled"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAccessibility~1isReduceMotionEnabled/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIAccessibilityIsReduceMotionEnabled"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPickerViewAccessibilityDelegate/title",
+          "value": "UIPickerViewAccessibilityDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPickerViewAccessibilityDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIPickerViewAccessibilityDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPickerViewAccessibilityDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIPickerViewAccessibilityDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAccessibility~1isMonoAudioEnabled/title",
+          "value": "UIAccessibilityIsMonoAudioEnabled"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAccessibility~1isMonoAudioEnabled/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIAccessibilityIsMonoAudioEnabled"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAccessibilityTextualContext/title",
+          "value": "UIAccessibilityTextualContext"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAccessibilityTextualContext/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIAccessibilityTextualContext"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAccessibilityTextualContext/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIAccessibilityTextualContext"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAccessibility~1isGuidedAccessEnabled/title",
+          "value": "UIAccessibilityIsGuidedAccessEnabled"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAccessibility~1isGuidedAccessEnabled/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIAccessibilityIsGuidedAccessEnabled"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAccessibility~1shouldDifferentiateWithoutColor/title",
+          "value": "UIAccessibilityShouldDifferentiateWithoutColor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAccessibility~1shouldDifferentiateWithoutColor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIAccessibilityShouldDifferentiateWithoutColor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAccessibility~1convertToScreenCoordinates(_:in:)-9ziiu/title",
+          "value": "UIAccessibilityConvertFrameToScreenCoordinates"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAccessibility~1convertToScreenCoordinates(_:in:)-9ziiu/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIAccessibilityConvertFrameToScreenCoordinates"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAccessibility~1hearingDevicePairedEar/title",
+          "value": "UIAccessibilityHearingDevicePairedEar"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAccessibility~1hearingDevicePairedEar/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIAccessibilityHearingDevicePairedEar"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAccessibility~1isSwitchControlRunning/title",
+          "value": "UIAccessibilityIsSwitchControlRunning"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAccessibility~1isSwitchControlRunning/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIAccessibilityIsSwitchControlRunning"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAccessibility~1isShakeToUndoEnabled/title",
+          "value": "UIAccessibilityIsShakeToUndoEnabled"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAccessibility~1isShakeToUndoEnabled/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIAccessibilityIsShakeToUndoEnabled"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAccessibility~1isOnOffSwitchLabelsEnabled/title",
+          "value": "UIAccessibilityIsOnOffSwitchLabelsEnabled"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAccessibility~1isOnOffSwitchLabelsEnabled/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIAccessibilityIsOnOffSwitchLabelsEnabled"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAccessibility~1isSpeakScreenEnabled/title",
+          "value": "UIAccessibilityIsSpeakScreenEnabled"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAccessibility~1isSpeakScreenEnabled/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIAccessibilityIsSpeakScreenEnabled"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/uikit/accessibility-for-uikit"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/uikit/accessibility-for-uikit"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

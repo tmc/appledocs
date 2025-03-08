@@ -1,0 +1,2029 @@
+{
+  "abstract": [
+    {
+      "text": "A model you train to make recommendations based on item similarity,",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "grouping, and, optionally, item ratings.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.CreateML/documentation/CreateML"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.CreateML/documentation/CreateML/MLRecommender"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:8CreateML13MLRecommenderV",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "struct"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "MLRecommender"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Create ML"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "MLRecommender"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.15",
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "MLRecommender"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MLRecommender"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLRecommender",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to train a machine learning model that you include",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in your app to make recommendations for the user, while keeping their data",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "on-device.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You create a recommender model by training it with tabular data that",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "includes columns for the recommendation items and the groups the items",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "belong to. You also have the option to include an item rating column, which",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "gives higher-rated items more weight than those with lesser or negative",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "ratings. The recommender uses the training information to find similarity",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "patterns by looking at items that occur in groups or have similar ratings",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "within groups.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you train a recommender, you save it as a Core ML model file with the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": ".mlmodel",
+              "type": "codeVoice"
+            },
+            {
+              "text": " extension. Import this model file into your Xcode project by",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "dragging it into the Project navigator. At runtime, use the recommender to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "make item suggestions to the user based on the patterns in training data and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the user’s item history. For example, a hiking app can recommend trails",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "based on the trails a user has previously hiked and their ratings of those",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "trails.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.CreateML/documentation/CreateML": {
+      "abstract": [
+        {
+          "text": "Create machine learning models for use in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Create ML",
+      "type": "topic",
+      "url": "/documentation/createml"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLClassifier": {
+      "abstract": [
+        {
+          "text": "A model you train to classify data into discrete categories.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MLClassifier"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLClassifier",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MLClassifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "MLClassifier",
+      "type": "topic",
+      "url": "/documentation/createml/mlclassifier"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLIdentifier": {
+      "abstract": [
+        {
+          "text": "A type the Create ML framework can use as a machine learning identifier.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MLIdentifier"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLIdentifier",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MLIdentifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "MLIdentifier",
+      "type": "topic",
+      "url": "/documentation/createml/mlidentifier"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLRecommender": {
+      "abstract": [
+        {
+          "text": "A model you train to make recommendations based on item similarity,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "grouping, and, optionally, item ratings.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MLRecommender"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLRecommender",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MLRecommender"
+        }
+      ],
+      "role": "symbol",
+      "title": "MLRecommender",
+      "type": "topic",
+      "url": "/documentation/createml/mlrecommender"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLRecommender/ModelAlgorithmType": {
+      "abstract": [
+        {
+          "text": "The algorithms a recommender can use to make recommendations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ModelAlgorithmType"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLRecommender/ModelAlgorithmType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ModelAlgorithmType"
+        }
+      ],
+      "role": "symbol",
+      "title": "MLRecommender.ModelAlgorithmType",
+      "type": "topic",
+      "url": "/documentation/createml/mlrecommender/modelalgorithmtype"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLRecommender/ModelParameters-swift.struct": {
+      "abstract": [
+        {
+          "text": "Parameters that affect the process of training a recommender model.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ModelParameters"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLRecommender/ModelParameters-swift.struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ModelParameters"
+        }
+      ],
+      "role": "symbol",
+      "title": "MLRecommender.ModelParameters",
+      "type": "topic",
+      "url": "/documentation/createml/mlrecommender/modelparameters-swift.struct"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLRecommender/SimilarityType": {
+      "abstract": [
+        {
+          "text": "The metric by which the recommender computes item similarity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SimilarityType"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLRecommender/SimilarityType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SimilarityType"
+        }
+      ],
+      "role": "symbol",
+      "title": "MLRecommender.SimilarityType",
+      "type": "topic",
+      "url": "/documentation/createml/mlrecommender/similaritytype"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLRecommender/evaluation(on:userColumn:itemColumn:ratingColumn:cutoffs:excludingObserved:)-50o7t": {
+      "abstract": [
+        {
+          "text": "Computes the metrics for the given testing data.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "evaluation"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "on"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML11MLDataTableV",
+          "text": "MLDataTable"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "userColumn"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "itemColumn"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "ratingColumn"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "cutoffs"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "excludingObserved"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML20MLRecommenderMetricsV",
+          "text": "MLRecommenderMetrics"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLRecommender/evaluation(on:userColumn:itemColumn:ratingColumn:cutoffs:excludingObserved:)-50o7t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "evaluation(on:userColumn:itemColumn:ratingColumn:cutoffs:excludingObserved:)",
+      "type": "topic",
+      "url": "/documentation/createml/mlrecommender/evaluation(on:usercolumn:itemcolumn:ratingcolumn:cutoffs:excludingobserved:)-50o7t"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLRecommender/evaluation(on:userColumn:itemColumn:ratingColumn:cutoffs:excludingObserved:)-641uh": {
+      "abstract": [
+        {
+          "text": "Computes the metrics for the given testing data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "evaluation"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "on"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11TabularData0B5FrameV",
+          "text": "DataFrame"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "userColumn"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "itemColumn"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "ratingColumn"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "cutoffs"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "excludingObserved"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML20MLRecommenderMetricsV",
+          "text": "MLRecommenderMetrics"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLRecommender/evaluation(on:userColumn:itemColumn:ratingColumn:cutoffs:excludingObserved:)-641uh",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "evaluation(on:userColumn:itemColumn:ratingColumn:cutoffs:excludingObserved:)",
+      "type": "topic",
+      "url": "/documentation/createml/mlrecommender/evaluation(on:usercolumn:itemcolumn:ratingcolumn:cutoffs:excludingobserved:)-641uh"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLRecommender/getSimilarItems(fromItems:maxCount:)-9scon": {
+      "abstract": [
+        {
+          "text": "Returns the top ranked similar items based on the model’s similarity",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "type.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "getSimilarItems"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "fromItems"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML12MLDataColumnV",
+          "text": "MLDataColumn"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "maxCount"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML11MLDataTableV",
+          "text": "MLDataTable"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLRecommender/getSimilarItems(fromItems:maxCount:)-9scon",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getSimilarItems(fromItems:maxCount:)",
+      "type": "topic",
+      "url": "/documentation/createml/mlrecommender/getsimilaritems(fromitems:maxcount:)-9scon"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLRecommender/getSimilarItems(fromItems:maxCount:)-kq37": {
+      "abstract": [
+        {
+          "text": "Returns the top ranked similar items based on the model’s similarity",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "type.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "getSimilarItems"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "fromItems"
+        },
+        {
+          "kind": "text",
+          "text": ": [any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML12MLIdentifierP",
+          "text": "MLIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "maxCount"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML11MLDataTableV",
+          "text": "MLDataTable"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLRecommender/getSimilarItems(fromItems:maxCount:)-kq37",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getSimilarItems(fromItems:maxCount:)",
+      "type": "topic",
+      "url": "/documentation/createml/mlrecommender/getsimilaritems(fromitems:maxcount:)-kq37"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLRecommender/init(trainingData:userColumn:itemColumn:ratingColumn:parameters:)-1mecd": {
+      "abstract": [
+        {
+          "text": "Creates an instance given a table and the names of the item and user columns contained therein.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "trainingData"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11TabularData0B5FrameV",
+          "text": "DataFrame"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "userColumn"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "itemColumn"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "ratingColumn"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "parameters"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML13MLRecommenderV",
+          "text": "MLRecommender"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML13MLRecommenderV15ModelParametersV",
+          "text": "ModelParameters"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLRecommender/init(trainingData:userColumn:itemColumn:ratingColumn:parameters:)-1mecd",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(trainingData:userColumn:itemColumn:ratingColumn:parameters:)",
+      "type": "topic",
+      "url": "/documentation/createml/mlrecommender/init(trainingdata:usercolumn:itemcolumn:ratingcolumn:parameters:)-1mecd"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLRecommender/init(trainingData:userColumn:itemColumn:ratingColumn:parameters:)-20dcf": {
+      "abstract": [
+        {
+          "text": "Creates an instance given a table and the names of the item and user columns contained therein.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "trainingData"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML11MLDataTableV",
+          "text": "MLDataTable"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "userColumn"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "itemColumn"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "ratingColumn"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "parameters"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML13MLRecommenderV",
+          "text": "MLRecommender"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML13MLRecommenderV15ModelParametersV",
+          "text": "ModelParameters"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLRecommender/init(trainingData:userColumn:itemColumn:ratingColumn:parameters:)-20dcf",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(trainingData:userColumn:itemColumn:ratingColumn:parameters:)",
+      "type": "topic",
+      "url": "/documentation/createml/mlrecommender/init(trainingdata:usercolumn:itemcolumn:ratingcolumn:parameters:)-20dcf"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLRecommender/itemIdentifierColumn": {
+      "abstract": [
+        {
+          "text": "The name of the column you selected at initialization to define the item identifiers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "itemIdentifierColumn"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLRecommender/itemIdentifierColumn",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "itemIdentifierColumn",
+      "type": "topic",
+      "url": "/documentation/createml/mlrecommender/itemidentifiercolumn"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLRecommender/model": {
+      "abstract": [
+        {
+          "text": "The Core ML model.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "model"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MLModel",
+          "text": "MLModel"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLRecommender/model",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "model",
+      "type": "topic",
+      "url": "/documentation/createml/mlrecommender/model"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLRecommender/modelParameters-swift.property": {
+      "abstract": [
+        {
+          "text": "The configuration parameters that the recommender used for training during initialization.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "modelParameters"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML13MLRecommenderV",
+          "text": "MLRecommender"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML13MLRecommenderV15ModelParametersV",
+          "text": "ModelParameters"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLRecommender/modelParameters-swift.property",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "modelParameters",
+      "type": "topic",
+      "url": "/documentation/createml/mlrecommender/modelparameters-swift.property"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLRecommender/ratingColumn": {
+      "abstract": [
+        {
+          "text": "The name of the column you selected at initialization to define the ratings.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ratingColumn"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLRecommender/ratingColumn",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ratingColumn",
+      "type": "topic",
+      "url": "/documentation/createml/mlrecommender/ratingcolumn"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLRecommender/recommendations(fromUsers:maxCount:restrictingToItems:excluding:excludingObserved:)-416wd": {
+      "abstract": [
+        {
+          "text": "Retrieves the highest scored items for the given column of users, based on item similarity and the rating",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "column.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "recommendations"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "fromUsers"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML12MLDataColumnV",
+          "text": "MLDataColumn"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "maxCount"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "restrictingToItems"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML12MLDataColumnV",
+          "text": "MLDataColumn"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "excluding"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML11MLDataTableV",
+          "text": "MLDataTable"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "excludingObserved"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML11MLDataTableV",
+          "text": "MLDataTable"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLRecommender/recommendations(fromUsers:maxCount:restrictingToItems:excluding:excludingObserved:)-416wd",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "recommendations(fromUsers:maxCount:restrictingToItems:excluding:excludingObserved:)",
+      "type": "topic",
+      "url": "/documentation/createml/mlrecommender/recommendations(fromusers:maxcount:restrictingtoitems:excluding:excludingobserved:)-416wd"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLRecommender/recommendations(fromUsers:maxCount:restrictingToItems:excluding:excludingObserved:)-7an46": {
+      "abstract": [
+        {
+          "text": "Retrieves the highest scored item for the given array of users, based on item similarity and the rating column.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "recommendations"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "fromUsers"
+        },
+        {
+          "kind": "text",
+          "text": ": [any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML12MLIdentifierP",
+          "text": "MLIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "maxCount"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "restrictingToItems"
+        },
+        {
+          "kind": "text",
+          "text": ": [any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML12MLIdentifierP",
+          "text": "MLIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": "]?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "excluding"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML11MLDataTableV",
+          "text": "MLDataTable"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "excludingObserved"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML11MLDataTableV",
+          "text": "MLDataTable"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLRecommender/recommendations(fromUsers:maxCount:restrictingToItems:excluding:excludingObserved:)-7an46",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "recommendations(fromUsers:maxCount:restrictingToItems:excluding:excludingObserved:)",
+      "type": "topic",
+      "url": "/documentation/createml/mlrecommender/recommendations(fromusers:maxcount:restrictingtoitems:excluding:excludingobserved:)-7an46"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLRecommender/userIdentifierColumn": {
+      "abstract": [
+        {
+          "text": "The name of the column you selected at initialization to define the user identifiers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "userIdentifierColumn"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLRecommender/userIdentifierColumn",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "userIdentifierColumn",
+      "type": "topic",
+      "url": "/documentation/createml/mlrecommender/useridentifiercolumn"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLRecommender/write(to:metadata:)": {
+      "abstract": [
+        {
+          "text": "Exports the recommender as a Core ML model file at the given URL.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "write"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "metadata"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML15MLModelMetadataV",
+          "text": "MLModelMetadata"
+        },
+        {
+          "kind": "text",
+          "text": "?) "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLRecommender/write(to:metadata:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "write(to:metadata:)",
+      "type": "topic",
+      "url": "/documentation/createml/mlrecommender/write(to:metadata:)"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLRecommender/write(toFile:metadata:)": {
+      "abstract": [
+        {
+          "text": "Exports the recommender as a Core ML model file at the given file path.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "write"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "toFile"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "metadata"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML15MLModelMetadataV",
+          "text": "MLModelMetadata"
+        },
+        {
+          "kind": "text",
+          "text": "?) "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLRecommender/write(toFile:metadata:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "write(toFile:metadata:)",
+      "type": "topic",
+      "url": "/documentation/createml/mlrecommender/write(tofile:metadata:)"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLRecommenderMetrics": {
+      "abstract": [
+        {
+          "text": "Metrics you use to evaluate a recommender’s performance.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MLRecommenderMetrics"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLRecommenderMetrics",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MLRecommenderMetrics"
+        }
+      ],
+      "role": "symbol",
+      "title": "MLRecommenderMetrics",
+      "type": "topic",
+      "url": "/documentation/createml/mlrecommendermetrics"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLRegressor": {
+      "abstract": [
+        {
+          "text": "A model you train to estimate continuous values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MLRegressor"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLRegressor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MLRegressor"
+        }
+      ],
+      "role": "symbol",
+      "title": "MLRegressor",
+      "type": "topic",
+      "url": "/documentation/createml/mlregressor"
+    },
+    "doc://com.apple.documentation/documentation/createml/creating_a_model_from_tabular_data": {
+      "abstract": [
+        {
+          "text": "Train a machine learning model by using Core ML to import and manage tabular data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/createml/creating_a_model_from_tabular_data",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Creating a Model from Tabular Data",
+      "type": "topic",
+      "url": "/documentation/createml/creating_a_model_from_tabular_data"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Tabular-Models",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/createml/creating_a_model_from_tabular_data",
+        "doc://com.apple.CreateML/documentation/CreateML/MLClassifier",
+        "doc://com.apple.CreateML/documentation/CreateML/MLRegressor"
+      ],
+      "title": "Tabular Models"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-and-training-a-recommender",
+      "identifiers": [
+        "doc://com.apple.CreateML/documentation/CreateML/MLRecommender/init(trainingData:userColumn:itemColumn:ratingColumn:parameters:)-1mecd",
+        "doc://com.apple.CreateML/documentation/CreateML/MLRecommender/init(trainingData:userColumn:itemColumn:ratingColumn:parameters:)-20dcf",
+        "doc://com.apple.CreateML/documentation/CreateML/MLRecommender/ModelParameters-swift.struct",
+        "doc://com.apple.CreateML/documentation/CreateML/MLRecommender/modelParameters-swift.property",
+        "doc://com.apple.CreateML/documentation/CreateML/MLRecommender/userIdentifierColumn",
+        "doc://com.apple.CreateML/documentation/CreateML/MLRecommender/itemIdentifierColumn",
+        "doc://com.apple.CreateML/documentation/CreateML/MLRecommender/ratingColumn"
+      ],
+      "title": "Creating and training a recommender"
+    },
+    {
+      "anchor": "Evaluating-a-recommender",
+      "identifiers": [
+        "doc://com.apple.CreateML/documentation/CreateML/MLRecommender/evaluation(on:userColumn:itemColumn:ratingColumn:cutoffs:excludingObserved:)-50o7t",
+        "doc://com.apple.CreateML/documentation/CreateML/MLRecommender/evaluation(on:userColumn:itemColumn:ratingColumn:cutoffs:excludingObserved:)-641uh",
+        "doc://com.apple.CreateML/documentation/CreateML/MLRecommenderMetrics"
+      ],
+      "title": "Evaluating a recommender"
+    },
+    {
+      "anchor": "Testing-a-recommender",
+      "identifiers": [
+        "doc://com.apple.CreateML/documentation/CreateML/MLRecommender/recommendations(fromUsers:maxCount:restrictingToItems:excluding:excludingObserved:)-416wd",
+        "doc://com.apple.CreateML/documentation/CreateML/MLRecommender/recommendations(fromUsers:maxCount:restrictingToItems:excluding:excludingObserved:)-7an46",
+        "doc://com.apple.CreateML/documentation/CreateML/MLIdentifier",
+        "doc://com.apple.CreateML/documentation/CreateML/MLRecommender/getSimilarItems(fromItems:maxCount:)-9scon",
+        "doc://com.apple.CreateML/documentation/CreateML/MLRecommender/getSimilarItems(fromItems:maxCount:)-kq37"
+      ],
+      "title": "Testing a recommender"
+    },
+    {
+      "anchor": "Saving-a-recommender",
+      "identifiers": [
+        "doc://com.apple.CreateML/documentation/CreateML/MLRecommender/write(to:metadata:)",
+        "doc://com.apple.CreateML/documentation/CreateML/MLRecommender/write(toFile:metadata:)"
+      ],
+      "title": "Saving a recommender"
+    },
+    {
+      "anchor": "Describing-a-recommender",
+      "identifiers": [
+        "doc://com.apple.CreateML/documentation/CreateML/MLRecommender/model"
+      ],
+      "title": "Describing a recommender"
+    },
+    {
+      "anchor": "Enumerations",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.CreateML/documentation/CreateML/MLRecommender/ModelAlgorithmType",
+        "doc://com.apple.CreateML/documentation/CreateML/MLRecommender/SimilarityType"
+      ],
+      "title": "Enumerations"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/createml/mlrecommender"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1106 @@
+{
+  "abstract": [
+    {
+      "text": "Abstract class for all work-loop event sources.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/kernel",
+        "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals",
+        "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals/workflow_and_control"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/kernel/ioeventsource"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1456991,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@S@IOEventSource",
+    "modules": [
+      {
+        "name": "Kernel"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "15.4",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "IOEventSource"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "IOEventSource"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/osobject",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@S@OSObject",
+              "text": "OSObject"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The IOEventSource declares the abstract super class that all event sources must inherit from if an IOWorkLoop is to receive events from them.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An event source can represent any event that should cause the work-loop of a device to wake up and perform work. Two examples of event sources are the IOInterruptEventSource which delivers interrupt notifications and IOCommandGate which delivers command requests.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A kernel module can always use the work-loop model for serialising access to anything at all. The IOEventSource is used for communicating events to the work-loop, and the chain of event sources should be used to walk the possible event sources and demultipex them. Note a particular instance of an event source may only be a member of 1 linked list chain. If you need to move it between chains than make sure it is removed from the original chain before attempting to move it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The IOEventSource makes no attempt to maintain the consistency of its internal data across multi-threading. It is assumed that the user of these basic tools will protect the data that these objects represent in some sort of device wide instance lock. For example the IOWorkLoop maintains the event chain by using an IOCommandGate and thus single threading access to its state.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "All subclasses of IOEventSource that wish to perform work on the work-loop thread are expected to implement the checkForWork() member function. As of macOS, 10.7 (Darwin 11), checkForWork is no longer pure virtual, and should not be overridden if there is no work to be done.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "checkForWork() is the key method in this class. It is called by some work-loop when convienient and is expected to evaluate its internal state and determine if an event has occurred since the last call. In the case of an event having occurred then the instance defined target(owner)/action will be called. The action is stored as an ordinary C function pointer but the first parameter is always the owner. This means that a C++ member function can be used as an action function though this depends on the ABI.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Although the eventChainNext variable contains a reference to the next event source in the chain this reference is not retained. The list 'owner' i.e. the client that creates the event, not the work-loop, is expected to retain the source.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/kernel": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Kernel",
+      "type": "topic",
+      "url": "/documentation/kernel"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iocommand": {
+      "abstract": [
+        {
+          "text": "This class is an abstract class which represents an I/O command.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iocommand",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOCommand",
+      "type": "topic",
+      "url": "/documentation/kernel/iocommand"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iocommandgate": {
+      "abstract": [
+        {
+          "text": "Single-threaded work-loop client request mechanism.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iocommandgate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOCommandGate",
+      "type": "topic",
+      "url": "/documentation/kernel/iocommandgate"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iocommandpool": {
+      "abstract": [
+        {
+          "text": "Manipulates a pool of commands which inherit from IOCommand.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iocommandpool",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOCommandPool",
+      "type": "topic",
+      "url": "/documentation/kernel/iocommandpool"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iodispatchsource": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iodispatchsource",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IODispatchSource",
+      "type": "topic",
+      "url": "/documentation/kernel/iodispatchsource"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioeventsource": {
+      "abstract": [
+        {
+          "text": "Abstract class for all work-loop event sources.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioeventsource",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOEventSource",
+      "type": "topic",
+      "url": "/documentation/kernel/ioeventsource"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioeventsource/1520948-signalworkavailable": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "signalWorkAvailable"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioeventsource/1520948-signalworkavailable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "signalWorkAvailable",
+      "type": "topic",
+      "url": "/documentation/kernel/ioeventsource/1520948-signalworkavailable"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioeventsource/1520950-wakeupgate": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "wakeupGate"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioeventsource/1520950-wakeupgate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "wakeupGate",
+      "type": "topic",
+      "url": "/documentation/kernel/ioeventsource/1520950-wakeupgate"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioeventsource/1520952-closegate": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "closeGate"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioeventsource/1520952-closegate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "closeGate",
+      "type": "topic",
+      "url": "/documentation/kernel/ioeventsource/1520952-closegate"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioeventsource/1520953-setworkloop": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setWorkLoop"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioeventsource/1520953-setworkloop",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setWorkLoop",
+      "type": "topic",
+      "url": "/documentation/kernel/ioeventsource/1520953-setworkloop"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioeventsource/1520954-sleepgate": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "sleepGate"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioeventsource/1520954-sleepgate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sleepGate",
+      "type": "topic",
+      "url": "/documentation/kernel/ioeventsource/1520954-sleepgate"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioeventsource/1520955-getmetaclass": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getMetaClass"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioeventsource/1520955-getmetaclass",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getMetaClass",
+      "type": "topic",
+      "url": "/documentation/kernel/ioeventsource/1520955-getmetaclass"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioeventsource/1520956-getaction": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getAction"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioeventsource/1520956-getaction",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getAction",
+      "type": "topic",
+      "url": "/documentation/kernel/ioeventsource/1520956-getaction"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioeventsource/1520957-isenabled": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "isEnabled"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioeventsource/1520957-isenabled",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isEnabled",
+      "type": "topic",
+      "url": "/documentation/kernel/ioeventsource/1520957-isenabled"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioeventsource/1520958-enable": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "enable"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioeventsource/1520958-enable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "enable",
+      "type": "topic",
+      "url": "/documentation/kernel/ioeventsource/1520958-enable"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioeventsource/1520960-init": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioeventsource/1520960-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init",
+      "type": "topic",
+      "url": "/documentation/kernel/ioeventsource/1520960-init"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioeventsource/1520961-getworkloop": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getWorkLoop"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioeventsource/1520961-getworkloop",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getWorkLoop",
+      "type": "topic",
+      "url": "/documentation/kernel/ioeventsource/1520961-getworkloop"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioeventsource/1520962-setnext": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setNext"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioeventsource/1520962-setnext",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setNext",
+      "type": "topic",
+      "url": "/documentation/kernel/ioeventsource/1520962-setnext"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioeventsource/1520964-free": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "free"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioeventsource/1520964-free",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "free",
+      "type": "topic",
+      "url": "/documentation/kernel/ioeventsource/1520964-free"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioeventsource/1520966-getnext": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getNext"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioeventsource/1520966-getnext",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getNext",
+      "type": "topic",
+      "url": "/documentation/kernel/ioeventsource/1520966-getnext"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioeventsource/1520968-onthread": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "onThread"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioeventsource/1520968-onthread",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "onThread",
+      "type": "topic",
+      "url": "/documentation/kernel/ioeventsource/1520968-onthread"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioeventsource/1520969-opengate": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "openGate"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioeventsource/1520969-opengate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "openGate",
+      "type": "topic",
+      "url": "/documentation/kernel/ioeventsource/1520969-opengate"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioeventsource/1520972-disable": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "disable"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioeventsource/1520972-disable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "disable",
+      "type": "topic",
+      "url": "/documentation/kernel/ioeventsource/1520972-disable"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioeventsource/1520974-setaction": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setAction"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioeventsource/1520974-setaction",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setAction",
+      "type": "topic",
+      "url": "/documentation/kernel/ioeventsource/1520974-setaction"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioeventsource/1520975-checkforwork": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "checkForWork"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioeventsource/1520975-checkforwork",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "checkForWork",
+      "type": "topic",
+      "url": "/documentation/kernel/ioeventsource/1520975-checkforwork"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioeventsource/1520976-tryclosegate": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "tryCloseGate"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioeventsource/1520976-tryclosegate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "tryCloseGate",
+      "type": "topic",
+      "url": "/documentation/kernel/ioeventsource/1520976-tryclosegate"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioeventsource/1810760-checkforwork": {
+      "abstract": [
+        {
+          "text": "Virtual member function used by IOWorkLoop for work scheduling.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioeventsource/1810760-checkforwork",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "checkForWork",
+      "type": "topic",
+      "url": "/documentation/kernel/ioeventsource/1810760-checkforwork"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioeventsource/1810784-disable": {
+      "abstract": [
+        {
+          "text": "Disable event source.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioeventsource/1810784-disable",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "disable",
+      "type": "topic",
+      "url": "/documentation/kernel/ioeventsource/1810784-disable"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioeventsource/1810807-enable": {
+      "abstract": [
+        {
+          "text": "Enable event source.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioeventsource/1810807-enable",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "enable",
+      "type": "topic",
+      "url": "/documentation/kernel/ioeventsource/1810807-enable"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioeventsource/1810828-getaction": {
+      "abstract": [
+        {
+          "text": "Get'ter for $link action variable.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioeventsource/1810828-getaction",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getAction",
+      "type": "topic",
+      "url": "/documentation/kernel/ioeventsource/1810828-getaction"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioeventsource/1810847-getnext": {
+      "abstract": [
+        {
+          "text": "Get'ter for $link eventChainNext variable.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioeventsource/1810847-getnext",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getNext",
+      "type": "topic",
+      "url": "/documentation/kernel/ioeventsource/1810847-getnext"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioeventsource/1810872-getworkloop": {
+      "abstract": [
+        {
+          "text": "Get'ter for $link workLoop variable.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioeventsource/1810872-getworkloop",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getWorkLoop",
+      "type": "topic",
+      "url": "/documentation/kernel/ioeventsource/1810872-getworkloop"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioeventsource/1810895-init": {
+      "abstract": [
+        {
+          "text": "Primary initialiser for the IOEventSource class.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioeventsource/1810895-init",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "init",
+      "type": "topic",
+      "url": "/documentation/kernel/ioeventsource/1810895-init"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioeventsource/1810913-isenabled": {
+      "abstract": [
+        {
+          "text": "Get'ter for $link enable variable.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioeventsource/1810913-isenabled",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "isEnabled",
+      "type": "topic",
+      "url": "/documentation/kernel/ioeventsource/1810913-isenabled"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioeventsource/1810935-onthread": {
+      "abstract": [
+        {
+          "text": "Convenience function for workLoop->onThread.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioeventsource/1810935-onthread",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "onThread",
+      "type": "topic",
+      "url": "/documentation/kernel/ioeventsource/1810935-onthread"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioeventsource/1810952-setaction": {
+      "abstract": [
+        {
+          "text": "Set'ter for $link action variable.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioeventsource/1810952-setaction",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setAction",
+      "type": "topic",
+      "url": "/documentation/kernel/ioeventsource/1810952-setaction"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioeventsource/1810967-setnext": {
+      "abstract": [
+        {
+          "text": "Set'ter for $link eventChainNext variable.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioeventsource/1810967-setnext",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setNext",
+      "type": "topic",
+      "url": "/documentation/kernel/ioeventsource/1810967-setnext"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioeventsource/1810984-setworkloop": {
+      "abstract": [
+        {
+          "text": "Set'ter for $link workLoop variable.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioeventsource/1810984-setworkloop",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setWorkLoop",
+      "type": "topic",
+      "url": "/documentation/kernel/ioeventsource/1810984-setworkloop"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioeventsource/2967267-getactionblock": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getActionBlock"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioeventsource/2967267-getactionblock",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getActionBlock",
+      "type": "topic",
+      "url": "/documentation/kernel/ioeventsource/2967267-getactionblock"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioeventsource/2967268-getrefcon": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getRefcon"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioeventsource/2967268-getrefcon",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getRefcon",
+      "type": "topic",
+      "url": "/documentation/kernel/ioeventsource/2967268-getrefcon"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioeventsource/2967269-setactionblock": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setActionBlock"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioeventsource/2967269-setactionblock",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setActionBlock",
+      "type": "topic",
+      "url": "/documentation/kernel/ioeventsource/2967269-setactionblock"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioeventsource/2967270-setrefcon": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setRefcon"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioeventsource/2967270-setrefcon",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setRefcon",
+      "type": "topic",
+      "url": "/documentation/kernel/ioeventsource/2967270-setrefcon"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioeventsource/3516453-sleepgate": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "sleepGate"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioeventsource/3516453-sleepgate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sleepGate",
+      "type": "topic",
+      "url": "/documentation/kernel/ioeventsource/3516453-sleepgate"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioeventsource/action-8l7": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioeventsource/action-8l7",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "action",
+      "type": "topic",
+      "url": "/documentation/kernel/ioeventsource/action-8l7"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioeventsource/enabled": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioeventsource/enabled",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "enabled",
+      "type": "topic",
+      "url": "/documentation/kernel/ioeventsource/enabled"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioeventsource/eventchainnext": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioeventsource/eventchainnext",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "eventChainNext",
+      "type": "topic",
+      "url": "/documentation/kernel/ioeventsource/eventchainnext"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioeventsource/miscellaneous_defines": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioeventsource/miscellaneous_defines",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Miscellaneous Defines",
+      "type": "topic",
+      "url": "/documentation/kernel/ioeventsource/miscellaneous_defines"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioeventsource/owner": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioeventsource/owner",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "owner",
+      "type": "topic",
+      "url": "/documentation/kernel/ioeventsource/owner"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioeventsource/refcon": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioeventsource/refcon",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "refcon",
+      "type": "topic",
+      "url": "/documentation/kernel/ioeventsource/refcon"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioeventsource/reserved": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioeventsource/reserved",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "reserved",
+      "type": "topic",
+      "url": "/documentation/kernel/ioeventsource/reserved"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioeventsource/workloop": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioeventsource/workloop",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "workLoop",
+      "type": "topic",
+      "url": "/documentation/kernel/ioeventsource/workloop"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "IOKit Fundamentals",
+      "type": "topic",
+      "url": "/documentation/kernel/iokit_fundamentals"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals/workflow_and_control": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals/workflow_and_control",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Workflow and Control",
+      "type": "topic",
+      "url": "/documentation/kernel/iokit_fundamentals/workflow_and_control"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/expansiondata": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/expansiondata",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "ExpansionData",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/expansiondata"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioworkloop/action": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioworkloop/action",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "Action",
+      "type": "topic",
+      "url": "/documentation/kernel/ioworkloop/action"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osobject": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSObject",
+      "type": "topic",
+      "url": "/documentation/kernel/osobject"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/osobject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/iocommandpool",
+        "doc://com.apple.documentation/documentation/kernel/iocommandgate",
+        "doc://com.apple.documentation/documentation/kernel/iocommand",
+        "doc://com.apple.documentation/documentation/kernel/iodispatchsource"
+      ],
+      "title": "Base Types"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "1818493",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/ioeventsource/1810760-checkforwork",
+        "doc://com.apple.documentation/documentation/kernel/ioeventsource/1810784-disable",
+        "doc://com.apple.documentation/documentation/kernel/ioeventsource/1810807-enable",
+        "doc://com.apple.documentation/documentation/kernel/ioeventsource/1810828-getaction",
+        "doc://com.apple.documentation/documentation/kernel/ioeventsource/1810847-getnext",
+        "doc://com.apple.documentation/documentation/kernel/ioeventsource/1810872-getworkloop",
+        "doc://com.apple.documentation/documentation/kernel/ioeventsource/1810895-init",
+        "doc://com.apple.documentation/documentation/kernel/ioeventsource/1810913-isenabled",
+        "doc://com.apple.documentation/documentation/kernel/ioeventsource/1810935-onthread",
+        "doc://com.apple.documentation/documentation/kernel/ioeventsource/1810952-setaction",
+        "doc://com.apple.documentation/documentation/kernel/ioeventsource/1810967-setnext",
+        "doc://com.apple.documentation/documentation/kernel/ioeventsource/1810984-setworkloop"
+      ],
+      "kind": "taskGroup",
+      "title": "Miscellaneous"
+    },
+    {
+      "anchor": "1818572",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/ioworkloop/action"
+      ],
+      "kind": "taskGroup",
+      "title": "Callbacks"
+    },
+    {
+      "anchor": "1818592",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/ioeventsource/miscellaneous_defines"
+      ],
+      "kind": "taskGroup",
+      "title": "Constants"
+    },
+    {
+      "anchor": "1818606",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/ioservice/expansiondata"
+      ],
+      "kind": "taskGroup",
+      "title": "DataTypes"
+    },
+    {
+      "anchor": "1818616",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/ioeventsource/workloop",
+        "doc://com.apple.documentation/documentation/kernel/ioeventsource/reserved",
+        "doc://com.apple.documentation/documentation/kernel/ioeventsource/refcon",
+        "doc://com.apple.documentation/documentation/kernel/ioeventsource/owner",
+        "doc://com.apple.documentation/documentation/kernel/ioeventsource/eventchainnext",
+        "doc://com.apple.documentation/documentation/kernel/ioeventsource/enabled",
+        "doc://com.apple.documentation/documentation/kernel/ioeventsource/action-8l7"
+      ],
+      "kind": "taskGroup",
+      "title": "Instance Variables"
+    },
+    {
+      "anchor": "2857233",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/ioeventsource/1520975-checkforwork",
+        "doc://com.apple.documentation/documentation/kernel/ioeventsource/1520952-closegate",
+        "doc://com.apple.documentation/documentation/kernel/ioeventsource/1520972-disable",
+        "doc://com.apple.documentation/documentation/kernel/ioeventsource/1520958-enable",
+        "doc://com.apple.documentation/documentation/kernel/ioeventsource/1520964-free",
+        "doc://com.apple.documentation/documentation/kernel/ioeventsource/1520956-getaction",
+        "doc://com.apple.documentation/documentation/kernel/ioeventsource/2967267-getactionblock",
+        "doc://com.apple.documentation/documentation/kernel/ioeventsource/1520955-getmetaclass",
+        "doc://com.apple.documentation/documentation/kernel/ioeventsource/1520966-getnext",
+        "doc://com.apple.documentation/documentation/kernel/ioeventsource/2967268-getrefcon",
+        "doc://com.apple.documentation/documentation/kernel/ioeventsource/1520961-getworkloop",
+        "doc://com.apple.documentation/documentation/kernel/ioeventsource/1520960-init",
+        "doc://com.apple.documentation/documentation/kernel/ioeventsource/1520957-isenabled",
+        "doc://com.apple.documentation/documentation/kernel/ioeventsource/1520968-onthread",
+        "doc://com.apple.documentation/documentation/kernel/ioeventsource/1520969-opengate",
+        "doc://com.apple.documentation/documentation/kernel/ioeventsource/1520974-setaction",
+        "doc://com.apple.documentation/documentation/kernel/ioeventsource/2967269-setactionblock",
+        "doc://com.apple.documentation/documentation/kernel/ioeventsource/1520962-setnext",
+        "doc://com.apple.documentation/documentation/kernel/ioeventsource/2967270-setrefcon",
+        "doc://com.apple.documentation/documentation/kernel/ioeventsource/1520953-setworkloop",
+        "doc://com.apple.documentation/documentation/kernel/ioeventsource/1520948-signalworkavailable",
+        "doc://com.apple.documentation/documentation/kernel/ioeventsource/1520954-sleepgate",
+        "doc://com.apple.documentation/documentation/kernel/ioeventsource/3516453-sleepgate",
+        "doc://com.apple.documentation/documentation/kernel/ioeventsource/1520976-tryclosegate",
+        "doc://com.apple.documentation/documentation/kernel/ioeventsource/1520950-wakeupgate"
+      ],
+      "kind": "taskGroup",
+      "title": "Instance Methods"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/kernel/ioeventsource"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

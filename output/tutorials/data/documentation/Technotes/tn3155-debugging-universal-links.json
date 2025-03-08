@@ -1,0 +1,2159 @@
+{
+  "abstract": [
+    {
+      "text": "Investigate why your universal links are opening in Safari instead of your app.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.technotes/documentation/Technotes"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.technotes/documentation/Technotes/tn3155-debugging-universal-links"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "TN3155: Debugging universal links"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "https://developer.apple.com/ios/universal-links/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " use ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/bundleresources/applinks",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", an associated domains service, to link directly to content within your app without routing through Safari or your website.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "If your app is installed, a universal link will open in your app.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "If it is not installed, the link will open in your default web browser, where your site handles the rest.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "If you are unfamiliar with universal links and how to support them in your code, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/xcode/supporting-associated-domains",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/xcode/allowing-apps-and-websites-to-link-to-your-content",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This document outlines how to:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3155-debugging-universal-links#Test-universal-links-behavior",
+                      "isActive": true,
+                      "overridingTitle": "Test your universal links",
+                      "overridingTitleInlineContent": [
+                        {
+                          "text": "Test your universal links",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3155-debugging-universal-links#Understand-applinks-configuration-and-rules",
+                      "isActive": true,
+                      "overridingTitle": "Choose the correct applinks domains",
+                      "overridingTitleInlineContent": [
+                        {
+                          "text": "Choose the correct ",
+                          "type": "text"
+                        },
+                        {
+                          "code": "applinks",
+                          "type": "codeVoice"
+                        },
+                        {
+                          "text": " domains",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3155-debugging-universal-links#Use-universal-links-on-your-site",
+                      "isActive": true,
+                      "overridingTitle": "Use universal links on your site",
+                      "overridingTitleInlineContent": [
+                        {
+                          "text": "Use universal links on your site",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3155-debugging-universal-links#Host-and-verify-your-AASA",
+                      "isActive": true,
+                      "overridingTitle": "Verify your apple-app-site-association (AASA) file",
+                      "overridingTitleInlineContent": [
+                        {
+                          "text": "Verify your ",
+                          "type": "text"
+                        },
+                        {
+                          "code": "apple-app-site-association",
+                          "type": "codeVoice"
+                        },
+                        {
+                          "text": " (AASA) file",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3155-debugging-universal-links#Debug-through-sysdiagnose",
+                      "isActive": true,
+                      "overridingTitle": "Debug using a sysdiagnose",
+                      "overridingTitleInlineContent": [
+                        {
+                          "text": "Debug using a sysdiagnose",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3155-debugging-universal-links#Understand-Apples-CDN",
+                      "isActive": true,
+                      "overridingTitle": "Understand Apple’s content delivery network (CDN)",
+                      "overridingTitleInlineContent": [
+                        {
+                          "text": "Understand Apple’s content delivery network (CDN)",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Test-universal-links-behavior",
+          "level": 2,
+          "text": "Test universal links behavior",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To test your universal links behavior, paste a link into your Notes app and long-press  it (iOS) or control-click it (macOS) to see your options for following the link.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "If universal links have been configured correctly, the option to open in app and in Safari will both show up.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The option you choose will set the default behavior for your device when following universal links from this domain in the future.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "To change this default choice, repeat the same steps and choose a different option.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Entering the URL directly into Safari’s address bar will never open the app. Safari will respect this action as direct navigation. As long as the user is on your domain after navigating there directly, your site will show a banner to open your app.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "On iOS, you can additionally test your universal links with the associated domains diagnostic tests in Developer settings through these steps:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Turn on Developer Mode in Settings. Read ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/documentation/xcode/enabling-developer-mode-on-a-device",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " for more help.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In Settings > Developer, scroll to the section labeled Universal Links and turn on Associated Domains Development.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Open Diagnostics and type in your full URL. You will receive feedback on whether this link is valid for an installed app.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your universal links are invalid, your ",
+              "type": "text"
+            },
+            {
+              "code": "applinks",
+              "type": "codeVoice"
+            },
+            {
+              "text": " may be configured incorrectly.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Understand-applinks-configuration-and-rules",
+          "level": 2,
+          "text": "Understand applinks configuration and rules",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Using the Signing and Capabilities tab in Xcode, verify the app has the Associated Domains capability which contains ",
+              "type": "text"
+            },
+            {
+              "code": "applinks",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in the form of:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "applinks:<fully qualified domain>"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A common problem is caused by using a domain in your ",
+              "type": "text"
+            },
+            {
+              "code": "applinks",
+              "type": "codeVoice"
+            },
+            {
+              "text": " that doesn’t have an AASA file hosted in the correct location.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Make sure your domains and AASA file paths match.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "To match a root domain and all subdomains with a wildcard, an AASA file should be hosted at:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "https://example.com/.well-known/apple-app-site-association"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This will only work with the root domain of ",
+              "type": "text"
+            },
+            {
+              "code": "applinks:example.com",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and subdomains that are matched with the wildcard ",
+              "type": "text"
+            },
+            {
+              "code": "applinks:*.example.com",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This will not work with specific subdomains like ",
+              "type": "text"
+            },
+            {
+              "code": "applinks:www.example.com",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "code": "applinks:foo.example.com",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To match a specific subdomain, an AASA file should be hosted at:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "https://www.example.com/.well-known/apple-app-site-association"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This will only work with ",
+              "type": "text"
+            },
+            {
+              "code": "applinks:www.example.com",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Each specific subdomain in your ",
+              "type": "text"
+            },
+            {
+              "code": "applinks",
+              "type": "codeVoice"
+            },
+            {
+              "text": " should have its own matching AASA file path.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Domains in your ",
+                  "type": "text"
+                },
+                {
+                  "code": "applinks",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " can’t contain a port number. For example, ",
+                  "type": "text"
+                },
+                {
+                  "code": "applinks:example.com:8080",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " will not open your app.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Use-universal-links-on-your-site",
+          "level": 2,
+          "text": "Use universal links on your site",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To use a universal link to open your app while already browsing in Safari, use a different subdomain. Reasons for this could be completing a questionnaire or choosing to sign in.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "If a universal link has the same domain as the previous navigation, Safari will expect the user wants to continue navigating within the browser.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Review ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/xcode/allowing-apps-and-websites-to-link-to-your-content#Support-universal-links",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for more information.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For an example of when to use subdomains, consider an app with the root domain ",
+              "type": "text"
+            },
+            {
+              "code": "applinks:example.com",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and an AASA containing:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            " \"components\" : [",
+            " {",
+            " \"/\" : \"/login/*\",",
+            " \"comment\" : \"Matches any URL with a path that starts with /login/.\"",
+            " }]"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In Safari, if a user is browsing your site and choosing a login button with the link ",
+              "type": "text"
+            },
+            {
+              "code": "https://example.com/login",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", the link will not be opened in the app.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Safari will continue navigation in the browser even though the path matches the component above since the domain did not change.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To avoid this:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Add a subdomain such as ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "applinks:foo.example.com",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to your associated domains in the Signing and Capabilities tab in Xcode.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Host an AASA at:",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "code": [
+            "https://foo.example.com/.well-known/apple-app-site-association"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Give the login button a link of:",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "code": [
+            "https://foo.example.com/login"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Using a different subdomain prevents Safari from treating the link as navigation, so it will open in the link in your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Host-and-verify-your-AASA",
+          "level": 2,
+          "text": "Host and verify your AASA",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your universal links are still not opening in your app, take a closer look at your HTTP response headers and AASA content.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You can do this by printing both the HTTP response headers and AASA JSON contents in Terminal using",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "% curl -v https://{domain}/.well-known/apple-app-site-association"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you see a 301 or 302 HTTP response status code, your site is doing an HTTP redirect, which is not supported when hosting the AASA file.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The file must be directly reachable without any redirects.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Instead of hosting your AASA at your root domain and redirecting to serve a subdomain, host your AASA at each domain and subdomain included in your ",
+              "type": "text"
+            },
+            {
+              "code": "applinks",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For example, if you have a subdomain like ",
+              "type": "text"
+            },
+            {
+              "code": "applinks:www.example.com",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and the wildcard ",
+              "type": "text"
+            },
+            {
+              "code": "applinks:*.example.com",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", host one AASA file here for the subdomain:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "https://www.example.com/.well-known/apple-app-site-association"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "and one here for the wildcard:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "https://example.com/.well-known/apple-app-site-association"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Redirection is allowed, although not preferred, when opening universal links from another app.",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "If the link tapped on by the user is not a universal link but redirects to one, the user will be routed through Safari to the app.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you see a 403 or 404 HTTP error, your site denied access.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Generally, this happens when the AASA file path is not publicly accessible from all IP addresses or your site is blocked for some other reason.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Confirm your website’s configuration allows direct access to the AASA file in the ",
+              "type": "text"
+            },
+            {
+              "code": ".well-known",
+              "type": "codeVoice"
+            },
+            {
+              "text": " directory, in all geographical locations, from any IP address.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Specific IP addresses and ranges are not published as they cannot be guaranteed.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Verify the format of your AASA file. It should contain either an ",
+              "type": "text"
+            },
+            {
+              "code": "Array",
+              "type": "codeVoice"
+            },
+            {
+              "text": " of ",
+              "type": "text"
+            },
+            {
+              "code": "appIDs",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and an ",
+              "type": "text"
+            },
+            {
+              "code": "Array",
+              "type": "codeVoice"
+            },
+            {
+              "text": " of ",
+              "type": "text"
+            },
+            {
+              "code": "components",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", as shown in ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/xcode/supporting-associated-domains",
+              "isActive": true,
+              "overridingTitle": "Supporting associated domains",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "Supporting associated domains",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ", or fields ",
+              "type": "text"
+            },
+            {
+              "code": "appID",
+              "type": "codeVoice"
+            },
+            {
+              "text": " of type ",
+              "type": "text"
+            },
+            {
+              "code": "String",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "paths",
+              "type": "codeVoice"
+            },
+            {
+              "text": " of type ",
+              "type": "text"
+            },
+            {
+              "code": "Array",
+              "type": "codeVoice"
+            },
+            {
+              "text": " (matching an older format). Don’t mix and match these formats or universal links won’t work.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Here’s the the recommended format:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            " \"appIDs\": [ \"ABCDE12345.com.example.app\", \"ABCDE12345.com.example.app2\" ], ",
+            " \"components\": [ { ",
+            "    \"/\": \"/test/*\", ",
+            "    \"comment\": \"Matches any URL beginning with /test/\" ",
+            "    },",
+            "    { ",
+            "    \"/\": \"/path/1/*\", ",
+            "    \"exclude\": true,",
+            "    \"comment\": \"Matches any URL beginning with /path/1/ and instructs the system not to open it as a universal link\" ",
+            "    }]"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "While this is the older format:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "\"appID\": \"ABCDE12345.com.example.app\",",
+            " \"paths\": [ \"/test/*\", NOT \"/path/1/*\"]"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To verify that your AASA is in a valid format and pattern matches correctly, use the built-in ",
+              "type": "text"
+            },
+            {
+              "code": "swcutil",
+              "type": "codeVoice"
+            },
+            {
+              "text": " tool on a Mac.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Running ",
+              "type": "text"
+            },
+            {
+              "code": "sudo swcutil",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in Terminal shows the available commands, including ",
+              "type": "text"
+            },
+            {
+              "code": "swcutil dl",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "swcutil verify",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can use these commands in Terminal by:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Running ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "sudo swcutil dl -d <domain>",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to check that the AASA JSON can be downloaded successfully.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Running ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "sudo swcutil verify -d <domain> -j <path-to-JSON> [-u <URL>]",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to check the contents of a downloaded ",
+                      "type": "text"
+                    },
+                    {
+                      "code": ".json",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " AASA file.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "Verify that your domains match with ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "-d",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and your URL path pattern matches with the JSON with ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "-u",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". If both are successful, you will get a confirmation message.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For an app containing ",
+              "type": "text"
+            },
+            {
+              "code": "applinks:example.com",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and the AASA shown above, here is an example of using ",
+              "type": "text"
+            },
+            {
+              "code": "swcutil verify",
+              "type": "codeVoice"
+            },
+            {
+              "text": " where “s” is the service, “a” is the App ID, and “d” is the domain:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "% sudo swcutil verify -d example.com -j ./example.json -u https://example.com/test",
+            "{ s = applinks, a = ABCD123.com.example.app, d = example.com }:",
+            "Pattern \"https://example.com/test\" matched."
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Since the pattern ",
+              "type": "text"
+            },
+            {
+              "code": "/test",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is included in the AASA, the JSON has successfully pattern matched and is verified. For the path  ",
+              "type": "text"
+            },
+            {
+              "code": "/path/1",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", since it is set to be excluded in the AASA, you would see a message confirming the exclusion:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "Pattern \"https://example.com/path/1\" blocked match."
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you see this message for a URL path that is not excluded, your AASA has not been matched. Take a look at the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3155-debugging-universal-links#Debug-through-sysdiagnose",
+              "isActive": true,
+              "overridingTitle": "Debug through sysdiagnose",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "Debug through sysdiagnose",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " section for more information.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Debug-through-sysdiagnose",
+          "level": 2,
+          "text": "Debug through sysdiagnose",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the output from ",
+              "type": "text"
+            },
+            {
+              "code": "swcutil",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in the section ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3155-debugging-universal-links#Host-and-verify-your-AASA",
+              "isActive": true,
+              "overridingTitle": "Host and verify your AASA",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "Host and verify your AASA",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " is showing invalid universal links, take a sysdiagnose on a device with the app installed by following the linked instructions for each platform in ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/bug-reporting/profiles-and-logs/?name=sysdiagnose",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "After you have opened the sysdiagnose, open the ",
+              "type": "text"
+            },
+            {
+              "code": "swcutil_show.txt",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Search for your ",
+              "type": "text"
+            },
+            {
+              "code": "App ID",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to see the information for your ",
+              "type": "text"
+            },
+            {
+              "code": "applinks",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as shown in the following example.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "Service:              applinks",
+            "App ID:               1234abcd.com.example",
+            "Domain:               example.com",
+            "User Approval:        unspecified",
+            "Site/Fmwk Approval:   approved",
+            "Last Checked:         2023-08-24 10:09:00 +0000",
+            "Next Check:           2023-08-18 21:00:19 +0000"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "User Approval",
+              "type": "codeVoice"
+            },
+            {
+              "text": ": Shows the user’s decision to open links in your app or in Safari.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Review ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3155-debugging-universal-links#Test-universal-links-behavior",
+              "isActive": true,
+              "overridingTitle": "Test universal links behavior",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "Test universal links behavior",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " for more information.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "Site/Fmwk Approval",
+              "type": "codeVoice"
+            },
+            {
+              "text": ": Specifies if the Apple-managed content delivery network (CDN) has approved your universal links and pattern matched successfully.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "If it is ",
+              "type": "text"
+            },
+            {
+              "code": "approved",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", your universal links are working correctly.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If it is ",
+              "type": "text"
+            },
+            {
+              "code": "unspecified",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "code": "denied",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", please ensure you are allowing full access to all IP addresses and the domain is included in your associated domains.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For more information, review ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3155-debugging-universal-links#Understand-Apples-CDN",
+              "isActive": true,
+              "overridingTitle": "Understand Apple’s CDN",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "Understand Apple’s CDN",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "Last Check/Next Check",
+              "type": "codeVoice"
+            },
+            {
+              "text": ": Specifies the last time Apple’s CDN requested your site for your AASA and when it will check again.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Understand-Apples-CDN",
+          "level": 2,
+          "text": "Understand Apple’s CDN",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When your app is installed on a device, Apple’s CDN requests your AASA file.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For the CDN to successfully cache the file, it must be hosted on a domain that is available to all IP addreses and ranges, does not redirect, and is not blocked by access policies.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When testing, if you’re running your app from Xcode, using a server that is unreachable from the public internet, or testing changes faster than Apple’s CDN can cache them, use an alternate ",
+              "type": "text"
+            },
+            {
+              "code": "developer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " mode as described in ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/bundleresources/entitlements/com_apple_developer_associated-domains",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This allows you to bypass Apple’s CDN and pulls your AASA directly from your domain.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "On iOS 14 and later, Apple’s CDN retrieves and caches the AASA file.",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "When your app is installed, devices download the file from the CDN immediately.",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Devices check for updates approximately once per week after app installation.",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "To download a newer version of the AASA file, reinstall the app. There is no direct CDN invalidation option.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Revision-History",
+          "level": 2,
+          "text": "Revision History",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "2024-08-13",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " Made minor changes, added note for port numbers.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "2023-09-05",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " First published.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.technotes/documentation/Technotes": {
+      "abstract": [
+        {
+          "text": "Learn about specific development topics through these in-depth technical articles.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes",
+      "kind": "article",
+      "role": "collection",
+      "title": "Technotes",
+      "type": "topic",
+      "url": "/documentation/technotes"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3111-ios-wifi-api-overview": {
+      "abstract": [
+        {
+          "text": "Explore the various Wi-Fi APIs available on iOS and their expected use cases.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3111-ios-wifi-api-overview",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3111: iOS Wi-Fi API overview",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3111-ios-wifi-api-overview"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3124-debugging-coordinate-transformations": {
+      "abstract": [
+        {
+          "text": "Learn techniques to help debug any coordinate space issue.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3124-debugging-coordinate-transformations",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3124: Debugging coordinate space issues",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3124-debugging-coordinate-transformations"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3155-debugging-universal-links#Debug-through-sysdiagnose": {
+      "abstract": [],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3155-debugging-universal-links#Debug-through-sysdiagnose",
+      "kind": "section",
+      "title": "Debug through sysdiagnose",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3155-debugging-universal-links#Debug-through-sysdiagnose"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3155-debugging-universal-links#Host-and-verify-your-AASA": {
+      "abstract": [],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3155-debugging-universal-links#Host-and-verify-your-AASA",
+      "kind": "section",
+      "title": "Host and verify your AASA",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3155-debugging-universal-links#Host-and-verify-your-AASA"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3155-debugging-universal-links#Test-universal-links-behavior": {
+      "abstract": [],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3155-debugging-universal-links#Test-universal-links-behavior",
+      "kind": "section",
+      "title": "Test universal links behavior",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3155-debugging-universal-links#Test-universal-links-behavior"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3155-debugging-universal-links#Understand-Apples-CDN": {
+      "abstract": [],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3155-debugging-universal-links#Understand-Apples-CDN",
+      "kind": "section",
+      "title": "Understand Apple’s CDN",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3155-debugging-universal-links#Understand-Apples-CDN"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3155-debugging-universal-links#Understand-applinks-configuration-and-rules": {
+      "abstract": [],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3155-debugging-universal-links#Understand-applinks-configuration-and-rules",
+      "kind": "section",
+      "title": "Understand applinks configuration and rules",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3155-debugging-universal-links#Understand-applinks-configuration-and-rules"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3155-debugging-universal-links#Use-universal-links-on-your-site": {
+      "abstract": [],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3155-debugging-universal-links#Use-universal-links-on-your-site",
+      "kind": "section",
+      "title": "Use universal links on your site",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3155-debugging-universal-links#Use-universal-links-on-your-site"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3168-making-your-app-clip-available-app-store": {
+      "abstract": [
+        {
+          "text": "Learn how to configure your App Clip to prevent it from being unavailable in the App Store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3168-making-your-app-clip-available-app-store",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3168: Making your App Clip available in the App Store",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3168-making-your-app-clip-available-app-store"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3173-troubleshooting-issues-with-your-apple-pay-merchant-id-configuration": {
+      "abstract": [
+        {
+          "text": "Diagnose errors due to invalid Apple Pay merchant identifier configurations by",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "identifying the underlying causes of common errors and explore their",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "potential solutions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3173-troubleshooting-issues-with-your-apple-pay-merchant-id-configuration",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3173: Troubleshooting issues with your Apple Pay merchant identifier configuration",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3173-troubleshooting-issues-with-your-apple-pay-merchant-id-configuration"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3174-diagnosing-issues-with-the-apple-pay-payment-sheet-on-your-website": {
+      "abstract": [
+        {
+          "text": "Diagnose errors received while presenting the Apple Pay payment sheet on",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "your website by identifying the underlying causes of common errors and explore",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "their potential solutions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3174-diagnosing-issues-with-the-apple-pay-payment-sheet-on-your-website",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3174: Diagnosing issues with the Apple Pay payment sheet on your website",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3174-diagnosing-issues-with-the-apple-pay-payment-sheet-on-your-website"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3175-diagnosing-issues-with-displaying-the-apple-pay-button-on-your-website": {
+      "abstract": [
+        {
+          "text": "Diagnose common errors received while displaying the Apple Pay button on your",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "website by identifying the underlying causes, and explore potential solutions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3175-diagnosing-issues-with-displaying-the-apple-pay-button-on-your-website",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3175: Diagnosing issues with displaying the Apple Pay button on your website",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3175-diagnosing-issues-with-displaying-the-apple-pay-button-on-your-website"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3176-troubleshooting-apple-pay-payment-processing-issues": {
+      "abstract": [
+        {
+          "text": "Diagnose errors that occur when processing Apple Pay payments,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "identify common causes, and explore potential solutions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3176-troubleshooting-apple-pay-payment-processing-issues",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3176: Troubleshooting Apple Pay payment processing issues",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3176-troubleshooting-apple-pay-payment-processing-issues"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3177-understanding-alternate-audio-track-groups-in-movie-files": {
+      "abstract": [
+        {
+          "text": "Learn how alternate groups collect audio tracks, and how to choose which audio track to use in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3177-understanding-alternate-audio-track-groups-in-movie-files",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3177: Understanding alternate audio track groups in movie files",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3177-understanding-alternate-audio-track-groups-in-movie-files"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3178-checking-for-and-resolving-build-uuid-problems": {
+      "abstract": [
+        {
+          "text": "Ensure that every Mach-O image has a UUID, and that every distinct Mach-O image has its own unique UUID.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3178-checking-for-and-resolving-build-uuid-problems",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3178: Checking for and resolving build UUID problems",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3178-checking-for-and-resolving-build-uuid-problems"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3179-understanding-local-network-privacy": {
+      "abstract": [
+        {
+          "text": "Learn how local network privacy affects your software.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3179-understanding-local-network-privacy",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3179: Understanding local network privacy",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3179-understanding-local-network-privacy"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3180-reverting-app-store-server-notifications-v1": {
+      "abstract": [
+        {
+          "text": "Migrate from version 2 to version 1 of App Store Server Notifications using the Modify an App endpoint.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3180-reverting-app-store-server-notifications-v1",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3180: Reverting to App Store Server Notifications V1",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3180-reverting-app-store-server-notifications-v1"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3181-debugging-invalid-privacy-manifest": {
+      "abstract": [
+        {
+          "text": "Identify common configurations that cause unsuccessful privacy manifest validation with the App Store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3181-debugging-invalid-privacy-manifest",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3181: Debugging an invalid privacy manifest",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3181-debugging-invalid-privacy-manifest"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3182-adding-privacy-tracking-keys-to-your-privacy-manifest": {
+      "abstract": [
+        {
+          "text": "Declare the tracking domains you use in your app or third-party SDK in a privacy manifest.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3182-adding-privacy-tracking-keys-to-your-privacy-manifest",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3182: Adding privacy tracking keys to your privacy manifest",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3182-adding-privacy-tracking-keys-to-your-privacy-manifest"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3183-adding-required-reason-api-entries-to-your-privacy-manifest": {
+      "abstract": [
+        {
+          "text": "Declare the APIs that can potentially fingerprint devices in your app or third-party SDK in a privacy manifest.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3183-adding-required-reason-api-entries-to-your-privacy-manifest",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3183: Adding required reason API entries to your privacy manifest",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3183-adding-required-reason-api-entries-to-your-privacy-manifest"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3184-adding-data-collection-details-to-your-privacy-manifest": {
+      "abstract": [
+        {
+          "text": "Declare the data your app or third-party SDK collects in a privacy manifest.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3184-adding-data-collection-details-to-your-privacy-manifest",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3184: Adding data collection details to your privacy manifest",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3184-adding-data-collection-details-to-your-privacy-manifest"
+    },
+    "https://developer.apple.com/bug-reporting/profiles-and-logs/?name=sysdiagnose": {
+      "identifier": "https://developer.apple.com/bug-reporting/profiles-and-logs/?name=sysdiagnose",
+      "title": "Profiles and Logs",
+      "titleInlineContent": [
+        {
+          "text": "Profiles and Logs",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/bug-reporting/profiles-and-logs/?name=sysdiagnose"
+    },
+    "https://developer.apple.com/documentation/bundleresources/applinks": {
+      "identifier": "https://developer.apple.com/documentation/bundleresources/applinks",
+      "title": "applinks",
+      "titleInlineContent": [
+        {
+          "code": "applinks",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/bundleresources/applinks"
+    },
+    "https://developer.apple.com/documentation/bundleresources/entitlements/com_apple_developer_associated-domains": {
+      "identifier": "https://developer.apple.com/documentation/bundleresources/entitlements/com_apple_developer_associated-domains",
+      "title": "Associated Domains Entitlement",
+      "titleInlineContent": [
+        {
+          "code": "Associated Domains Entitlement",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/bundleresources/entitlements/com_apple_developer_associated-domains"
+    },
+    "https://developer.apple.com/documentation/xcode/allowing-apps-and-websites-to-link-to-your-content": {
+      "identifier": "https://developer.apple.com/documentation/xcode/allowing-apps-and-websites-to-link-to-your-content",
+      "title": "Allowing apps and websites to link to your content",
+      "titleInlineContent": [
+        {
+          "text": "Allowing apps and websites to link to your content",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/xcode/allowing-apps-and-websites-to-link-to-your-content"
+    },
+    "https://developer.apple.com/documentation/xcode/allowing-apps-and-websites-to-link-to-your-content#Support-universal-links": {
+      "identifier": "https://developer.apple.com/documentation/xcode/allowing-apps-and-websites-to-link-to-your-content#Support-universal-links",
+      "title": "Allowing apps and websites to link your content",
+      "titleInlineContent": [
+        {
+          "text": "Allowing apps and websites to link your content",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/xcode/allowing-apps-and-websites-to-link-to-your-content#Support-universal-links"
+    },
+    "https://developer.apple.com/documentation/xcode/enabling-developer-mode-on-a-device": {
+      "identifier": "https://developer.apple.com/documentation/xcode/enabling-developer-mode-on-a-device",
+      "title": "Enabling Developer Mode on a device",
+      "titleInlineContent": [
+        {
+          "text": "Enabling Developer Mode on a device",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/xcode/enabling-developer-mode-on-a-device"
+    },
+    "https://developer.apple.com/documentation/xcode/supporting-associated-domains": {
+      "identifier": "https://developer.apple.com/documentation/xcode/supporting-associated-domains",
+      "title": "Supporting Associated Domains",
+      "titleInlineContent": [
+        {
+          "text": "Supporting Associated Domains",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/xcode/supporting-associated-domains"
+    },
+    "https://developer.apple.com/ios/universal-links/": {
+      "identifier": "https://developer.apple.com/ios/universal-links/",
+      "title": "Universal links",
+      "titleInlineContent": [
+        {
+          "text": "Universal links",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/ios/universal-links/"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Latest",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.technotes/documentation/Technotes/tn3182-adding-privacy-tracking-keys-to-your-privacy-manifest",
+        "doc://com.apple.technotes/documentation/Technotes/tn3183-adding-required-reason-api-entries-to-your-privacy-manifest",
+        "doc://com.apple.technotes/documentation/Technotes/tn3184-adding-data-collection-details-to-your-privacy-manifest",
+        "doc://com.apple.technotes/documentation/Technotes/tn3181-debugging-invalid-privacy-manifest",
+        "doc://com.apple.technotes/documentation/Technotes/tn3180-reverting-app-store-server-notifications-v1",
+        "doc://com.apple.technotes/documentation/Technotes/tn3179-understanding-local-network-privacy",
+        "doc://com.apple.technotes/documentation/Technotes/tn3178-checking-for-and-resolving-build-uuid-problems",
+        "doc://com.apple.technotes/documentation/Technotes/tn3177-understanding-alternate-audio-track-groups-in-movie-files",
+        "doc://com.apple.technotes/documentation/Technotes/tn3111-ios-wifi-api-overview",
+        "doc://com.apple.technotes/documentation/Technotes/tn3176-troubleshooting-apple-pay-payment-processing-issues",
+        "doc://com.apple.technotes/documentation/Technotes/tn3175-diagnosing-issues-with-displaying-the-apple-pay-button-on-your-website",
+        "doc://com.apple.technotes/documentation/Technotes/tn3174-diagnosing-issues-with-the-apple-pay-payment-sheet-on-your-website",
+        "doc://com.apple.technotes/documentation/Technotes/tn3173-troubleshooting-issues-with-your-apple-pay-merchant-id-configuration",
+        "doc://com.apple.technotes/documentation/Technotes/tn3168-making-your-app-clip-available-app-store",
+        "doc://com.apple.technotes/documentation/Technotes/tn3124-debugging-coordinate-transformations"
+      ],
+      "title": "Latest"
+    }
+  ]
+}

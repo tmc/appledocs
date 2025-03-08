@@ -1,0 +1,519 @@
+{
+  "abstract": [
+    {
+      "text": "Enhance your app’s experience by incorporating haptic and sound feedback into key interactive moments.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.corehaptics/documentation/CoreHaptics"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.corehaptics/documentation/CoreHaptics/delivering-rich-app-experiences-with-haptics"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Core Haptics"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "13.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "13.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "12.5",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Delivering Rich App Experiences with Haptics"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "This sample code project is associated with WWDC21 session ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/videos/play/wwdc21/10278/",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Configure-the-Sample-Code-Project",
+          "level": 3,
+          "text": "Configure the Sample Code Project",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You must run the sample on iPhone 8 or later.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "334e89162949/DeliveringRichAppExperiencesWithHaptics.zip": {
+      "checksum": "334e8916294975ea38faa9f7d8f6a4d26dd90cb5c8e9bfb4f94d5908fb65124b81f5493f07e5eb4851e835ba1887001fbfec35e44615260a923784e2729a00f2",
+      "identifier": "334e89162949/DeliveringRichAppExperiencesWithHaptics.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/334e89162949/DeliveringRichAppExperiencesWithHaptics.zip"
+    },
+    "doc://com.apple.corehaptics/documentation/CoreHaptics": {
+      "abstract": [
+        {
+          "text": "Compose and play haptic patterns to customize your iOS app’s haptic feedback.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.corehaptics/documentation/CoreHaptics",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Haptics",
+      "type": "topic",
+      "url": "/documentation/corehaptics"
+    },
+    "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticDynamicParameter": {
+      "abstract": [
+        {
+          "text": "A value that you send to a haptic pattern player to alter a property value during playback.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CHHapticDynamicParameter"
+        }
+      ],
+      "identifier": "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticDynamicParameter",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CHHapticDynamicParameter"
+        }
+      ],
+      "role": "symbol",
+      "title": "CHHapticDynamicParameter",
+      "type": "topic",
+      "url": "/documentation/corehaptics/chhapticdynamicparameter"
+    },
+    "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticEvent": {
+      "abstract": [
+        {
+          "text": "An object that describes a single haptic or audio event.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CHHapticEvent"
+        }
+      ],
+      "identifier": "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticEvent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CHHapticEvent"
+        }
+      ],
+      "role": "symbol",
+      "title": "CHHapticEvent",
+      "type": "topic",
+      "url": "/documentation/corehaptics/chhapticevent"
+    },
+    "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticEventParameter": {
+      "abstract": [
+        {
+          "text": "A static parameter value that represents a single property of the haptic pattern.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CHHapticEventParameter"
+        }
+      ],
+      "identifier": "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticEventParameter",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CHHapticEventParameter"
+        }
+      ],
+      "role": "symbol",
+      "title": "CHHapticEventParameter",
+      "type": "topic",
+      "url": "/documentation/corehaptics/chhapticeventparameter"
+    },
+    "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticParameterCurve": {
+      "abstract": [
+        {
+          "text": "A curve that you send to a haptic pattern player to alter a property value gradually during playback.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CHHapticParameterCurve"
+        }
+      ],
+      "identifier": "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticParameterCurve",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CHHapticParameterCurve"
+        }
+      ],
+      "role": "symbol",
+      "title": "CHHapticParameterCurve",
+      "type": "topic",
+      "url": "/documentation/corehaptics/chhapticparametercurve"
+    },
+    "doc://com.apple.corehaptics/documentation/CoreHaptics/playing-collision-based-haptic-patterns": {
+      "abstract": [
+        {
+          "text": "Play a custom haptic pattern whose strength depends on an object’s collision speed.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.corehaptics/documentation/CoreHaptics/playing-collision-based-haptic-patterns",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Playing Collision-Based Haptic Patterns",
+      "type": "topic",
+      "url": "/documentation/corehaptics/playing-collision-based-haptic-patterns"
+    },
+    "doc://com.apple.corehaptics/documentation/CoreHaptics/updating-continuous-and-transient-haptic-parameters-in-real-time": {
+      "abstract": [
+        {
+          "text": "Generate continuous and transient haptic patterns in response to user touch.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.corehaptics/documentation/CoreHaptics/updating-continuous-and-transient-haptic-parameters-in-real-time",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Updating Continuous and Transient Haptic Parameters in Real Time",
+      "type": "topic",
+      "url": "/documentation/corehaptics/updating-continuous-and-transient-haptic-parameters-in-real-time"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/videos/play/wwdc21/10278/": {
+      "identifier": "https://developer.apple.com/videos/play/wwdc21/10278/",
+      "title": "10278: Practice Audio Haptic Design",
+      "titleInlineContent": [
+        {
+          "text": "10278: Practice Audio Haptic Design",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/videos/play/wwdc21/10278/"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "334e89162949/DeliveringRichAppExperiencesWithHaptics.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Programmatic-haptics",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.corehaptics/documentation/CoreHaptics/playing-collision-based-haptic-patterns",
+        "doc://com.apple.corehaptics/documentation/CoreHaptics/updating-continuous-and-transient-haptic-parameters-in-real-time",
+        "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticEvent",
+        "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticEventParameter",
+        "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticDynamicParameter",
+        "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticParameterCurve"
+      ],
+      "title": "Programmatic haptics"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Programmatic-haptics",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.corehaptics/documentation/CoreHaptics/playing-collision-based-haptic-patterns",
+                "doc://com.apple.corehaptics/documentation/CoreHaptics/updating-continuous-and-transient-haptic-parameters-in-real-time",
+                "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticEvent",
+                "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticEventParameter",
+                "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticDynamicParameter",
+                "doc://com.apple.corehaptics/documentation/CoreHaptics/CHHapticParameterCurve"
+              ],
+              "title": "Programmatic haptics"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corehaptics~1documentation~1CoreHaptics~1CHHapticEvent/title",
+          "value": "CHHapticEvent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corehaptics~1documentation~1CoreHaptics~1CHHapticEvent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CHHapticEvent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corehaptics~1documentation~1CoreHaptics~1CHHapticEvent/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CHHapticEvent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corehaptics~1documentation~1CoreHaptics~1CHHapticParameterCurve/title",
+          "value": "CHHapticParameterCurve"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corehaptics~1documentation~1CoreHaptics~1CHHapticParameterCurve/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CHHapticParameterCurve"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corehaptics~1documentation~1CoreHaptics~1CHHapticParameterCurve/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CHHapticParameterCurve"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corehaptics~1documentation~1CoreHaptics~1CHHapticEventParameter/title",
+          "value": "CHHapticEventParameter"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corehaptics~1documentation~1CoreHaptics~1CHHapticEventParameter/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CHHapticEventParameter"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corehaptics~1documentation~1CoreHaptics~1CHHapticEventParameter/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CHHapticEventParameter"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corehaptics~1documentation~1CoreHaptics~1CHHapticDynamicParameter/title",
+          "value": "CHHapticDynamicParameter"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corehaptics~1documentation~1CoreHaptics~1CHHapticDynamicParameter/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CHHapticDynamicParameter"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corehaptics~1documentation~1CoreHaptics~1CHHapticDynamicParameter/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CHHapticDynamicParameter"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/corehaptics/delivering-rich-app-experiences-with-haptics"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/corehaptics/delivering-rich-app-experiences-with-haptics"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

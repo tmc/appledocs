@@ -1,0 +1,1598 @@
+{
+  "abstract": [
+    {
+      "text": "Parse the structure of Core Audio files.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/core-audio-file-format"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Audio Toolbox"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Core Audio File Format"
+  },
+  "references": {
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox": {
+      "abstract": [
+        {
+          "text": "Record or play audio, convert formats, parse audio streams, and configure your audio session.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Audio Toolbox",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1547255-caf-file-header": {
+      "abstract": [],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1547255-caf-file-header",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CAF File Header",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/1547255-caf-file-header"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1547262-caf-file-smpte-time-types": {
+      "abstract": [],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1547262-caf-file-smpte-time-types",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CAF File SMPTE Time Types",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/1547262-caf-file-smpte-time-types"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1547266-caf-file-chunk-types": {
+      "abstract": [],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1547266-caf-file-chunk-types",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CAF File Chunk Types",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/1547266-caf-file-chunk-types"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1547272-caf-file-marker-types": {
+      "abstract": [],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1547272-caf-file-marker-types",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CAF File Marker Types",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/1547272-caf-file-marker-types"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/CAFAudioDescription": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CAFAudioDescription"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/CAFAudioDescription",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CAFAudioDescription"
+        }
+      ],
+      "role": "symbol",
+      "title": "CAFAudioDescription",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/cafaudiodescription"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/CAFAudioFormatListItem": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CAFAudioFormatListItem"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/CAFAudioFormatListItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CAFAudioFormatListItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "CAFAudioFormatListItem",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/cafaudioformatlistitem"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/CAFChunkHeader": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CAFChunkHeader"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/CAFChunkHeader",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CAFChunkHeader"
+        }
+      ],
+      "role": "symbol",
+      "title": "CAFChunkHeader",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/cafchunkheader"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/CAFDataChunk": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CAFDataChunk"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/CAFDataChunk",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CAFDataChunk"
+        }
+      ],
+      "role": "symbol",
+      "title": "CAFDataChunk",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/cafdatachunk"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/CAFFileHeader": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CAFFileHeader"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/CAFFileHeader",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CAFFileHeader"
+        }
+      ],
+      "role": "symbol",
+      "title": "CAFFileHeader",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/caffileheader"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/CAFFormatFlags": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CAFFormatFlags"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/CAFFormatFlags",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CAFFormatFlags"
+        }
+      ],
+      "role": "symbol",
+      "title": "CAFFormatFlags",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/cafformatflags"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/CAFInfoStrings": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CAFInfoStrings"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/CAFInfoStrings",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CAFInfoStrings"
+        }
+      ],
+      "role": "symbol",
+      "title": "CAFInfoStrings",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/cafinfostrings"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/CAFInstrumentChunk": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CAFInstrumentChunk"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/CAFInstrumentChunk",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CAFInstrumentChunk"
+        }
+      ],
+      "role": "symbol",
+      "title": "CAFInstrumentChunk",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/cafinstrumentchunk"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/CAFMarker": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CAFMarker"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/CAFMarker",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CAFMarker"
+        }
+      ],
+      "role": "symbol",
+      "title": "CAFMarker",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/cafmarker"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/CAFMarkerChunk": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CAFMarkerChunk"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/CAFMarkerChunk",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CAFMarkerChunk"
+        }
+      ],
+      "role": "symbol",
+      "title": "CAFMarkerChunk",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/cafmarkerchunk"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/CAFOverviewChunk": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CAFOverviewChunk"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/CAFOverviewChunk",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CAFOverviewChunk"
+        }
+      ],
+      "role": "symbol",
+      "title": "CAFOverviewChunk",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/cafoverviewchunk"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/CAFOverviewSample": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CAFOverviewSample"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/CAFOverviewSample",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CAFOverviewSample"
+        }
+      ],
+      "role": "symbol",
+      "title": "CAFOverviewSample",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/cafoverviewsample"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/CAFPacketTableHeader": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CAFPacketTableHeader"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/CAFPacketTableHeader",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CAFPacketTableHeader"
+        }
+      ],
+      "role": "symbol",
+      "title": "CAFPacketTableHeader",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/cafpackettableheader"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/CAFPeakChunk": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CAFPeakChunk"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/CAFPeakChunk",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CAFPeakChunk"
+        }
+      ],
+      "role": "symbol",
+      "title": "CAFPeakChunk",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/cafpeakchunk"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/CAFPositionPeak": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CAFPositionPeak"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/CAFPositionPeak",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CAFPositionPeak"
+        }
+      ],
+      "role": "symbol",
+      "title": "CAFPositionPeak",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/cafpositionpeak"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/CAFRegion": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CAFRegion"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/CAFRegion",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CAFRegion"
+        }
+      ],
+      "role": "symbol",
+      "title": "CAFRegion",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/cafregion"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/CAFRegionChunk": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CAFRegionChunk"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/CAFRegionChunk",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CAFRegionChunk"
+        }
+      ],
+      "role": "symbol",
+      "title": "CAFRegionChunk",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/cafregionchunk"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/CAFRegionFlags": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CAFRegionFlags"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/CAFRegionFlags",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CAFRegionFlags"
+        }
+      ],
+      "role": "symbol",
+      "title": "CAFRegionFlags",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/cafregionflags"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/CAFStringID": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CAFStringID"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/CAFStringID",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CAFStringID"
+        }
+      ],
+      "role": "symbol",
+      "title": "CAFStringID",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/cafstringid"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/CAFStrings": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CAFStrings"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/CAFStrings",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CAFStrings"
+        }
+      ],
+      "role": "symbol",
+      "title": "CAFStrings",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/cafstrings"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/CAFUMIDChunk": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CAFUMIDChunk"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/CAFUMIDChunk",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CAFUMIDChunk"
+        }
+      ],
+      "role": "symbol",
+      "title": "CAFUMIDChunk",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/cafumidchunk"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/CAF_SMPTE_Time": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CAF_SMPTE_Time"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/CAF_SMPTE_Time",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CAF_SMPTE_Time"
+        }
+      ],
+      "role": "symbol",
+      "title": "CAF_SMPTE_Time",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/caf_smpte_time"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/CAF_UUID_ChunkHeader": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CAF_UUID_ChunkHeader"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/CAF_UUID_ChunkHeader",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CAF_UUID_ChunkHeader"
+        }
+      ],
+      "role": "symbol",
+      "title": "CAF_UUID_ChunkHeader",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/caf_uuid_chunkheader"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-file-components": {
+      "abstract": [
+        {
+          "text": "Get information about audio file formats, and about files containing audio data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-file-components",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Audio File Components",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audio-file-components"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-file-services": {
+      "abstract": [
+        {
+          "text": "Read or write a variety of audio data to or from disk or a memory buffer.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-file-services",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Audio File Services",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audio-file-services"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-file-stream-services": {
+      "abstract": [
+        {
+          "text": "Parse streamed audio files as the data arrives on the user’s computer.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-file-stream-services",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Audio File Stream Services",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audio-file-stream-services"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-format-services": {
+      "abstract": [
+        {
+          "text": "Access information about audio formats and codecs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-format-services",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Audio Format Services",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audio-format-services"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/extended-audio-file-services": {
+      "abstract": [
+        {
+          "text": "Read and write compressed files and linear PCM audio files using a simplified interface.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/extended-audio-file-services",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Extended Audio File Services",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/extended-audio-file-services"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Audio-Files-and-Formats",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-format-services",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-file-services",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/extended-audio-file-services",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-file-stream-services",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-file-components"
+      ],
+      "title": "Audio Files and Formats"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "File-Structure",
+      "identifiers": [
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/CAFAudioDescription",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/CAFAudioFormatListItem",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/CAFChunkHeader",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/CAFDataChunk",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/CAFFileHeader",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/CAFFormatFlags",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/CAFInfoStrings",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/CAFInstrumentChunk",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/CAFMarker",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/CAFMarkerChunk",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/CAFOverviewChunk",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/CAFOverviewSample",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/CAFPacketTableHeader",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/CAFPeakChunk",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/CAFPositionPeak",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/CAFRegion",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/CAFRegionChunk",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/CAFRegionFlags",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/CAFStringID",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/CAFStrings",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/CAFUMIDChunk",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/CAF_SMPTE_Time",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/CAF_UUID_ChunkHeader"
+      ],
+      "title": "File Structure"
+    },
+    {
+      "anchor": "Types",
+      "identifiers": [
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/CAFFormatFlags",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/CAFRegionFlags",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1547266-caf-file-chunk-types",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1547272-caf-file-marker-types",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1547262-caf-file-smpte-time-types",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1547255-caf-file-header"
+      ],
+      "title": "Types"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "File-Structure",
+              "identifiers": [
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/CAFAudioDescription",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/CAFAudioFormatListItem",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/CAFChunkHeader",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/CAFDataChunk",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/CAFFileHeader",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/CAFFormatFlags",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/CAFInfoStrings",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/CAFInstrumentChunk",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/CAFMarker",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/CAFMarkerChunk",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/CAFOverviewChunk",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/CAFOverviewSample",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/CAFPacketTableHeader",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/CAFPeakChunk",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/CAFPositionPeak",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/CAFRegion",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/CAFRegionChunk",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/CAFRegionFlags",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/CAFStringID",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/CAFStrings",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/CAFUMIDChunk",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/CAF_SMPTE_Time",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/CAF_UUID_ChunkHeader"
+              ],
+              "title": "File Structure"
+            },
+            {
+              "anchor": "Types",
+              "identifiers": [
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/CAFFormatFlags",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/CAFRegionFlags",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1547266-caf-file-chunk-types",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1547272-caf-file-marker-types",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1547262-caf-file-smpte-time-types",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1547255-caf-file-header"
+              ],
+              "title": "Types"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Audio-Files-and-Formats",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-format-services",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-file-services",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/extended-audio-file-services",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-file-stream-services",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-file-components"
+              ],
+              "title": "Audio Files and Formats"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1CAFOverviewChunk/title",
+          "value": "CAFOverviewChunk"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1CAFOverviewChunk/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CAFOverviewChunk"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1CAFOverviewChunk/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CAFOverviewChunk"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1CAF_UUID_ChunkHeader/title",
+          "value": "CAF_UUID_ChunkHeader"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1CAF_UUID_ChunkHeader/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CAF_UUID_ChunkHeader"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1CAF_UUID_ChunkHeader/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CAF_UUID_ChunkHeader"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1CAFOverviewSample/title",
+          "value": "CAFOverviewSample"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1CAFOverviewSample/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CAFOverviewSample"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1CAFOverviewSample/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CAFOverviewSample"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1CAFDataChunk/title",
+          "value": "CAFDataChunk"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1CAFDataChunk/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CAFDataChunk"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1CAFDataChunk/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CAFDataChunk"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1CAFRegionChunk/title",
+          "value": "CAFRegionChunk"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1CAFRegionChunk/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CAFRegionChunk"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1CAFRegionChunk/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CAFRegionChunk"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1CAFPositionPeak/title",
+          "value": "CAFPositionPeak"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1CAFPositionPeak/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CAFPositionPeak"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1CAFPositionPeak/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CAFPositionPeak"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1CAFStrings/title",
+          "value": "CAFStrings"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1CAFStrings/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CAFStrings"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1CAFStrings/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CAFStrings"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1CAFAudioFormatListItem/title",
+          "value": "CAFAudioFormatListItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1CAFAudioFormatListItem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CAFAudioFormatListItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1CAFAudioFormatListItem/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CAFAudioFormatListItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1CAFRegionFlags/title",
+          "value": "CAFRegionFlags"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1CAFRegionFlags/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CAFRegionFlags"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1CAFRegionFlags/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CAFRegionFlags"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1CAFFileHeader/title",
+          "value": "CAFFileHeader"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1CAFFileHeader/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CAFFileHeader"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1CAFFileHeader/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CAFFileHeader"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1CAFInfoStrings/title",
+          "value": "CAFInfoStrings"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1CAFInfoStrings/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CAFInfoStrings"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1CAFInfoStrings/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CAFInfoStrings"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1CAFFormatFlags/title",
+          "value": "CAFFormatFlags"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1CAFFormatFlags/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CAFFormatFlags"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1CAFFormatFlags/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CAFFormatFlags"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1CAFMarkerChunk/title",
+          "value": "CAFMarkerChunk"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1CAFMarkerChunk/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CAFMarkerChunk"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1CAFMarkerChunk/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CAFMarkerChunk"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1CAFPeakChunk/title",
+          "value": "CAFPeakChunk"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1CAFPeakChunk/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CAFPeakChunk"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1CAFPeakChunk/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CAFPeakChunk"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1CAFPacketTableHeader/title",
+          "value": "CAFPacketTableHeader"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1CAFPacketTableHeader/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CAFPacketTableHeader"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1CAFPacketTableHeader/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CAFPacketTableHeader"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1CAFInstrumentChunk/title",
+          "value": "CAFInstrumentChunk"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1CAFInstrumentChunk/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CAFInstrumentChunk"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1CAFInstrumentChunk/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CAFInstrumentChunk"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1CAFChunkHeader/title",
+          "value": "CAFChunkHeader"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1CAFChunkHeader/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CAFChunkHeader"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1CAFChunkHeader/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CAFChunkHeader"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1CAFRegion/title",
+          "value": "CAFRegion"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1CAFRegion/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CAFRegion"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1CAFRegion/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CAFRegion"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1CAFMarker/title",
+          "value": "CAFMarker"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1CAFMarker/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CAFMarker"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1CAFMarker/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CAFMarker"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1CAF_SMPTE_Time/title",
+          "value": "CAF_SMPTE_Time"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1CAF_SMPTE_Time/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CAF_SMPTE_Time"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1CAF_SMPTE_Time/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CAF_SMPTE_Time"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1CAFStringID/title",
+          "value": "CAFStringID"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1CAFStringID/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CAFStringID"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1CAFStringID/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CAFStringID"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1CAFUMIDChunk/title",
+          "value": "CAFUMIDChunk"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1CAFUMIDChunk/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CAFUMIDChunk"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1CAFUMIDChunk/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CAFUMIDChunk"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1CAFAudioDescription/title",
+          "value": "CAFAudioDescription"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1CAFAudioDescription/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CAFAudioDescription"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1CAFAudioDescription/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CAFAudioDescription"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/audiotoolbox/core-audio-file-format"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/audiotoolbox/core-audio-file-format"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

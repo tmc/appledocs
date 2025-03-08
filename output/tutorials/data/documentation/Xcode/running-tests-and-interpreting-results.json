@@ -1,0 +1,2241 @@
+{
+  "abstract": [
+    {
+      "text": "Determine whether your project’s code behaves as you expect by running tests and understanding the results.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Xcode/documentation/Xcode",
+        "doc://com.apple.Xcode/documentation/Xcode/testing"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Xcode/documentation/Xcode/running-tests-and-interpreting-results"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Running tests and interpreting results"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "At different points in the software development workflow you’ll want to run subsets of your tests:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "While making changes to a particular function or type, running just the tests relevant to that unit gives you the fastest feedback about the state of your changes.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "When your change is ready for code review or integration, running all of the tests for the affected target can uncover any unexpected regressions.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Finally, Xcode Cloud can run a complete set of tests with multiple configurations on a schedule, providing greater confidence in the correctness of your code while managing the increased execution time required for completing so many tests.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Run-tests-from-a-test-plan",
+          "level": 2,
+          "text": "Run tests from a test plan",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To run all the tests in the active test plan, you have two options: you can run them in Xcode (choose Product > Test), or you can run the ",
+              "type": "text"
+            },
+            {
+              "code": "xcodebuild",
+              "type": "codeVoice"
+            },
+            {
+              "text": " command in Terminal:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "% xcodebuild test -scheme SampleApp"
+          ],
+          "syntax": "zsh",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Configure which tests the test runner runs when you perform this action by editing the test plan for your Xcode target’s scheme. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/customizing-the-build-schemes-for-a-project",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". If your build scheme includes more than one test plan, choose Product > Test Plan to select a test plan to run. View the active plan under the Test navigator, choose View > Navigators > Tests. When you select a different test plan or a different build scheme, the Test navigator updates to display that plan. Expand the outline view for the plan to see the targets, suites, test functions, and parameterized test cases it includes. Items you disable or mark to be skipped appear dimmed.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Interpret-test-results",
+          "level": 2,
+          "text": "Interpret test results",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After your test run, Xcode displays a status icon in the Test navigator next to the test plan and next to each item in its outline view.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "running-tests-and-interpreting-results-debug-message.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The possible states are:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Test status icon",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Description",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "check-green.png",
+                      "type": "image"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The test passed.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "close-red.png",
+                      "type": "image"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The test failed. The failure may also be due to a test that should fail but didn’t.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "close-gray.png",
+                      "type": "image"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The test failed with some expected failures, but there were no unexpected failures.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "arrow-gray.png",
+                      "type": "image"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Xcode skipped a test.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "minus-green.png",
+                      "type": "image"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A green icon with a minus sign (–) indicates that a test had a mixed outcome: some test functions or parameterized test cases passed, while others failed with expected failures or were skipped.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "minus-red.png",
+                      "type": "image"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A red icon with a minus sign (–) indicates that the test had a mixed outcome; some of the test functions or parameterized test cases failed while others failed with expected failures or were skipped.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Swift Testing and XCTest support ways to identify a test to skip or a test you expect to fail due to known issue. The status icon Xcode displays reflects this, as indicated in the table above. To learn about marking known issues and enabling tests using Swift Testing, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/Testing/known-issues",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " and ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/Testing/EnablingAndDisabling",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ". To identify test functions you expect to fail using XCTest, call  ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/XCTest/XCTExpectFailure(_:options:)",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ". To skip a test function, call ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/XCTest/XCTSkipIf(_:_:file:line:)",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " or ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/XCTest/XCTSkipUnless(_:_:file:line:)",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ", which raise instances of ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/XCTest/XCTSkip-swift.struct",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Click to select an item in the Test navigator to display the implementation of a test",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in the source editor and access additional details for specific test failures or skipped tests. The same status icon appears in the gutter alongside the test implementation to help you locate the failure in the source editor. Click the diamond icon next to the debug message to expand it and review what the debug message reveals about the conditions that led to the failure.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "running-tests-and-interpreting-results-debug-message-expanded.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Tests functions you write with Swift Testing capture the state of variables you use in expressions that you pass to expectation macros and input parameters the test runner passes to a test function. Inspect those values to further understand the cause of the failure, click the Show button at the bottom of the debug message and expand the Results and Arguments regions to view the state of expectation expressions and input parameters.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "running-tests-and-interpreting-results-debug-expanded-gap-results.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "running-tests-and-interpreting-results-debug-expanded-gap-arguments.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Access-additional-information-in-the-test-report",
+          "level": 2,
+          "text": "Access additional information in the test report",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each test run produces a test report. Locate these reports in Xcode in the Report navigator by choosing View > Navigators > Reports, then select the Test action under your build scheme name.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The top level of a test report provides you with a high level summary of the test you’ve run. It highlights important patterns failure information, screenshots, and more to help you determine where to start your investigations.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Further information can be found under the additional sections of the report:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Reports common failure patterns and long running tests found while analyzing results across multiple configurations and run destinations.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Insights",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The code coverage report for your tests. For more information on code coverage, see ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.Xcode/documentation/Xcode/determining-how-much-code-your-tests-cover",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Coverage",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "An outline view that displays the results of your tests organized under test plans, test types, and test functions.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Tests",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Logs the system generates about the app and test installation process, launch actions, test actions, and post-testing processes such as the generation of code coverage reports.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Log",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Logs the build system produces while building your targets.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Build",
+                    "type": "text"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you run tests with ",
+              "type": "text"
+            },
+            {
+              "code": "xcodebuild",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in Terminal, the command outputs an Xcode Test Results (",
+              "type": "text"
+            },
+            {
+              "code": ".xcresults",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") bundle that contains session results, code coverage (if enabled), and other logs. You can open this file in Xcode to view or share it with other members of your development team.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Run-a-single-test-function",
+          "level": 2,
+          "text": "Run a single test function",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Navigate to the Swift file that contains the test function you want to run in Xcode. Move the pointer over the diamond icon alongside the function declaration in the editor gutter, and click the gray play icon:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "running-tests-and-interpreting-results-single-test-from-source.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Alternatively, locate the test function in the Xcode Test navigator by moving the pointer over the test function name and click the play icon.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "running-tests-and-interpreting-results-single-test-from-navigator.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Xcode runs the selected test function and updates the icon to indicate the outcome.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To run a single test function in Terminal, run ",
+              "type": "text"
+            },
+            {
+              "code": "xcodebuild",
+              "type": "codeVoice"
+            },
+            {
+              "text": " by giving the test function’s identifier as the parameter to the ",
+              "type": "text"
+            },
+            {
+              "code": "-only-testing",
+              "type": "codeVoice"
+            },
+            {
+              "text": " option. The identifier for a test function has the form ",
+              "type": "text"
+            },
+            {
+              "code": "test_target/test_type/test_function",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "% xcodebuild test -scheme SampleApp -only-testing SampleAppTests/SampleAppTests/testEmptyArrayWhenNoOverlappingNotes"
+          ],
+          "syntax": "zsh",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Run-a-parameterized-test-function-with-a-specific-input",
+          "level": 2,
+          "text": "Run a parameterized test function with a specific input",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Clicking the play icon next to the parameterized test function runs all test cases for that test. To select a specific test case to run, click the expansion arrow before the test function name in the Test navigator, move the pointer over the diamond icon alongside the specific test case, then click the gray play icon.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "running-tests-and-interpreting-results-parameterized-input.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you pass one or more collections to a ",
+              "type": "text"
+            },
+            {
+              "code": "@Test",
+              "type": "codeVoice"
+            },
+            {
+              "text": " macro that supports parameterization, the macro generates a test case for each element or element pair. Each test case represents a unique set of input parameters that the test runner passes to the test function. If the test fails for one or more inputs, the corresponding diagnostics indicate which inputs to examine. Selecting the specific test case runs the test function with just the input for that case which is useful when debugging. For more information on implementing parameterized tests, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Testing/ParameterizedTesting",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Run-a-group-of-the-test-functions",
+          "level": 2,
+          "text": "Run a group of the test functions",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To run test functions defined under a common type or suite, move the pointer over the diamond icon alongside the type’s declaration in the editor gutter, and click the gray play icon. In Swift Testing, a ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "test suite",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " is any type that includes the definition for one or more test functions.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "running-tests-and-interpreting-results-group-of-test-from-source.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Alternatively, to run a group of test functions from the Xcode Test navigator, move the pointer over a plan, target, or suite listed in the navigator, then click the gray play icon:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "running-tests-and-interpreting-results-group-of-test-from-navigator.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can nest test suites and optionally annotate them with the ",
+              "type": "text"
+            },
+            {
+              "code": "@Suite",
+              "type": "codeVoice"
+            },
+            {
+              "text": " macro to provide additional information about the test functions they contain. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Testing/OrganizingTests",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In XCTest, you implement all of your test functions on a subclass of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/XCTest/XCTestCase",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/XCTest/defining-test-cases-and-test-methods",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Xcode runs the test functions the selected item contains and updates the icon to indicate the outcome.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To run the test functions in a test case in Terminal, run ",
+              "type": "text"
+            },
+            {
+              "code": "xcodebuild",
+              "type": "codeVoice"
+            },
+            {
+              "text": " by giving the suite’s identifier as the parameter to the ",
+              "type": "text"
+            },
+            {
+              "code": "-only-testing",
+              "type": "codeVoice"
+            },
+            {
+              "text": " option. The identifier for a suite has the form ",
+              "type": "text"
+            },
+            {
+              "code": "test_target/test_suite",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "% xcodebuild test -scheme SampleApp -only-testing SampleAppTests/SampleAppTests"
+          ],
+          "syntax": "zsh",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "View-and-run-tests-by-tag",
+          "level": 2,
+          "text": "View and run tests by tag",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In Swift Testing, you can use the  ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Testing/Trait/tags(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " trait to annotate a group of related tests. These additional groups can be identified in the outline view under the Tags section of the Test navigator. Click the tag icon at the top of the Test navigator to view test functions organized by their tags. For more information about declaring tags and adding tags to tests, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Testing/AddingTags",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To run all of the test functions associated with a tag or a single test function under the tag group, move the pointer over the tag or test function, then click the gray play icon.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Run-testing-repeatedly-to-determine-reliability",
+          "level": 2,
+          "text": "Run testing repeatedly to determine reliability",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Control-click the diamond icon next to a test function or test suite type and select “Run ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [],
+              "type": "emphasis"
+            },
+            {
+              "text": " Repeatedly”. In the panel that appears, choose when to stop running the test. Options include:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Run the test until the first time it fails, or it reaches maximum repetitions.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Stop after failure",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Run the test until the first time it passes, or it reaches maximum repetitions.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Stop after success",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Run the test the specified number of times, regardless of its outcome.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Stop after maximum repetitions",
+                    "type": "text"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Choose the maximum number of times to repeat the test, whether to pause execution if the test fails, and whether to restart the test runner for each repetition. Finally, click Run to repeatedly run the test.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "running-tests-and-interpreting-results-repeating-tests.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To repeatedly run tests in Terminal, specify the number of repetitions with the ",
+              "type": "text"
+            },
+            {
+              "code": "-test-repetitions",
+              "type": "codeVoice"
+            },
+            {
+              "text": " option, optionally specifying whether the tests should repeat until success or failure, and whether to restart the test runner for each repetition:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "% xcodebuild test -scheme SampleApp -only-testing SampleAppTests/SampleAppTests/testEmptyArrayWhenNoOverlappingNotes -run-tests-until-failure -test-iterations 20"
+          ],
+          "syntax": "zsh",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Xcode-PageImage-card.png": {
+      "alt": "The Xcode logo on a blue gradient background.",
+      "identifier": "Xcode-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cc63eacd8f7f660388b46204d1d9bbcb/Xcode-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/62dba87d5f60ec96eb48882c9dff86d8/Xcode-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "arrow-gray.png": {
+      "alt": "A gray-filled rounded diamond-shaped icon that contains an arrow that starts at the left corner and goes up toward the top curve of the diamond before curving downward to the right corner.",
+      "identifier": "arrow-gray.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2f59b7b065262f0a8aaaa36dbf07a8e2/arrow-gray@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e67cbc3797354d62a2858133a2becf05/arrow-gray~dark@2x.png"
+        }
+      ]
+    },
+    "check-green.png": {
+      "alt": "A green-filled rounded diamond-shaped icon that contains a checkmark.",
+      "identifier": "check-green.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/11f29cc8ad9fe67b2a9ec70164a80b5a/check-green@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4562b10f66eead6e7287db2c4631e626/check-green~dark@2x.png"
+        }
+      ]
+    },
+    "close-gray.png": {
+      "alt": "A gray-filled rounded diamond-shaped icon that contains an ex.",
+      "identifier": "close-gray.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/6d4688e170964c35740f942e5dbfd1c9/close-gray@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1b52b32ab844530a57ffb019df7f4cd2/close-gray~dark@2x.png"
+        }
+      ]
+    },
+    "close-red.png": {
+      "alt": "A red-filled rounded diamond-shaped icon that contains an ex.",
+      "identifier": "close-red.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/fe768de15f27d9032d048dcaf9d8da79/close-red@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4bcde40ca8b44ea13a4aab1d10b57c30/close-red~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Xcode/documentation/Xcode": {
+      "abstract": [
+        {
+          "text": "Build, test, and submit your app with Apple’s integrated development environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode",
+      "images": [
+        {
+          "identifier": "Xcode-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/customizing-the-build-schemes-for-a-project": {
+      "abstract": [
+        {
+          "text": "Specify which targets to build, and customize the settings Xcode uses",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "to build, run, test, and profile those targets.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/customizing-the-build-schemes-for-a-project",
+      "kind": "article",
+      "role": "article",
+      "title": "Customizing the build schemes for a project",
+      "type": "topic",
+      "url": "/documentation/xcode/customizing-the-build-schemes-for-a-project"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/determining-how-much-code-your-tests-cover": {
+      "abstract": [
+        {
+          "text": "Use code coverage to focus new test development on areas that lack adequate testing.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/determining-how-much-code-your-tests-cover",
+      "kind": "article",
+      "role": "article",
+      "title": "Determining how much code your tests cover",
+      "type": "topic",
+      "url": "/documentation/xcode/determining-how-much-code-your-tests-cover"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/testing": {
+      "abstract": [
+        {
+          "text": "Develop and run tests to detect logic failures, UI problems, and performance regressions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/testing",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Testing",
+      "type": "topic",
+      "url": "/documentation/xcode/testing"
+    },
+    "doc://com.apple.documentation/documentation/Testing/AddingTags": {
+      "abstract": [
+        {
+          "text": "Use tags to provide semantic information for organization, filtering, and customizing appearances.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Testing/AddingTags",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding tags to tests",
+      "type": "topic",
+      "url": "/documentation/Testing/AddingTags"
+    },
+    "doc://com.apple.documentation/documentation/Testing/EnablingAndDisabling": {
+      "abstract": [
+        {
+          "text": "Conditionally enable or disable individual tests before they run.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Testing/EnablingAndDisabling",
+      "kind": "article",
+      "role": "article",
+      "title": "Enabling and disabling tests",
+      "type": "topic",
+      "url": "/documentation/Testing/EnablingAndDisabling"
+    },
+    "doc://com.apple.documentation/documentation/Testing/OrganizingTests": {
+      "abstract": [
+        {
+          "text": "Organize tests into test suites.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Testing/OrganizingTests",
+      "kind": "article",
+      "role": "article",
+      "title": "Organizing test functions with suite types",
+      "type": "topic",
+      "url": "/documentation/Testing/OrganizingTests"
+    },
+    "doc://com.apple.documentation/documentation/Testing/ParameterizedTesting": {
+      "abstract": [
+        {
+          "text": "Specify different input parameters to generate multiple test cases from a test function.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Testing/ParameterizedTesting",
+      "kind": "article",
+      "role": "article",
+      "title": "Implementing parameterized tests",
+      "type": "topic",
+      "url": "/documentation/Testing/ParameterizedTesting"
+    },
+    "doc://com.apple.documentation/documentation/Testing/Trait/tags(_:)": {
+      "abstract": [
+        {
+          "text": "Construct a list of tags to apply to a test.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "tags"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "tags"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Testing3TagV",
+          "text": "Tag"
+        },
+        {
+          "kind": "text",
+          "text": "...) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Testing/Trait/tags(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "tags(_:)",
+      "type": "topic",
+      "url": "/documentation/Testing/Trait/tags(_:)"
+    },
+    "doc://com.apple.documentation/documentation/Testing/known-issues": {
+      "abstract": [
+        {
+          "text": "Highlight known issues when running tests.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Testing/known-issues",
+      "kind": "article",
+      "role": "article",
+      "title": "Known issues",
+      "type": "topic",
+      "url": "/documentation/Testing/known-issues"
+    },
+    "doc://com.apple.documentation/documentation/XCTest/XCTExpectFailure(_:options:)": {
+      "abstract": [
+        {
+          "text": "Instructs the test to expect a failure in an upcoming assertion, with options to customize expected failure checking and handling.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "XCTExpectFailure"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "failureReason"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "? = nil, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)XCTExpectedFailure",
+          "text": "XCTExpectedFailure"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)XCTExpectedFailureOptions",
+          "text": "Options"
+        },
+        {
+          "kind": "text",
+          "text": " = .init())"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/XCTest/XCTExpectFailure(_:options:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "XCTExpectFailure(_:options:)",
+      "type": "topic",
+      "url": "/documentation/XCTest/XCTExpectFailure(_:options:)"
+    },
+    "doc://com.apple.documentation/documentation/XCTest/XCTSkip-swift.struct": {
+      "abstract": [
+        {
+          "text": "An error that causes the current test to cease executing and the test runner to mark the test as skipped when the test throws the error.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "XCTSkip"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/XCTest/XCTSkip-swift.struct",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "XCTSkip",
+      "type": "topic",
+      "url": "/documentation/XCTest/XCTSkip-swift.struct"
+    },
+    "doc://com.apple.documentation/documentation/XCTest/XCTSkipIf(_:_:file:line:)": {
+      "abstract": [
+        {
+          "text": "Skips remaining tests in a test method if the specified condition is met.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "XCTSkipIf"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "expression"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "attribute",
+          "text": "@autoclosure "
+        },
+        {
+          "kind": "text",
+          "text": "() "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "message"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "attribute",
+          "text": "@autoclosure "
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "? = nil, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "file"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s12StaticStringV",
+          "text": "StaticString"
+        },
+        {
+          "kind": "text",
+          "text": " = "
+        },
+        {
+          "kind": "keyword",
+          "text": "#filePath"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "line"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Su",
+          "text": "UInt"
+        },
+        {
+          "kind": "text",
+          "text": " = "
+        },
+        {
+          "kind": "keyword",
+          "text": "#line"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/XCTest/XCTSkipIf(_:_:file:line:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "XCTSkipIf(_:_:file:line:)",
+      "type": "topic",
+      "url": "/documentation/XCTest/XCTSkipIf(_:_:file:line:)"
+    },
+    "doc://com.apple.documentation/documentation/XCTest/XCTSkipUnless(_:_:file:line:)": {
+      "abstract": [
+        {
+          "text": "Skips remaining tests in a test method unless the specified condition is met.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "XCTSkipUnless"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "expression"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "attribute",
+          "text": "@autoclosure "
+        },
+        {
+          "kind": "text",
+          "text": "() "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "message"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "attribute",
+          "text": "@autoclosure "
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "? = nil, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "file"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s12StaticStringV",
+          "text": "StaticString"
+        },
+        {
+          "kind": "text",
+          "text": " = "
+        },
+        {
+          "kind": "keyword",
+          "text": "#filePath"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "line"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Su",
+          "text": "UInt"
+        },
+        {
+          "kind": "text",
+          "text": " = "
+        },
+        {
+          "kind": "keyword",
+          "text": "#line"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/XCTest/XCTSkipUnless(_:_:file:line:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "XCTSkipUnless(_:_:file:line:)",
+      "type": "topic",
+      "url": "/documentation/XCTest/XCTSkipUnless(_:_:file:line:)"
+    },
+    "doc://com.apple.documentation/documentation/XCTest/XCTestCase": {
+      "abstract": [
+        {
+          "text": "The primary class for defining test cases, test methods, and performance tests.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "XCTestCase"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/XCTest/XCTestCase",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "XCTestCase",
+      "type": "topic",
+      "url": "/documentation/XCTest/XCTestCase"
+    },
+    "doc://com.apple.documentation/documentation/XCTest/defining-test-cases-and-test-methods": {
+      "abstract": [
+        {
+          "text": "Add test cases and test methods to a test target to confirm that your code performs as expected.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/XCTest/defining-test-cases-and-test-methods",
+      "kind": "article",
+      "role": "article",
+      "title": "Defining Test Cases and Test Methods",
+      "type": "topic",
+      "url": "/documentation/XCTest/defining-test-cases-and-test-methods"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "minus-green.png": {
+      "alt": "A green-filled rounded diamond-shaped icon that contains a minus sign.",
+      "identifier": "minus-green.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/193175cebe13c7a77a1f21e04779e51f/minus-green@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/7224b7f565d9b19ef978c2b81c77409e/minus-green~dark@2x.png"
+        }
+      ]
+    },
+    "minus-red.png": {
+      "alt": "A red-filled rounded diamond-shaped icon that contains a minus sign.",
+      "identifier": "minus-red.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b409cc9b3f6b06a0a04448c20713c663/minus-red@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/450f2d816c83e22ca2ac64a81632b0f4/minus-red~dark@2x.png"
+        }
+      ]
+    },
+    "running-tests-and-interpreting-results-debug-expanded-gap-arguments.png": {
+      "alt": "The source editor display the implementation for a test with a  red-filled rounded diamond-shaped icon that contains an ex in the gutter and a debug message to the right. Arguments for the parameterized function is expanded to show the current videoName argument is Scotland Coast. The debug messages associated with the failure for this argument indicates that the video in the video library with that name is nil. ",
+      "identifier": "running-tests-and-interpreting-results-debug-expanded-gap-arguments.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/9f87ab79e25af670ec24c01b030f588b/running-tests-and-interpreting-results-debug-expanded-gap-arguments@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5f29bb5082750ca878ee609df5d2c30b/running-tests-and-interpreting-results-debug-expanded-gap-arguments~dark@2x.png"
+        }
+      ]
+    },
+    "running-tests-and-interpreting-results-debug-expanded-gap-results.png": {
+      "alt": "The source editor display the implementation for a test with a  red-filled rounded diamond-shaped icon that contains an ex in the gutter and a debug message to the right. Results for the test function is expanded to show values for two structs used in the expect macro expression: video.metadata and expectedMetadata. The results show that the property value for duration inside the video.metadata struct is 0.0 seconds while the value inside expectedMetadata is 90.0 seconds. Other properties of the the two structs, such as resolution, are equivalent. ",
+      "identifier": "running-tests-and-interpreting-results-debug-expanded-gap-results.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/04ae3564e5f6722f26d05102cc8d850a/running-tests-and-interpreting-results-debug-expanded-gap-results@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1976f813e2eb812f309216fe6cb0e231/running-tests-and-interpreting-results-debug-expanded-gap-results~dark@2x.png"
+        }
+      ]
+    },
+    "running-tests-and-interpreting-results-debug-message-expanded.png": {
+      "alt": "The source editor display the implementation for a test with a  red-filled rounded diamond-shaped icon that contains an ex in the gutter and an expanded debug message to the right. The debug message includes a Show button at the bottom-right.",
+      "identifier": "running-tests-and-interpreting-results-debug-message-expanded.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/bdc061abf215f6cb7552a8a02a2b2535/running-tests-and-interpreting-results-debug-message-expanded@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2a95cb48160600ddd9b1b8f25833f306/running-tests-and-interpreting-results-debug-message-expanded~dark@2x.png"
+        }
+      ]
+    },
+    "running-tests-and-interpreting-results-debug-message.png": {
+      "alt": "The source editor display the implementation for a test with a  red-filled rounded diamond-shaped icon that contains an ex in the gutter and a debug message to the right.",
+      "identifier": "running-tests-and-interpreting-results-debug-message.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/dc36b2f29f8b96e6e1ee73d80b3df898/running-tests-and-interpreting-results-debug-message@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/7e9981f35bf0d81c825b9a6e5f7199f1/running-tests-and-interpreting-results-debug-message~dark@2x.png"
+        }
+      ]
+    },
+    "running-tests-and-interpreting-results-group-of-test-from-navigator.png": {
+      "alt": "A screenshot of the Xcode Test navigator. The icon for running tests in a specific test case is visible.",
+      "identifier": "running-tests-and-interpreting-results-group-of-test-from-navigator.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/eab75b8eb8e646fc9ca1b209194e7343/running-tests-and-interpreting-results-group-of-test-from-navigator@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/df4bfe7e03caf941d51b8f4141f97e2a/running-tests-and-interpreting-results-group-of-test-from-navigator~dark@2x.png"
+        }
+      ]
+    },
+    "running-tests-and-interpreting-results-group-of-test-from-source.png": {
+      "alt": "A screenshot of Xcode display a test suite in the source editor. The icon for running the test functions in that type is visible.",
+      "identifier": "running-tests-and-interpreting-results-group-of-test-from-source.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/0e33879583f08c6edaa55551aaa2185f/running-tests-and-interpreting-results-group-of-test-from-source@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a7d77bce7ddea28dd63915cc86937e0a/running-tests-and-interpreting-results-group-of-test-from-source~dark@2x.png"
+        }
+      ]
+    },
+    "running-tests-and-interpreting-results-parameterized-input.png": {
+      "alt": "A screenshot of the Xcode Test navigator. The icon for running a specific test case under a parameterized function is visible.",
+      "identifier": "running-tests-and-interpreting-results-parameterized-input.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a1fc5f0551ec5219a56bb5bea7ff3d4f/running-tests-and-interpreting-results-parameterized-input@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/d142fc438a000425dbe156682a81ed72/running-tests-and-interpreting-results-parameterized-input~dark@2x.png"
+        }
+      ]
+    },
+    "running-tests-and-interpreting-results-repeating-tests.png": {
+      "alt": "A screenshot of the Xcode panel for running the same test repeatedly.",
+      "identifier": "running-tests-and-interpreting-results-repeating-tests.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ffc9bd90d0a1893e7afb7178caaff4b8/running-tests-and-interpreting-results-repeating-tests@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/95e8ab235cf9b086b3b676ffcbef07d6/running-tests-and-interpreting-results-repeating-tests~dark@2x.png"
+        }
+      ]
+    },
+    "running-tests-and-interpreting-results-single-test-from-navigator.png": {
+      "alt": "A screenshot of the Xcode Test navigator. The icon for running a specific test function is visible.",
+      "identifier": "running-tests-and-interpreting-results-single-test-from-navigator.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/895f805e861694317f09829a6e8e4641/running-tests-and-interpreting-results-single-test-from-navigator@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/24feba275f3ab2c7a395dfa3e0a595f1/running-tests-and-interpreting-results-single-test-from-navigator~dark@2x.png"
+        }
+      ]
+    },
+    "running-tests-and-interpreting-results-single-test-from-source.png": {
+      "alt": "A screenshot of the Xcode source editor. The icon for running a specific test function is visible in the source editor gutter.",
+      "identifier": "running-tests-and-interpreting-results-single-test-from-source.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/3c522d61adec57b23c2e22c2201490c4/running-tests-and-interpreting-results-single-test-from-source@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/259679ceb8369712e2b7db324d0585a8/running-tests-and-interpreting-results-single-test-from-source~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1XCTest~1XCTestCase/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "XCTestCase"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)XCTest",
+              "text": "XCTest"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,827 @@
+{
+  "abstract": [
+    {
+      "text": "Options that describe the marketplace from which the app installs.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.MarketplaceKit/documentation/MarketplaceKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.MarketplaceKit/documentation/MarketplaceKit/AppDistributor"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:14MarketplaceKit14AppDistributorO",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "enum"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "AppDistributor"
+      }
+    ],
+    "modules": [
+      {
+        "name": "MarketplaceKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "AppDistributor"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.4",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.4",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Enumeration",
+    "symbolKind": "enum",
+    "title": "AppDistributor"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "Mac Catalyst"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "enum"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AppDistributor"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.MarketplaceKit/documentation/marketplacekit/distributing-your-app-on-an-alternative-marketplace"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Apps on alternative app marketplaces need to use APIs that vary from apps on the App Store. Specifically, use:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/AdAttributionKit",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " for ads.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "An e-commerce solution other than the App Store’s ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/StoreKit/in-app-purchase",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " system.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A social gaming network other than ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/AppStoreConnectAPI/game-center",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " unless your app is also on the App Store.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/BackgroundAssets",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to download large files in the background rather than ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/library/archive/documentation/FileManagement/Conceptual/On_Demand_Resources_Guide/",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Only use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/StoreKit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " on the App Store.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To observe API differences, check the value of the app distributor’s static (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.MarketplaceKit/documentation/MarketplaceKit/AppDistributor/current",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ") property to determine the installation source:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "App distributor case",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Installation source",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.MarketplaceKit/documentation/MarketplaceKit/AppDistributor/appStore",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The App Store",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.MarketplaceKit/documentation/MarketplaceKit/AppDistributor/testFlight",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "TestFlight",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.MarketplaceKit/documentation/MarketplaceKit/AppDistributor/marketplace(_:)",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Alternative app marketplace; the argument ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "String",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " identifies the marketplace bundle ID",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.MarketplaceKit/documentation/MarketplaceKit/AppDistributor/web",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The developer’s website",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.MarketplaceKit/documentation/MarketplaceKit/AppDistributor/other",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Enterprise or education developer programs",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.MarketplaceKit/documentation/marketplacekit/distributing-your-app-on-an-alternative-marketplace",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.MarketplaceKit/documentation/MarketplaceKit": {
+      "abstract": [
+        {
+          "text": "Create an alternative app marketplace, distribute your app on an alternative app marketplace, or distribute your app from your website.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.MarketplaceKit/documentation/MarketplaceKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "MarketplaceKit",
+      "type": "topic",
+      "url": "/documentation/marketplacekit"
+    },
+    "doc://com.apple.MarketplaceKit/documentation/MarketplaceKit/AppDistributor": {
+      "abstract": [
+        {
+          "text": "Options that describe the marketplace from which the app installs.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AppDistributor"
+        }
+      ],
+      "identifier": "doc://com.apple.MarketplaceKit/documentation/MarketplaceKit/AppDistributor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AppDistributor"
+        }
+      ],
+      "role": "symbol",
+      "title": "AppDistributor",
+      "type": "topic",
+      "url": "/documentation/marketplacekit/appdistributor"
+    },
+    "doc://com.apple.MarketplaceKit/documentation/MarketplaceKit/AppDistributor/appStore": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "appStore"
+        }
+      ],
+      "identifier": "doc://com.apple.MarketplaceKit/documentation/MarketplaceKit/AppDistributor/appStore",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AppDistributor.appStore",
+      "type": "topic",
+      "url": "/documentation/marketplacekit/appdistributor/appstore"
+    },
+    "doc://com.apple.MarketplaceKit/documentation/MarketplaceKit/AppDistributor/current": {
+      "abstract": [
+        {
+          "text": "The source from which the app installs.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "current"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14MarketplaceKit14AppDistributorO",
+          "text": "AppDistributor"
+        }
+      ],
+      "identifier": "doc://com.apple.MarketplaceKit/documentation/MarketplaceKit/AppDistributor/current",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "current",
+      "type": "topic",
+      "url": "/documentation/marketplacekit/appdistributor/current"
+    },
+    "doc://com.apple.MarketplaceKit/documentation/MarketplaceKit/AppDistributor/marketplace(_:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "marketplace"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.MarketplaceKit/documentation/MarketplaceKit/AppDistributor/marketplace(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AppDistributor.marketplace(_:)",
+      "type": "topic",
+      "url": "/documentation/marketplacekit/appdistributor/marketplace(_:)"
+    },
+    "doc://com.apple.MarketplaceKit/documentation/MarketplaceKit/AppDistributor/other": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "other"
+        }
+      ],
+      "identifier": "doc://com.apple.MarketplaceKit/documentation/MarketplaceKit/AppDistributor/other",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AppDistributor.other",
+      "type": "topic",
+      "url": "/documentation/marketplacekit/appdistributor/other"
+    },
+    "doc://com.apple.MarketplaceKit/documentation/MarketplaceKit/AppDistributor/testFlight": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "testFlight"
+        }
+      ],
+      "identifier": "doc://com.apple.MarketplaceKit/documentation/MarketplaceKit/AppDistributor/testFlight",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AppDistributor.testFlight",
+      "type": "topic",
+      "url": "/documentation/marketplacekit/appdistributor/testflight"
+    },
+    "doc://com.apple.MarketplaceKit/documentation/MarketplaceKit/AppDistributor/web": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "web"
+        }
+      ],
+      "identifier": "doc://com.apple.MarketplaceKit/documentation/MarketplaceKit/AppDistributor/web",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AppDistributor.web",
+      "type": "topic",
+      "url": "/documentation/marketplacekit/appdistributor/web"
+    },
+    "doc://com.apple.MarketplaceKit/documentation/marketplacekit/distributing-your-app-on-an-alternative-marketplace": {
+      "abstract": [
+        {
+          "text": "Design your app for alternative distribution from an alternative app marketplace.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.MarketplaceKit/documentation/marketplacekit/distributing-your-app-on-an-alternative-marketplace",
+      "kind": "article",
+      "role": "article",
+      "title": "Distributing your app on an alternative app marketplace",
+      "type": "topic",
+      "url": "/documentation/marketplacekit/distributing-your-app-on-an-alternative-marketplace"
+    },
+    "doc://com.apple.documentation/documentation/AdAttributionKit": {
+      "abstract": [
+        {
+          "text": "Present, process, and register postbacks for in-app ads in the App Store and alternative app marketplaces.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AdAttributionKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AdAttributionKit",
+      "type": "topic",
+      "url": "/documentation/AdAttributionKit"
+    },
+    "doc://com.apple.documentation/documentation/AppStoreConnectAPI/game-center": {
+      "abstract": [
+        {
+          "text": "Manage Game Center data and configurations for your apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppStoreConnectAPI/game-center",
+      "kind": "article",
+      "role": "article",
+      "title": "Game Center",
+      "type": "topic",
+      "url": "/documentation/AppStoreConnectAPI/game-center"
+    },
+    "doc://com.apple.documentation/documentation/BackgroundAssets": {
+      "abstract": [
+        {
+          "text": "Schedule background downloads of large assets after app installation, when the app updates, and periodically while the app remains on-device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BackgroundAssets",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Background Assets",
+      "type": "topic",
+      "url": "/documentation/BackgroundAssets"
+    },
+    "doc://com.apple.documentation/documentation/StoreKit": {
+      "abstract": [
+        {
+          "text": "Support In-App Purchases and interactions with the App Store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/StoreKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "StoreKit",
+      "type": "topic",
+      "url": "/documentation/StoreKit"
+    },
+    "doc://com.apple.documentation/documentation/StoreKit/in-app-purchase": {
+      "abstract": [
+        {
+          "text": "Offer content and services in your app across Apple platforms using a Swift-based interface.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/StoreKit/in-app-purchase",
+      "kind": "article",
+      "role": "article",
+      "title": "In-App Purchase",
+      "type": "topic",
+      "url": "/documentation/StoreKit/in-app-purchase"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/library/archive/documentation/FileManagement/Conceptual/On_Demand_Resources_Guide/": {
+      "identifier": "https://developer.apple.com/library/archive/documentation/FileManagement/Conceptual/On_Demand_Resources_Guide/",
+      "title": "On Demand Resources",
+      "titleInlineContent": [
+        {
+          "text": "On Demand Resources",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/FileManagement/Conceptual/On_Demand_Resources_Guide/"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Enumeration-Cases",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.MarketplaceKit/documentation/MarketplaceKit/AppDistributor/appStore",
+        "doc://com.apple.MarketplaceKit/documentation/MarketplaceKit/AppDistributor/marketplace(_:)",
+        "doc://com.apple.MarketplaceKit/documentation/MarketplaceKit/AppDistributor/other",
+        "doc://com.apple.MarketplaceKit/documentation/MarketplaceKit/AppDistributor/testFlight",
+        "doc://com.apple.MarketplaceKit/documentation/MarketplaceKit/AppDistributor/web"
+      ],
+      "title": "Enumeration Cases"
+    },
+    {
+      "anchor": "Type-Properties",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.MarketplaceKit/documentation/MarketplaceKit/AppDistributor/current"
+      ],
+      "title": "Type Properties"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/marketplacekit/appdistributor"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

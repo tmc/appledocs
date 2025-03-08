@@ -1,0 +1,517 @@
+{
+  "abstract": [
+    {
+      "text": "A client-supplied callback function invoked when an area of the display is moved.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/coregraphics",
+        "doc://com.apple.documentation/documentation/coregraphics/quartz_display_services"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/coregraphics",
+        "doc://com.apple.documentation/documentation/coregraphics/core_graphics_data_types"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/coregraphics/cgscreenupdatemovecallback"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1455587,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@T@CGScreenUpdateMoveCallback",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "typealias "
+      },
+      {
+        "kind": "identifier",
+        "text": "CGScreenUpdateMoveCallback"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Core Graphics"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.3",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Type Alias",
+    "symbolKind": "tdef",
+    "title": "CGScreenUpdateMoveCallback"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "Mac Catalyst",
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "typealias"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CGScreenUpdateMoveCallback"
+            },
+            {
+              "kind": "text",
+              "text": " = ("
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgscreenupdatemovedelta",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@S@CGScreenUpdateMoveDelta",
+              "text": "CGScreenUpdateMoveDelta"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Swift/Int",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:Si",
+              "text": "Int"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Swift/UnsafePointer",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:SP",
+              "text": "UnsafePointer"
+            },
+            {
+              "kind": "text",
+              "text": "<"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/corefoundation/cgrect",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@S@CGRect",
+              "text": "CGRect"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Swift/UnsafeMutableRawPointer",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:Sv",
+              "text": "UnsafeMutableRawPointer"
+            },
+            {
+              "kind": "text",
+              "text": "?"
+            },
+            {
+              "kind": "text",
+              "text": ") -> "
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Swift/Void",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:s4Voida",
+              "text": "Void"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "languages": [
+        "swift"
+      ],
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The distance, in pixel unites, that the display area has moved.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "delta"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The number of rectangles in the ",
+                  "type": "text"
+                },
+                {
+                  "code": "rectArray",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " parameter.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "count"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A list of the rectangles in the moved areas, specified in the global display coordinate space. The origin is the upper-left corner of the main display. The rectangles describe the area prior to the move operation. You should not modify or deallocate memory pointed to by ",
+                  "type": "text"
+                },
+                {
+                  "code": "rectArray",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "rectArray"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The user data you specify when you register this callback.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "userParameter"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To register a screen-move callback function, you call the function ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coregraphics/1541791-cgscreenregistermovecallback",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Quartz invokes your callback function when operations such as window movement or scrolling occur on local displays. When you finish using a callback registration, you should call the function ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coregraphics/1541795-cgscreenunregistermovecallback",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to remove it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Note that a single rectangle may occupy multiple displays, either by overlapping the displays or by residing on coincident displays when mirroring is active. You can use the function ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coregraphics/1456071-cggetdisplayswithrect",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to determine the displays a rectangle occupies.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.Swift/documentation/Swift/Int": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Int",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Int",
+      "type": "topic",
+      "url": "/documentation/swift/int"
+    },
+    "doc://com.apple.Swift/documentation/Swift/UnsafeMutableRawPointer": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/UnsafeMutableRawPointer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UnsafeMutableRawPointer",
+      "type": "topic",
+      "url": "/documentation/swift/unsafemutablerawpointer"
+    },
+    "doc://com.apple.Swift/documentation/Swift/UnsafePointer": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/UnsafePointer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UnsafePointer",
+      "type": "topic",
+      "url": "/documentation/swift/unsafepointer"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Void": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Void",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Void",
+      "type": "topic",
+      "url": "/documentation/swift/void"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cgrect": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cgrect",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGRect",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cgrect"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics": {
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Graphics",
+      "type": "topic",
+      "url": "/documentation/coregraphics"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/1456071-cggetdisplayswithrect": {
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/1456071-cggetdisplayswithrect",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGGetDisplaysWithRect(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/coregraphics/1456071-cggetdisplayswithrect"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/1541791-cgscreenregistermovecallback": {
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/1541791-cgscreenregistermovecallback",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGScreenRegisterMoveCallback(_:_:)",
+      "type": "topic",
+      "url": "/documentation/coregraphics/1541791-cgscreenregistermovecallback"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/1541795-cgscreenunregistermovecallback": {
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/1541795-cgscreenunregistermovecallback",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGScreenUnregisterMoveCallback(_:_:)",
+      "type": "topic",
+      "url": "/documentation/coregraphics/1541795-cgscreenunregistermovecallback"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/cgdisplayreconfigurationcallback": {
+      "abstract": [
+        {
+          "text": "A client-supplied callback function that’s invoked whenever the configuration of a local display is changed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "CGDisplayReconfigurationCallBack"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgdisplayreconfigurationcallback",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGDisplayReconfigurationCallBack",
+      "type": "topic",
+      "url": "/documentation/coregraphics/cgdisplayreconfigurationcallback"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/cgscreenrefreshcallback": {
+      "abstract": [
+        {
+          "text": "A client-supplied callback function that’s invoked when an area of the display is modified or refreshed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "CGScreenRefreshCallback"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgscreenrefreshcallback",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGScreenRefreshCallback",
+      "type": "topic",
+      "url": "/documentation/coregraphics/cgscreenrefreshcallback"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/cgscreenupdatemovecallback": {
+      "abstract": [
+        {
+          "text": "A client-supplied callback function invoked when an area of the display is moved.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "CGScreenUpdateMoveCallback"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgscreenupdatemovecallback",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGScreenUpdateMoveCallback",
+      "type": "topic",
+      "url": "/documentation/coregraphics/cgscreenupdatemovecallback"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/cgscreenupdatemovedelta": {
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgscreenupdatemovedelta",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGScreenUpdateMoveDelta",
+      "type": "topic",
+      "url": "/documentation/coregraphics/cgscreenupdatemovedelta"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/core_graphics_data_types": {
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/core_graphics_data_types",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Core Graphics Data Types",
+      "type": "topic",
+      "url": "/documentation/coregraphics/core_graphics_data_types"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/quartz_display_services": {
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/quartz_display_services",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Quartz Display Services",
+      "type": "topic",
+      "url": "/documentation/coregraphics/quartz_display_services"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coregraphics/cgdisplayreconfigurationcallback",
+        "doc://com.apple.documentation/documentation/coregraphics/cgscreenrefreshcallback"
+      ],
+      "title": "Callbacks"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/coregraphics/cgscreenupdatemovecallback"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/coregraphics/cgscreenupdatemovecallback"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

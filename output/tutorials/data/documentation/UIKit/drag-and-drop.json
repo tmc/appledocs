@@ -1,0 +1,2370 @@
+{
+  "abstract": [
+    {
+      "text": "Bring drag and drop to your app by using interaction APIs with your views.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.uikit/documentation/UIKit/drag-and-drop"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "UIKit"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "11.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "11.0",
+        "name": "iPadOS"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Drag and drop"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "With drag and drop in iOS, users can drag items from one onscreen location to another using continuous gestures. A drag-and-drop activity can take place in a single app, or it can start in one app and end in another.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-2910342",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Prior to iOS 15, drag-and-drop activities on iPhone can take place in a single app but not between two apps.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app from which an item is dragged is the ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "source app",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ". The app on which an item is dropped is the ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "destination app",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ". For drag and drop in a single app, that app plays both roles simultaneously. The complete user action from start to finish — using system-mediated gestures — is a ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "drag activity",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ". A ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "drag session",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", by contrast, is an object that’s managed by the system and that manages the items the user is dragging.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When dragging is in progress, the source and destination apps continue to run normally and support user interaction. A user can invoke the Dock, return to the Home screen, open a second app in Split View, and even start another drag activity.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Unlike in macOS, iOS drag and drop supports multiple simultaneous drag activities—as many as the user’s fingers can handle. You can design your app so that the user can sequentially add drag items to an in-progress drag session, and a destination app can accept multiple, simultaneous drops.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Text views and text fields automatically support drag and drop. Collection views and table views offer dedicated, view-specific methods and properties, and text views offer APIs for customizing the views’ drag-and-drop behavior. You can configure any custom view to support drag and drop, as well.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "The system handles all security aspects of inter-app drag and drop in iOS. You don’t need to perform additional configuration like setting special entitlements or ",
+                  "type": "text"
+                },
+                {
+                  "code": "Info.plist",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " keys.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation/nsitemprovider": {
+      "abstract": [
+        {
+          "text": "An item provider for conveying data or a file between processes during drag-and-drop or copy-and-paste activities, or from a host app to an app extension.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSItemProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsitemprovider",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSItemProvider",
+      "type": "topic",
+      "url": "/documentation/foundation/nsitemprovider"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsitemproviderreading": {
+      "abstract": [
+        {
+          "text": "The protocol for implementing a class to allow an item provider to create an instance of the class.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSItemProviderReading"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsitemproviderreading",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSItemProviderReading",
+      "type": "topic",
+      "url": "/documentation/foundation/nsitemproviderreading"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsitemproviderwriting": {
+      "abstract": [
+        {
+          "text": "The protocol for implementing a class to allow an item provider to retrieve data from an instance of the class.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSItemProviderWriting"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsitemproviderwriting",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSItemProviderWriting",
+      "type": "topic",
+      "url": "/documentation/foundation/nsitemproviderwriting"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.uikit/documentation/UIKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your iOS, iPadOS, or tvOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "UIKit",
+      "type": "topic",
+      "url": "/documentation/uikit"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIDragAnimating": {
+      "abstract": [
+        {
+          "text": "The interface for providing custom animation alongside the system’s lift, drop, and cancellation animations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIDragAnimating"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDragAnimating",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIDragAnimating"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIDragAnimating",
+      "type": "topic",
+      "url": "/documentation/uikit/uidraganimating"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIDragDropSession": {
+      "abstract": [
+        {
+          "text": "The common interface for querying the state of both drag sessions and drop sessions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIDragDropSession"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDragDropSession",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIDragDropSession"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIDragDropSession",
+      "type": "topic",
+      "url": "/documentation/uikit/uidragdropsession"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIDragInteraction": {
+      "abstract": [
+        {
+          "text": "An interaction to enable dragging of items from a view, employing a delegate to provide drag items and to respond to calls from the drag session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIDragInteraction"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDragInteraction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIDragInteraction"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIDragInteraction",
+      "type": "topic",
+      "url": "/documentation/uikit/uidraginteraction"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIDragInteractionDelegate": {
+      "abstract": [
+        {
+          "text": "The interface for configuring and controlling a drag interaction.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIDragInteractionDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDragInteractionDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIDragInteractionDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIDragInteractionDelegate",
+      "type": "topic",
+      "url": "/documentation/uikit/uidraginteractiondelegate"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIDragItem": {
+      "abstract": [
+        {
+          "text": "A representation of an underlying data item as a person drags it from one location to another.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIDragItem"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDragItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIDragItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIDragItem",
+      "type": "topic",
+      "url": "/documentation/uikit/uidragitem"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIDragPreview": {
+      "abstract": [
+        {
+          "text": "A graphical preview for a single drag item, used by the system after a drag has started and when no related animation is running.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIDragPreview"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDragPreview",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIDragPreview"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIDragPreview",
+      "type": "topic",
+      "url": "/documentation/uikit/uidragpreview"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIDragPreviewParameters": {
+      "abstract": [
+        {
+          "text": "A set of parameters for adjusting the appearance of a drag item preview or a targeted drag item preview.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIDragPreviewParameters"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDragPreviewParameters",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIDragPreviewParameters"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIDragPreviewParameters",
+      "type": "topic",
+      "url": "/documentation/uikit/uidragpreviewparameters"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIDragPreviewTarget": {
+      "abstract": [
+        {
+          "text": "A geometric specification for the source or destination of a drag item preview, used by the system when a user drops items or cancels a drag activity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIDragPreviewTarget"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDragPreviewTarget",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIDragPreviewTarget"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIDragPreviewTarget",
+      "type": "topic",
+      "url": "/documentation/uikit/uidragpreviewtarget"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIDragSession": {
+      "abstract": [
+        {
+          "text": "The interface for configuring a drag session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIDragSession"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDragSession",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIDragSession"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIDragSession",
+      "type": "topic",
+      "url": "/documentation/uikit/uidragsession"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIDropInteraction": {
+      "abstract": [
+        {
+          "text": "An interaction to enable dropping of items onto a view, employing a delegate to instantiate objects and respond to calls from the drop session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIDropInteraction"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDropInteraction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIDropInteraction"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIDropInteraction",
+      "type": "topic",
+      "url": "/documentation/uikit/uidropinteraction"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIDropInteractionDelegate": {
+      "abstract": [
+        {
+          "text": "The interface for configuring and controlling a drop interaction.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIDropInteractionDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDropInteractionDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIDropInteractionDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIDropInteractionDelegate",
+      "type": "topic",
+      "url": "/documentation/uikit/uidropinteractiondelegate"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIDropOperation": {
+      "abstract": [
+        {
+          "text": "Operation types that determine how a drag and drop activity resolves when the user drops a drag item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIDropOperation"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDropOperation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIDropOperation"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIDropOperation",
+      "type": "topic",
+      "url": "/documentation/uikit/uidropoperation"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIDropProposal": {
+      "abstract": [
+        {
+          "text": "A configuration for the behavior of a drop interaction, required if a view accepts drop activities.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIDropProposal"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDropProposal",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIDropProposal"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIDropProposal",
+      "type": "topic",
+      "url": "/documentation/uikit/uidropproposal"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIDropSession": {
+      "abstract": [
+        {
+          "text": "The interface for querying a drop session about its state and associated drag items.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIDropSession"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDropSession",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIDropSession"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIDropSession",
+      "type": "topic",
+      "url": "/documentation/uikit/uidropsession"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIDropSessionProgressIndicatorStyle": {
+      "abstract": [
+        {
+          "text": "The drop-progress indicator styles for the drop session, used while data is moving from the source to the destination.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIDropSessionProgressIndicatorStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIDropSessionProgressIndicatorStyle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIDropSessionProgressIndicatorStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIDropSessionProgressIndicatorStyle",
+      "type": "topic",
+      "url": "/documentation/uikit/uidropsessionprogressindicatorstyle"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIItemProviderPresentationSizeProviding": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIItemProviderPresentationSizeProviding"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIItemProviderPresentationSizeProviding",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIItemProviderPresentationSizeProviding"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIItemProviderPresentationSizeProviding",
+      "type": "topic",
+      "url": "/documentation/uikit/uiitemproviderpresentationsizeproviding"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIItemProviderReadingAugmentationDesignating": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIItemProviderReadingAugmentationDesignating"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIItemProviderReadingAugmentationDesignating",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIItemProviderReadingAugmentationDesignating"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIItemProviderReadingAugmentationDesignating",
+      "type": "topic",
+      "url": "/documentation/uikit/uiitemproviderreadingaugmentationdesignating"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIItemProviderReadingAugmentationProviding": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIItemProviderReadingAugmentationProviding"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIItemProviderReadingAugmentationProviding",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIItemProviderReadingAugmentationProviding"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIItemProviderReadingAugmentationProviding",
+      "type": "topic",
+      "url": "/documentation/uikit/uiitemproviderreadingaugmentationproviding"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIPasteConfiguration": {
+      "abstract": [
+        {
+          "text": "The interface that an object implements to declare its ability to accept specific data types for pasting and for drag-and-drop activities.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIPasteConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPasteConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIPasteConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIPasteConfiguration",
+      "type": "topic",
+      "url": "/documentation/uikit/uipasteconfiguration"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIPasteConfigurationSupporting": {
+      "abstract": [
+        {
+          "text": "The interface that determines whether a responder object supports paste configuration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIPasteConfigurationSupporting"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIPasteConfigurationSupporting",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIPasteConfigurationSupporting"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIPasteConfigurationSupporting",
+      "type": "topic",
+      "url": "/documentation/uikit/uipasteconfigurationsupporting"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UISpringLoadedInteraction": {
+      "abstract": [
+        {
+          "text": "An interaction object for configuring and controlling spring-loaded, user-driven navigation during a drag activity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UISpringLoadedInteraction"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UISpringLoadedInteraction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UISpringLoadedInteraction"
+        }
+      ],
+      "role": "symbol",
+      "title": "UISpringLoadedInteraction",
+      "type": "topic",
+      "url": "/documentation/uikit/uispringloadedinteraction"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UISpringLoadedInteractionBehavior": {
+      "abstract": [
+        {
+          "text": "The interface for specifying the behavior of a spring-loaded interaction.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UISpringLoadedInteractionBehavior"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UISpringLoadedInteractionBehavior",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UISpringLoadedInteractionBehavior"
+        }
+      ],
+      "role": "symbol",
+      "title": "UISpringLoadedInteractionBehavior",
+      "type": "topic",
+      "url": "/documentation/uikit/uispringloadedinteractionbehavior"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UISpringLoadedInteractionContext": {
+      "abstract": [
+        {
+          "text": "The interface an object implements to provide information about a spring-loaded interaction.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UISpringLoadedInteractionContext"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UISpringLoadedInteractionContext",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UISpringLoadedInteractionContext"
+        }
+      ],
+      "role": "symbol",
+      "title": "UISpringLoadedInteractionContext",
+      "type": "topic",
+      "url": "/documentation/uikit/uispringloadedinteractioncontext"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UISpringLoadedInteractionEffect": {
+      "abstract": [
+        {
+          "text": "The interface for providing visual styling to a spring-loaded interaction based on the interaction state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UISpringLoadedInteractionEffect"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UISpringLoadedInteractionEffect",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UISpringLoadedInteractionEffect"
+        }
+      ],
+      "role": "symbol",
+      "title": "UISpringLoadedInteractionEffect",
+      "type": "topic",
+      "url": "/documentation/uikit/uispringloadedinteractioneffect"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UISpringLoadedInteractionSupporting": {
+      "abstract": [
+        {
+          "text": "The interface that determines if an object supports a spring-loaded interaction for drag and drop activities.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UISpringLoadedInteractionSupporting"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UISpringLoadedInteractionSupporting",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UISpringLoadedInteractionSupporting"
+        }
+      ],
+      "role": "symbol",
+      "title": "UISpringLoadedInteractionSupporting",
+      "type": "topic",
+      "url": "/documentation/uikit/uispringloadedinteractionsupporting"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITargetedDragPreview": {
+      "abstract": [
+        {
+          "text": "A drag item preview used by the system during lift, drop, or cancellation animation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITargetedDragPreview"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITargetedDragPreview",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITargetedDragPreview"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITargetedDragPreview",
+      "type": "topic",
+      "url": "/documentation/uikit/uitargeteddragpreview"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/accessibility-for-uikit": {
+      "abstract": [
+        {
+          "text": "Make your UIKit apps accessible to everyone who uses iOS and tvOS.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/accessibility-for-uikit",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Accessibility for UIKit",
+      "type": "topic",
+      "url": "/documentation/uikit/accessibility-for-uikit"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/adopting-drag-and-drop-in-a-custom-view": {
+      "abstract": [
+        {
+          "text": "Demonstrates how to enable drag and drop for a ",
+          "type": "text"
+        },
+        {
+          "code": "UIImageView",
+          "type": "codeVoice"
+        },
+        {
+          "text": " instance.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/adopting-drag-and-drop-in-a-custom-view",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Adopting drag and drop in a custom view",
+      "type": "topic",
+      "url": "/documentation/uikit/adopting-drag-and-drop-in-a-custom-view"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/adopting-drag-and-drop-in-a-table-view": {
+      "abstract": [
+        {
+          "text": "Demonstrates how to enable and implement drag and drop for a table view.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/adopting-drag-and-drop-in-a-table-view",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Adopting drag and drop in a table view",
+      "type": "topic",
+      "url": "/documentation/uikit/adopting-drag-and-drop-in-a-table-view"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/apple-pencil-interactions": {
+      "abstract": [
+        {
+          "text": "Handle user interactions like double tap and squeeze on Apple Pencil.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/apple-pencil-interactions",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Apple Pencil interactions",
+      "type": "topic",
+      "url": "/documentation/uikit/apple-pencil-interactions"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/data-delivery-with-drag-and-drop": {
+      "abstract": [
+        {
+          "text": "Share data between iPad apps during a drag and drop operation using an item provider.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/data-delivery-with-drag-and-drop",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Data delivery with drag and drop",
+      "type": "topic",
+      "url": "/documentation/uikit/data-delivery-with-drag-and-drop"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/focus-based-navigation": {
+      "abstract": [
+        {
+          "text": "Navigate the interface of your UIKit app using a remote, game controller, or keyboard.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/focus-based-navigation",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Focus-based navigation",
+      "type": "topic",
+      "url": "/documentation/uikit/focus-based-navigation"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/making-a-view-into-a-drag-source": {
+      "abstract": [
+        {
+          "text": "Adopt drag interaction APIs to provide items for dragging.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/making-a-view-into-a-drag-source",
+      "kind": "article",
+      "role": "article",
+      "title": "Making a view into a drag source",
+      "type": "topic",
+      "url": "/documentation/uikit/making-a-view-into-a-drag-source"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/making-a-view-into-a-drop-destination": {
+      "abstract": [
+        {
+          "text": "Adopt drop interaction APIs to selectively consume dragged content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/making-a-view-into-a-drop-destination",
+      "kind": "article",
+      "role": "article",
+      "title": "Making a view into a drop destination",
+      "type": "topic",
+      "url": "/documentation/uikit/making-a-view-into-a-drop-destination"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/menus-and-shortcuts": {
+      "abstract": [
+        {
+          "text": "Simplify interactions with your app using menu systems, contextual menus, Home Screen quick actions, and keyboard shortcuts.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/menus-and-shortcuts",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Menus and shortcuts",
+      "type": "topic",
+      "url": "/documentation/uikit/menus-and-shortcuts"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/pointer-interactions": {
+      "abstract": [
+        {
+          "text": "Support pointer interactions in your custom controls and views.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/pointer-interactions",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Pointer interactions",
+      "type": "topic",
+      "url": "/documentation/uikit/pointer-interactions"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/touches-presses-and-gestures": {
+      "abstract": [
+        {
+          "text": "Encapsulate your app’s event-handling logic in gesture recognizers so that you can reuse that code throughout your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/touches-presses-and-gestures",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Touches, presses, and gestures",
+      "type": "topic",
+      "url": "/documentation/uikit/touches-presses-and-gestures"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/understanding-a-drag-item-as-a-promise": {
+      "abstract": [
+        {
+          "text": "Use drag items to convey data representation promises between a source app and a destination app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/understanding-a-drag-item-as-a-promise",
+      "kind": "article",
+      "role": "article",
+      "title": "Understanding a drag item as a promise",
+      "type": "topic",
+      "url": "/documentation/uikit/understanding-a-drag-item-as-a-promise"
+    },
+    "media-2910342": {
+      "alt": "Dragging multiple pictures from an app into Mail",
+      "identifier": "media-2910342",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/7bae4e3a10591fbf6cfae19ea45fd25b/media-2910342@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "User-interactions",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/touches-presses-and-gestures",
+        "doc://com.apple.uikit/documentation/UIKit/menus-and-shortcuts",
+        "doc://com.apple.uikit/documentation/UIKit/pointer-interactions",
+        "doc://com.apple.uikit/documentation/UIKit/apple-pencil-interactions",
+        "doc://com.apple.uikit/documentation/UIKit/focus-based-navigation",
+        "doc://com.apple.uikit/documentation/UIKit/accessibility-for-uikit"
+      ],
+      "title": "User interactions"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Essentials",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/understanding-a-drag-item-as-a-promise",
+        "doc://com.apple.uikit/documentation/UIKit/making-a-view-into-a-drag-source",
+        "doc://com.apple.uikit/documentation/UIKit/making-a-view-into-a-drop-destination",
+        "doc://com.apple.uikit/documentation/UIKit/adopting-drag-and-drop-in-a-custom-view",
+        "doc://com.apple.uikit/documentation/UIKit/adopting-drag-and-drop-in-a-table-view"
+      ],
+      "title": "Essentials"
+    },
+    {
+      "abstract": [
+        {
+          "text": "Add interactions to your views to make them drag sources or drop destinations.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Drag-and-drop-interactions",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIDragInteractionDelegate",
+        "doc://com.apple.uikit/documentation/UIKit/UIDropInteractionDelegate",
+        "doc://com.apple.uikit/documentation/UIKit/UIDragInteraction",
+        "doc://com.apple.uikit/documentation/UIKit/UIDropInteraction"
+      ],
+      "title": "Drag and drop interactions"
+    },
+    {
+      "abstract": [
+        {
+          "text": "Enable spring loading to support drag and drop for your navigable UI.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Spring-loaded-interactions",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UISpringLoadedInteractionBehavior",
+        "doc://com.apple.uikit/documentation/UIKit/UISpringLoadedInteractionSupporting",
+        "doc://com.apple.uikit/documentation/UIKit/UISpringLoadedInteraction",
+        "doc://com.apple.uikit/documentation/UIKit/UISpringLoadedInteractionContext",
+        "doc://com.apple.uikit/documentation/UIKit/UISpringLoadedInteractionEffect"
+      ],
+      "title": "Spring-loaded interactions"
+    },
+    {
+      "abstract": [
+        {
+          "text": "Specify drag items for drag and drop.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Drag-sources",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIDragItem",
+        "doc://com.apple.uikit/documentation/UIKit/UIDragDropSession",
+        "doc://com.apple.uikit/documentation/UIKit/UIDragSession",
+        "doc://com.apple.uikit/documentation/UIKit/UIDragAnimating"
+      ],
+      "title": "Drag sources"
+    },
+    {
+      "abstract": [
+        {
+          "text": "Specify how a destination view consumes drag items.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Drop-destinations",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIDropSession",
+        "doc://com.apple.uikit/documentation/UIKit/UIDropProposal",
+        "doc://com.apple.uikit/documentation/UIKit/UIDropOperation",
+        "doc://com.apple.uikit/documentation/UIKit/UIDropSessionProgressIndicatorStyle"
+      ],
+      "title": "Drop destinations"
+    },
+    {
+      "abstract": [
+        {
+          "text": "Work with data-representation promises for drag and drop.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Item-providers",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/data-delivery-with-drag-and-drop",
+        "doc://com.apple.documentation/documentation/foundation/nsitemprovider",
+        "doc://com.apple.documentation/documentation/foundation/nsitemproviderreading",
+        "doc://com.apple.documentation/documentation/foundation/nsitemproviderwriting",
+        "doc://com.apple.uikit/documentation/UIKit/UIItemProviderPresentationSizeProviding",
+        "doc://com.apple.uikit/documentation/UIKit/UIItemProviderReadingAugmentationDesignating",
+        "doc://com.apple.uikit/documentation/UIKit/UIItemProviderReadingAugmentationProviding"
+      ],
+      "title": "Item providers"
+    },
+    {
+      "abstract": [
+        {
+          "text": "Simplify the requesting and consuming of appropriate data representations for pasted and dropped items.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Pasteboard-support",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIPasteConfiguration",
+        "doc://com.apple.uikit/documentation/UIKit/UIPasteConfigurationSupporting"
+      ],
+      "title": "Pasteboard support"
+    },
+    {
+      "abstract": [
+        {
+          "text": "Apply customizations to make drag item previews more appealing and meaningful to the user.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Custom-drag-item-previews",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIDragPreviewParameters",
+        "doc://com.apple.uikit/documentation/UIKit/UIDragPreview",
+        "doc://com.apple.uikit/documentation/UIKit/UIDragPreviewTarget",
+        "doc://com.apple.uikit/documentation/UIKit/UITargetedDragPreview"
+      ],
+      "title": "Custom drag item previews"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Essentials",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/understanding-a-drag-item-as-a-promise",
+                "doc://com.apple.uikit/documentation/UIKit/making-a-view-into-a-drag-source",
+                "doc://com.apple.uikit/documentation/UIKit/making-a-view-into-a-drop-destination",
+                "doc://com.apple.uikit/documentation/UIKit/adopting-drag-and-drop-in-a-custom-view",
+                "doc://com.apple.uikit/documentation/UIKit/adopting-drag-and-drop-in-a-table-view"
+              ],
+              "title": "Essentials"
+            },
+            {
+              "abstract": [
+                {
+                  "text": "Add interactions to your views to make them drag sources or drop destinations.",
+                  "type": "text"
+                }
+              ],
+              "anchor": "Drag-and-drop-interactions",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIDragInteractionDelegate",
+                "doc://com.apple.uikit/documentation/UIKit/UIDropInteractionDelegate",
+                "doc://com.apple.uikit/documentation/UIKit/UIDragInteraction",
+                "doc://com.apple.uikit/documentation/UIKit/UIDropInteraction"
+              ],
+              "title": "Drag and drop interactions"
+            },
+            {
+              "abstract": [
+                {
+                  "text": "Enable spring loading to support drag and drop for your navigable UI.",
+                  "type": "text"
+                }
+              ],
+              "anchor": "Spring-loaded-interactions",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UISpringLoadedInteractionBehavior",
+                "doc://com.apple.uikit/documentation/UIKit/UISpringLoadedInteractionSupporting",
+                "doc://com.apple.uikit/documentation/UIKit/UISpringLoadedInteraction",
+                "doc://com.apple.uikit/documentation/UIKit/UISpringLoadedInteractionContext",
+                "doc://com.apple.uikit/documentation/UIKit/UISpringLoadedInteractionEffect"
+              ],
+              "title": "Spring-loaded interactions"
+            },
+            {
+              "abstract": [
+                {
+                  "text": "Specify drag items for drag and drop.",
+                  "type": "text"
+                }
+              ],
+              "anchor": "Drag-sources",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIDragItem",
+                "doc://com.apple.uikit/documentation/UIKit/UIDragDropSession",
+                "doc://com.apple.uikit/documentation/UIKit/UIDragSession",
+                "doc://com.apple.uikit/documentation/UIKit/UIDragAnimating"
+              ],
+              "title": "Drag sources"
+            },
+            {
+              "abstract": [
+                {
+                  "text": "Specify how a destination view consumes drag items.",
+                  "type": "text"
+                }
+              ],
+              "anchor": "Drop-destinations",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIDropSession",
+                "doc://com.apple.uikit/documentation/UIKit/UIDropProposal",
+                "doc://com.apple.uikit/documentation/UIKit/UIDropOperation",
+                "doc://com.apple.uikit/documentation/UIKit/UIDropSessionProgressIndicatorStyle"
+              ],
+              "title": "Drop destinations"
+            },
+            {
+              "abstract": [
+                {
+                  "text": "Work with data-representation promises for drag and drop.",
+                  "type": "text"
+                }
+              ],
+              "anchor": "Item-providers",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/data-delivery-with-drag-and-drop",
+                "doc://com.apple.documentation/documentation/foundation/nsitemprovider",
+                "doc://com.apple.documentation/documentation/foundation/nsitemproviderreading",
+                "doc://com.apple.documentation/documentation/foundation/nsitemproviderwriting",
+                "doc://com.apple.uikit/documentation/UIKit/UIItemProviderPresentationSizeProviding",
+                "doc://com.apple.uikit/documentation/UIKit/UIItemProviderReadingAugmentationDesignating",
+                "doc://com.apple.uikit/documentation/UIKit/UIItemProviderReadingAugmentationProviding"
+              ],
+              "title": "Item providers"
+            },
+            {
+              "abstract": [
+                {
+                  "text": "Simplify the requesting and consuming of appropriate data representations for pasted and dropped items.",
+                  "type": "text"
+                }
+              ],
+              "anchor": "Pasteboard-support",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIPasteConfiguration",
+                "doc://com.apple.uikit/documentation/UIKit/UIPasteConfigurationSupporting"
+              ],
+              "title": "Pasteboard support"
+            },
+            {
+              "abstract": [
+                {
+                  "text": "Apply customizations to make drag item previews more appealing and meaningful to the user.",
+                  "type": "text"
+                }
+              ],
+              "anchor": "Custom-drag-item-previews",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIDragPreviewParameters",
+                "doc://com.apple.uikit/documentation/UIKit/UIDragPreview",
+                "doc://com.apple.uikit/documentation/UIKit/UIDragPreviewTarget",
+                "doc://com.apple.uikit/documentation/UIKit/UITargetedDragPreview"
+              ],
+              "title": "Custom drag item previews"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "User-interactions",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/touches-presses-and-gestures",
+                "doc://com.apple.uikit/documentation/UIKit/menus-and-shortcuts",
+                "doc://com.apple.uikit/documentation/UIKit/pointer-interactions",
+                "doc://com.apple.uikit/documentation/UIKit/apple-pencil-interactions",
+                "doc://com.apple.uikit/documentation/UIKit/focus-based-navigation",
+                "doc://com.apple.uikit/documentation/UIKit/accessibility-for-uikit"
+              ],
+              "title": "User interactions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDropInteraction/title",
+          "value": "UIDropInteraction"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDropInteraction/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIDropInteraction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDropInteraction/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIDropInteraction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDragAnimating/title",
+          "value": "UIDragAnimating"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDragAnimating/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIDragAnimating"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDragAnimating/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIDragAnimating"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISpringLoadedInteractionContext/title",
+          "value": "UISpringLoadedInteractionContext"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISpringLoadedInteractionContext/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UISpringLoadedInteractionContext"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISpringLoadedInteractionContext/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UISpringLoadedInteractionContext"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISpringLoadedInteractionSupporting/title",
+          "value": "UISpringLoadedInteractionSupporting"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISpringLoadedInteractionSupporting/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UISpringLoadedInteractionSupporting"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISpringLoadedInteractionSupporting/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UISpringLoadedInteractionSupporting"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDragPreviewParameters/title",
+          "value": "UIDragPreviewParameters"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDragPreviewParameters/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIDragPreviewParameters"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDragPreviewParameters/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIDragPreviewParameters"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDragInteraction/title",
+          "value": "UIDragInteraction"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDragInteraction/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIDragInteraction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDragInteraction/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIDragInteraction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISpringLoadedInteractionBehavior/title",
+          "value": "UISpringLoadedInteractionBehavior"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISpringLoadedInteractionBehavior/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UISpringLoadedInteractionBehavior"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISpringLoadedInteractionBehavior/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UISpringLoadedInteractionBehavior"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDropInteractionDelegate/title",
+          "value": "UIDropInteractionDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDropInteractionDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIDropInteractionDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDropInteractionDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIDropInteractionDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITargetedDragPreview/title",
+          "value": "UITargetedDragPreview"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITargetedDragPreview/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITargetedDragPreview"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITargetedDragPreview/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITargetedDragPreview"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDragInteractionDelegate/title",
+          "value": "UIDragInteractionDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDragInteractionDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIDragInteractionDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDragInteractionDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIDragInteractionDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIItemProviderReadingAugmentationDesignating/title",
+          "value": "UIItemProviderReadingAugmentationDesignating"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIItemProviderReadingAugmentationDesignating/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIItemProviderReadingAugmentationDesignating"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIItemProviderReadingAugmentationDesignating/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIItemProviderReadingAugmentationDesignating"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDragPreview/title",
+          "value": "UIDragPreview"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDragPreview/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIDragPreview"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDragPreview/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIDragPreview"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISpringLoadedInteraction/title",
+          "value": "UISpringLoadedInteraction"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISpringLoadedInteraction/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UISpringLoadedInteraction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISpringLoadedInteraction/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UISpringLoadedInteraction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDropProposal/title",
+          "value": "UIDropProposal"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDropProposal/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIDropProposal"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDropProposal/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIDropProposal"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDropSessionProgressIndicatorStyle/title",
+          "value": "UIDropSessionProgressIndicatorStyle"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDropSessionProgressIndicatorStyle/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIDropSessionProgressIndicatorStyle"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDropSessionProgressIndicatorStyle/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIDropSessionProgressIndicatorStyle"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPasteConfigurationSupporting/title",
+          "value": "UIPasteConfigurationSupporting"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPasteConfigurationSupporting/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIPasteConfigurationSupporting"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPasteConfigurationSupporting/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIPasteConfigurationSupporting"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDragPreviewTarget/title",
+          "value": "UIDragPreviewTarget"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDragPreviewTarget/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIDragPreviewTarget"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDragPreviewTarget/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIDragPreviewTarget"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISpringLoadedInteractionEffect/title",
+          "value": "UISpringLoadedInteractionEffect"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISpringLoadedInteractionEffect/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UISpringLoadedInteractionEffect"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISpringLoadedInteractionEffect/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UISpringLoadedInteractionEffect"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDragItem/title",
+          "value": "UIDragItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDragItem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIDragItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDragItem/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIDragItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPasteConfiguration/title",
+          "value": "UIPasteConfiguration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPasteConfiguration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIPasteConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIPasteConfiguration/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIPasteConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIItemProviderReadingAugmentationProviding/title",
+          "value": "UIItemProviderReadingAugmentationProviding"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIItemProviderReadingAugmentationProviding/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIItemProviderReadingAugmentationProviding"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIItemProviderReadingAugmentationProviding/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIItemProviderReadingAugmentationProviding"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIItemProviderPresentationSizeProviding/title",
+          "value": "UIItemProviderPresentationSizeProviding"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIItemProviderPresentationSizeProviding/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIItemProviderPresentationSizeProviding"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIItemProviderPresentationSizeProviding/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIItemProviderPresentationSizeProviding"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDropOperation/title",
+          "value": "UIDropOperation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDropOperation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIDropOperation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDropOperation/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIDropOperation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDragSession/title",
+          "value": "UIDragSession"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDragSession/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIDragSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDragSession/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIDragSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDragDropSession/title",
+          "value": "UIDragDropSession"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDragDropSession/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIDragDropSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDragDropSession/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIDragDropSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDropSession/title",
+          "value": "UIDropSession"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDropSession/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIDropSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIDropSession/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIDropSession"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/uikit/drag-and-drop"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/uikit/drag-and-drop"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

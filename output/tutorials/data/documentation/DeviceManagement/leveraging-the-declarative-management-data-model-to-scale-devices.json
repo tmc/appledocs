@@ -1,0 +1,1882 @@
+{
+  "abstract": [
+    {
+      "text": "Use declarative management to make devices more autonomous and proactive.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.devicemanagement/documentation/DeviceManagement/leveraging-the-declarative-management-data-model-to-scale-devices"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Device Management"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Leveraging the declarative management data model to scale devices"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Declarative Device Management, introduced in iOS 15, uses a declarative data model paradigm. This paradigm allows servers to avoid the common performance and scalability issues typically associated with serializing commands and polling devices over MDM.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "While declarative management is a new paradigm, it’s not a new protocol: the protocol has been added to the existing MDM protocol to make adoption simpler.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The declarative management data model has three key components: declarations, that support device functionality, status, used to track changes in device state, and extensibility, allowing devices and servers to advertise the changes in their capabilities over time.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Use-declarations-to-define-policies-specify-assets-and-store-organizational-information",
+          "level": 3,
+          "text": "Use declarations to define policies, specify assets, and store organizational information",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Declarations are payloads the server defines and synchronizes to the device with the declarative management protocol. They represent policies the organization wants to enforce on the device, and other items such as management metadata.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Declarations are a schema-driven data model, serialized as JSON objects. Each declaration has a common set of keys, each one of them required.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Key",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Type",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Content",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "Type",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "String",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The declaration type. A dot-separated sequence of tokens.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "Identifier",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "String",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The unique identifier within the set of all declarations sent to a device. This is typically a UUID string.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "ServerToken",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "String",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "An identifier for a unique revision of the declaration.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "Payload",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Dictionary",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A data-specific piece of the declaration, containing the keys and values for the declaration type.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "Type",
+              "type": "codeVoice"
+            },
+            {
+              "text": " defines the type of the declaration. Standard types have a ",
+              "type": "text"
+            },
+            {
+              "code": "com.apple.",
+              "type": "codeVoice"
+            },
+            {
+              "text": " prefix. The next component of the type is either ",
+              "type": "text"
+            },
+            {
+              "code": "activation",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "asset",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "configuration",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", or ",
+              "type": "text"
+            },
+            {
+              "code": "management",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". Each declaration type has its own additional components that group together similar items. For example, configurations representing different types of accounts have a ",
+              "type": "text"
+            },
+            {
+              "code": "com.apple.configuration.account.",
+              "type": "codeVoice"
+            },
+            {
+              "text": " prefix.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "Identifier",
+              "type": "codeVoice"
+            },
+            {
+              "text": " uniquely identifies a single declaration within the set of all declarations sent to a device. This is typically a UUID value. When synchronizing declarations between server and device, this value is the primary key used to match the set of declarations sent by the server with the set the device previously received.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "ServerToken",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key represents a revision of a specific declaration. For example, a declaration with ",
+              "type": "text"
+            },
+            {
+              "code": "Identifier",
+              "type": "codeVoice"
+            },
+            {
+              "text": " set to ",
+              "type": "text"
+            },
+            {
+              "code": "A",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "ServerToken",
+              "type": "codeVoice"
+            },
+            {
+              "text": " set to ",
+              "type": "text"
+            },
+            {
+              "code": "2",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", is an update to a declaration with ",
+              "type": "text"
+            },
+            {
+              "code": "Identifier",
+              "type": "codeVoice"
+            },
+            {
+              "text": " set to ",
+              "type": "text"
+            },
+            {
+              "code": "A",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "ServerToken",
+              "type": "codeVoice"
+            },
+            {
+              "text": " set to ",
+              "type": "text"
+            },
+            {
+              "code": "1",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". The value of this key could be a UUID or a simple counter. When any part of the declaration Payload changes, update this value for correct synchronization to occur.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The combination of ",
+              "type": "text"
+            },
+            {
+              "code": "Identifier",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "ServerToken",
+              "type": "codeVoice"
+            },
+            {
+              "text": " allows the device to determine which declarations are new, changed, or removed, during a synchronization operation.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "Payload",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key is an object representing the data pertinent to the declaration type. A formal schema defines the necessary and optional data for each declaration type. Values can be strings, numbers, booleans, arrays, or dictionaries, and may be constrained in range, such as numbers 1 through 10, or to a specific set of values like a string enumeration.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Every declaration has an associated ",
+              "type": "text"
+            },
+            {
+              "code": "active",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "valid",
+              "type": "codeVoice"
+            },
+            {
+              "text": " state that the device shares with the server through the status channel. There are four types of declarations, Configurations, Assets, Activations, and Management.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Use-configuration-declarations-to-define-the-policies",
+          "level": 4,
+          "text": "Use configuration declarations to define the policies",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Configurations represent the policy applied to a device. For example, accounts, settings and restrictions, network setup, fonts, and so on. Configurations are similar to MDM’s profile payloads.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A configuration has an ",
+              "type": "text"
+            },
+            {
+              "code": "active",
+              "type": "codeVoice"
+            },
+            {
+              "text": " state which is ",
+              "type": "text"
+            },
+            {
+              "code": "true",
+              "type": "codeVoice"
+            },
+            {
+              "text": " if the device is implementing the policy defined by the configuration, and ",
+              "type": "text"
+            },
+            {
+              "code": "false",
+              "type": "codeVoice"
+            },
+            {
+              "text": " otherwise.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A configuration has a ",
+              "type": "text"
+            },
+            {
+              "code": "valid",
+              "type": "codeVoice"
+            },
+            {
+              "text": " state which can have 3 values:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "valid",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ": The system has checked the configuration and it’s valid.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "invalid",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ": The system has checked the configuration and it’s not valid.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "unknown",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ": The system hasn’t checked the configuration.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A configuration is valid if it meets the following conditions:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The configuration was successfully synchronized from the server.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The configuration is a valid JSON object conforming to the schema defined by the configuration type.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "All referenced assets are valid.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The device can apply the policy when the configuration is active.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Use-asset-declarations-to-specify-additional-data",
+          "level": 4,
+          "text": "Use asset declarations to specify additional data",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Assets represent ancillary data needed by configurations. There are two main use cases for assets:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Large data: a large item of data, such as an image, a font, or entire font suite. In this case, the asset’s Payload contains a key with a URL value pointing to the actual data. This allows shifting the distribution of large data items from the management server to a server more suited to handling such traffic (for example, a content delivery network). The data for the asset is only downloaded when needed.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Personal data: user specific data such as a name, email address, passwords for accounts, or certificates. This takes the per-user customized data out of configurations, and moves it into smaller, dedicated objects.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Assets have a one-to-many relationship with configurations: one asset may be referenced by many configurations. The reference takes the form of a specific key in a configuration payload whose value is the ",
+              "type": "text"
+            },
+            {
+              "code": "Identifier",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key value of the asset.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The data for an asset can be independently updated, without needing to update the configuration that references it. The system can make small, incremental updates to per-user data, or large data items, shared across many configurations.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An asset has an ",
+              "type": "text"
+            },
+            {
+              "code": "active",
+              "type": "codeVoice"
+            },
+            {
+              "text": " state which is ",
+              "type": "text"
+            },
+            {
+              "code": "true",
+              "type": "codeVoice"
+            },
+            {
+              "text": " if at least one active configuration references the asset, and ",
+              "type": "text"
+            },
+            {
+              "code": "false",
+              "type": "codeVoice"
+            },
+            {
+              "text": " otherwise.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An asset has a ",
+              "type": "text"
+            },
+            {
+              "code": "valid",
+              "type": "codeVoice"
+            },
+            {
+              "text": " state which can have 3 values:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "valid",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ": The system has checked the asset and it’s valid.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "invalid",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ": The system has checked the asset and it’s not valid.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "unknown",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ": The system hasn’t checked the asset.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An asset is valid if it meets the following conditions:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The asset was successfully synchronized from the server.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The asset is a valid JSON object conforming to the schema defined by the asset type.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "All referenced asset data is successfully downloaded when the asset is active.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Use-activation-declarations-to-apply-logic-to-your-configurations",
+          "level": 4,
+          "text": "Use activation declarations to apply logic to your configurations",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Activations specify the logic that determines how and when, the system applies the policies defined by configurations to the device. Activations contain a set of configurations that the system applies atomically to the device, such that the system applies all referenced configurations together, or none. Therefore all of the configurations, and assets referenced by those configurations, must be valid in order for the system to apply the activation.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An activation has an ",
+              "type": "text"
+            },
+            {
+              "code": "active",
+              "type": "codeVoice"
+            },
+            {
+              "text": " state which is ",
+              "type": "text"
+            },
+            {
+              "code": "true",
+              "type": "codeVoice"
+            },
+            {
+              "text": " if the activation will attempt to apply the policies defined by its configurations, and ",
+              "type": "text"
+            },
+            {
+              "code": "false",
+              "type": "codeVoice"
+            },
+            {
+              "text": " otherwise.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An activation has a ",
+              "type": "text"
+            },
+            {
+              "code": "valid",
+              "type": "codeVoice"
+            },
+            {
+              "text": " state which can have 3 values:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "valid",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ": The system has checked the activation and it’s valid.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "invalid",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ": The system has checked the activation and it’s not valid.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "unknown",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ": The system hasn’t checked the activation.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An activation is valid if it meets the following conditions:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The activation was successfully synchronized from the server.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The activation is a valid JSON object conforming to the schema defined by the activation type.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Activations have a many-to-many relationship with configurations: one activation can reference many configurations, and many activations can reference the same configuration.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If at least one activation that references a configuration is active, the system applies the policies defined by the configuration.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An activation can include a predicate defining an expression that the system evaluates, and the result used to determine whether the activation should be active or inactive, subject to other rules governing activations (as described above).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A predicate is a string conforming to Apple’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/Predicates/AdditionalChapters/Introduction.html#//apple_ref/doc/uid/TP40001789",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". A string value that doesn’t conform to the predicate syntax is an error, and the activation isn’t activated.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The predicate expression can include references to declarative device management data such as status items and management properties, that conform to Apple’s Key-Value protocol (see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/KeyValueCoding/index.html#//apple_ref/doc/uid/10000107",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for more information). Referenced items must appear in the predicate inside of an extension term to correctly delineate them from other predicate terms and allow use of characters not typically allowed in predicate tokens.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The key used to reference an entire status item.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "@status",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The key used to reference a status item object property.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "@key",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The key used to reference a management property.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "@property",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This is an example of a predicate that checks whether the device is an iPad:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "(@status(device.model.family) == 'iPad')"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Use-management-declarations-to-define-organizational-data",
+          "level": 4,
+          "text": "Use management declarations to define organizational data",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Management declarations convey management metadata such as information about the organization managing the device, as well as details about the server’s supported features.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A management declaration has an ",
+              "type": "text"
+            },
+            {
+              "code": "active",
+              "type": "codeVoice"
+            },
+            {
+              "text": " state which is always ",
+              "type": "text"
+            },
+            {
+              "code": "false",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and not part of the activation process.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A management declaration has a ",
+              "type": "text"
+            },
+            {
+              "code": "valid",
+              "type": "codeVoice"
+            },
+            {
+              "text": " state which can have 3 values:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "valid",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ": The system has checked the management declaration and it’s valid.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "invalid",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ": The system has checked the management declaration and it’s not valid.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "unknown",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ": The system hasn’t checked the management declaration.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A management declaration is valid if it meets the following conditions:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The management declaration was successfully synchronized from the server.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The management declaration is a valid JSON object conforming to the schema defined by the management declaration type.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Use-status-to-report-device-state",
+          "level": 3,
+          "text": "Use status to report device state",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Devices report changes in device state back to the server as JSON status items, using a status report. There are several categories of device states:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Management states - the valid and active states for all declarations on the device, and any error details describing why a declaration is invalid or inactive.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Device properties - properties of the device (for example, device model, OS version, etc).",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Other properties (accounts, passcode, and MDM installed apps).",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A status item contains a status name (similar to a “key path”) and an associated value. A status name is a string containing a dot-separated sequence of tokens (for example, device.identifier.serial-number). Each segment of the name defines a key in the overall hierarchical status dictionary.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Consider the following three status items: ",
+              "type": "text"
+            },
+            {
+              "code": "device.identifier.serial-number",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "device.identifier.udid",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "code": "management.push-token",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". The status reported by the device would be:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "   \"device\": {",
+            "      \"identifier\": {",
+            "         \"serial-number\": \"abc123\",",
+            "         \"udid\": \"d4bffb90be0845c6a8b8184a7e06d487\"",
+            "      }",
+            "   },",
+            "   \"management\": {",
+            "      \"push-token\": \"xyz789\"",
+            "   }",
+            "}"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A status item’s value can be a string, number, boolean, null, or array.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Status item arrays have values containing JSON objects with a well-defined schema, with the same schema used for all items in an array. The schemas are specific to the type of item the status represents. Devices report changes to array status items incrementally (see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/StatusReport",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for additional details).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To receive updates for status items as they change, the server must subscribe to each status item by sending a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/ManagementStatusSubscriptions",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " declaration to the device. All management status items (those that begin with the ",
+              "type": "text"
+            },
+            {
+              "code": "management.",
+              "type": "codeVoice"
+            },
+            {
+              "text": " name prefix) are automatically reported to the server, and don’t need to be referenced in a status subscription.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the status of a device changes or a status subscription declaration becomes active, the device sends a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/StatusReport",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to the server.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Use-client-and-server-capabilities-to-match-feature-sets",
+          "level": 3,
+          "text": "Use client and server capabilities to match feature sets",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The set of capabilities and features supported by declarative management can vary over time as the system adds, modifies and deprecates items. Devices and servers advertise their capabilities and features to each other, so they can adopt new behaviors even as the server and device are independently upgraded, without the need to keep them in lock-step.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The device advertises the set of declaration types and status items it supports with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/StatusManagementClientCapabilities",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " status item. When the device enables declarative management, the device sends this status item to the server. Servers need to persist this on a per-enrollment basis as the set of capabilities might vary by more than just device type or operating system version. The server shouldn’t send declarations to the device that it hasn’t advertised as supported.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The server advertises the set of protocol features it supports through the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/ManagementServerCapabilities",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " declaration that it sends to the device when it enables declarative management. If the server capabilities change any time after enablement, then the server should use the normal declaration synchronization process to update the device with the new values.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement": {
+      "abstract": [
+        {
+          "text": "Manage your organization’s devices remotely.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Device Management",
+      "type": "topic",
+      "url": "/documentation/devicemanagement"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/ManagementServerCapabilities": {
+      "abstract": [
+        {
+          "text": "The declaration to configure the server’s feature set.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ManagementServerCapabilities"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/ManagementServerCapabilities",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ManagementServerCapabilities"
+        }
+      ],
+      "role": "symbol",
+      "title": "ManagementServerCapabilities",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/managementservercapabilities"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/ManagementStatusSubscriptions": {
+      "abstract": [
+        {
+          "text": "The declaration to configure status subscriptions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ManagementStatusSubscriptions"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/ManagementStatusSubscriptions",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ManagementStatusSubscriptions"
+        }
+      ],
+      "role": "symbol",
+      "title": "ManagementStatusSubscriptions",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/managementstatussubscriptions"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/StatusManagementClientCapabilities": {
+      "abstract": [
+        {
+          "text": "A status report of the client’s protocol capabilities.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "StatusManagementClientCapabilities"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/StatusManagementClientCapabilities",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "StatusManagementClientCapabilities"
+        }
+      ],
+      "role": "symbol",
+      "title": "StatusManagementClientCapabilities",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/statusmanagementclientcapabilities"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/StatusReport": {
+      "abstract": [
+        {
+          "text": "A status report of the device’s current state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "StatusReport"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/StatusReport",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "StatusReport"
+        }
+      ],
+      "role": "symbol",
+      "title": "StatusReport",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/statusreport"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/devicemanagement-declarations": {
+      "abstract": [
+        {
+          "text": "The available declarations for device management.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/devicemanagement-declarations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Declarations",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/devicemanagement-declarations"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/integrating-declarative-management": {
+      "abstract": [
+        {
+          "text": "Use the declarative management protocol to manage MDM features such as device enrollment and un-enrollment and device and user authentication.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/integrating-declarative-management",
+      "kind": "article",
+      "role": "article",
+      "title": "Integrating Declarative Management",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/integrating-declarative-management"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/status-reports": {
+      "abstract": [
+        {
+          "text": "Reports from the device about its current state.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/status-reports",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Status Reports",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/status-reports"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/KeyValueCoding/index.html#//apple_ref/doc/uid/10000107": {
+      "identifier": "https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/KeyValueCoding/index.html#//apple_ref/doc/uid/10000107",
+      "title": "About Key-Value Coding",
+      "titleInlineContent": [
+        {
+          "text": "About Key-Value Coding",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/KeyValueCoding/index.html#//apple_ref/doc/uid/10000107"
+    },
+    "https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/Predicates/AdditionalChapters/Introduction.html#//apple_ref/doc/uid/TP40001789": {
+      "identifier": "https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/Predicates/AdditionalChapters/Introduction.html#//apple_ref/doc/uid/TP40001789",
+      "title": "Predicate Programming Guide",
+      "titleInlineContent": [
+        {
+          "text": "Predicate Programming Guide",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/Predicates/AdditionalChapters/Introduction.html#//apple_ref/doc/uid/TP40001789"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Declarative-Management",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/integrating-declarative-management",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/devicemanagement-declarations",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/status-reports"
+      ],
+      "title": "Declarative Management"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/devicemanagement/leveraging-the-declarative-management-data-model-to-scale-devices"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

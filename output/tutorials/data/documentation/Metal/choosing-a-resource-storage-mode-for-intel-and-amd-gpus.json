@@ -1,0 +1,953 @@
+{
+  "abstract": [
+    {
+      "text": "Select an appropriate storage mode for your textures and buffers on AMD and Intel GPUs.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.metal/documentation/Metal",
+        "doc://com.apple.metal/documentation/Metal/resource-fundamentals"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.metal/documentation/Metal/choosing-a-resource-storage-mode-for-intel-and-amd-gpus"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Metal"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Choosing a Resource Storage Mode for Intel and AMD GPUs"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A Mac can have multiple GPUs, each with a unified or discrete memory model. In a ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "unified memory model",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", the CPU and the GPU share system memory. However, CPU and GPU access to that memory depends on the storage mode you choose for your resources. In a ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "discrete memory model",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", system memory is separate from video memory. System memory is accessible to both the CPU and the GPU, but video memory is accessible only to the GPU.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Metal framework’s resource storage mode API works for both unified and discrete memory models, so you don’t need to write specific code for either.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Understand-the-Different-Metal-Memory-Modes",
+          "level": 3,
+          "text": "Understand the Different Metal Memory Modes",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In both memory models, a resource with an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLStorageMode/shared",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " mode resides in system memory accessible to both the CPU and the GPU. Shared resources are only available on systems with integrated graphics, such as Apple silicon and integrated GPUs on Intel-based Mac computers.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3343315",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A resource with an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLStorageMode/private",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " mode is accessible only to the GPU. In a unified memory model, this resource resides in system memory. In a discrete memory model, it resides in video memory. In both memory models, Metal optimizes GPU access to private resources.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-4332403",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In a discrete memory model, Metal always attempts to store private resources in video memory. However, under certain memory constraints, Metal may evict a private resource into system memory. When you use a private resource that Metal previously evicted, Metal attempts to copy it back into video memory before you use it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In a unified memory model, a resource with an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLStorageMode/managed",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " mode resides in system memory accessible to both the CPU and the GPU.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In a discrete memory model, a managed resource exists as a synchronized pair of memory allocations. One copy of the resource resides in system memory accessible only to the CPU; the other resides in video memory accessible only to the GPU. However, you don’t manage the copies separately; Metal creates a single ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLResource",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance to access both.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In both memory models, Metal optimizes CPU and GPU access to managed resources. However, you must explicitly synchronize a managed resource after modifying its contents with the CPU or the GPU. For information about synchronizing a managed resource, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/synchronizing-a-managed-resource-in-macos",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-4332402",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Choose-a-Storage-Mode-for-Resources",
+          "level": 3,
+          "text": "Choose a Storage Mode for Resources",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your storage mode should depend on the resource type and how your application uses storage accessed by Metal. Understanding the underlying memory architecture gives context and helps you investigate where you can optimize storage and synchronization. On Intel-based Mac computers, follow these guidelines:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Prefer the default storage mode selected by Metal. Metal selects the optimal mode for the resource type and hardware.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.metal/documentation/Metal/MTLStorageMode/private",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " mode when creating a resource that’s only accessed by the GPU. This includes temporary targets for render passes.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To optimize for workloads initialized from CPU and then only processed on GPU, copy from a CPU-populated resource in the default storage mode to a GPU-only ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.metal/documentation/Metal/MTLResource",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " with ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.metal/documentation/Metal/MTLStorageMode/private",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " storage. See ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.metal/documentation/Metal/copying-data-to-a-private-resource",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " for details.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You’re responsible for signaling synchronization between the CPU and GPU with managed and shared storage. Regardless of your resource size, try and keep your synchronization points as light and infrequent as possible. Batch GPU work together to help reduce frequent synchronization. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/synchronizing-a-managed-resource-in-macos",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for details.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To detect the GPU architecture and features at runtime, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLDevice/supportsFamily(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/detecting-gpu-features-and-metal-software-versions",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for more information, and the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/metal/Metal-Feature-Set-Tables.pdf",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for full information on hardware support in Apple devices and computers.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.metal/documentation/Metal": {
+      "abstract": [
+        {
+          "text": "Render advanced 3D graphics and compute data in parallel with graphics processors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Metal",
+      "type": "topic",
+      "url": "/documentation/metal"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLDevice/supportsFamily(_:)": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether the GPU device supports the feature set of a specific GPU family.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "supportsFamily"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MTLGPUFamily",
+          "text": "MTLGPUFamily"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLDevice/supportsFamily(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "supportsFamily:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "supportsFamily(_:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtldevice/supportsfamily(_:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLResource": {
+      "abstract": [
+        {
+          "text": "An allocation of memory accessible to a GPU.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLResource"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLResource",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLResource"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLResource",
+      "type": "topic",
+      "url": "/documentation/metal/mtlresource"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLStorageMode/managed": {
+      "abstract": [
+        {
+          "text": "The CPU and GPU may maintain separate copies of the resource, and any changes must be explicitly synchronized.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "managed"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLStorageMode/managed",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLStorageModeManaged"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLStorageMode.managed",
+      "type": "topic",
+      "url": "/documentation/metal/mtlstoragemode/managed"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLStorageMode/private": {
+      "abstract": [
+        {
+          "text": "The resource is only available to the GPU.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "`private`"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLStorageMode/private",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLStorageModePrivate"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLStorageMode.private",
+      "type": "topic",
+      "url": "/documentation/metal/mtlstoragemode/private"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLStorageMode/shared": {
+      "abstract": [
+        {
+          "text": "The CPU and GPU share access to the resource, allocated in system memory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "shared"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLStorageMode/shared",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLStorageModeShared"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLStorageMode.shared",
+      "type": "topic",
+      "url": "/documentation/metal/mtlstoragemode/shared"
+    },
+    "doc://com.apple.metal/documentation/Metal/choosing-a-resource-storage-mode-for-apple-gpus": {
+      "abstract": [
+        {
+          "text": "Select an appropriate storage mode for your textures and buffers on Apple GPUs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/choosing-a-resource-storage-mode-for-apple-gpus",
+      "kind": "article",
+      "role": "article",
+      "title": "Choosing a Resource Storage Mode for Apple GPUs",
+      "type": "topic",
+      "url": "/documentation/metal/choosing-a-resource-storage-mode-for-apple-gpus"
+    },
+    "doc://com.apple.metal/documentation/Metal/copying-data-to-a-private-resource": {
+      "abstract": [
+        {
+          "text": "Use a blit command encoder to copy buffer or texture data to a private resource.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/copying-data-to-a-private-resource",
+      "kind": "article",
+      "role": "article",
+      "title": "Copying Data to a Private Resource",
+      "type": "topic",
+      "url": "/documentation/metal/copying-data-to-a-private-resource"
+    },
+    "doc://com.apple.metal/documentation/Metal/detecting-gpu-features-and-metal-software-versions": {
+      "abstract": [
+        {
+          "text": "Use the device object’s properties to determine how you perform tasks in Metal.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/detecting-gpu-features-and-metal-software-versions",
+      "kind": "article",
+      "role": "article",
+      "title": "Detecting GPU Features and Metal Software Versions",
+      "type": "topic",
+      "url": "/documentation/metal/detecting-gpu-features-and-metal-software-versions"
+    },
+    "doc://com.apple.metal/documentation/Metal/reducing-the-memory-footprint-of-metal-apps": {
+      "abstract": [
+        {
+          "text": "Learn best practices for using memory efficiently in iOS and tvOS.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/reducing-the-memory-footprint-of-metal-apps",
+      "kind": "article",
+      "role": "article",
+      "title": "Reducing the Memory Footprint of Metal Apps",
+      "type": "topic",
+      "url": "/documentation/metal/reducing-the-memory-footprint-of-metal-apps"
+    },
+    "doc://com.apple.metal/documentation/Metal/resource-fundamentals": {
+      "abstract": [
+        {
+          "text": "Learn the common attributes of all Metal memory resources, including buffers and textures, and how to manage the underlying memory.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/resource-fundamentals",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Resource Fundamentals",
+      "type": "topic",
+      "url": "/documentation/metal/resource-fundamentals"
+    },
+    "doc://com.apple.metal/documentation/Metal/setting-resource-storage-modes": {
+      "abstract": [
+        {
+          "text": "Set a storage mode that defines the memory location and access permissions of a resource.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/setting-resource-storage-modes",
+      "kind": "article",
+      "role": "article",
+      "title": "Setting Resource Storage Modes",
+      "type": "topic",
+      "url": "/documentation/metal/setting-resource-storage-modes"
+    },
+    "doc://com.apple.metal/documentation/Metal/synchronizing-a-managed-resource-in-macos": {
+      "abstract": [
+        {
+          "text": "Manually synchronize memory for a Metal resource in apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/synchronizing-a-managed-resource-in-macos",
+      "kind": "article",
+      "role": "article",
+      "title": "Synchronizing a Managed Resource in macOS",
+      "type": "topic",
+      "url": "/documentation/metal/synchronizing-a-managed-resource-in-macos"
+    },
+    "doc://com.apple.metal/documentation/Metal/transferring-data-between-connected-gpus": {
+      "abstract": [
+        {
+          "text": "Use high-speed connections between GPUs to transfer data quickly.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/transferring-data-between-connected-gpus",
+      "kind": "article",
+      "role": "article",
+      "title": "Transferring Data Between Connected GPUs",
+      "type": "topic",
+      "url": "/documentation/metal/transferring-data-between-connected-gpus"
+    },
+    "https://developer.apple.com/metal/Metal-Feature-Set-Tables.pdf": {
+      "identifier": "https://developer.apple.com/metal/Metal-Feature-Set-Tables.pdf",
+      "title": "Metal feature set tables (PDF)",
+      "titleInlineContent": [
+        {
+          "text": "Metal feature set tables (PDF)",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/metal/Metal-Feature-Set-Tables.pdf"
+    },
+    "media-3343315": {
+      "alt": "A system diagram that shows the memory location of a shared mode resource in system memory that connects to the GPU and CPU with bidirectional arrows.",
+      "identifier": "media-3343315",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/90f2cc3c21c3f2151bddb3f0a744783d/media-3343315@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/0f889f3779c20c8be997a9ebce2f7ee4/media-3343315~dark@2x.png"
+        }
+      ]
+    },
+    "media-4332402": {
+      "alt": "Two system diagrams that show the memory location of managed resources. The unified-memory model diagram at top shows a managed resource in system memory that connects to the GPU and CPU with bidirectional arrows. The discrete-memory model diagram below it shows a resource in video memory that connects to the GPU connected by a bidirectional arrow that has a synchronize symbol. The video memory connects to the system memory by a dashed bidirectional arrow. The system memory connects to the CPU by a bidirectional arrow that has a synchronize symbol.",
+      "identifier": "media-4332402",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e0cc5e88d6f9223e3bec8a8c937a5558/media-4332402@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f30ae598d963cf3375b68a339413a5c7/media-4332402~dark@2x.png"
+        }
+      ]
+    },
+    "media-4332403": {
+      "alt": "Two system diagrams that show the memory location of private resources. The first shows a unified-memory model GPU with with a bidirectional arrow pointing to and from system memory. The second shows a discrete-memory model GPU with with a bidirectional arrow pointing to and from video memory.",
+      "identifier": "media-4332403",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2bf54b6dd598f28f5df9ccab9b509206/media-4332403@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f0ae84916ce45b2d0cb57d4fcf8c1637/media-4332403~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Resource-Management",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/setting-resource-storage-modes",
+        "doc://com.apple.metal/documentation/Metal/choosing-a-resource-storage-mode-for-apple-gpus",
+        "doc://com.apple.metal/documentation/Metal/copying-data-to-a-private-resource",
+        "doc://com.apple.metal/documentation/Metal/synchronizing-a-managed-resource-in-macos",
+        "doc://com.apple.metal/documentation/Metal/transferring-data-between-connected-gpus",
+        "doc://com.apple.metal/documentation/Metal/reducing-the-memory-footprint-of-metal-apps"
+      ],
+      "title": "Resource Management"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Resource-Management",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/setting-resource-storage-modes",
+                "doc://com.apple.metal/documentation/Metal/choosing-a-resource-storage-mode-for-apple-gpus",
+                "doc://com.apple.metal/documentation/Metal/copying-data-to-a-private-resource",
+                "doc://com.apple.metal/documentation/Metal/synchronizing-a-managed-resource-in-macos",
+                "doc://com.apple.metal/documentation/Metal/transferring-data-between-connected-gpus",
+                "doc://com.apple.metal/documentation/Metal/reducing-the-memory-footprint-of-metal-apps"
+              ],
+              "title": "Resource Management"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLStorageMode~1managed/title",
+          "value": "MTLStorageModeManaged"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLStorageMode~1managed/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLStorageModeManaged"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLStorageMode~1shared/title",
+          "value": "MTLStorageModeShared"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLStorageMode~1shared/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLStorageModeShared"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice~1supportsFamily(_:)/title",
+          "value": "supportsFamily:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice~1supportsFamily(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "supportsFamily:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLStorageMode~1private/title",
+          "value": "MTLStorageModePrivate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLStorageMode~1private/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLStorageModePrivate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLResource/title",
+          "value": "MTLResource"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLResource/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLResource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLResource/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLResource"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/metal/choosing-a-resource-storage-mode-for-intel-and-amd-gpus"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/metal/choosing-a-resource-storage-mode-for-intel-and-amd-gpus"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

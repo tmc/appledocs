@@ -1,0 +1,367 @@
+{
+  "abstract": [
+    {
+      "text": "Creates a font object from an Apple Type Services (ATS) font.",
+      "type": "text"
+    }
+  ],
+  "deprecationSummary": [
+    {
+      "inlineContent": [
+        {
+          "text": "Use Core Text, documented in ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.coretext/documentation/CoreText",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ", instead.",
+          "type": "text"
+        }
+      ],
+      "type": "paragraph"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/coregraphics",
+        "doc://com.apple.documentation/documentation/coregraphics/cgfont"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/coregraphics/1396334-cgfontcreatewithplatformfont"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1396334,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@F@CGFontCreateWithPlatformFont",
+    "modules": [
+      {
+        "name": "Core Graphics"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "15.4",
+        "deprecated": true,
+        "deprecatedAt": "10.6",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Function",
+    "symbolKind": "func",
+    "title": "CGFontCreateWithPlatformFont"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgfontref",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CGFontRef",
+              "text": "CGFontRef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CGFontCreateWithPlatformFont"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "keyword",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": " *platformFontReference);"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "languages": [
+        "occ"
+      ],
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A generic pointer to a font object. The font should be of a type appropriate to the platform on which your program is running. For macOS, you should pass a pointer to an ATS font.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "platformFontReference"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return_value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The font object, or ",
+              "type": "text"
+            },
+            {
+              "code": "NULL",
+              "type": "codeVoice"
+            },
+            {
+              "text": " if the platform font could not be located. You are responsible for releasing this object using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coregraphics/1396363-cgfontrelease",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before drawing text in a Core Graphics context, you must set the font in the current graphics state. For ATS Fonts, call this function to create a font, and pass it to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coregraphics/1454950-cgcontextsetfont",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "1844846",
+          "level": 3,
+          "text": "Special Considerations",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This function is deprecated because it takes a pointer to an ",
+              "type": "text"
+            },
+            {
+              "code": "ATSFontRef",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object—itself deprecated—and is used almost solely by QuickDraw-based applications. There's no direct one-to-one replacement for the function. Clients using ATSUI and QuickDraw should move to Core Text and Core Graphics instead.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.coretext/documentation/CoreText": {
+      "identifier": "doc://com.apple.coretext/documentation/CoreText",
+      "kind": "article",
+      "role": "collection",
+      "title": "Core Text",
+      "type": "topic",
+      "url": "/documentation/coretext"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics": {
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Graphics",
+      "type": "topic",
+      "url": "/documentation/coregraphics"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/1396330-cgfontcreatewithfontname": {
+      "abstract": [
+        {
+          "text": "Creates a font object corresponding to the font specified by a PostScript or full name.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/1396330-cgfontcreatewithfontname",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGFontCreateWithFontName",
+      "type": "topic",
+      "url": "/documentation/coregraphics/1396330-cgfontcreatewithfontname"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/1396334-cgfontcreatewithplatformfont": {
+      "abstract": [
+        {
+          "text": "Creates a font object from an Apple Type Services (ATS) font.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/1396334-cgfontcreatewithplatformfont",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGFontCreateWithPlatformFont",
+      "type": "topic",
+      "url": "/documentation/coregraphics/1396334-cgfontcreatewithplatformfont"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/1396363-cgfontrelease": {
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/1396363-cgfontrelease",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGFontRelease",
+      "type": "topic",
+      "url": "/documentation/coregraphics/1396363-cgfontrelease"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/1396367-cgfontcreatewithdataprovider": {
+      "abstract": [
+        {
+          "text": "Creates a font object from data supplied from a data provider.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/1396367-cgfontcreatewithdataprovider",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGFontCreateWithDataProvider",
+      "type": "topic",
+      "url": "/documentation/coregraphics/1396367-cgfontcreatewithdataprovider"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/1396373-cgfontcreatecopywithvariations": {
+      "abstract": [
+        {
+          "text": "Creates a copy of a font using a variation specification dictionary.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/1396373-cgfontcreatecopywithvariations",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGFontCreateCopyWithVariations",
+      "type": "topic",
+      "url": "/documentation/coregraphics/1396373-cgfontcreatecopywithvariations"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/1454950-cgcontextsetfont": {
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/1454950-cgcontextsetfont",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGContextSetFont",
+      "type": "topic",
+      "url": "/documentation/coregraphics/1454950-cgcontextsetfont"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/cgfont": {
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgfont",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CGFont",
+      "type": "topic",
+      "url": "/documentation/coregraphics/cgfont"
+    },
+    "doc://com.apple.documentation/documentation/coregraphics/cgfontref": {
+      "identifier": "doc://com.apple.documentation/documentation/coregraphics/cgfontref",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGFontRef",
+      "type": "topic",
+      "url": "/documentation/coregraphics/cgfontref"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coregraphics/1396367-cgfontcreatewithdataprovider",
+        "doc://com.apple.documentation/documentation/coregraphics/1396330-cgfontcreatewithfontname",
+        "doc://com.apple.documentation/documentation/coregraphics/1396373-cgfontcreatecopywithvariations"
+      ],
+      "title": "Creating a CGFont Object"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/coregraphics/1396334-cgfontcreatewithplatformfont"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

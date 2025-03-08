@@ -1,0 +1,2037 @@
+{
+  "abstract": [
+    {
+      "text": "Present additional content alongside your main media presentation using HTTP Live Streaming support.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.avkit/documentation/AVKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.avkit/documentation/AVKit/working-with-interstitial-content"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "AVKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Working with Interstitial Content"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Media playback apps often present additional content such as legal text, content warnings, or advertisements alongside their main media content. One method is to use HTTP Live Streaming’s (HLS) support for serving stitched playlists. Stitched playlists let you combine multiple media playlists into a single, unified playlist that’s delivered to the client as a single stream. This stream provides a smooth playback experience to users, with no breaks or interruptions in the action when the player presents the interstitial content. For more information about including ad content in your HLS playlist, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/HTTP-Live-Streaming/incorporating-ads-into-a-playlist",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Define-Interstitial-Time-Ranges",
+          "level": 3,
+          "text": "Define Interstitial Time Ranges",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "AVKit in tvOS simplifies working with interstitial content delivered as part of a stitched playlist. You define the time ranges in your presentation that contain interstitial content. As the player encounters the time ranges during playback, you receive callbacks when they begin and end, giving you the opportunity to enforce business rules or capture analytics.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVPlayerItem",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in tvOS adds an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVPlayerItem/interstitialTimeRanges",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property that you set to an array of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avkit/documentation/AVKit/AVInterstitialTimeRange",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects that the system uses to annotate the timeline with break markers. Each object defines a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreMedia/CMTimeRange",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " marking the interstitial time range in your media’s timeline. The following code example shows how to create interstitial time ranges.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func setupPlayback() {",
+            "    ...",
+            "    playerItem.interstitialTimeRanges = makeInterstitialTimeRanges()",
+            "    ...",
+            "}",
+            "",
+            "private func makeInterstitialTimeRanges() -> [AVInterstitialTimeRange] {",
+            "    // Present a 10-second content warning at the beginning of the video.",
+            "    let timeRange1 = CMTimeRange(start: .zero,",
+            "                                 duration: CMTime(value: 10, timescale: 1))",
+            "    ",
+            "    // Present 1 minute of advertisements 10 minutes into the video.",
+            "    let timeRange2 = CMTimeRange(start: CMTime(value: 600, timescale: 1),",
+            "                                 duration: CMTime(value: 60, timescale: 1))",
+            "    ",
+            "    // Return an array of AVInterstitialTimeRange objects.",
+            "    return [",
+            "        AVInterstitialTimeRange(timeRange: timeRange1),",
+            "        AVInterstitialTimeRange(timeRange: timeRange2)",
+            "    ]",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you define interstitial time ranges, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avkit/documentation/AVKit/AVPlayerViewController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " updates its user interface in two important ways, as shown below. First, the player represents any interstitial time ranges as small dots on the player’s timeline. This helps users understand where they are between interstitial breaks and helps orient them to where they are in the overall media timeline. Second, the player collapses interstitial time ranges from the time display. The current time and duration presented represent only your main content, providing a better sense of the primary media’s timeline.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3921828",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "The player interface’s collapsing of time ranges is only visual. Any programmatic operations you perform, such as seeking, happen on the full asset timeline, inclusive of interstitial content.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Enforce-Linear-Playback",
+          "level": 3,
+          "text": "Enforce Linear Playback",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you adopt the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avkit/documentation/AVKit/AVPlayerViewControllerDelegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol, the player can notify your app as it traverses interstitial time ranges, which is useful to help you enforce business rules. For instance, a common requirement when presenting advertisements is to prevent users from skipping past them. You can use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avkit/documentation/AVKit/AVPlayerViewController/requiresLinearPlayback",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avkit/documentation/AVKit/AVPlayerViewController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to control whether users can navigate through the content using the Siri Remote. During playback, this property is normally set to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/swift/false",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", but when presenting an advertisement, you can set it to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/swift/true",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to prevent user navigation, as shown in the following example.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "public func playerViewController(_ playerViewController: AVPlayerViewController,",
+            "                                 willPresent interstitial: AVInterstitialTimeRange) {",
+            "    playerViewController.requiresLinearPlayback = true",
+            "}",
+            "",
+            "public func playerViewController(_ playerViewController: AVPlayerViewController,",
+            "                                 didPresent interstitial: AVInterstitialTimeRange) {",
+            "    playerViewController.requiresLinearPlayback = false",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Prevent-Skipping-of-Interstitial-Content",
+          "level": 3,
+          "text": "Prevent Skipping of Interstitial Content",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your app presents interstitial content, such as ads or legal text, you may want to prevent users from skipping past it. Implement this functionality by using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avkit/documentation/AVKit/AVPlayerViewControllerDelegate/playerViewController(_:timeToSeekAfterUserNavigatedFrom:to:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " delegate method. The system calls this method whenever a user performs a seek operation using the Siri Remote, which happens either by swiping left or right on the remote clickpad or by navigating chapter markers in the Info panel. The following code shows a simple example of how you might implement this method to prevent users from skipping past advertisements.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "public func playerViewController(_ playerViewController: AVPlayerViewController, timeToSeekAfterUserNavigatedFrom oldTime: CMTime, to targetTime: CMTime) -> CMTime {",
+            "",
+            "    // Only evaluate if the user performed a forward seek.",
+            "    guard !canSkipInterstitials && oldTime < targetTime else {",
+            "        return targetTime",
+            "    }",
+            "",
+            "    // Define the time range of the user's seek operation.",
+            "    let seekRange = CMTimeRange(start: oldTime, end: targetTime)",
+            "",
+            "    // Iterate over the defined interstitial time ranges.",
+            "    for interstitialRange in playerItem.interstitialTimeRanges {",
+            "        // If the current interstitial content is contained within the",
+            "        // user's seek range, return the interstitial content's start time.",
+            "        if seekRange.containsTimeRange(interstitialRange.timeRange) {",
+            "            return interstitialRange.timeRange.start",
+            "        }",
+            "    }",
+            "",
+            "    // No match. Return the target time.",
+            "    return targetTime",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For any forward seeks, the example code ensures that the user can’t skip past an ad break. It attempts to find an interstitial time range within the time range of the user’s seek request. If it finds an interstitial time range, the code returns its start time, forcing playback to begin at the start of the advertisement.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Generate-Interstitial-Events-Automatically",
+          "level": 3,
+          "text": "Generate Interstitial Events Automatically",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "tvOS 15 adds support for coordinating and observing playback of interstitial assets. Automatic handling of interstitial events allows the system to make smooth transitions between your main and interstitial content, and doesn’t require you to coordinate playback between the players.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "While an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avkit/documentation/AVKit/AVInterstitialTimeRange",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " can be any arbitrary time range in the media, an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVPlayerInterstitialEvent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " represents an HLS ad break or interstitial event. When you use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVPlayerInterstitialEvent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", AVKit internally enforces linear playback and other navigation restrictions based on the event type.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVPlayerItem/translatesPlayerInterstitialEvents",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to indicate whether AVKit should generate the value of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVPlayerItem/interstitialTimeRanges",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " from ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVPlayerInterstitialEvent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". When you play a stream that defines interstitial events, or when the client creates or modifies events using a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVPlayerInterstitialEventController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", the system populates interstitials. AVKit continues to update ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVPlayerItem/interstitialTimeRanges",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " when there are changes to the set of events.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "On the server that distributes HLS content, use the ",
+              "type": "text"
+            },
+            {
+              "code": "EXT-X-DATERANGE",
+              "type": "codeVoice"
+            },
+            {
+              "text": " tag to associate a date range with a set of attributes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "#EXT-X-DATERANGE:ID=\"ad1\",CLASS=\"com.example.hls.interstitial\",START-DATE=\"2020-01-02T21:55:43.000Z\",DURATION=6.0,X-ASSET-LIST=“The path to your asset list”,X-RESUME-OFFSET=2,X-RESTRICT-JUMP=1"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use ",
+              "type": "text"
+            },
+            {
+              "code": "AVPlayerInterstitialEventObserver",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to monitor the player for server-side events.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let player = AVPlayer(url: movieURL) ",
+            "let observer = AVPlayerInterstitialEventObserver(primaryPlayer: player)",
+            "NotificationCenter.default.addObserver(",
+            "    forName: AVPlayerInterstitialEventObserver.currentEventDidChangeNotification,",
+            "    object: observer,",
+            "    queue: OperationQueue.main) { notification in",
+            "        // Update user interface by using the current event data.",
+            "        self.updateUI(observer.currentEvent)",
+            "    }"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can supplement interstitial events with custom attribute-value pairs. For example, imagine adding beacon positions and beacon URLs for advertisements delivered as an interstitial. Inspect ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVPlayerInterstitialEvent/userDefinedAttributes",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " on your event to get the information.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "if let currentEvent = observer.currentEvent {",
+            "    if !respondedSet.contains(currentEvent.identifier) {",
+            "        let eventAttributes = observer.currentEvent?.userDefinedAttributes",
+            "        if let beaconURL = eventAttributes[“X-com-example-beaconURL”] {",
+            "            // Send a GET request for beaconURL.",
+            "            respondedSet.insert(currentEvent.identifier)",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you don’t update to the latest SDK and begin using streams that contain ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVPlayerInterstitialEventController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", you need to manage your own interstitials except for AirPlay.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let appInterstitials: [AVInterstitialTimeRange] = createMyInterstitials()",
+            "let playerItem: AVPlayerItem(url: movieURL)",
+            "playerItem.translatesPlayerInterstitialEvents = false",
+            "playerItem.interstitialTimeRanges = appInterstitials"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.avkit/documentation/AVKit": {
+      "abstract": [
+        {
+          "text": "Create user interfaces for media playback, complete with transport controls, chapter navigation, picture-in-picture support, and display of subtitles and closed captions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avkit/documentation/AVKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AVKit",
+      "type": "topic",
+      "url": "/documentation/avkit"
+    },
+    "doc://com.apple.avkit/documentation/AVKit/AVContentProposalViewController": {
+      "abstract": [
+        {
+          "text": "A view controller that proposes content to watch next.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVContentProposalViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.avkit/documentation/AVKit/AVContentProposalViewController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVContentProposalViewController"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVContentProposalViewController",
+      "type": "topic",
+      "url": "/documentation/avkit/avcontentproposalviewcontroller"
+    },
+    "doc://com.apple.avkit/documentation/AVKit/AVContinuityDevicePickerViewController": {
+      "abstract": [
+        {
+          "text": "A view controller that provides an interface to a person so they can select and connect a continuity device to the system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVContinuityDevicePickerViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.avkit/documentation/AVKit/AVContinuityDevicePickerViewController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVContinuityDevicePickerViewController"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVContinuityDevicePickerViewController",
+      "type": "topic",
+      "url": "/documentation/avkit/avcontinuitydevicepickerviewcontroller"
+    },
+    "doc://com.apple.avkit/documentation/AVKit/AVContinuityDevicePickerViewControllerDelegate": {
+      "abstract": [
+        {
+          "text": "An interface that responds to events from a continuity device picker view controller.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVContinuityDevicePickerViewControllerDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.avkit/documentation/AVKit/AVContinuityDevicePickerViewControllerDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVContinuityDevicePickerViewControllerDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVContinuityDevicePickerViewControllerDelegate",
+      "type": "topic",
+      "url": "/documentation/avkit/avcontinuitydevicepickerviewcontrollerdelegate"
+    },
+    "doc://com.apple.avkit/documentation/AVKit/AVDisplayManager": {
+      "abstract": [
+        {
+          "text": "A tvOS management object that controls whether a TV switches modes to match the video’s native mode.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVDisplayManager"
+        }
+      ],
+      "identifier": "doc://com.apple.avkit/documentation/AVKit/AVDisplayManager",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVDisplayManager"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVDisplayManager",
+      "type": "topic",
+      "url": "/documentation/avkit/avdisplaymanager"
+    },
+    "doc://com.apple.avkit/documentation/AVKit/AVInterstitialTimeRange": {
+      "abstract": [
+        {
+          "text": "A time range in an audiovisual presentation for content with an interstitial designation, such as advertisements or legal notices.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVInterstitialTimeRange"
+        }
+      ],
+      "identifier": "doc://com.apple.avkit/documentation/AVKit/AVInterstitialTimeRange",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVInterstitialTimeRange"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVInterstitialTimeRange",
+      "type": "topic",
+      "url": "/documentation/avkit/avinterstitialtimerange"
+    },
+    "doc://com.apple.avkit/documentation/AVKit/AVNavigationMarkersGroup": {
+      "abstract": [
+        {
+          "text": "A set of markers for navigating playback of an audiovisual presentation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVNavigationMarkersGroup"
+        }
+      ],
+      "identifier": "doc://com.apple.avkit/documentation/AVKit/AVNavigationMarkersGroup",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVNavigationMarkersGroup"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVNavigationMarkersGroup",
+      "type": "topic",
+      "url": "/documentation/avkit/avnavigationmarkersgroup"
+    },
+    "doc://com.apple.avkit/documentation/AVKit/AVPlayerViewController": {
+      "abstract": [
+        {
+          "text": "A view controller that displays content from a player and presents a native user interface to control playback.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVPlayerViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.avkit/documentation/AVKit/AVPlayerViewController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVPlayerViewController"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVPlayerViewController",
+      "type": "topic",
+      "url": "/documentation/avkit/avplayerviewcontroller"
+    },
+    "doc://com.apple.avkit/documentation/AVKit/AVPlayerViewController/requiresLinearPlayback": {
+      "abstract": [
+        {
+          "text": "A Boolean value that determines whether the player allows the user to skip media content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "requiresLinearPlayback"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.avkit/documentation/AVKit/AVPlayerViewController/requiresLinearPlayback",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "requiresLinearPlayback"
+        }
+      ],
+      "role": "symbol",
+      "title": "requiresLinearPlayback",
+      "type": "topic",
+      "url": "/documentation/avkit/avplayerviewcontroller/requireslinearplayback"
+    },
+    "doc://com.apple.avkit/documentation/AVKit/AVPlayerViewControllerDelegate": {
+      "abstract": [
+        {
+          "text": "A protocol that defines the methods to implement to respond to player view controller events.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVPlayerViewControllerDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.avkit/documentation/AVKit/AVPlayerViewControllerDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVPlayerViewControllerDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVPlayerViewControllerDelegate",
+      "type": "topic",
+      "url": "/documentation/avkit/avplayerviewcontrollerdelegate"
+    },
+    "doc://com.apple.avkit/documentation/AVKit/AVPlayerViewControllerDelegate/playerViewController(_:timeToSeekAfterUserNavigatedFrom:to:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate when the user skips, scrubs, or otherwise navigates to a new time and wants to resume playback at the target time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "playerViewController"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVPlayerViewController",
+          "text": "AVPlayerViewController"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "timeToSeekAfterUserNavigatedFrom"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CMTime",
+          "text": "CMTime"
+        }
+      ],
+      "identifier": "doc://com.apple.avkit/documentation/AVKit/AVPlayerViewControllerDelegate/playerViewController(_:timeToSeekAfterUserNavigatedFrom:to:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "playerViewController:timeToSeekAfterUserNavigatedFromTime:toTime:"
+        }
+      ],
+      "role": "symbol",
+      "title": "playerViewController(_:timeToSeekAfterUserNavigatedFrom:to:)",
+      "type": "topic",
+      "url": "/documentation/avkit/avplayerviewcontrollerdelegate/playerviewcontroller(_:timetoseekafterusernavigatedfrom:to:)"
+    },
+    "doc://com.apple.avkit/documentation/AVKit/customizing-the-tvos-playback-experience": {
+      "abstract": [
+        {
+          "text": "Adopt the latest features of the redesigned tvOS player user interface to provide a more streamlined way to watch your content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avkit/documentation/AVKit/customizing-the-tvos-playback-experience",
+      "kind": "article",
+      "role": "article",
+      "title": "Customizing the tvOS Playback Experience",
+      "type": "topic",
+      "url": "/documentation/avkit/customizing-the-tvos-playback-experience"
+    },
+    "doc://com.apple.avkit/documentation/AVKit/presenting-content-proposals-in-tvos": {
+      "abstract": [
+        {
+          "text": "Display a preview of an upcoming media item at the conclusion of the currently playing media item.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avkit/documentation/AVKit/presenting-content-proposals-in-tvos",
+      "kind": "article",
+      "role": "article",
+      "title": "Presenting Content Proposals in tvOS",
+      "type": "topic",
+      "url": "/documentation/avkit/presenting-content-proposals-in-tvos"
+    },
+    "doc://com.apple.avkit/documentation/AVKit/presenting-navigation-markers": {
+      "abstract": [
+        {
+          "text": "Present navigation markers in the Chapters panel to help users quickly navigate your content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avkit/documentation/AVKit/presenting-navigation-markers",
+      "kind": "article",
+      "role": "article",
+      "title": "Presenting Navigation Markers",
+      "type": "topic",
+      "url": "/documentation/avkit/presenting-navigation-markers"
+    },
+    "doc://com.apple.avkit/documentation/AVKit/supporting-continuity-camera-in-your-tvos-app": {
+      "abstract": [
+        {
+          "text": "Capture high-quality photos, video, and audio in your Apple TV app by connecting",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "an iPhone or iPad as a continuity device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avkit/documentation/AVKit/supporting-continuity-camera-in-your-tvos-app",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Supporting Continuity Camera in your tvOS app",
+      "type": "topic",
+      "url": "/documentation/avkit/supporting-continuity-camera-in-your-tvos-app"
+    },
+    "doc://com.apple.avkit/documentation/AVKit/working-with-overlays-and-parental-controls-in-tvos": {
+      "abstract": [
+        {
+          "text": "Add interactive overlays, parental controls, and livestream channel flipping using a player view controller.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avkit/documentation/AVKit/working-with-overlays-and-parental-controls-in-tvos",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Working with Overlays and Parental Controls in tvOS",
+      "type": "topic",
+      "url": "/documentation/avkit/working-with-overlays-and-parental-controls-in-tvos"
+    },
+    "doc://com.apple.documentation/documentation/AVFoundation/AVPlayerInterstitialEvent": {
+      "abstract": [
+        {
+          "text": "An object that provides instructions for how a player presents interstitial content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVPlayerInterstitialEvent"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVPlayerInterstitialEvent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AVPlayerInterstitialEvent",
+      "type": "topic",
+      "url": "/documentation/AVFoundation/AVPlayerInterstitialEvent"
+    },
+    "doc://com.apple.documentation/documentation/AVFoundation/AVPlayerInterstitialEvent/userDefinedAttributes": {
+      "abstract": [
+        {
+          "text": "Attributes of the event that the vendor or app defines.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "userDefinedAttributes"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s11AnyHashableV",
+          "text": "AnyHashable"
+        },
+        {
+          "kind": "text",
+          "text": " : any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8SendableP",
+          "text": "Sendable"
+        },
+        {
+          "kind": "text",
+          "text": "] { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "set"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVPlayerInterstitialEvent/userDefinedAttributes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "userDefinedAttributes",
+      "type": "topic",
+      "url": "/documentation/AVFoundation/AVPlayerInterstitialEvent/userDefinedAttributes"
+    },
+    "doc://com.apple.documentation/documentation/AVFoundation/AVPlayerInterstitialEventController": {
+      "abstract": [
+        {
+          "text": "An object that schedules interstitial events for items played by the primary player.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVPlayerInterstitialEventController"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVPlayerInterstitialEventController",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AVPlayerInterstitialEventController",
+      "type": "topic",
+      "url": "/documentation/AVFoundation/AVPlayerInterstitialEventController"
+    },
+    "doc://com.apple.documentation/documentation/AVFoundation/AVPlayerItem": {
+      "abstract": [
+        {
+          "text": "An object that models the timing and presentation state of an asset during playback.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVPlayerItem"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVPlayerItem",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AVPlayerItem",
+      "type": "topic",
+      "url": "/documentation/AVFoundation/AVPlayerItem"
+    },
+    "doc://com.apple.documentation/documentation/AVFoundation/AVPlayerItem/interstitialTimeRanges": {
+      "abstract": [
+        {
+          "text": "An array of time ranges that identify interstitial content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "interstitialTimeRanges"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVInterstitialTimeRange",
+          "text": "AVInterstitialTimeRange"
+        },
+        {
+          "kind": "text",
+          "text": "] { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "set"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVPlayerItem/interstitialTimeRanges",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "interstitialTimeRanges",
+      "type": "topic",
+      "url": "/documentation/AVFoundation/AVPlayerItem/interstitialTimeRanges"
+    },
+    "doc://com.apple.documentation/documentation/AVFoundation/AVPlayerItem/translatesPlayerInterstitialEvents": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the player translates interstitial events to interstitial time ranges.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "translatesPlayerInterstitialEvents"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "set"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVPlayerItem/translatesPlayerInterstitialEvents",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "translatesPlayerInterstitialEvents",
+      "type": "topic",
+      "url": "/documentation/AVFoundation/AVPlayerItem/translatesPlayerInterstitialEvents"
+    },
+    "doc://com.apple.documentation/documentation/CoreMedia/CMTimeRange": {
+      "abstract": [
+        {
+          "text": "A structure that represents a time range.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMTimeRange"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreMedia/CMTimeRange",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CMTimeRange",
+      "type": "topic",
+      "url": "/documentation/CoreMedia/CMTimeRange"
+    },
+    "doc://com.apple.documentation/documentation/HTTP-Live-Streaming/incorporating-ads-into-a-playlist": {
+      "abstract": [
+        {
+          "text": "Add branding or ads to a playlist.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/HTTP-Live-Streaming/incorporating-ads-into-a-playlist",
+      "kind": "article",
+      "role": "article",
+      "title": "Incorporating Ads into a Playlist",
+      "type": "topic",
+      "url": "/documentation/HTTP-Live-Streaming/incorporating-ads-into-a-playlist"
+    },
+    "doc://com.apple.documentation/documentation/swift/false": {
+      "abstract": [
+        {
+          "text": "A false value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/swift/false",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "false",
+      "type": "topic",
+      "url": "/documentation/swift/false"
+    },
+    "doc://com.apple.documentation/documentation/swift/true": {
+      "abstract": [
+        {
+          "text": "A true value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/swift/true",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "true",
+      "type": "topic",
+      "url": "/documentation/swift/true"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "media-3921828": {
+      "alt": "An abstract representation of a video player with a timeline along the bottom and two interstitial time ranges highlighted.",
+      "identifier": "media-3921828",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/40ac9c27ddd298f45c0dd2163fde476b/media-3921828@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/fd25db085a8ab876546d61cc349b82a2/media-3921828~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "tvOS-Playback-and-Capture",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.avkit/documentation/AVKit/customizing-the-tvos-playback-experience",
+        "doc://com.apple.avkit/documentation/AVKit/presenting-navigation-markers",
+        "doc://com.apple.avkit/documentation/AVKit/presenting-content-proposals-in-tvos",
+        "doc://com.apple.avkit/documentation/AVKit/working-with-overlays-and-parental-controls-in-tvos",
+        "doc://com.apple.avkit/documentation/AVKit/supporting-continuity-camera-in-your-tvos-app",
+        "doc://com.apple.avkit/documentation/AVKit/AVPlayerViewController",
+        "doc://com.apple.avkit/documentation/AVKit/AVPlayerViewControllerDelegate",
+        "doc://com.apple.avkit/documentation/AVKit/AVInterstitialTimeRange",
+        "doc://com.apple.avkit/documentation/AVKit/AVNavigationMarkersGroup",
+        "doc://com.apple.avkit/documentation/AVKit/AVContentProposalViewController",
+        "doc://com.apple.avkit/documentation/AVKit/AVDisplayManager",
+        "doc://com.apple.avkit/documentation/AVKit/AVContinuityDevicePickerViewController",
+        "doc://com.apple.avkit/documentation/AVKit/AVContinuityDevicePickerViewControllerDelegate"
+      ],
+      "title": "tvOS Playback and Capture"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "tvOS-Playback-and-Capture",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.avkit/documentation/AVKit/customizing-the-tvos-playback-experience",
+                "doc://com.apple.avkit/documentation/AVKit/presenting-navigation-markers",
+                "doc://com.apple.avkit/documentation/AVKit/presenting-content-proposals-in-tvos",
+                "doc://com.apple.avkit/documentation/AVKit/working-with-overlays-and-parental-controls-in-tvos",
+                "doc://com.apple.avkit/documentation/AVKit/supporting-continuity-camera-in-your-tvos-app",
+                "doc://com.apple.avkit/documentation/AVKit/AVPlayerViewController",
+                "doc://com.apple.avkit/documentation/AVKit/AVPlayerViewControllerDelegate",
+                "doc://com.apple.avkit/documentation/AVKit/AVInterstitialTimeRange",
+                "doc://com.apple.avkit/documentation/AVKit/AVNavigationMarkersGroup",
+                "doc://com.apple.avkit/documentation/AVKit/AVContentProposalViewController",
+                "doc://com.apple.avkit/documentation/AVKit/AVDisplayManager",
+                "doc://com.apple.avkit/documentation/AVKit/AVContinuityDevicePickerViewController",
+                "doc://com.apple.avkit/documentation/AVKit/AVContinuityDevicePickerViewControllerDelegate"
+              ],
+              "title": "tvOS Playback and Capture"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVContinuityDevicePickerViewControllerDelegate/title",
+          "value": "AVContinuityDevicePickerViewControllerDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVContinuityDevicePickerViewControllerDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVContinuityDevicePickerViewControllerDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVContinuityDevicePickerViewControllerDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVContinuityDevicePickerViewControllerDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFoundation~1AVPlayerInterstitialEvent/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AVPlayerInterstitialEvent"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFoundation~1AVPlayerItem/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AVPlayerItem"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFoundation~1AVPlayerInterstitialEventController/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AVPlayerInterstitialEventController"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)AVPlayerInterstitialEventMonitor",
+              "text": "AVPlayerInterstitialEventMonitor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVPlayerViewControllerDelegate/title",
+          "value": "AVPlayerViewControllerDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVPlayerViewControllerDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVPlayerViewControllerDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVPlayerViewControllerDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVPlayerViewControllerDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVPlayerViewController~1requiresLinearPlayback/title",
+          "value": "requiresLinearPlayback"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVPlayerViewController~1requiresLinearPlayback/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "requiresLinearPlayback"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreMedia~1CMTimeRange/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "typedef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " { ... } "
+            },
+            {
+              "kind": "identifier",
+              "text": "CMTimeRange"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVContinuityDevicePickerViewController/title",
+          "value": "AVContinuityDevicePickerViewController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVContinuityDevicePickerViewController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVContinuityDevicePickerViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVContinuityDevicePickerViewController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVContinuityDevicePickerViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVInterstitialTimeRange/title",
+          "value": "AVInterstitialTimeRange"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVInterstitialTimeRange/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVInterstitialTimeRange"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVInterstitialTimeRange/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVInterstitialTimeRange"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVContentProposalViewController/title",
+          "value": "AVContentProposalViewController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVContentProposalViewController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVContentProposalViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVContentProposalViewController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVContentProposalViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFoundation~1AVPlayerItem~1interstitialTimeRanges/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "nonatomic"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "readonly"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:Q$objc(cs)NSArray",
+              "text": "NSArray<AVInterstitialTimeRange *>"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "identifier",
+              "text": "interstitialTimeRanges"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFoundation~1AVPlayerInterstitialEvent~1userDefinedAttributes/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "nonatomic"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "readonly"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSDictionary",
+              "text": "NSDictionary"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "identifier",
+              "text": "userDefinedAttributes"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVPlayerViewController/title",
+          "value": "AVPlayerViewController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVPlayerViewController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVPlayerViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVPlayerViewController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVPlayerViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVDisplayManager/title",
+          "value": "AVDisplayManager"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVDisplayManager/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVDisplayManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVDisplayManager/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVDisplayManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVNavigationMarkersGroup/title",
+          "value": "AVNavigationMarkersGroup"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVNavigationMarkersGroup/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVNavigationMarkersGroup"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVNavigationMarkersGroup/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVNavigationMarkersGroup"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFoundation~1AVPlayerItem~1translatesPlayerInterstitialEvents/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "nonatomic"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@BOOL",
+              "text": "BOOL"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "translatesPlayerInterstitialEvents"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVPlayerViewControllerDelegate~1playerViewController(_:timeToSeekAfterUserNavigatedFrom:to:)/title",
+          "value": "playerViewController:timeToSeekAfterUserNavigatedFromTime:toTime:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVPlayerViewControllerDelegate~1playerViewController(_:timeToSeekAfterUserNavigatedFrom:to:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "playerViewController:timeToSeekAfterUserNavigatedFromTime:toTime:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/avkit/working-with-interstitial-content"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/avkit/working-with-interstitial-content"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

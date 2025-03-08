@@ -1,0 +1,818 @@
+{
+  "abstract": [
+    {
+      "text": "Provide uniform type identifiers that describe file types for storage or transfer.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.uniformtypeidentifiers/documentation/UniformTypeIdentifiers"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "UniformTypeIdentifiers",
+    "modules": [
+      {
+        "name": "Uniform Type Identifiers"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "14.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "14.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "14.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "beta": false,
+        "introducedAt": "11.0",
+        "name": "macOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "14.0",
+        "name": "tvOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "7.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "collection",
+    "roleHeading": "Framework",
+    "symbolKind": "module",
+    "title": "Uniform Type Identifiers"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uniformtypeidentifiers/documentation/UniformTypeIdentifiers",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " framework provides a collection of common types that map to MIME and file types. Use these types in your project to describe the file types in your app. These descriptions help the system properly handle file storage formats or in-memory data for transfer — for example, transferring data to or from the pasteboard. The identifier types can also identify other resources, such as directories, volumes, or packages.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Explicitly specify relationships between types by marking them as subtypes of other types. For example, the type ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uniformtypeidentifiers/documentation/UniformTypeIdentifiers/UTTypePNG",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " has the identifier ",
+              "type": "text"
+            },
+            {
+              "code": "public.png",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and is a subtype of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uniformtypeidentifiers/documentation/UniformTypeIdentifiers/UTTypeImage",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " (",
+              "type": "text"
+            },
+            {
+              "code": "public.image",
+              "type": "codeVoice"
+            },
+            {
+              "text": "). ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uniformtypeidentifiers/documentation/UniformTypeIdentifiers/UTTypeImage",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " is in turn a subtype of both of the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.uniformtypeidentifiers/documentation/UniformTypeIdentifiers/UTTypeContent",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " (",
+                      "type": "text"
+                    },
+                    {
+                      "code": "public.content",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": "), which implies the type can be a document",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.uniformtypeidentifiers/documentation/UniformTypeIdentifiers/UTTypeData",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " (",
+                      "type": "text"
+                    },
+                    {
+                      "code": "public.data",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": "), which implies the type is representable as a byte stream",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.uniformtypeidentifiers/documentation/UniformTypeIdentifiers/UTTypeData",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " also conforms to ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.uniformtypeidentifiers/documentation/UniformTypeIdentifiers/UTTypeItem",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " (",
+                  "type": "text"
+                },
+                {
+                  "code": "public.item",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": "), which is a generic base type for most items in a file system, such as files or directories.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.uniformtypeidentifiers/documentation/UniformTypeIdentifiers": {
+      "abstract": [
+        {
+          "text": "Provide uniform type identifiers that describe file types for storage or transfer.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uniformtypeidentifiers/documentation/UniformTypeIdentifiers",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Uniform Type Identifiers",
+      "type": "topic",
+      "url": "/documentation/uniformtypeidentifiers"
+    },
+    "doc://com.apple.uniformtypeidentifiers/documentation/UniformTypeIdentifiers/UTTagClass": {
+      "abstract": [
+        {
+          "text": "A type that represents tag classes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UTTagClass"
+        }
+      ],
+      "identifier": "doc://com.apple.uniformtypeidentifiers/documentation/UniformTypeIdentifiers/UTTagClass",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UTTagClass"
+        }
+      ],
+      "role": "symbol",
+      "title": "UTTagClass",
+      "type": "topic",
+      "url": "/documentation/uniformtypeidentifiers/uttagclass"
+    },
+    "doc://com.apple.uniformtypeidentifiers/documentation/UniformTypeIdentifiers/UTType-swift.struct": {
+      "abstract": [
+        {
+          "text": "A structure that represents a type of data to load, send, or receive.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UTType"
+        }
+      ],
+      "identifier": "doc://com.apple.uniformtypeidentifiers/documentation/UniformTypeIdentifiers/UTType-swift.struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UTType"
+        }
+      ],
+      "role": "symbol",
+      "title": "UTType",
+      "type": "topic",
+      "url": "/documentation/uniformtypeidentifiers/uttype-swift.struct"
+    },
+    "doc://com.apple.uniformtypeidentifiers/documentation/UniformTypeIdentifiers/UTTypeCSS": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "UTTypeCSS"
+        }
+      ],
+      "identifier": "doc://com.apple.uniformtypeidentifiers/documentation/UniformTypeIdentifiers/UTTypeCSS",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UTTypeCSS",
+      "type": "topic",
+      "url": "/documentation/uniformtypeidentifiers/uttypecss"
+    },
+    "doc://com.apple.uniformtypeidentifiers/documentation/UniformTypeIdentifiers/UTTypeContent": {
+      "abstract": [
+        {
+          "text": "A base type that represents anything containing user-viewable content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "UTTypeContent"
+        }
+      ],
+      "identifier": "doc://com.apple.uniformtypeidentifiers/documentation/UniformTypeIdentifiers/UTTypeContent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UTTypeContent",
+      "type": "topic",
+      "url": "/documentation/uniformtypeidentifiers/uttypecontent"
+    },
+    "doc://com.apple.uniformtypeidentifiers/documentation/UniformTypeIdentifiers/UTTypeDNG": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "UTTypeDNG"
+        }
+      ],
+      "identifier": "doc://com.apple.uniformtypeidentifiers/documentation/UniformTypeIdentifiers/UTTypeDNG",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UTTypeDNG",
+      "type": "topic",
+      "url": "/documentation/uniformtypeidentifiers/uttypedng"
+    },
+    "doc://com.apple.uniformtypeidentifiers/documentation/UniformTypeIdentifiers/UTTypeData": {
+      "abstract": [
+        {
+          "text": "A base type that represents any sort of byte stream, including files and in-memory data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "UTTypeData"
+        }
+      ],
+      "identifier": "doc://com.apple.uniformtypeidentifiers/documentation/UniformTypeIdentifiers/UTTypeData",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UTTypeData",
+      "type": "topic",
+      "url": "/documentation/uniformtypeidentifiers/uttypedata"
+    },
+    "doc://com.apple.uniformtypeidentifiers/documentation/UniformTypeIdentifiers/UTTypeEXR": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "UTTypeEXR"
+        }
+      ],
+      "identifier": "doc://com.apple.uniformtypeidentifiers/documentation/UniformTypeIdentifiers/UTTypeEXR",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UTTypeEXR",
+      "type": "topic",
+      "url": "/documentation/uniformtypeidentifiers/uttypeexr"
+    },
+    "doc://com.apple.uniformtypeidentifiers/documentation/UniformTypeIdentifiers/UTTypeGeoJSON": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "UTTypeGeoJSON"
+        }
+      ],
+      "identifier": "doc://com.apple.uniformtypeidentifiers/documentation/UniformTypeIdentifiers/UTTypeGeoJSON",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UTTypeGeoJSON",
+      "type": "topic",
+      "url": "/documentation/uniformtypeidentifiers/uttypegeojson"
+    },
+    "doc://com.apple.uniformtypeidentifiers/documentation/UniformTypeIdentifiers/UTTypeHEICS": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "UTTypeHEICS"
+        }
+      ],
+      "identifier": "doc://com.apple.uniformtypeidentifiers/documentation/UniformTypeIdentifiers/UTTypeHEICS",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UTTypeHEICS",
+      "type": "topic",
+      "url": "/documentation/uniformtypeidentifiers/uttypeheics"
+    },
+    "doc://com.apple.uniformtypeidentifiers/documentation/UniformTypeIdentifiers/UTTypeImage": {
+      "abstract": [
+        {
+          "text": "A base type that represents image data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "UTTypeImage"
+        }
+      ],
+      "identifier": "doc://com.apple.uniformtypeidentifiers/documentation/UniformTypeIdentifiers/UTTypeImage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UTTypeImage",
+      "type": "topic",
+      "url": "/documentation/uniformtypeidentifiers/uttypeimage"
+    },
+    "doc://com.apple.uniformtypeidentifiers/documentation/UniformTypeIdentifiers/UTTypeItem": {
+      "abstract": [
+        {
+          "text": "A generic base type for most objects, such as files or directories.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "UTTypeItem"
+        }
+      ],
+      "identifier": "doc://com.apple.uniformtypeidentifiers/documentation/UniformTypeIdentifiers/UTTypeItem",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UTTypeItem",
+      "type": "topic",
+      "url": "/documentation/uniformtypeidentifiers/uttypeitem"
+    },
+    "doc://com.apple.uniformtypeidentifiers/documentation/UniformTypeIdentifiers/UTTypeJPEGXL": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "UTTypeJPEGXL"
+        }
+      ],
+      "identifier": "doc://com.apple.uniformtypeidentifiers/documentation/UniformTypeIdentifiers/UTTypeJPEGXL",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UTTypeJPEGXL",
+      "type": "topic",
+      "url": "/documentation/uniformtypeidentifiers/uttypejpegxl"
+    },
+    "doc://com.apple.uniformtypeidentifiers/documentation/UniformTypeIdentifiers/UTTypeLinkPresentationMetadata": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "UTTypeLinkPresentationMetadata"
+        }
+      ],
+      "identifier": "doc://com.apple.uniformtypeidentifiers/documentation/UniformTypeIdentifiers/UTTypeLinkPresentationMetadata",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UTTypeLinkPresentationMetadata",
+      "type": "topic",
+      "url": "/documentation/uniformtypeidentifiers/uttypelinkpresentationmetadata"
+    },
+    "doc://com.apple.uniformtypeidentifiers/documentation/UniformTypeIdentifiers/UTTypePNG": {
+      "abstract": [
+        {
+          "text": "A type that represents a PNG image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "UTTypePNG"
+        }
+      ],
+      "identifier": "doc://com.apple.uniformtypeidentifiers/documentation/UniformTypeIdentifiers/UTTypePNG",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UTTypePNG",
+      "type": "topic",
+      "url": "/documentation/uniformtypeidentifiers/uttypepng"
+    },
+    "doc://com.apple.uniformtypeidentifiers/documentation/UniformTypeIdentifiers/UTTypeReference": {
+      "abstract": [
+        {
+          "text": "An object that represents a type of data to load, send, or receive.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UTTypeReference"
+        }
+      ],
+      "identifier": "doc://com.apple.uniformtypeidentifiers/documentation/UniformTypeIdentifiers/UTTypeReference",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UTTypeReference"
+        }
+      ],
+      "role": "symbol",
+      "title": "UTTypeReference",
+      "type": "topic",
+      "url": "/documentation/uniformtypeidentifiers/uttypereference"
+    },
+    "doc://com.apple.uniformtypeidentifiers/documentation/UniformTypeIdentifiers/UTTypeTarArchive": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "UTTypeTarArchive"
+        }
+      ],
+      "identifier": "doc://com.apple.uniformtypeidentifiers/documentation/UniformTypeIdentifiers/UTTypeTarArchive",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UTTypeTarArchive",
+      "type": "topic",
+      "url": "/documentation/uniformtypeidentifiers/uttypetararchive"
+    },
+    "doc://com.apple.uniformtypeidentifiers/documentation/UniformTypeIdentifiers/defining-file-and-data-types-for-your-app": {
+      "abstract": [
+        {
+          "text": "Declare uniform type identifiers to support your app’s proprietary data formats.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uniformtypeidentifiers/documentation/UniformTypeIdentifiers/defining-file-and-data-types-for-your-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Defining file and data types for your app",
+      "type": "topic",
+      "url": "/documentation/uniformtypeidentifiers/defining-file-and-data-types-for-your-app"
+    },
+    "doc://com.apple.uniformtypeidentifiers/documentation/UniformTypeIdentifiers/system-declared-uniform-type-identifiers": {
+      "abstract": [
+        {
+          "text": "Common types that the system declares.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uniformtypeidentifiers/documentation/UniformTypeIdentifiers/system-declared-uniform-type-identifiers",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "System-declared uniform type identifiers",
+      "type": "topic",
+      "url": "/documentation/uniformtypeidentifiers/system-declared-uniform-type-identifiers"
+    },
+    "doc://com.apple.uniformtypeidentifiers/documentation/UniformTypeIdentifiers/uniformtypeidentifiers-constants": {
+      "abstract": [],
+      "identifier": "doc://com.apple.uniformtypeidentifiers/documentation/UniformTypeIdentifiers/uniformtypeidentifiers-constants",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "UniformTypeIdentifiers Constants",
+      "type": "topic",
+      "url": "/documentation/uniformtypeidentifiers/uniformtypeidentifiers-constants"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Essentials",
+      "identifiers": [
+        "doc://com.apple.uniformtypeidentifiers/documentation/UniformTypeIdentifiers/defining-file-and-data-types-for-your-app",
+        "doc://com.apple.uniformtypeidentifiers/documentation/UniformTypeIdentifiers/system-declared-uniform-type-identifiers"
+      ],
+      "title": "Essentials"
+    },
+    {
+      "anchor": "Uniform-type-identifiers",
+      "identifiers": [
+        "doc://com.apple.uniformtypeidentifiers/documentation/UniformTypeIdentifiers/UTType-swift.struct",
+        "doc://com.apple.uniformtypeidentifiers/documentation/UniformTypeIdentifiers/UTTagClass",
+        "doc://com.apple.uniformtypeidentifiers/documentation/UniformTypeIdentifiers/UTTypeReference"
+      ],
+      "title": "Uniform type identifiers"
+    },
+    {
+      "anchor": "Reference",
+      "identifiers": [
+        "doc://com.apple.uniformtypeidentifiers/documentation/UniformTypeIdentifiers/uniformtypeidentifiers-constants"
+      ],
+      "title": "Reference"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Essentials",
+              "identifiers": [
+                "doc://com.apple.uniformtypeidentifiers/documentation/UniformTypeIdentifiers/defining-file-and-data-types-for-your-app",
+                "doc://com.apple.uniformtypeidentifiers/documentation/UniformTypeIdentifiers/system-declared-uniform-type-identifiers"
+              ],
+              "title": "Essentials"
+            },
+            {
+              "anchor": "Uniform-type-identifiers",
+              "identifiers": [
+                "doc://com.apple.uniformtypeidentifiers/documentation/UniformTypeIdentifiers/UTTypeReference"
+              ],
+              "title": "Uniform type identifiers"
+            },
+            {
+              "anchor": "Reference",
+              "identifiers": [
+                "doc://com.apple.uniformtypeidentifiers/documentation/UniformTypeIdentifiers/uniformtypeidentifiers-constants"
+              ],
+              "title": "Reference"
+            },
+            {
+              "anchor": "Variables",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.uniformtypeidentifiers/documentation/UniformTypeIdentifiers/UTTypeCSS",
+                "doc://com.apple.uniformtypeidentifiers/documentation/UniformTypeIdentifiers/UTTypeDNG",
+                "doc://com.apple.uniformtypeidentifiers/documentation/UniformTypeIdentifiers/UTTypeEXR",
+                "doc://com.apple.uniformtypeidentifiers/documentation/UniformTypeIdentifiers/UTTypeGeoJSON",
+                "doc://com.apple.uniformtypeidentifiers/documentation/UniformTypeIdentifiers/UTTypeHEICS",
+                "doc://com.apple.uniformtypeidentifiers/documentation/UniformTypeIdentifiers/UTTypeJPEGXL",
+                "doc://com.apple.uniformtypeidentifiers/documentation/UniformTypeIdentifiers/UTTypeLinkPresentationMetadata",
+                "doc://com.apple.uniformtypeidentifiers/documentation/UniformTypeIdentifiers/UTTypeTarArchive"
+              ],
+              "title": "Variables"
+            }
+          ]
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uniformtypeidentifiers~1documentation~1UniformTypeIdentifiers~1UTTypeReference/title",
+          "value": "UTType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uniformtypeidentifiers~1documentation~1UniformTypeIdentifiers~1UTTypeReference/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UTType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uniformtypeidentifiers~1documentation~1UniformTypeIdentifiers~1UTTypeReference/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UTType"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/uniformtypeidentifiers"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/uniformtypeidentifiers"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

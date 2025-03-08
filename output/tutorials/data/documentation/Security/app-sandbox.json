@@ -1,0 +1,677 @@
+{
+  "abstract": [
+    {
+      "text": "Restrict access to system resources and user data in macOS apps to contain damage if an app becomes compromised.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.security/documentation/Security"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.security/documentation/Security/app-sandbox"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Security"
+      }
+    ],
+    "role": "collectionGroup",
+    "title": "App Sandbox"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "App Sandbox provides protection to system resources and user data by limiting your app’s access to resources requested through entitlements.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "To distribute a macOS app through the Mac App Store, you must enable the App Sandbox capability.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.security.app-sandbox": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the app may use access control technology to contain damage to the system and user data if an app is compromised.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.security.app-sandbox",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "App Sandbox Entitlement",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Entitlements/com.apple.security.app-sandbox"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.security.assets.movies.read-only": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the app may have read-only access to the Movies folder.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.security.assets.movies.read-only",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "com.apple.security.assets.movies.read-only",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Entitlements/com.apple.security.assets.movies.read-only"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.security.assets.movies.read-write": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the app may have read-write access to the Movies folder.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.security.assets.movies.read-write",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "com.apple.security.assets.movies.read-write",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Entitlements/com.apple.security.assets.movies.read-write"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.security.assets.music.read-only": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the app may have read-only access to the Music folder.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.security.assets.music.read-only",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "com.apple.security.assets.music.read-only",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Entitlements/com.apple.security.assets.music.read-only"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.security.assets.music.read-write": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the app may have read-write access to the Music folder.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.security.assets.music.read-write",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "com.apple.security.assets.music.read-write",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Entitlements/com.apple.security.assets.music.read-write"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.security.assets.pictures.read-only": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the app may have read-only access to the Pictures folder.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.security.assets.pictures.read-only",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "com.apple.security.assets.pictures.read-only",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Entitlements/com.apple.security.assets.pictures.read-only"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.security.assets.pictures.read-write": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the app may have read-write access to the Pictures folder.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.security.assets.pictures.read-write",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "com.apple.security.assets.pictures.read-write",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Entitlements/com.apple.security.assets.pictures.read-write"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.security.device.bluetooth": {
+      "abstract": [
+        {
+          "text": "A Boolean value indicating whether your app may interact with Bluetooth devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.security.device.bluetooth",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "com.apple.security.device.bluetooth",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Entitlements/com.apple.security.device.bluetooth"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.security.device.camera": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the app may interact with the built-in and external cameras, and capture movies and still images.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.security.device.camera",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Camera entitlement",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Entitlements/com.apple.security.device.camera"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.security.device.microphone": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the app may use the microphone.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.security.device.microphone",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "com.apple.security.device.microphone",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Entitlements/com.apple.security.device.microphone"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.security.device.usb": {
+      "abstract": [
+        {
+          "text": "A Boolean value indicating whether your app may interact with USB devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.security.device.usb",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "com.apple.security.device.usb",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Entitlements/com.apple.security.device.usb"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.security.files.all": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the app may have access to all files.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.security.files.all",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "All files entitlement",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Entitlements/com.apple.security.files.all"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.security.files.downloads.read-only": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the app may have read-only access to the Downloads folder.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.security.files.downloads.read-only",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "com.apple.security.files.downloads.read-only",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Entitlements/com.apple.security.files.downloads.read-only"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.security.files.downloads.read-write": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the app may have read-write access to the Downloads folder.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.security.files.downloads.read-write",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "com.apple.security.files.downloads.read-write",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Entitlements/com.apple.security.files.downloads.read-write"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.security.files.user-selected.read-only": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the app may have read-only access to files the user has selected using an Open or Save dialog.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.security.files.user-selected.read-only",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "com.apple.security.files.user-selected.read-only",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Entitlements/com.apple.security.files.user-selected.read-only"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.security.files.user-selected.read-write": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the app may have read-write access to files the user has selected using an Open or Save dialog.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.security.files.user-selected.read-write",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "com.apple.security.files.user-selected.read-write",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Entitlements/com.apple.security.files.user-selected.read-write"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.security.network.client": {
+      "abstract": [
+        {
+          "text": "A Boolean value indicating whether your app may open outgoing network connections.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.security.network.client",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "com.apple.security.network.client",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Entitlements/com.apple.security.network.client"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.security.network.server": {
+      "abstract": [
+        {
+          "text": "A Boolean value indicating whether your app may listen for incoming network connections.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.security.network.server",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "com.apple.security.network.server",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Entitlements/com.apple.security.network.server"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.security.personal-information.addressbook": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the app may have read-write access to contacts in the user’s address book.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.security.personal-information.addressbook",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Address book entitlement",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Entitlements/com.apple.security.personal-information.addressbook"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.security.personal-information.calendars": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the app may have read-write access to the user’s calendar.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.security.personal-information.calendars",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Calendars entitlement",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Entitlements/com.apple.security.personal-information.calendars"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.security.personal-information.location": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the app may access location information from Location Services.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.security.personal-information.location",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Location entitlement",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Entitlements/com.apple.security.personal-information.location"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.security.print": {
+      "abstract": [
+        {
+          "text": "A Boolean value indicating whether your app may print a document.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.security.print",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "com.apple.security.print",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Entitlements/com.apple.security.print"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSAppDataUsageDescription": {
+      "abstract": [
+        {
+          "text": "A message that tells the user why the app needs to access files in other apps’ sandbox containers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSAppDataUsageDescription",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSAppDataUsageDescription",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/NSAppDataUsageDescription"
+    },
+    "doc://com.apple.documentation/documentation/Xcode/embedding-a-helper-tool-in-a-sandboxed-app": {
+      "abstract": [
+        {
+          "text": "Add a command-line tool to a sandboxed app’s Xcode project so the resulting app can run it as a helper tool.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Xcode/embedding-a-helper-tool-in-a-sandboxed-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Embedding a command-line tool in a sandboxed app",
+      "type": "topic",
+      "url": "/documentation/Xcode/embedding-a-helper-tool-in-a-sandboxed-app"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.security/documentation/Security": {
+      "abstract": [
+        {
+          "text": "Secure the data your app manages, and control access to your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Security",
+      "type": "topic",
+      "url": "/documentation/security"
+    },
+    "doc://com.apple.security/documentation/Security/accessing-files-from-the-macos-app-sandbox": {
+      "abstract": [
+        {
+          "text": "Read and write documents and supporting files while maintaining security protection.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/accessing-files-from-the-macos-app-sandbox",
+      "kind": "article",
+      "role": "article",
+      "title": "Accessing files from the macOS App Sandbox",
+      "type": "topic",
+      "url": "/documentation/security/accessing-files-from-the-macos-app-sandbox"
+    },
+    "doc://com.apple.security/documentation/Security/discovering-and-diagnosing-app-sandbox-violations": {
+      "abstract": [
+        {
+          "text": "Determine when your macOS app behaves incorrectly because of a sandbox violation, and fix sandbox-related issues.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/discovering-and-diagnosing-app-sandbox-violations",
+      "kind": "article",
+      "role": "article",
+      "title": "Discovering and diagnosing App Sandbox violations",
+      "type": "topic",
+      "url": "/documentation/security/discovering-and-diagnosing-app-sandbox-violations"
+    },
+    "doc://com.apple.security/documentation/Security/migrating-your-app-s-files-to-its-app-sandbox-container": {
+      "abstract": [
+        {
+          "text": "Simplify your app’s access to documents and supporting files.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/migrating-your-app-s-files-to-its-app-sandbox-container",
+      "kind": "article",
+      "role": "article",
+      "title": "Migrating your app’s files to its App Sandbox container",
+      "type": "topic",
+      "url": "/documentation/security/migrating-your-app-s-files-to-its-app-sandbox-container"
+    },
+    "doc://com.apple.security/documentation/Security/protecting-user-data-with-app-sandbox": {
+      "abstract": [
+        {
+          "text": "Guard user data and operating system resources from malicious attacks by limiting your app’s access to files, network connections, and hardware capabilities.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/protecting-user-data-with-app-sandbox",
+      "kind": "article",
+      "role": "article",
+      "title": "Protecting user data with App Sandbox",
+      "type": "topic",
+      "url": "/documentation/security/protecting-user-data-with-app-sandbox"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Essentials",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.security.app-sandbox",
+        "doc://com.apple.security/documentation/Security/protecting-user-data-with-app-sandbox",
+        "doc://com.apple.documentation/documentation/Xcode/embedding-a-helper-tool-in-a-sandboxed-app",
+        "doc://com.apple.security/documentation/Security/discovering-and-diagnosing-app-sandbox-violations"
+      ],
+      "title": "Essentials"
+    },
+    {
+      "anchor": "Network",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.security.network.server",
+        "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.security.network.client"
+      ],
+      "title": "Network"
+    },
+    {
+      "anchor": "Hardware",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.security.device.camera",
+        "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.security.device.microphone",
+        "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.security.device.usb",
+        "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.security.print",
+        "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.security.device.bluetooth"
+      ],
+      "title": "Hardware"
+    },
+    {
+      "anchor": "App-Data",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.security.personal-information.addressbook",
+        "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.security.personal-information.location",
+        "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.security.personal-information.calendars"
+      ],
+      "title": "App Data"
+    },
+    {
+      "anchor": "File-Access",
+      "identifiers": [
+        "doc://com.apple.security/documentation/Security/accessing-files-from-the-macos-app-sandbox",
+        "doc://com.apple.security/documentation/Security/migrating-your-app-s-files-to-its-app-sandbox-container",
+        "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.security.files.user-selected.read-only",
+        "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.security.files.user-selected.read-write",
+        "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.security.files.downloads.read-only",
+        "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.security.files.downloads.read-write",
+        "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.security.assets.pictures.read-only",
+        "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.security.assets.pictures.read-write",
+        "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.security.assets.music.read-only",
+        "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.security.assets.music.read-write",
+        "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.security.assets.movies.read-only",
+        "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.security.assets.movies.read-write",
+        "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.security.files.all",
+        "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSAppDataUsageDescription"
+      ],
+      "title": "File Access"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Essentials",
+              "identifiers": [
+                "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.security.app-sandbox",
+                "doc://com.apple.security/documentation/Security/protecting-user-data-with-app-sandbox",
+                "doc://com.apple.documentation/documentation/Xcode/embedding-a-helper-tool-in-a-sandboxed-app",
+                "doc://com.apple.security/documentation/Security/discovering-and-diagnosing-app-sandbox-violations"
+              ],
+              "title": "Essentials"
+            },
+            {
+              "anchor": "Network",
+              "identifiers": [
+                "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.security.network.server",
+                "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.security.network.client"
+              ],
+              "title": "Network"
+            },
+            {
+              "anchor": "Hardware",
+              "identifiers": [
+                "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.security.device.camera",
+                "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.security.device.microphone",
+                "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.security.device.usb",
+                "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.security.print",
+                "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.security.device.bluetooth"
+              ],
+              "title": "Hardware"
+            },
+            {
+              "anchor": "App-Data",
+              "identifiers": [
+                "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.security.personal-information.addressbook",
+                "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.security.personal-information.location",
+                "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.security.personal-information.calendars"
+              ],
+              "title": "App Data"
+            },
+            {
+              "anchor": "File-Access",
+              "identifiers": [
+                "doc://com.apple.security/documentation/Security/accessing-files-from-the-macos-app-sandbox",
+                "doc://com.apple.security/documentation/Security/migrating-your-app-s-files-to-its-app-sandbox-container",
+                "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.security.files.user-selected.read-only",
+                "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.security.files.user-selected.read-write",
+                "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.security.files.downloads.read-only",
+                "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.security.files.downloads.read-write",
+                "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.security.assets.pictures.read-only",
+                "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.security.assets.pictures.read-write",
+                "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.security.assets.music.read-only",
+                "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.security.assets.music.read-write",
+                "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.security.assets.movies.read-only",
+                "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.security.assets.movies.read-write",
+                "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.security.files.all",
+                "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSAppDataUsageDescription"
+              ],
+              "title": "File Access"
+            }
+          ]
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/security/app-sandbox"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/security/app-sandbox"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

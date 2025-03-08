@@ -1,0 +1,674 @@
+{
+  "abstract": [
+    {
+      "text": "A network service browser that finds published services on a network using multicast DNS.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/bonjour"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/foundation/nsnetservicebrowser"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1408765,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSNetServiceBrowser",
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "deprecated": true,
+        "deprecatedAt": "15.0",
+        "introducedAt": "2.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "deprecated": true,
+        "deprecatedAt": "15.0",
+        "introducedAt": "2.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "deprecated": true,
+        "deprecatedAt": "15.0",
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "deprecated": true,
+        "deprecatedAt": "12.0",
+        "introducedAt": "10.2",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "deprecated": true,
+        "deprecatedAt": "15.0",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "deprecated": true,
+        "deprecatedAt": "1.0",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "NSNetServiceBrowser"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSNetServiceBrowser"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/1418956-nsobject",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Services can range from standard services, such as HTTP and FTP, to custom services defined by other applications. You can use a network service browser in your code to obtain the list of accessible domains and then to obtain an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsnetservice",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object for each discovered service. Each network service browser performs one search at a time, so if you want to perform multiple simultaneous searches, use multiple network service browsers.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A network service browser performs all searches asynchronously using the current run loop to execute the search in the background. Results from a search are returned through the associated delegate object, which your client application must provide. Searching proceeds in the background until the object receives a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsnetservicebrowser/1414528-stop",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " message.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To use an ",
+              "type": "text"
+            },
+            {
+              "code": "NSNetServiceBrowser",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object to search for services, allocate it, initialize it, and assign a delegate. (If you wish, you can also use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsnetservicebrowser/1409776-scheduleinrunloop",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsnetservicebrowser/1411566-removefromrunloop",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " methods to execute searches on a run loop other than the current one.) Once your object is ready, you begin by gathering the list of accessible domains using either the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsnetservicebrowser/1408718-searchforregistrationdomains",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsnetservicebrowser/1417661-searchforbrowsabledomains",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " methods. From the list of returned domains, you can pick one and use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsnetservicebrowser/1417565-searchforservicesoftype",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to search for services in that domain.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "NSNetServiceBrowser",
+              "type": "codeVoice"
+            },
+            {
+              "text": " class provides two ways to search for domains. In most cases, your client should use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsnetservicebrowser/1408718-searchforregistrationdomains",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to search only for local domains to which the host machine has registration authority. This is the preferred method for accessing domains as it guarantees that the host machine can connect to services in the returned domains. Access to domains outside this list may be more limited.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/bonjour": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/bonjour",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Bonjour",
+      "type": "topic",
+      "url": "/documentation/foundation/bonjour"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnetservice": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnetservice",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSNetService",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnetservice"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnetservicebrowser": {
+      "abstract": [
+        {
+          "text": "A network service browser that finds published services on a network using multicast DNS.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnetservicebrowser",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSNetServiceBrowser",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnetservicebrowser"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnetservicebrowser/1408718-searchforregistrationdomains": {
+      "abstract": [
+        {
+          "text": "Initiates a search for domains in which the host may register services.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "searchForRegistrationDomains"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnetservicebrowser/1408718-searchforregistrationdomains",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "searchForRegistrationDomains",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnetservicebrowser/1408718-searchforregistrationdomains"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnetservicebrowser/1409380-delegate": {
+      "abstract": [
+        {
+          "text": "The delegate object for this instance.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnetservicebrowser/1409380-delegate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "delegate",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnetservicebrowser/1409380-delegate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnetservicebrowser/1409776-scheduleinrunloop": {
+      "abstract": [
+        {
+          "text": "Adds the receiver to the specified run loop.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "scheduleInRunLoop:forMode:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnetservicebrowser/1409776-scheduleinrunloop",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "scheduleInRunLoop:forMode:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnetservicebrowser/1409776-scheduleinrunloop"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnetservicebrowser/1411566-removefromrunloop": {
+      "abstract": [
+        {
+          "text": "Removes the receiver from the specified run loop.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeFromRunLoop:forMode:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnetservicebrowser/1411566-removefromrunloop",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "removeFromRunLoop:forMode:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnetservicebrowser/1411566-removefromrunloop"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnetservicebrowser/1412947-init": {
+      "abstract": [
+        {
+          "text": "Initializes an allocated ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/nsnetservicebrowser",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " object.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnetservicebrowser/1412947-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnetservicebrowser/1412947-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnetservicebrowser/1413106-includespeertopeer": {
+      "abstract": [
+        {
+          "text": "Whether to browse over peer-to-peer Bluetooth and Wi-Fi, if available. ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/objectivec/no",
+          "isActive": false,
+          "type": "reference"
+        },
+        {
+          "text": ", by default.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnetservicebrowser/1413106-includespeertopeer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "includesPeerToPeer",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnetservicebrowser/1413106-includespeertopeer"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnetservicebrowser/1414528-stop": {
+      "abstract": [
+        {
+          "text": "Halts a currently running search or resolution.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "stop"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnetservicebrowser/1414528-stop",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "stop",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnetservicebrowser/1414528-stop"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnetservicebrowser/1417565-searchforservicesoftype": {
+      "abstract": [
+        {
+          "text": "Starts a search for services of a particular type within a specific domain.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "searchForServicesOfType:inDomain:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnetservicebrowser/1417565-searchforservicesoftype",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "searchForServicesOfType:inDomain:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnetservicebrowser/1417565-searchforservicesoftype"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnetservicebrowser/1417661-searchforbrowsabledomains": {
+      "abstract": [
+        {
+          "text": "Initiates a search for domains visible to the host. This method returns immediately.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "searchForBrowsableDomains"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnetservicebrowser/1417661-searchforbrowsabledomains",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "searchForBrowsableDomains",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnetservicebrowser/1417661-searchforbrowsabledomains"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnetservicebrowser/1807244-searchforalldomains": {
+      "abstract": [
+        {
+          "text": "Initiates a search for all domains that are visible to the host.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnetservicebrowser/1807244-searchforalldomains",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "searchForAllDomains",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnetservicebrowser/1807244-searchforalldomains"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnetservicebrowserdelegate": {
+      "abstract": [
+        {
+          "text": "The interface a net service browser uses to inform a delegate about the state of service discovery.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnetservicebrowserdelegate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSNetServiceBrowserDelegate",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnetservicebrowserdelegate"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/1418956-nsobject": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/1418956-nsobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/1418956-nsobject"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/no": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/no",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NO",
+      "type": "topic",
+      "url": "/documentation/objectivec/no"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/objectivec/nsobject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsnetservicebrowserdelegate"
+      ],
+      "title": "Service Discovery"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "1653714",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsnetservicebrowser/1412947-init"
+      ],
+      "kind": "taskGroup",
+      "title": "Creating Network Service Browsers"
+    },
+    {
+      "anchor": "1653762",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsnetservicebrowser/1409380-delegate",
+        "doc://com.apple.documentation/documentation/foundation/nsnetservicebrowser/1413106-includespeertopeer"
+      ],
+      "kind": "taskGroup",
+      "title": "Configuring Network Service Browsers"
+    },
+    {
+      "anchor": "1653827",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsnetservicebrowser/1417661-searchforbrowsabledomains",
+        "doc://com.apple.documentation/documentation/foundation/nsnetservicebrowser/1408718-searchforregistrationdomains",
+        "doc://com.apple.documentation/documentation/foundation/nsnetservicebrowser/1807244-searchforalldomains",
+        "doc://com.apple.documentation/documentation/foundation/nsnetservicebrowser/1417565-searchforservicesoftype",
+        "doc://com.apple.documentation/documentation/foundation/nsnetservicebrowser/1414528-stop"
+      ],
+      "kind": "taskGroup",
+      "title": "Using Network Service Browsers"
+    },
+    {
+      "anchor": "1653925",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsnetservicebrowser/1409776-scheduleinrunloop",
+        "doc://com.apple.documentation/documentation/foundation/nsnetservicebrowser/1411566-removefromrunloop"
+      ],
+      "kind": "taskGroup",
+      "title": "Managing Run Loops"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nsnetservicebrowser"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/netservicebrowser"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

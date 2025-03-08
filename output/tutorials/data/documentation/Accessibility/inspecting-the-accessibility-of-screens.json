@@ -1,0 +1,549 @@
+{
+  "abstract": [
+    {
+      "text": "Focus on your app with Accessibility Inspector and investigate potential issues on each screen.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Accessibility/documentation/Accessibility",
+        "doc://com.apple.Accessibility/documentation/Accessibility/accessibility-inspector"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Accessibility/documentation/Accessibility/inspecting-the-accessibility-of-screens"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Accessibility"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Inspecting the accessibility of the screens in your app"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To investigate potential accessibility issues in your app, use Accessibility Inspector to display information about the accessibility properties of elements on screen in your app. Accessibility issues can occur on individual elements and when people navigate between elements, and you can detect both kinds of issue with the inspector.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To open Accessibility Inspector, open Xcode and choose Xcode > Open Developer Tool > Accessibility Inspector.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Target-your-app",
+          "level": 3,
+          "text": "Target your app",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In Accessibility Inspector, the target menu displays a list of connected devices and apps you can inspect. By default, it displays apps running on your Mac. If you’re developing a macOS app, pick your app from the list of running apps. If you’re developing for iOS, iPadOS, watchOS, or tvOS, select the name of the device on which the app is running, then pick the app from the processes menu. For information about targeting the correct device, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Xcode/running-your-app-in-simulator-or-on-a-device",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Accessibility Inspector targets the current foreground app by default.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Once you select your app, Accessibility Inspector displays detailed information about the accessibility properties of the current screen and focused element. The following images show the inspection of an app with the Quote element selected, and the corresponding iOS app showing the Quote element highlighted in green:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "accessibility-inspector-window-for-quote",
+                      "type": "image"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              "title": "Accessibility Inspector window"
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "quote-button-highlighted-in-green",
+                      "metadata": {
+                        "deviceFrame": "iPhone14Pro"
+                      },
+                      "type": "image"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              "title": "Corresponding iOS app"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "anchor": "Inspect-individual-elements",
+          "level": 3,
+          "text": "Inspect individual elements",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You choose which element to inspect with the ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Target an element",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " button or by pressing Option Space to toggle inspection mode. While in inspection mode, interact with the element you want to inspect to select it. For example, in macOS, click the element to select it. Similarly, in iOS, tap the element to select it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Accessibility Inspector displays information about the element you select in several sections:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The most important accessibility information for an element.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Basic",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Interactions available for the current element, such as Activate, Scroll left or right, or accessibility custom actions.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Actions",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Detailed accessibility properties for the current element.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Element",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Information about the view hierarchy on the current screen that leads from the root to the currently selected element.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Hierarchy",
+                    "type": "text"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each screen in your app has the potential to contain accessibility issues; periodically navigate through your app during development and check for issues. If you find an inaccessible element, focus Accessibility Inspector on that element, examine its values, and trigger its actions to find the problem. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Accessibility/documentation/Accessibility/performing-accessibility-audits-for-your-app",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Navigate-elements-in-accessibility-order",
+          "level": 3,
+          "text": "Navigate elements in accessibility order",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The navigation section of the inspector contains controls for navigating the app in the same order that accessibility features like VoiceOver use to create a linear path through the elements of the current screen. You can also use these controls to navigate to individual elements for inspection.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The play button starts an automatic sequence of navigation that loops from the current element to the end of the screen. The previous and next buttons advance the selected element one at a time in the linear navigation order. You can also press an arrow key while holding down the Control and Command keys to navigate. The speak button reads the current element aloud similar to how VoiceOver would speak the element to someone selecting this element in your app using VoiceOver.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "By default, left and right navigation drills into elements if possible. To change this navigation behavior to strictly traverse sibling elements, choose Inspection > Disable Auto-interact Into Elements.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If any elements have missing or improper spoken descriptions, find the source of that element in your app’s source code and make corrections.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Accessibility-PageImage-card.png": {
+      "alt": "",
+      "identifier": "Accessibility-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/718b8a161d77a3423dde2dd53ac35ffb/Accessibility-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ed433f19cfa41ebf0c9f495a066b6bbd/Accessibility-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "accessibility-inspector-window-for-quote": {
+      "alt": "The accessibility inspector inspecting an app with the Quote button selected.",
+      "identifier": "accessibility-inspector-window-for-quote",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/6b8f456f85928baa8a78e6f33426c197/accessibility-inspector-window-for-quote@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f162d178b2d6af95ac59a2f91fdf8e0b/accessibility-inspector-window-for-quote~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Accessibility/documentation/Accessibility": {
+      "abstract": [
+        {
+          "text": "Make your apps accessible to everyone who uses Apple devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Accessibility/documentation/Accessibility",
+      "images": [
+        {
+          "identifier": "Accessibility-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Accessibility",
+      "type": "topic",
+      "url": "/documentation/accessibility"
+    },
+    "doc://com.apple.Accessibility/documentation/Accessibility/accessibility-inspector": {
+      "abstract": [
+        {
+          "text": "Reveal how your app represents itself to people using accessibility features.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Accessibility/documentation/Accessibility/accessibility-inspector",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Accessibility Inspector",
+      "type": "topic",
+      "url": "/documentation/accessibility/accessibility-inspector"
+    },
+    "doc://com.apple.Accessibility/documentation/Accessibility/performing-accessibility-audits-for-your-app": {
+      "abstract": [
+        {
+          "text": "Audit your app for common accessibility issues with Accessibility Inspector.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Accessibility/documentation/Accessibility/performing-accessibility-audits-for-your-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Performing accessibility audits for your app",
+      "type": "topic",
+      "url": "/documentation/accessibility/performing-accessibility-audits-for-your-app"
+    },
+    "doc://com.apple.documentation/documentation/Xcode/running-your-app-in-simulator-or-on-a-device": {
+      "abstract": [
+        {
+          "text": "Launch your app in a simulated iOS, iPadOS, tvOS, visionOS, or watchOS device, or on a device connected to a Mac.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Xcode/running-your-app-in-simulator-or-on-a-device",
+      "kind": "article",
+      "role": "article",
+      "title": "Running your app in Simulator or on a device",
+      "type": "topic",
+      "url": "/documentation/Xcode/running-your-app-in-simulator-or-on-a-device"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "quote-button-highlighted-in-green": {
+      "alt": "An iOS app being inspected by Accessibility Inspector. The Quote button is highlighted by a green rectangle that indicates it's the current target of inspection.",
+      "identifier": "quote-button-highlighted-in-green",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1192ccce7d0d1de86d82bf893894e186/quote-button-highlighted-in-green@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/8ba8844510b1c6c024f163b63c7eba5c/quote-button-highlighted-in-green~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/accessibility/inspecting-the-accessibility-of-screens"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/accessibility/inspecting-the-accessibility-of-screens"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

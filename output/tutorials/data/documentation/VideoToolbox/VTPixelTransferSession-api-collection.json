@@ -1,0 +1,976 @@
+{
+  "abstract": [
+    {
+      "text": "An object converts video data from source pixel buffers to destination pixel buffers.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.videotoolbox/documentation/VideoToolbox"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTPixelTransferSession-api-collection"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Video Toolbox"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "VTPixelTransferSession"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A pixel transfer session supports the copying and/or conversion of images from source pixel buffers to destination pixel buffers. The basic workflow used when working with a pixel transfer session is as follows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create a pixel transfer session by calling ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTPixelTransferSessionCreate(allocator:pixelTransferSessionOut:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Optionally, configure the session with your desired ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.videotoolbox/documentation/VideoToolbox/pixel-transfer-properties",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " by calling ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTSessionSetProperty(_:key:value:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTSessionSetProperties(_:propertyDictionary:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Transfer images by calling ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTPixelTransferSessionTransferImage(_:from:to:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "When you finish with the pixel transfer session, call ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTPixelTransferSessionInvalidate(_:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to tear it down, and ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1521153-cfrelease",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to free its memory.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/corefoundation/1521153-cfrelease": {
+      "abstract": [
+        {
+          "text": "Releases a Core Foundation object.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1521153-cfrelease",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFRelease",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1521153-cfrelease"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.videotoolbox/documentation/VideoToolbox": {
+      "abstract": [
+        {
+          "text": "Work directly with hardware-accelerated video encoding and decoding capabilities.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.videotoolbox/documentation/VideoToolbox",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Video Toolbox",
+      "type": "topic",
+      "url": "/documentation/videotoolbox"
+    },
+    "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTPixelRotationSession-api-collection": {
+      "abstract": [
+        {
+          "text": "An object that rotates source pixel buffers to destination pixel buffers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTPixelRotationSession-api-collection",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "VTPixelRotationSession",
+      "type": "topic",
+      "url": "/documentation/videotoolbox/vtpixelrotationsession-api-collection"
+    },
+    "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTPixelTransferSession": {
+      "abstract": [
+        {
+          "text": "A reference to a VideoToolbox pixel transfer session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VTPixelTransferSession"
+        }
+      ],
+      "identifier": "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTPixelTransferSession",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VTPixelTransferSession"
+        }
+      ],
+      "role": "symbol",
+      "title": "VTPixelTransferSession",
+      "type": "topic",
+      "url": "/documentation/videotoolbox/vtpixeltransfersession"
+    },
+    "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTPixelTransferSessionCreate(allocator:pixelTransferSessionOut:)": {
+      "abstract": [
+        {
+          "text": "Creates a session for transferring images between Core Video image buffers that hold pixels in main memory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VTPixelTransferSessionCreate"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "allocator"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFAllocatorRef",
+          "text": "CFAllocator"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "pixelTransferSessionOut"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@VTPixelTransferSessionRef",
+          "text": "VTPixelTransferSession"
+        },
+        {
+          "kind": "text",
+          "text": "?>) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTPixelTransferSessionCreate(allocator:pixelTransferSessionOut:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VTPixelTransferSessionCreate"
+        }
+      ],
+      "role": "symbol",
+      "title": "VTPixelTransferSessionCreate(allocator:pixelTransferSessionOut:)",
+      "type": "topic",
+      "url": "/documentation/videotoolbox/vtpixeltransfersessioncreate(allocator:pixeltransfersessionout:)"
+    },
+    "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTPixelTransferSessionGetTypeID()": {
+      "abstract": [
+        {
+          "text": "Retrieves the Core Foundation type identifier for the pixel transfer session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VTPixelTransferSessionGetTypeID"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFTypeID",
+          "text": "CFTypeID"
+        }
+      ],
+      "identifier": "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTPixelTransferSessionGetTypeID()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VTPixelTransferSessionGetTypeID"
+        }
+      ],
+      "role": "symbol",
+      "title": "VTPixelTransferSessionGetTypeID()",
+      "type": "topic",
+      "url": "/documentation/videotoolbox/vtpixeltransfersessiongettypeid()"
+    },
+    "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTPixelTransferSessionInvalidate(_:)": {
+      "abstract": [
+        {
+          "text": "Tears down a pixel transfer session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VTPixelTransferSessionInvalidate"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@VTPixelTransferSessionRef",
+          "text": "VTPixelTransferSession"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTPixelTransferSessionInvalidate(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VTPixelTransferSessionInvalidate"
+        }
+      ],
+      "role": "symbol",
+      "title": "VTPixelTransferSessionInvalidate(_:)",
+      "type": "topic",
+      "url": "/documentation/videotoolbox/vtpixeltransfersessioninvalidate(_:)"
+    },
+    "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTPixelTransferSessionTransferImage(_:from:to:)": {
+      "abstract": [
+        {
+          "text": "Copies and/or converts an image from one pixel buffer to another.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VTPixelTransferSessionTransferImage"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@VTPixelTransferSessionRef",
+          "text": "VTPixelTransferSession"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CVPixelBufferRef",
+          "text": "CVPixelBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CVPixelBufferRef",
+          "text": "CVPixelBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTPixelTransferSessionTransferImage(_:from:to:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VTPixelTransferSessionTransferImage"
+        }
+      ],
+      "role": "symbol",
+      "title": "VTPixelTransferSessionTransferImage(_:from:to:)",
+      "type": "topic",
+      "url": "/documentation/videotoolbox/vtpixeltransfersessiontransferimage(_:from:to:)"
+    },
+    "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTSessionSetProperties(_:propertyDictionary:)": {
+      "abstract": [
+        {
+          "text": "Sets multiple properties at once.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VTSessionSetProperties"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@VTSessionRef",
+          "text": "VTSession"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "propertyDictionary"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFDictionaryRef",
+          "text": "CFDictionary"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTSessionSetProperties(_:propertyDictionary:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VTSessionSetProperties"
+        }
+      ],
+      "role": "symbol",
+      "title": "VTSessionSetProperties(_:propertyDictionary:)",
+      "type": "topic",
+      "url": "/documentation/videotoolbox/vtsessionsetproperties(_:propertydictionary:)"
+    },
+    "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTSessionSetProperty(_:key:value:)": {
+      "abstract": [
+        {
+          "text": "Sets a property on a VideoToolbox session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VTSessionSetProperty"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@VTSessionRef",
+          "text": "VTSession"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "key"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "value"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFTypeRef",
+          "text": "CFTypeRef"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTSessionSetProperty(_:key:value:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VTSessionSetProperty"
+        }
+      ],
+      "role": "symbol",
+      "title": "VTSessionSetProperty(_:key:value:)",
+      "type": "topic",
+      "url": "/documentation/videotoolbox/vtsessionsetproperty(_:key:value:)"
+    },
+    "doc://com.apple.videotoolbox/documentation/VideoToolbox/pixel-transfer-properties": {
+      "abstract": [
+        {
+          "text": "Properties used to configure a VideoToolbox pixel transfer session.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.videotoolbox/documentation/VideoToolbox/pixel-transfer-properties",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Pixel Transfer Properties",
+      "type": "topic",
+      "url": "/documentation/videotoolbox/pixel-transfer-properties"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Transformation",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTPixelRotationSession-api-collection"
+      ],
+      "title": "Transformation"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-Sessions",
+      "identifiers": [
+        "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTPixelTransferSessionCreate(allocator:pixelTransferSessionOut:)"
+      ],
+      "title": "Creating Sessions"
+    },
+    {
+      "anchor": "Configuring-Sessions",
+      "identifiers": [
+        "doc://com.apple.videotoolbox/documentation/VideoToolbox/pixel-transfer-properties"
+      ],
+      "title": "Configuring Sessions"
+    },
+    {
+      "anchor": "Converting-Image-Data",
+      "identifiers": [
+        "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTPixelTransferSessionTransferImage(_:from:to:)"
+      ],
+      "title": "Converting Image Data"
+    },
+    {
+      "anchor": "Inspecting-Sessions",
+      "identifiers": [
+        "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTPixelTransferSessionGetTypeID()"
+      ],
+      "title": "Inspecting Sessions"
+    },
+    {
+      "anchor": "Ending-Sessions",
+      "identifiers": [
+        "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTPixelTransferSessionInvalidate(_:)"
+      ],
+      "title": "Ending Sessions"
+    },
+    {
+      "anchor": "Data-Types",
+      "identifiers": [
+        "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTPixelTransferSession"
+      ],
+      "title": "Data Types"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Creating-Sessions",
+              "identifiers": [
+                "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTPixelTransferSessionCreate(allocator:pixelTransferSessionOut:)"
+              ],
+              "title": "Creating Sessions"
+            },
+            {
+              "anchor": "Configuring-Sessions",
+              "identifiers": [
+                "doc://com.apple.videotoolbox/documentation/VideoToolbox/pixel-transfer-properties"
+              ],
+              "title": "Configuring Sessions"
+            },
+            {
+              "anchor": "Converting-Image-Data",
+              "identifiers": [
+                "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTPixelTransferSessionTransferImage(_:from:to:)"
+              ],
+              "title": "Converting Image Data"
+            },
+            {
+              "anchor": "Inspecting-Sessions",
+              "identifiers": [
+                "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTPixelTransferSessionGetTypeID()"
+              ],
+              "title": "Inspecting Sessions"
+            },
+            {
+              "anchor": "Ending-Sessions",
+              "identifiers": [
+                "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTPixelTransferSessionInvalidate(_:)"
+              ],
+              "title": "Ending Sessions"
+            },
+            {
+              "anchor": "Data-Types",
+              "identifiers": [
+                "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTPixelTransferSession"
+              ],
+              "title": "Data Types"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Transformation",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTPixelRotationSession-api-collection"
+              ],
+              "title": "Transformation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.videotoolbox~1documentation~1VideoToolbox~1VTPixelTransferSessionTransferImage(_:from:to:)/title",
+          "value": "VTPixelTransferSessionTransferImage"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.videotoolbox~1documentation~1VideoToolbox~1VTPixelTransferSessionTransferImage(_:from:to:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VTPixelTransferSessionTransferImage"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.videotoolbox~1documentation~1VideoToolbox~1VTPixelTransferSessionInvalidate(_:)/title",
+          "value": "VTPixelTransferSessionInvalidate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.videotoolbox~1documentation~1VideoToolbox~1VTPixelTransferSessionInvalidate(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VTPixelTransferSessionInvalidate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.videotoolbox~1documentation~1VideoToolbox~1VTSessionSetProperty(_:key:value:)/title",
+          "value": "VTSessionSetProperty"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.videotoolbox~1documentation~1VideoToolbox~1VTSessionSetProperty(_:key:value:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VTSessionSetProperty"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.videotoolbox~1documentation~1VideoToolbox~1VTSessionSetProperties(_:propertyDictionary:)/title",
+          "value": "VTSessionSetProperties"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.videotoolbox~1documentation~1VideoToolbox~1VTSessionSetProperties(_:propertyDictionary:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VTSessionSetProperties"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.videotoolbox~1documentation~1VideoToolbox~1VTPixelTransferSessionCreate(allocator:pixelTransferSessionOut:)/title",
+          "value": "VTPixelTransferSessionCreate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.videotoolbox~1documentation~1VideoToolbox~1VTPixelTransferSessionCreate(allocator:pixelTransferSessionOut:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VTPixelTransferSessionCreate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.videotoolbox~1documentation~1VideoToolbox~1VTPixelTransferSessionGetTypeID()/title",
+          "value": "VTPixelTransferSessionGetTypeID"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.videotoolbox~1documentation~1VideoToolbox~1VTPixelTransferSessionGetTypeID()/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VTPixelTransferSessionGetTypeID"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.videotoolbox~1documentation~1VideoToolbox~1VTPixelTransferSession/title",
+          "value": "VTPixelTransferSessionRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.videotoolbox~1documentation~1VideoToolbox~1VTPixelTransferSession/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VTPixelTransferSessionRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.videotoolbox~1documentation~1VideoToolbox~1VTPixelTransferSession/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VTPixelTransferSessionRef"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/videotoolbox/vtpixeltransfersession-api-collection"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/videotoolbox/vtpixeltransfersession-api-collection"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

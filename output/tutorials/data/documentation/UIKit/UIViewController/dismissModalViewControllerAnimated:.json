@@ -1,0 +1,1663 @@
+{
+  "abstract": [
+    {
+      "text": "Dismisses the view controller that was presented by the receiver.",
+      "type": "text"
+    }
+  ],
+  "deprecationSummary": [
+    {
+      "inlineContent": [
+        {
+          "text": "Use ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/dismiss(animated:completion:)",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " instead.",
+          "type": "text"
+        }
+      ],
+      "type": "paragraph"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit",
+        "doc://com.apple.uikit/documentation/UIKit/UIViewController"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.uikit/documentation/UIKit/UIViewController/dismissModalViewControllerAnimated:"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)UIViewController(im)dismissModalViewControllerAnimated:",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "- "
+      },
+      {
+        "kind": "identifier",
+        "text": "dismissModalViewControllerAnimated:"
+      }
+    ],
+    "modules": [
+      {
+        "name": "UIKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "dismissModalViewControllerAnimated:"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "deprecatedAt": "6.0",
+        "introducedAt": "2.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "deprecatedAt": "6.0",
+        "introducedAt": "2.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "deprecatedAt": "13.1",
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Method",
+    "symbolKind": "method",
+    "title": "dismissModalViewControllerAnimated:"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "dismissModalViewControllerAnimated:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:@T@BOOL",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@BOOL",
+              "text": "BOOL"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "internalParam",
+              "text": "animated"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/swift/true",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ", this method animates the view as it’s dismissed; otherwise, it does not. The style of animation is determined by the value in the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/modalTransitionStyle",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " property of the view controller being dismissed.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "animated"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The presenting view controller is responsible for dismissing the view controller it presented. If you call this method on the presented view controller itself, however, it automatically forwards the message to the presenting view controller.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you present several view controllers in succession, and thus build a stack of presented view controllers, calling this method on a view controller lower in the stack dismisses its immediate child view controller and all view controllers above that child on the stack. When this happens, only the top-most view is dismissed in an animated fashion; any intermediate view controllers are simply removed from the stack. The top-most view is dismissed using its modal transition style, which may differ from the styles used by other view controllers lower in the stack.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you want to retain a reference to the receiver’s presented view controller, get the value in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/modalViewController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property before calling this method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/swift/true": {
+      "abstract": [
+        {
+          "text": "A true value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/swift/true",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "true",
+      "type": "topic",
+      "url": "/documentation/swift/true"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.uikit/documentation/UIKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your iOS, iPadOS, or tvOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "UIKit",
+      "type": "topic",
+      "url": "/documentation/uikit"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIViewController": {
+      "abstract": [
+        {
+          "text": "An object that manages a view hierarchy for your UIKit app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIViewController"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIViewController",
+      "type": "topic",
+      "url": "/documentation/uikit/uiviewcontroller"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIViewController/attemptRotationToDeviceOrientation()": {
+      "abstract": [
+        {
+          "text": "Attempts to rotate all windows to the orientation of the device.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "attemptRotationToDeviceOrientation"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/attemptRotationToDeviceOrientation()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "attemptRotationToDeviceOrientation"
+        }
+      ],
+      "role": "symbol",
+      "title": "attemptRotationToDeviceOrientation()",
+      "type": "topic",
+      "url": "/documentation/uikit/uiviewcontroller/attemptrotationtodeviceorientation()"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIViewController/automaticallyForwardAppearanceAndRotationMethodsToChildViewControllers": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether appearance and rotation methods are forwarded.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "automaticallyForwardAppearanceAndRotationMethodsToChildViewControllers"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/automaticallyForwardAppearanceAndRotationMethodsToChildViewControllers",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "automaticallyForwardAppearanceAndRotationMethodsToChildViewControllers"
+        }
+      ],
+      "role": "symbol",
+      "title": "automaticallyForwardAppearanceAndRotationMethodsToChildViewControllers",
+      "type": "topic",
+      "url": "/documentation/uikit/uiviewcontroller/automaticallyforwardappearanceandrotationmethodstochildviewcontrollers"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIViewController/canPerformUnwindSegueAction(_:from:withSender:)": {
+      "abstract": [
+        {
+          "text": "Called on a view controller to determine whether it wants to respond to an unwind action.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "canPerformUnwindSegueAction"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10ObjectiveC8SelectorV",
+          "text": "Selector"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIViewController",
+          "text": "UIViewController"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "withSender"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/canPerformUnwindSegueAction(_:from:withSender:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "canPerformUnwindSegueAction:fromViewController:withSender:"
+        }
+      ],
+      "role": "symbol",
+      "title": "canPerformUnwindSegueAction(_:from:withSender:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiviewcontroller/canperformunwindsegueaction(_:from:withsender:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIViewController/didAnimateFirstHalfOfRotationToInterfaceOrientation:": {
+      "abstract": [
+        {
+          "text": "Sent to the view controller after the completion of the first half of the user interface rotation.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "didAnimateFirstHalfOfRotationToInterfaceOrientation:"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/didAnimateFirstHalfOfRotationToInterfaceOrientation:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "didAnimateFirstHalfOfRotationToInterfaceOrientation:"
+        }
+      ],
+      "role": "symbol",
+      "title": "didAnimateFirstHalfOfRotationToInterfaceOrientation:",
+      "type": "topic",
+      "url": "/documentation/uikit/uiviewcontroller/didanimatefirsthalfofrotationtointerfaceorientation:"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIViewController/didRotate(from:)": {
+      "abstract": [
+        {
+          "text": "Sent to the view controller after the user interface rotates.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "didRotate"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@UIInterfaceOrientation",
+          "text": "UIInterfaceOrientation"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/didRotate(from:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "didRotateFromInterfaceOrientation:"
+        }
+      ],
+      "role": "symbol",
+      "title": "didRotate(from:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiviewcontroller/didrotate(from:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIViewController/dismiss(animated:completion:)": {
+      "abstract": [
+        {
+          "text": "Dismisses the view controller that was presented modally by the view controller.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "dismiss"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "animated"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completion"
+        },
+        {
+          "kind": "text",
+          "text": ": (() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")?)"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/dismiss(animated:completion:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "dismissViewControllerAnimated:completion:"
+        }
+      ],
+      "role": "symbol",
+      "title": "dismiss(animated:completion:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiviewcontroller/dismiss(animated:completion:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIViewController/dismissModalViewControllerAnimated:": {
+      "abstract": [
+        {
+          "text": "Dismisses the view controller that was presented by the receiver.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "dismissModalViewControllerAnimated:"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/dismissModalViewControllerAnimated:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "dismissModalViewControllerAnimated:"
+        }
+      ],
+      "role": "symbol",
+      "title": "dismissModalViewControllerAnimated:",
+      "type": "topic",
+      "url": "/documentation/uikit/uiviewcontroller/dismissmodalviewcontrolleranimated:"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIViewController/dismissMoviePlayerViewControllerAnimated()": {
+      "abstract": [
+        {
+          "text": "Dismisses a movie player view controller using the standard movie player transition.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "dismissMoviePlayerViewControllerAnimated"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/dismissMoviePlayerViewControllerAnimated()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "dismissMoviePlayerViewControllerAnimated"
+        }
+      ],
+      "role": "symbol",
+      "title": "dismissMoviePlayerViewControllerAnimated()",
+      "type": "topic",
+      "url": "/documentation/uikit/uiviewcontroller/dismissmovieplayerviewcontrolleranimated()"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIViewController/forUnwindSegueAction(_:from:withSender:)": {
+      "abstract": [
+        {
+          "text": "Called when an unwind segue action wants to search a container’s children for a view controller to handle the unwind action.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "forUnwindSegueAction"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10ObjectiveC8SelectorV",
+          "text": "Selector"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIViewController",
+          "text": "UIViewController"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "withSender"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIViewController",
+          "text": "UIViewController"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/forUnwindSegueAction(_:from:withSender:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "viewControllerForUnwindSegueAction:fromViewController:withSender:"
+        }
+      ],
+      "role": "symbol",
+      "title": "forUnwindSegueAction(_:from:withSender:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiviewcontroller/forunwindsegueaction(_:from:withsender:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIViewController/modalTransitionStyle": {
+      "abstract": [
+        {
+          "text": "The transition style to use when presenting the view controller.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "modalTransitionStyle"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@UIModalTransitionStyle",
+          "text": "UIModalTransitionStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/modalTransitionStyle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "modalTransitionStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "modalTransitionStyle",
+      "type": "topic",
+      "url": "/documentation/uikit/uiviewcontroller/modaltransitionstyle"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIViewController/modalViewController": {
+      "abstract": [
+        {
+          "text": "The controller for the active presented view’that is, the view that is temporarily displayed on top of the view managed by the receiver.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "modalViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/modalViewController",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "modalViewController",
+      "type": "topic",
+      "url": "/documentation/uikit/uiviewcontroller/modalviewcontroller"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIViewController/overrideTraitCollection(forChild:)": {
+      "abstract": [
+        {
+          "text": "Retrieves the trait collection for a child view controller.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "overrideTraitCollection"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "forChild"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIViewController",
+          "text": "UIViewController"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UITraitCollection",
+          "text": "UITraitCollection"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/overrideTraitCollection(forChild:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "overrideTraitCollectionForChildViewController:"
+        }
+      ],
+      "role": "symbol",
+      "title": "overrideTraitCollection(forChild:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiviewcontroller/overridetraitcollection(forchild:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIViewController/presentModalViewController:animated:": {
+      "abstract": [
+        {
+          "text": "Presents a modal view managed by the given view controller to the user.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "presentModalViewController:animated:"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/presentModalViewController:animated:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "presentModalViewController:animated:"
+        }
+      ],
+      "role": "symbol",
+      "title": "presentModalViewController:animated:",
+      "type": "topic",
+      "url": "/documentation/uikit/uiviewcontroller/presentmodalviewcontroller:animated:"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIViewController/presentMoviePlayerViewControllerAnimated(_:)": {
+      "abstract": [
+        {
+          "text": "Presents the movie player view controller using the standard movie player transition.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "presentMoviePlayerViewControllerAnimated"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MPMoviePlayerViewController",
+          "text": "MPMoviePlayerViewController"
+        },
+        {
+          "kind": "text",
+          "text": "!)"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/presentMoviePlayerViewControllerAnimated(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "presentMoviePlayerViewControllerAnimated:"
+        }
+      ],
+      "role": "symbol",
+      "title": "presentMoviePlayerViewControllerAnimated(_:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiviewcontroller/presentmovieplayerviewcontrolleranimated(_:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIViewController/registerForPreviewing(with:sourceView:)": {
+      "abstract": [
+        {
+          "text": "Registers a view controller to participate with 3D Touch preview (peek) and commit (pop).",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "registerForPreviewing"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)UIViewControllerPreviewingDelegate",
+          "text": "UIViewControllerPreviewingDelegate"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "sourceView"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIView",
+          "text": "UIView"
+        },
+        {
+          "kind": "text",
+          "text": ") -> any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)UIViewControllerPreviewing",
+          "text": "UIViewControllerPreviewing"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/registerForPreviewing(with:sourceView:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "registerForPreviewingWithDelegate:sourceView:"
+        }
+      ],
+      "role": "symbol",
+      "title": "registerForPreviewing(with:sourceView:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiviewcontroller/registerforpreviewing(with:sourceview:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIViewController/rotatingFooterView()": {
+      "abstract": [
+        {
+          "text": "Returns the footer view to transition during an interface orientation change.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "rotatingFooterView"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIView",
+          "text": "UIView"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/rotatingFooterView()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "rotatingFooterView"
+        }
+      ],
+      "role": "symbol",
+      "title": "rotatingFooterView()",
+      "type": "topic",
+      "url": "/documentation/uikit/uiviewcontroller/rotatingfooterview()"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIViewController/rotatingHeaderView()": {
+      "abstract": [
+        {
+          "text": "Returns the header view to transition during an interface orientation change.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "rotatingHeaderView"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIView",
+          "text": "UIView"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/rotatingHeaderView()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "rotatingHeaderView"
+        }
+      ],
+      "role": "symbol",
+      "title": "rotatingHeaderView()",
+      "type": "topic",
+      "url": "/documentation/uikit/uiviewcontroller/rotatingheaderview()"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIViewController/setOverrideTraitCollection(_:forChild:)": {
+      "abstract": [
+        {
+          "text": "Changes the traits assigned to the specified child view controller.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setOverrideTraitCollection"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UITraitCollection",
+          "text": "UITraitCollection"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "forChild"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIViewController",
+          "text": "UIViewController"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/setOverrideTraitCollection(_:forChild:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setOverrideTraitCollection:forChildViewController:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setOverrideTraitCollection(_:forChild:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiviewcontroller/setoverridetraitcollection(_:forchild:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIViewController/unregisterForPreviewing(withContext:)": {
+      "abstract": [
+        {
+          "text": "Unregisters a previously registered view controller identified by its context object.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "unregisterForPreviewing"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withContext"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)UIViewControllerPreviewing",
+          "text": "UIViewControllerPreviewing"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/unregisterForPreviewing(withContext:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "unregisterForPreviewingWithContext:"
+        }
+      ],
+      "role": "symbol",
+      "title": "unregisterForPreviewing(withContext:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiviewcontroller/unregisterforpreviewing(withcontext:)"
+    },
+    "doc://com.externally.resolved.symbol/c:@T@BOOL": {
+      "abstract": [
+        {
+          "text": "Type to represent a Boolean value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:@T@BOOL",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "BOOL",
+      "type": "topic",
+      "url": "/documentation/objectivec/bool"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Deprecated-methods",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIViewController/setOverrideTraitCollection(_:forChild:)",
+        "doc://com.apple.uikit/documentation/UIKit/UIViewController/overrideTraitCollection(forChild:)",
+        "doc://com.apple.uikit/documentation/UIKit/UIViewController/attemptRotationToDeviceOrientation()",
+        "doc://com.apple.uikit/documentation/UIKit/UIViewController/registerForPreviewing(with:sourceView:)",
+        "doc://com.apple.uikit/documentation/UIKit/UIViewController/unregisterForPreviewing(withContext:)",
+        "doc://com.apple.uikit/documentation/UIKit/UIViewController/automaticallyForwardAppearanceAndRotationMethodsToChildViewControllers",
+        "doc://com.apple.uikit/documentation/UIKit/UIViewController/canPerformUnwindSegueAction(_:from:withSender:)",
+        "doc://com.apple.uikit/documentation/UIKit/UIViewController/didAnimateFirstHalfOfRotationToInterfaceOrientation:",
+        "doc://com.apple.uikit/documentation/UIKit/UIViewController/didRotate(from:)",
+        "doc://com.apple.uikit/documentation/UIKit/UIViewController/dismissMoviePlayerViewControllerAnimated()",
+        "doc://com.apple.uikit/documentation/UIKit/UIViewController/forUnwindSegueAction(_:from:withSender:)",
+        "doc://com.apple.uikit/documentation/UIKit/UIViewController/presentModalViewController:animated:",
+        "doc://com.apple.uikit/documentation/UIKit/UIViewController/presentMoviePlayerViewControllerAnimated(_:)",
+        "doc://com.apple.uikit/documentation/UIKit/UIViewController/rotatingFooterView()",
+        "doc://com.apple.uikit/documentation/UIKit/UIViewController/rotatingHeaderView()"
+      ],
+      "title": "Deprecated methods"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController~1dismissMoviePlayerViewControllerAnimated()/title",
+          "value": "dismissMoviePlayerViewControllerAnimated"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController~1dismissMoviePlayerViewControllerAnimated()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "dismissMoviePlayerViewControllerAnimated"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController~1rotatingFooterView()/title",
+          "value": "rotatingFooterView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController~1rotatingFooterView()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "rotatingFooterView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController~1modalTransitionStyle/title",
+          "value": "modalTransitionStyle"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController~1modalTransitionStyle/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "modalTransitionStyle"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController~1presentMoviePlayerViewControllerAnimated(_:)/title",
+          "value": "presentMoviePlayerViewControllerAnimated:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController~1presentMoviePlayerViewControllerAnimated(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "presentMoviePlayerViewControllerAnimated:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController~1unregisterForPreviewing(withContext:)/title",
+          "value": "unregisterForPreviewingWithContext:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController~1unregisterForPreviewing(withContext:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "unregisterForPreviewingWithContext:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController~1forUnwindSegueAction(_:from:withSender:)/title",
+          "value": "viewControllerForUnwindSegueAction:fromViewController:withSender:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController~1forUnwindSegueAction(_:from:withSender:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "viewControllerForUnwindSegueAction:fromViewController:withSender:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController~1attemptRotationToDeviceOrientation()/title",
+          "value": "attemptRotationToDeviceOrientation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController~1attemptRotationToDeviceOrientation()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "attemptRotationToDeviceOrientation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController/title",
+          "value": "UIViewController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController~1rotatingHeaderView()/title",
+          "value": "rotatingHeaderView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController~1rotatingHeaderView()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "rotatingHeaderView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController~1overrideTraitCollection(forChild:)/title",
+          "value": "overrideTraitCollectionForChildViewController:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController~1overrideTraitCollection(forChild:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "overrideTraitCollectionForChildViewController:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController~1didRotate(from:)/title",
+          "value": "didRotateFromInterfaceOrientation:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController~1didRotate(from:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "didRotateFromInterfaceOrientation:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController~1dismiss(animated:completion:)/title",
+          "value": "dismissViewControllerAnimated:completion:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController~1dismiss(animated:completion:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "dismissViewControllerAnimated:completion:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController~1setOverrideTraitCollection(_:forChild:)/title",
+          "value": "setOverrideTraitCollection:forChildViewController:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController~1setOverrideTraitCollection(_:forChild:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setOverrideTraitCollection:forChildViewController:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController~1registerForPreviewing(with:sourceView:)/title",
+          "value": "registerForPreviewingWithDelegate:sourceView:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController~1registerForPreviewing(with:sourceView:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "registerForPreviewingWithDelegate:sourceView:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController~1canPerformUnwindSegueAction(_:from:withSender:)/title",
+          "value": "canPerformUnwindSegueAction:fromViewController:withSender:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController~1canPerformUnwindSegueAction(_:from:withSender:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "canPerformUnwindSegueAction:fromViewController:withSender:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/uikit/uiviewcontroller/dismissmodalviewcontrolleranimated:"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

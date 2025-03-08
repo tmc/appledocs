@@ -1,0 +1,1950 @@
+{
+  "abstract": [
+    {
+      "text": "Add Low-Latency HLS to your content streams to maintain scalability.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/enabling-low-latency-http-live-streaming-hls"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Enabling Low-Latency HTTP Live Streaming (HLS)"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The HLS protocol delivers live and on-demand content streams to global-scale audiences.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Historically, HLS has favored stream reliability over latency. Low-Latency HLS extends",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the protocol to enable low-latency video streaming while maintaining scalability.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The new low-latency mode lowers video latencies over public networks into the range",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of standard television broadcasts.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Backend production tools and content delivery systems must implement new rules to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "enable low-latency stream playback. Low-Latency HLS offers new functionality in these",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "areas:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Generation of partial segments",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Playlist delta updates",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Blocking of playlist reload",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Using preload hints",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Rendition reports",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The HLS specification defines low-latency extensions in ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://datatracker.ietf.org/doc/html/draft-pantos-hls-rfc8216bis",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " revision",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "7 and later.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Generate-Partial-Media-Segments",
+          "level": 3,
+          "text": "Generate Partial Media Segments",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Low-Latency HLS provides a parallel channel for distributing media at the live edge",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of the Media Playlist, which divides the media into a larger number of smaller files,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "such as CMAF Chunks. These smaller files are called HLS Partial Segments. Because",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "each Partial Segment has a short duration, it can be packaged, published, and added",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to the Media Playlist much earlier than its Parent Segment.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "While regular Media Segments might be 6 seconds each, an example Partial Segment",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "might be only 200 milliseconds. A first Partial Segment might publish only 200 milliseconds",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "after the previous segment publishes, followed by 29 of its peers, followed at last",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "by a regular-length, 6-second Media Segment containing the same media as the concatenation",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of its 30 Partial Segments. In order to reduce Playlist bloat, the server removes",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Partial Segments from the Media Playlist once they’re greater (older) than three",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "target durations from the live edge.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You add Partial Segments to the Media Playlist using the new ",
+              "type": "text"
+            },
+            {
+              "code": "EXT-X-PART",
+              "type": "codeVoice"
+            },
+            {
+              "text": " tag. You",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "can place other Media Segment Tags (such as ",
+              "type": "text"
+            },
+            {
+              "code": "EXT-X-DISCONTINUITY",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") at Parent Segment",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "boundaries.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A Partial Segment must be in one of the Supported Media Segment Formats described",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in section 3.1 of ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://datatracker.ietf.org/doc/html/draft-pantos-hls-rfc8216bis",
+              "isActive": true,
+              "overridingTitle": "HTTP Live Streaming 2nd Edition",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "HTTP Live Streaming 2nd Edition",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Provide-Playlist-Delta-Updates",
+          "level": 3,
+          "text": "Provide Playlist Delta Updates",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Clients transfer playlists more frequently with Low-Latency HLS. They can request",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and servers can provide Playlist Delta Updates, which reduce this transfer cost.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "These updates replace a considerable portion of the Playlist that the client already",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "has with the new ",
+              "type": "text"
+            },
+            {
+              "code": "EXT-X-SKIP",
+              "type": "codeVoice"
+            },
+            {
+              "text": " tag.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Blocking-Playlist-reloads",
+          "level": 3,
+          "text": "Blocking Playlist reloads",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To support efficient client notification of new Media Segments and Partial Segments,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Low-Latency HLS introduces the ability to block a Playlist reload request. When a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "client issues an HTTP GET to request a Media Playlist update, it can add special",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "query parameters called Delivery Directives to specify that it wants the Playlist",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "response to include a future segment. The server then holds onto the request (blocks)",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "until a version of the Playlist that contains that segment is available. Blocking",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Playlist Reloads eliminates Playlist polling.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Provide-Preload-Hints-and-Blocking-of-Media-Downloads",
+          "level": 3,
+          "text": "Provide Preload Hints and Blocking of Media Downloads",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Eliminating unnecessary round trips is critical when delivering low-latency streams",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "at global scale. Servers use a new tag, ",
+              "type": "text"
+            },
+            {
+              "code": "EXT-X-PRELOAD-HINT",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", to inform clients of",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "upcoming Partial Segments and Media Initialization Sections. A client can issue a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "GET request for a hinted resource in advance; the server responds to the request",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "as soon as the media becomes available.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Provide-Rendition-Reports",
+          "level": 3,
+          "text": "Provide Rendition Reports",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When playing at low latency, the client must be able to switch renditions with a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "minimum number of round trips in order to perform bit-rate adaptation. To support",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "this, the server adds Rendition Reports on the other renditions in the Multivariant",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Playlist to each Media Playlist. The ",
+              "type": "text"
+            },
+            {
+              "code": "EXT-X-RENDITION-REPORT",
+              "type": "codeVoice"
+            },
+            {
+              "text": " tag carries a Rendition",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Report and provides information, such as the last Media Sequence Number and Part",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "currently in the Media Playlist of that rendition.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-Low-Latency-HLS-Delivery-Directives",
+          "level": 3,
+          "text": "Add Low-Latency HLS Delivery Directives",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "HLS now defines Delivery Directives, which are special query parameters that can",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "be added to the URL of a GET request for a Playlist. These Delivery Directives include:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Indicates that the server must hold the request until a Playlist contains a Media Segment with Media Sequence Number of M or later.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "_HLS_msn=<M>",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Indicates, in combination with ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "_HLS_msn",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", that the server must hold the request until a Playlist contains Partial Segment N of Media Sequence Number M or later. The first Partial Segment of a segment is ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "_HLS_part=0",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", the second is ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "_HLS_part=1",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", and so on. The ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "_HLS_part",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " parameter requires an ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "_HLS_msn",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " parameter.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "_HLS_part=<N>",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Requests a Playlist Delta Update, in which the earlier portion of the Playlist is replaced with an ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "EXT-X-SKIP",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " tag.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "_HLS_skip=YES|v2",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "anchor": "Utilize-New-Media-Playlist-Tags-for-Low-Latency-HLS",
+          "level": 3,
+          "text": "Utilize New Media Playlist Tags for Low-Latency HLS",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following Playlist tags support Low-Latency HLS.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Allows the server to indicate support for features such as Blocking Playlist Reload and Playlist Delta Updates.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "EXT-X-SERVER-CONTROL",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Provides information about HLS Partial Segments in the Playlist.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "EXT-X-PART-INF",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Identifies a Partial Segment in the Playlist.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "EXT-X-PART",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Hints that a resource or a byte range of a resource are needed to play back an upcoming part of the presentation.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  },
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Note that when a hinted Partial Segment eventually appears in the Playlist as an",
+                        "type": "text"
+                      },
+                      {
+                        "text": " ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "EXT-X-PART",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " tag, it may be different than previous Partial Segment. It may have",
+                        "type": "text"
+                      },
+                      {
+                        "text": " ",
+                        "type": "text"
+                      },
+                      {
+                        "text": "a different Discontinuity Sequence Number, Media Initialization Section, or encryption",
+                        "type": "text"
+                      },
+                      {
+                        "text": " ",
+                        "type": "text"
+                      },
+                      {
+                        "text": "configuration. In other words, the Partial Segment can be preceded by an ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "EXTINF",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " ",
+                        "type": "text"
+                      },
+                      {
+                        "text": "tag indicating the end of the previous Parent Segment and an ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "EXT-X-DISCONTINUITY",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ",",
+                        "type": "text"
+                      },
+                      {
+                        "text": " ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "EXT-X-MAP",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", or ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "EXT-X-KEY",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " tag.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  },
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A server may choose not to publish a previously hinted Partial Segment if the planned",
+                        "type": "text"
+                      },
+                      {
+                        "text": " ",
+                        "type": "text"
+                      },
+                      {
+                        "text": "segmentation changes, such as in the case of early return from an ad.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "EXT-X-PRELOAD-HINT",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Carries information about an associated rendition that’s as up to date as the Playlist that contains it.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "EXT-X-RENDITION-REPORT",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "When a server issues a Playlist Delta Update, it replaces Media Segments earlier than the Skip Boundary and their associated tags with an",
+                        "type": "text"
+                      },
+                      {
+                        "code": " EXT-X-SKIP",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " tag.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "EXT-X-SKIP",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "anchor": "Comply-with-the-Low-Latency-Server-Configuration-Profile",
+          "level": 3,
+          "text": "Comply with the Low-Latency Server Configuration Profile",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To support timely delivery of media, Low-Latency HLS requires certain transport features",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "beyond what is necessary for regular HLS. These requirements are defined in the Low-Latency",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Server Configuration Profile. Because the Low-Latency HLS syntax is backward-compatible",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "with existing HLS, clients fall back to regular-latency HLS playback if they discover",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that the server doesn’t support an aspect of the required configuration. ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://datatracker.ietf.org/doc/html/draft-pantos-hls-rfc8216bis",
+              "isActive": true,
+              "overridingTitle": "HTTP Live Streaming 2nd Edition",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "HTTP Live",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Streaming 2nd Edition",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "defines the Low-Latency Server Configuration Profile in Appendix B.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Expect-Delivery-from-CDN-Tune-In",
+          "level": 3,
+          "text": "Expect Delivery from CDN Tune-In",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Players of Low-Latency HLS should expect delivery of low-latency streams through",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "CDNs and other HTTP caches. To start playback at low latency, the client must first",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "obtain a reasonably up-to-date version of the Media Playlist. Appendix C of ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://datatracker.ietf.org/doc/html/draft-pantos-hls-rfc8216bis",
+              "isActive": true,
+              "overridingTitle": "HTTP Live Streaming 2nd Edition",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "HTTP",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Live Streaming 2nd Edition",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "describes an efficient approach for obtaining an up-to-date Media Playlist served",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "through an HTTP cache.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Examine-a-Low-Latency-HLS-Playlist",
+          "level": 3,
+          "text": "Examine a Low-Latency HLS Playlist",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Here’s an example of a low-latency playlist.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "As mentioned above, the Low-Latency HLS syntax is backward-compatible,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "so we can use a version number of six. Clients that do not understand the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Low-Latency tags will ignore them.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "#EXTM3U",
+            "#// This Playlist is a response to:",
+            "#//     GET https://example.com/2M/waitForMSN.php?_HLS_msn=273&_HLS_part=2",
+            "#EXT-X-TARGETDURATION:4",
+            "#EXT-X-VERSION:6",
+            "#EXT-X-SERVER-CONTROL:CAN-BLOCK-RELOAD=YES,PART-HOLD-BACK=1.0,CAN-SKIP-UNTIL=24.0",
+            "#EXT-X-PART-INF:PART-TARGET=0.33334",
+            "#EXT-X-MEDIA-SEQUENCE:264",
+            "#EXT-X-PROGRAM-DATE-TIME:2019-02-14T02:13:28.106Z",
+            "#EXT-X-MAP:URI=\"init.mp4\"",
+            "#EXTINF:4.00008,",
+            "fileSequence264.mp4",
+            "#EXTINF:4.00008,",
+            "fileSequence265.mp4",
+            "#EXTINF:4.00008,",
+            "fileSequence266.mp4",
+            "#EXTINF:4.00008,",
+            "fileSequence267.mp4",
+            "#EXTINF:4.00008,",
+            "fileSequence268.mp4",
+            "#EXTINF:4.00008,",
+            "fileSequence269.mp4",
+            "#EXTINF:4.00008,",
+            "fileSequence270.mp4",
+            "#EXT-X-PART:DURATION=0.33334,URI=\"filePart271.0.mp4\"",
+            "#EXT-X-PART:DURATION=0.33334,URI=\"filePart271.1.mp4\"",
+            "#EXT-X-PART:DURATION=0.33334,URI=\"filePart271.2.mp4\"",
+            "#EXT-X-PART:DURATION=0.33334,URI=\"filePart271.3.mp4\"",
+            "#EXT-X-PART:DURATION=0.33334,URI=\"filePart271.4.mp4\",INDEPENDENT=YES",
+            "#EXT-X-PART:DURATION=0.33334,URI=\"filePart271.5.mp4\"",
+            "#EXT-X-PART:DURATION=0.33334,URI=\"filePart271.6.mp4\"",
+            "#EXT-X-PART:DURATION=0.33334,URI=\"filePart271.7.mp4\"",
+            "#EXT-X-PART:DURATION=0.33334,URI=\"filePart271.8.mp4\",INDEPENDENT=YES",
+            "#EXT-X-PART:DURATION=0.33334,URI=\"filePart271.9.mp4\"",
+            "#EXT-X-PART:DURATION=0.33334,URI=\"filePart271.10.mp4\"",
+            "#EXT-X-PART:DURATION=0.33334,URI=\"filePart271.11.mp4\"",
+            "#EXTINF:4.00008,",
+            "fileSequence271.mp4",
+            "#EXT-X-PROGRAM-DATE-TIME:2019-02-14T02:14:00.106Z",
+            "#EXT-X-PART:DURATION=0.33334,URI=\"filePart272.a.mp4\"",
+            "#EXT-X-PART:DURATION=0.33334,URI=\"filePart272.b.mp4\"",
+            "#EXT-X-PART:DURATION=0.33334,URI=\"filePart272.c.mp4\"",
+            "#EXT-X-PART:DURATION=0.33334,URI=\"filePart272.d.mp4\"",
+            "#EXT-X-PART:DURATION=0.33334,URI=\"filePart272.e.mp4\"",
+            "#EXT-X-PART:DURATION=0.33334,URI=\"filePart272.f.mp4\",INDEPENDENT=YES",
+            "#EXT-X-PART:DURATION=0.33334,URI=\"filePart272.g.mp4\"",
+            "#EXT-X-PART:DURATION=0.33334,URI=\"filePart272.h.mp4\"",
+            "#EXT-X-PART:DURATION=0.33334,URI=\"filePart272.i.mp4\"",
+            "#EXT-X-PART:DURATION=0.33334,URI=\"filePart272.j.mp4\"",
+            "#EXT-X-PART:DURATION=0.33334,URI=\"filePart272.k.mp4\"",
+            "#EXT-X-PART:DURATION=0.33334,URI=\"filePart272.l.mp4\"",
+            "#EXTINF:4.00008,",
+            "fileSequence272.mp4",
+            "#EXT-X-PART:DURATION=0.33334,URI=\"filePart273.0.mp4\",INDEPENDENT=YES",
+            "#EXT-X-PART:DURATION=0.33334,URI=\"filePart273.1.mp4\"",
+            "#EXT-X-PART:DURATION=0.33334,URI=\"filePart273.2.mp4\"",
+            "#EXT-X-PRELOAD-HINT:TYPE=PART,URI=\"filePart273.3.mp4\"",
+            "",
+            "#EXT-X-RENDITION-REPORT:URI=\"../1M/waitForMSN.php\",LAST-MSN=273,LAST-PART=2",
+            "#EXT-X-RENDITION-REPORT:URI=\"../4M/waitForMSN.php\",LAST-MSN=273,LAST-PART=1"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Examine-a-Playlist-Delta-Update",
+          "level": 3,
+          "text": "Examine a Playlist Delta Update",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Here’s an example of a playlist delta update.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Note that use of tha EXT-X-SKIP tag requires a later version than",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the basic use of Low-Latency HLS above.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "#EXTM3U",
+            "#// Following the example above, this Playlist is a response to:",
+            "#//     GET https://example.com/2M/waitForMSN.php?_HLS_msn=273&_HLS_part=3&_HLS_skip=YES",
+            "#EXT-X-TARGETDURATION:4",
+            "#EXT-X-VERSION:10",
+            "#EXT-X-SERVER-CONTROL:CAN-BLOCK-RELOAD=YES,PART-HOLD-BACK=1.0,CAN-SKIP-UNTIL=24.0",
+            "#EXT-X-PART-INF:PART-TARGET=0.33334",
+            "#EXT-X-MEDIA-SEQUENCE:264",
+            "#EXT-X-SKIP:SKIPPED-SEGMENTS=3",
+            "#EXTINF:4.00008,",
+            "fileSequence267.mp4",
+            "#EXTINF:4.00008,",
+            "fileSequence268.mp4",
+            "#EXTINF:4.00008,",
+            "fileSequence269.mp4",
+            "#EXTINF:4.00008,",
+            "fileSequence270.mp4",
+            "#EXT-X-PART:DURATION=0.33334,URI=\"filePart271.0.mp4\"",
+            "#EXT-X-PART:DURATION=0.33334,URI=\"filePart271.1.mp4\"",
+            "#EXT-X-PART:DURATION=0.33334,URI=\"filePart271.2.mp4\"",
+            "#EXT-X-PART:DURATION=0.33334,URI=\"filePart271.3.mp4\"",
+            "#EXT-X-PART:DURATION=0.33334,URI=\"filePart271.4.mp4\",INDEPENDENT=YES",
+            "#EXT-X-PART:DURATION=0.33334,URI=\"filePart271.5.mp4\"",
+            "#EXT-X-PART:DURATION=0.33334,URI=\"filePart271.6.mp4\"",
+            "#EXT-X-PART:DURATION=0.33334,URI=\"filePart271.7.mp4\"",
+            "#EXT-X-PART:DURATION=0.33334,URI=\"filePart271.8.mp4\",INDEPENDENT=YES",
+            "#EXT-X-PART:DURATION=0.33334,URI=\"filePart271.9.mp4\"",
+            "#EXT-X-PART:DURATION=0.33334,URI=\"filePart271.10.mp4\"",
+            "#EXT-X-PART:DURATION=0.33334,URI=\"filePart271.11.mp4\"",
+            "#EXTINF:4.00008,",
+            "fileSequence271.mp4",
+            "#EXT-X-PROGRAM-DATE-TIME:2019-02-14T02:14:00.106Z",
+            "#EXT-X-PART:DURATION=0.33334,URI=\"filePart272.a.mp4\"",
+            "#EXT-X-PART:DURATION=0.33334,URI=\"filePart272.b.mp4\"",
+            "#EXT-X-PART:DURATION=0.33334,URI=\"filePart272.c.mp4\"",
+            "#EXT-X-PART:DURATION=0.33334,URI=\"filePart272.d.mp4\"",
+            "#EXT-X-PART:DURATION=0.33334,URI=\"filePart272.e.mp4\"",
+            "#EXT-X-PART:DURATION=0.33334,URI=\"filePart272.f.mp4\",INDEPENDENT=YES",
+            "#EXT-X-PART:DURATION=0.33334,URI=\"filePart272.g.mp4\"",
+            "#EXT-X-PART:DURATION=0.33334,URI=\"filePart272.h.mp4\"",
+            "#EXT-X-PART:DURATION=0.33334,URI=\"filePart272.i.mp4\"",
+            "#EXT-X-PART:DURATION=0.33334,URI=\"filePart272.j.mp4\"",
+            "#EXT-X-PART:DURATION=0.33334,URI=\"filePart272.k.mp4\"",
+            "#EXT-X-PART:DURATION=0.33334,URI=\"filePart272.l.mp4\"",
+            "#EXTINF:4.00008,",
+            "fileSequence272.mp4",
+            "#EXT-X-PART:DURATION=0.33334,URI=\"filePart273.0.mp4\",INDEPENDENT=YES",
+            "#EXT-X-PART:DURATION=0.33334,URI=\"filePart273.1.mp4\"",
+            "#EXT-X-PART:DURATION=0.33334,URI=\"filePart273.2.mp4\"",
+            "#EXT-X-PART:DURATION=0.33334,URI=\"filePart273.3.mp4\"",
+            "#EXT-X-PRELOAD-HINT:TYPE=PART,URI=\"filePart273.4.mp4\"",
+            "",
+            "#EXT-X-RENDITION-REPORT:URI=\"../1M/waitForMSN.php\",LAST-MSN=273,LAST-PART=3",
+            "#EXT-X-RENDITION-REPORT:URI=\"../4M/waitForMSN.php\",LAST-MSN=273,LAST-PART=3"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Examine-Byterange-Addressed-Parts",
+          "level": 3,
+          "text": "Examine Byterange-Addressed Parts",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Here’s an example of a byterange-addressed part.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "In a real playlist at least some of the EXT-X-PART tags would contain an",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "INDEPENDENT attribute. Those have been removed to make the example clearer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "#// In these examples only the end of the Playlist is shown.",
+            "",
+            "#// This is Playlist update 1",
+            "#EXTINF:4.08,",
+            "fs270.mp4",
+            "#EXT-X-PART:DURATION=1.02,URI=\"fs271.mp4\",BYTERANGE=\"20000@0\"",
+            "#EXT-X-PART:DURATION=1.02,URI=\"fs271.mp4\",BYTERANGE=\"23000@20000\"",
+            "#EXT-X-PART:DURATION=1.02,URI=\"fs271.mp4\",BYTERANGE=\"18000@43000\"",
+            "#EXT-X-PRELOAD-HINT:TYPE=PART,URI=\"fs271.mp4\",BYTERANGE-START=61000",
+            "",
+            "#// This is Playlist update 2",
+            "#EXTINF:4.08,",
+            "fs270.mp4",
+            "#EXT-X-PART:DURATION=1.02,URI=\"fs271.mp4\",BYTERANGE=\"20000@0\"",
+            "#EXT-X-PART:DURATION=1.02,URI=\"fs271.mp4\",BYTERANGE=\"23000@20000\"",
+            "#EXT-X-PART:DURATION=1.02,URI=\"fs271.mp4\",BYTERANGE=\"18000@43000\"",
+            "#EXT-X-PART:DURATION=1.02,URI=\"fs271.mp4\",BYTERANGE=\"19000@61000\"",
+            "#EXTINF:4.08,",
+            "fs271.mp4",
+            "#EXT-X-PRELOAD-HINT:TYPE=PART,URI=\"fs272.mp4\",BYTERANGE-START=0",
+            "",
+            "#// This is Playlist update 3",
+            "#EXTINF:4.08,",
+            "fs270.mp4",
+            "#EXT-X-PART:DURATION=1.02,URI=\"fs271.mp4\",BYTERANGE=\"20000@0\"",
+            "#EXT-X-PART:DURATION=1.02,URI=\"fs271.mp4\",BYTERANGE=\"23000@20000\"",
+            "#EXT-X-PART:DURATION=1.02,URI=\"fs271.mp4\",BYTERANGE=\"18000@43000\"",
+            "#EXT-X-PART:DURATION=1.02,URI=\"fs271.mp4\",BYTERANGE=\"19000@61000\"",
+            "#EXTINF:4.08,",
+            "fs271.mp4",
+            "#EXT-X-PART:DURATION=1.02,URI=\"fs272.mp4\",BYTERANGE=\"21000@0\"",
+            "#EXT-X-PRELOAD-HINT:TYPE=PART,URI=\"fs272.mp4\",BYTERANGE-START=21000"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Revision-History",
+          "level": 3,
+          "text": "Revision History",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following table describes the changes to the Protocol Extension for Low-Latency",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "HLS.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Date",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Notes",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "2024-05-21",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Added some clarifying text.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "2024-01-16",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Corrected errors in examples.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "2021-11-12",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Renamed “primary playlist” to “Multivariant Playlist.”",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "2021-01-11",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Added missing double quotes around ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "BYTERANGE",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " parameters.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "2020-05-04",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Moved protocol rules to the HLS spec. This document is now a descriptive supplement.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "2020-02-05",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Added additional information related to preload hints and blocking of media downloads.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "2019-08-22",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Removed the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "_HLS_report",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " parameter and made Rendition Reports mandatory. Clarified the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "LAST-MSN",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " definition.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "2019-07-25",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Added the CDN Tune-in appendix.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "2019-07-10",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Updated MSN and part validation rules. Made server response recommended instead of mandatory. Added the requirement of the AGE header when using HTTP proxy caches.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "2019-06-03",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Added a new document describing Low-Latency HLS.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming": {
+      "abstract": [
+        {
+          "text": "Send audio and video to iOS, tvOS, and macOS devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming",
+      "kind": "article",
+      "role": "collection",
+      "title": "HTTP Live Streaming",
+      "type": "topic",
+      "url": "/documentation/http-live-streaming"
+    },
+    "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/about-the-common-media-application-format-with-http-live-streaming-hls": {
+      "abstract": [
+        {
+          "text": "Learn the Common Media Application Format as it applies to HLS.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/about-the-common-media-application-format-with-http-live-streaming-hls",
+      "kind": "article",
+      "role": "article",
+      "title": "About the Common Media Application Format with HTTP Live Streaming (HLS)",
+      "type": "topic",
+      "url": "/documentation/http-live-streaming/about-the-common-media-application-format-with-http-live-streaming-hls"
+    },
+    "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/adjusting-anchor-loudness": {
+      "abstract": [
+        {
+          "text": "Adjust anchor loudness when measurements of speech-gated loudness for a full mix",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "may be inaccurate, such as when speech activity is low.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/adjusting-anchor-loudness",
+      "kind": "article",
+      "role": "article",
+      "title": "Adjusting anchor loudness",
+      "type": "topic",
+      "url": "/documentation/http-live-streaming/adjusting-anchor-loudness"
+    },
+    "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/hls-authoring-specification-for-apple-devices": {
+      "abstract": [
+        {
+          "text": "Learn the requirements for live and on-demand audio and video content delivery using",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "HLS.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/hls-authoring-specification-for-apple-devices",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "HTTP Live Streaming (HLS) authoring specification for Apple devices",
+      "type": "topic",
+      "url": "/documentation/http-live-streaming/hls-authoring-specification-for-apple-devices"
+    },
+    "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/links-to-additional-specifications-and-videos": {
+      "abstract": [
+        {
+          "text": "Review additional specifications and documents.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/links-to-additional-specifications-and-videos",
+      "kind": "article",
+      "role": "article",
+      "title": "Links to additional specifications and videos",
+      "type": "topic",
+      "url": "/documentation/http-live-streaming/links-to-additional-specifications-and-videos"
+    },
+    "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/providing-javascript-object-notation-json-chapters": {
+      "abstract": [
+        {
+          "text": "Prepare JSON chapters for HTTP Live Streaming.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/providing-javascript-object-notation-json-chapters",
+      "kind": "article",
+      "role": "article",
+      "title": "Providing JavaScript Object Notation (JSON) chapters",
+      "type": "topic",
+      "url": "/documentation/http-live-streaming/providing-javascript-object-notation-json-chapters"
+    },
+    "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/providing-metadata-for-xhe-aac-video-soundtracks": {
+      "abstract": [
+        {
+          "text": "Ensure volume normalization by including metadata for loudness and dynamic range",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "control.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/providing-metadata-for-xhe-aac-video-soundtracks",
+      "kind": "article",
+      "role": "article",
+      "title": "Providing metadata for xHE-AAC video soundtracks",
+      "type": "topic",
+      "url": "/documentation/http-live-streaming/providing-metadata-for-xhe-aac-video-soundtracks"
+    },
+    "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/using-content-protection-systems-with-hls": {
+      "abstract": [
+        {
+          "text": "Adding encryption keys to media playlists",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/using-content-protection-systems-with-hls",
+      "kind": "article",
+      "role": "article",
+      "title": "Using content protection systems with HLS",
+      "type": "topic",
+      "url": "/documentation/http-live-streaming/using-content-protection-systems-with-hls"
+    },
+    "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/videos-about-hls": {
+      "abstract": [
+        {
+          "text": "Review informational videos about HTTP Live Streaming.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/videos-about-hls",
+      "kind": "article",
+      "role": "article",
+      "title": "Videos about HLS",
+      "type": "topic",
+      "url": "/documentation/http-live-streaming/videos-about-hls"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://datatracker.ietf.org/doc/html/draft-pantos-hls-rfc8216bis": {
+      "identifier": "https://datatracker.ietf.org/doc/html/draft-pantos-hls-rfc8216bis",
+      "title": "HTTP Live Streaming 2nd Edition",
+      "titleInlineContent": [
+        {
+          "text": "HTTP Live Streaming 2nd",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "Edition",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://datatracker.ietf.org/doc/html/draft-pantos-hls-rfc8216bis"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Specifications-and-other-documents",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/hls-authoring-specification-for-apple-devices",
+        "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/using-content-protection-systems-with-hls",
+        "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/about-the-common-media-application-format-with-http-live-streaming-hls",
+        "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/links-to-additional-specifications-and-videos",
+        "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/videos-about-hls",
+        "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/providing-metadata-for-xhe-aac-video-soundtracks",
+        "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/adjusting-anchor-loudness",
+        "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/providing-javascript-object-notation-json-chapters"
+      ],
+      "title": "Specifications and other documents"
+    }
+  ]
+}

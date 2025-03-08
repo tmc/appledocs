@@ -1,0 +1,833 @@
+{
+  "abstract": [
+    {
+      "text": "Create a media player inside your app to play audio from the user’s media library.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.mediaplayer/documentation/MediaPlayer/playing-audio-using-the-built-in-music-player"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Media Player"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Playing audio using the built-in music player"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "There are many reasons you might want to let users play music from their music library inside your app. For example, you might want them to listen to their own music while playing a particular level in your game. Add a built-in music player to quickly play audio tracks from the user’s music library while your app is running.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "To follow these steps, you must have a provisioned iOS device. Simulator has no access to a device’s music library.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Specify-a-usage-description-string",
+          "level": 3,
+          "text": "Specify a usage description string",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To give the user control over their personal data, apps must obtain permission to access the person’s music library. The first time your app tries to access someone’s media library, the system displays an alert that prompts them to grant or deny access to their music. The alert message includes your app’s usage-description string, which is a text description of how you plan to use the music.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To specify the usage-description string for your app, add the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSAppleMusicUsageDescription",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " key to your app’s ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file. Set the value of the key to your description of how you intend to use the music. Make your description as concise as possible, and no more than one or two sentences. For example, the usage-description string for a game might explain that its soundtrack incorporates the person’s music at different points in the gameplay.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "If your app’s ",
+                  "type": "text"
+                },
+                {
+                  "code": "Info.plist",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " file doesn’t include the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSAppleMusicUsageDescription",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " key, the system forces your app to exit when it attempts to access the current music library. To fix the problem, add the key to your ",
+                  "type": "text"
+                },
+                {
+                  "code": "Info.plist",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " file, and set the key’s value to an appropriate description.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Users can deny access to their media library, so design your app to run even without that access. If your app requires music, devise a backup plan that doesn’t involve asking the person to reconsider their decision. For example, include some default music in your app’s bundle.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Configure-the-media-player-contents",
+          "level": 3,
+          "text": "Configure the media player contents",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To play the user’s music, your app needs an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMusicPlayerController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object. The Media Player framework defines several player controllers, each of which serves a different purpose. To manage a queue of songs that’s specific to your app, create an application queue player, and fill it with one or more songs.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To access the songs in the user’s music library, construct an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaQuery",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object for the items you want. The class has constructors that let you request the user’s playlists, podcasts, songs, and other media content. To get the current songs, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaQuery/songs()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " constructor, as shown in the following example.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Get the music player.",
+            "let musicPlayer = MPMusicPlayerApplicationController.applicationQueuePlayer",
+            "// Add a playback queue containing all songs on the device.",
+            "musicPlayer.setQueue(with: .songs())"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you don’t want all the items in a collection, filter the list by adding one or more predicates to your ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaQuery",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". For example, you might specify a predicate to match only songs with a specific word in the title. For more information about configuring media queries, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaQuery",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Play-and-pause-the-music",
+          "level": 3,
+          "text": "Play and pause the music",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you add one or more songs to your music player, begin playback by calling the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaPlayback/play()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. Media players adopt the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaPlayback",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol and support all of the normal methods to play, pause, and stop playback. You can also use the methods of that protocol to change the playback speed and seek within a media item.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about controlling the playback of your items, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaPlayback",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSAppleMusicUsageDescription": {
+      "abstract": [
+        {
+          "text": "A message that tells the user why the app is requesting access to the user’s media library.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSAppleMusicUsageDescription",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSAppleMusicUsageDescription",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/NSAppleMusicUsageDescription"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer": {
+      "abstract": [
+        {
+          "text": "Find and play songs, audio podcasts, audio books, and more from within your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Media Player",
+      "type": "topic",
+      "url": "/documentation/mediaplayer"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaPlayback": {
+      "abstract": [
+        {
+          "text": "A protocol that defines the interface for controlling audio media playback.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPMediaPlayback"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaPlayback",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MPMediaPlayback"
+        }
+      ],
+      "role": "symbol",
+      "title": "MPMediaPlayback",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpmediaplayback"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaPlayback/play()": {
+      "abstract": [
+        {
+          "text": "Initiates playback of the current item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "play"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaPlayback/play()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "play"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "play()",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpmediaplayback/play()"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaQuery": {
+      "abstract": [
+        {
+          "text": "A query that specifies a set of media items from the device’s media library using a filter and a grouping type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPMediaQuery"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaQuery",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MPMediaQuery"
+        }
+      ],
+      "role": "symbol",
+      "title": "MPMediaQuery",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpmediaquery"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaQuery/songs()": {
+      "abstract": [
+        {
+          "text": "Creates a media query that matches music items and that groups and sorts collections by song name.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "songs"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MPMediaQuery",
+          "text": "MPMediaQuery"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaQuery/songs()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "songsQuery"
+        }
+      ],
+      "role": "symbol",
+      "title": "songs()",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpmediaquery/songs()"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMusicPlayerController": {
+      "abstract": [
+        {
+          "text": "An object that plays audio media items from the device’s Music app library.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPMusicPlayerController"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMusicPlayerController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MPMusicPlayerController"
+        }
+      ],
+      "role": "symbol",
+      "title": "MPMusicPlayerController",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpmusicplayercontroller"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPSystemMusicPlayerController": {
+      "abstract": [
+        {
+          "text": "A protocol for playing videos in the Music app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSystemMusicPlayerController"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPSystemMusicPlayerController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MPSystemMusicPlayerController"
+        }
+      ],
+      "role": "symbol",
+      "title": "MPSystemMusicPlayerController",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/mpsystemmusicplayercontroller"
+    },
+    "doc://com.apple.mediaplayer/documentation/MediaPlayer/displaying-a-media-picker-from-your-app": {
+      "abstract": [
+        {
+          "text": "Let users choose the music they want to play by displaying a media picker interface from within your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaplayer/documentation/MediaPlayer/displaying-a-media-picker-from-your-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Displaying a media picker from your app",
+      "type": "topic",
+      "url": "/documentation/mediaplayer/displaying-a-media-picker-from-your-app"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Related-Documentation",
+      "identifiers": [
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/displaying-a-media-picker-from-your-app"
+      ],
+      "title": "Related Documentation"
+    },
+    {
+      "anchor": "Built-in-music-playback",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMusicPlayerController",
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaPlayback",
+        "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPSystemMusicPlayerController"
+      ],
+      "title": "Built-in music playback"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Related-Documentation",
+              "identifiers": [
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/displaying-a-media-picker-from-your-app"
+              ],
+              "title": "Related Documentation"
+            },
+            {
+              "anchor": "Built-in-music-playback",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMusicPlayerController",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPMediaPlayback",
+                "doc://com.apple.mediaplayer/documentation/MediaPlayer/MPSystemMusicPlayerController"
+              ],
+              "title": "Built-in music playback"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMediaPlayback/title",
+          "value": "MPMediaPlayback"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMediaPlayback/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPMediaPlayback"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMediaPlayback/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPMediaPlayback"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMediaQuery~1songs()/title",
+          "value": "songsQuery"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMediaQuery~1songs()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "songsQuery"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMusicPlayerController/title",
+          "value": "MPMusicPlayerController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMusicPlayerController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPMusicPlayerController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMusicPlayerController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPMusicPlayerController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMediaPlayback~1play()/title",
+          "value": "play"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMediaPlayback~1play()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "play"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMediaQuery/title",
+          "value": "MPMediaQuery"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMediaQuery/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPMediaQuery"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPMediaQuery/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPMediaQuery"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPSystemMusicPlayerController/title",
+          "value": "MPSystemMusicPlayerController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPSystemMusicPlayerController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPSystemMusicPlayerController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaplayer~1documentation~1MediaPlayer~1MPSystemMusicPlayerController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MPSystemMusicPlayerController"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/mediaplayer/playing-audio-using-the-built-in-music-player"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/mediaplayer/playing-audio-using-the-built-in-music-player"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

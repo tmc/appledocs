@@ -1,0 +1,2060 @@
+{
+  "abstract": [
+    {
+      "text": "Run draw commands that render to different outputs using the same vertex data multiple times.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.metal/documentation/Metal",
+        "doc://com.apple.metal/documentation/Metal/render-passes"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.metal/documentation/Metal/improving-rendering-performance-with-vertex-amplification"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Metal"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Improving Rendering Performance with Vertex Amplification"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "With ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "vertex amplification",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", you can encode drawing commands that process the same vertex multiple times, one per render target. Vertex amplification generates copies of a command’s vertex data for each render pipeline. Vertex amplification is more efficient than encoding the command multiple times with the same vertex because the GPU fetches the vertex data only once. The GPU then calls your vertex function multiple times — equal to the amplification multiplier — for each vertex.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3380386",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, you can use vertex amplification to implement cascaded shadow maps, with an amplification multiplier that’s equal to the number of cascade levels.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Apps typically leverage vertex amplification to render the same vertices to different texture layers or to multiple viewports. For more information about these techniques, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/rendering-to-multiple-texture-slices-in-a-draw-command",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/rendering-to-multiple-viewports-in-a-draw-command",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Check-Whether-a-GPU-Supports-a-Vertex-Amplification-Multiplier",
+          "level": 3,
+          "text": "Check Whether a GPU Supports a Vertex Amplification Multiplier",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Confirm whether the GPU supports a specific multiplier for vertex amplification by passing its integer value to an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLDevice",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLDevice/supportsVertexAmplificationCount(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. Pass an amplification multiplier value that’s ",
+              "type": "text"
+            },
+            {
+              "code": "2",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or greater. A value of ",
+              "type": "text"
+            },
+            {
+              "code": "1",
+              "type": "codeVoice"
+            },
+            {
+              "text": " has no effect because it effectively disables vertex amplification.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Passing a multiplier value of ",
+                  "type": "text"
+                },
+                {
+                  "code": "1",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " or less to the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.metal/documentation/Metal/MTLDevice/supportsVertexAmplificationCount(_:)",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " method triggers an API validation error.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After your app confirms that the GPU supports a vertex amplification multiplier at runtime, it can safely configure a pipeline state to use that multiplier.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Set-a-Render-Pipeline-Descriptors-Largest-Vertex-Amplification-Multiplier",
+          "level": 3,
+          "text": "Set a Render Pipeline Descriptor’s Largest Vertex Amplification Multiplier",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Configure an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderPipelineDescriptor",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderPipelineDescriptor/maxVertexAmplificationCount",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property to a multiplier value that the GPU supports. Any encoders you create with the descriptor can support any vertex amplification factor in the range ",
+              "type": "text"
+            },
+            {
+              "code": "[1, ",
+              "type": "codeVoice"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderPipelineDescriptor/maxVertexAmplificationCount",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "code": "]",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "let pipelineStateDescriptor = MTLRenderPipelineDescriptor()",
+                    "pipelineStateDescriptor.vertexFunction = vertexFunction",
+                    "pipelineStateDescriptor.fragmentFunction = fragmentFunction",
+                    "pipelineStateDescriptor.maxVertexAmplificationCount = 2",
+                    "",
+                    "..."
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "MTLRenderPipelineDescriptor *pipelineStateDescriptor = [[MTLRenderPipelineDescriptor alloc] init];",
+                    "pipelineStateDescriptor.vertexFunction = vertexFunction;",
+                    "pipelineStateDescriptor.fragmentFunction = fragmentFunction;",
+                    "pipelineStateDescriptor.maxVertexAmplificationCount = 2;",
+                    "",
+                    "..."
+                  ],
+                  "syntax": "objective-c",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Continue configuring your pipeline descriptor and create an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderPipelineState",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance with it that you can assign to a render command encoder.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The example above sets the descriptor’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderPipelineDescriptor/maxVertexAmplificationCount",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property to ",
+              "type": "text"
+            },
+            {
+              "code": "2",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". Most apps typically set this property to the largest amplification factor the GPU supports. That way, an encoder that uses the pipeline state from that descriptor has the option to use any valid vertex amplification factor for that GPU.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Enable-Vertex-Amplification-for-a-Render-Pass",
+          "level": 3,
+          "text": "Enable Vertex Amplification for a Render Pass",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Configure an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance to apply vertex amplification for subsequent rendering commands by calling its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setVertexAmplificationCount(_:viewMappings:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "renderEncoder.setVertexAmplificationCount(2, viewMappings: nil)"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "[renderEncoder setVertexAmplificationCount:2 viewMappings:nil];"
+                  ],
+                  "syntax": "objective-c",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Set the vertex amplification count parameter to a value that’s less than or equal to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderPipelineDescriptor/maxVertexAmplificationCount",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property that configures the current render pipeline.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can also provide an array of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLVertexAmplificationViewMapping",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instances as you configure vertex amplification. Apps typically provide view mappings to render to multiple textures or viewports with vertex amplification.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following example sets the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLVertexAmplificationViewMapping/renderTargetArrayIndexOffset",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " values to ",
+              "type": "text"
+            },
+            {
+              "code": "0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "1",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for the first and second mappings, respectively. It also sets the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLVertexAmplificationViewMapping/viewportArrayIndexOffset",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " values to ",
+              "type": "text"
+            },
+            {
+              "code": "1",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "2",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for the first and second mappings, respectively.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The GPU adds these offsets to the vertex shader outputs with the corresponding attribute. In this example, the GPU adds ",
+              "type": "text"
+            },
+            {
+              "code": "0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "1",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to the output value with the ",
+              "type": "text"
+            },
+            {
+              "code": "[[render_target_array_index]]",
+              "type": "codeVoice"
+            },
+            {
+              "text": " attribute for the first and second pipeline invocations, respectively. It also adds ",
+              "type": "text"
+            },
+            {
+              "code": "1",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "2",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to the output value with the ",
+              "type": "text"
+            },
+            {
+              "code": "[[viewport_array_index]]",
+              "type": "codeVoice"
+            },
+            {
+              "text": " attribute for the first and second pipeline invocations, respectively.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "func configureEncoder(_ renderEncoder: MTLRenderCommandEncoder) {",
+                    "    // Create two mappings for vertex amplification.",
+                    "    var mapping0 = MTLVertexAmplificationViewMapping()",
+                    "    var mapping1 = MTLVertexAmplificationViewMapping()",
+                    "",
+                    "    // Set each mapping's index offset for a render target array.",
+                    "    mapping0.renderTargetArrayIndexOffset = 0",
+                    "    mapping1.renderTargetArrayIndexOffset = 1",
+                    "",
+                    "    // Set each mapping's index offset for a viewport array.",
+                    "    mapping0.viewportArrayIndexOffset = 1",
+                    "    mapping1.viewportArrayIndexOffset = 2",
+                    "",
+                    "    // Create an array of the two mappings.",
+                    "    let mappings = [mapping0, mapping1]",
+                    "",
+                    "    // Set the vertex amplification multiplier with view mappings.",
+                    "    renderEncoder.setVertexAmplificationCount(2, viewMappings: mappings)",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "- (void)configureEncoder:(id<MTLRenderCommandEncoder>) renderEncoder {",
+                    "    // Create two mappings for vertex amplification.",
+                    "    MTLVertexAmplificationViewMapping mapping0;",
+                    "    MTLVertexAmplificationViewMapping mapping1;",
+                    "",
+                    "    // Set each mapping's index offset for a render target array.",
+                    "    mapping0.renderTargetArrayIndexOffset = 0;",
+                    "    mapping1.renderTargetArrayIndexOffset = 1;",
+                    "",
+                    "    // Set each mapping's index offset for a viewport array.",
+                    "    mapping0.viewportArrayIndexOffset = 1;",
+                    "    mapping1.viewportArrayIndexOffset = 2;",
+                    "",
+                    "    // Create an array of the two mappings.",
+                    "    MTLVertexAmplificationViewMapping mappings[] = { mapping0, mapping1 };",
+                    "",
+                    "    // Set the vertex amplification multiplier.",
+                    "    [renderEncoder setVertexAmplificationCount:2 viewMappings:mappings];",
+                    "}"
+                  ],
+                  "syntax": "objective-c",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "See the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/metal/Metal-Shading-Language-Specification.pdf",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for information about applying an attribute to a parameter of a GPU function (shader and kernel).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-Vertex-Amplification-to-Your-Vertex-Shader",
+          "level": 3,
+          "text": "Add Vertex Amplification to Your Vertex Shader",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Implement vertex amplification in your shader code by adding parameters that represent the amplification ID and amplification factor. Designate which parameter is which by appending an attribute to each.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, the parameter with the ",
+              "type": "text"
+            },
+            {
+              "code": "[[amplification_id]]",
+              "type": "codeVoice"
+            },
+            {
+              "text": " attribute represents the unique identifier for each copy of the vertex data. The parameter with the ",
+              "type": "text"
+            },
+            {
+              "code": "[[amplification_count]]",
+              "type": "codeVoice"
+            },
+            {
+              "text": " attribute represents the total number of unique identifiers.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "vertex VertexOut vs_main(VertexIn in[[stage_in]],",
+            "                         ushort amp_id [[amplification_id]],",
+            "                         ushort amp_count [[amplification_count]],",
+            "                         constant int* buffer)",
+            "{",
+            "    ...",
+            "}"
+          ],
+          "syntax": "metal",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The GPU invokes the shader one time for each amplification ID. For each invocation, the GPU sets the parameter with the ",
+              "type": "text"
+            },
+            {
+              "code": "[[amplification_id]]",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to a unique value in the range ",
+              "type": "text"
+            },
+            {
+              "code": "[0, amplification_count - 1]",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". The GPU sets the parameter with the ",
+              "type": "text"
+            },
+            {
+              "code": "[[amplification_count]]",
+              "type": "codeVoice"
+            },
+            {
+              "text": " attribute to the same amplification factor you configure the draw command to use for all invocations.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can customize your shader’s behavior for each render pipeline instance with these parameters, which are ",
+              "type": "text"
+            },
+            {
+              "code": "amp_id",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "amp_count",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in these examples.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct VertexOut",
+            "{",
+            "    int data;",
+            "    ...",
+            "};",
+            "",
+            "...",
+            "",
+            "vertex VertexOut vs_main(VertexIn in[[stage_in]],",
+            "                         ushort amp_id [[amplification_id]],",
+            "                         ushort amp_count [[amplification_count]],",
+            "                         constant int* buffer)",
+            "{",
+            "    VertexOut out;",
+            "    ...",
+            " ",
+            "    if (amp_count == 1) {",
+            "        // The draw command isn't using vertex amplification.",
+            "        ...",
+            "    } else {",
+            "        out.data = buffer[amp_id];",
+            "        ...",
+            "    }",
+            "",
+            "    ...",
+            "    return out;",
+            "}"
+          ],
+          "syntax": "metal",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can also invoke shaders that have these parameters with a draw call that’s not applying vertex amplification. In those scenarios, the GPU calls the shader once per vertex, and sets the parameters with ",
+              "type": "text"
+            },
+            {
+              "code": "[[amplification_id]]",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "[[amplification_count]]",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to ",
+              "type": "text"
+            },
+            {
+              "code": "0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "1",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", respectively.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Mark-Values-Common-to-All-Vertices-as-Shared",
+          "level": 3,
+          "text": "Mark Values Common to All Vertices as Shared",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can help reduce the GPU’s runtime workload by annotating values that are the same for all amplification IDs of a vertex. The Metal compiler detects values that remain consistent across all amplification IDs as ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "shared",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " values. You can also tell the compiler which values you consider shared by adding the ",
+              "type": "text"
+            },
+            {
+              "code": "[[shared]]",
+              "type": "codeVoice"
+            },
+            {
+              "text": " attribute.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "By default, the Metal shader compiler looks for shared values by detecting calculations that have the same value for all amplification IDs of a vertex. The compiler instructs the GPU to calculate these values once per vertex so that the GPU doesn’t calculate the same value for every amplification ID. For example, if the shader copies a value directly from an input, the compiler infers that as a shared value.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "#define PositionAttribute            0",
+            "#define TextureCoordinatesAttribute  1",
+            "#define NormalAttribute              2",
+            "",
+            "struct VertexIn",
+            "{",
+            "    float3 position         [[attribute(PositionAttribute)]];",
+            "    float2 textureLocation  [[attribute(TextureCoordinatesAttribute)]];",
+            "    float3 normal           [[attribute(NormalAttribute)]];",
+            "};",
+            "",
+            "struct VertexOut",
+            "{",
+            "    int data;",
+            "    float4 position [[position]];",
+            "    float3 normal;",
+            "    float2 textureLocation [[shared]];",
+            "};",
+            "",
+            "...",
+            "",
+            "vertex VertexOut vs_main(VertexIn in[[stage_in]],",
+            "                         ushort amp_id [[amplification_id]],",
+            "                         ushort amp_count [[amplification_count]],",
+            "                         constant int* buffer)",
+            "{",
+            "    VertexOut out;",
+            "    ...",
+            "",
+            "    // This is a shared value because it's the same for all copies of the vertex.",
+            "    out.normal = in.normal;",
+            "",
+            "    ...",
+            "    return out;",
+            "}"
+          ],
+          "syntax": "metal",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The compiler can also infer other calculations as a shared value if a vertex’s calculation result is the same for all amplification IDs.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Conversely, the compiler infers other calculations that vary across amplification IDs as ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "nonshared",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ". For example, a calculation that depends on the ",
+              "type": "text"
+            },
+            {
+              "code": "[[amplification_id]]",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter is a nonshared value because the amplification ID changes for each vertex copy.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct VertexOut",
+            "{",
+            "    int data;",
+            "    ...",
+            "};",
+            "",
+            "...",
+            "",
+            "vertex VertexOut vs_main(VertexIn in[[stage_in]],",
+            "                         ushort amp_id [[amplification_id]],",
+            "                         ushort amp_count [[amplification_count]],",
+            "                         constant int* buffer)",
+            "{",
+            "    VertexOut out;",
+            "    ...",
+            "",
+            "    // This is a nonshared value because it depends on the [[amplification_id]] parameter.",
+            "    out.data = buffer[amp_id];",
+            "",
+            "    ...",
+            "    return out;",
+            "}"
+          ],
+          "syntax": "metal",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The compiler also infers any calculation that depends on a ",
+              "type": "text"
+            },
+            {
+              "code": "[[position]]",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter as a nonshared value.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "#define PositionAttribute            0",
+            "...",
+            "",
+            "struct VertexIn",
+            "{",
+            "    float3 position         [[attribute(PositionAttribute)]];",
+            "    ...",
+            " };",
+            "",
+            "",
+            "struct VertexOut",
+            "{",
+            "    ...",
+            "    float4 position [[position]];",
+            "    ...",
+            "};",
+            "",
+            "constant float4x4 transform = { ... };",
+            "",
+            "vertex VertexOut vs_main(VertexIn in[[stage_in]],",
+            "                         ushort amp_id [[amplification_id]],",
+            "                         ushort amp_count [[amplification_count]],",
+            "                         constant int* buffer)",
+            "{",
+            "    VertexOut out;",
+            "    ...",
+            "",
+            "    // This is a nonshared value because the assignment stores the result to the [[position]] parameter.",
+            "    out.position = transform * float4(in.position, 1.0);",
+            "",
+            "    ...",
+            "    return out;",
+            "}"
+          ],
+          "syntax": "metal",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "The Metal compiler infers all assignments to parameters with built-in attributes as ",
+                  "type": "text"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "shared",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "emphasis"
+                },
+                {
+                  "text": " values, except for assignments to the ",
+                  "type": "text"
+                },
+                {
+                  "code": "[[position]]",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " attribute.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The compiler infers other calculations as shared values if it can prove the result is the same for all amplification IDs. However, you can explicitly designate a parameter as a shared value by adding the ",
+              "type": "text"
+            },
+            {
+              "code": "[[shared]]",
+              "type": "codeVoice"
+            },
+            {
+              "text": " attribute as a hint to the shader compiler.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct VertexOut",
+            "{",
+            "    ...",
+            "     float2 textureLocation [[shared]];",
+            "};",
+            "vertex VertexOut vs_main(VertexIn in[[stage_in]],",
+            "                         ushort amp_id [[amplification_id]],",
+            "                         ushort amp_count [[amplification_count]],",
+            "                         constant int* buffer)",
+            "{",
+            "    VertexOut out;",
+            "    ...",
+            "",
+            "    // This is a shared value the `VertexOut` type declares with the [[shared]] attribute.",
+            "    out.textureLocation = in.position.xy;",
+            "",
+            "    ...",
+            "    return out;",
+            "}"
+          ],
+          "syntax": "metal",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Combine-Vertex-Amplification-with-Primitive-Instancing",
+          "level": 3,
+          "text": "Combine Vertex Amplification with Primitive Instancing",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Primitive instancing",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " is another way to generate copies of vertex data by providing additional data that modifies the original vertices for each instance. For example, you might animate a model by altering its vertex data with a sequence of pose offsets, each corresponding to a frame of animation.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Primitive instancing generates a copy of vertex data for each instance. If you encode a draw call with an instance count of ",
+              "type": "text"
+            },
+            {
+              "code": "10",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", the GPU invokes the render pipeline 10 times, once per instance. Unlike vertex amplification, the GPU recalculates all vertex output values each time it invokes your vertex shader.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can apply both vertex amplification and primitive instancing in the same render pass for separate components of the scene. You can use primitive instancing to draw multiple characters for a scene and then use vertex amplification to render to different shadow maps.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The total number of render pipelines instances is equal to the product of the vertex amplification factor and the number of primitive instances. For example, if you encode a draw call with ",
+              "type": "text"
+            },
+            {
+              "code": "10",
+              "type": "codeVoice"
+            },
+            {
+              "text": " primitive instances and a vertex amplification factor of ",
+              "type": "text"
+            },
+            {
+              "code": "2",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", the GPU calls your vertex shader 20 times per vertex. In this case, the vertex shader runs twice for each of the 10 instances. However, the GPU calculates the vertex amplification’s shared output values once per vertex for all amplification IDs.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.metal/documentation/Metal": {
+      "abstract": [
+        {
+          "text": "Render advanced 3D graphics and compute data in parallel with graphics processors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Metal",
+      "type": "topic",
+      "url": "/documentation/metal"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLDevice": {
+      "abstract": [
+        {
+          "text": "The main Metal interface to a GPU that apps use to draw graphics and run computations in parallel.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLDevice"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLDevice",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLDevice"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLDevice",
+      "type": "topic",
+      "url": "/documentation/metal/mtldevice"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLDevice/supportsVertexAmplificationCount(_:)": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether the GPU supports an amplification factor.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "supportsVertexAmplificationCount"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLDevice/supportsVertexAmplificationCount(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "supportsVertexAmplificationCount:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "supportsVertexAmplificationCount(_:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtldevice/supportsvertexamplificationcount(_:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder": {
+      "abstract": [
+        {
+          "text": "An interface that encodes a render pass into a command buffer, including all its draw calls and configuration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLRenderCommandEncoder"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLRenderCommandEncoder"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLRenderCommandEncoder",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrendercommandencoder"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setVertexAmplificationCount(_:viewMappings:)": {
+      "abstract": [
+        {
+          "text": "Configures the number of output vertices the render pipeline produces for each input vertex, optionally with render target and viewport offsets.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setVertexAmplificationCount"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "viewMappings"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@MTLVertexAmplificationViewMapping",
+          "text": "MTLVertexAmplificationViewMapping"
+        },
+        {
+          "kind": "text",
+          "text": ">?)"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/setVertexAmplificationCount(_:viewMappings:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setVertexAmplificationCount:viewMappings:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "setVertexAmplificationCount(_:viewMappings:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrendercommandencoder/setvertexamplificationcount(_:viewmappings:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRenderPipelineDescriptor": {
+      "abstract": [
+        {
+          "text": "An argument of options you pass to a GPU device to get a render pipeline state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLRenderPipelineDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderPipelineDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLRenderPipelineDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLRenderPipelineDescriptor",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrenderpipelinedescriptor"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRenderPipelineDescriptor/maxVertexAmplificationCount": {
+      "abstract": [
+        {
+          "text": "The maximum vertex amplification count you can set when encoding render commands.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "maxVertexAmplificationCount"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderPipelineDescriptor/maxVertexAmplificationCount",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "maxVertexAmplificationCount"
+        }
+      ],
+      "role": "symbol",
+      "title": "maxVertexAmplificationCount",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrenderpipelinedescriptor/maxvertexamplificationcount"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRenderPipelineState": {
+      "abstract": [
+        {
+          "text": "An interface that represents a graphics pipeline configuration for a render pass, which the pass applies to the draw commands you encode.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLRenderPipelineState"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderPipelineState",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLRenderPipelineState"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLRenderPipelineState",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrenderpipelinestate"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLVertexAmplificationViewMapping": {
+      "abstract": [
+        {
+          "text": "An offset applied to a render target index and viewport index.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLVertexAmplificationViewMapping"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLVertexAmplificationViewMapping",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLVertexAmplificationViewMapping"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLVertexAmplificationViewMapping",
+      "type": "topic",
+      "url": "/documentation/metal/mtlvertexamplificationviewmapping"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLVertexAmplificationViewMapping/renderTargetArrayIndexOffset": {
+      "abstract": [
+        {
+          "text": "An offset into the list of render targets.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "renderTargetArrayIndexOffset"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLVertexAmplificationViewMapping/renderTargetArrayIndexOffset",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "renderTargetArrayIndexOffset"
+        }
+      ],
+      "role": "symbol",
+      "title": "renderTargetArrayIndexOffset",
+      "type": "topic",
+      "url": "/documentation/metal/mtlvertexamplificationviewmapping/rendertargetarrayindexoffset"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLVertexAmplificationViewMapping/viewportArrayIndexOffset": {
+      "abstract": [
+        {
+          "text": "An offset into the list of viewports.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "viewportArrayIndexOffset"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLVertexAmplificationViewMapping/viewportArrayIndexOffset",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "viewportArrayIndexOffset"
+        }
+      ],
+      "role": "symbol",
+      "title": "viewportArrayIndexOffset",
+      "type": "topic",
+      "url": "/documentation/metal/mtlvertexamplificationviewmapping/viewportarrayindexoffset"
+    },
+    "doc://com.apple.metal/documentation/Metal/customizing-render-pass-setup": {
+      "abstract": [
+        {
+          "text": "Render into an offscreen texture by creating a custom render pass.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/customizing-render-pass-setup",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Customizing Render Pass Setup",
+      "type": "topic",
+      "url": "/documentation/metal/customizing-render-pass-setup"
+    },
+    "doc://com.apple.metal/documentation/Metal/render-passes": {
+      "abstract": [
+        {
+          "text": "Encode a render pass to draw graphics into an image.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/render-passes",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Render Passes",
+      "type": "topic",
+      "url": "/documentation/metal/render-passes"
+    },
+    "doc://com.apple.metal/documentation/Metal/rendering-to-multiple-texture-slices-in-a-draw-command": {
+      "abstract": [
+        {
+          "text": "Select a destination texture slice in your vertex shader.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/rendering-to-multiple-texture-slices-in-a-draw-command",
+      "kind": "article",
+      "role": "article",
+      "title": "Rendering to Multiple Texture Slices in a Draw Command",
+      "type": "topic",
+      "url": "/documentation/metal/rendering-to-multiple-texture-slices-in-a-draw-command"
+    },
+    "doc://com.apple.metal/documentation/Metal/rendering-to-multiple-viewports-in-a-draw-command": {
+      "abstract": [
+        {
+          "text": "Select viewports and their corresponding scissor rectangles in your vertex shader.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/rendering-to-multiple-viewports-in-a-draw-command",
+      "kind": "article",
+      "role": "article",
+      "title": "Rendering to Multiple Viewports in a Draw Command",
+      "type": "topic",
+      "url": "/documentation/metal/rendering-to-multiple-viewports-in-a-draw-command"
+    },
+    "doc://com.apple.metal/documentation/Metal/setting-load-and-store-actions": {
+      "abstract": [
+        {
+          "text": "Set actions that define how a render pass loads and stores a render target.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/setting-load-and-store-actions",
+      "kind": "article",
+      "role": "article",
+      "title": "Setting Load and Store Actions",
+      "type": "topic",
+      "url": "/documentation/metal/setting-load-and-store-actions"
+    },
+    "doc://com.apple.metal/documentation/Metal/using-a-render-pipeline-to-render-primitives": {
+      "abstract": [
+        {
+          "text": "Render a simple 2D triangle.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/using-a-render-pipeline-to-render-primitives",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Using a Render Pipeline to Render Primitives",
+      "type": "topic",
+      "url": "/documentation/metal/using-a-render-pipeline-to-render-primitives"
+    },
+    "https://developer.apple.com/metal/Metal-Shading-Language-Specification.pdf": {
+      "identifier": "https://developer.apple.com/metal/Metal-Shading-Language-Specification.pdf",
+      "title": "Metal Shading Language Specification",
+      "titleInlineContent": [
+        {
+          "text": "Metal Shading Language Specification",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/metal/Metal-Shading-Language-Specification.pdf"
+    },
+    "media-3380386": {
+      "alt": "A flow diagram that begins with a single instance of vertex data that flows into a single vertex stage. The vertex stage then produces two outputs that flow into two separate,  parallel render pipeline instances.",
+      "identifier": "media-3380386",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c63c5aa8cceb65dc6421201c86838cee/media-3380386@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/445b2a17fa0bd0a958331ea5b3173366/media-3380386~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Applying-Rendering-Techniques",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/using-a-render-pipeline-to-render-primitives",
+        "doc://com.apple.metal/documentation/Metal/customizing-render-pass-setup",
+        "doc://com.apple.metal/documentation/Metal/setting-load-and-store-actions"
+      ],
+      "title": "Applying Rendering Techniques"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Applying-Rendering-Techniques",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/using-a-render-pipeline-to-render-primitives",
+                "doc://com.apple.metal/documentation/Metal/customizing-render-pass-setup",
+                "doc://com.apple.metal/documentation/Metal/setting-load-and-store-actions"
+              ],
+              "title": "Applying Rendering Techniques"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderPipelineDescriptor~1maxVertexAmplificationCount/title",
+          "value": "maxVertexAmplificationCount"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderPipelineDescriptor~1maxVertexAmplificationCount/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "maxVertexAmplificationCount"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderCommandEncoder~1setVertexAmplificationCount(_:viewMappings:)/title",
+          "value": "setVertexAmplificationCount:viewMappings:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderCommandEncoder~1setVertexAmplificationCount(_:viewMappings:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setVertexAmplificationCount:viewMappings:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLVertexAmplificationViewMapping/title",
+          "value": "MTLVertexAmplificationViewMapping"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLVertexAmplificationViewMapping/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLVertexAmplificationViewMapping"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLVertexAmplificationViewMapping/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLVertexAmplificationViewMapping"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice~1supportsVertexAmplificationCount(_:)/title",
+          "value": "supportsVertexAmplificationCount:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice~1supportsVertexAmplificationCount(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "supportsVertexAmplificationCount:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderPipelineState/title",
+          "value": "MTLRenderPipelineState"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderPipelineState/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLRenderPipelineState"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderPipelineState/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLRenderPipelineState"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice/title",
+          "value": "MTLDevice"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLDevice"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLDevice"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLVertexAmplificationViewMapping~1renderTargetArrayIndexOffset/title",
+          "value": "renderTargetArrayIndexOffset"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLVertexAmplificationViewMapping~1renderTargetArrayIndexOffset/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "renderTargetArrayIndexOffset"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderPipelineDescriptor/title",
+          "value": "MTLRenderPipelineDescriptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderPipelineDescriptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLRenderPipelineDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderPipelineDescriptor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLRenderPipelineDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderCommandEncoder/title",
+          "value": "MTLRenderCommandEncoder"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderCommandEncoder/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLRenderCommandEncoder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderCommandEncoder/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLRenderCommandEncoder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLVertexAmplificationViewMapping~1viewportArrayIndexOffset/title",
+          "value": "viewportArrayIndexOffset"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLVertexAmplificationViewMapping~1viewportArrayIndexOffset/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "viewportArrayIndexOffset"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/metal/improving-rendering-performance-with-vertex-amplification"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/metal/improving-rendering-performance-with-vertex-amplification"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

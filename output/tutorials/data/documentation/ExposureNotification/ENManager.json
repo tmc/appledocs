@@ -1,0 +1,2824 @@
+{
+  "abstract": [
+    {
+      "text": "A class that manages exposure notifications.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.exposurenotification/documentation/ExposureNotification"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENManager"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)ENManager",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "ENManager"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Exposure Notification"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "ENManager"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "12.5",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "12.5",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "12.5",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "ENManager"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "ENManager"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "This class is available in iOS 12.5, and in iOS 13.5 and later.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before using an instance of this class, call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENManager/activate(completionHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". If the completion handler completes successfully, you can work with the remaining properties and methods on the class. Activating this object doesn’t enable exposure notification; it only allows this object to be used. Once activated, exposure notification can be enabled with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENManager/setExposureNotificationEnabled(_:completionHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", if needed.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the app no longer needs an instance of this class, you must call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENManager/invalidate()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", which stops any outstanding operations and invokes the invalidation handler.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Invalidation is asynchronous so it’s possible for handlers to be invoked after calling ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENManager/invalidate()",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The framework invokes the invalidation handler once invalidation finishes, and performs the invocation exactly once, even if ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENManager/invalidate()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " is called multiple times. It does not call any additional handlers.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After calling ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENManager/invalidate()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", your app can’t reuse the object. A new object must be created for subsequent use. The framework clears strong references once invalidation completes to break potential retain cycles. You don’t need to use weak references within your handlers to avoid retain cycles when using this class.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/ENAPIVersion": {
+      "abstract": [
+        {
+          "text": "A number that specifies the version of the API to use.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/ENAPIVersion",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ENAPIVersion",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/ENAPIVersion"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/ENDeveloperRegion": {
+      "abstract": [
+        {
+          "text": "A string that specifies the region that the app supports.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/ENDeveloperRegion",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ENDeveloperRegion",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/ENDeveloperRegion"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.exposurenotification/documentation/ExposureNotification": {
+      "abstract": [
+        {
+          "text": "Implement a COVID-19 exposure notification system that protects user privacy.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.exposurenotification/documentation/ExposureNotification",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Exposure Notification",
+      "type": "topic",
+      "url": "/documentation/exposurenotification"
+    },
+    "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENActivityFlags": {
+      "abstract": [
+        {
+          "text": "Activities that occur while the app isn’t running.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ENActivityFlags"
+        }
+      ],
+      "identifier": "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENActivityFlags",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ENActivityFlags"
+        }
+      ],
+      "role": "symbol",
+      "title": "ENActivityFlags",
+      "type": "topic",
+      "url": "/documentation/exposurenotification/enactivityflags"
+    },
+    "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENActivityHandler": {
+      "abstract": [
+        {
+          "text": "The handler the system invokes to report activities that occurred while the app wasn’t running.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ENActivityHandler"
+        }
+      ],
+      "identifier": "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENActivityHandler",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ENActivityHandler"
+        }
+      ],
+      "role": "symbol",
+      "title": "ENActivityHandler",
+      "type": "topic",
+      "url": "/documentation/exposurenotification/enactivityhandler"
+    },
+    "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENDiagnosisKeysAvailableHandler": {
+      "abstract": [
+        {
+          "text": "The handler the system invokes after requesting diagnosis keys.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ENDiagnosisKeysAvailableHandler"
+        }
+      ],
+      "identifier": "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENDiagnosisKeysAvailableHandler",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ENDiagnosisKeysAvailableHandler"
+        }
+      ],
+      "role": "symbol",
+      "title": "ENDiagnosisKeysAvailableHandler",
+      "type": "topic",
+      "url": "/documentation/exposurenotification/endiagnosiskeysavailablehandler"
+    },
+    "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENGetExposureWindowsHandler": {
+      "abstract": [
+        {
+          "text": "The handler the system invokes when the acquisition of windows completes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ENGetExposureWindowsHandler"
+        }
+      ],
+      "identifier": "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENGetExposureWindowsHandler",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ENGetExposureWindowsHandler"
+        }
+      ],
+      "role": "symbol",
+      "title": "ENGetExposureWindowsHandler",
+      "type": "topic",
+      "url": "/documentation/exposurenotification/engetexposurewindowshandler"
+    },
+    "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENGetUserTraveledHandler": {
+      "abstract": [
+        {
+          "text": "The handler the system invokes when acquistiion of the user’s travel status completes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ENGetUserTraveledHandler"
+        }
+      ],
+      "identifier": "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENGetUserTraveledHandler",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ENGetUserTraveledHandler"
+        }
+      ],
+      "role": "symbol",
+      "title": "ENGetUserTraveledHandler",
+      "type": "topic",
+      "url": "/documentation/exposurenotification/engetusertraveledhandler"
+    },
+    "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENManager": {
+      "abstract": [
+        {
+          "text": "A class that manages exposure notifications.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ENManager"
+        }
+      ],
+      "identifier": "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENManager",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ENManager"
+        }
+      ],
+      "role": "symbol",
+      "title": "ENManager",
+      "type": "topic",
+      "url": "/documentation/exposurenotification/enmanager"
+    },
+    "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENManager/activate(completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Prepares the manager for use.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "activate"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@ENErrorHandler",
+          "text": "ENErrorHandler"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENManager/activate(completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "activateWithCompletionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "activate(completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/exposurenotification/enmanager/activate(completionhandler:)"
+    },
+    "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENManager/activityHandler": {
+      "abstract": [
+        {
+          "text": "The handler that the framework invokes when the app activates a notification manager.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "activityHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@ENActivityHandler",
+          "text": "ENActivityHandler"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENManager/activityHandler",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "activityHandler"
+        }
+      ],
+      "role": "symbol",
+      "title": "activityHandler",
+      "type": "topic",
+      "url": "/documentation/exposurenotification/enmanager/activityhandler"
+    },
+    "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENManager/authorizationStatus": {
+      "abstract": [
+        {
+          "text": "A property that reports the current authorization status of the app, and never prompts the user.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "authorizationStatus"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@ENAuthorizationStatus",
+          "text": "ENAuthorizationStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENManager/authorizationStatus",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "authorizationStatus"
+        }
+      ],
+      "role": "symbol",
+      "title": "authorizationStatus",
+      "type": "topic",
+      "url": "/documentation/exposurenotification/enmanager/authorizationstatus"
+    },
+    "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENManager/detectExposures(configuration:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Detects exposures using the specified configuration to control the scoring algorithm.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "detectExposures"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "configuration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ENExposureConfiguration",
+          "text": "ENExposureConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@ENDetectExposuresHandler",
+          "text": "ENDetectExposuresHandler"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSProgress",
+          "text": "Progress"
+        }
+      ],
+      "identifier": "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENManager/detectExposures(configuration:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "detectExposuresWithConfiguration:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "detectExposures(configuration:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/exposurenotification/enmanager/detectexposures(configuration:completionhandler:)"
+    },
+    "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENManager/detectExposures(configuration:diagnosisKeyURLs:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Detects exposures using the configuration that you specify for controlling the scoring algorithm.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "detectExposures"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "configuration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ENExposureConfiguration",
+          "text": "ENExposureConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "diagnosisKeyURLs"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@ENDetectExposuresHandler",
+          "text": "ENDetectExposuresHandler"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSProgress",
+          "text": "Progress"
+        }
+      ],
+      "identifier": "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENManager/detectExposures(configuration:diagnosisKeyURLs:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "detectExposuresWithConfiguration:diagnosisKeyURLs:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "detectExposures(configuration:diagnosisKeyURLs:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/exposurenotification/enmanager/detectexposures(configuration:diagnosiskeyurls:completionhandler:)"
+    },
+    "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENManager/diagnosisKeysAvailableHandler": {
+      "abstract": [
+        {
+          "text": "The handler that receives available diagnosis keys after a successful preauthorization.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "diagnosisKeysAvailableHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@ENDiagnosisKeysAvailableHandler",
+          "text": "ENDiagnosisKeysAvailableHandler"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENManager/diagnosisKeysAvailableHandler",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "diagnosisKeysAvailableHandler"
+        }
+      ],
+      "role": "symbol",
+      "title": "diagnosisKeysAvailableHandler",
+      "type": "topic",
+      "url": "/documentation/exposurenotification/enmanager/diagnosiskeysavailablehandler"
+    },
+    "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENManager/dispatchQueue": {
+      "abstract": [
+        {
+          "text": "The dispatch queue on which to invoke handlers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "dispatchQueue"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@dispatch_queue_t",
+          "text": "dispatch_queue_t"
+        }
+      ],
+      "identifier": "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENManager/dispatchQueue",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "dispatchQueue"
+        }
+      ],
+      "role": "symbol",
+      "title": "dispatchQueue",
+      "type": "topic",
+      "url": "/documentation/exposurenotification/enmanager/dispatchqueue"
+    },
+    "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENManager/exposureNotificationEnabled": {
+      "abstract": [
+        {
+          "text": "A property that indicates that a user enabled exposure notification.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "exposureNotificationEnabled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENManager/exposureNotificationEnabled",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "exposureNotificationEnabled"
+        }
+      ],
+      "role": "symbol",
+      "title": "exposureNotificationEnabled",
+      "type": "topic",
+      "url": "/documentation/exposurenotification/enmanager/exposurenotificationenabled"
+    },
+    "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENManager/exposureNotificationStatus": {
+      "abstract": [
+        {
+          "text": "A property that indicates the status of exposure notifications.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "exposureNotificationStatus"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@ENStatus",
+          "text": "ENStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENManager/exposureNotificationStatus",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "exposureNotificationStatus"
+        }
+      ],
+      "role": "symbol",
+      "title": "exposureNotificationStatus",
+      "type": "topic",
+      "url": "/documentation/exposurenotification/enmanager/exposurenotificationstatus"
+    },
+    "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENManager/getDiagnosisKeys(completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Requests the temporary exposure keys from the user’s device to share with a server.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "getDiagnosisKeys"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@ENGetDiagnosisKeysHandler",
+          "text": "ENGetDiagnosisKeysHandler"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENManager/getDiagnosisKeys(completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "getDiagnosisKeysWithCompletionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "getDiagnosisKeys(completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/exposurenotification/enmanager/getdiagnosiskeys(completionhandler:)"
+    },
+    "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENManager/getExposureInfo(summary:userExplanation:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Returns information about each exposure.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "getExposureInfo"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "summary"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ENExposureDetectionSummary",
+          "text": "ENExposureDetectionSummary"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "userExplanation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@ENGetExposureInfoHandler",
+          "text": "ENGetExposureInfoHandler"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSProgress",
+          "text": "Progress"
+        }
+      ],
+      "identifier": "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENManager/getExposureInfo(summary:userExplanation:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "getExposureInfoFromSummary:userExplanation:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "getExposureInfo(summary:userExplanation:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/exposurenotification/enmanager/getexposureinfo(summary:userexplanation:completionhandler:)"
+    },
+    "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENManager/getExposureWindows(summary:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Obtains information from the provided summary about the user’s exposure within a window of time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "getExposureWindows"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "summary"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ENExposureDetectionSummary",
+          "text": "ENExposureDetectionSummary"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@ENGetExposureWindowsHandler",
+          "text": "ENGetExposureWindowsHandler"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSProgress",
+          "text": "Progress"
+        }
+      ],
+      "identifier": "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENManager/getExposureWindows(summary:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "getExposureWindowsFromSummary:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "getExposureWindows(summary:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/exposurenotification/enmanager/getexposurewindows(summary:completionhandler:)"
+    },
+    "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENManager/getTestDiagnosisKeys(completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Requests the temporary exposure keys, including the current key, used by this device for testing.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "getTestDiagnosisKeys"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@ENGetDiagnosisKeysHandler",
+          "text": "ENGetDiagnosisKeysHandler"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENManager/getTestDiagnosisKeys(completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "getTestDiagnosisKeysWithCompletionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "getTestDiagnosisKeys(completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/exposurenotification/enmanager/gettestdiagnosiskeys(completionhandler:)"
+    },
+    "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENManager/getUserTraveled(completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Obtains information about the user’s travel within an exposure period.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "getUserTraveled"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@ENGetUserTraveledHandler",
+          "text": "ENGetUserTraveledHandler"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENManager/getUserTraveled(completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "getUserTraveledWithCompletionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "getUserTraveled(completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/exposurenotification/enmanager/getusertraveled(completionhandler:)"
+    },
+    "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENManager/invalidate()": {
+      "abstract": [
+        {
+          "text": "Stops any outstanding operations and invalidates the manager.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "invalidate"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENManager/invalidate()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "invalidate"
+        }
+      ],
+      "role": "symbol",
+      "title": "invalidate()",
+      "type": "topic",
+      "url": "/documentation/exposurenotification/enmanager/invalidate()"
+    },
+    "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENManager/invalidationHandler": {
+      "abstract": [
+        {
+          "text": "The handler that the framework invokes when invalidation completes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "invalidationHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": (() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENManager/invalidationHandler",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "invalidationHandler"
+        }
+      ],
+      "role": "symbol",
+      "title": "invalidationHandler",
+      "type": "topic",
+      "url": "/documentation/exposurenotification/enmanager/invalidationhandler"
+    },
+    "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENManager/preAuthorizeDiagnosisKeys(completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Allows users to authorize a one-time release of diagnosis keys within five days of the authorization.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "preAuthorizeDiagnosisKeys"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@ENErrorHandler",
+          "text": "ENErrorHandler"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENManager/preAuthorizeDiagnosisKeys(completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "preAuthorizeDiagnosisKeysWithCompletionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "preAuthorizeDiagnosisKeys(completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/exposurenotification/enmanager/preauthorizediagnosiskeys(completionhandler:)"
+    },
+    "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENManager/requestPreAuthorizedDiagnosisKeys(completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Requests diagnosis keys after the user authorizes sharing them.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "requestPreAuthorizedDiagnosisKeys"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@ENErrorHandler",
+          "text": "ENErrorHandler"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENManager/requestPreAuthorizedDiagnosisKeys(completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "requestPreAuthorizedDiagnosisKeysWithCompletionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "requestPreAuthorizedDiagnosisKeys(completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/exposurenotification/enmanager/requestpreauthorizeddiagnosiskeys(completionhandler:)"
+    },
+    "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENManager/setExposureNotificationEnabled(_:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Enables or disables exposure notification.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setExposureNotificationEnabled"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@ENErrorHandler",
+          "text": "ENErrorHandler"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENManager/setExposureNotificationEnabled(_:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setExposureNotificationEnabled:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setExposureNotificationEnabled(_:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/exposurenotification/enmanager/setexposurenotificationenabled(_:completionhandler:)"
+    },
+    "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENTemporaryExposureKey": {
+      "abstract": [
+        {
+          "text": "The key used to generate rolling proximity identifiers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ENTemporaryExposureKey"
+        }
+      ],
+      "identifier": "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENTemporaryExposureKey",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ENTemporaryExposureKey"
+        }
+      ],
+      "role": "symbol",
+      "title": "ENTemporaryExposureKey",
+      "type": "topic",
+      "url": "/documentation/exposurenotification/entemporaryexposurekey"
+    },
+    "doc://com.apple.exposurenotification/documentation/ExposureNotification/building-an-app-to-notify-users-of-covid-19-exposure": {
+      "abstract": [
+        {
+          "text": "Inform people when they may have been exposed to COVID-19.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.exposurenotification/documentation/ExposureNotification/building-an-app-to-notify-users-of-covid-19-exposure",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Building an App to Notify Users of COVID-19 Exposure",
+      "type": "topic",
+      "url": "/documentation/exposurenotification/building-an-app-to-notify-users-of-covid-19-exposure"
+    },
+    "doc://com.apple.exposurenotification/documentation/ExposureNotification/changing-configuration-values-using-the-server-to-server-api": {
+      "abstract": [
+        {
+          "text": "Update Exposure Notifications configuration values from a Public Health Authority’s server.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.exposurenotification/documentation/ExposureNotification/changing-configuration-values-using-the-server-to-server-api",
+      "kind": "article",
+      "role": "article",
+      "title": "Changing Configuration Values Using the Server‑to‑Server API",
+      "type": "topic",
+      "url": "/documentation/exposurenotification/changing-configuration-values-using-the-server-to-server-api"
+    },
+    "doc://com.apple.exposurenotification/documentation/ExposureNotification/setting-up-a-key-server": {
+      "abstract": [
+        {
+          "text": "Ensure that your server meets the requirements for supporting Exposure Notifications.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.exposurenotification/documentation/ExposureNotification/setting-up-a-key-server",
+      "kind": "article",
+      "role": "article",
+      "title": "Setting Up a Key Server",
+      "type": "topic",
+      "url": "/documentation/exposurenotification/setting-up-a-key-server"
+    },
+    "doc://com.apple.exposurenotification/documentation/ExposureNotification/supporting-exposure-notifications-express": {
+      "abstract": [
+        {
+          "text": "Configure servers to notify users of potential exposures to COVID-19 without an app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.exposurenotification/documentation/ExposureNotification/supporting-exposure-notifications-express",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Supporting Exposure Notifications Express",
+      "type": "topic",
+      "url": "/documentation/exposurenotification/supporting-exposure-notifications-express"
+    },
+    "doc://com.apple.exposurenotification/documentation/ExposureNotification/supporting-exposure-notifications-in-ios-12-5": {
+      "abstract": [
+        {
+          "text": "Prepare your Exposure Notifications app to run on a previous version of iOS.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.exposurenotification/documentation/ExposureNotification/supporting-exposure-notifications-in-ios-12-5",
+      "kind": "article",
+      "role": "article",
+      "title": "Supporting Exposure Notifications in iOS 12.5",
+      "type": "topic",
+      "url": "/documentation/exposurenotification/supporting-exposure-notifications-in-ios-12-5"
+    },
+    "doc://com.apple.exposurenotification/documentation/ExposureNotification/testing-exposure-notifications-apps-in-ios-13-7-and-later": {
+      "abstract": [
+        {
+          "text": "Perform end-to-end validation of Exposure Notifications apps on a device by manually loading configuration files.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.exposurenotification/documentation/ExposureNotification/testing-exposure-notifications-apps-in-ios-13-7-and-later",
+      "kind": "article",
+      "role": "article",
+      "title": "Testing Exposure Notifications Apps in iOS 13.7 and Later",
+      "type": "topic",
+      "url": "/documentation/exposurenotification/testing-exposure-notifications-apps-in-ios-13-7-and-later"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.exposurenotification/documentation/ExposureNotification/supporting-exposure-notifications-express",
+        "doc://com.apple.exposurenotification/documentation/ExposureNotification/building-an-app-to-notify-users-of-covid-19-exposure",
+        "doc://com.apple.exposurenotification/documentation/ExposureNotification/setting-up-a-key-server",
+        "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/ENDeveloperRegion",
+        "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/ENAPIVersion",
+        "doc://com.apple.exposurenotification/documentation/ExposureNotification/changing-configuration-values-using-the-server-to-server-api",
+        "doc://com.apple.exposurenotification/documentation/ExposureNotification/testing-exposure-notifications-apps-in-ios-13-7-and-later",
+        "doc://com.apple.exposurenotification/documentation/ExposureNotification/supporting-exposure-notifications-in-ios-12-5"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Activating-the-Manager",
+      "identifiers": [
+        "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENManager/activate(completionHandler:)",
+        "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENManager/activityHandler",
+        "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENActivityHandler",
+        "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENActivityFlags",
+        "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENManager/setExposureNotificationEnabled(_:completionHandler:)"
+      ],
+      "title": "Activating the Manager"
+    },
+    {
+      "anchor": "Obtaining-Exposure-Information",
+      "identifiers": [
+        "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENManager/detectExposures(configuration:diagnosisKeyURLs:completionHandler:)",
+        "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENManager/detectExposures(configuration:completionHandler:)",
+        "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENManager/getExposureWindows(summary:completionHandler:)",
+        "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENGetExposureWindowsHandler",
+        "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENManager/getUserTraveled(completionHandler:)",
+        "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENGetUserTraveledHandler",
+        "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENManager/getExposureInfo(summary:userExplanation:completionHandler:)"
+      ],
+      "title": "Obtaining Exposure Information"
+    },
+    {
+      "anchor": "Obtaining-Exposure-Keys",
+      "identifiers": [
+        "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENManager/getDiagnosisKeys(completionHandler:)",
+        "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENManager/getTestDiagnosisKeys(completionHandler:)",
+        "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENTemporaryExposureKey"
+      ],
+      "title": "Obtaining Exposure Keys"
+    },
+    {
+      "anchor": "Configuring-the-Manager",
+      "identifiers": [
+        "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENManager/exposureNotificationStatus",
+        "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENManager/exposureNotificationEnabled",
+        "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENManager/authorizationStatus",
+        "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENManager/dispatchQueue"
+      ],
+      "title": "Configuring the Manager"
+    },
+    {
+      "anchor": "Preauthorizing-Exposure-Keys",
+      "identifiers": [
+        "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENManager/requestPreAuthorizedDiagnosisKeys(completionHandler:)",
+        "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENManager/preAuthorizeDiagnosisKeys(completionHandler:)",
+        "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENDiagnosisKeysAvailableHandler",
+        "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENManager/diagnosisKeysAvailableHandler"
+      ],
+      "title": "Preauthorizing Exposure Keys"
+    },
+    {
+      "anchor": "Invalidating-the-Manager",
+      "identifiers": [
+        "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENManager/invalidate()"
+      ],
+      "title": "Invalidating the Manager"
+    },
+    {
+      "anchor": "Instance-Properties",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENManager/invalidationHandler"
+      ],
+      "title": "Instance Properties"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "12.5",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "12.5",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "12.5",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "ENManager"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ENManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ENManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.exposurenotification/documentation/ExposureNotification"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Activating-the-Manager",
+              "identifiers": [
+                "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENManager/activate(completionHandler:)",
+                "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENManager/activityHandler",
+                "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENActivityHandler",
+                "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENActivityFlags",
+                "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENManager/setExposureNotificationEnabled(_:completionHandler:)"
+              ],
+              "title": "Activating the Manager"
+            },
+            {
+              "anchor": "Obtaining-Exposure-Information",
+              "identifiers": [
+                "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENManager/detectExposures(configuration:diagnosisKeyURLs:completionHandler:)",
+                "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENManager/detectExposures(configuration:completionHandler:)",
+                "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENManager/getExposureWindows(summary:completionHandler:)",
+                "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENGetExposureWindowsHandler",
+                "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENManager/getUserTraveled(completionHandler:)",
+                "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENGetUserTraveledHandler",
+                "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENManager/getExposureInfo(summary:userExplanation:completionHandler:)"
+              ],
+              "title": "Obtaining Exposure Information"
+            },
+            {
+              "anchor": "Obtaining-Exposure-Keys",
+              "identifiers": [
+                "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENManager/getDiagnosisKeys(completionHandler:)",
+                "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENManager/getTestDiagnosisKeys(completionHandler:)",
+                "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENTemporaryExposureKey"
+              ],
+              "title": "Obtaining Exposure Keys"
+            },
+            {
+              "anchor": "Configuring-the-Manager",
+              "identifiers": [
+                "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENManager/exposureNotificationStatus",
+                "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENManager/exposureNotificationEnabled",
+                "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENManager/authorizationStatus",
+                "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENManager/dispatchQueue"
+              ],
+              "title": "Configuring the Manager"
+            },
+            {
+              "anchor": "Preauthorizing-Exposure-Keys",
+              "identifiers": [
+                "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENManager/requestPreAuthorizedDiagnosisKeys(completionHandler:)",
+                "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENManager/preAuthorizeDiagnosisKeys(completionHandler:)",
+                "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENDiagnosisKeysAvailableHandler",
+                "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENManager/diagnosisKeysAvailableHandler"
+              ],
+              "title": "Preauthorizing Exposure Keys"
+            },
+            {
+              "anchor": "Invalidating-the-Manager",
+              "identifiers": [
+                "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENManager/invalidate()"
+              ],
+              "title": "Invalidating the Manager"
+            },
+            {
+              "anchor": "Instance-Properties",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENManager/invalidationHandler"
+              ],
+              "title": "Instance Properties"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Essentials",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.exposurenotification/documentation/ExposureNotification/supporting-exposure-notifications-express",
+                "doc://com.apple.exposurenotification/documentation/ExposureNotification/setting-up-a-key-server",
+                "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/ENDeveloperRegion",
+                "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/ENAPIVersion",
+                "doc://com.apple.exposurenotification/documentation/ExposureNotification/changing-configuration-values-using-the-server-to-server-api",
+                "doc://com.apple.exposurenotification/documentation/ExposureNotification/testing-exposure-notifications-apps-in-ios-13-7-and-later",
+                "doc://com.apple.exposurenotification/documentation/ExposureNotification/supporting-exposure-notifications-in-ios-12-5"
+              ],
+              "title": "Essentials"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "ENManager"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.exposurenotification~1documentation~1ExposureNotification~1ENManager~1detectExposures(configuration:diagnosisKeyURLs:completionHandler:)/title",
+          "value": "detectExposuresWithConfiguration:diagnosisKeyURLs:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.exposurenotification~1documentation~1ExposureNotification~1ENManager~1detectExposures(configuration:diagnosisKeyURLs:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "detectExposuresWithConfiguration:diagnosisKeyURLs:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.exposurenotification~1documentation~1ExposureNotification~1ENManager~1authorizationStatus/title",
+          "value": "authorizationStatus"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.exposurenotification~1documentation~1ExposureNotification~1ENManager~1authorizationStatus/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "authorizationStatus"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.exposurenotification~1documentation~1ExposureNotification~1ENManager~1getTestDiagnosisKeys(completionHandler:)/title",
+          "value": "getTestDiagnosisKeysWithCompletionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.exposurenotification~1documentation~1ExposureNotification~1ENManager~1getTestDiagnosisKeys(completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "getTestDiagnosisKeysWithCompletionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.exposurenotification~1documentation~1ExposureNotification~1ENManager~1exposureNotificationStatus/title",
+          "value": "exposureNotificationStatus"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.exposurenotification~1documentation~1ExposureNotification~1ENManager~1exposureNotificationStatus/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "exposureNotificationStatus"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.exposurenotification~1documentation~1ExposureNotification~1ENManager~1getExposureInfo(summary:userExplanation:completionHandler:)/title",
+          "value": "getExposureInfoFromSummary:userExplanation:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.exposurenotification~1documentation~1ExposureNotification~1ENManager~1getExposureInfo(summary:userExplanation:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "getExposureInfoFromSummary:userExplanation:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.exposurenotification~1documentation~1ExposureNotification~1ENManager~1exposureNotificationEnabled/title",
+          "value": "exposureNotificationEnabled"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.exposurenotification~1documentation~1ExposureNotification~1ENManager~1exposureNotificationEnabled/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "exposureNotificationEnabled"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.exposurenotification~1documentation~1ExposureNotification~1ENManager~1setExposureNotificationEnabled(_:completionHandler:)/title",
+          "value": "setExposureNotificationEnabled:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.exposurenotification~1documentation~1ExposureNotification~1ENManager~1setExposureNotificationEnabled(_:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setExposureNotificationEnabled:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.exposurenotification~1documentation~1ExposureNotification~1ENTemporaryExposureKey/title",
+          "value": "ENTemporaryExposureKey"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.exposurenotification~1documentation~1ExposureNotification~1ENTemporaryExposureKey/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ENTemporaryExposureKey"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.exposurenotification~1documentation~1ExposureNotification~1ENTemporaryExposureKey/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ENTemporaryExposureKey"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.exposurenotification~1documentation~1ExposureNotification~1ENManager~1activate(completionHandler:)/title",
+          "value": "activateWithCompletionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.exposurenotification~1documentation~1ExposureNotification~1ENManager~1activate(completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "activateWithCompletionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.exposurenotification~1documentation~1ExposureNotification~1ENManager~1dispatchQueue/title",
+          "value": "dispatchQueue"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.exposurenotification~1documentation~1ExposureNotification~1ENManager~1dispatchQueue/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "dispatchQueue"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.exposurenotification~1documentation~1ExposureNotification~1ENManager~1preAuthorizeDiagnosisKeys(completionHandler:)/title",
+          "value": "preAuthorizeDiagnosisKeysWithCompletionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.exposurenotification~1documentation~1ExposureNotification~1ENManager~1preAuthorizeDiagnosisKeys(completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "preAuthorizeDiagnosisKeysWithCompletionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.exposurenotification~1documentation~1ExposureNotification~1ENManager~1requestPreAuthorizedDiagnosisKeys(completionHandler:)/title",
+          "value": "requestPreAuthorizedDiagnosisKeysWithCompletionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.exposurenotification~1documentation~1ExposureNotification~1ENManager~1requestPreAuthorizedDiagnosisKeys(completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "requestPreAuthorizedDiagnosisKeysWithCompletionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.exposurenotification~1documentation~1ExposureNotification~1ENGetUserTraveledHandler/title",
+          "value": "ENGetUserTraveledHandler"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.exposurenotification~1documentation~1ExposureNotification~1ENGetUserTraveledHandler/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ENGetUserTraveledHandler"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.exposurenotification~1documentation~1ExposureNotification~1ENGetUserTraveledHandler/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ENGetUserTraveledHandler"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.exposurenotification~1documentation~1ExposureNotification~1ENActivityFlags/title",
+          "value": "ENActivityFlags"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.exposurenotification~1documentation~1ExposureNotification~1ENActivityFlags/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ENActivityFlags"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.exposurenotification~1documentation~1ExposureNotification~1ENActivityFlags/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ENActivityFlags"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.exposurenotification~1documentation~1ExposureNotification~1ENManager~1getUserTraveled(completionHandler:)/title",
+          "value": "getUserTraveledWithCompletionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.exposurenotification~1documentation~1ExposureNotification~1ENManager~1getUserTraveled(completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "getUserTraveledWithCompletionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.exposurenotification~1documentation~1ExposureNotification~1ENManager~1activityHandler/title",
+          "value": "activityHandler"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.exposurenotification~1documentation~1ExposureNotification~1ENManager~1activityHandler/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "activityHandler"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.exposurenotification~1documentation~1ExposureNotification~1ENManager~1getDiagnosisKeys(completionHandler:)/title",
+          "value": "getDiagnosisKeysWithCompletionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.exposurenotification~1documentation~1ExposureNotification~1ENManager~1getDiagnosisKeys(completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "getDiagnosisKeysWithCompletionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.exposurenotification~1documentation~1ExposureNotification~1ENManager~1invalidate()/title",
+          "value": "invalidate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.exposurenotification~1documentation~1ExposureNotification~1ENManager~1invalidate()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "invalidate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.exposurenotification~1documentation~1ExposureNotification~1ENManager~1detectExposures(configuration:completionHandler:)/title",
+          "value": "detectExposuresWithConfiguration:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.exposurenotification~1documentation~1ExposureNotification~1ENManager~1detectExposures(configuration:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "detectExposuresWithConfiguration:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.exposurenotification~1documentation~1ExposureNotification~1ENManager~1diagnosisKeysAvailableHandler/title",
+          "value": "diagnosisKeysAvailableHandler"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.exposurenotification~1documentation~1ExposureNotification~1ENManager~1diagnosisKeysAvailableHandler/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "diagnosisKeysAvailableHandler"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.exposurenotification~1documentation~1ExposureNotification~1ENGetExposureWindowsHandler/title",
+          "value": "ENGetExposureWindowsHandler"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.exposurenotification~1documentation~1ExposureNotification~1ENGetExposureWindowsHandler/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ENGetExposureWindowsHandler"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.exposurenotification~1documentation~1ExposureNotification~1ENGetExposureWindowsHandler/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ENGetExposureWindowsHandler"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.exposurenotification~1documentation~1ExposureNotification~1ENManager~1invalidationHandler/title",
+          "value": "invalidationHandler"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.exposurenotification~1documentation~1ExposureNotification~1ENManager~1invalidationHandler/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "invalidationHandler"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.exposurenotification~1documentation~1ExposureNotification~1ENManager/title",
+          "value": "ENManager"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.exposurenotification~1documentation~1ExposureNotification~1ENManager/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ENManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.exposurenotification~1documentation~1ExposureNotification~1ENManager/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ENManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.exposurenotification~1documentation~1ExposureNotification~1ENActivityHandler/title",
+          "value": "ENActivityHandler"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.exposurenotification~1documentation~1ExposureNotification~1ENActivityHandler/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ENActivityHandler"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.exposurenotification~1documentation~1ExposureNotification~1ENActivityHandler/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ENActivityHandler"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.exposurenotification~1documentation~1ExposureNotification~1ENManager~1getExposureWindows(summary:completionHandler:)/title",
+          "value": "getExposureWindowsFromSummary:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.exposurenotification~1documentation~1ExposureNotification~1ENManager~1getExposureWindows(summary:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "getExposureWindowsFromSummary:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.exposurenotification~1documentation~1ExposureNotification~1ENDiagnosisKeysAvailableHandler/title",
+          "value": "ENDiagnosisKeysAvailableHandler"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.exposurenotification~1documentation~1ExposureNotification~1ENDiagnosisKeysAvailableHandler/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ENDiagnosisKeysAvailableHandler"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.exposurenotification~1documentation~1ExposureNotification~1ENDiagnosisKeysAvailableHandler/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ENDiagnosisKeysAvailableHandler"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/exposurenotification/enmanager"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/exposurenotification/enmanager"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

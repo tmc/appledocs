@@ -1,0 +1,736 @@
+{
+  "abstract": [
+    {
+      "text": "A command that creates a scriptable object.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/scripting_support"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/nscreatecommand"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1408031,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSCreateCommand",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "class "
+      },
+      {
+        "kind": "identifier",
+        "text": "NSCreateCommand"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "15.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "NSCreateCommand"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "Mac Catalyst",
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSCreateCommand"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsscriptcommand",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSScriptCommand",
+              "text": "NSScriptCommand"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An instance of ",
+              "type": "text"
+            },
+            {
+              "code": "NSCreateCommand",
+              "type": "codeVoice"
+            },
+            {
+              "text": " creates the specified scriptable object (such as a document), optionally supplying the new object with the specified attributes. This command corresponds to AppleScript’s ",
+              "type": "text"
+            },
+            {
+              "code": "make",
+              "type": "codeVoice"
+            },
+            {
+              "text": " command.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "NSCreateCommand",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is part of Cocoa’s built-in scripting support. Most applications don’t need to subclass ",
+              "type": "text"
+            },
+            {
+              "code": "NSCreateCommand",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or invoke its methods.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When an instance of ",
+              "type": "text"
+            },
+            {
+              "code": "NSCreateCommand",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is executed, it creates a new object using ",
+              "type": "text"
+            },
+            {
+              "code": "[[theClassToBeCreated allocWithZone:NULL] init]",
+              "type": "codeVoice"
+            },
+            {
+              "text": " (where ",
+              "type": "text"
+            },
+            {
+              "code": "theClassToBeCreated",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is the class of the object to be created), unless the command has a ",
+              "type": "text"
+            },
+            {
+              "code": "with data",
+              "type": "codeVoice"
+            },
+            {
+              "text": " argument. In the latter case, the new object is created by invoking ",
+              "type": "text"
+            },
+            {
+              "code": "[[NSScriptCoercionHandler sharedCoercionHandler] coerceValue:theDataAsAnObject toClass:theClassToBeCreated]",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".  Any properties specified by a ",
+              "type": "text"
+            },
+            {
+              "code": "with properties",
+              "type": "codeVoice"
+            },
+            {
+              "text": " argument are then set in the new object using ",
+              "type": "text"
+            },
+            {
+              "code": "-setScriptingProperties:",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If an ",
+              "type": "text"
+            },
+            {
+              "code": "NSCreateCommand",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object with no argument corresponding to the ",
+              "type": "text"
+            },
+            {
+              "code": "at",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter is executed (for example, ",
+              "type": "text"
+            },
+            {
+              "code": "tell application \"Mail\" to make new mailbox with properties {name:\"testFolder\"}",
+              "type": "codeVoice"
+            },
+            {
+              "text": "), and the receiver of the command (not necessarily the application object) has a to-many relationship to objects of the class to be instantiated, and the class description for the receiving class returns ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/swift/false",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " when sent an ",
+              "type": "text"
+            },
+            {
+              "code": "isLocationRequiredToCreateForKey:",
+              "type": "codeVoice"
+            },
+            {
+              "text": " message, the ",
+              "type": "text"
+            },
+            {
+              "code": "NSCreateCommand",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object creates a new object and sends the receiver an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1417619-insertvalue",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " message to place the new object in the container. This is part of Cocoa’s scripting support for inserting newly-created objects into containers without explicitly specifying a location.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsclonecommand": {
+      "abstract": [
+        {
+          "text": "A command that clones one or more scriptable objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCloneCommand"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsclonecommand",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCloneCommand",
+      "type": "topic",
+      "url": "/documentation/foundation/nsclonecommand"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsclosecommand": {
+      "abstract": [
+        {
+          "text": "A command that closes one or more scriptable objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCloseCommand"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsclosecommand",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCloseCommand",
+      "type": "topic",
+      "url": "/documentation/foundation/nsclosecommand"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscountcommand": {
+      "abstract": [
+        {
+          "text": "A command that counts the number of objects of a specified class in the specified object container.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCountCommand"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscountcommand",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCountCommand",
+      "type": "topic",
+      "url": "/documentation/foundation/nscountcommand"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscreatecommand": {
+      "abstract": [
+        {
+          "text": "A command that creates a scriptable object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCreateCommand"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscreatecommand",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCreateCommand",
+      "type": "topic",
+      "url": "/documentation/foundation/nscreatecommand"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscreatecommand/1407639-resolvedkeydictionary": {
+      "abstract": [
+        {
+          "text": "Returns a dictionary that contains the properties that were specified in the ",
+          "type": "text"
+        },
+        {
+          "code": "make",
+          "type": "codeVoice"
+        },
+        {
+          "text": " Apple event command that has been converted to this ",
+          "type": "text"
+        },
+        {
+          "code": "NSCreateCommand",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "resolvedKeyDictionary"
+        },
+        {
+          "kind": "text",
+          "text": ": [String : Any]"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscreatecommand/1407639-resolvedkeydictionary",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "resolvedKeyDictionary",
+      "type": "topic",
+      "url": "/documentation/foundation/nscreatecommand/1407639-resolvedkeydictionary"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscreatecommand/1413533-createclassdescription": {
+      "abstract": [
+        {
+          "text": "Returns the class description for the class that is to be created.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "createClassDescription"
+        },
+        {
+          "kind": "text",
+          "text": ": NSScriptClassDescription"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscreatecommand/1413533-createclassdescription",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "createClassDescription",
+      "type": "topic",
+      "url": "/documentation/foundation/nscreatecommand/1413533-createclassdescription"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdeletecommand": {
+      "abstract": [
+        {
+          "text": "A command that deletes a scriptable object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSDeleteCommand"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdeletecommand",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSDeleteCommand",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdeletecommand"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsexistscommand": {
+      "abstract": [
+        {
+          "text": "A command that determines whether a scriptable object exists.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSExistsCommand"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsexistscommand",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSExistsCommand",
+      "type": "topic",
+      "url": "/documentation/foundation/nsexistscommand"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsgetcommand": {
+      "abstract": [
+        {
+          "text": "A command that retrieves a value or object from a scriptable object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSGetCommand"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsgetcommand",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSGetCommand",
+      "type": "topic",
+      "url": "/documentation/foundation/nsgetcommand"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmovecommand": {
+      "abstract": [
+        {
+          "text": "A command that moves one or more scriptable objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSMoveCommand"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmovecommand",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSMoveCommand",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmovecommand"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsquitcommand": {
+      "abstract": [
+        {
+          "text": "A command that quits the specified app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSQuitCommand"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsquitcommand",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSQuitCommand",
+      "type": "topic",
+      "url": "/documentation/foundation/nsquitcommand"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsscriptcommand": {
+      "abstract": [
+        {
+          "text": "A self-contained scripting statement.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSScriptCommand"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsscriptcommand",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSScriptCommand",
+      "type": "topic",
+      "url": "/documentation/foundation/nsscriptcommand"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nssetcommand": {
+      "abstract": [
+        {
+          "text": "A command that sets one or more attributes or relationships to one or more values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSSetCommand"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nssetcommand",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSetCommand",
+      "type": "topic",
+      "url": "/documentation/foundation/nssetcommand"
+    },
+    "doc://com.apple.documentation/documentation/foundation/scripting_support": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/scripting_support",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Scripting Support",
+      "type": "topic",
+      "url": "/documentation/foundation/scripting_support"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject/1417619-insertvalue": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1417619-insertvalue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "insertValue(_:at:inPropertyWithKey:)",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject/1417619-insertvalue"
+    },
+    "doc://com.apple.documentation/documentation/swift/false": {
+      "identifier": "doc://com.apple.documentation/documentation/swift/false",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "false",
+      "type": "topic",
+      "url": "/documentation/swift/false"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsscriptcommand"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsscriptcommand",
+        "doc://com.apple.documentation/documentation/foundation/nsquitcommand",
+        "doc://com.apple.documentation/documentation/foundation/nssetcommand",
+        "doc://com.apple.documentation/documentation/foundation/nsmovecommand",
+        "doc://com.apple.documentation/documentation/foundation/nsdeletecommand",
+        "doc://com.apple.documentation/documentation/foundation/nsexistscommand",
+        "doc://com.apple.documentation/documentation/foundation/nsgetcommand",
+        "doc://com.apple.documentation/documentation/foundation/nsclonecommand",
+        "doc://com.apple.documentation/documentation/foundation/nscountcommand",
+        "doc://com.apple.documentation/documentation/foundation/nsclosecommand"
+      ],
+      "title": "Script Commands"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "1680085",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nscreatecommand/1413533-createclassdescription",
+        "doc://com.apple.documentation/documentation/foundation/nscreatecommand/1407639-resolvedkeydictionary"
+      ],
+      "kind": "taskGroup",
+      "title": "Getting information about a create command"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nscreatecommand"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/nscreatecommand"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

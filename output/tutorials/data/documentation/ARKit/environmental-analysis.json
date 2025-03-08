@@ -1,0 +1,730 @@
+{
+  "abstract": [
+    {
+      "text": "Analyze the video from the cameras and the accompanying data, and use ray-casting and depth-map information to determine the location of items.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.arkit/documentation/ARKit",
+        "doc://com.apple.arkit/documentation/ARKit/arkit-in-ios"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.arkit/documentation/ARKit/environmental-analysis"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "ARKit"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Environmental Analysis"
+  },
+  "references": {
+    "doc://com.apple.arkit/documentation/ARKit": {
+      "abstract": [
+        {
+          "text": "Integrate hardware sensing features to produce augmented reality apps and games.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "ARKit",
+      "type": "topic",
+      "url": "/documentation/arkit"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARDepthData": {
+      "abstract": [
+        {
+          "text": "An object that describes the distance to regions of the real world from the plane of the camera.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARDepthData"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARDepthData",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARDepthData"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARDepthData",
+      "type": "topic",
+      "url": "/documentation/arkit/ardepthdata"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARFrame": {
+      "abstract": [
+        {
+          "text": "A video image captured as part of a session with position-tracking information.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARFrame"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARFrame",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARFrame"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARFrame",
+      "type": "topic",
+      "url": "/documentation/arkit/arframe"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARHitTestResult": {
+      "abstract": [
+        {
+          "text": "Information about a real-world surface found by examining a point on the screen.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARHitTestResult"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARHitTestResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARHitTestResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARHitTestResult",
+      "type": "topic",
+      "url": "/documentation/arkit/arhittestresult"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARPointCloud": {
+      "abstract": [
+        {
+          "text": "A collection of points in the world coordinate space of the AR session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARPointCloud"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARPointCloud",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARPointCloud"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARPointCloud",
+      "type": "topic",
+      "url": "/documentation/arkit/arpointcloud"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARRaycastQuery": {
+      "abstract": [
+        {
+          "text": "A mathematical ray you use to find 3D positions on real-world surfaces.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARRaycastQuery"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARRaycastQuery",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARRaycastQuery"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARRaycastQuery",
+      "type": "topic",
+      "url": "/documentation/arkit/arraycastquery"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARRaycastResult": {
+      "abstract": [
+        {
+          "text": "Information about a real-world surface found by examining a point on the screen.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARRaycastResult"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARRaycastResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARRaycastResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARRaycastResult",
+      "type": "topic",
+      "url": "/documentation/arkit/arraycastresult"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARTrackedRaycast": {
+      "abstract": [
+        {
+          "text": "A raycast query that ARKit repeats in succession to give you refined results over time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARTrackedRaycast"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARTrackedRaycast",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARTrackedRaycast"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARTrackedRaycast",
+      "type": "topic",
+      "url": "/documentation/arkit/artrackedraycast"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/arkit-in-ios": {
+      "abstract": [
+        {
+          "text": "Integrate iOS device camera and motion features to produce augmented reality experiences in your app or game.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/arkit-in-ios",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "ARKit in iOS",
+      "type": "topic",
+      "url": "/documentation/arkit/arkit-in-ios"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/camera-lighting-and-effects": {
+      "abstract": [
+        {
+          "text": "Determine the camera position and lighting for the current session, and apply effects, such as occlusion, to elements of the environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/camera-lighting-and-effects",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Camera, Lighting, and Effects",
+      "type": "topic",
+      "url": "/documentation/arkit/camera-lighting-and-effects"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/content-anchors": {
+      "abstract": [
+        {
+          "text": "Identify items in the physical environment, including planar surfaces, images, physical objects, body positions, and faces.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/content-anchors",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Content Anchors",
+      "type": "topic",
+      "url": "/documentation/arkit/content-anchors"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/creating-a-fog-effect-using-scene-depth": {
+      "abstract": [
+        {
+          "text": "Apply virtual fog to the physical environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/creating-a-fog-effect-using-scene-depth",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Creating a fog effect using scene depth",
+      "type": "topic",
+      "url": "/documentation/arkit/creating-a-fog-effect-using-scene-depth"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/data-management": {
+      "abstract": [
+        {
+          "text": "Obtain detailed information about skeletal and face geometry, and saved world data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/data-management",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Data Management",
+      "type": "topic",
+      "url": "/documentation/arkit/data-management"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/displaying-a-point-cloud-using-scene-depth": {
+      "abstract": [
+        {
+          "text": "Present a visualization of the physical environment by placing points based a scene’s depth data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/displaying-a-point-cloud-using-scene-depth",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Displaying a point cloud using scene depth",
+      "type": "topic",
+      "url": "/documentation/arkit/displaying-a-point-cloud-using-scene-depth"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/placing-objects-and-handling-3d-interaction": {
+      "abstract": [
+        {
+          "text": "Place virtual content at tracked, real-world locations, and enable the user to interact with virtual content by using gestures.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/placing-objects-and-handling-3d-interaction",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Placing objects and handling 3D interaction",
+      "type": "topic",
+      "url": "/documentation/arkit/placing-objects-and-handling-3d-interaction"
+    },
+    "doc://com.apple.documentation/documentation/RealityKit/creating-usd-files-for-apple-devices": {
+      "abstract": [
+        {
+          "text": "Generate 3D assets that render as expected.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/RealityKit/creating-usd-files-for-apple-devices",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating USD files for Apple devices",
+      "type": "topic",
+      "url": "/documentation/RealityKit/creating-usd-files-for-apple-devices"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Virtual-Content",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.arkit/documentation/ARKit/content-anchors",
+        "doc://com.apple.arkit/documentation/ARKit/camera-lighting-and-effects",
+        "doc://com.apple.arkit/documentation/ARKit/data-management",
+        "doc://com.apple.documentation/documentation/RealityKit/creating-usd-files-for-apple-devices"
+      ],
+      "title": "Virtual Content"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Video-Frame-Analysis",
+      "identifiers": [
+        "doc://com.apple.arkit/documentation/ARKit/displaying-a-point-cloud-using-scene-depth",
+        "doc://com.apple.arkit/documentation/ARKit/creating-a-fog-effect-using-scene-depth",
+        "doc://com.apple.arkit/documentation/ARKit/ARFrame",
+        "doc://com.apple.arkit/documentation/ARKit/ARPointCloud",
+        "doc://com.apple.arkit/documentation/ARKit/ARDepthData"
+      ],
+      "title": "Video Frame Analysis"
+    },
+    {
+      "anchor": "Raycasting",
+      "identifiers": [
+        "doc://com.apple.arkit/documentation/ARKit/placing-objects-and-handling-3d-interaction",
+        "doc://com.apple.arkit/documentation/ARKit/ARRaycastQuery",
+        "doc://com.apple.arkit/documentation/ARKit/ARTrackedRaycast",
+        "doc://com.apple.arkit/documentation/ARKit/ARRaycastResult"
+      ],
+      "title": "Raycasting"
+    },
+    {
+      "anchor": "Hit-Testing",
+      "identifiers": [
+        "doc://com.apple.arkit/documentation/ARKit/ARHitTestResult"
+      ],
+      "title": "Hit-Testing"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Video-Frame-Analysis",
+              "identifiers": [
+                "doc://com.apple.arkit/documentation/ARKit/displaying-a-point-cloud-using-scene-depth",
+                "doc://com.apple.arkit/documentation/ARKit/creating-a-fog-effect-using-scene-depth",
+                "doc://com.apple.arkit/documentation/ARKit/ARFrame",
+                "doc://com.apple.arkit/documentation/ARKit/ARPointCloud",
+                "doc://com.apple.arkit/documentation/ARKit/ARDepthData"
+              ],
+              "title": "Video Frame Analysis"
+            },
+            {
+              "anchor": "Raycasting",
+              "identifiers": [
+                "doc://com.apple.arkit/documentation/ARKit/placing-objects-and-handling-3d-interaction",
+                "doc://com.apple.arkit/documentation/ARKit/ARRaycastQuery",
+                "doc://com.apple.arkit/documentation/ARKit/ARTrackedRaycast",
+                "doc://com.apple.arkit/documentation/ARKit/ARRaycastResult"
+              ],
+              "title": "Raycasting"
+            },
+            {
+              "anchor": "Hit-Testing",
+              "identifiers": [
+                "doc://com.apple.arkit/documentation/ARKit/ARHitTestResult"
+              ],
+              "title": "Hit-Testing"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Virtual-Content",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.arkit/documentation/ARKit/content-anchors",
+                "doc://com.apple.arkit/documentation/ARKit/camera-lighting-and-effects",
+                "doc://com.apple.arkit/documentation/ARKit/data-management"
+              ],
+              "title": "Virtual Content"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARRaycastQuery/title",
+          "value": "ARRaycastQuery"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARRaycastQuery/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARRaycastQuery"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARRaycastQuery/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARRaycastQuery"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARPointCloud/title",
+          "value": "ARPointCloud"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARPointCloud/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARPointCloud"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARPointCloud/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARPointCloud"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARTrackedRaycast/title",
+          "value": "ARTrackedRaycast"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARTrackedRaycast/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARTrackedRaycast"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARTrackedRaycast/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARTrackedRaycast"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARDepthData/title",
+          "value": "ARDepthData"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARDepthData/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARDepthData"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARDepthData/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARDepthData"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARFrame/title",
+          "value": "ARFrame"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARFrame/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARFrame"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARFrame/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARFrame"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARHitTestResult/title",
+          "value": "ARHitTestResult"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARHitTestResult/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARHitTestResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARHitTestResult/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARHitTestResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARRaycastResult/title",
+          "value": "ARRaycastResult"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARRaycastResult/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARRaycastResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARRaycastResult/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARRaycastResult"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/arkit/environmental-analysis"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/arkit/environmental-analysis"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

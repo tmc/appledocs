@@ -1,0 +1,1048 @@
+{
+  "abstract": [
+    {
+      "text": "An object that represents the information to display in a field on a pass.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.walletpasses/documentation/WalletPasses"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.walletpasses/documentation/WalletPasses/PassFieldContent"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "data:WalletPasses:PassFieldContent",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "object "
+      },
+      {
+        "kind": "identifier",
+        "text": "PassFieldContent"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Wallet Passes"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "PassFieldContent"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "6.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "6.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "2.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Object",
+    "symbolKind": "dictionary",
+    "title": "PassFieldContent"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "data"
+          ],
+          "platforms": [
+            "Unsupported OS: iOS",
+            "Unsupported OS: watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "text",
+              "text": "object "
+            },
+            {
+              "kind": "identifier",
+              "text": "PassFieldContent"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "items": [
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The value of the field, including HTML markup for links. The only supported tag is the ",
+                  "type": "text"
+                },
+                {
+                  "code": "<a>",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " tag and its ",
+                  "type": "text"
+                },
+                {
+                  "code": "href",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " attribute. The value of this key overrides that of the ",
+                  "type": "text"
+                },
+                {
+                  "code": "value",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " key.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "For example, the following is a key-value pair that specifies a link with the text “Edit my profile”:",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "code": "”attributedValue”: “<a href=’http://example.com/customers/123’>Edit my profile</a>”",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "The attributed value isn’t used for watchOS; use the ",
+                  "type": "text"
+                },
+                {
+                  "code": "value",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " field instead.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "attributedValue",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "localizable string, ISO 8601 date, or number"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A format string for the alert text to display when the pass updates. The format string needs to contain the escape ",
+                  "type": "text"
+                },
+                {
+                  "code": "%@",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", which the field’s new value replaces. For example, ",
+                  "type": "text"
+                },
+                {
+                  "code": "Gate changed to %@",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "You need to provide a value for the system to show a change notification.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "This field isn’t used for watchOS.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "changeMessage",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "Localizable format string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The currency code to use for the value of the field.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "currencyCode",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "ISO 4217 currency code as a string"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "allowedValues",
+              "values": [
+                "PKDataDetectorTypePhoneNumber",
+                "PKDataDetectorTypeLink",
+                "PKDataDetectorTypeAddress",
+                "PKDataDetectorTypeCalendarEvent"
+              ]
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The data detectors to apply to the value of a field on the back of the pass. The default is to apply all data detectors. To use no data detectors, specify an empty array.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "You don’t use data detectors for fields on the front of the pass.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "This field isn’t used for watchOS.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "dataDetectorTypes",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "[string]"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "allowedValues",
+              "values": [
+                "PKDateStyleNone",
+                "PKDateStyleShort",
+                "PKDateStyleMedium",
+                "PKDateStyleLong",
+                "PKDateStyleFull"
+              ]
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The style of the date to display in the field.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "dateStyle",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A Boolean value that controls the time zone for the time and date to display in the field. The default value is ",
+                  "type": "text"
+                },
+                {
+                  "code": "false",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", which displays the time and date using the current device’s time zone. Otherwise, the time and date appear in the time zone associated with the date and time of ",
+                  "type": "text"
+                },
+                {
+                  "code": "value",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "This key doesn’t affect the pass relevance calculation.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "ignoresTimeZone",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "boolean"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A Boolean value that controls whether the date appears as a relative date. The default value is ",
+                  "type": "text"
+                },
+                {
+                  "code": "false",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", which displays the date as an absolute date.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "This key doesn’t affect  the pass relevance calculation.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "isRelative",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "boolean"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A unique key that identifies a field in the pass; for example, ",
+                  "type": "text"
+                },
+                {
+                  "code": "“departure-gate”",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "key",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The text for a field label.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "label",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "localizable string"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "allowedValues",
+              "values": [
+                "PKNumberStyleDecimal",
+                "PKNumberStylePercent",
+                "PKNumberStyleScientific",
+                "PKNumberStyleSpellOut"
+              ]
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The style of the number to display in the field. Formatter styles have the same meaning as the formats with corresponding names in ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/numberformatter/style",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "numberStyle",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "allowedValues",
+              "values": [
+                "PKTextAlignmentLeft",
+                "PKTextAlignmentCenter",
+                "PKTextAlignmentRight",
+                "PKTextAlignmentNatural"
+              ]
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The alignment for the content of a field. The default is natural alignment, which aligns the text based on its script direction. This key is invalid for primary and back fields.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "textAlignment",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "allowedValues",
+              "values": [
+                "PKDateStyleNone",
+                "PKDateStyleShort",
+                "PKDateStyleMedium",
+                "PKDateStyleLong",
+                "PKDateStyleFull"
+              ]
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The style of the time displayed in the field.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "timeStyle",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The value to use for the field; for example, ",
+                  "type": "text"
+                },
+                {
+                  "code": "42",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ". A date or time value needs to include a time zone.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "value",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "localizable string, ISO 8601 date, or number"
+            }
+          ]
+        }
+      ],
+      "kind": "properties",
+      "title": "Properties"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.walletpasses/documentation/WalletPasses/creating-the-source-for-a-pass",
+        "doc://com.apple.walletpasses/documentation/WalletPasses/building-a-pass"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Wallet uses data detectors to add links for text shown on the back of the pass.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation/numberformatter/style": {
+      "abstract": [
+        {
+          "text": "The predefined number format styles used by the  property.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "enum "
+        },
+        {
+          "kind": "identifier",
+          "text": "NumberFormatter.Style"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/numberformatter/style",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NumberFormatter.Style",
+      "type": "topic",
+      "url": "/documentation/foundation/numberformatter/style"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.walletpasses/documentation/WalletPasses": {
+      "abstract": [
+        {
+          "text": "Create, distribute, and update passes for the Wallet app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.walletpasses/documentation/WalletPasses",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Wallet Passes",
+      "type": "topic",
+      "url": "/documentation/walletpasses"
+    },
+    "doc://com.apple.walletpasses/documentation/WalletPasses/PassFieldContent": {
+      "abstract": [
+        {
+          "text": "An object that represents the information to display in a field on a pass.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "PassFieldContent"
+        }
+      ],
+      "identifier": "doc://com.apple.walletpasses/documentation/WalletPasses/PassFieldContent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PassFieldContent"
+        }
+      ],
+      "role": "symbol",
+      "title": "PassFieldContent",
+      "type": "topic",
+      "url": "/documentation/walletpasses/passfieldcontent"
+    },
+    "doc://com.apple.walletpasses/documentation/WalletPasses/PassFields": {
+      "abstract": [
+        {
+          "text": "An object that represents the groups of fields that display information on the front and back of a pass.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "PassFields"
+        }
+      ],
+      "identifier": "doc://com.apple.walletpasses/documentation/WalletPasses/PassFields",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PassFields"
+        }
+      ],
+      "role": "symbol",
+      "title": "PassFields",
+      "type": "topic",
+      "url": "/documentation/walletpasses/passfields"
+    },
+    "doc://com.apple.walletpasses/documentation/WalletPasses/PassFields/AdditionalInfoFields-data.dictionary": {
+      "abstract": [
+        {
+          "text": "An object that represents fields that display in the Additional Info section below a pass",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "PassFields.AdditionalInfoFields"
+        }
+      ],
+      "identifier": "doc://com.apple.walletpasses/documentation/WalletPasses/PassFields/AdditionalInfoFields-data.dictionary",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PassFields.AdditionalInfoFields"
+        }
+      ],
+      "role": "symbol",
+      "title": "PassFields.AdditionalInfoFields",
+      "type": "topic",
+      "url": "/documentation/walletpasses/passfields/additionalinfofields-data.dictionary"
+    },
+    "doc://com.apple.walletpasses/documentation/WalletPasses/PassFields/AuxiliaryFields-data.dictionary": {
+      "abstract": [
+        {
+          "text": "An object that represents the fields that display additional information on the front of a pass.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "PassFields.AuxiliaryFields"
+        }
+      ],
+      "identifier": "doc://com.apple.walletpasses/documentation/WalletPasses/PassFields/AuxiliaryFields-data.dictionary",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PassFields.AuxiliaryFields"
+        }
+      ],
+      "role": "symbol",
+      "title": "PassFields.AuxiliaryFields",
+      "type": "topic",
+      "url": "/documentation/walletpasses/passfields/auxiliaryfields-data.dictionary"
+    },
+    "doc://com.apple.walletpasses/documentation/WalletPasses/PassFields/BackFields-data.dictionary": {
+      "abstract": [
+        {
+          "text": "An object that represents the fields that display information on the back of a pass.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "PassFields.BackFields"
+        }
+      ],
+      "identifier": "doc://com.apple.walletpasses/documentation/WalletPasses/PassFields/BackFields-data.dictionary",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PassFields.BackFields"
+        }
+      ],
+      "role": "symbol",
+      "title": "PassFields.BackFields",
+      "type": "topic",
+      "url": "/documentation/walletpasses/passfields/backfields-data.dictionary"
+    },
+    "doc://com.apple.walletpasses/documentation/WalletPasses/PassFields/HeaderFields-data.dictionary": {
+      "abstract": [
+        {
+          "text": "An object that represents the fields that display information at the top of a pass.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "PassFields.HeaderFields"
+        }
+      ],
+      "identifier": "doc://com.apple.walletpasses/documentation/WalletPasses/PassFields/HeaderFields-data.dictionary",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PassFields.HeaderFields"
+        }
+      ],
+      "role": "symbol",
+      "title": "PassFields.HeaderFields",
+      "type": "topic",
+      "url": "/documentation/walletpasses/passfields/headerfields-data.dictionary"
+    },
+    "doc://com.apple.walletpasses/documentation/WalletPasses/PassFields/PrimaryFields-data.dictionary": {
+      "abstract": [
+        {
+          "text": "An object that represents the fields that display the most important information on the front of a pass.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "PassFields.PrimaryFields"
+        }
+      ],
+      "identifier": "doc://com.apple.walletpasses/documentation/WalletPasses/PassFields/PrimaryFields-data.dictionary",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PassFields.PrimaryFields"
+        }
+      ],
+      "role": "symbol",
+      "title": "PassFields.PrimaryFields",
+      "type": "topic",
+      "url": "/documentation/walletpasses/passfields/primaryfields-data.dictionary"
+    },
+    "doc://com.apple.walletpasses/documentation/WalletPasses/PassFields/SecondaryFields-data.dictionary": {
+      "abstract": [
+        {
+          "text": "An object that represents the fields that display supporting information on the front of a pass.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "PassFields.SecondaryFields"
+        }
+      ],
+      "identifier": "doc://com.apple.walletpasses/documentation/WalletPasses/PassFields/SecondaryFields-data.dictionary",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PassFields.SecondaryFields"
+        }
+      ],
+      "role": "symbol",
+      "title": "PassFields.SecondaryFields",
+      "type": "topic",
+      "url": "/documentation/walletpasses/passfields/secondaryfields-data.dictionary"
+    },
+    "doc://com.apple.walletpasses/documentation/WalletPasses/building-a-pass": {
+      "abstract": [
+        {
+          "text": "Build a distributable pass.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.walletpasses/documentation/WalletPasses/building-a-pass",
+      "kind": "article",
+      "role": "article",
+      "title": "Building a Pass",
+      "type": "topic",
+      "url": "/documentation/walletpasses/building-a-pass"
+    },
+    "doc://com.apple.walletpasses/documentation/WalletPasses/creating-the-source-for-a-pass": {
+      "abstract": [
+        {
+          "text": "Create the directory structure and add source files and images to define a pass.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.walletpasses/documentation/WalletPasses/creating-the-source-for-a-pass",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating the Source for a Pass",
+      "type": "topic",
+      "url": "/documentation/walletpasses/creating-the-source-for-a-pass"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.walletpasses/documentation/WalletPasses/PassFields/AdditionalInfoFields-data.dictionary",
+        "doc://com.apple.walletpasses/documentation/WalletPasses/PassFields/AuxiliaryFields-data.dictionary",
+        "doc://com.apple.walletpasses/documentation/WalletPasses/PassFields/BackFields-data.dictionary",
+        "doc://com.apple.walletpasses/documentation/WalletPasses/PassFields/HeaderFields-data.dictionary",
+        "doc://com.apple.walletpasses/documentation/WalletPasses/PassFields/PrimaryFields-data.dictionary",
+        "doc://com.apple.walletpasses/documentation/WalletPasses/PassFields/SecondaryFields-data.dictionary"
+      ],
+      "kind": "relationships",
+      "title": "Inherited By",
+      "type": "inheritedBy"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Adding-content",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.walletpasses/documentation/WalletPasses/PassFields"
+      ],
+      "title": "Adding content"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1numberformatter~1style/title",
+          "value": "NSNumberFormatterStyle"
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/walletpasses/passfieldcontent"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

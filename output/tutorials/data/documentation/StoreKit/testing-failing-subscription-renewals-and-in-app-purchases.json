@@ -1,0 +1,2086 @@
+{
+  "abstract": [
+    {
+      "text": "Verify that your app handles failed subscription renewals that are in the billing retry or billing grace period states, as well as failed In-App Purchases.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.storekit/documentation/StoreKit",
+        "doc://com.apple.storekit/documentation/StoreKit/in-app-purchase",
+        "doc://com.apple.storekit/documentation/StoreKit/testing-in-app-purchases-with-sandbox"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.storekit/documentation/StoreKit",
+        "doc://com.apple.storekit/documentation/StoreKit/in-app-purchase",
+        "doc://com.apple.storekit/documentation/StoreKit/original-api-for-in-app-purchase",
+        "doc://com.apple.storekit/documentation/StoreKit/testing-in-app-purchases-with-sandbox"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.storekit/documentation/StoreKit/testing-failing-subscription-renewals-and-in-app-purchases"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "StoreKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Testing failing subscription renewals and In-App Purchases"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Payments can fail unexpectedly at any stage of the billing cycle, such as when a payment card expires. Test your app’s user experience to ensure it handles these unexpected events, and provides appropriate levels of service when billing issues occur.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In sandbox testing, you can simulate billing issues that cause In-App Purchases to fail, and auto-renewable subscriptions not to renew. You can also enable Billing Grace Period for the sandbox environment. Use these sandbox features to test how your app handles auto-renewable subscriptions with billing issues that do or don’t recover.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sandbox environment sends ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppStoreServerNotifications",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " as you perform tests. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppStoreServerNotifications/enabling-app-store-server-notifications",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sandbox environment renews auto-renewable subscriptions up to 12 times. For more information about renewal rates in the sandbox environment, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/help/app-store-connect/test-in-app-purchases/manage-sandbox-apple-id-settings#edit-subscription-renewal-speed",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about subscription state changes when billing issues occur, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/reducing-involuntary-subscriber-churn",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". For information about how apps determine access to subscription content, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/handling-subscriptions-billing",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Configure-the-sandbox-environment-to-simulate-billing-issues",
+          "level": 3,
+          "text": "Configure the sandbox environment to simulate billing issues",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Follow these steps on a test device running iOS 16 or iPadOS 16, or later:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Sign in to the App Store using a Sandbox Apple Account.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Choose Settings > Developer > Sandbox Account > Manage > Account Settings.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Disable the Allow Purchases & Renewals setting.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Disabling this setting causes In-App Purchases to fail, and auto-renewable subscriptions to not renew in the sandbox environment.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "This setting applies to all devices that the Sandbox Apple Account signs in to, and to all active auto-renewable subscriptions belonging to that account.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This setting stays in a disabled state until you reenable it. Reenable it to simulate a customer resolving a billing issue.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Enable-Billing-Grace-Period-in-the-sandbox-environment",
+          "level": 3,
+          "text": "Enable Billing Grace Period in the sandbox environment",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To enable Billing Grace Period in the sandbox environment, log in to ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://appstoreconnect.apple.com/login",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and do the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "From My Apps, select your app.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the sidebar under Features, click Subscriptions.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the Billing Grace Period section, click Set Up Billing Grace Period.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select a duration from the drop-down menu.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select whether to apply the grace period to all renewals or to only paid-to-paid renewals. For more information about the configurable settings, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/help/app-store-connect/manage-subscriptions/enable-billing-grace-period-for-auto-renewable-subscriptions",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select Only Sandbox Environment to enable Billing Grace Period for testing only.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click Next.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click Confirm.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To test billing issues for subscriptions with Billing Grace Period, first, purchase an auto-renewable subscription, and then configure the setting to simulate billing issues (as described above in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/testing-failing-subscription-renewals-and-in-app-purchases#Configure-the-sandbox-environment-to-simulate-billing-issues",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ").",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Test-subscriptions-that-enter-a-billing-retry-state",
+          "level": 3,
+          "text": "Test subscriptions that enter a billing retry state",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Auto-renewable subscriptions expire and enter a billing retry state when a subscription fails to auto-renew.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This test case assumes that Billing Grace Period is in a disabled state for the sandbox enviroment. To test subscriptions entering a billing retry state:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Successfully purchase an auto-renewable subscription in your app.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Set the environment to simulate billing issues, as described above in ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.storekit/documentation/StoreKit/testing-failing-subscription-renewals-and-in-app-purchases#Configure-the-sandbox-environment-to-simulate-billing-issues",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Wait for the subscription period to renew. The renewal fails, and it enters a billing retry state.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Check that your app recognizes the state. Subscriptions in a billing retry state that aren’t in a billing grace period are not entitled to service. StoreKit provides the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.storekit/documentation/StoreKit/Product/SubscriptionInfo/RenewalInfo/isInBillingRetry",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " value in the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.storekit/documentation/StoreKit/Product/SubscriptionInfo/RenewalState",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " object.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "anchor": "Test-subscriptions-that-enter-a-billing-grace-period",
+          "level": 3,
+          "text": "Test subscriptions that enter a billing grace period",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Auto-renewable subscriptions enter a billing grace period when both of the following occur:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Billing Grace Period is enabled for your app",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The subscription fails to auto-renew",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To test subscriptions entering a billing grace period:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Follow the steps as described above in ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.storekit/documentation/StoreKit/testing-failing-subscription-renewals-and-in-app-purchases#Enable-Billing-Grace-Period-in-the-sandbox-environment",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Successfully purchase an auto-renewable subscription in your app.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Set the environment to simulate billing issues, as described above in ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.storekit/documentation/StoreKit/testing-failing-subscription-renewals-and-in-app-purchases#Configure-the-sandbox-environment-to-simulate-billing-issues",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Wait for the subscription period to renew. The subscription enters the billing grace period.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Check that your app recognizes the state and provides service for the subscription during the billing grace period. StoreKit provides the grace period expiration date in the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.storekit/documentation/StoreKit/Product/SubscriptionInfo/RenewalInfo/gracePeriodExpirationDate",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " property of the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.storekit/documentation/StoreKit/Product/SubscriptionInfo/RenewalInfo",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " object.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Wait for the billing grace period to expire. The subscription remains in the billing retry state.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Check that your app recognizes the billing retry state. Subscriptions aren’t entitled to service after the billing grace period expires.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Auto-renewable subscriptions in a billing grace period state are entitled to service.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Test-billing-problem-messaging-after-a-subscription-enters-a-billing-retry-state",
+          "level": 3,
+          "text": "Test billing problem messaging after a subscription enters a billing retry state",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Auto-renewable subscriptions expire and enter a billing retry state when a subscription fails to auto-renew. The system displays a Billing Problem message when your app launches, unless your app chooses to delay the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/Message/Reason-swift.struct/billingIssue",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " message. Use these steps to trigger the message and test how your app responds to the message in various views. For more information about managing these system messages, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/Message",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To test when the system presents the Billing Problem sheet after subscriptions enter the billing retry state:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Successfully purchase an auto-renewable subscription in your app.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Set the environment to simulate billing issues, as described above in ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.storekit/documentation/StoreKit/testing-failing-subscription-renewals-and-in-app-purchases#Configure-the-sandbox-environment-to-simulate-billing-issues",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Wait for the subscription period to renew. The renewal fails, and enters a billing retry state.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The App Store sends the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.storekit/documentation/StoreKit/Message/Reason-swift.struct/billingIssue",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " message. Launch the app or bring it to the foreground.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If your app doesn’t implement ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.storekit/documentation/StoreKit/Message/messages-swift.type.property",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", the system presents the Billing Problem sheet.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If your app implements ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.storekit/documentation/StoreKit/Message/messages-swift.type.property",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and delays the message, perform the steps your app requires for it to call ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.storekit/documentation/StoreKit/Message/display(in:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". As long as the billing issue is still active, the system presents the Billing Problem sheet. If you resolve the billing issue before the app calls ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.storekit/documentation/StoreKit/Message/display(in:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", the system doesn’t present the sheet.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You may perform this test with or without Billing Grace Period enabled.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Test-subscriptions-that-recover-from-billing-issues",
+          "level": 3,
+          "text": "Test subscriptions that recover from billing issues",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A subscription is ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "recovered",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " when a billing retry succeeds. It exits a billing retry or billing grace period state, and is active again.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To test recovered auto-renewable subscriptions, follow these steps:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Start with a subscription in the billing retry state, as described above in ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.storekit/documentation/StoreKit/testing-failing-subscription-renewals-and-in-app-purchases#Test-subscriptions-that-enter-a-billing-retry-state",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Choose Settings > Developer > Sandbox Account > Manage > Account Settings, and enable the Allow Purchases & Renewals setting, which causes the next subscription renewal attempt to succeed.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Check that your app recognizes the active subscription state, which is entitled to service.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Repeat the test starting with a subscription in the billing grace period, as described above in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/testing-failing-subscription-renewals-and-in-app-purchases#Test-subscriptions-that-enter-a-billing-grace-period",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The subscription billing cycle for a subscription that recovers from a billing retry state starts on the recovery date. The billing cycle for a subscription that recovers during a billing grace period doesn’t change.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Test-subscriptions-that-dont-recover-from-billing-issues",
+          "level": 3,
+          "text": "Test subscriptions that don’t recover from billing issues",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Subscriptions exit a billing retry state when any of the following happens:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The billing retry period expires without recovering the subscription.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The customer cancels the subscription.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The subscription is recovered because billing succeeds.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To test subscriptions that expire and don’t recover, follow these steps:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Start with a subscription in a billing retry state, as described above in ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.storekit/documentation/StoreKit/testing-failing-subscription-renewals-and-in-app-purchases#Test-subscriptions-that-enter-a-billing-retry-state",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Wait for the billing retry period to expire — don’t enable the Allow Purchases & Renewals setting.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Check that your app recognizes the subscription state. The subscription is inactive and not entitled to service.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To test a subscription that a customer cancels, follow these steps:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Start with a subscription in a billing grace period, as described above in ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.storekit/documentation/StoreKit/testing-failing-subscription-renewals-and-in-app-purchases#Test-subscriptions-that-enter-a-billing-grace-period",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Cancel the subscription by managing subscriptions in Settings, or by using your app’s implementation of ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.storekit/documentation/StoreKit/AppStore/showManageSubscriptions(in:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". For more information about managing subscriptions in Settings, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://support.apple.com/en-gb/HT202039",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The system immediately cancels the subscription.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Check that your app recognizes the subscription state. The subscription is inactive and not entitled to service.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Repeat the test starting with a subscription in the billing retry state, as described above in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/testing-failing-subscription-renewals-and-in-app-purchases#Test-subscriptions-that-enter-a-billing-retry-state",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Test-a-failed-In-App-Purchase",
+          "level": 3,
+          "text": "Test a failed In-App Purchase",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To test a failed purchase attempt, follow these steps:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Set the environment to simulate billing issues, as described above in ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.storekit/documentation/StoreKit/testing-failing-subscription-renewals-and-in-app-purchases#Configure-the-sandbox-environment-to-simulate-billing-issues",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In your app, attempt to buy an In-App Purchase product. The system displays an error message for the sandbox environment that shows the purchase failed.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To continue testing billing issues, select OK. Alternatively, to simulate a user resolving a billing issue, select Settings to return to Account Settings, where you can enable Allow Purchases & Renewals.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/AppStoreServerNotifications": {
+      "abstract": [
+        {
+          "text": "Monitor In-App Purchase events in real time and learn of unreported external purchase tokens, with server notifications from the App Store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppStoreServerNotifications",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "App Store Server Notifications",
+      "type": "topic",
+      "url": "/documentation/AppStoreServerNotifications"
+    },
+    "doc://com.apple.documentation/documentation/AppStoreServerNotifications/enabling-app-store-server-notifications": {
+      "abstract": [
+        {
+          "text": "Configure your server and provide an HTTPS URL to receive notifications about in-app purchase events and unreported external purchase tokens.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppStoreServerNotifications/enabling-app-store-server-notifications",
+      "kind": "article",
+      "role": "article",
+      "title": "Enabling App Store Server Notifications",
+      "type": "topic",
+      "url": "/documentation/AppStoreServerNotifications/enabling-app-store-server-notifications"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit": {
+      "abstract": [
+        {
+          "text": "Support In-App Purchases and interactions with the App Store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "StoreKit",
+      "type": "topic",
+      "url": "/documentation/storekit"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/AppStore/showManageSubscriptions(in:)": {
+      "abstract": [
+        {
+          "text": "Presents the App Store sheet for managing subscriptions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "showManageSubscriptions"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIWindowScene",
+          "text": "UIWindowScene"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/AppStore/showManageSubscriptions(in:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "showManageSubscriptions(in:)",
+      "type": "topic",
+      "url": "/documentation/storekit/appstore/showmanagesubscriptions(in:)"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/Message": {
+      "abstract": [
+        {
+          "text": "An instance for receiving and displaying App Store messages in your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Message"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/Message",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Message"
+        }
+      ],
+      "role": "symbol",
+      "title": "Message",
+      "type": "topic",
+      "url": "/documentation/storekit/message"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/Message/Reason-swift.struct/billingIssue": {
+      "abstract": [
+        {
+          "text": "A message the App Store sends that informs people of a billing problem and enables them to update billing information.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "billingIssue"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit7MessageV",
+          "text": "Message"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit7MessageV6ReasonV",
+          "text": "Reason"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/Message/Reason-swift.struct/billingIssue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "billingIssue",
+      "type": "topic",
+      "url": "/documentation/storekit/message/reason-swift.struct/billingissue"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/Message/display(in:)": {
+      "abstract": [
+        {
+          "text": "Requests the system to display the App Store message in the window scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "display"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIWindowScene",
+          "text": "UIWindowScene"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/Message/display(in:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "display(in:)",
+      "type": "topic",
+      "url": "/documentation/storekit/message/display(in:)"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/Message/messages-swift.type.property": {
+      "abstract": [
+        {
+          "text": "The asynchronous sequence that sends a message when the App Store creates it.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "messages"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit7MessageV",
+          "text": "Message"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit7MessageV8MessagesV",
+          "text": "Messages"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/Message/messages-swift.type.property",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "messages",
+      "type": "topic",
+      "url": "/documentation/storekit/message/messages-swift.type.property"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/Product/SubscriptionInfo/RenewalInfo": {
+      "abstract": [
+        {
+          "text": "The renewal information for an auto-renewable subscription.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RenewalInfo"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/Product/SubscriptionInfo/RenewalInfo",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RenewalInfo"
+        }
+      ],
+      "role": "symbol",
+      "title": "Product.SubscriptionInfo.RenewalInfo",
+      "type": "topic",
+      "url": "/documentation/storekit/product/subscriptioninfo/renewalinfo"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/Product/SubscriptionInfo/RenewalInfo/gracePeriodExpirationDate": {
+      "abstract": [
+        {
+          "text": "The date the billing grace period expires for the auto-renewable subscription.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "gracePeriodExpirationDate"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DateV",
+          "text": "Date"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/Product/SubscriptionInfo/RenewalInfo/gracePeriodExpirationDate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "gracePeriodExpirationDate",
+      "type": "topic",
+      "url": "/documentation/storekit/product/subscriptioninfo/renewalinfo/graceperiodexpirationdate"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/Product/SubscriptionInfo/RenewalInfo/isInBillingRetry": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether an auto-renewable subscription is in the billing retry period.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isInBillingRetry"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/Product/SubscriptionInfo/RenewalInfo/isInBillingRetry",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isInBillingRetry",
+      "type": "topic",
+      "url": "/documentation/storekit/product/subscriptioninfo/renewalinfo/isinbillingretry"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/Product/SubscriptionInfo/RenewalState": {
+      "abstract": [
+        {
+          "text": "The renewal states of auto-renewable subscriptions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RenewalState"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/Product/SubscriptionInfo/RenewalState",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RenewalState"
+        }
+      ],
+      "role": "symbol",
+      "title": "Product.SubscriptionInfo.RenewalState",
+      "type": "topic",
+      "url": "/documentation/storekit/product/subscriptioninfo/renewalstate"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/handling-subscriptions-billing": {
+      "abstract": [
+        {
+          "text": "Build logic around the date and time constraints of subscription products, while planning for all scenarios where you control access to content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/handling-subscriptions-billing",
+      "kind": "article",
+      "role": "article",
+      "title": "Handling Subscriptions Billing",
+      "type": "topic",
+      "url": "/documentation/storekit/handling-subscriptions-billing"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/in-app-purchase": {
+      "abstract": [
+        {
+          "text": "Offer content and services in your app across Apple platforms using a Swift-based interface.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/in-app-purchase",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "In-App Purchase",
+      "type": "topic",
+      "url": "/documentation/storekit/in-app-purchase"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/original-api-for-in-app-purchase": {
+      "abstract": [
+        {
+          "text": "Offer additional content and services in your app using the Original In-App Purchase API.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/original-api-for-in-app-purchase",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Original API for In-App Purchase",
+      "type": "topic",
+      "url": "/documentation/storekit/original-api-for-in-app-purchase"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/reducing-involuntary-subscriber-churn": {
+      "abstract": [
+        {
+          "text": "Prevent unintentional loss of subscribers due to billing issues.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/reducing-involuntary-subscriber-churn",
+      "kind": "article",
+      "role": "article",
+      "title": "Reducing Involuntary Subscriber Churn",
+      "type": "topic",
+      "url": "/documentation/storekit/reducing-involuntary-subscriber-churn"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/testing-a-payment-request": {
+      "abstract": [
+        {
+          "text": "Verify that requests for payment function properly in the sandbox environment by inspecting the calls to the payment transaction observer.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/testing-a-payment-request",
+      "kind": "article",
+      "role": "article",
+      "title": "Testing a payment request",
+      "type": "topic",
+      "url": "/documentation/storekit/testing-a-payment-request"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/testing-an-interrupted-purchase": {
+      "abstract": [
+        {
+          "text": "Verify that your app handles an interrupted purchase by inspecting and invoking payment transactions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/testing-an-interrupted-purchase",
+      "kind": "article",
+      "role": "article",
+      "title": "Testing an interrupted purchase",
+      "type": "topic",
+      "url": "/documentation/storekit/testing-an-interrupted-purchase"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/testing-failing-subscription-renewals-and-in-app-purchases#Configure-the-sandbox-environment-to-simulate-billing-issues": {
+      "abstract": [],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/testing-failing-subscription-renewals-and-in-app-purchases#Configure-the-sandbox-environment-to-simulate-billing-issues",
+      "kind": "section",
+      "title": "Configure the sandbox environment to simulate billing issues",
+      "type": "topic",
+      "url": "/documentation/storekit/testing-failing-subscription-renewals-and-in-app-purchases#Configure-the-sandbox-environment-to-simulate-billing-issues"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/testing-failing-subscription-renewals-and-in-app-purchases#Enable-Billing-Grace-Period-in-the-sandbox-environment": {
+      "abstract": [],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/testing-failing-subscription-renewals-and-in-app-purchases#Enable-Billing-Grace-Period-in-the-sandbox-environment",
+      "kind": "section",
+      "title": "Enable Billing Grace Period in the sandbox environment",
+      "type": "topic",
+      "url": "/documentation/storekit/testing-failing-subscription-renewals-and-in-app-purchases#Enable-Billing-Grace-Period-in-the-sandbox-environment"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/testing-failing-subscription-renewals-and-in-app-purchases#Test-subscriptions-that-enter-a-billing-grace-period": {
+      "abstract": [],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/testing-failing-subscription-renewals-and-in-app-purchases#Test-subscriptions-that-enter-a-billing-grace-period",
+      "kind": "section",
+      "title": "Test subscriptions that enter a billing grace period",
+      "type": "topic",
+      "url": "/documentation/storekit/testing-failing-subscription-renewals-and-in-app-purchases#Test-subscriptions-that-enter-a-billing-grace-period"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/testing-failing-subscription-renewals-and-in-app-purchases#Test-subscriptions-that-enter-a-billing-retry-state": {
+      "abstract": [],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/testing-failing-subscription-renewals-and-in-app-purchases#Test-subscriptions-that-enter-a-billing-retry-state",
+      "kind": "section",
+      "title": "Test subscriptions that enter a billing retry state",
+      "type": "topic",
+      "url": "/documentation/storekit/testing-failing-subscription-renewals-and-in-app-purchases#Test-subscriptions-that-enter-a-billing-retry-state"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/testing-in-app-purchases-with-sandbox": {
+      "abstract": [
+        {
+          "text": "Test your implementation of In-App Purchases using real product information and server-to-server transactions in the sandbox environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/testing-in-app-purchases-with-sandbox",
+      "kind": "article",
+      "role": "article",
+      "title": "Testing In-App Purchases with sandbox",
+      "type": "topic",
+      "url": "/documentation/storekit/testing-in-app-purchases-with-sandbox"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/testing-purchases-made-outside-your-app": {
+      "abstract": [
+        {
+          "text": "Verify that your app receives and handles transactions that occur outside your app, such as subscription purchases, renewals, and offer and promo code redemptions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/testing-purchases-made-outside-your-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Testing purchases made outside your app",
+      "type": "topic",
+      "url": "/documentation/storekit/testing-purchases-made-outside-your-app"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/testing-win-back-offers-in-the-sandbox-environment": {
+      "abstract": [
+        {
+          "text": "Verify that your app receives and handles win-back offer transactions, including those made outside your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/testing-win-back-offers-in-the-sandbox-environment",
+      "kind": "article",
+      "role": "article",
+      "title": "Testing win-back offers in the sandbox environment",
+      "type": "topic",
+      "url": "/documentation/storekit/testing-win-back-offers-in-the-sandbox-environment"
+    },
+    "https://appstoreconnect.apple.com/login": {
+      "identifier": "https://appstoreconnect.apple.com/login",
+      "title": "App Store Connect",
+      "titleInlineContent": [
+        {
+          "text": "App Store Connect",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://appstoreconnect.apple.com/login"
+    },
+    "https://developer.apple.com/help/app-store-connect/manage-subscriptions/enable-billing-grace-period-for-auto-renewable-subscriptions": {
+      "identifier": "https://developer.apple.com/help/app-store-connect/manage-subscriptions/enable-billing-grace-period-for-auto-renewable-subscriptions",
+      "title": "Enable Billing Grace Period for auto-renewable subscriptions",
+      "titleInlineContent": [
+        {
+          "text": "Enable Billing Grace Period for auto-renewable subscriptions",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/help/app-store-connect/manage-subscriptions/enable-billing-grace-period-for-auto-renewable-subscriptions"
+    },
+    "https://developer.apple.com/help/app-store-connect/test-in-app-purchases/manage-sandbox-apple-id-settings#edit-subscription-renewal-speed": {
+      "identifier": "https://developer.apple.com/help/app-store-connect/test-in-app-purchases/manage-sandbox-apple-id-settings#edit-subscription-renewal-speed",
+      "title": "Edit subscription renewal speed",
+      "titleInlineContent": [
+        {
+          "text": "Edit subscription renewal speed",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/help/app-store-connect/test-in-app-purchases/manage-sandbox-apple-id-settings#edit-subscription-renewal-speed"
+    },
+    "https://support.apple.com/en-gb/HT202039": {
+      "identifier": "https://support.apple.com/en-gb/HT202039",
+      "title": "If you want to cancel a subscription from Apple",
+      "titleInlineContent": [
+        {
+          "text": "If you want to cancel a subscription from Apple",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://support.apple.com/en-gb/HT202039"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Payment-transactions",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.storekit/documentation/StoreKit/testing-purchases-made-outside-your-app",
+        "doc://com.apple.storekit/documentation/StoreKit/testing-win-back-offers-in-the-sandbox-environment",
+        "doc://com.apple.storekit/documentation/StoreKit/testing-an-interrupted-purchase",
+        "doc://com.apple.storekit/documentation/StoreKit/testing-a-payment-request"
+      ],
+      "title": "Payment transactions"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Payment-transactions",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.storekit/documentation/StoreKit/testing-purchases-made-outside-your-app",
+                "doc://com.apple.storekit/documentation/StoreKit/testing-win-back-offers-in-the-sandbox-environment",
+                "doc://com.apple.storekit/documentation/StoreKit/testing-an-interrupted-purchase",
+                "doc://com.apple.storekit/documentation/StoreKit/testing-a-payment-request"
+              ],
+              "title": "Payment transactions"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/storekit/testing-failing-subscription-renewals-and-in-app-purchases"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/storekit/testing-failing-subscription-renewals-and-in-app-purchases"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

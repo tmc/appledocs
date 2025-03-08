@@ -1,0 +1,1532 @@
+{
+  "abstract": [
+    {
+      "text": "An interface for receiving messages from JavaScript code running in a webpage.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.webkit/documentation/WebKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.webkit/documentation/WebKit/WKScriptMessageHandler"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(pl)WKScriptMessageHandler",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "protocol"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "WKScriptMessageHandler"
+      }
+    ],
+    "modules": [
+      {
+        "name": "WebKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "WKScriptMessageHandler"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Protocol",
+    "symbolKind": "protocol",
+    "title": "WKScriptMessageHandler"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "attribute",
+              "text": "@"
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+              "kind": "attribute",
+              "preciseIdentifier": "s:ScM",
+              "text": "MainActor"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "WKScriptMessageHandler"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObjectProtocol"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Adopt the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.webkit/documentation/WebKit/WKScriptMessageHandler",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol when your app needs a way to respond to JavaScript messages in the web view. When JavaScript code sends a message that specifically targets your message handler, WebKit calls your handler’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.webkit/documentation/WebKit/WKScriptMessageHandler/userContentController(_:didReceive:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. Use that method to implement your response. For example, you might update other parts of your app in response to web content changes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To call your message handler from JavaScript, call the function ",
+              "type": "text"
+            },
+            {
+              "code": "window.webkit.messageHandlers.",
+              "type": "codeVoice"
+            },
+            {
+              "inlineContent": [],
+              "type": "emphasis"
+            },
+            {
+              "code": ".postMessage(",
+              "type": "codeVoice"
+            },
+            {
+              "inlineContent": [],
+              "type": "emphasis"
+            },
+            {
+              "code": ")",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in your code. You specify the value of ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [],
+              "type": "emphasis"
+            },
+            {
+              "text": " when you install your message handler in a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.webkit/documentation/WebKit/WKUserContentController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "If you want to provide a response back to JavaScript, implement your message handler using the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.webkit/documentation/WebKit/WKScriptMessageHandlerWithReply",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " protocol instead.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.webkit/documentation/WebKit": {
+      "abstract": [
+        {
+          "text": "Integrate web content seamlessly into your app, and customize content interactions to meet your app’s needs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.webkit/documentation/WebKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "WebKit",
+      "type": "topic",
+      "url": "/documentation/webkit"
+    },
+    "doc://com.apple.webkit/documentation/WebKit/WKScriptMessage": {
+      "abstract": [
+        {
+          "text": "An object that encapsulates a message sent by JavaScript code from a webpage.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKScriptMessage"
+        }
+      ],
+      "identifier": "doc://com.apple.webkit/documentation/WebKit/WKScriptMessage",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WKScriptMessage"
+        }
+      ],
+      "role": "symbol",
+      "title": "WKScriptMessage",
+      "type": "topic",
+      "url": "/documentation/webkit/wkscriptmessage"
+    },
+    "doc://com.apple.webkit/documentation/WebKit/WKScriptMessageHandler": {
+      "abstract": [
+        {
+          "text": "An interface for receiving messages from JavaScript code running in a webpage.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKScriptMessageHandler"
+        }
+      ],
+      "identifier": "doc://com.apple.webkit/documentation/WebKit/WKScriptMessageHandler",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WKScriptMessageHandler"
+        }
+      ],
+      "role": "symbol",
+      "title": "WKScriptMessageHandler",
+      "type": "topic",
+      "url": "/documentation/webkit/wkscriptmessagehandler"
+    },
+    "doc://com.apple.webkit/documentation/WebKit/WKScriptMessageHandler/userContentController(_:didReceive:)": {
+      "abstract": [
+        {
+          "text": "Tells the handler that a webpage sent a script message.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "userContentController"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)WKUserContentController",
+          "text": "WKUserContentController"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didReceive"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)WKScriptMessage",
+          "text": "WKScriptMessage"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.webkit/documentation/WebKit/WKScriptMessageHandler/userContentController(_:didReceive:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "userContentController:didReceiveScriptMessage:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "userContentController(_:didReceive:)",
+      "type": "topic",
+      "url": "/documentation/webkit/wkscriptmessagehandler/usercontentcontroller(_:didreceive:)"
+    },
+    "doc://com.apple.webkit/documentation/WebKit/WKScriptMessageHandlerWithReply": {
+      "abstract": [
+        {
+          "text": "An interface for responding to messages from JavaScript code running in a webpage.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKScriptMessageHandlerWithReply"
+        }
+      ],
+      "identifier": "doc://com.apple.webkit/documentation/WebKit/WKScriptMessageHandlerWithReply",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WKScriptMessageHandlerWithReply"
+        }
+      ],
+      "role": "symbol",
+      "title": "WKScriptMessageHandlerWithReply",
+      "type": "topic",
+      "url": "/documentation/webkit/wkscriptmessagehandlerwithreply"
+    },
+    "doc://com.apple.webkit/documentation/WebKit/WKUserContentController": {
+      "abstract": [
+        {
+          "text": "An object for managing interactions between JavaScript code and your web view, and for filtering content in your web view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKUserContentController"
+        }
+      ],
+      "identifier": "doc://com.apple.webkit/documentation/WebKit/WKUserContentController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WKUserContentController"
+        }
+      ],
+      "role": "symbol",
+      "title": "WKUserContentController",
+      "type": "topic",
+      "url": "/documentation/webkit/wkusercontentcontroller"
+    },
+    "doc://com.apple.webkit/documentation/WebKit/WKUserContentController/add(_:contentWorld:name:)": {
+      "abstract": [
+        {
+          "text": "Installs a message handler that you can call from the specified content world in your JavaScript code.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "add"
+        },
+        {
+          "kind": "text",
+          "text": "(any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)WKScriptMessageHandler",
+          "text": "WKScriptMessageHandler"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "contentWorld"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)WKContentWorld",
+          "text": "WKContentWorld"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "name"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.webkit/documentation/WebKit/WKUserContentController/add(_:contentWorld:name:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "addScriptMessageHandler:contentWorld:name:"
+        }
+      ],
+      "role": "symbol",
+      "title": "add(_:contentWorld:name:)",
+      "type": "topic",
+      "url": "/documentation/webkit/wkusercontentcontroller/add(_:contentworld:name:)"
+    },
+    "doc://com.apple.webkit/documentation/WebKit/WKUserContentController/add(_:name:)": {
+      "abstract": [
+        {
+          "text": "Installs a message handler that you can call from your JavaScript code.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "add"
+        },
+        {
+          "kind": "text",
+          "text": "(any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)WKScriptMessageHandler",
+          "text": "WKScriptMessageHandler"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "name"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.webkit/documentation/WebKit/WKUserContentController/add(_:name:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "addScriptMessageHandler:name:"
+        }
+      ],
+      "role": "symbol",
+      "title": "add(_:name:)",
+      "type": "topic",
+      "url": "/documentation/webkit/wkusercontentcontroller/add(_:name:)"
+    },
+    "doc://com.apple.webkit/documentation/WebKit/WKUserContentController/addScriptMessageHandler(_:contentWorld:name:)": {
+      "abstract": [
+        {
+          "text": "Installs a message handler that returns a reply to your JavaScript code.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "addScriptMessageHandler"
+        },
+        {
+          "kind": "text",
+          "text": "(any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)WKScriptMessageHandlerWithReply",
+          "text": "WKScriptMessageHandlerWithReply"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "contentWorld"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)WKContentWorld",
+          "text": "WKContentWorld"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "name"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.webkit/documentation/WebKit/WKUserContentController/addScriptMessageHandler(_:contentWorld:name:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "addScriptMessageHandlerWithReply:contentWorld:name:"
+        }
+      ],
+      "role": "symbol",
+      "title": "addScriptMessageHandler(_:contentWorld:name:)",
+      "type": "topic",
+      "url": "/documentation/webkit/wkusercontentcontroller/addscriptmessagehandler(_:contentworld:name:)"
+    },
+    "doc://com.apple.webkit/documentation/WebKit/WKUserContentController/removeAllScriptMessageHandlers()": {
+      "abstract": [
+        {
+          "text": "Uninstalls all custom message handlers associated with the user content controller.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeAllScriptMessageHandlers"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.webkit/documentation/WebKit/WKUserContentController/removeAllScriptMessageHandlers()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "removeAllScriptMessageHandlers"
+        }
+      ],
+      "role": "symbol",
+      "title": "removeAllScriptMessageHandlers()",
+      "type": "topic",
+      "url": "/documentation/webkit/wkusercontentcontroller/removeallscriptmessagehandlers()"
+    },
+    "doc://com.apple.webkit/documentation/WebKit/WKUserContentController/removeAllScriptMessageHandlers(from:)": {
+      "abstract": [
+        {
+          "text": "Uninstalls all custom message handlers from the specified content world in your JavaScript code.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeAllScriptMessageHandlers"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)WKContentWorld",
+          "text": "WKContentWorld"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.webkit/documentation/WebKit/WKUserContentController/removeAllScriptMessageHandlers(from:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "removeAllScriptMessageHandlersFromContentWorld:"
+        }
+      ],
+      "role": "symbol",
+      "title": "removeAllScriptMessageHandlers(from:)",
+      "type": "topic",
+      "url": "/documentation/webkit/wkusercontentcontroller/removeallscriptmessagehandlers(from:)"
+    },
+    "doc://com.apple.webkit/documentation/WebKit/WKUserContentController/removeScriptMessageHandler(forName:)": {
+      "abstract": [
+        {
+          "text": "Uninstalls the custom message handler with the specified name from your JavaScript code.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeScriptMessageHandler"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "forName"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.webkit/documentation/WebKit/WKUserContentController/removeScriptMessageHandler(forName:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "removeScriptMessageHandlerForName:"
+        }
+      ],
+      "role": "symbol",
+      "title": "removeScriptMessageHandler(forName:)",
+      "type": "topic",
+      "url": "/documentation/webkit/wkusercontentcontroller/removescriptmessagehandler(forname:)"
+    },
+    "doc://com.apple.webkit/documentation/WebKit/WKUserContentController/removeScriptMessageHandler(forName:contentWorld:)": {
+      "abstract": [
+        {
+          "text": "Uninstalls a custom message handler from the specified content world in your JavaScript code.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeScriptMessageHandler"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "forName"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "contentWorld"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)WKContentWorld",
+          "text": "WKContentWorld"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.webkit/documentation/WebKit/WKUserContentController/removeScriptMessageHandler(forName:contentWorld:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "removeScriptMessageHandlerForName:contentWorld:"
+        }
+      ],
+      "role": "symbol",
+      "title": "removeScriptMessageHandler(forName:contentWorld:)",
+      "type": "topic",
+      "url": "/documentation/webkit/wkusercontentcontroller/removescriptmessagehandler(forname:contentworld:)"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:ScM": {
+      "abstract": [
+        {
+          "text": "A singleton actor whose executor is equivalent to the main dispatch queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@globalActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "final"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "actor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MainActor"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MainActor",
+      "type": "topic",
+      "url": "/documentation/Swift/MainActor"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Adding-and-Removing-Message-Handlers",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.webkit/documentation/WebKit/WKUserContentController/add(_:name:)",
+        "doc://com.apple.webkit/documentation/WebKit/WKUserContentController/add(_:contentWorld:name:)",
+        "doc://com.apple.webkit/documentation/WebKit/WKUserContentController/addScriptMessageHandler(_:contentWorld:name:)",
+        "doc://com.apple.webkit/documentation/WebKit/WKUserContentController/removeScriptMessageHandler(forName:)",
+        "doc://com.apple.webkit/documentation/WebKit/WKUserContentController/removeScriptMessageHandler(forName:contentWorld:)",
+        "doc://com.apple.webkit/documentation/WebKit/WKUserContentController/removeAllScriptMessageHandlers(from:)",
+        "doc://com.apple.webkit/documentation/WebKit/WKUserContentController/removeAllScriptMessageHandlers()",
+        "doc://com.apple.webkit/documentation/WebKit/WKScriptMessageHandlerWithReply"
+      ],
+      "title": "Adding and Removing Message Handlers"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Receiving-Messages",
+      "identifiers": [
+        "doc://com.apple.webkit/documentation/WebKit/WKScriptMessageHandler/userContentController(_:didReceive:)",
+        "doc://com.apple.webkit/documentation/WebKit/WKScriptMessage"
+      ],
+      "title": "Receiving Messages"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Protocol"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "WKScriptMessageHandler"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "protocol"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKScriptMessageHandler"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKScriptMessageHandler"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.webkit/documentation/WebKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Receiving-Messages",
+              "identifiers": [
+                "doc://com.apple.webkit/documentation/WebKit/WKScriptMessageHandler/userContentController(_:didReceive:)",
+                "doc://com.apple.webkit/documentation/WebKit/WKScriptMessage"
+              ],
+              "title": "Receiving Messages"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Adding-and-Removing-Message-Handlers",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.webkit/documentation/WebKit/WKUserContentController/add(_:name:)",
+                "doc://com.apple.webkit/documentation/WebKit/WKUserContentController/add(_:contentWorld:name:)",
+                "doc://com.apple.webkit/documentation/WebKit/WKUserContentController/addScriptMessageHandler(_:contentWorld:name:)",
+                "doc://com.apple.webkit/documentation/WebKit/WKUserContentController/removeScriptMessageHandler(forName:)",
+                "doc://com.apple.webkit/documentation/WebKit/WKUserContentController/removeScriptMessageHandler(forName:contentWorld:)",
+                "doc://com.apple.webkit/documentation/WebKit/WKUserContentController/removeAllScriptMessageHandlers(from:)",
+                "doc://com.apple.webkit/documentation/WebKit/WKUserContentController/removeAllScriptMessageHandlers()",
+                "doc://com.apple.webkit/documentation/WebKit/WKScriptMessageHandlerWithReply"
+              ],
+              "title": "Adding and Removing Message Handlers"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "visionOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@protocol"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "WKScriptMessageHandler"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " <"
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(pl)NSObject",
+                    "text": "NSObject"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ">"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WKScriptMessageHandler~1userContentController(_:didReceive:)/title",
+          "value": "userContentController:didReceiveScriptMessage:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WKScriptMessageHandler~1userContentController(_:didReceive:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "userContentController:didReceiveScriptMessage:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WKUserContentController~1removeScriptMessageHandler(forName:contentWorld:)/title",
+          "value": "removeScriptMessageHandlerForName:contentWorld:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WKUserContentController~1removeScriptMessageHandler(forName:contentWorld:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "removeScriptMessageHandlerForName:contentWorld:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WKUserContentController/title",
+          "value": "WKUserContentController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WKUserContentController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKUserContentController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WKUserContentController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKUserContentController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WKScriptMessageHandlerWithReply/title",
+          "value": "WKScriptMessageHandlerWithReply"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WKScriptMessageHandlerWithReply/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKScriptMessageHandlerWithReply"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WKScriptMessageHandlerWithReply/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKScriptMessageHandlerWithReply"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WKUserContentController~1removeAllScriptMessageHandlers(from:)/title",
+          "value": "removeAllScriptMessageHandlersFromContentWorld:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WKUserContentController~1removeAllScriptMessageHandlers(from:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "removeAllScriptMessageHandlersFromContentWorld:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WKScriptMessage/title",
+          "value": "WKScriptMessage"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WKScriptMessage/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKScriptMessage"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WKScriptMessage/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKScriptMessage"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WKUserContentController~1add(_:contentWorld:name:)/title",
+          "value": "addScriptMessageHandler:contentWorld:name:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WKUserContentController~1add(_:contentWorld:name:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "addScriptMessageHandler:contentWorld:name:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WKUserContentController~1removeScriptMessageHandler(forName:)/title",
+          "value": "removeScriptMessageHandlerForName:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WKUserContentController~1removeScriptMessageHandler(forName:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "removeScriptMessageHandlerForName:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WKScriptMessageHandler/title",
+          "value": "WKScriptMessageHandler"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WKScriptMessageHandler/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKScriptMessageHandler"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WKScriptMessageHandler/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "WKScriptMessageHandler"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WKUserContentController~1addScriptMessageHandler(_:contentWorld:name:)/title",
+          "value": "addScriptMessageHandlerWithReply:contentWorld:name:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WKUserContentController~1addScriptMessageHandler(_:contentWorld:name:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "addScriptMessageHandlerWithReply:contentWorld:name:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WKUserContentController~1add(_:name:)/title",
+          "value": "addScriptMessageHandler:name:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WKUserContentController~1add(_:name:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "addScriptMessageHandler:name:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WKUserContentController~1removeAllScriptMessageHandlers()/title",
+          "value": "removeAllScriptMessageHandlers"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.webkit~1documentation~1WebKit~1WKUserContentController~1removeAllScriptMessageHandlers()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "removeAllScriptMessageHandlers"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/webkit/wkscriptmessagehandler"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/webkit/wkscriptmessagehandler"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

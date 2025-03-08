@@ -1,0 +1,1076 @@
+{
+  "abstract": [
+    {
+      "text": "Use a Core Audio tap to capture outgoing audio from a process or group of processes.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.coreaudio/documentation/CoreAudio"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.coreaudio/documentation/CoreAudio/capturing-system-audio-with-core-audio-taps"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Core Audio"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "14.2",
+        "name": "macOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "15.1",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Capturing system audio with Core Audio taps"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample code project shows you how to use a tap as an input in a HAL aggregate device, just like a microphone. An audio tap object can specify which outputs it captures from a process or group of processes, as well as different mixdown options (mono, stereo, and so on). Taps can be public (visible to all users), or private (only visible inside the process that created the tap). Taps can also mute the process output so that the process will no longer play to the speaker or selected audio device, and all process output will go to the tap.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-a-tap-and-an-aggregate-device",
+          "level": 3,
+          "text": "Create a tap and an aggregate device",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You create a tap by passing a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coreaudio/documentation/CoreAudio/CATapDescription",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coreaudio/documentation/CoreAudio/AudioHardwareCreateProcessTap(_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". This returns an ",
+              "type": "text"
+            },
+            {
+              "code": "AudioObjectID",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for the new tap object. You can destroy a tap using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coreaudio/documentation/CoreAudio/AudioHardwareDestroyProcessTap(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Create a tap description.",
+            "let description = CATapDescription()",
+            "",
+            "// Fill out the description properties with the tap configuration from the UI.",
+            "description.name = tapConfiguration.name",
+            "description.processes = Array(tapConfiguration.processes)",
+            "description.isPrivate = tapConfiguration.isPrivate",
+            "description.muteBehavior = CATapMuteBehavior(rawValue: tapConfiguration.mute.rawValue) ?? description.muteBehavior",
+            "description.isMixdown = tapConfiguration.mixdown == .mono || tapConfiguration.mixdown == .stereo",
+            "description.isMono = tapConfiguration.mixdown == .mono",
+            "description.isExclusive = tapConfiguration.exclusive",
+            "description.deviceUID = tapConfiguration.device",
+            "description.stream = tapConfiguration.streamIndex",
+            "",
+            "// Ask the HAL to create a new tap and put the resulting `AudioObjectID` in `tapID`.",
+            "var tapID = AudioObjectID(kAudioObjectUnknown)",
+            "AudioHardwareCreateProcessTap(description, &tapID)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You similarly create an aggregate device by passing a ",
+              "type": "text"
+            },
+            {
+              "code": "CFDictionary",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coreaudio/documentation/CoreAudio/AudioHardwareCreateAggregateDevice(_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and destroy it using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coreaudio/documentation/CoreAudio/AudioHardwareDestroyAggregateDevice(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let description = [kAudioAggregateDeviceNameKey: \"Sample Aggregate Audio Device\", kAudioAggregateDeviceUIDKey: UUID().uuidString]",
+            "var id: AudioObjectID = 0",
+            "AudioHardwareCreateAggregateDevice(description as CFDictionary, &id)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Add-a-tap-to-an-aggregate-device",
+          "level": 3,
+          "text": "Add a tap to an aggregate device",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To use a tap as an input source, add it to an aggregate device that you configure for playback. First get the tap’s unique identifier by passing the ",
+              "type": "text"
+            },
+            {
+              "code": "kAudioTapPropertyUID",
+              "type": "codeVoice"
+            },
+            {
+              "text": " selector and the tap’s audio object ID to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coreaudio/documentation/CoreAudio/AudioObjectGetPropertyData(_:_:_:_:_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Get the UID of the audio tap.",
+            "var propertyAddress = getPropertyAddress(selector: kAudioTapPropertyUID)",
+            "var propertySize = UInt32(MemoryLayout<CFString>.stride)",
+            "var tapUID: CFString = \"\" as CFString",
+            "_ = withUnsafeMutablePointer(to: &tapUID) { tapUID in",
+            "    AudioObjectGetPropertyData(tapID, &propertyAddress, 0, nil, &propertySize, tapUID)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Then use the ",
+              "type": "text"
+            },
+            {
+              "code": "kAudioAggregateDevicePropertyTapList",
+              "type": "codeVoice"
+            },
+            {
+              "text": " selector to get and set the list of taps in an aggregate device. To add a tap, pass the tap’s audio object ID and a ",
+              "type": "text"
+            },
+            {
+              "code": "CFArray",
+              "type": "codeVoice"
+            },
+            {
+              "text": " of ",
+              "type": "text"
+            },
+            {
+              "code": "CFString",
+              "type": "codeVoice"
+            },
+            {
+              "text": " objects containing the tap’s unique identifier to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coreaudio/documentation/CoreAudio/AudioObjectSetPropertyData(_:_:_:_:_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "var propertyAddress = getPropertyAddress(selector: kAudioAggregateDevicePropertyTapList)",
+            "var propertySize: UInt32 = 0",
+            "AudioObjectGetPropertyDataSize(self.id, &propertyAddress, 0, nil, &propertySize)",
+            "var list: CFArray? = nil",
+            "_ = withUnsafeMutablePointer(to: &list) { list in",
+            "    AudioObjectGetPropertyData(tapID, &propertyAddress, 0, nil, &propertySize, list)",
+            "}",
+            "",
+            "if var listAsArray = list as? [CFString] {",
+            "    // Add the new object ID if it's not already in the list.",
+            "    if !listAsArray.contains(tapUID as CFString) {",
+            "        listAsArray.append(tapUID as CFString)",
+            "        propertySize += UInt32(MemoryLayout<CFString>.stride)",
+            "    }",
+            "    ",
+            "    // Set the list back on the aggregate device.",
+            "    list = listAsArray as CFArray",
+            "    _ = withUnsafeMutablePointer(to: &list) { list in",
+            "        AudioObjectSetPropertyData(tapID, &propertyAddress, 0, nil, propertySize, list)",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Configure-the-sample-code-project",
+          "level": 3,
+          "text": "Configure the sample code project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before you run the sample code project in Xcode, ensure that you’re using macOS 14.2 or later.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "To capture audio with a tap, you need to include the ",
+                  "type": "text"
+                },
+                {
+                  "code": "NSAudioCaptureUsageDescription",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " key in your Info.plist file, along with a message that tells the user why the app is requesting access to capture audio.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The first time you start recording from an aggregate device that contains a tap, the system prompts you to grant the app system audio recording permission.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "9dad766c5ad8/CapturingSystemAudioWithCoreAudioTaps.zip": {
+      "checksum": "9dad766c5ad8693ad4b6ea0d386499d678c2e22022c2a8ad031f740b74a0e9d31350859fb2e53ec84a66e08f3b0e36c3c639fd73b8ec65a3256cf00e3a0b4a86",
+      "identifier": "9dad766c5ad8/CapturingSystemAudioWithCoreAudioTaps.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/9dad766c5ad8/CapturingSystemAudioWithCoreAudioTaps.zip"
+    },
+    "doc://com.apple.coreaudio/documentation/CoreAudio": {
+      "abstract": [
+        {
+          "text": "Use the Core Audio framework to interact with device’s audio hardware.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coreaudio/documentation/CoreAudio",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Audio",
+      "type": "topic",
+      "url": "/documentation/coreaudio"
+    },
+    "doc://com.apple.coreaudio/documentation/CoreAudio/AudioHardwareCreateAggregateDevice(_:_:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioHardwareCreateAggregateDevice"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFDictionaryRef",
+          "text": "CFDictionary"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioObjectID",
+          "text": "AudioObjectID"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.coreaudio/documentation/CoreAudio/AudioHardwareCreateAggregateDevice(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioHardwareCreateAggregateDevice"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioHardwareCreateAggregateDevice(_:_:)",
+      "type": "topic",
+      "url": "/documentation/coreaudio/audiohardwarecreateaggregatedevice(_:_:)"
+    },
+    "doc://com.apple.coreaudio/documentation/CoreAudio/AudioHardwareCreateProcessTap(_:_:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioHardwareCreateProcessTap"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CATapDescription",
+          "text": "CATapDescription"
+        },
+        {
+          "kind": "text",
+          "text": "!, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioObjectID",
+          "text": "AudioObjectID"
+        },
+        {
+          "kind": "text",
+          "text": ">!) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.coreaudio/documentation/CoreAudio/AudioHardwareCreateProcessTap(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioHardwareCreateProcessTap"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioHardwareCreateProcessTap(_:_:)",
+      "type": "topic",
+      "url": "/documentation/coreaudio/audiohardwarecreateprocesstap(_:_:)"
+    },
+    "doc://com.apple.coreaudio/documentation/CoreAudio/AudioHardwareDestroyAggregateDevice(_:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioHardwareDestroyAggregateDevice"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioObjectID",
+          "text": "AudioObjectID"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.coreaudio/documentation/CoreAudio/AudioHardwareDestroyAggregateDevice(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioHardwareDestroyAggregateDevice"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioHardwareDestroyAggregateDevice(_:)",
+      "type": "topic",
+      "url": "/documentation/coreaudio/audiohardwaredestroyaggregatedevice(_:)"
+    },
+    "doc://com.apple.coreaudio/documentation/CoreAudio/AudioHardwareDestroyProcessTap(_:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioHardwareDestroyProcessTap"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioObjectID",
+          "text": "AudioObjectID"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.coreaudio/documentation/CoreAudio/AudioHardwareDestroyProcessTap(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioHardwareDestroyProcessTap"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioHardwareDestroyProcessTap(_:)",
+      "type": "topic",
+      "url": "/documentation/coreaudio/audiohardwaredestroyprocesstap(_:)"
+    },
+    "doc://com.apple.coreaudio/documentation/CoreAudio/AudioObjectGetPropertyData(_:_:_:_:_:_:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioObjectGetPropertyData"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioObjectID",
+          "text": "AudioObjectID"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@AudioObjectPropertyAddress",
+          "text": "AudioObjectPropertyAddress"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SV",
+          "text": "UnsafeRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sv",
+          "text": "UnsafeMutableRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.coreaudio/documentation/CoreAudio/AudioObjectGetPropertyData(_:_:_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioObjectGetPropertyData"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioObjectGetPropertyData(_:_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/coreaudio/audioobjectgetpropertydata(_:_:_:_:_:_:)"
+    },
+    "doc://com.apple.coreaudio/documentation/CoreAudio/AudioObjectSetPropertyData(_:_:_:_:_:_:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioObjectSetPropertyData"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioObjectID",
+          "text": "AudioObjectID"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@AudioObjectPropertyAddress",
+          "text": "AudioObjectPropertyAddress"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SV",
+          "text": "UnsafeRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SV",
+          "text": "UnsafeRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.coreaudio/documentation/CoreAudio/AudioObjectSetPropertyData(_:_:_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioObjectSetPropertyData"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioObjectSetPropertyData(_:_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/coreaudio/audioobjectsetpropertydata(_:_:_:_:_:_:)"
+    },
+    "doc://com.apple.coreaudio/documentation/CoreAudio/CATapDescription": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CATapDescription"
+        }
+      ],
+      "identifier": "doc://com.apple.coreaudio/documentation/CoreAudio/CATapDescription",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CATapDescription"
+        }
+      ],
+      "role": "symbol",
+      "title": "CATapDescription",
+      "type": "topic",
+      "url": "/documentation/coreaudio/catapdescription"
+    },
+    "doc://com.apple.coreaudio/documentation/CoreAudio/building-an-audio-server-plug-in-and-driver-extension": {
+      "abstract": [
+        {
+          "text": "Create a plug-in and driver extension to support an audio device in macOS.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coreaudio/documentation/CoreAudio/building-an-audio-server-plug-in-and-driver-extension",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Building an Audio Server Plug-in and Driver Extension",
+      "type": "topic",
+      "url": "/documentation/coreaudio/building-an-audio-server-plug-in-and-driver-extension"
+    },
+    "doc://com.apple.coreaudio/documentation/CoreAudio/creating-an-audio-server-driver-plug-in": {
+      "abstract": [
+        {
+          "text": "Build a virtual audio device by creating a custom driver plug-in.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coreaudio/documentation/CoreAudio/creating-an-audio-server-driver-plug-in",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Creating an Audio Server Driver Plug-in",
+      "type": "topic",
+      "url": "/documentation/coreaudio/creating-an-audio-server-driver-plug-in"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "9dad766c5ad8/CapturingSystemAudioWithCoreAudioTaps.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Drivers",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.coreaudio/documentation/CoreAudio/creating-an-audio-server-driver-plug-in",
+        "doc://com.apple.coreaudio/documentation/CoreAudio/building-an-audio-server-plug-in-and-driver-extension"
+      ],
+      "title": "Drivers"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Drivers",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.coreaudio/documentation/CoreAudio/creating-an-audio-server-driver-plug-in",
+                "doc://com.apple.coreaudio/documentation/CoreAudio/building-an-audio-server-plug-in-and-driver-extension"
+              ],
+              "title": "Drivers"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreaudio~1documentation~1CoreAudio~1AudioHardwareCreateAggregateDevice(_:_:)/title",
+          "value": "AudioHardwareCreateAggregateDevice"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreaudio~1documentation~1CoreAudio~1AudioHardwareCreateAggregateDevice(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioHardwareCreateAggregateDevice"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreaudio~1documentation~1CoreAudio~1CATapDescription/title",
+          "value": "CATapDescription"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreaudio~1documentation~1CoreAudio~1CATapDescription/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CATapDescription"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreaudio~1documentation~1CoreAudio~1CATapDescription/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CATapDescription"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreaudio~1documentation~1CoreAudio~1AudioObjectSetPropertyData(_:_:_:_:_:_:)/title",
+          "value": "AudioObjectSetPropertyData"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreaudio~1documentation~1CoreAudio~1AudioObjectSetPropertyData(_:_:_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioObjectSetPropertyData"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreaudio~1documentation~1CoreAudio~1AudioObjectGetPropertyData(_:_:_:_:_:_:)/title",
+          "value": "AudioObjectGetPropertyData"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreaudio~1documentation~1CoreAudio~1AudioObjectGetPropertyData(_:_:_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioObjectGetPropertyData"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreaudio~1documentation~1CoreAudio~1AudioHardwareDestroyProcessTap(_:)/title",
+          "value": "AudioHardwareDestroyProcessTap"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreaudio~1documentation~1CoreAudio~1AudioHardwareDestroyProcessTap(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioHardwareDestroyProcessTap"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreaudio~1documentation~1CoreAudio~1AudioHardwareCreateProcessTap(_:_:)/title",
+          "value": "AudioHardwareCreateProcessTap"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreaudio~1documentation~1CoreAudio~1AudioHardwareCreateProcessTap(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioHardwareCreateProcessTap"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreaudio~1documentation~1CoreAudio~1AudioHardwareDestroyAggregateDevice(_:)/title",
+          "value": "AudioHardwareDestroyAggregateDevice"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coreaudio~1documentation~1CoreAudio~1AudioHardwareDestroyAggregateDevice(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioHardwareDestroyAggregateDevice"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/coreaudio/capturing-system-audio-with-core-audio-taps"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/coreaudio/capturing-system-audio-with-core-audio-taps"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

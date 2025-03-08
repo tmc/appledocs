@@ -1,0 +1,782 @@
+{
+  "abstract": [
+    {
+      "text": "Add text files to your Xcode project to provide notes to beta testers about what to test.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Xcode/documentation/Xcode",
+        "doc://com.apple.Xcode/documentation/Xcode/Xcode-Cloud"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Xcode/documentation/Xcode/including-notes-for-testers-with-a-beta-release-of-your-app"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Including notes for testers with a beta release of your app"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can include notes when you distribute a beta version of your app from Xcode Cloud through TestFlight",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to give testers details about the changes the update includes, and to provide guidance for",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the areas of your app to test. Use these notes to focus testing on the areas of your",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "app that need attention. The notes appear in the “What to test” field in the TestFlight",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "app. The information you provide can be language- and locale-specific.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about distributing a beta version of your app, see",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/Creating-a-workflow-that-builds-your-app-for-distribution",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Session 10224: ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/videos/play/wwdc2023/10224",
+                  "isActive": true,
+                  "type": "reference"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Related sessions from WWDC23",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Create-a-TestFlight-folder",
+          "level": 3,
+          "text": "Create a TestFlight folder",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Xcode Cloud uses text files that you add to your Xcode project to create the notes for testers. The text files",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "reside in a folder named TestFlight located in the same folder as your Xcode project or workspace.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create the TestFlight folder:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Open your project or workspace in Xcode.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the Project navigator, Control-click your project and choose New Group to create the group and its corresponding folder.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Name the new group TestFlight.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Add-text-files-to-the-folder-to-include-notes",
+          "level": 3,
+          "text": "Add text files to the folder to include notes",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Add text files to the TestFlight folder to provide notes to your testers. Provide notes in multiple languages by creating a file per language. For a list of the locales TestFlight supports, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppStoreConnectAPI/BetaBuildLocalizationCreateRequest/Data-data.dictionary/Attributes-data.dictionary",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For general information on language and region codes, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/choosing-localization-regions-and-scripts",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To add the text files to your project:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Add a new Empty file to the TestFlight folder. For instructions, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.Xcode/documentation/Xcode/managing-files-and-folders-in-your-xcode-project",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Name the file using the format ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "WhatToTest.<LOCALE>.txt",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". For",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "LOCALE",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", use the language and region code for the content you provide in the file. For example, use ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "WhatToTest.en-US.txt",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " for U.S. English.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Commit and push the file to your remote repository.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The next time Xcode Cloud builds and uploads your app to TestFlight, it automatically",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "finds this file and includes the text in your app’s “What to test” field in TestFlight.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Provide-useful-and-appropriate-content",
+          "level": 3,
+          "text": "Provide useful and appropriate content",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Include information that is useful to testers and relevant to the current release, such as the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Features you add to your app.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Issues you resolve in your code.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The commit message for the commit that triggers the build, or the past few commit messages.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "When Xcode Cloud deploys your app, the information you provide is available",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "to all testers in all groups who have access to the build.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Write-a-script-to-generate-content-dynamically",
+          "level": 3,
+          "text": "Write a script to generate content dynamically",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can use a custom build script to generate the notes during an Xcode Cloud build. The following example provides the last three commit messages from the GIT log as the tester notes:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "#!/bin/zsh",
+            "#  ci_post_xcodebuild.sh",
+            "",
+            "if [[ -d \"$CI_APP_STORE_SIGNED_APP_PATH\" ]]; then",
+            "  TESTFLIGHT_DIR_PATH=../TestFlight",
+            "  mkdir $TESTFLIGHT_DIR_PATH",
+            "  git fetch --deepen 3 && git log -3 --pretty=format:\"%s\" >! $TESTFLIGHT_DIR_PATH/WhatToTest.en-US.txt",
+            "fi"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/Writing-Custom-Build-Scripts",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Xcode-PageImage-card.png": {
+      "alt": "The Xcode logo on a blue gradient background.",
+      "identifier": "Xcode-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cc63eacd8f7f660388b46204d1d9bbcb/Xcode-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/62dba87d5f60ec96eb48882c9dff86d8/Xcode-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Xcode/documentation/Xcode": {
+      "abstract": [
+        {
+          "text": "Build, test, and submit your app with Apple’s integrated development environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode",
+      "images": [
+        {
+          "identifier": "Xcode-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Configuring-Xcode-Cloud-for-Your-Team": {
+      "abstract": [
+        {
+          "text": "Start using continuous integration and delivery with Xcode Cloud as a team.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Configuring-Xcode-Cloud-for-Your-Team",
+      "kind": "article",
+      "role": "article",
+      "title": "Configuring Xcode Cloud for your team",
+      "type": "topic",
+      "url": "/documentation/xcode/configuring-xcode-cloud-for-your-team"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Creating-a-workflow-that-builds-your-app-for-distribution": {
+      "abstract": [
+        {
+          "text": "Configure a workflow to build and sign your app for distribution to testers with TestFlight, in the App Store, or as a notarized app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Creating-a-workflow-that-builds-your-app-for-distribution",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating a workflow that builds your app for distribution",
+      "type": "topic",
+      "url": "/documentation/xcode/creating-a-workflow-that-builds-your-app-for-distribution"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Making-Dependencies-Available-to-Xcode-Cloud": {
+      "abstract": [
+        {
+          "text": "Review dependencies and make them available to Xcode Cloud before you configure your project to use Xcode Cloud.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Making-Dependencies-Available-to-Xcode-Cloud",
+      "kind": "article",
+      "role": "article",
+      "title": "Making dependencies available to Xcode Cloud",
+      "type": "topic",
+      "url": "/documentation/xcode/making-dependencies-available-to-xcode-cloud"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Removing-Your-Project-from-Xcode-Cloud": {
+      "abstract": [
+        {
+          "text": "Remove your project from Xcode Cloud to delete app and workflow data, disconnect your Git repository, and remove the Slack integration.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Removing-Your-Project-from-Xcode-Cloud",
+      "kind": "article",
+      "role": "article",
+      "title": "Removing your project from Xcode Cloud",
+      "type": "topic",
+      "url": "/documentation/xcode/removing-your-project-from-xcode-cloud"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Setting-the-Next-Build-Number-for-Xcode-Cloud-Builds": {
+      "abstract": [
+        {
+          "text": "Start numbering builds from a custom build number for your existing Mac app to avoid version collisions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Setting-the-Next-Build-Number-for-Xcode-Cloud-Builds",
+      "kind": "article",
+      "role": "article",
+      "title": "Setting the next build number for Xcode Cloud builds",
+      "type": "topic",
+      "url": "/documentation/xcode/setting-the-next-build-number-for-xcode-cloud-builds"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Sharing-custom-aliases-across-Xcode-Cloud-workflows": {
+      "abstract": [
+        {
+          "text": "Use custom aliases to share configurations with multiple workflows.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Sharing-custom-aliases-across-Xcode-Cloud-workflows",
+      "kind": "article",
+      "role": "article",
+      "title": "Sharing macOS and Xcode versions across Xcode Cloud workflows",
+      "type": "topic",
+      "url": "/documentation/xcode/sharing-custom-aliases-across-xcode-cloud-workflows"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Sharing-environment-variables-across-xcode-cloud-workflows": {
+      "abstract": [
+        {
+          "text": "Apply common configurations to multiple workflows by using shared environment variables.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Sharing-environment-variables-across-xcode-cloud-workflows",
+      "kind": "article",
+      "role": "article",
+      "title": "Sharing environment variables across Xcode Cloud workflows",
+      "type": "topic",
+      "url": "/documentation/xcode/sharing-environment-variables-across-xcode-cloud-workflows"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Writing-Custom-Build-Scripts": {
+      "abstract": [
+        {
+          "text": "Extend your Xcode Cloud workflows with custom build scripts that perform custom tasks or install additional tools.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Writing-Custom-Build-Scripts",
+      "kind": "article",
+      "role": "article",
+      "title": "Writing custom build scripts",
+      "type": "topic",
+      "url": "/documentation/xcode/writing-custom-build-scripts"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Xcode-Cloud": {
+      "abstract": [
+        {
+          "text": "Automatically build, test, and distribute your apps with Xcode Cloud to verify changes and create high-quality apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Xcode-Cloud",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Xcode Cloud",
+      "type": "topic",
+      "url": "/documentation/xcode/xcode-cloud"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/building-swift-packages-or-swift-playground-app-projects-with-xcode-cloud": {
+      "abstract": [
+        {
+          "text": "Add your Swift package or Swift Playgrounds app project to an Xcode project to build it in Xcode Cloud.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/building-swift-packages-or-swift-playground-app-projects-with-xcode-cloud",
+      "kind": "article",
+      "role": "article",
+      "title": "Building Swift packages and Swift Playgrounds app projects with Xcode Cloud",
+      "type": "topic",
+      "url": "/documentation/xcode/building-swift-packages-or-swift-playground-app-projects-with-xcode-cloud"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/choosing-localization-regions-and-scripts": {
+      "abstract": [
+        {
+          "text": "Add a language-only localization or localizations specific to regional variants and",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "scripts.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/choosing-localization-regions-and-scripts",
+      "kind": "article",
+      "role": "article",
+      "title": "Choosing localization regions and scripts",
+      "type": "topic",
+      "url": "/documentation/xcode/choosing-localization-regions-and-scripts"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/managing-files-and-folders-in-your-xcode-project": {
+      "abstract": [
+        {
+          "text": "Add new or existing files to your project, and use groups to",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "organize the files and folders in the Project navigator.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/managing-files-and-folders-in-your-xcode-project",
+      "kind": "article",
+      "role": "article",
+      "title": "Managing files and folders in your Xcode project",
+      "type": "topic",
+      "url": "/documentation/xcode/managing-files-and-folders-in-your-xcode-project"
+    },
+    "doc://com.apple.documentation/documentation/AppStoreConnectAPI/BetaBuildLocalizationCreateRequest/Data-data.dictionary/Attributes-data.dictionary": {
+      "abstract": [
+        {
+          "text": "Attributes that you set that describe the new resource.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "BetaBuildLocalizationCreateRequest.Data.Attributes"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppStoreConnectAPI/BetaBuildLocalizationCreateRequest/Data-data.dictionary/Attributes-data.dictionary",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "BetaBuildLocalizationCreateRequest.Data.Attributes",
+      "type": "topic",
+      "url": "/documentation/AppStoreConnectAPI/BetaBuildLocalizationCreateRequest/Data-data.dictionary/Attributes-data.dictionary"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/videos/play/wwdc2023/10224": {
+      "identifier": "https://developer.apple.com/videos/play/wwdc2023/10224",
+      "title": "Simplify distribution in Xcode and Xcode Cloud",
+      "titleInlineContent": [
+        {
+          "text": "Simplify distribution in Xcode and Xcode Cloud",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/videos/play/wwdc2023/10224"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Setup-and-maintenance",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Xcode/documentation/Xcode/Making-Dependencies-Available-to-Xcode-Cloud",
+        "doc://com.apple.Xcode/documentation/Xcode/Configuring-Xcode-Cloud-for-Your-Team",
+        "doc://com.apple.Xcode/documentation/Xcode/Sharing-custom-aliases-across-Xcode-Cloud-workflows",
+        "doc://com.apple.Xcode/documentation/Xcode/Sharing-environment-variables-across-xcode-cloud-workflows",
+        "doc://com.apple.Xcode/documentation/Xcode/building-swift-packages-or-swift-playground-app-projects-with-xcode-cloud",
+        "doc://com.apple.Xcode/documentation/Xcode/Setting-the-Next-Build-Number-for-Xcode-Cloud-Builds",
+        "doc://com.apple.Xcode/documentation/Xcode/Removing-Your-Project-from-Xcode-Cloud"
+      ],
+      "title": "Setup and maintenance"
+    }
+  ]
+}

@@ -1,0 +1,429 @@
+{
+  "abstract": [
+    {
+      "text": "Hashes the Secure Element pass error object by feeding the item into the given hasher.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/passkit",
+        "doc://com.apple.documentation/documentation/passkit/wallet",
+        "doc://com.apple.documentation/documentation/passkit/pkaddsecureelementpasserror"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/passkit_apple_pay_and_wallet/pkaddsecureelementpasserror/3727661-hash"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 3727661,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:10Foundation21_BridgedStoredNSErrorPAAE4hash4intoys6HasherVz_tF::SYNTHESIZED::s:SC31PKAddSecureElementPassErrorCodeLeV",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "func "
+      },
+      {
+        "kind": "identifier",
+        "text": "hash"
+      },
+      {
+        "kind": "text",
+        "text": "("
+      },
+      {
+        "kind": "identifier",
+        "text": "into"
+      },
+      {
+        "kind": "text",
+        "text": ": inout Hasher)"
+      }
+    ],
+    "modules": [
+      {
+        "name": "PassKit (Apple Pay and Wallet)"
+      }
+    ],
+    "parent": {
+      "title": "PKAddSecureElementPassError"
+    },
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "8.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "8.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "14.5",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.10",
+        "name": "macOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      },
+      {
+        "current": "16.3",
+        "introducedAt": "12.5",
+        "name": "Xcode"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Method",
+    "symbolKind": "structm",
+    "title": "hash(into:)"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "func"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "hash"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "externalParam",
+              "text": "into"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "hasher"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "kind": "keyword",
+              "text": "inout"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Swift/Hasher",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:s6HasherV",
+              "text": "Hasher"
+            },
+            {
+              "kind": "text",
+              "text": ")"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "languages": [
+        "swift"
+      ],
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The hasher to use when combining the components of this instance.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "hasher"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Implement this method to conform to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Swift/Hashable",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol. The components for hashing must be the same as the compared components in your type’s ",
+              "type": "text"
+            },
+            {
+              "code": "==",
+              "type": "codeVoice"
+            },
+            {
+              "text": " operator implementation. Call ",
+              "type": "text"
+            },
+            {
+              "code": "hasher.combine(_:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " with each of these components.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Never call ",
+                  "type": "text"
+                },
+                {
+                  "code": "finalize()",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " on ",
+                  "type": "text"
+                },
+                {
+                  "code": "hasher",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " because it can generate a compile-time error.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.Swift/documentation/Swift/Hashable": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Hashable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/swift/hashable"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Hasher": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Hasher",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hasher",
+      "type": "topic",
+      "url": "/documentation/swift/hasher"
+    },
+    "doc://com.apple.documentation/documentation/passkit": {
+      "identifier": "doc://com.apple.documentation/documentation/passkit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "PassKit (Apple Pay and Wallet)",
+      "type": "topic",
+      "url": "/documentation/passkit"
+    },
+    "doc://com.apple.documentation/documentation/passkit/pkaddsecureelementpasserror": {
+      "identifier": "doc://com.apple.documentation/documentation/passkit/pkaddsecureelementpasserror",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PKAddSecureElementPassError",
+      "type": "topic",
+      "url": "/documentation/passkit/pkaddsecureelementpasserror"
+    },
+    "doc://com.apple.documentation/documentation/passkit/wallet": {
+      "identifier": "doc://com.apple.documentation/documentation/passkit/wallet",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Wallet",
+      "type": "topic",
+      "url": "/documentation/passkit/wallet"
+    },
+    "doc://com.apple.documentation/documentation/passkit_apple_pay_and_wallet/pkaddsecureelementpasserror/3727661-hash": {
+      "abstract": [
+        {
+          "text": "Hashes the Secure Element pass error object by feeding the item into the given hasher.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "hash"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "into"
+        },
+        {
+          "kind": "text",
+          "text": ": inout Hasher)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/passkit_apple_pay_and_wallet/pkaddsecureelementpasserror/3727661-hash",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hash(into:)",
+      "type": "topic",
+      "url": "/documentation/passkit_apple_pay_and_wallet/pkaddsecureelementpasserror/3727661-hash"
+    },
+    "doc://com.apple.documentation/documentation/passkit_apple_pay_and_wallet/pkaddsecureelementpasserror/3727662-hashvalue": {
+      "abstract": [
+        {
+          "text": "The hash value for the Secure Element pass error.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "hashValue"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/passkit_apple_pay_and_wallet/pkaddsecureelementpasserror/3727662-hashvalue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hashValue",
+      "type": "topic",
+      "url": "/documentation/passkit_apple_pay_and_wallet/pkaddsecureelementpasserror/3727662-hashvalue"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKAddSecureElementPassError": {
+      "abstract": [
+        {
+          "text": "An error object that PassKit uses when it adds Secure Element passes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKAddSecureElementPassError",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PKAddSecureElementPassError",
+      "type": "topic",
+      "url": "/documentation/passkit/pkaddsecureelementpasserror"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/passkit_apple_pay_and_wallet/pkaddsecureelementpasserror/3727662-hashvalue"
+      ],
+      "title": "Hashing"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/passkit_apple_pay_and_wallet/pkaddsecureelementpasserror/3727661-hash"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

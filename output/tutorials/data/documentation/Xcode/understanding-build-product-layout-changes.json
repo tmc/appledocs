@@ -1,0 +1,487 @@
+{
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Xcode/documentation/Xcode",
+        "doc://com.apple.Xcode/documentation/Xcode/build-system"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Xcode/documentation/Xcode/understanding-build-product-layout-changes"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Understanding build product layout changes in Xcode"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The layout of unoptimized builds for app and app extension targets have changed in Xcode. This enables tools and workflows, such as the Previews execution mode that shares build products with normal build-and-run debug builds. This layout saves time and helps prevent correctness issues caused by tools needing different types of build configurations for their work.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you need an advanced workflow that depends on the specific layout of executables in unoptimized builds, you can opt out of the default behavior if necessary.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Inspect-your-app-bundle",
+          "level": 3,
+          "text": "Inspect your app bundle",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you open your app bundle, you see two dynamic library files (",
+              "type": "text"
+            },
+            {
+              "code": ".dylib",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") in the executable directory. For example, this is part of the layout of an iOS app bundle:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "MyApp.app",
+            "    - MyApp",
+            "    - MyApp.debug.dylib",
+            "    - __preview.dylib",
+            "    - <other resources>"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The file with the ",
+              "type": "text"
+            },
+            {
+              "code": ".debug.dylib",
+              "type": "codeVoice"
+            },
+            {
+              "text": " suffix contains all of your code that’s linked as the executable binary in a release configuration. The ",
+              "type": "text"
+            },
+            {
+              "code": "MyApp",
+              "type": "codeVoice"
+            },
+            {
+              "text": " executable becomes a small stub that trampolines over to the entry point in the debug ",
+              "type": "text"
+            },
+            {
+              "code": ".dylib",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for a normal build-and-run, or passes control to Previews when necessary from Xcode. Previews uses the  ",
+              "type": "text"
+            },
+            {
+              "code": "__preview.dylib",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to perform this early interposition.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The symbols and Mach-O sections of an unoptimized build link into this separate ",
+              "type": "text"
+            },
+            {
+              "code": ".dylib",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file, unlike release builds that link into the main binary.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Opt-out-of-the-debug-dylib",
+          "level": 3,
+          "text": "Opt out of the debug dylib",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you expect to scan for custom linker sections you inject, use ",
+              "type": "text"
+            },
+            {
+              "code": "OTHER_LDFLAGS",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for specific control of your output binary. Or if you have tooling that scans binaries for specific symbols for verification, then you may need to adapt to this default unoptimized build layout. If you can’t change your tooling to scan the debug ",
+              "type": "text"
+            },
+            {
+              "code": ".dylib",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", then you can opt out of this layout completely.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The build setting ",
+              "type": "text"
+            },
+            {
+              "code": "ENABLE_DEBUG_DYLIB",
+              "type": "codeVoice"
+            },
+            {
+              "text": " controls this mode and defaults to ",
+              "type": "text"
+            },
+            {
+              "code": "YES",
+              "type": "codeVoice"
+            },
+            {
+              "text": " if these three conditions are met:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The build target is a bundled executable target",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "SWIFT_VERSION",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " is set",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "SWIFT_OPTIMIZATION_LEVEL",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " is set to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "-Onone",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can override this by adding ",
+              "type": "text"
+            },
+            {
+              "code": "ENABLE_DEBUG_DYLIB=NO",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to that specific target. This is a per-target override and isn’t meant to be applied workspace-wide. It only has an effect on executable targets.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Opting out makes the target ineligible to use Previews. Previews continue to work for frameworks and packages separate from the executable target. You should continue using Previews for dependent targets if you need to opt out of this for your main executable target.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If this article doesn’t address your build issues, file feedback using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/bug-reporting/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Xcode-PageImage-card.png": {
+      "alt": "The Xcode logo on a blue gradient background.",
+      "identifier": "Xcode-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cc63eacd8f7f660388b46204d1d9bbcb/Xcode-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/62dba87d5f60ec96eb48882c9dff86d8/Xcode-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Xcode/documentation/Xcode": {
+      "abstract": [
+        {
+          "text": "Build, test, and submit your app with Apple’s integrated development environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode",
+      "images": [
+        {
+          "identifier": "Xcode-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/adding-a-build-configuration-file-to-your-project": {
+      "abstract": [
+        {
+          "text": "Specify your project’s build settings in plain-text files, and supply",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "different settings for debug and release builds.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/adding-a-build-configuration-file-to-your-project",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding a build configuration file to your project",
+      "type": "topic",
+      "url": "/documentation/xcode/adding-a-build-configuration-file-to-your-project"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/build-settings-reference": {
+      "abstract": [
+        {
+          "text": "A detailed list of individual Xcode build settings that control or change the way a target is built.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/build-settings-reference",
+      "kind": "article",
+      "role": "article",
+      "title": "Build settings reference",
+      "type": "topic",
+      "url": "/documentation/xcode/build-settings-reference"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/build-system": {
+      "abstract": [
+        {
+          "text": "Compile your code into a binary format, and customize your project settings to build your code.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/build-system",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Build system",
+      "type": "topic",
+      "url": "/documentation/xcode/build-system"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/configuring-the-build-settings-of-a-target": {
+      "abstract": [
+        {
+          "text": "Specify the options you use to compile, link, and produce a",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "product from a target, and identify settings inherited from",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "your project or the system.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/configuring-the-build-settings-of-a-target",
+      "kind": "article",
+      "role": "article",
+      "title": "Configuring the build settings of a target",
+      "type": "topic",
+      "url": "/documentation/xcode/configuring-the-build-settings-of-a-target"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/identifying-and-addressing-framework-module-issues": {
+      "abstract": [
+        {
+          "text": "Detect and fix common problems found in framework modules with the module verifier.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/identifying-and-addressing-framework-module-issues",
+      "kind": "article",
+      "role": "article",
+      "title": "Identifying and addressing framework module issues",
+      "type": "topic",
+      "url": "/documentation/xcode/identifying-and-addressing-framework-module-issues"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/bug-reporting/": {
+      "identifier": "https://developer.apple.com/bug-reporting/",
+      "title": "Feedback Assistant",
+      "titleInlineContent": [
+        {
+          "text": "Feedback Assistant",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/bug-reporting/"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Build-settings",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Xcode/documentation/Xcode/configuring-the-build-settings-of-a-target",
+        "doc://com.apple.Xcode/documentation/Xcode/adding-a-build-configuration-file-to-your-project",
+        "doc://com.apple.Xcode/documentation/Xcode/build-settings-reference",
+        "doc://com.apple.Xcode/documentation/Xcode/identifying-and-addressing-framework-module-issues"
+      ],
+      "title": "Build settings"
+    }
+  ]
+}

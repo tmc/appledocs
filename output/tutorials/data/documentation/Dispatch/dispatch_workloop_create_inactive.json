@@ -1,0 +1,548 @@
+{
+  "abstract": [
+    {
+      "text": "Creates a new inactive workloop with the specified label.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.dispatch/documentation/Dispatch"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.dispatch/documentation/Dispatch/dispatch_workloop_create_inactive"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@F@dispatch_workloop_create_inactive",
+    "fragments": [
+      {
+        "kind": "identifier",
+        "text": "dispatch_workloop_create_inactive"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Dispatch"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "dispatch_workloop_create_inactive"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "12.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "12.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.14",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "12.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "5.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Function",
+    "symbolKind": "func",
+    "title": "dispatch_workloop_create_inactive"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch_workloop_t",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@dispatch_workloop_t",
+              "text": "dispatch_workloop_t"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "dispatch_workloop_create_inactive"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "keyword",
+              "text": "const"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:C",
+              "text": "char"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "internalParam",
+              "text": "label"
+            },
+            {
+              "kind": "text",
+              "text": ");"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A string label to attach to the queue to uniquely identify it in debugging tools such as Instruments, ",
+                  "type": "text"
+                },
+                {
+                  "code": "sample",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", stackshots, and crash reports.  Because apps, libraries, and frameworks can all create their own dispatch queues, a reverse-DNS naming style (",
+                  "type": "text"
+                },
+                {
+                  "code": "com.example.myqueue",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ") is recommended. This parameter is optional and can be ",
+                  "type": "text"
+                },
+                {
+                  "code": "NULL",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "label"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return-value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The newly created workloop.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use this function when you want to change the default behavior of the workloop before activating it. For example, use this method if you call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch_set_qos_class_floor",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to configure the minimum quality of service level.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After configuring the workloop, you must call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.dispatch/documentation/Dispatch/DispatchObject/activate()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " before submitting any blocks to it. If you submit blocks to an inactive workloop, the system terminates the current process.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.dispatch/documentation/Dispatch": {
+      "abstract": [
+        {
+          "text": "Execute code concurrently on multicore hardware by submitting work to dispatch queues managed by the system.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Dispatch",
+      "type": "topic",
+      "url": "/documentation/dispatch"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/DispatchObject/activate()": {
+      "abstract": [
+        {
+          "text": "Activates the dispatch object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "activate"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/DispatchObject/activate()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "dispatch_activate"
+        }
+      ],
+      "role": "symbol",
+      "title": "activate()",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatchobject/activate()"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/OS_dispatch_workloop": {
+      "abstract": [
+        {
+          "text": "A dispatch queue that prioritizes the execution of tasks based on their quality-of-service level.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "OS_dispatch_workloop"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/OS_dispatch_workloop",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OS_dispatch_workloop",
+      "type": "topic",
+      "url": "/documentation/dispatch/os_dispatch_workloop"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/dispatch_set_qos_class_floor": {
+      "abstract": [
+        {
+          "text": "Specifies the minimum quality-of-service level for a dispatch queue, source, or workloop.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "dispatch_set_qos_class_floor"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch_set_qos_class_floor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dispatch_set_qos_class_floor",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatch_set_qos_class_floor"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/dispatch_workloop_create": {
+      "abstract": [
+        {
+          "text": "Creates a new workloop with the specified label.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "dispatch_workloop_create"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch_workloop_create",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dispatch_workloop_create",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatch_workloop_create"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/dispatch_workloop_create_inactive": {
+      "abstract": [
+        {
+          "text": "Creates a new inactive workloop with the specified label.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "dispatch_workloop_create_inactive"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch_workloop_create_inactive",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dispatch_workloop_create_inactive",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatch_workloop_create_inactive"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/dispatch_workloop_t": {
+      "abstract": [
+        {
+          "text": "A dispatch queue that prioritizes the execution of tasks based on their quality-of-service level.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "dispatch_workloop_t"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch_workloop_t",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "dispatch_workloop_t"
+        }
+      ],
+      "role": "symbol",
+      "title": "dispatch_workloop_t",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatch_workloop_t"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Creating-a-Dispatch-Workloop",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.dispatch/documentation/Dispatch/dispatch_workloop_create",
+        "doc://com.apple.dispatch/documentation/Dispatch/dispatch_workloop_t",
+        "doc://com.apple.dispatch/documentation/Dispatch/OS_dispatch_workloop"
+      ],
+      "title": "Creating a Dispatch Workloop"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.dispatch~1documentation~1Dispatch~1DispatchObject~1activate()/title",
+          "value": "dispatch_activate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.dispatch~1documentation~1Dispatch~1DispatchObject~1activate()/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "dispatch_activate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.dispatch~1documentation~1Dispatch~1dispatch_workloop_t/title",
+          "value": "dispatch_workloop_t"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.dispatch~1documentation~1Dispatch~1dispatch_workloop_t/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "dispatch_workloop_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.dispatch~1documentation~1Dispatch~1dispatch_workloop_t/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "dispatch_workloop_t"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/dispatch/dispatch_workloop_create_inactive"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

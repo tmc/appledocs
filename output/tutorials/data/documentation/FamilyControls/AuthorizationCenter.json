@@ -1,0 +1,1214 @@
+{
+  "abstract": [
+    {
+      "text": "The center for requesting authorization to provide parental controls.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.FamilyControls/documentation/FamilyControls"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.FamilyControls/documentation/FamilyControls/AuthorizationCenter"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:14FamilyControls19AuthorizationCenterC",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "AuthorizationCenter"
+      }
+    ],
+    "modules": [
+      {
+        "name": "FamilyControls"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "AuthorizationCenter"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "AuthorizationCenter"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AuthorizationCenter"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To authorize your app so that it can provide parental controls,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "access the shared ",
+              "type": "text"
+            },
+            {
+              "code": "AuthorizationCenter",
+              "type": "codeVoice"
+            },
+            {
+              "text": " instance.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let center = AuthorizationCenter.shared"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "You must add the Family Controls capability to your app before you call the",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.FamilyControls/documentation/FamilyControls/AuthorizationCenter/requestAuthorization(for:)",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "or ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.FamilyControls/documentation/FamilyControls/AuthorizationCenter/revokeAuthorization(completionHandler:)",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " methods.",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "This capability adds the",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.family-controls",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "entitlement to your app.",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "In a compatible iPad or iPhone app running in visionOS, authorization attempts always fail.",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "For more information, see",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/Xcode/adding-capabilities-to-your-app",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Next, to request authorization to provide parental controls,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.FamilyControls/documentation/FamilyControls/AuthorizationCenter/requestAuthorization(completionHandler:)",
+              "isActive": true,
+              "type": "reference"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "center.requestAuthorization { result in",
+            "    switch result {",
+            "    case .success():",
+            "        // The request succeeded.",
+            "    case .failure(let error):",
+            "        // Handle the error here.",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.FamilyControls/documentation/FamilyControls/AuthorizationCenter/requestAuthorization(for:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "do {",
+            "    try await center.requestAuthorization(for: FamilyControlsMember.individual)",
+            "} catch {",
+            "    // Handle the error here.",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Always request authorization when your app first launches.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "If the user’s parent or guardian hasn’t previously authorized your app,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the system displays an alert. If the parent or guardian chooses to continue,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "it displays an authentication sheet.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "When a parent or guardian either approves or cancels the request,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the system sends the result back to the ",
+              "type": "text"
+            },
+            {
+              "code": "requestAuthorization(completionHandler:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "method’s completion handler.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you’re authenticating an ",
+              "type": "text"
+            },
+            {
+              "code": "individual",
+              "type": "codeVoice"
+            },
+            {
+              "text": " who hasn’t previously authorized your app,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the system displays an alert. If the ",
+              "type": "text"
+            },
+            {
+              "code": "individual",
+              "type": "codeVoice"
+            },
+            {
+              "text": " chooses to continue,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the device asks to authorize that ",
+              "type": "text"
+            },
+            {
+              "code": "individual",
+              "type": "codeVoice"
+            },
+            {
+              "text": " using Face ID or Touch ID.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After your app has been authorized, additional calls to ",
+              "type": "text"
+            },
+            {
+              "code": "requestAuthorization(for:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "don’t display the authentication sheet or ask to authorize that individual using Face ID or Touch ID.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Instead, the system sets the authorization status.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To observe changes to the authorization status, use",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.FamilyControls/documentation/FamilyControls/AuthorizationCenter/authorizationStatus",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The status may change due to external events,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "such as a child graduating to an adult account,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "or a parent or guardian changing the status in Settings.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You can also revoke authorization by calling",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.FamilyControls/documentation/FamilyControls/AuthorizationCenter/revokeAuthorization(completionHandler:)",
+              "isActive": true,
+              "type": "reference"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.FamilyControls/documentation/FamilyControls": {
+      "abstract": [
+        {
+          "text": "Authorize your app to provide parental controls on a device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.FamilyControls/documentation/FamilyControls",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "FamilyControls",
+      "type": "topic",
+      "url": "/documentation/familycontrols"
+    },
+    "doc://com.apple.FamilyControls/documentation/FamilyControls/AuthorizationCenter": {
+      "abstract": [
+        {
+          "text": "The center for requesting authorization to provide parental controls.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AuthorizationCenter"
+        }
+      ],
+      "identifier": "doc://com.apple.FamilyControls/documentation/FamilyControls/AuthorizationCenter",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AuthorizationCenter"
+        }
+      ],
+      "role": "symbol",
+      "title": "AuthorizationCenter",
+      "type": "topic",
+      "url": "/documentation/familycontrols/authorizationcenter"
+    },
+    "doc://com.apple.FamilyControls/documentation/FamilyControls/AuthorizationCenter/$authorizationStatus": {
+      "abstract": [
+        {
+          "text": "A publisher for the authorization status property.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "$authorizationStatus"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Combine9PublishedV",
+          "text": "Published"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14FamilyControls19AuthorizationStatusO",
+          "text": "AuthorizationStatus"
+        },
+        {
+          "kind": "text",
+          "text": ">."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Combine9PublishedV9PublisherV",
+          "text": "Publisher"
+        }
+      ],
+      "identifier": "doc://com.apple.FamilyControls/documentation/FamilyControls/AuthorizationCenter/$authorizationStatus",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "$authorizationStatus",
+      "type": "topic",
+      "url": "/documentation/familycontrols/authorizationcenter/$authorizationstatus"
+    },
+    "doc://com.apple.FamilyControls/documentation/FamilyControls/AuthorizationCenter/ObjectWillChangePublisher": {
+      "abstract": [
+        {
+          "text": "The type of publisher that emits before the object has changed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ObjectWillChangePublisher"
+        }
+      ],
+      "identifier": "doc://com.apple.FamilyControls/documentation/FamilyControls/AuthorizationCenter/ObjectWillChangePublisher",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ObjectWillChangePublisher"
+        }
+      ],
+      "role": "symbol",
+      "title": "AuthorizationCenter.ObjectWillChangePublisher",
+      "type": "topic",
+      "url": "/documentation/familycontrols/authorizationcenter/objectwillchangepublisher"
+    },
+    "doc://com.apple.FamilyControls/documentation/FamilyControls/AuthorizationCenter/ObservableObject-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.FamilyControls/documentation/FamilyControls/AuthorizationCenter/ObservableObject-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "ObservableObject Implementations",
+      "type": "topic",
+      "url": "/documentation/familycontrols/authorizationcenter/observableobject-implementations"
+    },
+    "doc://com.apple.FamilyControls/documentation/FamilyControls/AuthorizationCenter/authorizationStatus": {
+      "abstract": [
+        {
+          "text": "The status of your app’s authorization to provide parental controls.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "authorizationStatus"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14FamilyControls19AuthorizationStatusO",
+          "text": "AuthorizationStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.FamilyControls/documentation/FamilyControls/AuthorizationCenter/authorizationStatus",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "authorizationStatus",
+      "type": "topic",
+      "url": "/documentation/familycontrols/authorizationcenter/authorizationstatus"
+    },
+    "doc://com.apple.FamilyControls/documentation/FamilyControls/AuthorizationCenter/objectWillChange": {
+      "abstract": [],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "ObjectWillChangePublisher",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "ObservableObjectPublisher",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "objectWillChange"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Combine25ObservableObjectPublisherC",
+          "text": "ObservableObjectPublisher"
+        }
+      ],
+      "identifier": "doc://com.apple.FamilyControls/documentation/FamilyControls/AuthorizationCenter/objectWillChange",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "objectWillChange",
+      "type": "topic",
+      "url": "/documentation/familycontrols/authorizationcenter/objectwillchange"
+    },
+    "doc://com.apple.FamilyControls/documentation/FamilyControls/AuthorizationCenter/requestAuthorization(completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Requests authorization to provide parental controls for a child.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "requestAuthorization"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6ResultO",
+          "text": "Result"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ", any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.FamilyControls/documentation/FamilyControls/AuthorizationCenter/requestAuthorization(completionHandler:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "requestAuthorization(completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/familycontrols/authorizationcenter/requestauthorization(completionhandler:)"
+    },
+    "doc://com.apple.FamilyControls/documentation/FamilyControls/AuthorizationCenter/requestAuthorization(for:)": {
+      "abstract": [
+        {
+          "text": "Requests authorization to provide parental controls for a child or individual.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "requestAuthorization"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@M@FamilyControls@E@FamilyControlsMember",
+          "text": "FamilyControlsMember"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.FamilyControls/documentation/FamilyControls/AuthorizationCenter/requestAuthorization(for:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "requestAuthorization(for:)",
+      "type": "topic",
+      "url": "/documentation/familycontrols/authorizationcenter/requestauthorization(for:)"
+    },
+    "doc://com.apple.FamilyControls/documentation/FamilyControls/AuthorizationCenter/revokeAuthorization(completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Revokes authorization to provide parental controls.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "revokeAuthorization"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6ResultO",
+          "text": "Result"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ", any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.FamilyControls/documentation/FamilyControls/AuthorizationCenter/revokeAuthorization(completionHandler:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "revokeAuthorization(completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/familycontrols/authorizationcenter/revokeauthorization(completionhandler:)"
+    },
+    "doc://com.apple.FamilyControls/documentation/FamilyControls/AuthorizationCenter/shared": {
+      "abstract": [
+        {
+          "text": "The shared center for requesting and revoking authorization.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "shared"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14FamilyControls19AuthorizationCenterC",
+          "text": "AuthorizationCenter"
+        }
+      ],
+      "identifier": "doc://com.apple.FamilyControls/documentation/FamilyControls/AuthorizationCenter/shared",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "shared",
+      "type": "topic",
+      "url": "/documentation/familycontrols/authorizationcenter/shared"
+    },
+    "doc://com.apple.FamilyControls/documentation/FamilyControls/AuthorizationStatus": {
+      "abstract": [
+        {
+          "text": "The status of your app’s authorization to provide parental controls.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AuthorizationStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.FamilyControls/documentation/FamilyControls/AuthorizationStatus",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AuthorizationStatus"
+        }
+      ],
+      "role": "symbol",
+      "title": "AuthorizationStatus",
+      "type": "topic",
+      "url": "/documentation/familycontrols/authorizationstatus"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.family-controls": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the app can request or revoke authorization to provide parental controls.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.family-controls",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Family Controls",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Entitlements/com.apple.developer.family-controls"
+    },
+    "doc://com.apple.documentation/documentation/Xcode/adding-capabilities-to-your-app": {
+      "abstract": [
+        {
+          "text": "Configure your target to include and customize capabilities that provide access to Apple’s app services.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Xcode/adding-capabilities-to-your-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding capabilities to your app",
+      "type": "topic",
+      "url": "/documentation/Xcode/adding-capabilities-to-your-app"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/s:7Combine16ObservableObjectP": {
+      "abstract": [
+        {
+          "text": "A type of object with a publisher that emits before the object has changed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ObservableObject"
+        },
+        {
+          "kind": "text",
+          "text": " : AnyObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:7Combine16ObservableObjectP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ObservableObject",
+      "type": "topic",
+      "url": "/documentation/Combine/ObservableObject"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:7Combine16ObservableObjectP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Authorizations",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.FamilyControls/documentation/FamilyControls/AuthorizationStatus",
+        "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.family-controls"
+      ],
+      "title": "Authorizations"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Accessing-the-Shared-Center",
+      "identifiers": [
+        "doc://com.apple.FamilyControls/documentation/FamilyControls/AuthorizationCenter/shared"
+      ],
+      "title": "Accessing the Shared Center"
+    },
+    {
+      "anchor": "Requesting-and-Revoking-Authorization",
+      "identifiers": [
+        "doc://com.apple.FamilyControls/documentation/FamilyControls/AuthorizationCenter/requestAuthorization(for:)",
+        "doc://com.apple.FamilyControls/documentation/FamilyControls/AuthorizationCenter/revokeAuthorization(completionHandler:)",
+        "doc://com.apple.FamilyControls/documentation/FamilyControls/AuthorizationCenter/requestAuthorization(completionHandler:)"
+      ],
+      "title": "Requesting and Revoking Authorization"
+    },
+    {
+      "anchor": "Tracking-Authorization-Changes",
+      "identifiers": [
+        "doc://com.apple.FamilyControls/documentation/FamilyControls/AuthorizationCenter/authorizationStatus",
+        "doc://com.apple.FamilyControls/documentation/FamilyControls/AuthorizationCenter/$authorizationStatus",
+        "doc://com.apple.FamilyControls/documentation/FamilyControls/AuthorizationCenter/objectWillChange",
+        "doc://com.apple.FamilyControls/documentation/FamilyControls/AuthorizationCenter/ObjectWillChangePublisher"
+      ],
+      "title": "Tracking Authorization Changes"
+    },
+    {
+      "anchor": "Default-Implementations",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.FamilyControls/documentation/FamilyControls/AuthorizationCenter/ObservableObject-Implementations"
+      ],
+      "title": "Default Implementations"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/familycontrols/authorizationcenter"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

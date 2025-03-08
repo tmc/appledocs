@@ -1,0 +1,437 @@
+{
+  "abstract": [
+    {
+      "text": "One or more atoms containing additional information for selecting and drawing the subtitle.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.qtff/documentation/quicktime-file-format",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Subtitle_sample_data"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.qtff/documentation/quicktime-file-format/Subtitle_sample_data/Sample_extensions"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "__docc_universal_symbol_reference_$Subtitle_sample_data_Sample_extensions",
+    "fragments": [
+      {
+        "kind": "identifier",
+        "preciseIdentifier": "__docc_universal_symbol_reference_$Subtitle_sample_data_Sample_extensions",
+        "text": "Sample extensions"
+      }
+    ],
+    "modules": [
+      {
+        "name": "quicktime-file-format",
+        "relatedModules": []
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "preciseIdentifier": "__docc_universal_symbol_reference_$Subtitle_sample_data_Sample_extensions",
+        "text": "Sample extensions"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Data field",
+    "symbolKind": "property",
+    "title": "Sample extensions"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following table lists the currently defined subtitle sample extensions.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Subtitle sample extension",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Description",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "'frcd'",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The presence of this atom indicates that the sample contains a forced subtitle. This extension has no data. Forced subtitles are shown automatically when appropriate without any interaction from the user. If any sample contains a forced subtitle, the Some Samples Are Forced (",
+                      "type": "text"
+                    },
+                    {
+                      "code": "0x40000000",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ") flag must also be set in the display flags. Consider an example where the primary language of the content is English, but the user has chosen to listen to a French dub of the audio. If a scene in the video displays something in English that is important to the plot or the content (such as a newspaper headline), a forced subtitle displays the content translated into French. In this case, the subtitle is linked (“forced”) to the French language sound track. If this atom is not present, the subtitle is typically simply a translation of the audio content, which a user can choose to display or hide.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "'styl'",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Style information for the subtitle. This atom allows you to override the default style in the sample description or to define more than one style within a sample. See ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Subtitle_style_atom",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "'tbox'",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Override of the default text box for this sample. Used only if the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "0x20000000",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " display flag is set in the sample description and, in that case, only the top is considered. Even so, all fields should be set as though they are considered. See ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Text_box_atom",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "'twrp'",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Text wrap. Set the one-byte payload to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "0x00",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " for no wrapping or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "0x01",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " for automatic soft wrapping.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format": {
+      "abstract": [
+        {
+          "text": "An object-oriented file format for the storage and exchange of digital media between devices, applications, and operating systems.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "QuickTime File Format",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Subtitle_sample_data": {
+      "abstract": [
+        {
+          "text": "An atom that contains subtitle sample data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Subtitle_sample_data",
+          "text": "Subtitle sample data"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Subtitle_sample_data",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Subtitle sample data",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/subtitle_sample_data"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Subtitle_sample_data/Sample_extensions": {
+      "abstract": [
+        {
+          "text": "One or more atoms containing additional information for selecting and drawing the subtitle.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Subtitle_sample_data_Sample_extensions",
+          "text": "Sample extensions"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Subtitle_sample_data/Sample_extensions",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sample extensions",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/subtitle_sample_data/sample_extensions"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Subtitle_sample_data/Text": {
+      "abstract": [
+        {
+          "text": "The subtitle text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Subtitle_sample_data_Text",
+          "text": "Text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Subtitle_sample_data/Text",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Text",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/subtitle_sample_data/text"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Subtitle_sample_data/Text_size": {
+      "abstract": [
+        {
+          "text": "A 16-bit word that specifies the length (number of bytes) of the subtitle text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Subtitle_sample_data_Text_size",
+          "text": "Text size"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Subtitle_sample_data/Text_size",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Text size",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/subtitle_sample_data/text_size"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Subtitle_style_atom": {
+      "abstract": [
+        {
+          "text": "An atom that specifies changes to the appearance of a subtitle.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Subtitle_style_atom",
+          "text": "Subtitle style atom ('styl')"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Subtitle_style_atom",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Subtitle style atom ('styl')",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/subtitle_style_atom"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Text_box_atom": {
+      "abstract": [
+        {
+          "text": "An atom that defines a text box for a subtitle sample.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Text_box_atom",
+          "text": "Text box atom ('tbox')"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Text_box_atom",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Text box atom ('tbox')",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/text_box_atom"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Data-fields",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Subtitle_sample_data/Text_size",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Subtitle_sample_data/Text"
+      ],
+      "title": "Data fields"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/quicktime-file-format/subtitle_sample_data/sample_extensions"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

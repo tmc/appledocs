@@ -1,0 +1,995 @@
+{
+  "abstract": [
+    {
+      "text": "A protocol that defines a factory to create new video decoders for a codec type that the extension implements.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.mediaextension/documentation/MediaExtension"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.mediaextension/documentation/MediaExtension/MEVideoDecoderExtension"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(pl)MEVideoDecoderExtension",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "protocol"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "MEVideoDecoderExtension"
+      }
+    ],
+    "modules": [
+      {
+        "name": "MediaExtension"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "MEVideoDecoderExtension"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Protocol",
+    "symbolKind": "protocol",
+    "title": "MEVideoDecoderExtension"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MEVideoDecoderExtension"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObjectProtocol"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This protocol provides a factory method to create a new ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.mediaextension/documentation/MediaExtension/MEVideoDecoder",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance for a codecType implemented by the extension. A single ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.mediaextension/documentation/MediaExtension/MEVideoDecoderExtension",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " is instantiated by the ",
+              "type": "text"
+            },
+            {
+              "code": "VideoToolbox",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and will be called to create individual ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.mediaextension/documentation/MediaExtension/MEVideoDecoder",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instances as needed. If the codecType or ",
+              "type": "text"
+            },
+            {
+              "code": "FormatDescription",
+              "type": "codeVoice"
+            },
+            {
+              "text": " passed to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.mediaextension/documentation/MediaExtension/MEVideoDecoderExtension/makeVideoDecoder(codecType:videoFormatDescription:videoDecoderSpecifications:pixelBufferManager:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " is not compatible with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.mediaextension/documentation/MediaExtension/MEVideoDecoder",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " implementation, the factory call should fail and return ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.mediaextension/documentation/MediaExtension/MEError-swift.struct/Code/unsupportedFeature",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.mediaextension/documentation/MediaExtension": {
+      "abstract": [
+        {
+          "text": "This framework provides a means for developers to create format readers, video decoders, and RAW processors for media that the system doesn’t natively support.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaextension/documentation/MediaExtension",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "MediaExtension",
+      "type": "topic",
+      "url": "/documentation/mediaextension"
+    },
+    "doc://com.apple.mediaextension/documentation/MediaExtension/MEDecodeFrameOptions": {
+      "abstract": [
+        {
+          "text": "An object that guides the video decoder operation on a per-frame basis.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MEDecodeFrameOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaextension/documentation/MediaExtension/MEDecodeFrameOptions",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MEDecodeFrameOptions"
+        }
+      ],
+      "role": "symbol",
+      "title": "MEDecodeFrameOptions",
+      "type": "topic",
+      "url": "/documentation/mediaextension/medecodeframeoptions"
+    },
+    "doc://com.apple.mediaextension/documentation/MediaExtension/MEError-swift.struct/Code/unsupportedFeature": {
+      "abstract": [
+        {
+          "text": "An error code that indicates the extension doesn’t support an aspect of the media.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "unsupportedFeature"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaextension/documentation/MediaExtension/MEError-swift.struct/Code/unsupportedFeature",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MEErrorUnsupportedFeature"
+        }
+      ],
+      "role": "symbol",
+      "title": "MEError.Code.unsupportedFeature",
+      "type": "topic",
+      "url": "/documentation/mediaextension/meerror-swift.struct/code/unsupportedfeature"
+    },
+    "doc://com.apple.mediaextension/documentation/MediaExtension/MEVideoDecoder": {
+      "abstract": [
+        {
+          "text": "A protocol that defines the requirements for a video decoder.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MEVideoDecoder"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaextension/documentation/MediaExtension/MEVideoDecoder",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MEVideoDecoder"
+        }
+      ],
+      "role": "symbol",
+      "title": "MEVideoDecoder",
+      "type": "topic",
+      "url": "/documentation/mediaextension/mevideodecoder"
+    },
+    "doc://com.apple.mediaextension/documentation/MediaExtension/MEVideoDecoderExtension": {
+      "abstract": [
+        {
+          "text": "A protocol that defines a factory to create new video decoders for a codec type that the extension implements.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MEVideoDecoderExtension"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaextension/documentation/MediaExtension/MEVideoDecoderExtension",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MEVideoDecoderExtension"
+        }
+      ],
+      "role": "symbol",
+      "title": "MEVideoDecoderExtension",
+      "type": "topic",
+      "url": "/documentation/mediaextension/mevideodecoderextension"
+    },
+    "doc://com.apple.mediaextension/documentation/MediaExtension/MEVideoDecoderExtension/init()": {
+      "abstract": [
+        {
+          "text": "Creates a new video decoder factory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaextension/documentation/MediaExtension/MEVideoDecoderExtension/init()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "init()",
+      "type": "topic",
+      "url": "/documentation/mediaextension/mevideodecoderextension/init()"
+    },
+    "doc://com.apple.mediaextension/documentation/MediaExtension/MEVideoDecoderExtension/makeVideoDecoder(codecType:videoFormatDescription:videoDecoderSpecifications:pixelBufferManager:)": {
+      "abstract": [
+        {
+          "text": "Creates a new video decoder that matches the codec type, format description, decoder specifications, and pixel buffer manager that you specify.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "makeVideoDecoder"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "codecType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMVideoCodecType",
+          "text": "CMVideoCodecType"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "videoFormatDescription"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMVideoFormatDescriptionRef",
+          "text": "CMVideoFormatDescription"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "videoDecoderSpecifications"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "pixelBufferManager"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MEVideoDecoderPixelBufferManager",
+          "text": "MEVideoDecoderPixelBufferManager"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MEVideoDecoder",
+          "text": "MEVideoDecoder"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaextension/documentation/MediaExtension/MEVideoDecoderExtension/makeVideoDecoder(codecType:videoFormatDescription:videoDecoderSpecifications:pixelBufferManager:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "videoDecoderWithCodecType:videoFormatDescription:videoDecoderSpecifications:extensionDecoderPixelBufferManager:error:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "makeVideoDecoder(codecType:videoFormatDescription:videoDecoderSpecifications:pixelBufferManager:)",
+      "type": "topic",
+      "url": "/documentation/mediaextension/mevideodecoderextension/makevideodecoder(codectype:videoformatdescription:videodecoderspecifications:pixelbuffermanager:)"
+    },
+    "doc://com.apple.mediaextension/documentation/MediaExtension/MEVideoDecoderPixelBufferManager": {
+      "abstract": [
+        {
+          "text": "Describes pixel buffer requirements and creates new pixel buffers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MEVideoDecoderPixelBufferManager"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaextension/documentation/MediaExtension/MEVideoDecoderPixelBufferManager",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MEVideoDecoderPixelBufferManager"
+        }
+      ],
+      "role": "symbol",
+      "title": "MEVideoDecoderPixelBufferManager",
+      "type": "topic",
+      "url": "/documentation/mediaextension/mevideodecoderpixelbuffermanager"
+    },
+    "doc://com.apple.mediaextension/documentation/MediaExtension/video-decoder-entitlement": {
+      "abstract": [
+        {
+          "text": "Include an entitlement to indicate your extension is a MediaExtension video decoder.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaextension/documentation/MediaExtension/video-decoder-entitlement",
+      "kind": "article",
+      "role": "article",
+      "title": "Video decoder entitlement",
+      "type": "topic",
+      "url": "/documentation/mediaextension/video-decoder-entitlement"
+    },
+    "doc://com.apple.mediaextension/documentation/MediaExtension/video-decoder-property-list-dictionary": {
+      "abstract": [
+        {
+          "text": "Include a property list dictionary to describe a video decoder.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaextension/documentation/MediaExtension/video-decoder-property-list-dictionary",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Video decoder property list dictionary",
+      "type": "topic",
+      "url": "/documentation/mediaextension/video-decoder-property-list-dictionary"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Video-decoders",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.mediaextension/documentation/MediaExtension/MEVideoDecoder",
+        "doc://com.apple.mediaextension/documentation/MediaExtension/MEDecodeFrameOptions",
+        "doc://com.apple.mediaextension/documentation/MediaExtension/MEVideoDecoderPixelBufferManager",
+        "doc://com.apple.mediaextension/documentation/MediaExtension/video-decoder-property-list-dictionary",
+        "doc://com.apple.mediaextension/documentation/MediaExtension/video-decoder-entitlement"
+      ],
+      "title": "Video decoders"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-video-decoder",
+      "identifiers": [
+        "doc://com.apple.mediaextension/documentation/MediaExtension/MEVideoDecoderExtension/init()",
+        "doc://com.apple.mediaextension/documentation/MediaExtension/MEVideoDecoderExtension/makeVideoDecoder(codecType:videoFormatDescription:videoDecoderSpecifications:pixelBufferManager:)"
+      ],
+      "title": "Creating a video decoder"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "14.0",
+              "name": "macOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Protocol"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "MEVideoDecoderExtension"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "protocol"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MEVideoDecoderExtension"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MEVideoDecoderExtension"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.mediaextension/documentation/MediaExtension"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Creating-a-video-decoder",
+              "identifiers": [
+                "doc://com.apple.mediaextension/documentation/MediaExtension/MEVideoDecoderExtension/init()",
+                "doc://com.apple.mediaextension/documentation/MediaExtension/MEVideoDecoderExtension/makeVideoDecoder(codecType:videoFormatDescription:videoDecoderSpecifications:pixelBufferManager:)"
+              ],
+              "title": "Creating a video decoder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Video-decoders",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.mediaextension/documentation/MediaExtension/MEVideoDecoder",
+                "doc://com.apple.mediaextension/documentation/MediaExtension/MEDecodeFrameOptions",
+                "doc://com.apple.mediaextension/documentation/MediaExtension/MEVideoDecoderPixelBufferManager",
+                "doc://com.apple.mediaextension/documentation/MediaExtension/video-decoder-property-list-dictionary",
+                "doc://com.apple.mediaextension/documentation/MediaExtension/video-decoder-entitlement"
+              ],
+              "title": "Video decoders"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "Mac Catalyst",
+                  "macOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@protocol"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "MEVideoDecoderExtension"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " <"
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(pl)NSObject",
+                    "text": "NSObject"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ">"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaextension~1documentation~1MediaExtension~1MEVideoDecoderPixelBufferManager/title",
+          "value": "MEVideoDecoderPixelBufferManager"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaextension~1documentation~1MediaExtension~1MEVideoDecoderPixelBufferManager/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MEVideoDecoderPixelBufferManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaextension~1documentation~1MediaExtension~1MEVideoDecoderPixelBufferManager/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MEVideoDecoderPixelBufferManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaextension~1documentation~1MediaExtension~1MEError-swift.struct~1Code~1unsupportedFeature/title",
+          "value": "MEErrorUnsupportedFeature"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaextension~1documentation~1MediaExtension~1MEError-swift.struct~1Code~1unsupportedFeature/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MEErrorUnsupportedFeature"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaextension~1documentation~1MediaExtension~1MEVideoDecoder/title",
+          "value": "MEVideoDecoder"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaextension~1documentation~1MediaExtension~1MEVideoDecoder/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MEVideoDecoder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaextension~1documentation~1MediaExtension~1MEVideoDecoder/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MEVideoDecoder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaextension~1documentation~1MediaExtension~1MEDecodeFrameOptions/title",
+          "value": "MEDecodeFrameOptions"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaextension~1documentation~1MediaExtension~1MEDecodeFrameOptions/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MEDecodeFrameOptions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaextension~1documentation~1MediaExtension~1MEDecodeFrameOptions/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MEDecodeFrameOptions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaextension~1documentation~1MediaExtension~1MEVideoDecoderExtension~1makeVideoDecoder(codecType:videoFormatDescription:videoDecoderSpecifications:pixelBufferManager:)/title",
+          "value": "videoDecoderWithCodecType:videoFormatDescription:videoDecoderSpecifications:extensionDecoderPixelBufferManager:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaextension~1documentation~1MediaExtension~1MEVideoDecoderExtension~1makeVideoDecoder(codecType:videoFormatDescription:videoDecoderSpecifications:pixelBufferManager:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "videoDecoderWithCodecType:videoFormatDescription:videoDecoderSpecifications:extensionDecoderPixelBufferManager:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaextension~1documentation~1MediaExtension~1MEVideoDecoderExtension~1init()/title",
+          "value": "init"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaextension~1documentation~1MediaExtension~1MEVideoDecoderExtension~1init()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "init"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaextension~1documentation~1MediaExtension~1MEVideoDecoderExtension/title",
+          "value": "MEVideoDecoderExtension"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaextension~1documentation~1MediaExtension~1MEVideoDecoderExtension/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MEVideoDecoderExtension"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaextension~1documentation~1MediaExtension~1MEVideoDecoderExtension/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MEVideoDecoderExtension"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/mediaextension/mevideodecoderextension"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/mediaextension/mevideodecoderextension"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

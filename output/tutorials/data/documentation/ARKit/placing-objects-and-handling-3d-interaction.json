@@ -1,0 +1,2043 @@
+{
+  "abstract": [
+    {
+      "text": "Place virtual content at tracked, real-world locations, and enable the user to interact with virtual content by using gestures.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.arkit/documentation/ARKit",
+        "doc://com.apple.arkit/documentation/ARKit/arkit-in-ios",
+        "doc://com.apple.arkit/documentation/ARKit/environmental-analysis"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.arkit/documentation/ARKit/placing-objects-and-handling-3d-interaction"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "ARKit"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "13.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "13.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "16.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Placing objects and handling 3D interaction"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The key facet of an AR experience is the ability to intermix virtual and real-world objects. A flat surface is the optimum location for setting a virtual object. To assist ARKit with finding surfaces, you tell the user to move their device in ways that help ARKit prepare the experience. ARKit provides a view that tailors its instructions to the user, guiding them to the surface that your app needs.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To enable the user to put a virtual item on the real-world surface when they tap the screen, ARKit incorporates ray casting, which provides a 3D location in physical space that corresponds to the screen’s touch location. When the user rotates or otherwise moves the virtual items they place, you respond to the respective touch gestures and correlate that input to the virtual content’s look in the physical environment.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "ARKit requires a device with an A9 or later processor. ARKit is not available in iOS Simulator.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Set-a-goal-to-coach-the-users-movement",
+          "level": 2,
+          "text": "Set a goal to coach the user’s movement",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To enable your app to detect real-world surfaces, you use a world tracking configuration. For ARKit to establish tracking, the user must physically move their device to allow ARKit to get a sense of perspective. To communicate this need to the user, you use a view provided by ARKit that presents the user with instructional diagrams and verbal guidance, called ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARCoachingOverlayView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " For example, when you start the app, the first thing the user sees is a message and animation from the coaching overlay telling them to move their device left and right, repeatedly, in order to get started.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To enable the user to place virtual content on a horizontal surface, you set the coaching overlay goal accordingly.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func setGoal() {",
+            "    coachingOverlay.goal = .horizontalPlane",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The coaching overlay then tailors its instructions according to the goal you choose. After ARKit gets a sense of perspective, the coaching overlay instructs the user to find a surface.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Respond-to-coaching-events",
+          "level": 2,
+          "text": "Respond to coaching events",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To make sure the coaching overlay provides guidance to the user whenever ARKit determines it’s necessary, you set ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARCoachingOverlayView/activatesAutomatically",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to ",
+              "type": "text"
+            },
+            {
+              "code": "true",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func setActivatesAutomatically() {",
+            "    coachingOverlay.activatesAutomatically = true",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The coaching overlay activates automatically when the app starts, or when tracking degrades past a certain threshold. In those situations, ARKit notifies your delegate by calling ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARCoachingOverlayViewDelegate/coachingOverlayViewWillActivate(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". In response to this event, hide your app’s UI to enable the user to focus on the instructions that the coaching overlay provides.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func coachingOverlayViewWillActivate(_ coachingOverlayView: ARCoachingOverlayView) {",
+            "    upperControlsView.isHidden = true",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the coaching overlay determines that the goal has been met, it disappears from the user’s view. ARKit notifies your delegate that the coaching process has ended, which is when you show your app’s main user interface.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func coachingOverlayViewDidDeactivate(_ coachingOverlayView: ARCoachingOverlayView) {",
+            "    upperControlsView.isHidden = false",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Place-virtual-content",
+          "level": 2,
+          "text": "Place virtual content",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To give the user an idea of where they can place virtual content, annotate the environment to give them a preview. The sample app draws a square that gives the user visual confirmation of the shape and alignment of the surfaces that ARKit is aware of.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To figure out where to put the square in the real world, you use an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARRaycastQuery",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to ask ARKit where any surfaces exist in the real world. First, you create a ray-cast query that defines the 2D point on the screen you’re interested in. Because the focus square is aligned with the center of the screen, you create a query for the screen center.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func getRaycastQuery(for alignment: ARRaycastQuery.TargetAlignment = .any) -> ARRaycastQuery? {",
+            "    return raycastQuery(from: screenCenter, allowing: .estimatedPlane, alignment: alignment)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Then, you execute the ray-cast query by asking the session to cast it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func castRay(for query: ARRaycastQuery) -> [ARRaycastResult] {",
+            "    return session.raycast(query)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "ARKit returns a position in the ",
+              "type": "text"
+            },
+            {
+              "code": "results",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter that includes the depth of where that point lies on a surface in the real world. To give the user a preview of where on the real-world surface a user can place their virtual content, update the focus square’s position using the ray-cast result’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARRaycastResult/worldTransform",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func setPosition(with raycastResult: ARRaycastResult, _ camera: ARCamera?) {",
+            "    let position = raycastResult.worldTransform.translation",
+            "    recentFocusSquarePositions.append(position)",
+            "    updateTransform(for: raycastResult, camera: camera)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ray-cast result also indicates how the surface is angled with respect to gravity. To preview the angle at which the user’s virtual content can be placed on the surface, update the focus square’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SceneKit/SCNNode/simdWorldTransform",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " with the result’s orientation.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func updateOrientation(basedOn raycastResult: ARRaycastResult) {",
+            "    self.simdOrientation = raycastResult.worldTransform.orientation",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your app offers different types of virtual content, give the user an interface to choose from. The sample app exposes a selection menu when the user taps the plus button. When the user chooses an item from the list, you instantiate the corresponding 3D model and anchor it in the world at the focus square’s current position.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func placeVirtualObject(_ virtualObject: VirtualObject) {",
+            "    guard focusSquare.state != .initializing, let query = virtualObject.raycastQuery else {",
+            "        self.statusViewController.showMessage(\"CANNOT PLACE OBJECT\\nTry moving left or right.\")",
+            "        if let controller = self.objectsViewController {",
+            "            self.virtualObjectSelectionViewController(controller, didDeselectObject: virtualObject)",
+            "        }",
+            "        return",
+            "    }",
+            "   ",
+            "    let trackedRaycast = createTrackedRaycastAndSet3DPosition(of: virtualObject, from: query,",
+            "                                                              withInitialResult: virtualObject.mostRecentInitialPlacementResult)",
+            "    ",
+            "    virtualObject.raycast = trackedRaycast",
+            "    virtualObjectInteraction.selectedObject = virtualObject",
+            "    virtualObject.isHidden = false",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Refine-the-position-of-virtual-content-over-time",
+          "level": 2,
+          "text": "Refine the position of virtual content over time",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As the session runs, ARKit analyzes each camera image and learns more about the layout of the physical environment. When ARKit updates its estimated size and position of real-world surfaces, you may need to update the position of your app’s virtual content to match. To help make it easy, ARKit notifies you when it corrects its understanding of the scene by way of an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARTrackedRaycast",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func createTrackedRaycastAndSet3DPosition(of virtualObject: VirtualObject, from query: ARRaycastQuery,",
+            "                                          withInitialResult initialResult: ARRaycastResult? = nil) -> ARTrackedRaycast? {",
+            "    if let initialResult = initialResult {",
+            "        self.setTransform(of: virtualObject, with: initialResult)",
+            "    }",
+            "    ",
+            "    return session.trackedRaycast(query) { (results) in",
+            "        self.setVirtualObject3DPosition(results, with: virtualObject)",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "ARKit successively repeats the query you provide to a tracked ray cast, and it calls the closure you provide only when the results differ from prior results. The code you provide in the closure is your response to ARKit’s updated scene understanding. In this case, you check your ray-cast intersections against the updated planes and apply those positions to your app’s virtual content.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "private func setVirtualObject3DPosition(_ results: [ARRaycastResult], with virtualObject: VirtualObject) {",
+            "    ",
+            "    guard let result = results.first else {",
+            "        fatalError(\"Unexpected case: the update handler is always supposed to return at least one result.\")",
+            "    }",
+            "    ",
+            "    self.setTransform(of: virtualObject, with: result)",
+            "    ",
+            "    // If the virtual object is not yet in the scene, add it.",
+            "    if virtualObject.parent == nil {",
+            "        self.sceneView.scene.rootNode.addChildNode(virtualObject)",
+            "        virtualObject.shouldUpdateAnchor = true",
+            "    }",
+            "    ",
+            "    if virtualObject.shouldUpdateAnchor {",
+            "        virtualObject.shouldUpdateAnchor = false",
+            "        self.updateQueue.async {",
+            "            self.sceneView.addOrUpdateAnchor(for: virtualObject)",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Manage-tracked-ray-casts",
+          "level": 2,
+          "text": "Manage tracked ray casts",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because ARKit continues to call them, tracked ray casts can increasingly consume resources as the user places more virtual content. Stop the tracked ray cast when you no longer need refined positions over time, such as when a virtual balloon takes flight, or when you remove a virtual object from your scene.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func removeVirtualObject(at index: Int) {",
+            "    guard loadedObjects.indices.contains(index) else { return }",
+            "    ",
+            "    // Stop the object's tracked ray cast.",
+            "    loadedObjects[index].stopTrackedRaycast()",
+            "    ",
+            "    // Remove the visual node from the scene graph.",
+            "    loadedObjects[index].removeFromParentNode()",
+            "    // Recoup resources allocated by the object.",
+            "    loadedObjects[index].unload()",
+            "    loadedObjects.remove(at: index)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To stop a tracked ray cast, you call its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARTrackedRaycast/stopTracking()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func stopTrackedRaycast() {",
+            "    raycast?.stopTracking()",
+            "    raycast = nil",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Enable-user-interaction-with-virtual-content",
+          "level": 2,
+          "text": "Enable user interaction with virtual content",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To allow users to move virtual content in the world after they’ve placed it, implement a pan gesture recognizer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func createPanGestureRecognizer(_ sceneView: VirtualObjectARView) {",
+            "    let panGesture = ThresholdPanGesture(target: self, action: #selector(didPan(_:)))",
+            "    panGesture.delegate = self",
+            "    sceneView.addGestureRecognizer(panGesture)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the user pans an object, you request its position along the object’s path across the plane. Because the object’s position is transitory, use a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSession/raycast(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instead of using a tracked ray cast. In this case, a one-time hit test is appropriate because you don’t need refined position results over time for these requests.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func translate(_ object: VirtualObject, basedOn screenPos: CGPoint) {",
+            "    object.stopTrackedRaycast()",
+            "    ",
+            "    // Update the object by using a one-time position request.",
+            "    if let query = sceneView.raycastQuery(from: screenPos, allowing: .estimatedPlane, alignment: object.allowedAlignment) {",
+            "        viewController.createRaycastAndUpdate3DPosition(of: object, from: query)",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Ray casting gives you orientation information about the surface at a given screen point. While dragging, you avoid quick changes in orientation by subtracting the gesture’s rotation from the current object rotation.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@objc",
+            "func didRotate(_ gesture: UIRotationGestureRecognizer) {",
+            "    guard gesture.state == .changed else { return }",
+            "    ",
+            "    trackedObject?.objectRotation -= Float(gesture.rotation)",
+            "    ",
+            "    gesture.rotation = 0",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Handle-interruption-in-tracking",
+          "level": 2,
+          "text": "Handle interruption in tracking",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In cases where tracking conditions are poor, ARKit invokes your delegate’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSessionObserver/sessionWasInterrupted(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". In these circumstances, the positions of your app’s virtual content may be inaccurate with respect to the camera feed, so hide your virtual content.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func hideVirtualContent() {",
+            "    virtualObjectLoader.loadedObjects.forEach { $0.isHidden = true }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Restore your app’s virtual content when tracking conditions improve. To notify you of improved conditions, ARKit calls your delegate’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSessionObserver/session(_:cameraDidChangeTrackingState:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "function, passing in a camera ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARCamera/trackingState-6i3pt",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " equal to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARTrackingState/ARTrackingStateNormal",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func session(_ session: ARSession, cameraDidChangeTrackingState camera: ARCamera) {",
+            "    statusViewController.showTrackingQualityInfo(for: camera.trackingState, autoHide: true)",
+            "    switch camera.trackingState {",
+            "    case .notAvailable, .limited:",
+            "        statusViewController.escalateFeedback(for: camera.trackingState, inSeconds: 3.0)",
+            "    case .normal:",
+            "        statusViewController.cancelScheduledMessage(for: .trackingStateEscalation)",
+            "        showVirtualContent()",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Restore-an-interrupted-AR-experience",
+          "level": 2,
+          "text": "Restore an interrupted AR experience",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When a session is interrupted, ARKit asks if you want to try to restore the AR experience. You do that by opting in to ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "relocalization",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", by overriding ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSessionObserver/sessionShouldAttemptRelocalization(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and returning ",
+              "type": "text"
+            },
+            {
+              "code": "true",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func sessionShouldAttemptRelocalization(_ session: ARSession) -> Bool {",
+            "    return true",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "During relocalization, the coaching overlay displays tailored instructions to the user. To allow the user to focus on the coaching process, hide your app’s UI when coaching is enabled.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func coachingOverlayViewWillActivate(_ coachingOverlayView: ARCoachingOverlayView) {",
+            "    upperControlsView.isHidden = true",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When ARKit succeeds in restoring the experience, show your app’s UI again so everything appears the way it was before the interruption. When the coaching overlay disappears from the user’s view, ARKit invokes your ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARCoachingOverlayViewDelegate/coachingOverlayViewDidDeactivate(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " callback, which is where you restore your app’s UI.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func coachingOverlayViewDidDeactivate(_ coachingOverlayView: ARCoachingOverlayView) {",
+            "    upperControlsView.isHidden = false",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Enable-the-user-to-start-over-rather-than-restore",
+          "level": 2,
+          "text": "Enable the user to start over rather than restore",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the user decides to give up on restoring the session, you restart the experience in your delegate’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARCoachingOverlayViewDelegate/coachingOverlayViewDidRequestSessionReset(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function. ARKit invokes this callback when the user taps the coaching overlay’s Start Over button.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func coachingOverlayViewDidRequestSessionReset(_ coachingOverlayView: ARCoachingOverlayView) {",
+            "    restartExperience()",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "d738f9c9c7fe/PlacingObjectsAndHandling3DInteraction.zip": {
+      "checksum": "d738f9c9c7feeb87749f27b1708e5409426d418cfb9d934ed4700e7cefe0d948f1ab00e80444176e3b6e9b8167a78684ad676e393c1641934cd8d79e2e15ec7b",
+      "identifier": "d738f9c9c7fe/PlacingObjectsAndHandling3DInteraction.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/d738f9c9c7fe/PlacingObjectsAndHandling3DInteraction.zip"
+    },
+    "doc://com.apple.arkit/documentation/ARKit": {
+      "abstract": [
+        {
+          "text": "Integrate hardware sensing features to produce augmented reality apps and games.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "ARKit",
+      "type": "topic",
+      "url": "/documentation/arkit"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARCamera/trackingState-6i3pt": {
+      "abstract": [
+        {
+          "text": "The general quality of position tracking available when the camera captured a frame.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "trackingState"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARCamera",
+          "text": "ARCamera"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:So8ARCameraC5ARKitE13TrackingStateO",
+          "text": "TrackingState"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARCamera/trackingState-6i3pt",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "trackingState",
+      "type": "topic",
+      "url": "/documentation/arkit/arcamera/trackingstate-6i3pt"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARCoachingOverlayView": {
+      "abstract": [
+        {
+          "text": "A view that displays standardized onboarding instructions to direct users toward a specific goal.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARCoachingOverlayView"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARCoachingOverlayView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARCoachingOverlayView"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARCoachingOverlayView",
+      "type": "topic",
+      "url": "/documentation/arkit/arcoachingoverlayview"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARCoachingOverlayView/activatesAutomatically": {
+      "abstract": [
+        {
+          "text": "A flag that indicates whether the coaching view activates automatically, depending on the current session state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "activatesAutomatically"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARCoachingOverlayView/activatesAutomatically",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "activatesAutomatically"
+        }
+      ],
+      "role": "symbol",
+      "title": "activatesAutomatically",
+      "type": "topic",
+      "url": "/documentation/arkit/arcoachingoverlayview/activatesautomatically"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARCoachingOverlayViewDelegate/coachingOverlayViewDidDeactivate(_:)": {
+      "abstract": [
+        {
+          "text": "Tells you when the coaching experience is completely deactivated.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "coachingOverlayViewDidDeactivate"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARCoachingOverlayView",
+          "text": "ARCoachingOverlayView"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARCoachingOverlayViewDelegate/coachingOverlayViewDidDeactivate(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "coachingOverlayViewDidDeactivate:"
+        }
+      ],
+      "role": "symbol",
+      "title": "coachingOverlayViewDidDeactivate(_:)",
+      "type": "topic",
+      "url": "/documentation/arkit/arcoachingoverlayviewdelegate/coachingoverlayviewdiddeactivate(_:)"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARCoachingOverlayViewDelegate/coachingOverlayViewDidRequestSessionReset(_:)": {
+      "abstract": [
+        {
+          "text": "Tells you when the user taps the coaching overlay view’s Start Over button while the session is relocalizing.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "coachingOverlayViewDidRequestSessionReset"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARCoachingOverlayView",
+          "text": "ARCoachingOverlayView"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARCoachingOverlayViewDelegate/coachingOverlayViewDidRequestSessionReset(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "coachingOverlayViewDidRequestSessionReset:"
+        }
+      ],
+      "role": "symbol",
+      "title": "coachingOverlayViewDidRequestSessionReset(_:)",
+      "type": "topic",
+      "url": "/documentation/arkit/arcoachingoverlayviewdelegate/coachingoverlayviewdidrequestsessionreset(_:)"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARCoachingOverlayViewDelegate/coachingOverlayViewWillActivate(_:)": {
+      "abstract": [
+        {
+          "text": "Tells you when the coaching overlay view activates.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "coachingOverlayViewWillActivate"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARCoachingOverlayView",
+          "text": "ARCoachingOverlayView"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARCoachingOverlayViewDelegate/coachingOverlayViewWillActivate(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "coachingOverlayViewWillActivate:"
+        }
+      ],
+      "role": "symbol",
+      "title": "coachingOverlayViewWillActivate(_:)",
+      "type": "topic",
+      "url": "/documentation/arkit/arcoachingoverlayviewdelegate/coachingoverlayviewwillactivate(_:)"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARRaycastQuery": {
+      "abstract": [
+        {
+          "text": "A mathematical ray you use to find 3D positions on real-world surfaces.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARRaycastQuery"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARRaycastQuery",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARRaycastQuery"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARRaycastQuery",
+      "type": "topic",
+      "url": "/documentation/arkit/arraycastquery"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARRaycastResult": {
+      "abstract": [
+        {
+          "text": "Information about a real-world surface found by examining a point on the screen.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARRaycastResult"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARRaycastResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARRaycastResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARRaycastResult",
+      "type": "topic",
+      "url": "/documentation/arkit/arraycastresult"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARRaycastResult/worldTransform": {
+      "abstract": [
+        {
+          "text": "The position, rotation, and scale, of the ray’s intersection with the target.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "worldTransform"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@simd_float4x4",
+          "text": "simd_float4x4"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARRaycastResult/worldTransform",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "worldTransform"
+        }
+      ],
+      "role": "symbol",
+      "title": "worldTransform",
+      "type": "topic",
+      "url": "/documentation/arkit/arraycastresult/worldtransform"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARSession/raycast(_:)": {
+      "abstract": [
+        {
+          "text": "Checks once for intersections between a ray and real-world surfaces.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "raycast"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARRaycastQuery",
+          "text": "ARRaycastQuery"
+        },
+        {
+          "kind": "text",
+          "text": ") -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARRaycastResult",
+          "text": "ARRaycastResult"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSession/raycast(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "raycast:"
+        }
+      ],
+      "role": "symbol",
+      "title": "raycast(_:)",
+      "type": "topic",
+      "url": "/documentation/arkit/arsession/raycast(_:)"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARSessionObserver/session(_:cameraDidChangeTrackingState:)": {
+      "abstract": [
+        {
+          "text": "Informs the delegate of changes to the quality of ARKit’s device position tracking.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "session"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARSession",
+          "text": "ARSession"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "cameraDidChangeTrackingState"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARCamera",
+          "text": "ARCamera"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSessionObserver/session(_:cameraDidChangeTrackingState:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "session:cameraDidChangeTrackingState:"
+        }
+      ],
+      "role": "symbol",
+      "title": "session(_:cameraDidChangeTrackingState:)",
+      "type": "topic",
+      "url": "/documentation/arkit/arsessionobserver/session(_:cameradidchangetrackingstate:)"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARSessionObserver/sessionShouldAttemptRelocalization(_:)": {
+      "abstract": [
+        {
+          "text": "Asks the delegate whether to attempt recovery of world-tracking state after an interruption.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sessionShouldAttemptRelocalization"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARSession",
+          "text": "ARSession"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSessionObserver/sessionShouldAttemptRelocalization(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "sessionShouldAttemptRelocalization:"
+        }
+      ],
+      "role": "symbol",
+      "title": "sessionShouldAttemptRelocalization(_:)",
+      "type": "topic",
+      "url": "/documentation/arkit/arsessionobserver/sessionshouldattemptrelocalization(_:)"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARSessionObserver/sessionWasInterrupted(_:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that the session has temporarily stopped processing frames and tracking device position.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sessionWasInterrupted"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARSession",
+          "text": "ARSession"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSessionObserver/sessionWasInterrupted(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "sessionWasInterrupted:"
+        }
+      ],
+      "role": "symbol",
+      "title": "sessionWasInterrupted(_:)",
+      "type": "topic",
+      "url": "/documentation/arkit/arsessionobserver/sessionwasinterrupted(_:)"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARTrackedRaycast": {
+      "abstract": [
+        {
+          "text": "A raycast query that ARKit repeats in succession to give you refined results over time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARTrackedRaycast"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARTrackedRaycast",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARTrackedRaycast"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARTrackedRaycast",
+      "type": "topic",
+      "url": "/documentation/arkit/artrackedraycast"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARTrackedRaycast/stopTracking()": {
+      "abstract": [
+        {
+          "text": "Stops repeating the raycast query.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "stopTracking"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARTrackedRaycast/stopTracking()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "stopTracking"
+        }
+      ],
+      "role": "symbol",
+      "title": "stopTracking()",
+      "type": "topic",
+      "url": "/documentation/arkit/artrackedraycast/stoptracking()"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARTrackingState/ARTrackingStateNormal": {
+      "abstract": [
+        {
+          "text": "Camera position tracking is providing optimal results.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "ARTrackingStateNormal"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARTrackingState/ARTrackingStateNormal",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ARTrackingStateNormal",
+      "type": "topic",
+      "url": "/documentation/arkit/artrackingstate/artrackingstatenormal"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/arkit-in-ios": {
+      "abstract": [
+        {
+          "text": "Integrate iOS device camera and motion features to produce augmented reality experiences in your app or game.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/arkit-in-ios",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "ARKit in iOS",
+      "type": "topic",
+      "url": "/documentation/arkit/arkit-in-ios"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/environmental-analysis": {
+      "abstract": [
+        {
+          "text": "Analyze the video from the cameras and the accompanying data, and use ray-casting and depth-map information to determine the location of items.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/environmental-analysis",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Environmental Analysis",
+      "type": "topic",
+      "url": "/documentation/arkit/environmental-analysis"
+    },
+    "doc://com.apple.documentation/documentation/SceneKit/SCNNode/simdWorldTransform": {
+      "abstract": [
+        {
+          "text": "The world transform applied to the node.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "simdWorldTransform"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@simd_float4x4",
+          "text": "simd_float4x4"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "set"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SceneKit/SCNNode/simdWorldTransform",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "simdWorldTransform",
+      "type": "topic",
+      "url": "/documentation/SceneKit/SCNNode/simdWorldTransform"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "d738f9c9c7fe/PlacingObjectsAndHandling3DInteraction.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Raycasting",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.arkit/documentation/ARKit/ARRaycastQuery",
+        "doc://com.apple.arkit/documentation/ARKit/ARTrackedRaycast",
+        "doc://com.apple.arkit/documentation/ARKit/ARRaycastResult"
+      ],
+      "title": "Raycasting"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Raycasting",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.arkit/documentation/ARKit/ARRaycastQuery",
+                "doc://com.apple.arkit/documentation/ARKit/ARTrackedRaycast",
+                "doc://com.apple.arkit/documentation/ARKit/ARRaycastResult"
+              ],
+              "title": "Raycasting"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSessionObserver~1session(_:cameraDidChangeTrackingState:)/title",
+          "value": "session:cameraDidChangeTrackingState:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSessionObserver~1session(_:cameraDidChangeTrackingState:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "session:cameraDidChangeTrackingState:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1SceneKit~1SCNNode~1simdWorldTransform/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "nonatomic"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@SA@simd_float4x4",
+              "text": "simd_float4x4"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "simdWorldTransform"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARCoachingOverlayViewDelegate~1coachingOverlayViewDidDeactivate(_:)/title",
+          "value": "coachingOverlayViewDidDeactivate:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARCoachingOverlayViewDelegate~1coachingOverlayViewDidDeactivate(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "coachingOverlayViewDidDeactivate:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARCoachingOverlayView~1activatesAutomatically/title",
+          "value": "activatesAutomatically"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARCoachingOverlayView~1activatesAutomatically/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "activatesAutomatically"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARCoachingOverlayViewDelegate~1coachingOverlayViewWillActivate(_:)/title",
+          "value": "coachingOverlayViewWillActivate:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARCoachingOverlayViewDelegate~1coachingOverlayViewWillActivate(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "coachingOverlayViewWillActivate:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARCoachingOverlayViewDelegate~1coachingOverlayViewDidRequestSessionReset(_:)/title",
+          "value": "coachingOverlayViewDidRequestSessionReset:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARCoachingOverlayViewDelegate~1coachingOverlayViewDidRequestSessionReset(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "coachingOverlayViewDidRequestSessionReset:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSessionObserver~1sessionWasInterrupted(_:)/title",
+          "value": "sessionWasInterrupted:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSessionObserver~1sessionWasInterrupted(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "sessionWasInterrupted:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARRaycastQuery/title",
+          "value": "ARRaycastQuery"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARRaycastQuery/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARRaycastQuery"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARRaycastQuery/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARRaycastQuery"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARCoachingOverlayView/title",
+          "value": "ARCoachingOverlayView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARCoachingOverlayView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARCoachingOverlayView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARCoachingOverlayView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARCoachingOverlayView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSessionObserver~1sessionShouldAttemptRelocalization(_:)/title",
+          "value": "sessionShouldAttemptRelocalization:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSessionObserver~1sessionShouldAttemptRelocalization(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "sessionShouldAttemptRelocalization:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARRaycastResult~1worldTransform/title",
+          "value": "worldTransform"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARRaycastResult~1worldTransform/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "worldTransform"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSession~1raycast(_:)/title",
+          "value": "raycast:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSession~1raycast(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "raycast:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARTrackedRaycast/title",
+          "value": "ARTrackedRaycast"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARTrackedRaycast/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARTrackedRaycast"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARTrackedRaycast/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARTrackedRaycast"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARTrackedRaycast~1stopTracking()/title",
+          "value": "stopTracking"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARTrackedRaycast~1stopTracking()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "stopTracking"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARRaycastResult/title",
+          "value": "ARRaycastResult"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARRaycastResult/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARRaycastResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARRaycastResult/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARRaycastResult"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/arkit/placing-objects-and-handling-3d-interaction"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/arkit/placing-objects-and-handling-3d-interaction"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

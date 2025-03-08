@@ -1,0 +1,387 @@
+{
+  "abstract": [
+    {
+      "text": "Locate the specific source of the error.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.devpubs.enterprise-api/documentation/EnterpriseProgramAPI",
+        "doc://com.apple.devpubs.enterprise-api/documentation/EnterpriseProgramAPI/interpreting-and-handling-errors"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.devpubs.enterprise-api/documentation/EnterpriseProgramAPI/pinpointing-the-location-of-errors"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Enterprise Program API"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Pinpointing the Location of Errors"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Some errors are produced by a specific element of the request. In that case, the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.devpubs.enterprise-api/documentation/EnterpriseProgramAPI/ErrorResponse",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " includes ",
+              "type": "text"
+            },
+            {
+              "code": "source.parameter",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "code": "source.pointer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " values to indicate the exact location of the error. When the location of the error cannot be determined, the error response does not include those parameters. In some cases, the JSON pointer may indicate an element that isn’t in the request entity, but should be.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Use-the-Error-Response-to-Pinpoint-Parameter-Errors",
+          "level": 3,
+          "text": "Use the Error Response to Pinpoint Parameter Errors",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When an error occurs due to a problem with a parameter, the ",
+              "type": "text"
+            },
+            {
+              "code": "source",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property contains ",
+              "type": "text"
+            },
+            {
+              "code": "source.parameter",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", whose value contains the parameter with the error.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "``For example, in this request, the ",
+              "type": "text"
+            },
+            {
+              "code": "“emaill”",
+              "type": "codeVoice"
+            },
+            {
+              "text": " query parameter is misspelled:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "GET /v1/betaTesters?filter[emaill]=kate-bell%22mac.com"
+          ],
+          "syntax": "javascript",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The API responds with an error that includes ",
+              "type": "text"
+            },
+            {
+              "code": "source.parameter",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "HTTP/1.1 400 Bad Request",
+            "{",
+            "    \"errors\": [",
+            "        {",
+            "            \"status\": \"400\",",
+            "            \"id\": \"5becf2db-2f12-4d6a-9dc2-6ceb33c683b4\",",
+            "            \"title\": \"A parameter has an invalid value\",",
+            "            \"detail\": \"'emaill' is not a valid filter type\",",
+            "            \"code\": \"PARAMETER_ERROR.INVALID\",",
+            "            \"source\": {",
+            "                \"parameter\": \"filter[emaill]\"",
+            "             }",
+            "        }",
+            "    ]",
+            "}",
+            ""
+          ],
+          "syntax": "javascript",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "source.parameter",
+              "type": "codeVoice"
+            },
+            {
+              "text": " value indicates that the error is located in the ",
+              "type": "text"
+            },
+            {
+              "code": "filter[emaill]",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Use-the-Error-Response-to-Pinpoint-Entity-Errors",
+          "level": 3,
+          "text": "Use the Error Response to Pinpoint Entity Errors",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When an error occurs due to a problem with an entity, the ",
+              "type": "text"
+            },
+            {
+              "code": "source",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property contains a JSON pointer that describes the place in the request entity where the error originates. In some cases, this pointer may indicate an element that is not in the request entity but should be.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about JSON pointers, see the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://tools.ietf.org/html/rfc6901",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " proposed standards document.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.devpubs.enterprise-api/documentation/EnterpriseProgramAPI": {
+      "abstract": [
+        {
+          "text": "Automate the tasks you perform on the Apple Developer website.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.enterprise-api/documentation/EnterpriseProgramAPI",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Enterprise Program API",
+      "type": "topic",
+      "url": "/documentation/enterpriseprogramapi"
+    },
+    "doc://com.apple.devpubs.enterprise-api/documentation/EnterpriseProgramAPI/ErrorResponse": {
+      "abstract": [
+        {
+          "text": "The error details that an API returns in the response body whenever the API request isn’t successful.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ErrorResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.enterprise-api/documentation/EnterpriseProgramAPI/ErrorResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ErrorResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "ErrorResponse",
+      "type": "topic",
+      "url": "/documentation/enterpriseprogramapi/errorresponse"
+    },
+    "doc://com.apple.devpubs.enterprise-api/documentation/EnterpriseProgramAPI/about-the-http-status-code": {
+      "abstract": [
+        {
+          "text": "Learn how the status code helps you determine if an Enterprise Program  API request succeeded or why it failed.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.enterprise-api/documentation/EnterpriseProgramAPI/about-the-http-status-code",
+      "kind": "article",
+      "role": "article",
+      "title": "About the HTTP Status Code",
+      "type": "topic",
+      "url": "/documentation/enterpriseprogramapi/about-the-http-status-code"
+    },
+    "doc://com.apple.devpubs.enterprise-api/documentation/EnterpriseProgramAPI/interpreting-and-handling-errors": {
+      "abstract": [
+        {
+          "text": "Learn how the Enterprise Program API returns errors and handle them in your code.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.enterprise-api/documentation/EnterpriseProgramAPI/interpreting-and-handling-errors",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Interpreting and Handling Errors",
+      "type": "topic",
+      "url": "/documentation/enterpriseprogramapi/interpreting-and-handling-errors"
+    },
+    "doc://com.apple.devpubs.enterprise-api/documentation/EnterpriseProgramAPI/parsing-the-error-response-code": {
+      "abstract": [
+        {
+          "text": "Interpret the error details to troubleshoot API requests and perform programmatic error handling.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.enterprise-api/documentation/EnterpriseProgramAPI/parsing-the-error-response-code",
+      "kind": "article",
+      "role": "article",
+      "title": "Parsing the Error Response Code",
+      "type": "topic",
+      "url": "/documentation/enterpriseprogramapi/parsing-the-error-response-code"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://tools.ietf.org/html/rfc6901": {
+      "identifier": "https://tools.ietf.org/html/rfc6901",
+      "title": "RFC 6901",
+      "titleInlineContent": [
+        {
+          "text": "RFC 6901",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://tools.ietf.org/html/rfc6901"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Handling-Errors",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.devpubs.enterprise-api/documentation/EnterpriseProgramAPI/about-the-http-status-code",
+        "doc://com.apple.devpubs.enterprise-api/documentation/EnterpriseProgramAPI/parsing-the-error-response-code"
+      ],
+      "title": "Handling Errors"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/enterpriseprogramapi/pinpointing-the-location-of-errors"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

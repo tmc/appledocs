@@ -1,0 +1,421 @@
+{
+  "abstract": [
+    {
+      "text": "Test new web platform features before they ship in Safari.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.safari.developer-tools/documentation/safari-developer-tools"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.safari.developer-tools/documentation/Safari-Developer-Tools/feature-flag-settings"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Safari Developer Features"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Changing Feature Flag settings in Safari on macOS"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The web is constantly evolving with new features and technologies. It can be exciting to see potential future tools and technologies, and even more exciting to begin experimenting with them before they ship in web browsers.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Safari lets you enable these features using the new ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Feature Flags",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            },
+            {
+              "text": " settings, which can be opened from the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.safari.developer-tools/documentation/Safari-Developer-Tools/develop-menu",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " by choosing ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Feature Flags…",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Features are organized by topic, like Animation, CSS, JavaScript, Media, and more, making it easy to find related features. They can also be searched by both feature name and status.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you toggle a feature to a non-default state, its name is displayed in bold.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The default setting for each feature flag is how users will generally experience your content, so make sure your pages gracefully handle the absence of a feature you’ve enabled for development.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Feature-Statuses",
+          "level": 2,
+          "text": "Feature Statuses",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "There are four possible statuses for a feature, each with a different meaning and default state. Non-developer features will typically start as ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Testable",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            },
+            {
+              "text": " features, and then move to ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Preview",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            },
+            {
+              "text": " as the feature and spec the feature is based on matures, eventually becoming ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Stable",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            },
+            {
+              "text": " features.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Stable features are features that have recently begun shipping in Safari and are on by default. These feature can be toggled to help determine if a feature is causing an issue, or to make sure your site still gracefully handles the absence of the feature for features not yet shipping in all browsers. Stable features will eventually be removed from the list of feature flags.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Stable",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Preview features are features that are ready for developers to begin experimenting with. While these features are disabled by default in Safari, they are enabled by default in ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "https://developer.apple.com/safari/resources/",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Preview",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Testable features are those that are not ready for use, but that may be ready for early feedback. Testable features can help inform the standards the feature is based on to make sure the spec works for web developers. These features are disabled by default.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Testable",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Developer features can be settings that adjust the behavior of WebKit for development, reenable deprecated API for testing, or enable an extra tool like Media Stats. These features are disabled by default.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Developer",
+                    "type": "text"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Safari-Developer-Tools-PageImage-card.png": {
+      "alt": "A blue tools logo on a gradient background.",
+      "identifier": "Safari-Developer-Tools-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/77bad5e1be417d2e9f3bb2ff2698c1f9/Safari-Developer-Tools-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ae177e98052f40b765cec73979b779b7/Safari-Developer-Tools-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.safari.developer-tools/documentation/Safari-Developer-Tools/develop-menu": {
+      "abstract": [
+        {
+          "text": "Access tools for debugging webpages in Safari, as well as tools for debugging web content in other apps and on other devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safari.developer-tools/documentation/Safari-Developer-Tools/develop-menu",
+      "kind": "article",
+      "role": "article",
+      "title": "Develop menu",
+      "type": "topic",
+      "url": "/documentation/safari-developer-tools/develop-menu"
+    },
+    "doc://com.apple.safari.developer-tools/documentation/Safari-Developer-Tools/developer-settings": {
+      "abstract": [
+        {
+          "text": "Change developer-centric settings that change the behavior of Safari.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safari.developer-tools/documentation/Safari-Developer-Tools/developer-settings",
+      "kind": "article",
+      "role": "article",
+      "title": "Changing Developer settings in Safari on macOS",
+      "type": "topic",
+      "url": "/documentation/safari-developer-tools/developer-settings"
+    },
+    "doc://com.apple.safari.developer-tools/documentation/safari-developer-tools": {
+      "abstract": [
+        {
+          "text": "Inspect, debug, and test web content in Safari, in other apps, and on other devices including iPhone and iPad.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safari.developer-tools/documentation/safari-developer-tools",
+      "images": [
+        {
+          "identifier": "Safari-Developer-Tools-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Safari Developer Features",
+      "type": "topic",
+      "url": "/documentation/safari-developer-tools"
+    },
+    "https://developer.apple.com/safari/resources/": {
+      "identifier": "https://developer.apple.com/safari/resources/",
+      "title": "Safari Technology Preview",
+      "titleInlineContent": [
+        {
+          "text": "Safari Technology Preview",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/safari/resources/"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Settings",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.safari.developer-tools/documentation/Safari-Developer-Tools/developer-settings"
+      ],
+      "title": "Settings"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/safari-developer-tools/feature-flag-settings"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

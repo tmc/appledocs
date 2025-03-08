@@ -1,0 +1,402 @@
+{
+  "abstract": [
+    {
+      "text": "Use the Terminal app to read the documentation for low-level UNIX tools and APIs.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.os/documentation/os"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.os/documentation/os/reading-unix-manual-pages"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "os"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Reading UNIX Manual Pages"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The UNIX online manual, known as the ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "man pages",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", documents low-level UNIX command-line tools, APIs, and file formats. If you’re working at the lowest levels of the system, don’t miss out on this rich source of information.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Display-a-Man-Page-in-the-Terminal-App",
+          "level": 3,
+          "text": "Display a Man Page in the Terminal App",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Type ",
+              "type": "text"
+            },
+            {
+              "code": "man",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and the name of a tool or API whose documentation you want to access, and press Return.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3087691",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because the man page is larger than the window, Terminal displays only the first part of the page. Press Space to display subsequent parts, or press Q to exit the ",
+              "type": "text"
+            },
+            {
+              "code": "man",
+              "type": "codeVoice"
+            },
+            {
+              "text": " tool.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Developer-oriented man pages are distributed as part of Xcode. The ",
+                  "type": "text"
+                },
+                {
+                  "code": "man",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " tool searches for man pages within the active developer directory. If you have multiple copies of Xcode installed, you can select your active developer directory using the ",
+                  "type": "text"
+                },
+                {
+                  "code": "xcode-select",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " command-line tool. See the ",
+                  "type": "text"
+                },
+                {
+                  "code": "xcode-select",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " man page for details.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Search-a-Specific-Section",
+          "level": 3,
+          "text": "Search a Specific Section",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Section 1 of the man pages covers command-line tools, section 2 covers system calls, section 3 covers user-space libraries, and so on. If you don’t specify a section, ",
+              "type": "text"
+            },
+            {
+              "code": "man",
+              "type": "codeVoice"
+            },
+            {
+              "text": " displays the page from the first section that has a matching entry. For example, the following command displays the man page for the ",
+              "type": "text"
+            },
+            {
+              "code": "open",
+              "type": "codeVoice"
+            },
+            {
+              "text": " command-line tool.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "$ man open"
+          ],
+          "syntax": "bash",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you want to get the man page for the ",
+              "type": "text"
+            },
+            {
+              "code": "open",
+              "type": "codeVoice"
+            },
+            {
+              "text": " system call, specify section 2.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "$ man 2 open"
+          ],
+          "syntax": "bash",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you’re not sure which section to use, do a keyword search using the ",
+              "type": "text"
+            },
+            {
+              "code": "-k",
+              "type": "codeVoice"
+            },
+            {
+              "text": " option. For example, the following command shows all the man pages that mention ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "open",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "$ man -k open"
+          ],
+          "syntax": "bash",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Learn-More-About-Man-Pages",
+          "level": 3,
+          "text": "Learn More About Man Pages",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "man",
+              "type": "codeVoice"
+            },
+            {
+              "text": " command-line tool has its own man page, which is a good place to learn more about this feature.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "$ man man"
+          ],
+          "syntax": "bash",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.os/documentation/os": {
+      "abstract": [
+        {
+          "text": "Coordinate the scheduling and synchronization of your app’s tasks, and log information to the console to diagnose issues.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.os/documentation/os",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "os",
+      "type": "topic",
+      "url": "/documentation/os"
+    },
+    "media-3087691": {
+      "alt": "Two Terminal windows, the first showing the command to enter and the second showing the result.",
+      "identifier": "media-3087691",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/602374384e61f1b28c8ac34c1806b57b/media-3087691@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/602374384e61f1b28c8ac34c1806b57b/media-3087691~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/os/reading-unix-manual-pages"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/os/reading-unix-manual-pages"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

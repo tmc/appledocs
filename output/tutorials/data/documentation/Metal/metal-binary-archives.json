@@ -1,0 +1,316 @@
+{
+  "abstract": [
+    {
+      "text": "Distribute precompiled GPU-specific binaries as part of your app to avoid runtime compilation of Metal shaders.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.metal/documentation/Metal",
+        "doc://com.apple.metal/documentation/Metal/shader-libraries"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.metal/documentation/Metal/metal-binary-archives"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Metal"
+      }
+    ],
+    "role": "collectionGroup",
+    "title": "Metal Binary Archives"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Metal supports the widest range of devices available by compiling to Metal intermediate representation (Metal IR), but this comes with a tradeoff. Metal IR libraries are smaller and more flexible, but your app still needs to compile shader functions for the device’s GPU at runtime. This isn’t always desirable; for example, you might want to precompile shaders you use for visual presentation while your app performs other loading or setup. When you’re willing to increase the size of your application bundle in exchange for avoiding runtime compilation, you can precompile shaders to ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "binary archives",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ". Binary archives are GPU-specific slices you ship individually or as part of a larger Metal library.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Metal translator is part of the Metal compiler that produces binary archives from a combination of Metal IR and a JSON representation of your app’s pipeline state. You run the Metal translator with the ",
+              "type": "text"
+            },
+            {
+              "code": "metal-tt",
+              "type": "codeVoice"
+            },
+            {
+              "text": " command in Terminal.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To get the most out of binary archives and the Metal translator, read the articles below in order, starting with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/creating-binary-archives-from-device-built-pipeline-state-objects",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.metal/documentation/Metal": {
+      "abstract": [
+        {
+          "text": "Render advanced 3D graphics and compute data in parallel with graphics processors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Metal",
+      "type": "topic",
+      "url": "/documentation/metal"
+    },
+    "doc://com.apple.metal/documentation/Metal/compiling-binary-archives-from-a-custom-configuration-script": {
+      "abstract": [
+        {
+          "text": "Define how the Metal translator builds binary archives without precompiled binaries as a starting source.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/compiling-binary-archives-from-a-custom-configuration-script",
+      "kind": "article",
+      "role": "article",
+      "title": "Compiling Binary Archives from a Custom Configuration Script",
+      "type": "topic",
+      "url": "/documentation/metal/compiling-binary-archives-from-a-custom-configuration-script"
+    },
+    "doc://com.apple.metal/documentation/Metal/creating-binary-archives-from-device-built-pipeline-state-objects": {
+      "abstract": [
+        {
+          "text": "Write your Metal pipeline states to a binary archive at app runtime, and build binaries for any supported GPU.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/creating-binary-archives-from-device-built-pipeline-state-objects",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating Binary Archives from Device-Built Pipeline State Objects",
+      "type": "topic",
+      "url": "/documentation/metal/creating-binary-archives-from-device-built-pipeline-state-objects"
+    },
+    "doc://com.apple.metal/documentation/Metal/manipulating-metal-binary-archives": {
+      "abstract": [
+        {
+          "text": "Split precompiled binaries into individual slices, and combine them back together for targeted distribution.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/manipulating-metal-binary-archives",
+      "kind": "article",
+      "role": "article",
+      "title": "Manipulating Metal Binary Archives",
+      "type": "topic",
+      "url": "/documentation/metal/manipulating-metal-binary-archives"
+    },
+    "doc://com.apple.metal/documentation/Metal/metal-dynamic-libraries": {
+      "abstract": [
+        {
+          "text": "Create a single Metal library containing reusable code to reduce library size and avoid repeated shader compilation at runtime.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/metal-dynamic-libraries",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Metal Dynamic Libraries",
+      "type": "topic",
+      "url": "/documentation/metal/metal-dynamic-libraries"
+    },
+    "doc://com.apple.metal/documentation/Metal/metal-libraries": {
+      "abstract": [
+        {
+          "text": "Compile and manage Metal libraries from the command line.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/metal-libraries",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Metal Libraries",
+      "type": "topic",
+      "url": "/documentation/metal/metal-libraries"
+    },
+    "doc://com.apple.metal/documentation/Metal/shader-libraries": {
+      "abstract": [
+        {
+          "text": "Manage and load your app’s Metal shaders.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/shader-libraries",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Shader Libraries",
+      "type": "topic",
+      "url": "/documentation/metal/shader-libraries"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Shader-Compilation",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/metal-libraries",
+        "doc://com.apple.metal/documentation/Metal/metal-dynamic-libraries"
+      ],
+      "title": "Shader Compilation"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Working-with-Metal-Binary-Archives",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/creating-binary-archives-from-device-built-pipeline-state-objects",
+        "doc://com.apple.metal/documentation/Metal/manipulating-metal-binary-archives",
+        "doc://com.apple.metal/documentation/Metal/compiling-binary-archives-from-a-custom-configuration-script"
+      ],
+      "title": "Working with Metal Binary Archives"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Working-with-Metal-Binary-Archives",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/creating-binary-archives-from-device-built-pipeline-state-objects",
+                "doc://com.apple.metal/documentation/Metal/manipulating-metal-binary-archives",
+                "doc://com.apple.metal/documentation/Metal/compiling-binary-archives-from-a-custom-configuration-script"
+              ],
+              "title": "Working with Metal Binary Archives"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Shader-Compilation",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/metal-libraries",
+                "doc://com.apple.metal/documentation/Metal/metal-dynamic-libraries"
+              ],
+              "title": "Shader Compilation"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/metal/metal-binary-archives"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/metal/metal-binary-archives"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1659 @@
+{
+  "abstract": [
+    {
+      "text": "A custom model trained to classify or tag natural language text.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.naturallanguage/documentation/NaturalLanguage"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLModel"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NLModel",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "NLModel"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Natural Language"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "NLModel"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "12.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "12.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.14",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "12.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "5.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "NLModel"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NLModel"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.naturallanguage/documentation/NaturalLanguage/creating-a-word-tagger-model"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "With ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.naturallanguage/documentation/NaturalLanguage",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", you can create text classifier (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CreateML/MLTextClassifier",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ") or word tagger (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CreateML/MLWordTagger",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ") models. Use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLModel",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to integrate those models into your app. This integration ensures that your tokenization and tagger configurations are identical when you train your model and use it in your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you create a text classifier as described in ",
+              "type": "text"
+            },
+            {
+              "text": "doc:creating-a-text-classifier-model",
+              "type": "text"
+            },
+            {
+              "text": ", you can integrate that model into your app and use it to make predictions like this:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let text = \"I am very happy.\"",
+            "",
+            "do {",
+            "    let mlModel = try SentimentClassifier(configuration: MLModelConfiguration()).model",
+            "        ",
+            "    let customModel = try NLModel(mlModel: mlModel)",
+            "    ",
+            "    // Use the text classifier model to get the most likely label.",
+            "    if let label = customModel.predictedLabel(for: text) {",
+            "        print(\"Most likely label: \\(label)\")",
+            "    }",
+            "    ",
+            "    // Get multiple possible labels with their associated confidence scores.",
+            "    let labelHypotheses = customModel.predictedLabelHypotheses(for: text, maximumCount: 3)",
+            "    print(\"Label confidence scores: \\(labelHypotheses)\")",
+            "    ",
+            "} catch {",
+            "    print(error)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you create a custom word tagger as described in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.naturallanguage/documentation/NaturalLanguage/creating-a-word-tagger-model",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", you can integrate that model into your app and generate tags for new text input like this:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let text = \"The iPad is my favorite Apple product.\"",
+            "",
+            "do {",
+            "    let mlModel = try AppleTagger(configuration: MLModelConfiguration()).model",
+            "        ",
+            "    let customModel = try NLModel(mlModel: mlModel)",
+            "    let customTagScheme = NLTagScheme(\"Apple\")",
+            "    ",
+            "    let tagger = NLTagger(tagSchemes: [.nameType, customTagScheme])",
+            "    tagger.string = text",
+            "    tagger.setModels([customModel], forTagScheme: customTagScheme)",
+            "    ",
+            "    tagger.enumerateTags(in: text.startIndex..<text.endIndex, unit: .word, ",
+            "                         scheme: customTagScheme, options: .omitWhitespace) { tag, tokenRange  in",
+            "        if let tag = tag {",
+            "            print(\"\\(text[tokenRange]): \\(tag.rawValue)\")",
+            "        }",
+            "        return true",
+            "    }",
+            "} catch {",
+            "    print(error)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/CreateML/MLTextClassifier": {
+      "abstract": [
+        {
+          "text": "A model you train to classify natural language text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MLTextClassifier"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CreateML/MLTextClassifier",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MLTextClassifier",
+      "type": "topic",
+      "url": "/documentation/CreateML/MLTextClassifier"
+    },
+    "doc://com.apple.documentation/documentation/CreateML/MLWordTagger": {
+      "abstract": [
+        {
+          "text": "A word-tagging model you train to classify natural language text at the word level.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MLWordTagger"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CreateML/MLWordTagger",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MLWordTagger",
+      "type": "topic",
+      "url": "/documentation/CreateML/MLWordTagger"
+    },
+    "doc://com.apple.documentation/documentation/CreateML/creating-a-text-classifier-model": {
+      "abstract": [
+        {
+          "text": "Train a machine learning model to classify natural language text.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CreateML/creating-a-text-classifier-model",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating a text classifier model",
+      "type": "topic",
+      "url": "/documentation/CreateML/creating-a-text-classifier-model"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.naturallanguage/documentation/NaturalLanguage": {
+      "abstract": [
+        {
+          "text": "Analyze natural language text and deduce its language-specific metadata.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.naturallanguage/documentation/NaturalLanguage",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Natural Language",
+      "type": "topic",
+      "url": "/documentation/naturallanguage"
+    },
+    "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLModel": {
+      "abstract": [
+        {
+          "text": "A custom model trained to classify or tag natural language text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NLModel"
+        }
+      ],
+      "identifier": "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLModel",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NLModel"
+        }
+      ],
+      "role": "symbol",
+      "title": "NLModel",
+      "type": "topic",
+      "url": "/documentation/naturallanguage/nlmodel"
+    },
+    "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLModel/configuration": {
+      "abstract": [
+        {
+          "text": "A configuration describing the natural language model.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "configuration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NLModelConfiguration",
+          "text": "NLModelConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLModel/configuration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "configuration"
+        }
+      ],
+      "role": "symbol",
+      "title": "configuration",
+      "type": "topic",
+      "url": "/documentation/naturallanguage/nlmodel/configuration"
+    },
+    "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLModel/init(contentsOf:)": {
+      "abstract": [
+        {
+          "text": "Creates a new natural language model based on a compiled Core ML model at the given URL.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "convenience"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "contentsOf"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLModel/init(contentsOf:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "modelWithContentsOfURL:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(contentsOf:)",
+      "type": "topic",
+      "url": "/documentation/naturallanguage/nlmodel/init(contentsof:)"
+    },
+    "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLModel/init(mlModel:)": {
+      "abstract": [
+        {
+          "text": "Creates a new natural language model based on the given Core ML model instance.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "convenience"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "mlModel"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MLModel",
+          "text": "MLModel"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLModel/init(mlModel:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "modelWithMLModel:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(mlModel:)",
+      "type": "topic",
+      "url": "/documentation/naturallanguage/nlmodel/init(mlmodel:)"
+    },
+    "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLModel/predictedLabel(for:)": {
+      "abstract": [
+        {
+          "text": "Predicts a label for the given input string.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "predictedLabel"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLModel/predictedLabel(for:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "predictedLabelForString:"
+        }
+      ],
+      "role": "symbol",
+      "title": "predictedLabel(for:)",
+      "type": "topic",
+      "url": "/documentation/naturallanguage/nlmodel/predictedlabel(for:)"
+    },
+    "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLModel/predictedLabelHypotheses(for:maximumCount:)": {
+      "abstract": [
+        {
+          "text": "Predicts multiple possible labels for the given input string.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "predictedLabelHypotheses"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "maximumCount"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLModel/predictedLabelHypotheses(for:maximumCount:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "predictedLabelHypotheses(for:maximumCount:)",
+      "type": "topic",
+      "url": "/documentation/naturallanguage/nlmodel/predictedlabelhypotheses(for:maximumcount:)"
+    },
+    "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLModel/predictedLabelHypotheses(forTokens:maximumCount:)": {
+      "abstract": [
+        {
+          "text": "Predicts multiple possible labels for each string in the given array.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "predictedLabelHypotheses"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "forTokens"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "maximumCount"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") -> [["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": "]]"
+        }
+      ],
+      "identifier": "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLModel/predictedLabelHypotheses(forTokens:maximumCount:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "predictedLabelHypotheses(forTokens:maximumCount:)",
+      "type": "topic",
+      "url": "/documentation/naturallanguage/nlmodel/predictedlabelhypotheses(fortokens:maximumcount:)"
+    },
+    "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLModel/predictedLabelHypothesesForString:maximumCount:": {
+      "abstract": [
+        {
+          "text": "Predicts multiple possible labels for the given input string.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "predictedLabelHypothesesForString:maximumCount:"
+        }
+      ],
+      "identifier": "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLModel/predictedLabelHypothesesForString:maximumCount:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "predictedLabelHypothesesForString:maximumCount:"
+        }
+      ],
+      "role": "symbol",
+      "title": "predictedLabelHypothesesForString:maximumCount:",
+      "type": "topic",
+      "url": "/documentation/naturallanguage/nlmodel/predictedlabelhypothesesforstring:maximumcount:"
+    },
+    "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLModel/predictedLabelHypothesesForTokens:maximumCount:": {
+      "abstract": [
+        {
+          "text": "Predicts multiple possible labels for each string in the given array.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "predictedLabelHypothesesForTokens:maximumCount:"
+        }
+      ],
+      "identifier": "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLModel/predictedLabelHypothesesForTokens:maximumCount:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "predictedLabelHypothesesForTokens:maximumCount:"
+        }
+      ],
+      "role": "symbol",
+      "title": "predictedLabelHypothesesForTokens:maximumCount:",
+      "type": "topic",
+      "url": "/documentation/naturallanguage/nlmodel/predictedlabelhypothesesfortokens:maximumcount:"
+    },
+    "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLModel/predictedLabels(forTokens:)": {
+      "abstract": [
+        {
+          "text": "Predicts a label for each string in the given array.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "predictedLabels"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "forTokens"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "]) -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLModel/predictedLabels(forTokens:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "predictedLabelsForTokens:"
+        }
+      ],
+      "role": "symbol",
+      "title": "predictedLabels(forTokens:)",
+      "type": "topic",
+      "url": "/documentation/naturallanguage/nlmodel/predictedlabels(fortokens:)"
+    },
+    "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLModelConfiguration": {
+      "abstract": [
+        {
+          "text": "The configuration parameters of a natural language model.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NLModelConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLModelConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NLModelConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "NLModelConfiguration",
+      "type": "topic",
+      "url": "/documentation/naturallanguage/nlmodelconfiguration"
+    },
+    "doc://com.apple.naturallanguage/documentation/NaturalLanguage/creating-a-word-tagger-model": {
+      "abstract": [
+        {
+          "text": "Train a machine learning model to tag individual words in natural language text.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.naturallanguage/documentation/NaturalLanguage/creating-a-word-tagger-model",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating a word tagger model",
+      "type": "topic",
+      "url": "/documentation/naturallanguage/creating-a-word-tagger-model"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Natural-language-models",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/CreateML/creating-a-text-classifier-model",
+        "doc://com.apple.naturallanguage/documentation/NaturalLanguage/creating-a-word-tagger-model"
+      ],
+      "title": "Natural language models"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-model",
+      "identifiers": [
+        "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLModel/init(mlModel:)",
+        "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLModel/init(contentsOf:)"
+      ],
+      "title": "Creating a model"
+    },
+    {
+      "anchor": "Making-predictions",
+      "identifiers": [
+        "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLModel/predictedLabel(for:)",
+        "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLModel/predictedLabels(forTokens:)",
+        "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLModel/predictedLabelHypotheses(for:maximumCount:)",
+        "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLModel/predictedLabelHypotheses(forTokens:maximumCount:)"
+      ],
+      "title": "Making predictions"
+    },
+    {
+      "anchor": "Inspecting-a-model",
+      "identifiers": [
+        "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLModel/configuration",
+        "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLModelConfiguration"
+      ],
+      "title": "Inspecting a model"
+    },
+    {
+      "anchor": "Related-Documentation",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/CreateML/MLTextClassifier",
+        "doc://com.apple.documentation/documentation/CreateML/MLWordTagger"
+      ],
+      "title": "Related Documentation"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "12.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "12.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.14",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "12.0",
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "5.0",
+              "name": "watchOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "NLModel"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NLModel"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NLModel"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.naturallanguage/documentation/NaturalLanguage"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Creating-a-model",
+              "identifiers": [
+                "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLModel/init(mlModel:)",
+                "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLModel/init(contentsOf:)"
+              ],
+              "title": "Creating a model"
+            },
+            {
+              "anchor": "Making-predictions",
+              "identifiers": [
+                "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLModel/predictedLabel(for:)",
+                "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLModel/predictedLabels(forTokens:)",
+                "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLModel/predictedLabelHypothesesForString:maximumCount:",
+                "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLModel/predictedLabelHypothesesForTokens:maximumCount:"
+              ],
+              "title": "Making predictions"
+            },
+            {
+              "anchor": "Inspecting-a-model",
+              "identifiers": [
+                "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLModel/configuration",
+                "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLModelConfiguration"
+              ],
+              "title": "Inspecting a model"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Natural-language-models",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.naturallanguage/documentation/NaturalLanguage/creating-a-word-tagger-model"
+              ],
+              "title": "Natural language models"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "NLModel"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.naturallanguage~1documentation~1NaturalLanguage~1NLModel/title",
+          "value": "NLModel"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.naturallanguage~1documentation~1NaturalLanguage~1NLModel/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NLModel"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.naturallanguage~1documentation~1NaturalLanguage~1NLModel/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NLModel"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.naturallanguage~1documentation~1NaturalLanguage~1NLModel~1init(contentsOf:)/title",
+          "value": "modelWithContentsOfURL:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.naturallanguage~1documentation~1NaturalLanguage~1NLModel~1init(contentsOf:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "modelWithContentsOfURL:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.naturallanguage~1documentation~1NaturalLanguage~1NLModel~1predictedLabel(for:)/title",
+          "value": "predictedLabelForString:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.naturallanguage~1documentation~1NaturalLanguage~1NLModel~1predictedLabel(for:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "predictedLabelForString:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.naturallanguage~1documentation~1NaturalLanguage~1NLModelConfiguration/title",
+          "value": "NLModelConfiguration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.naturallanguage~1documentation~1NaturalLanguage~1NLModelConfiguration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NLModelConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.naturallanguage~1documentation~1NaturalLanguage~1NLModelConfiguration/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NLModelConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.naturallanguage~1documentation~1NaturalLanguage~1NLModel~1configuration/title",
+          "value": "configuration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.naturallanguage~1documentation~1NaturalLanguage~1NLModel~1configuration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "configuration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.naturallanguage~1documentation~1NaturalLanguage~1NLModel~1predictedLabels(forTokens:)/title",
+          "value": "predictedLabelsForTokens:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.naturallanguage~1documentation~1NaturalLanguage~1NLModel~1predictedLabels(forTokens:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "predictedLabelsForTokens:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.naturallanguage~1documentation~1NaturalLanguage~1NLModel~1init(mlModel:)/title",
+          "value": "modelWithMLModel:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.naturallanguage~1documentation~1NaturalLanguage~1NLModel~1init(mlModel:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "modelWithMLModel:error:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/naturallanguage/nlmodel"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/naturallanguage/nlmodel"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

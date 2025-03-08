@@ -1,0 +1,1408 @@
+{
+  "abstract": [
+    {
+      "text": "A portion of an attributed string.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/strings_and_text"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/attributedsubstring"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 3765892,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:10Foundation19AttributedSubstringV",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "struct "
+      },
+      {
+        "kind": "identifier",
+        "text": "AttributedSubstring"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "15.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "15.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "15.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "12.0",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "15.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "8.0",
+        "name": "watchOS"
+      },
+      {
+        "current": "16.3",
+        "introducedAt": "13.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "AttributedSubstring"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "attribute",
+              "text": "@dynamicMemberLookup"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AttributedSubstring"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/attributedsubstring",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " provides no-copy access to the contents of the string within the relevant range. The distinction between an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/attributedstring",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " and an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/attributedsubstring",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " lets you distinguish between whether you’re in possession of an entire string or just a slice of it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/attributedsubstring",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/attributedstring",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " both conform to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/attributedstringprotocol",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", working with ranges of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/attributedstring",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " is natural. Modifying attributes by range works the same as it does on the base string.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you use an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/attributedsubstring",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " to mutate its base ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/attributedstring",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": ", you must perform your mutation inline, as the following example shows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Correct use of copying.",
+            "attrStr[range].link = url",
+            "",
+            "// Incorrect use of AttributedString copy. Copies the referenced range of the base",
+            "// AttributedString and mutates that.",
+            "var substr = attrStr[range]",
+            "substr.link = url"
+          ],
+          "metadata": {
+            "anchor": "3830802",
+            "title": "Listing 1"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.Swift/documentation/Swift/Sendable": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Sendable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/swift/sendable"
+    },
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/attributedstring": {
+      "abstract": [
+        {
+          "text": "A value type for a string with associated attributes for portions of its text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "AttributedString"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/attributedstring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AttributedString",
+      "type": "topic",
+      "url": "/documentation/foundation/attributedstring"
+    },
+    "doc://com.apple.documentation/documentation/foundation/attributedstring/attributemergepolicy": {
+      "abstract": [
+        {
+          "text": "An enumeration of behaviors to apply when merging attributes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "enum "
+        },
+        {
+          "kind": "identifier",
+          "text": "AttributedString.AttributeMergePolicy"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/attributedstring/attributemergepolicy",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AttributedString.AttributeMergePolicy",
+      "type": "topic",
+      "url": "/documentation/foundation/attributedstring/attributemergepolicy"
+    },
+    "doc://com.apple.documentation/documentation/foundation/attributedstring/characterview": {
+      "abstract": [
+        {
+          "text": "A view into the underlying storage of the attributed string, as Unicode characters.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "AttributedString.CharacterView"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/attributedstring/characterview",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AttributedString.CharacterView",
+      "type": "topic",
+      "url": "/documentation/foundation/attributedstring/characterview"
+    },
+    "doc://com.apple.documentation/documentation/foundation/attributedstring/runs": {
+      "abstract": [
+        {
+          "text": "An iterable view into segments of the attributed string, each of which indicates where a run of identical attributes begins or ends.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "AttributedString.Runs"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/attributedstring/runs",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AttributedString.Runs",
+      "type": "topic",
+      "url": "/documentation/foundation/attributedstring/runs"
+    },
+    "doc://com.apple.documentation/documentation/foundation/attributedstring/unicodescalarview": {
+      "abstract": [
+        {
+          "text": "A view into the underlying storage of the attributed string, as Unicode scalars.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "AttributedString.UnicodeScalarView"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/attributedstring/unicodescalarview",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AttributedString.UnicodeScalarView",
+      "type": "topic",
+      "url": "/documentation/foundation/attributedstring/unicodescalarview"
+    },
+    "doc://com.apple.documentation/documentation/foundation/attributedstringprotocol": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/attributedstringprotocol",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AttributedStringProtocol",
+      "type": "topic",
+      "url": "/documentation/foundation/attributedstringprotocol"
+    },
+    "doc://com.apple.documentation/documentation/foundation/attributedsubstring": {
+      "abstract": [
+        {
+          "text": "A portion of an attributed string.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "AttributedSubstring"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/attributedsubstring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AttributedSubstring",
+      "type": "topic",
+      "url": "/documentation/foundation/attributedsubstring"
+    },
+    "doc://com.apple.documentation/documentation/foundation/attributedsubstring#3830802": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/attributedsubstring#3830802",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/foundation/attributedsubstring#3830802"
+    },
+    "doc://com.apple.documentation/documentation/foundation/attributedsubstring/3765893": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value indicating whether two values are not equal.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static func "
+        },
+        {
+          "kind": "identifier",
+          "text": "!= "
+        },
+        {
+          "kind": "text",
+          "text": "(AttributedSubstring, AttributedSubstring) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/attributedsubstring/3765893",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "!=(_:_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/attributedsubstring/3765893"
+    },
+    "doc://com.apple.documentation/documentation/foundation/attributedsubstring/3765894": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether two attributed substrings are equal.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static func "
+        },
+        {
+          "kind": "identifier",
+          "text": "== "
+        },
+        {
+          "kind": "text",
+          "text": "(AttributedSubstring, AttributedSubstring) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/attributedsubstring/3765894",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "==(_:_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/attributedsubstring/3765894"
+    },
+    "doc://com.apple.documentation/documentation/foundation/attributedsubstring/3765895": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether an attributed substring and another attributed string or substring are equal.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static func "
+        },
+        {
+          "kind": "identifier",
+          "text": "== "
+        },
+        {
+          "kind": "text",
+          "text": "<RHS>(AttributedSubstring, RHS) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/attributedsubstring/3765895",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "==(_:_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/attributedsubstring/3765895"
+    },
+    "doc://com.apple.documentation/documentation/foundation/attributedsubstring/3765896-base": {
+      "abstract": [
+        {
+          "text": "Returns the underlying attributed string that the attributed substring derives from.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "base"
+        },
+        {
+          "kind": "text",
+          "text": ": AttributedString"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/attributedsubstring/3765896-base",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "base",
+      "type": "topic",
+      "url": "/documentation/foundation/attributedsubstring/3765896-base"
+    },
+    "doc://com.apple.documentation/documentation/foundation/attributedsubstring/3765897-characters": {
+      "abstract": [
+        {
+          "text": "The characters of the attributed string, as a view into the underlying string.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "characters"
+        },
+        {
+          "kind": "text",
+          "text": ": AttributedString.CharacterView"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/attributedsubstring/3765897-characters",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "characters",
+      "type": "topic",
+      "url": "/documentation/foundation/attributedsubstring/3765897-characters"
+    },
+    "doc://com.apple.documentation/documentation/foundation/attributedsubstring/3765898-description": {
+      "abstract": [
+        {
+          "text": "A textual representation of the instance.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "description"
+        },
+        {
+          "kind": "text",
+          "text": ": String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/attributedsubstring/3765898-description",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "description",
+      "type": "topic",
+      "url": "/documentation/foundation/attributedsubstring/3765898-description"
+    },
+    "doc://com.apple.documentation/documentation/foundation/attributedsubstring/3765900-hash": {
+      "abstract": [
+        {
+          "text": "Hashes the essential components of this value by feeding them into the given hasher.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "hash"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "into"
+        },
+        {
+          "kind": "text",
+          "text": ": inout Hasher)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/attributedsubstring/3765900-hash",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hash(into:)",
+      "type": "topic",
+      "url": "/documentation/foundation/attributedsubstring/3765900-hash"
+    },
+    "doc://com.apple.documentation/documentation/foundation/attributedsubstring/3765901-hashvalue": {
+      "abstract": [
+        {
+          "text": "The hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "hashValue"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/attributedsubstring/3765901-hashvalue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hashValue",
+      "type": "topic",
+      "url": "/documentation/foundation/attributedsubstring/3765901-hashvalue"
+    },
+    "doc://com.apple.documentation/documentation/foundation/attributedsubstring/3765902-init": {
+      "abstract": [
+        {
+          "text": "Creates an empty attributed substring.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/attributedsubstring/3765902-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init()",
+      "type": "topic",
+      "url": "/documentation/foundation/attributedsubstring/3765902-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/attributedsubstring/3765905-replaceattributes": {
+      "abstract": [
+        {
+          "text": "Replaces the attributed substring’s attributes with those in a specified attribute container.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "replaceAttributes"
+        },
+        {
+          "kind": "text",
+          "text": "(AttributeContainer, "
+        },
+        {
+          "kind": "identifier",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": AttributeContainer)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/attributedsubstring/3765905-replaceattributes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "replaceAttributes(_:with:)",
+      "type": "topic",
+      "url": "/documentation/foundation/attributedsubstring/3765905-replaceattributes"
+    },
+    "doc://com.apple.documentation/documentation/foundation/attributedsubstring/3765906-runs": {
+      "abstract": [
+        {
+          "text": "The attributed runs of the attributed string, as a view into the underlying string.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "runs"
+        },
+        {
+          "kind": "text",
+          "text": ": AttributedString.Runs"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/attributedsubstring/3765906-runs",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "runs",
+      "type": "topic",
+      "url": "/documentation/foundation/attributedsubstring/3765906-runs"
+    },
+    "doc://com.apple.documentation/documentation/foundation/attributedsubstring/3765907-setattributes": {
+      "abstract": [
+        {
+          "text": "Sets the attributed substring’s attributes to those in a specified attribute container.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "setAttributes"
+        },
+        {
+          "kind": "text",
+          "text": "(AttributeContainer)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/attributedsubstring/3765907-setattributes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setAttributes(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/attributedsubstring/3765907-setattributes"
+    },
+    "doc://com.apple.documentation/documentation/foundation/attributedsubstring/3765908-settingattributes": {
+      "abstract": [
+        {
+          "text": "Returns an attributed string by setting the attributed string’s attributes to those in a specified attribute container.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "settingAttributes"
+        },
+        {
+          "kind": "text",
+          "text": "(AttributeContainer) -> AttributedString"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/attributedsubstring/3765908-settingattributes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "settingAttributes(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/attributedsubstring/3765908-settingattributes"
+    },
+    "doc://com.apple.documentation/documentation/foundation/attributedsubstring/3765910-subscript": {
+      "abstract": [
+        {
+          "text": "Returns an attribute value that corresponds to an attributed string key.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "subscript"
+        },
+        {
+          "kind": "text",
+          "text": "<K>(K.Type) -> K.Value?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/attributedsubstring/3765910-subscript",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "subscript(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/attributedsubstring/3765910-subscript"
+    },
+    "doc://com.apple.documentation/documentation/foundation/attributedsubstring/3765911-subscript": {
+      "abstract": [
+        {
+          "text": "Returns an attribute value that a key path indicates.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "subscript"
+        },
+        {
+          "kind": "text",
+          "text": "<K>("
+        },
+        {
+          "kind": "identifier",
+          "text": "dynamicMember"
+        },
+        {
+          "kind": "text",
+          "text": ": KeyPath<AttributeDynamicLookup, K>) -> K.Value?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/attributedsubstring/3765911-subscript",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "subscript(dynamicMember:)",
+      "type": "topic",
+      "url": "/documentation/foundation/attributedsubstring/3765911-subscript"
+    },
+    "doc://com.apple.documentation/documentation/foundation/attributedsubstring/3765912-subscript": {
+      "abstract": [
+        {
+          "text": "Returns a scoped attribute container that a key path indicates.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "subscript"
+        },
+        {
+          "kind": "text",
+          "text": "<S>("
+        },
+        {
+          "kind": "identifier",
+          "text": "dynamicMember"
+        },
+        {
+          "kind": "text",
+          "text": ": KeyPath<AttributeScopes, S.Type>) -> ScopedAttributeContainer<S>"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/attributedsubstring/3765912-subscript",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "subscript(dynamicMember:)",
+      "type": "topic",
+      "url": "/documentation/foundation/attributedsubstring/3765912-subscript"
+    },
+    "doc://com.apple.documentation/documentation/foundation/attributedsubstring/3765913-unicodescalars": {
+      "abstract": [
+        {
+          "text": "The Unicode scalars of the attributed string, as a view into the underlying string.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "unicodeScalars"
+        },
+        {
+          "kind": "text",
+          "text": ": AttributedString.UnicodeScalarView"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/attributedsubstring/3765913-unicodescalars",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "unicodeScalars",
+      "type": "topic",
+      "url": "/documentation/foundation/attributedsubstring/3765913-unicodescalars"
+    },
+    "doc://com.apple.documentation/documentation/foundation/attributedsubstring/3813135-range": {
+      "abstract": [
+        {
+          "text": "Returns the range of a substring in the attributed substring, if it exists.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "range"
+        },
+        {
+          "kind": "text",
+          "text": "<T>("
+        },
+        {
+          "kind": "identifier",
+          "text": "of"
+        },
+        {
+          "kind": "text",
+          "text": ": T, "
+        },
+        {
+          "kind": "identifier",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": String.CompareOptions, "
+        },
+        {
+          "kind": "identifier",
+          "text": "locale"
+        },
+        {
+          "kind": "text",
+          "text": ": Locale?) -> Range<AttributedString.Index>?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/attributedsubstring/3813135-range",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "range(of:options:locale:)",
+      "type": "topic",
+      "url": "/documentation/foundation/attributedsubstring/3813135-range"
+    },
+    "doc://com.apple.documentation/documentation/foundation/attributedsubstring/3813136-subscript": {
+      "abstract": [
+        {
+          "text": "Returns a substring of the attributed substring that a range indicates.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "subscript"
+        },
+        {
+          "kind": "text",
+          "text": "(RangeExpression<AttributedString.Index>) -> AttributedSubstring"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/attributedsubstring/3813136-subscript",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "subscript(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/attributedsubstring/3813136-subscript"
+    },
+    "doc://com.apple.documentation/documentation/foundation/attributedsubstring/3856545-replacingattributes": {
+      "abstract": [
+        {
+          "text": "Returns an attributed string by replacing occurrences of attributes in one attribute container with those in another attribute container.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "replacingAttributes"
+        },
+        {
+          "kind": "text",
+          "text": "(AttributeContainer, "
+        },
+        {
+          "kind": "identifier",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": AttributeContainer) -> AttributedString"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/attributedsubstring/3856545-replacingattributes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "replacingAttributes(_:with:)",
+      "type": "topic",
+      "url": "/documentation/foundation/attributedsubstring/3856545-replacingattributes"
+    },
+    "doc://com.apple.documentation/documentation/foundation/attributedsubstring/3867601-mergeattributes": {
+      "abstract": [
+        {
+          "text": "Merges the attributed string’s attributes with those in a specified attribute container.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "mergeAttributes"
+        },
+        {
+          "kind": "text",
+          "text": "(AttributeContainer, "
+        },
+        {
+          "kind": "identifier",
+          "text": "mergePolicy"
+        },
+        {
+          "kind": "text",
+          "text": ": AttributedString.AttributeMergePolicy)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/attributedsubstring/3867601-mergeattributes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "mergeAttributes(_:mergePolicy:)",
+      "type": "topic",
+      "url": "/documentation/foundation/attributedsubstring/3867601-mergeattributes"
+    },
+    "doc://com.apple.documentation/documentation/foundation/attributedsubstring/3867602-mergingattributes": {
+      "abstract": [
+        {
+          "text": "Returns an attributed string by merging the attributed string’s attributes with those in a specified attribute container.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "mergingAttributes"
+        },
+        {
+          "kind": "text",
+          "text": "(AttributeContainer, "
+        },
+        {
+          "kind": "identifier",
+          "text": "mergePolicy"
+        },
+        {
+          "kind": "text",
+          "text": ": AttributedString.AttributeMergePolicy) -> AttributedString"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/attributedsubstring/3867602-mergingattributes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "mergingAttributes(_:mergePolicy:)",
+      "type": "topic",
+      "url": "/documentation/foundation/attributedsubstring/3867602-mergingattributes"
+    },
+    "doc://com.apple.documentation/documentation/foundation/attributedsubstring/accessing_indicies_within_an_attributed_substring": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/attributedsubstring/accessing_indicies_within_an_attributed_substring",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Accessing Indicies Within an Attributed Substring",
+      "type": "topic",
+      "url": "/documentation/foundation/attributedsubstring/accessing_indicies_within_an_attributed_substring"
+    },
+    "doc://com.apple.documentation/documentation/foundation/attributedynamiclookup": {
+      "abstract": [
+        {
+          "text": "A type to support dynamic member lookup of attributes and containers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "enum "
+        },
+        {
+          "kind": "identifier",
+          "text": "AttributeDynamicLookup"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/attributedynamiclookup",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AttributeDynamicLookup",
+      "type": "topic",
+      "url": "/documentation/foundation/attributedynamiclookup"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsattributedstring": {
+      "abstract": [
+        {
+          "text": "A string of text that manages data, layout, and stylistic information for ranges of characters to support rendering.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSAttributedString"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsattributedstring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSAttributedString",
+      "type": "topic",
+      "url": "/documentation/foundation/nsattributedstring"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutableattributedstring": {
+      "abstract": [
+        {
+          "text": "A mutable string with associated attributes (such as visual style, hyperlinks, or accessibility data) for portions of its text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSMutableAttributedString"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutableattributedstring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSMutableAttributedString",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutableattributedstring"
+    },
+    "doc://com.apple.documentation/documentation/foundation/scopedattributecontainer": {
+      "abstract": [
+        {
+          "text": "An attribute container that allows dynamic member lookup of its contents within the specified attribute scope.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "ScopedAttributeContainer"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/scopedattributecontainer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ScopedAttributeContainer",
+      "type": "topic",
+      "url": "/documentation/foundation/scopedattributecontainer"
+    },
+    "doc://com.apple.documentation/documentation/foundation/strings_and_text": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/strings_and_text",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Strings and Text",
+      "type": "topic",
+      "url": "/documentation/foundation/strings_and_text"
+    },
+    "doc://com.apple.documentation/documentation/foundation/strings_and_text/attributed_string_supporting_types": {
+      "abstract": [
+        {
+          "text": "Types that the attributed string, attributed substring, and helper types extend or conform to, for sharing common functionality.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/strings_and_text/attributed_string_supporting_types",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Attributed String Supporting Types",
+      "type": "topic",
+      "url": "/documentation/foundation/strings_and_text/attributed_string_supporting_types"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/attributedstringprotocol",
+        "doc://com.apple.Swift/documentation/Swift/Sendable"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/attributedstring",
+        "doc://com.apple.documentation/documentation/foundation/strings_and_text/attributed_string_supporting_types",
+        "doc://com.apple.documentation/documentation/foundation/nsattributedstring",
+        "doc://com.apple.documentation/documentation/foundation/nsmutableattributedstring"
+      ],
+      "title": "Strings with Metadata"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "3793332",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/attributedsubstring/3765902-init"
+      ],
+      "kind": "taskGroup",
+      "title": "Creating Attributed Substrings"
+    },
+    {
+      "anchor": "3793336",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/attributedsubstring/3765907-setattributes",
+        "doc://com.apple.documentation/documentation/foundation/attributedsubstring/3765908-settingattributes",
+        "doc://com.apple.documentation/documentation/foundation/attributedsubstring/3867601-mergeattributes",
+        "doc://com.apple.documentation/documentation/foundation/attributedsubstring/3867602-mergingattributes",
+        "doc://com.apple.documentation/documentation/foundation/attributedstring/attributemergepolicy",
+        "doc://com.apple.documentation/documentation/foundation/attributedsubstring/3765905-replaceattributes",
+        "doc://com.apple.documentation/documentation/foundation/attributedsubstring/3856545-replacingattributes"
+      ],
+      "kind": "taskGroup",
+      "title": "Applying and Modifying Attributes"
+    },
+    {
+      "anchor": "3830803",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/attributedsubstring/3813135-range"
+      ],
+      "kind": "taskGroup",
+      "title": "Searching for a Substring"
+    },
+    {
+      "anchor": "3830801",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/attributedsubstring/3813136-subscript"
+      ],
+      "kind": "taskGroup",
+      "title": "Accessing a Range"
+    },
+    {
+      "anchor": "3901388",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/attributedsubstring/accessing_indicies_within_an_attributed_substring"
+      ],
+      "kind": "taskGroup",
+      "title": "Accessing Indices"
+    },
+    {
+      "anchor": "3793334",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/attributedsubstring/3765897-characters",
+        "doc://com.apple.documentation/documentation/foundation/attributedstring/characterview",
+        "doc://com.apple.documentation/documentation/foundation/attributedsubstring/3765913-unicodescalars",
+        "doc://com.apple.documentation/documentation/foundation/attributedstring/unicodescalarview",
+        "doc://com.apple.documentation/documentation/foundation/attributedsubstring/3765906-runs",
+        "doc://com.apple.documentation/documentation/foundation/attributedstring/runs"
+      ],
+      "kind": "taskGroup",
+      "title": "Accessing Views into the Attributed Substring"
+    },
+    {
+      "anchor": "3793326",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/attributedsubstring/3765896-base"
+      ],
+      "kind": "taskGroup",
+      "title": "Accessing the Underlying Attributed String"
+    },
+    {
+      "anchor": "3793333",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/attributedsubstring/3765910-subscript",
+        "doc://com.apple.documentation/documentation/foundation/attributedsubstring/3765911-subscript",
+        "doc://com.apple.documentation/documentation/foundation/attributedynamiclookup",
+        "doc://com.apple.documentation/documentation/foundation/attributedsubstring/3765912-subscript",
+        "doc://com.apple.documentation/documentation/foundation/scopedattributecontainer"
+      ],
+      "kind": "taskGroup",
+      "title": "Accessing Whole-Substring Attributes"
+    },
+    {
+      "anchor": "3793331",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/attributedsubstring/3765894",
+        "doc://com.apple.documentation/documentation/foundation/attributedsubstring/3765895",
+        "doc://com.apple.documentation/documentation/foundation/attributedsubstring/3765893"
+      ],
+      "kind": "taskGroup",
+      "title": "Comparing Attributed Substrings"
+    },
+    {
+      "anchor": "3829107",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/attributedsubstring/3765901-hashvalue",
+        "doc://com.apple.documentation/documentation/foundation/attributedsubstring/3765900-hash"
+      ],
+      "kind": "taskGroup",
+      "title": "Hashing"
+    },
+    {
+      "anchor": "3793342",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/attributedsubstring/3765898-description"
+      ],
+      "kind": "taskGroup",
+      "title": "Describing the Attributed Substring"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/attributedsubstring"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

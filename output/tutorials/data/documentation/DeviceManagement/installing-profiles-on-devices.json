@@ -1,0 +1,274 @@
+{
+  "abstract": [
+    {
+      "text": "Optimize deployment of profiles and provisioning profiles.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/implementing-device-management"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.devicemanagement/documentation/DeviceManagement/installing-profiles-on-devices"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Device Management"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Installing Profiles on Devices"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Follow these provisioning profiles best practices to enable new capabilities or allow users to run enterprise apps.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Pair-Restrictions-with-Capabilities-in-Managed-Profiles",
+          "level": 3,
+          "text": "Pair Restrictions with Capabilities in Managed Profiles",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Configure each managed profile, so it’s clear to the user what new capability they’ll receive on the device when they comply with an associated retstrictions or requirement.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, your IT policy may require a device to have a 6-character passcode in order to access your corporate VPN service. You can configure a managed profile to enable the VPN capability for a user once they comply with the passcode restriction. There are two ways to accomplish this:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Deliver a single managed profile with both a passcode restriction payload and a VPN payload. This approach allows a grace period before a user must set a compliant passcode.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Deliver a profile with a passcode restriction, poll the device until it indicates compliance, and then deliver the VPN payload.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Install-Provisioning-Profiles",
+          "level": 3,
+          "text": "Install Provisioning Profiles",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Third-party enterprise apps require installation of a provisioning profile to enable running them. Use MDM to efficiently deliver up-to-date versions of provisioning profiles instead of manually distributing them through your corporate web portal or bundled with the app, and replacing them when they expire. Using MDM also prevents users from having to perform these tasks on their own. For more information on installation, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Install-Provisioning-Profile-Command",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement": {
+      "abstract": [
+        {
+          "text": "Manage your organization’s devices remotely.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Device Management",
+      "type": "topic",
+      "url": "/documentation/devicemanagement"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Install-Provisioning-Profile-Command": {
+      "abstract": [
+        {
+          "text": "Install a provisioning profile on a device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Install-Provisioning-Profile-Command",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Install Provisioning Profile Command"
+        }
+      ],
+      "role": "symbol",
+      "title": "Install a Provisioning Profile",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/install-provisioning-profile-command"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/deploying-mdm-enrollment-profiles": {
+      "abstract": [
+        {
+          "text": "Choose the technique to deploy MDM enrollment profiles for your organization.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/deploying-mdm-enrollment-profiles",
+      "kind": "article",
+      "role": "article",
+      "title": "Deploying MDM Enrollment Profiles",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/deploying-mdm-enrollment-profiles"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/implementing-device-management": {
+      "abstract": [
+        {
+          "text": "Set up an MDM server and send commands to managed devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/implementing-device-management",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Implementing Device Management",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/implementing-device-management"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/managing-certificates-for-mdm-servers-and-devices": {
+      "abstract": [
+        {
+          "text": "Ensure secure MDM connectivity with valid certificates.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/managing-certificates-for-mdm-servers-and-devices",
+      "kind": "article",
+      "role": "article",
+      "title": "Managing Certificates for MDM Servers and Devices",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/managing-certificates-for-mdm-servers-and-devices"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/setting-up-push-notifications-for-your-mdm-customers": {
+      "abstract": [
+        {
+          "text": "Create and sign a certificate signing request (CSR) to enable push notifications.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/setting-up-push-notifications-for-your-mdm-customers",
+      "kind": "article",
+      "role": "article",
+      "title": "Setting Up Push Notifications for Your MDM Customers",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/setting-up-push-notifications-for-your-mdm-customers"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Certificates-and-Profiles",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/managing-certificates-for-mdm-servers-and-devices",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/deploying-mdm-enrollment-profiles",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/setting-up-push-notifications-for-your-mdm-customers"
+      ],
+      "title": "Certificates and Profiles"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/devicemanagement/installing-profiles-on-devices"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

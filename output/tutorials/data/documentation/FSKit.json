@@ -1,0 +1,3454 @@
+{
+  "abstract": [
+    {
+      "text": "Implement a file system that runs in user space.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "beta": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.3 beta 1",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "added",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://FSKit/documentation/FSKit"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "FSKit",
+    "modules": [
+      {
+        "name": "FSKit"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "15.0",
+        "name": "macOS"
+      }
+    ],
+    "role": "collection",
+    "roleHeading": "Framework",
+    "symbolKind": "module",
+    "title": "FSKit"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "With FSKit, you can extend macOS by enabling access to new types of file systems.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You do this by developing an FSKit module (",
+              "type": "text"
+            },
+            {
+              "code": "FSModule",
+              "type": "codeVoice"
+            },
+            {
+              "text": "), which you deliver as an app extension that runs in user space, and is compatible with Mac App Store distribution.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "FSKit connects your module to the system’s existing frameworks and tools, like ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/DiskArbitration",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", NetFS, and the ",
+              "type": "text"
+            },
+            {
+              "code": "mount(8)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " command.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "FSKit-modules",
+          "level": 3,
+          "text": "FSKit modules",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An FSKit module consists of two main parts:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A set of ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "module attributes",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": " that you define in the module’s ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Info.plist",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " file. These attributes provide metadata like Boolean keys that indicate feature support and dictionaries that describe command-line interface access.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The code that implements the file system functionality. Your app extension conforms to one of two protocols, depending on its design flow, as described below.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The FSKit framework defines three key file storage concepts that ",
+              "type": "text"
+            },
+            {
+              "code": "FSModule",
+              "type": "codeVoice"
+            },
+            {
+              "text": " supports:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A directory structure for files and folders.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Volume",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "strong"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A source of data, such as a block storage device or a network resource you identify with a URL.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Resource",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "strong"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "An abstract object that uses one or more resources to deliver one or more volumes, similar to an APFS container. Typically, a container uses only one resource, but some formats like Xsan (Apple’s cluster file system) use multiple disks to store contents for one volume.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Container",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "strong"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "anchor": "Design-flows",
+          "level": 3,
+          "text": "Design flows",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "FSKit provides two design flows, with different trade-offs of functionality and complexity:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://FSKit/documentation/FSKit/FSFileSystem",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " is a conventional, full-featured file system that can employ multiple resources and deliver multiple volumes.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://FSKit/documentation/FSKit/FSUnaryFileSystem",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " is a simpler file system where containers use only one resource and provide only one volume. Most file systems shipping in macOS fit this pattern, including ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "HFS",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "msdosfs",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "ExFAT",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "ntfs",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", and others.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The current version of FSKit supports only ",
+                  "type": "text"
+                },
+                {
+                  "code": "FSUnaryFileSystem",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you choose a design flow, write an app extension that conforms to either ",
+              "type": "text"
+            },
+            {
+              "code": "FileSystemExtension",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://FSKit/documentation/FSKit/UnaryFileSystemExtension",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", based on your chosen flow.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "These protocols declare a ",
+              "type": "text"
+            },
+            {
+              "code": "fileSystem",
+              "type": "codeVoice"
+            },
+            {
+              "text": " delegate object that your extension creates and returns.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This delegate object subclasses either ",
+              "type": "text"
+            },
+            {
+              "code": "FSFileSystem",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "code": "FSUnaryFileSystem",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as appropriate, and conforms to either the ",
+              "type": "text"
+            },
+            {
+              "code": "FSFileSystemOperations",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://FSKit/documentation/FSKit/FSUnaryFileSystemOperations",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "These protocols define a ",
+              "type": "text"
+            },
+            {
+              "code": "loadResource",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method, which FSKit uses to make a resource available to the module.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://FSKit/documentation/FSKit": {
+      "abstract": [
+        {
+          "text": "Implement a file system that runs in user space.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://FSKit/documentation/FSKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "FSKit",
+      "type": "topic",
+      "url": "/documentation/fskit"
+    },
+    "doc://FSKit/documentation/FSKit/FSBlockDeviceResource": {
+      "abstract": [
+        {
+          "text": "A resource that represents a block storage disk partition.",
+          "type": "text"
+        }
+      ],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FSBlockDeviceResource"
+        }
+      ],
+      "identifier": "doc://FSKit/documentation/FSKit/FSBlockDeviceResource",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FSBlockDeviceResource"
+        }
+      ],
+      "role": "symbol",
+      "title": "FSBlockDeviceResource",
+      "type": "topic",
+      "url": "/documentation/fskit/fsblockdeviceresource"
+    },
+    "doc://FSKit/documentation/FSKit/FSBlockmapFlags": {
+      "abstract": [],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FSBlockmapFlags"
+        }
+      ],
+      "identifier": "doc://FSKit/documentation/FSKit/FSBlockmapFlags",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FSBlockmapFlags"
+        }
+      ],
+      "role": "symbol",
+      "title": "FSBlockmapFlags",
+      "type": "topic",
+      "url": "/documentation/fskit/fsblockmapflags"
+    },
+    "doc://FSKit/documentation/FSKit/FSClient": {
+      "abstract": [
+        {
+          "text": "An interface for apps and daemons to interact with FSKit.",
+          "type": "text"
+        }
+      ],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FSClient"
+        }
+      ],
+      "identifier": "doc://FSKit/documentation/FSKit/FSClient",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FSClient"
+        }
+      ],
+      "role": "symbol",
+      "title": "FSClient",
+      "type": "topic",
+      "url": "/documentation/fskit/fsclient"
+    },
+    "doc://FSKit/documentation/FSKit/FSCompleteIOFlags": {
+      "abstract": [],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FSCompleteIOFlags"
+        }
+      ],
+      "identifier": "doc://FSKit/documentation/FSKit/FSCompleteIOFlags",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FSCompleteIOFlags"
+        }
+      ],
+      "role": "symbol",
+      "title": "FSCompleteIOFlags",
+      "type": "topic",
+      "url": "/documentation/fskit/fscompleteioflags"
+    },
+    "doc://FSKit/documentation/FSKit/FSContainerIdentifier": {
+      "abstract": [
+        {
+          "text": "A type that identifies a container.",
+          "type": "text"
+        }
+      ],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FSContainerIdentifier"
+        }
+      ],
+      "identifier": "doc://FSKit/documentation/FSKit/FSContainerIdentifier",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FSContainerIdentifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "FSContainerIdentifier",
+      "type": "topic",
+      "url": "/documentation/fskit/fscontaineridentifier"
+    },
+    "doc://FSKit/documentation/FSKit/FSContainerStatus": {
+      "abstract": [
+        {
+          "text": "A type that represents a container’s status.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FSContainerStatus"
+        }
+      ],
+      "identifier": "doc://FSKit/documentation/FSKit/FSContainerStatus",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FSContainerStatus"
+        }
+      ],
+      "role": "symbol",
+      "title": "FSContainerStatus",
+      "type": "topic",
+      "url": "/documentation/fskit/fscontainerstatus"
+    },
+    "doc://FSKit/documentation/FSKit/FSDeactivateOptions": {
+      "abstract": [],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FSDeactivateOptions"
+        }
+      ],
+      "identifier": "doc://FSKit/documentation/FSKit/FSDeactivateOptions",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FSDeactivateOptions"
+        }
+      ],
+      "role": "symbol",
+      "title": "FSDeactivateOptions",
+      "type": "topic",
+      "url": "/documentation/fskit/fsdeactivateoptions"
+    },
+    "doc://FSKit/documentation/FSKit/FSDirectoryCookie": {
+      "abstract": [],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FSDirectoryCookie"
+        }
+      ],
+      "identifier": "doc://FSKit/documentation/FSKit/FSDirectoryCookie",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FSDirectoryCookie"
+        }
+      ],
+      "role": "symbol",
+      "title": "FSDirectoryCookie",
+      "type": "topic",
+      "url": "/documentation/fskit/fsdirectorycookie"
+    },
+    "doc://FSKit/documentation/FSKit/FSDirectoryCookie/initial": {
+      "abstract": [],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "initial"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@FSDirectoryCookie",
+          "text": "FSDirectoryCookie"
+        }
+      ],
+      "identifier": "doc://FSKit/documentation/FSKit/FSDirectoryCookie/initial",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FSDirectoryCookieInitial"
+        }
+      ],
+      "role": "symbol",
+      "title": "initial",
+      "type": "topic",
+      "url": "/documentation/fskit/fsdirectorycookie/initial"
+    },
+    "doc://FSKit/documentation/FSKit/FSDirectoryEntryPacker": {
+      "abstract": [],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FSDirectoryEntryPacker"
+        }
+      ],
+      "identifier": "doc://FSKit/documentation/FSKit/FSDirectoryEntryPacker",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FSDirectoryEntryPacker"
+        }
+      ],
+      "role": "symbol",
+      "title": "FSDirectoryEntryPacker",
+      "type": "topic",
+      "url": "/documentation/fskit/fsdirectoryentrypacker"
+    },
+    "doc://FSKit/documentation/FSKit/FSDirectoryVerifier": {
+      "abstract": [],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FSDirectoryVerifier"
+        }
+      ],
+      "identifier": "doc://FSKit/documentation/FSKit/FSDirectoryVerifier",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FSDirectoryVerifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "FSDirectoryVerifier",
+      "type": "topic",
+      "url": "/documentation/fskit/fsdirectoryverifier"
+    },
+    "doc://FSKit/documentation/FSKit/FSDirectoryVerifier/initial": {
+      "abstract": [],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "initial"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@FSDirectoryVerifier",
+          "text": "FSDirectoryVerifier"
+        }
+      ],
+      "identifier": "doc://FSKit/documentation/FSKit/FSDirectoryVerifier/initial",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FSDirectoryVerifierInitial"
+        }
+      ],
+      "role": "symbol",
+      "title": "initial",
+      "type": "topic",
+      "url": "/documentation/fskit/fsdirectoryverifier/initial"
+    },
+    "doc://FSKit/documentation/FSKit/FSEntityIdentifier": {
+      "abstract": [],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FSEntityIdentifier"
+        }
+      ],
+      "identifier": "doc://FSKit/documentation/FSKit/FSEntityIdentifier",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FSEntityIdentifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "FSEntityIdentifier",
+      "type": "topic",
+      "url": "/documentation/fskit/fsentityidentifier"
+    },
+    "doc://FSKit/documentation/FSKit/FSError": {
+      "abstract": [
+        {
+          "text": "An error encountered when performing an FSKit operation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FSError"
+        }
+      ],
+      "identifier": "doc://FSKit/documentation/FSKit/FSError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FSError"
+        }
+      ],
+      "role": "symbol",
+      "title": "FSError",
+      "type": "topic",
+      "url": "/documentation/fskit/fserror"
+    },
+    "doc://FSKit/documentation/FSKit/FSError/Code": {
+      "abstract": [
+        {
+          "text": "A code that indicates a specific FSKit error.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Code"
+        }
+      ],
+      "identifier": "doc://FSKit/documentation/FSKit/FSError/Code",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Code"
+        }
+      ],
+      "role": "symbol",
+      "title": "FSError.Code",
+      "type": "topic",
+      "url": "/documentation/fskit/fserror/code"
+    },
+    "doc://FSKit/documentation/FSKit/FSExtentPacker": {
+      "abstract": [],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FSExtentPacker"
+        }
+      ],
+      "identifier": "doc://FSKit/documentation/FSKit/FSExtentPacker",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FSExtentPacker"
+        }
+      ],
+      "role": "symbol",
+      "title": "FSExtentPacker",
+      "type": "topic",
+      "url": "/documentation/fskit/fsextentpacker"
+    },
+    "doc://FSKit/documentation/FSKit/FSExtentType": {
+      "abstract": [],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FSExtentType"
+        }
+      ],
+      "identifier": "doc://FSKit/documentation/FSKit/FSExtentType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FSExtentType"
+        }
+      ],
+      "role": "symbol",
+      "title": "FSExtentType",
+      "type": "topic",
+      "url": "/documentation/fskit/fsextenttype"
+    },
+    "doc://FSKit/documentation/FSKit/FSFileName": {
+      "abstract": [
+        {
+          "text": "The name of a file, expressed as a data buffer.",
+          "type": "text"
+        }
+      ],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FSFileName"
+        }
+      ],
+      "identifier": "doc://FSKit/documentation/FSKit/FSFileName",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FSFileName"
+        }
+      ],
+      "role": "symbol",
+      "title": "FSFileName",
+      "type": "topic",
+      "url": "/documentation/fskit/fsfilename"
+    },
+    "doc://FSKit/documentation/FSKit/FSFileSystem": {
+      "abstract": [
+        {
+          "text": "An abstract base class for implementing a full-featured file system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "FSFileSystem"
+        }
+      ],
+      "identifier": "doc://FSKit/documentation/FSKit/FSFileSystem",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSFileSystem",
+      "type": "topic",
+      "url": "/documentation/fskit/fsfilesystem"
+    },
+    "doc://FSKit/documentation/FSKit/FSFileSystemBase": {
+      "abstract": [
+        {
+          "text": "A protocol containing functionality supplied by FSKit to file system implementations.",
+          "type": "text"
+        }
+      ],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FSFileSystemBase"
+        }
+      ],
+      "identifier": "doc://FSKit/documentation/FSKit/FSFileSystemBase",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FSFileSystemBase"
+        }
+      ],
+      "role": "symbol",
+      "title": "FSFileSystemBase",
+      "type": "topic",
+      "url": "/documentation/fskit/fsfilesystembase"
+    },
+    "doc://FSKit/documentation/FSKit/FSItem": {
+      "abstract": [
+        {
+          "text": "A distinct object in a file hierarchy, such as a file, directory, symlink, socket, and more.",
+          "type": "text"
+        }
+      ],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FSItem"
+        }
+      ],
+      "identifier": "doc://FSKit/documentation/FSKit/FSItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FSItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "FSItem",
+      "type": "topic",
+      "url": "/documentation/fskit/fsitem"
+    },
+    "doc://FSKit/documentation/FSKit/FSKIT_API_AVAILABILITY_V1": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "FSKIT_API_AVAILABILITY_V1"
+        }
+      ],
+      "identifier": "doc://FSKit/documentation/FSKit/FSKIT_API_AVAILABILITY_V1",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSKIT_API_AVAILABILITY_V1",
+      "type": "topic",
+      "url": "/documentation/fskit/fskit_api_availability_v1"
+    },
+    "doc://FSKit/documentation/FSKit/FSKIT_API_UNAVAILABLE_V1": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "FSKIT_API_UNAVAILABLE_V1"
+        }
+      ],
+      "identifier": "doc://FSKit/documentation/FSKit/FSKIT_API_UNAVAILABLE_V1",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSKIT_API_UNAVAILABLE_V1",
+      "type": "topic",
+      "url": "/documentation/fskit/fskit_api_unavailable_v1"
+    },
+    "doc://FSKit/documentation/FSKit/FSKitErrorDomain": {
+      "abstract": [
+        {
+          "text": "An error domain for FSKit errors.",
+          "type": "text"
+        }
+      ],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FSKitErrorDomain"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://FSKit/documentation/FSKit/FSKitErrorDomain",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FSKitErrorDomain"
+        }
+      ],
+      "role": "symbol",
+      "title": "FSKitErrorDomain",
+      "type": "topic",
+      "url": "/documentation/fskit/fskiterrordomain"
+    },
+    "doc://FSKit/documentation/FSKit/FSKitVersionNumber": {
+      "abstract": [
+        {
+          "text": "Project version number for FSKit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "FSKitVersionNumber"
+        }
+      ],
+      "identifier": "doc://FSKit/documentation/FSKit/FSKitVersionNumber",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSKitVersionNumber",
+      "type": "topic",
+      "url": "/documentation/fskit/fskitversionnumber"
+    },
+    "doc://FSKit/documentation/FSKit/FSKitVersionString": {
+      "abstract": [
+        {
+          "text": "Project version string for FSKit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "FSKitVersionString"
+        }
+      ],
+      "identifier": "doc://FSKit/documentation/FSKit/FSKitVersionString",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSKitVersionString",
+      "type": "topic",
+      "url": "/documentation/fskit/fskitversionstring"
+    },
+    "doc://FSKit/documentation/FSKit/FSManageableResourceMaintenanceOperations": {
+      "abstract": [
+        {
+          "text": "Maintenance operations for a file system’s resources.",
+          "type": "text"
+        }
+      ],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FSManageableResourceMaintenanceOperations"
+        }
+      ],
+      "identifier": "doc://FSKit/documentation/FSKit/FSManageableResourceMaintenanceOperations",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FSManageableResourceMaintenanceOperations"
+        }
+      ],
+      "role": "symbol",
+      "title": "FSManageableResourceMaintenanceOperations",
+      "type": "topic",
+      "url": "/documentation/fskit/fsmanageableresourcemaintenanceoperations"
+    },
+    "doc://FSKit/documentation/FSKit/FSMatchResult": {
+      "abstract": [],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FSMatchResult"
+        }
+      ],
+      "identifier": "doc://FSKit/documentation/FSKit/FSMatchResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FSMatchResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "FSMatchResult",
+      "type": "topic",
+      "url": "/documentation/fskit/fsmatchresult"
+    },
+    "doc://FSKit/documentation/FSKit/FSMetadataRange": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FSMetadataRange"
+        }
+      ],
+      "identifier": "doc://FSKit/documentation/FSKit/FSMetadataRange",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FSMetadataRange"
+        }
+      ],
+      "role": "symbol",
+      "title": "FSMetadataRange",
+      "type": "topic",
+      "url": "/documentation/fskit/fsmetadatarange"
+    },
+    "doc://FSKit/documentation/FSKit/FSMutableFileDataBuffer": {
+      "abstract": [],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FSMutableFileDataBuffer"
+        }
+      ],
+      "identifier": "doc://FSKit/documentation/FSKit/FSMutableFileDataBuffer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FSMutableFileDataBuffer"
+        }
+      ],
+      "role": "symbol",
+      "title": "FSMutableFileDataBuffer",
+      "type": "topic",
+      "url": "/documentation/fskit/fsmutablefiledatabuffer"
+    },
+    "doc://FSKit/documentation/FSKit/FSOperationID": {
+      "abstract": [
+        {
+          "text": "A unique identifier for an operation.",
+          "type": "text"
+        }
+      ],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FSOperationID"
+        }
+      ],
+      "identifier": "doc://FSKit/documentation/FSKit/FSOperationID",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FSOperationID"
+        }
+      ],
+      "role": "symbol",
+      "title": "FSOperationID",
+      "type": "topic",
+      "url": "/documentation/fskit/fsoperationid"
+    },
+    "doc://FSKit/documentation/FSKit/FSProbeResult": {
+      "abstract": [],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FSProbeResult"
+        }
+      ],
+      "identifier": "doc://FSKit/documentation/FSKit/FSProbeResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FSProbeResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "FSProbeResult",
+      "type": "topic",
+      "url": "/documentation/fskit/fsproberesult"
+    },
+    "doc://FSKit/documentation/FSKit/FSResource": {
+      "abstract": [
+        {
+          "text": "An abstract resource a file system uses to provide data for a volume.",
+          "type": "text"
+        }
+      ],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FSResource"
+        }
+      ],
+      "identifier": "doc://FSKit/documentation/FSKit/FSResource",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FSResource"
+        }
+      ],
+      "role": "symbol",
+      "title": "FSResource",
+      "type": "topic",
+      "url": "/documentation/fskit/fsresource"
+    },
+    "doc://FSKit/documentation/FSKit/FSStatFSResult": {
+      "abstract": [],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FSStatFSResult"
+        }
+      ],
+      "identifier": "doc://FSKit/documentation/FSKit/FSStatFSResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FSStatFSResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "FSStatFSResult",
+      "type": "topic",
+      "url": "/documentation/fskit/fsstatfsresult"
+    },
+    "doc://FSKit/documentation/FSKit/FSSyncFlags": {
+      "abstract": [],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FSSyncFlags"
+        }
+      ],
+      "identifier": "doc://FSKit/documentation/FSKit/FSSyncFlags",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FSSyncFlags"
+        }
+      ],
+      "role": "symbol",
+      "title": "FSSyncFlags",
+      "type": "topic",
+      "url": "/documentation/fskit/fssyncflags"
+    },
+    "doc://FSKit/documentation/FSKit/FSTask": {
+      "abstract": [
+        {
+          "text": "A class that enables a file system module to pass log messages and completion notifications to clients.",
+          "type": "text"
+        }
+      ],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FSTask"
+        }
+      ],
+      "identifier": "doc://FSKit/documentation/FSKit/FSTask",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FSTask"
+        }
+      ],
+      "role": "symbol",
+      "title": "FSTask",
+      "type": "topic",
+      "url": "/documentation/fskit/fstask"
+    },
+    "doc://FSKit/documentation/FSKit/FSTaskOptions": {
+      "abstract": [
+        {
+          "text": "A class that passes command options to a task, optionally providing security-scoped URLs.",
+          "type": "text"
+        }
+      ],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FSTaskOptions"
+        }
+      ],
+      "identifier": "doc://FSKit/documentation/FSKit/FSTaskOptions",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FSTaskOptions"
+        }
+      ],
+      "role": "symbol",
+      "title": "FSTaskOptions",
+      "type": "topic",
+      "url": "/documentation/fskit/fstaskoptions"
+    },
+    "doc://FSKit/documentation/FSKit/FSTaskParameters": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "FSTaskParameters"
+        }
+      ],
+      "identifier": "doc://FSKit/documentation/FSKit/FSTaskParameters",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSTaskParameters",
+      "type": "topic",
+      "url": "/documentation/fskit/fstaskparameters"
+    },
+    "doc://FSKit/documentation/FSKit/FSUnaryFileSystem": {
+      "abstract": [
+        {
+          "text": "An abstract base class for implementing a minimal file system.",
+          "type": "text"
+        }
+      ],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FSUnaryFileSystem"
+        }
+      ],
+      "identifier": "doc://FSKit/documentation/FSKit/FSUnaryFileSystem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FSUnaryFileSystem"
+        }
+      ],
+      "role": "symbol",
+      "title": "FSUnaryFileSystem",
+      "type": "topic",
+      "url": "/documentation/fskit/fsunaryfilesystem"
+    },
+    "doc://FSKit/documentation/FSKit/FSUnaryFileSystemOperations": {
+      "abstract": [
+        {
+          "text": "Operations performed by a unary file system.",
+          "type": "text"
+        }
+      ],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FSUnaryFileSystemOperations"
+        }
+      ],
+      "identifier": "doc://FSKit/documentation/FSKit/FSUnaryFileSystemOperations",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FSUnaryFileSystemOperations"
+        }
+      ],
+      "role": "symbol",
+      "title": "FSUnaryFileSystemOperations",
+      "type": "topic",
+      "url": "/documentation/fskit/fsunaryfilesystemoperations"
+    },
+    "doc://FSKit/documentation/FSKit/FSVolume": {
+      "abstract": [
+        {
+          "text": "A directory structure for files and folders.",
+          "type": "text"
+        }
+      ],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FSVolume"
+        }
+      ],
+      "identifier": "doc://FSKit/documentation/FSKit/FSVolume",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FSVolume"
+        }
+      ],
+      "role": "symbol",
+      "title": "FSVolume",
+      "type": "topic",
+      "url": "/documentation/fskit/fsvolume"
+    },
+    "doc://FSKit/documentation/FSKit/FSVolume/AccessMask": {
+      "abstract": [],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AccessMask"
+        }
+      ],
+      "identifier": "doc://FSKit/documentation/FSKit/FSVolume/AccessMask",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AccessMask"
+        }
+      ],
+      "role": "symbol",
+      "title": "FSVolume.AccessMask",
+      "type": "topic",
+      "url": "/documentation/fskit/fsvolume/accessmask"
+    },
+    "doc://FSKit/documentation/FSKit/FSVolume/PreallocateFlags": {
+      "abstract": [],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PreallocateFlags"
+        }
+      ],
+      "identifier": "doc://FSKit/documentation/FSKit/FSVolume/PreallocateFlags",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PreallocateFlags"
+        }
+      ],
+      "role": "symbol",
+      "title": "FSVolume.PreallocateFlags",
+      "type": "topic",
+      "url": "/documentation/fskit/fsvolume/preallocateflags"
+    },
+    "doc://FSKit/documentation/FSKit/FSVolume/SetXattrPolicy": {
+      "abstract": [],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SetXattrPolicy"
+        }
+      ],
+      "identifier": "doc://FSKit/documentation/FSKit/FSVolume/SetXattrPolicy",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SetXattrPolicy"
+        }
+      ],
+      "role": "symbol",
+      "title": "FSVolume.SetXattrPolicy",
+      "type": "topic",
+      "url": "/documentation/fskit/fsvolume/setxattrpolicy"
+    },
+    "doc://FSKit/documentation/FSKit/FS_ALWAYS_EXPORT": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "FS_ALWAYS_EXPORT"
+        }
+      ],
+      "identifier": "doc://FSKit/documentation/FSKit/FS_ALWAYS_EXPORT",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FS_ALWAYS_EXPORT",
+      "type": "topic",
+      "url": "/documentation/fskit/fs_always_export"
+    },
+    "doc://FSKit/documentation/FSKit/FS_EXPORT": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "FS_EXPORT"
+        }
+      ],
+      "identifier": "doc://FSKit/documentation/FSKit/FS_EXPORT",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FS_EXPORT",
+      "type": "topic",
+      "url": "/documentation/fskit/fs_export"
+    },
+    "doc://FSKit/documentation/FSKit/FS_EXPORT_INTERNAL": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "FS_EXPORT_INTERNAL"
+        }
+      ],
+      "identifier": "doc://FSKit/documentation/FSKit/FS_EXPORT_INTERNAL",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FS_EXPORT_INTERNAL",
+      "type": "topic",
+      "url": "/documentation/fskit/fs_export_internal"
+    },
+    "doc://FSKit/documentation/FSKit/FS_EXTERN": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "FS_EXTERN"
+        }
+      ],
+      "identifier": "doc://FSKit/documentation/FSKit/FS_EXTERN",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FS_EXTERN",
+      "type": "topic",
+      "url": "/documentation/fskit/fs_extern"
+    },
+    "doc://FSKit/documentation/FSKit/FS_SUPPORTED_VISIBILITY": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "FS_SUPPORTED_VISIBILITY"
+        }
+      ],
+      "identifier": "doc://FSKit/documentation/FSKit/FS_SUPPORTED_VISIBILITY",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FS_SUPPORTED_VISIBILITY",
+      "type": "topic",
+      "url": "/documentation/fskit/fs_supported_visibility"
+    },
+    "doc://FSKit/documentation/FSKit/UnaryFileSystemExtension": {
+      "abstract": [
+        {
+          "text": "A protocol for implementing a minimal file system as an app extension.",
+          "type": "text"
+        }
+      ],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UnaryFileSystemExtension"
+        }
+      ],
+      "identifier": "doc://FSKit/documentation/FSKit/UnaryFileSystemExtension",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UnaryFileSystemExtension"
+        }
+      ],
+      "role": "symbol",
+      "title": "UnaryFileSystemExtension",
+      "type": "topic",
+      "url": "/documentation/fskit/unaryfilesystemextension"
+    },
+    "doc://FSKit/documentation/FSKit/fs_errorForCocoaError(_:)": {
+      "abstract": [
+        {
+          "text": "Creates an error object for the given Cocoa error code.",
+          "type": "text"
+        }
+      ],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "fs_errorForCocoaError"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        },
+        {
+          "kind": "text",
+          "text": ") -> any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        }
+      ],
+      "identifier": "doc://FSKit/documentation/FSKit/fs_errorForCocoaError(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "fs_errorForCocoaError"
+        }
+      ],
+      "role": "symbol",
+      "title": "fs_errorForCocoaError(_:)",
+      "type": "topic",
+      "url": "/documentation/fskit/fs_errorforcocoaerror(_:)"
+    },
+    "doc://FSKit/documentation/FSKit/fs_errorForMachError(_:)": {
+      "abstract": [
+        {
+          "text": "Creates an error object for the given Mach error code.",
+          "type": "text"
+        }
+      ],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "fs_errorForMachError"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        },
+        {
+          "kind": "text",
+          "text": ") -> any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        }
+      ],
+      "identifier": "doc://FSKit/documentation/FSKit/fs_errorForMachError(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "fs_errorForMachError"
+        }
+      ],
+      "role": "symbol",
+      "title": "fs_errorForMachError(_:)",
+      "type": "topic",
+      "url": "/documentation/fskit/fs_errorformacherror(_:)"
+    },
+    "doc://FSKit/documentation/FSKit/fs_errorForPOSIXError(_:)": {
+      "abstract": [
+        {
+          "text": "Creates an error object for the given POSIX error code.",
+          "type": "text"
+        }
+      ],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "fs_errorForPOSIXError"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        },
+        {
+          "kind": "text",
+          "text": ") -> any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        }
+      ],
+      "identifier": "doc://FSKit/documentation/FSKit/fs_errorForPOSIXError(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "fs_errorForPOSIXError"
+        }
+      ],
+      "role": "symbol",
+      "title": "fs_errorForPOSIXError(_:)",
+      "type": "topic",
+      "url": "/documentation/fskit/fs_errorforposixerror(_:)"
+    },
+    "doc://com.apple.documentation/documentation/DiskArbitration": {
+      "abstract": [
+        {
+          "text": "Provides mechanisms to register and block disk mount or unmount events.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/DiskArbitration",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Disk Arbitration",
+      "type": "topic",
+      "url": "/documentation/DiskArbitration"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "App-extensions",
+      "identifiers": [
+        "doc://FSKit/documentation/FSKit/UnaryFileSystemExtension"
+      ],
+      "title": "App extensions"
+    },
+    {
+      "anchor": "File-systems",
+      "identifiers": [
+        "doc://FSKit/documentation/FSKit/FSUnaryFileSystem",
+        "doc://FSKit/documentation/FSKit/FSFileSystemBase",
+        "doc://FSKit/documentation/FSKit/FSFileName"
+      ],
+      "title": "File systems"
+    },
+    {
+      "anchor": "Containers",
+      "identifiers": [
+        "doc://FSKit/documentation/FSKit/FSContainerIdentifier",
+        "doc://FSKit/documentation/FSKit/FSContainerStatus"
+      ],
+      "title": "Containers"
+    },
+    {
+      "anchor": "Resources",
+      "identifiers": [
+        "doc://FSKit/documentation/FSKit/FSResource",
+        "doc://FSKit/documentation/FSKit/FSBlockDeviceResource"
+      ],
+      "title": "Resources"
+    },
+    {
+      "anchor": "Volumes",
+      "identifiers": [
+        "doc://FSKit/documentation/FSKit/FSVolume"
+      ],
+      "title": "Volumes"
+    },
+    {
+      "anchor": "Items",
+      "identifiers": [
+        "doc://FSKit/documentation/FSKit/FSItem"
+      ],
+      "title": "Items"
+    },
+    {
+      "anchor": "Maintenance-and-management",
+      "identifiers": [
+        "doc://FSKit/documentation/FSKit/FSManageableResourceMaintenanceOperations"
+      ],
+      "title": "Maintenance and management"
+    },
+    {
+      "anchor": "Operations",
+      "identifiers": [
+        "doc://FSKit/documentation/FSKit/FSOperationID"
+      ],
+      "title": "Operations"
+    },
+    {
+      "anchor": "Tasks",
+      "identifiers": [
+        "doc://FSKit/documentation/FSKit/FSTask",
+        "doc://FSKit/documentation/FSKit/FSTaskOptions"
+      ],
+      "title": "Tasks"
+    },
+    {
+      "anchor": "Errors-and-logging",
+      "identifiers": [
+        "doc://FSKit/documentation/FSKit/fs_errorForCocoaError(_:)",
+        "doc://FSKit/documentation/FSKit/fs_errorForMachError(_:)",
+        "doc://FSKit/documentation/FSKit/fs_errorForPOSIXError(_:)",
+        "doc://FSKit/documentation/FSKit/FSError",
+        "doc://FSKit/documentation/FSKit/FSError/Code",
+        "doc://FSKit/documentation/FSKit/FSKitErrorDomain"
+      ],
+      "title": "Errors and logging"
+    },
+    {
+      "anchor": "FSKit-interactions",
+      "identifiers": [
+        "doc://FSKit/documentation/FSKit/FSClient"
+      ],
+      "title": "FSKit interactions"
+    },
+    {
+      "anchor": "Supporting-types",
+      "identifiers": [
+        "doc://FSKit/documentation/FSKit/FSVolume/AccessMask",
+        "doc://FSKit/documentation/FSKit/FSBlockmapFlags",
+        "doc://FSKit/documentation/FSKit/FSCompleteIOFlags",
+        "doc://FSKit/documentation/FSKit/FSDeactivateOptions",
+        "doc://FSKit/documentation/FSKit/FSDirectoryCookie",
+        "doc://FSKit/documentation/FSKit/FSDirectoryCookie",
+        "doc://FSKit/documentation/FSKit/FSDirectoryCookie/initial",
+        "doc://FSKit/documentation/FSKit/FSDirectoryEntryPacker",
+        "doc://FSKit/documentation/FSKit/FSDirectoryVerifier",
+        "doc://FSKit/documentation/FSKit/FSDirectoryVerifier",
+        "doc://FSKit/documentation/FSKit/FSDirectoryVerifier/initial",
+        "doc://FSKit/documentation/FSKit/FSEntityIdentifier",
+        "doc://FSKit/documentation/FSKit/FSExtentPacker",
+        "doc://FSKit/documentation/FSKit/FSExtentType",
+        "doc://FSKit/documentation/FSKit/FSMatchResult",
+        "doc://FSKit/documentation/FSKit/FSMetadataRange",
+        "doc://FSKit/documentation/FSKit/FSMutableFileDataBuffer",
+        "doc://FSKit/documentation/FSKit/FSVolume/PreallocateFlags",
+        "doc://FSKit/documentation/FSKit/FSProbeResult",
+        "doc://FSKit/documentation/FSKit/FSVolume/SetXattrPolicy",
+        "doc://FSKit/documentation/FSKit/FSStatFSResult",
+        "doc://FSKit/documentation/FSKit/FSSyncFlags"
+      ],
+      "title": "Supporting types"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "File-systems",
+              "identifiers": [
+                "doc://FSKit/documentation/FSKit/FSFileSystem",
+                "doc://FSKit/documentation/FSKit/FSUnaryFileSystem",
+                "doc://FSKit/documentation/FSKit/FSFileSystemBase",
+                "doc://FSKit/documentation/FSKit/FSFileName"
+              ],
+              "title": "File systems"
+            },
+            {
+              "anchor": "Containers",
+              "identifiers": [
+                "doc://FSKit/documentation/FSKit/FSContainerIdentifier",
+                "doc://FSKit/documentation/FSKit/FSContainerStatus"
+              ],
+              "title": "Containers"
+            },
+            {
+              "anchor": "Resources",
+              "identifiers": [
+                "doc://FSKit/documentation/FSKit/FSResource",
+                "doc://FSKit/documentation/FSKit/FSBlockDeviceResource"
+              ],
+              "title": "Resources"
+            },
+            {
+              "anchor": "Volumes",
+              "identifiers": [
+                "doc://FSKit/documentation/FSKit/FSVolume"
+              ],
+              "title": "Volumes"
+            },
+            {
+              "anchor": "Items",
+              "identifiers": [
+                "doc://FSKit/documentation/FSKit/FSItem"
+              ],
+              "title": "Items"
+            },
+            {
+              "anchor": "Maintenance-and-management",
+              "identifiers": [
+                "doc://FSKit/documentation/FSKit/FSManageableResourceMaintenanceOperations"
+              ],
+              "title": "Maintenance and management"
+            },
+            {
+              "anchor": "Operations",
+              "identifiers": [
+                "doc://FSKit/documentation/FSKit/FSOperationID"
+              ],
+              "title": "Operations"
+            },
+            {
+              "anchor": "Tasks",
+              "identifiers": [
+                "doc://FSKit/documentation/FSKit/FSTask",
+                "doc://FSKit/documentation/FSKit/FSTaskOptions"
+              ],
+              "title": "Tasks"
+            },
+            {
+              "anchor": "Errors-and-logging",
+              "identifiers": [
+                "doc://FSKit/documentation/FSKit/fs_errorForCocoaError(_:)",
+                "doc://FSKit/documentation/FSKit/fs_errorForMachError(_:)",
+                "doc://FSKit/documentation/FSKit/fs_errorForPOSIXError(_:)",
+                "doc://FSKit/documentation/FSKit/FSError/Code",
+                "doc://FSKit/documentation/FSKit/FSKitErrorDomain"
+              ],
+              "title": "Errors and logging"
+            },
+            {
+              "anchor": "FSKit-interactions",
+              "identifiers": [
+                "doc://FSKit/documentation/FSKit/FSClient"
+              ],
+              "title": "FSKit interactions"
+            },
+            {
+              "anchor": "Utilities",
+              "identifiers": [
+                "doc://FSKit/documentation/FSKit/FSKitVersionNumber",
+                "doc://FSKit/documentation/FSKit/FSKitVersionString"
+              ],
+              "title": "Utilities"
+            },
+            {
+              "anchor": "Supporting-types",
+              "identifiers": [
+                "doc://FSKit/documentation/FSKit/FSVolume/AccessMask",
+                "doc://FSKit/documentation/FSKit/FSBlockmapFlags",
+                "doc://FSKit/documentation/FSKit/FSCompleteIOFlags",
+                "doc://FSKit/documentation/FSKit/FSDeactivateOptions",
+                "doc://FSKit/documentation/FSKit/FSDirectoryCookie",
+                "doc://FSKit/documentation/FSKit/FSDirectoryCookie",
+                "doc://FSKit/documentation/FSKit/FSDirectoryCookie/initial",
+                "doc://FSKit/documentation/FSKit/FSDirectoryEntryPacker",
+                "doc://FSKit/documentation/FSKit/FSDirectoryVerifier",
+                "doc://FSKit/documentation/FSKit/FSDirectoryVerifier",
+                "doc://FSKit/documentation/FSKit/FSDirectoryVerifier/initial",
+                "doc://FSKit/documentation/FSKit/FSEntityIdentifier",
+                "doc://FSKit/documentation/FSKit/FSExtentPacker",
+                "doc://FSKit/documentation/FSKit/FSExtentType",
+                "doc://FSKit/documentation/FSKit/FSMatchResult",
+                "doc://FSKit/documentation/FSKit/FSMetadataRange",
+                "doc://FSKit/documentation/FSKit/FSMutableFileDataBuffer",
+                "doc://FSKit/documentation/FSKit/FSVolume/PreallocateFlags",
+                "doc://FSKit/documentation/FSKit/FSProbeResult",
+                "doc://FSKit/documentation/FSKit/FSVolume/SetXattrPolicy",
+                "doc://FSKit/documentation/FSKit/FSStatFSResult",
+                "doc://FSKit/documentation/FSKit/FSSyncFlags",
+                "doc://FSKit/documentation/FSKit/FSTaskParameters"
+              ],
+              "title": "Supporting types"
+            },
+            {
+              "anchor": "Macros",
+              "identifiers": [
+                "doc://FSKit/documentation/FSKit/FSKIT_API_AVAILABILITY_V1",
+                "doc://FSKit/documentation/FSKit/FSKIT_API_UNAVAILABLE_V1",
+                "doc://FSKit/documentation/FSKit/FS_ALWAYS_EXPORT",
+                "doc://FSKit/documentation/FSKit/FS_EXPORT",
+                "doc://FSKit/documentation/FSKit/FS_EXPORT_INTERNAL",
+                "doc://FSKit/documentation/FSKit/FS_EXTERN",
+                "doc://FSKit/documentation/FSKit/FS_SUPPORTED_VISIBILITY"
+              ],
+              "title": "Macros"
+            }
+          ]
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSProbeResult/title",
+          "value": "FSProbeResult"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSProbeResult/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FSProbeResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSProbeResult/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FSProbeResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSDirectoryCookie~1initial/title",
+          "value": "FSDirectoryCookieInitial"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSDirectoryCookie~1initial/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FSDirectoryCookieInitial"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSDirectoryEntryPacker/title",
+          "value": "FSDirectoryEntryPacker"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSDirectoryEntryPacker/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FSDirectoryEntryPacker"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSDirectoryEntryPacker/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FSDirectoryEntryPacker"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSVolume~1SetXattrPolicy/title",
+          "value": "FSSetXattrPolicy"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSVolume~1SetXattrPolicy/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FSSetXattrPolicy"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSVolume~1SetXattrPolicy/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FSSetXattrPolicy"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSBlockDeviceResource/title",
+          "value": "FSBlockDeviceResource"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSBlockDeviceResource/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FSBlockDeviceResource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSBlockDeviceResource/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FSBlockDeviceResource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSMetadataRange/title",
+          "value": "FSMetadataRange"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSMetadataRange/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FSMetadataRange"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSMetadataRange/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FSMetadataRange"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSDirectoryVerifier/title",
+          "value": "FSDirectoryVerifier"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSDirectoryVerifier/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FSDirectoryVerifier"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSDirectoryVerifier/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FSDirectoryVerifier"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSVolume~1PreallocateFlags/title",
+          "value": "FSPreallocateFlags"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSVolume~1PreallocateFlags/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FSPreallocateFlags"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSVolume~1PreallocateFlags/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FSPreallocateFlags"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSFileSystemBase/title",
+          "value": "FSFileSystemBase"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSFileSystemBase/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FSFileSystemBase"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSFileSystemBase/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FSFileSystemBase"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSItem/title",
+          "value": "FSItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSItem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FSItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSItem/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FSItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSTaskOptions/title",
+          "value": "FSTaskOptions"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSTaskOptions/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FSTaskOptions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSTaskOptions/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FSTaskOptions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSDirectoryCookie/title",
+          "value": "FSDirectoryCookie"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSDirectoryCookie/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FSDirectoryCookie"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSDirectoryCookie/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FSDirectoryCookie"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSContainerIdentifier/title",
+          "value": "FSContainerIdentifier"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSContainerIdentifier/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FSContainerIdentifier"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSContainerIdentifier/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FSContainerIdentifier"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSManageableResourceMaintenanceOperations/title",
+          "value": "FSManageableResourceMaintenanceOperations"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSManageableResourceMaintenanceOperations/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FSManageableResourceMaintenanceOperations"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSManageableResourceMaintenanceOperations/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FSManageableResourceMaintenanceOperations"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSVolume/title",
+          "value": "FSVolume"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSVolume/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FSVolume"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSVolume/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FSVolume"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSOperationID/title",
+          "value": "FSOperationID"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSOperationID/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FSOperationID"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSOperationID/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FSOperationID"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSResource/title",
+          "value": "FSResource"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSResource/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FSResource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSResource/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FSResource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSDeactivateOptions/title",
+          "value": "FSDeactivateOptions"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSDeactivateOptions/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FSDeactivateOptions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSDeactivateOptions/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FSDeactivateOptions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSUnaryFileSystemOperations/title",
+          "value": "FSUnaryFileSystemOperations"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSUnaryFileSystemOperations/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FSUnaryFileSystemOperations"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSUnaryFileSystemOperations/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FSUnaryFileSystemOperations"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSKitErrorDomain/title",
+          "value": "FSKitErrorDomain"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSKitErrorDomain/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FSKitErrorDomain"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSBlockmapFlags/title",
+          "value": "FSBlockmapFlags"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSBlockmapFlags/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FSBlockmapFlags"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSBlockmapFlags/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FSBlockmapFlags"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSExtentType/title",
+          "value": "FSExtentType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSExtentType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FSExtentType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSExtentType/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FSExtentType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSEntityIdentifier/title",
+          "value": "FSEntityIdentifier"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSEntityIdentifier/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FSEntityIdentifier"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSEntityIdentifier/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FSEntityIdentifier"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1fs_errorForPOSIXError(_:)/title",
+          "value": "fs_errorForPOSIXError"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1fs_errorForPOSIXError(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "fs_errorForPOSIXError"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSContainerStatus/title",
+          "value": "FSContainerStatus"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSContainerStatus/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FSContainerStatus"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSContainerStatus/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FSContainerStatus"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSSyncFlags/title",
+          "value": "FSSyncFlags"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSSyncFlags/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FSSyncFlags"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSSyncFlags/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FSSyncFlags"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSExtentPacker/title",
+          "value": "FSExtentPacker"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSExtentPacker/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FSExtentPacker"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSExtentPacker/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FSExtentPacker"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSFileName/title",
+          "value": "FSFileName"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSFileName/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FSFileName"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSFileName/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FSFileName"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1fs_errorForMachError(_:)/title",
+          "value": "fs_errorForMachError"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1fs_errorForMachError(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "fs_errorForMachError"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSMutableFileDataBuffer/title",
+          "value": "FSMutableFileDataBuffer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSMutableFileDataBuffer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FSMutableFileDataBuffer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSMutableFileDataBuffer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FSMutableFileDataBuffer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSStatFSResult/title",
+          "value": "FSStatFSResult"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSStatFSResult/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FSStatFSResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSStatFSResult/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FSStatFSResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSMatchResult/title",
+          "value": "FSMatchResult"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSMatchResult/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FSMatchResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSMatchResult/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FSMatchResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSDirectoryVerifier~1initial/title",
+          "value": "FSDirectoryVerifierInitial"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSDirectoryVerifier~1initial/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FSDirectoryVerifierInitial"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSClient/title",
+          "value": "FSClient"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSClient/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FSClient"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSClient/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FSClient"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSError~1Code/title",
+          "value": "FSErrorCode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSError~1Code/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FSErrorCode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSError~1Code/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FSErrorCode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSUnaryFileSystem/title",
+          "value": "FSUnaryFileSystem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSUnaryFileSystem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FSUnaryFileSystem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSUnaryFileSystem/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FSUnaryFileSystem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1fs_errorForCocoaError(_:)/title",
+          "value": "fs_errorForCocoaError"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1fs_errorForCocoaError(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "fs_errorForCocoaError"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSVolume~1AccessMask/title",
+          "value": "FSAccessMask"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSVolume~1AccessMask/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FSAccessMask"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSVolume~1AccessMask/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FSAccessMask"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSTask/title",
+          "value": "FSTask"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSTask/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FSTask"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSTask/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FSTask"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSCompleteIOFlags/title",
+          "value": "FSCompleteIOFlags"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSCompleteIOFlags/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FSCompleteIOFlags"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1FSKit~1documentation~1FSKit~1FSCompleteIOFlags/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FSCompleteIOFlags"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/fskit"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/fskit"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

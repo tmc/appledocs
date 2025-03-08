@@ -1,0 +1,546 @@
+{
+  "abstract": [
+    {
+      "text": "Initiate install-validation by providing the signed parameters for an attributable web ad.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.skadnetworkforwebads/documentation/SKAdNetworkforWebAds"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.skadnetworkforwebads/documentation/SKAdNetworkforWebAds/generating-a-signature-for-attributable-web-ads"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "SKAdNetwork for Web Ads"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Generating a signature for attributable web ads"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A user’s device calls the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.skadnetworkforwebads/documentation/SKAdNetworkforWebAds/Get-a-signed-SKAdNetwork-ad-payload-for-a-web-ad.",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " endpoint on your server when a user taps the web ad that you create using the instructions in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.skadnetworkforwebads/documentation/SKAdNetworkforWebAds/creating-an-attributable-ad-link",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". To respond to the request, you need to provide the values in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.skadnetworkforwebads/documentation/SKAdNetworkforWebAds/AdImpressionResponse",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", which includes a cryptographic signature.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To generate the signature, combine the required values from the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.skadnetworkforwebads/documentation/SKAdNetworkforWebAds/signature",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object and cryptographically sign the resulting string. Use the ad network ID and PKCS#8 private key that you establish when registering to use the API. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/StoreKit/registering-an-ad-network",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Combine-the-parameters",
+          "level": 3,
+          "text": "Combine the parameters",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Create the UTF-8 string using the required ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.skadnetworkforwebads/documentation/SKAdNetworkforWebAds/signature",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object parameters.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Lowercase the string representation of the nonce from the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.skadnetworkforwebads/documentation/SKAdNetworkforWebAds/signature",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " object. Failing to do so results in an invalid signature. Only ads with valid signatures can get ad attributions.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Combine the values into a UTF-8 string with an invisible separator (",
+              "type": "text"
+            },
+            {
+              "code": "‘\\u2063’",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") between them, in the exact order the code below shows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "version + '\\u2063' + ad_network_id + '\\u2063' + source_identifier + '\\u2063' + itunes_item_id + '\\u2063' + nonce + '\\u2063' + source_domain + '\\u2063' + fidelity_type + '\\u2063' + timestamp"
+          ],
+          "syntax": "c",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Sign-the-combined-string",
+          "level": 3,
+          "text": "Sign the combined string",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Sign the combined UTF-8 string with the following key and algorithm:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Your PKCS#8 private key.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The Elliptic Curve Digital Signature Algorithm (ECDSA) with a SHA-256 hash.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The resulting Digital Encoding Rules (DER)-formatted binary value is the signature.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Encode-the-signature",
+          "level": 3,
+          "text": "Encode the signature",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Encode the binary signature you generate into a Base64 string. The result is your ad network attribution signature. The signature string should look similar to the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "MEQCIEQlmZRNfYzKBSE8QnhLTIHZZZWCFgZpRqRxHss65KoFAiAJgJKjdrWdkLUOCCjuEx2RmFS7daRzSVZRVZ8RyMyUXg=="
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about Base64 encoding, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/data/2142853-base64encodedstring",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Use-the-generated-signature-string",
+          "level": 3,
+          "text": "Use the generated signature string",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you generate the signature, use this value in the ",
+              "type": "text"
+            },
+            {
+              "code": "signature",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.skadnetworkforwebads/documentation/SKAdNetworkforWebAds/AdImpressionResponse",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". If the user installs and launches the advertised app, the attribution-winning ad network receives an install-validation postback. For more information about postbacks, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/StoreKit/verifying-an-install-validation-postback",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/StoreKit/registering-an-ad-network": {
+      "abstract": [
+        {
+          "text": "Use the install-validation APIs for your ad campaigns after registering your ad network with Apple.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/StoreKit/registering-an-ad-network",
+      "kind": "article",
+      "role": "article",
+      "title": "Registering an ad network",
+      "type": "topic",
+      "url": "/documentation/StoreKit/registering-an-ad-network"
+    },
+    "doc://com.apple.documentation/documentation/StoreKit/verifying-an-install-validation-postback": {
+      "abstract": [
+        {
+          "text": "Ensure the validity of a postback you receive after an ad conversion by verifying its cryptographic signature.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/StoreKit/verifying-an-install-validation-postback",
+      "kind": "article",
+      "role": "article",
+      "title": "Verifying an install-validation postback",
+      "type": "topic",
+      "url": "/documentation/StoreKit/verifying-an-install-validation-postback"
+    },
+    "doc://com.apple.documentation/documentation/foundation/data/2142853-base64encodedstring": {
+      "abstract": [
+        {
+          "text": "Returns a Base-64 encoded string.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "base64EncodedString"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": Data.Base64EncodingOptions) -> String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/data/2142853-base64encodedstring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "base64EncodedString(options:)",
+      "type": "topic",
+      "url": "/documentation/foundation/data/2142853-base64encodedstring"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.skadnetworkforwebads/documentation/SKAdNetworkforWebAds": {
+      "abstract": [
+        {
+          "text": "Attribute app-install campaigns that originate on the web.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.skadnetworkforwebads/documentation/SKAdNetworkforWebAds",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SKAdNetwork for Web Ads",
+      "type": "topic",
+      "url": "/documentation/skadnetworkforwebads"
+    },
+    "doc://com.apple.skadnetworkforwebads/documentation/SKAdNetworkforWebAds/AdImpressionResponse": {
+      "abstract": [
+        {
+          "text": "The response you provide that contains a signed payload for a clicked web ad.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "AdImpressionResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.skadnetworkforwebads/documentation/SKAdNetworkforWebAds/AdImpressionResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AdImpressionResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "AdImpressionResponse",
+      "type": "topic",
+      "url": "/documentation/skadnetworkforwebads/adimpressionresponse"
+    },
+    "doc://com.apple.skadnetworkforwebads/documentation/SKAdNetworkforWebAds/Get-a-signed-SKAdNetwork-ad-payload-for-a-web-ad.": {
+      "abstract": [
+        {
+          "text": "An endpoint you provide to receive requests from devices to serve signed ad interactions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.skadnetworkforwebads/documentation/SKAdNetworkforWebAds/Get-a-signed-SKAdNetwork-ad-payload-for-a-web-ad.",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Get a signed SKAdNetwork ad payload for a web ad."
+        }
+      ],
+      "role": "symbol",
+      "title": "Get a Signed Web Ad Impression Payload",
+      "type": "topic",
+      "url": "/documentation/skadnetworkforwebads/get-a-signed-skadnetwork-ad-payload-for-a-web-ad."
+    },
+    "doc://com.apple.skadnetworkforwebads/documentation/SKAdNetworkforWebAds/creating-an-attributable-ad-link": {
+      "abstract": [
+        {
+          "text": "Create click-through web ads that attribute App Store app installations to your ad network.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.skadnetworkforwebads/documentation/SKAdNetworkforWebAds/creating-an-attributable-ad-link",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating an attributable ad link",
+      "type": "topic",
+      "url": "/documentation/skadnetworkforwebads/creating-an-attributable-ad-link"
+    },
+    "doc://com.apple.skadnetworkforwebads/documentation/SKAdNetworkforWebAds/signature": {
+      "abstract": [
+        {
+          "text": "The key-value pairs that ad networks use to cryptographically sign a web ad.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "signature"
+        }
+      ],
+      "identifier": "doc://com.apple.skadnetworkforwebads/documentation/SKAdNetworkforWebAds/signature",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "signature"
+        }
+      ],
+      "role": "symbol",
+      "title": "signature",
+      "type": "topic",
+      "url": "/documentation/skadnetworkforwebads/signature"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Providing-the-web-ad-signature-and-response",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.skadnetworkforwebads/documentation/SKAdNetworkforWebAds/AdImpressionResponse",
+        "doc://com.apple.skadnetworkforwebads/documentation/SKAdNetworkforWebAds/signature"
+      ],
+      "title": "Providing the web ad signature and response"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/skadnetworkforwebads/generating-a-signature-for-attributable-web-ads"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

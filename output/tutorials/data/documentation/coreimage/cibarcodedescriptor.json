@@ -1,0 +1,465 @@
+{
+  "abstract": [
+    {
+      "text": "An abstract base class that represents a machine-readable code's attributes.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/coreimage"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/coreimage/cibarcodedescriptor"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 2875185,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)CIBarcodeDescriptor",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "class "
+      },
+      {
+        "kind": "identifier",
+        "text": "CIBarcodeDescriptor"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Core Image"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "11.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "11.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.13",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "11.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "CIBarcodeDescriptor"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CIBarcodeDescriptor"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Subclasses encapsulate the formal specification and fields specific to a code type.  Each subclass is sufficient to recreate the unique symbol exactly as seen or used with a custom parser.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "- (CIImage*) imageFromBarcodeDescriptor:(CIBarcodeDescriptor*)descriptor",
+            "{",
+            "    NSDictionary* inputParams = @{",
+            "                                  @\"inputBarcodeDescriptor\" : descriptor",
+            "                                  };",
+            "    CIFilter* barcodeCreationFilter = [CIFilter filterWithName:@\"CIBarcodeGenerator\" withInputParameters:inputParams];",
+            "    CIImage* outputImage = barcodeCreationFilter.outputImage;",
+            "    return outputImage;",
+            "}"
+          ],
+          "metadata": {
+            "abstract": [
+              {
+                "text": "Creating a ",
+                "type": "text"
+              },
+              {
+                "code": "CIImage",
+                "type": "codeVoice"
+              },
+              {
+                "text": " from a ",
+                "type": "text"
+              },
+              {
+                "code": "CIBarcodeDescriptor",
+                "type": "codeVoice"
+              }
+            ],
+            "anchor": "2940099",
+            "title": "Listing 1"
+          },
+          "syntax": "occ",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/coreimage": {
+      "identifier": "doc://com.apple.documentation/documentation/coreimage",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Image",
+      "type": "topic",
+      "url": "/documentation/coreimage"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciazteccodedescriptor": {
+      "abstract": [
+        {
+          "text": "A concrete subclass of ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/coreimage/cibarcodedescriptor",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " that represents an Aztec code symbol.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "CIAztecCodeDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciazteccodedescriptor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CIAztecCodeDescriptor",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciazteccodedescriptor"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cibarcodedescriptor": {
+      "abstract": [
+        {
+          "text": "An abstract base class that represents a machine-readable code's attributes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "CIBarcodeDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cibarcodedescriptor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CIBarcodeDescriptor",
+      "type": "topic",
+      "url": "/documentation/coreimage/cibarcodedescriptor"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cibarcodedescriptor#2940099": {
+      "abstract": [
+        {
+          "text": "Creating a ",
+          "type": "text"
+        },
+        {
+          "code": "CIImage",
+          "type": "codeVoice"
+        },
+        {
+          "text": " from a ",
+          "type": "text"
+        },
+        {
+          "code": "CIBarcodeDescriptor",
+          "type": "codeVoice"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cibarcodedescriptor#2940099",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/coreimage/cibarcodedescriptor#2940099"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cidatamatrixcodedescriptor": {
+      "abstract": [
+        {
+          "text": "A concrete subclass of ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/coreimage/cibarcodedescriptor",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " that represents a Data Matrix code symbol.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "CIDataMatrixCodeDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cidatamatrixcodedescriptor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CIDataMatrixCodeDescriptor",
+      "type": "topic",
+      "url": "/documentation/coreimage/cidatamatrixcodedescriptor"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cipdf417codedescriptor": {
+      "abstract": [
+        {
+          "text": "A concrete subclass of ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/coreimage/cibarcodedescriptor",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " that represents a PDF417 symbol.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "CIPDF417CodeDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cipdf417codedescriptor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CIPDF417CodeDescriptor",
+      "type": "topic",
+      "url": "/documentation/coreimage/cipdf417codedescriptor"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciqrcodedescriptor": {
+      "abstract": [
+        {
+          "text": "A concrete subclass of ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/coreimage/cibarcodedescriptor",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " that represents a square QR code symbol.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "CIQRCodeDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciqrcodedescriptor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CIQRCodeDescriptor",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciqrcodedescriptor"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscopying": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscopying",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCopying",
+      "type": "topic",
+      "url": "/documentation/foundation/nscopying"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nssecurecoding": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nssecurecoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSecureCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nssecurecoding"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/objectivec/nsobject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nscopying",
+        "doc://com.apple.documentation/documentation/foundation/nssecurecoding"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreimage/ciqrcodedescriptor",
+        "doc://com.apple.documentation/documentation/coreimage/ciazteccodedescriptor",
+        "doc://com.apple.documentation/documentation/coreimage/cipdf417codedescriptor",
+        "doc://com.apple.documentation/documentation/coreimage/cidatamatrixcodedescriptor"
+      ],
+      "title": "Barcode Descriptions"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/coreimage/cibarcodedescriptor"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/coreimage/cibarcodedescriptor"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

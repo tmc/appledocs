@@ -1,0 +1,6539 @@
+{
+  "abstract": [
+    {
+      "text": "Secure network communication using standardized transport layer security mechanisms.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.security/documentation/Security"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.security/documentation/Security/secure-transport"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Security"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Secure Transport"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "Security.SecureTransport",
+              "type": "codeVoice"
+            },
+            {
+              "text": " API gives you access to Apple’s implementation of Secure Sockets Layer version 3.0 (SSLv3), Transport Layer Security (TLS) versions 1.0 through 1.2, and Datagram Transport Layer Security (DTLS) version 1.0.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This API imposes no transport layer dependencies. You can use it with BSD Sockets and other protocols. To use this API, you provide callback functions to perform I/O on the underlying network connections. You are also responsible for setting up raw network connections. You pass in an opaque reference to the underlying (connected) entity at the start of an SSL session in the form of an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/SSLConnectionRef",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "This API is considered legacy. Use the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/Network",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " framework instead.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/Network": {
+      "abstract": [
+        {
+          "text": "Create network connections to send and receive data using transport and security protocols.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Network",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Network",
+      "type": "topic",
+      "url": "/documentation/Network"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.security/documentation/Security": {
+      "abstract": [
+        {
+          "text": "Secure the data your app manages, and control access to your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Security",
+      "type": "topic",
+      "url": "/documentation/security"
+    },
+    "doc://com.apple.security/documentation/Security/SSLAddDistinguishedName(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Adds a DER-encoded distinguished name to a list of acceptable names to be specified in requests for client certificates.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SSLAddDistinguishedName"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SSLContextRef",
+          "text": "SSLContext"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SV",
+          "text": "UnsafeRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SSLAddDistinguishedName(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SSLAddDistinguishedName"
+        }
+      ],
+      "role": "symbol",
+      "title": "SSLAddDistinguishedName(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/ssladddistinguishedname(_:_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SSLAuthenticate": {
+      "abstract": [
+        {
+          "text": "The flags that represent the requirements for client-side authentication.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SSLAuthenticate"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SSLAuthenticate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SSLAuthenticate"
+        }
+      ],
+      "role": "symbol",
+      "title": "SSLAuthenticate",
+      "type": "topic",
+      "url": "/documentation/security/sslauthenticate"
+    },
+    "doc://com.apple.security/documentation/Security/SSLCipherSuite": {
+      "abstract": [
+        {
+          "text": "A type for storing cipher suite values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SSLCipherSuite"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SSLCipherSuite",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SSLCipherSuite"
+        }
+      ],
+      "role": "symbol",
+      "title": "SSLCipherSuite",
+      "type": "topic",
+      "url": "/documentation/security/sslciphersuite"
+    },
+    "doc://com.apple.security/documentation/Security/SSLCiphersuiteGroup": {
+      "abstract": [
+        {
+          "text": "A mechanism for grouping related cipher suites.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SSLCiphersuiteGroup"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SSLCiphersuiteGroup",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SSLCiphersuiteGroup"
+        }
+      ],
+      "role": "symbol",
+      "title": "SSLCiphersuiteGroup",
+      "type": "topic",
+      "url": "/documentation/security/sslciphersuitegroup"
+    },
+    "doc://com.apple.security/documentation/Security/SSLClientCertificateState": {
+      "abstract": [
+        {
+          "text": "An enumeration of the states of client certificate exchange.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SSLClientCertificateState"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SSLClientCertificateState",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SSLClientCertificateState"
+        }
+      ],
+      "role": "symbol",
+      "title": "SSLClientCertificateState",
+      "type": "topic",
+      "url": "/documentation/security/sslclientcertificatestate"
+    },
+    "doc://com.apple.security/documentation/Security/SSLClose(_:)": {
+      "abstract": [
+        {
+          "text": "Terminates the current SSL session.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SSLClose"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SSLContextRef",
+          "text": "SSLContext"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SSLClose(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SSLClose"
+        }
+      ],
+      "role": "symbol",
+      "title": "SSLClose(_:)",
+      "type": "topic",
+      "url": "/documentation/security/sslclose(_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SSLConnectionRef": {
+      "abstract": [
+        {
+          "text": "A pointer to an opaque I/O connection object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SSLConnectionRef"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SSLConnectionRef",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SSLConnectionRef"
+        }
+      ],
+      "role": "symbol",
+      "title": "SSLConnectionRef",
+      "type": "topic",
+      "url": "/documentation/security/sslconnectionref"
+    },
+    "doc://com.apple.security/documentation/Security/SSLConnectionType": {
+      "abstract": [
+        {
+          "text": "The flags that indicate whether a context is to be used for streaming or datagram-based communication.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SSLConnectionType"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SSLConnectionType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SSLConnectionType"
+        }
+      ],
+      "role": "symbol",
+      "title": "SSLConnectionType",
+      "type": "topic",
+      "url": "/documentation/security/sslconnectiontype"
+    },
+    "doc://com.apple.security/documentation/Security/SSLContext": {
+      "abstract": [
+        {
+          "text": "An opaque type that represents an SSL session context object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SSLContext"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SSLContext",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SSLContext"
+        }
+      ],
+      "role": "symbol",
+      "title": "SSLContext",
+      "type": "topic",
+      "url": "/documentation/security/sslcontext"
+    },
+    "doc://com.apple.security/documentation/Security/SSLContextGetTypeID()": {
+      "abstract": [
+        {
+          "text": "Returns the Core Foundation type ID for context objects.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SSLContextGetTypeID"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFTypeID",
+          "text": "CFTypeID"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SSLContextGetTypeID()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SSLContextGetTypeID"
+        }
+      ],
+      "role": "symbol",
+      "title": "SSLContextGetTypeID()",
+      "type": "topic",
+      "url": "/documentation/security/sslcontextgettypeid()"
+    },
+    "doc://com.apple.security/documentation/Security/SSLCopyALPNProtocols(_:_:)": {
+      "abstract": [
+        {
+          "text": "Gets the list of supported application layer protocols.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SSLCopyALPNProtocols"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SSLContextRef",
+          "text": "SSLContext"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s9UnmanagedV",
+          "text": "Unmanaged"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFArrayRef",
+          "text": "CFArray"
+        },
+        {
+          "kind": "text",
+          "text": ">?>) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SSLCopyALPNProtocols(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SSLCopyALPNProtocols"
+        }
+      ],
+      "role": "symbol",
+      "title": "SSLCopyALPNProtocols(_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/sslcopyalpnprotocols(_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SSLCopyCertificateAuthorities(_:_:)": {
+      "abstract": [
+        {
+          "text": "Retrieves the current list of certification authorities.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SSLCopyCertificateAuthorities"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SSLContextRef",
+          "text": "SSLContext"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFArrayRef",
+          "text": "CFArray"
+        },
+        {
+          "kind": "text",
+          "text": "?>) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SSLCopyCertificateAuthorities(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SSLCopyCertificateAuthorities"
+        }
+      ],
+      "role": "symbol",
+      "title": "SSLCopyCertificateAuthorities(_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/sslcopycertificateauthorities(_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SSLCopyDistinguishedNames(_:_:)": {
+      "abstract": [
+        {
+          "text": "Retrieves the distinguished names of acceptable certification authorities.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SSLCopyDistinguishedNames"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SSLContextRef",
+          "text": "SSLContext"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFArrayRef",
+          "text": "CFArray"
+        },
+        {
+          "kind": "text",
+          "text": "?>) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SSLCopyDistinguishedNames(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SSLCopyDistinguishedNames"
+        }
+      ],
+      "role": "symbol",
+      "title": "SSLCopyDistinguishedNames(_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/sslcopydistinguishednames(_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SSLCopyPeerCertificates": {
+      "abstract": [
+        {
+          "text": "Retrieves a peer certificate and its certificate chain.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SSLCopyPeerCertificates"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SSLCopyPeerCertificates",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SSLCopyPeerCertificates",
+      "type": "topic",
+      "url": "/documentation/security/sslcopypeercertificates"
+    },
+    "doc://com.apple.security/documentation/Security/SSLCopyPeerTrust(_:_:)": {
+      "abstract": [
+        {
+          "text": "Retrieves a trust management object for the certificate used by a session.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SSLCopyPeerTrust"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SSLContextRef",
+          "text": "SSLContext"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecTrustRef",
+          "text": "SecTrust"
+        },
+        {
+          "kind": "text",
+          "text": "?>) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SSLCopyPeerTrust(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SSLCopyPeerTrust"
+        }
+      ],
+      "role": "symbol",
+      "title": "SSLCopyPeerTrust(_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/sslcopypeertrust(_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SSLCopyRequestedPeerName(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Determines the buffer size needed for the peer domain name.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SSLCopyRequestedPeerName"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SSLContextRef",
+          "text": "SSLContext"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5CChara",
+          "text": "CChar"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SSLCopyRequestedPeerName(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SSLCopyRequestedPeerName"
+        }
+      ],
+      "role": "symbol",
+      "title": "SSLCopyRequestedPeerName(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/sslcopyrequestedpeername(_:_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SSLCopyRequestedPeerNameLength(_:_:)": {
+      "abstract": [
+        {
+          "text": "Obtains the hostname specified by the client in the ServerName extension (SNI). Server only.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SSLCopyRequestedPeerNameLength"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SSLContextRef",
+          "text": "SSLContext"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SSLCopyRequestedPeerNameLength(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SSLCopyRequestedPeerNameLength"
+        }
+      ],
+      "role": "symbol",
+      "title": "SSLCopyRequestedPeerNameLength(_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/sslcopyrequestedpeernamelength(_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SSLCopyTrustedRoots": {
+      "abstract": [
+        {
+          "text": "Retrieves the current list of trusted root certificates.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SSLCopyTrustedRoots"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SSLCopyTrustedRoots",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SSLCopyTrustedRoots",
+      "type": "topic",
+      "url": "/documentation/security/sslcopytrustedroots"
+    },
+    "doc://com.apple.security/documentation/Security/SSLCreateContext(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Allocates and returns a new context.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SSLCreateContext"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFAllocatorRef",
+          "text": "CFAllocator"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@SSLProtocolSide",
+          "text": "SSLProtocolSide"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@SSLConnectionType",
+          "text": "SSLConnectionType"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SSLContextRef",
+          "text": "SSLContext"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SSLCreateContext(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SSLCreateContext"
+        }
+      ],
+      "role": "symbol",
+      "title": "SSLCreateContext(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/sslcreatecontext(_:_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SSLDisposeContext": {
+      "abstract": [
+        {
+          "text": "Disposes of a Secure Sockets Layer (SSL) session context.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SSLDisposeContext"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SSLDisposeContext",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SSLDisposeContext",
+      "type": "topic",
+      "url": "/documentation/security/ssldisposecontext"
+    },
+    "doc://com.apple.security/documentation/Security/SSLGetAllowsAnyRoot": {
+      "abstract": [
+        {
+          "text": "Obtains a value specifying whether an unknown root is allowed.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SSLGetAllowsAnyRoot"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SSLGetAllowsAnyRoot",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SSLGetAllowsAnyRoot",
+      "type": "topic",
+      "url": "/documentation/security/sslgetallowsanyroot"
+    },
+    "doc://com.apple.security/documentation/Security/SSLGetAllowsExpiredCerts": {
+      "abstract": [
+        {
+          "text": "Retrieves the value specifying whether expired certificates are allowed.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SSLGetAllowsExpiredCerts"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SSLGetAllowsExpiredCerts",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SSLGetAllowsExpiredCerts",
+      "type": "topic",
+      "url": "/documentation/security/sslgetallowsexpiredcerts"
+    },
+    "doc://com.apple.security/documentation/Security/SSLGetAllowsExpiredRoots": {
+      "abstract": [
+        {
+          "text": "Retrieves the value indicating whether expired roots are allowed.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SSLGetAllowsExpiredRoots"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SSLGetAllowsExpiredRoots",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SSLGetAllowsExpiredRoots",
+      "type": "topic",
+      "url": "/documentation/security/sslgetallowsexpiredroots"
+    },
+    "doc://com.apple.security/documentation/Security/SSLGetBufferedReadSize(_:_:)": {
+      "abstract": [
+        {
+          "text": "Determines how much data is available to be read.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SSLGetBufferedReadSize"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SSLContextRef",
+          "text": "SSLContext"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SSLGetBufferedReadSize(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SSLGetBufferedReadSize"
+        }
+      ],
+      "role": "symbol",
+      "title": "SSLGetBufferedReadSize(_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/sslgetbufferedreadsize(_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SSLGetClientCertificateState(_:_:)": {
+      "abstract": [
+        {
+          "text": "Retrieves the exchange status of the client certificate.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SSLGetClientCertificateState"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SSLContextRef",
+          "text": "SSLContext"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@SSLClientCertificateState",
+          "text": "SSLClientCertificateState"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SSLGetClientCertificateState(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SSLGetClientCertificateState"
+        }
+      ],
+      "role": "symbol",
+      "title": "SSLGetClientCertificateState(_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/sslgetclientcertificatestate(_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SSLGetConnection(_:_:)": {
+      "abstract": [
+        {
+          "text": "Retrieves an I/O connection—such as a socket or endpoint—for a specific session.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SSLGetConnection"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SSLContextRef",
+          "text": "SSLContext"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SSLConnectionRef",
+          "text": "SSLConnectionRef"
+        },
+        {
+          "kind": "text",
+          "text": "?>) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SSLGetConnection(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SSLGetConnection"
+        }
+      ],
+      "role": "symbol",
+      "title": "SSLGetConnection(_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/sslgetconnection(_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SSLGetDatagramWriteSize(_:_:)": {
+      "abstract": [
+        {
+          "text": "Provides the largest packet that the OS guarantees it can send without fragmentation.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SSLGetDatagramWriteSize"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SSLContextRef",
+          "text": "SSLContext"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SSLGetDatagramWriteSize(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SSLGetDatagramWriteSize"
+        }
+      ],
+      "role": "symbol",
+      "title": "SSLGetDatagramWriteSize(_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/sslgetdatagramwritesize(_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SSLGetDiffieHellmanParams(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Retrieves the Diffie-Hellman parameters for a given context.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SSLGetDiffieHellmanParams"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SSLContextRef",
+          "text": "SSLContext"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SV",
+          "text": "UnsafeRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": "?>, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SSLGetDiffieHellmanParams(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SSLGetDiffieHellmanParams"
+        }
+      ],
+      "role": "symbol",
+      "title": "SSLGetDiffieHellmanParams(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/sslgetdiffiehellmanparams(_:_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SSLGetEnableCertVerify": {
+      "abstract": [
+        {
+          "text": "Determines whether peer certificate chain validation is currently enabled.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SSLGetEnableCertVerify"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SSLGetEnableCertVerify",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SSLGetEnableCertVerify",
+      "type": "topic",
+      "url": "/documentation/security/sslgetenablecertverify"
+    },
+    "doc://com.apple.security/documentation/Security/SSLGetEnabledCiphers(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Determines which SSL cipher suites are currently enabled.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SSLGetEnabledCiphers"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SSLContextRef",
+          "text": "SSLContext"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SSLCipherSuite",
+          "text": "SSLCipherSuite"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SSLGetEnabledCiphers(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SSLGetEnabledCiphers"
+        }
+      ],
+      "role": "symbol",
+      "title": "SSLGetEnabledCiphers(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/sslgetenabledciphers(_:_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SSLGetMaxDatagramRecordSize(_:_:)": {
+      "abstract": [
+        {
+          "text": "Obtains the maximum datagram record size allowed by the application for a given context.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SSLGetMaxDatagramRecordSize"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SSLContextRef",
+          "text": "SSLContext"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SSLGetMaxDatagramRecordSize(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SSLGetMaxDatagramRecordSize"
+        }
+      ],
+      "role": "symbol",
+      "title": "SSLGetMaxDatagramRecordSize(_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/sslgetmaxdatagramrecordsize(_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SSLGetNegotiatedCipher(_:_:)": {
+      "abstract": [
+        {
+          "text": "Retrieves the cipher suite negotiated for this session.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SSLGetNegotiatedCipher"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SSLContextRef",
+          "text": "SSLContext"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SSLCipherSuite",
+          "text": "SSLCipherSuite"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SSLGetNegotiatedCipher(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SSLGetNegotiatedCipher"
+        }
+      ],
+      "role": "symbol",
+      "title": "SSLGetNegotiatedCipher(_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/sslgetnegotiatedcipher(_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SSLGetNegotiatedProtocolVersion(_:_:)": {
+      "abstract": [
+        {
+          "text": "Obtains the negotiated protocol version of the active session.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SSLGetNegotiatedProtocolVersion"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SSLContextRef",
+          "text": "SSLContext"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@SSLProtocol",
+          "text": "SSLProtocol"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SSLGetNegotiatedProtocolVersion(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SSLGetNegotiatedProtocolVersion"
+        }
+      ],
+      "role": "symbol",
+      "title": "SSLGetNegotiatedProtocolVersion(_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/sslgetnegotiatedprotocolversion(_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SSLGetNumberEnabledCiphers(_:_:)": {
+      "abstract": [
+        {
+          "text": "Determines the number of cipher suites currently enabled.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SSLGetNumberEnabledCiphers"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SSLContextRef",
+          "text": "SSLContext"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SSLGetNumberEnabledCiphers(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SSLGetNumberEnabledCiphers"
+        }
+      ],
+      "role": "symbol",
+      "title": "SSLGetNumberEnabledCiphers(_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/sslgetnumberenabledciphers(_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SSLGetNumberSupportedCiphers(_:_:)": {
+      "abstract": [
+        {
+          "text": "Determines the number of cipher suites supported.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SSLGetNumberSupportedCiphers"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SSLContextRef",
+          "text": "SSLContext"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SSLGetNumberSupportedCiphers(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SSLGetNumberSupportedCiphers"
+        }
+      ],
+      "role": "symbol",
+      "title": "SSLGetNumberSupportedCiphers(_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/sslgetnumbersupportedciphers(_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SSLGetPeerDomainName(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Retrieves the peer domain name specified previously.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SSLGetPeerDomainName"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SSLContextRef",
+          "text": "SSLContext"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5CChara",
+          "text": "CChar"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SSLGetPeerDomainName(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SSLGetPeerDomainName"
+        }
+      ],
+      "role": "symbol",
+      "title": "SSLGetPeerDomainName(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/sslgetpeerdomainname(_:_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SSLGetPeerDomainNameLength(_:_:)": {
+      "abstract": [
+        {
+          "text": "Determines the length of a previously set peer domain name.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SSLGetPeerDomainNameLength"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SSLContextRef",
+          "text": "SSLContext"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SSLGetPeerDomainNameLength(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SSLGetPeerDomainNameLength"
+        }
+      ],
+      "role": "symbol",
+      "title": "SSLGetPeerDomainNameLength(_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/sslgetpeerdomainnamelength(_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SSLGetPeerID(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Retrieves the current peer ID data.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SSLGetPeerID"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SSLContextRef",
+          "text": "SSLContext"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SV",
+          "text": "UnsafeRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": "?>, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SSLGetPeerID(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SSLGetPeerID"
+        }
+      ],
+      "role": "symbol",
+      "title": "SSLGetPeerID(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/sslgetpeerid(_:_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SSLGetProtocolVersion": {
+      "abstract": [
+        {
+          "text": "Gets the SSL protocol version.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SSLGetProtocolVersion"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SSLGetProtocolVersion",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SSLGetProtocolVersion",
+      "type": "topic",
+      "url": "/documentation/security/sslgetprotocolversion"
+    },
+    "doc://com.apple.security/documentation/Security/SSLGetProtocolVersionEnabled": {
+      "abstract": [
+        {
+          "text": "Retrieves the enabled status of a given protocol.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SSLGetProtocolVersionEnabled"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SSLGetProtocolVersionEnabled",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SSLGetProtocolVersionEnabled",
+      "type": "topic",
+      "url": "/documentation/security/sslgetprotocolversionenabled"
+    },
+    "doc://com.apple.security/documentation/Security/SSLGetProtocolVersionMax(_:_:)": {
+      "abstract": [
+        {
+          "text": "Gets the maximum protocol version allowed by the application for a given SSL context.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SSLGetProtocolVersionMax"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SSLContextRef",
+          "text": "SSLContext"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@SSLProtocol",
+          "text": "SSLProtocol"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SSLGetProtocolVersionMax(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SSLGetProtocolVersionMax"
+        }
+      ],
+      "role": "symbol",
+      "title": "SSLGetProtocolVersionMax(_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/sslgetprotocolversionmax(_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SSLGetProtocolVersionMin(_:_:)": {
+      "abstract": [
+        {
+          "text": "Gets the minimum protocol version allowed by the application for a given SSL context.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SSLGetProtocolVersionMin"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SSLContextRef",
+          "text": "SSLContext"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@SSLProtocol",
+          "text": "SSLProtocol"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SSLGetProtocolVersionMin(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SSLGetProtocolVersionMin"
+        }
+      ],
+      "role": "symbol",
+      "title": "SSLGetProtocolVersionMin(_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/sslgetprotocolversionmin(_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SSLGetRsaBlinding": {
+      "abstract": [
+        {
+          "text": "Obtains a value indicating whether RSA blinding is enabled.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SSLGetRsaBlinding"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SSLGetRsaBlinding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SSLGetRsaBlinding",
+      "type": "topic",
+      "url": "/documentation/security/sslgetrsablinding"
+    },
+    "doc://com.apple.security/documentation/Security/SSLGetSessionOption(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Indicates the current setting of Secure Sockets Layer (SSL) session options.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SSLGetSessionOption"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SSLContextRef",
+          "text": "SSLContext"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@SSLSessionOption",
+          "text": "SSLSessionOption"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6Darwin0A7BooleanV",
+          "text": "DarwinBoolean"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SSLGetSessionOption(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SSLGetSessionOption"
+        }
+      ],
+      "role": "symbol",
+      "title": "SSLGetSessionOption(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/sslgetsessionoption(_:_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SSLGetSessionState(_:_:)": {
+      "abstract": [
+        {
+          "text": "Retrieves the state of an SSL session.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SSLGetSessionState"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SSLContextRef",
+          "text": "SSLContext"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@SSLSessionState",
+          "text": "SSLSessionState"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SSLGetSessionState(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SSLGetSessionState"
+        }
+      ],
+      "role": "symbol",
+      "title": "SSLGetSessionState(_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/sslgetsessionstate(_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SSLGetSupportedCiphers(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Determines the values of the supported cipher suites.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SSLGetSupportedCiphers"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SSLContextRef",
+          "text": "SSLContext"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SSLCipherSuite",
+          "text": "SSLCipherSuite"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SSLGetSupportedCiphers(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SSLGetSupportedCiphers"
+        }
+      ],
+      "role": "symbol",
+      "title": "SSLGetSupportedCiphers(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/sslgetsupportedciphers(_:_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SSLHandshake(_:)": {
+      "abstract": [
+        {
+          "text": "Performs the SSL handshake.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SSLHandshake"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SSLContextRef",
+          "text": "SSLContext"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SSLHandshake(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SSLHandshake"
+        }
+      ],
+      "role": "symbol",
+      "title": "SSLHandshake(_:)",
+      "type": "topic",
+      "url": "/documentation/security/sslhandshake(_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SSLNewContext": {
+      "abstract": [
+        {
+          "text": "Creates a new Secure Sockets Layer (SSL) session context.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SSLNewContext"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SSLNewContext",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SSLNewContext",
+      "type": "topic",
+      "url": "/documentation/security/sslnewcontext"
+    },
+    "doc://com.apple.security/documentation/Security/SSLProtocol": {
+      "abstract": [
+        {
+          "text": "An enumeration of valid SSL protocol versions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SSLProtocol"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SSLProtocol",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SSLProtocol"
+        }
+      ],
+      "role": "symbol",
+      "title": "SSLProtocol",
+      "type": "topic",
+      "url": "/documentation/security/sslprotocol"
+    },
+    "doc://com.apple.security/documentation/Security/SSLProtocolSide": {
+      "abstract": [
+        {
+          "text": "The flags that indicate whether a context is for the server or client side of a connection.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SSLProtocolSide"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SSLProtocolSide",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SSLProtocolSide"
+        }
+      ],
+      "role": "symbol",
+      "title": "SSLProtocolSide",
+      "type": "topic",
+      "url": "/documentation/security/sslprotocolside"
+    },
+    "doc://com.apple.security/documentation/Security/SSLReHandshake(_:)": {
+      "abstract": [
+        {
+          "text": "Requests renegotiation of the SSL handshake. Server only.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SSLReHandshake"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SSLContextRef",
+          "text": "SSLContext"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SSLReHandshake(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SSLReHandshake"
+        }
+      ],
+      "role": "symbol",
+      "title": "SSLReHandshake(_:)",
+      "type": "topic",
+      "url": "/documentation/security/sslrehandshake(_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SSLRead(_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Performs a normal application-level read operation.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SSLRead"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SSLContextRef",
+          "text": "SSLContext"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sv",
+          "text": "UnsafeMutableRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SSLRead(_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SSLRead"
+        }
+      ],
+      "role": "symbol",
+      "title": "SSLRead(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/sslread(_:_:_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SSLReadFunc": {
+      "abstract": [
+        {
+          "text": "A pointer to a customized read function that secure transport calls to read data from the connection.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SSLReadFunc"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SSLReadFunc",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SSLReadFunc"
+        }
+      ],
+      "role": "symbol",
+      "title": "SSLReadFunc",
+      "type": "topic",
+      "url": "/documentation/security/sslreadfunc"
+    },
+    "doc://com.apple.security/documentation/Security/SSLSessionOption": {
+      "abstract": [
+        {
+          "text": "The options that can be set for an SSL session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SSLSessionOption"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SSLSessionOption",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SSLSessionOption"
+        }
+      ],
+      "role": "symbol",
+      "title": "SSLSessionOption",
+      "type": "topic",
+      "url": "/documentation/security/sslsessionoption"
+    },
+    "doc://com.apple.security/documentation/Security/SSLSessionState": {
+      "abstract": [
+        {
+          "text": "The flags that represent the state of an SSL session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SSLSessionState"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SSLSessionState",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SSLSessionState"
+        }
+      ],
+      "role": "symbol",
+      "title": "SSLSessionState",
+      "type": "topic",
+      "url": "/documentation/security/sslsessionstate"
+    },
+    "doc://com.apple.security/documentation/Security/SSLSetALPNProtocols(_:_:)": {
+      "abstract": [
+        {
+          "text": "Sets the list of supported applicaiton layer protocols.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SSLSetALPNProtocols"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SSLContextRef",
+          "text": "SSLContext"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFArrayRef",
+          "text": "CFArray"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SSLSetALPNProtocols(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SSLSetALPNProtocols"
+        }
+      ],
+      "role": "symbol",
+      "title": "SSLSetALPNProtocols(_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/sslsetalpnprotocols(_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SSLSetAllowsAnyRoot": {
+      "abstract": [
+        {
+          "text": "Specifies whether root certificates from unrecognized certification authorities are allowed.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SSLSetAllowsAnyRoot"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SSLSetAllowsAnyRoot",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SSLSetAllowsAnyRoot",
+      "type": "topic",
+      "url": "/documentation/security/sslsetallowsanyroot"
+    },
+    "doc://com.apple.security/documentation/Security/SSLSetAllowsExpiredCerts": {
+      "abstract": [
+        {
+          "text": "Specifies whether certificate expiration times are ignored.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SSLSetAllowsExpiredCerts"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SSLSetAllowsExpiredCerts",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SSLSetAllowsExpiredCerts",
+      "type": "topic",
+      "url": "/documentation/security/sslsetallowsexpiredcerts"
+    },
+    "doc://com.apple.security/documentation/Security/SSLSetAllowsExpiredRoots": {
+      "abstract": [
+        {
+          "text": "Specifies whether expired root certificates are allowed.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SSLSetAllowsExpiredRoots"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SSLSetAllowsExpiredRoots",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SSLSetAllowsExpiredRoots",
+      "type": "topic",
+      "url": "/documentation/security/sslsetallowsexpiredroots"
+    },
+    "doc://com.apple.security/documentation/Security/SSLSetCertificate(_:_:)": {
+      "abstract": [
+        {
+          "text": "Specifies this connection’s certificate or certificates.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SSLSetCertificate"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SSLContextRef",
+          "text": "SSLContext"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFArrayRef",
+          "text": "CFArray"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SSLSetCertificate(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SSLSetCertificate"
+        }
+      ],
+      "role": "symbol",
+      "title": "SSLSetCertificate(_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/sslsetcertificate(_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SSLSetCertificateAuthorities(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Adds one or more certificates to a server’s list of certification authorities (CAs) acceptable for client authentication.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SSLSetCertificateAuthorities"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SSLContextRef",
+          "text": "SSLContext"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFTypeRef",
+          "text": "CFTypeRef"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SSLSetCertificateAuthorities(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SSLSetCertificateAuthorities"
+        }
+      ],
+      "role": "symbol",
+      "title": "SSLSetCertificateAuthorities(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/sslsetcertificateauthorities(_:_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SSLSetClientSideAuthenticate(_:_:)": {
+      "abstract": [
+        {
+          "text": "Specifies the requirements for client-side authentication.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SSLSetClientSideAuthenticate"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SSLContextRef",
+          "text": "SSLContext"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@SSLAuthenticate",
+          "text": "SSLAuthenticate"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SSLSetClientSideAuthenticate(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SSLSetClientSideAuthenticate"
+        }
+      ],
+      "role": "symbol",
+      "title": "SSLSetClientSideAuthenticate(_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/sslsetclientsideauthenticate(_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SSLSetConnection(_:_:)": {
+      "abstract": [
+        {
+          "text": "Specifies an I/O connection for a specific session.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SSLSetConnection"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SSLContextRef",
+          "text": "SSLContext"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SSLConnectionRef",
+          "text": "SSLConnectionRef"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SSLSetConnection(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SSLSetConnection"
+        }
+      ],
+      "role": "symbol",
+      "title": "SSLSetConnection(_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/sslsetconnection(_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SSLSetDatagramHelloCookie(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Sets the cookie value used in the Datagram Transport Layer Security (DTLS) hello message.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SSLSetDatagramHelloCookie"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SSLContextRef",
+          "text": "SSLContext"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SV",
+          "text": "UnsafeRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SSLSetDatagramHelloCookie(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SSLSetDatagramHelloCookie"
+        }
+      ],
+      "role": "symbol",
+      "title": "SSLSetDatagramHelloCookie(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/sslsetdatagramhellocookie(_:_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SSLSetDiffieHellmanParams(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Specifies Diffie-Hellman parameters for a given context.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SSLSetDiffieHellmanParams"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SSLContextRef",
+          "text": "SSLContext"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SV",
+          "text": "UnsafeRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SSLSetDiffieHellmanParams(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SSLSetDiffieHellmanParams"
+        }
+      ],
+      "role": "symbol",
+      "title": "SSLSetDiffieHellmanParams(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/sslsetdiffiehellmanparams(_:_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SSLSetEnableCertVerify": {
+      "abstract": [
+        {
+          "text": "Enables or disables peer certificate chain validation.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SSLSetEnableCertVerify"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SSLSetEnableCertVerify",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SSLSetEnableCertVerify",
+      "type": "topic",
+      "url": "/documentation/security/sslsetenablecertverify"
+    },
+    "doc://com.apple.security/documentation/Security/SSLSetEnabledCiphers(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Specifies a restricted set of SSL cipher suites to be enabled by the current SSL session context.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SSLSetEnabledCiphers"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SSLContextRef",
+          "text": "SSLContext"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SSLCipherSuite",
+          "text": "SSLCipherSuite"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SSLSetEnabledCiphers(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SSLSetEnabledCiphers"
+        }
+      ],
+      "role": "symbol",
+      "title": "SSLSetEnabledCiphers(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/sslsetenabledciphers(_:_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SSLSetEncryptionCertificate(_:_:)": {
+      "abstract": [
+        {
+          "text": "Specifies the encryption certificates used for this connection.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SSLSetEncryptionCertificate"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SSLContextRef",
+          "text": "SSLContext"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFArrayRef",
+          "text": "CFArray"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SSLSetEncryptionCertificate(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SSLSetEncryptionCertificate"
+        }
+      ],
+      "role": "symbol",
+      "title": "SSLSetEncryptionCertificate(_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/sslsetencryptioncertificate(_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SSLSetError(_:_:)": {
+      "abstract": [
+        {
+          "text": "Sets the status of a session context.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SSLSetError"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SSLContextRef",
+          "text": "SSLContext"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SSLSetError(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SSLSetError"
+        }
+      ],
+      "role": "symbol",
+      "title": "SSLSetError(_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/sslseterror(_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SSLSetIOFuncs(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Specifies callback functions that perform the network I/O operations.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SSLSetIOFuncs"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SSLContextRef",
+          "text": "SSLContext"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SSLReadFunc",
+          "text": "SSLReadFunc"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SSLWriteFunc",
+          "text": "SSLWriteFunc"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SSLSetIOFuncs(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SSLSetIOFuncs"
+        }
+      ],
+      "role": "symbol",
+      "title": "SSLSetIOFuncs(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/sslsetiofuncs(_:_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SSLSetMaxDatagramRecordSize(_:_:)": {
+      "abstract": [
+        {
+          "text": "Sets the maximum datagram record size allowed by the application for a given context.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SSLSetMaxDatagramRecordSize"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SSLContextRef",
+          "text": "SSLContext"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SSLSetMaxDatagramRecordSize(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SSLSetMaxDatagramRecordSize"
+        }
+      ],
+      "role": "symbol",
+      "title": "SSLSetMaxDatagramRecordSize(_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/sslsetmaxdatagramrecordsize(_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SSLSetOCSPResponse(_:_:)": {
+      "abstract": [
+        {
+          "text": "Sets the OCSP response for the given SSL session.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SSLSetOCSPResponse"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SSLContextRef",
+          "text": "SSLContext"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFDataRef",
+          "text": "CFData"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SSLSetOCSPResponse(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SSLSetOCSPResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "SSLSetOCSPResponse(_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/sslsetocspresponse(_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SSLSetPeerDomainName(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Specifies the fully qualified domain name of the peer.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SSLSetPeerDomainName"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SSLContextRef",
+          "text": "SSLContext"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5CChara",
+          "text": "CChar"
+        },
+        {
+          "kind": "text",
+          "text": ">?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SSLSetPeerDomainName(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SSLSetPeerDomainName"
+        }
+      ],
+      "role": "symbol",
+      "title": "SSLSetPeerDomainName(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/sslsetpeerdomainname(_:_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SSLSetPeerID(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Specifies data that is sufficient to uniquely identify the peer of the current session.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SSLSetPeerID"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SSLContextRef",
+          "text": "SSLContext"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SV",
+          "text": "UnsafeRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SSLSetPeerID(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SSLSetPeerID"
+        }
+      ],
+      "role": "symbol",
+      "title": "SSLSetPeerID(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/sslsetpeerid(_:_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SSLSetProtocolVersion": {
+      "abstract": [
+        {
+          "text": "Sets the SSL protocol version.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SSLSetProtocolVersion"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SSLSetProtocolVersion",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SSLSetProtocolVersion",
+      "type": "topic",
+      "url": "/documentation/security/sslsetprotocolversion"
+    },
+    "doc://com.apple.security/documentation/Security/SSLSetProtocolVersionEnabled": {
+      "abstract": [
+        {
+          "text": "Sets the allowed Secure Sockets Layer (SSL) protocol versions.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SSLSetProtocolVersionEnabled"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SSLSetProtocolVersionEnabled",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SSLSetProtocolVersionEnabled",
+      "type": "topic",
+      "url": "/documentation/security/sslsetprotocolversionenabled"
+    },
+    "doc://com.apple.security/documentation/Security/SSLSetProtocolVersionMax(_:_:)": {
+      "abstract": [
+        {
+          "text": "Sets the maximum protocol version allowed by the application for a given SSL context.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SSLSetProtocolVersionMax"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SSLContextRef",
+          "text": "SSLContext"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@SSLProtocol",
+          "text": "SSLProtocol"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SSLSetProtocolVersionMax(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SSLSetProtocolVersionMax"
+        }
+      ],
+      "role": "symbol",
+      "title": "SSLSetProtocolVersionMax(_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/sslsetprotocolversionmax(_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SSLSetProtocolVersionMin(_:_:)": {
+      "abstract": [
+        {
+          "text": "Sets the minimum protocol version allowed by the application for a given SSL context.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SSLSetProtocolVersionMin"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SSLContextRef",
+          "text": "SSLContext"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@SSLProtocol",
+          "text": "SSLProtocol"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SSLSetProtocolVersionMin(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SSLSetProtocolVersionMin"
+        }
+      ],
+      "role": "symbol",
+      "title": "SSLSetProtocolVersionMin(_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/sslsetprotocolversionmin(_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SSLSetRsaBlinding": {
+      "abstract": [
+        {
+          "text": "Enables or disables RSA blinding.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SSLSetRsaBlinding"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SSLSetRsaBlinding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SSLSetRsaBlinding",
+      "type": "topic",
+      "url": "/documentation/security/sslsetrsablinding"
+    },
+    "doc://com.apple.security/documentation/Security/SSLSetSessionConfig(_:_:)": {
+      "abstract": [
+        {
+          "text": "Sets a predefined configuration for the Secure Sockets Layer (SSL) session.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SSLSetSessionConfig"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SSLContextRef",
+          "text": "SSLContext"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SSLSetSessionConfig(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SSLSetSessionConfig"
+        }
+      ],
+      "role": "symbol",
+      "title": "SSLSetSessionConfig(_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/sslsetsessionconfig(_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SSLSetSessionOption(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Specifies options for a specific session.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SSLSetSessionOption"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SSLContextRef",
+          "text": "SSLContext"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@SSLSessionOption",
+          "text": "SSLSessionOption"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SSLSetSessionOption(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SSLSetSessionOption"
+        }
+      ],
+      "role": "symbol",
+      "title": "SSLSetSessionOption(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/sslsetsessionoption(_:_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SSLSetSessionTicketsEnabled(_:_:)": {
+      "abstract": [
+        {
+          "text": "Enables or disables session ticket resumption.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SSLSetSessionTicketsEnabled"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SSLContextRef",
+          "text": "SSLContext"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SSLSetSessionTicketsEnabled(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SSLSetSessionTicketsEnabled"
+        }
+      ],
+      "role": "symbol",
+      "title": "SSLSetSessionTicketsEnabled(_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/sslsetsessionticketsenabled(_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SSLSetTrustedRoots": {
+      "abstract": [
+        {
+          "text": "Augments or replaces the default set of trusted root certificates for this session.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SSLSetTrustedRoots"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SSLSetTrustedRoots",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SSLSetTrustedRoots",
+      "type": "topic",
+      "url": "/documentation/security/sslsettrustedroots"
+    },
+    "doc://com.apple.security/documentation/Security/SSLWrite(_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Performs a typical application-level write operation.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SSLWrite"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SSLContextRef",
+          "text": "SSLContext"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SV",
+          "text": "UnsafeRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SSLWrite(_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SSLWrite"
+        }
+      ],
+      "role": "symbol",
+      "title": "SSLWrite(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/sslwrite(_:_:_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SSLWriteFunc": {
+      "abstract": [
+        {
+          "text": "A pointer to a customized write function that secure transport calls to write data to the connection.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SSLWriteFunc"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SSLWriteFunc",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SSLWriteFunc"
+        }
+      ],
+      "role": "symbol",
+      "title": "SSLWriteFunc",
+      "type": "topic",
+      "url": "/documentation/security/sslwritefunc"
+    },
+    "doc://com.apple.security/documentation/Security/secure-transport-result-codes": {
+      "abstract": [
+        {
+          "text": "Recognize result codes specific to the secure transport API.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/secure-transport-result-codes",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Secure Transport Result Codes",
+      "type": "topic",
+      "url": "/documentation/security/secure-transport-result-codes"
+    },
+    "doc://com.apple.security/documentation/Security/ssl-cipher-suite-values": {
+      "abstract": [
+        {
+          "text": "Recognize the set of valid SSL cipher suite values.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/ssl-cipher-suite-values",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "SSL Cipher Suite Values",
+      "type": "topic",
+      "url": "/documentation/security/ssl-cipher-suite-values"
+    },
+    "doc://com.apple.security/documentation/Security/sslconfig": {
+      "abstract": [
+        {
+          "text": "Use these constants to configure Transport Layer Security (TLS) sessions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/sslconfig",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "SSLConfig",
+      "type": "topic",
+      "url": "/documentation/security/sslconfig"
+    },
+    "doc://com.apple.security/documentation/Security/tls_ciphersuite_group_t": {
+      "abstract": [
+        {
+          "text": "Groups that collect ciphersuites of comparable security properties.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "tls_ciphersuite_group_t"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/tls_ciphersuite_group_t",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "tls_ciphersuite_group_t"
+        }
+      ],
+      "role": "symbol",
+      "title": "tls_ciphersuite_group_t",
+      "type": "topic",
+      "url": "/documentation/security/tls_ciphersuite_group_t"
+    },
+    "doc://com.apple.security/documentation/Security/tls_ciphersuite_t": {
+      "abstract": [
+        {
+          "text": "The collection of valid ciphersuites.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "tls_ciphersuite_t"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/tls_ciphersuite_t",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "tls_ciphersuite_t"
+        }
+      ],
+      "role": "symbol",
+      "title": "tls_ciphersuite_t",
+      "type": "topic",
+      "url": "/documentation/security/tls_ciphersuite_t"
+    },
+    "doc://com.apple.security/documentation/Security/tls_protocol_version_t": {
+      "abstract": [
+        {
+          "text": "The collection of supported TLS and DTLS versions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "tls_protocol_version_t"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/tls_protocol_version_t",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "tls_protocol_version_t"
+        }
+      ],
+      "role": "symbol",
+      "title": "tls_protocol_version_t",
+      "type": "topic",
+      "url": "/documentation/security/tls_protocol_version_t"
+    },
+    "doc://com.apple.security/documentation/Security/using-the-secure-socket-layer-for-network-communication": {
+      "abstract": [
+        {
+          "text": "Establish Secure Sockets Layer (SSL) sessions to facilitate secure communication between client and server.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/using-the-secure-socket-layer-for-network-communication",
+      "kind": "article",
+      "role": "article",
+      "title": "Using the Secure Socket Layer for Network Communication",
+      "type": "topic",
+      "url": "/documentation/security/using-the-secure-socket-layer-for-network-communication"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "First-Steps",
+      "identifiers": [
+        "doc://com.apple.security/documentation/Security/using-the-secure-socket-layer-for-network-communication"
+      ],
+      "title": "First Steps"
+    },
+    {
+      "anchor": "Session-Context",
+      "identifiers": [
+        "doc://com.apple.security/documentation/Security/SSLCreateContext(_:_:_:)",
+        "doc://com.apple.security/documentation/Security/SSLProtocolSide",
+        "doc://com.apple.security/documentation/Security/SSLConnectionType",
+        "doc://com.apple.security/documentation/Security/SSLContext",
+        "doc://com.apple.security/documentation/Security/SSLContextGetTypeID()"
+      ],
+      "title": "Session Context"
+    },
+    {
+      "anchor": "Context-Options",
+      "identifiers": [
+        "doc://com.apple.security/documentation/Security/SSLSetSessionOption(_:_:_:)",
+        "doc://com.apple.security/documentation/Security/SSLGetSessionOption(_:_:_:)",
+        "doc://com.apple.security/documentation/Security/SSLSessionOption"
+      ],
+      "title": "Context Options"
+    },
+    {
+      "anchor": "Context-Callbacks",
+      "identifiers": [
+        "doc://com.apple.security/documentation/Security/SSLSetIOFuncs(_:_:_:)",
+        "doc://com.apple.security/documentation/Security/SSLReadFunc",
+        "doc://com.apple.security/documentation/Security/SSLWriteFunc"
+      ],
+      "title": "Context Callbacks"
+    },
+    {
+      "anchor": "Session-Configuration",
+      "identifiers": [
+        "doc://com.apple.security/documentation/Security/SSLSetSessionConfig(_:_:)",
+        "doc://com.apple.security/documentation/Security/SSLSetClientSideAuthenticate(_:_:)",
+        "doc://com.apple.security/documentation/Security/sslconfig",
+        "doc://com.apple.security/documentation/Security/SSLAuthenticate"
+      ],
+      "title": "Session Configuration"
+    },
+    {
+      "anchor": "IO-Connections",
+      "identifiers": [
+        "doc://com.apple.security/documentation/Security/SSLSetConnection(_:_:)",
+        "doc://com.apple.security/documentation/Security/SSLGetConnection(_:_:)",
+        "doc://com.apple.security/documentation/Security/SSLConnectionRef"
+      ],
+      "title": "I/O Connections"
+    },
+    {
+      "anchor": "Session-State",
+      "identifiers": [
+        "doc://com.apple.security/documentation/Security/SSLHandshake(_:)",
+        "doc://com.apple.security/documentation/Security/SSLReHandshake(_:)",
+        "doc://com.apple.security/documentation/Security/SSLClose(_:)",
+        "doc://com.apple.security/documentation/Security/SSLSetPeerID(_:_:_:)",
+        "doc://com.apple.security/documentation/Security/SSLGetPeerID(_:_:_:)",
+        "doc://com.apple.security/documentation/Security/SSLGetSessionState(_:_:)",
+        "doc://com.apple.security/documentation/Security/SSLSessionState",
+        "doc://com.apple.security/documentation/Security/SSLSetError(_:_:)"
+      ],
+      "title": "Session State"
+    },
+    {
+      "anchor": "Read-Operations",
+      "identifiers": [
+        "doc://com.apple.security/documentation/Security/SSLRead(_:_:_:_:)",
+        "doc://com.apple.security/documentation/Security/SSLGetBufferedReadSize(_:_:)"
+      ],
+      "title": "Read Operations"
+    },
+    {
+      "anchor": "Write-Operations",
+      "identifiers": [
+        "doc://com.apple.security/documentation/Security/SSLWrite(_:_:_:_:)",
+        "doc://com.apple.security/documentation/Security/SSLGetDatagramWriteSize(_:_:)",
+        "doc://com.apple.security/documentation/Security/SSLGetMaxDatagramRecordSize(_:_:)",
+        "doc://com.apple.security/documentation/Security/SSLSetMaxDatagramRecordSize(_:_:)",
+        "doc://com.apple.security/documentation/Security/SSLSetDatagramHelloCookie(_:_:_:)"
+      ],
+      "title": "Write Operations"
+    },
+    {
+      "anchor": "The-Peer-Domain-Name",
+      "identifiers": [
+        "doc://com.apple.security/documentation/Security/SSLSetPeerDomainName(_:_:_:)",
+        "doc://com.apple.security/documentation/Security/SSLGetPeerDomainNameLength(_:_:)",
+        "doc://com.apple.security/documentation/Security/SSLGetPeerDomainName(_:_:_:)",
+        "doc://com.apple.security/documentation/Security/SSLCopyRequestedPeerName(_:_:_:)",
+        "doc://com.apple.security/documentation/Security/SSLCopyRequestedPeerNameLength(_:_:)"
+      ],
+      "title": "The Peer Domain Name"
+    },
+    {
+      "anchor": "Versions",
+      "identifiers": [
+        "doc://com.apple.security/documentation/Security/SSLSetProtocolVersionMax(_:_:)",
+        "doc://com.apple.security/documentation/Security/SSLSetProtocolVersionMin(_:_:)",
+        "doc://com.apple.security/documentation/Security/SSLGetProtocolVersionMax(_:_:)",
+        "doc://com.apple.security/documentation/Security/SSLGetProtocolVersionMin(_:_:)",
+        "doc://com.apple.security/documentation/Security/SSLGetNegotiatedProtocolVersion(_:_:)",
+        "doc://com.apple.security/documentation/Security/tls_protocol_version_t",
+        "doc://com.apple.security/documentation/Security/SSLProtocol"
+      ],
+      "title": "Versions"
+    },
+    {
+      "anchor": "Application-Layer-Protocols",
+      "identifiers": [
+        "doc://com.apple.security/documentation/Security/SSLCopyALPNProtocols(_:_:)",
+        "doc://com.apple.security/documentation/Security/SSLSetALPNProtocols(_:_:)"
+      ],
+      "title": "Application Layer Protocols"
+    },
+    {
+      "anchor": "Ciphers",
+      "identifiers": [
+        "doc://com.apple.security/documentation/Security/SSLGetNumberSupportedCiphers(_:_:)",
+        "doc://com.apple.security/documentation/Security/SSLGetSupportedCiphers(_:_:_:)",
+        "doc://com.apple.security/documentation/Security/SSLSetEnabledCiphers(_:_:_:)",
+        "doc://com.apple.security/documentation/Security/SSLGetNumberEnabledCiphers(_:_:)",
+        "doc://com.apple.security/documentation/Security/SSLGetEnabledCiphers(_:_:_:)",
+        "doc://com.apple.security/documentation/Security/SSLGetNegotiatedCipher(_:_:)",
+        "doc://com.apple.security/documentation/Security/SSLSetDiffieHellmanParams(_:_:_:)",
+        "doc://com.apple.security/documentation/Security/SSLGetDiffieHellmanParams(_:_:_:)",
+        "doc://com.apple.security/documentation/Security/tls_ciphersuite_group_t",
+        "doc://com.apple.security/documentation/Security/tls_ciphersuite_t",
+        "doc://com.apple.security/documentation/Security/SSLCipherSuite",
+        "doc://com.apple.security/documentation/Security/SSLCiphersuiteGroup",
+        "doc://com.apple.security/documentation/Security/ssl-cipher-suite-values"
+      ],
+      "title": "Ciphers"
+    },
+    {
+      "anchor": "Root-Certificates",
+      "identifiers": [
+        "doc://com.apple.security/documentation/Security/SSLSetCertificateAuthorities(_:_:_:)",
+        "doc://com.apple.security/documentation/Security/SSLCopyCertificateAuthorities(_:_:)"
+      ],
+      "title": "Root Certificates"
+    },
+    {
+      "anchor": "Authentication",
+      "identifiers": [
+        "doc://com.apple.security/documentation/Security/SSLAddDistinguishedName(_:_:_:)",
+        "doc://com.apple.security/documentation/Security/SSLCopyDistinguishedNames(_:_:)",
+        "doc://com.apple.security/documentation/Security/SSLSetCertificate(_:_:)",
+        "doc://com.apple.security/documentation/Security/SSLGetClientCertificateState(_:_:)",
+        "doc://com.apple.security/documentation/Security/SSLCopyPeerTrust(_:_:)",
+        "doc://com.apple.security/documentation/Security/SSLClientCertificateState",
+        "doc://com.apple.security/documentation/Security/SSLSetOCSPResponse(_:_:)",
+        "doc://com.apple.security/documentation/Security/SSLSetSessionTicketsEnabled(_:_:)"
+      ],
+      "title": "Authentication"
+    },
+    {
+      "anchor": "Result-Codes",
+      "identifiers": [
+        "doc://com.apple.security/documentation/Security/secure-transport-result-codes"
+      ],
+      "title": "Result Codes"
+    },
+    {
+      "anchor": "Legacy-Operations",
+      "identifiers": [
+        "doc://com.apple.security/documentation/Security/SSLSetEncryptionCertificate(_:_:)"
+      ],
+      "title": "Legacy Operations"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "First-Steps",
+              "identifiers": [
+                "doc://com.apple.security/documentation/Security/using-the-secure-socket-layer-for-network-communication"
+              ],
+              "title": "First Steps"
+            },
+            {
+              "anchor": "Session-Context",
+              "identifiers": [
+                "doc://com.apple.security/documentation/Security/SSLCreateContext(_:_:_:)",
+                "doc://com.apple.security/documentation/Security/SSLProtocolSide",
+                "doc://com.apple.security/documentation/Security/SSLConnectionType",
+                "doc://com.apple.security/documentation/Security/SSLContext",
+                "doc://com.apple.security/documentation/Security/SSLContextGetTypeID()"
+              ],
+              "title": "Session Context"
+            },
+            {
+              "anchor": "Context-Options",
+              "identifiers": [
+                "doc://com.apple.security/documentation/Security/SSLSetSessionOption(_:_:_:)",
+                "doc://com.apple.security/documentation/Security/SSLGetSessionOption(_:_:_:)",
+                "doc://com.apple.security/documentation/Security/SSLSessionOption"
+              ],
+              "title": "Context Options"
+            },
+            {
+              "anchor": "Context-Callbacks",
+              "identifiers": [
+                "doc://com.apple.security/documentation/Security/SSLSetIOFuncs(_:_:_:)",
+                "doc://com.apple.security/documentation/Security/SSLReadFunc",
+                "doc://com.apple.security/documentation/Security/SSLWriteFunc"
+              ],
+              "title": "Context Callbacks"
+            },
+            {
+              "anchor": "Session-Configuration",
+              "identifiers": [
+                "doc://com.apple.security/documentation/Security/SSLSetSessionConfig(_:_:)",
+                "doc://com.apple.security/documentation/Security/SSLSetClientSideAuthenticate(_:_:)",
+                "doc://com.apple.security/documentation/Security/sslconfig",
+                "doc://com.apple.security/documentation/Security/SSLAuthenticate"
+              ],
+              "title": "Session Configuration"
+            },
+            {
+              "anchor": "IO-Connections",
+              "identifiers": [
+                "doc://com.apple.security/documentation/Security/SSLSetConnection(_:_:)",
+                "doc://com.apple.security/documentation/Security/SSLGetConnection(_:_:)",
+                "doc://com.apple.security/documentation/Security/SSLConnectionRef"
+              ],
+              "title": "I/O Connections"
+            },
+            {
+              "anchor": "Session-State",
+              "identifiers": [
+                "doc://com.apple.security/documentation/Security/SSLHandshake(_:)",
+                "doc://com.apple.security/documentation/Security/SSLReHandshake(_:)",
+                "doc://com.apple.security/documentation/Security/SSLClose(_:)",
+                "doc://com.apple.security/documentation/Security/SSLSetPeerID(_:_:_:)",
+                "doc://com.apple.security/documentation/Security/SSLGetPeerID(_:_:_:)",
+                "doc://com.apple.security/documentation/Security/SSLGetSessionState(_:_:)",
+                "doc://com.apple.security/documentation/Security/SSLSessionState",
+                "doc://com.apple.security/documentation/Security/SSLSetError(_:_:)"
+              ],
+              "title": "Session State"
+            },
+            {
+              "anchor": "Read-Operations",
+              "identifiers": [
+                "doc://com.apple.security/documentation/Security/SSLRead(_:_:_:_:)",
+                "doc://com.apple.security/documentation/Security/SSLGetBufferedReadSize(_:_:)"
+              ],
+              "title": "Read Operations"
+            },
+            {
+              "anchor": "Write-Operations",
+              "identifiers": [
+                "doc://com.apple.security/documentation/Security/SSLWrite(_:_:_:_:)",
+                "doc://com.apple.security/documentation/Security/SSLGetDatagramWriteSize(_:_:)",
+                "doc://com.apple.security/documentation/Security/SSLGetMaxDatagramRecordSize(_:_:)",
+                "doc://com.apple.security/documentation/Security/SSLSetMaxDatagramRecordSize(_:_:)",
+                "doc://com.apple.security/documentation/Security/SSLSetDatagramHelloCookie(_:_:_:)"
+              ],
+              "title": "Write Operations"
+            },
+            {
+              "anchor": "The-Peer-Domain-Name",
+              "identifiers": [
+                "doc://com.apple.security/documentation/Security/SSLSetPeerDomainName(_:_:_:)",
+                "doc://com.apple.security/documentation/Security/SSLGetPeerDomainNameLength(_:_:)",
+                "doc://com.apple.security/documentation/Security/SSLGetPeerDomainName(_:_:_:)",
+                "doc://com.apple.security/documentation/Security/SSLCopyRequestedPeerName(_:_:_:)",
+                "doc://com.apple.security/documentation/Security/SSLCopyRequestedPeerNameLength(_:_:)"
+              ],
+              "title": "The Peer Domain Name"
+            },
+            {
+              "anchor": "Versions",
+              "identifiers": [
+                "doc://com.apple.security/documentation/Security/SSLSetProtocolVersionMax(_:_:)",
+                "doc://com.apple.security/documentation/Security/SSLSetProtocolVersionMin(_:_:)",
+                "doc://com.apple.security/documentation/Security/SSLGetProtocolVersionMax(_:_:)",
+                "doc://com.apple.security/documentation/Security/SSLGetProtocolVersionMin(_:_:)",
+                "doc://com.apple.security/documentation/Security/SSLGetNegotiatedProtocolVersion(_:_:)",
+                "doc://com.apple.security/documentation/Security/tls_protocol_version_t",
+                "doc://com.apple.security/documentation/Security/SSLProtocol"
+              ],
+              "title": "Versions"
+            },
+            {
+              "anchor": "Application-Layer-Protocols",
+              "identifiers": [
+                "doc://com.apple.security/documentation/Security/SSLCopyALPNProtocols(_:_:)",
+                "doc://com.apple.security/documentation/Security/SSLSetALPNProtocols(_:_:)"
+              ],
+              "title": "Application Layer Protocols"
+            },
+            {
+              "anchor": "Ciphers",
+              "identifiers": [
+                "doc://com.apple.security/documentation/Security/SSLGetNumberSupportedCiphers(_:_:)",
+                "doc://com.apple.security/documentation/Security/SSLGetSupportedCiphers(_:_:_:)",
+                "doc://com.apple.security/documentation/Security/SSLSetEnabledCiphers(_:_:_:)",
+                "doc://com.apple.security/documentation/Security/SSLGetNumberEnabledCiphers(_:_:)",
+                "doc://com.apple.security/documentation/Security/SSLGetEnabledCiphers(_:_:_:)",
+                "doc://com.apple.security/documentation/Security/SSLGetNegotiatedCipher(_:_:)",
+                "doc://com.apple.security/documentation/Security/SSLSetDiffieHellmanParams(_:_:_:)",
+                "doc://com.apple.security/documentation/Security/SSLGetDiffieHellmanParams(_:_:_:)",
+                "doc://com.apple.security/documentation/Security/tls_ciphersuite_group_t",
+                "doc://com.apple.security/documentation/Security/tls_ciphersuite_t",
+                "doc://com.apple.security/documentation/Security/SSLCipherSuite",
+                "doc://com.apple.security/documentation/Security/SSLCiphersuiteGroup",
+                "doc://com.apple.security/documentation/Security/ssl-cipher-suite-values"
+              ],
+              "title": "Ciphers"
+            },
+            {
+              "anchor": "Root-Certificates",
+              "identifiers": [
+                "doc://com.apple.security/documentation/Security/SSLSetCertificateAuthorities(_:_:_:)",
+                "doc://com.apple.security/documentation/Security/SSLCopyCertificateAuthorities(_:_:)"
+              ],
+              "title": "Root Certificates"
+            },
+            {
+              "anchor": "Authentication",
+              "identifiers": [
+                "doc://com.apple.security/documentation/Security/SSLAddDistinguishedName(_:_:_:)",
+                "doc://com.apple.security/documentation/Security/SSLCopyDistinguishedNames(_:_:)",
+                "doc://com.apple.security/documentation/Security/SSLSetCertificate(_:_:)",
+                "doc://com.apple.security/documentation/Security/SSLGetClientCertificateState(_:_:)",
+                "doc://com.apple.security/documentation/Security/SSLCopyPeerTrust(_:_:)",
+                "doc://com.apple.security/documentation/Security/SSLClientCertificateState",
+                "doc://com.apple.security/documentation/Security/SSLSetOCSPResponse(_:_:)",
+                "doc://com.apple.security/documentation/Security/SSLSetSessionTicketsEnabled(_:_:)"
+              ],
+              "title": "Authentication"
+            },
+            {
+              "anchor": "Result-Codes",
+              "identifiers": [
+                "doc://com.apple.security/documentation/Security/secure-transport-result-codes"
+              ],
+              "title": "Result Codes"
+            },
+            {
+              "anchor": "Legacy-Operations",
+              "identifiers": [
+                "doc://com.apple.security/documentation/Security/SSLNewContext",
+                "doc://com.apple.security/documentation/Security/SSLDisposeContext",
+                "doc://com.apple.security/documentation/Security/SSLSetProtocolVersionEnabled",
+                "doc://com.apple.security/documentation/Security/SSLGetProtocolVersionEnabled",
+                "doc://com.apple.security/documentation/Security/SSLSetRsaBlinding",
+                "doc://com.apple.security/documentation/Security/SSLGetRsaBlinding",
+                "doc://com.apple.security/documentation/Security/SSLSetProtocolVersion",
+                "doc://com.apple.security/documentation/Security/SSLGetProtocolVersion",
+                "doc://com.apple.security/documentation/Security/SSLSetAllowsAnyRoot",
+                "doc://com.apple.security/documentation/Security/SSLGetAllowsAnyRoot",
+                "doc://com.apple.security/documentation/Security/SSLSetAllowsExpiredRoots",
+                "doc://com.apple.security/documentation/Security/SSLGetAllowsExpiredRoots",
+                "doc://com.apple.security/documentation/Security/SSLSetTrustedRoots",
+                "doc://com.apple.security/documentation/Security/SSLCopyTrustedRoots",
+                "doc://com.apple.security/documentation/Security/SSLSetAllowsExpiredCerts",
+                "doc://com.apple.security/documentation/Security/SSLGetAllowsExpiredCerts",
+                "doc://com.apple.security/documentation/Security/SSLSetEnableCertVerify",
+                "doc://com.apple.security/documentation/Security/SSLGetEnableCertVerify",
+                "doc://com.apple.security/documentation/Security/SSLSetEncryptionCertificate(_:_:)",
+                "doc://com.apple.security/documentation/Security/SSLCopyPeerCertificates"
+              ],
+              "title": "Legacy Operations"
+            }
+          ]
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLSetSessionConfig(_:_:)/title",
+          "value": "SSLSetSessionConfig"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLSetSessionConfig(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SSLSetSessionConfig"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLSetCertificateAuthorities(_:_:_:)/title",
+          "value": "SSLSetCertificateAuthorities"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLSetCertificateAuthorities(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SSLSetCertificateAuthorities"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLCopyPeerTrust(_:_:)/title",
+          "value": "SSLCopyPeerTrust"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLCopyPeerTrust(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SSLCopyPeerTrust"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLSessionOption/title",
+          "value": "SSLSessionOption"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLSessionOption/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SSLSessionOption"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLSessionOption/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SSLSessionOption"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLGetNegotiatedProtocolVersion(_:_:)/title",
+          "value": "SSLGetNegotiatedProtocolVersion"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLGetNegotiatedProtocolVersion(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SSLGetNegotiatedProtocolVersion"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLGetMaxDatagramRecordSize(_:_:)/title",
+          "value": "SSLGetMaxDatagramRecordSize"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLGetMaxDatagramRecordSize(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SSLGetMaxDatagramRecordSize"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLGetPeerDomainNameLength(_:_:)/title",
+          "value": "SSLGetPeerDomainNameLength"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLGetPeerDomainNameLength(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SSLGetPeerDomainNameLength"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLProtocol/title",
+          "value": "SSLProtocol"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLProtocol/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SSLProtocol"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLProtocol/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SSLProtocol"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLGetNumberSupportedCiphers(_:_:)/title",
+          "value": "SSLGetNumberSupportedCiphers"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLGetNumberSupportedCiphers(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SSLGetNumberSupportedCiphers"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLSetProtocolVersionMax(_:_:)/title",
+          "value": "SSLSetProtocolVersionMax"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLSetProtocolVersionMax(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SSLSetProtocolVersionMax"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLGetEnabledCiphers(_:_:_:)/title",
+          "value": "SSLGetEnabledCiphers"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLGetEnabledCiphers(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SSLGetEnabledCiphers"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLSetPeerDomainName(_:_:_:)/title",
+          "value": "SSLSetPeerDomainName"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLSetPeerDomainName(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SSLSetPeerDomainName"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLRead(_:_:_:_:)/title",
+          "value": "SSLRead"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLRead(_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SSLRead"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLSetDiffieHellmanParams(_:_:_:)/title",
+          "value": "SSLSetDiffieHellmanParams"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLSetDiffieHellmanParams(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SSLSetDiffieHellmanParams"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLCopyRequestedPeerNameLength(_:_:)/title",
+          "value": "SSLCopyRequestedPeerNameLength"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLCopyRequestedPeerNameLength(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SSLCopyRequestedPeerNameLength"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLContext/title",
+          "value": "SSLContextRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLContext/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SSLContextRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLContext/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SSLContextRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLGetProtocolVersionMin(_:_:)/title",
+          "value": "SSLGetProtocolVersionMin"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLGetProtocolVersionMin(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SSLGetProtocolVersionMin"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLSetOCSPResponse(_:_:)/title",
+          "value": "SSLSetOCSPResponse"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLSetOCSPResponse(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SSLSetOCSPResponse"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLGetConnection(_:_:)/title",
+          "value": "SSLGetConnection"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLGetConnection(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SSLGetConnection"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLSetProtocolVersionMin(_:_:)/title",
+          "value": "SSLSetProtocolVersionMin"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLSetProtocolVersionMin(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SSLSetProtocolVersionMin"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLCopyALPNProtocols(_:_:)/title",
+          "value": "SSLCopyALPNProtocols"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLCopyALPNProtocols(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SSLCopyALPNProtocols"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLGetDiffieHellmanParams(_:_:_:)/title",
+          "value": "SSLGetDiffieHellmanParams"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLGetDiffieHellmanParams(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SSLGetDiffieHellmanParams"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLGetBufferedReadSize(_:_:)/title",
+          "value": "SSLGetBufferedReadSize"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLGetBufferedReadSize(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SSLGetBufferedReadSize"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLSetSessionOption(_:_:_:)/title",
+          "value": "SSLSetSessionOption"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLSetSessionOption(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SSLSetSessionOption"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLContextGetTypeID()/title",
+          "value": "SSLContextGetTypeID"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLContextGetTypeID()/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SSLContextGetTypeID"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLSetDatagramHelloCookie(_:_:_:)/title",
+          "value": "SSLSetDatagramHelloCookie"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLSetDatagramHelloCookie(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SSLSetDatagramHelloCookie"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLAuthenticate/title",
+          "value": "SSLAuthenticate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLAuthenticate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SSLAuthenticate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLAuthenticate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SSLAuthenticate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLCopyRequestedPeerName(_:_:_:)/title",
+          "value": "SSLCopyRequestedPeerName"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLCopyRequestedPeerName(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SSLCopyRequestedPeerName"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLHandshake(_:)/title",
+          "value": "SSLHandshake"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLHandshake(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SSLHandshake"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLSetError(_:_:)/title",
+          "value": "SSLSetError"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLSetError(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SSLSetError"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLGetProtocolVersionMax(_:_:)/title",
+          "value": "SSLGetProtocolVersionMax"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLGetProtocolVersionMax(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SSLGetProtocolVersionMax"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLCopyCertificateAuthorities(_:_:)/title",
+          "value": "SSLCopyCertificateAuthorities"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLCopyCertificateAuthorities(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SSLCopyCertificateAuthorities"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLProtocolSide/title",
+          "value": "SSLProtocolSide"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLProtocolSide/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SSLProtocolSide"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLProtocolSide/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SSLProtocolSide"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLSetConnection(_:_:)/title",
+          "value": "SSLSetConnection"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLSetConnection(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SSLSetConnection"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLGetNumberEnabledCiphers(_:_:)/title",
+          "value": "SSLGetNumberEnabledCiphers"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLGetNumberEnabledCiphers(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SSLGetNumberEnabledCiphers"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLSetCertificate(_:_:)/title",
+          "value": "SSLSetCertificate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLSetCertificate(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SSLSetCertificate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLSetALPNProtocols(_:_:)/title",
+          "value": "SSLSetALPNProtocols"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLSetALPNProtocols(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SSLSetALPNProtocols"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLSessionState/title",
+          "value": "SSLSessionState"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLSessionState/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SSLSessionState"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLSessionState/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SSLSessionState"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLGetPeerID(_:_:_:)/title",
+          "value": "SSLGetPeerID"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLGetPeerID(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SSLGetPeerID"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLClose(_:)/title",
+          "value": "SSLClose"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLClose(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SSLClose"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLGetNegotiatedCipher(_:_:)/title",
+          "value": "SSLGetNegotiatedCipher"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLGetNegotiatedCipher(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SSLGetNegotiatedCipher"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1tls_ciphersuite_t/title",
+          "value": "tls_ciphersuite_t"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1tls_ciphersuite_t/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "tls_ciphersuite_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1tls_ciphersuite_t/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "tls_ciphersuite_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLCiphersuiteGroup/title",
+          "value": "SSLCiphersuiteGroup"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLCiphersuiteGroup/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SSLCiphersuiteGroup"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLCiphersuiteGroup/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SSLCiphersuiteGroup"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLCipherSuite/title",
+          "value": "SSLCipherSuite"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLCipherSuite/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SSLCipherSuite"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLCipherSuite/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SSLCipherSuite"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLClientCertificateState/title",
+          "value": "SSLClientCertificateState"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLClientCertificateState/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SSLClientCertificateState"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLClientCertificateState/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SSLClientCertificateState"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLGetPeerDomainName(_:_:_:)/title",
+          "value": "SSLGetPeerDomainName"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLGetPeerDomainName(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SSLGetPeerDomainName"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLWrite(_:_:_:_:)/title",
+          "value": "SSLWrite"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLWrite(_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SSLWrite"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLCopyDistinguishedNames(_:_:)/title",
+          "value": "SSLCopyDistinguishedNames"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLCopyDistinguishedNames(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SSLCopyDistinguishedNames"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLCreateContext(_:_:_:)/title",
+          "value": "SSLCreateContext"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLCreateContext(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SSLCreateContext"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLWriteFunc/title",
+          "value": "SSLWriteFunc"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLWriteFunc/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SSLWriteFunc"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLWriteFunc/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SSLWriteFunc"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLGetClientCertificateState(_:_:)/title",
+          "value": "SSLGetClientCertificateState"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLGetClientCertificateState(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SSLGetClientCertificateState"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLConnectionRef/title",
+          "value": "SSLConnectionRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLConnectionRef/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SSLConnectionRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLConnectionRef/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SSLConnectionRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLGetSessionState(_:_:)/title",
+          "value": "SSLGetSessionState"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLGetSessionState(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SSLGetSessionState"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLSetMaxDatagramRecordSize(_:_:)/title",
+          "value": "SSLSetMaxDatagramRecordSize"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLSetMaxDatagramRecordSize(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SSLSetMaxDatagramRecordSize"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLReHandshake(_:)/title",
+          "value": "SSLReHandshake"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLReHandshake(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SSLReHandshake"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLSetSessionTicketsEnabled(_:_:)/title",
+          "value": "SSLSetSessionTicketsEnabled"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLSetSessionTicketsEnabled(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SSLSetSessionTicketsEnabled"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1tls_protocol_version_t/title",
+          "value": "tls_protocol_version_t"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1tls_protocol_version_t/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "tls_protocol_version_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1tls_protocol_version_t/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "tls_protocol_version_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLConnectionType/title",
+          "value": "SSLConnectionType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLConnectionType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SSLConnectionType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLConnectionType/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SSLConnectionType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLReadFunc/title",
+          "value": "SSLReadFunc"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLReadFunc/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SSLReadFunc"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLReadFunc/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SSLReadFunc"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLAddDistinguishedName(_:_:_:)/title",
+          "value": "SSLAddDistinguishedName"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLAddDistinguishedName(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SSLAddDistinguishedName"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLGetSessionOption(_:_:_:)/title",
+          "value": "SSLGetSessionOption"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLGetSessionOption(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SSLGetSessionOption"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLGetSupportedCiphers(_:_:_:)/title",
+          "value": "SSLGetSupportedCiphers"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLGetSupportedCiphers(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SSLGetSupportedCiphers"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLGetDatagramWriteSize(_:_:)/title",
+          "value": "SSLGetDatagramWriteSize"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLGetDatagramWriteSize(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SSLGetDatagramWriteSize"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLSetEnabledCiphers(_:_:_:)/title",
+          "value": "SSLSetEnabledCiphers"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLSetEnabledCiphers(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SSLSetEnabledCiphers"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLSetClientSideAuthenticate(_:_:)/title",
+          "value": "SSLSetClientSideAuthenticate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLSetClientSideAuthenticate(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SSLSetClientSideAuthenticate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLSetEncryptionCertificate(_:_:)/title",
+          "value": "SSLSetEncryptionCertificate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLSetEncryptionCertificate(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SSLSetEncryptionCertificate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1tls_ciphersuite_group_t/title",
+          "value": "tls_ciphersuite_group_t"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1tls_ciphersuite_group_t/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "tls_ciphersuite_group_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1tls_ciphersuite_group_t/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "tls_ciphersuite_group_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLSetPeerID(_:_:_:)/title",
+          "value": "SSLSetPeerID"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLSetPeerID(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SSLSetPeerID"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLSetIOFuncs(_:_:_:)/title",
+          "value": "SSLSetIOFuncs"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SSLSetIOFuncs(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SSLSetIOFuncs"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/security/secure-transport"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/security/secure-transport"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

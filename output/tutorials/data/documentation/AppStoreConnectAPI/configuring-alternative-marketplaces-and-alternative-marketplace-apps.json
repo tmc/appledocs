@@ -1,0 +1,727 @@
+{
+  "abstract": [
+    {
+      "text": "Establish a connection between a marketplace and a marketplace app and configure marketplace settings.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/alternative-marketplaces-and-web-distribution"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/configuring-alternative-marketplaces-and-alternative-marketplace-apps"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "App Store Connect API"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Configuring alternative marketplaces and alternative marketplace apps"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the Alternative Marketplaces and Web distribution API to create and configure alternative marketplaces. Once you create a marketplace app record in App Store Connect, you can add configurations for:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Alternative distribution domains",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Search detail URLs",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Webhook endpoint URLs",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Connect-your-marketplace-to-the-apps-it-distributes",
+          "level": 3,
+          "text": "Connect your marketplace to the apps it distributes",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Begin creating the connection between your alternative marketplace and the apps it distributes, by making a new app record, or making a new one in App Store Connect. Next, create a public and private key pair to associate with your marketplace. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/creating-keys-and-establishing-alternative-marketplace-connections",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Next, you upload the public key along with your marketplace’s app Apple ID by using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/POST-v1-alternativeDistributionKeys",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Next, you create a signed JSON web token (JWT) for the app devleoper to upload to App Store Connect. The JWT requires your private key, the app developer’s Developer ID, and your marketplace’s app Apple ID.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "While uploading the JWT, the app developer selects the apps they want to associate with your marketplace. At this point, the app developer can also enable notifications which are delivered by webhooks. For more information about notifications and webhooks, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/notifications",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Apps can be distributed on App Store, an alternative marketplace or both. To learn more, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/AppStoreVersionUpdateRequest/Data-data.dictionary/Attributes-data.dictionary",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ", specifically ",
+                  "type": "text"
+                },
+                {
+                  "code": "reviewType",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " and ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/PATCH-v1-appStoreVersions-_id_",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Set-up-the-marketplace",
+          "level": 3,
+          "text": "Set up the marketplace",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You need to configure several parts of your alternative marketplace so it can function properly and interact with Apple resources. You need to:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Configure ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/POST-v1-marketplaceWebhooks",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " with the server ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "endpointUrl,",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " so it listens for new notifications. For more information, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/notifications",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/POST-v1-alternativeDistributionDomains",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to represent your marketplace app’s base web domain, from which all traffic must flow. This domain serves your marketplace app and all other apps on individual pages on your marketplace.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Set up your marketplace search detail so Apple can crawl your sitemap and include your apps in Spotlight search, using ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/POST-v1-marketplaceSearchDetails",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". To learn more, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/building-a-searchable-catalog-for-your-marketplace-app-for-inclusion-in-spotlight",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Next, you need to process alternative distribution packages. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/appdistribution/processing-alternative-marketplace-notifications",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Next, you need to obtain the alternative distribution package ID; follow these steps based on whether the app you distribute is already approved by App Review:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If the app to be distributed on an alternative marketplace is already approved, the app developer needs to generate an alternative distribution package by using the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/POST-v1-alternativeDistributionPackages",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " endpoint.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If the app to be distributed on an alternative marketplace is not in one of the following states (all of which are after approval by App Review): ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Pending Developer Release, Pending Apple Release,",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Ready for Distribution,",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " the alternative distribution package is automatically created after approval.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Once the alternative distribution package is created, and the alternative distribution package ID is provided to the marketplace, either by the app developer or though webhooks, the marketplace can ingest and process the provided files. To learn more, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/appdistribution/processing-alternative-marketplace-notifications",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI": {
+      "abstract": [
+        {
+          "text": "Automate the tasks you perform on the Apple Developer website and in App Store Connect.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "App Store Connect API",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/AppStoreVersionUpdateRequest/Data-data.dictionary/Attributes-data.dictionary": {
+      "abstract": [
+        {
+          "text": "Attributes whose values you’re changing as part of the update request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "AppStoreVersionUpdateRequest.Data.Attributes"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/AppStoreVersionUpdateRequest/Data-data.dictionary/Attributes-data.dictionary",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AppStoreVersionUpdateRequest.Data.Attributes"
+        }
+      ],
+      "role": "symbol",
+      "title": "AppStoreVersionUpdateRequest.Data.Attributes",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/appstoreversionupdaterequest/data-data.dictionary/attributes-data.dictionary"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/PATCH-v1-appStoreVersions-_id_": {
+      "abstract": [
+        {
+          "text": "Update the app store version for a specific app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/PATCH-v1-appStoreVersions-_id_",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PATCH /v1/appStoreVersions/{id}"
+        }
+      ],
+      "role": "symbol",
+      "title": "Modify an App Store Version",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/patch-v1-appstoreversions-_id_"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/POST-v1-alternativeDistributionDomains": {
+      "abstract": [
+        {
+          "text": "Add an alternative distribution domain to your account.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/POST-v1-alternativeDistributionDomains",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "POST /v1/alternativeDistributionDomains"
+        }
+      ],
+      "role": "symbol",
+      "title": "Add an alternative distribution domain",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/post-v1-alternativedistributiondomains"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/POST-v1-alternativeDistributionKeys": {
+      "abstract": [
+        {
+          "text": "Add an alternative distribution key for your alternative marketplace app or web distribution.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/POST-v1-alternativeDistributionKeys",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "POST /v1/alternativeDistributionKeys"
+        }
+      ],
+      "role": "symbol",
+      "title": "Add an alternative distribution key",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/post-v1-alternativedistributionkeys"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/POST-v1-alternativeDistributionPackages": {
+      "abstract": [
+        {
+          "text": "Create an alternative distribution package for an app store version.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/POST-v1-alternativeDistributionPackages",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "POST /v1/alternativeDistributionPackages"
+        }
+      ],
+      "role": "symbol",
+      "title": "Create an alternative distribution package",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/post-v1-alternativedistributionpackages"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/POST-v1-marketplaceSearchDetails": {
+      "abstract": [
+        {
+          "text": "Add a search detail URL for the alternative marketplace.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/POST-v1-marketplaceSearchDetails",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "POST /v1/marketplaceSearchDetails"
+        }
+      ],
+      "role": "symbol",
+      "title": "Add a marketplace search detail URL",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/post-v1-marketplacesearchdetails"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/POST-v1-marketplaceWebhooks": {
+      "abstract": [
+        {
+          "text": "Add a new endpoint URL and secret for alternative distribution package notifications.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/POST-v1-marketplaceWebhooks",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "POST /v1/marketplaceWebhooks"
+        }
+      ],
+      "role": "symbol",
+      "title": "Add a marketplace webhook configuration",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/post-v1-marketplacewebhooks"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/alternative-marketplaces-and-web-distribution": {
+      "abstract": [
+        {
+          "text": "Manage keys, packages, and search for alternative app distribution.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/alternative-marketplaces-and-web-distribution",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Alternative Marketplaces and Web Distribution",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/alternative-marketplaces-and-web-distribution"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/building-a-searchable-catalog-for-your-marketplace-app-for-inclusion-in-spotlight": {
+      "abstract": [
+        {
+          "text": "Set up and build your alternative marketplace’s searchable index.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/building-a-searchable-catalog-for-your-marketplace-app-for-inclusion-in-spotlight",
+      "kind": "article",
+      "role": "article",
+      "title": "Building a searchable catalog for your marketplace app for inclusion in Spotlight",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/building-a-searchable-catalog-for-your-marketplace-app-for-inclusion-in-spotlight"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/configuring-apps-for-web-distribution": {
+      "abstract": [
+        {
+          "text": "Set up your app for direct installation.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/configuring-apps-for-web-distribution",
+      "kind": "article",
+      "role": "article",
+      "title": "Configuring apps for web distribution",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/configuring-apps-for-web-distribution"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/creating-keys-and-establishing-alternative-marketplace-connections": {
+      "abstract": [
+        {
+          "text": "Manage keys you use to sign JSON web tokens and connect marketplaces with apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/creating-keys-and-establishing-alternative-marketplace-connections",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating keys and establishing alternative marketplace connections",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/creating-keys-and-establishing-alternative-marketplace-connections"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/notifications": {
+      "abstract": [
+        {
+          "text": "Add and read information for alternative distribution package notifications.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/notifications",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Notifications",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/notifications"
+    },
+    "doc://com.apple.documentation/documentation/appdistribution/processing-alternative-marketplace-notifications": {
+      "abstract": [
+        {
+          "text": "Manage the addition and removal of apps available on your alternative marketplace.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/appdistribution/processing-alternative-marketplace-notifications",
+      "kind": "article",
+      "role": "article",
+      "title": "Processing alternative app marketplace notifications",
+      "type": "topic",
+      "url": "/documentation/appdistribution/processing-alternative-marketplace-notifications"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/configuring-apps-for-web-distribution"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/appstoreconnectapi/configuring-alternative-marketplaces-and-alternative-marketplace-apps"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

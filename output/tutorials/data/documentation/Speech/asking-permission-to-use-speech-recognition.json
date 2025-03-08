@@ -1,0 +1,596 @@
+{
+  "abstract": [
+    {
+      "text": "Ask the user’s permission to perform speech recognition using Apple’s servers.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.speech/documentation/Speech"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.speech/documentation/Speech/asking-permission-to-use-speech-recognition"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Speech"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Asking Permission to Use Speech Recognition"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The speech recognition process involves capturing audio of the user’s voice and sending that data to Apple’s servers for processing. The audio you capture constitutes sensitive user data, and you must make every effort to protect it. You must also obtain the user’s permission before sending that data across the network to Apple’s servers. You request authorization using the APIs of the Speech framework.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3038127",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-the-Privacy-Key-to-Your-Infoplist-File",
+          "level": 3,
+          "text": "Add the Privacy Key to Your Info.plist File",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In Xcode, add the ",
+              "type": "text"
+            },
+            {
+              "code": "“Privacy - Speech Recognition Usage Description”",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key to your app’s ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file. The raw name of this key is ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSSpeechRecognitionUsageDescription",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Set the value of this key to a string that explains how you plan to use any recognized speech. When your app request authorization later, the system displays the value of this key to the user as part of the system prompt.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Take the opportunity to build trust with the user through your usage description. The quality of your usage description can significantly impact the user’s decision. For example, users are more likely to deny authorization if the usage description is unclear or misleading. Good descriptions explain precisely how you intend to use speech recognition, and may also include a link to your app’s privacy policy. For example:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "“The app uses speech recognition for dictating notes.”",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "“Lets you mark an item as finished by saying Done.”",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "“The app listens for specific verbal commands, such as “Start”, “Stop”, and “Pause”. For a complete list of commands, see http://myapp.example.com”.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "You must include the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSSpeechRecognitionUsageDescription",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " key in your app’s ",
+                  "type": "text"
+                },
+                {
+                  "code": "Info.plist",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " file. If this key is not present, your app will crash when it attempts to request authorization or use the APIs of the Speech framework.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Request-Authorization-at-First-Use",
+          "level": 3,
+          "text": "Request Authorization at First Use",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before using the APIs of the Speech framework, you must call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.speech/documentation/Speech/SFSpeechRecognizer/requestAuthorization(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " on the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.speech/documentation/Speech/SFSpeechRecognizer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object. The method executes asynchronously and delivers the results to a block you provide. Use that block to determine whether the user granted or rejected your request.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Do not request access to speech recognition if you do not intend to use the feature right away. Instead, delay requests until the user interacts with the portion of your app that uses such features.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The first time your app requests authorization to use speech recognition, the system prompts the user to accept or deny that request. The system records the user’s selection so that subsequent requests do not prompt the user again. Instead, subsequent requests return almost immediately with the previously recorded results.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following example shows the authorization request for an app that transcribes spoken phrases and displays them onscreen. Because the app’s interface is dependent on speech recognition, it requests authorization as soon as that interface is visible. In addition, the app disables portions of the interface if the user or system prevents access to speech recognition.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "override public func viewDidAppear(_ animated: Bool) {",
+            "   // Configure the SFSpeechRecognizer object already",
+            "   // stored in a local member variable.",
+            "   speechRecognizer.delegate = self",
+            "",
+            "   // Make the authorization request      ",
+            "   SFSpeechRecognizer.requestAuthorization { authStatus in",
+            "",
+            "   // The authorization status results in changes to the",
+            "   // app’s interface, so process the results on the app’s",
+            "   // main queue.",
+            "      OperationQueue.main.addOperation {",
+            "         switch authStatus {",
+            "            case .authorized:",
+            "               self.recordButton.isEnabled = true",
+            "",
+            "            case .denied:",
+            "               self.recordButton.isEnabled = false",
+            "               self.recordButton.setTitle(\"User denied access ",
+            "                           to speech recognition\", for: .disabled)",
+            "",
+            "            case .restricted:",
+            "               self.recordButton.isEnabled = false",
+            "               self.recordButton.setTitle(\"Speech recognition",
+            "                       restricted on this device\", for: .disabled)",
+            "",
+            "            case .notDetermined:",
+            "               self.recordButton.isEnabled = false",
+            "               self.recordButton.setTitle(\"Speech recognition not yet",
+            "                                      authorized\", for: .disabled)",
+            "         }",
+            "      }",
+            "   }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSSpeechRecognitionUsageDescription": {
+      "abstract": [
+        {
+          "text": "A message that tells the user why the app is requesting to send user data to Apple’s speech recognition servers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSSpeechRecognitionUsageDescription",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSpeechRecognitionUsageDescription",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/NSSpeechRecognitionUsageDescription"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.speech/documentation/Speech": {
+      "abstract": [
+        {
+          "text": "Perform speech recognition on live or prerecorded audio, and receive transcriptions, alternative interpretations, and confidence levels of the results.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.speech/documentation/Speech",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Speech",
+      "type": "topic",
+      "url": "/documentation/speech"
+    },
+    "doc://com.apple.speech/documentation/Speech/SFSpeechRecognizer": {
+      "abstract": [
+        {
+          "text": "An object you use to check for the availability of the speech recognition service, and to initiate the speech recognition process.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SFSpeechRecognizer"
+        }
+      ],
+      "identifier": "doc://com.apple.speech/documentation/Speech/SFSpeechRecognizer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SFSpeechRecognizer"
+        }
+      ],
+      "role": "symbol",
+      "title": "SFSpeechRecognizer",
+      "type": "topic",
+      "url": "/documentation/speech/sfspeechrecognizer"
+    },
+    "doc://com.apple.speech/documentation/Speech/SFSpeechRecognizer/requestAuthorization(_:)": {
+      "abstract": [
+        {
+          "text": "Asks the user to allow your app to perform speech recognition.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "requestAuthorization"
+        },
+        {
+          "kind": "text",
+          "text": "(("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@SFSpeechRecognizerAuthorizationStatus",
+          "text": "SFSpeechRecognizerAuthorizationStatus"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.speech/documentation/Speech/SFSpeechRecognizer/requestAuthorization(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "requestAuthorization:"
+        }
+      ],
+      "role": "symbol",
+      "title": "requestAuthorization(_:)",
+      "type": "topic",
+      "url": "/documentation/speech/sfspeechrecognizer/requestauthorization(_:)"
+    },
+    "media-3038127": {
+      "alt": "When an app requests authorization to use speech recognition, the system prompts the user to grant or deny access to the feature.",
+      "identifier": "media-3038127",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b77d3cc65c0bfa28175cd54cc7a38b4b/media-3038127@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b77d3cc65c0bfa28175cd54cc7a38b4b/media-3038127~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.speech/documentation/Speech/SFSpeechRecognizer"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Essentials",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.speech/documentation/Speech/SFSpeechRecognizer"
+              ],
+              "title": "Essentials"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.speech~1documentation~1Speech~1SFSpeechRecognizer/title",
+          "value": "SFSpeechRecognizer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.speech~1documentation~1Speech~1SFSpeechRecognizer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SFSpeechRecognizer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.speech~1documentation~1Speech~1SFSpeechRecognizer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SFSpeechRecognizer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.speech~1documentation~1Speech~1SFSpeechRecognizer~1requestAuthorization(_:)/title",
+          "value": "requestAuthorization:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.speech~1documentation~1Speech~1SFSpeechRecognizer~1requestAuthorization(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "requestAuthorization:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/speech/asking-permission-to-use-speech-recognition"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/speech/asking-permission-to-use-speech-recognition"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

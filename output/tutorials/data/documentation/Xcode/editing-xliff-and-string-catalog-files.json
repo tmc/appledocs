@@ -1,0 +1,706 @@
+{
+  "abstract": [
+    {
+      "text": "Translate or adapt the localizable files for a language and region that you export",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "from your project.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Xcode/documentation/Xcode",
+        "doc://com.apple.Xcode/documentation/Xcode/localization"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Xcode/documentation/Xcode/editing-xliff-and-string-catalog-files"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Editing XLIFF and string catalog files"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you export localizations, you can give the Xcode Localization Catalog to localizers",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "for translation, or edit the XLIFF files located in the ",
+              "type": "text"
+            },
+            {
+              "code": "Localized Contents",
+              "type": "codeVoice"
+            },
+            {
+              "text": " folder",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "yourself.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-translations-to-XLIFF-files",
+          "level": 3,
+          "text": "Add translations to XLIFF files",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To find the user-facing strings that need translation, including the app name, search",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "for the ",
+              "type": "text"
+            },
+            {
+              "code": "<trans-unit>",
+              "type": "codeVoice"
+            },
+            {
+              "text": " element in the XLIFF file. To insert a translation of a string,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "add a ",
+              "type": "text"
+            },
+            {
+              "code": "<target>",
+              "type": "codeVoice"
+            },
+            {
+              "text": " element to the ",
+              "type": "text"
+            },
+            {
+              "code": "<trans-unit>",
+              "type": "codeVoice"
+            },
+            {
+              "text": " element containing the localized text",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "as in:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "<trans-unit id=\"Hello, world!\" xml:space=\"preserve\">",
+            "        <source>Hello, world!</source>",
+            "        <target>Hallo, Welt!</target>",
+            "        <note>A friendly greeting.</note>",
+            "</trans-unit>"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Group-related-strings-using-tables",
+          "level": 3,
+          "text": "Group related strings using tables",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you specify a table name when you internationalize your code — in other words,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "if you use the ",
+              "type": "text"
+            },
+            {
+              "code": "Text",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Text/init(_:tableName:bundle:comment:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "method or the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/1418095-nslocalizedstring",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "function with the ",
+              "type": "text"
+            },
+            {
+              "code": "tableName",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter — Xcode groups the strings into separate",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "<file>",
+              "type": "codeVoice"
+            },
+            {
+              "text": " elements with ",
+              "type": "text"
+            },
+            {
+              "code": "[table name].strings",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as the filename. If you don’t specify",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a table name, Xcode uses the default ",
+              "type": "text"
+            },
+            {
+              "code": "Localizable.strings",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as the filename.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you import the localizations, Xcode adds a version of the strings file for each",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "localization to your project. In the following SwiftUI code listing, the first ",
+              "type": "text"
+            },
+            {
+              "code": "Text",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "string appears in the default ",
+              "type": "text"
+            },
+            {
+              "code": "Localized.strings",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file while the Button label that",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "specifies a table name appears in the ",
+              "type": "text"
+            },
+            {
+              "code": "Buttons.strings",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "VStack {",
+            "    Text(\"Hello, world!\", comment:\"A friendly greeting.\")",
+            "        .font(.largeTitle)",
+            "        .padding()",
+            "    Button(action: pushMe){",
+            "        Text(\"Push Me\", tableName:\"Buttons\", comment:\"Push Me button label.\")",
+            "    }",
+            "    .font(.title)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Edit-string-catalogs-in-Xcode",
+          "level": 3,
+          "text": "Edit string catalogs in Xcode",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you import localizations, you can edit the string catalog file in your project and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the next time you export localizations, Xcode includes your changes in the XLIFF",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "files.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about editing string catalogs in Xcode, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/localizing-and-varying-text-with-a-string-catalog",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Xcode-PageImage-card.png": {
+      "alt": "The Xcode logo on a blue gradient background.",
+      "identifier": "Xcode-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cc63eacd8f7f660388b46204d1d9bbcb/Xcode-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/62dba87d5f60ec96eb48882c9dff86d8/Xcode-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Xcode/documentation/Xcode": {
+      "abstract": [
+        {
+          "text": "Build, test, and submit your app with Apple’s integrated development environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode",
+      "images": [
+        {
+          "identifier": "Xcode-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/creating-screenshots-of-your-app-for-localizers": {
+      "abstract": [
+        {
+          "text": "Share screenshots of your app with localizers to provide context for translation.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/creating-screenshots-of-your-app-for-localizers",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating screenshots of your app for localizers",
+      "type": "topic",
+      "url": "/documentation/xcode/creating-screenshots-of-your-app-for-localizers"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/exporting-localizations": {
+      "abstract": [
+        {
+          "text": "Provide the localizable files from your project to localizers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/exporting-localizations",
+      "kind": "article",
+      "role": "article",
+      "title": "Exporting localizations",
+      "type": "topic",
+      "url": "/documentation/xcode/exporting-localizations"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/importing-localizations": {
+      "abstract": [
+        {
+          "text": "Import the files that you translate or adapt for a language and region into your",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "project.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/importing-localizations",
+      "kind": "article",
+      "role": "article",
+      "title": "Importing localizations",
+      "type": "topic",
+      "url": "/documentation/xcode/importing-localizations"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/localization": {
+      "abstract": [
+        {
+          "text": "Expand the market for your app by supporting multiple languages and regions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/localization",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Localization",
+      "type": "topic",
+      "url": "/documentation/xcode/localization"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/localizing-and-varying-text-with-a-string-catalog": {
+      "abstract": [
+        {
+          "text": "Use a string catalog to translate text, handle plurals, and vary the text your app displays on specific devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/localizing-and-varying-text-with-a-string-catalog",
+      "kind": "article",
+      "role": "article",
+      "title": "Localizing and varying text with a string catalog",
+      "type": "topic",
+      "url": "/documentation/xcode/localizing-and-varying-text-with-a-string-catalog"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/locking-views-in-storyboard-and-xib-files": {
+      "abstract": [
+        {
+          "text": "Prevent changes to your Interface Builder files while localizing human-facing strings.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/locking-views-in-storyboard-and-xib-files",
+      "kind": "article",
+      "role": "article",
+      "title": "Locking views in storyboard and XIB files",
+      "type": "topic",
+      "url": "/documentation/xcode/locking-views-in-storyboard-and-xib-files"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/Text/init(_:tableName:bundle:comment:)": {
+      "abstract": [
+        {
+          "text": "Creates a text view that displays localized content identified by a key.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "key"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI18LocalizedStringKeyV",
+          "text": "LocalizedStringKey"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "tableName"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "? = nil, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "bundle"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSBundle",
+          "text": "Bundle"
+        },
+        {
+          "kind": "text",
+          "text": "? = nil, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "comment"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s12StaticStringV",
+          "text": "StaticString"
+        },
+        {
+          "kind": "text",
+          "text": "? = nil)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Text/init(_:tableName:bundle:comment:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(_:tableName:bundle:comment:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/Text/init(_:tableName:bundle:comment:)"
+    },
+    "doc://com.apple.documentation/documentation/foundation/1418095-nslocalizedstring": {
+      "abstract": [
+        {
+          "text": "Returns a localized string from a table that Xcode generates for you when exporting localizations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSLocalizedString"
+        },
+        {
+          "kind": "text",
+          "text": "(String, "
+        },
+        {
+          "kind": "identifier",
+          "text": "tableName"
+        },
+        {
+          "kind": "text",
+          "text": ": String?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "bundle"
+        },
+        {
+          "kind": "text",
+          "text": ": Bundle, "
+        },
+        {
+          "kind": "identifier",
+          "text": "value"
+        },
+        {
+          "kind": "text",
+          "text": ": String, "
+        },
+        {
+          "kind": "identifier",
+          "text": "comment"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/1418095-nslocalizedstring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSLocalizedString(_:tableName:bundle:value:comment:)",
+      "type": "topic",
+      "url": "/documentation/foundation/1418095-nslocalizedstring"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Translation-and-adaptation",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Xcode/documentation/Xcode/creating-screenshots-of-your-app-for-localizers",
+        "doc://com.apple.Xcode/documentation/Xcode/exporting-localizations",
+        "doc://com.apple.Xcode/documentation/Xcode/importing-localizations",
+        "doc://com.apple.Xcode/documentation/Xcode/locking-views-in-storyboard-and-xib-files"
+      ],
+      "title": "Translation and adaptation"
+    }
+  ]
+}

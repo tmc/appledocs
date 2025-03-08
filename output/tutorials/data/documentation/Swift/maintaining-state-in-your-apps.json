@@ -1,0 +1,638 @@
+{
+  "abstract": [
+    {
+      "text": "Use enumerations to capture and track the state of your app.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Swift/documentation/Swift"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Swift/documentation/Swift/maintaining-state-in-your-apps"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Swift"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Maintaining State in Your Apps"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Effectively managing state, the bits of data that keep track of how the app is being",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "used at the moment, is an important part of a developing your app. Because enumerations",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "define a finite number of states, and can bundle associated values with each individual",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "state, you can use them to model the state of your app and its internal processes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Use-an-Enumeration-to-Capture-State",
+          "level": 3,
+          "text": "Use an Enumeration to Capture State",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Consider an app that requires a user to log into an account. When the app is first",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "opened, the user is unknown, so the state of the app could be called ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "unregistered",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "After the user has registered or logged into an account, the state is ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "logged in",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "After some time of inactivity, the user’s session may expire, leaving the app in",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "session expired",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " state.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can use an enumeration to specify the exact states needed for your app. This",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "approach defines an ",
+              "type": "text"
+            },
+            {
+              "code": "App",
+              "type": "codeVoice"
+            },
+            {
+              "text": " class with a nested ",
+              "type": "text"
+            },
+            {
+              "code": "State",
+              "type": "codeVoice"
+            },
+            {
+              "text": " enumeration that includes only",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the specific states you need:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "class App {",
+            "    enum State {",
+            "        case unregistered",
+            "        case loggedIn(User)",
+            "        case sessionExpired(User)",
+            "    }",
+            "",
+            "    var state: State = .unregistered",
+            "",
+            "    // ...",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In this model, each state is represented by a case with a matching name. The ",
+              "type": "text"
+            },
+            {
+              "code": "loggedIn",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and ",
+              "type": "text"
+            },
+            {
+              "code": "sessionExpired",
+              "type": "codeVoice"
+            },
+            {
+              "text": " cases include the user as an associated value, while the ",
+              "type": "text"
+            },
+            {
+              "code": "unregistered",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "case doesn’t include an associated value. When you update your app’s state, there’s",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a single variable, ",
+              "type": "text"
+            },
+            {
+              "code": "state",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", to modify, no matter what the transition.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "maintaining-state-in-your-apps-1",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Dont-Spread-State-Across-Multiple-Variables",
+          "level": 3,
+          "text": "Don’t Spread State Across Multiple Variables",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "It’s also possible to model an app’s state by using individual variables in combination",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to hold the state and the required data, which is not recommended.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In this model, the app defines two variables: an optional ",
+              "type": "text"
+            },
+            {
+              "code": "user",
+              "type": "codeVoice"
+            },
+            {
+              "text": " that stores user",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "information, and a Boolean value named ",
+              "type": "text"
+            },
+            {
+              "code": "sessionExpired",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". The ",
+              "type": "text"
+            },
+            {
+              "code": "user",
+              "type": "codeVoice"
+            },
+            {
+              "text": " variable is ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "when the user not logged in and has a value once the user logs in. The ",
+              "type": "text"
+            },
+            {
+              "code": "sessionExpired",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "variable begins as ",
+              "type": "text"
+            },
+            {
+              "code": "false",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and is set to ",
+              "type": "text"
+            },
+            {
+              "code": "true",
+              "type": "codeVoice"
+            },
+            {
+              "text": " if the session expires. The three",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "states are captured by different combinations of the two variables.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Using this approach is prone to mistakes for a few reasons, in ways that can lead",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to bugs and make it harder to reason about your code:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "For every change in state, you need to provides updates for both ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "user",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "sessionExpired",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "in tandem.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If a future change to the app requires an additional state, you need to update",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "an additional variable at every existing change in state.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The two variables have an unused combination—it’s possible to set the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "user",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "nil",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "sessionExpired",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "true",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", even though that doesn’t have a corresponding",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "state.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Swift-PageImage-card.png": {
+      "alt": "An orange Swift logo on a gradient background.",
+      "identifier": "Swift-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/81257762cf893d205c049e3021340e5f/Swift-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4d2ed632470b4616483901941fae4098/Swift-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Swift/documentation/Swift": {
+      "abstract": [
+        {
+          "text": "Build apps using a powerful open language.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift",
+      "images": [
+        {
+          "identifier": "Swift-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Swift",
+      "type": "topic",
+      "url": "/documentation/swift"
+    },
+    "doc://com.apple.Swift/documentation/Swift/preventing-timing-problems-when-using-closures": {
+      "abstract": [
+        {
+          "text": "Understand how different API calls to your closures can affect your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/preventing-timing-problems-when-using-closures",
+      "kind": "article",
+      "role": "article",
+      "title": "Preventing Timing Problems When Using Closures",
+      "type": "topic",
+      "url": "/documentation/swift/preventing-timing-problems-when-using-closures"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "maintaining-state-in-your-apps-1": {
+      "alt": "A diagram showing the states of the app: unregistered, logged in, and session expired.",
+      "identifier": "maintaining-state-in-your-apps-1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f4dd92990c10e691a9993182c9616287/maintaining-state-in-your-apps-1@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Data-Flow-and-Control-Flow",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/preventing-timing-problems-when-using-closures"
+      ],
+      "title": "Data Flow and Control Flow"
+    }
+  ]
+}

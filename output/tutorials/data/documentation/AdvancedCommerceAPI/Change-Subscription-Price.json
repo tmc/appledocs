@@ -1,0 +1,1494 @@
+{
+  "abstract": [
+    {
+      "text": "Increase or decrease the price of an auto-renewable subscription, a bundle, or individual items within a subscription at the next renewal.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.advancedcommerceapi/documentation/AdvancedCommerceAPI"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.advancedcommerceapi/documentation/AdvancedCommerceAPI/Change-Subscription-Price"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "rest:advanced-commerce-api:post:advancedCommerce-v1-subscription-changePrice-{}",
+    "modules": [
+      {
+        "name": "Advanced Commerce API"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "Change Subscription Price"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "1.0",
+        "name": "Advanced Commerce API"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Web Service Endpoint",
+    "symbolKind": "httpRequest",
+    "title": "Change Subscription Price"
+  },
+  "primaryContentSections": [
+    {
+      "kind": "restEndpoint",
+      "title": "URL",
+      "tokens": [
+        {
+          "kind": "method",
+          "text": "POST"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "baseURL",
+          "text": "https://api.storekit.itunes.apple.com/"
+        },
+        {
+          "kind": "path",
+          "text": "advancedCommerce/v1/subscription/changePrice/"
+        },
+        {
+          "kind": "parameter",
+          "text": "{transactionId}"
+        }
+      ]
+    },
+    {
+      "items": [
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A transaction identifier of the auto-renewable subscription that is subject to the price change. Use the subscription’s original transaction ID or any subsequent transaction ID of a transaction related to the subscription.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "transactionId",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        }
+      ],
+      "kind": "restParameters",
+      "source": "path",
+      "title": "Path Parameters"
+    },
+    {
+      "bodyContentType": [
+        {
+          "identifier": "doc://com.apple.advancedcommerceapi/documentation/AdvancedCommerceAPI/SubscriptionPriceChangeRequest",
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "data:advanced-commerce-api:SubscriptionPriceChangeRequest",
+          "text": "SubscriptionPriceChangeRequest"
+        }
+      ],
+      "content": [
+        {
+          "inlineContent": [
+            {
+              "text": "The request body that contains the details of the price change.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "restBody",
+      "mimeType": "application/json",
+      "parameters": [],
+      "title": "HTTP Body"
+    },
+    {
+      "items": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Success",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "OK",
+          "status": 200,
+          "type": [
+            {
+              "identifier": "doc://com.apple.advancedcommerceapi/documentation/AdvancedCommerceAPI/SubscriptionPriceChangeResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:advanced-commerce-api:SubscriptionPriceChangeResponse",
+              "text": "SubscriptionPriceChangeResponse"
+            }
+          ]
+        },
+        {
+          "content": [],
+          "mimeType": "application/json",
+          "reason": "Bad Request",
+          "status": 400,
+          "type": [
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "identifier": "doc://com.apple.advancedcommerceapi/documentation/AdvancedCommerceAPI/NullRequestInfoError",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:advanced-commerce-api:NullRequestInfoError",
+              "text": "NullRequestInfoError"
+            },
+            {
+              "kind": "text",
+              "text": " | "
+            },
+            {
+              "identifier": "doc://com.apple.advancedcommerceapi/documentation/AdvancedCommerceAPI/NullItemsError",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:advanced-commerce-api:NullItemsError",
+              "text": "NullItemsError"
+            },
+            {
+              "kind": "text",
+              "text": " | "
+            },
+            {
+              "identifier": "doc://com.apple.advancedcommerceapi/documentation/AdvancedCommerceAPI/NullSKUError",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:advanced-commerce-api:NullSKUError",
+              "text": "NullSKUError"
+            },
+            {
+              "kind": "text",
+              "text": " | "
+            },
+            {
+              "identifier": "doc://com.apple.advancedcommerceapi/documentation/AdvancedCommerceAPI/InvalidAppAccountTokenError",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:advanced-commerce-api:InvalidAppAccountTokenError",
+              "text": "InvalidAppAccountTokenError"
+            },
+            {
+              "kind": "text",
+              "text": " | "
+            },
+            {
+              "identifier": "doc://com.apple.advancedcommerceapi/documentation/AdvancedCommerceAPI/NullRequestReferenceIDError",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:advanced-commerce-api:NullRequestReferenceIDError",
+              "text": "NullRequestReferenceIDError"
+            },
+            {
+              "kind": "text",
+              "text": " | "
+            },
+            {
+              "identifier": "doc://com.apple.advancedcommerceapi/documentation/AdvancedCommerceAPI/InvalidRequestReferenceIDError",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:advanced-commerce-api:InvalidRequestReferenceIDError",
+              "text": "InvalidRequestReferenceIDError"
+            },
+            {
+              "kind": "text",
+              "text": " | "
+            },
+            {
+              "identifier": "doc://com.apple.advancedcommerceapi/documentation/AdvancedCommerceAPI/InvalidConsistencyTokenError",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:advanced-commerce-api:InvalidConsistencyTokenError",
+              "text": "InvalidConsistencyTokenError"
+            },
+            {
+              "kind": "text",
+              "text": " | "
+            },
+            {
+              "identifier": "doc://com.apple.advancedcommerceapi/documentation/AdvancedCommerceAPI/InvalidStorefrontError",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:advanced-commerce-api:InvalidStorefrontError",
+              "text": "InvalidStorefrontError"
+            },
+            {
+              "kind": "text",
+              "text": " | "
+            },
+            {
+              "identifier": "doc://com.apple.advancedcommerceapi/documentation/AdvancedCommerceAPI/InvalidCurrencyError",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:advanced-commerce-api:InvalidCurrencyError",
+              "text": "InvalidCurrencyError"
+            },
+            {
+              "kind": "text",
+              "text": " | "
+            },
+            {
+              "identifier": "doc://com.apple.advancedcommerceapi/documentation/AdvancedCommerceAPI/NegativePriceError",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:advanced-commerce-api:NegativePriceError",
+              "text": "NegativePriceError"
+            },
+            {
+              "kind": "text",
+              "text": " | "
+            },
+            {
+              "identifier": "doc://com.apple.advancedcommerceapi/documentation/AdvancedCommerceAPI/SKULengthExceededError",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:advanced-commerce-api:SKULengthExceededError",
+              "text": "SKULengthExceededError"
+            },
+            {
+              "kind": "text",
+              "text": " | "
+            },
+            {
+              "identifier": "doc://com.apple.advancedcommerceapi/documentation/AdvancedCommerceAPI/DescriptionLengthExceededError",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:advanced-commerce-api:DescriptionLengthExceededError",
+              "text": "DescriptionLengthExceededError"
+            },
+            {
+              "kind": "text",
+              "text": " | "
+            },
+            {
+              "identifier": "doc://com.apple.advancedcommerceapi/documentation/AdvancedCommerceAPI/DisplayNameLengthExceededError",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:advanced-commerce-api:DisplayNameLengthExceededError",
+              "text": "DisplayNameLengthExceededError"
+            },
+            {
+              "kind": "text",
+              "text": " | "
+            },
+            {
+              "identifier": "doc://com.apple.advancedcommerceapi/documentation/AdvancedCommerceAPI/InvalidProductError",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:advanced-commerce-api:InvalidProductError",
+              "text": "InvalidProductError"
+            },
+            {
+              "kind": "text",
+              "text": " | "
+            },
+            {
+              "identifier": "doc://com.apple.advancedcommerceapi/documentation/AdvancedCommerceAPI/InvalidSKUError",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:advanced-commerce-api:InvalidSKUError",
+              "text": "InvalidSKUError"
+            },
+            {
+              "kind": "text",
+              "text": " | "
+            },
+            {
+              "identifier": "doc://com.apple.advancedcommerceapi/documentation/AdvancedCommerceAPI/MismatchedStorefrontError",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:advanced-commerce-api:MismatchedStorefrontError",
+              "text": "MismatchedStorefrontError"
+            },
+            {
+              "kind": "text",
+              "text": " | "
+            },
+            {
+              "identifier": "doc://com.apple.advancedcommerceapi/documentation/AdvancedCommerceAPI/MissingPricingConfigForStorefrontError",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:advanced-commerce-api:MissingPricingConfigForStorefrontError",
+              "text": "MissingPricingConfigForStorefrontError"
+            },
+            {
+              "kind": "text",
+              "text": " | "
+            },
+            {
+              "identifier": "doc://com.apple.advancedcommerceapi/documentation/AdvancedCommerceAPI/OperationNotAllowedError",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:advanced-commerce-api:OperationNotAllowedError",
+              "text": "OperationNotAllowedError"
+            },
+            {
+              "kind": "text",
+              "text": " | "
+            },
+            {
+              "identifier": "doc://com.apple.advancedcommerceapi/documentation/AdvancedCommerceAPI/MalformedPayloadError",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:advanced-commerce-api:MalformedPayloadError",
+              "text": "MalformedPayloadError"
+            },
+            {
+              "kind": "text",
+              "text": ")"
+            }
+          ]
+        },
+        {
+          "content": [],
+          "reason": "Unauthorized",
+          "status": 401,
+          "type": []
+        },
+        {
+          "content": [],
+          "mimeType": "application/json",
+          "reason": "Forbidden",
+          "status": 403,
+          "type": [
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "identifier": "doc://com.apple.advancedcommerceapi/documentation/AdvancedCommerceAPI/SubscriptionDoesNotExistError",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:advanced-commerce-api:SubscriptionDoesNotExistError",
+              "text": "SubscriptionDoesNotExistError"
+            },
+            {
+              "kind": "text",
+              "text": " | "
+            },
+            {
+              "identifier": "doc://com.apple.advancedcommerceapi/documentation/AdvancedCommerceAPI/SubscriptionNotEligibleError",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:advanced-commerce-api:SubscriptionNotEligibleError",
+              "text": "SubscriptionNotEligibleError"
+            },
+            {
+              "kind": "text",
+              "text": ")"
+            }
+          ]
+        },
+        {
+          "content": [],
+          "mimeType": "application/json",
+          "reason": "Not Found",
+          "status": 404,
+          "type": [
+            {
+              "identifier": "doc://com.apple.advancedcommerceapi/documentation/AdvancedCommerceAPI/TransactionIdNotFoundError",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:advanced-commerce-api:TransactionIdNotFoundError",
+              "text": "TransactionIdNotFoundError"
+            }
+          ]
+        },
+        {
+          "content": [],
+          "mimeType": "application/json",
+          "status": 429,
+          "type": [
+            {
+              "identifier": "doc://com.apple.advancedcommerceapi/documentation/AdvancedCommerceAPI/RateLimitExceededError",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:advanced-commerce-api:RateLimitExceededError",
+              "text": "RateLimitExceededError"
+            }
+          ]
+        },
+        {
+          "content": [],
+          "mimeType": "application/json",
+          "reason": "Internal Server Error",
+          "status": 500,
+          "type": [
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "identifier": "doc://com.apple.advancedcommerceapi/documentation/AdvancedCommerceAPI/GeneralInternalError",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:advanced-commerce-api:GeneralInternalError",
+              "text": "GeneralInternalError"
+            },
+            {
+              "kind": "text",
+              "text": " | "
+            },
+            {
+              "identifier": "doc://com.apple.advancedcommerceapi/documentation/AdvancedCommerceAPI/GeneralInternalRetryableError",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:advanced-commerce-api:GeneralInternalRetryableError",
+              "text": "GeneralInternalRetryableError"
+            },
+            {
+              "kind": "text",
+              "text": ")"
+            }
+          ]
+        }
+      ],
+      "kind": "restResponses",
+      "title": "Response Codes"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.advancedcommerceapi/documentation/AdvancedCommerceAPI/handling-subscription-price-changes",
+        "doc://com.apple.advancedcommerceapi/documentation/AdvancedCommerceAPI/authorizing-server-calls",
+        "doc://com.apple.advancedcommerceapi/documentation/AdvancedCommerceAPI/ratelimits"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Call this endpoint as the final step in changing the price of a subscription or any bundle or item within it. Based on the type of price change, you might need to communicate the change to customers or get their consent. For information about the communication requirements including their timing, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.advancedcommerceapi/documentation/AdvancedCommerceAPI/handling-subscription-price-changes",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Only active subscriptions that aren’t in a billing retry state are eligible for price changes. When you call this endpoint, the price change takes effect at the next subscription renewal. Call the endpoint no later than 24 hours before the renewal date to have it take effect at the renewal.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For information about providing prices, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.advancedcommerceapi/documentation/AdvancedCommerceAPI/prices",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Inform-customers-and-get-consent-if-needed",
+          "level": 3,
+          "text": "Inform customers and get consent if needed",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Determine whether you need to communicate a price change to the customer, as follows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Decreasing the price doesn’t require any communications with the customer. You can call this endpoint anytime you want to decrease prices.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Increasing subscription prices requires you to notify the customer in advance. Some price increases also require you to obtain the customer’s consent. To determine whether you need price consent and for information about customer communications and their timing, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.advancedcommerceapi/documentation/AdvancedCommerceAPI/handling-subscription-price-changes",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "You need to communicate price increases to your customer, including through email, in-app messaging, and push notifications. To determine whether you need price consent and for information about customer communications and their timing, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.advancedcommerceapi/documentation/AdvancedCommerceAPI/handling-subscription-price-changes",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Increase-price-of-a-SKU",
+          "level": 3,
+          "text": "Increase price of a SKU",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you’re increasing the price of any SKU associated with a subscription (such as the subscription itself, a bundle, or an individual item), follow these steps:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Determine whether the price increase requires customer consent.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If the increase doesn’t require customer consent, notify the customer of the price increase in advance, as described in ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.advancedcommerceapi/documentation/AdvancedCommerceAPI/handling-subscription-price-changes",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". Then, call this endpoint after you notify the customer.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If the increase requires customer consent, call this endpoint only if you’ve obtained the customer’s consent.  If you don’t obtain the customer’s consent to increase the price, don’t call this endpoint, and preserve the existing price.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.advancedcommerceapi/documentation/AdvancedCommerceAPI": {
+      "abstract": [
+        {
+          "text": "Support In-App Purchases through the App Store for exceptionally large catalogs of custom one-time purchases, subscriptions, and subscriptions with optional add-ons.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.advancedcommerceapi/documentation/AdvancedCommerceAPI",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Advanced Commerce API",
+      "type": "topic",
+      "url": "/documentation/advancedcommerceapi"
+    },
+    "doc://com.apple.advancedcommerceapi/documentation/AdvancedCommerceAPI/Change-Subscription-Price": {
+      "abstract": [
+        {
+          "text": "Increase or decrease the price of an auto-renewable subscription, a bundle, or individual items within a subscription at the next renewal.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.advancedcommerceapi/documentation/AdvancedCommerceAPI/Change-Subscription-Price",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Change Subscription Price"
+        }
+      ],
+      "role": "symbol",
+      "title": "Change Subscription Price",
+      "type": "topic",
+      "url": "/documentation/advancedcommerceapi/change-subscription-price"
+    },
+    "doc://com.apple.advancedcommerceapi/documentation/AdvancedCommerceAPI/DescriptionLengthExceededError": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "DescriptionLengthExceededError"
+        }
+      ],
+      "identifier": "doc://com.apple.advancedcommerceapi/documentation/AdvancedCommerceAPI/DescriptionLengthExceededError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DescriptionLengthExceededError"
+        }
+      ],
+      "role": "symbol",
+      "title": "DescriptionLengthExceededError",
+      "type": "topic",
+      "url": "/documentation/advancedcommerceapi/descriptionlengthexceedederror"
+    },
+    "doc://com.apple.advancedcommerceapi/documentation/AdvancedCommerceAPI/DisplayNameLengthExceededError": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "DisplayNameLengthExceededError"
+        }
+      ],
+      "identifier": "doc://com.apple.advancedcommerceapi/documentation/AdvancedCommerceAPI/DisplayNameLengthExceededError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DisplayNameLengthExceededError"
+        }
+      ],
+      "role": "symbol",
+      "title": "DisplayNameLengthExceededError",
+      "type": "topic",
+      "url": "/documentation/advancedcommerceapi/displaynamelengthexceedederror"
+    },
+    "doc://com.apple.advancedcommerceapi/documentation/AdvancedCommerceAPI/GeneralInternalError": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "GeneralInternalError"
+        }
+      ],
+      "identifier": "doc://com.apple.advancedcommerceapi/documentation/AdvancedCommerceAPI/GeneralInternalError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GeneralInternalError"
+        }
+      ],
+      "role": "symbol",
+      "title": "GeneralInternalError",
+      "type": "topic",
+      "url": "/documentation/advancedcommerceapi/generalinternalerror"
+    },
+    "doc://com.apple.advancedcommerceapi/documentation/AdvancedCommerceAPI/GeneralInternalRetryableError": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "GeneralInternalRetryableError"
+        }
+      ],
+      "identifier": "doc://com.apple.advancedcommerceapi/documentation/AdvancedCommerceAPI/GeneralInternalRetryableError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GeneralInternalRetryableError"
+        }
+      ],
+      "role": "symbol",
+      "title": "GeneralInternalRetryableError",
+      "type": "topic",
+      "url": "/documentation/advancedcommerceapi/generalinternalretryableerror"
+    },
+    "doc://com.apple.advancedcommerceapi/documentation/AdvancedCommerceAPI/InvalidAppAccountTokenError": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "InvalidAppAccountTokenError"
+        }
+      ],
+      "identifier": "doc://com.apple.advancedcommerceapi/documentation/AdvancedCommerceAPI/InvalidAppAccountTokenError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "InvalidAppAccountTokenError"
+        }
+      ],
+      "role": "symbol",
+      "title": "InvalidAppAccountTokenError",
+      "type": "topic",
+      "url": "/documentation/advancedcommerceapi/invalidappaccounttokenerror"
+    },
+    "doc://com.apple.advancedcommerceapi/documentation/AdvancedCommerceAPI/InvalidConsistencyTokenError": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "InvalidConsistencyTokenError"
+        }
+      ],
+      "identifier": "doc://com.apple.advancedcommerceapi/documentation/AdvancedCommerceAPI/InvalidConsistencyTokenError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "InvalidConsistencyTokenError"
+        }
+      ],
+      "role": "symbol",
+      "title": "InvalidConsistencyTokenError",
+      "type": "topic",
+      "url": "/documentation/advancedcommerceapi/invalidconsistencytokenerror"
+    },
+    "doc://com.apple.advancedcommerceapi/documentation/AdvancedCommerceAPI/InvalidCurrencyError": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "InvalidCurrencyError"
+        }
+      ],
+      "identifier": "doc://com.apple.advancedcommerceapi/documentation/AdvancedCommerceAPI/InvalidCurrencyError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "InvalidCurrencyError"
+        }
+      ],
+      "role": "symbol",
+      "title": "InvalidCurrencyError",
+      "type": "topic",
+      "url": "/documentation/advancedcommerceapi/invalidcurrencyerror"
+    },
+    "doc://com.apple.advancedcommerceapi/documentation/AdvancedCommerceAPI/InvalidProductError": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "InvalidProductError"
+        }
+      ],
+      "identifier": "doc://com.apple.advancedcommerceapi/documentation/AdvancedCommerceAPI/InvalidProductError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "InvalidProductError"
+        }
+      ],
+      "role": "symbol",
+      "title": "InvalidProductError",
+      "type": "topic",
+      "url": "/documentation/advancedcommerceapi/invalidproducterror"
+    },
+    "doc://com.apple.advancedcommerceapi/documentation/AdvancedCommerceAPI/InvalidRequestReferenceIDError": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "InvalidRequestReferenceIDError"
+        }
+      ],
+      "identifier": "doc://com.apple.advancedcommerceapi/documentation/AdvancedCommerceAPI/InvalidRequestReferenceIDError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "InvalidRequestReferenceIDError"
+        }
+      ],
+      "role": "symbol",
+      "title": "InvalidRequestReferenceIDError",
+      "type": "topic",
+      "url": "/documentation/advancedcommerceapi/invalidrequestreferenceiderror"
+    },
+    "doc://com.apple.advancedcommerceapi/documentation/AdvancedCommerceAPI/InvalidSKUError": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "InvalidSKUError"
+        }
+      ],
+      "identifier": "doc://com.apple.advancedcommerceapi/documentation/AdvancedCommerceAPI/InvalidSKUError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "InvalidSKUError"
+        }
+      ],
+      "role": "symbol",
+      "title": "InvalidSKUError",
+      "type": "topic",
+      "url": "/documentation/advancedcommerceapi/invalidskuerror"
+    },
+    "doc://com.apple.advancedcommerceapi/documentation/AdvancedCommerceAPI/InvalidStorefrontError": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "InvalidStorefrontError"
+        }
+      ],
+      "identifier": "doc://com.apple.advancedcommerceapi/documentation/AdvancedCommerceAPI/InvalidStorefrontError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "InvalidStorefrontError"
+        }
+      ],
+      "role": "symbol",
+      "title": "InvalidStorefrontError",
+      "type": "topic",
+      "url": "/documentation/advancedcommerceapi/invalidstorefronterror"
+    },
+    "doc://com.apple.advancedcommerceapi/documentation/AdvancedCommerceAPI/MalformedPayloadError": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "MalformedPayloadError"
+        }
+      ],
+      "identifier": "doc://com.apple.advancedcommerceapi/documentation/AdvancedCommerceAPI/MalformedPayloadError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MalformedPayloadError"
+        }
+      ],
+      "role": "symbol",
+      "title": "MalformedPayloadError",
+      "type": "topic",
+      "url": "/documentation/advancedcommerceapi/malformedpayloaderror"
+    },
+    "doc://com.apple.advancedcommerceapi/documentation/AdvancedCommerceAPI/MismatchedStorefrontError": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "MismatchedStorefrontError"
+        }
+      ],
+      "identifier": "doc://com.apple.advancedcommerceapi/documentation/AdvancedCommerceAPI/MismatchedStorefrontError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MismatchedStorefrontError"
+        }
+      ],
+      "role": "symbol",
+      "title": "MismatchedStorefrontError",
+      "type": "topic",
+      "url": "/documentation/advancedcommerceapi/mismatchedstorefronterror"
+    },
+    "doc://com.apple.advancedcommerceapi/documentation/AdvancedCommerceAPI/MissingPricingConfigForStorefrontError": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "MissingPricingConfigForStorefrontError"
+        }
+      ],
+      "identifier": "doc://com.apple.advancedcommerceapi/documentation/AdvancedCommerceAPI/MissingPricingConfigForStorefrontError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MissingPricingConfigForStorefrontError"
+        }
+      ],
+      "role": "symbol",
+      "title": "MissingPricingConfigForStorefrontError",
+      "type": "topic",
+      "url": "/documentation/advancedcommerceapi/missingpricingconfigforstorefronterror"
+    },
+    "doc://com.apple.advancedcommerceapi/documentation/AdvancedCommerceAPI/NegativePriceError": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "NegativePriceError"
+        }
+      ],
+      "identifier": "doc://com.apple.advancedcommerceapi/documentation/AdvancedCommerceAPI/NegativePriceError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NegativePriceError"
+        }
+      ],
+      "role": "symbol",
+      "title": "NegativePriceError",
+      "type": "topic",
+      "url": "/documentation/advancedcommerceapi/negativepriceerror"
+    },
+    "doc://com.apple.advancedcommerceapi/documentation/AdvancedCommerceAPI/NullItemsError": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "NullItemsError"
+        }
+      ],
+      "identifier": "doc://com.apple.advancedcommerceapi/documentation/AdvancedCommerceAPI/NullItemsError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NullItemsError"
+        }
+      ],
+      "role": "symbol",
+      "title": "NullItemsError",
+      "type": "topic",
+      "url": "/documentation/advancedcommerceapi/nullitemserror"
+    },
+    "doc://com.apple.advancedcommerceapi/documentation/AdvancedCommerceAPI/NullRequestInfoError": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "NullRequestInfoError"
+        }
+      ],
+      "identifier": "doc://com.apple.advancedcommerceapi/documentation/AdvancedCommerceAPI/NullRequestInfoError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NullRequestInfoError"
+        }
+      ],
+      "role": "symbol",
+      "title": "NullRequestInfoError",
+      "type": "topic",
+      "url": "/documentation/advancedcommerceapi/nullrequestinfoerror"
+    },
+    "doc://com.apple.advancedcommerceapi/documentation/AdvancedCommerceAPI/NullRequestReferenceIDError": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "NullRequestReferenceIDError"
+        }
+      ],
+      "identifier": "doc://com.apple.advancedcommerceapi/documentation/AdvancedCommerceAPI/NullRequestReferenceIDError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NullRequestReferenceIDError"
+        }
+      ],
+      "role": "symbol",
+      "title": "NullRequestReferenceIDError",
+      "type": "topic",
+      "url": "/documentation/advancedcommerceapi/nullrequestreferenceiderror"
+    },
+    "doc://com.apple.advancedcommerceapi/documentation/AdvancedCommerceAPI/NullSKUError": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "NullSKUError"
+        }
+      ],
+      "identifier": "doc://com.apple.advancedcommerceapi/documentation/AdvancedCommerceAPI/NullSKUError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NullSKUError"
+        }
+      ],
+      "role": "symbol",
+      "title": "NullSKUError",
+      "type": "topic",
+      "url": "/documentation/advancedcommerceapi/nullskuerror"
+    },
+    "doc://com.apple.advancedcommerceapi/documentation/AdvancedCommerceAPI/OperationNotAllowedError": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "OperationNotAllowedError"
+        }
+      ],
+      "identifier": "doc://com.apple.advancedcommerceapi/documentation/AdvancedCommerceAPI/OperationNotAllowedError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "OperationNotAllowedError"
+        }
+      ],
+      "role": "symbol",
+      "title": "OperationNotAllowedError",
+      "type": "topic",
+      "url": "/documentation/advancedcommerceapi/operationnotallowederror"
+    },
+    "doc://com.apple.advancedcommerceapi/documentation/AdvancedCommerceAPI/RateLimitExceededError": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "RateLimitExceededError"
+        }
+      ],
+      "identifier": "doc://com.apple.advancedcommerceapi/documentation/AdvancedCommerceAPI/RateLimitExceededError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RateLimitExceededError"
+        }
+      ],
+      "role": "symbol",
+      "title": "RateLimitExceededError",
+      "type": "topic",
+      "url": "/documentation/advancedcommerceapi/ratelimitexceedederror"
+    },
+    "doc://com.apple.advancedcommerceapi/documentation/AdvancedCommerceAPI/SKULengthExceededError": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKULengthExceededError"
+        }
+      ],
+      "identifier": "doc://com.apple.advancedcommerceapi/documentation/AdvancedCommerceAPI/SKULengthExceededError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKULengthExceededError"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKULengthExceededError",
+      "type": "topic",
+      "url": "/documentation/advancedcommerceapi/skulengthexceedederror"
+    },
+    "doc://com.apple.advancedcommerceapi/documentation/AdvancedCommerceAPI/SubscriptionDoesNotExistError": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "SubscriptionDoesNotExistError"
+        }
+      ],
+      "identifier": "doc://com.apple.advancedcommerceapi/documentation/AdvancedCommerceAPI/SubscriptionDoesNotExistError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SubscriptionDoesNotExistError"
+        }
+      ],
+      "role": "symbol",
+      "title": "SubscriptionDoesNotExistError",
+      "type": "topic",
+      "url": "/documentation/advancedcommerceapi/subscriptiondoesnotexisterror"
+    },
+    "doc://com.apple.advancedcommerceapi/documentation/AdvancedCommerceAPI/SubscriptionNotEligibleError": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "SubscriptionNotEligibleError"
+        }
+      ],
+      "identifier": "doc://com.apple.advancedcommerceapi/documentation/AdvancedCommerceAPI/SubscriptionNotEligibleError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SubscriptionNotEligibleError"
+        }
+      ],
+      "role": "symbol",
+      "title": "SubscriptionNotEligibleError",
+      "type": "topic",
+      "url": "/documentation/advancedcommerceapi/subscriptionnoteligibleerror"
+    },
+    "doc://com.apple.advancedcommerceapi/documentation/AdvancedCommerceAPI/SubscriptionPriceChangeRequest": {
+      "abstract": [
+        {
+          "text": "The request body you use to change the price of an auto-renewable subscription.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "SubscriptionPriceChangeRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.advancedcommerceapi/documentation/AdvancedCommerceAPI/SubscriptionPriceChangeRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SubscriptionPriceChangeRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "SubscriptionPriceChangeRequest",
+      "type": "topic",
+      "url": "/documentation/advancedcommerceapi/subscriptionpricechangerequest"
+    },
+    "doc://com.apple.advancedcommerceapi/documentation/AdvancedCommerceAPI/SubscriptionPriceChangeResponse": {
+      "abstract": [
+        {
+          "text": "A response that contains signed JWS renewal and JWS transaction information after a subscription price change request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "SubscriptionPriceChangeResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.advancedcommerceapi/documentation/AdvancedCommerceAPI/SubscriptionPriceChangeResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SubscriptionPriceChangeResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "SubscriptionPriceChangeResponse",
+      "type": "topic",
+      "url": "/documentation/advancedcommerceapi/subscriptionpricechangeresponse"
+    },
+    "doc://com.apple.advancedcommerceapi/documentation/AdvancedCommerceAPI/TransactionIdNotFoundError": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "TransactionIdNotFoundError"
+        }
+      ],
+      "identifier": "doc://com.apple.advancedcommerceapi/documentation/AdvancedCommerceAPI/TransactionIdNotFoundError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TransactionIdNotFoundError"
+        }
+      ],
+      "role": "symbol",
+      "title": "TransactionIdNotFoundError",
+      "type": "topic",
+      "url": "/documentation/advancedcommerceapi/transactionidnotfounderror"
+    },
+    "doc://com.apple.advancedcommerceapi/documentation/AdvancedCommerceAPI/authorizing-server-calls": {
+      "abstract": [
+        {
+          "text": "Create JSON Web Tokens (JWTs) to authorize Advanced Commerce requests from your server.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.advancedcommerceapi/documentation/AdvancedCommerceAPI/authorizing-server-calls",
+      "kind": "article",
+      "role": "article",
+      "title": "Authorizing API requests from your server",
+      "type": "topic",
+      "url": "/documentation/advancedcommerceapi/authorizing-server-calls"
+    },
+    "doc://com.apple.advancedcommerceapi/documentation/AdvancedCommerceAPI/handling-subscription-price-changes": {
+      "abstract": [
+        {
+          "text": "Provide necessary customer communications to notify and gather applicable consent before you initiate a price change.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.advancedcommerceapi/documentation/AdvancedCommerceAPI/handling-subscription-price-changes",
+      "kind": "article",
+      "role": "article",
+      "title": "Handling subscription price changes",
+      "type": "topic",
+      "url": "/documentation/advancedcommerceapi/handling-subscription-price-changes"
+    },
+    "doc://com.apple.advancedcommerceapi/documentation/AdvancedCommerceAPI/prices": {
+      "abstract": [
+        {
+          "text": "Provide prices for SKUs with the supported number of decimal places, in milliunits of currency.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.advancedcommerceapi/documentation/AdvancedCommerceAPI/prices",
+      "kind": "article",
+      "role": "article",
+      "title": "Specifying prices for Advanced Commerce SKUs",
+      "type": "topic",
+      "url": "/documentation/advancedcommerceapi/prices"
+    },
+    "doc://com.apple.advancedcommerceapi/documentation/AdvancedCommerceAPI/ratelimits": {
+      "abstract": [
+        {
+          "text": "Recognize and handle the rate limits that apply to Advanced Commerce API endpoints.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.advancedcommerceapi/documentation/AdvancedCommerceAPI/ratelimits",
+      "kind": "article",
+      "role": "article",
+      "title": "Identifying rate limits for Advanced Commerce APIs",
+      "type": "topic",
+      "url": "/documentation/advancedcommerceapi/ratelimits"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Subscription-price-change-from-the-server",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.advancedcommerceapi/documentation/AdvancedCommerceAPI/SubscriptionPriceChangeRequest",
+        "doc://com.apple.advancedcommerceapi/documentation/AdvancedCommerceAPI/SubscriptionPriceChangeResponse"
+      ],
+      "title": "Subscription price change from the server"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/advancedcommerceapi/change-subscription-price"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

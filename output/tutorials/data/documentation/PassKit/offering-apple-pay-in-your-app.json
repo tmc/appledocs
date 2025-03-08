@@ -1,0 +1,1931 @@
+{
+  "abstract": [
+    {
+      "text": "Collect payments with iPhone and Apple Watch using Apple Pay.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.passkit/documentation/PassKit",
+        "doc://com.apple.passkit/documentation/PassKit/apple-pay"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.passkit/documentation/PassKit/offering-apple-pay-in-your-app"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "PassKit (Apple Pay and Wallet)"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "15.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "15.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "8.0",
+        "name": "watchOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "13.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Offering Apple Pay in Your App"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample shows the implementation of an integrated Apple Pay eCommerce experience across iOS and watchOS. The sample app demonstrates how to use the Apple Pay button, display the Apple Pay payment sheet, make payment requests, and accept coupon codes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample ticket booking app implements buying a ticket using Apple Pay in:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "An iOS app.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A watchOS app.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A shared ",
+              "type": "text"
+            },
+            {
+              "code": "PaymentHandler",
+              "type": "codeVoice"
+            },
+            {
+              "text": " class handles payment in each of the apps.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "This sample code project is associated with WWDC21 session ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/wwdc21/10092/",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Configure-the-Sample-Code-Project",
+          "level": 3,
+          "text": "Configure the Sample Code Project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Test Apple Pay payments with this sample by configuring the bundle identifiers and Apple Pay configuration items in Xcode. Doing this requires an Apple developer account. Before building the app, complete these four steps:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Change the bundle ID for each target so that it’s unique for your developer account; change ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "example",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " in the bundle ID to something that represents you or your organization.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the build settings, update the value of the user-defined ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "OFFERING_APPLE_PAY_BUNDLE_PREFIX",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " setting to match the prefix of the bundle IDs you changed in step 1. For example, if you changed ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "example",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " in each bundle ID to your organization name, change ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "example",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " in ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "OFFERING_APPLE_PAY_BUNDLE_PREFIX",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to the same organization name. Xcode configures the required merchant ID for Apple Pay in each target when you build the project.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Set up the Apple Pay Merchant Identity and Apple Pay Payment Processing certificates. For more information on setting up a merchant identity and processing certificates, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/PassKit/setting-up-apple-pay",
+                      "isActive": true,
+                      "overridingTitle": "Setting Up Apple Pay",
+                      "overridingTitleInlineContent": [
+                        {
+                          "text": "Setting Up Apple Pay",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Set the signing option for the iOS app to “Automatically manage signing.”",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Running this app on an iPhone or Apple Watch requires an Apple Pay card. Running in Simulator doesn’t require a card.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Not all Apple Pay features are supported in the iOS simulator. Testing Apple Pay is unsupported in the watchOS simulator.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about processing an Apple Pay payment using a payment platform or merchant bank, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/apple-pay",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". To set up your sandbox environment for testing, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/apple-pay/sandbox-testing/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-the-Apple-Pay-Button",
+          "level": 3,
+          "text": "Add the Apple Pay Button",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Apple Pay includes pre-built buttons to start a payment interaction, or to set up payment methods. The iOS app displays the payment button if the device can make payments, and it contains at least one payment card; otherwise it displays the button to add a payment.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample checks for the ability to make payments using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPaymentAuthorizationController/canMakePayments()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and checks for available payment cards using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPaymentAuthorizationController/canMakePayments(usingNetworks:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Both of these methods are part of",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPaymentAuthorizationController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "static let supportedNetworks: [PKPaymentNetwork] = [",
+            "    .amex,",
+            "    .discover,",
+            "    .masterCard,",
+            "    .visa",
+            "]",
+            "",
+            "class func applePayStatus() -> (canMakePayments: Bool, canSetupCards: Bool) {",
+            "    return (PKPaymentAuthorizationController.canMakePayments(),",
+            "            PKPaymentAuthorizationController.canMakePayments(usingNetworks: supportedNetworks))",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The iOS app displays the payment button by adding an instance of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPaymentButton",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The sample app doesn’t display the add button if a device can’t accept payments due to hardware limitations, parental controls, or any other reasons.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "code": [
+            "let result = PaymentHandler.applePayStatus()",
+            "var button: UIButton?",
+            "",
+            "if result.canMakePayments {",
+            "    button = PKPaymentButton(paymentButtonType: .book, paymentButtonStyle: .black)",
+            "    button?.addTarget(self, action: #selector(ViewController.payPressed), for: .touchUpInside)",
+            "} else if result.canSetupCards {",
+            "    button = PKPaymentButton(paymentButtonType: .setUp, paymentButtonStyle: .black)",
+            "    button?.addTarget(self, action: #selector(ViewController.setupPressed), for: .touchUpInside)",
+            "}",
+            "",
+            "if let applePayButton = button {",
+            "    let constraints = [",
+            "        applePayButton.centerXAnchor.constraint(equalTo: applePayView.centerXAnchor),",
+            "        applePayButton.centerYAnchor.constraint(equalTo: applePayView.centerYAnchor)",
+            "    ]",
+            "    applePayButton.translatesAutoresizingMaskIntoConstraints = false",
+            "    applePayView.addSubview(applePayButton)",
+            "    NSLayoutConstraint.activate(constraints)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The watchOS app adds the button to the storyboard as an instance of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/WatchKit/WKInterfacePaymentButton",
+              "isActive": true,
+              "overridingTitle": "WKInterfacePaymentButton",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "WKInterfacePaymentButton",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Define-the-Shipping-Methods",
+          "level": 3,
+          "text": "Define the Shipping Methods",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app defines two shipping methods: delivery with estimated shipping dates and on-site collection. The payment sheet displays the delivery information for the chosen shipping method, including estimated delivery dates. Configuring the dates requires a calendar, start date components, and end date components",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func shippingMethodCalculator() -> [PKShippingMethod] {",
+            "    // Calculate the pickup date.",
+            "    ",
+            "    let today = Date()",
+            "    let calendar = Calendar.current",
+            "    ",
+            "    let shippingStart = calendar.date(byAdding: .day, value: 3, to: today)!",
+            "    let shippingEnd = calendar.date(byAdding: .day, value: 5, to: today)!",
+            "    ",
+            "    let startComponents = calendar.dateComponents([.calendar, .year, .month, .day], from: shippingStart)",
+            "    let endComponents = calendar.dateComponents([.calendar, .year, .month, .day], from: shippingEnd)",
+            "     ",
+            "    let shippingDelivery = PKShippingMethod(label: \"Delivery\", amount: NSDecimalNumber(string: \"0.00\"))",
+            "    shippingDelivery.dateComponentsRange = PKDateComponentsRange(start: startComponents, end: endComponents)",
+            "    shippingDelivery.detail = \"Ticket sent to you address\"",
+            "    shippingDelivery.identifier = \"DELIVERY\"",
+            "    ",
+            "    let shippingCollection = PKShippingMethod(label: \"Collection\", amount: NSDecimalNumber(string: \"0.00\"))",
+            "    shippingCollection.detail = \"Collect ticket at festival\"",
+            "    shippingCollection.identifier = \"COLLECTION\"",
+            "    ",
+            "    return [shippingDelivery, shippingCollection]",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Start-the-Payment-Process",
+          "level": 3,
+          "text": "Start the Payment Process",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Both iOS and watchOS implementations start the payment process by calling the ",
+              "type": "text"
+            },
+            {
+              "code": "startPayment",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method of the shared ",
+              "type": "text"
+            },
+            {
+              "code": "PaymentHandler",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". Updates to the payment sheet use the completion handlers implemented by both apps. The ",
+              "type": "text"
+            },
+            {
+              "code": "startPayment",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method stores the completion handlers because the Apple Pay functionality is asynchronous; and then the method creates an array of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPaymentSummaryItem",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to display the charges on the payment sheet.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let ticket = PKPaymentSummaryItem(label: \"Festival Entry\", amount: NSDecimalNumber(string: \"9.99\"), type: .final)",
+            "let tax = PKPaymentSummaryItem(label: \"Tax\", amount: NSDecimalNumber(string: \"1.00\"), type: .final)",
+            "let total = PKPaymentSummaryItem(label: \"Total\", amount: NSDecimalNumber(string: \"10.99\"), type: .final)",
+            "paymentSummaryItems = [ticket, tax, total]"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app configures a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPaymentRequest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " using the list of payment items and other details.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let paymentRequest = PKPaymentRequest()",
+            "paymentRequest.paymentSummaryItems = paymentSummaryItems",
+            "paymentRequest.merchantIdentifier = Configuration.Merchant.identifier",
+            "paymentRequest.merchantCapabilities = .capability3DS",
+            "paymentRequest.countryCode = \"US\"",
+            "paymentRequest.currencyCode = \"USD\"",
+            "paymentRequest.supportedNetworks = PaymentHandler.supportedNetworks",
+            "paymentRequest.shippingType = .delivery",
+            "paymentRequest.shippingMethods = shippingMethodCalculator()",
+            "paymentRequest.requiredShippingContactFields = [.name, .postalAddress]",
+            "#if !os(watchOS)",
+            "paymentRequest.supportsCouponCode = true",
+            "#endif"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Next the app displays the payment sheet by calling ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPaymentAuthorizationController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " with the payment request. Both apps present the payment sheet using ",
+              "type": "text"
+            },
+            {
+              "code": "present(completion:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The payment sheet handles all user interactions, including payment confirmation. It requests updates using the completion handlers stored by the ",
+              "type": "text"
+            },
+            {
+              "code": "startPayment",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method when a user updates the sheet.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "paymentController = PKPaymentAuthorizationController(paymentRequest: paymentRequest)",
+            "paymentController?.delegate = self",
+            "paymentController?.present(completion: { (presented: Bool) in",
+            "    if presented {",
+            "        debugPrint(\"Presented payment controller\")",
+            "    } else {",
+            "        debugPrint(\"Failed to present payment controller\")",
+            "        self.completionHandler(false)",
+            "    }",
+            "})"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Respond-to-Coupon-Code-Entry",
+          "level": 3,
+          "text": "Respond to Coupon Code Entry",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "PaymentHandler",
+              "type": "codeVoice"
+            },
+            {
+              "text": " class handles coupons by implementing the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPaymentAuthorizationControllerDelegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol method ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPaymentAuthorizationControllerDelegate/paymentAuthorizationController(_:didSelectPaymentMethod:handler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After the user enters an accepted coupon code, the method adds a new ",
+              "type": "text"
+            },
+            {
+              "code": "PKPaymentSummaryItem",
+              "type": "codeVoice"
+            },
+            {
+              "text": " displaying the discount, and adjusts the ",
+              "type": "text"
+            },
+            {
+              "code": "PKPaymentSummaryItem",
+              "type": "codeVoice"
+            },
+            {
+              "text": " with the discounted total.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "This method is wrapped in a conditional compilation flag as watchOS 8 doesn’t support coupon codes.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "code": [
+            "#if !os(watchOS)",
+            "",
+            "func paymentAuthorizationController(_ controller: PKPaymentAuthorizationController,",
+            "                                    didChangeCouponCode couponCode: String,",
+            "                                    handler completion: @escaping (PKPaymentRequestCouponCodeUpdate) -> Void) {",
+            "    // The `didChangeCouponCode` delegate method allows you to make changes when the user enters or updates a coupon code.",
+            "    ",
+            "    func applyDiscount(items: [PKPaymentSummaryItem]) -> [PKPaymentSummaryItem] {",
+            "        let tickets = items.first!",
+            "        let couponDiscountItem = PKPaymentSummaryItem(label: \"Coupon Code Applied\", amount: NSDecimalNumber(string: \"-2.00\"))",
+            "        let updatedTax = PKPaymentSummaryItem(label: \"Tax\", amount: NSDecimalNumber(string: \"0.80\"), type: .final)",
+            "        let updatedTotal = PKPaymentSummaryItem(label: \"Total\", amount: NSDecimalNumber(string: \"8.80\"), type: .final)",
+            "        let discountedItems = [tickets, couponDiscountItem, updatedTax, updatedTotal]",
+            "        return discountedItems",
+            "    }",
+            "    ",
+            "    if couponCode.uppercased() == \"FESTIVAL\" {",
+            "        // If the coupon code is valid, update the summary items.",
+            "        let couponCodeSummaryItems = applyDiscount(items: paymentSummaryItems)",
+            "        completion(PKPaymentRequestCouponCodeUpdate(paymentSummaryItems: applyDiscount(items: couponCodeSummaryItems)))",
+            "        return",
+            "    } else if couponCode.isEmpty {",
+            "        // If the user doesn't enter a code, return the current payment summary items.",
+            "        completion(PKPaymentRequestCouponCodeUpdate(paymentSummaryItems: paymentSummaryItems))",
+            "        return",
+            "    } else {",
+            "        // If the user enters a code, but it's not valid, we can display an error.",
+            "        let couponError = PKPaymentRequest.paymentCouponCodeInvalidError(localizedDescription: \"Coupon code is not valid.\")",
+            "        completion(PKPaymentRequestCouponCodeUpdate(errors: [couponError], paymentSummaryItems: paymentSummaryItems, shippingMethods: shippingMethodCalculator()))",
+            "        return",
+            "    }",
+            "}",
+            "",
+            "#endif"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Handle-Payment-Success-or-Failure",
+          "level": 3,
+          "text": "Handle Payment Success or Failure",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the user authorizes the payment, the system calls the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPaymentAuthorizationControllerDelegate/paymentAuthorizationController(_:didAuthorizePayment:handler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPaymentAuthorizationControllerDelegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol. Your handler confirms that the shipping address meets the criteria needed, and then calls the completion handler to report success or failure of the payment.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample code contains a comment at the place you add code for processing the payment.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func paymentAuthorizationController(_ controller: PKPaymentAuthorizationController, didAuthorizePayment payment: PKPayment, handler completion: @escaping (PKPaymentAuthorizationResult) -> Void) {",
+            "    ",
+            "    // Perform basic validation on the provided contact information.",
+            "    var errors = [Error]()",
+            "    var status = PKPaymentAuthorizationStatus.success",
+            "    if payment.shippingContact?.postalAddress?.isoCountryCode != \"US\" {",
+            "        let pickupError = PKPaymentRequest.paymentShippingAddressUnserviceableError(withLocalizedDescription: \"Sample App only available in the United States\")",
+            "        let countryError = PKPaymentRequest.paymentShippingAddressInvalidError(withKey: CNPostalAddressCountryKey, localizedDescription: \"Invalid country\")",
+            "        errors.append(pickupError)",
+            "        errors.append(countryError)",
+            "        status = .failure",
+            "    } else {",
+            "        // Send the payment token to your server or payment provider to process here.",
+            "        // Once processed, return an appropriate status in the completion handler (success, failure, and so on).",
+            "    }",
+            "    ",
+            "    self.paymentStatus = status",
+            "    completion(PKPaymentAuthorizationResult(status: status, errors: errors))",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Once the sample app calls the completion handler in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPaymentAuthorizationControllerDelegate/paymentAuthorizationController(_:didAuthorizePayment:handler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method, Apple Pay tells the app it can dismiss the payment sheet by calling ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPaymentAuthorizationControllerDelegate/paymentAuthorizationControllerDidFinish(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". iOS and watchOS both handle dismissing the sheet as appropriate for each platform. In the iOS app, if payment succeeds the completion handler performs a segue to display a new view controller. If the payment fails, it remains on the payment sheet so the user can attempt payment with a different card or correct any issues.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@objc func payPressed(sender: AnyObject) {",
+            "    paymentHandler.startPayment() { (success) in",
+            "        if success {",
+            "            self.performSegue(withIdentifier: \"Confirmation\", sender: self)",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "5717c0e852a2/OfferingApplePayInYourApp.zip": {
+      "checksum": "5717c0e852a21d47ff8401bfa86921f61df8c2c2b703c6659e43f1d0f07d570a6daed8e7417f8f9b6009691e0f66951a2f6e7ac36aab39e7807e66044ba39f1e",
+      "identifier": "5717c0e852a2/OfferingApplePayInYourApp.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/5717c0e852a2/OfferingApplePayInYourApp.zip"
+    },
+    "doc://com.apple.documentation/documentation/PassKit/setting-up-apple-pay": {
+      "abstract": [
+        {
+          "text": "Fulfill the requirements to provide Apple Pay as a payment option on your website or in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/PassKit/setting-up-apple-pay",
+      "kind": "article",
+      "role": "article",
+      "title": "Setting up Apple Pay",
+      "type": "topic",
+      "url": "/documentation/PassKit/setting-up-apple-pay"
+    },
+    "doc://com.apple.documentation/documentation/WatchKit/WKInterfacePaymentButton": {
+      "abstract": [
+        {
+          "text": "A button that you can use to trigger payments through Apple Pay.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKInterfacePaymentButton"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/WatchKit/WKInterfacePaymentButton",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "WKInterfacePaymentButton",
+      "type": "topic",
+      "url": "/documentation/WatchKit/WKInterfacePaymentButton"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.passkit/documentation/PassKit": {
+      "abstract": [
+        {
+          "text": "Process Apple Pay payments in your app, and create and distribute passes for the Wallet app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "PassKit (Apple Pay and Wallet)",
+      "type": "topic",
+      "url": "/documentation/passkit"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKPaymentAuthorizationController": {
+      "abstract": [
+        {
+          "text": "An object that presents a sheet that prompts the user to authorize a payment request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKPaymentAuthorizationController"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPaymentAuthorizationController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKPaymentAuthorizationController"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKPaymentAuthorizationController",
+      "type": "topic",
+      "url": "/documentation/passkit/pkpaymentauthorizationcontroller"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKPaymentAuthorizationController/canMakePayments()": {
+      "abstract": [
+        {
+          "text": "Returns whether the user can make payments.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "canMakePayments"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPaymentAuthorizationController/canMakePayments()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "canMakePayments"
+        }
+      ],
+      "role": "symbol",
+      "title": "canMakePayments()",
+      "type": "topic",
+      "url": "/documentation/passkit/pkpaymentauthorizationcontroller/canmakepayments()"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKPaymentAuthorizationController/canMakePayments(usingNetworks:)": {
+      "abstract": [
+        {
+          "text": "Returns whether the user can make payments through the specified network.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "canMakePayments"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "usingNetworks"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@PKPaymentNetwork",
+          "text": "PKPaymentNetwork"
+        },
+        {
+          "kind": "text",
+          "text": "]) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPaymentAuthorizationController/canMakePayments(usingNetworks:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "canMakePaymentsUsingNetworks:"
+        }
+      ],
+      "role": "symbol",
+      "title": "canMakePayments(usingNetworks:)",
+      "type": "topic",
+      "url": "/documentation/passkit/pkpaymentauthorizationcontroller/canmakepayments(usingnetworks:)"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKPaymentAuthorizationControllerDelegate": {
+      "abstract": [
+        {
+          "text": "Methods that let you respond to user interactions with your payment authorization controller.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKPaymentAuthorizationControllerDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPaymentAuthorizationControllerDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKPaymentAuthorizationControllerDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKPaymentAuthorizationControllerDelegate",
+      "type": "topic",
+      "url": "/documentation/passkit/pkpaymentauthorizationcontrollerdelegate"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKPaymentAuthorizationControllerDelegate/paymentAuthorizationController(_:didAuthorizePayment:handler:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that the user authorized the payment request, and asks for a result.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "paymentAuthorizationController"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PKPaymentAuthorizationController",
+          "text": "PKPaymentAuthorizationController"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didAuthorizePayment"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PKPayment",
+          "text": "PKPayment"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "handler"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PKPaymentAuthorizationResult",
+          "text": "PKPaymentAuthorizationResult"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPaymentAuthorizationControllerDelegate/paymentAuthorizationController(_:didAuthorizePayment:handler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "paymentAuthorizationController:didAuthorizePayment:handler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "paymentAuthorizationController(_:didAuthorizePayment:handler:)",
+      "type": "topic",
+      "url": "/documentation/passkit/pkpaymentauthorizationcontrollerdelegate/paymentauthorizationcontroller(_:didauthorizepayment:handler:)"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKPaymentAuthorizationControllerDelegate/paymentAuthorizationController(_:didSelectPaymentMethod:handler:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that the user changed the payment method, and asks for an updated payment request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "paymentAuthorizationController"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PKPaymentAuthorizationController",
+          "text": "PKPaymentAuthorizationController"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didSelectPaymentMethod"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PKPaymentMethod",
+          "text": "PKPaymentMethod"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "handler"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PKPaymentRequestPaymentMethodUpdate",
+          "text": "PKPaymentRequestPaymentMethodUpdate"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPaymentAuthorizationControllerDelegate/paymentAuthorizationController(_:didSelectPaymentMethod:handler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "paymentAuthorizationController:didSelectPaymentMethod:handler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "paymentAuthorizationController(_:didSelectPaymentMethod:handler:)",
+      "type": "topic",
+      "url": "/documentation/passkit/pkpaymentauthorizationcontrollerdelegate/paymentauthorizationcontroller(_:didselectpaymentmethod:handler:)"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKPaymentAuthorizationControllerDelegate/paymentAuthorizationControllerDidFinish(_:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that payment authorization has completed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "paymentAuthorizationControllerDidFinish"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PKPaymentAuthorizationController",
+          "text": "PKPaymentAuthorizationController"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPaymentAuthorizationControllerDelegate/paymentAuthorizationControllerDidFinish(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "paymentAuthorizationControllerDidFinish:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "paymentAuthorizationControllerDidFinish(_:)",
+      "type": "topic",
+      "url": "/documentation/passkit/pkpaymentauthorizationcontrollerdelegate/paymentauthorizationcontrollerdidfinish(_:)"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKPaymentButton": {
+      "abstract": [
+        {
+          "text": "An object that displays a button either to trigger payments through Apple Pay or to prompt the user to set up a card.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKPaymentButton"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPaymentButton",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKPaymentButton"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKPaymentButton",
+      "type": "topic",
+      "url": "/documentation/passkit/pkpaymentbutton"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKPaymentRequest": {
+      "abstract": [
+        {
+          "text": "An object that represents a request for payment, including details about payment-processing capabilities, the payment amount, and shipping information.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKPaymentRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPaymentRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKPaymentRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKPaymentRequest",
+      "type": "topic",
+      "url": "/documentation/passkit/pkpaymentrequest"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKPaymentSummaryItem": {
+      "abstract": [
+        {
+          "text": "An object that defines a summary item in a payment request, taxes, discounts, shipping, a grand total, and the like.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKPaymentSummaryItem"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPaymentSummaryItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKPaymentSummaryItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKPaymentSummaryItem",
+      "type": "topic",
+      "url": "/documentation/passkit/pkpaymentsummaryitem"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/apple-pay": {
+      "abstract": [
+        {
+          "text": "Request and process Apple Pay payments in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/apple-pay",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Apple Pay",
+      "type": "topic",
+      "url": "/documentation/passkit/apple-pay"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/complying-with-regional-regulations": {
+      "abstract": [
+        {
+          "text": "Check regional regulations for possible requirements for your Apple Pay-based implementation.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/complying-with-regional-regulations",
+      "kind": "article",
+      "role": "article",
+      "title": "Complying with regional regulations",
+      "type": "topic",
+      "url": "/documentation/passkit/complying-with-regional-regulations"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/setting-up-apple-pay": {
+      "abstract": [
+        {
+          "text": "Fulfill the requirements to provide Apple Pay as a payment option on your website or in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/setting-up-apple-pay",
+      "kind": "article",
+      "role": "article",
+      "title": "Setting up Apple Pay",
+      "type": "topic",
+      "url": "/documentation/passkit/setting-up-apple-pay"
+    },
+    "https://developer.apple.com/apple-pay": {
+      "identifier": "https://developer.apple.com/apple-pay",
+      "title": "An easier way to pay within apps and websites",
+      "titleInlineContent": [
+        {
+          "text": "An easier way to pay within apps and websites",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/apple-pay"
+    },
+    "https://developer.apple.com/apple-pay/sandbox-testing/": {
+      "identifier": "https://developer.apple.com/apple-pay/sandbox-testing/",
+      "title": "Sandbox Testing",
+      "titleInlineContent": [
+        {
+          "text": "Sandbox Testing",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/apple-pay/sandbox-testing/"
+    },
+    "https://developer.apple.com/wwdc21/10092/": {
+      "identifier": "https://developer.apple.com/wwdc21/10092/",
+      "title": "10092: What’s New in Wallet and Apple Pay",
+      "titleInlineContent": [
+        {
+          "text": "10092: What’s New in Wallet and Apple Pay",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/wwdc21/10092/"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "5717c0e852a2/OfferingApplePayInYourApp.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Apple-Pay-setup",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.passkit/documentation/PassKit/setting-up-apple-pay",
+        "doc://com.apple.passkit/documentation/PassKit/complying-with-regional-regulations"
+      ],
+      "title": "Apple Pay setup"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Apple-Pay-setup",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.passkit/documentation/PassKit/setting-up-apple-pay",
+                "doc://com.apple.passkit/documentation/PassKit/complying-with-regional-regulations"
+              ],
+              "title": "Apple Pay setup"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentSummaryItem/title",
+          "value": "PKPaymentSummaryItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentSummaryItem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKPaymentSummaryItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentSummaryItem/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKPaymentSummaryItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentAuthorizationControllerDelegate~1paymentAuthorizationController(_:didSelectPaymentMethod:handler:)/title",
+          "value": "paymentAuthorizationController:didSelectPaymentMethod:handler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentAuthorizationControllerDelegate~1paymentAuthorizationController(_:didSelectPaymentMethod:handler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "paymentAuthorizationController:didSelectPaymentMethod:handler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentAuthorizationController/title",
+          "value": "PKPaymentAuthorizationController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentAuthorizationController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKPaymentAuthorizationController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentAuthorizationController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKPaymentAuthorizationController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentRequest/title",
+          "value": "PKPaymentRequest"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentRequest/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKPaymentRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentRequest/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKPaymentRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentAuthorizationControllerDelegate/title",
+          "value": "PKPaymentAuthorizationControllerDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentAuthorizationControllerDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKPaymentAuthorizationControllerDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentAuthorizationControllerDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKPaymentAuthorizationControllerDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentButton/title",
+          "value": "PKPaymentButton"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentButton/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKPaymentButton"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentButton/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKPaymentButton"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentAuthorizationControllerDelegate~1paymentAuthorizationController(_:didAuthorizePayment:handler:)/title",
+          "value": "paymentAuthorizationController:didAuthorizePayment:handler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentAuthorizationControllerDelegate~1paymentAuthorizationController(_:didAuthorizePayment:handler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "paymentAuthorizationController:didAuthorizePayment:handler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1WatchKit~1WKInterfacePaymentButton/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "WKInterfacePaymentButton"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)WKInterfaceObject",
+              "text": "WKInterfaceObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentAuthorizationController~1canMakePayments(usingNetworks:)/title",
+          "value": "canMakePaymentsUsingNetworks:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentAuthorizationController~1canMakePayments(usingNetworks:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "canMakePaymentsUsingNetworks:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentAuthorizationControllerDelegate~1paymentAuthorizationControllerDidFinish(_:)/title",
+          "value": "paymentAuthorizationControllerDidFinish:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentAuthorizationControllerDelegate~1paymentAuthorizationControllerDidFinish(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "paymentAuthorizationControllerDidFinish:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentAuthorizationController~1canMakePayments()/title",
+          "value": "canMakePayments"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentAuthorizationController~1canMakePayments()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "canMakePayments"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/passkit/offering-apple-pay-in-your-app"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/passkit/offering-apple-pay-in-your-app"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

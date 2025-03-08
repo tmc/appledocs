@@ -1,0 +1,1479 @@
+{
+  "abstract": [
+    {
+      "text": "Detect objects in an AR scene or create a detailed 3D reconstruction of the real-world environment.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.RealityKit/documentation/RealityKit",
+        "doc://com.apple.RealityKit/documentation/RealityKit/ecs-scenes"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.RealityKit/documentation/RealityKit/realitykit-scene-understanding"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "RealityKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Implementing scene understanding and reconstruction in your RealityKit app"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "RealityKit can detect planes in the real-world environment on any device, allowing you to place virtual objects in the world and have them interact. On devices with a LiDAR sensor, RealityKit can create a detailed reconstruction of the surrounding environment, allowing more precise interactions between virtual content and the real world. With scene understanding enabled, RealityKit not only reconstructs the environment, but can also recognize what many real-world objects are.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Use-scene-understanding-in-iOS-and-macOS",
+          "level": 3,
+          "text": "Use scene understanding in iOS and macOS",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To enable scene-understanding in an iOS or macOS RealityKit app, insert options into ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ARView/Environment-swift.struct/sceneUnderstanding-swift.property",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " like this:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "arView.environment.sceneUnderstanding.options.insert(.occlusion)",
+            "arView.environment.sceneUnderstanding.options.insert(.physics)",
+            "arView.environment.sceneUnderstanding.options.insert(.collision)",
+            "arView.environment.sceneUnderstanding.options.insert(.receivesLighting)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Or, if you’re using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/RealityView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", you can configure the same options using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/SpatialTrackingSession/Configuration",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let session = SpatialTrackingSession()",
+            "let config = SpatialTrackingSession.Configuration(",
+            "    tracking:[],",
+            "    sceneUnderstanding:[",
+            "        .occlusion,",
+            "        .physics,",
+            "        .collision,",
+            "        .shadow",
+            "])",
+            "await session.run(config)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Use-scene-reconstruction-in-iOS-and-macOS",
+          "level": 3,
+          "text": "Use scene reconstruction in iOS and macOS",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After turning on scene-understanding options, RealityKit automatically",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "generates entities representing real-world geometry with a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/SceneUnderstandingComponent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can get these entities by using an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/EntityQuery",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Here’s an example of rendering a custom debug material with",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "scene-understanding meshes:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "var debugMaterial = UnlitMaterial(color: .green)",
+            "debugMaterial.triangleFillMode = .lines",
+            "",
+            "let sceneUnderstandingQuery = EntityQuery(where: .has(SceneUnderstandingComponent.self) && .has(ModelComponent.self))",
+            "let queryResult = scene.performQuery(sceneUnderstandingQuery)",
+            "queryResult.forEach { entity in",
+            "    entity.components[ModelComponent.self]?.materials = [debugMaterial]",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "With ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ARView/Environment-swift.struct/SceneUnderstanding-swift.struct/Options-swift.struct/physics",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ARView/Environment-swift.struct/SceneUnderstanding-swift.struct/Options-swift.struct/collision",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", scene-understanding meshes can participate in physics",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "simulations and collision events.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Here’s an example of identifying scene-understanding meshes in a collision event:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let _ = content.subscribe(to: CollisionEvents.Began.self) { event in",
+            "    if event.entityA.components.has(SceneUnderstandingComponent.self) {",
+            "        // The entityA is a scene-understanding mesh.",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Use-scene-understanding-in-visionOS",
+          "level": 3,
+          "text": "Use scene understanding in visionOS",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "RealityKit doesn’t automatically provide scene-understanding meshes in visionOS.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Instead, you can manually add ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/SceneUnderstandingComponent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to your custom entities to let it behave",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "as a virtual scene-understanding mesh. A virtual scene-understanding mesh participates in system rendering",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "features, such as shadows and depth mitigation, just like real-world geometry.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Custom virtual scene-understanding meshes only work in",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/ImmersionStyle/progressive",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/ImmersionStyle/full",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " immersive space.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "They don’t work in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/ImmersionStyle/mixed",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " space, or in a window or volume in the Shared Space.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Use-scene-reconstruction-in-visionOS",
+          "level": 3,
+          "text": "Use scene reconstruction in visionOS",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To enable scene reconstruction for a visionOS app, use a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/ARKit/SceneReconstructionProvider",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let arSession = ARKitSession()",
+            "let sceneReconstruction = SceneReconstructionProvider(modes: [])",
+            "",
+            "Task {",
+            "    do {",
+            "        try await arSession.run([sceneReconstruction])",
+            "    } catch {",
+            "        // Handle the error.",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.RealityKit/documentation/RealityKit": {
+      "abstract": [
+        {
+          "text": "Simulate and render 3D content for use in your augmented reality apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "RealityKit",
+      "type": "topic",
+      "url": "/documentation/realitykit"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/ARView/Environment-swift.struct/SceneUnderstanding-swift.struct": {
+      "abstract": [
+        {
+          "text": "An object that holds scene-understanding options for the view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SceneUnderstanding"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ARView/Environment-swift.struct/SceneUnderstanding-swift.struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SceneUnderstanding"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARView.Environment.SceneUnderstanding",
+      "type": "topic",
+      "url": "/documentation/realitykit/arview/environment-swift.struct/sceneunderstanding-swift.struct"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/ARView/Environment-swift.struct/SceneUnderstanding-swift.struct/Options-swift.struct": {
+      "abstract": [
+        {
+          "text": "Available scene-understanding options.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Options"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ARView/Environment-swift.struct/SceneUnderstanding-swift.struct/Options-swift.struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Options"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARView.Environment.SceneUnderstanding.Options",
+      "type": "topic",
+      "url": "/documentation/realitykit/arview/environment-swift.struct/sceneunderstanding-swift.struct/options-swift.struct"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/ARView/Environment-swift.struct/SceneUnderstanding-swift.struct/Options-swift.struct/collision": {
+      "abstract": [
+        {
+          "text": "The ",
+          "type": "text"
+        },
+        {
+          "code": ".collision",
+          "type": "codeVoice"
+        },
+        {
+          "text": " option means that the reconstructed geometry can be used for collision queries (i.e. raycasting)",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "collision"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@M@RealityKit@objc(cs)ARView",
+          "text": "ARView"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10RealityKit6ARViewC11EnvironmentV",
+          "text": "Environment"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10RealityKit6ARViewC11EnvironmentV18SceneUnderstandingV",
+          "text": "SceneUnderstanding"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10RealityKit6ARViewC11EnvironmentV18SceneUnderstandingV7OptionsV",
+          "text": "Options"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ARView/Environment-swift.struct/SceneUnderstanding-swift.struct/Options-swift.struct/collision",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "collision",
+      "type": "topic",
+      "url": "/documentation/realitykit/arview/environment-swift.struct/sceneunderstanding-swift.struct/options-swift.struct/collision"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/ARView/Environment-swift.struct/SceneUnderstanding-swift.struct/Options-swift.struct/physics": {
+      "abstract": [
+        {
+          "text": "No abstract",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "physics"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@M@RealityKit@objc(cs)ARView",
+          "text": "ARView"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10RealityKit6ARViewC11EnvironmentV",
+          "text": "Environment"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10RealityKit6ARViewC11EnvironmentV18SceneUnderstandingV",
+          "text": "SceneUnderstanding"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10RealityKit6ARViewC11EnvironmentV18SceneUnderstandingV7OptionsV",
+          "text": "Options"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ARView/Environment-swift.struct/SceneUnderstanding-swift.struct/Options-swift.struct/physics",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "physics",
+      "type": "topic",
+      "url": "/documentation/realitykit/arview/environment-swift.struct/sceneunderstanding-swift.struct/options-swift.struct/physics"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/ARView/Environment-swift.struct/sceneUnderstanding-swift.property": {
+      "abstract": [
+        {
+          "text": "The scene-understanding options for the view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sceneUnderstanding"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@M@RealityKit@objc(cs)ARView",
+          "text": "ARView"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10RealityKit6ARViewC11EnvironmentV",
+          "text": "Environment"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10RealityKit6ARViewC11EnvironmentV18SceneUnderstandingV",
+          "text": "SceneUnderstanding"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ARView/Environment-swift.struct/sceneUnderstanding-swift.property",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sceneUnderstanding",
+      "type": "topic",
+      "url": "/documentation/realitykit/arview/environment-swift.struct/sceneunderstanding-swift.property"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/EntityQuery": {
+      "abstract": [
+        {
+          "text": "An object that retrieves entities from a scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "EntityQuery"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/EntityQuery",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "EntityQuery"
+        }
+      ],
+      "role": "symbol",
+      "title": "EntityQuery",
+      "type": "topic",
+      "url": "/documentation/realitykit/entityquery"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/HasSceneUnderstanding": {
+      "abstract": [
+        {
+          "text": "A specification that detects and reacts to features of the physical",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HasSceneUnderstanding"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/HasSceneUnderstanding",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HasSceneUnderstanding"
+        }
+      ],
+      "role": "symbol",
+      "title": "HasSceneUnderstanding",
+      "type": "topic",
+      "url": "/documentation/realitykit/hassceneunderstanding"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/RealityView": {
+      "abstract": [
+        {
+          "text": "A view that contains RealityKit content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RealityView"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/RealityView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RealityView"
+        }
+      ],
+      "role": "symbol",
+      "title": "RealityView",
+      "type": "topic",
+      "url": "/documentation/realitykit/realityview"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/SceneUnderstandingComponent": {
+      "abstract": [
+        {
+          "text": "A component that specifies an entity is participating in the system’s scene-understanding features.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SceneUnderstandingComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/SceneUnderstandingComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SceneUnderstandingComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "SceneUnderstandingComponent",
+      "type": "topic",
+      "url": "/documentation/realitykit/sceneunderstandingcomponent"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/SpatialTrackingSession/Configuration": {
+      "abstract": [
+        {
+          "text": "A type for configuring the spatial tracking session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Configuration"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/SpatialTrackingSession/Configuration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Configuration"
+        }
+      ],
+      "role": "symbol",
+      "title": "SpatialTrackingSession.Configuration",
+      "type": "topic",
+      "url": "/documentation/realitykit/spatialtrackingsession/configuration"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/ecs-scenes": {
+      "abstract": [
+        {
+          "text": "The context that holds all RealityKit entities.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ecs-scenes",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Scenes",
+      "type": "topic",
+      "url": "/documentation/realitykit/ecs-scenes"
+    },
+    "doc://com.apple.documentation/documentation/ARKit/ARSession": {
+      "abstract": [
+        {
+          "text": "The object that manages the major tasks associated with every AR experience, such as motion tracking, camera passthrough, and image analysis.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARSession"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ARKit/ARSession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ARSession",
+      "type": "topic",
+      "url": "/documentation/ARKit/ARSession"
+    },
+    "doc://com.apple.documentation/documentation/ARKit/ARWorldTrackingConfiguration/sceneReconstruction": {
+      "abstract": [
+        {
+          "text": "A flag that enables scene reconstruction.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sceneReconstruction"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARConfiguration",
+          "text": "ARConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@ARSceneReconstruction",
+          "text": "SceneReconstruction"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "set"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ARKit/ARWorldTrackingConfiguration/sceneReconstruction",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sceneReconstruction",
+      "type": "topic",
+      "url": "/documentation/ARKit/ARWorldTrackingConfiguration/sceneReconstruction"
+    },
+    "doc://com.apple.documentation/documentation/ARKit/ARWorldTrackingConfiguration/supportsSceneReconstruction(_:)": {
+      "abstract": [
+        {
+          "text": "Checks if the device supports scene reconstruction.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "supportsSceneReconstruction"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "sceneReconstruction"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARConfiguration",
+          "text": "ARConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@ARSceneReconstruction",
+          "text": "SceneReconstruction"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ARKit/ARWorldTrackingConfiguration/supportsSceneReconstruction(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "supportsSceneReconstruction(_:)",
+      "type": "topic",
+      "url": "/documentation/ARKit/ARWorldTrackingConfiguration/supportsSceneReconstruction(_:)"
+    },
+    "doc://com.apple.documentation/documentation/ARKit/SceneReconstructionProvider": {
+      "abstract": [
+        {
+          "text": "A source of live data about the shape of a person’s surroundings.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "final"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SceneReconstructionProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ARKit/SceneReconstructionProvider",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SceneReconstructionProvider",
+      "type": "topic",
+      "url": "/documentation/ARKit/SceneReconstructionProvider"
+    },
+    "doc://com.apple.documentation/documentation/ARKit/visualizing-and-interacting-with-a-reconstructed-scene": {
+      "abstract": [
+        {
+          "text": "Estimate the shape of the physical environment using a polygonal mesh.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ARKit/visualizing-and-interacting-with-a-reconstructed-scene",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Visualizing and interacting with a reconstructed scene",
+      "type": "topic",
+      "url": "/documentation/ARKit/visualizing-and-interacting-with-a-reconstructed-scene"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/ImmersionStyle/full": {
+      "abstract": [
+        {
+          "text": "An immersion style that displays unbounded content that completely replaces passthrough video.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "full"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI18FullImmersionStyleV",
+          "text": "FullImmersionStyle"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/ImmersionStyle/full",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "full",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/ImmersionStyle/full"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/ImmersionStyle/mixed": {
+      "abstract": [
+        {
+          "text": "An immersion style that displays unbounded content intermixed with other app content, along with passthrough video.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mixed"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI19MixedImmersionStyleV",
+          "text": "MixedImmersionStyle"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/ImmersionStyle/mixed",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "mixed",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/ImmersionStyle/mixed"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/ImmersionStyle/progressive": {
+      "abstract": [
+        {
+          "text": "An immersion style that displays unbounded content that partially replaces passthrough video.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "progressive"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI25ProgressiveImmersionStyleV",
+          "text": "ProgressiveImmersionStyle"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/ImmersionStyle/progressive",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "progressive",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/ImmersionStyle/progressive"
+    },
+    "doc://com.apple.documentation/documentation/realitykit/creating_a_game_with_scene_understanding": {
+      "abstract": [
+        {
+          "text": "Create AR games and experiences that interact with real-world objects on LiDAR-equipped iOS devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/realitykit/creating_a_game_with_scene_understanding",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Creating a game with scene understanding",
+      "type": "topic",
+      "url": "/documentation/realitykit/creating_a_game_with_scene_understanding"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Scene-reconstructions-and-analysis",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/realitykit/creating_a_game_with_scene_understanding",
+        "doc://com.apple.documentation/documentation/ARKit/visualizing-and-interacting-with-a-reconstructed-scene",
+        "doc://com.apple.documentation/documentation/ARKit/ARWorldTrackingConfiguration/sceneReconstruction",
+        "doc://com.apple.documentation/documentation/ARKit/ARWorldTrackingConfiguration/supportsSceneReconstruction(_:)",
+        "doc://com.apple.RealityKit/documentation/RealityKit/SceneUnderstandingComponent",
+        "doc://com.apple.RealityKit/documentation/RealityKit/ARView/Environment-swift.struct/SceneUnderstanding-swift.struct",
+        "doc://com.apple.RealityKit/documentation/RealityKit/ARView/Environment-swift.struct/SceneUnderstanding-swift.struct/Options-swift.struct",
+        "doc://com.apple.RealityKit/documentation/RealityKit/HasSceneUnderstanding",
+        "doc://com.apple.documentation/documentation/ARKit/SceneReconstructionProvider",
+        "doc://com.apple.documentation/documentation/ARKit/ARSession"
+      ],
+      "title": "Scene reconstructions and analysis"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1ARKit~1ARWorldTrackingConfiguration~1supportsSceneReconstruction(_:)/title",
+          "value": "supportsSceneReconstruction:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1ARKit~1ARWorldTrackingConfiguration~1supportsSceneReconstruction(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@BOOL",
+              "text": "BOOL"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "supportsSceneReconstruction:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@E@ARSceneReconstruction",
+              "text": "ARSceneReconstruction"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "internalParam",
+              "text": "sceneReconstruction"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1ARKit~1ARWorldTrackingConfiguration~1sceneReconstruction/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "nonatomic"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "assign"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@E@ARSceneReconstruction",
+              "text": "ARSceneReconstruction"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "sceneReconstruction"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1ARKit~1ARSession/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "ARSession"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/realitykit/realitykit-scene-understanding"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

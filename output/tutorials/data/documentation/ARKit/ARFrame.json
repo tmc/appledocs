@@ -1,0 +1,3075 @@
+{
+  "abstract": [
+    {
+      "text": "A video image captured as part of a session with position-tracking information.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.arkit/documentation/ARKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.arkit/documentation/ARKit/ARFrame"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)ARFrame",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "ARFrame"
+      }
+    ],
+    "modules": [
+      {
+        "name": "ARKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "ARFrame"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "11.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "11.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "ARFrame"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "ARFrame"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.arkit/documentation/ARKit/displaying-an-ar-experience-with-metal"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A running session continuously captures video frames from the device’s camera while ARKit analyzes the captures to determine the user’s position in the world. ARKit can provide this information to you in the form of an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARFrame",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in two ways:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Occasionally, by accessing an ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSession",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " object’s ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSession/currentFrame",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Constantly, as a stream of frames through the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSessionDelegate/session(_:didUpdate:)-9v2kw",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " callback",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To automatically receive all frames as ARKit captures them, make one of your objects the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSession/delegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " of your app’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each frame can contain additional data, for example, EXIF (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARFrame/exifData",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "), or data based on any particular ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARConfiguration/frameSemantics-swift.property",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " that you enable.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.arkit/documentation/ARKit": {
+      "abstract": [
+        {
+          "text": "Integrate hardware sensing features to produce augmented reality apps and games.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "ARKit",
+      "type": "topic",
+      "url": "/documentation/arkit"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARBody2D": {
+      "abstract": [
+        {
+          "text": "The screen-space representation of a person ARKit recognizes in the camera feed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARBody2D"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARBody2D",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARBody2D"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARBody2D",
+      "type": "topic",
+      "url": "/documentation/arkit/arbody2d"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARConfiguration/frameSemantics-swift.property": {
+      "abstract": [
+        {
+          "text": "The set of active semantics on the frame.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "frameSemantics"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARConfiguration",
+          "text": "ARConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@ARFrameSemantics",
+          "text": "FrameSemantics"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARConfiguration/frameSemantics-swift.property",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "frameSemantics"
+        }
+      ],
+      "role": "symbol",
+      "title": "frameSemantics",
+      "type": "topic",
+      "url": "/documentation/arkit/arconfiguration/framesemantics-swift.property"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARFrame": {
+      "abstract": [
+        {
+          "text": "A video image captured as part of a session with position-tracking information.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARFrame"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARFrame",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARFrame"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARFrame",
+      "type": "topic",
+      "url": "/documentation/arkit/arframe"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARFrame/SegmentationClass": {
+      "abstract": [
+        {
+          "text": "A categorization of a pixel that defines a type of content you use to occlude your app’s virtual content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SegmentationClass"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARFrame/SegmentationClass",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SegmentationClass"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARFrame.SegmentationClass",
+      "type": "topic",
+      "url": "/documentation/arkit/arframe/segmentationclass"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARFrame/WorldMappingStatus-swift.enum": {
+      "abstract": [
+        {
+          "text": "A value describing the world mapping status for the area visible in a given frame.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WorldMappingStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARFrame/WorldMappingStatus-swift.enum",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WorldMappingStatus"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARFrame.WorldMappingStatus",
+      "type": "topic",
+      "url": "/documentation/arkit/arframe/worldmappingstatus-swift.enum"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARFrame/anchors": {
+      "abstract": [
+        {
+          "text": "The list of anchors representing positions tracked or objects detected in the scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "anchors"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARAnchor",
+          "text": "ARAnchor"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARFrame/anchors",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "anchors"
+        }
+      ],
+      "role": "symbol",
+      "title": "anchors",
+      "type": "topic",
+      "url": "/documentation/arkit/arframe/anchors"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARFrame/camera": {
+      "abstract": [
+        {
+          "text": "Information about the camera position, orientation, and imaging parameters used to capture the frame.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "camera"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARCamera",
+          "text": "ARCamera"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARFrame/camera",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "camera"
+        }
+      ],
+      "role": "symbol",
+      "title": "camera",
+      "type": "topic",
+      "url": "/documentation/arkit/arframe/camera"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARFrame/cameraGrainIntensity": {
+      "abstract": [
+        {
+          "text": "A value that specifies the amount of grain present in the camera grain texture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "cameraGrainIntensity"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARFrame/cameraGrainIntensity",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "cameraGrainIntensity"
+        }
+      ],
+      "role": "symbol",
+      "title": "cameraGrainIntensity",
+      "type": "topic",
+      "url": "/documentation/arkit/arframe/cameragrainintensity"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARFrame/cameraGrainTexture": {
+      "abstract": [
+        {
+          "text": "A tileable Metal texture created by ARKit to match the visual characteristics of the current video stream.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "cameraGrainTexture"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLTexture",
+          "text": "MTLTexture"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARFrame/cameraGrainTexture",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "cameraGrainTexture"
+        }
+      ],
+      "role": "symbol",
+      "title": "cameraGrainTexture",
+      "type": "topic",
+      "url": "/documentation/arkit/arframe/cameragraintexture"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARFrame/capturedDepthData": {
+      "abstract": [
+        {
+          "text": "Depth data captured in front-camera experiences.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "capturedDepthData"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVDepthData",
+          "text": "AVDepthData"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARFrame/capturedDepthData",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "capturedDepthData"
+        }
+      ],
+      "role": "symbol",
+      "title": "capturedDepthData",
+      "type": "topic",
+      "url": "/documentation/arkit/arframe/captureddepthdata"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARFrame/capturedDepthDataTimestamp": {
+      "abstract": [
+        {
+          "text": "The time at which depth data for the frame (if any) was captured.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "capturedDepthDataTimestamp"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARFrame/capturedDepthDataTimestamp",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "capturedDepthDataTimestamp"
+        }
+      ],
+      "role": "symbol",
+      "title": "capturedDepthDataTimestamp",
+      "type": "topic",
+      "url": "/documentation/arkit/arframe/captureddepthdatatimestamp"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARFrame/capturedImage": {
+      "abstract": [
+        {
+          "text": "A pixel buffer containing the image captured by the camera.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "capturedImage"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CVPixelBufferRef",
+          "text": "CVPixelBuffer"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARFrame/capturedImage",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "capturedImage"
+        }
+      ],
+      "role": "symbol",
+      "title": "capturedImage",
+      "type": "topic",
+      "url": "/documentation/arkit/arframe/capturedimage"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARFrame/detectedBody": {
+      "abstract": [
+        {
+          "text": "The screen position information of a body that ARKit recognizes in the camera image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "detectedBody"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARBody2D",
+          "text": "ARBody2D"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARFrame/detectedBody",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "detectedBody"
+        }
+      ],
+      "role": "symbol",
+      "title": "detectedBody",
+      "type": "topic",
+      "url": "/documentation/arkit/arframe/detectedbody"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARFrame/displayTransform(for:viewportSize:)": {
+      "abstract": [
+        {
+          "text": "Returns an affine transform for converting between normalized image coordinates and a coordinate space appropriate for rendering the camera image onscreen.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "displayTransform"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@UIInterfaceOrientation",
+          "text": "UIInterfaceOrientation"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "viewportSize"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGSize",
+          "text": "CGSize"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGAffineTransform",
+          "text": "CGAffineTransform"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARFrame/displayTransform(for:viewportSize:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "displayTransformForOrientation:viewportSize:"
+        }
+      ],
+      "role": "symbol",
+      "title": "displayTransform(for:viewportSize:)",
+      "type": "topic",
+      "url": "/documentation/arkit/arframe/displaytransform(for:viewportsize:)"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARFrame/estimatedDepthData": {
+      "abstract": [
+        {
+          "text": "A buffer that represents the estimated depth values from the camera feed that you use to occlude virtual content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "estimatedDepthData"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CVPixelBufferRef",
+          "text": "CVPixelBuffer"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARFrame/estimatedDepthData",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "estimatedDepthData"
+        }
+      ],
+      "role": "symbol",
+      "title": "estimatedDepthData",
+      "type": "topic",
+      "url": "/documentation/arkit/arframe/estimateddepthdata"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARFrame/exifData": {
+      "abstract": [
+        {
+          "text": "Auxiliary data for the captured image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "exifData"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARFrame/exifData",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "exifData"
+        }
+      ],
+      "role": "symbol",
+      "title": "exifData",
+      "type": "topic",
+      "url": "/documentation/arkit/arframe/exifdata"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARFrame/geoTrackingStatus": {
+      "abstract": [
+        {
+          "text": "The session’s condition with respect to geographic tracking at the time the session captured the frame.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "geoTrackingStatus"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARGeoTrackingStatus",
+          "text": "ARGeoTrackingStatus"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARFrame/geoTrackingStatus",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "geoTrackingStatus"
+        }
+      ],
+      "role": "symbol",
+      "title": "geoTrackingStatus",
+      "type": "topic",
+      "url": "/documentation/arkit/arframe/geotrackingstatus"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARFrame/hitTest(_:types:)": {
+      "abstract": [
+        {
+          "text": "Searches for real-world objects or AR anchors in the captured camera image.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "hitTest"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGPoint",
+          "text": "CGPoint"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "types"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARHitTestResult",
+          "text": "ARHitTestResult"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@ARHitTestResultType",
+          "text": "ResultType"
+        },
+        {
+          "kind": "text",
+          "text": ") -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARHitTestResult",
+          "text": "ARHitTestResult"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARFrame/hitTest(_:types:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "hitTest:types:"
+        }
+      ],
+      "role": "symbol",
+      "title": "hitTest(_:types:)",
+      "type": "topic",
+      "url": "/documentation/arkit/arframe/hittest(_:types:)"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARFrame/lightEstimate": {
+      "abstract": [
+        {
+          "text": "An estimate of lighting conditions based on the camera image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "lightEstimate"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARLightEstimate",
+          "text": "ARLightEstimate"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARFrame/lightEstimate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "lightEstimate"
+        }
+      ],
+      "role": "symbol",
+      "title": "lightEstimate",
+      "type": "topic",
+      "url": "/documentation/arkit/arframe/lightestimate"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARFrame/rawFeaturePoints": {
+      "abstract": [
+        {
+          "text": "The current intermediate results of the scene analysis ARKit uses to perform world tracking.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "rawFeaturePoints"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARPointCloud",
+          "text": "ARPointCloud"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARFrame/rawFeaturePoints",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "rawFeaturePoints"
+        }
+      ],
+      "role": "symbol",
+      "title": "rawFeaturePoints",
+      "type": "topic",
+      "url": "/documentation/arkit/arframe/rawfeaturepoints"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARFrame/raycastQuery(from:allowing:alignment:)": {
+      "abstract": [
+        {
+          "text": "Get a ray-cast query for a screen point.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "raycastQuery"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGPoint",
+          "text": "CGPoint"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "allowing"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARRaycastQuery",
+          "text": "ARRaycastQuery"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@ARRaycastTarget",
+          "text": "Target"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "alignment"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARRaycastQuery",
+          "text": "ARRaycastQuery"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@ARRaycastTargetAlignment",
+          "text": "TargetAlignment"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARRaycastQuery",
+          "text": "ARRaycastQuery"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARFrame/raycastQuery(from:allowing:alignment:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "raycastQueryFromPoint:allowingTarget:alignment:"
+        }
+      ],
+      "role": "symbol",
+      "title": "raycastQuery(from:allowing:alignment:)",
+      "type": "topic",
+      "url": "/documentation/arkit/arframe/raycastquery(from:allowing:alignment:)"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARFrame/sceneDepth": {
+      "abstract": [
+        {
+          "text": "Data on the distance between a device’s rear camera and real-world objects in an AR experience.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sceneDepth"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARDepthData",
+          "text": "ARDepthData"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARFrame/sceneDepth",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "sceneDepth"
+        }
+      ],
+      "role": "symbol",
+      "title": "sceneDepth",
+      "type": "topic",
+      "url": "/documentation/arkit/arframe/scenedepth"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARFrame/segmentationBuffer": {
+      "abstract": [
+        {
+          "text": "A buffer that contains pixel information identifying the shape of objects from the camera feed that you use to occlude virtual content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "segmentationBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CVPixelBufferRef",
+          "text": "CVPixelBuffer"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARFrame/segmentationBuffer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "segmentationBuffer"
+        }
+      ],
+      "role": "symbol",
+      "title": "segmentationBuffer",
+      "type": "topic",
+      "url": "/documentation/arkit/arframe/segmentationbuffer"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARFrame/smoothedSceneDepth": {
+      "abstract": [
+        {
+          "text": "An average of distance measurements between a device’s rear camera and real-world objects that creates smoother visuals in an AR experience.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "smoothedSceneDepth"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARDepthData",
+          "text": "ARDepthData"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARFrame/smoothedSceneDepth",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "smoothedSceneDepth"
+        }
+      ],
+      "role": "symbol",
+      "title": "smoothedSceneDepth",
+      "type": "topic",
+      "url": "/documentation/arkit/arframe/smoothedscenedepth"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARFrame/timestamp": {
+      "abstract": [
+        {
+          "text": "The time at which the frame was captured.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "timestamp"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARFrame/timestamp",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "timestamp"
+        }
+      ],
+      "role": "symbol",
+      "title": "timestamp",
+      "type": "topic",
+      "url": "/documentation/arkit/arframe/timestamp"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARFrame/worldMappingStatus-swift.property": {
+      "abstract": [
+        {
+          "text": "The feasibility of generating or relocalizing a world map for this frame.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "worldMappingStatus"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARFrame",
+          "text": "ARFrame"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@ARWorldMappingStatus",
+          "text": "WorldMappingStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARFrame/worldMappingStatus-swift.property",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "worldMappingStatus"
+        }
+      ],
+      "role": "symbol",
+      "title": "worldMappingStatus",
+      "type": "topic",
+      "url": "/documentation/arkit/arframe/worldmappingstatus-swift.property"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARGeoTrackingStatus": {
+      "abstract": [
+        {
+          "text": "The state, accuracy, and reason that are possible for geo-tracking’s current condition.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARGeoTrackingStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARGeoTrackingStatus",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARGeoTrackingStatus"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARGeoTrackingStatus",
+      "type": "topic",
+      "url": "/documentation/arkit/argeotrackingstatus"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARSession": {
+      "abstract": [
+        {
+          "text": "The object that manages the major tasks associated with every AR experience, such as motion tracking, camera passthrough, and image analysis.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARSession"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSession",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARSession"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARSession",
+      "type": "topic",
+      "url": "/documentation/arkit/arsession"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARSession/captureHighResolutionFrame(completion:)": {
+      "abstract": [
+        {
+          "text": "Requests a frame outside of the normal frequency that contains a high-resolution captured image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "captureHighResolutionFrame"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "completion"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARFrame",
+          "text": "ARFrame"
+        },
+        {
+          "kind": "text",
+          "text": "?, (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSession/captureHighResolutionFrame(completion:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "captureHighResolutionFrameWithCompletion:"
+        }
+      ],
+      "role": "symbol",
+      "title": "captureHighResolutionFrame(completion:)",
+      "type": "topic",
+      "url": "/documentation/arkit/arsession/capturehighresolutionframe(completion:)"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARSession/currentFrame": {
+      "abstract": [
+        {
+          "text": "The most recent still frame captured by the active camera feed, including ARKit’s interpretation of it.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "currentFrame"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARFrame",
+          "text": "ARFrame"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSession/currentFrame",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "currentFrame"
+        }
+      ],
+      "role": "symbol",
+      "title": "currentFrame",
+      "type": "topic",
+      "url": "/documentation/arkit/arsession/currentframe"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARSession/delegate": {
+      "abstract": [
+        {
+          "text": "An object you provide to receive captured video images and tracking information, or to respond to changes in session status.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "delegate"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)ARSessionDelegate",
+          "text": "ARSessionDelegate"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSession/delegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "delegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "delegate",
+      "type": "topic",
+      "url": "/documentation/arkit/arsession/delegate"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARSessionDelegate/session(_:didUpdate:)-9v2kw": {
+      "abstract": [
+        {
+          "text": "Provides a newly captured camera image and accompanying AR information to the delegate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "session"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARSession",
+          "text": "ARSession"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didUpdate"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARFrame",
+          "text": "ARFrame"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSessionDelegate/session(_:didUpdate:)-9v2kw",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "session:didUpdateFrame:"
+        }
+      ],
+      "role": "symbol",
+      "title": "session(_:didUpdate:)",
+      "type": "topic",
+      "url": "/documentation/arkit/arsessiondelegate/session(_:didupdate:)-9v2kw"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/displaying-an-ar-experience-with-metal": {
+      "abstract": [
+        {
+          "text": "Control rendering of your app’s virtual content on top of a camera feed.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/displaying-an-ar-experience-with-metal",
+      "kind": "article",
+      "role": "article",
+      "title": "Displaying an AR Experience with Metal",
+      "type": "topic",
+      "url": "/documentation/arkit/displaying-an-ar-experience-with-metal"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying": {
+      "abstract": [
+        {
+          "text": "A protocol that objects adopt to provide functional copies of themselves.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCopying"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCopying",
+      "type": "topic",
+      "url": "/documentation/foundation/nscopying"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+        "doc://com.externally.resolved.symbol/s:s8SendableP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Accessing-the-camera-frame",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.arkit/documentation/ARKit/ARSession/currentFrame",
+        "doc://com.apple.arkit/documentation/ARKit/ARSession/captureHighResolutionFrame(completion:)"
+      ],
+      "title": "Accessing the camera frame"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Accessing-camera-data",
+      "identifiers": [
+        "doc://com.apple.arkit/documentation/ARKit/ARFrame/camera",
+        "doc://com.apple.arkit/documentation/ARKit/ARFrame/capturedImage",
+        "doc://com.apple.arkit/documentation/ARKit/ARFrame/timestamp",
+        "doc://com.apple.arkit/documentation/ARKit/ARFrame/cameraGrainIntensity",
+        "doc://com.apple.arkit/documentation/ARKit/ARFrame/cameraGrainTexture",
+        "doc://com.apple.arkit/documentation/ARKit/ARFrame/exifData"
+      ],
+      "title": "Accessing camera data"
+    },
+    {
+      "anchor": "Accessing-scene-data",
+      "identifiers": [
+        "doc://com.apple.arkit/documentation/ARKit/ARFrame/lightEstimate",
+        "doc://com.apple.arkit/documentation/ARKit/ARFrame/displayTransform(for:viewportSize:)",
+        "doc://com.apple.arkit/documentation/ARKit/ARFrame/rawFeaturePoints",
+        "doc://com.apple.arkit/documentation/ARKit/ARFrame/capturedDepthData",
+        "doc://com.apple.arkit/documentation/ARKit/ARFrame/capturedDepthDataTimestamp",
+        "doc://com.apple.arkit/documentation/ARKit/ARFrame/sceneDepth",
+        "doc://com.apple.arkit/documentation/ARKit/ARFrame/smoothedSceneDepth"
+      ],
+      "title": "Accessing scene data"
+    },
+    {
+      "anchor": "Tracking-and-interacting-with-the-real-world",
+      "identifiers": [
+        "doc://com.apple.arkit/documentation/ARKit/ARFrame/anchors",
+        "doc://com.apple.arkit/documentation/ARKit/ARFrame/raycastQuery(from:allowing:alignment:)",
+        "doc://com.apple.arkit/documentation/ARKit/ARFrame/hitTest(_:types:)"
+      ],
+      "title": "Tracking and interacting with the real world"
+    },
+    {
+      "anchor": "Checking-world-mapping-status",
+      "identifiers": [
+        "doc://com.apple.arkit/documentation/ARKit/ARFrame/worldMappingStatus-swift.property",
+        "doc://com.apple.arkit/documentation/ARKit/ARFrame/WorldMappingStatus-swift.enum"
+      ],
+      "title": "Checking world-mapping status"
+    },
+    {
+      "anchor": "Checking-for-people",
+      "identifiers": [
+        "doc://com.apple.arkit/documentation/ARKit/ARFrame/detectedBody",
+        "doc://com.apple.arkit/documentation/ARKit/ARBody2D",
+        "doc://com.apple.arkit/documentation/ARKit/ARFrame/segmentationBuffer",
+        "doc://com.apple.arkit/documentation/ARKit/ARFrame/estimatedDepthData",
+        "doc://com.apple.arkit/documentation/ARKit/ARFrame/SegmentationClass"
+      ],
+      "title": "Checking for people"
+    },
+    {
+      "anchor": "Assessing-geo-tracking-condition",
+      "identifiers": [
+        "doc://com.apple.arkit/documentation/ARKit/ARFrame/geoTrackingStatus",
+        "doc://com.apple.arkit/documentation/ARKit/ARGeoTrackingStatus"
+      ],
+      "title": "Assessing geo-tracking condition"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "11.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "11.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "ARFrame"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARFrame"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARFrame"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.arkit/documentation/ARKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Accessing-camera-data",
+              "identifiers": [
+                "doc://com.apple.arkit/documentation/ARKit/ARFrame/camera",
+                "doc://com.apple.arkit/documentation/ARKit/ARFrame/capturedImage",
+                "doc://com.apple.arkit/documentation/ARKit/ARFrame/timestamp",
+                "doc://com.apple.arkit/documentation/ARKit/ARFrame/cameraGrainIntensity",
+                "doc://com.apple.arkit/documentation/ARKit/ARFrame/cameraGrainTexture",
+                "doc://com.apple.arkit/documentation/ARKit/ARFrame/exifData"
+              ],
+              "title": "Accessing camera data"
+            },
+            {
+              "anchor": "Accessing-scene-data",
+              "identifiers": [
+                "doc://com.apple.arkit/documentation/ARKit/ARFrame/lightEstimate",
+                "doc://com.apple.arkit/documentation/ARKit/ARFrame/displayTransform(for:viewportSize:)",
+                "doc://com.apple.arkit/documentation/ARKit/ARFrame/rawFeaturePoints",
+                "doc://com.apple.arkit/documentation/ARKit/ARFrame/capturedDepthData",
+                "doc://com.apple.arkit/documentation/ARKit/ARFrame/capturedDepthDataTimestamp",
+                "doc://com.apple.arkit/documentation/ARKit/ARFrame/sceneDepth",
+                "doc://com.apple.arkit/documentation/ARKit/ARFrame/smoothedSceneDepth"
+              ],
+              "title": "Accessing scene data"
+            },
+            {
+              "anchor": "Tracking-and-interacting-with-the-real-world",
+              "identifiers": [
+                "doc://com.apple.arkit/documentation/ARKit/ARFrame/anchors",
+                "doc://com.apple.arkit/documentation/ARKit/ARFrame/raycastQuery(from:allowing:alignment:)",
+                "doc://com.apple.arkit/documentation/ARKit/ARFrame/hitTest(_:types:)"
+              ],
+              "title": "Tracking and interacting with the real world"
+            },
+            {
+              "anchor": "Checking-world-mapping-status",
+              "identifiers": [
+                "doc://com.apple.arkit/documentation/ARKit/ARFrame/worldMappingStatus-swift.property",
+                "doc://com.apple.arkit/documentation/ARKit/ARFrame/WorldMappingStatus-swift.enum"
+              ],
+              "title": "Checking world-mapping status"
+            },
+            {
+              "anchor": "Checking-for-people",
+              "identifiers": [
+                "doc://com.apple.arkit/documentation/ARKit/ARFrame/detectedBody",
+                "doc://com.apple.arkit/documentation/ARKit/ARBody2D",
+                "doc://com.apple.arkit/documentation/ARKit/ARFrame/segmentationBuffer",
+                "doc://com.apple.arkit/documentation/ARKit/ARFrame/estimatedDepthData",
+                "doc://com.apple.arkit/documentation/ARKit/ARFrame/SegmentationClass"
+              ],
+              "title": "Checking for people"
+            },
+            {
+              "anchor": "Assessing-geo-tracking-condition",
+              "identifiers": [
+                "doc://com.apple.arkit/documentation/ARKit/ARFrame/geoTrackingStatus",
+                "doc://com.apple.arkit/documentation/ARKit/ARGeoTrackingStatus"
+              ],
+              "title": "Assessing geo-tracking condition"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            },
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying"
+              ],
+              "kind": "relationships",
+              "title": "Conforms To",
+              "type": "conformsTo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Accessing-the-camera-frame",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.arkit/documentation/ARKit/ARSession/currentFrame",
+                "doc://com.apple.arkit/documentation/ARKit/ARSession/captureHighResolutionFrame(completion:)"
+              ],
+              "title": "Accessing the camera frame"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "ARFrame"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARFrame~1cameraGrainTexture/title",
+          "value": "cameraGrainTexture"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARFrame~1cameraGrainTexture/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "cameraGrainTexture"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSessionDelegate~1session(_:didUpdate:)-9v2kw/title",
+          "value": "session:didUpdateFrame:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSessionDelegate~1session(_:didUpdate:)-9v2kw/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "session:didUpdateFrame:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARFrame~1lightEstimate/title",
+          "value": "lightEstimate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARFrame~1lightEstimate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "lightEstimate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARFrame~1detectedBody/title",
+          "value": "detectedBody"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARFrame~1detectedBody/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "detectedBody"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARFrame~1cameraGrainIntensity/title",
+          "value": "cameraGrainIntensity"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARFrame~1cameraGrainIntensity/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "cameraGrainIntensity"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARFrame~1SegmentationClass/title",
+          "value": "ARSegmentationClass"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARFrame~1SegmentationClass/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARSegmentationClass"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARFrame~1SegmentationClass/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARSegmentationClass"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARFrame~1hitTest(_:types:)/title",
+          "value": "hitTest:types:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARFrame~1hitTest(_:types:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "hitTest:types:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARFrame/title",
+          "value": "ARFrame"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARFrame/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARFrame"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARFrame/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARFrame"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARFrame~1displayTransform(for:viewportSize:)/title",
+          "value": "displayTransformForOrientation:viewportSize:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARFrame~1displayTransform(for:viewportSize:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "displayTransformForOrientation:viewportSize:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSession~1currentFrame/title",
+          "value": "currentFrame"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSession~1currentFrame/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "currentFrame"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARFrame~1timestamp/title",
+          "value": "timestamp"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARFrame~1timestamp/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "timestamp"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARFrame~1segmentationBuffer/title",
+          "value": "segmentationBuffer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARFrame~1segmentationBuffer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "segmentationBuffer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARFrame~1raycastQuery(from:allowing:alignment:)/title",
+          "value": "raycastQueryFromPoint:allowingTarget:alignment:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARFrame~1raycastQuery(from:allowing:alignment:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "raycastQueryFromPoint:allowingTarget:alignment:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARFrame~1capturedImage/title",
+          "value": "capturedImage"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARFrame~1capturedImage/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "capturedImage"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARFrame~1worldMappingStatus-swift.property/title",
+          "value": "worldMappingStatus"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARFrame~1worldMappingStatus-swift.property/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "worldMappingStatus"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARFrame~1anchors/title",
+          "value": "anchors"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARFrame~1anchors/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "anchors"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARBody2D/title",
+          "value": "ARBody2D"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARBody2D/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARBody2D"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARBody2D/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARBody2D"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARFrame~1estimatedDepthData/title",
+          "value": "estimatedDepthData"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARFrame~1estimatedDepthData/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "estimatedDepthData"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARFrame~1exifData/title",
+          "value": "exifData"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARFrame~1exifData/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "exifData"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARFrame~1geoTrackingStatus/title",
+          "value": "geoTrackingStatus"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARFrame~1geoTrackingStatus/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "geoTrackingStatus"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARFrame~1capturedDepthData/title",
+          "value": "capturedDepthData"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARFrame~1capturedDepthData/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "capturedDepthData"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARFrame~1WorldMappingStatus-swift.enum/title",
+          "value": "ARWorldMappingStatus"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARFrame~1WorldMappingStatus-swift.enum/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARWorldMappingStatus"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARFrame~1WorldMappingStatus-swift.enum/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARWorldMappingStatus"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARFrame~1rawFeaturePoints/title",
+          "value": "rawFeaturePoints"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARFrame~1rawFeaturePoints/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "rawFeaturePoints"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARFrame~1smoothedSceneDepth/title",
+          "value": "smoothedSceneDepth"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARFrame~1smoothedSceneDepth/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "smoothedSceneDepth"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARConfiguration~1frameSemantics-swift.property/title",
+          "value": "frameSemantics"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARConfiguration~1frameSemantics-swift.property/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "frameSemantics"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSession~1captureHighResolutionFrame(completion:)/title",
+          "value": "captureHighResolutionFrameWithCompletion:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSession~1captureHighResolutionFrame(completion:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "captureHighResolutionFrameWithCompletion:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARFrame~1sceneDepth/title",
+          "value": "sceneDepth"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARFrame~1sceneDepth/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "sceneDepth"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARFrame~1capturedDepthDataTimestamp/title",
+          "value": "capturedDepthDataTimestamp"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARFrame~1capturedDepthDataTimestamp/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "capturedDepthDataTimestamp"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSession/title",
+          "value": "ARSession"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSession/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSession/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARFrame~1camera/title",
+          "value": "camera"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARFrame~1camera/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "camera"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSession~1delegate/title",
+          "value": "delegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSession~1delegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "delegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARGeoTrackingStatus/title",
+          "value": "ARGeoTrackingStatus"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARGeoTrackingStatus/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARGeoTrackingStatus"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARGeoTrackingStatus/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARGeoTrackingStatus"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/arkit/arframe"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/arkit/arframe"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

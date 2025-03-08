@@ -1,0 +1,555 @@
+{
+  "abstract": [
+    {
+      "text": "Support conversions between the Apple event descriptor types and Foundation object classes.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/content-and-metadata-exchanges-with-final-cut-pro",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/receiving-media-and-data-through-a-custom-share-destination"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/supporting-conversions-with-scripting-class-extensions"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Professional Video Applications"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Supporting Conversions with Scripting Class Extensions"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your app uses Cocoa Scripting support to handle Apple events sent by Final Cut Pro, it must support conversions between certain Apple event descriptor types used by Final Cut Pro and the respective Foundation classes. These conversions are not supported by Cocoa Scripting.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code snippets provide interfaces for the required conversions.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Apple event record descriptor (",
+              "type": "text"
+            },
+            {
+              "code": "typeAERecord",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") and ",
+              "type": "text"
+            },
+            {
+              "code": "NSDictionary",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@interface NSDictionary (UserDefinedRecord)",
+            "  +(NSDictionary*)scriptingUserDefinedRecordWithDescriptor:(NSAppleEventDescriptor*)desc;",
+            "  -(NSAppleEventDescriptor*)scriptingUserDefinedRecordDescriptor;",
+            "@end"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Apple event list descriptor (",
+              "type": "text"
+            },
+            {
+              "code": "typeAEList",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") and ",
+              "type": "text"
+            },
+            {
+              "code": "NSArray",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@interface NSArray (UserList)",
+            "  +(NSArray*)scriptingUserListWithDescriptor:(NSAppleEventDescriptor*)desc;",
+            "  -(NSAppleEventDescriptor*)scriptingUserListDescriptor;",
+            "@end"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Apple event generic descriptor (",
+              "type": "text"
+            },
+            {
+              "code": "list",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "record",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and so on) and ",
+              "type": "text"
+            },
+            {
+              "code": "id",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@interface NSAppleEventDescriptor (GenericObject)",
+            "  +(NSAppleEventDescriptor*)descriptorWithObject:(id)object;",
+            "  -(id)objectValue;",
+            "@end"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following is an example implementation of the above interface. For more information, see the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " Class Reference.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "#import \"ScriptingSupportCategories.h\"",
+            " ",
+            "#import <Carbon/Carbon.h>",
+            " ",
+            " ",
+            "@implementation NSDictionary (UserDefinedRecord)",
+            " ",
+            "+(NSDictionary*)scriptingUserDefinedRecordWithDescriptor:(NSAppleEventDescriptor*)desc",
+            "{",
+            "    NSMutableDictionary* dict = [NSMutableDictionary dictionaryWithCapacity:0];",
+            "    NSAppleEventDescriptor* userFieldItems = [desc descriptorForKeyword:keyASUserRecordFields];",
+            "    NSInteger numItems = [userFieldItems numberOfItems];",
+            " ",
+            "    for ( NSInteger itemIndex = 1; itemIndex <= numItems - 1; itemIndex += 2 ) {",
+            "        NSAppleEventDescriptor* keyDesc = [userFieldItems descriptorAtIndex:itemIndex];",
+            "        NSAppleEventDescriptor* valueDesc = [userFieldItems descriptorAtIndex:itemIndex + 1];",
+            "        NSString* keyString = [keyDesc stringValue];",
+            "        id value = [valueDesc objectValue];",
+            " ",
+            "        if ( keyString != nil && value != nil )",
+            "            [dict setObject:value forKey:keyString];",
+            "    }",
+            " ",
+            "    return [NSDictionary dictionaryWithDictionary:dict];",
+            "}",
+            " ",
+            "-(NSAppleEventDescriptor*)scriptingUserDefinedRecordDescriptor",
+            "{",
+            "    NSAppleEventDescriptor* recordDesc = [NSAppleEventDescriptor recordDescriptor];",
+            "    NSAppleEventDescriptor* userFieldDesc = [NSAppleEventDescriptor listDescriptor];",
+            "    NSInteger userFieldIndex = 1;",
+            " ",
+            "    for ( id key in self ) {",
+            "        if ( [key isKindOfClass:[NSString class]] ) {",
+            "            NSString* valueString = nil;",
+            "            id value = [self objectForKey:key];",
+            " ",
+            "            if ( ! [value isKindOfClass:[NSString class]] )",
+            "                valueString = [NSString stringWithFormat:@\"%@\", value];",
+            "            else",
+            "                valueString = value;",
+            " ",
+            "            NSAppleEventDescriptor* valueDesc = [NSAppleEventDescriptor descriptorWithString:valueString];",
+            "            NSAppleEventDescriptor* keyDesc = [NSAppleEventDescriptor descriptorWithString:key];",
+            " ",
+            "            if ( valueDesc != nil && keyDesc != nil ) {",
+            "                [userFieldDesc insertDescriptor:keyDesc atIndex:userFieldIndex++];",
+            "                [userFieldDesc insertDescriptor:valueDesc atIndex:userFieldIndex++];",
+            "            }",
+            "        }",
+            "    }",
+            " ",
+            "    [recordDesc setDescriptor:userFieldDesc forKeyword:keyASUserRecordFields];",
+            " ",
+            "    return recordDesc;",
+            "}",
+            " ",
+            " ",
+            "@end",
+            " ",
+            "@implementation NSArray (UserList)",
+            " ",
+            "+(NSArray*)scriptingUserListWithDescriptor:(NSAppleEventDescriptor*)desc",
+            "{",
+            "    NSMutableArray* array = [NSMutableArray arrayWithCapacity:0];",
+            "    NSInteger numItems = [desc numberOfItems];",
+            " ",
+            "    for ( NSInteger itemIndex = 1; itemIndex <= numItems; itemIndex++ ) {",
+            "        NSAppleEventDescriptor* itemDesc = [desc descriptorAtIndex:itemIndex];",
+            " ",
+            "        [array addObject:[itemDesc objectValue]];",
+            "    }",
+            " ",
+            "    return [NSArray arrayWithArray:array];",
+            "}",
+            " ",
+            "-(NSAppleEventDescriptor*)scriptingUserListDescriptor",
+            "{",
+            "    NSAppleEventDescriptor* listDesc = [NSAppleEventDescriptor listDescriptor];",
+            "    NSInteger itemIndex = 1;",
+            " ",
+            "    for ( id item in self ) {",
+            "        NSAppleEventDescriptor* itemDesc = [NSAppleEventDescriptor descriptorWithObject:item];",
+            " ",
+            "        [listDesc insertDescriptor:itemDesc atIndex:itemIndex++];",
+            "    }",
+            " ",
+            "    return listDesc;",
+            "}",
+            " ",
+            "@end",
+            " ",
+            " ",
+            "@implementation NSAppleEventDescriptor (GenericObject)",
+            " ",
+            "+(NSAppleEventDescriptor*)descriptorWithObject:(id)object",
+            "{",
+            "    NSAppleEventDescriptor* desc = nil;",
+            " ",
+            "    if ( [object isKindOfClass:[NSArray class]] ) {",
+            "        NSArray*    array = (NSArray*)object;",
+            " ",
+            "        desc = [array scriptingUserListDescriptor];",
+            "    }",
+            "    else if ( [object isKindOfClass:[NSDictionary class]] ) {",
+            "        NSDictionary*   dict = (NSDictionary*)object;",
+            " ",
+            "        desc = [dict scriptingUserDefinedRecordDescriptor];",
+            "    }",
+            "    else if ( [object isKindOfClass:[NSString class]] ) {",
+            "        desc = [NSAppleEventDescriptor descriptorWithString:(NSString*)object];",
+            "    }",
+            "    else if ( [object isKindOfClass:[NSURL class]] ) {",
+            "        desc = [NSAppleEventDescriptor descriptorWithURL:(NSURL*)object];",
+            "    }",
+            "    else {",
+            "        NSString* valueString = [NSString stringWithFormat:@\"%@\", object];",
+            " ",
+            "        desc = [NSAppleEventDescriptor descriptorWithString:valueString];",
+            "    }",
+            " ",
+            "    return desc;",
+            "}",
+            " ",
+            "-(id)objectValue",
+            "{",
+            "    DescType    descType = [self descriptorType];",
+            "    DescType    bigEndianDescType = 0;",
+            "    id          object = nil;",
+            " ",
+            " ",
+            "    switch ( descType ) {",
+            "        case typeUnicodeText:",
+            "        case typeUTF8Text:",
+            "            object = [self stringValue];",
+            "            break;",
+            "        case typeFileURL:",
+            "            object = [self fileURLValue];",
+            "            break;",
+            "        case typeAEList:",
+            "            object = [NSArray scriptingUserListWithDescriptor:self];",
+            "            break;",
+            "        case typeAERecord:",
+            "            object = [NSDictionary scriptingUserDefinedRecordWithDescriptor:self];",
+            "            break;",
+            "        case typeSInt16:",
+            "        case typeUInt16:",
+            "        case typeSInt32:",
+            "        case typeUInt32:",
+            "        case typeSInt64:",
+            "        case typeUInt64:",
+            "            object = [NSNumber numberWithInteger:(NSInteger)[self int32Value]];",
+            "            break;",
+            "        default:",
+            "            bigEndianDescType = EndianU32_NtoB(descType);",
+            "            NSLog(@\"Creating NSData for AE desc type %.4s.\", (char*)&bigEndianDescType);",
+            "            object = [self data];",
+            "            break;",
+            "    }",
+            " ",
+            "    return object;",
+            "}",
+            " ",
+            "@end"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor": {
+      "abstract": [
+        {
+          "text": "A wrapper for the Apple event descriptor data type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSAppleEventDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsappleeventdescriptor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSAppleEventDescriptor",
+      "type": "topic",
+      "url": "/documentation/foundation/nsappleeventdescriptor"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/content-and-metadata-exchanges-with-final-cut-pro": {
+      "abstract": [
+        {
+          "text": "Send media assets and timeline sequences to Final Cut Pro for editing, and receive rendered media and editing decisions in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/content-and-metadata-exchanges-with-final-cut-pro",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Content and Metadata Exchanges with Final Cut Pro",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/content-and-metadata-exchanges-with-final-cut-pro"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/creating-scripting-definitions-for-custom-share-destinations": {
+      "abstract": [
+        {
+          "text": "Define the record types, object classes, and event types that let your app interact with Final Cut Pro.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/creating-scripting-definitions-for-custom-share-destinations",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating Scripting Definitions for Custom Share Destinations",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/creating-scripting-definitions-for-custom-share-destinations"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/receiving-media-and-data-through-a-custom-share-destination": {
+      "abstract": [
+        {
+          "text": "Receive rendered media (movies), editing descriptions for project timelines, library archives, and FCPXML for other Final Cut Pro items in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/receiving-media-and-data-through-a-custom-share-destination",
+      "kind": "article",
+      "role": "article",
+      "title": "Receiving Media and Data Through a Custom Share Destination",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/receiving-media-and-data-through-a-custom-share-destination"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/responding-to-apple-events-from-final-cut-pro": {
+      "abstract": [
+        {
+          "text": "Tell Final Cut Pro about the kind of data your users want to receive in your app through a custom share destination.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/responding-to-apple-events-from-final-cut-pro",
+      "kind": "article",
+      "role": "article",
+      "title": "Responding to Apple Events from Final Cut Pro",
+      "type": "topic",
+      "url": "/documentation/professional-video-applications/responding-to-apple-events-from-final-cut-pro"
+    },
+    "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications": {
+      "abstract": [
+        {
+          "text": "Exchange data with Final Cut Pro, and create effects plug-ins for Final Cut Pro and Motion.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.professionalvideoapplications/documentation/professional_video_applications",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Professional Video Applications",
+      "type": "topic",
+      "url": "/documentation/professional_video_applications"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Handling-Apple-Events",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/responding-to-apple-events-from-final-cut-pro",
+        "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/creating-scripting-definitions-for-custom-share-destinations"
+      ],
+      "title": "Handling Apple Events"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Handling-Apple-Events",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/responding-to-apple-events-from-final-cut-pro",
+                "doc://com.apple.professionalvideoapplications/documentation/Professional-Video-Applications/creating-scripting-definitions-for-custom-share-destinations"
+              ],
+              "title": "Handling Apple Events"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/professional-video-applications/supporting-conversions-with-scripting-class-extensions"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/professional-video-applications/supporting-conversions-with-scripting-class-extensions"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

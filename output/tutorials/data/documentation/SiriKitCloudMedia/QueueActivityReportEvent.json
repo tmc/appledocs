@@ -1,0 +1,702 @@
+{
+  "abstract": [
+    {
+      "text": "An event that occurs during content playback.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/QueueActivityReportEvent"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "data:sirikit_media_api:QueueActivityReportEvent",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "type "
+      },
+      {
+        "kind": "identifier",
+        "text": "QueueActivityReportEvent"
+      }
+    ],
+    "modules": [
+      {
+        "name": "SiriKit Cloud Media"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "QueueActivityReportEvent"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "1.0.2",
+        "name": "SiriKit Cloud Media"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Type",
+    "symbolKind": "typealias",
+    "title": "QueueActivityReportEvent"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "data"
+          ],
+          "platforms": [
+            "Unsupported OS: SiriKit Cloud Media"
+          ],
+          "tokens": [
+            {
+              "kind": "text",
+              "text": "string "
+            },
+            {
+              "kind": "identifier",
+              "text": "QueueActivityReportEvent"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "possibleValues",
+      "title": "Possible Values",
+      "values": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A periodic report of playback progress. Use ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/PlayMediaControlActivity",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " to schedule these reports.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "local.playing.elapsed"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The user pauses playback.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "local.playing.paused"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The user resumes playback after a pause.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "local.playing.continued"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The user fast-forwards the content.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "local.playing.fastForward"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The user rewinds the content.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "local.playing.fastRewind"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The user uses the ",
+                  "type": "text"
+                },
+                {
+                  "code": "seekToPlaybackPosition",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " control.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "local.playing.scrub"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The user skips forward to the next content.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "local.playing.transitioned.skip_next"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The user skips backward to the previous content or to the start of the current content.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "local.playing.transitioned.skip_previous"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Playback ends because the user skips forward while playing the last content in the queue.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "local.stopped.skip_past_end"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The current content starts playing because the previous content ends.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "local.playing.transitioned.naturally"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The client receives a new queue from your service and starts playing that queue.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "local.playing.transitioned.queue_replaced"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The last content in the playback queue finishes playing.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "local.stopped.naturally"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The user selects the like control.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "local.command.like"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The user selects the dislike control.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "local.command.dislike"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The user bookmarks the content.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "local.command.bookmark"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "local.stopped.content_failure"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Events represent a user controlling playback or a natural transition at the end of a piece of content. The client handles playback controls, such as pausing and resuming, then sends these event reports to your service.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To customize which controls are available during playback of a piece of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/Content",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", set its ",
+              "type": "text"
+            },
+            {
+              "code": "control",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property to a scheme you define in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/QueueControlMapping",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "The like and dislike events above indicate when the user presses a corresponding control. These are separate from the user telling Siri they like or dislike some content, which the client reports to the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/updateMediaAffinity",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " endpoint.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia": {
+      "abstract": [
+        {
+          "text": "Stream music directly to HomePod speakers from your media service.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SiriKit Cloud Media",
+      "type": "topic",
+      "url": "/documentation/sirikitcloudmedia"
+    },
+    "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/Content": {
+      "abstract": [
+        {
+          "text": "A description of a piece of playback content, such as a song, podcast, or advertisement.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Content"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/Content",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Content"
+        }
+      ],
+      "role": "symbol",
+      "title": "Content",
+      "type": "topic",
+      "url": "/documentation/sirikitcloudmedia/content"
+    },
+    "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/PlayMediaControlActivity": {
+      "abstract": [
+        {
+          "text": "Options for reporting playback progress.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "PlayMediaControlActivity"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/PlayMediaControlActivity",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PlayMediaControlActivity"
+        }
+      ],
+      "role": "symbol",
+      "title": "PlayMediaControlActivity",
+      "type": "topic",
+      "url": "/documentation/sirikitcloudmedia/playmediacontrolactivity"
+    },
+    "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/QueueActivityReportEvent": {
+      "abstract": [
+        {
+          "text": "An event that occurs during content playback.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "QueueActivityReportEvent"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/QueueActivityReportEvent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "QueueActivityReportEvent"
+        }
+      ],
+      "role": "symbol",
+      "title": "QueueActivityReportEvent",
+      "type": "topic",
+      "url": "/documentation/sirikitcloudmedia/queueactivityreportevent"
+    },
+    "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/QueueControlMapping": {
+      "abstract": [
+        {
+          "text": "A dictionary of configuration names and the media controls they permit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "QueueControlMapping"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/QueueControlMapping",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "QueueControlMapping"
+        }
+      ],
+      "role": "symbol",
+      "title": "QueueControlMapping",
+      "type": "topic",
+      "url": "/documentation/sirikitcloudmedia/queuecontrolmapping"
+    },
+    "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/UpdateActivityRequest": {
+      "abstract": [
+        {
+          "text": "A report of the client’s current playback state and recent user interaction, and an opportunity for your service to modify the client’s playback queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "UpdateActivityRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/UpdateActivityRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UpdateActivityRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "UpdateActivityRequest",
+      "type": "topic",
+      "url": "/documentation/sirikitcloudmedia/updateactivityrequest"
+    },
+    "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/UpdateActivityResponse": {
+      "abstract": [
+        {
+          "text": "Updates to the client’s queue and user activity in response to a report of playback progress.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "UpdateActivityResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/UpdateActivityResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UpdateActivityResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "UpdateActivityResponse",
+      "type": "topic",
+      "url": "/documentation/sirikitcloudmedia/updateactivityresponse"
+    },
+    "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/updateActivity": {
+      "abstract": [
+        {
+          "text": "Monitor progress through the playback queue.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/updateActivity",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "updateActivity"
+        }
+      ],
+      "role": "symbol",
+      "title": "Report Playback Progress and Activity",
+      "type": "topic",
+      "url": "/documentation/sirikitcloudmedia/updateactivity"
+    },
+    "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/updateMediaAffinity": {
+      "abstract": [
+        {
+          "text": "Record the user’s preference for a specific media item or a broader category of media.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/updateMediaAffinity",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "updateMediaAffinity"
+        }
+      ],
+      "role": "symbol",
+      "title": "Process an Update Media Affinity Intent",
+      "type": "topic",
+      "url": "/documentation/sirikitcloudmedia/updatemediaaffinity"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Playback-Events",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/updateActivity",
+        "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/UpdateActivityRequest",
+        "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/UpdateActivityResponse",
+        "doc://com.apple.sirikitcloudmedia/documentation/SiriKitCloudMedia/updateMediaAffinity"
+      ],
+      "title": "Playback Events"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/sirikitcloudmedia/queueactivityreportevent"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

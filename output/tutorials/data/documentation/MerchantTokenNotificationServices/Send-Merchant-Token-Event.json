@@ -1,0 +1,348 @@
+{
+  "abstract": [
+    {
+      "text": "Receive and handle merchant token life-cycle updates from Apple Pay.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.applepaymerchanttokenmanagementapi/documentation/MerchantTokenNotificationServices"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.applepaymerchanttokenmanagementapi/documentation/MerchantTokenNotificationServices/Send-Merchant-Token-Event"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "rest:applepay_merchant_token_mngmt:get:notification-merchantToken-{}",
+    "modules": [
+      {
+        "name": "Apple Pay Merchant Token Management API"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "Send Merchant Token Event"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "1.0.10",
+        "name": "App Store Connect API"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Web Service Endpoint",
+    "symbolKind": "httpRequest",
+    "title": "Send Merchant Token Event"
+  },
+  "primaryContentSections": [
+    {
+      "kind": "restEndpoint",
+      "title": "URL",
+      "tokens": [
+        {
+          "kind": "method",
+          "text": "GET"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "baseURL",
+          "text": "https://merchant.example.com/"
+        },
+        {
+          "kind": "path",
+          "text": "notification/merchantToken/"
+        },
+        {
+          "kind": "parameter",
+          "text": "{eventId}"
+        }
+      ]
+    },
+    {
+      "items": [
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A string that uniquely identifies a life-cycle event for a merchant token.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "eventId",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        }
+      ],
+      "kind": "restParameters",
+      "source": "path",
+      "title": "Path Parameters"
+    },
+    {
+      "items": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Successful response.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "reason": "OK",
+          "status": 200,
+          "type": []
+        }
+      ],
+      "kind": "restResponses",
+      "title": "Response Codes"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You implement this endpoint on your server to receive notifications about merchant token life-cycle events. When a life-cycle event affects the merchant token — for example, the card’s expiration date changes, or the user or issuer deletes the token — Apple Pay calls this endpoint to notify you.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To receive requests at this endpoint, your server needs to support the Transport Layer Security (TLS) 1.2 protocol or later.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Process the event in your system with the appropriate action. Respond with ",
+              "type": "text"
+            },
+            {
+              "code": "200",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "OK",
+              "type": "codeVoice"
+            },
+            {
+              "text": " if your endpoint successfully receives the notification, even if your endpoint can’t find the related merchant token or event identifier. Respond with ",
+              "type": "text"
+            },
+            {
+              "code": "500",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "Internal",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "Server",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "Error",
+              "type": "codeVoice"
+            },
+            {
+              "text": " if your endpoint isn’t able to process the notification request. Apple Pay immediately retries the notification up to three times if the response isn’t ",
+              "type": "text"
+            },
+            {
+              "code": "200",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about implementing this endpoint on your server, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/ApplePayMerchantTokenManagementAPI/receiving-and-handling-merchant-token-notifications",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.applepaymerchanttokenmanagementapi/documentation/ApplePayMerchantTokenManagementAPI/receiving-and-handling-merchant-token-notifications": {
+      "abstract": [
+        {
+          "text": "Implement an endpoint to receive and handle merchant token life-cycle updates from Apple Pay.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applepaymerchanttokenmanagementapi/documentation/ApplePayMerchantTokenManagementAPI/receiving-and-handling-merchant-token-notifications",
+      "kind": "article",
+      "role": "article",
+      "title": "Receiving and handling merchant token notifications",
+      "type": "topic",
+      "url": "/documentation/applepaymerchanttokenmanagementapi/receiving-and-handling-merchant-token-notifications"
+    },
+    "doc://com.apple.applepaymerchanttokenmanagementapi/documentation/MerchantTokenNotificationServices": {
+      "abstract": [
+        {
+          "text": "Retrieve and manage payment life-cycle events for your Apple Pay merchant tokens.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applepaymerchanttokenmanagementapi/documentation/MerchantTokenNotificationServices",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Apple Pay Merchant Token Management API",
+      "type": "topic",
+      "url": "/documentation/merchanttokennotificationservices"
+    },
+    "doc://com.apple.applepaymerchanttokenmanagementapi/documentation/MerchantTokenNotificationServices/Send-Merchant-Token-Event": {
+      "abstract": [
+        {
+          "text": "Receive and handle merchant token life-cycle updates from Apple Pay.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applepaymerchanttokenmanagementapi/documentation/MerchantTokenNotificationServices/Send-Merchant-Token-Event",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Send Merchant Token Event"
+        }
+      ],
+      "role": "symbol",
+      "title": "Send Merchant Token Event",
+      "type": "topic",
+      "url": "/documentation/merchanttokennotificationservices/send-merchant-token-event"
+    },
+    "doc://com.apple.documentation/documentation/ApplePayMerchantTokenManagementAPI/receiving-and-handling-merchant-token-notifications": {
+      "abstract": [
+        {
+          "text": "Implement an endpoint to receive and handle merchant token life-cycle updates from Apple Pay.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ApplePayMerchantTokenManagementAPI/receiving-and-handling-merchant-token-notifications",
+      "kind": "article",
+      "role": "article",
+      "title": "Receiving and handling merchant token notifications",
+      "type": "topic",
+      "url": "/documentation/ApplePayMerchantTokenManagementAPI/receiving-and-handling-merchant-token-notifications"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Merchant-token-notification-handling",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.applepaymerchanttokenmanagementapi/documentation/ApplePayMerchantTokenManagementAPI/receiving-and-handling-merchant-token-notifications"
+      ],
+      "title": "Merchant token notification handling"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/merchanttokennotificationservices/send-merchant-token-event"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

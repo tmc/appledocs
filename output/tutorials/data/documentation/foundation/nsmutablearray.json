@@ -1,0 +1,1855 @@
+{
+  "abstract": [
+    {
+      "text": "An object representing a dynamic ordered collection, for use instead of an ",
+      "type": "text"
+    },
+    {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Array",
+      "isActive": true,
+      "type": "reference"
+    },
+    {
+      "text": " variable in cases that require reference semantics.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/object_runtime",
+        "doc://com.apple.documentation/documentation/foundation/object_runtime/classes_bridged_to_swift_standard_library_value_types"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/nsmutablearray"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1418247,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSMutableArray",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "class "
+      },
+      {
+        "kind": "identifier",
+        "text": "NSMutableArray"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "NSMutableArray"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSMutableArray"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSArray",
+              "text": "NSArray"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "NSMutableArray",
+              "type": "codeVoice"
+            },
+            {
+              "text": " class declares the programmatic interface to objects that manage a modifiable array of objects. This class adds insertion and deletion operations to the basic array-handling behavior inherited from ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "NSMutableArray is “toll-free bridged” with its Core Foundation counterpart, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfmutablearray",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". See ",
+              "type": "text"
+            },
+            {
+              "identifier": "devLink-1745091",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for more information.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "2530702",
+          "level": 3,
+          "text": "Accessing Values Using Subscripting",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In addition to the provided instance methods, such as ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutablearray/1414510-replaceobject",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", you can access ",
+              "type": "text"
+            },
+            {
+              "code": "NSArray",
+              "type": "codeVoice"
+            },
+            {
+              "text": " values by their indexes using ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "subscripting",
+                  "type": "text"
+                }
+              ],
+              "type": "newTerm"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "mutableArray[3] = \"someValue\""
+          ],
+          "metadata": {
+            "anchor": "2555709",
+            "title": "Listing 1"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "1770393",
+          "level": 3,
+          "text": "Subclassing Notes",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "There is typically little reason to subclass ",
+              "type": "text"
+            },
+            {
+              "code": "NSMutableArray",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". The class does well what it is designed to do—maintain a mutable, ordered collection of objects. But there are situations where a custom ",
+              "type": "text"
+            },
+            {
+              "code": "NSArray",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object might come in handy. Here are a few possibilities:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Changing how ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NSMutableArray",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " stores the elements of its collection. You might do this for performance reasons or for better compatibility with legacy code.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Acquiring more information about what is happening to the collection (for example, statistics gathering).",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "1770394",
+          "level": 4,
+          "text": "Methods to Override",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "NSMutableArray",
+              "type": "codeVoice"
+            },
+            {
+              "text": " defines five primitive methods:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutablearray/1416682-insert",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutablearray/1416616-removeobject",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutablearray/1411274-add",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutablearray/1409708-removelastobject",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutablearray/1414510-replaceobject",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In a subclass, you must override all these methods. You must also override the primitive methods of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "devLink-1745091": {
+      "identifier": "devLink-1745091",
+      "title": "Toll-Free Bridging",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/General/Conceptual/CocoaEncyclopedia/Toll-FreeBridgin/Toll-FreeBridgin.html#//apple_ref/doc/uid/TP40010810-CH2"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Array": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Array",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Array",
+      "type": "topic",
+      "url": "/documentation/swift/array"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfmutablearray": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfmutablearray",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFMutableArray",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfmutablearray"
+    },
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/comparator": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/comparator",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Comparator",
+      "type": "topic",
+      "url": "/documentation/foundation/comparator"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsarray": {
+      "abstract": [
+        {
+          "text": "An object representing a static ordered collection, for use instead of an ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.Swift/documentation/Swift/Array",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " constant in cases that require reference semantics.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSArray"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSArray",
+      "type": "topic",
+      "url": "/documentation/foundation/nsarray"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutablearray": {
+      "abstract": [
+        {
+          "text": "An object representing a dynamic ordered collection, for use instead of an ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.Swift/documentation/Swift/Array",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " variable in cases that require reference semantics.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSMutableArray"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutablearray",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSMutableArray",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutablearray"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutablearray#2555709": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutablearray#2555709",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/foundation/nsmutablearray#2555709"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutablearray/1407556-init": {
+      "abstract": [
+        {
+          "text": "Initializes a newly allocated array.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutablearray/1407556-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init()",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutablearray/1407556-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutablearray/1407586-removeobjects": {
+      "abstract": [
+        {
+          "text": "Removes from the array each of the objects within a given range.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeObjects"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": NSRange)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutablearray/1407586-removeobjects",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "removeObjects(in:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutablearray/1407586-removeobjects"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutablearray/1408332-sort": {
+      "abstract": [
+        {
+          "text": "Sorts the receiver in ascending order as defined by the comparison function ",
+          "type": "text"
+        },
+        {
+          "code": "compare",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "sort"
+        },
+        {
+          "kind": "text",
+          "text": "((Any, Any, UnsafeMutableRawPointer?) -> Int, "
+        },
+        {
+          "kind": "identifier",
+          "text": "context"
+        },
+        {
+          "kind": "text",
+          "text": ": UnsafeMutableRawPointer?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutablearray/1408332-sort",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sort(_:context:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutablearray/1408332-sort"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutablearray/1408963-addobjects": {
+      "abstract": [
+        {
+          "text": "Adds the objects contained in another given array to the end of the receiving array’s content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "addObjects"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": [Any])"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutablearray/1408963-addobjects",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "addObjects(from:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutablearray/1408963-addobjects"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutablearray/1409073-replaceobjects": {
+      "abstract": [
+        {
+          "text": "Replaces the objects in the receiving array specified by one given range with the objects in another array specified by another range. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "replaceObjects"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": NSRange, "
+        },
+        {
+          "kind": "identifier",
+          "text": "withObjectsFrom"
+        },
+        {
+          "kind": "text",
+          "text": ": [Any], "
+        },
+        {
+          "kind": "identifier",
+          "text": "range"
+        },
+        {
+          "kind": "text",
+          "text": ": NSRange)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutablearray/1409073-replaceobjects",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "replaceObjects(in:withObjectsFrom:range:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutablearray/1409073-replaceobjects"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutablearray/1409527-init": {
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "identifier",
+          "text": "coder"
+        },
+        {
+          "kind": "text",
+          "text": ": NSCoder)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutablearray/1409527-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(coder:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutablearray/1409527-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutablearray/1409708-removelastobject": {
+      "abstract": [
+        {
+          "text": "Removes the object with the highest-valued index in the array ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeLastObject"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutablearray/1409708-removelastobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "removeLastObject()",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutablearray/1409708-removelastobject"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutablearray/1410154-removeobjects": {
+      "abstract": [
+        {
+          "text": "Removes the objects at the specified indexes from the array.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeObjects"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": IndexSet)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutablearray/1410154-removeobjects",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "removeObjects(at:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutablearray/1410154-removeobjects"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutablearray/1410618-removeallobjects": {
+      "abstract": [
+        {
+          "text": "Empties the array of all its elements.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeAllObjects"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutablearray/1410618-removeallobjects",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "removeAllObjects()",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutablearray/1410618-removeallobjects"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutablearray/1410689-remove": {
+      "abstract": [
+        {
+          "text": "Removes all occurrences in the array of a given object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "remove"
+        },
+        {
+          "kind": "text",
+          "text": "(Any)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutablearray/1410689-remove",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "remove(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutablearray/1410689-remove"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutablearray/1410745-sort": {
+      "abstract": [
+        {
+          "text": "Sorts the receiver using a given array of sort descriptors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "sort"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "using"
+        },
+        {
+          "kind": "text",
+          "text": ": [NSSortDescriptor])"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutablearray/1410745-sort",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sort(using:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutablearray/1410745-sort"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutablearray/1411160-exchangeobject": {
+      "abstract": [
+        {
+          "text": "Exchanges the objects in the array at given indexes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "exchangeObject"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": Int, "
+        },
+        {
+          "kind": "identifier",
+          "text": "withObjectAt"
+        },
+        {
+          "kind": "text",
+          "text": ": Int)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutablearray/1411160-exchangeobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "exchangeObject(at:withObjectAt:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutablearray/1411160-exchangeobject"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutablearray/1411274-add": {
+      "abstract": [
+        {
+          "text": "Inserts a given object at the end of the array.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "add"
+        },
+        {
+          "kind": "text",
+          "text": "(Any)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutablearray/1411274-add",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "add(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutablearray/1411274-add"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutablearray/1411366-remove": {
+      "abstract": [
+        {
+          "text": "Removes all occurrences within a specified range in the array of a given object. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "remove"
+        },
+        {
+          "kind": "text",
+          "text": "(Any, "
+        },
+        {
+          "kind": "identifier",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": NSRange)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutablearray/1411366-remove",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "remove(_:in:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutablearray/1411366-remove"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutablearray/1412085-filter": {
+      "abstract": [
+        {
+          "text": "Evaluates a given predicate against the array’s content and leaves only objects that match.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "filter"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "using"
+        },
+        {
+          "kind": "text",
+          "text": ": NSPredicate)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutablearray/1412085-filter",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "filter(using:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutablearray/1412085-filter"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutablearray/1412273-sort": {
+      "abstract": [
+        {
+          "text": "Sorts the receiver in ascending order, as determined by the comparison method specified by a given selector.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "sort"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "using"
+        },
+        {
+          "kind": "text",
+          "text": ": Selector)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutablearray/1412273-sort",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sort(using:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutablearray/1412273-sort"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutablearray/1413942-removeobjects": {
+      "abstract": [
+        {
+          "text": "Removes from the receiving array the objects in another given array.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeObjects"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": [Any])"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutablearray/1413942-removeobjects",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "removeObjects(in:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutablearray/1413942-removeobjects"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutablearray/1414396-sort": {
+      "abstract": [
+        {
+          "text": "Sorts the receiver in ascending order using the specified options and the comparison method specified by a given ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/comparator",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " block.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "sort"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": NSSortOptions, "
+        },
+        {
+          "kind": "identifier",
+          "text": "usingComparator"
+        },
+        {
+          "kind": "text",
+          "text": ": (Any, Any) -> ComparisonResult)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutablearray/1414396-sort",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sort(options:usingComparator:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutablearray/1414396-sort"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutablearray/1414510-replaceobject": {
+      "abstract": [
+        {
+          "text": "Replaces the object at ",
+          "type": "text"
+        },
+        {
+          "code": "index",
+          "type": "codeVoice"
+        },
+        {
+          "text": " with ",
+          "type": "text"
+        },
+        {
+          "code": "anObject",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "replaceObject"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": Int, "
+        },
+        {
+          "kind": "identifier",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": Any)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutablearray/1414510-replaceobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "replaceObject(at:with:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutablearray/1414510-replaceobject"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutablearray/1414904-sort": {
+      "abstract": [
+        {
+          "text": "Sorts the receiver in ascending order using the comparison method specified by a given ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/comparator",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " block.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "sort"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "comparator"
+        },
+        {
+          "kind": "text",
+          "text": ": (Any, Any) -> ComparisonResult)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutablearray/1414904-sort",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sort(comparator:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutablearray/1414904-sort"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutablearray/1415225-removeobject": {
+      "abstract": [
+        {
+          "text": "Removes all occurrences of ",
+          "type": "text"
+        },
+        {
+          "code": "anObject",
+          "type": "codeVoice"
+        },
+        {
+          "text": " within the specified range in the array.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeObject"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "identicalTo"
+        },
+        {
+          "kind": "text",
+          "text": ": Any, "
+        },
+        {
+          "kind": "identifier",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": NSRange)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutablearray/1415225-removeobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "removeObject(identicalTo:in:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutablearray/1415225-removeobject"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutablearray/1415811-init": {
+      "abstract": [
+        {
+          "text": "Returns an array, initialized with enough memory to initially hold a given number of objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "capacity"
+        },
+        {
+          "kind": "text",
+          "text": ": Int)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutablearray/1415811-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(capacity:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutablearray/1415811-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutablearray/1416482-insert": {
+      "abstract": [
+        {
+          "text": "Inserts the objects in the provided array into the receiving array at the specified indexes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "insert"
+        },
+        {
+          "kind": "text",
+          "text": "([Any], "
+        },
+        {
+          "kind": "identifier",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": IndexSet)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutablearray/1416482-insert",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "insert(_:at:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutablearray/1416482-insert"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutablearray/1416616-removeobject": {
+      "abstract": [
+        {
+          "text": "Removes the object at ",
+          "type": "text"
+        },
+        {
+          "code": "index",
+          "type": "codeVoice"
+        },
+        {
+          "text": " .",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeObject"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": Int)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutablearray/1416616-removeobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "removeObject(at:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutablearray/1416616-removeobject"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutablearray/1416682-insert": {
+      "abstract": [
+        {
+          "text": "Inserts a given object into the array’s contents at a given index.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "insert"
+        },
+        {
+          "kind": "text",
+          "text": "(Any, "
+        },
+        {
+          "kind": "identifier",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": Int)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutablearray/1416682-insert",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "insert(_:at:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutablearray/1416682-insert"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutablearray/1416902-replaceobjects": {
+      "abstract": [
+        {
+          "text": "Replaces the objects in the receiving array specified by a given range with all of the objects from a given array.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "replaceObjects"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": NSRange, "
+        },
+        {
+          "kind": "identifier",
+          "text": "withObjectsFrom"
+        },
+        {
+          "kind": "text",
+          "text": ": [Any])"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutablearray/1416902-replaceobjects",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "replaceObjects(in:withObjectsFrom:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutablearray/1416902-replaceobjects"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutablearray/1417759-removeobject": {
+      "abstract": [
+        {
+          "text": "Removes all occurrences of a given object in the array.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeObject"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "identicalTo"
+        },
+        {
+          "kind": "text",
+          "text": ": Any)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutablearray/1417759-removeobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "removeObject(identicalTo:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutablearray/1417759-removeobject"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutablearray/1417821-setarray": {
+      "abstract": [
+        {
+          "text": "Sets the receiving array’s elements to those in another given array.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "setArray"
+        },
+        {
+          "kind": "text",
+          "text": "([Any])"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutablearray/1417821-setarray",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setArray(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutablearray/1417821-setarray"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutablearray/1418287-replaceobjects": {
+      "abstract": [
+        {
+          "text": "Replaces the objects in the receiving array at locations specified with the objects from a given array.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "replaceObjects"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": IndexSet, "
+        },
+        {
+          "kind": "identifier",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": [Any])"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutablearray/1418287-replaceobjects",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "replaceObjects(at:with:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutablearray/1418287-replaceobjects"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutablearray/1460142-removeobjects": {
+      "abstract": [
+        {
+          "text": "Removes the specified number of objects from the array, beginning at the specified index.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeObjects"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "fromIndices"
+        },
+        {
+          "kind": "text",
+          "text": ": UnsafeMutablePointer<Int>, "
+        },
+        {
+          "kind": "identifier",
+          "text": "numIndices"
+        },
+        {
+          "kind": "text",
+          "text": ": Int)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutablearray/1460142-removeobjects",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "removeObjects(fromIndices:numIndices:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutablearray/1460142-removeobjects"
+    },
+    "doc://com.apple.documentation/documentation/foundation/object_runtime": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/object_runtime",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Object Runtime",
+      "type": "topic",
+      "url": "/documentation/foundation/object_runtime"
+    },
+    "doc://com.apple.documentation/documentation/foundation/object_runtime/classes_bridged_to_swift_standard_library_value_types": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/object_runtime/classes_bridged_to_swift_standard_library_value_types",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Classes Bridged to Swift Standard Library Value Types",
+      "type": "topic",
+      "url": "/documentation/foundation/object_runtime/classes_bridged_to_swift_standard_library_value_types"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsarray"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsarray"
+      ],
+      "title": "Arrays"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "1653831",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsmutablearray/1407556-init",
+        "doc://com.apple.documentation/documentation/foundation/nsmutablearray/1415811-init"
+      ],
+      "kind": "taskGroup",
+      "title": "Creating and Initializing a Mutable Array"
+    },
+    {
+      "anchor": "1653894",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsmutablearray/1411274-add",
+        "doc://com.apple.documentation/documentation/foundation/nsmutablearray/1408963-addobjects",
+        "doc://com.apple.documentation/documentation/foundation/nsmutablearray/1416682-insert",
+        "doc://com.apple.documentation/documentation/foundation/nsmutablearray/1416482-insert"
+      ],
+      "kind": "taskGroup",
+      "title": "Adding Objects"
+    },
+    {
+      "anchor": "1653952",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsmutablearray/1410618-removeallobjects",
+        "doc://com.apple.documentation/documentation/foundation/nsmutablearray/1409708-removelastobject",
+        "doc://com.apple.documentation/documentation/foundation/nsmutablearray/1410689-remove",
+        "doc://com.apple.documentation/documentation/foundation/nsmutablearray/1411366-remove",
+        "doc://com.apple.documentation/documentation/foundation/nsmutablearray/1416616-removeobject",
+        "doc://com.apple.documentation/documentation/foundation/nsmutablearray/1410154-removeobjects",
+        "doc://com.apple.documentation/documentation/foundation/nsmutablearray/1417759-removeobject",
+        "doc://com.apple.documentation/documentation/foundation/nsmutablearray/1415225-removeobject",
+        "doc://com.apple.documentation/documentation/foundation/nsmutablearray/1460142-removeobjects",
+        "doc://com.apple.documentation/documentation/foundation/nsmutablearray/1413942-removeobjects",
+        "doc://com.apple.documentation/documentation/foundation/nsmutablearray/1407586-removeobjects"
+      ],
+      "kind": "taskGroup",
+      "title": "Removing Objects"
+    },
+    {
+      "anchor": "1654082",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsmutablearray/1414510-replaceobject",
+        "doc://com.apple.documentation/documentation/foundation/nsmutablearray/1418287-replaceobjects",
+        "doc://com.apple.documentation/documentation/foundation/nsmutablearray/1409073-replaceobjects",
+        "doc://com.apple.documentation/documentation/foundation/nsmutablearray/1416902-replaceobjects",
+        "doc://com.apple.documentation/documentation/foundation/nsmutablearray/1417821-setarray"
+      ],
+      "kind": "taskGroup",
+      "title": "Replacing Objects"
+    },
+    {
+      "anchor": "1654149",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsmutablearray/1412085-filter"
+      ],
+      "kind": "taskGroup",
+      "title": "Filtering Content"
+    },
+    {
+      "anchor": "1654185",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsmutablearray/1411160-exchangeobject",
+        "doc://com.apple.documentation/documentation/foundation/nsmutablearray/1410745-sort",
+        "doc://com.apple.documentation/documentation/foundation/nsmutablearray/1414904-sort",
+        "doc://com.apple.documentation/documentation/foundation/nsmutablearray/1414396-sort",
+        "doc://com.apple.documentation/documentation/foundation/nsmutablearray/1408332-sort",
+        "doc://com.apple.documentation/documentation/foundation/nsmutablearray/1412273-sort"
+      ],
+      "kind": "taskGroup",
+      "title": "Rearranging Content"
+    },
+    {
+      "anchor": "2855288",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsmutablearray/1409527-init"
+      ],
+      "kind": "taskGroup",
+      "title": "Initializers"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nsmutablearray"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/nsmutablearray"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

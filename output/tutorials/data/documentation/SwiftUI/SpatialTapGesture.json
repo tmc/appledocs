@@ -1,0 +1,1065 @@
+{
+  "abstract": [
+    {
+      "text": "A gesture that recognizes one or more taps and reports their location.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.SwiftUI/documentation/SwiftUI/SpatialTapGesture"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:7SwiftUI17SpatialTapGestureV",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "struct"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "SpatialTapGesture"
+      }
+    ],
+    "modules": [
+      {
+        "name": "SwiftUI"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "SpatialTapGesture"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "SpatialTapGesture"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "SpatialTapGesture"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To recognize a tap gesture on a view, create and configure the gesture, and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "then add it to the view using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/gesture(_:including:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " modifier.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The following code adds a tap gesture to a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Circle",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " that toggles the color",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of the circle based on the tap location:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct TapGestureView: View {",
+            "    @State private var location: CGPoint = .zero",
+            "",
+            "    var tap: some Gesture {",
+            "        SpatialTapGesture()",
+            "            .onEnded { event in",
+            "                self.location = event.location",
+            "             }",
+            "    }",
+            "",
+            "    var body: some View {",
+            "        Circle()",
+            "            .fill(self.location.y > 50 ? Color.blue : Color.red)",
+            "            .frame(width: 100, height: 100, alignment: .center)",
+            "            .gesture(tap)",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "SwiftUI-PageImage-card.png": {
+      "alt": "A black Swift logo on a swirly blue and purple background.",
+      "identifier": "SwiftUI-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b1de0de086f81a5d0eac3839a0af6e6f/SwiftUI-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1450d0b30a6b024e10c148e3f31dafe9/SwiftUI-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI": {
+      "abstract": [
+        {
+          "text": "Declare the user interface and behavior for your app on every platform.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI",
+      "images": [
+        {
+          "identifier": "SwiftUI-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SwiftUI",
+      "type": "topic",
+      "url": "/documentation/swiftui"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Circle": {
+      "abstract": [
+        {
+          "text": "A circle centered on the frame of the view containing it.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Circle"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Circle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Circle"
+        }
+      ],
+      "role": "symbol",
+      "title": "Circle",
+      "type": "topic",
+      "url": "/documentation/swiftui/circle"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Gesture": {
+      "abstract": [
+        {
+          "text": "An instance that matches a sequence of events to a gesture, and returns a",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "stream of values for each of its states.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Gesture"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Gesture",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Gesture"
+        }
+      ],
+      "role": "symbol",
+      "title": "Gesture",
+      "type": "topic",
+      "url": "/documentation/swiftui/gesture"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/SpatialTapGesture": {
+      "abstract": [
+        {
+          "text": "A gesture that recognizes one or more taps and reports their location.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SpatialTapGesture"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/SpatialTapGesture",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SpatialTapGesture"
+        }
+      ],
+      "role": "symbol",
+      "title": "SpatialTapGesture",
+      "type": "topic",
+      "url": "/documentation/swiftui/spatialtapgesture"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/SpatialTapGesture/Value": {
+      "abstract": [
+        {
+          "text": "The attributes of a tap gesture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Value"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/SpatialTapGesture/Value",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Value"
+        }
+      ],
+      "role": "symbol",
+      "title": "SpatialTapGesture.Value",
+      "type": "topic",
+      "url": "/documentation/swiftui/spatialtapgesture/value"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/SpatialTapGesture/coordinateSpace": {
+      "abstract": [
+        {
+          "text": "The coordinate space in which to receive location values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "coordinateSpace"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI15CoordinateSpaceO",
+          "text": "CoordinateSpace"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/SpatialTapGesture/coordinateSpace",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "coordinateSpace",
+      "type": "topic",
+      "url": "/documentation/swiftui/spatialtapgesture/coordinatespace"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/SpatialTapGesture/count": {
+      "abstract": [
+        {
+          "text": "The required number of tap events.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "count"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/SpatialTapGesture/count",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "count",
+      "type": "topic",
+      "url": "/documentation/swiftui/spatialtapgesture/count"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/SpatialTapGesture/init(count:coordinateSpace:)": {
+      "abstract": [
+        {
+          "text": "Creates a tap gesture with the number of required taps and the",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "coordinate space of the gesture’s location.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "count"
+        },
+        {
+          "kind": "text",
+          "text": ":"
+        },
+        {
+          "kind": "externalParam",
+          "text": "coordinateSpace"
+        },
+        {
+          "kind": "text",
+          "text": ":)"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/SpatialTapGesture/init(count:coordinateSpace:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "keyword",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "count"
+        },
+        {
+          "kind": "text",
+          "text": ":"
+        },
+        {
+          "kind": "externalParam",
+          "text": "coordinateSpace"
+        },
+        {
+          "kind": "text",
+          "text": ":)"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(count:coordinateSpace:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/spatialtapgesture/init(count:coordinatespace:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/SpatialTapGesture/init(count:coordinateSpace:)-1b85g": {
+      "abstract": [
+        {
+          "text": "Creates a tap gesture with the number of required taps and the",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "coordinate space of the gesture’s location.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "count"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "coordinateSpace"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI15CoordinateSpaceO",
+          "text": "CoordinateSpace"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/SpatialTapGesture/init(count:coordinateSpace:)-1b85g",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(count:coordinateSpace:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/spatialtapgesture/init(count:coordinatespace:)-1b85g"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/SpatialTapGesture/init(count:coordinateSpace:)-75s7q": {
+      "abstract": [
+        {
+          "text": "Creates a tap gesture with the number of required taps and the",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "coordinate space of the gesture’s location.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "count"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "coordinateSpace"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI23CoordinateSpaceProtocolP",
+          "text": "CoordinateSpaceProtocol"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/SpatialTapGesture/init(count:coordinateSpace:)-75s7q",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(count:coordinateSpace:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/spatialtapgesture/init(count:coordinatespace:)-75s7q"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/TapGesture": {
+      "abstract": [
+        {
+          "text": "A gesture that recognizes one or more taps.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TapGesture"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/TapGesture",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TapGesture"
+        }
+      ],
+      "role": "symbol",
+      "title": "TapGesture",
+      "type": "topic",
+      "url": "/documentation/swiftui/tapgesture"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/gesture(_:including:)": {
+      "abstract": [
+        {
+          "text": "Attaches a gesture to the view with a lower precedence than gestures",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "defined by the view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "gesture"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "including"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI11GestureMaskV",
+          "text": "GestureMask"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/gesture(_:including:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "gesture(_:including:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/gesture(_:including:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/onTapGesture(count:coordinateSpace:perform:)": {
+      "abstract": [
+        {
+          "text": "Adds an action to perform when this view recognizes a tap gesture,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "and provides the action with the location of the interaction.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "onTapGesture"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "count"
+        },
+        {
+          "kind": "text",
+          "text": ":"
+        },
+        {
+          "kind": "externalParam",
+          "text": "coordinateSpace"
+        },
+        {
+          "kind": "text",
+          "text": ":"
+        },
+        {
+          "kind": "externalParam",
+          "text": "perform"
+        },
+        {
+          "kind": "text",
+          "text": ":)"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/onTapGesture(count:coordinateSpace:perform:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "onTapGesture(count:coordinateSpace:perform:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/ontapgesture(count:coordinatespace:perform:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/onTapGesture(count:perform:)": {
+      "abstract": [
+        {
+          "text": "Adds an action to perform when this view recognizes a tap gesture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "onTapGesture"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "count"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "perform"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/onTapGesture(count:perform:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "onTapGesture(count:perform:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/ontapgesture(count:perform:)"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Gesture"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Recognizing-tap-gestures",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/onTapGesture(count:perform:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/onTapGesture(count:coordinateSpace:perform:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/TapGesture"
+      ],
+      "title": "Recognizing tap gestures"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-spatial-tap-gesture",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/SpatialTapGesture/init(count:coordinateSpace:)-75s7q",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/SpatialTapGesture/coordinateSpace",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/SpatialTapGesture/count"
+      ],
+      "title": "Creating a spatial tap gesture"
+    },
+    {
+      "anchor": "Getting-the-gestures-value",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/SpatialTapGesture/Value"
+      ],
+      "title": "Getting the gesture’s value"
+    },
+    {
+      "anchor": "Deprecated-initializers",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/SpatialTapGesture/init(count:coordinateSpace:)-1b85g"
+      ],
+      "title": "Deprecated initializers"
+    },
+    {
+      "anchor": "Initializers",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/SpatialTapGesture/init(count:coordinateSpace:)"
+      ],
+      "title": "Initializers"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/swiftui/spatialtapgesture"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

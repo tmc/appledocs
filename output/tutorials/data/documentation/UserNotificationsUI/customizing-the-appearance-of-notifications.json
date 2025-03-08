@@ -1,0 +1,2592 @@
+{
+  "abstract": [
+    {
+      "text": "Customize the appearance of your iOS app’s notification alerts with a notification",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "content app extension.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.User-Notifications-UI/documentation/UserNotificationsUI"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.User-Notifications-UI/documentation/UserNotificationsUI/customizing-the-appearance-of-notifications"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "User Notifications UI"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Customizing the Appearance of Notifications"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When an iOS device receives a notification containing an alert, the system displays",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the contents of the alert in two stages. Initially, it displays an abbreviated banner",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "with the title, subtitle, and two to four lines of body text from the notification.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "If the user presses the abbreviated banner, iOS displays the full notification interface,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "including any notification-related actions. The system provides the interface for",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the abbreviated banner, but you can customize the full interface using a notification",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "content app extension.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "customizing_the_appearance_of_notifications-1",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The notification content app extension manages a view controller that displays your",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "custom notification interface. This view controller can supplement or replace the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "default system interface for your notifications. You can use your view controller",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Customize the placement of items, including the alert’s title, subtitle, and body",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "text.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Substitute different fonts or styling for interface elements.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Display app-specific data—for example, data stored in app-specific keys of the",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "notification’s payload.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Include custom images or branding.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your app extension must configure its view controller using the data immediately",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "available, such as the contents of the notification and the files present in your",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "app extension’s bundle. If you use an app group to share data between your app and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "your app extension, you may also use any files found in the app group. To ensure",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "your notifications are delivered in a timely manner, configure the views as quickly",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "as possible. Don’t perform any long-running tasks, like trying to retrieve data over",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the network.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Notification content app extensions are supported only in iOS apps. For information",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "about how to customize the appearance of notifications in watchOS, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/library/archive/documentation/General/Conceptual/WatchKitProgrammingGuide/index.html#//apple_ref/doc/uid/TP40014969",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Add-the-Notification-Content-App-Extension-to-Your-Project",
+          "level": 3,
+          "text": "Add the Notification Content App Extension to Your Project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To add a notification content app extension to your iOS app:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Choose File > New > Target in Xcode.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select Notification Content Extension from iOS Application Extension.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click Next.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Provide a name for your app extension.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click Finish.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "You may add more than one notification content app extension to your project,",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "but each one must support a unique set of notification categories. You specify the",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "categories for your app extension in its ",
+                  "type": "text"
+                },
+                {
+                  "code": "Info.plist",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " file, as described in ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.User-Notifications-UI/documentation/UserNotificationsUI/customizing-the-appearance-of-notifications#Declare-the-Supported-Notification-Types",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Add-Views-to-Your-View-Controller",
+          "level": 3,
+          "text": "Add Views to Your View Controller",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The template provided by Xcode includes a storyboard and a view controller for you",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to configure. Build your custom notification interface by adding views to your view",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "controller. For example, use labels to display the title, subtitle, and body text",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of the notification. You can also add image views and views that display noninteractive",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "content. You don’t need to provide any initial content for your views.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can add interactive controls (for example, buttons or switches) in iOS 12 and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "later. For more information, see Support Interactive Controls.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Don’t add additional view controllers to your app extension or storyboard",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "file. Your app extension must contain exactly one view controller.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Configure-Your-View-Controller",
+          "level": 3,
+          "text": "Configure Your View Controller",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.User-Notifications-UI/documentation/UserNotificationsUI/UNNotificationContentExtension/didReceive(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "method of your view controller to update its labels and other views. The notification",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "payload contains the data to use when configuring your view controller. You can also",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "use data from the other files of your app extension. The code listing below",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "shows a version of this method that retrieves the title and body text from the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "notification payload and assigns the strings to two ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UILabel",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "controls, which are stored as outlets on the view controller.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func didReceive(_ notification: UNNotification) {",
+            "   self.bodyText?.text = notification.request.content.body",
+            "   self.headlineText?.text = notification.request.content.title",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If a second notification arrives when your view controller is already visible, the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "system calls the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.User-Notifications-UI/documentation/UserNotificationsUI/UNNotificationContentExtension/didReceive(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "method again with the new notification payload.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Declare-the-Supported-Notification-Types",
+          "level": 3,
+          "text": "Declare the Supported Notification Types",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Specify the types of notifications for which your notification content app extension",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "provides an interface. When it receives a notification, the system matches the notification’s",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "category value—its type—with the declared categories of any notification content",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "app extensions in your app. If it finds a match, the system loads the corresponding",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "app extension.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file of your notification content app extension, configure the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "UNNotificationExtensionCategory",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key with the category strings of the notifications",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that your extension supports. Category strings are identifiers contained in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UserNotifications/UNNotificationCategory",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "objects that you register from your iOS app. You use these strings to differentiate",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the types of notifications that your app can receive. For example, you might include",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the string ",
+              "type": "text"
+            },
+            {
+              "code": "MEETING_INVITE",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in any notifications that indicate the arrival of a new",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "meeting invitation. Identifier strings are case sensitive.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following figure shows the ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file of a notification content",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "app extension that supports two different notification types. Because it supports",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "two types, the value for the ",
+              "type": "text"
+            },
+            {
+              "code": "UNNotificationExtensionCategory",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key consists of an",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "array with the strings ",
+              "type": "text"
+            },
+            {
+              "code": "GENERAL",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "PLANE_AVAILABLE",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". If a notification with either",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of those types arrives, the system displays the interface from this notification",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "content app extension.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "customizing_the_appearance_of_notifications-2",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Initially, the value of the ",
+                  "type": "text"
+                },
+                {
+                  "code": "UNNotificationExtensionCategory",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " key is a string,",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "which lets your notification content app extension support only one notification",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "type. To support multiple types, change the type to an array of strings.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For a local notification, put its category string into the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UserNotifications/UNMutableNotificationContent/categoryIdentifier",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "property of your ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UserNotifications/UNMutableNotificationContent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "object. For a remote notification, put the string into the ",
+              "type": "text"
+            },
+            {
+              "code": "category",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key of your",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "JSON payload. For information about declaring your app’s notification types, see",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UserNotifications/declaring-your-actionable-notification-types",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about the keys in your ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.User-Notifications-UI/documentation/UserNotificationsUI/UNNotificationContentExtension",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Hide-the-Default-Notification-Interface",
+          "level": 3,
+          "text": "Hide the Default Notification Interface",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system displays some default information with every notification, including those",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "for which you provide a custom interface. The system always displays a header that",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "includes the app name and icon. The system also displays an interface with the title,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "subtitle, and body text of the notification, but you can hide this portion of the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "interface if you prefer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, you might hide the default notification interface if your custom interface",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "displays the same information. The following figure illustrates the layout",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of the notification interface with and without the default content.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "customizing_the_appearance_of_notifications-3",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To remove the default system content, add the ",
+              "type": "text"
+            },
+            {
+              "code": "UNNotificationExtensionDefaultContentHidden",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "key to your extension’s ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file and set the value of the key to ",
+              "type": "text"
+            },
+            {
+              "code": "true",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For more information about this key, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.User-Notifications-UI/documentation/UserNotificationsUI/UNNotificationContentExtension",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Incorporating-Media-Into-Your-Interface",
+          "level": 3,
+          "text": "Incorporating Media Into Your Interface",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To support the playback of audio or video from your custom notifications interface,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "implement the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the view controller’s ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.User-Notifications-UI/documentation/UserNotificationsUI/UNNotificationContentExtension/mediaPlayPauseButtonType",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "property, return the type of button you want.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the view controller’s ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.User-Notifications-UI/documentation/UserNotificationsUI/UNNotificationContentExtension/mediaPlayPauseButtonFrame",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "property, return the button’s frame.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the  ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.User-Notifications-UI/documentation/UserNotificationsUI/UNNotificationContentExtension/mediaPlay()",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method,",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "start playing your media file.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "in the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.User-Notifications-UI/documentation/UserNotificationsUI/UNNotificationContentExtension/mediaPause()",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " button,",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "stop playing your media file.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system draws a media button for you, handling all user interactions. When the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "buttons are pressed, it calls the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.User-Notifications-UI/documentation/UserNotificationsUI/UNNotificationContentExtension/mediaPlay()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.User-Notifications-UI/documentation/UserNotificationsUI/UNNotificationContentExtension/mediaPause()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " methods so",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that you can start and stop playback.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To programmatically start or stop playback of your media file, call the current ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsextensioncontext",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "object’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsextensioncontext/1648523-mediaplayingstarted",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsextensioncontext/1648527-mediaplayingpaused",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "methods. Use your view controller’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIViewController/extensionContext",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "property to access the extension context.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Support-Interactive-Controls",
+          "level": 3,
+          "text": "Support Interactive Controls",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In iOS 12 and later you can enable user interactions in your custom notifications.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This lets you add interactive controls, such as buttons and switches to your custom",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "interface.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To enable user interactions:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Open your Notification Content Extension’s ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Info.plist",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " file.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Add the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "UNNotificationExtensionUserInteractionEnabled",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " key to your extension",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "attributes. Give it a Boolean value, set to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "YES",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following figure shows the ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file, with notifications",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "enabled.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "customizing_the_appearance_of_notifications-4",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "customizing_the_appearance_of_notifications-1": {
+      "alt": "Screenshots showing the abbreviated banner and the full notification.",
+      "identifier": "customizing_the_appearance_of_notifications-1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/fe3a6ff8be679015dabe6c840abb63de/customizing_the_appearance_of_notifications-1@1x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c8698879eaa065aeed4020fab5318b42/customizing_the_appearance_of_notifications-1@2x.png"
+        }
+      ]
+    },
+    "customizing_the_appearance_of_notifications-2": {
+      "alt": "A screenshot of the plist editor, showing the UNNotificationExtensionCategory for two notification types.",
+      "identifier": "customizing_the_appearance_of_notifications-2",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/152e34869924e4cd1a285365566a5a97/customizing_the_appearance_of_notifications-2@2x.png"
+        }
+      ]
+    },
+    "customizing_the_appearance_of_notifications-3": {
+      "alt": "The default interface displays a header, followed by your custom content, followed by the default system content. If you hide the default system content, only the header and your custom interface are displayed.",
+      "identifier": "customizing_the_appearance_of_notifications-3",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a62382090758a2f43ea487b72c5298d5/customizing_the_appearance_of_notifications-3@2x.png"
+        }
+      ]
+    },
+    "customizing_the_appearance_of_notifications-4": {
+      "alt": "A screenshot of the plist editor, showing the UNNotificationExtensionUserInteractionEnabled key added to the NSExtensionAttributes dictionary.",
+      "identifier": "customizing_the_appearance_of_notifications-4",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/56e764232f71daec129a208c72a7d564/customizing_the_appearance_of_notifications-4@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.User-Notifications-UI/documentation/UserNotificationsUI": {
+      "abstract": [
+        {
+          "text": "Customize the interface that displays local and remote notifications.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.User-Notifications-UI/documentation/UserNotificationsUI",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "User Notifications UI",
+      "type": "topic",
+      "url": "/documentation/usernotificationsui"
+    },
+    "doc://com.apple.User-Notifications-UI/documentation/UserNotificationsUI/UNNotificationContentExtension": {
+      "abstract": [
+        {
+          "text": "An object that presents a custom interface for a delivered local or remote",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "notification.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UNNotificationContentExtension"
+        }
+      ],
+      "identifier": "doc://com.apple.User-Notifications-UI/documentation/UserNotificationsUI/UNNotificationContentExtension",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UNNotificationContentExtension"
+        }
+      ],
+      "role": "symbol",
+      "title": "UNNotificationContentExtension",
+      "type": "topic",
+      "url": "/documentation/usernotificationsui/unnotificationcontentextension"
+    },
+    "doc://com.apple.User-Notifications-UI/documentation/UserNotificationsUI/UNNotificationContentExtension/didReceive(_:)": {
+      "abstract": [
+        {
+          "text": "Delivers a new notification to your notification content app extension.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "didReceive"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UNNotification",
+          "text": "UNNotification"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.User-Notifications-UI/documentation/UserNotificationsUI/UNNotificationContentExtension/didReceive(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "didReceiveNotification:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "didReceive(_:)",
+      "type": "topic",
+      "url": "/documentation/usernotificationsui/unnotificationcontentextension/didreceive(_:)"
+    },
+    "doc://com.apple.User-Notifications-UI/documentation/UserNotificationsUI/UNNotificationContentExtension/mediaPause()": {
+      "abstract": [
+        {
+          "text": "Tells you to pause playback of your media content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mediaPause"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.User-Notifications-UI/documentation/UserNotificationsUI/UNNotificationContentExtension/mediaPause()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "mediaPause"
+        }
+      ],
+      "role": "symbol",
+      "title": "mediaPause()",
+      "type": "topic",
+      "url": "/documentation/usernotificationsui/unnotificationcontentextension/mediapause()"
+    },
+    "doc://com.apple.User-Notifications-UI/documentation/UserNotificationsUI/UNNotificationContentExtension/mediaPlay()": {
+      "abstract": [
+        {
+          "text": "Tells you to begin playback of your media content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mediaPlay"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.User-Notifications-UI/documentation/UserNotificationsUI/UNNotificationContentExtension/mediaPlay()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "mediaPlay"
+        }
+      ],
+      "role": "symbol",
+      "title": "mediaPlay()",
+      "type": "topic",
+      "url": "/documentation/usernotificationsui/unnotificationcontentextension/mediaplay()"
+    },
+    "doc://com.apple.User-Notifications-UI/documentation/UserNotificationsUI/UNNotificationContentExtension/mediaPlayPauseButtonFrame": {
+      "abstract": [
+        {
+          "text": "The frame rectangle to use for displaying a media playback button.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mediaPlayPauseButtonFrame"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGRect",
+          "text": "CGRect"
+        }
+      ],
+      "identifier": "doc://com.apple.User-Notifications-UI/documentation/UserNotificationsUI/UNNotificationContentExtension/mediaPlayPauseButtonFrame",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "mediaPlayPauseButtonFrame"
+        }
+      ],
+      "role": "symbol",
+      "title": "mediaPlayPauseButtonFrame",
+      "type": "topic",
+      "url": "/documentation/usernotificationsui/unnotificationcontentextension/mediaplaypausebuttonframe"
+    },
+    "doc://com.apple.User-Notifications-UI/documentation/UserNotificationsUI/UNNotificationContentExtension/mediaPlayPauseButtonType": {
+      "abstract": [
+        {
+          "text": "The type of media button type to display.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mediaPlayPauseButtonType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@UNNotificationContentExtensionMediaPlayPauseButtonType",
+          "text": "UNNotificationContentExtensionMediaPlayPauseButtonType"
+        }
+      ],
+      "identifier": "doc://com.apple.User-Notifications-UI/documentation/UserNotificationsUI/UNNotificationContentExtension/mediaPlayPauseButtonType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "mediaPlayPauseButtonType"
+        }
+      ],
+      "role": "symbol",
+      "title": "mediaPlayPauseButtonType",
+      "type": "topic",
+      "url": "/documentation/usernotificationsui/unnotificationcontentextension/mediaplaypausebuttontype"
+    },
+    "doc://com.apple.User-Notifications-UI/documentation/UserNotificationsUI/customizing-the-appearance-of-notifications#Declare-the-Supported-Notification-Types": {
+      "abstract": [],
+      "identifier": "doc://com.apple.User-Notifications-UI/documentation/UserNotificationsUI/customizing-the-appearance-of-notifications#Declare-the-Supported-Notification-Types",
+      "kind": "section",
+      "title": "Declare the Supported Notification Types",
+      "type": "topic",
+      "url": "/documentation/usernotificationsui/customizing-the-appearance-of-notifications#Declare-the-Supported-Notification-Types"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UILabel": {
+      "abstract": [
+        {
+          "text": "A view that displays one or more lines of informational text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UILabel"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UILabel",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UILabel",
+      "type": "topic",
+      "url": "/documentation/UIKit/UILabel"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIViewController/extensionContext": {
+      "abstract": [
+        {
+          "text": "Returns the extension context of the view controller.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "extensionContext"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSExtensionContext",
+          "text": "NSExtensionContext"
+        },
+        {
+          "kind": "text",
+          "text": "? { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIViewController/extensionContext",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "extensionContext",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIViewController/extensionContext"
+    },
+    "doc://com.apple.documentation/documentation/UserNotifications/UNMutableNotificationContent": {
+      "abstract": [
+        {
+          "text": "The editable content for a notification.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UNMutableNotificationContent"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UserNotifications/UNMutableNotificationContent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UNMutableNotificationContent",
+      "type": "topic",
+      "url": "/documentation/UserNotifications/UNMutableNotificationContent"
+    },
+    "doc://com.apple.documentation/documentation/UserNotifications/UNMutableNotificationContent/categoryIdentifier": {
+      "abstract": [
+        {
+          "text": "The identifier of the notification’s category.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "categoryIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "set"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UserNotifications/UNMutableNotificationContent/categoryIdentifier",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "categoryIdentifier",
+      "type": "topic",
+      "url": "/documentation/UserNotifications/UNMutableNotificationContent/categoryIdentifier"
+    },
+    "doc://com.apple.documentation/documentation/UserNotifications/UNNotificationCategory": {
+      "abstract": [
+        {
+          "text": "A type of notification your app supports and the custom actions that the system displays.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UNNotificationCategory"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UserNotifications/UNNotificationCategory",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UNNotificationCategory",
+      "type": "topic",
+      "url": "/documentation/UserNotifications/UNNotificationCategory"
+    },
+    "doc://com.apple.documentation/documentation/UserNotifications/declaring-your-actionable-notification-types": {
+      "abstract": [
+        {
+          "text": "Differentiate your notifications and add action buttons to the notification interface.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UserNotifications/declaring-your-actionable-notification-types",
+      "kind": "article",
+      "role": "article",
+      "title": "Declaring your actionable notification types",
+      "type": "topic",
+      "url": "/documentation/UserNotifications/declaring-your-actionable-notification-types"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsextensioncontext": {
+      "abstract": [
+        {
+          "text": "The host app context from which an app extension is invoked.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSExtensionContext"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsextensioncontext",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSExtensionContext",
+      "type": "topic",
+      "url": "/documentation/foundation/nsextensioncontext"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsextensioncontext/1648523-mediaplayingstarted": {
+      "abstract": [
+        {
+          "text": "Tells the system that the Notification Content app extension began playing a media file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "mediaPlayingStarted"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsextensioncontext/1648523-mediaplayingstarted",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "mediaPlayingStarted()",
+      "type": "topic",
+      "url": "/documentation/foundation/nsextensioncontext/1648523-mediaplayingstarted"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsextensioncontext/1648527-mediaplayingpaused": {
+      "abstract": [
+        {
+          "text": "Tells the system that the Notification Content app extension stopped playing a media file. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "mediaPlayingPaused"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsextensioncontext/1648527-mediaplayingpaused",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "mediaPlayingPaused()",
+      "type": "topic",
+      "url": "/documentation/foundation/nsextensioncontext/1648527-mediaplayingpaused"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/library/archive/documentation/General/Conceptual/WatchKitProgrammingGuide/index.html#//apple_ref/doc/uid/TP40014969": {
+      "identifier": "https://developer.apple.com/library/archive/documentation/General/Conceptual/WatchKitProgrammingGuide/index.html#//apple_ref/doc/uid/TP40014969",
+      "title": "App Programming Guide for watchOS",
+      "titleInlineContent": [
+        {
+          "text": "App Programming",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "Guide for watchOS",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/General/Conceptual/WatchKitProgrammingGuide/index.html#//apple_ref/doc/uid/TP40014969"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Notification-Content-App-Extension",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.User-Notifications-UI/documentation/UserNotificationsUI/UNNotificationContentExtension"
+      ],
+      "title": "Notification Content App Extension"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Notification-Content-App-Extension",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.User-Notifications-UI/documentation/UserNotificationsUI/UNNotificationContentExtension"
+              ],
+              "title": "Notification Content App Extension"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UserNotifications~1UNMutableNotificationContent/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UNMutableNotificationContent"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UNNotificationContent",
+              "text": "UNNotificationContent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UserNotifications~1UNNotificationCategory/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UNNotificationCategory"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.User-Notifications-UI~1documentation~1UserNotificationsUI~1UNNotificationContentExtension/title",
+          "value": "UNNotificationContentExtension"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.User-Notifications-UI~1documentation~1UserNotificationsUI~1UNNotificationContentExtension/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UNNotificationContentExtension"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.User-Notifications-UI~1documentation~1UserNotificationsUI~1UNNotificationContentExtension/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UNNotificationContentExtension"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.User-Notifications-UI~1documentation~1UserNotificationsUI~1UNNotificationContentExtension~1didReceive(_:)/title",
+          "value": "didReceiveNotification:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.User-Notifications-UI~1documentation~1UserNotificationsUI~1UNNotificationContentExtension~1didReceive(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "didReceiveNotification:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.User-Notifications-UI~1documentation~1UserNotificationsUI~1UNNotificationContentExtension~1mediaPlayPauseButtonType/title",
+          "value": "mediaPlayPauseButtonType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.User-Notifications-UI~1documentation~1UserNotificationsUI~1UNNotificationContentExtension~1mediaPlayPauseButtonType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "mediaPlayPauseButtonType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.User-Notifications-UI~1documentation~1UserNotificationsUI~1UNNotificationContentExtension~1mediaPause()/title",
+          "value": "mediaPause"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.User-Notifications-UI~1documentation~1UserNotificationsUI~1UNNotificationContentExtension~1mediaPause()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "mediaPause"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.User-Notifications-UI~1documentation~1UserNotificationsUI~1UNNotificationContentExtension~1mediaPlayPauseButtonFrame/title",
+          "value": "mediaPlayPauseButtonFrame"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.User-Notifications-UI~1documentation~1UserNotificationsUI~1UNNotificationContentExtension~1mediaPlayPauseButtonFrame/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "mediaPlayPauseButtonFrame"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.User-Notifications-UI~1documentation~1UserNotificationsUI~1UNNotificationContentExtension~1mediaPlay()/title",
+          "value": "mediaPlay"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.User-Notifications-UI~1documentation~1UserNotificationsUI~1UNNotificationContentExtension~1mediaPlay()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "mediaPlay"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1nsextensioncontext~11648523-mediaplayingstarted/title",
+          "value": "mediaPlayingStarted"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UILabel/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UILabel"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIView",
+              "text": "UIView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UserNotifications~1UNMutableNotificationContent~1categoryIdentifier/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "atomic"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "copy"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "readwrite"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSString",
+              "text": "NSString"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "identifier",
+              "text": "categoryIdentifier"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIViewController~1extensionContext/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "nonatomic"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "strong"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "readonly"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSExtensionContext",
+              "text": "NSExtensionContext"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "identifier",
+              "text": "extensionContext"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1nsextensioncontext~11648527-mediaplayingpaused/title",
+          "value": "mediaPlayingPaused"
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/usernotificationsui/customizing-the-appearance-of-notifications"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/usernotificationsui/customizing-the-appearance-of-notifications"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

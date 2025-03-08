@@ -1,0 +1,402 @@
+{
+  "abstract": [
+    {
+      "text": "Debug your Safari app extension with these techniques.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.safariservices/documentation/SafariServices",
+        "doc://com.apple.safariservices/documentation/SafariServices/safari-app-extensions"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.safariservices/documentation/SafariServices/troubleshooting-your-safari-app-extension"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Safari Services"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Troubleshooting your Safari app extension"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Here are a few options for debugging your Safari app extension:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Check website access permissions.",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            },
+            {
+              "text": " Make sure your website access permissions and allowed domain patterns are right. For more details, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.safariservices/documentation/SafariServices/adjusting-website-access-permissions",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Check URL patterns.",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            },
+            {
+              "text": " Make sure your URL patterns are right. For more details, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.safariservices/documentation/SafariServices/using-permissions-for-scripts-and-style-sheets#Specify-URL-patterns",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Update the deployment target.",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            },
+            {
+              "text": " Check that the deployment target for your app is set to the system you are testing on.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Verify that your extension is visible to Safari.",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            },
+            {
+              "text": " In the Terminal app, type the following command:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "pluginkit -mAvvv -p com.apple.Safari.extension"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Log messages to the Safari debugging console.",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            },
+            {
+              "text": " In the JavaScript environment, use the console.log command to print messages to the Safari debugging console:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "console.log(\"injection script on \" + document.location.href);"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Log messages to the system console.",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            },
+            {
+              "text": " In the native environment, calls to ",
+              "type": "text"
+            },
+            {
+              "code": "NSLog",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "code": "print",
+              "type": "codeVoice"
+            },
+            {
+              "text": " from within your Safari app extension are sent to the system console and are visible in the Console app. You can also filter for other messages using the name of your app extension. For example, if your app extension is terminated because of an error, a message is sent to the Console and a crash log is generated.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Ensure that the Safari app extension is enabled.",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            },
+            {
+              "text": " Many Safari app extensions provide a standalone experience that’s completely independent of the containing app. In other cases, the reason for providing the Safari app extension is to integrate content from your app into the Safari web experience. To integrate content, you need to share information between your app and app extension, and to do so, you need to ensure that your extension is enabled. For security reasons, when your app is installed on a system, its Safari app extensions aren’t automatically enabled; the end user must explicitly enable each extension. Use your app to check to see whether one of its app extensions has been enabled and, if necessary, display the app extension’s Safari settings panel so the end user can enable it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices": {
+      "abstract": [
+        {
+          "text": "Enable web views and services in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Safari Services",
+      "type": "topic",
+      "url": "/documentation/safariservices"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/adjusting-website-access-permissions": {
+      "abstract": [
+        {
+          "text": "Set website access permissions in a Safari app extension using information property list keys.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/adjusting-website-access-permissions",
+      "kind": "article",
+      "role": "article",
+      "title": "Adjusting website access permissions",
+      "type": "topic",
+      "url": "/documentation/safariservices/adjusting-website-access-permissions"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/building-a-safari-app-extension": {
+      "abstract": [
+        {
+          "text": "Add, build, and enable a Safari app extension.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/building-a-safari-app-extension",
+      "kind": "article",
+      "role": "article",
+      "title": "Building a Safari app extension",
+      "type": "topic",
+      "url": "/documentation/safariservices/building-a-safari-app-extension"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/converting-a-legacy-safari-extension-to-a-safari-app-extension": {
+      "abstract": [
+        {
+          "text": "Convert a legacy Safari extension to a Safari app extension, automatically with keys or manually.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/converting-a-legacy-safari-extension-to-a-safari-app-extension",
+      "kind": "article",
+      "role": "article",
+      "title": "Converting a legacy Safari extension to a Safari app extension",
+      "type": "topic",
+      "url": "/documentation/safariservices/converting-a-legacy-safari-extension-to-a-safari-app-extension"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/safari-app-extensions": {
+      "abstract": [
+        {
+          "text": "Learn how Safari app extensions extend the web-browsing experience in Safari by leveraging web technologies and native code.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/safari-app-extensions",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Safari app extensions",
+      "type": "topic",
+      "url": "/documentation/safariservices/safari-app-extensions"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/using-permissions-for-scripts-and-style-sheets#Specify-URL-patterns": {
+      "abstract": [],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/using-permissions-for-scripts-and-style-sheets#Specify-URL-patterns",
+      "kind": "section",
+      "title": "Specify URL patterns",
+      "type": "topic",
+      "url": "/documentation/safariservices/using-permissions-for-scripts-and-style-sheets#Specify-URL-patterns"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.safariservices/documentation/SafariServices/building-a-safari-app-extension",
+        "doc://com.apple.safariservices/documentation/SafariServices/converting-a-legacy-safari-extension-to-a-safari-app-extension"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Essentials",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.safariservices/documentation/SafariServices/building-a-safari-app-extension",
+                "doc://com.apple.safariservices/documentation/SafariServices/converting-a-legacy-safari-extension-to-a-safari-app-extension"
+              ],
+              "title": "Essentials"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/safariservices/troubleshooting-your-safari-app-extension"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/safariservices/troubleshooting-your-safari-app-extension"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

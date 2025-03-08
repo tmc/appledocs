@@ -1,0 +1,814 @@
+{
+  "abstract": [
+    {
+      "text": "Expose KVO changes with a Combine publisher.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Combine/documentation/Combine"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Combine/documentation/Combine/performing-key-value-observing-with-combine"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Combine"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Performing Key-Value Observing with Combine"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Several frameworks use key-value observing to notify your app of asynchronous changes.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "By converting your use of KVO from callbacks and closures to Combine, you can make",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "your code more elegant and maintainable.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Monitoring-Changes-with-KVO",
+          "level": 3,
+          "text": "Monitoring Changes with KVO",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the following example, the type ",
+              "type": "text"
+            },
+            {
+              "code": "UserInfo",
+              "type": "codeVoice"
+            },
+            {
+              "text": " supports KVO for its ",
+              "type": "text"
+            },
+            {
+              "code": "lastLogin",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "as described in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Swift/using-key-value-observing-in-swift",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIViewController/viewDidLoad()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "method uses the ",
+              "type": "text"
+            },
+            {
+              "code": "observe(_:options:changeHandler:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method to set up a closure that",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "handles any change to the property. The closure receives an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nskeyvalueobservedchange",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "object that describes the change event, retrieves the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nskeyvalueobservedchange/2908876-newvalue",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "property, and prints it. The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIViewController/viewDidAppear(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "method changes the value, which calls the closure and prints the message.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "class UserInfo: NSObject {",
+            "    @objc dynamic var lastLogin: Date = Date(timeIntervalSince1970: 0)",
+            "}",
+            "@objc var userInfo = UserInfo()",
+            "var observation: NSKeyValueObservation?",
+            "",
+            "override func viewDidLoad() {",
+            "    super.viewDidLoad()",
+            "    observation = observe(\\.userInfo.lastLogin, options: [.new]) { object, change in",
+            "        print (\"lastLogin now \\(change.newValue!).\")",
+            "    }",
+            "}",
+            "",
+            "override func viewDidAppear(_ animated: Bool) {",
+            "    super.viewDidAppear(animated)",
+            "    userInfo.lastLogin = Date()",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Converting-KVO-Code-to-Use-Combine",
+          "level": 3,
+          "text": "Converting KVO Code to Use Combine",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To convert KVO code to Combine, replace the ",
+              "type": "text"
+            },
+            {
+              "code": "observe(_:options:changeHandler:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "with an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/keyvalueobservingpublisher",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You get an instance of this publisher by calling ",
+              "type": "text"
+            },
+            {
+              "code": "publisher(for:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " on the parent",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "object, as shown in the following example’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIViewController/viewDidLoad()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "method:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "class UserInfo: NSObject {",
+            "    @objc dynamic var lastLogin: Date = Date(timeIntervalSince1970: 0)",
+            "}",
+            "@objc var userInfo = UserInfo()",
+            "var cancellable: Cancellable?",
+            "",
+            "override func viewDidLoad() {",
+            "    super.viewDidLoad()",
+            "    cancellable = userInfo.publisher(for: \\.lastLogin)",
+            "        .sink() { date in print (\"lastLogin now \\(date).\") }",
+            "}",
+            "",
+            "override func viewDidAppear(_ animated: Bool) {",
+            "    super.viewDidAppear(animated)",
+            "    userInfo.lastLogin = Date()",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The KVO publisher produces elements of the observed type — in this case, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/date",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "— rather than ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nskeyvalueobservedchange",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This saves you a step, because you don’t have to unpack the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nskeyvalueobservedchange/2908876-newvalue",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "from the change object, as in the first example.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Combine-PageImage-card.png": {
+      "alt": "The Swift language logo, overlaid by a graph of interconnected lines and points.",
+      "identifier": "Combine-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ba2aa5f2e9d9ae5b196c642a6cf121dd/Combine-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/8df9b2bdcd94118827dd29f28f3915d7/Combine-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Combine/documentation/Combine": {
+      "abstract": [
+        {
+          "text": "Customize handling of asynchronous events by combining event-processing operators.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Combine/documentation/Combine",
+      "images": [
+        {
+          "identifier": "Combine-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Combine",
+      "type": "topic",
+      "url": "/documentation/combine"
+    },
+    "doc://com.apple.Combine/documentation/Combine/replacing-foundation-timers-with-timer-publishers": {
+      "abstract": [
+        {
+          "text": "Publish elements periodically by using a timer.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Combine/documentation/Combine/replacing-foundation-timers-with-timer-publishers",
+      "kind": "article",
+      "role": "article",
+      "title": "Replacing Foundation Timers with Timer Publishers",
+      "type": "topic",
+      "url": "/documentation/combine/replacing-foundation-timers-with-timer-publishers"
+    },
+    "doc://com.apple.Combine/documentation/Combine/routing-notifications-to-combine-subscribers": {
+      "abstract": [
+        {
+          "text": "Deliver notifications to subscribers by using notification centers’ publishers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Combine/documentation/Combine/routing-notifications-to-combine-subscribers",
+      "kind": "article",
+      "role": "article",
+      "title": "Routing Notifications to Combine Subscribers",
+      "type": "topic",
+      "url": "/documentation/combine/routing-notifications-to-combine-subscribers"
+    },
+    "doc://com.apple.Combine/documentation/Combine/using-combine-for-your-app-s-asynchronous-code": {
+      "abstract": [
+        {
+          "text": "Apply common patterns to migrate your closure-based, event-handling code.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Combine/documentation/Combine/using-combine-for-your-app-s-asynchronous-code",
+      "kind": "article",
+      "role": "article",
+      "title": "Using Combine for Your App’s Asynchronous Code",
+      "type": "topic",
+      "url": "/documentation/combine/using-combine-for-your-app-s-asynchronous-code"
+    },
+    "doc://com.apple.documentation/documentation/Swift/using-key-value-observing-in-swift": {
+      "abstract": [
+        {
+          "text": "Notify objects about changes to the properties of other objects.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Swift/using-key-value-observing-in-swift",
+      "kind": "article",
+      "role": "article",
+      "title": "Using Key-Value Observing in Swift",
+      "type": "topic",
+      "url": "/documentation/Swift/using-key-value-observing-in-swift"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIViewController/viewDidAppear(_:)": {
+      "abstract": [
+        {
+          "text": "Notifies the view controller that its view was added to a view hierarchy.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "viewDidAppear"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "animated"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIViewController/viewDidAppear(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "viewDidAppear(_:)",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIViewController/viewDidAppear(_:)"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIViewController/viewDidLoad()": {
+      "abstract": [
+        {
+          "text": "Called after the controller’s view is loaded into memory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "viewDidLoad"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIViewController/viewDidLoad()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "viewDidLoad()",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIViewController/viewDidLoad()"
+    },
+    "doc://com.apple.documentation/documentation/foundation/date": {
+      "abstract": [
+        {
+          "text": "A specific point in time, independent of any calendar or time zone.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "Date"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/date",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Date",
+      "type": "topic",
+      "url": "/documentation/foundation/date"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nskeyvalueobservedchange": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSKeyValueObservedChange"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nskeyvalueobservedchange",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSKeyValueObservedChange",
+      "type": "topic",
+      "url": "/documentation/foundation/nskeyvalueobservedchange"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nskeyvalueobservedchange/2908876-newvalue": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "let "
+        },
+        {
+          "kind": "identifier",
+          "text": "newValue"
+        },
+        {
+          "kind": "text",
+          "text": ": Value?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nskeyvalueobservedchange/2908876-newvalue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "newValue",
+      "type": "topic",
+      "url": "/documentation/foundation/nskeyvalueobservedchange/2908876-newvalue"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject/keyvalueobservingpublisher": {
+      "abstract": [
+        {
+          "text": "A Combine publisher that produces a new element whenever the observed value changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject.KeyValueObservingPublisher"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/keyvalueobservingpublisher",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject.KeyValueObservingPublisher",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject/keyvalueobservingpublisher"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Combine-Migration",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Combine/documentation/Combine/routing-notifications-to-combine-subscribers",
+        "doc://com.apple.Combine/documentation/Combine/replacing-foundation-timers-with-timer-publishers",
+        "doc://com.apple.Combine/documentation/Combine/using-combine-for-your-app-s-asynchronous-code"
+      ],
+      "title": "Combine Migration"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIViewController~1viewDidAppear(_:)/title",
+          "value": "viewDidAppear:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIViewController~1viewDidAppear(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "viewDidAppear:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@BOOL",
+              "text": "BOOL"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "internalParam",
+              "text": "animated"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIViewController~1viewDidLoad()/title",
+          "value": "viewDidLoad"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIViewController~1viewDidLoad()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "viewDidLoad"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/combine/performing-key-value-observing-with-combine"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,408 @@
+{
+  "abstract": [
+    {
+      "text": "Control the purgeable status of a memory descriptors memory.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/kernel",
+        "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals",
+        "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals/memory",
+        "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1442065-setpurgeable"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1442065,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@S@IOMemoryDescriptor@F@setPurgeable#i#*i#",
+    "modules": [
+      {
+        "name": "Kernel"
+      }
+    ],
+    "parent": {
+      "title": "IOMemoryDescriptor"
+    },
+    "platforms": [
+      {
+        "current": "15.4",
+        "introducedAt": "10.11.4",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Method",
+    "symbolKind": "instm",
+    "title": "setPurgeable"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "typeIdentifier",
+              "text": "virtual"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/ioreturn",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@IOReturn",
+              "text": "IOReturn"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "setPurgeable"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/iooptionbits",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@IOOptionBits",
+              "text": "IOOptionBits"
+            },
+            {
+              "kind": "text",
+              "text": " newState, "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/iooptionbits",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@IOOptionBits",
+              "text": "IOOptionBits"
+            },
+            {
+              "kind": "text",
+              "text": " *oldState);"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "languages": [
+        "occ"
+      ],
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "- the desired new purgeable state of the memory:",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "kIOMemoryPurgeableKeepCurrent - make no changes to the memory's purgeable state.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "kIOMemoryPurgeableVolatile - make the memory volatile - the memory may be reclaimed by the VM system without saving its contents to backing store.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "kIOMemoryPurgeableNonVolatile - make the memory nonvolatile - the memory is treated as with usual allocations and must be saved to backing store if paged.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "kIOMemoryPurgeableEmpty - make the memory volatile, and discard any pages allocated to it.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "newState"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "- if non-NULL, the previous purgeable state of the memory is returned here:",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "kIOMemoryPurgeableNonVolatile - the memory was nonvolatile.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "kIOMemoryPurgeableVolatile - the memory was volatile but its content has not been discarded by the VM system.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "kIOMemoryPurgeableEmpty - the memory was volatile and has been discarded by the VM system.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "oldState"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return_value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An IOReturn code.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Buffers may be allocated with the ability to have their purgeable status changed - IOBufferMemoryDescriptor with the kIOMemoryPurgeable option, VM_FLAGS_PURGEABLE may be passed to vm_allocate() in user space to allocate such buffers. The purgeable status of such a buffer may be controlled with setPurgeable(). The process of making a purgeable memory descriptor non-volatile and determining its previous state is atomic - if a purgeable memory descriptor is made nonvolatile and the old state is returned as kIOMemoryPurgeableVolatile, then the memory's previous contents are completely intact and will remain so until the memory is made volatile again. If the old state is returned as kIOMemoryPurgeableEmpty then the memory was reclaimed while it was in a volatile state and its previous contents have been lost.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/kernel": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Kernel",
+      "type": "topic",
+      "url": "/documentation/kernel"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "IOKit Fundamentals",
+      "type": "topic",
+      "url": "/documentation/kernel/iokit_fundamentals"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals/memory": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals/memory",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Memory",
+      "type": "topic",
+      "url": "/documentation/kernel/iokit_fundamentals/memory"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor": {
+      "abstract": [
+        {
+          "text": "An abstract base class that defines common methods for describing physical or virtual memory.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOMemoryDescriptor",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorydescriptor"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1442065-setpurgeable": {
+      "abstract": [
+        {
+          "text": "Control the purgeable status of a memory descriptors memory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setPurgeable"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1442065-setpurgeable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setPurgeable",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorydescriptor/1442065-setpurgeable"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1812865-setpurgeable": {
+      "abstract": [
+        {
+          "text": "Control the purgeable status of a memory descriptors memory.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1812865-setpurgeable",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setPurgeable",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorydescriptor/1812865-setpurgeable"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/3142952-setownership": {
+      "abstract": [
+        {
+          "text": "Set the task that owns the descriptor’s memory. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setOwnership"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/3142952-setownership",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setOwnership",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorydescriptor/3142952-setownership"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iooptionbits": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iooptionbits",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOOptionBits",
+      "type": "topic",
+      "url": "/documentation/kernel/iooptionbits"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioreturn": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioreturn",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOReturn",
+      "type": "topic",
+      "url": "/documentation/kernel/ioreturn"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/3142952-setownership",
+        "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1812865-setpurgeable"
+      ],
+      "title": "Configuring the Descriptor"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/kernel/iomemorydescriptor/1442065-setpurgeable"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

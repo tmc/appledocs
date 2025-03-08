@@ -1,0 +1,360 @@
+{
+  "abstract": [
+    {
+      "text": "Get the status of an instance of a recurring download request.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://org.swift.docc.AppDataTransfer/documentation/AppDataTransfer"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://org.swift.docc.AppDataTransfer/documentation/AppDataTransfer/Get-recurring-request-status"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "rest:App Data Transfer:get:api-transfer-appdata-{}-{}",
+    "modules": [
+      {
+        "name": "App Data Transfer"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "Get recurring request status"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "1.0",
+        "name": "App Data Transfer"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Web Service Endpoint",
+    "symbolKind": "httpRequest",
+    "title": "Get recurring request status"
+  },
+  "primaryContentSections": [
+    {
+      "kind": "restEndpoint",
+      "title": "URL",
+      "tokens": [
+        {
+          "kind": "method",
+          "text": "GET"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "baseURL",
+          "text": "https://appdatatransfer.apple.com/"
+        },
+        {
+          "kind": "path",
+          "text": "api/transfer/appdata/"
+        },
+        {
+          "kind": "parameter",
+          "text": "{parentRequestId}"
+        },
+        {
+          "kind": "path",
+          "text": "/"
+        },
+        {
+          "kind": "parameter",
+          "text": "{requestId}"
+        }
+      ]
+    },
+    {
+      "items": [
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A UUID that identifies the series of recurring download requests.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "parentRequestId",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A UUID that identifies the individual request.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "requestId",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        }
+      ],
+      "kind": "restParameters",
+      "source": "path",
+      "title": "Path Parameters"
+    },
+    {
+      "items": [
+        {
+          "content": [],
+          "mimeType": "application/json",
+          "reason": "OK",
+          "status": 200,
+          "type": [
+            {
+              "identifier": "doc://org.swift.docc.AppDataTransfer/documentation/AppDataTransfer/RequestStatus",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:App Data Transfer:RequestStatus",
+              "text": "RequestStatus"
+            }
+          ]
+        },
+        {
+          "content": [],
+          "reason": "Bad Request",
+          "status": 400,
+          "type": []
+        },
+        {
+          "content": [],
+          "reason": "Unauthorized",
+          "status": 401,
+          "type": []
+        },
+        {
+          "content": [],
+          "reason": "Forbidden",
+          "status": 403,
+          "type": []
+        },
+        {
+          "content": [],
+          "reason": "Internal Server Error",
+          "status": 500,
+          "type": []
+        }
+      ],
+      "kind": "restResponses",
+      "title": "Response Codes"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "% curl -X GET \\",
+                    "  -H \"Authorization: Bearer [ACCESS_TOKEN]\" \\",
+                    "  -H \"X-Apple-Transaction-Id: E3857B28-7FC4-41C8-AC54-08E121E26F59\" \\",
+                    "  -H \"X-Forwarded-For: 192.168.42.63\" \\",
+                    "  -H \"Accept: application/json\" \\",
+                    "  https://appdatatransfer.apple.com/api/transfer/appdata/EABD06C0-9210-47FF-83C4-318CF8520644/7BBBD45D-638B-4DB5-8B02-F23FDB15EDA7"
+                  ],
+                  "syntax": null,
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Request"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "{",
+                    "  \"jobStatus\": \"in_progress\",",
+                    "  \"status\": \"success\",",
+                    "  \"statusCheckDelay\": 86400",
+                    "}"
+                  ],
+                  "syntax": null,
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Response"
+            }
+          ],
+          "type": "tabNavigator"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://org.swift.docc.AppDataTransfer/documentation/AppDataTransfer": {
+      "abstract": [
+        {
+          "text": "Download App Store information and app-install activity about your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://org.swift.docc.AppDataTransfer/documentation/AppDataTransfer",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "App Data Transfer",
+      "type": "topic",
+      "url": "/documentation/appdatatransfer"
+    },
+    "doc://org.swift.docc.AppDataTransfer/documentation/AppDataTransfer/Get-one-time-request-status": {
+      "abstract": [
+        {
+          "text": "Find the status of a one-time download request.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://org.swift.docc.AppDataTransfer/documentation/AppDataTransfer/Get-one-time-request-status",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Get one-time request status"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get one-time request status",
+      "type": "topic",
+      "url": "/documentation/appdatatransfer/get-one-time-request-status"
+    },
+    "doc://org.swift.docc.AppDataTransfer/documentation/AppDataTransfer/Get-recurring-request-status": {
+      "abstract": [
+        {
+          "text": "Get the status of an instance of a recurring download request.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://org.swift.docc.AppDataTransfer/documentation/AppDataTransfer/Get-recurring-request-status",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Get recurring request status"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get recurring request status",
+      "type": "topic",
+      "url": "/documentation/appdatatransfer/get-recurring-request-status"
+    },
+    "doc://org.swift.docc.AppDataTransfer/documentation/AppDataTransfer/RequestStatus": {
+      "abstract": [
+        {
+          "text": "An object that represents the status of a download request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "RequestStatus"
+        }
+      ],
+      "identifier": "doc://org.swift.docc.AppDataTransfer/documentation/AppDataTransfer/RequestStatus",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RequestStatus"
+        }
+      ],
+      "role": "symbol",
+      "title": "RequestStatus",
+      "type": "topic",
+      "url": "/documentation/appdatatransfer/requeststatus"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Status",
+      "generated": true,
+      "identifiers": [
+        "doc://org.swift.docc.AppDataTransfer/documentation/AppDataTransfer/Get-one-time-request-status",
+        "doc://org.swift.docc.AppDataTransfer/documentation/AppDataTransfer/RequestStatus"
+      ],
+      "title": "Status"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/appdatatransfer/get-recurring-request-status"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

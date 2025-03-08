@@ -1,0 +1,176 @@
+{
+  "abstract": [],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/applicationservices"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/applicationservices/axattributeconstants_h"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1668529,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Application Services"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "AXAttributeConstants.h"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each UIElement has a set of attributes that assistive applications use to get information about the UIElement. The list of attributes vary depending on the type of UIElement. The value of some attributes can be changed, while others cannot. For example, changing the \"value\" attribute of a slider changes the slider's setting.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Attribute values are stored as Core Foundation types, CFTypeRefs, and are reference counted (CFRetain/CFRelease). Some attributes have a particular type associated with them. For example, the \"title\" attribute, if defined, always has a string value, regardless of the type of UIElement from which it is obtained. A UIElement's \"value\" attribute, however, varies with the UIElement. For example, a text field's value is a string whereas a checkbox's value is a boolean. You need to explictly test the returned objects, using the CFGetTypeID function, for what type they really are.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Finally, some attribute values hold simple structures, such as CGPoint and CGRect, instead of regular CFTypes. These are still passed between the target and assistive application as CFTypeRefs, but they merely wrap an encoded version of the structure. You need to use the functions AXValueCreate and AXValueGetValue to convert between the structures and CFTypeRefs. Each supported structure has an AXValueType associated with it. The AXValueGetType function returns the AXValueType of the structure contained within a CFTypeRef.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/applicationservices": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Application Services",
+      "type": "topic",
+      "url": "/documentation/applicationservices"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/axattributeconstants_h/miscellaneous_defines": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/axattributeconstants_h/miscellaneous_defines",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Miscellaneous Defines",
+      "type": "topic",
+      "url": "/documentation/applicationservices/axattributeconstants_h/miscellaneous_defines"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/axmenuitemmodifiers": {
+      "abstract": [
+        {
+          "text": "Values that indicate the keyboard shortcut modifiers for a menu item (used with the kAXMenuItemCmdModifiersAttribute attribute).",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "AXMenuItemModifiers"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/axmenuitemmodifiers",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AXMenuItemModifiers",
+      "type": "topic",
+      "url": "/documentation/applicationservices/axmenuitemmodifiers"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "1678839",
+      "discussion": {
+        "content": [
+          {
+            "inlineContent": [
+              {
+                "text": "See the Overview section above for header-level documentation.",
+                "type": "text"
+              }
+            ],
+            "type": "paragraph"
+          }
+        ],
+        "kind": "content"
+      },
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/applicationservices/axattributeconstants_h/miscellaneous_defines",
+        "doc://com.apple.documentation/documentation/applicationservices/axmenuitemmodifiers"
+      ],
+      "kind": "taskGroup",
+      "title": "Constants"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/applicationservices/axattributeconstants_h"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/applicationservices/axattributeconstants_h"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1548 @@
+{
+  "abstract": [
+    {
+      "text": "Control the lighting and point of view for a scene.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.RealityKit/documentation/RealityKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.RealityKit/documentation/RealityKit/scene-content-lights-and-cameras"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "RealityKit"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Lights and cameras"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In RealityKit, cameras define the point of view from which RealityKit renders a scene.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "In AR mode, RealityKit creates and controls the camera for you based on the location and orientation of the device.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "In non-AR mode, you can control the camera by adding an entity that holds one of the camera components",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "below and changing its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Transform",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Lighting and shadows are an essential part of creating immersive and realistic experiences.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You can craft dynamic and visually appealing environments that respond naturally",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to the viewer’s movement and other actions by strategically placing and configuring lights and cameras.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Hello-World-intro.png": {
+      "alt": null,
+      "identifier": "Hello-World-intro.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/770e1d0451ba3b86de3b05eb0ce728b7/Hello-World-intro@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit": {
+      "abstract": [
+        {
+          "text": "Simulate and render 3D content for use in your augmented reality apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "RealityKit",
+      "type": "topic",
+      "url": "/documentation/realitykit"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/CameraFieldOfViewOrientation": {
+      "abstract": [
+        {
+          "text": "The orientations that a camera’s field-of-view degrees can apply.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CameraFieldOfViewOrientation"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/CameraFieldOfViewOrientation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CameraFieldOfViewOrientation"
+        }
+      ],
+      "role": "symbol",
+      "title": "CameraFieldOfViewOrientation",
+      "type": "topic",
+      "url": "/documentation/realitykit/camerafieldofvieworientation"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/DirectionalLight": {
+      "abstract": [
+        {
+          "text": "An entity that casts a virtual light in a particular direction.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DirectionalLight"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/DirectionalLight",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DirectionalLight"
+        }
+      ],
+      "role": "symbol",
+      "title": "DirectionalLight",
+      "type": "topic",
+      "url": "/documentation/realitykit/directionallight"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/DirectionalLightComponent": {
+      "abstract": [
+        {
+          "text": "A component that defines a directional light source.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DirectionalLightComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/DirectionalLightComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DirectionalLightComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "DirectionalLightComponent",
+      "type": "topic",
+      "url": "/documentation/realitykit/directionallightcomponent"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/DirectionalLightComponent/Shadow": {
+      "abstract": [
+        {
+          "text": "A directional light component that adds shadows to entities that it illuminates",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Shadow"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/DirectionalLightComponent/Shadow",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Shadow"
+        }
+      ],
+      "role": "symbol",
+      "title": "DirectionalLightComponent.Shadow",
+      "type": "topic",
+      "url": "/documentation/realitykit/directionallightcomponent/shadow"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/DirectionalLightComponent/Shadow/ShadowMapCullMode": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ShadowMapCullMode"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/DirectionalLightComponent/Shadow/ShadowMapCullMode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ShadowMapCullMode"
+        }
+      ],
+      "role": "symbol",
+      "title": "DirectionalLightComponent.Shadow.ShadowMapCullMode",
+      "type": "topic",
+      "url": "/documentation/realitykit/directionallightcomponent/shadow/shadowmapcullmode"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/DirectionalLightComponent/Shadow/ShadowProjectionType": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ShadowProjectionType"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/DirectionalLightComponent/Shadow/ShadowProjectionType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ShadowProjectionType"
+        }
+      ],
+      "role": "symbol",
+      "title": "DirectionalLightComponent.Shadow.ShadowProjectionType",
+      "type": "topic",
+      "url": "/documentation/realitykit/directionallightcomponent/shadow/shadowprojectiontype"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/DynamicLightShadowComponent": {
+      "abstract": [
+        {
+          "text": "A component that controls an entity’s shadow from dynamic (virtual) lights.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DynamicLightShadowComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/DynamicLightShadowComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DynamicLightShadowComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "DynamicLightShadowComponent",
+      "type": "topic",
+      "url": "/documentation/realitykit/dynamiclightshadowcomponent"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/EnvironmentLightingConfigurationComponent": {
+      "abstract": [
+        {
+          "text": "A component that scales the amount of light that an entity receives from its environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "EnvironmentLightingConfigurationComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/EnvironmentLightingConfigurationComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "EnvironmentLightingConfigurationComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "EnvironmentLightingConfigurationComponent",
+      "type": "topic",
+      "url": "/documentation/realitykit/environmentlightingconfigurationcomponent"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/EnvironmentResource": {
+      "abstract": [
+        {
+          "text": "An environmental resource that contains background and lighting information for a scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "EnvironmentResource"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/EnvironmentResource",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "EnvironmentResource"
+        }
+      ],
+      "role": "symbol",
+      "title": "EnvironmentResource",
+      "type": "topic",
+      "url": "/documentation/realitykit/environmentresource"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/GroundingShadowComponent": {
+      "abstract": [
+        {
+          "text": "A component that controls an entity’s grounding shadow.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GroundingShadowComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/GroundingShadowComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GroundingShadowComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "GroundingShadowComponent",
+      "type": "topic",
+      "url": "/documentation/realitykit/groundingshadowcomponent"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/HasDirectionalLight": {
+      "abstract": [
+        {
+          "text": "An interface that defines a directional light source component.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HasDirectionalLight"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/HasDirectionalLight",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HasDirectionalLight"
+        }
+      ],
+      "role": "symbol",
+      "title": "HasDirectionalLight",
+      "type": "topic",
+      "url": "/documentation/realitykit/hasdirectionallight"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/HasPerspectiveCamera": {
+      "abstract": [
+        {
+          "text": "An interface that enables you to configure a virtual camera that you can use",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "to define the rendering perspective when you’re not in an AR session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HasPerspectiveCamera"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/HasPerspectiveCamera",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HasPerspectiveCamera"
+        }
+      ],
+      "role": "symbol",
+      "title": "HasPerspectiveCamera",
+      "type": "topic",
+      "url": "/documentation/realitykit/hasperspectivecamera"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/HasPointLight": {
+      "abstract": [
+        {
+          "text": "An interface that defines a point light source component.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HasPointLight"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/HasPointLight",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HasPointLight"
+        }
+      ],
+      "role": "symbol",
+      "title": "HasPointLight",
+      "type": "topic",
+      "url": "/documentation/realitykit/haspointlight"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/HasSpotLight": {
+      "abstract": [
+        {
+          "text": "An interface that defines a spot light source component.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HasSpotLight"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/HasSpotLight",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HasSpotLight"
+        }
+      ],
+      "role": "symbol",
+      "title": "HasSpotLight",
+      "type": "topic",
+      "url": "/documentation/realitykit/hasspotlight"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/ImageBasedLightComponent": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ImageBasedLightComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ImageBasedLightComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ImageBasedLightComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "ImageBasedLightComponent",
+      "type": "topic",
+      "url": "/documentation/realitykit/imagebasedlightcomponent"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/ImageBasedLightComponent/Source-swift.enum": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Source"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ImageBasedLightComponent/Source-swift.enum",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Source"
+        }
+      ],
+      "role": "symbol",
+      "title": "ImageBasedLightComponent.Source",
+      "type": "topic",
+      "url": "/documentation/realitykit/imagebasedlightcomponent/source-swift.enum"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/ImageBasedLightReceiverComponent": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ImageBasedLightReceiverComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ImageBasedLightReceiverComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ImageBasedLightReceiverComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "ImageBasedLightReceiverComponent",
+      "type": "topic",
+      "url": "/documentation/realitykit/imagebasedlightreceivercomponent"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/OrthographicCameraComponent": {
+      "abstract": [
+        {
+          "text": "A component that defines an orthographic virtual camera and its settings.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "OrthographicCameraComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/OrthographicCameraComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "OrthographicCameraComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "OrthographicCameraComponent",
+      "type": "topic",
+      "url": "/documentation/realitykit/orthographiccameracomponent"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/PerspectiveCamera": {
+      "abstract": [
+        {
+          "text": "A virtual camera that establishes the rendering perspective.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PerspectiveCamera"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/PerspectiveCamera",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PerspectiveCamera"
+        }
+      ],
+      "role": "symbol",
+      "title": "PerspectiveCamera",
+      "type": "topic",
+      "url": "/documentation/realitykit/perspectivecamera"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/PerspectiveCameraComponent": {
+      "abstract": [
+        {
+          "text": "A component that defines a virtual camera and its controls.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PerspectiveCameraComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/PerspectiveCameraComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PerspectiveCameraComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "PerspectiveCameraComponent",
+      "type": "topic",
+      "url": "/documentation/realitykit/perspectivecameracomponent"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/PointLight": {
+      "abstract": [
+        {
+          "text": "An entity that produces an omnidirectional light for virtual objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PointLight"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/PointLight",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PointLight"
+        }
+      ],
+      "role": "symbol",
+      "title": "PointLight",
+      "type": "topic",
+      "url": "/documentation/realitykit/pointlight"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/PointLightComponent": {
+      "abstract": [
+        {
+          "text": "A component that defines a point light source.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PointLightComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/PointLightComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PointLightComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "PointLightComponent",
+      "type": "topic",
+      "url": "/documentation/realitykit/pointlightcomponent"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/ProjectiveTransformCameraComponent": {
+      "abstract": [
+        {
+          "text": "A component that defines a virtual camera with a custom projection matrix.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ProjectiveTransformCameraComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ProjectiveTransformCameraComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ProjectiveTransformCameraComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "ProjectiveTransformCameraComponent",
+      "type": "topic",
+      "url": "/documentation/realitykit/projectivetransformcameracomponent"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/SpotLight": {
+      "abstract": [
+        {
+          "text": "An entity that illuminates virtual content in a cone-shaped volume.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SpotLight"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/SpotLight",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SpotLight"
+        }
+      ],
+      "role": "symbol",
+      "title": "SpotLight",
+      "type": "topic",
+      "url": "/documentation/realitykit/spotlight"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/SpotLightComponent": {
+      "abstract": [
+        {
+          "text": "A component that defines a spotlight source.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SpotLightComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/SpotLightComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SpotLightComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "SpotLightComponent",
+      "type": "topic",
+      "url": "/documentation/realitykit/spotlightcomponent"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/SpotLightComponent/Shadow": {
+      "abstract": [
+        {
+          "text": "A spotlight component that adds shadows to entities that it illuminates.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Shadow"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/SpotLightComponent/Shadow",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Shadow"
+        }
+      ],
+      "role": "symbol",
+      "title": "SpotLightComponent.Shadow",
+      "type": "topic",
+      "url": "/documentation/realitykit/spotlightcomponent/shadow"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/SpotLightComponent/Shadow/ShadowClippingPlane": {
+      "abstract": [
+        {
+          "text": "An object that specifies the mode of a shadow clipping plane.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ShadowClippingPlane"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/SpotLightComponent/Shadow/ShadowClippingPlane",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ShadowClippingPlane"
+        }
+      ],
+      "role": "symbol",
+      "title": "SpotLightComponent.Shadow.ShadowClippingPlane",
+      "type": "topic",
+      "url": "/documentation/realitykit/spotlightcomponent/shadow/shadowclippingplane"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/SpotLightComponent/Shadow/ShadowMapCullMode": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ShadowMapCullMode"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/SpotLightComponent/Shadow/ShadowMapCullMode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ShadowMapCullMode"
+        }
+      ],
+      "role": "symbol",
+      "title": "SpotLightComponent.Shadow.ShadowMapCullMode",
+      "type": "topic",
+      "url": "/documentation/realitykit/spotlightcomponent/shadow/shadowmapcullmode"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Transform": {
+      "abstract": [
+        {
+          "text": "A component that defines the scale, rotation, and translation of an entity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Transform"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Transform",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Transform"
+        }
+      ],
+      "role": "symbol",
+      "title": "Transform",
+      "type": "topic",
+      "url": "/documentation/realitykit/transform"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/VirtualEnvironmentProbeComponent": {
+      "abstract": [
+        {
+          "text": "A component that provides environment lighting for entities you place within the same virtual world.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VirtualEnvironmentProbeComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/VirtualEnvironmentProbeComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VirtualEnvironmentProbeComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "VirtualEnvironmentProbeComponent",
+      "type": "topic",
+      "url": "/documentation/realitykit/virtualenvironmentprobecomponent"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/VirtualEnvironmentProbeComponent/Probe": {
+      "abstract": [
+        {
+          "text": "A sample of the environment around a point in a scene the system uses for environment-based lighting.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Probe"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/VirtualEnvironmentProbeComponent/Probe",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Probe"
+        }
+      ],
+      "role": "symbol",
+      "title": "VirtualEnvironmentProbeComponent.Probe",
+      "type": "topic",
+      "url": "/documentation/realitykit/virtualenvironmentprobecomponent/probe"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/VirtualEnvironmentProbeComponent/Source-swift.enum": {
+      "abstract": [
+        {
+          "text": "Options that define the source of diffuse and specular lighting for environment lighting calculations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Source"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/VirtualEnvironmentProbeComponent/Source-swift.enum",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Source"
+        }
+      ],
+      "role": "symbol",
+      "title": "VirtualEnvironmentProbeComponent.Source",
+      "type": "topic",
+      "url": "/documentation/realitykit/virtualenvironmentprobecomponent/source-swift.enum"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/combining-2d-and-3d-views-in-an-immersive-app": {
+      "abstract": [
+        {
+          "text": "Use attachments to place 2D content relative to 3D content in your visionOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/combining-2d-and-3d-views-in-an-immersive-app",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Combining 2D and 3D views in an immersive app",
+      "type": "topic",
+      "url": "/documentation/realitykit/combining-2d-and-3d-views-in-an-immersive-app"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/creating-a-spatial-drawing-app-with-realitykit": {
+      "abstract": [
+        {
+          "text": "Use low-level mesh and texture APIs to achieve fast updates to a person’s brush",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "strokes by integrating RealityKit with ARKit and SwiftUI.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/creating-a-spatial-drawing-app-with-realitykit",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Creating a spatial drawing app with RealityKit",
+      "type": "topic",
+      "url": "/documentation/realitykit/creating-a-spatial-drawing-app-with-realitykit"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/generating-interactive-geometry-with-realitykit": {
+      "abstract": [
+        {
+          "text": "Create an interactive mesh with low-level mesh and low-level texture.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/generating-interactive-geometry-with-realitykit",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Generating interactive geometry with RealityKit",
+      "type": "topic",
+      "url": "/documentation/realitykit/generating-interactive-geometry-with-realitykit"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/scene-content-anchors": {
+      "abstract": [
+        {
+          "text": "Lock virtual content to the real world.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/scene-content-anchors",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Anchors",
+      "type": "topic",
+      "url": "/documentation/realitykit/scene-content-anchors"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/scene-content-audio": {
+      "abstract": [
+        {
+          "text": "Create personalized and realistic spatial audio experiences.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/scene-content-audio",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Audio",
+      "type": "topic",
+      "url": "/documentation/realitykit/scene-content-audio"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/scene-content-content-synchronization": {
+      "abstract": [
+        {
+          "text": "Synchronize the contents of entities locally or across the network.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/scene-content-content-synchronization",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Content synchronization",
+      "type": "topic",
+      "url": "/documentation/realitykit/scene-content-content-synchronization"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/scene-content-materials-and-shaders": {
+      "abstract": [
+        {
+          "text": "Apply textures to the surface of your scene’s 3D objects to give each object a unique appearance.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/scene-content-materials-and-shaders",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Materials, textures, and shaders",
+      "type": "topic",
+      "url": "/documentation/realitykit/scene-content-materials-and-shaders"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/scene-content-models-and-meshes": {
+      "abstract": [
+        {
+          "text": "Display virtual objects in your scene with mesh-based models.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/scene-content-models-and-meshes",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Models and meshes",
+      "type": "topic",
+      "url": "/documentation/realitykit/scene-content-models-and-meshes"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/scene-content-videos": {
+      "abstract": [
+        {
+          "text": "Present videos in your RealityKit experiences.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/scene-content-videos",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Videos",
+      "type": "topic",
+      "url": "/documentation/realitykit/scene-content-videos"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/transforming-realitykit-entities-with-gestures": {
+      "abstract": [
+        {
+          "text": "Build a RealityKit component to support standard visionOS gestures on any entity.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/transforming-realitykit-entities-with-gestures",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Transforming RealityKit entities using gestures",
+      "type": "topic",
+      "url": "/documentation/realitykit/transforming-realitykit-entities-with-gestures"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.documentation/documentation/visionOS/World": {
+      "abstract": [
+        {
+          "text": "Use windows, volumes, and immersive spaces to teach people about the Earth.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/visionOS/World",
+      "images": [
+        {
+          "identifier": "Hello-World-intro.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Hello World",
+      "type": "topic",
+      "url": "/documentation/visionOS/World"
+    },
+    "doc://com.apple.documentation/documentation/visionOS/enabling-video-reflections-in-an-immersive-environment": {
+      "abstract": [
+        {
+          "text": "Create a more immersive experience by adding video reflections in a custom environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/visionOS/enabling-video-reflections-in-an-immersive-environment",
+      "images": [
+        {
+          "identifier": "lightspill-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Enabling video reflections in an immersive environment",
+      "type": "topic",
+      "url": "/documentation/visionOS/enabling-video-reflections-in-an-immersive-environment"
+    },
+    "lightspill-PageImage-card.png": {
+      "alt": null,
+      "identifier": "lightspill-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/87e397de07459c756d21eb0c441569f7/lightspill-PageImage-card@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Scene-content",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/visionOS/World",
+        "doc://com.apple.documentation/documentation/visionOS/enabling-video-reflections-in-an-immersive-environment",
+        "doc://com.apple.RealityKit/documentation/RealityKit/creating-a-spatial-drawing-app-with-realitykit",
+        "doc://com.apple.RealityKit/documentation/RealityKit/generating-interactive-geometry-with-realitykit",
+        "doc://com.apple.RealityKit/documentation/RealityKit/combining-2d-and-3d-views-in-an-immersive-app",
+        "doc://com.apple.RealityKit/documentation/RealityKit/transforming-realitykit-entities-with-gestures",
+        "doc://com.apple.RealityKit/documentation/RealityKit/scene-content-models-and-meshes",
+        "doc://com.apple.RealityKit/documentation/RealityKit/scene-content-materials-and-shaders",
+        "doc://com.apple.RealityKit/documentation/RealityKit/scene-content-anchors",
+        "doc://com.apple.RealityKit/documentation/RealityKit/scene-content-content-synchronization",
+        "doc://com.apple.RealityKit/documentation/RealityKit/scene-content-audio",
+        "doc://com.apple.RealityKit/documentation/RealityKit/scene-content-videos"
+      ],
+      "title": "Scene content"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Cameras",
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/PerspectiveCameraComponent",
+        "doc://com.apple.RealityKit/documentation/RealityKit/OrthographicCameraComponent",
+        "doc://com.apple.RealityKit/documentation/RealityKit/CameraFieldOfViewOrientation",
+        "doc://com.apple.RealityKit/documentation/RealityKit/ProjectiveTransformCameraComponent",
+        "doc://com.apple.RealityKit/documentation/RealityKit/PerspectiveCamera"
+      ],
+      "title": "Cameras"
+    },
+    {
+      "anchor": "Point-lights",
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/PointLightComponent"
+      ],
+      "title": "Point lights"
+    },
+    {
+      "anchor": "Directional-lights-and-their-shadows",
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/DirectionalLightComponent",
+        "doc://com.apple.RealityKit/documentation/RealityKit/DirectionalLightComponent/Shadow",
+        "doc://com.apple.RealityKit/documentation/RealityKit/DirectionalLightComponent/Shadow/ShadowProjectionType",
+        "doc://com.apple.RealityKit/documentation/RealityKit/DirectionalLightComponent/Shadow/ShadowMapCullMode"
+      ],
+      "title": "Directional lights and their shadows"
+    },
+    {
+      "anchor": "Spotlights-and-their-shadows",
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/SpotLightComponent",
+        "doc://com.apple.RealityKit/documentation/RealityKit/SpotLightComponent/Shadow",
+        "doc://com.apple.RealityKit/documentation/RealityKit/SpotLightComponent/Shadow/ShadowClippingPlane",
+        "doc://com.apple.RealityKit/documentation/RealityKit/SpotLightComponent/Shadow/ShadowMapCullMode"
+      ],
+      "title": "Spotlights and their shadows"
+    },
+    {
+      "anchor": "Image-based-lights",
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/ImageBasedLightComponent",
+        "doc://com.apple.RealityKit/documentation/RealityKit/ImageBasedLightComponent/Source-swift.enum",
+        "doc://com.apple.RealityKit/documentation/RealityKit/ImageBasedLightReceiverComponent"
+      ],
+      "title": "Image-based lights"
+    },
+    {
+      "anchor": "General-shadows",
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/GroundingShadowComponent",
+        "doc://com.apple.RealityKit/documentation/RealityKit/DynamicLightShadowComponent"
+      ],
+      "title": "General shadows"
+    },
+    {
+      "anchor": "Environment",
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/EnvironmentResource",
+        "doc://com.apple.RealityKit/documentation/RealityKit/EnvironmentLightingConfigurationComponent",
+        "doc://com.apple.RealityKit/documentation/RealityKit/VirtualEnvironmentProbeComponent",
+        "doc://com.apple.RealityKit/documentation/RealityKit/VirtualEnvironmentProbeComponent/Probe",
+        "doc://com.apple.RealityKit/documentation/RealityKit/VirtualEnvironmentProbeComponent/Source-swift.enum"
+      ],
+      "title": "Environment"
+    },
+    {
+      "anchor": "Entity-compliance",
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/HasPerspectiveCamera",
+        "doc://com.apple.RealityKit/documentation/RealityKit/PointLight",
+        "doc://com.apple.RealityKit/documentation/RealityKit/HasPointLight",
+        "doc://com.apple.RealityKit/documentation/RealityKit/SpotLight",
+        "doc://com.apple.RealityKit/documentation/RealityKit/HasSpotLight",
+        "doc://com.apple.RealityKit/documentation/RealityKit/DirectionalLight",
+        "doc://com.apple.RealityKit/documentation/RealityKit/HasDirectionalLight"
+      ],
+      "title": "Entity compliance"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/realitykit/scene-content-lights-and-cameras"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

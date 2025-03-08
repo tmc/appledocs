@@ -1,0 +1,2500 @@
+{
+  "abstract": [
+    {
+      "text": "Read and write compressed files and linear PCM audio files using a simplified interface.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/extended-audio-file-services"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Audio Toolbox"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Extended Audio File Services"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Extended Audio File Services provides simplified audio file access, combining features of Audio File Services and Audio Converter Services. It provides a unified interface for reading and writing compressed as well as linear PCM audio files.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox": {
+      "abstract": [
+        {
+          "text": "Record or play audio, convert formats, parse audio streams, and configure your audio session.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Audio Toolbox",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1486859-property-identifiers-for-extende": {
+      "abstract": [],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1486859-property-identifiers-for-extende",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Property Identifiers for Extended Audio File Objects",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/1486859-property-identifiers-for-extende"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1486883-extended-audio-file-errors": {
+      "abstract": [],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1486883-extended-audio-file-errors",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Extended Audio FIle Errors",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/1486883-extended-audio-file-errors"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1623673-codec-unavailable-errors": {
+      "abstract": [],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1623673-codec-unavailable-errors",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Codec Unavailable Errors",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/1623673-codec-unavailable-errors"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/3547074-extended-audio-file-packet-overr": {
+      "abstract": [],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/3547074-extended-audio-file-packet-overr",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Extended Audio File Packet Overrides",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/3547074-extended-audio-file-packet-overr"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/ExtAudioFileCreateNew": {
+      "abstract": [
+        {
+          "text": "Deprecated. Use the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/ExtAudioFileCreateWithURL(_:_:_:_:_:_:)",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " function instead.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "ExtAudioFileCreateNew"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/ExtAudioFileCreateNew",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ExtAudioFileCreateNew",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/extaudiofilecreatenew"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/ExtAudioFileCreateWithURL(_:_:_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Creates a new audio file and associates it with a new extended audio file object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ExtAudioFileCreateWithURL"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFURLRef",
+          "text": "CFURL"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioFileTypeID",
+          "text": "AudioFileTypeID"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@AudioStreamBasicDescription",
+          "text": "AudioStreamBasicDescription"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@AudioChannelLayout",
+          "text": "AudioChannelLayout"
+        },
+        {
+          "kind": "text",
+          "text": ">?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@ExtAudioFileRef",
+          "text": "ExtAudioFileRef"
+        },
+        {
+          "kind": "text",
+          "text": "?>) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/ExtAudioFileCreateWithURL(_:_:_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ExtAudioFileCreateWithURL"
+        }
+      ],
+      "role": "symbol",
+      "title": "ExtAudioFileCreateWithURL(_:_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/extaudiofilecreatewithurl(_:_:_:_:_:_:)"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/ExtAudioFileDispose(_:)": {
+      "abstract": [
+        {
+          "text": "Disposes of an extended audio file object and closes the associated file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ExtAudioFileDispose"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@ExtAudioFileRef",
+          "text": "ExtAudioFileRef"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/ExtAudioFileDispose(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ExtAudioFileDispose"
+        }
+      ],
+      "role": "symbol",
+      "title": "ExtAudioFileDispose(_:)",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/extaudiofiledispose(_:)"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/ExtAudioFileGetProperty(_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Gets a property value from an extended audio file object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ExtAudioFileGetProperty"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@ExtAudioFileRef",
+          "text": "ExtAudioFileRef"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@ExtAudioFilePropertyID",
+          "text": "ExtAudioFilePropertyID"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sv",
+          "text": "UnsafeMutableRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/ExtAudioFileGetProperty(_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ExtAudioFileGetProperty"
+        }
+      ],
+      "role": "symbol",
+      "title": "ExtAudioFileGetProperty(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/extaudiofilegetproperty(_:_:_:_:)"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/ExtAudioFileGetPropertyInfo(_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Gets information about an extended audio file object property.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ExtAudioFileGetPropertyInfo"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@ExtAudioFileRef",
+          "text": "ExtAudioFileRef"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@ExtAudioFilePropertyID",
+          "text": "ExtAudioFilePropertyID"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ">?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6Darwin0A7BooleanV",
+          "text": "DarwinBoolean"
+        },
+        {
+          "kind": "text",
+          "text": ">?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/ExtAudioFileGetPropertyInfo(_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ExtAudioFileGetPropertyInfo"
+        }
+      ],
+      "role": "symbol",
+      "title": "ExtAudioFileGetPropertyInfo(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/extaudiofilegetpropertyinfo(_:_:_:_:)"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/ExtAudioFileOpen": {
+      "abstract": [
+        {
+          "text": "Deprecated. Use the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/ExtAudioFileOpenURL(_:_:)",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " function instead.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "ExtAudioFileOpen"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/ExtAudioFileOpen",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ExtAudioFileOpen",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/extaudiofileopen"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/ExtAudioFileOpenURL(_:_:)": {
+      "abstract": [
+        {
+          "text": "Opens an existing audio file for reading, and associates it with a new extended audio file object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ExtAudioFileOpenURL"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFURLRef",
+          "text": "CFURL"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@ExtAudioFileRef",
+          "text": "ExtAudioFileRef"
+        },
+        {
+          "kind": "text",
+          "text": "?>) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/ExtAudioFileOpenURL(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ExtAudioFileOpenURL"
+        }
+      ],
+      "role": "symbol",
+      "title": "ExtAudioFileOpenURL(_:_:)",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/extaudiofileopenurl(_:_:)"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/ExtAudioFilePacketTableInfoOverride": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ExtAudioFilePacketTableInfoOverride"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/ExtAudioFilePacketTableInfoOverride",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ExtAudioFilePacketTableInfoOverride"
+        }
+      ],
+      "role": "symbol",
+      "title": "ExtAudioFilePacketTableInfoOverride",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/extaudiofilepackettableinfooverride"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/ExtAudioFilePropertyID": {
+      "abstract": [
+        {
+          "text": "An audio file object property identifier.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ExtAudioFilePropertyID"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/ExtAudioFilePropertyID",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ExtAudioFilePropertyID"
+        }
+      ],
+      "role": "symbol",
+      "title": "ExtAudioFilePropertyID",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/extaudiofilepropertyid"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/ExtAudioFileRead(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Performs a synchronous, sequential read operation on an audio file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ExtAudioFileRead"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@ExtAudioFileRef",
+          "text": "ExtAudioFileRef"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@AudioBufferList",
+          "text": "AudioBufferList"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/ExtAudioFileRead(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ExtAudioFileRead"
+        }
+      ],
+      "role": "symbol",
+      "title": "ExtAudioFileRead(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/extaudiofileread(_:_:_:)"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/ExtAudioFileRef": {
+      "abstract": [
+        {
+          "text": "An opaque structure representing an extended audio file object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ExtAudioFileRef"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/ExtAudioFileRef",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ExtAudioFileRef"
+        }
+      ],
+      "role": "symbol",
+      "title": "ExtAudioFileRef",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/extaudiofileref"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/ExtAudioFileSeek(_:_:)": {
+      "abstract": [
+        {
+          "text": "Seeks to a specified frame in a file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ExtAudioFileSeek"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@ExtAudioFileRef",
+          "text": "ExtAudioFileRef"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int64V",
+          "text": "Int64"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/ExtAudioFileSeek(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ExtAudioFileSeek"
+        }
+      ],
+      "role": "symbol",
+      "title": "ExtAudioFileSeek(_:_:)",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/extaudiofileseek(_:_:)"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/ExtAudioFileSetProperty(_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Sets a property value for an extended audio file object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ExtAudioFileSetProperty"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@ExtAudioFileRef",
+          "text": "ExtAudioFileRef"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@ExtAudioFilePropertyID",
+          "text": "ExtAudioFilePropertyID"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SV",
+          "text": "UnsafeRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/ExtAudioFileSetProperty(_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ExtAudioFileSetProperty"
+        }
+      ],
+      "role": "symbol",
+      "title": "ExtAudioFileSetProperty(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/extaudiofilesetproperty(_:_:_:_:)"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/ExtAudioFileTell(_:_:)": {
+      "abstract": [
+        {
+          "text": "Gets an audio file’s read/write position.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ExtAudioFileTell"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@ExtAudioFileRef",
+          "text": "ExtAudioFileRef"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int64V",
+          "text": "Int64"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/ExtAudioFileTell(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ExtAudioFileTell"
+        }
+      ],
+      "role": "symbol",
+      "title": "ExtAudioFileTell(_:_:)",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/extaudiofiletell(_:_:)"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/ExtAudioFileWrapAudioFileID(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Wraps an audio file object in an extended audio file object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ExtAudioFileWrapAudioFileID"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioFileID",
+          "text": "AudioFileID"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@ExtAudioFileRef",
+          "text": "ExtAudioFileRef"
+        },
+        {
+          "kind": "text",
+          "text": "?>) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/ExtAudioFileWrapAudioFileID(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ExtAudioFileWrapAudioFileID"
+        }
+      ],
+      "role": "symbol",
+      "title": "ExtAudioFileWrapAudioFileID(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/extaudiofilewrapaudiofileid(_:_:_:)"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/ExtAudioFileWrite(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Performs a synchronous, sequential write operation on an audio file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ExtAudioFileWrite"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@ExtAudioFileRef",
+          "text": "ExtAudioFileRef"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@AudioBufferList",
+          "text": "AudioBufferList"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/ExtAudioFileWrite(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ExtAudioFileWrite"
+        }
+      ],
+      "role": "symbol",
+      "title": "ExtAudioFileWrite(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/extaudiofilewrite(_:_:_:)"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/ExtAudioFileWriteAsync(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Perform an asynchronous, sequential write operation on an audio file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ExtAudioFileWriteAsync"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@ExtAudioFileRef",
+          "text": "ExtAudioFileRef"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@AudioBufferList",
+          "text": "AudioBufferList"
+        },
+        {
+          "kind": "text",
+          "text": ">?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/ExtAudioFileWriteAsync(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ExtAudioFileWriteAsync"
+        }
+      ],
+      "role": "symbol",
+      "title": "ExtAudioFileWriteAsync(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/extaudiofilewriteasync(_:_:_:)"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-file-components": {
+      "abstract": [
+        {
+          "text": "Get information about audio file formats, and about files containing audio data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-file-components",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Audio File Components",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audio-file-components"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-file-services": {
+      "abstract": [
+        {
+          "text": "Read or write a variety of audio data to or from disk or a memory buffer.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-file-services",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Audio File Services",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audio-file-services"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-file-stream-services": {
+      "abstract": [
+        {
+          "text": "Parse streamed audio files as the data arrives on the user’s computer.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-file-stream-services",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Audio File Stream Services",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audio-file-stream-services"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-format-services": {
+      "abstract": [
+        {
+          "text": "Access information about audio formats and codecs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-format-services",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Audio Format Services",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audio-format-services"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/core-audio-file-format": {
+      "abstract": [
+        {
+          "text": "Parse the structure of Core Audio files.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/core-audio-file-format",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Core Audio File Format",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/core-audio-file-format"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kExtAudioFileError_AsyncWriteBufferOverflow": {
+      "abstract": [
+        {
+          "text": "An asynchronous write operation could not be completed in time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kExtAudioFileError_AsyncWriteBufferOverflow"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kExtAudioFileError_AsyncWriteBufferOverflow",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kExtAudioFileError_AsyncWriteBufferOverflow"
+        }
+      ],
+      "role": "symbol",
+      "title": "kExtAudioFileError_AsyncWriteBufferOverflow",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kextaudiofileerror_asyncwritebufferoverflow"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kExtAudioFileError_AsyncWriteTooLarge": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kExtAudioFileError_AsyncWriteTooLarge"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kExtAudioFileError_AsyncWriteTooLarge",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kExtAudioFileError_AsyncWriteTooLarge"
+        }
+      ],
+      "role": "symbol",
+      "title": "kExtAudioFileError_AsyncWriteTooLarge",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kextaudiofileerror_asyncwritetoolarge"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kExtAudioFileError_CodecUnavailableInputConsumed": {
+      "abstract": [
+        {
+          "text": "The ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/ExtAudioFileWrite(_:_:_:)",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " function was interrupted and the last buffer that you provided was successfully written to disk.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kExtAudioFileError_CodecUnavailableInputConsumed"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kExtAudioFileError_CodecUnavailableInputConsumed",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kExtAudioFileError_CodecUnavailableInputConsumed"
+        }
+      ],
+      "role": "symbol",
+      "title": "kExtAudioFileError_CodecUnavailableInputConsumed",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kextaudiofileerror_codecunavailableinputconsumed"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kExtAudioFileError_CodecUnavailableInputNotConsumed": {
+      "abstract": [
+        {
+          "text": "The ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/ExtAudioFileWrite(_:_:_:)",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " function was interrupted and the last buffer that you provided was ",
+          "type": "text"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "not",
+              "type": "text"
+            }
+          ],
+          "type": "emphasis"
+        },
+        {
+          "text": " successfully written to disk.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kExtAudioFileError_CodecUnavailableInputNotConsumed"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kExtAudioFileError_CodecUnavailableInputNotConsumed",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kExtAudioFileError_CodecUnavailableInputNotConsumed"
+        }
+      ],
+      "role": "symbol",
+      "title": "kExtAudioFileError_CodecUnavailableInputNotConsumed",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kextaudiofileerror_codecunavailableinputnotconsumed"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kExtAudioFileError_InvalidChannelMap": {
+      "abstract": [
+        {
+          "text": "The number of channels does not match the specified format.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kExtAudioFileError_InvalidChannelMap"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kExtAudioFileError_InvalidChannelMap",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kExtAudioFileError_InvalidChannelMap"
+        }
+      ],
+      "role": "symbol",
+      "title": "kExtAudioFileError_InvalidChannelMap",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kextaudiofileerror_invalidchannelmap"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kExtAudioFileError_InvalidDataFormat": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kExtAudioFileError_InvalidDataFormat"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kExtAudioFileError_InvalidDataFormat",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kExtAudioFileError_InvalidDataFormat"
+        }
+      ],
+      "role": "symbol",
+      "title": "kExtAudioFileError_InvalidDataFormat",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kextaudiofileerror_invaliddataformat"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kExtAudioFileError_InvalidOperationOrder": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kExtAudioFileError_InvalidOperationOrder"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kExtAudioFileError_InvalidOperationOrder",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kExtAudioFileError_InvalidOperationOrder"
+        }
+      ],
+      "role": "symbol",
+      "title": "kExtAudioFileError_InvalidOperationOrder",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kextaudiofileerror_invalidoperationorder"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kExtAudioFileError_InvalidProperty": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kExtAudioFileError_InvalidProperty"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kExtAudioFileError_InvalidProperty",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kExtAudioFileError_InvalidProperty"
+        }
+      ],
+      "role": "symbol",
+      "title": "kExtAudioFileError_InvalidProperty",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kextaudiofileerror_invalidproperty"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kExtAudioFileError_InvalidPropertySize": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kExtAudioFileError_InvalidPropertySize"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kExtAudioFileError_InvalidPropertySize",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kExtAudioFileError_InvalidPropertySize"
+        }
+      ],
+      "role": "symbol",
+      "title": "kExtAudioFileError_InvalidPropertySize",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kextaudiofileerror_invalidpropertysize"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kExtAudioFileError_InvalidSeek": {
+      "abstract": [
+        {
+          "text": "An attempt to write, or an offset, is out of bounds.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kExtAudioFileError_InvalidSeek"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kExtAudioFileError_InvalidSeek",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kExtAudioFileError_InvalidSeek"
+        }
+      ],
+      "role": "symbol",
+      "title": "kExtAudioFileError_InvalidSeek",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kextaudiofileerror_invalidseek"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kExtAudioFileError_MaxPacketSizeUnknown": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kExtAudioFileError_MaxPacketSizeUnknown"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kExtAudioFileError_MaxPacketSizeUnknown",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kExtAudioFileError_MaxPacketSizeUnknown"
+        }
+      ],
+      "role": "symbol",
+      "title": "kExtAudioFileError_MaxPacketSizeUnknown",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kextaudiofileerror_maxpacketsizeunknown"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kExtAudioFileError_NonPCMClientFormat": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kExtAudioFileError_NonPCMClientFormat"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kExtAudioFileError_NonPCMClientFormat",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kExtAudioFileError_NonPCMClientFormat"
+        }
+      ],
+      "role": "symbol",
+      "title": "kExtAudioFileError_NonPCMClientFormat",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kextaudiofileerror_nonpcmclientformat"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Audio-Files-and-Formats",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-format-services",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-file-services",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-file-stream-services",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-file-components",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/core-audio-file-format"
+      ],
+      "title": "Audio Files and Formats"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Managing-Extended-Audio-File-Objects",
+      "identifiers": [
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/ExtAudioFileCreateWithURL(_:_:_:_:_:_:)",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/ExtAudioFileDispose(_:)",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/ExtAudioFileOpenURL(_:_:)",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/ExtAudioFileWrapAudioFileID(_:_:_:)"
+      ],
+      "title": "Managing Extended Audio File Objects"
+    },
+    {
+      "anchor": "Configuring-Properties-for-Extended-Audio-File-Objects",
+      "identifiers": [
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/ExtAudioFileGetProperty(_:_:_:_:)",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/ExtAudioFileGetPropertyInfo(_:_:_:_:)",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/ExtAudioFileSetProperty(_:_:_:_:)"
+      ],
+      "title": "Configuring Properties for Extended Audio File Objects"
+    },
+    {
+      "anchor": "Reading-and-Writing-Audio-Data",
+      "identifiers": [
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/ExtAudioFileRead(_:_:_:)",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/ExtAudioFileSeek(_:_:)",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/ExtAudioFileTell(_:_:)",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/ExtAudioFileWrite(_:_:_:)",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/ExtAudioFileWriteAsync(_:_:_:)"
+      ],
+      "title": "Reading and Writing Audio Data"
+    },
+    {
+      "anchor": "Data-Types",
+      "identifiers": [
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/ExtAudioFilePacketTableInfoOverride",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/ExtAudioFileRef",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/ExtAudioFilePropertyID"
+      ],
+      "title": "Data Types"
+    },
+    {
+      "anchor": "Constants",
+      "identifiers": [
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1486883-extended-audio-file-errors",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1623673-codec-unavailable-errors",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1486859-property-identifiers-for-extende",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/3547074-extended-audio-file-packet-overr"
+      ],
+      "title": "Constants"
+    },
+    {
+      "abstract": [
+        {
+          "text": "This table lists result codes defined for Extended Audio File Services.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Result-Codes",
+      "identifiers": [
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kExtAudioFileError_CodecUnavailableInputConsumed",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kExtAudioFileError_CodecUnavailableInputNotConsumed",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kExtAudioFileError_InvalidProperty",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kExtAudioFileError_InvalidPropertySize",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kExtAudioFileError_NonPCMClientFormat",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kExtAudioFileError_InvalidChannelMap",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kExtAudioFileError_InvalidOperationOrder",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kExtAudioFileError_InvalidDataFormat",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kExtAudioFileError_MaxPacketSizeUnknown",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kExtAudioFileError_InvalidSeek",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kExtAudioFileError_AsyncWriteTooLarge",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kExtAudioFileError_AsyncWriteBufferOverflow"
+      ],
+      "title": "Result Codes"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Managing-Extended-Audio-File-Objects",
+              "identifiers": [
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/ExtAudioFileCreateWithURL(_:_:_:_:_:_:)",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/ExtAudioFileDispose(_:)",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/ExtAudioFileOpenURL(_:_:)",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/ExtAudioFileWrapAudioFileID(_:_:_:)"
+              ],
+              "title": "Managing Extended Audio File Objects"
+            },
+            {
+              "anchor": "Configuring-Properties-for-Extended-Audio-File-Objects",
+              "identifiers": [
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/ExtAudioFileGetProperty(_:_:_:_:)",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/ExtAudioFileGetPropertyInfo(_:_:_:_:)",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/ExtAudioFileSetProperty(_:_:_:_:)"
+              ],
+              "title": "Configuring Properties for Extended Audio File Objects"
+            },
+            {
+              "anchor": "Reading-and-Writing-Audio-Data",
+              "identifiers": [
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/ExtAudioFileRead(_:_:_:)",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/ExtAudioFileSeek(_:_:)",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/ExtAudioFileTell(_:_:)",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/ExtAudioFileWrite(_:_:_:)",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/ExtAudioFileWriteAsync(_:_:_:)"
+              ],
+              "title": "Reading and Writing Audio Data"
+            },
+            {
+              "anchor": "Deprecated-Functions",
+              "identifiers": [
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/ExtAudioFileCreateNew",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/ExtAudioFileOpen"
+              ],
+              "title": "Deprecated Functions"
+            },
+            {
+              "anchor": "Data-Types",
+              "identifiers": [
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/ExtAudioFilePacketTableInfoOverride",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/ExtAudioFileRef",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/ExtAudioFilePropertyID"
+              ],
+              "title": "Data Types"
+            },
+            {
+              "anchor": "Constants",
+              "identifiers": [
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1486883-extended-audio-file-errors",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1623673-codec-unavailable-errors",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1486859-property-identifiers-for-extende",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/3547074-extended-audio-file-packet-overr"
+              ],
+              "title": "Constants"
+            },
+            {
+              "abstract": [
+                {
+                  "text": "This table lists result codes defined for Extended Audio File Services.",
+                  "type": "text"
+                }
+              ],
+              "anchor": "Result-Codes",
+              "identifiers": [
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kExtAudioFileError_CodecUnavailableInputConsumed",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kExtAudioFileError_CodecUnavailableInputNotConsumed",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kExtAudioFileError_InvalidProperty",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kExtAudioFileError_InvalidPropertySize",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kExtAudioFileError_NonPCMClientFormat",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kExtAudioFileError_InvalidChannelMap",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kExtAudioFileError_InvalidOperationOrder",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kExtAudioFileError_InvalidDataFormat",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kExtAudioFileError_MaxPacketSizeUnknown",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kExtAudioFileError_InvalidSeek",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kExtAudioFileError_AsyncWriteTooLarge",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kExtAudioFileError_AsyncWriteBufferOverflow"
+              ],
+              "title": "Result Codes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Audio-Files-and-Formats",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-format-services",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-file-services",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-file-stream-services",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-file-components",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/core-audio-file-format"
+              ],
+              "title": "Audio Files and Formats"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kExtAudioFileError_CodecUnavailableInputNotConsumed/title",
+          "value": "kExtAudioFileError_CodecUnavailableInputNotConsumed"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kExtAudioFileError_CodecUnavailableInputNotConsumed/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kExtAudioFileError_CodecUnavailableInputNotConsumed"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1ExtAudioFileWrite(_:_:_:)/title",
+          "value": "ExtAudioFileWrite"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1ExtAudioFileWrite(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ExtAudioFileWrite"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1ExtAudioFileRef/title",
+          "value": "ExtAudioFileRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1ExtAudioFileRef/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ExtAudioFileRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1ExtAudioFileRef/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ExtAudioFileRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1ExtAudioFileDispose(_:)/title",
+          "value": "ExtAudioFileDispose"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1ExtAudioFileDispose(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ExtAudioFileDispose"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kExtAudioFileError_InvalidOperationOrder/title",
+          "value": "kExtAudioFileError_InvalidOperationOrder"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kExtAudioFileError_InvalidOperationOrder/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kExtAudioFileError_InvalidOperationOrder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1ExtAudioFileSeek(_:_:)/title",
+          "value": "ExtAudioFileSeek"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1ExtAudioFileSeek(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ExtAudioFileSeek"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kExtAudioFileError_InvalidSeek/title",
+          "value": "kExtAudioFileError_InvalidSeek"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kExtAudioFileError_InvalidSeek/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kExtAudioFileError_InvalidSeek"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kExtAudioFileError_AsyncWriteBufferOverflow/title",
+          "value": "kExtAudioFileError_AsyncWriteBufferOverflow"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kExtAudioFileError_AsyncWriteBufferOverflow/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kExtAudioFileError_AsyncWriteBufferOverflow"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kExtAudioFileError_NonPCMClientFormat/title",
+          "value": "kExtAudioFileError_NonPCMClientFormat"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kExtAudioFileError_NonPCMClientFormat/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kExtAudioFileError_NonPCMClientFormat"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kExtAudioFileError_InvalidDataFormat/title",
+          "value": "kExtAudioFileError_InvalidDataFormat"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kExtAudioFileError_InvalidDataFormat/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kExtAudioFileError_InvalidDataFormat"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1ExtAudioFileCreateWithURL(_:_:_:_:_:_:)/title",
+          "value": "ExtAudioFileCreateWithURL"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1ExtAudioFileCreateWithURL(_:_:_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ExtAudioFileCreateWithURL"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kExtAudioFileError_InvalidChannelMap/title",
+          "value": "kExtAudioFileError_InvalidChannelMap"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kExtAudioFileError_InvalidChannelMap/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kExtAudioFileError_InvalidChannelMap"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1ExtAudioFileSetProperty(_:_:_:_:)/title",
+          "value": "ExtAudioFileSetProperty"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1ExtAudioFileSetProperty(_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ExtAudioFileSetProperty"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kExtAudioFileError_MaxPacketSizeUnknown/title",
+          "value": "kExtAudioFileError_MaxPacketSizeUnknown"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kExtAudioFileError_MaxPacketSizeUnknown/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kExtAudioFileError_MaxPacketSizeUnknown"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1ExtAudioFileGetPropertyInfo(_:_:_:_:)/title",
+          "value": "ExtAudioFileGetPropertyInfo"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1ExtAudioFileGetPropertyInfo(_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ExtAudioFileGetPropertyInfo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1ExtAudioFilePropertyID/title",
+          "value": "ExtAudioFilePropertyID"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1ExtAudioFilePropertyID/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ExtAudioFilePropertyID"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1ExtAudioFilePropertyID/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ExtAudioFilePropertyID"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1ExtAudioFileRead(_:_:_:)/title",
+          "value": "ExtAudioFileRead"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1ExtAudioFileRead(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ExtAudioFileRead"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1ExtAudioFileGetProperty(_:_:_:_:)/title",
+          "value": "ExtAudioFileGetProperty"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1ExtAudioFileGetProperty(_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ExtAudioFileGetProperty"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1ExtAudioFileTell(_:_:)/title",
+          "value": "ExtAudioFileTell"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1ExtAudioFileTell(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ExtAudioFileTell"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kExtAudioFileError_InvalidProperty/title",
+          "value": "kExtAudioFileError_InvalidProperty"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kExtAudioFileError_InvalidProperty/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kExtAudioFileError_InvalidProperty"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1ExtAudioFileWriteAsync(_:_:_:)/title",
+          "value": "ExtAudioFileWriteAsync"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1ExtAudioFileWriteAsync(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ExtAudioFileWriteAsync"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1ExtAudioFilePacketTableInfoOverride/title",
+          "value": "ExtAudioFilePacketTableInfoOverride"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1ExtAudioFilePacketTableInfoOverride/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ExtAudioFilePacketTableInfoOverride"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1ExtAudioFilePacketTableInfoOverride/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ExtAudioFilePacketTableInfoOverride"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kExtAudioFileError_InvalidPropertySize/title",
+          "value": "kExtAudioFileError_InvalidPropertySize"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kExtAudioFileError_InvalidPropertySize/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kExtAudioFileError_InvalidPropertySize"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kExtAudioFileError_AsyncWriteTooLarge/title",
+          "value": "kExtAudioFileError_AsyncWriteTooLarge"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kExtAudioFileError_AsyncWriteTooLarge/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kExtAudioFileError_AsyncWriteTooLarge"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1ExtAudioFileOpenURL(_:_:)/title",
+          "value": "ExtAudioFileOpenURL"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1ExtAudioFileOpenURL(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ExtAudioFileOpenURL"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kExtAudioFileError_CodecUnavailableInputConsumed/title",
+          "value": "kExtAudioFileError_CodecUnavailableInputConsumed"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kExtAudioFileError_CodecUnavailableInputConsumed/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kExtAudioFileError_CodecUnavailableInputConsumed"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1ExtAudioFileWrapAudioFileID(_:_:_:)/title",
+          "value": "ExtAudioFileWrapAudioFileID"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1ExtAudioFileWrapAudioFileID(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ExtAudioFileWrapAudioFileID"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/audiotoolbox/extended-audio-file-services"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/audiotoolbox/extended-audio-file-services"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

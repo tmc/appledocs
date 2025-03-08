@@ -1,0 +1,4160 @@
+{
+  "abstract": [
+    {
+      "text": "Access Maps URLs and options for displaying Maps information across Apple platforms.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.mapkit/documentation/MapKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.mapkit/documentation/MapKit/Unified-Map-URLs"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "MapKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Adopting unified Maps URLs"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In iOS 18.4 and later, macOS 15.4 and later, and watchOS 11.4 and later, the Maps platform provides a new, unified collection of URLs that offers the same functionality on all devices. Use the Maps path components to control aspects of the Maps display, ranging from the presentation of a simple map centered on a location you provide, to finding specific points of interest (POIs) and providing complex multistop driving, walking, or transit directions.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Frame-the-map-display",
+          "level": 2,
+          "text": "Frame the map display",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the ",
+              "type": "text"
+            },
+            {
+              "code": "/frame",
+              "type": "codeVoice"
+            },
+            {
+              "text": " path component and ",
+              "type": "text"
+            },
+            {
+              "code": "query",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameters to control aspects of the map’s framing and representation. This component allows you to set a map’s orientation, style, visible area (the map’s span), and other perspective controls, as described in the table below.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "alignments": [
+            "left",
+            "left"
+          ],
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Parameter",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Description",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "center",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Frames the map on a specific center described by comma-separated coordinate pair, such as ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "40.773957,-73.970974",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "span",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Specifies the size of the area around the center point of the search in degrees of longitude and latitude, for example ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "0.05,0.05",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", which is approximately one km for these examples. For more information on what these distances mean at different latitudes, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/MapKit/MKCoordinateSpan/init(latitudeDelta:longitudeDelta:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "mode",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Sets the map’s mode to optionally allow location tracking: values can be ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "follow",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "follow-with-heading",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "none",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "heading",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Sets the direction toward which the map orients.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "pitch",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Sets the the vertical angle the map is oriented to.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "distance",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Sets the apparent distance from the viewer to the map surface; this parameter also affects the map’s ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "span",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "map",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": " Sets the type of map to display: values can be ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "explore",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "driving",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "transit",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "satellite",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "hybrid",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following  ",
+              "type": "text"
+            },
+            {
+              "code": "/frame",
+              "type": "codeVoice"
+            },
+            {
+              "text": " path component examples demonstrate different kinds of map framing, along with details, where necessary, on how specific parameters affect what the map displays.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Center the map at specific coordinate — ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://maps.apple.com/frame?center=40.753035,-73.981846",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Set map mode to transit and center map at specific coordinate — ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://maps.apple.com/frame?map=transit&center=40.753035,-73.981846",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Set the map mode to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "explore",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and set user tracking to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "follow",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " —  ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://maps.apple.com/frame?coordinate=40.753035,-73.981846&map=explore&mode=follow&span=0.024461,0.043938",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Set map mode to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "explore",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": "; this setting cause the map to focus on a specified coordinate, and sets the map camera attributes — ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://maps.apple.com/frame?map=explore&center=40.753035,-73.981846&heading=180&pitch=15&distance=10000",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Set the map mode to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "explore",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", and set location tracking mode to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "follow",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " — ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://maps.apple.com/frame?map=explore&center=40.753035,-73.981846&heading=18a0&pitch=15&distance=10000&mode=follow",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". If you’re setting tracking mode and camera properties, the tracking mode takes precedence. Setting camera properties requires a center coordinate.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Center the map at a specific coordinate and frame the map to the specified span —  ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://maps.apple.com/frame?center=40.753035,-73.981846&span=0.05,0.05",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". It’s also possible to frame the map using the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "distance",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " parameter, for example, ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://maps.apple.com/frame?center=40.753035,-73.981846&distance=17825",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Set the map mode to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "explore",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", which centers the map at a specified coordinate, and sets the map camera elevation, heading, and angle; in this example, facing East (90˚), a distance of 1 km, and a map pitch of 15˚ — ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://maps.apple.com/frame?map=explore&center=37.316115,-122.050910&heading=90&pitch=15&distance=10000",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Center the map at a specific coordinate and set the camera ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "distance",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " — ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://maps.apple.com/frame?map=explore&center=40.753035,-73.981846&distance=10000",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Center the map at a specific coordinate and set the camera to the specified properties —  ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://maps.apple.com/frame?center=37.797198,-122.407377&distance=5000&pitch=15&heading=180&span=1.0,1.0",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". If you provide both the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "span",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "camera",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " properties, the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "camera",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " properties take precedence, since they’re more specific than a ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "span",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Perform-general-searches",
+          "level": 2,
+          "text": "Perform general searches",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can use the ",
+              "type": "text"
+            },
+            {
+              "code": "/search",
+              "type": "codeVoice"
+            },
+            {
+              "text": " path component to search for specific kinds of locations using several ",
+              "type": "text"
+            },
+            {
+              "code": "query",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameters.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "alignments": [
+            "left",
+            "left"
+          ],
+          "extendedData": {
+            "1_1": {
+              "colspan": 2,
+              "rowspan": 1
+            }
+          },
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Parameter",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Description",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "query",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A search string. This parameter can be a general point of interest (POI) such as ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "pizza",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", or a specific location such as an address string, such as ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "1000 Fifth Avenue, NY, NY",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", or a city name such as ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "San Francisco",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". For a list of POIs, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/MapKit/MKPointOfInterestCategory",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "span",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A span that specifies the size of the area around the center point of the search in degrees of longitude and latitude, for example ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "0.05,0.05",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " which is approximately 1 km for these examples. For more information on what these distances mean at different latitudes, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/MapKit/MKCoordinateSpan/init(latitudeDelta:longitudeDelta:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following  ",
+              "type": "text"
+            },
+            {
+              "code": "/search",
+              "type": "codeVoice"
+            },
+            {
+              "text": "  path component examples demonstrate how to use the ",
+              "type": "text"
+            },
+            {
+              "code": "search",
+              "type": "codeVoice"
+            },
+            {
+              "text": " path component to find ",
+              "type": "text"
+            },
+            {
+              "code": "pizza",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", one of Maps’ POI identifiers, using different kinds of location and distance descriptions.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Show results for ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "pizza",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " around a person’s location: ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://maps.apple.com/search?query=pizza",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". The default center point is a person’s location.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Show results for ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "pizza",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " centered on Trafalgar Square in London, United Kingdom — ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://maps.apple.com/search?query=pizza&center=51.507984,-0.128015",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Show results for ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "pizza",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " within approximately 1 km around Washington Square Park in New York City —  ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://maps.apple.com/search?query=pizza&center=40.730877,-73.997603&span=0.05,0.05",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Show-the-place-card-of-a-POI",
+          "level": 2,
+          "text": "Show the place card of a POI",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Using the ",
+              "type": "text"
+            },
+            {
+              "code": "/place",
+              "type": "codeVoice"
+            },
+            {
+              "text": " path component enables you to specify a place card that shows useful details about points of interest on the map. Use the parameters in the following table to specify a POI and optionally the place card name and map type.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "alignments": [
+            "left",
+            "left"
+          ],
+          "extendedData": {
+            "3_1": {
+              "colspan": 2,
+              "rowspan": 1
+            }
+          },
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Parameter",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Description",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "coordinate",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The latitude and longitude of the location, as a comma-separated pair of floating point values that represent latitude and longitude.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "address",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The address of the location, such as “1000 Fifth Ave, New York, NY”.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "place-id",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A Place ID is a unique identifier for a POI, such as ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "I521E602783BA9605",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", The Metropolitan Museum of Art at 1000 Fifth Avenue, New York, NY 10028, United States; for more information on Place IDs, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/MapKit/identifying-unique-locations-with-place-ids",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "map",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The type of map to display. Maps supports ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "explore",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "driving",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "transit",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "satellite",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "hybrid",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " as the map type.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following examples demonstrate different place card details along with details, where necessary, on how specific parameters affect what the maps displays.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Show the address 1000 Fifth Ave, NY, NY, which is located at the specified coordinate and associated POIs near this address —  ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://maps.apple.com/place?coordinate=40.779092,-73.962932",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Show 1000 Fifth Ave, NY, NY, 10028 using an address string and display associated POIs near this address: ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://maps.apple.com/place?address=1000%20Fifth%20Ave,%20NY,NY,10028%20United%20States",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Show the place at PlaceID ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "IF149E70A3B3C4CB2",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " — American Museum of Natural History, 200 Central Park W, New York, NY 10024, United States — ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://maps.apple.com/place?place-id=IF149E70A3B3C4CB2",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". To find a specific Place ID, you can use ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/MapKit/MKMapItem",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " in AppKit and UIKit, ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/MapKitJS/Place",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " in MapKitJS, or see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/maps/place-id-lookup/",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Show a place card at the specified coordinate with custom name you provide —  ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://maps.apple.com/place?coordinate=40.864791,-73.931723&name=My%20Favorite%20Place",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". You can use this parameter when dropping a pin if you need to display a custom name for the place card.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Show a person’s current location — ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://maps.apple.com/place?place-id=my-location",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". This parameter requires that a person has given permission for Maps to display their location.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Show the location of a person’s parked car — ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://maps.apple.com/place?place-id=parked-car",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". This parameter requires that a person has given Maps permission to record the place they parked.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Explore-the-environment-using-Look-Around",
+          "level": 2,
+          "text": "Explore the environment using Look Around",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the ",
+              "type": "text"
+            },
+            {
+              "code": "/look-around",
+              "type": "codeVoice"
+            },
+            {
+              "text": " path component and one of the following parameters to specify the initial location to start a session using Look Around.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "alignments": [
+            "left",
+            "left"
+          ],
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Parameter",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Description",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "coordinate",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The latitude and longitude of the location as  a comma-separated pair of floating point values that represent latitude and longitude.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "address",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The address of the location. This parameter is an address string, such as “1000 Fifth Avenue, New York, NY 10028”.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "place-id",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A Place ID, which is a unique identifier for a point of interest, such as ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "I521E602783BA9605",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", The Metropolitan Museum of Art at 1000 Fifth Avenue, New York, NY 10028, United States; for more information on Place IDs, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/MapKit/identifying-unique-locations-with-place-ids",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following examples demonstrate Look Around experiences in different cities:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The San Francisco Ferry Building — ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://maps.apple.com/look-around?place-id=IBE1F65094A7A13B1",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The New York Stock Exchange, New York City, United States —  ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://maps.apple.com/look-around?coordinate=40.706974,-74.011281",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The Tower of London, London, United Kingdom — ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://maps.apple.com/look-around?address=The%20Tower%20of%20London,London,UK",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The Eiffel Tower, Paris, France — ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://maps.apple.com/look-around?address=The%20Eiffel%20Tower,Paris,France",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Request-directions",
+          "level": 2,
+          "text": "Request directions",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the ",
+              "type": "text"
+            },
+            {
+              "code": "/directions",
+              "type": "codeVoice"
+            },
+            {
+              "text": " path component and following query parameters in several combinations to request directions.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "alignments": [
+            "left",
+            "left",
+            "left",
+            "left"
+          ],
+          "extendedData": {
+            "4_3": {
+              "colspan": 2,
+              "rowspan": 1
+            }
+          },
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Parameters",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Description",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Values",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Notes",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "source",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The starting point of the navigation route",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Specify an address, coordinate, or a place name",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "source-place-id",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "An optional place identifier for the source parameter",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A Place ID",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Specifying a ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "source-place-id",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " also requires the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "source",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " parameter",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "destination",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ending destination of the navigation route",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Specify an address, coordinate, or a place name",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "destination-place-id",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "An optional place identifier for the destination parameter",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A Place ID",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Specifying a ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "destination-place-id",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " also requires the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "destination",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " parameter",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "waypoint",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "This parameter describes destinations in between the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "source",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "destination",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " you can use for multistop routing",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Specify an address, coordinate, or a place name",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You can specify multiple waypoints by repeating the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "waypoint",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " parameter",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "waypoint-place-id",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "An optional place identifier for the waypoint parameter",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A Place ID, which is a unique identifier for a point of interest, such as ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "I521E602783BA9605",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", The Metropolitan Museum of Art at 1000 Fifth Avenue, New York, NY 10028, United States; for more information on Place IDs, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/MapKit/identifying-unique-locations-with-place-ids",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "mode",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The transportation mode",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You can specify one of ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "driving",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "walking",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "transit",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "cycling",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "avoid",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The route preferences are specific to the transportation mode",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You can specify ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "tolls",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "highways",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "busy-roads",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "stairs",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Specify multiple options by using a comma (,) as the delimiter",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "transit-preferences",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The preferred method of travel for transit",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Available modes are ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "bus",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "subway",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "commuter",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "ferry",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Specify multiple options by using the comma (,) as the delimiter",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "start",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Starts navigation after the delay in seconds that you specify",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "An integer that indicates the number of seconds to delay",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can use the query parameters to the ",
+              "type": "text"
+            },
+            {
+              "code": "directions",
+              "type": "codeVoice"
+            },
+            {
+              "text": " path in a large number of combinations to control how Maps displays directions. Limitations on the combinators or side effect that they may have are listed in the table above.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Show driving directions from a person’s current location to San Francisco City Hall: ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://maps.apple.com/directions?destination=1%Dr.%20Carlton%20B.%20Goodlatte%20Place,%20San%20Francisco,%20CA%20%94102,%20United%20States&mode=driving]",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Show the step-by-step walking directions from the San Franciso Ferry Building to San Francisco City Hall: ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://maps.apple.com/directions?source=37.795442,-122.393624&destination=1%Dr.%20Carlton%20B.%20Goodlatte%20Place,%20San%20Francisco,%20CA%20%94102,%20United%20States&mode=walking",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Show multistop driving directions to The San Francisco Ferry Building and San Francisco City Hall — ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://maps.apple.com/directions?destination=1%Dr.%20Carlton%20B.%20Goodlatte%20Place,%20San%20Francisco,%20CA%20%94102,%20United%20States&waypoint=37.795442,-122.393624&mode=driving",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". You can specify multiple ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "waypoint",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " parameters for different waypoints.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Show multistop driving directions, in New York City, from Riverside Park to The American Museum of Natural History, The Metropolitan Museum of Art, and The New York Public Library — ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://maps.apple.com/directions?source=328%10Riverside%20Drive,%20New%20York,NY%2010025&destination=200%20Central%20Park%20W%20New%20York,%20NY%2010024%20United%20States&waypoint=40.779092,-73.962932&waypoint=476%20Fifth%20Ave%20New%20York,%20NY%2010018%20United%20States&mode=driving",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Show transit directions from the New York Public Library to the American Museum of Natural History in New York City —  ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://maps.apple.com/directions?source=476%20Fifth%20Ave%20New%20York,%20NY%2010018%20United%20States&destination=200%20Central%20Park%20W%20New%20York,%20NY%2010024%20United%20States&mode=transit",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". Leaving off the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "source",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " instructs Maps to display directions using public transit to the specified destination from a person’s current location, which might not be practical depending on a person’s location.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Show driving directions from The American Museum of Natural History in New York City to Jones Beach State Park on Long Island, New York, avoiding tolls, if possible — ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://maps.apple.com/directions?source=476%20Fifth%20Ave%20New%20York,%20NY%2010018%20United%20States&destination=40.596896,-73.514907&mode=driving&avoid=tolls",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Show driving directions to 941 Alamo Dr, in San Francisco, CA avoiding tolls and highways, if possible — ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://maps.apple.com/directions?destination=941%20Alamo%20Dr,%20Vacaville,%20CA%20%2095687,%20United%20States&mode=driving&avoid=tolls,highways",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". You can use ‘,’ as a separator to specify multiple ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "avoid",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " options.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Show walking directions from, a person’s current location to 1 La Avanzada St, San Francisco, CA avoiding highways, hills, stairs, and busy roads, if possible — ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://maps.apple.com/directions?destination=1%20La%20Avanzada%20St,%20San%20Francisco,%20CA%20%2094131,%20United%20States&mode=walking&avoid=highways,hills,stairs,busy-roads",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". The ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "avoid",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " options are only applicable to their respective transportation modes.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Show transit directions from a person’s current location to Sausalito, preferring bus and ferry —  ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://maps.apple.com/directions?destination=Sausalito,%20CA,%20United%20States&transit-preferences=bus,ferry&mode=transit",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". Leaving off the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "source",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " instructs Maps to display directions using public transit to the specified destination from a person’s current location, which might not be practical depending on their location.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Find-guides-and-curated-places",
+          "level": 2,
+          "text": "Find guides and curated places",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Using the ",
+              "type": "text"
+            },
+            {
+              "code": "/guides",
+              "type": "codeVoice"
+            },
+            {
+              "text": " path component, you can ask Maps to provide details about place guides and curated collections using the following URL: ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://maps.apple.com/guides",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Report-a-problem",
+          "level": 2,
+          "text": "Report a problem",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you find an issue with Apple Maps, you can report a problem using the ",
+              "type": "text"
+            },
+            {
+              "code": "/report-a-problem path",
+              "type": "codeVoice"
+            },
+            {
+              "text": " component, followed by any of the following parameters:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Parameters",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Description",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Values",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "coordinate",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The latitude and longitude of the location",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A comma-separated pair of floating point values that represent latitude and longitude",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "address",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The address of the location",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "An address string, such as 1000 Fifth Avenue",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "place-id",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The unique Place ID for a point of interest; for example, the place ID ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "I8CAD8EFA77AA3D42",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " represents Bethesda Terrace in New York City’s Central Park",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "For more information on Place IDs, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/MapKit/identifying-unique-locations-with-place-ids",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "anchor": "Example-problem-reports",
+          "level": 3,
+          "text": "Example problem reports",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can report a problem using the same kinds of location descriptors the other queries use. The following examples show how to report a problem using a coordinate, an address, or a Place ID.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Report a problem at the coordinate ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "40.753035,-73.981846",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " (The New York Public Library at 42nd St & 5th Ave in New York City) - ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://maps.apple.com/report-a-problem?coordinate=37.316115,-122.050910",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Report a problem at the address 1000 Fifth Avenue, New York, NY 10028 United States — ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://maps.apple.com/report-a-problem?address=1000%20Fifth%20Ave%20New%20York%20NY%2100284%20United%20States",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Report a problem at Place ID ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "IBE1F65094A7A13B1",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", the San Francisco Ferry Building — ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://maps.apple.com/report-a-problem?place-id=IBE1F65094A7A13B1",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you open the ",
+              "type": "text"
+            },
+            {
+              "code": "report-a-problem",
+              "type": "codeVoice"
+            },
+            {
+              "text": " URL, Maps opens a problem report sheet to ask a person for more detail on the nature of the problem, which Apple uses to investigate the report.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/MapKit/MKCoordinateSpan/init(latitudeDelta:longitudeDelta:)": {
+      "abstract": [
+        {
+          "text": "Creates a new [`MKCoordinateSpan`](doc://com.apple.mapkit/documentation/MapKit/MKCoordinateSpan) from the specified values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "latitudeDelta"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CLLocationDegrees",
+          "text": "CLLocationDegrees"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "longitudeDelta"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CLLocationDegrees",
+          "text": "CLLocationDegrees"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/MapKit/MKCoordinateSpan/init(latitudeDelta:longitudeDelta:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(latitudeDelta:longitudeDelta:)",
+      "type": "topic",
+      "url": "/documentation/MapKit/MKCoordinateSpan/init(latitudeDelta:longitudeDelta:)"
+    },
+    "doc://com.apple.documentation/documentation/MapKit/MKMapItem": {
+      "abstract": [
+        {
+          "text": "A point of interest on the map.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MKMapItem"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/MapKit/MKMapItem",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MKMapItem",
+      "type": "topic",
+      "url": "/documentation/MapKit/MKMapItem"
+    },
+    "doc://com.apple.documentation/documentation/MapKit/MKPointOfInterestCategory": {
+      "abstract": [
+        {
+          "text": "A point of interest category.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MKPointOfInterestCategory"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/MapKit/MKPointOfInterestCategory",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MKPointOfInterestCategory",
+      "type": "topic",
+      "url": "/documentation/MapKit/MKPointOfInterestCategory"
+    },
+    "doc://com.apple.documentation/documentation/MapKit/identifying-unique-locations-with-place-ids": {
+      "abstract": [
+        {
+          "text": "Obtain information about a point of interest that persists over its lifetime.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/MapKit/identifying-unique-locations-with-place-ids",
+      "kind": "article",
+      "role": "article",
+      "title": "Identifying unique locations with Place IDs",
+      "type": "topic",
+      "url": "/documentation/MapKit/identifying-unique-locations-with-place-ids"
+    },
+    "doc://com.apple.documentation/documentation/MapKitJS/Place": {
+      "abstract": [
+        {
+          "text": "A place object that returns from a geocoder lookup, a reverse lookup, or a fetch request for points of interest.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "dictionary"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "text",
+          "text": "Place"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "text",
+          "text": "{"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        },
+        {
+          "kind": "text",
+          "text": "\t"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "string"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "text",
+          "text": "name"
+        },
+        {
+          "kind": "text",
+          "text": ";"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        },
+        {
+          "kind": "text",
+          "text": "\t"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "string?"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "text",
+          "text": "id"
+        },
+        {
+          "kind": "text",
+          "text": ";"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        },
+        {
+          "kind": "text",
+          "text": "\t"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "string[]?"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "text",
+          "text": "alternateIds"
+        },
+        {
+          "kind": "text",
+          "text": ";"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        },
+        {
+          "kind": "text",
+          "text": "\t"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "instctr/mapkit.Coordinate/mapkit.Coordinate",
+          "text": "mapkit.Coordinate"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "text",
+          "text": "coordinate"
+        },
+        {
+          "kind": "text",
+          "text": ";"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        },
+        {
+          "kind": "text",
+          "text": "\t"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "string"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "text",
+          "text": "formattedAddress"
+        },
+        {
+          "kind": "text",
+          "text": ";"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        },
+        {
+          "kind": "text",
+          "text": "\t"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "instctr/mapkit.CoordinateRegion/mapkit.CoordinateRegion",
+          "text": "mapkit.CoordinateRegion"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "text",
+          "text": "region"
+        },
+        {
+          "kind": "text",
+          "text": ";"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        },
+        {
+          "kind": "text",
+          "text": "\t"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "string"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "text",
+          "text": "countryCode"
+        },
+        {
+          "kind": "text",
+          "text": ";"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        },
+        {
+          "kind": "text",
+          "text": "\t"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "enum/mapkit.PointOfInterestCategory",
+          "text": "mapkit.PointOfInterestCategory"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "text",
+          "text": "pointOfInterestCategory"
+        },
+        {
+          "kind": "text",
+          "text": ";"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        },
+        {
+          "kind": "text",
+          "text": "\t"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "string?"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "text",
+          "text": "country"
+        },
+        {
+          "kind": "text",
+          "text": ";"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        },
+        {
+          "kind": "text",
+          "text": "\t"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "string?"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "text",
+          "text": "administrativeArea"
+        },
+        {
+          "kind": "text",
+          "text": ";"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        },
+        {
+          "kind": "text",
+          "text": "\t"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "string?"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "text",
+          "text": "administrativeAreaCode"
+        },
+        {
+          "kind": "text",
+          "text": ";"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        },
+        {
+          "kind": "text",
+          "text": "\t"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "string?"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "text",
+          "text": "locality"
+        },
+        {
+          "kind": "text",
+          "text": ";"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        },
+        {
+          "kind": "text",
+          "text": "\t"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "string?"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "text",
+          "text": "postCode"
+        },
+        {
+          "kind": "text",
+          "text": ";"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        },
+        {
+          "kind": "text",
+          "text": "\t"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "string?"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "text",
+          "text": "subLocality"
+        },
+        {
+          "kind": "text",
+          "text": ";"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        },
+        {
+          "kind": "text",
+          "text": "\t"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "string?"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "text",
+          "text": "thoroughfare"
+        },
+        {
+          "kind": "text",
+          "text": ";"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        },
+        {
+          "kind": "text",
+          "text": "\t"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "string?"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "text",
+          "text": "subThoroughfare"
+        },
+        {
+          "kind": "text",
+          "text": ";"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        },
+        {
+          "kind": "text",
+          "text": "\t"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "string?"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "text",
+          "text": "fullThoroughfare"
+        },
+        {
+          "kind": "text",
+          "text": ";"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        },
+        {
+          "kind": "text",
+          "text": "\t"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "string[]?"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "text",
+          "text": "areasOfInterest"
+        },
+        {
+          "kind": "text",
+          "text": ";"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        },
+        {
+          "kind": "text",
+          "text": "\t"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "string[]?"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "text",
+          "text": "dependentLocalities"
+        },
+        {
+          "kind": "text",
+          "text": ";"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        },
+        {
+          "kind": "text",
+          "text": "}"
+        },
+        {
+          "kind": "text",
+          "text": ";"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/MapKitJS/Place",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Place",
+      "type": "topic",
+      "url": "/documentation/MapKitJS/Place"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit": {
+      "abstract": [
+        {
+          "text": "Display map or satellite imagery within your app, call out points of interest, and determine placemark information for map coordinates.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "MapKit",
+      "type": "topic",
+      "url": "/documentation/mapkit"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit/mapkit-for-appkit-and-uikit": {
+      "abstract": [],
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit/mapkit-for-appkit-and-uikit",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "MapKit for AppKit and UIKit",
+      "type": "topic",
+      "url": "/documentation/mapkit/mapkit-for-appkit-and-uikit"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit/mapkit-for-swiftui": {
+      "abstract": [
+        {
+          "text": "MapKit for SwiftUI allows you to build map-centric views and apps across Apple platforms. You can design expressive and highly interactive Maps with minimal code by composing views, using ViewBuilders and view modifiers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit/mapkit-for-swiftui",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "MapKit for SwiftUI",
+      "type": "topic",
+      "url": "/documentation/mapkit/mapkit-for-swiftui"
+    },
+    "https://developer.apple.com/maps/place-id-lookup/": {
+      "identifier": "https://developer.apple.com/maps/place-id-lookup/",
+      "title": "Place ID Lookup",
+      "titleInlineContent": [
+        {
+          "text": "Place ID Lookup",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/maps/place-id-lookup/"
+    },
+    "https://maps.apple.com/directions?destination=1%20La%20Avanzada%20St,%20San%20Francisco,%20CA%20%2094131,%20United%20States&mode=walking&avoid=highways,hills,stairs,busy-roads": {
+      "identifier": "https://maps.apple.com/directions?destination=1%20La%20Avanzada%20St,%20San%20Francisco,%20CA%20%2094131,%20United%20States&mode=walking&avoid=highways,hills,stairs,busy-roads",
+      "title": "https://maps.apple.com/directions?destination=1%20La%20Avanzada%20St,%20San%20Francisco,%20CA%20%2094131,%20United%20States&mode=walking&avoid=highways,hills,stairs,busy-roads",
+      "titleInlineContent": [
+        {
+          "text": "https://maps.apple.com/directions?destination=1%20La%20Avanzada%20St,%20San%20Francisco,%20CA%20%2094131,%20United%20States&mode=walking&avoid=highways,hills,stairs,busy-roads",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://maps.apple.com/directions?destination=1%20La%20Avanzada%20St,%20San%20Francisco,%20CA%20%2094131,%20United%20States&mode=walking&avoid=highways,hills,stairs,busy-roads"
+    },
+    "https://maps.apple.com/directions?destination=1%Dr.%20Carlton%20B.%20Goodlatte%20Place,%20San%20Francisco,%20CA%20%94102,%20United%20States&mode=driving]": {
+      "identifier": "https://maps.apple.com/directions?destination=1%Dr.%20Carlton%20B.%20Goodlatte%20Place,%20San%20Francisco,%20CA%20%94102,%20United%20States&mode=driving]",
+      "title": "https://maps.apple.com/directions?destination=1%Dr.%20Carlton%20B.%20Goodlatte%20Place,%20San%20Francisco,%20CA%20%94102,%20United%20States&mode=driving",
+      "titleInlineContent": [
+        {
+          "text": "https://maps.apple.com/directions?destination=1%Dr.%20Carlton%20B.%20Goodlatte%20Place,%20San%20Francisco,%20CA%20%94102,%20United%20States&mode=driving",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://maps.apple.com/directions?destination=1%Dr.%20Carlton%20B.%20Goodlatte%20Place,%20San%20Francisco,%20CA%20%94102,%20United%20States&mode=driving]"
+    },
+    "https://maps.apple.com/directions?destination=1%Dr.%20Carlton%20B.%20Goodlatte%20Place,%20San%20Francisco,%20CA%20%94102,%20United%20States&waypoint=37.795442,-122.393624&mode=driving": {
+      "identifier": "https://maps.apple.com/directions?destination=1%Dr.%20Carlton%20B.%20Goodlatte%20Place,%20San%20Francisco,%20CA%20%94102,%20United%20States&waypoint=37.795442,-122.393624&mode=driving",
+      "title": "https://maps.apple.com/directions?destination=1%Dr.%20Carlton%20B.%20Goodlatte%20Place,%20San%20Francisco,%20CA%20%94102,%20United%20States&waypoint=37.795442,-122.393624&mode=driving",
+      "titleInlineContent": [
+        {
+          "text": "https://maps.apple.com/directions?destination=1%Dr.%20Carlton%20B.%20Goodlatte%20Place,%20San%20Francisco,%20CA%20%94102,%20United%20States&waypoint=37.795442,-122.393624&mode=driving",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://maps.apple.com/directions?destination=1%Dr.%20Carlton%20B.%20Goodlatte%20Place,%20San%20Francisco,%20CA%20%94102,%20United%20States&waypoint=37.795442,-122.393624&mode=driving"
+    },
+    "https://maps.apple.com/directions?destination=941%20Alamo%20Dr,%20Vacaville,%20CA%20%2095687,%20United%20States&mode=driving&avoid=tolls,highways": {
+      "identifier": "https://maps.apple.com/directions?destination=941%20Alamo%20Dr,%20Vacaville,%20CA%20%2095687,%20United%20States&mode=driving&avoid=tolls,highways",
+      "title": "https://maps.apple.com/directions?destination=941%20Alamo%20Dr,%20Vacaville,%20CA%20%2095687,%20United%20States&mode=driving&avoid=tolls,highways",
+      "titleInlineContent": [
+        {
+          "text": "https://maps.apple.com/directions?destination=941%20Alamo%20Dr,%20Vacaville,%20CA%20%2095687,%20United%20States&mode=driving&avoid=tolls,highways",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://maps.apple.com/directions?destination=941%20Alamo%20Dr,%20Vacaville,%20CA%20%2095687,%20United%20States&mode=driving&avoid=tolls,highways"
+    },
+    "https://maps.apple.com/directions?destination=Sausalito,%20CA,%20United%20States&transit-preferences=bus,ferry&mode=transit": {
+      "identifier": "https://maps.apple.com/directions?destination=Sausalito,%20CA,%20United%20States&transit-preferences=bus,ferry&mode=transit",
+      "title": "https://maps.apple.com/directions?destination=Sausalito,%20CA,%20United%20States&transit-preferences=bus,ferry&mode=transit",
+      "titleInlineContent": [
+        {
+          "text": "https://maps.apple.com/directions?destination=Sausalito,%20CA,%20United%20States&transit-preferences=bus,ferry&mode=transit",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://maps.apple.com/directions?destination=Sausalito,%20CA,%20United%20States&transit-preferences=bus,ferry&mode=transit"
+    },
+    "https://maps.apple.com/directions?source=328%10Riverside%20Drive,%20New%20York,NY%2010025&destination=200%20Central%20Park%20W%20New%20York,%20NY%2010024%20United%20States&waypoint=40.779092,-73.962932&waypoint=476%20Fifth%20Ave%20New%20York,%20NY%2010018%20United%20States&mode=driving": {
+      "identifier": "https://maps.apple.com/directions?source=328%10Riverside%20Drive,%20New%20York,NY%2010025&destination=200%20Central%20Park%20W%20New%20York,%20NY%2010024%20United%20States&waypoint=40.779092,-73.962932&waypoint=476%20Fifth%20Ave%20New%20York,%20NY%2010018%20United%20States&mode=driving",
+      "title": "https://maps.apple.com/directions?source=328%10Riverside%20Drive,%20New%20York,NY%2010025&destination=200%20Central%20Park%20W%20New%20York,%20NY%2010024%20United%20States&waypoint=40.779092,-73.962932&waypoint=476%20Fifth%20Ave%20New%20York,%20NY%2010018%20United%20States&mode=driving",
+      "titleInlineContent": [
+        {
+          "text": "https://maps.apple.com/directions?source=328%10Riverside%20Drive,%20New%20York,NY%2010025&destination=200%20Central%20Park%20W%20New%20York,%20NY%2010024%20United%20States&waypoint=40.779092,-73.962932&waypoint=476%20Fifth%20Ave%20New%20York,%20NY%2010018%20United%20States&mode=driving",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://maps.apple.com/directions?source=328%10Riverside%20Drive,%20New%20York,NY%2010025&destination=200%20Central%20Park%20W%20New%20York,%20NY%2010024%20United%20States&waypoint=40.779092,-73.962932&waypoint=476%20Fifth%20Ave%20New%20York,%20NY%2010018%20United%20States&mode=driving"
+    },
+    "https://maps.apple.com/directions?source=37.795442,-122.393624&destination=1%Dr.%20Carlton%20B.%20Goodlatte%20Place,%20San%20Francisco,%20CA%20%94102,%20United%20States&mode=walking": {
+      "identifier": "https://maps.apple.com/directions?source=37.795442,-122.393624&destination=1%Dr.%20Carlton%20B.%20Goodlatte%20Place,%20San%20Francisco,%20CA%20%94102,%20United%20States&mode=walking",
+      "title": "https://maps.apple.com/directions?source=37.795442,-122.393624&destination=1%Dr.%20Carlton%20B.%20Goodlatte%20Place,%20San%20Francisco,%20CA%20%94102,%20United%20States&mode=walking",
+      "titleInlineContent": [
+        {
+          "text": "https://maps.apple.com/directions?source=37.795442,-122.393624&destination=1%Dr.%20Carlton%20B.%20Goodlatte%20Place,%20San%20Francisco,%20CA%20%94102,%20United%20States&mode=walking",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://maps.apple.com/directions?source=37.795442,-122.393624&destination=1%Dr.%20Carlton%20B.%20Goodlatte%20Place,%20San%20Francisco,%20CA%20%94102,%20United%20States&mode=walking"
+    },
+    "https://maps.apple.com/directions?source=476%20Fifth%20Ave%20New%20York,%20NY%2010018%20United%20States&destination=200%20Central%20Park%20W%20New%20York,%20NY%2010024%20United%20States&mode=transit": {
+      "identifier": "https://maps.apple.com/directions?source=476%20Fifth%20Ave%20New%20York,%20NY%2010018%20United%20States&destination=200%20Central%20Park%20W%20New%20York,%20NY%2010024%20United%20States&mode=transit",
+      "title": "https://maps.apple.com/directions?source=200%20Central%20Park%20W%20New%20York,%20NY%2010024%20United%20States&destination=200%20Central%20Park%20W%20New%20York,%20NY%2010024%20United%20States&mode=transit",
+      "titleInlineContent": [
+        {
+          "text": "https://maps.apple.com/directions?source=200%20Central%20Park%20W%20New%20York,%20NY%2010024%20United%20States&destination=200%20Central%20Park%20W%20New%20York,%20NY%2010024%20United%20States&mode=transit",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://maps.apple.com/directions?source=476%20Fifth%20Ave%20New%20York,%20NY%2010018%20United%20States&destination=200%20Central%20Park%20W%20New%20York,%20NY%2010024%20United%20States&mode=transit"
+    },
+    "https://maps.apple.com/directions?source=476%20Fifth%20Ave%20New%20York,%20NY%2010018%20United%20States&destination=40.596896,-73.514907&mode=driving&avoid=tolls": {
+      "identifier": "https://maps.apple.com/directions?source=476%20Fifth%20Ave%20New%20York,%20NY%2010018%20United%20States&destination=40.596896,-73.514907&mode=driving&avoid=tolls",
+      "title": "https://maps.apple.com/directions?source=476%20Fifth%20Ave%20New%20York,%20NY%2010018%20United%20States&destination=40.596896,-73.514907&mode=driving&avoid=tolls",
+      "titleInlineContent": [
+        {
+          "text": "https://maps.apple.com/directions?source=476%20Fifth%20Ave%20New%20York,%20NY%2010018%20United%20States&destination=40.596896,-73.514907&mode=driving&avoid=tolls",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://maps.apple.com/directions?source=476%20Fifth%20Ave%20New%20York,%20NY%2010018%20United%20States&destination=40.596896,-73.514907&mode=driving&avoid=tolls"
+    },
+    "https://maps.apple.com/frame?center=37.797198,-122.407377&distance=5000&pitch=15&heading=180&span=1.0,1.0": {
+      "identifier": "https://maps.apple.com/frame?center=37.797198,-122.407377&distance=5000&pitch=15&heading=180&span=1.0,1.0",
+      "title": "https://maps.apple.com/frame?center=40.753035,-73.981846&distance=5000&pitch=15&heading=180&span=1.0,1.0",
+      "titleInlineContent": [
+        {
+          "text": "https://maps.apple.com/frame?center=40.753035,-73.981846&distance=5000&pitch=15&heading=180&span=1.0,1.0",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://maps.apple.com/frame?center=37.797198,-122.407377&distance=5000&pitch=15&heading=180&span=1.0,1.0"
+    },
+    "https://maps.apple.com/frame?center=40.753035,-73.981846": {
+      "identifier": "https://maps.apple.com/frame?center=40.753035,-73.981846",
+      "title": "https://maps.apple.com/frame?center=40.753035,-73.981846",
+      "titleInlineContent": [
+        {
+          "text": "https://maps.apple.com/frame?center=40.753035,-73.981846",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://maps.apple.com/frame?center=40.753035,-73.981846"
+    },
+    "https://maps.apple.com/frame?center=40.753035,-73.981846&distance=17825": {
+      "identifier": "https://maps.apple.com/frame?center=40.753035,-73.981846&distance=17825",
+      "title": "https://maps.apple.com/frame?center=40.753035,-73.981846&distance=17825",
+      "titleInlineContent": [
+        {
+          "text": "https://maps.apple.com/frame?center=40.753035,-73.981846&distance=17825",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://maps.apple.com/frame?center=40.753035,-73.981846&distance=17825"
+    },
+    "https://maps.apple.com/frame?center=40.753035,-73.981846&span=0.05,0.05": {
+      "identifier": "https://maps.apple.com/frame?center=40.753035,-73.981846&span=0.05,0.05",
+      "title": "https://maps.apple.com/frame?center=40.753035,-73.981846&span=0.05,0.05",
+      "titleInlineContent": [
+        {
+          "text": "https://maps.apple.com/frame?center=40.753035,-73.981846&span=0.05,0.05",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://maps.apple.com/frame?center=40.753035,-73.981846&span=0.05,0.05"
+    },
+    "https://maps.apple.com/frame?coordinate=40.753035,-73.981846&map=explore&mode=follow&span=0.024461,0.043938": {
+      "identifier": "https://maps.apple.com/frame?coordinate=40.753035,-73.981846&map=explore&mode=follow&span=0.024461,0.043938",
+      "title": "https://maps.apple.com/frame?coordinate=40.753035,-73.981846&map=explore&mode=follow&span=0.024461,0.043938",
+      "titleInlineContent": [
+        {
+          "text": "https://maps.apple.com/frame?coordinate=40.753035,-73.981846&map=explore&mode=follow&span=0.024461,0.043938",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://maps.apple.com/frame?coordinate=40.753035,-73.981846&map=explore&mode=follow&span=0.024461,0.043938"
+    },
+    "https://maps.apple.com/frame?map=explore&center=37.316115,-122.050910&heading=90&pitch=15&distance=10000": {
+      "identifier": "https://maps.apple.com/frame?map=explore&center=37.316115,-122.050910&heading=90&pitch=15&distance=10000",
+      "title": "https://maps.apple.com/frame?map=explore&center=40.753035,-73.981846&heading=90&pitch=15&distance=10000",
+      "titleInlineContent": [
+        {
+          "text": "https://maps.apple.com/frame?map=explore&center=40.753035,-73.981846&heading=90&pitch=15&distance=10000",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://maps.apple.com/frame?map=explore&center=37.316115,-122.050910&heading=90&pitch=15&distance=10000"
+    },
+    "https://maps.apple.com/frame?map=explore&center=40.753035,-73.981846&distance=10000": {
+      "identifier": "https://maps.apple.com/frame?map=explore&center=40.753035,-73.981846&distance=10000",
+      "title": "https://maps.apple.com/frame?map=explore&center=40.753035,-73.981846&distance=10000",
+      "titleInlineContent": [
+        {
+          "text": "https://maps.apple.com/frame?map=explore&center=40.753035,-73.981846&distance=10000",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://maps.apple.com/frame?map=explore&center=40.753035,-73.981846&distance=10000"
+    },
+    "https://maps.apple.com/frame?map=explore&center=40.753035,-73.981846&heading=180&pitch=15&distance=10000": {
+      "identifier": "https://maps.apple.com/frame?map=explore&center=40.753035,-73.981846&heading=180&pitch=15&distance=10000",
+      "title": "https://maps.apple.com/frame?map=explore&center=40.753035,-73.981846&heading=180&pitch=15&distance=10000",
+      "titleInlineContent": [
+        {
+          "text": "https://maps.apple.com/frame?map=explore&center=40.753035,-73.981846&heading=180&pitch=15&distance=10000",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://maps.apple.com/frame?map=explore&center=40.753035,-73.981846&heading=180&pitch=15&distance=10000"
+    },
+    "https://maps.apple.com/frame?map=explore&center=40.753035,-73.981846&heading=18a0&pitch=15&distance=10000&mode=follow": {
+      "identifier": "https://maps.apple.com/frame?map=explore&center=40.753035,-73.981846&heading=18a0&pitch=15&distance=10000&mode=follow",
+      "title": "https://maps.apple.com/frame?map=explore&center=40.753035,-73.981846&heading=18a0&pitch=15&distance=10000&mode=follow",
+      "titleInlineContent": [
+        {
+          "text": "https://maps.apple.com/frame?map=explore&center=40.753035,-73.981846&heading=18a0&pitch=15&distance=10000&mode=follow",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://maps.apple.com/frame?map=explore&center=40.753035,-73.981846&heading=18a0&pitch=15&distance=10000&mode=follow"
+    },
+    "https://maps.apple.com/frame?map=transit&center=40.753035,-73.981846": {
+      "identifier": "https://maps.apple.com/frame?map=transit&center=40.753035,-73.981846",
+      "title": "https://maps.apple.com/frame?map=transit&center=40.753035,-73.981846",
+      "titleInlineContent": [
+        {
+          "text": "https://maps.apple.com/frame?map=transit&center=40.753035,-73.981846",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://maps.apple.com/frame?map=transit&center=40.753035,-73.981846"
+    },
+    "https://maps.apple.com/guides": {
+      "identifier": "https://maps.apple.com/guides",
+      "title": "https://maps.apple.com/guides",
+      "titleInlineContent": [
+        {
+          "text": "https://maps.apple.com/guides",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://maps.apple.com/guides"
+    },
+    "https://maps.apple.com/look-around?address=The%20Eiffel%20Tower,Paris,France": {
+      "identifier": "https://maps.apple.com/look-around?address=The%20Eiffel%20Tower,Paris,France",
+      "title": "https://maps.apple.com/look-around?address=The%20Eiffel%20Tower,Paris,France",
+      "titleInlineContent": [
+        {
+          "text": "https://maps.apple.com/look-around?address=The%20Eiffel%20Tower,Paris,France",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://maps.apple.com/look-around?address=The%20Eiffel%20Tower,Paris,France"
+    },
+    "https://maps.apple.com/look-around?address=The%20Tower%20of%20London,London,UK": {
+      "identifier": "https://maps.apple.com/look-around?address=The%20Tower%20of%20London,London,UK",
+      "title": "https://maps.apple.com/look-around?address=The%20Tower%20of%20London,London,UK",
+      "titleInlineContent": [
+        {
+          "text": "https://maps.apple.com/look-around?address=The%20Tower%20of%20London,London,UK",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://maps.apple.com/look-around?address=The%20Tower%20of%20London,London,UK"
+    },
+    "https://maps.apple.com/look-around?coordinate=40.706974,-74.011281": {
+      "identifier": "https://maps.apple.com/look-around?coordinate=40.706974,-74.011281",
+      "title": "https://maps.apple.com/look-around?coordinate=40.706974,-74.011281",
+      "titleInlineContent": [
+        {
+          "text": "https://maps.apple.com/look-around?coordinate=40.706974,-74.011281",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://maps.apple.com/look-around?coordinate=40.706974,-74.011281"
+    },
+    "https://maps.apple.com/look-around?place-id=IBE1F65094A7A13B1": {
+      "identifier": "https://maps.apple.com/look-around?place-id=IBE1F65094A7A13B1",
+      "title": "https://maps.apple.com/look-around?place-id=IBE1F65094A7A13B1",
+      "titleInlineContent": [
+        {
+          "text": "https://maps.apple.com/look-around?place-id=IBE1F65094A7A13B1",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://maps.apple.com/look-around?place-id=IBE1F65094A7A13B1"
+    },
+    "https://maps.apple.com/place?address=1000%20Fifth%20Ave,%20NY,NY,10028%20United%20States": {
+      "identifier": "https://maps.apple.com/place?address=1000%20Fifth%20Ave,%20NY,NY,10028%20United%20States",
+      "title": "https://maps.apple.com/place?address=1000%20Fifth%20Ave,%20NY,NY,10028%20United%20States",
+      "titleInlineContent": [
+        {
+          "text": "https://maps.apple.com/place?address=1000%20Fifth%20Ave,%20NY,NY,10028%20United%20States",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://maps.apple.com/place?address=1000%20Fifth%20Ave,%20NY,NY,10028%20United%20States"
+    },
+    "https://maps.apple.com/place?coordinate=40.779092,-73.962932": {
+      "identifier": "https://maps.apple.com/place?coordinate=40.779092,-73.962932",
+      "title": "https://maps.apple.com/place?coordinate=40.779092,-73.962932",
+      "titleInlineContent": [
+        {
+          "text": "https://maps.apple.com/place?coordinate=40.779092,-73.962932",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://maps.apple.com/place?coordinate=40.779092,-73.962932"
+    },
+    "https://maps.apple.com/place?coordinate=40.864791,-73.931723&name=My%20Favorite%20Place": {
+      "identifier": "https://maps.apple.com/place?coordinate=40.864791,-73.931723&name=My%20Favorite%20Place",
+      "title": "https://maps.apple.com/place?coordinate=40.864791,-73.931723&name=My%20Favorite%20Place",
+      "titleInlineContent": [
+        {
+          "text": "https://maps.apple.com/place?coordinate=40.864791,-73.931723&name=My%20Favorite%20Place",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://maps.apple.com/place?coordinate=40.864791,-73.931723&name=My%20Favorite%20Place"
+    },
+    "https://maps.apple.com/place?place-id=IF149E70A3B3C4CB2": {
+      "identifier": "https://maps.apple.com/place?place-id=IF149E70A3B3C4CB2",
+      "title": "https://maps.apple.com/place?place-id=IF149E70A3B3C4CB2",
+      "titleInlineContent": [
+        {
+          "text": "https://maps.apple.com/place?place-id=IF149E70A3B3C4CB2",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://maps.apple.com/place?place-id=IF149E70A3B3C4CB2"
+    },
+    "https://maps.apple.com/place?place-id=my-location": {
+      "identifier": "https://maps.apple.com/place?place-id=my-location",
+      "title": "https://maps.apple.com/place?place-id=my-location",
+      "titleInlineContent": [
+        {
+          "text": "https://maps.apple.com/place?place-id=my-location",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://maps.apple.com/place?place-id=my-location"
+    },
+    "https://maps.apple.com/place?place-id=parked-car": {
+      "identifier": "https://maps.apple.com/place?place-id=parked-car",
+      "title": "https://maps.apple.com/place?place-id=parked-car",
+      "titleInlineContent": [
+        {
+          "text": "https://maps.apple.com/place?place-id=parked-car",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://maps.apple.com/place?place-id=parked-car"
+    },
+    "https://maps.apple.com/report-a-problem?address=1000%20Fifth%20Ave%20New%20York%20NY%2100284%20United%20States": {
+      "identifier": "https://maps.apple.com/report-a-problem?address=1000%20Fifth%20Ave%20New%20York%20NY%2100284%20United%20States",
+      "title": "https://maps.apple.com/report-a-problem?address=1000%20Fifth%20Ave%20New%20York%20NY%2100284%20United%20States",
+      "titleInlineContent": [
+        {
+          "text": "https://maps.apple.com/report-a-problem?address=1000%20Fifth%20Ave%20New%20York%20NY%2100284%20United%20States",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://maps.apple.com/report-a-problem?address=1000%20Fifth%20Ave%20New%20York%20NY%2100284%20United%20States"
+    },
+    "https://maps.apple.com/report-a-problem?coordinate=37.316115,-122.050910": {
+      "identifier": "https://maps.apple.com/report-a-problem?coordinate=37.316115,-122.050910",
+      "title": "https://maps.apple.com/report-a-problem?coordinate=37.316115,-122.050910",
+      "titleInlineContent": [
+        {
+          "text": "https://maps.apple.com/report-a-problem?coordinate=37.316115,-122.050910",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://maps.apple.com/report-a-problem?coordinate=37.316115,-122.050910"
+    },
+    "https://maps.apple.com/report-a-problem?place-id=IBE1F65094A7A13B1": {
+      "identifier": "https://maps.apple.com/report-a-problem?place-id=IBE1F65094A7A13B1",
+      "title": "https://maps.apple.com/report-a-problem?place-id=IBE1F65094A7A13B1",
+      "titleInlineContent": [
+        {
+          "text": "https://maps.apple.com/report-a-problem?place-id=IBE1F65094A7A13B1",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://maps.apple.com/report-a-problem?place-id=IBE1F65094A7A13B1"
+    },
+    "https://maps.apple.com/search?query=pizza": {
+      "identifier": "https://maps.apple.com/search?query=pizza",
+      "title": "https://maps.apple.com/search?query=pizza",
+      "titleInlineContent": [
+        {
+          "text": "https://maps.apple.com/search?query=pizza",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://maps.apple.com/search?query=pizza"
+    },
+    "https://maps.apple.com/search?query=pizza&center=40.730877,-73.997603&span=0.05,0.05": {
+      "identifier": "https://maps.apple.com/search?query=pizza&center=40.730877,-73.997603&span=0.05,0.05",
+      "title": "https://maps.apple.com/search?query=pizza&center=40.730877,-73.997603&span=0.05,0.05",
+      "titleInlineContent": [
+        {
+          "text": "https://maps.apple.com/search?query=pizza&center=40.730877,-73.997603&span=0.05,0.05",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://maps.apple.com/search?query=pizza&center=40.730877,-73.997603&span=0.05,0.05"
+    },
+    "https://maps.apple.com/search?query=pizza&center=51.507984,-0.128015": {
+      "identifier": "https://maps.apple.com/search?query=pizza&center=51.507984,-0.128015",
+      "title": "https://maps.apple.com/search?query=pizza&center=51.507984,-0.128015",
+      "titleInlineContent": [
+        {
+          "text": "https://maps.apple.com/search?query=pizza&center=51.507984,-0.128015",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://maps.apple.com/search?query=pizza&center=51.507984,-0.128015"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "The-MapKit-APIs",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.mapkit/documentation/MapKit/mapkit-for-appkit-and-uikit",
+        "doc://com.apple.mapkit/documentation/MapKit/mapkit-for-swiftui"
+      ],
+      "title": "The MapKit APIs"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "The-MapKit-APIs",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.mapkit/documentation/MapKit/mapkit-for-appkit-and-uikit",
+                "doc://com.apple.mapkit/documentation/MapKit/mapkit-for-swiftui"
+              ],
+              "title": "The MapKit APIs"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1MapKit~1MKPointOfInterestCategory/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "typedef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSString",
+              "text": "NSString"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "identifier",
+              "text": "MKPointOfInterestCategory"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1MapKit~1MKMapItem/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MKMapItem"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/mapkit/unified-map-urls"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/mapkit/unified-map-urls"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

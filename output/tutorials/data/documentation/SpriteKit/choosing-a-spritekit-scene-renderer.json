@@ -1,0 +1,1060 @@
+{
+  "abstract": [
+    {
+      "text": "Compare the different ways to display a SpriteKit scene.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.spritekit/documentation/SpriteKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.spritekit/documentation/SpriteKit/choosing-a-spritekit-scene-renderer"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "SpriteKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Choosing a SpriteKit Scene Renderer"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To display SpriteKit content in a watch app, you use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/WatchKit/WKInterfaceSKScene",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", whereas on iOS, macOS, and tvOS, you use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to display a SpriteKit scene. If you need to mix SpriteKit with any custom Metal content, use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKRenderer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "SKRenderer is not available on watchOS.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "On-iOS-tvOS-and-macOS-Draw-Using-a-View-or-a-Renderer",
+          "level": 3,
+          "text": "On iOS, tvOS, and macOS, Draw Using a View or a Renderer",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Choose from the options below to display SpriteKit content on iOS, tvOS, or macOS.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Draw-Using-a-View",
+          "level": 4,
+          "text": "Draw Using a View",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To draw SpriteKit content the most common way, set up an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and set its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKView/scene",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/drawing-spritekit-content-in-a-view",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for an example of using ",
+              "type": "text"
+            },
+            {
+              "code": "SKView",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Draw-Using-a-Renderer",
+          "level": 4,
+          "text": "Draw Using a Renderer",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you want to mix SpriteKit content with your own Metal content, use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKRenderer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to draw your ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKScene",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". You might use ",
+              "type": "text"
+            },
+            {
+              "code": "SKRenderer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to replace specific portions of a SpriteKit app with custom Metal code, or vice versa. ",
+              "type": "text"
+            },
+            {
+              "code": "SKRenderer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " combines the full control of Metal with the ease of use of SpriteKit and its library of useful objects.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, to take full control of just your game’s tiled background while using SpriteKit to draw the rest, use an ",
+              "type": "text"
+            },
+            {
+              "code": "SKRenderer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "MTLView",
+              "type": "codeVoice"
+            },
+            {
+              "text": " combination instead of ",
+              "type": "text"
+            },
+            {
+              "code": "SKView",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and then write the tiled background code yourself in Metal.",
+              "type": "text"
+            },
+            {
+              "code": " ",
+              "type": "codeVoice"
+            },
+            {
+              "text": "When you’re ready to mix the SpriteKit content with the Metal content, you call ",
+              "type": "text"
+            },
+            {
+              "code": "SKRenderer",
+              "type": "codeVoice"
+            },
+            {
+              "text": "‘s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKRenderer/render(withViewport:commandBuffer:renderPassDescriptor:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Finally, call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Metal/MTLCommandBuffer/present(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " on a Metal view when you’re ready to present a frame.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "On-watchOS-Draw-Using-an-Interface-Scene",
+          "level": 3,
+          "text": "On watchOS, Draw Using an Interface Scene",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To display SpriteKit content on Apple Watch, you create a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/WatchKit/WKInterfaceSKScene",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and then set its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/WatchKit/WKInterfaceSKScene/scene",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property. ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/WatchKit/WKInterfaceSKScene",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " functions much like ",
+              "type": "text"
+            },
+            {
+              "code": "SKView",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", but without the debugging visualization options.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/Metal/MTLCommandBuffer/present(_:)": {
+      "abstract": [
+        {
+          "text": "Presents a drawable as early as possible.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "present"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "drawable"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLDrawable",
+          "text": "MTLDrawable"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Metal/MTLCommandBuffer/present(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "present(_:)",
+      "type": "topic",
+      "url": "/documentation/Metal/MTLCommandBuffer/present(_:)"
+    },
+    "doc://com.apple.documentation/documentation/WatchKit/WKInterfaceSKScene": {
+      "abstract": [
+        {
+          "text": "A visual WatchKit element that displays a SpriteKit scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKInterfaceSKScene"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/WatchKit/WKInterfaceSKScene",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "WKInterfaceSKScene",
+      "type": "topic",
+      "url": "/documentation/WatchKit/WKInterfaceSKScene"
+    },
+    "doc://com.apple.documentation/documentation/WatchKit/WKInterfaceSKScene/scene": {
+      "abstract": [
+        {
+          "text": "The currently presented SpriteKit scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "scene"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SKScene",
+          "text": "SKScene"
+        },
+        {
+          "kind": "text",
+          "text": "? { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/WatchKit/WKInterfaceSKScene/scene",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "scene",
+      "type": "topic",
+      "url": "/documentation/WatchKit/WKInterfaceSKScene/scene"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit": {
+      "abstract": [
+        {
+          "text": "Add high-performance 2D content with smooth animations to your app, or create a game with a high-level set of 2D game-based tools.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SpriteKit",
+      "type": "topic",
+      "url": "/documentation/spritekit"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKRenderer": {
+      "abstract": [
+        {
+          "text": "An object that renders a scene into a custom Metal rendering pipeline and drives the scene update cycle.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKRenderer"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKRenderer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKRenderer"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKRenderer",
+      "type": "topic",
+      "url": "/documentation/spritekit/skrenderer"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKRenderer/render(withViewport:commandBuffer:renderPassDescriptor:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "render"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withViewport"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGRect",
+          "text": "CGRect"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "commandBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLCommandBuffer",
+          "text": "MTLCommandBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "renderPassDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MTLRenderPassDescriptor",
+          "text": "MTLRenderPassDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKRenderer/render(withViewport:commandBuffer:renderPassDescriptor:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "renderWithViewport:commandBuffer:renderPassDescriptor:"
+        }
+      ],
+      "role": "symbol",
+      "title": "render(withViewport:commandBuffer:renderPassDescriptor:)",
+      "type": "topic",
+      "url": "/documentation/spritekit/skrenderer/render(withviewport:commandbuffer:renderpassdescriptor:)"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKScene": {
+      "abstract": [
+        {
+          "text": "An object that organizes all of the active SpriteKit content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKScene"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKScene",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKScene"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKScene",
+      "type": "topic",
+      "url": "/documentation/spritekit/skscene"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKView": {
+      "abstract": [
+        {
+          "text": "A view subclass that renders a SpriteKit scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKView"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKView"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKView",
+      "type": "topic",
+      "url": "/documentation/spritekit/skview"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKView/scene": {
+      "abstract": [
+        {
+          "text": "The scene currently presented by this view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "scene"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SKScene",
+          "text": "SKScene"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKView/scene",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "scene"
+        }
+      ],
+      "role": "symbol",
+      "title": "scene",
+      "type": "topic",
+      "url": "/documentation/spritekit/skview/scene"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/drawing-spritekit-content-in-a-view": {
+      "abstract": [
+        {
+          "text": "Display visual content using SpriteKit.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/drawing-spritekit-content-in-a-view",
+      "kind": "article",
+      "role": "article",
+      "title": "Drawing SpriteKit Content in a View",
+      "type": "topic",
+      "url": "/documentation/spritekit/drawing-spritekit-content-in-a-view"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Scene-Renderers",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKView",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKRenderer",
+        "doc://com.apple.documentation/documentation/WatchKit/WKInterfaceSKScene"
+      ],
+      "title": "Scene Renderers"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Scene-Renderers",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKView",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKRenderer",
+                "doc://com.apple.documentation/documentation/WatchKit/WKInterfaceSKScene"
+              ],
+              "title": "Scene Renderers"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1WatchKit~1WKInterfaceSKScene/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "WKInterfaceSKScene"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)WKInterfaceObject",
+              "text": "WKInterfaceObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKRenderer~1render(withViewport:commandBuffer:renderPassDescriptor:)/title",
+          "value": "renderWithViewport:commandBuffer:renderPassDescriptor:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKRenderer~1render(withViewport:commandBuffer:renderPassDescriptor:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "renderWithViewport:commandBuffer:renderPassDescriptor:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1WatchKit~1WKInterfaceSKScene~1scene/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "nonatomic"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "readonly"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)SKScene",
+              "text": "SKScene"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "identifier",
+              "text": "scene"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKView~1scene/title",
+          "value": "scene"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKView~1scene/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "scene"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKView/title",
+          "value": "SKView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Metal~1MTLCommandBuffer~1present(_:)/title",
+          "value": "presentDrawable:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Metal~1MTLCommandBuffer~1present(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "presentDrawable:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:Qoobjc(pl)MTLDrawable",
+              "text": "id<MTLDrawable>"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "internalParam",
+              "text": "drawable"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKRenderer/title",
+          "value": "SKRenderer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKRenderer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKRenderer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKRenderer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKRenderer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKScene/title",
+          "value": "SKScene"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKScene/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKScene"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKScene/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKScene"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/spritekit/choosing-a-spritekit-scene-renderer"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/spritekit/choosing-a-spritekit-scene-renderer"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

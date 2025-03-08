@@ -1,0 +1,2343 @@
+{
+  "abstract": [
+    {
+      "text": "An object representing a static, unordered collection of unique objects.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/object_runtime",
+        "doc://com.apple.documentation/documentation/foundation/object_runtime/classes_bridged_to_swift_standard_library_value_types"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/nsset"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1409289,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSSet",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "class "
+      },
+      {
+        "kind": "identifier",
+        "text": "NSSet"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "NSSet"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSSet"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsset",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutableset",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nscountedset",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " classes declare the programmatic interface to an unordered collection of objects.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsset",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " declares the programmatic interface for static sets of distinct objects. You establish a static set’s entries when it’s created, and can’t modify the entries after that. ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutableset",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": ", on the other hand, declares a programmatic interface for dynamic sets of distinct objects. A dynamic — or mutable — set allows the addition and deletion of entries at any time, automatically allocating memory as needed.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use sets as an alternative to arrays when the order of elements isn’t important and you need to consider performance in testing whether the set contains an object. With an array, testing for membership is slower than with sets.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsset",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " is “toll-free bridged” with its Core Foundation counterpart, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfset",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". See ",
+              "type": "text"
+            },
+            {
+              "identifier": "devLink-1745091",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for more information on toll-free bridging.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In Swift, use this class instead of a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Swift/Set",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " constant in cases where you require reference semantics.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "1770501",
+          "level": 3,
+          "text": "Subclassing Notes",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "There should be little need of subclassing. If you need to customize behavior, it’s often better to consider composition instead of subclassing.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "1770502",
+          "level": 4,
+          "text": "Methods to Override",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In a subclass, you must override all of its primitive methods:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsset/1416229-count",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsset/1412896-member",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsset/1412373-objectenumerator",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "1651151",
+          "level": 4,
+          "text": "Alternatives to Subclassing",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before making a custom class of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsset",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": ", investigate ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nshashtable",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and the corresponding Core Foundation type, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfset-rgt",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Because ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsset",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfset-rgt",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " are “toll-free bridged,” you can substitute a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfset-rgt",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " object for a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsset",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " object in your code (with appropriate casting). Although they’re corresponding types, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfset-rgt",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsset",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " don’t have identical interfaces or implementations, and you can sometimes do things with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfset-rgt",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " that you can’t easily do with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsset",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the behavior you want to add supplements that of the existing class, you could write a category on ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsset",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": ". Keep in mind, however, that this category affects all instances of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsset",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " that you use, and this might have unintended consequences. Alternatively, you could use composition to achieve the desired behavior.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "devLink-1745091": {
+      "identifier": "devLink-1745091",
+      "title": "Toll-Free Bridging",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/General/Conceptual/CocoaEncyclopedia/Toll-FreeBridgin/Toll-FreeBridgin.html#//apple_ref/doc/uid/TP40010810-CH2"
+    },
+    "doc://com.apple.Swift/documentation/Swift/CustomReflectable": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/CustomReflectable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomReflectable",
+      "type": "topic",
+      "url": "/documentation/swift/customreflectable"
+    },
+    "doc://com.apple.Swift/documentation/Swift/ExpressibleByArrayLiteral": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/ExpressibleByArrayLiteral",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ExpressibleByArrayLiteral",
+      "type": "topic",
+      "url": "/documentation/swift/expressiblebyarrayliteral"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Sequence": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Sequence",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sequence",
+      "type": "topic",
+      "url": "/documentation/swift/sequence"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Set": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Set",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Set",
+      "type": "topic",
+      "url": "/documentation/swift/set"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfset": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfset",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFSet",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfset"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfset-rgt": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfset-rgt",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFSet",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfset-rgt"
+    },
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscopying": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscopying",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCopying",
+      "type": "topic",
+      "url": "/documentation/foundation/nscopying"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscountedset": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscountedset",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCountedSet",
+      "type": "topic",
+      "url": "/documentation/foundation/nscountedset"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsfastenumeration": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsfastenumeration",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSFastEnumeration",
+      "type": "topic",
+      "url": "/documentation/foundation/nsfastenumeration"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nshashtable": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nshashtable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSHashTable",
+      "type": "topic",
+      "url": "/documentation/foundation/nshashtable"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutablecopying": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutablecopying",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSMutableCopying",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutablecopying"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutableset": {
+      "abstract": [
+        {
+          "text": "An object representing a dynamic, unordered, uniquing collection, for use instead of a ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.Swift/documentation/Swift/Set",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " variable in cases that require reference semantics.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSMutableSet"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutableset",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSMutableSet",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutableset"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nssecurecoding": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nssecurecoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSecureCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nssecurecoding"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsset": {
+      "abstract": [
+        {
+          "text": "An object representing a static, unordered collection of unique objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSSet"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsset",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSet",
+      "type": "topic",
+      "url": "/documentation/foundation/nsset"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsset/1407458-init": {
+      "abstract": [
+        {
+          "text": "Initializes a newly allocated set with a specified number of objects from a given C array of objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "objects"
+        },
+        {
+          "kind": "text",
+          "text": ": UnsafePointer<AnyObject>?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "count"
+        },
+        {
+          "kind": "text",
+          "text": ": Int)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsset/1407458-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(objects:count:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsset/1407458-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsset/1407975-init": {
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "objects"
+        },
+        {
+          "kind": "text",
+          "text": ": Any...)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsset/1407975-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(objects:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsset/1407975-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsset/1408152-init": {
+      "abstract": [
+        {
+          "text": "Initializes a newly allocated set with the objects that are contained in a given array.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "array"
+        },
+        {
+          "kind": "text",
+          "text": ": [Any])"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsset/1408152-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(array:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsset/1408152-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsset/1408217-addingobjects": {
+      "abstract": [
+        {
+          "text": "Returns a new set formed by adding the objects in a given set to the receiving set.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "addingObjects"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": Set<AnyHashable>) -> Set<AnyHashable>"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsset/1408217-addingobjects",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "addingObjects(from:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsset/1408217-addingobjects"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsset/1408221-init": {
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "identifier",
+          "text": "coder"
+        },
+        {
+          "kind": "text",
+          "text": ": NSCoder)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsset/1408221-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(coder:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsset/1408221-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsset/1408322-setvalue": {
+      "abstract": [
+        {
+          "text": "Invokes ",
+          "type": "text"
+        },
+        {
+          "code": "setValue:forKey:",
+          "type": "codeVoice"
+        },
+        {
+          "text": " on each of the set’s members.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "setValue"
+        },
+        {
+          "kind": "text",
+          "text": "(Any?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "forKey"
+        },
+        {
+          "kind": "text",
+          "text": ": String)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsset/1408322-setvalue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setValue(_:forKey:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsset/1408322-setvalue"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsset/1408407-init": {
+      "abstract": [
+        {
+          "text": "Initializes a newly allocated set and adds to it members of another given set.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "set"
+        },
+        {
+          "kind": "text",
+          "text": ": Set<AnyHashable>, "
+        },
+        {
+          "kind": "identifier",
+          "text": "copyItems"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsset/1408407-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(set:copyItems:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsset/1408407-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsset/1409698-init": {
+      "abstract": [
+        {
+          "text": "Initializes a newly allocated set.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsset/1409698-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init()",
+      "type": "topic",
+      "url": "/documentation/foundation/nsset/1409698-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsset/1410212-removeobserver": {
+      "abstract": [
+        {
+          "text": "Raises an exception.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeObserver"
+        },
+        {
+          "kind": "text",
+          "text": "(NSObject, "
+        },
+        {
+          "kind": "identifier",
+          "text": "forKeyPath"
+        },
+        {
+          "kind": "text",
+          "text": ": String)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsset/1410212-removeobserver",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "removeObserver(_:forKeyPath:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsset/1410212-removeobserver"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsset/1410612-init": {
+      "abstract": [
+        {
+          "text": "Initializes a newly allocated set and adds to it objects from another given set.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "set"
+        },
+        {
+          "kind": "text",
+          "text": ": Set<AnyHashable>)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsset/1410612-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(set:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsset/1410612-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsset/1412024-enumerateobjects": {
+      "abstract": [
+        {
+          "text": "Executes a given block using each object in the set, using the specified enumeration options.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "enumerateObjects"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": NSEnumerationOptions, "
+        },
+        {
+          "kind": "identifier",
+          "text": "using"
+        },
+        {
+          "kind": "text",
+          "text": ": (Any, UnsafeMutablePointer<ObjCBool>) -> Void)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsset/1412024-enumerateobjects",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "enumerateObjects(options:using:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsset/1412024-enumerateobjects"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsset/1412373-objectenumerator": {
+      "abstract": [
+        {
+          "text": "Returns an enumerator object that lets you access each object in the set.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "objectEnumerator"
+        },
+        {
+          "kind": "text",
+          "text": "() -> NSEnumerator"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsset/1412373-objectenumerator",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "objectEnumerator()",
+      "type": "topic",
+      "url": "/documentation/foundation/nsset/1412373-objectenumerator"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsset/1412896-member": {
+      "abstract": [
+        {
+          "text": "Determines whether a given object is present in the set, and returns that object if it is.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "member"
+        },
+        {
+          "kind": "text",
+          "text": "(Any) -> Any?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsset/1412896-member",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "member(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsset/1412896-member"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsset/1414043-addobserver": {
+      "abstract": [
+        {
+          "text": "Raises an exception.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "addObserver"
+        },
+        {
+          "kind": "text",
+          "text": "(NSObject, "
+        },
+        {
+          "kind": "identifier",
+          "text": "forKeyPath"
+        },
+        {
+          "kind": "text",
+          "text": ": String, "
+        },
+        {
+          "kind": "identifier",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": NSKeyValueObservingOptions, "
+        },
+        {
+          "kind": "identifier",
+          "text": "context"
+        },
+        {
+          "kind": "text",
+          "text": ": UnsafeMutableRawPointer?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsset/1414043-addobserver",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "addObserver(_:forKeyPath:options:context:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsset/1414043-addobserver"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsset/1414392-objects": {
+      "abstract": [
+        {
+          "text": "Returns a set of objects that pass a test in a given block.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "objects"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "passingTest"
+        },
+        {
+          "kind": "text",
+          "text": ": (Any, UnsafeMutablePointer<ObjCBool>) -> Bool) -> Set<AnyHashable>"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsset/1414392-objects",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "objects(passingTest:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsset/1414392-objects"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsset/1414555-contains": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether a given object is present in the set.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "contains"
+        },
+        {
+          "kind": "text",
+          "text": "(Any) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsset/1414555-contains",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "contains(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsset/1414555-contains"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsset/1414829-isequal": {
+      "abstract": [
+        {
+          "text": "Compares the receiving set to another set.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "isEqual"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": Set<AnyHashable>) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsset/1414829-isequal",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isEqual(to:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsset/1414829-isequal"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsset/1415413-removeobserver": {
+      "abstract": [
+        {
+          "text": "Raises an exception.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeObserver"
+        },
+        {
+          "kind": "text",
+          "text": "(NSObject, "
+        },
+        {
+          "kind": "identifier",
+          "text": "forKeyPath"
+        },
+        {
+          "kind": "text",
+          "text": ": String, "
+        },
+        {
+          "kind": "identifier",
+          "text": "context"
+        },
+        {
+          "kind": "text",
+          "text": ": UnsafeMutableRawPointer?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsset/1415413-removeobserver",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "removeObserver(_:forKeyPath:context:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsset/1415413-removeobserver"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsset/1415878-init": {
+      "abstract": [
+        {
+          "text": "Creates and returns a set that contains a single given object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "object"
+        },
+        {
+          "kind": "text",
+          "text": ": Any)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsset/1415878-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(object:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsset/1415878-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsset/1416229-count": {
+      "abstract": [
+        {
+          "text": "The number of members in the set.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "count"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsset/1416229-count",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "count",
+      "type": "topic",
+      "url": "/documentation/foundation/nsset/1416229-count"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsset/1416316-adding": {
+      "abstract": [
+        {
+          "text": "Returns a new set formed by adding a given object to the receiving set.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "adding"
+        },
+        {
+          "kind": "text",
+          "text": "(Any) -> Set<AnyHashable>"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsset/1416316-adding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "adding(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsset/1416316-adding"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsset/1416324-filtered": {
+      "abstract": [
+        {
+          "text": "Evaluates a given predicate against each object in the receiving set and returns a new set containing the objects for which the predicate returns true.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "filtered"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "using"
+        },
+        {
+          "kind": "text",
+          "text": ": NSPredicate) -> Set<AnyHashable>"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsset/1416324-filtered",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "filtered(using:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsset/1416324-filtered"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsset/1416427-sortedarray": {
+      "abstract": [
+        {
+          "text": "Returns an array of the set’s content sorted as specified by a given array of sort descriptors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "sortedArray"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "using"
+        },
+        {
+          "kind": "text",
+          "text": ": [NSSortDescriptor]) -> [Any]"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsset/1416427-sortedarray",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sortedArray(using:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsset/1416427-sortedarray"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsset/1416575-anyobject": {
+      "abstract": [
+        {
+          "text": "Returns one of the objects in the set, or ",
+          "type": "text"
+        },
+        {
+          "code": "nil",
+          "type": "codeVoice"
+        },
+        {
+          "text": " if the set contains no objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "anyObject"
+        },
+        {
+          "kind": "text",
+          "text": "() -> Any?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsset/1416575-anyobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "anyObject()",
+      "type": "topic",
+      "url": "/documentation/foundation/nsset/1416575-anyobject"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsset/1416826-objects": {
+      "abstract": [
+        {
+          "text": "Returns a set of objects that pass a test in a given block, using the specified enumeration options.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "objects"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": NSEnumerationOptions, "
+        },
+        {
+          "kind": "identifier",
+          "text": "passingTest"
+        },
+        {
+          "kind": "text",
+          "text": ": (Any, UnsafeMutablePointer<ObjCBool>) -> Bool) -> Set<AnyHashable>"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsset/1416826-objects",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "objects(options:passingTest:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsset/1416826-objects"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsset/1417205-description": {
+      "abstract": [
+        {
+          "text": "Returns a string that represents the contents of the set, formatted as a property list.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "description"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "withLocale"
+        },
+        {
+          "kind": "text",
+          "text": ": Any?) -> String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsset/1417205-description",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "description(withLocale:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsset/1417205-description"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsset/1417472-intersects": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether at least one object in the receiving set is also present in another given set.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "intersects"
+        },
+        {
+          "kind": "text",
+          "text": "(Set<AnyHashable>) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsset/1417472-intersects",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "intersects(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsset/1417472-intersects"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsset/1417529-init": {
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "arrayLiteral"
+        },
+        {
+          "kind": "text",
+          "text": ": Any...)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsset/1417529-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(arrayLiteral:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsset/1417529-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsset/1417653-allobjects": {
+      "abstract": [
+        {
+          "text": "An array containing the set’s members, or an empty array if the set has no members.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "allObjects"
+        },
+        {
+          "kind": "text",
+          "text": ": [Any]"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsset/1417653-allobjects",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "allObjects",
+      "type": "topic",
+      "url": "/documentation/foundation/nsset/1417653-allobjects"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsset/1418129-enumerateobjects": {
+      "abstract": [
+        {
+          "text": "Executes a given block using each object in the set.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "enumerateObjects"
+        },
+        {
+          "kind": "text",
+          "text": "((Any, UnsafeMutablePointer<ObjCBool>) -> Void)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsset/1418129-enumerateobjects",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "enumerateObjects(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsset/1418129-enumerateobjects"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsset/1418176-description": {
+      "abstract": [
+        {
+          "text": "A string that represents the contents of the set, formatted as a property list.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "description"
+        },
+        {
+          "kind": "text",
+          "text": ": String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsset/1418176-description",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "description",
+      "type": "topic",
+      "url": "/documentation/foundation/nsset/1418176-description"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsset/1418319-issubset": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether every object in the receiving set is also present in another given set.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "isSubset"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "of"
+        },
+        {
+          "kind": "text",
+          "text": ": Set<AnyHashable>) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsset/1418319-issubset",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isSubset(of:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsset/1418319-issubset"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsset/1418386-value": {
+      "abstract": [
+        {
+          "text": "Return a set containing the results of invoking ",
+          "type": "text"
+        },
+        {
+          "code": "valueForKey:",
+          "type": "codeVoice"
+        },
+        {
+          "text": " on each of the receiving set's members.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "value"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forKey"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> Any"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsset/1418386-value",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "value(forKey:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsset/1418386-value"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsset/1418438-addingobjects": {
+      "abstract": [
+        {
+          "text": "Returns a new set formed by adding the objects in a given array to the receiving set.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "addingObjects"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": [Any]) -> Set<AnyHashable>"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsset/1418438-addingobjects",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "addingObjects(from:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsset/1418438-addingobjects"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsset/1528161-init": {
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "collectionViewIndexPath"
+        },
+        {
+          "kind": "text",
+          "text": ": IndexPath)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsset/1528161-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(collectionViewIndexPath:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsset/1528161-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsset/1528216-enumerateindexpaths": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "enumerateIndexPaths"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": NSEnumerationOptions, "
+        },
+        {
+          "kind": "identifier",
+          "text": "using"
+        },
+        {
+          "kind": "text",
+          "text": ": (IndexPath, UnsafeMutablePointer<ObjCBool>) -> Void)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsset/1528216-enumerateindexpaths",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "enumerateIndexPaths(options:using:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsset/1528216-enumerateindexpaths"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsset/1528255-init": {
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "collectionViewIndexPaths"
+        },
+        {
+          "kind": "text",
+          "text": ": [IndexPath])"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsset/1528255-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(collectionViewIndexPaths:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsset/1528255-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsset/1574824-init": {
+      "abstract": [
+        {
+          "text": "Creates and returns a set containing a specified number of objects from a given C array of objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "objects"
+        },
+        {
+          "kind": "text",
+          "text": ": UnsafePointer<AnyObject>, "
+        },
+        {
+          "kind": "identifier",
+          "text": "count"
+        },
+        {
+          "kind": "text",
+          "text": ": Int)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsset/1574824-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(objects:count:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsset/1574824-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsset/1643052-custommirror": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "customMirror"
+        },
+        {
+          "kind": "text",
+          "text": ": Mirror"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsset/1643052-custommirror",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "customMirror",
+      "type": "topic",
+      "url": "/documentation/foundation/nsset/1643052-custommirror"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsset/1643160-makeiterator": {
+      "abstract": [
+        {
+          "text": "Return an ",
+          "type": "text"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "iterator",
+              "type": "text"
+            }
+          ],
+          "type": "emphasis"
+        },
+        {
+          "text": " over the elements of this ",
+          "type": "text"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "sequence",
+              "type": "text"
+            }
+          ],
+          "type": "emphasis"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "makeIterator"
+        },
+        {
+          "kind": "text",
+          "text": "() -> NSFastEnumerationIterator"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsset/1643160-makeiterator",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "makeIterator()",
+      "type": "topic",
+      "url": "/documentation/foundation/nsset/1643160-makeiterator"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsset/3126727-init": {
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "set"
+        },
+        {
+          "kind": "text",
+          "text": ": NSSet)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsset/3126727-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(set:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsset/3126727-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsset/3767111-underestimatedcount": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "underestimatedCount"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsset/3767111-underestimatedcount",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "underestimatedCount",
+      "type": "topic",
+      "url": "/documentation/foundation/nsset/3767111-underestimatedcount"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsset/arrayliteralelement": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSSet.ArrayLiteralElement"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsset/arrayliteralelement",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSet.ArrayLiteralElement",
+      "type": "topic",
+      "url": "/documentation/foundation/nsset/arrayliteralelement"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsset/element": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSSet.Element"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsset/element",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSet.Element",
+      "type": "topic",
+      "url": "/documentation/foundation/nsset/element"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsset/iterator": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSSet.Iterator"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsset/iterator",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSet.Iterator",
+      "type": "topic",
+      "url": "/documentation/foundation/nsset/iterator"
+    },
+    "doc://com.apple.documentation/documentation/foundation/object_runtime": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/object_runtime",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Object Runtime",
+      "type": "topic",
+      "url": "/documentation/foundation/object_runtime"
+    },
+    "doc://com.apple.documentation/documentation/foundation/object_runtime/classes_bridged_to_swift_standard_library_value_types": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/object_runtime/classes_bridged_to_swift_standard_library_value_types",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Classes Bridged to Swift Standard Library Value Types",
+      "type": "topic",
+      "url": "/documentation/foundation/object_runtime/classes_bridged_to_swift_standard_library_value_types"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/objectivec/nsobject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/CustomReflectable",
+        "doc://com.apple.Swift/documentation/Swift/ExpressibleByArrayLiteral",
+        "doc://com.apple.documentation/documentation/foundation/nscopying",
+        "doc://com.apple.documentation/documentation/foundation/nsfastenumeration",
+        "doc://com.apple.documentation/documentation/foundation/nsmutablecopying",
+        "doc://com.apple.documentation/documentation/foundation/nssecurecoding",
+        "doc://com.apple.Swift/documentation/Swift/Sequence"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsmutableset"
+      ],
+      "title": "Sets"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "1651173",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsset/1415878-init",
+        "doc://com.apple.documentation/documentation/foundation/nsset/1574824-init",
+        "doc://com.apple.documentation/documentation/foundation/nsset/1416316-adding",
+        "doc://com.apple.documentation/documentation/foundation/nsset/1408217-addingobjects",
+        "doc://com.apple.documentation/documentation/foundation/nsset/1418438-addingobjects"
+      ],
+      "kind": "taskGroup",
+      "title": "Creating a Set"
+    },
+    {
+      "anchor": "1651288",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsset/1408152-init",
+        "doc://com.apple.documentation/documentation/foundation/nsset/1407458-init",
+        "doc://com.apple.documentation/documentation/foundation/nsset/1410612-init",
+        "doc://com.apple.documentation/documentation/foundation/nsset/1408407-init",
+        "doc://com.apple.documentation/documentation/foundation/nsset/1409698-init"
+      ],
+      "kind": "taskGroup",
+      "title": "Initializing a Set"
+    },
+    {
+      "anchor": "1651388",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsset/1416229-count"
+      ],
+      "kind": "taskGroup",
+      "title": "Counting Entries"
+    },
+    {
+      "anchor": "1651418",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsset/1417653-allobjects",
+        "doc://com.apple.documentation/documentation/foundation/nsset/1416575-anyobject",
+        "doc://com.apple.documentation/documentation/foundation/nsset/1414555-contains",
+        "doc://com.apple.documentation/documentation/foundation/nsset/1416324-filtered",
+        "doc://com.apple.documentation/documentation/foundation/nsset/1412896-member",
+        "doc://com.apple.documentation/documentation/foundation/nsset/1412373-objectenumerator",
+        "doc://com.apple.documentation/documentation/foundation/nsset/1418129-enumerateobjects",
+        "doc://com.apple.documentation/documentation/foundation/nsset/1412024-enumerateobjects",
+        "doc://com.apple.documentation/documentation/foundation/nsset/1414392-objects",
+        "doc://com.apple.documentation/documentation/foundation/nsset/1416826-objects"
+      ],
+      "kind": "taskGroup",
+      "title": "Accessing Set Members"
+    },
+    {
+      "anchor": "1651550",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsset/1418319-issubset",
+        "doc://com.apple.documentation/documentation/foundation/nsset/1417472-intersects",
+        "doc://com.apple.documentation/documentation/foundation/nsset/1414829-isequal",
+        "doc://com.apple.documentation/documentation/foundation/nsset/1418386-value",
+        "doc://com.apple.documentation/documentation/foundation/nsset/1408322-setvalue"
+      ],
+      "kind": "taskGroup",
+      "title": "Comparing Sets"
+    },
+    {
+      "anchor": "1651620",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsset/1416427-sortedarray"
+      ],
+      "kind": "taskGroup",
+      "title": "Creating a Sorted Array"
+    },
+    {
+      "anchor": "1651645",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsset/1414043-addobserver",
+        "doc://com.apple.documentation/documentation/foundation/nsset/1415413-removeobserver",
+        "doc://com.apple.documentation/documentation/foundation/nsset/1410212-removeobserver"
+      ],
+      "kind": "taskGroup",
+      "title": "Key-Value Observing"
+    },
+    {
+      "anchor": "1651686",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsset/1418176-description",
+        "doc://com.apple.documentation/documentation/foundation/nsset/1417205-description"
+      ],
+      "kind": "taskGroup",
+      "title": "Describing a Set"
+    },
+    {
+      "anchor": "3358612",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsset/arrayliteralelement",
+        "doc://com.apple.documentation/documentation/foundation/nsset/element",
+        "doc://com.apple.documentation/documentation/foundation/nsset/iterator"
+      ],
+      "kind": "taskGroup",
+      "title": "Type Aliases"
+    },
+    {
+      "anchor": "2855588",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsset/1417529-init",
+        "doc://com.apple.documentation/documentation/foundation/nsset/1408221-init",
+        "doc://com.apple.documentation/documentation/foundation/nsset/1528161-init",
+        "doc://com.apple.documentation/documentation/foundation/nsset/1528255-init",
+        "doc://com.apple.documentation/documentation/foundation/nsset/1407975-init",
+        "doc://com.apple.documentation/documentation/foundation/nsset/3126727-init"
+      ],
+      "kind": "taskGroup",
+      "title": "Initializers"
+    },
+    {
+      "anchor": "2855589",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsset/1643052-custommirror",
+        "doc://com.apple.documentation/documentation/foundation/nsset/3767111-underestimatedcount"
+      ],
+      "kind": "taskGroup",
+      "title": "Instance Properties"
+    },
+    {
+      "anchor": "2855590",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsset/1528216-enumerateindexpaths",
+        "doc://com.apple.documentation/documentation/foundation/nsset/1643160-makeiterator"
+      ],
+      "kind": "taskGroup",
+      "title": "Instance Methods"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nsset"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/nsset"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

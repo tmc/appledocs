@@ -1,0 +1,2134 @@
+{
+  "abstract": [
+    {
+      "text": "A description of a single property belonging to an entity.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.coredata/documentation/CoreData"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.coredata/documentation/CoreData/NSPropertyDescription"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSPropertyDescription",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "NSPropertyDescription"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Core Data"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "NSPropertyDescription"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "3.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "3.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.4",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "2.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "NSPropertyDescription"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSPropertyDescription"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A property describes a single value within an object managed by the Core Data Framework. There are different types of property, each represented by a subclass which encapsulates the specific property behavior—see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coredata/documentation/CoreData/NSAttributeDescription",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coredata/documentation/CoreData/NSRelationshipDescription",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coredata/documentation/CoreData/NSFetchedPropertyDescription",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Note that a property name cannot be the same as any no-parameter method name of ",
+              "type": "text"
+            },
+            {
+              "code": "NSObject",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "code": "NSManagedObject",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". For example, you cannot give a property the name “description”. There are hundreds of methods on ",
+              "type": "text"
+            },
+            {
+              "code": "NSObject",
+              "type": "codeVoice"
+            },
+            {
+              "text": " which may conflict with property names—and this list can grow without warning from frameworks or other libraries. You should avoid very general words (like “font”, and “color”) and words or phrases which overlap with Cocoa paradigms (such as “isEditing” and “objectSpecifier”).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Properties—relationships as well as attributes—may be transient. A managed object context knows about transient properties and tracks changes made to them. Transient properties are ignored by the persistent store, and not just during saves: you cannot fetch using a predicate based on transients (although you can use transient properties to filter in memory yourself).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Editing-Property-Descriptions",
+          "level": 3,
+          "text": "Editing Property Descriptions",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Property descriptions are editable until they are used by an object graph manager (such as a persistent store coordinator). This allows you to create or modify them dynamically. However, once a description is used (when the managed object model to which it belongs is associated with a persistent store coordinator), it ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "must not",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " (indeed cannot) be changed. This is enforced at runtime: any attempt to mutate a model or any of its sub-objects after the model is associated with a persistent store coordinator causes an exception to be thrown. If you need to modify a model that is in use, create a copy, modify the copy, and then discard the objects with the old model.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.coredata/documentation/CoreData": {
+      "abstract": [
+        {
+          "text": "Persist or cache data on a single device, or sync data to multiple devices with CloudKit.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Data",
+      "type": "topic",
+      "url": "/documentation/coredata"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/NSAttributeDescription": {
+      "abstract": [
+        {
+          "text": "A description of a single attribute belonging to an entity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSAttributeDescription"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSAttributeDescription",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSAttributeDescription"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSAttributeDescription",
+      "type": "topic",
+      "url": "/documentation/coredata/nsattributedescription"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/NSAttributeType": {
+      "abstract": [
+        {
+          "text": "The types of attribute that Core Data supports.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSAttributeType"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSAttributeType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSAttributeType"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSAttributeType",
+      "type": "topic",
+      "url": "/documentation/coredata/nsattributetype"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/NSExpressionDescription": {
+      "abstract": [
+        {
+          "text": "An object that describes an expression to include with a fetch request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSExpressionDescription"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSExpressionDescription",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSExpressionDescription"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSExpressionDescription",
+      "type": "topic",
+      "url": "/documentation/coredata/nsexpressiondescription"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/NSFetchedPropertyDescription": {
+      "abstract": [
+        {
+          "text": "A description object used to define which properties are fetched from Core Data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSFetchedPropertyDescription"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSFetchedPropertyDescription",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSFetchedPropertyDescription"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSFetchedPropertyDescription",
+      "type": "topic",
+      "url": "/documentation/coredata/nsfetchedpropertydescription"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/NSPropertyDescription": {
+      "abstract": [
+        {
+          "text": "A description of a single property belonging to an entity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSPropertyDescription"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSPropertyDescription",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSPropertyDescription"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSPropertyDescription",
+      "type": "topic",
+      "url": "/documentation/coredata/nspropertydescription"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/NSPropertyDescription/entity": {
+      "abstract": [
+        {
+          "text": "The entity description of the receiver.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "entity"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSEntityDescription",
+          "text": "NSEntityDescription"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSPropertyDescription/entity",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "entity"
+        }
+      ],
+      "role": "symbol",
+      "title": "entity",
+      "type": "topic",
+      "url": "/documentation/coredata/nspropertydescription/entity"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/NSPropertyDescription/isIndexed": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the receiver should be indexed for searching.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isIndexed"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSPropertyDescription/isIndexed",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "indexed"
+        }
+      ],
+      "role": "symbol",
+      "title": "isIndexed",
+      "type": "topic",
+      "url": "/documentation/coredata/nspropertydescription/isindexed"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/NSPropertyDescription/isIndexedBySpotlight": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether Core Data adds the property’s value to the Core Spotlight index.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isIndexedBySpotlight"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSPropertyDescription/isIndexedBySpotlight",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "indexedBySpotlight"
+        }
+      ],
+      "role": "symbol",
+      "title": "isIndexedBySpotlight",
+      "type": "topic",
+      "url": "/documentation/coredata/nspropertydescription/isindexedbyspotlight"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/NSPropertyDescription/isOptional": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the receiver is optional.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isOptional"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSPropertyDescription/isOptional",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "optional"
+        }
+      ],
+      "role": "symbol",
+      "title": "isOptional",
+      "type": "topic",
+      "url": "/documentation/coredata/nspropertydescription/isoptional"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/NSPropertyDescription/isStoredInExternalRecord": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether to write the property’s data in an external record file that corresponds to the managed object.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isStoredInExternalRecord"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSPropertyDescription/isStoredInExternalRecord",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "storedInExternalRecord"
+        }
+      ],
+      "role": "symbol",
+      "title": "isStoredInExternalRecord",
+      "type": "topic",
+      "url": "/documentation/coredata/nspropertydescription/isstoredinexternalrecord"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/NSPropertyDescription/isTransient": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the receiver is transient.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isTransient"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSPropertyDescription/isTransient",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "transient"
+        }
+      ],
+      "role": "symbol",
+      "title": "isTransient",
+      "type": "topic",
+      "url": "/documentation/coredata/nspropertydescription/istransient"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/NSPropertyDescription/name": {
+      "abstract": [
+        {
+          "text": "The name of the receiver.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "name"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSPropertyDescription/name",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "name"
+        }
+      ],
+      "role": "symbol",
+      "title": "name",
+      "type": "topic",
+      "url": "/documentation/coredata/nspropertydescription/name"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/NSPropertyDescription/renamingIdentifier": {
+      "abstract": [
+        {
+          "text": "The renaming identifier for the receiver.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "renamingIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSPropertyDescription/renamingIdentifier",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "renamingIdentifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "renamingIdentifier",
+      "type": "topic",
+      "url": "/documentation/coredata/nspropertydescription/renamingidentifier"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/NSPropertyDescription/setValidationPredicates(_:withValidationWarnings:)": {
+      "abstract": [
+        {
+          "text": "Sets the validation predicates and warnings of the receiver.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setValidationPredicates"
+        },
+        {
+          "kind": "text",
+          "text": "(["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPredicate",
+          "text": "NSPredicate"
+        },
+        {
+          "kind": "text",
+          "text": "]?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "withValidationWarnings"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "]?)"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSPropertyDescription/setValidationPredicates(_:withValidationWarnings:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setValidationPredicates:withValidationWarnings:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setValidationPredicates(_:withValidationWarnings:)",
+      "type": "topic",
+      "url": "/documentation/coredata/nspropertydescription/setvalidationpredicates(_:withvalidationwarnings:)"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/NSPropertyDescription/userInfo": {
+      "abstract": [
+        {
+          "text": "The user info dictionary of the receiver.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "userInfo"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s11AnyHashableV",
+          "text": "AnyHashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]?"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSPropertyDescription/userInfo",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "userInfo"
+        }
+      ],
+      "role": "symbol",
+      "title": "userInfo",
+      "type": "topic",
+      "url": "/documentation/coredata/nspropertydescription/userinfo"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/NSPropertyDescription/validationPredicates": {
+      "abstract": [
+        {
+          "text": "The validation predicates of the receiver.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "validationPredicates"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPredicate",
+          "text": "NSPredicate"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSPropertyDescription/validationPredicates",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "validationPredicates"
+        }
+      ],
+      "role": "symbol",
+      "title": "validationPredicates",
+      "type": "topic",
+      "url": "/documentation/coredata/nspropertydescription/validationpredicates"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/NSPropertyDescription/validationWarnings": {
+      "abstract": [
+        {
+          "text": "The error strings associated with the receiver’s validation predicates.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "validationWarnings"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSPropertyDescription/validationWarnings",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "validationWarnings"
+        }
+      ],
+      "role": "symbol",
+      "title": "validationWarnings",
+      "type": "topic",
+      "url": "/documentation/coredata/nspropertydescription/validationwarnings"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/NSPropertyDescription/versionHash": {
+      "abstract": [
+        {
+          "text": "The version hash for the receiver.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "versionHash"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSPropertyDescription/versionHash",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "versionHash"
+        }
+      ],
+      "role": "symbol",
+      "title": "versionHash",
+      "type": "topic",
+      "url": "/documentation/coredata/nspropertydescription/versionhash"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/NSPropertyDescription/versionHashModifier": {
+      "abstract": [
+        {
+          "text": "The version hash modifier for the receiver.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "versionHashModifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSPropertyDescription/versionHashModifier",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "versionHashModifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "versionHashModifier",
+      "type": "topic",
+      "url": "/documentation/coredata/nspropertydescription/versionhashmodifier"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/NSRelationshipDescription": {
+      "abstract": [
+        {
+          "text": "A description of a relationship between two entities.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSRelationshipDescription"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSRelationshipDescription",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSRelationshipDescription"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSRelationshipDescription",
+      "type": "topic",
+      "url": "/documentation/coredata/nsrelationshipdescription"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables an object to be encoded and decoded for archiving and distribution.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCoding"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoding"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying": {
+      "abstract": [
+        {
+          "text": "A protocol that objects adopt to provide functional copies of themselves.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCopying"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCopying",
+      "type": "topic",
+      "url": "/documentation/foundation/nscopying"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.apple.coredata/documentation/CoreData/NSAttributeDescription",
+        "doc://com.apple.coredata/documentation/CoreData/NSExpressionDescription",
+        "doc://com.apple.coredata/documentation/CoreData/NSFetchedPropertyDescription",
+        "doc://com.apple.coredata/documentation/CoreData/NSRelationshipDescription"
+      ],
+      "kind": "relationships",
+      "title": "Inherited By",
+      "type": "inheritedBy"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Standard-attributes",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.coredata/documentation/CoreData/NSAttributeDescription",
+        "doc://com.apple.coredata/documentation/CoreData/NSAttributeType",
+        "doc://com.apple.coredata/documentation/CoreData/NSRelationshipDescription"
+      ],
+      "title": "Standard attributes"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Accessing-Features-of-a-Property",
+      "identifiers": [
+        "doc://com.apple.coredata/documentation/CoreData/NSPropertyDescription/entity",
+        "doc://com.apple.coredata/documentation/CoreData/NSPropertyDescription/isIndexed",
+        "doc://com.apple.coredata/documentation/CoreData/NSPropertyDescription/isOptional",
+        "doc://com.apple.coredata/documentation/CoreData/NSPropertyDescription/isTransient",
+        "doc://com.apple.coredata/documentation/CoreData/NSPropertyDescription/name",
+        "doc://com.apple.coredata/documentation/CoreData/NSPropertyDescription/userInfo"
+      ],
+      "title": "Accessing Features of a Property"
+    },
+    {
+      "anchor": "Supporting-Validation",
+      "identifiers": [
+        "doc://com.apple.coredata/documentation/CoreData/NSPropertyDescription/validationPredicates",
+        "doc://com.apple.coredata/documentation/CoreData/NSPropertyDescription/validationWarnings",
+        "doc://com.apple.coredata/documentation/CoreData/NSPropertyDescription/setValidationPredicates(_:withValidationWarnings:)"
+      ],
+      "title": "Supporting Validation"
+    },
+    {
+      "anchor": "Supporting-Versioning",
+      "identifiers": [
+        "doc://com.apple.coredata/documentation/CoreData/NSPropertyDescription/versionHash",
+        "doc://com.apple.coredata/documentation/CoreData/NSPropertyDescription/versionHashModifier",
+        "doc://com.apple.coredata/documentation/CoreData/NSPropertyDescription/renamingIdentifier"
+      ],
+      "title": "Supporting Versioning"
+    },
+    {
+      "anchor": "Specifying-Spotlight-Support",
+      "identifiers": [
+        "doc://com.apple.coredata/documentation/CoreData/NSPropertyDescription/isIndexedBySpotlight",
+        "doc://com.apple.coredata/documentation/CoreData/NSPropertyDescription/isStoredInExternalRecord"
+      ],
+      "title": "Specifying Spotlight Support"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "3.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "3.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.4",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "2.0",
+              "name": "watchOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "NSPropertyDescription"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPropertyDescription"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPropertyDescription"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.coredata/documentation/CoreData"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Accessing-Features-of-a-Property",
+              "identifiers": [
+                "doc://com.apple.coredata/documentation/CoreData/NSPropertyDescription/entity",
+                "doc://com.apple.coredata/documentation/CoreData/NSPropertyDescription/isIndexed",
+                "doc://com.apple.coredata/documentation/CoreData/NSPropertyDescription/isOptional",
+                "doc://com.apple.coredata/documentation/CoreData/NSPropertyDescription/isTransient",
+                "doc://com.apple.coredata/documentation/CoreData/NSPropertyDescription/name",
+                "doc://com.apple.coredata/documentation/CoreData/NSPropertyDescription/userInfo"
+              ],
+              "title": "Accessing Features of a Property"
+            },
+            {
+              "anchor": "Supporting-Validation",
+              "identifiers": [
+                "doc://com.apple.coredata/documentation/CoreData/NSPropertyDescription/validationPredicates",
+                "doc://com.apple.coredata/documentation/CoreData/NSPropertyDescription/validationWarnings",
+                "doc://com.apple.coredata/documentation/CoreData/NSPropertyDescription/setValidationPredicates(_:withValidationWarnings:)"
+              ],
+              "title": "Supporting Validation"
+            },
+            {
+              "anchor": "Supporting-Versioning",
+              "identifiers": [
+                "doc://com.apple.coredata/documentation/CoreData/NSPropertyDescription/versionHash",
+                "doc://com.apple.coredata/documentation/CoreData/NSPropertyDescription/versionHashModifier",
+                "doc://com.apple.coredata/documentation/CoreData/NSPropertyDescription/renamingIdentifier"
+              ],
+              "title": "Supporting Versioning"
+            },
+            {
+              "anchor": "Specifying-Spotlight-Support",
+              "identifiers": [
+                "doc://com.apple.coredata/documentation/CoreData/NSPropertyDescription/isIndexedBySpotlight",
+                "doc://com.apple.coredata/documentation/CoreData/NSPropertyDescription/isStoredInExternalRecord"
+              ],
+              "title": "Specifying Spotlight Support"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            },
+            {
+              "identifiers": [
+                "doc://com.apple.coredata/documentation/CoreData/NSAttributeDescription",
+                "doc://com.apple.coredata/documentation/CoreData/NSExpressionDescription",
+                "doc://com.apple.coredata/documentation/CoreData/NSFetchedPropertyDescription",
+                "doc://com.apple.coredata/documentation/CoreData/NSRelationshipDescription"
+              ],
+              "kind": "relationships",
+              "title": "Inherited By",
+              "type": "inheritedBy"
+            },
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+                "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying"
+              ],
+              "kind": "relationships",
+              "title": "Conforms To",
+              "type": "conformsTo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Standard-attributes",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.coredata/documentation/CoreData/NSAttributeDescription",
+                "doc://com.apple.coredata/documentation/CoreData/NSAttributeType",
+                "doc://com.apple.coredata/documentation/CoreData/NSRelationshipDescription"
+              ],
+              "title": "Standard attributes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "NSPropertyDescription"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSPropertyDescription~1isStoredInExternalRecord/title",
+          "value": "storedInExternalRecord"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSPropertyDescription~1isStoredInExternalRecord/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "storedInExternalRecord"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSPropertyDescription~1versionHashModifier/title",
+          "value": "versionHashModifier"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSPropertyDescription~1versionHashModifier/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "versionHashModifier"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSPropertyDescription~1renamingIdentifier/title",
+          "value": "renamingIdentifier"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSPropertyDescription~1renamingIdentifier/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "renamingIdentifier"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSPropertyDescription~1name/title",
+          "value": "name"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSPropertyDescription~1name/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "name"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSPropertyDescription~1versionHash/title",
+          "value": "versionHash"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSPropertyDescription~1versionHash/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "versionHash"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSFetchedPropertyDescription/title",
+          "value": "NSFetchedPropertyDescription"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSFetchedPropertyDescription/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSFetchedPropertyDescription"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSFetchedPropertyDescription/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSFetchedPropertyDescription"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSPropertyDescription~1validationWarnings/title",
+          "value": "validationWarnings"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSPropertyDescription~1validationWarnings/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "validationWarnings"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSRelationshipDescription/title",
+          "value": "NSRelationshipDescription"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSRelationshipDescription/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSRelationshipDescription"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSRelationshipDescription/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSRelationshipDescription"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSPropertyDescription/title",
+          "value": "NSPropertyDescription"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSPropertyDescription/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPropertyDescription"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSPropertyDescription/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPropertyDescription"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSPropertyDescription~1isOptional/title",
+          "value": "optional"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSPropertyDescription~1isOptional/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "optional"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSPropertyDescription~1isTransient/title",
+          "value": "transient"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSPropertyDescription~1isTransient/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "transient"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSExpressionDescription/title",
+          "value": "NSExpressionDescription"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSExpressionDescription/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSExpressionDescription"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSExpressionDescription/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSExpressionDescription"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSPropertyDescription~1userInfo/title",
+          "value": "userInfo"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSPropertyDescription~1userInfo/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "userInfo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSPropertyDescription~1validationPredicates/title",
+          "value": "validationPredicates"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSPropertyDescription~1validationPredicates/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "validationPredicates"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSPropertyDescription~1entity/title",
+          "value": "entity"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSPropertyDescription~1entity/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "entity"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSPropertyDescription~1setValidationPredicates(_:withValidationWarnings:)/title",
+          "value": "setValidationPredicates:withValidationWarnings:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSPropertyDescription~1setValidationPredicates(_:withValidationWarnings:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setValidationPredicates:withValidationWarnings:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSAttributeType/title",
+          "value": "NSAttributeType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSAttributeType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAttributeType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSAttributeType/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAttributeType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSPropertyDescription~1isIndexed/title",
+          "value": "indexed"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSPropertyDescription~1isIndexed/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "indexed"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSPropertyDescription~1isIndexedBySpotlight/title",
+          "value": "indexedBySpotlight"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSPropertyDescription~1isIndexedBySpotlight/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "indexedBySpotlight"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSAttributeDescription/title",
+          "value": "NSAttributeDescription"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSAttributeDescription/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAttributeDescription"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSAttributeDescription/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAttributeDescription"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/coredata/nspropertydescription"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/coredata/nspropertydescription"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

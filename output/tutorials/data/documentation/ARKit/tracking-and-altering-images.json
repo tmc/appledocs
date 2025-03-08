@@ -1,0 +1,1722 @@
+{
+  "abstract": [
+    {
+      "text": "Create images from rectangular shapes found in the user’s environment, and augment their appearance.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.arkit/documentation/ARKit",
+        "doc://com.apple.arkit/documentation/ARKit/arkit-in-visionos"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.arkit/documentation/ARKit",
+        "doc://com.apple.arkit/documentation/ARKit/arkit-in-ios",
+        "doc://com.apple.arkit/documentation/ARKit/content-anchors"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.arkit/documentation/ARKit/tracking-and-altering-images"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "ARKit"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "13.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "13.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "16.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Tracking and altering images"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To demonstrate general image recognition, this sample app uses Vision to detect rectangular shapes in the user’s environment that are most likely artwork or photos. Run the app on an iPhone or iPad, and point the device’s camera at a movie poster or wall-mounted picture frame. When the app detects a rectangular shape, you extract the pixel data defined by that shape from the camera feed to create an image.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample app changes the appearance of the image by applying a Core ML model that performs a stylistic alteration. By repeating this action in succession, you achieve real-time image processing using a trained neural network.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To complete the effect of augmenting an image in the user’s environment, you use ARKit’s image tracking feature. ARKit can hold an altered image steady over the original image as the user moves the device in their environment. ARKit also tracks the image if it moves on its own, as when the app recognizes a banner on the side of a bus, and the bus begins to drive away.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "rendered2x-1584985272",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample app uses SceneKit to render its graphics.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Detect-Rectangular-Shapes-in-the-Users-Environment",
+          "level": 2,
+          "text": "Detect Rectangular Shapes in the User’s Environment",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As shown below, you can use Vision in real-time to check the camera feed for rectangles. You perform this check up to 10 times a second by using ",
+              "type": "text"
+            },
+            {
+              "code": "RectangleDetector",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to schedule a repeating timer with an ",
+              "type": "text"
+            },
+            {
+              "code": "updateInterval",
+              "type": "codeVoice"
+            },
+            {
+              "text": " of ",
+              "type": "text"
+            },
+            {
+              "code": "0.1",
+              "type": "codeVoice"
+            },
+            {
+              "text": " seconds.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "init() {",
+            "    self.updateTimer = Timer.scheduledTimer(withTimeInterval: updateInterval, repeats: true) { [weak self] _ in",
+            "        if let capturedImage = ViewController.instance?.sceneView.session.currentFrame?.capturedImage {",
+            "            self?.search(in: capturedImage)",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because Vision requests can be taxing on the processor, check the camera feed no more than 10 times a second. Checking for rectangles more frequently may cause the app’s frame rate to decrease, without noticeably improving the app’s results.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you make Vision requests in real-time with an ARKit–based app, you should do so serially. By waiting for one request to finish before invoking another, you ensure that the AR experience remains smooth and free of interruptions. In the ",
+              "type": "text"
+            },
+            {
+              "code": "search",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function, you use the ",
+              "type": "text"
+            },
+            {
+              "code": "isBusy",
+              "type": "codeVoice"
+            },
+            {
+              "text": " flag to ensure you’re only checking for one rectangle at a time:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "private func search(in pixelBuffer: CVPixelBuffer) {",
+            "    guard !isBusy else { return }",
+            "    isBusy = true",
+            "    ",
+            "    // ...",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample sets the ",
+              "type": "text"
+            },
+            {
+              "code": "isBusy",
+              "type": "codeVoice"
+            },
+            {
+              "text": " flag to ",
+              "type": "text"
+            },
+            {
+              "code": "false",
+              "type": "codeVoice"
+            },
+            {
+              "text": " when a Vision request completes or fails.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Crop-the-Camera-Feed-to-an-Observed-Rectangle",
+          "level": 2,
+          "text": "Crop the Camera Feed to an Observed Rectangle",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When Vision finds a rectangle in the camera feed, it provides you with the rectangle’s precise coordinates through a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Vision/VNRectangleObservation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". You apply those coordinates to a Core Image perspective correction filter to crop it, leaving you with just the image data inside the rectangular shape.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "private func completedVisionRequest(_ request: VNRequest?, error: Error?) {",
+            "    defer {",
+            "        isBusy = false",
+            "    }",
+            "    // Only proceed if a rectangular image was detected.",
+            "    guard let rectangle = request?.results?.first as? VNRectangleObservation else {",
+            "        guard let error = error else { return }",
+            "        print(\"Error: Rectangle detection failed - Vision request returned an error. \\(error.localizedDescription)\")",
+            "        return",
+            "    }",
+            "    guard let filter = CIFilter(name: \"CIPerspectiveCorrection\") else {",
+            "        print(\"Error: Rectangle detection failed - Could not create perspective correction filter.\")",
+            "        return",
+            "    }",
+            "    let width = CGFloat(CVPixelBufferGetWidth(currentCameraImage))",
+            "    let height = CGFloat(CVPixelBufferGetHeight(currentCameraImage))",
+            "    let topLeft = CGPoint(x: rectangle.topLeft.x * width, y: rectangle.topLeft.y * height)",
+            "    let topRight = CGPoint(x: rectangle.topRight.x * width, y: rectangle.topRight.y * height)",
+            "    let bottomLeft = CGPoint(x: rectangle.bottomLeft.x * width, y: rectangle.bottomLeft.y * height)",
+            "    let bottomRight = CGPoint(x: rectangle.bottomRight.x * width, y: rectangle.bottomRight.y * height)",
+            "    ",
+            "    filter.setValue(CIVector(cgPoint: topLeft), forKey: \"inputTopLeft\")",
+            "    filter.setValue(CIVector(cgPoint: topRight), forKey: \"inputTopRight\")",
+            "    filter.setValue(CIVector(cgPoint: bottomLeft), forKey: \"inputBottomLeft\")",
+            "    filter.setValue(CIVector(cgPoint: bottomRight), forKey: \"inputBottomRight\")",
+            "    ",
+            "    let ciImage = CIImage(cvPixelBuffer: currentCameraImage).oriented(.up)",
+            "    filter.setValue(ciImage, forKey: kCIInputImageKey)",
+            "    ",
+            "    guard let perspectiveImage: CIImage = filter.value(forKey: kCIOutputImageKey) as? CIImage else {",
+            "        print(\"Error: Rectangle detection failed - perspective correction filter has no output image.\")",
+            "        return",
+            "    }",
+            "    delegate?.rectangleFound(rectangleContent: perspectiveImage)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Using the first image in the Overview, the camera image is:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "rendered2x-1662142496",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The cropped result is:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "rendered2x-1662142494",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-a-Reference-Image",
+          "level": 2,
+          "text": "Create a Reference Image",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To prepare to track the cropped image, you create an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARReferenceImage",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", which provides ARKit with everything it needs, like its look and physical size, to locate that image in the physical environment.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let possibleReferenceImage = ARReferenceImage(referenceImagePixelBuffer, ",
+            "                                              orientation: .up, ",
+            "                                              physicalWidth: CGFloat(0.5))"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "ARKit requires that reference images contain sufficient detail to be recognizable; for example, a plain white image cannot be tracked. To prevent ARKit from failing to track a reference image, you validate it first before attempting to use it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "possibleReferenceImage.validate { [weak self] (error) in",
+            "    if let error = error {",
+            "        print(\"Reference image validation failed: \\(error.localizedDescription)\")",
+            "        return",
+            "    }",
+            "    // ..."
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Track-the-Image-Using-ARKit",
+          "level": 2,
+          "text": "Track the Image Using ARKit",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Provide the reference image to ARKit to get updates on where the image lies in the camera feed when the user moves their device. Do that by creating an image tracking session and passing the reference image in to the configuration’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARImageTrackingConfiguration/trackingImages",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let configuration = ARImageTrackingConfiguration()",
+            "configuration.maximumNumberOfTrackedImages = 1",
+            "configuration.trackingImages = trackingImages",
+            "sceneView.session.run(configuration, options: runOptions)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Vision made the initial observation about where the image lies in 2D space in the camera feed, but ARKit resolves its location in 3D space, in the physical environment. When ARKit succeeds in recognizing the image, it creates an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARImageAnchor",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and a SceneKit node at the right position. You save the anchor and node that ARKit gives you by passing them to an ",
+              "type": "text"
+            },
+            {
+              "code": "AlteredImage",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {",
+            "    alteredImage?.add(anchor, node: node)",
+            "    setMessageHidden(true)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Alter-the-Images-Appearance-Using-Core-ML",
+          "level": 2,
+          "text": "Alter the Image’s Appearance Using Core ML",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample app is bundled with a Core ML model that performs image processing. Given an input image and an integer index, the model outputs a visually modified version of that image in one of eight different styles. The particular style of the output depends on the value of the index you pass in. The first style resembles burned paper, the second style resembles a mosaic, and there are six other styles as shown in the following image.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "rendered2x-1584985287",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When Vision finds a rectangular shape in the user’s environment, you pass the camera’s image data defined by that rectangle into a new ",
+              "type": "text"
+            },
+            {
+              "code": "AlteredImage",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "guard let newAlteredImage = AlteredImage(rectangleContent, referenceImage: possibleReferenceImage) else { return }"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code shows how you choose the artistic style to apply to the image by inputting the integer index to the Core ML model. Then, you process the image by calling the Core ML model’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreML/MLModel/predictions(from:options:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let input = StyleTransferModelInput(image: self.modelInputImage, index: self.styleIndexArray)",
+            "let output = try AlteredImage.styleTransferModel.prediction(input: input, options: options)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following figure shows the result when you process the input image with a style index of 2.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "rendered2x-1584985290",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Display-the-Altered-Image-in-Augmented-Reality",
+          "level": 2,
+          "text": "Display the Altered Image in Augmented Reality",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To complete the augmented reality effect, you cover the original image with the altered image. First, add a visualization node to hold the altered image as a child of the node provided by ARKit.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "node.addChildNode(visualizationNode)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When Core ML produces the output image, you call ",
+              "type": "text"
+            },
+            {
+              "code": "imageAlteringComplete(_:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to pass the model’s output image into the visualization node’s ",
+              "type": "text"
+            },
+            {
+              "code": "display",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function, where you set the image as the visualization node’s contents.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func imageAlteringComplete(_ createdImage: CVPixelBuffer) {",
+            "    guard fadeBetweenStyles else { return }",
+            "    modelOutputImage = createdImage",
+            "    visualizationNode.display(createdImage)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The visualization node’s contents overlap the original image when SceneKit displays it. In the case of the image above, the following screenshot shows the end result as seen through a user’s device:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "rendered2x-1584985292",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Continually-Update-the-Images-Appearance",
+          "level": 2,
+          "text": "Continually Update the Image’s Appearance",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample demonstrates real-time image processing by switching artistic styles over time. By calling ",
+              "type": "text"
+            },
+            {
+              "code": "selectNextStyle",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", you can make successive alterations of the original image. ",
+              "type": "text"
+            },
+            {
+              "code": "styleIndex",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is the integer input to the Core ML model that determines the style of the output.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func selectNextStyle() {",
+            "    styleIndex = (styleIndex + 1) % numberOfStyles",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample’s ",
+              "type": "text"
+            },
+            {
+              "code": "VisualizationNode",
+              "type": "codeVoice"
+            },
+            {
+              "text": " fades between two images of differing style, which creates the effect that the tracked image is constantly transforming into a new look. You accomplish this effect by defining two SceneKit nodes. One node displays the current altered image, and the other displays the previous altered image.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "private let currentImage: SCNNode",
+            "private let previousImage: SCNNode"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You fade between these two nodes by running an opacity animation:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "SCNTransaction.begin()",
+            "SCNTransaction.animationDuration = fadeDuration",
+            "currentImage.opacity = 1.0",
+            "previousImage.opacity = 0.0",
+            "SCNTransaction.completionBlock = {",
+            "    self.delegate?.visualizationNodeDidFinishFade(self)",
+            "}",
+            "SCNTransaction.commit()"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the animation finishes, you begin altering the original image with the next artistic style by calling ",
+              "type": "text"
+            },
+            {
+              "code": "createAlteredImage",
+              "type": "codeVoice"
+            },
+            {
+              "text": " again:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func visualizationNodeDidFinishFade(_ visualizationNode: VisualizationNode) {",
+            "    guard fadeBetweenStyles, anchor != nil else { return }",
+            "    selectNextStyle()",
+            "    createAlteredImage()",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Respond-to-Image-Tracking-Updates",
+          "level": 2,
+          "text": "Respond to Image Tracking Updates",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As part of the image tracking feature, ARKit continues to look for the image throughout the AR session. If the image itself moves, ARKit updates the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARImageAnchor",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " with its corresponding image’s new location in the physical environment, and calls your delegate’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSCNViewDelegate/renderer(_:didUpdate:for:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to notify your app of the change.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func renderer(_ renderer: SCNSceneRenderer, didUpdate node: SCNNode, for anchor: ARAnchor) {",
+            "    alteredImage?.update(anchor)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample app tracks a single image at a time. To do that, you invalidate the current image tracking session if an image the app was tracking is no longer visible. This, in turn, enables Vision to start looking for a new rectangular shape in the camera feed.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func update(_ anchor: ARAnchor) {",
+            "    if let imageAnchor = anchor as? ARImageAnchor, self.anchor == anchor {",
+            "        self.anchor = imageAnchor",
+            "        // Reset the timeout if the app is still tracking an image.",
+            "        if imageAnchor.isTracked {",
+            "            resetImageTrackingTimeout()",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "37921c6fe4c6/TrackingAndAlteringImages.zip": {
+      "checksum": "37921c6fe4c6d594edf4b5a9497ccfe20bb6c594c7a363b140e498a1539f48a4074e5ec665e4264e06b50107a9716fa285a2f4e4adbf723acc8092349221567b",
+      "identifier": "37921c6fe4c6/TrackingAndAlteringImages.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/37921c6fe4c6/TrackingAndAlteringImages.zip"
+    },
+    "doc://com.apple.arkit/documentation/ARKit": {
+      "abstract": [
+        {
+          "text": "Integrate hardware sensing features to produce augmented reality apps and games.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "ARKit",
+      "type": "topic",
+      "url": "/documentation/arkit"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARImageAnchor": {
+      "abstract": [
+        {
+          "text": "An anchor for a known image that ARKit detects in the physical environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARImageAnchor"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARImageAnchor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARImageAnchor"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARImageAnchor",
+      "type": "topic",
+      "url": "/documentation/arkit/arimageanchor"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARImageTrackingConfiguration/trackingImages": {
+      "abstract": [
+        {
+          "text": "A set of images that ARKit searches for and tracks in the user’s environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "trackingImages"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sh",
+          "text": "Set"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARReferenceImage",
+          "text": "ARReferenceImage"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARImageTrackingConfiguration/trackingImages",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "trackingImages"
+        }
+      ],
+      "role": "symbol",
+      "title": "trackingImages",
+      "type": "topic",
+      "url": "/documentation/arkit/arimagetrackingconfiguration/trackingimages"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARReferenceImage": {
+      "abstract": [
+        {
+          "text": "A 2D image that you want ARKit to detect in the physical environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARReferenceImage"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARReferenceImage",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARReferenceImage"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARReferenceImage",
+      "type": "topic",
+      "url": "/documentation/arkit/arreferenceimage"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARSCNViewDelegate/renderer(_:didUpdate:for:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that a SceneKit node’s properties have been updated to match the current state of its corresponding anchor.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "renderer"
+        },
+        {
+          "kind": "text",
+          "text": "(any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)SCNSceneRenderer",
+          "text": "SCNSceneRenderer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didUpdate"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SCNNode",
+          "text": "SCNNode"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARAnchor",
+          "text": "ARAnchor"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSCNViewDelegate/renderer(_:didUpdate:for:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "renderer:didUpdateNode:forAnchor:"
+        }
+      ],
+      "role": "symbol",
+      "title": "renderer(_:didUpdate:for:)",
+      "type": "topic",
+      "url": "/documentation/arkit/arscnviewdelegate/renderer(_:didupdate:for:)"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ImageAnchor": {
+      "abstract": [
+        {
+          "text": "A 2D image’s position in a person’s surroundings.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ImageAnchor"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ImageAnchor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ImageAnchor"
+        }
+      ],
+      "role": "symbol",
+      "title": "ImageAnchor",
+      "type": "topic",
+      "url": "/documentation/arkit/imageanchor"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ImageTrackingProvider": {
+      "abstract": [
+        {
+          "text": "A source of live data about a 2D image’s position in a person’s surroundings.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ImageTrackingProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ImageTrackingProvider",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ImageTrackingProvider"
+        }
+      ],
+      "role": "symbol",
+      "title": "ImageTrackingProvider",
+      "type": "topic",
+      "url": "/documentation/arkit/imagetrackingprovider"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ReferenceImage": {
+      "abstract": [
+        {
+          "text": "A 2D image the system uses as a reference to find the same image in a person’s surroundings.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ReferenceImage"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ReferenceImage",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ReferenceImage"
+        }
+      ],
+      "role": "symbol",
+      "title": "ReferenceImage",
+      "type": "topic",
+      "url": "/documentation/arkit/referenceimage"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/arkit-in-ios": {
+      "abstract": [
+        {
+          "text": "Integrate iOS device camera and motion features to produce augmented reality experiences in your app or game.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/arkit-in-ios",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "ARKit in iOS",
+      "type": "topic",
+      "url": "/documentation/arkit/arkit-in-ios"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/arkit-in-visionos": {
+      "abstract": [
+        {
+          "text": "Create immersive augmented reality experiences.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/arkit-in-visionos",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "ARKit in visionOS",
+      "type": "topic",
+      "url": "/documentation/arkit/arkit-in-visionos"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/content-anchors": {
+      "abstract": [
+        {
+          "text": "Identify items in the physical environment, including planar surfaces, images, physical objects, body positions, and faces.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/content-anchors",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Content Anchors",
+      "type": "topic",
+      "url": "/documentation/arkit/content-anchors"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/detecting-images-in-an-ar-experience": {
+      "abstract": [
+        {
+          "text": "React to known 2D images in the user’s environment, and use their positions to place AR content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/detecting-images-in-an-ar-experience",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Detecting Images in an AR Experience",
+      "type": "topic",
+      "url": "/documentation/arkit/detecting-images-in-an-ar-experience"
+    },
+    "doc://com.apple.documentation/documentation/CoreML/MLModel/predictions(from:options:)": {
+      "abstract": [
+        {
+          "text": "Generates a prediction for each input feature provider within the batch provider using the prediction options.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "predictions"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "inputBatch"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MLBatchProvider",
+          "text": "MLBatchProvider"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MLPredictionOptions",
+          "text": "MLPredictionOptions"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MLBatchProvider",
+          "text": "MLBatchProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreML/MLModel/predictions(from:options:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "predictions(from:options:)",
+      "type": "topic",
+      "url": "/documentation/CoreML/MLModel/predictions(from:options:)"
+    },
+    "doc://com.apple.documentation/documentation/Vision/VNRectangleObservation": {
+      "abstract": [
+        {
+          "text": "An object that represents the four vertices of a detected rectangle.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VNRectangleObservation"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Vision/VNRectangleObservation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "VNRectangleObservation",
+      "type": "topic",
+      "url": "/documentation/Vision/VNRectangleObservation"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.documentation/documentation/visionOS/tracking-images-in-3d-space": {
+      "abstract": [
+        {
+          "text": "Place content based on the current position of a known image in a person’s surroundings.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/visionOS/tracking-images-in-3d-space",
+      "kind": "article",
+      "role": "article",
+      "title": "Tracking preregistered images in 3D space",
+      "type": "topic",
+      "url": "/documentation/visionOS/tracking-images-in-3d-space"
+    },
+    "rendered2x-1584985272": {
+      "alt": "Screenshot of the app in use. In the center of the user's view, there's a wall art picture being augmented with a stylistic image processing filter.",
+      "identifier": "rendered2x-1584985272",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/01ff7efe738d079880b1554c23f01de8/rendered2x-1584985272.png"
+        }
+      ]
+    },
+    "rendered2x-1584985287": {
+      "alt": "Figure that shows screenshots of each of the 8 different artistic styles applied to a recognized image. At left, the original is shown with no style applied.",
+      "identifier": "rendered2x-1584985287",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/18929b5d1b62a8f2afeeea1250be938a/rendered2x-1584985287.png"
+        }
+      ]
+    },
+    "rendered2x-1584985290": {
+      "alt": "Screenshot of altered image that's the result of inputting the cropped image in to the Core ML model.",
+      "identifier": "rendered2x-1584985290",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/42757aa9eb35d1542b88deb6bb44490d/rendered2x-1584985290.png"
+        }
+      ]
+    },
+    "rendered2x-1584985292": {
+      "alt": "Screenshot of the altered image overlay on the camera feed.",
+      "identifier": "rendered2x-1584985292",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/6684f66bc785993bb4b4d6e166afe87a/rendered2x-1584985292.png"
+        }
+      ]
+    },
+    "rendered2x-1662142494": {
+      "alt": "Screenshot of the camera feed that's been cropped to just the rectangular shape that Vision observed.",
+      "identifier": "rendered2x-1662142494",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/87fab06f33ca2e073cba6d3e5ba6dd1e/rendered2x-1662142494.png"
+        }
+      ]
+    },
+    "rendered2x-1662142496": {
+      "alt": "Screenshot of the session's uncropped camera feed.",
+      "identifier": "rendered2x-1662142496",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/198fd6717e1a4258e07ac10037e6ebb0/rendered2x-1662142496.png"
+        }
+      ]
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "37921c6fe4c6/TrackingAndAlteringImages.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Image-tracking",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.arkit/documentation/ARKit/detecting-images-in-an-ar-experience",
+        "doc://com.apple.documentation/documentation/visionOS/tracking-images-in-3d-space",
+        "doc://com.apple.arkit/documentation/ARKit/ImageTrackingProvider",
+        "doc://com.apple.arkit/documentation/ARKit/ImageAnchor",
+        "doc://com.apple.arkit/documentation/ARKit/ReferenceImage"
+      ],
+      "title": "Image tracking"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Image-tracking",
+              "generated": true,
+              "identifiers": [],
+              "title": "Image tracking"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSCNViewDelegate~1renderer(_:didUpdate:for:)/title",
+          "value": "renderer:didUpdateNode:forAnchor:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSCNViewDelegate~1renderer(_:didUpdate:for:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "renderer:didUpdateNode:forAnchor:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARReferenceImage/title",
+          "value": "ARReferenceImage"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARReferenceImage/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARReferenceImage"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARReferenceImage/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARReferenceImage"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreML~1MLModel~1predictions(from:options:)/title",
+          "value": "predictionsFromBatch:options:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreML~1MLModel~1predictions(from:options:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:Qoobjc(pl)MLBatchProvider",
+              "text": "id<MLBatchProvider>"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "predictionsFromBatch:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:Qoobjc(pl)MLBatchProvider",
+              "text": "id<MLBatchProvider>"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "internalParam",
+              "text": "inputBatch"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "options:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)MLPredictionOptions",
+              "text": "MLPredictionOptions"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "options"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "error:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSError",
+              "text": "NSError"
+            },
+            {
+              "kind": "text",
+              "text": " * *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "error"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARImageAnchor/title",
+          "value": "ARImageAnchor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARImageAnchor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARImageAnchor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARImageAnchor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARImageAnchor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARImageTrackingConfiguration~1trackingImages/title",
+          "value": "trackingImages"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARImageTrackingConfiguration~1trackingImages/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "trackingImages"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Vision~1VNRectangleObservation/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "VNRectangleObservation"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)VNDetectedObjectObservation",
+              "text": "VNDetectedObjectObservation"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/arkit/tracking-and-altering-images"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/arkit/tracking-and-altering-images"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

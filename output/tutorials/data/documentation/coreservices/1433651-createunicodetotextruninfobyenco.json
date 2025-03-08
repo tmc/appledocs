@@ -1,0 +1,507 @@
+{
+  "abstract": [
+    {
+      "text": "Based on the given text encoding specifications for theconverted text runs, creates and returns a Unicode converter objectcontaining information required for converting strings from Unicodeto one or more specified non-Unicode encodings.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/coreservices",
+        "doc://com.apple.documentation/documentation/coreservices/carbon_core",
+        "doc://com.apple.documentation/documentation/coreservices/carbon_core/text_encoding_conversion_manager"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/coreservices/1433651-createunicodetotextruninfobyenco"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1433651,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@F@CreateUnicodeToTextRunInfoByEncoding",
+    "modules": [
+      {
+        "name": "Core Services"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "15.4",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Function",
+    "symbolKind": "func",
+    "title": "CreateUnicodeToTextRunInfoByEncoding"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "identifier": "symbol-1586802",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@OSStatus",
+              "text": "OSStatus"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CreateUnicodeToTextRunInfoByEncoding"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/itemcount",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@ItemCount",
+              "text": "ItemCount"
+            },
+            {
+              "kind": "text",
+              "text": " iNumberOfEncodings, "
+            },
+            {
+              "kind": "keyword",
+              "text": "const"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreservices/textencoding",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@TextEncoding",
+              "text": "TextEncoding"
+            },
+            {
+              "kind": "text",
+              "text": " iEncodings[], "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreservices/unicodetotextruninfo",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@UnicodeToTextRunInfo",
+              "text": "UnicodeToTextRunInfo"
+            },
+            {
+              "kind": "text",
+              "text": " *oUnicodeToTextInfo);"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "languages": [
+        "occ"
+      ],
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The number of desired encodings. If you pass 0 for this parameter, the converter will use all of the scripts installed in the system. The primary script is the one with highest priority; ",
+                  "type": "text"
+                },
+                {
+                  "code": "ScriptOrder",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": "('",
+                  "type": "text"
+                },
+                {
+                  "code": "itlm'",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " resource) determines the priority of the rest. If you set the high-order bit for this parameter, the Unicode converter assumes that the ",
+                  "type": "text"
+                },
+                {
+                  "code": "iEncodings",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " parameter contains a single element specifying the preferred encoding. This feature is supported for versions 1.2 or later of the converter. ",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "iNumberOfEncodings"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An array of text encoding specifications for the desired encodings. Your application provides this structure to identify the encodings to be used for the conversion. The order in which you specify the encodings determines the priority of the destination encodings. If you pass ",
+                  "type": "text"
+                },
+                {
+                  "code": "NULL",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " for this parameter, the converter will use all of the scripts installed in the system. The primary script is the one with highest priority and ",
+                  "type": "text"
+                },
+                {
+                  "code": "ScriptOrder",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": "(",
+                  "type": "text"
+                },
+                {
+                  "code": "'itlm",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": "'resource) determines the priority of the rest.This feature is supported for versions 1.2 or later of the converter. ",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "iEncodings"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": " A pointer to a Unicode converter object for converting Unicode text strings to strings in one or more non-Unicode encodings. On return, a pointer to a Unicode converter object that holds the encodings you supply as the ",
+                  "type": "text"
+                },
+                {
+                  "code": "iEncodings",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " parameter and the state information related to the conversion. ",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "oUnicodeToTextInfo"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return_value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A resultcode. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreservices/carbon_core/text_encoding_conversion_manager#1664324",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You pass a Unicode converter object returned from ",
+              "type": "text"
+            },
+            {
+              "code": "CreateUnicodeToTextRunInfoByEncoding",
+              "type": "codeVoice"
+            },
+            {
+              "text": " tothe function  ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreservices/1433511-convertfromunicodetotextrun",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or  ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreservices/1433662-convertfromunicodetoscriptcoderu",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to identify the information to be used for the conversion. Thesetwo functions modify the contents of the Unicode converter object. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If an error is returned, the converter object is invalid. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/coreservices": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Services",
+      "type": "topic",
+      "url": "/documentation/coreservices"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1433495-resetunicodetotextruninfo": {
+      "abstract": [
+        {
+          "text": "Reinitializes all state information kept by the contextobjects in TextRun conversions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1433495-resetunicodetotextruninfo",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ResetUnicodeToTextRunInfo",
+      "type": "topic",
+      "url": "/documentation/coreservices/1433495-resetunicodetotextruninfo"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1433511-convertfromunicodetotextrun": {
+      "abstract": [
+        {
+          "text": "Converts a string from Unicode to one or more encodings. ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1433511-convertfromunicodetotextrun",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ConvertFromUnicodeToTextRun",
+      "type": "topic",
+      "url": "/documentation/coreservices/1433511-convertfromunicodetotextrun"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1433595-disposeunicodetotextruninfo": {
+      "abstract": [
+        {
+          "text": "Releases the memory allocated for the specified Unicodeconverter object. ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1433595-disposeunicodetotextruninfo",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "DisposeUnicodeToTextRunInfo",
+      "type": "topic",
+      "url": "/documentation/coreservices/1433595-disposeunicodetotextruninfo"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1433632-createunicodetotextruninfo": {
+      "abstract": [
+        {
+          "text": "Creates and returns a Unicode converter object containingthe information required for converting a Unicode text string tostrings in one or more non-Unicode encodings. ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1433632-createunicodetotextruninfo",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CreateUnicodeToTextRunInfo",
+      "type": "topic",
+      "url": "/documentation/coreservices/1433632-createunicodetotextruninfo"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1433651-createunicodetotextruninfobyenco": {
+      "abstract": [
+        {
+          "text": "Based on the given text encoding specifications for theconverted text runs, creates and returns a Unicode converter objectcontaining information required for converting strings from Unicodeto one or more specified non-Unicode encodings.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1433651-createunicodetotextruninfobyenco",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CreateUnicodeToTextRunInfoByEncoding",
+      "type": "topic",
+      "url": "/documentation/coreservices/1433651-createunicodetotextruninfobyenco"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1433657-createunicodetotextruninfobyscri": {
+      "abstract": [
+        {
+          "text": "Based on the given script codes for the converted textruns, creates and returns a Unicode converter object containinginformation required for converting strings from Unicode to oneor more specified non-Unicode encodings.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1433657-createunicodetotextruninfobyscri",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CreateUnicodeToTextRunInfoByScriptCode",
+      "type": "topic",
+      "url": "/documentation/coreservices/1433657-createunicodetotextruninfobyscri"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1433662-convertfromunicodetoscriptcoderu": {
+      "abstract": [
+        {
+          "text": "Converts a string from Unicode to one or more scripts. ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1433662-convertfromunicodetoscriptcoderu",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ConvertFromUnicodeToScriptCodeRun",
+      "type": "topic",
+      "url": "/documentation/coreservices/1433662-convertfromunicodetoscriptcoderu"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/carbon_core": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/carbon_core",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Carbon Core",
+      "type": "topic",
+      "url": "/documentation/coreservices/carbon_core"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/carbon_core/text_encoding_conversion_manager": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/carbon_core/text_encoding_conversion_manager",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Text Encoding Conversion Manager",
+      "type": "topic",
+      "url": "/documentation/coreservices/carbon_core/text_encoding_conversion_manager"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/carbon_core/text_encoding_conversion_manager#1664324": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/carbon_core/text_encoding_conversion_manager#1664324",
+      "kind": "article",
+      "role": "task",
+      "title": "Result Codes",
+      "type": "section",
+      "url": "/documentation/coreservices/carbon_core/text_encoding_conversion_manager#1664324"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/textencoding": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/textencoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "TextEncoding",
+      "type": "topic",
+      "url": "/documentation/coreservices/textencoding"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/unicodetotextruninfo": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/unicodetotextruninfo",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UnicodeToTextRunInfo",
+      "type": "topic",
+      "url": "/documentation/coreservices/unicodetotextruninfo"
+    },
+    "doc://com.apple.documentation/documentation/kernel/itemcount": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/itemcount",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ItemCount",
+      "type": "topic",
+      "url": "/documentation/kernel/itemcount"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreservices/1433511-convertfromunicodetotextrun",
+        "doc://com.apple.documentation/documentation/coreservices/1433662-convertfromunicodetoscriptcoderu",
+        "doc://com.apple.documentation/documentation/coreservices/1433632-createunicodetotextruninfo",
+        "doc://com.apple.documentation/documentation/coreservices/1433657-createunicodetotextruninfobyscri",
+        "doc://com.apple.documentation/documentation/coreservices/1433595-disposeunicodetotextruninfo",
+        "doc://com.apple.documentation/documentation/coreservices/1433495-resetunicodetotextruninfo"
+      ],
+      "title": "Converting From Unicode to Multiple Encodings"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/coreservices/1433651-createunicodetotextruninfobyenco"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

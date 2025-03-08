@@ -1,0 +1,447 @@
+{
+  "abstract": [
+    {
+      "text": "Request a user authorization to Account & Organizational Data Sharing apps and web services.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://org.swift.docc.AccountOrganizationalDataSharing/documentation/AccountOrganizationalDataSharing"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://org.swift.docc.AccountOrganizationalDataSharing/documentation/AccountOrganizationalDataSharing/Request-an-authorization"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "rest:oauth2:get:auth-oauth2-v2-authorize",
+    "modules": [
+      {
+        "name": "Account & Organizational Data Sharing"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "Request an authorization"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "1.0",
+        "name": "AccountOrganizationalDataSharing"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Web Endpoint",
+    "symbolKind": "httpRequest",
+    "title": "Request an authorization"
+  },
+  "primaryContentSections": [
+    {
+      "kind": "restEndpoint",
+      "title": "URL",
+      "tokens": [
+        {
+          "kind": "method",
+          "text": "GET"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "baseURL",
+          "text": "https://appleid.apple.com/"
+        },
+        {
+          "kind": "path",
+          "text": "auth/oauth2/v2/authorize"
+        }
+      ]
+    },
+    {
+      "items": [
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The identifier (App ID or Services ID) for your app. To prevent exposing sensitive data to the end user, don’t include your Team ID in the identifier.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "client_id",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ],
+          "typeDetails": [
+            {
+              "baseType": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A unique, single-use string that your app provides to associate a client session with the user’s identity token. This value also prevents replay attacks, and correlates the initial authentication request to the identity token provided in the authorization response.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "nonce",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ],
+          "typeDetails": [
+            {
+              "baseType": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The destination URI associated with your app that the authorization redirects. The URI must use the HTTPS protocol, include a domain name, can’t be an IP address or ",
+                  "type": "text"
+                },
+                {
+                  "code": "localhost",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", and must not contain a fragment identifer (",
+                  "type": "text"
+                },
+                {
+                  "code": "#",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ").",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "redirect_uri",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ],
+          "typeDetails": [
+            {
+              "baseType": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [],
+          "name": "response_mode",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ],
+          "typeDetails": [
+            {
+              "baseType": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The type of response requested. Use the value ",
+                  "type": "text"
+                },
+                {
+                  "code": "code",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "response_type",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ],
+          "typeDetails": [
+            {
+              "baseType": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The amount of personal information your app or web service requests from Apple’s servers. Valid values are ",
+                  "type": "text"
+                },
+                {
+                  "code": "edu.users.read",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " and ",
+                  "type": "text"
+                },
+                {
+                  "code": "edu.classes.read",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ". You can request one, both, or none. Use space separation and percent-encoding for multiple scopes; for example, ",
+                  "type": "text"
+                },
+                {
+                  "code": "\"scope=edu.users.read%20edu.classes.read\"",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "scope",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ],
+          "typeDetails": [
+            {
+              "baseType": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An arbitrary string that your app provides to represent the current state of the authorization request. This value mitigates cross-site request forgery attacks by comparing against the state value contained in the authorization response.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "state",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ],
+          "typeDetails": [
+            {
+              "baseType": "string"
+            }
+          ]
+        }
+      ],
+      "kind": "restParameters",
+      "source": "query",
+      "title": "Query Parameters"
+    },
+    {
+      "items": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The request was successful.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "OK",
+          "status": 200,
+          "type": []
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Resource not found.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Not Found",
+          "status": 404,
+          "type": []
+        }
+      ],
+      "kind": "restResponses",
+      "title": "Response Codes"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://org.swift.docc.AccountOrganizationalDataSharing/documentation/AccountOrganizationalDataSharing": {
+      "abstract": [
+        {
+          "text": "Provide people with the ability to authorize your apps and websites that access information about them on Apple REST services, like Roster API.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://org.swift.docc.AccountOrganizationalDataSharing/documentation/AccountOrganizationalDataSharing",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Account & Organizational Data Sharing",
+      "type": "topic",
+      "url": "/documentation/accountorganizationaldatasharing"
+    },
+    "doc://org.swift.docc.AccountOrganizationalDataSharing/documentation/AccountOrganizationalDataSharing/Request-an-authorization": {
+      "abstract": [
+        {
+          "text": "Request a user authorization to Account & Organizational Data Sharing apps and web services.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://org.swift.docc.AccountOrganizationalDataSharing/documentation/AccountOrganizationalDataSharing/Request-an-authorization",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Request an authorization"
+        }
+      ],
+      "role": "symbol",
+      "title": "Request an authorization",
+      "type": "topic",
+      "url": "/documentation/accountorganizationaldatasharing/request-an-authorization"
+    },
+    "doc://org.swift.docc.AccountOrganizationalDataSharing/documentation/AccountOrganizationalDataSharing/Revoke-tokens": {
+      "abstract": [
+        {
+          "text": "Invalidate the tokens and associated user authorizations for someone when they are no longer associated with your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://org.swift.docc.AccountOrganizationalDataSharing/documentation/AccountOrganizationalDataSharing/Revoke-tokens",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Revoke tokens"
+        }
+      ],
+      "role": "symbol",
+      "title": "Revoke tokens",
+      "type": "topic",
+      "url": "/documentation/accountorganizationaldatasharing/revoke-tokens"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Using-and-revoking-tokens",
+      "generated": true,
+      "identifiers": [
+        "doc://org.swift.docc.AccountOrganizationalDataSharing/documentation/AccountOrganizationalDataSharing/Revoke-tokens"
+      ],
+      "title": "Using and revoking tokens"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/accountorganizationaldatasharing/request-an-authorization"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,2513 @@
+{
+  "abstract": [
+    {
+      "text": "Provide users quick access to your app’s features from a toolbar and corresponding Touch Bar.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.appkit/documentation/AppKit",
+        "doc://com.apple.appkit/documentation/AppKit/touch-bar"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.appkit/documentation/AppKit",
+        "doc://com.apple.appkit/documentation/AppKit/views-and-controls",
+        "doc://com.apple.appkit/documentation/AppKit/toolbar"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.appkit/documentation/AppKit/integrating-a-toolbar-and-touch-bar-into-your-app"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "AppKit"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "10.13",
+        "name": "macOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "12.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Integrating a Toolbar and Touch Bar into Your App"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "toolbar",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " appears in the space immediately below or next to a window’s title bar and above the app’s content. You use an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSToolbar",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object to manage the items that appear in a toolbar, which are ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSToolbarItem",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects created in Interface Builder or source code.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample shows you how to add a toolbar to a window and add Touch Bar support that works in conjunction with the toolbar.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-the-Toolbar",
+          "level": 3,
+          "text": "Add the Toolbar",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample defines the custom class ",
+              "type": "text"
+            },
+            {
+              "code": "WindowController",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", which derives from ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSWindowController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and conforms to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSToolbarDelegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol. In Interface Builder, the sample creates an instance of ",
+              "type": "text"
+            },
+            {
+              "code": "WindowController",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in the Window Controller Scene of ",
+              "type": "text"
+            },
+            {
+              "code": "Main.storyboard",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and adds an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSToolbar",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSWindowController/window",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " referenced by the controller. Then the sample connects the toolbar’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSToolbar/delegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to the ",
+              "type": "text"
+            },
+            {
+              "code": "WindowController",
+              "type": "codeVoice"
+            },
+            {
+              "text": " instance.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The window controller also defines an outlet variable ",
+              "type": "text"
+            },
+            {
+              "code": "toolbar",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", making it possible to reference the toolbar instance in the source code of ",
+              "type": "text"
+            },
+            {
+              "code": "WindowController.swift",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@IBOutlet weak var toolbar: NSToolbar!"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Create-Toolbar-Item-Identifiers",
+          "level": 3,
+          "text": "Create Toolbar Item Identifiers",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSToolbarItem",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object has a unique identifier of type ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSToolbarItem/Identifier",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". AppKit provides identifiers for standard toolbar items such as cloud sharing, printing, and showing the font and color palette. For custom toolbar items, the app provides the identifiers. For example, the sample provides two identifiers for its custom toolbar items: one for setting the font size and one for setting the font style of an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "private extension NSToolbarItem.Identifier {",
+            "    static let fontSize: NSToolbarItem.Identifier = NSToolbarItem.Identifier(rawValue: \"FontSize\")",
+            "    static let fontStyle: NSToolbarItem.Identifier = NSToolbarItem.Identifier(rawValue: \"FontStyle\")",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Specify-Allowed-Toolbar-Items",
+          "level": 3,
+          "text": "Specify Allowed Toolbar Items",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To tell the toolbar which items are available, the sample’s toolbar delegate implements the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSToolbarDelegate/toolbarAllowedItemIdentifiers(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method, which returns an array of item identifiers. The available items appear in the toolbar’s customization palette for customizing the toolbar when running the sample app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func toolbarAllowedItemIdentifiers(_ toolbar: NSToolbar) -> [NSToolbarItem.Identifier] {",
+            "    return [ NSToolbarItem.Identifier.fontStyle,",
+            "             NSToolbarItem.Identifier.fontSize,",
+            "             NSToolbarItem.Identifier.space,",
+            "             NSToolbarItem.Identifier.flexibleSpace,",
+            "             NSToolbarItem.Identifier.print ]",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Specify-Default-Toolbar-Items",
+          "level": 3,
+          "text": "Specify Default Toolbar Items",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the sample app launches for the first time, a default set of items appear in the toolbar. The sample provides these items by implementing the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSToolbarDelegate/toolbarDefaultItemIdentifiers(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " delegate method, which returns an array containing the font style and font size item identifiers.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func toolbarDefaultItemIdentifiers(_ toolbar: NSToolbar) -> [NSToolbarItem.Identifier] {",
+            "    return [.fontStyle, .fontSize]",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Create-a-Toolbar-Item-from-an-Identifier",
+          "level": 3,
+          "text": "Create a Toolbar Item from an Identifier",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The toolbar asks its delegate to create a toolbar item by calling the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSToolbarDelegate/toolbar(_:itemForItemIdentifier:willBeInsertedIntoToolbar:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. It calls this method when adding an item to the toolbar but also when adding items to the toolbar’s customization palette.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample app’s implementation of this method creates items for the two identifiers created in the app, font style and font size.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func toolbar(",
+            "    _ toolbar: NSToolbar,",
+            "    itemForItemIdentifier itemIdentifier: NSToolbarItem.Identifier,",
+            "    willBeInsertedIntoToolbar flag: Bool) -> NSToolbarItem? {",
+            "    ",
+            "    var toolbarItem: NSToolbarItem?",
+            "    ",
+            "    /** Create a new NSToolbarItem instance and set its attributes based on",
+            "        the provided item identifier.",
+            "     */",
+            "    ",
+            "    if itemIdentifier == NSToolbarItem.Identifier.fontStyle {",
+            "        // 1) Font style toolbar item.",
+            "        toolbarItem =",
+            "            customToolbarItem(itemForItemIdentifier: NSToolbarItem.Identifier.fontStyle.rawValue,",
+            "                              label: NSLocalizedString(\"Font Style\", comment: \"\"),",
+            "                              paletteLabel: NSLocalizedString(\"Font Style\", comment: \"\"),",
+            "                              toolTip: NSLocalizedString(\"tool tip font style\", comment: \"\"),",
+            "                              itemContent: styleSegmentView)!",
+            "    } else if itemIdentifier == NSToolbarItem.Identifier.fontSize {",
+            "        // 2) Font size toolbar item.",
+            "        toolbarItem =",
+            "            customToolbarItem(itemForItemIdentifier: NSToolbarItem.Identifier.fontSize.rawValue,",
+            "                              label: NSLocalizedString(\"Font Size\", comment: \"\"),",
+            "                              paletteLabel: NSLocalizedString(\"Font Size\", comment: \"\"),",
+            "                              toolTip: NSLocalizedString(\"tool tip font size\", comment: \"\"),",
+            "                              itemContent: fontSizeView)!",
+            "    }",
+            "    ",
+            "    return toolbarItem",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The delegate isn’t responsible for creating toolbar items for standard identifiers; AppKit creates those toolbar items.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Use-a-Custom-View-for-a-Toolbar-Item",
+          "level": 3,
+          "text": "Use a Custom View for a Toolbar Item",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The font style and font size toolbar items display a custom view that the sample defines in ",
+              "type": "text"
+            },
+            {
+              "code": "Main.storyboard",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and connects with outlets in ",
+              "type": "text"
+            },
+            {
+              "code": "WindowController",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Font style toolbar item.",
+            "@IBOutlet var styleSegmentView: NSView! // The font style changing view (ends up in an NSToolbarItem).",
+            "",
+            "// Font size toolbar item.",
+            "@IBOutlet var fontSizeView: NSView! // The font size changing view (ends up in an NSToolbarItem)."
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the toolbar calls the delegate method ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSToolbarDelegate/toolbar(_:itemForItemIdentifier:willBeInsertedIntoToolbar:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", the sample creates the toolbar item by calling its helper function ",
+              "type": "text"
+            },
+            {
+              "code": "customToolbarItem",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", passing in the custom view for the requested toolbar item.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func customToolbarItem(",
+            "    itemForItemIdentifier itemIdentifier: String,",
+            "    label: String,",
+            "    paletteLabel: String,",
+            "    toolTip: String,",
+            "    itemContent: AnyObject) -> NSToolbarItem? {",
+            "    ",
+            "    let toolbarItem = NSToolbarItem(itemIdentifier: NSToolbarItem.Identifier(rawValue: itemIdentifier))",
+            "    ",
+            "    toolbarItem.label = label",
+            "    toolbarItem.paletteLabel = paletteLabel",
+            "    toolbarItem.toolTip = toolTip",
+            "    toolbarItem.target = self",
+            "    ",
+            "    // Set the right attribute, depending on if we were given an image or a view.",
+            "    if itemContent is NSImage {",
+            "        if let image = itemContent as? NSImage {",
+            "            toolbarItem.image = image",
+            "        }",
+            "    } else if itemContent is NSView {",
+            "        if let view = itemContent as? NSView {",
+            "            toolbarItem.view = view",
+            "        }",
+            "    } else {",
+            "        assertionFailure(\"Invalid itemContent: object\")",
+            "    }",
+            "    ",
+            "    // We actually need an NSMenuItem here, so we construct one.",
+            "    let menuItem: NSMenuItem = NSMenuItem()",
+            "    menuItem.submenu = nil",
+            "    menuItem.title = label",
+            "    toolbarItem.menuFormRepresentation = menuItem",
+            "    ",
+            "    return toolbarItem",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Add-More-Attributes-to-a-Toolbar-Item",
+          "level": 3,
+          "text": "Add More Attributes to a Toolbar Item",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample’s toolbar delegate also implements the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSToolbarDelegate/toolbarWillAddItem(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to know when the toolbar is about to add an item. This gives the delegate the opportunity to add or change state information for the item. For example, the sample sets the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSToolbarItem/toolTip",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property of a toolbar item with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSToolbarItem/Identifier/print",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " identifier.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func toolbarWillAddItem(_ notification: Notification) {",
+            "    let userInfo = notification.userInfo!",
+            "    if let addedItem = userInfo[\"item\"] as? NSToolbarItem {",
+            "        let itemIdentifier = addedItem.itemIdentifier",
+            "        if itemIdentifier == .print {",
+            "            addedItem.toolTip = NSLocalizedString(\"print string\", comment: \"\")",
+            "            addedItem.target = self",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Provide-Toolbar-Customization-to-Users",
+          "level": 3,
+          "text": "Provide Toolbar Customization to Users",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The toolbar displays the default items in the same order as they appear in the array that ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSToolbarDelegate/toolbarDefaultItemIdentifiers(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " returns. But users can rearrange the items, add and remove items, and reset the toolbar to its default items by selecting View > Customize Toolbar, which displays the toolbar’s configuration palette. The sample app also saves the changes and reapplies them the next time the user launches the app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample app provides these behaviors by setting the toolbar’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSToolbar/allowsUserCustomization",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSToolbar/autosavesConfiguration",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " properties to ",
+              "type": "text"
+            },
+            {
+              "code": "true",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "/*\tIf you pass false here, you turn off the customization palette. The",
+            "    NSWindow method -runToolbarCustomizationPalette: handles the display",
+            "    of the palette, which you can see in Interface Builder is connected",
+            "    to the\"Customize Toolbar\" menu item.",
+            " */",
+            "toolbar.allowsUserCustomization = true",
+            "",
+            "/*\tTell the toolbar that it should save any toolbar configuration changes",
+            "    to user defaults, that is, persist any mode changes or item reordering.",
+            "    The app writes the configuration to the app domain using the toolbar",
+            "    identifier as the key.",
+            " */",
+            "toolbar.autosavesConfiguration = true"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Add-Touch-Bar-Support",
+          "level": 3,
+          "text": "Add Touch Bar Support",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample app provides Touch Bar support that works in conjunction with the toolbar. Like the toolbar, the app provides two items on the Touch Bar: font style and font size.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before the sample app can add items to the Touch Bar, it needs to create an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTouchBar",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object. The sample does this by overriding the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSResponder/makeTouchBar()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method, where it creates and returns a new Touch Bar object.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Then, similar to adding toolbar items, the sample implements the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTouchBarDelegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTouchBarDelegate/touchBar(_:makeItemForIdentifier:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", where it creates and returns Touch Bar items for the specified identifier.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "It’s possible to simulate a Touch Bar from Xcode by choosing Window > Show Touch Bar.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "code": [
+            "override func makeTouchBar() -> NSTouchBar? {",
+            "    let touchBar = NSTouchBar()",
+            "    touchBar.delegate = self",
+            "    touchBar.customizationIdentifier = .touchBar",
+            "    touchBar.defaultItemIdentifiers = [.fontStyle, .popover, NSTouchBarItem.Identifier.otherItemsProxy]",
+            "    touchBar.customizationAllowedItemIdentifiers = [.fontStyle, .popover]",
+            "    ",
+            "    return touchBar",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Provide-Touch-Bar-Customization-to-Users",
+          "level": 3,
+          "text": "Provide Touch Bar Customization to Users",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As with the toolbar, the sample app lets users customize items in the Touch Bar by choosing View > Customize Touch Bar. The app provides this feature by setting the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSApplication/isAutomaticCustomizeTouchBarMenuItemEnabled",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property to ",
+              "type": "text"
+            },
+            {
+              "code": "true",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func applicationDidFinishLaunching(_ aNotification: Notification) {",
+            "    ",
+            "    // Allow users to customize the app's Touch Bar items.",
+            "    NSApplication.shared.isAutomaticCustomizeTouchBarMenuItemEnabled = true",
+            "    ",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "a796b6ad5663/IntegratingAToolbarAndTouchBarIntoYourApp.zip": {
+      "checksum": "a796b6ad5663a0e1635156d77f803d65e5ba38cde75a0bfcd415280361edf3aa78053306b51eb8d0cef9fb1362ce6e851cc2b591ab6cdd4ed9012e4b826362ee",
+      "identifier": "a796b6ad5663/IntegratingAToolbarAndTouchBarIntoYourApp.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/a796b6ad5663/IntegratingAToolbarAndTouchBarIntoYourApp.zip"
+    },
+    "doc://com.apple.appkit/documentation/AppKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your macOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AppKit",
+      "type": "topic",
+      "url": "/documentation/appkit"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSApplication/isAutomaticCustomizeTouchBarMenuItemEnabled": {
+      "abstract": [
+        {
+          "text": "A Boolean value indicating whether the main menu contains an item for customizing the contents of the Touch Bar.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isAutomaticCustomizeTouchBarMenuItemEnabled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSApplication/isAutomaticCustomizeTouchBarMenuItemEnabled",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "automaticCustomizeTouchBarMenuItemEnabled"
+        }
+      ],
+      "role": "symbol",
+      "title": "isAutomaticCustomizeTouchBarMenuItemEnabled",
+      "type": "topic",
+      "url": "/documentation/appkit/nsapplication/isautomaticcustomizetouchbarmenuitemenabled"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSResponder/makeTouchBar()": {
+      "abstract": [
+        {
+          "text": "Your custom subclass of the ",
+          "type": "text"
+        },
+        {
+          "code": "NSResponder",
+          "type": "codeVoice"
+        },
+        {
+          "text": " class should override this method to create and configure your subclass’s default ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTouchBar",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "makeTouchBar"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSTouchBar",
+          "text": "NSTouchBar"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSResponder/makeTouchBar()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "makeTouchBar"
+        }
+      ],
+      "role": "symbol",
+      "title": "makeTouchBar()",
+      "type": "topic",
+      "url": "/documentation/appkit/nsresponder/maketouchbar()"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTextView": {
+      "abstract": [
+        {
+          "text": "A view that draws text and handles user interactions with that text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSTextView"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTextView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSTextView"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSTextView",
+      "type": "topic",
+      "url": "/documentation/appkit/nstextview"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSToolbar": {
+      "abstract": [
+        {
+          "text": "An object that manages the space above your app’s custom content and either below or integrated with the window’s title bar.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSToolbar"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSToolbar",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSToolbar"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSToolbar",
+      "type": "topic",
+      "url": "/documentation/appkit/nstoolbar"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSToolbar/allowsUserCustomization": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether users can modify the contents of the toolbar.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "allowsUserCustomization"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSToolbar/allowsUserCustomization",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "allowsUserCustomization"
+        }
+      ],
+      "role": "symbol",
+      "title": "allowsUserCustomization",
+      "type": "topic",
+      "url": "/documentation/appkit/nstoolbar/allowsusercustomization"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSToolbar/autosavesConfiguration": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the toolbar autosaves its configuration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "autosavesConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSToolbar/autosavesConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "autosavesConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "autosavesConfiguration",
+      "type": "topic",
+      "url": "/documentation/appkit/nstoolbar/autosavesconfiguration"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSToolbar/delegate": {
+      "abstract": [
+        {
+          "text": "The object you use to customize the toolbar contents and configuration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "delegate"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSToolbarDelegate",
+          "text": "NSToolbarDelegate"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSToolbar/delegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "delegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "delegate",
+      "type": "topic",
+      "url": "/documentation/appkit/nstoolbar/delegate"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSToolbarDelegate": {
+      "abstract": [
+        {
+          "text": "A set of optional methods you use to configure the toolbar and respond to changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSToolbarDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSToolbarDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSToolbarDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSToolbarDelegate",
+      "type": "topic",
+      "url": "/documentation/appkit/nstoolbardelegate"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSToolbarDelegate/toolbar(_:itemForItemIdentifier:willBeInsertedIntoToolbar:)": {
+      "abstract": [
+        {
+          "text": "Asks the delegate for the toolbar item associated with the specified identifier.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "toolbar"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSToolbar",
+          "text": "NSToolbar"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "itemForItemIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSToolbarItem",
+          "text": "NSToolbarItem"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSToolbarItemIdentifier",
+          "text": "Identifier"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "willBeInsertedIntoToolbar"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSToolbarItem",
+          "text": "NSToolbarItem"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSToolbarDelegate/toolbar(_:itemForItemIdentifier:willBeInsertedIntoToolbar:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "toolbar:itemForItemIdentifier:willBeInsertedIntoToolbar:"
+        }
+      ],
+      "role": "symbol",
+      "title": "toolbar(_:itemForItemIdentifier:willBeInsertedIntoToolbar:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nstoolbardelegate/toolbar(_:itemforitemidentifier:willbeinsertedintotoolbar:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSToolbarDelegate/toolbarAllowedItemIdentifiers(_:)": {
+      "abstract": [
+        {
+          "text": "Asks the delegate to provide the items allowed on the toolbar.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "toolbarAllowedItemIdentifiers"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSToolbar",
+          "text": "NSToolbar"
+        },
+        {
+          "kind": "text",
+          "text": ") -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSToolbarItem",
+          "text": "NSToolbarItem"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSToolbarItemIdentifier",
+          "text": "Identifier"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSToolbarDelegate/toolbarAllowedItemIdentifiers(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "toolbarAllowedItemIdentifiers:"
+        }
+      ],
+      "role": "symbol",
+      "title": "toolbarAllowedItemIdentifiers(_:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nstoolbardelegate/toolbaralloweditemidentifiers(_:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSToolbarDelegate/toolbarDefaultItemIdentifiers(_:)": {
+      "abstract": [
+        {
+          "text": "Asks the delegate to provide the default items to display on the toolbar.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "toolbarDefaultItemIdentifiers"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSToolbar",
+          "text": "NSToolbar"
+        },
+        {
+          "kind": "text",
+          "text": ") -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSToolbarItem",
+          "text": "NSToolbarItem"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSToolbarItemIdentifier",
+          "text": "Identifier"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSToolbarDelegate/toolbarDefaultItemIdentifiers(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "toolbarDefaultItemIdentifiers:"
+        }
+      ],
+      "role": "symbol",
+      "title": "toolbarDefaultItemIdentifiers(_:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nstoolbardelegate/toolbardefaultitemidentifiers(_:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSToolbarDelegate/toolbarWillAddItem(_:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that the toolbar is about to add the specified item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "toolbarWillAddItem"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation12NotificationV",
+          "text": "Notification"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSToolbarDelegate/toolbarWillAddItem(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "toolbarWillAddItem:"
+        }
+      ],
+      "role": "symbol",
+      "title": "toolbarWillAddItem(_:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nstoolbardelegate/toolbarwilladditem(_:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSToolbarItem": {
+      "abstract": [
+        {
+          "text": "A single item that appears in a window’s toolbar.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSToolbarItem"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSToolbarItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSToolbarItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSToolbarItem",
+      "type": "topic",
+      "url": "/documentation/appkit/nstoolbaritem"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSToolbarItem/Identifier": {
+      "abstract": [
+        {
+          "text": "Constants for the standard toolbar items that the system provides.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Identifier"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSToolbarItem/Identifier",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Identifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSToolbarItem.Identifier",
+      "type": "topic",
+      "url": "/documentation/appkit/nstoolbaritem/identifier"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSToolbarItem/Identifier/print": {
+      "abstract": [
+        {
+          "text": "The identifier for a toolbar item that tells your app to print the current document.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "print"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSToolbarItem",
+          "text": "NSToolbarItem"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSToolbarItemIdentifier",
+          "text": "Identifier"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSToolbarItem/Identifier/print",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSToolbarPrintItemIdentifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "print",
+      "type": "topic",
+      "url": "/documentation/appkit/nstoolbaritem/identifier/print"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSToolbarItem/toolTip": {
+      "abstract": [
+        {
+          "text": "The tooltip to display when someone hovers over the item in the toolbar.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "toolTip"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSToolbarItem/toolTip",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "toolTip"
+        }
+      ],
+      "role": "symbol",
+      "title": "toolTip",
+      "type": "topic",
+      "url": "/documentation/appkit/nstoolbaritem/tooltip"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTouchBar": {
+      "abstract": [
+        {
+          "text": "An object that provides dynamic contextual controls in the Touch Bar of supported models of MacBook Pro.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSTouchBar"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTouchBar",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSTouchBar"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSTouchBar",
+      "type": "topic",
+      "url": "/documentation/appkit/nstouchbar"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTouchBarDelegate": {
+      "abstract": [
+        {
+          "text": "A protocol that allows you to provide the items for a bar dynamically.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSTouchBarDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTouchBarDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSTouchBarDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSTouchBarDelegate",
+      "type": "topic",
+      "url": "/documentation/appkit/nstouchbardelegate"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTouchBarDelegate/touchBar(_:makeItemForIdentifier:)": {
+      "abstract": [
+        {
+          "text": "Asks the delegate object for the bar item for the specified bar and item identifier.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "touchBar"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSTouchBar",
+          "text": "NSTouchBar"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "makeItemForIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSTouchBarItem",
+          "text": "NSTouchBarItem"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTouchBarItemIdentifier",
+          "text": "Identifier"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSTouchBarItem",
+          "text": "NSTouchBarItem"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTouchBarDelegate/touchBar(_:makeItemForIdentifier:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "touchBar:makeItemForIdentifier:"
+        }
+      ],
+      "role": "symbol",
+      "title": "touchBar(_:makeItemForIdentifier:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nstouchbardelegate/touchbar(_:makeitemforidentifier:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTouchBarProvider": {
+      "abstract": [
+        {
+          "text": "A protocol that an object adopts to create a bar object in your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSTouchBarProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTouchBarProvider",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSTouchBarProvider"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSTouchBarProvider",
+      "type": "topic",
+      "url": "/documentation/appkit/nstouchbarprovider"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSWindowController": {
+      "abstract": [
+        {
+          "text": "A controller that manages a window, usually a window stored in a nib file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSWindowController"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSWindowController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSWindowController"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSWindowController",
+      "type": "topic",
+      "url": "/documentation/appkit/nswindowcontroller"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSWindowController/window": {
+      "abstract": [
+        {
+          "text": "The window owned by the receiver.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "window"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSWindow",
+          "text": "NSWindow"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSWindowController/window",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "window"
+        }
+      ],
+      "role": "symbol",
+      "title": "window",
+      "type": "topic",
+      "url": "/documentation/appkit/nswindowcontroller/window"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/creating-and-customizing-the-touch-bar": {
+      "abstract": [
+        {
+          "text": "Adopt Touch Bar support by displaying interactive content and controls for your macOS apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/creating-and-customizing-the-touch-bar",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Creating and Customizing the Touch Bar",
+      "type": "topic",
+      "url": "/documentation/appkit/creating-and-customizing-the-touch-bar"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/toolbar": {
+      "abstract": [
+        {
+          "text": "Provide a space for controls under a window’s title bar and above your custom content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/toolbar",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Toolbar",
+      "type": "topic",
+      "url": "/documentation/appkit/toolbar"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/touch-bar": {
+      "abstract": [
+        {
+          "text": "Display interactive content and controls in the Touch Bar.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/touch-bar",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Touch Bar",
+      "type": "topic",
+      "url": "/documentation/appkit/touch-bar"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/views-and-controls": {
+      "abstract": [
+        {
+          "text": "Present your content onscreen and handle user input and events.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/views-and-controls",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Views and Controls",
+      "type": "topic",
+      "url": "/documentation/appkit/views-and-controls"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "a796b6ad5663/IntegratingAToolbarAndTouchBarIntoYourApp.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/creating-and-customizing-the-touch-bar",
+        "doc://com.apple.appkit/documentation/AppKit/NSTouchBar",
+        "doc://com.apple.appkit/documentation/AppKit/NSTouchBarDelegate",
+        "doc://com.apple.appkit/documentation/AppKit/NSTouchBarProvider"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Essentials",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/creating-and-customizing-the-touch-bar",
+                "doc://com.apple.appkit/documentation/AppKit/NSTouchBar",
+                "doc://com.apple.appkit/documentation/AppKit/NSTouchBarDelegate",
+                "doc://com.apple.appkit/documentation/AppKit/NSTouchBarProvider"
+              ],
+              "title": "Essentials"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTouchBarProvider/title",
+          "value": "NSTouchBarProvider"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTouchBarProvider/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTouchBarProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTouchBarProvider/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTouchBarProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSToolbar~1delegate/title",
+          "value": "delegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSToolbar~1delegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "delegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSToolbarDelegate~1toolbar(_:itemForItemIdentifier:willBeInsertedIntoToolbar:)/title",
+          "value": "toolbar:itemForItemIdentifier:willBeInsertedIntoToolbar:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSToolbarDelegate~1toolbar(_:itemForItemIdentifier:willBeInsertedIntoToolbar:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "toolbar:itemForItemIdentifier:willBeInsertedIntoToolbar:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSToolbarItem~1Identifier/title",
+          "value": "NSToolbarItemIdentifier"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSToolbarItem~1Identifier/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSToolbarItemIdentifier"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSToolbarItem~1Identifier/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSToolbarItemIdentifier"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSToolbar~1autosavesConfiguration/title",
+          "value": "autosavesConfiguration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSToolbar~1autosavesConfiguration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "autosavesConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSToolbarDelegate~1toolbarAllowedItemIdentifiers(_:)/title",
+          "value": "toolbarAllowedItemIdentifiers:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSToolbarDelegate~1toolbarAllowedItemIdentifiers(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "toolbarAllowedItemIdentifiers:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindowController/title",
+          "value": "NSWindowController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindowController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSWindowController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindowController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSWindowController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextView/title",
+          "value": "NSTextView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTextView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTextView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTextView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTouchBar/title",
+          "value": "NSTouchBar"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTouchBar/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTouchBar"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTouchBar/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTouchBar"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSToolbarItem~1toolTip/title",
+          "value": "toolTip"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSToolbarItem~1toolTip/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "toolTip"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTouchBarDelegate~1touchBar(_:makeItemForIdentifier:)/title",
+          "value": "touchBar:makeItemForIdentifier:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTouchBarDelegate~1touchBar(_:makeItemForIdentifier:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "touchBar:makeItemForIdentifier:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSToolbarDelegate/title",
+          "value": "NSToolbarDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSToolbarDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSToolbarDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSToolbarDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSToolbarDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSToolbarItem/title",
+          "value": "NSToolbarItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSToolbarItem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSToolbarItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSToolbarItem/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSToolbarItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTouchBarDelegate/title",
+          "value": "NSTouchBarDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTouchBarDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTouchBarDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTouchBarDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTouchBarDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSToolbarItem~1Identifier~1print/title",
+          "value": "NSToolbarPrintItemIdentifier"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSToolbarItem~1Identifier~1print/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSToolbarPrintItemIdentifier"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSToolbarDelegate~1toolbarDefaultItemIdentifiers(_:)/title",
+          "value": "toolbarDefaultItemIdentifiers:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSToolbarDelegate~1toolbarDefaultItemIdentifiers(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "toolbarDefaultItemIdentifiers:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSResponder~1makeTouchBar()/title",
+          "value": "makeTouchBar"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSResponder~1makeTouchBar()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "makeTouchBar"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSToolbarDelegate~1toolbarWillAddItem(_:)/title",
+          "value": "toolbarWillAddItem:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSToolbarDelegate~1toolbarWillAddItem(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "toolbarWillAddItem:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSToolbar/title",
+          "value": "NSToolbar"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSToolbar/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSToolbar"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSToolbar/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSToolbar"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSToolbar~1allowsUserCustomization/title",
+          "value": "allowsUserCustomization"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSToolbar~1allowsUserCustomization/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "allowsUserCustomization"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSApplication~1isAutomaticCustomizeTouchBarMenuItemEnabled/title",
+          "value": "automaticCustomizeTouchBarMenuItemEnabled"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSApplication~1isAutomaticCustomizeTouchBarMenuItemEnabled/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "automaticCustomizeTouchBarMenuItemEnabled"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindowController~1window/title",
+          "value": "window"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindowController~1window/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "window"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/appkit/integrating-a-toolbar-and-touch-bar-into-your-app"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/appkit/integrating-a-toolbar-and-touch-bar-into-your-app"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

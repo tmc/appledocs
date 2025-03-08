@@ -1,0 +1,298 @@
+{
+  "abstract": [
+    {
+      "text": "Define tags and signatures used for version 1.0 profiles.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/applicationservices",
+        "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1560273-element_tags_and_signatures_for_"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1560273,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Application Services"
+      }
+    ],
+    "role": "collectionGroup",
+    "title": "Element Tags and Signatures for Version 1.0 Profiles"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ICC version 2.x profile format differs from the version 1.0 profile format, and ColorSync Manager routines for updating a profile and searching for profiles do not work with version 1.0 profiles. However, your application can use version 1.0 profiles with all other ColorSync routines. For example, you can open a version 1.0 profile using the function ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804853-cmopenprofile",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", obtain the version 1.0 profile header using the function ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804879-cmgetprofileheader",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and access version 1.0 profile elements using the function ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804973-cmgetprofileelement",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To make this possible, the ColorSync Manager includes support for the version 1.0 profile header structure and synthesizes tags to allow you to access four 1.0 elements outside the version 1.0 profile header. This enumeration defines these tags. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/applicationservices": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Application Services",
+      "type": "topic",
+      "url": "/documentation/applicationservices"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/cmcs1chromtag": {
+      "abstract": [
+        {
+          "text": "The tag signature for the profile chromaticities tag whose element data specifies the XYZ chromaticities for the six primary and secondary colors (red, green, blue, cyan, magenta, and yellow).",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "cmCS1ChromTag"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/cmcs1chromtag",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cmCS1ChromTag",
+      "type": "topic",
+      "url": "/documentation/applicationservices/cmcs1chromtag"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/cmcs1custtag": {
+      "abstract": [
+        {
+          "text": "Private data for a custom CMM.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "cmCS1CustTag"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/cmcs1custtag",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cmCS1CustTag",
+      "type": "topic",
+      "url": "/documentation/applicationservices/cmcs1custtag"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/cmcs1nametag": {
+      "abstract": [
+        {
+          "text": "The tag signature for the profile name string. This is an international string consisting of a Macintosh script code followed by a 63-byte text string identifying the profile.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "cmCS1NameTag"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/cmcs1nametag",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cmCS1NameTag",
+      "type": "topic",
+      "url": "/documentation/applicationservices/cmcs1nametag"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/cmcs1trctag": {
+      "abstract": [
+        {
+          "text": "The tag signature for profile tonal response curve data for the associated device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "cmCS1TRCTag"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/cmcs1trctag",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cmCS1TRCTag",
+      "type": "topic",
+      "url": "/documentation/applicationservices/cmcs1trctag"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "ColorSync Manager",
+      "type": "topic",
+      "url": "/documentation/applicationservices/colorsync_manager"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804853-cmopenprofile": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804853-cmopenprofile",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "CMOpenProfile",
+      "type": "topic",
+      "url": "/documentation/applicationservices/colorsync_manager/1804853-cmopenprofile"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804879-cmgetprofileheader": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804879-cmgetprofileheader",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "CMGetProfileHeader",
+      "type": "topic",
+      "url": "/documentation/applicationservices/colorsync_manager/1804879-cmgetprofileheader"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804973-cmgetprofileelement": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/colorsync_manager/1804973-cmgetprofileelement",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "CMGetProfileElement",
+      "type": "topic",
+      "url": "/documentation/applicationservices/colorsync_manager/1804973-cmgetprofileelement"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "1601724",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/applicationservices/cmcs1chromtag",
+        "doc://com.apple.documentation/documentation/applicationservices/cmcs1trctag",
+        "doc://com.apple.documentation/documentation/applicationservices/cmcs1nametag",
+        "doc://com.apple.documentation/documentation/applicationservices/cmcs1custtag"
+      ],
+      "kind": "taskGroup",
+      "title": "Constants"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/applicationservices/1560273-0_profiles"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/applicationservices/colorsync_manager/1560273-element_tags_and_signatures_for_"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

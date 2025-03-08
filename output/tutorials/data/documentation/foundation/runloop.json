@@ -1,0 +1,1436 @@
+{
+  "abstract": [
+    {
+      "text": "The programmatic interface to objects that manage input sources.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/processes_and_threads"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/runloop"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1409898,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSRunLoop",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "class "
+      },
+      {
+        "kind": "identifier",
+        "text": "RunLoop"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "RunLoop"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "RunLoop"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/runloop",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " object processes input for sources, such as mouse and keyboard events from the window system and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/port",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects. A ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/runloop",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " object also processes ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/timer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " events.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your application neither creates nor explicitly manages ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/runloop",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " objects. The system creates a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/runloop",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " object as needed for each ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/thread",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object, including the application’s main thread. If you need to access the current thread’s run loop, use the class method ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/runloop/1412291-current",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Note that from the perspective of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/runloop",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/timer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects aren’t “input”—they’re a special type, and they don’t cause the run loop to return when they fire.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/runloop",
+                  "isActive": false,
+                  "type": "reference"
+                },
+                {
+                  "text": " class is generally not thread-safe, and you must call its methods only within the context of the current thread. Don’t call the methods of a ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/runloop",
+                  "isActive": false,
+                  "type": "reference"
+                },
+                {
+                  "text": " object running in a different thread, which might cause unexpected results.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "style": "warning",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.Combine/documentation/Combine/Scheduler": {
+      "identifier": "doc://com.apple.Combine/documentation/Combine/Scheduler",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Scheduler",
+      "type": "topic",
+      "url": "/documentation/combine/scheduler"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfrunloop-rht": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfrunloop-rht",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFRunLoop",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfrunloop-rht"
+    },
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/port": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/port",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Port",
+      "type": "topic",
+      "url": "/documentation/foundation/port"
+    },
+    "doc://com.apple.documentation/documentation/foundation/processes_and_threads": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/processes_and_threads",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Processes and Threads",
+      "type": "topic",
+      "url": "/documentation/foundation/processes_and_threads"
+    },
+    "doc://com.apple.documentation/documentation/foundation/runloop": {
+      "abstract": [
+        {
+          "text": "The programmatic interface to objects that manage input sources.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "RunLoop"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/runloop",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "RunLoop",
+      "type": "topic",
+      "url": "/documentation/foundation/runloop"
+    },
+    "doc://com.apple.documentation/documentation/foundation/runloop/1409310-perform": {
+      "abstract": [
+        {
+          "text": "Schedules the sending of a message on the receiver.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "perform"
+        },
+        {
+          "kind": "text",
+          "text": "(Selector, "
+        },
+        {
+          "kind": "identifier",
+          "text": "target"
+        },
+        {
+          "kind": "text",
+          "text": ": Any, "
+        },
+        {
+          "kind": "identifier",
+          "text": "argument"
+        },
+        {
+          "kind": "text",
+          "text": ": Any?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "order"
+        },
+        {
+          "kind": "text",
+          "text": ": Int, "
+        },
+        {
+          "kind": "identifier",
+          "text": "modes"
+        },
+        {
+          "kind": "text",
+          "text": ": [RunLoop.Mode])"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/runloop/1409310-perform",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "perform(_:target:argument:order:modes:)",
+      "type": "topic",
+      "url": "/documentation/foundation/runloop/1409310-perform"
+    },
+    "doc://com.apple.documentation/documentation/foundation/runloop/1410140-getcfrunloop": {
+      "abstract": [
+        {
+          "text": "Returns the receiver's underlying ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfrunloop-rht",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "getCFRunLoop"
+        },
+        {
+          "kind": "text",
+          "text": "() -> CFRunLoop"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/runloop/1410140-getcfrunloop",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getCFRunLoop()",
+      "type": "topic",
+      "url": "/documentation/foundation/runloop/1410140-getcfrunloop"
+    },
+    "doc://com.apple.documentation/documentation/foundation/runloop/1411525-run": {
+      "abstract": [
+        {
+          "text": "Runs the loop once, blocking for input in the specified mode until a given date.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "run"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "mode"
+        },
+        {
+          "kind": "text",
+          "text": ": RunLoop.Mode, "
+        },
+        {
+          "kind": "identifier",
+          "text": "before"
+        },
+        {
+          "kind": "text",
+          "text": ": Date) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/runloop/1411525-run",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "run(mode:before:)",
+      "type": "topic",
+      "url": "/documentation/foundation/runloop/1411525-run"
+    },
+    "doc://com.apple.documentation/documentation/foundation/runloop/1412291-current": {
+      "abstract": [
+        {
+          "text": "Returns the run loop for the current thread.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class var "
+        },
+        {
+          "kind": "identifier",
+          "text": "current"
+        },
+        {
+          "kind": "text",
+          "text": ": RunLoop"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/runloop/1412291-current",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "current",
+      "type": "topic",
+      "url": "/documentation/foundation/runloop/1412291-current"
+    },
+    "doc://com.apple.documentation/documentation/foundation/runloop/1412430-run": {
+      "abstract": [
+        {
+          "text": "Puts the receiver into a permanent loop, during which time it processes data from all attached input sources.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "run"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/runloop/1412430-run",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "run()",
+      "type": "topic",
+      "url": "/documentation/foundation/runloop/1412430-run"
+    },
+    "doc://com.apple.documentation/documentation/foundation/runloop/1412652-currentmode": {
+      "abstract": [
+        {
+          "text": "The receiver's current input mode.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "currentMode"
+        },
+        {
+          "kind": "text",
+          "text": ": RunLoop.Mode?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/runloop/1412652-currentmode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "currentMode",
+      "type": "topic",
+      "url": "/documentation/foundation/runloop/1412652-currentmode"
+    },
+    "doc://com.apple.documentation/documentation/foundation/runloop/1412837-limitdate": {
+      "abstract": [
+        {
+          "text": "Performs one pass through the run loop in the specified mode and returns the date at which the next timer is scheduled to fire.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "limitDate"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forMode"
+        },
+        {
+          "kind": "text",
+          "text": ": RunLoop.Mode) -> Date?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/runloop/1412837-limitdate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "limitDate(forMode:)",
+      "type": "topic",
+      "url": "/documentation/foundation/runloop/1412837-limitdate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/runloop/1414208-cancelperformselectors": {
+      "abstract": [
+        {
+          "text": "Cancels all outstanding ordered performs scheduled with a given target.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "cancelPerformSelectors"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "withTarget"
+        },
+        {
+          "kind": "text",
+          "text": ": Any)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/runloop/1414208-cancelperformselectors",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cancelPerformSelectors(withTarget:)",
+      "type": "topic",
+      "url": "/documentation/foundation/runloop/1414208-cancelperformselectors"
+    },
+    "doc://com.apple.documentation/documentation/foundation/runloop/1414332-remove": {
+      "abstract": [
+        {
+          "text": "Removes a port from the specified input mode of the run loop.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "remove"
+        },
+        {
+          "kind": "text",
+          "text": "(Port, "
+        },
+        {
+          "kind": "identifier",
+          "text": "forMode"
+        },
+        {
+          "kind": "text",
+          "text": ": RunLoop.Mode)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/runloop/1414332-remove",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "remove(_:forMode:)",
+      "type": "topic",
+      "url": "/documentation/foundation/runloop/1414332-remove"
+    },
+    "doc://com.apple.documentation/documentation/foundation/runloop/1415778-run": {
+      "abstract": [
+        {
+          "text": "Runs the loop until the specified date, during which time it processes data from all attached input sources.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "run"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "until"
+        },
+        {
+          "kind": "text",
+          "text": ": Date)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/runloop/1415778-run",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "run(until:)",
+      "type": "topic",
+      "url": "/documentation/foundation/runloop/1415778-run"
+    },
+    "doc://com.apple.documentation/documentation/foundation/runloop/1417143-acceptinput": {
+      "abstract": [
+        {
+          "text": "Runs the loop once or until the specified date, accepting input only for the specified mode.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "acceptInput"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forMode"
+        },
+        {
+          "kind": "text",
+          "text": ": RunLoop.Mode, "
+        },
+        {
+          "kind": "identifier",
+          "text": "before"
+        },
+        {
+          "kind": "text",
+          "text": ": Date)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/runloop/1417143-acceptinput",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "acceptInput(forMode:before:)",
+      "type": "topic",
+      "url": "/documentation/foundation/runloop/1417143-acceptinput"
+    },
+    "doc://com.apple.documentation/documentation/foundation/runloop/1417637-add": {
+      "abstract": [
+        {
+          "text": "Adds a port as an input source to the specified mode of the run loop.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "add"
+        },
+        {
+          "kind": "text",
+          "text": "(Port, "
+        },
+        {
+          "kind": "identifier",
+          "text": "forMode"
+        },
+        {
+          "kind": "text",
+          "text": ": RunLoop.Mode)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/runloop/1417637-add",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "add(_:forMode:)",
+      "type": "topic",
+      "url": "/documentation/foundation/runloop/1417637-add"
+    },
+    "doc://com.apple.documentation/documentation/foundation/runloop/1418077-cancelperform": {
+      "abstract": [
+        {
+          "text": "Cancels the sending of a previously scheduled message.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "cancelPerform"
+        },
+        {
+          "kind": "text",
+          "text": "(Selector, "
+        },
+        {
+          "kind": "identifier",
+          "text": "target"
+        },
+        {
+          "kind": "text",
+          "text": ": Any, "
+        },
+        {
+          "kind": "identifier",
+          "text": "argument"
+        },
+        {
+          "kind": "text",
+          "text": ": Any?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/runloop/1418077-cancelperform",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cancelPerform(_:target:argument:)",
+      "type": "topic",
+      "url": "/documentation/foundation/runloop/1418077-cancelperform"
+    },
+    "doc://com.apple.documentation/documentation/foundation/runloop/1418388-main": {
+      "abstract": [
+        {
+          "text": "Returns the run loop of the main thread.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class var "
+        },
+        {
+          "kind": "identifier",
+          "text": "main"
+        },
+        {
+          "kind": "text",
+          "text": ": RunLoop"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/runloop/1418388-main",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "main",
+      "type": "topic",
+      "url": "/documentation/foundation/runloop/1418388-main"
+    },
+    "doc://com.apple.documentation/documentation/foundation/runloop/1418468-add": {
+      "abstract": [
+        {
+          "text": "Registers a given timer with a given input mode.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "add"
+        },
+        {
+          "kind": "text",
+          "text": "(Timer, "
+        },
+        {
+          "kind": "identifier",
+          "text": "forMode"
+        },
+        {
+          "kind": "text",
+          "text": ": RunLoop.Mode)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/runloop/1418468-add",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "add(_:forMode:)",
+      "type": "topic",
+      "url": "/documentation/foundation/runloop/1418468-add"
+    },
+    "doc://com.apple.documentation/documentation/foundation/runloop/2091880-perform": {
+      "abstract": [
+        {
+          "text": "Schedules a block that the run loop invokes when it’s running in any of the specified modes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "perform"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "inModes"
+        },
+        {
+          "kind": "text",
+          "text": ": [RunLoop.Mode], "
+        },
+        {
+          "kind": "identifier",
+          "text": "block"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> Void)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/runloop/2091880-perform",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "perform(inModes:block:)",
+      "type": "topic",
+      "url": "/documentation/foundation/runloop/2091880-perform"
+    },
+    "doc://com.apple.documentation/documentation/foundation/runloop/2091881-perform": {
+      "abstract": [
+        {
+          "text": "Schedules a block that the run loop invokes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "perform"
+        },
+        {
+          "kind": "text",
+          "text": "(() -> Void)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/runloop/2091881-perform",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "perform(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/runloop/2091881-perform"
+    },
+    "doc://com.apple.documentation/documentation/foundation/runloop/3329470-minimumtolerance": {
+      "abstract": [
+        {
+          "text": "The minimum tolerance the run loop scheduler allows.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "minimumTolerance"
+        },
+        {
+          "kind": "text",
+          "text": ": RunLoop.SchedulerTimeType.Stride"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/runloop/3329470-minimumtolerance",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "minimumTolerance",
+      "type": "topic",
+      "url": "/documentation/foundation/runloop/3329470-minimumtolerance"
+    },
+    "doc://com.apple.documentation/documentation/foundation/runloop/3329471-now": {
+      "abstract": [
+        {
+          "text": "The run loop scheduler’s definition of the current moment in time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "now"
+        },
+        {
+          "kind": "text",
+          "text": ": RunLoop.SchedulerTimeType"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/runloop/3329471-now",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "now",
+      "type": "topic",
+      "url": "/documentation/foundation/runloop/3329471-now"
+    },
+    "doc://com.apple.documentation/documentation/foundation/runloop/3329472-schedule": {
+      "abstract": [
+        {
+          "text": "Performs the action at some time after the specified date, at the specified frequency, using the specified tolerance and options.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "schedule"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "after"
+        },
+        {
+          "kind": "text",
+          "text": ": RunLoop.SchedulerTimeType, "
+        },
+        {
+          "kind": "identifier",
+          "text": "interval"
+        },
+        {
+          "kind": "text",
+          "text": ": RunLoop.SchedulerTimeType.Stride, "
+        },
+        {
+          "kind": "identifier",
+          "text": "tolerance"
+        },
+        {
+          "kind": "text",
+          "text": ": RunLoop.SchedulerTimeType.Stride, "
+        },
+        {
+          "kind": "identifier",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": RunLoop.SchedulerOptions?, () -> Void) -> any Cancellable"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/runloop/3329472-schedule",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "schedule(after:interval:tolerance:options:_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/runloop/3329472-schedule"
+    },
+    "doc://com.apple.documentation/documentation/foundation/runloop/3329473-schedule": {
+      "abstract": [
+        {
+          "text": "Performs the action at some time after the specified date, using the specified tolerance and options.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "schedule"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "after"
+        },
+        {
+          "kind": "text",
+          "text": ": RunLoop.SchedulerTimeType, "
+        },
+        {
+          "kind": "identifier",
+          "text": "tolerance"
+        },
+        {
+          "kind": "text",
+          "text": ": RunLoop.SchedulerTimeType.Stride, "
+        },
+        {
+          "kind": "identifier",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": RunLoop.SchedulerOptions?, () -> Void)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/runloop/3329473-schedule",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "schedule(after:tolerance:options:_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/runloop/3329473-schedule"
+    },
+    "doc://com.apple.documentation/documentation/foundation/runloop/3329474-schedule": {
+      "abstract": [
+        {
+          "text": "Performs the action at some time after the specified date, using the scheduler’s minimum tolerance.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "schedule"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": RunLoop.SchedulerOptions?, () -> Void)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/runloop/3329474-schedule",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "schedule(options:_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/runloop/3329474-schedule"
+    },
+    "doc://com.apple.documentation/documentation/foundation/runloop/mode": {
+      "abstract": [
+        {
+          "text": "Modes that a run loop operates in.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "RunLoop.Mode"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/runloop/mode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "RunLoop.Mode",
+      "type": "topic",
+      "url": "/documentation/foundation/runloop/mode"
+    },
+    "doc://com.apple.documentation/documentation/foundation/runloop/scheduleroptions": {
+      "abstract": [
+        {
+          "text": "A set of options that affect the operation of the run loop scheduler.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "RunLoop.SchedulerOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/runloop/scheduleroptions",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "RunLoop.SchedulerOptions",
+      "type": "topic",
+      "url": "/documentation/foundation/runloop/scheduleroptions"
+    },
+    "doc://com.apple.documentation/documentation/foundation/runloop/schedulertimetype": {
+      "abstract": [
+        {
+          "text": "The scheduler time type that the run loop uses.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "RunLoop.SchedulerTimeType"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/runloop/schedulertimetype",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "RunLoop.SchedulerTimeType",
+      "type": "topic",
+      "url": "/documentation/foundation/runloop/schedulertimetype"
+    },
+    "doc://com.apple.documentation/documentation/foundation/thread": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/thread",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Thread",
+      "type": "topic",
+      "url": "/documentation/foundation/thread"
+    },
+    "doc://com.apple.documentation/documentation/foundation/timer": {
+      "abstract": [
+        {
+          "text": "A timer that fires after a certain time interval has elapsed, sending a specified message to a target object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "Timer"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/timer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Timer",
+      "type": "topic",
+      "url": "/documentation/foundation/timer"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/objectivec/nsobject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.apple.Combine/documentation/Combine/Scheduler"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/timer"
+      ],
+      "title": "Run Loop Scheduling"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "1668502",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/runloop/1412291-current",
+        "doc://com.apple.documentation/documentation/foundation/runloop/1412652-currentmode",
+        "doc://com.apple.documentation/documentation/foundation/runloop/1412837-limitdate",
+        "doc://com.apple.documentation/documentation/foundation/runloop/1418388-main",
+        "doc://com.apple.documentation/documentation/foundation/runloop/1410140-getcfrunloop",
+        "doc://com.apple.documentation/documentation/foundation/runloop/mode"
+      ],
+      "kind": "taskGroup",
+      "title": "Accessing Run Loops and Modes"
+    },
+    {
+      "anchor": "1668559",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/runloop/1418468-add"
+      ],
+      "kind": "taskGroup",
+      "title": "Managing Timers "
+    },
+    {
+      "anchor": "1668578",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/runloop/1417637-add",
+        "doc://com.apple.documentation/documentation/foundation/runloop/1414332-remove"
+      ],
+      "kind": "taskGroup",
+      "title": "Managing Ports"
+    },
+    {
+      "anchor": "1668623",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/runloop/1412430-run",
+        "doc://com.apple.documentation/documentation/foundation/runloop/1411525-run",
+        "doc://com.apple.documentation/documentation/foundation/runloop/1415778-run",
+        "doc://com.apple.documentation/documentation/foundation/runloop/1417143-acceptinput"
+      ],
+      "kind": "taskGroup",
+      "title": "Running a Loop"
+    },
+    {
+      "anchor": "1668667",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/runloop/2091881-perform",
+        "doc://com.apple.documentation/documentation/foundation/runloop/2091880-perform",
+        "doc://com.apple.documentation/documentation/foundation/runloop/1409310-perform",
+        "doc://com.apple.documentation/documentation/foundation/runloop/1418077-cancelperform",
+        "doc://com.apple.documentation/documentation/foundation/runloop/1414208-cancelperformselectors"
+      ],
+      "kind": "taskGroup",
+      "title": "Scheduling and Canceling Tasks"
+    },
+    {
+      "anchor": "3330128",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/runloop/3329474-schedule",
+        "doc://com.apple.documentation/documentation/foundation/runloop/3329473-schedule",
+        "doc://com.apple.documentation/documentation/foundation/runloop/3329472-schedule",
+        "doc://com.apple.documentation/documentation/foundation/runloop/3329470-minimumtolerance",
+        "doc://com.apple.documentation/documentation/foundation/runloop/3329471-now",
+        "doc://com.apple.documentation/documentation/foundation/runloop/schedulertimetype",
+        "doc://com.apple.documentation/documentation/foundation/runloop/scheduleroptions"
+      ],
+      "kind": "taskGroup",
+      "title": "Scheduling Combine Publishers"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nsrunloop"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/runloop"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

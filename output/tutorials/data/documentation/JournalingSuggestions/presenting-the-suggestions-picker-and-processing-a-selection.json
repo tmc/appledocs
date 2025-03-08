@@ -1,0 +1,1852 @@
+{
+  "abstract": [
+    {
+      "text": "Display the journaling suggestions picker and process a suggestion that someone chooses.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.JournalingSuggestions/documentation/JournalingSuggestions"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.JournalingSuggestions/documentation/JournalingSuggestions/presenting-the-suggestions-picker-and-processing-a-selection"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Journaling Suggestions"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Presenting the suggestions picker and processing a selection"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Present the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.JournalingSuggestions/documentation/JournalingSuggestions/JournalingSuggestionsPicker",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to show people recent or important life events",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "as suggestions, which include information about an event such as images, videos, locations,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and so on. If a person selects a particular suggestion, the system provides you with the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "event details in the completion handler.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Start by choosing the text for the button in your app that presents the picker. When a person taps the text,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the system presents the picker in a system process. The picker fills with suggestions that",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "draw upon various personal experiences, such as a place someone visited, a person they",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "connected with, a photo in their library, or a song that they often listened to.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When someone chooses a suggestion, the system makes high-level details about the event",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "available to your app. Define the suggestion picker’s ",
+              "type": "text"
+            },
+            {
+              "code": "onCompletion",
+              "type": "codeVoice"
+            },
+            {
+              "text": " closure to process",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the details, and incorporate them into your app’s creative workflow. A journaling app,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "for example, might display a visual suggestion in the format of a photo with placeholder",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "text below it as the beginning of a new journal entry.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "presenting-the-suggestions-picker-and-processing-a-selection-1.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Journaling Suggestions gathers information from the system through built-in apps",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "people use, such as Photos, Health, Fitness, Apple Podcasts, and Music.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Suggestions can also come from third party apps that provide data through frameworks such as ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/HealthKit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CallKit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SiriKit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Maintain-user-privacy",
+          "level": 2,
+          "text": "Maintain user privacy",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Adopting Journaling Suggestions delivers an enhanced privacy experience in your app.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "When a person makes a selection in the picker, the system shares only the details of the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "chosen suggestion with your app. Thus, your app accesses only the suggestion data that a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "person explicitly authorizes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When your app attempts to display the picker for the first time, a sheet appears that introduces",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Journaling Suggestions. If the person taps Turn On Journaling Suggestions, the picker displays,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and includes an information privacy banner. The banner explains that your app only has access",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to the suggestions the person chooses to write about or saves to the app. The person can tap",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the X to close the banner, or they can tap Learn More, which presents a sheet that goes into",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "more detail about Private Access.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "presenting-the-suggestions-picker-and-processing-a-selection-2.png",
+                      "metadata": {
+                        "deviceFrame": "iPhone14Pro"
+                      },
+                      "type": "image"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              "title": "Consent sheet"
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "presenting-the-suggestions-picker-and-processing-a-selection-3.png",
+                      "metadata": {
+                        "deviceFrame": "iPhone14Pro"
+                      },
+                      "type": "image"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              "title": "Privacy banner"
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "presenting-the-suggestions-picker-and-processing-a-selection-4.png",
+                      "metadata": {
+                        "deviceFrame": "iPhone14Pro"
+                      },
+                      "type": "image"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              "title": "Private Access sheet"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The Journaling Suggestions consent sheet displays once per device, so it doesn’t appear if the person already viewed",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "it, either by launching Journal, or by launching another app that uses Journaling Suggestions.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Suggestion data requires careful handling. To further preserve user privacy, follow the advice outlined in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/programs/apple-developer-program-license-agreement/#sensitive-content-analysis-framework",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-the-Journaling-Suggestions-entitlement",
+          "level": 2,
+          "text": "Add the Journaling Suggestions entitlement",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To use Journaling Suggestions in your app, the  ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.journal.allow",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "entitlement is required. The suggestions picker fails to present without it. You can can add this entitlement to your app by enabling the Journaling Suggestions capability in Xcode; see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Xcode/adding-capabilities-to-your-app",
+              "isActive": true,
+              "overridingTitle": "Adding capabilities to your app",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "Adding capabilities to your app",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Name-the-button-that-opens-the-suggestions-picker",
+          "level": 2,
+          "text": "Name the button that opens the suggestions picker",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.JournalingSuggestions/documentation/JournalingSuggestions/JournalingSuggestionsPicker",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " initializers take an argument, ",
+              "type": "text"
+            },
+            {
+              "code": "title",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", for a button that people tap to display the picker.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let buttonTitle = \"Show my personal events\""
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Choose a title that clearly describes the purpose of journaling suggestions in the context of your app. As an indication that personal moments are about to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "display, it’s important to set a person’s expectations about what the picker shows after they tap the text.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Declare-and-present-a-suggestions-picker",
+          "level": 2,
+          "text": "Declare and present a suggestions picker",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To present a suggestions picker, declare a view that displays a button title. When a person taps the button, the system presents the picker. Upon dismissal, the system invokes the completion handler you specify.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct Example: View {",
+            "    var body: some View <-",
+            "        SuggestionsPicker {",
+            "            Text(buttonTitle)",
+            "        } onCompletion: { suggestion in",
+            "            // Parse the selected suggestion.",
+            "        }}}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Handle-the-selected-suggestion-data",
+          "level": 2,
+          "text": "Handle the selected suggestion data",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The picker fills with suggestions that include various types of personal experiences. When a person makes a selection, the system provides the chosen suggestion to your app’s ",
+              "type": "text"
+            },
+            {
+              "code": "onCompletion",
+              "type": "codeVoice"
+            },
+            {
+              "text": " handler. Check the ",
+              "type": "text"
+            },
+            {
+              "code": "suggestion",
+              "type": "codeVoice"
+            },
+            {
+              "text": " argument’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.JournalingSuggestions/documentation/JournalingSuggestions/JournalingSuggestion/items",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property to process the selection. Each ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.JournalingSuggestions/documentation/JournalingSuggestions/JournalingSuggestion/ItemContent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " item conforms to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.JournalingSuggestions/documentation/JournalingSuggestions/JournalingSuggestionAsset",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and is one of following types:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Type",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Description",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.JournalingSuggestions/documentation/JournalingSuggestions/JournalingSuggestion/Photo",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "An image from a person’s library, including the date captured.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.JournalingSuggestions/documentation/JournalingSuggestions/JournalingSuggestion/Workout",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Information about a workout that a person completes, including calories burnt, distance covered, a route they took, average heart rate, start and end time, and an icon for the type of workout.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.JournalingSuggestions/documentation/JournalingSuggestions/JournalingSuggestion/Contact",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "An interaction a person has with someone in their contacts, including their name and Contact photo.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.JournalingSuggestions/documentation/JournalingSuggestions/JournalingSuggestion/Location",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A place that a person visited, including its name, surrounding city, and geographic coordinates, if available.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.JournalingSuggestions/documentation/JournalingSuggestions/JournalingSuggestion/Song",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The name of a song that a person plays, including the artist, album, and album artwork.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.JournalingSuggestions/documentation/JournalingSuggestions/JournalingSuggestion/Podcast",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Information about a podcast that a person plays, including the show, artist, episode, and associated artwork.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.JournalingSuggestions/documentation/JournalingSuggestions/JournalingSuggestion/Video",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A video from a person’s library, including the date captured.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.JournalingSuggestions/documentation/JournalingSuggestions/JournalingSuggestion/LivePhoto",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "An image and short video that represents a live photo from a person’s library, including the date captured.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.JournalingSuggestions/documentation/JournalingSuggestions/JournalingSuggestion/MotionActivity",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The number of steps a person takes in a motion event on iPhone, including an icon for the activity.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.JournalingSuggestions/documentation/JournalingSuggestions/JournalingSuggestion/GenericMedia",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The media content a person listens to, including the information describing the media.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.JournalingSuggestions/documentation/JournalingSuggestions/JournalingSuggestion/Reflection",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A reflection prompt that a person chooses.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.JournalingSuggestions/documentation/JournalingSuggestions/JournalingSuggestion/StateOfMind",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The state of mind reflection in the Health app that describes a persons emotions and moods.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following example demonstrates parsing a photo suggestion:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct Example: View {",
+            "    @State var suggestionPhotos = [JournalingSuggestion.Photo]()",
+            "    @State var suggestionTitle: String? = nil",
+            "    var body: some View <-",
+            "        VStack {",
+            "            Spacer().frame(height: 25)",
+            "            SuggestionsPicker {",
+            "                Text(buttonTitle)",
+            "            } onCompletion: { suggestion in",
+            "                // Parse the suggestion details. ",
+            "                suggestionTitle = suggestion.title",
+            "                suggestionPhotos = await suggestion.content(forType: JournalingSuggestion.Photo.self)",
+            "            }",
+            "            // Display the suggestion details. ",
+            "            Spacer().frame(height: 25)",
+            "            Text(suggestionTitle ?? \"\")",
+            "            List {",
+            "                ForEach(suggestionPhotos, id: \\.photo) { item in",
+            "                    AsyncImage(url: item.photo) { image in",
+            "                        image.image?",
+            "                            .resizable ()",
+            "                            .aspectRatio(contentMode: .fit)",
+            "                    }",
+            "                    .frame(maxHeight: 200)",
+            "                }}}}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The code displays the suggestion title, followed by a list of images that the person selected in the picker.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A person can control the types of suggestions available in the picker by tapping Customize in the consent sheet, or by adjusting Privacy & Security settings for Journaling Suggestions in the Settings app.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When your app parses a selected suggestion’s details, it organizes that information to serve as a base for creative expression. A journaling app, for example, might list the selected images in a journal entry.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "columns": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "presenting-the-suggestions-picker-and-processing-a-selection-5.png",
+                      "metadata": {
+                        "abstract": [
+                          {
+                            "text": "My App 1",
+                            "type": "text"
+                          }
+                        ]
+                      },
+                      "type": "image"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              "size": 1
+            }
+          ],
+          "numberOfColumns": 1,
+          "type": "row"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.JournalingSuggestions/documentation/JournalingSuggestions": {
+      "abstract": [
+        {
+          "text": "Display a set of recent, personal events that inspire someone to contribute to your app’s creative workflow.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.JournalingSuggestions/documentation/JournalingSuggestions",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Journaling Suggestions",
+      "type": "topic",
+      "url": "/documentation/journalingsuggestions"
+    },
+    "doc://com.apple.JournalingSuggestions/documentation/JournalingSuggestions/JournalingSuggestion/Contact": {
+      "abstract": [
+        {
+          "text": "A suggestion for a connection a person makes with someone else.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Contact"
+        }
+      ],
+      "identifier": "doc://com.apple.JournalingSuggestions/documentation/JournalingSuggestions/JournalingSuggestion/Contact",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Contact"
+        }
+      ],
+      "role": "symbol",
+      "title": "JournalingSuggestion.Contact",
+      "type": "topic",
+      "url": "/documentation/journalingsuggestions/journalingsuggestion/contact"
+    },
+    "doc://com.apple.JournalingSuggestions/documentation/JournalingSuggestions/JournalingSuggestion/GenericMedia": {
+      "abstract": [
+        {
+          "text": "A suggestion describing now playable media that a person listened to.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GenericMedia"
+        }
+      ],
+      "identifier": "doc://com.apple.JournalingSuggestions/documentation/JournalingSuggestions/JournalingSuggestion/GenericMedia",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GenericMedia"
+        }
+      ],
+      "role": "symbol",
+      "title": "JournalingSuggestion.GenericMedia",
+      "type": "topic",
+      "url": "/documentation/journalingsuggestions/journalingsuggestion/genericmedia"
+    },
+    "doc://com.apple.JournalingSuggestions/documentation/JournalingSuggestions/JournalingSuggestion/ItemContent": {
+      "abstract": [
+        {
+          "text": "A container for the information about a specific suggestion.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ItemContent"
+        }
+      ],
+      "identifier": "doc://com.apple.JournalingSuggestions/documentation/JournalingSuggestions/JournalingSuggestion/ItemContent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ItemContent"
+        }
+      ],
+      "role": "symbol",
+      "title": "JournalingSuggestion.ItemContent",
+      "type": "topic",
+      "url": "/documentation/journalingsuggestions/journalingsuggestion/itemcontent"
+    },
+    "doc://com.apple.JournalingSuggestions/documentation/JournalingSuggestions/JournalingSuggestion/LivePhoto": {
+      "abstract": [
+        {
+          "text": "A suggestion for a Live Photo from a person’s library.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LivePhoto"
+        }
+      ],
+      "identifier": "doc://com.apple.JournalingSuggestions/documentation/JournalingSuggestions/JournalingSuggestion/LivePhoto",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LivePhoto"
+        }
+      ],
+      "role": "symbol",
+      "title": "JournalingSuggestion.LivePhoto",
+      "type": "topic",
+      "url": "/documentation/journalingsuggestions/journalingsuggestion/livephoto"
+    },
+    "doc://com.apple.JournalingSuggestions/documentation/JournalingSuggestions/JournalingSuggestion/Location": {
+      "abstract": [
+        {
+          "text": "A suggestion that represents a location that a person visits.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Location"
+        }
+      ],
+      "identifier": "doc://com.apple.JournalingSuggestions/documentation/JournalingSuggestions/JournalingSuggestion/Location",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Location"
+        }
+      ],
+      "role": "symbol",
+      "title": "JournalingSuggestion.Location",
+      "type": "topic",
+      "url": "/documentation/journalingsuggestions/journalingsuggestion/location"
+    },
+    "doc://com.apple.JournalingSuggestions/documentation/JournalingSuggestions/JournalingSuggestion/MotionActivity": {
+      "abstract": [
+        {
+          "text": "A suggestion that describes motion activity, including the number of steps a person takes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MotionActivity"
+        }
+      ],
+      "identifier": "doc://com.apple.JournalingSuggestions/documentation/JournalingSuggestions/JournalingSuggestion/MotionActivity",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MotionActivity"
+        }
+      ],
+      "role": "symbol",
+      "title": "JournalingSuggestion.MotionActivity",
+      "type": "topic",
+      "url": "/documentation/journalingsuggestions/journalingsuggestion/motionactivity"
+    },
+    "doc://com.apple.JournalingSuggestions/documentation/JournalingSuggestions/JournalingSuggestion/Photo": {
+      "abstract": [
+        {
+          "text": "A suggestion for a photo from a person’s library.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Photo"
+        }
+      ],
+      "identifier": "doc://com.apple.JournalingSuggestions/documentation/JournalingSuggestions/JournalingSuggestion/Photo",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Photo"
+        }
+      ],
+      "role": "symbol",
+      "title": "JournalingSuggestion.Photo",
+      "type": "topic",
+      "url": "/documentation/journalingsuggestions/journalingsuggestion/photo"
+    },
+    "doc://com.apple.JournalingSuggestions/documentation/JournalingSuggestions/JournalingSuggestion/Podcast": {
+      "abstract": [
+        {
+          "text": "A suggestion that describes a podcast episode a person listened to.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Podcast"
+        }
+      ],
+      "identifier": "doc://com.apple.JournalingSuggestions/documentation/JournalingSuggestions/JournalingSuggestion/Podcast",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Podcast"
+        }
+      ],
+      "role": "symbol",
+      "title": "JournalingSuggestion.Podcast",
+      "type": "topic",
+      "url": "/documentation/journalingsuggestions/journalingsuggestion/podcast"
+    },
+    "doc://com.apple.JournalingSuggestions/documentation/JournalingSuggestions/JournalingSuggestion/Reflection": {
+      "abstract": [
+        {
+          "text": "A suggestion for a reflection prompt.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Reflection"
+        }
+      ],
+      "identifier": "doc://com.apple.JournalingSuggestions/documentation/JournalingSuggestions/JournalingSuggestion/Reflection",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Reflection"
+        }
+      ],
+      "role": "symbol",
+      "title": "JournalingSuggestion.Reflection",
+      "type": "topic",
+      "url": "/documentation/journalingsuggestions/journalingsuggestion/reflection"
+    },
+    "doc://com.apple.JournalingSuggestions/documentation/JournalingSuggestions/JournalingSuggestion/Song": {
+      "abstract": [
+        {
+          "text": "A suggestion for a song from a person’s music library.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Song"
+        }
+      ],
+      "identifier": "doc://com.apple.JournalingSuggestions/documentation/JournalingSuggestions/JournalingSuggestion/Song",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Song"
+        }
+      ],
+      "role": "symbol",
+      "title": "JournalingSuggestion.Song",
+      "type": "topic",
+      "url": "/documentation/journalingsuggestions/journalingsuggestion/song"
+    },
+    "doc://com.apple.JournalingSuggestions/documentation/JournalingSuggestions/JournalingSuggestion/StateOfMind": {
+      "abstract": [
+        {
+          "text": "A suggestion that describes a state of mind reflection in the Health app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "StateOfMind"
+        }
+      ],
+      "identifier": "doc://com.apple.JournalingSuggestions/documentation/JournalingSuggestions/JournalingSuggestion/StateOfMind",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "StateOfMind"
+        }
+      ],
+      "role": "symbol",
+      "title": "JournalingSuggestion.StateOfMind",
+      "type": "topic",
+      "url": "/documentation/journalingsuggestions/journalingsuggestion/stateofmind"
+    },
+    "doc://com.apple.JournalingSuggestions/documentation/JournalingSuggestions/JournalingSuggestion/Video": {
+      "abstract": [
+        {
+          "text": "A suggestion for a video from a person’s library.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Video"
+        }
+      ],
+      "identifier": "doc://com.apple.JournalingSuggestions/documentation/JournalingSuggestions/JournalingSuggestion/Video",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Video"
+        }
+      ],
+      "role": "symbol",
+      "title": "JournalingSuggestion.Video",
+      "type": "topic",
+      "url": "/documentation/journalingsuggestions/journalingsuggestion/video"
+    },
+    "doc://com.apple.JournalingSuggestions/documentation/JournalingSuggestions/JournalingSuggestion/Workout": {
+      "abstract": [
+        {
+          "text": "A suggestion that describes a workout that a person completed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Workout"
+        }
+      ],
+      "identifier": "doc://com.apple.JournalingSuggestions/documentation/JournalingSuggestions/JournalingSuggestion/Workout",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Workout"
+        }
+      ],
+      "role": "symbol",
+      "title": "JournalingSuggestion.Workout",
+      "type": "topic",
+      "url": "/documentation/journalingsuggestions/journalingsuggestion/workout"
+    },
+    "doc://com.apple.JournalingSuggestions/documentation/JournalingSuggestions/JournalingSuggestion/items": {
+      "abstract": [
+        {
+          "text": "The individual items that compose the suggestion’s content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "items"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:21JournalingSuggestions0A10SuggestionV",
+          "text": "JournalingSuggestion"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:21JournalingSuggestions0A10SuggestionV11ItemContentV",
+          "text": "ItemContent"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.JournalingSuggestions/documentation/JournalingSuggestions/JournalingSuggestion/items",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "items",
+      "type": "topic",
+      "url": "/documentation/journalingsuggestions/journalingsuggestion/items"
+    },
+    "doc://com.apple.JournalingSuggestions/documentation/JournalingSuggestions/JournalingSuggestionAsset": {
+      "abstract": [
+        {
+          "text": "An interface for the content that the suggestions picker presents.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "JournalingSuggestionAsset"
+        }
+      ],
+      "identifier": "doc://com.apple.JournalingSuggestions/documentation/JournalingSuggestions/JournalingSuggestionAsset",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "JournalingSuggestionAsset"
+        }
+      ],
+      "role": "symbol",
+      "title": "JournalingSuggestionAsset",
+      "type": "topic",
+      "url": "/documentation/journalingsuggestions/journalingsuggestionasset"
+    },
+    "doc://com.apple.JournalingSuggestions/documentation/JournalingSuggestions/JournalingSuggestionsPicker": {
+      "abstract": [
+        {
+          "text": "A view that lists different types of recent events in a person’s life.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "JournalingSuggestionsPicker"
+        }
+      ],
+      "identifier": "doc://com.apple.JournalingSuggestions/documentation/JournalingSuggestions/JournalingSuggestionsPicker",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "JournalingSuggestionsPicker"
+        }
+      ],
+      "role": "symbol",
+      "title": "JournalingSuggestionsPicker",
+      "type": "topic",
+      "url": "/documentation/journalingsuggestions/journalingsuggestionspicker"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.journal.allow": {
+      "abstract": [
+        {
+          "text": "The entitlement that enables an app to present the journaling suggestions picker.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.journal.allow",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "com.apple.developer.journal.allow",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Entitlements/com.apple.developer.journal.allow"
+    },
+    "doc://com.apple.documentation/documentation/CallKit": {
+      "abstract": [
+        {
+          "text": "Display the system-calling UI for your app’s VoIP services, and coordinate your calling services with other apps and the system.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CallKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "CallKit",
+      "type": "topic",
+      "url": "/documentation/CallKit"
+    },
+    "doc://com.apple.documentation/documentation/HealthKit": {
+      "abstract": [
+        {
+          "text": "Access and share health and fitness data while maintaining the user’s privacy and control.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/HealthKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "HealthKit",
+      "type": "topic",
+      "url": "/documentation/HealthKit"
+    },
+    "doc://com.apple.documentation/documentation/SiriKit": {
+      "abstract": [
+        {
+          "text": "Empower users to interact with their devices through voice, intelligent suggestions, and personalized workflows.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SiriKit",
+      "kind": "article",
+      "role": "collection",
+      "title": "SiriKit",
+      "type": "topic",
+      "url": "/documentation/SiriKit"
+    },
+    "doc://com.apple.documentation/documentation/Xcode/adding-capabilities-to-your-app": {
+      "abstract": [
+        {
+          "text": "Configure your target to include and customize capabilities that provide access to Apple’s app services.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Xcode/adding-capabilities-to-your-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding capabilities to your app",
+      "type": "topic",
+      "url": "/documentation/Xcode/adding-capabilities-to-your-app"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/programs/apple-developer-program-license-agreement/#sensitive-content-analysis-framework": {
+      "identifier": "https://developer.apple.com/programs/apple-developer-program-license-agreement/#sensitive-content-analysis-framework",
+      "title": "Developer Program License Agreement",
+      "titleInlineContent": [
+        {
+          "text": "Developer Program License Agreement",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/programs/apple-developer-program-license-agreement/#sensitive-content-analysis-framework"
+    },
+    "presenting-the-suggestions-picker-and-processing-a-selection-1.png": {
+      "alt": "A figure that features four iPhone device frames in an app workflow progressing from left to right. The first frame depicts a blank view and button that reads New Entry. A callout below reads Custom picker button. To the right, the next frame depicts several photos in a thumbnail view under text that reads Highlights from Photo Memories. A callout below reads Suggestions picker. The next frame to the right features the same photo thumbnails in a seletion list, with a thumbnail that featues a flower selected and a button below the list labeled Add to App 1. A callout below reads User selection. The final frame at the right depicts a detailed version of the same flower below user-defined text that reads Coastal Hike, followed by bars that represent a journal entry. A callout below reads Incorporated suggestion.",
+      "identifier": "presenting-the-suggestions-picker-and-processing-a-selection-1.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5a09b293a4ad55eb3bf8c334a37a9785/presenting-the-suggestions-picker-and-processing-a-selection-1@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/bae8d02b961c05096c649a30174b7d50/presenting-the-suggestions-picker-and-processing-a-selection-1~dark@2x.png"
+        }
+      ]
+    },
+    "presenting-the-suggestions-picker-and-processing-a-selection-2.png": {
+      "alt": "A screenshot of the Journaling Suggestions consent sheet. Text that introduces the concept of Journaling Suggestions resides above a series of buttons. The first button reads About Journaling Suggestions & Privacy. The second reads Turn On Journaling Suggestions. And the last reads Customize.",
+      "identifier": "presenting-the-suggestions-picker-and-processing-a-selection-2.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/0106baa2574c8456ae89331df5109953/presenting-the-suggestions-picker-and-processing-a-selection-2@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2b40cb1cbfc40f44380ea2586e07bcd4/presenting-the-suggestions-picker-and-processing-a-selection-2~dark@2x.png"
+        }
+      ]
+    },
+    "presenting-the-suggestions-picker-and-processing-a-selection-3.png": {
+      "alt": "A screenshot of the journaling suggestions picker that features a privacy banner. A title in the banner reads Private Access to Suggestions,  there's an X button to the right of the title. Below the title reads Journal only has access to the suggestions you choose to write about. A button below reads Learn More.",
+      "identifier": "presenting-the-suggestions-picker-and-processing-a-selection-3.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/939fb6ecd2eaa5125ab15a9669167fbb/presenting-the-suggestions-picker-and-processing-a-selection-3@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/09d3bb87ee6206cfd691be797c677664/presenting-the-suggestions-picker-and-processing-a-selection-3~dark@2x.png"
+        }
+      ]
+    },
+    "presenting-the-suggestions-picker-and-processing-a-selection-4.png": {
+      "alt": "A screenshot of the Private Access sheet. A title at top reads Private Access & Suggestions. Related explanatory text follows with a Done button that resides at bottom.",
+      "identifier": "presenting-the-suggestions-picker-and-processing-a-selection-4.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2c442331ca12b2b056ba3731da37a540/presenting-the-suggestions-picker-and-processing-a-selection-4@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/705c2035ee1edeccfeea669ee5adeb4a/presenting-the-suggestions-picker-and-processing-a-selection-4~dark@2x.png"
+        }
+      ]
+    },
+    "presenting-the-suggestions-picker-and-processing-a-selection-5.png": {
+      "alt": "A device frame that depicts a journaling app. The app displays a view that features a flower a person chose in the suggestions picker. The flower resides below user-defined text that reads Coastal Hike. There are bars below the image that represent a user-defined journal entry, above a callout that reads My App 1.",
+      "identifier": "presenting-the-suggestions-picker-and-processing-a-selection-5.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/49fc9e064ea482b10e2b52db0ba8e728/presenting-the-suggestions-picker-and-processing-a-selection-5@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/58ce06405181cd953cce648851064f69/presenting-the-suggestions-picker-and-processing-a-selection-5~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.journal.allow"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/journalingsuggestions/presenting-the-suggestions-picker-and-processing-a-selection"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

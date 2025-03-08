@@ -1,0 +1,2311 @@
+{
+  "abstract": [
+    {
+      "text": "Arrange views inside built-in layout containers like stacks and grids.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.SwiftUI/documentation/SwiftUI/Layout-fundamentals"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "SwiftUI"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Layout fundamentals"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use layout containers to arrange the elements of your user interface.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Stacks and grids update and adjust the positions of the subviews they",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "contain in response to changes in content or interface dimensions.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You can nest layout containers inside other layout containers to any depth",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to achieve complex layout effects.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "layout-fundamentals-hero",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To finetune the position, alignment, and other elements of a layout that you",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "build with layout container views, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Layout-adjustments",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". To define",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "custom layout containers, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Custom-layout",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For design guidance, see",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/design/Human-Interface-Guidelines/layout",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in the Human Interface Guidelines.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "SwiftUI-PageImage-card.png": {
+      "alt": "A black Swift logo on a swirly blue and purple background.",
+      "identifier": "SwiftUI-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b1de0de086f81a5d0eac3839a0af6e6f/SwiftUI-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1450d0b30a6b024e10c148e3f31dafe9/SwiftUI-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI": {
+      "abstract": [
+        {
+          "text": "Declare the user interface and behavior for your app on every platform.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI",
+      "images": [
+        {
+          "identifier": "SwiftUI-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SwiftUI",
+      "type": "topic",
+      "url": "/documentation/swiftui"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Adding-a-Background-to-Your-View": {
+      "abstract": [
+        {
+          "text": "Compose a background behind your view and extend it beyond the safe area insets.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Adding-a-Background-to-Your-View",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding a background to your view",
+      "type": "topic",
+      "url": "/documentation/swiftui/adding-a-background-to-your-view"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Building-Layouts-with-Stack-Views": {
+      "abstract": [
+        {
+          "text": "Compose complex layouts from primitive container views.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Building-Layouts-with-Stack-Views",
+      "kind": "article",
+      "role": "article",
+      "title": "Building layouts with stack views",
+      "type": "topic",
+      "url": "/documentation/swiftui/building-layouts-with-stack-views"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/ContainerBackgroundPlacement": {
+      "abstract": [
+        {
+          "text": "The placement of a container background.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ContainerBackgroundPlacement"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ContainerBackgroundPlacement",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ContainerBackgroundPlacement"
+        }
+      ],
+      "role": "symbol",
+      "title": "ContainerBackgroundPlacement",
+      "type": "topic",
+      "url": "/documentation/swiftui/containerbackgroundplacement"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Creating-Performant-Scrollable-Stacks": {
+      "abstract": [
+        {
+          "text": "Display large numbers of repeated views efficiently with scroll views, stack",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "views, and lazy stacks.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Creating-Performant-Scrollable-Stacks",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating performant scrollable stacks",
+      "type": "topic",
+      "url": "/documentation/swiftui/creating-performant-scrollable-stacks"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Custom-layout": {
+      "abstract": [
+        {
+          "text": "Place views in custom arrangements and create animated transitions between layout types.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Custom-layout",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Custom layout",
+      "type": "topic",
+      "url": "/documentation/swiftui/custom-layout"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Divider": {
+      "abstract": [
+        {
+          "text": "A visual element that can be used to separate other content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Divider"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Divider",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Divider"
+        }
+      ],
+      "role": "symbol",
+      "title": "Divider",
+      "type": "topic",
+      "url": "/documentation/swiftui/divider"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/backgroundMaterial": {
+      "abstract": [
+        {
+          "text": "The material underneath the current view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "backgroundMaterial"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI8MaterialV",
+          "text": "Material"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/backgroundMaterial",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "backgroundMaterial",
+      "type": "topic",
+      "url": "/documentation/swiftui/environmentvalues/backgroundmaterial"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Grid": {
+      "abstract": [
+        {
+          "text": "A container view that arranges other views in a two dimensional layout.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Grid"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Grid",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Grid"
+        }
+      ],
+      "role": "symbol",
+      "title": "Grid",
+      "type": "topic",
+      "url": "/documentation/swiftui/grid"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/GridItem": {
+      "abstract": [
+        {
+          "text": "A description of a row or a column in a lazy grid.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GridItem"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/GridItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GridItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "GridItem",
+      "type": "topic",
+      "url": "/documentation/swiftui/griditem"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/GridRow": {
+      "abstract": [
+        {
+          "text": "A horizontal row in a two dimensional grid container.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GridRow"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/GridRow",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GridRow"
+        }
+      ],
+      "role": "symbol",
+      "title": "GridRow",
+      "type": "topic",
+      "url": "/documentation/swiftui/gridrow"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Grouping-Data-with-Lazy-Stack-Views": {
+      "abstract": [
+        {
+          "text": "Split content into logical sections inside lazy stack views.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Grouping-Data-with-Lazy-Stack-Views",
+      "kind": "article",
+      "role": "article",
+      "title": "Grouping data with lazy stack views",
+      "type": "topic",
+      "url": "/documentation/swiftui/grouping-data-with-lazy-stack-views"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/HStack": {
+      "abstract": [
+        {
+          "text": "A view that arranges its subviews in a horizontal line.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HStack"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/HStack",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HStack"
+        }
+      ],
+      "role": "symbol",
+      "title": "HStack",
+      "type": "topic",
+      "url": "/documentation/swiftui/hstack"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Layout-adjustments": {
+      "abstract": [
+        {
+          "text": "Make fine adjustments to alignment, spacing, padding, and other layout parameters.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Layout-adjustments",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Layout adjustments",
+      "type": "topic",
+      "url": "/documentation/swiftui/layout-adjustments"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/LazyHGrid": {
+      "abstract": [
+        {
+          "text": "A container view that arranges its child views in a grid that",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "grows horizontally, creating items only as needed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LazyHGrid"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/LazyHGrid",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LazyHGrid"
+        }
+      ],
+      "role": "symbol",
+      "title": "LazyHGrid",
+      "type": "topic",
+      "url": "/documentation/swiftui/lazyhgrid"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/LazyHStack": {
+      "abstract": [
+        {
+          "text": "A view that arranges its children in a line that grows horizontally,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "creating items only as needed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LazyHStack"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/LazyHStack",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LazyHStack"
+        }
+      ],
+      "role": "symbol",
+      "title": "LazyHStack",
+      "type": "topic",
+      "url": "/documentation/swiftui/lazyhstack"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/LazyVGrid": {
+      "abstract": [
+        {
+          "text": "A container view that arranges its child views in a grid that",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "grows vertically, creating items only as needed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LazyVGrid"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/LazyVGrid",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LazyVGrid"
+        }
+      ],
+      "role": "symbol",
+      "title": "LazyVGrid",
+      "type": "topic",
+      "url": "/documentation/swiftui/lazyvgrid"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/LazyVStack": {
+      "abstract": [
+        {
+          "text": "A view that arranges its children in a line that grows vertically,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "creating items only as needed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LazyVStack"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/LazyVStack",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LazyVStack"
+        }
+      ],
+      "role": "symbol",
+      "title": "LazyVStack",
+      "type": "topic",
+      "url": "/documentation/swiftui/lazyvstack"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Lists": {
+      "abstract": [
+        {
+          "text": "Display a structured, scrollable column of information.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Lists",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Lists",
+      "type": "topic",
+      "url": "/documentation/swiftui/lists"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Picking-Container-Views-for-Your-Content": {
+      "abstract": [
+        {
+          "text": "Build flexible user interfaces by using stacks, grids, lists, and forms.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Picking-Container-Views-for-Your-Content",
+      "kind": "article",
+      "role": "article",
+      "title": "Picking container views for your content",
+      "type": "topic",
+      "url": "/documentation/swiftui/picking-container-views-for-your-content"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/PinnedScrollableViews": {
+      "abstract": [
+        {
+          "text": "A set of view types that may be pinned to the bounds of a scroll view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PinnedScrollableViews"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/PinnedScrollableViews",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PinnedScrollableViews"
+        }
+      ],
+      "role": "symbol",
+      "title": "PinnedScrollableViews",
+      "type": "topic",
+      "url": "/documentation/swiftui/pinnedscrollableviews"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Scroll-views": {
+      "abstract": [
+        {
+          "text": "Enable people to scroll to content that doesn’t fit in the current display.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Scroll-views",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Scroll views",
+      "type": "topic",
+      "url": "/documentation/swiftui/scroll-views"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Spacer": {
+      "abstract": [
+        {
+          "text": "A flexible space that expands along the major axis of its containing stack",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "layout, or on both axes if not contained in a stack.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Spacer"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Spacer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Spacer"
+        }
+      ],
+      "role": "symbol",
+      "title": "Spacer",
+      "type": "topic",
+      "url": "/documentation/swiftui/spacer"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Tables": {
+      "abstract": [
+        {
+          "text": "Display selectable, sortable data arranged in rows and columns.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Tables",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Tables",
+      "type": "topic",
+      "url": "/documentation/swiftui/tables"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/VStack": {
+      "abstract": [
+        {
+          "text": "A view that arranges its subviews in a vertical line.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VStack"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/VStack",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VStack"
+        }
+      ],
+      "role": "symbol",
+      "title": "VStack",
+      "type": "topic",
+      "url": "/documentation/swiftui/vstack"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View-groupings": {
+      "abstract": [
+        {
+          "text": "Present views in different kinds of purpose-driven containers, like forms or",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "control groups.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View-groupings",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "View groupings",
+      "type": "topic",
+      "url": "/documentation/swiftui/view-groupings"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/background(_:ignoresSafeAreaEdges:)": {
+      "abstract": [
+        {
+          "text": "Sets the view’s background to a style.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "background"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "ignoresSafeAreaEdges"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4EdgeO",
+          "text": "Edge"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4EdgeO3SetV",
+          "text": "Set"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/background(_:ignoresSafeAreaEdges:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "background(_:ignoresSafeAreaEdges:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/background(_:ignoressafeareaedges:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/background(_:in:fillStyle:)": {
+      "abstract": [
+        {
+          "text": "Sets the view’s background to an insettable shape filled with a style.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "background"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": ":"
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ":"
+        },
+        {
+          "kind": "externalParam",
+          "text": "fillStyle"
+        },
+        {
+          "kind": "text",
+          "text": ":)"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/background(_:in:fillStyle:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "background(_:in:fillStyle:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/background(_:in:fillstyle:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/background(alignment:content:)": {
+      "abstract": [
+        {
+          "text": "Layers the views that you specify behind this view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "background"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "V"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "alignment"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI9AlignmentV",
+          "text": "Alignment"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "content"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "V"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/background(alignment:content:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "background(alignment:content:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/background(alignment:content:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/background(ignoresSafeAreaEdges:)": {
+      "abstract": [
+        {
+          "text": "Sets the view’s background to the default background style.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "background"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "ignoresSafeAreaEdges"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4EdgeO",
+          "text": "Edge"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4EdgeO3SetV",
+          "text": "Set"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/background(ignoresSafeAreaEdges:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "background(ignoresSafeAreaEdges:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/background(ignoressafeareaedges:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/background(in:fillStyle:)": {
+      "abstract": [
+        {
+          "text": "Sets the view’s background to an insettable shape filled with the",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "default background style.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "background"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ":"
+        },
+        {
+          "kind": "externalParam",
+          "text": "fillStyle"
+        },
+        {
+          "kind": "text",
+          "text": ":)"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/background(in:fillStyle:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "background(in:fillStyle:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/background(in:fillstyle:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/containerBackground(_:for:)": {
+      "abstract": [
+        {
+          "text": "Sets the container background of the enclosing container using a view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "containerBackground"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI28ContainerBackgroundPlacementV",
+          "text": "ContainerBackgroundPlacement"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/containerBackground(_:for:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "containerBackground(_:for:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/containerbackground(_:for:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/containerBackground(for:alignment:content:)": {
+      "abstract": [
+        {
+          "text": "Sets the container background of the enclosing container using a view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "containerBackground"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "V"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI28ContainerBackgroundPlacementV",
+          "text": "ContainerBackgroundPlacement"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "alignment"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI9AlignmentV",
+          "text": "Alignment"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "content"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "V"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/containerBackground(for:alignment:content:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "containerBackground(for:alignment:content:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/containerbackground(for:alignment:content:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/gridCellAnchor(_:)": {
+      "abstract": [
+        {
+          "text": "Specifies a custom alignment anchor for a view that acts as a grid cell.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "gridCellAnchor"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI9UnitPointV",
+          "text": "UnitPoint"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/gridCellAnchor(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "gridCellAnchor(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/gridcellanchor(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/gridCellColumns(_:)": {
+      "abstract": [
+        {
+          "text": "Tells a view that acts as a cell in a grid to span the specified",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "number of columns.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "gridCellColumns"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/gridCellColumns(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "gridCellColumns(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/gridcellcolumns(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/gridCellUnsizedAxes(_:)": {
+      "abstract": [
+        {
+          "text": "Asks grid layouts not to offer the view extra size in the specified",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "axes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "gridCellUnsizedAxes"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4AxisO",
+          "text": "Axis"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4AxisO3SetV",
+          "text": "Set"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/gridCellUnsizedAxes(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "gridCellUnsizedAxes(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/gridcellunsizedaxes(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/gridColumnAlignment(_:)": {
+      "abstract": [
+        {
+          "text": "Overrides the default horizontal alignment of the grid column that",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "the view appears in.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "gridColumnAlignment"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI19HorizontalAlignmentV",
+          "text": "HorizontalAlignment"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/gridColumnAlignment(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "gridColumnAlignment(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/gridcolumnalignment(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/overlay(_:ignoresSafeAreaEdges:)": {
+      "abstract": [
+        {
+          "text": "Layers the specified style in front of this view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "overlay"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "ignoresSafeAreaEdges"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4EdgeO",
+          "text": "Edge"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4EdgeO3SetV",
+          "text": "Set"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/overlay(_:ignoresSafeAreaEdges:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "overlay(_:ignoresSafeAreaEdges:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/overlay(_:ignoressafeareaedges:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/overlay(_:in:fillStyle:)": {
+      "abstract": [
+        {
+          "text": "Layers a shape that you specify in front of this view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "overlay"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "T"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "fillStyle"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI9FillStyleV",
+          "text": "FillStyle"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/overlay(_:in:fillStyle:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "overlay(_:in:fillStyle:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/overlay(_:in:fillstyle:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/overlay(alignment:content:)": {
+      "abstract": [
+        {
+          "text": "Layers the views that you specify in front of this view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "overlay"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "V"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "alignment"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI9AlignmentV",
+          "text": "Alignment"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "content"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "V"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/overlay(alignment:content:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "overlay(alignment:content:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/overlay(alignment:content:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/zIndex(_:)": {
+      "abstract": [
+        {
+          "text": "Controls the display order of overlapping views.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "zIndex"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/zIndex(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "zIndex(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/zindex(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/ViewThatFits": {
+      "abstract": [
+        {
+          "text": "A view that adapts to the available space by providing the first",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "child view that fits.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ViewThatFits"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ViewThatFits",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ViewThatFits"
+        }
+      ],
+      "role": "symbol",
+      "title": "ViewThatFits",
+      "type": "topic",
+      "url": "/documentation/swiftui/viewthatfits"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/ZStack": {
+      "abstract": [
+        {
+          "text": "A view that overlays its subviews, aligning them in both axes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ZStack"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ZStack",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ZStack"
+        }
+      ],
+      "role": "symbol",
+      "title": "ZStack",
+      "type": "topic",
+      "url": "/documentation/swiftui/zstack"
+    },
+    "doc://com.apple.documentation/design/Human-Interface-Guidelines/layout": {
+      "abstract": [
+        {
+          "text": "A consistent layout that adapts to various contexts makes your experience more approachable and helps people enjoy their favorite apps and games on all their devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/design/Human-Interface-Guidelines/layout",
+      "images": [
+        {
+          "identifier": "layout.svg",
+          "type": "icon"
+        },
+        {
+          "identifier": "foundations-layout-thumbnail.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "article",
+      "title": "Layout",
+      "type": "topic",
+      "url": "/design/Human-Interface-Guidelines/layout"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "foundations-layout-thumbnail.png": {
+      "alt": null,
+      "identifier": "foundations-layout-thumbnail.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/0db27821e97ac9613ac0cc103892a10d/foundations-layout-thumbnail@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ecc4143dcd694cda5cb3b5e1afde9733/foundations-layout-thumbnail~dark@2x.png"
+        }
+      ]
+    },
+    "layout-fundamentals-hero": {
+      "alt": null,
+      "identifier": "layout-fundamentals-hero",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/9fd862b8214f1de236f13a51187c257f/layout-fundamentals-hero@2x.png"
+        }
+      ]
+    },
+    "layout.svg": {
+      "alt": null,
+      "identifier": "layout.svg",
+      "type": "image",
+      "variants": [
+        {
+          "svgID": "layout",
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f3e002314da7a56d2f24cdec3be06327/layout.svg"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "View-layout",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Layout-adjustments",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Custom-layout",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Lists",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Tables",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View-groupings",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Scroll-views"
+      ],
+      "title": "View layout"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Choosing-a-layout",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Picking-Container-Views-for-Your-Content"
+      ],
+      "title": "Choosing a layout"
+    },
+    {
+      "anchor": "Statically-arranging-views-in-one-dimension",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Building-Layouts-with-Stack-Views",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/HStack",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/VStack"
+      ],
+      "title": "Statically arranging views in one dimension"
+    },
+    {
+      "anchor": "Dynamically-arranging-views-in-one-dimension",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Grouping-Data-with-Lazy-Stack-Views",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Creating-Performant-Scrollable-Stacks",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/LazyHStack",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/LazyVStack",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/PinnedScrollableViews"
+      ],
+      "title": "Dynamically arranging views in one dimension"
+    },
+    {
+      "anchor": "Statically-arranging-views-in-two-dimensions",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Grid",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/GridRow",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/gridCellColumns(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/gridCellAnchor(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/gridCellUnsizedAxes(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/gridColumnAlignment(_:)"
+      ],
+      "title": "Statically arranging views in two dimensions"
+    },
+    {
+      "anchor": "Dynamically-arranging-views-in-two-dimensions",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/LazyHGrid",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/LazyVGrid",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/GridItem"
+      ],
+      "title": "Dynamically arranging views in two dimensions"
+    },
+    {
+      "anchor": "Layering-views",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Adding-a-Background-to-Your-View",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/ZStack",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/zIndex(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/background(alignment:content:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/background(_:ignoresSafeAreaEdges:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/background(ignoresSafeAreaEdges:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/background(_:in:fillStyle:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/background(in:fillStyle:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/overlay(alignment:content:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/overlay(_:ignoresSafeAreaEdges:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/overlay(_:in:fillStyle:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/backgroundMaterial",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/containerBackground(_:for:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/containerBackground(for:alignment:content:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/ContainerBackgroundPlacement"
+      ],
+      "title": "Layering views"
+    },
+    {
+      "anchor": "Automatically-choosing-the-layout-that-fits",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/ViewThatFits"
+      ],
+      "title": "Automatically choosing the layout that fits"
+    },
+    {
+      "anchor": "Separators",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Spacer",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Divider"
+      ],
+      "title": "Separators"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/swiftui/layout-fundamentals"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

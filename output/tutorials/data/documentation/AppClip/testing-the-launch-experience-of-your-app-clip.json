@@ -1,0 +1,1383 @@
+{
+  "abstract": [
+    {
+      "text": "Debug App Clip invocations, test the launch experience, and verify the configuration of your released App Clip.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.appclip/documentation/AppClip"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.appclip/documentation/AppClip/testing-the-launch-experience-of-your-app-clip"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "App Clips"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Testing the launch experience of your App Clip"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A fast launch experience is crucial to the experience your App Clip provides. As a result, you’ll spend a significant amount of time choosing invocation URLs, configuring App Clip experiences in App Store Connect, and writing code to handle the invocation URL.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To ensure your App Clip offers a smooth launch experience and that you properly configured your App Clip experiences, use the following tests and verifications:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "During development, use the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "_XCAppClipURL",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " environment variable to configure an invocation URL for debugging.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Verify the design of the App Clip card and the launch experience of your App Clip from invocations by creating a local experience on your test device.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "When you’re ready to share a beta version with others, create an App Clip experience for testers in ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/testflight/",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "When you’ve published your App Clip on the App Store, verify your App Clip configuration by using the App Clip diagnostics on iPhone.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Debug-your-App-Clip",
+          "level": 3,
+          "text": "Debug your App Clip",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The invocation URL plays a key role to offering a fast and instant launch experience for your App Clip because you can use it to update the user interface of your App Clip to match the user’s context. Testing this code is especially important. In Xcode, provide an invocation URL for debugging. Then, make sure your code handles your invocation URLs — including unexpected invocation URLs — and updates the user interface of your App Clip to match the user’s context.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To configure an invocation URL for debugging:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In Xcode, choose Product > Scheme > Edit Scheme and select the scheme for your App Clip.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select the Run action.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the Arguments tab, check whether the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "_XCAppClipURL",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " environment variable is present. When you add an App Clip target to your project, Xcode adds it for you. If it’s missing, add the environment variable.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Set the environment variable’s value to the invocation URL you want to test.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Enable the variable by selecting the checkbox next to it.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Build and run the App Clip to access the test URL you configured from an ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsuseractivity",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " object. For more information on accessing the invocation URL, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.appclip/documentation/AppClip/responding-to-invocations",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following screenshot shows the sheet to configure an App Clip target’s Run action with a value for the ",
+              "type": "text"
+            },
+            {
+              "code": "_XCAppClipURL",
+              "type": "codeVoice"
+            },
+            {
+              "text": " environment variable:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3671997",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you debug your App Clip with Xcode, the App Clip launches right away with the value you set for the ",
+              "type": "text"
+            },
+            {
+              "code": "_XCAppClipURL",
+              "type": "codeVoice"
+            },
+            {
+              "text": " variable. Note that the App Clip card doesn’t appear. To see the App Clip card on invocation when testing and test your entire launch experience, register a local experience on your test device.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Test-invocations-with-a-local-experience",
+          "level": 3,
+          "text": "Test invocations with a local experience",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Leveraging the ",
+              "type": "text"
+            },
+            {
+              "code": "_XCAppClipURL",
+              "type": "codeVoice"
+            },
+            {
+              "text": " environment variable is helpful when you debug the code that handles the invocation URL. However, you need to ensure your App Clip provides a fast and reliable launch experience from various invocations. In addition, exploring imagery, text, and a call-to-action verb for the App Clip card is especially important because the App Clip card is the user’s first interaction when they launch your App Clip.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To test invocations and explore the design of your App Clip card during development, configure a local experience on your test device. With a local experience, you can launch your App Clip by:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Scanning an App Clip Code, QR code, or NFC tag you’ve created to launch the local experience. For information on creating App Clip Codes for testing, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.appclip/documentation/AppClip/creating-app-clip-codes-with-the-app-clip-code-generator",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". To create a QR code or write an NFC tag, use your favorite tool.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Tapping a Smart Banner you added to your website or an App Clip card that appears in Safari or an ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SafariServices/SFSafariViewController",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Sharing a link to the website that displays a Smart App Banner. Make sure to add the sender of the message as a contact on the test device.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Note that you don’t need to configure the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.associated-domains",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or associate the App Clip with your website to launch a local experience from App Clip Codes, QR codes, or NFC tags. However, testing invocations from a Smart App Banner or the App Clip card in Safari comes with prerequisites; for example, you need to associate your website with your App Clip and release a version with an App Clip on the App Store. To learn more about when the Smart App Banner appears and for information on supporting invocations from your website or the Messages app, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appclip/documentation/AppClip/supporting-invocations-from-your-website-and-the-messages-app",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". To verify your configured App Clip experiences for a released app and App Clip, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appclip/documentation/AppClip/testing-the-launch-experience-of-your-app-clip#Verify-the-configuration-of-your-released-App-Clip",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " below.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Add the Code Scanner and the NFC Tag Reader to Control Center by opening the Settings app and selecting Control Center.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Tip",
+          "style": "tip",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To test your launch experience with a local experience:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Build and run your App Clip on your test device to make sure it’s cached on the test device. For example, with the Fruta sample code project, follow the instructions to configure it, then run the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Fruta iOS Clip",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " scheme. To download the sample code project, visit ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/appclip/fruta_building_a_feature-rich_app_with_swiftui",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "On your test device, open the Settings app, navigate to the iOS developer settings by choosing Developer > Local Experiences, and select Register Local Experience.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Enter the invocation URL you want to test. In some cases, it may be a simple URL prefix like ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "https://fruta.example.com",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". It can also be a longer invocation URL with path and query parameters.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Enter the bundle ID of your App Clip.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Provide a title and a subtitle. For the Fruta sample code project, you could enter ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Order a smoothie.",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " as the title and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "It’s yummy!",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " as the subtitle.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select a call-to-action; for example ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Open",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Choose a photo you want to use as the App Clip card’s header image.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "In addition to building and running your App Clip on your test device to cache it on the device, you can also manually add the ",
+                  "type": "text"
+                },
+                {
+                  "code": ".ipa",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " file of your App Clip to the device. First, archive the full app that corresponds with your App Clip. Then, in Xcode, export the App Clip for Ad Hoc or Development distribution. Finally, drag the exported ",
+                  "type": "text"
+                },
+                {
+                  "code": ".ipa",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " file to a connected device that appears in the Devices and Simulators window.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following screenshot shows the interface you use to configure a local experience on iPhone:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3686646",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you configure a local experience on a device, the local experience takes precedence over App Clip experiences you configure in ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://appstoreconnect.apple.com/login",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". However, local experiences only launch an App Clip that’s signed for Development, Ad Hoc, or TestFlight distribution. They don’t launch an App Clip or full app that’s published on the App Store. Remember to remove the local experience before testing App Clip experiences you configure in App Store Connect.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-App-Clip-experiences-for-testers-in-TestFlight",
+          "level": 3,
+          "text": "Create App Clip experiences for testers in TestFlight",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A reliable user experience is crucial to App Clips and requires spending time to test all user flows and supported invocations. To help make sure your App Clip works as expected, you can make your App Clip available to testers in ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/testflight/",
+              "isActive": true,
+              "overridingTitle": "TestFlight",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "TestFlight",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ". First, upload an app with an App Clip to ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://appstoreconnect.apple.com/login",
+              "isActive": true,
+              "overridingTitle": "App Store Connect",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "App Store Connect",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ". Then, in App Store Connect, navigate to the uploaded build. In the App Clip section, you can configure up to three different App Clip experiences for testing.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Unlike local experiences, creating an App Clip experience for testers in TestFlight requires you to associate your App Clip with your website. For more information on configuring associated domains, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.appclip/documentation/AppClip/associating-your-app-clip-with-your-website",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Users don’t install App Clips, and App Clips don’t appear on the Home Screen. Similarly, testers don’t install the beta version of your App Clip, and it also doesn’t appear on the Home Screen either. Instead, testers launch the App Clip experiences you configure for testing through the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://apps.apple.com/us/app/testflight/id899247664",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " on their device.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information on configuring experiences for testing in App Store Connect, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://help.apple.com/app-store-connect/#/devbc57e2ec6",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Testers can also configure a local experience to launch the App Clip you distribute with TestFlight. However, you must still associate your App Clip with your website so testers can launch it from the TestFlight app. In addition, testers must launch the App Clip from an App Clip experience you configure for testing in App Store Connect at least once to ensure that the App Clip is cached on the device.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Remove-cached-advanced-App-Clip-experiences",
+          "level": 3,
+          "text": "Remove cached advanced App Clip experiences",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you create a new advanced App Clip experience in App Store Connect, the new experience may not work right away because iOS caches App Clip experiences. To make sure an invocation launches a new App Clip experience, open the Settings app, navigate to the Developer section, and choose Clear Experience Cache.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Verify-the-configuration-of-your-released-App-Clip",
+          "level": 3,
+          "text": "Verify the configuration of your released App Clip",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you’ve released your app with an App Clip on the App Store, verify the configuration of your App Clip experiences to be sure that your website displays the Smart App Banner and that the App Clip appears on users’ devices:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Configure a default and optional advanced App Clip experiences in ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://appstoreconnect.apple.com/login",
+                      "isActive": true,
+                      "overridingTitle": "App Store Connect",
+                      "overridingTitleInlineContent": [
+                        {
+                          "text": "App Store Connect",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and release the version of your app that contains the App Clip on the App Store.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "On iPhone, open the Settings app, and navigate to the iOS developer settings by choosing Developer.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Choose Diagnostics in the App Clips Testing section.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Enter the URL of the website you associated with your App Clip and that you use for your App Clip experiences — for example, ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "https://fruta.example.com",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you enter a URL, the system verifies your App Clip configuration and indicates whether you:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Registered an advanced App Clip experience",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Published your App Clip on the App Store",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Associated your App Clip with the entered URL",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Picked an invocation URL that fits into an App Clip Code",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Added a Smart App Banner to your website",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the system found issues with your configuration, the App Clip diagnostics functionality on iPhone indicates errors and offers links to App Clip documentation to help resolve issues. Note that advanced App Clip experiences and displaying a Smart App Banner on your website are optional but recommended steps that help users discover your App Clip.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.appclip/documentation/AppClip": {
+      "abstract": [
+        {
+          "text": "Provide people a shortcut to selected content and features of your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appclip/documentation/AppClip",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "App Clips",
+      "type": "topic",
+      "url": "/documentation/appclip"
+    },
+    "doc://com.apple.appclip/documentation/AppClip/associating-your-app-clip-with-your-website": {
+      "abstract": [
+        {
+          "text": "Enable the system to verify your App Clip to support invocations in iOS 16.3 or earlier and from your website.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appclip/documentation/AppClip/associating-your-app-clip-with-your-website",
+      "kind": "article",
+      "role": "article",
+      "title": "Associating your App Clip with your website",
+      "type": "topic",
+      "url": "/documentation/appclip/associating-your-app-clip-with-your-website"
+    },
+    "doc://com.apple.appclip/documentation/AppClip/creating-app-clip-codes-with-the-app-clip-code-generator": {
+      "abstract": [
+        {
+          "text": "Use the App Clip Code Generator command-line tool to verify your code’s colors, get color suggestions, and create App Clip Codes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appclip/documentation/AppClip/creating-app-clip-codes-with-the-app-clip-code-generator",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating App Clip Codes with the App Clip Code Generator",
+      "type": "topic",
+      "url": "/documentation/appclip/creating-app-clip-codes-with-the-app-clip-code-generator"
+    },
+    "doc://com.apple.appclip/documentation/AppClip/responding-to-invocations": {
+      "abstract": [
+        {
+          "text": "Add code to respond to invocations and offer a focused launch experience.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appclip/documentation/AppClip/responding-to-invocations",
+      "kind": "article",
+      "role": "article",
+      "title": "Responding to invocations",
+      "type": "topic",
+      "url": "/documentation/appclip/responding-to-invocations"
+    },
+    "doc://com.apple.appclip/documentation/AppClip/supporting-invocations-from-your-website-and-the-messages-app": {
+      "abstract": [
+        {
+          "text": "Display a Smart App Banner and the App Clip card on your website that people tap to launch your App Clip, and add support for invocations from the Messages app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appclip/documentation/AppClip/supporting-invocations-from-your-website-and-the-messages-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Supporting invocations from your website and the Messages app",
+      "type": "topic",
+      "url": "/documentation/appclip/supporting-invocations-from-your-website-and-the-messages-app"
+    },
+    "doc://com.apple.appclip/documentation/AppClip/testing-the-launch-experience-of-your-app-clip#Verify-the-configuration-of-your-released-App-Clip": {
+      "abstract": [],
+      "identifier": "doc://com.apple.appclip/documentation/AppClip/testing-the-launch-experience-of-your-app-clip#Verify-the-configuration-of-your-released-App-Clip",
+      "kind": "section",
+      "title": "Verify the configuration of your released App Clip",
+      "type": "topic",
+      "url": "/documentation/appclip/testing-the-launch-experience-of-your-app-clip#Verify-the-configuration-of-your-released-App-Clip"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.associated-domains": {
+      "abstract": [
+        {
+          "text": "The associated domains for specific services, such as shared web credentials, universal links, and App Clips.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.associated-domains",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Associated Domains Entitlement",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Entitlements/com.apple.developer.associated-domains"
+    },
+    "doc://com.apple.documentation/documentation/SafariServices/SFSafariViewController": {
+      "abstract": [
+        {
+          "text": "An object that provides a visible standard interface for browsing the web.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SFSafariViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SafariServices/SFSafariViewController",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SFSafariViewController",
+      "type": "topic",
+      "url": "/documentation/SafariServices/SFSafariViewController"
+    },
+    "doc://com.apple.documentation/documentation/appclip/fruta_building_a_feature-rich_app_with_swiftui": {
+      "abstract": [
+        {
+          "text": "Create a shared codebase to build a multiplatform app that offers widgets and an App Clip.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/appclip/fruta_building_a_feature-rich_app_with_swiftui",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Fruta: Building a Feature-Rich App with SwiftUI",
+      "type": "topic",
+      "url": "/documentation/appclip/fruta_building_a_feature-rich_app_with_swiftui"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsuseractivity": {
+      "abstract": [
+        {
+          "text": "A representation of the state of your app at a moment in time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSUserActivity"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsuseractivity",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSUserActivity",
+      "type": "topic",
+      "url": "/documentation/foundation/nsuseractivity"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://apps.apple.com/us/app/testflight/id899247664": {
+      "identifier": "https://apps.apple.com/us/app/testflight/id899247664",
+      "title": "TestFlight app",
+      "titleInlineContent": [
+        {
+          "text": "TestFlight app",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://apps.apple.com/us/app/testflight/id899247664"
+    },
+    "https://appstoreconnect.apple.com/login": {
+      "identifier": "https://appstoreconnect.apple.com/login",
+      "title": "App Store Connect",
+      "titleInlineContent": [
+        {
+          "text": "App Store Connect",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://appstoreconnect.apple.com/login"
+    },
+    "https://developer.apple.com/testflight/": {
+      "identifier": "https://developer.apple.com/testflight/",
+      "title": "TestFlight",
+      "titleInlineContent": [
+        {
+          "text": "TestFlight",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/testflight/"
+    },
+    "https://help.apple.com/app-store-connect/#/devbc57e2ec6": {
+      "identifier": "https://help.apple.com/app-store-connect/#/devbc57e2ec6",
+      "title": "Testing an App Clip Experience",
+      "titleInlineContent": [
+        {
+          "text": "Testing an App Clip Experience",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://help.apple.com/app-store-connect/#/devbc57e2ec6"
+    },
+    "media-3671997": {
+      "alt": "A screenshot showing the sheet to configure an App Clip target’s Run action. The _XCAppClipURL environment variable’s value is set but not enabled.",
+      "identifier": "media-3671997",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f183530078eba0a42a3d61fa51ea8197/media-3671997@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/3a9db72824356db6e1de4ab419e3100b/media-3671997~dark@2x.png"
+        }
+      ]
+    },
+    "media-3686646": {
+      "alt": "A screenshot of an iPhone that shows the interface for configuring a local experience. It uses https://example.com as the URL prefix and com.example.app.clip as the bundle identifier. The title for the local experience’s App Clip card is Example App, its subtitle is A local App Clip experience, and its call-to-action verb is Open.",
+      "identifier": "media-3686646",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/85a371cd6be59ba5d0d87e1ff607aa61/media-3686646@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/3c08f4021f8dff51824c02daf6161ab2/media-3686646~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1SafariServices~1SFSafariViewController/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "SFSafariViewController"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIViewController",
+              "text": "UIViewController"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/appclip/testing-the-launch-experience-of-your-app-clip"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/appclip/testing-the-launch-experience-of-your-app-clip"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

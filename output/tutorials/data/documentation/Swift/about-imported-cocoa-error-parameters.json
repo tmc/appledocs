@@ -1,0 +1,683 @@
+{
+  "abstract": [
+    {
+      "text": "Learn how Cocoa error parameters are converted to Swift throwing methods.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Swift/documentation/Swift",
+        "doc://com.apple.Swift/documentation/Swift/cocoa-design-patterns"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Swift/documentation/Swift/about-imported-cocoa-error-parameters"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Swift"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "About Imported Cocoa Error Parameters"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In Cocoa, methods that produce errors take an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nserror",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "pointer parameter as their last parameter, which populates its argument with an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nserror",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "object if an error occurs. Swift automatically translates Objective-C methods that",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "produce errors into methods that throw an error according to Swift’s native error",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "handling functionality.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Understand-How-Error-Parameters-Are-Imported",
+          "level": 3,
+          "text": "Understand How Error Parameters Are Imported",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Swift examines Objective-C method declarations and translates them into Swift throwing",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "methods, with shorter names when possible.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, consider the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/filemanager/1413590-removeitem",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "method from ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/filemanager",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "In Objective-C, it’s declared like this:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "- (BOOL)removeItemAtURL:(NSURL *)URL",
+            "                  error:(NSError **)error;"
+          ],
+          "syntax": "occ",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In Swift, it’s imported like this:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func removeItem(at: URL) throws"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Notice that the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/filemanager/1413590-removeitem",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "method is imported by Swift with a ",
+              "type": "text"
+            },
+            {
+              "code": "Void",
+              "type": "codeVoice"
+            },
+            {
+              "text": " return type, no error parameter, and a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "throws",
+              "type": "codeVoice"
+            },
+            {
+              "text": " declaration.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the last non-block parameter of an Objective-C method is of type ",
+              "type": "text"
+            },
+            {
+              "code": "NSError **",
+              "type": "codeVoice"
+            },
+            {
+              "text": ",",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Swift replaces it with the throws keyword, to indicate that the method can throw",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "an error. If the Objective-C method’s error parameter is also its first parameter,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Swift attempts to simplify the method name further, by removing the ",
+              "type": "text"
+            },
+            {
+              "code": "WithError",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "AndReturnError",
+              "type": "codeVoice"
+            },
+            {
+              "text": " suffix, if present, from the first part of the selector. If another",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "method is declared with the resulting selector, the method name is not changed.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If an error producing Objective-C method returns a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/bool",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "value to indicate the success or failure of a method call, Swift changes the return",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "type of the function to ",
+              "type": "text"
+            },
+            {
+              "code": "Void",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". Similarly, if an error producing Objective-C method",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "returns a ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": " value to indicate the failure of a method call, Swift changes the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "return type of the function to a nonoptional type.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Otherwise, if no convention can be inferred, the method is left intact.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "You use the ",
+                  "type": "text"
+                },
+                {
+                  "code": "NS_SWIFT_NOTHROW",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " macro on Objective-C method declarations that",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "produce an ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/nserror",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " to prevent",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "it from being imported by Swift as a method that throws.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Swift-PageImage-card.png": {
+      "alt": "An orange Swift logo on a gradient background.",
+      "identifier": "Swift-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/81257762cf893d205c049e3021340e5f/Swift-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4d2ed632470b4616483901941fae4098/Swift-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Swift/documentation/Swift": {
+      "abstract": [
+        {
+          "text": "Build apps using a powerful open language.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift",
+      "images": [
+        {
+          "identifier": "Swift-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Swift",
+      "type": "topic",
+      "url": "/documentation/swift"
+    },
+    "doc://com.apple.Swift/documentation/Swift/cocoa-design-patterns": {
+      "abstract": [
+        {
+          "text": "Adopt and interoperate with Cocoa design patterns in your Swift apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/cocoa-design-patterns",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Cocoa Design Patterns",
+      "type": "topic",
+      "url": "/documentation/swift/cocoa-design-patterns"
+    },
+    "doc://com.apple.Swift/documentation/Swift/handling-cocoa-errors-in-swift": {
+      "abstract": [
+        {
+          "text": "Throw and catch errors that use Cocoa’s error types.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/handling-cocoa-errors-in-swift",
+      "kind": "article",
+      "role": "article",
+      "title": "Handling Cocoa Errors in Swift",
+      "type": "topic",
+      "url": "/documentation/swift/handling-cocoa-errors-in-swift"
+    },
+    "doc://com.apple.Swift/documentation/Swift/managing-a-shared-resource-using-a-singleton": {
+      "abstract": [
+        {
+          "text": "Provide access to a shared resource using a single, shared class instance.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/managing-a-shared-resource-using-a-singleton",
+      "kind": "article",
+      "role": "article",
+      "title": "Managing a Shared Resource Using a Singleton",
+      "type": "topic",
+      "url": "/documentation/swift/managing-a-shared-resource-using-a-singleton"
+    },
+    "doc://com.apple.Swift/documentation/Swift/using-delegates-to-customize-object-behavior": {
+      "abstract": [
+        {
+          "text": "Respond to events on behalf of a delegator.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/using-delegates-to-customize-object-behavior",
+      "kind": "article",
+      "role": "article",
+      "title": "Using Delegates to Customize Object Behavior",
+      "type": "topic",
+      "url": "/documentation/swift/using-delegates-to-customize-object-behavior"
+    },
+    "doc://com.apple.Swift/documentation/Swift/using-key-value-observing-in-swift": {
+      "abstract": [
+        {
+          "text": "Notify objects about changes to the properties of other objects.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/using-key-value-observing-in-swift",
+      "kind": "article",
+      "role": "article",
+      "title": "Using Key-Value Observing in Swift",
+      "type": "topic",
+      "url": "/documentation/swift/using-key-value-observing-in-swift"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filemanager": {
+      "abstract": [
+        {
+          "text": "A convenient interface to the contents of the file system, and the primary means of interacting with it.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "FileManager"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filemanager",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FileManager",
+      "type": "topic",
+      "url": "/documentation/foundation/filemanager"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filemanager/1413590-removeitem": {
+      "abstract": [
+        {
+          "text": "Removes the file or directory at the specified URL.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeItem"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": URL)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filemanager/1413590-removeitem",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "removeItem(at:)",
+      "type": "topic",
+      "url": "/documentation/foundation/filemanager/1413590-removeitem"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nserror": {
+      "abstract": [
+        {
+          "text": "Information about an error condition including a domain, a domain-specific error code, and application-specific information.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSError"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nserror",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSError",
+      "type": "topic",
+      "url": "/documentation/foundation/nserror"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/bool": {
+      "abstract": [
+        {
+          "text": "Type to represent a Boolean value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/bool",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "BOOL",
+      "type": "topic",
+      "url": "/documentation/objectivec/bool"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Common-Patterns",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/using-key-value-observing-in-swift",
+        "doc://com.apple.Swift/documentation/Swift/using-delegates-to-customize-object-behavior",
+        "doc://com.apple.Swift/documentation/Swift/managing-a-shared-resource-using-a-singleton",
+        "doc://com.apple.Swift/documentation/Swift/handling-cocoa-errors-in-swift"
+      ],
+      "title": "Common Patterns"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1filemanager~11413590-removeitem/title",
+          "value": "removeItemAtURL:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1filemanager/title",
+          "value": "NSFileManager"
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

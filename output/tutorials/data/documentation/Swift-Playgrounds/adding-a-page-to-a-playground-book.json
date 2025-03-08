@@ -1,0 +1,918 @@
+{
+  "abstract": [
+    {
+      "text": "Create a subfolder, a manifest file, and a content file.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Swift-Playgrounds/documentation/swift-playgrounds",
+        "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/playground-books",
+        "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/structuring-content-for-swift-playgrounds"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/adding-a-page-to-a-playground-book"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Adding a Page to a Playground Book"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Playground pages are the primary content of a playground book. They contain the code,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "prose, and optional live view that make up the primary Swift Playgrounds interface",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that’s displayed when viewing a book.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-a-Subfolder-to-a-Chapter-Folder",
+          "level": 3,
+          "text": "Add a Subfolder to a Chapter Folder",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Add a page by selecting a chapter folder and adding a subfolder to it. The subfolder’s",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "name must end in the suffix .playgroundpage.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In Xcode, create a property list file called ",
+              "type": "text"
+            },
+            {
+              "code": "Manifest.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in the new page’s subfolder.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Choose File > New > File, then choose the Property List template from iOS >",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Resources. Use the manifest property list to list the page’s name and configuration metadata.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-Code-and-Prose",
+          "level": 3,
+          "text": "Add Code and Prose",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For each page in your playground book, create a ",
+              "type": "text"
+            },
+            {
+              "code": "main.swift",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file. This file is where",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "you write most of the content—code and prose—that learners see in a playground book.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The code and prose you write in this file appears on the left side of a page when",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "it’s displayed in Swift Playgrounds.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If you’re writing a book that targets a version of the Swift Playgrounds",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "book format earlier than ",
+                  "type": "text"
+                },
+                {
+                  "code": "6.0",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", use the name ",
+                  "type": "text"
+                },
+                {
+                  "code": "Contents.swift",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " instead of ",
+                  "type": "text"
+                },
+                {
+                  "code": "main.swift",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "By default, everything you write in ",
+              "type": "text"
+            },
+            {
+              "code": "main.swift",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is treated as normal Swift code",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that runs when a learner taps the Run button. Playground pages support rich annotions",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that you use to write prose and add functionality. For more information about annotations,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "see ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Annotations",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/writing-prose-for-a-playground-page",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-an-Always-On-Live-View",
+          "level": 3,
+          "text": "Add an Always-On Live View",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To display the results of running the code on a page, you can add an always-on live",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "view. When present, it’s displayed on the right side of a page. Add an always-on",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "live view by creating a file named ",
+              "type": "text"
+            },
+            {
+              "code": "LiveView.swift",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and placing it in a page’s .playgroundpage",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "folder.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For the view to appear on the page, you must set the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/playgroundsupport/playgroundpage/1964506-liveview",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "property of the current page within ",
+              "type": "text"
+            },
+            {
+              "code": "LiveView.swift",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "PlaygroundPage.current.liveView = <# An instance of UIView or UIViewController #>"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Specify-the-Page-Name-and-Metadata",
+          "level": 3,
+          "text": "Specify the Page Name and Metadata",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A page’s manifest property list determines both the page name and metadata for presenting",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the page in Swift Playgrounds. Configure the following property list keys in the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "manifest:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A dictionary you use to specify the instructions learners read when they’re copying content between playground pages. For information about the keys and values you use in this dictionary, see ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/specifying-editable-regions-in-a-playground-page#Mark-Editable-Areas-as-Copyable",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "CodeCopySetup",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "inlineContent": [
+                          {
+                            "text": "Required.",
+                            "type": "text"
+                          }
+                        ],
+                        "type": "strong"
+                      },
+                      {
+                        "text": " A Boolean value you use to control the initial size of the live view. Set to ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "true",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " to fill the whole live view area, which includes the Run and Hints buttons that overlay the live view.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "LiveViewEdgeToEdge",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "inlineContent": [
+                          {
+                            "text": "Required.",
+                            "type": "text"
+                          }
+                        ],
+                        "type": "strong"
+                      },
+                      {
+                        "text": " A string you use to control the display of the live view area when the live view isn’t running. Set to ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "VisibleByDefault",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " to show the live view when the playground opens. Otherwise, set to ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "HiddenByDefault",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " to hide the live view until a learner runs the playground.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "LiveViewMode",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "inlineContent": [
+                          {
+                            "text": "Required.",
+                            "type": "text"
+                          }
+                        ],
+                        "type": "strong"
+                      },
+                      {
+                        "text": " A string you use to specify the page name displayed to learners in Swift Playgrounds.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "Name",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A string you use to specify whether the results of running Swift statements on the page are displayed beside each statement. Set to ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "Normal",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " to display results; otherwise, set to ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "Off",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "PlaygroundLoggingMode",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A string you use to reference an image file that’s shown centered and unscaled in the live view area before the live view runs. The image file can be in any Resources folder in the playground book.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "PosterReference",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "An array of strings you use to control which code completions from modules show up in the shortcut bar. The syntax for each completion is identical to the syntax you use within the ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "code-completion",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " delimiter in ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "main.swift",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " files. For more information, see ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/customizing-the-completions-in-the-shortcut-bar",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "UserModuleCodeCompletionDirectives",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A string you use to specify the active Swift file when a learner opens this page. Set to the path of a Swift file relative to the Contents folder in the playground book. For example: ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "UserModules/MyModule.playgroundmodule/Sources/MyModule.swift",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "UserModuleSourceFileToActivate",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "An array of strings you use to specify which Swift files should open when a learner opens this page. The order of the array elements determines the display order of the files in the Swift Playgrounds interface.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "UserModuleSourceFilesToOpen",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/adding-a-chapter-to-a-playground-book": {
+      "abstract": [
+        {
+          "text": "Create a folder with a manifest that describes the chapter’s name and page order.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/adding-a-chapter-to-a-playground-book",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding a Chapter to a Playground Book",
+      "type": "topic",
+      "url": "/documentation/swift-playgrounds/adding-a-chapter-to-a-playground-book"
+    },
+    "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/adding-a-cutscene-to-a-playground-book": {
+      "abstract": [
+        {
+          "text": "Create a subfolder, a manifest file, and cutscene metadata.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/adding-a-cutscene-to-a-playground-book",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding a Cutscene to a Playground Book",
+      "type": "topic",
+      "url": "/documentation/swift-playgrounds/adding-a-cutscene-to-a-playground-book"
+    },
+    "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/customizing-the-completions-in-the-shortcut-bar": {
+      "abstract": [
+        {
+          "text": "Guide learners toward a solution by hiding some symbols and showing others.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/customizing-the-completions-in-the-shortcut-bar",
+      "kind": "article",
+      "role": "article",
+      "title": "Customizing the Completions in the Shortcut Bar",
+      "type": "topic",
+      "url": "/documentation/swift-playgrounds/customizing-the-completions-in-the-shortcut-bar"
+    },
+    "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/playground-books": {
+      "abstract": [
+        {
+          "text": "Create interactive Playground Book based learning experiences for the Swift Playgrounds app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/playground-books",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Playground Books",
+      "type": "topic",
+      "url": "/documentation/swift-playgrounds/playground-books"
+    },
+    "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/sharing-resources-in-a-playground-book": {
+      "abstract": [
+        {
+          "text": "Reuse common assets throughout a book to reduce its size.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/sharing-resources-in-a-playground-book",
+      "kind": "article",
+      "role": "article",
+      "title": "Sharing Resources in a Playground Book",
+      "type": "topic",
+      "url": "/documentation/swift-playgrounds/sharing-resources-in-a-playground-book"
+    },
+    "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/specifying-editable-regions-in-a-playground-page#Mark-Editable-Areas-as-Copyable": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/specifying-editable-regions-in-a-playground-page#Mark-Editable-Areas-as-Copyable",
+      "kind": "section",
+      "title": "Mark Editable Areas as Copyable",
+      "type": "topic",
+      "url": "/documentation/swift-playgrounds/specifying-editable-regions-in-a-playground-page#Mark-Editable-Areas-as-Copyable"
+    },
+    "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/structuring-content-for-swift-playgrounds": {
+      "abstract": [
+        {
+          "text": "Add content to a playground book by creating new folders and property lists.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/structuring-content-for-swift-playgrounds",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Structuring Content for Swift Playgrounds",
+      "type": "topic",
+      "url": "/documentation/swift-playgrounds/structuring-content-for-swift-playgrounds"
+    },
+    "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/using-modules-to-share-code-in-a-playground-book": {
+      "abstract": [
+        {
+          "text": "In Swift Playgrounds 3.0 and later, make code available across multiple chapters to teach the value of reusable code.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/using-modules-to-share-code-in-a-playground-book",
+      "kind": "article",
+      "role": "article",
+      "title": "Using Modules to Share Code in a Playground Book",
+      "type": "topic",
+      "url": "/documentation/swift-playgrounds/using-modules-to-share-code-in-a-playground-book"
+    },
+    "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/writing-prose-for-a-playground-page": {
+      "abstract": [
+        {
+          "text": "Add comment markers in your Swift code to mark text as prose.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/writing-prose-for-a-playground-page",
+      "kind": "article",
+      "role": "article",
+      "title": "Writing Prose for a Playground Page",
+      "type": "topic",
+      "url": "/documentation/swift-playgrounds/writing-prose-for-a-playground-page"
+    },
+    "doc://com.apple.Swift-Playgrounds/documentation/swift-playgrounds": {
+      "abstract": [
+        {
+          "text": "Learn to write apps, repurpose sample code, create, and share learning experiences in Swift Playgrounds.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift-Playgrounds/documentation/swift-playgrounds",
+      "kind": "article",
+      "role": "collection",
+      "title": "Swift Playgrounds",
+      "type": "topic",
+      "url": "/documentation/swift-playgrounds"
+    },
+    "doc://com.apple.documentation/documentation/playgroundsupport/playgroundpage/1964506-liveview": {
+      "abstract": [
+        {
+          "text": "A live view that shows the result of running the code that’s on the current page.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "liveView"
+        },
+        {
+          "kind": "text",
+          "text": ": (any PlaygroundLiveViewable)?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/playgroundsupport/playgroundpage/1964506-liveview",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "liveView",
+      "type": "topic",
+      "url": "/documentation/playgroundsupport/playgroundpage/1964506-liveview"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Book-Structure",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/adding-a-chapter-to-a-playground-book",
+        "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/adding-a-cutscene-to-a-playground-book",
+        "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/using-modules-to-share-code-in-a-playground-book",
+        "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/sharing-resources-in-a-playground-book"
+      ],
+      "title": "Book Structure"
+    }
+  ]
+}

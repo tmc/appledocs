@@ -1,0 +1,2359 @@
+{
+  "abstract": [
+    {
+      "text": "An expression for use in a comparison predicate.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/filters_and_sorting"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/nsexpression"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1409026,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSExpression",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "class "
+      },
+      {
+        "kind": "identifier",
+        "text": "NSExpression"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "3.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "3.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.4",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "NSExpression"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSExpression"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Comparison operations in an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nspredicate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " derive from two expressions as instances of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsexpression",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " class. You create expressions for constant values, key paths, and so on.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Generally, anywhere in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsexpression",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " class hierarchy where there’s a composite API and subtypes that may only reasonably respond to a subset of that API, invoking a method that doesn’t make sense for that subtype throws an exception.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "1651208",
+          "level": 3,
+          "text": "Aggregate Expressions",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsexpression/expressiontype/aggregate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " allows you to create predicates containing expressions that evaluate to collections that contain further expressions. The collection may be an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsset",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsdictionary",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Core Data doesn’t support aggregate expressions.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "1651223",
+          "level": 3,
+          "text": "Subquery Expressions",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsexpression/expressiontype/subquery",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " creates a subexpression that returns a subset of a collection of objects. This allows you to create sophisticated queries across relationships, such as a search for multiple correlated values on the destination object of a relationship.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "1651238",
+          "level": 3,
+          "text": "Set Expressions",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The set expressions (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsexpression/expressiontype/unionset",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsexpression/expressiontype/intersectset",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsexpression/expressiontype/minusset",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ") combine results in a manner similar to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsset",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " methods.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Both sides of these expressions must evaluate to a collection; the left side must evaluate to an ",
+              "type": "text"
+            },
+            {
+              "code": "NSSet",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object, and the right side can be any other collection type.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "(expression UNION expression)",
+            "(expression INTERSECT expression)",
+            "(expression MINUS expression)"
+          ],
+          "metadata": {
+            "anchor": "2555606",
+            "title": "Listing 1"
+          },
+          "syntax": "occ",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Core Data doesn’t support set expressions.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "1651258",
+          "level": 3,
+          "text": "Function Expressions",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In macOS 10.4, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsexpression",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " only supports a predefined set of functions: ",
+              "type": "text"
+            },
+            {
+              "code": "sum",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "count",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "min",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "max",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "code": "average",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". You access these predefined functions in the predicate syntax using custom keywords (for example, ",
+              "type": "text"
+            },
+            {
+              "code": "MAX(1, 5, 10)",
+              "type": "codeVoice"
+            },
+            {
+              "text": ").",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In macOS 10.5 and later, function expressions also support arbitrary method invocations. To implement this extended functionality, use the syntax ",
+              "type": "text"
+            },
+            {
+              "code": "FUNCTION(receiver, selectorName, arguments, ...),",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as in the following example:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "FUNCTION(@\"/Developer/Tools/otest\", @\"lastPathComponent\") => @\"otest\""
+          ],
+          "metadata": {
+            "anchor": "2555612",
+            "title": "Listing 2"
+          },
+          "syntax": "occ",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "All methods must take one or more ",
+              "type": "text"
+            },
+            {
+              "code": "id",
+              "type": "codeVoice"
+            },
+            {
+              "text": " arguments and return an ",
+              "type": "text"
+            },
+            {
+              "code": "id",
+              "type": "codeVoice"
+            },
+            {
+              "text": " value, although you can use the ",
+              "type": "text"
+            },
+            {
+              "code": "CAST",
+              "type": "codeVoice"
+            },
+            {
+              "text": " expression to convert datatypes with lossy string representations (for example, ",
+              "type": "text"
+            },
+            {
+              "code": "CAST(####, \"NSDate\")",
+              "type": "codeVoice"
+            },
+            {
+              "text": "). macOS 10.5 extends the ",
+              "type": "text"
+            },
+            {
+              "code": "CAST",
+              "type": "codeVoice"
+            },
+            {
+              "text": " expression to provide support for casting to classes for use in creating receivers for function expressions.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Although Core Data supports evaluation of the predefined functions, it doesn’t support the evaluation of custom predicate functions in the persistent stores (during a fetch).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filters_and_sorting": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filters_and_sorting",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Filters and Sorting",
+      "type": "topic",
+      "url": "/documentation/foundation/filters_and_sorting"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsarray": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSArray",
+      "type": "topic",
+      "url": "/documentation/foundation/nsarray"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscomparisonpredicate": {
+      "abstract": [
+        {
+          "text": "A specialized predicate for comparing expressions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSComparisonPredicate"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscomparisonpredicate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSComparisonPredicate",
+      "type": "topic",
+      "url": "/documentation/foundation/nscomparisonpredicate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscompoundpredicate": {
+      "abstract": [
+        {
+          "text": "A specialized predicate that evaluates logical combinations of other predicates.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCompoundPredicate"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscompoundpredicate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCompoundPredicate",
+      "type": "topic",
+      "url": "/documentation/foundation/nscompoundpredicate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscopying": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscopying",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCopying",
+      "type": "topic",
+      "url": "/documentation/foundation/nscopying"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdictionary": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdictionary",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSDictionary",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdictionary"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsexpression": {
+      "abstract": [
+        {
+          "text": "An expression for use in a comparison predicate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSExpression"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsexpression",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSExpression",
+      "type": "topic",
+      "url": "/documentation/foundation/nsexpression"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsexpression#2555606": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsexpression#2555606",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/foundation/nsexpression#2555606"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsexpression#2555612": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsexpression#2555612",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 2",
+      "type": "section",
+      "url": "/documentation/foundation/nsexpression#2555612"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsexpression/1407531-predicate": {
+      "abstract": [
+        {
+          "text": "The predicate of a subquery expression.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "predicate"
+        },
+        {
+          "kind": "text",
+          "text": ": NSPredicate"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsexpression/1407531-predicate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "predicate",
+      "type": "topic",
+      "url": "/documentation/foundation/nsexpression/1407531-predicate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsexpression/1407823-init": {
+      "abstract": [
+        {
+          "text": "Creates an expression object that uses the block for evaluating objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "block"
+        },
+        {
+          "kind": "text",
+          "text": ": (Any?, [NSExpression], NSMutableDictionary?) -> Any, "
+        },
+        {
+          "kind": "identifier",
+          "text": "arguments"
+        },
+        {
+          "kind": "text",
+          "text": ": [NSExpression]?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsexpression/1407823-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(block:arguments:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsexpression/1407823-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsexpression/1408892-init": {
+      "abstract": [
+        {
+          "text": "Creates an expression that invokes the value function with a specified key path.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forKeyPath"
+        },
+        {
+          "kind": "text",
+          "text": ": String)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsexpression/1408892-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(forKeyPath:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsexpression/1408892-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsexpression/1409139-expressionblock": {
+      "abstract": [
+        {
+          "text": "The block that executes to evaluate the expression.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "expressionBlock"
+        },
+        {
+          "kind": "text",
+          "text": ": (Any?, [NSExpression], NSMutableDictionary?) -> Any"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsexpression/1409139-expressionblock",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "expressionBlock",
+      "type": "topic",
+      "url": "/documentation/foundation/nsexpression/1409139-expressionblock"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsexpression/1409244-allowevaluation": {
+      "abstract": [
+        {
+          "text": "Forces a securely decoded expression to allow evaluation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "allowEvaluation"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsexpression/1409244-allowevaluation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "allowEvaluation()",
+      "type": "topic",
+      "url": "/documentation/foundation/nsexpression/1409244-allowevaluation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsexpression/1409706-init": {
+      "abstract": [
+        {
+          "text": "Creates an expression object that represents the intersection of a specified set and collection.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forIntersectSet"
+        },
+        {
+          "kind": "text",
+          "text": ": NSExpression, "
+        },
+        {
+          "kind": "identifier",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": NSExpression)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsexpression/1409706-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(forIntersectSet:with:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsexpression/1409706-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsexpression/1410198-expressionforanykey": {
+      "abstract": [
+        {
+          "text": "Creates an expression that represents any key for a Spotlight query.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "expressionForAnyKey"
+        },
+        {
+          "kind": "text",
+          "text": "() -> NSExpression"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsexpression/1410198-expressionforanykey",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "expressionForAnyKey()",
+      "type": "topic",
+      "url": "/documentation/foundation/nsexpression/1410198-expressionforanykey"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsexpression/1410346-init": {
+      "abstract": [
+        {
+          "text": "Creates the expression with the specified expression format and arguments list.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "format"
+        },
+        {
+          "kind": "text",
+          "text": ": String, "
+        },
+        {
+          "kind": "identifier",
+          "text": "arguments"
+        },
+        {
+          "kind": "text",
+          "text": ": CVaListPointer)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsexpression/1410346-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(format:arguments:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsexpression/1410346-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsexpression/1410363-expressionvalue": {
+      "abstract": [
+        {
+          "text": "Evaluates an expression using a specified object and context.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "expressionValue"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": Any?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "context"
+        },
+        {
+          "kind": "text",
+          "text": ": NSMutableDictionary?) -> Any?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsexpression/1410363-expressionvalue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "expressionValue(with:context:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsexpression/1410363-expressionvalue"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsexpression/1411559-arguments": {
+      "abstract": [
+        {
+          "text": "The arguments for the expression.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "arguments"
+        },
+        {
+          "kind": "text",
+          "text": ": [NSExpression]?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsexpression/1411559-arguments",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "arguments",
+      "type": "topic",
+      "url": "/documentation/foundation/nsexpression/1411559-arguments"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsexpression/1411585-init": {
+      "abstract": [
+        {
+          "text": "Creates an expression object that represents the union of a specified set and collection.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forUnionSet"
+        },
+        {
+          "kind": "text",
+          "text": ": NSExpression, "
+        },
+        {
+          "kind": "identifier",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": NSExpression)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsexpression/1411585-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(forUnionSet:with:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsexpression/1411585-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsexpression/1411651-init": {
+      "abstract": [
+        {
+          "text": "Creates an expression that filters a collection by storing elements in the collection in a specified variable and keeping the elements that the qualifier returns as true.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forSubquery"
+        },
+        {
+          "kind": "text",
+          "text": ": NSExpression, "
+        },
+        {
+          "kind": "identifier",
+          "text": "usingIteratorVariable"
+        },
+        {
+          "kind": "text",
+          "text": ": String, "
+        },
+        {
+          "kind": "identifier",
+          "text": "predicate"
+        },
+        {
+          "kind": "text",
+          "text": ": NSPredicate)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsexpression/1411651-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(forSubquery:usingIteratorVariable:predicate:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsexpression/1411651-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsexpression/1411845-expressionforevaluatedobject": {
+      "abstract": [
+        {
+          "text": "Creates an expression that represents the object you’re evaluating.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "expressionForEvaluatedObject"
+        },
+        {
+          "kind": "text",
+          "text": "() -> NSExpression"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsexpression/1411845-expressionforevaluatedobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "expressionForEvaluatedObject()",
+      "type": "topic",
+      "url": "/documentation/foundation/nsexpression/1411845-expressionforevaluatedobject"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsexpression/1411874-true": {
+      "abstract": [
+        {
+          "text": "An expression to evalutate if a conditional expression’s predicate evaluates to true.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "`true`"
+        },
+        {
+          "kind": "text",
+          "text": ": NSExpression"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsexpression/1411874-true",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "true",
+      "type": "topic",
+      "url": "/documentation/foundation/nsexpression/1411874-true"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsexpression/1412905-init": {
+      "abstract": [
+        {
+          "text": "Creates an expression that returns the result of invoking a selector with a specified name using specified arguments.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forFunction"
+        },
+        {
+          "kind": "text",
+          "text": ": NSExpression, "
+        },
+        {
+          "kind": "identifier",
+          "text": "selectorName"
+        },
+        {
+          "kind": "text",
+          "text": ": String, "
+        },
+        {
+          "kind": "identifier",
+          "text": "arguments"
+        },
+        {
+          "kind": "text",
+          "text": ": [Any]?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsexpression/1412905-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(forFunction:selectorName:arguments:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsexpression/1412905-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsexpression/1413484-init": {
+      "abstract": [
+        {
+          "text": "Creates the expression with the specified expression format and array of arguments.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "format"
+        },
+        {
+          "kind": "text",
+          "text": ": String, "
+        },
+        {
+          "kind": "identifier",
+          "text": "argumentArray"
+        },
+        {
+          "kind": "text",
+          "text": ": [Any])"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsexpression/1413484-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(format:argumentArray:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsexpression/1413484-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsexpression/1413698-operand": {
+      "abstract": [
+        {
+          "text": "The operand for the expression.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "operand"
+        },
+        {
+          "kind": "text",
+          "text": ": NSExpression"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsexpression/1413698-operand",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "operand",
+      "type": "topic",
+      "url": "/documentation/foundation/nsexpression/1413698-operand"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsexpression/1413747-init": {
+      "abstract": [
+        {
+          "text": "Creates an expression that invokes one of the predefined functions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forFunction"
+        },
+        {
+          "kind": "text",
+          "text": ": String, "
+        },
+        {
+          "kind": "identifier",
+          "text": "arguments"
+        },
+        {
+          "kind": "text",
+          "text": ": [Any])"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsexpression/1413747-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(forFunction:arguments:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsexpression/1413747-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsexpression/1413759-variable": {
+      "abstract": [
+        {
+          "text": "The variable for the expression.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "variable"
+        },
+        {
+          "kind": "text",
+          "text": ": String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsexpression/1413759-variable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "variable",
+      "type": "topic",
+      "url": "/documentation/foundation/nsexpression/1413759-variable"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsexpression/1415409-init": {
+      "abstract": [
+        {
+          "text": "Creates an expression by decoding from the coder you specify.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "identifier",
+          "text": "coder"
+        },
+        {
+          "kind": "text",
+          "text": ": NSCoder)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsexpression/1415409-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(coder:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsexpression/1415409-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsexpression/1415684-collection": {
+      "abstract": [
+        {
+          "text": "The collection of expressions in an aggregate expression, or the collection element of a subquery expression.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "collection"
+        },
+        {
+          "kind": "text",
+          "text": ": Any"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsexpression/1415684-collection",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "collection",
+      "type": "topic",
+      "url": "/documentation/foundation/nsexpression/1415684-collection"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsexpression/1415792-left": {
+      "abstract": [
+        {
+          "text": "The left expression of an aggregate expression.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "left"
+        },
+        {
+          "kind": "text",
+          "text": ": NSExpression"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsexpression/1415792-left",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "left",
+      "type": "topic",
+      "url": "/documentation/foundation/nsexpression/1415792-left"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsexpression/1415818-init": {
+      "abstract": [
+        {
+          "text": "Creates an expression that represents a specified constant value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forConstantValue"
+        },
+        {
+          "kind": "text",
+          "text": ": Any?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsexpression/1415818-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(forConstantValue:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsexpression/1415818-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsexpression/1416071-keypath": {
+      "abstract": [
+        {
+          "text": "The key path for the expression.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "keyPath"
+        },
+        {
+          "kind": "text",
+          "text": ": String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsexpression/1416071-keypath",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "keyPath",
+      "type": "topic",
+      "url": "/documentation/foundation/nsexpression/1416071-keypath"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsexpression/1416200-function": {
+      "abstract": [
+        {
+          "text": "The function for the expression.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "function"
+        },
+        {
+          "kind": "text",
+          "text": ": String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsexpression/1416200-function",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "function",
+      "type": "topic",
+      "url": "/documentation/foundation/nsexpression/1416200-function"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsexpression/1416488-false": {
+      "abstract": [
+        {
+          "text": "An expression to evalutate if a conditional expression’s predicate evaluates to false.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "`false`"
+        },
+        {
+          "kind": "text",
+          "text": ": NSExpression"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsexpression/1416488-false",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "false",
+      "type": "topic",
+      "url": "/documentation/foundation/nsexpression/1416488-false"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsexpression/1416583-right": {
+      "abstract": [
+        {
+          "text": "The right expression of an aggregate expression.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "right"
+        },
+        {
+          "kind": "text",
+          "text": ": NSExpression"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsexpression/1416583-right",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "right",
+      "type": "topic",
+      "url": "/documentation/foundation/nsexpression/1416583-right"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsexpression/1416975-expressiontype": {
+      "abstract": [
+        {
+          "text": "The expression type for the expression.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "expressionType"
+        },
+        {
+          "kind": "text",
+          "text": ": NSExpression.ExpressionType"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsexpression/1416975-expressiontype",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "expressionType",
+      "type": "topic",
+      "url": "/documentation/foundation/nsexpression/1416975-expressiontype"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsexpression/1417593-init": {
+      "abstract": [
+        {
+          "text": "Creates an expression that extracts a value from the variable bindings dictionary for a specified key.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forVariable"
+        },
+        {
+          "kind": "text",
+          "text": ": String)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsexpression/1417593-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(forVariable:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsexpression/1417593-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsexpression/1417659-init": {
+      "abstract": [
+        {
+          "text": "Creates an expression object that represents the subtraction of a specified collection from a specified set.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forMinusSet"
+        },
+        {
+          "kind": "text",
+          "text": ": NSExpression, "
+        },
+        {
+          "kind": "identifier",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": NSExpression)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsexpression/1417659-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(forMinusSet:with:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsexpression/1417659-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsexpression/1418004-init": {
+      "abstract": [
+        {
+          "text": "Creates an expression that returns a result, depending on the value of predicate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forConditional"
+        },
+        {
+          "kind": "text",
+          "text": ": NSPredicate, "
+        },
+        {
+          "kind": "identifier",
+          "text": "trueExpression"
+        },
+        {
+          "kind": "text",
+          "text": ": NSExpression, "
+        },
+        {
+          "kind": "identifier",
+          "text": "falseExpression"
+        },
+        {
+          "kind": "text",
+          "text": ": NSExpression)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsexpression/1418004-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(forConditional:trueExpression:falseExpression:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsexpression/1418004-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsexpression/1418093-constantvalue": {
+      "abstract": [
+        {
+          "text": "The constant value of the expression.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "constantValue"
+        },
+        {
+          "kind": "text",
+          "text": ": Any?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsexpression/1418093-constantvalue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "constantValue",
+      "type": "topic",
+      "url": "/documentation/foundation/nsexpression/1418093-constantvalue"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsexpression/1418351-init": {
+      "abstract": [
+        {
+          "text": "Creates the expression with the specified expression type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "expressionType"
+        },
+        {
+          "kind": "text",
+          "text": ": NSExpression.ExpressionType)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsexpression/1418351-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(expressionType:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsexpression/1418351-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsexpression/1418366-init": {
+      "abstract": [
+        {
+          "text": "Creates an aggregate expression for a specified collection.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forAggregate"
+        },
+        {
+          "kind": "text",
+          "text": ": [NSExpression])"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsexpression/1418366-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(forAggregate:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsexpression/1418366-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsexpression/2908855-init": {
+      "abstract": [
+        {
+          "text": "Creates an expression using a key path you specify.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "<Root, Value>("
+        },
+        {
+          "kind": "identifier",
+          "text": "forKeyPath"
+        },
+        {
+          "kind": "text",
+          "text": ": KeyPath<Root, Value>)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsexpression/2908855-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(forKeyPath:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsexpression/2908855-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsexpression/3126725-init": {
+      "abstract": [
+        {
+          "text": "Creates the expression with the expression format and arguments list you specify.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "format"
+        },
+        {
+          "kind": "text",
+          "text": ": String, any CVarArg...)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsexpression/3126725-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(format:_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsexpression/3126725-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsexpression/4395597-init": {
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?<Input, Output>(Expression<Input, Output>)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsexpression/4395597-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsexpression/4395597-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsexpression/expressiontype": {
+      "abstract": [
+        {
+          "text": "Defines the possible types of an expression.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "enum "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSExpression.ExpressionType"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsexpression/expressiontype",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSExpression.ExpressionType",
+      "type": "topic",
+      "url": "/documentation/foundation/nsexpression/expressiontype"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsexpression/expressiontype/aggregate": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsexpression/expressiontype/aggregate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSExpression.ExpressionType.aggregate",
+      "type": "topic",
+      "url": "/documentation/foundation/nsexpression/expressiontype/aggregate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsexpression/expressiontype/intersectset": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsexpression/expressiontype/intersectset",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSExpression.ExpressionType.intersectSet",
+      "type": "topic",
+      "url": "/documentation/foundation/nsexpression/expressiontype/intersectset"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsexpression/expressiontype/minusset": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsexpression/expressiontype/minusset",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSExpression.ExpressionType.minusSet",
+      "type": "topic",
+      "url": "/documentation/foundation/nsexpression/expressiontype/minusset"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsexpression/expressiontype/subquery": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsexpression/expressiontype/subquery",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSExpression.ExpressionType.subquery",
+      "type": "topic",
+      "url": "/documentation/foundation/nsexpression/expressiontype/subquery"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsexpression/expressiontype/unionset": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsexpression/expressiontype/unionset",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSExpression.ExpressionType.unionSet",
+      "type": "topic",
+      "url": "/documentation/foundation/nsexpression/expressiontype/unionset"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nspredicate": {
+      "abstract": [
+        {
+          "text": "A definition of logical conditions for constraining a search for a fetch or for in-memory filtering.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSPredicate"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nspredicate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSPredicate",
+      "type": "topic",
+      "url": "/documentation/foundation/nspredicate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nssecurecoding": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nssecurecoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSecureCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nssecurecoding"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsset": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsset",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSet",
+      "type": "topic",
+      "url": "/documentation/foundation/nsset"
+    },
+    "doc://com.apple.documentation/documentation/foundation/predicate": {
+      "abstract": [
+        {
+          "text": "A logical condition used to test a set of input values for searching or filtering.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "Predicate"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/predicate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Predicate",
+      "type": "topic",
+      "url": "/documentation/foundation/predicate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/predicatebindings": {
+      "abstract": [
+        {
+          "text": "A mapping from a predicates‘s input variables to their values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "PredicateBindings"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/predicatebindings",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PredicateBindings",
+      "type": "topic",
+      "url": "/documentation/foundation/predicatebindings"
+    },
+    "doc://com.apple.documentation/documentation/foundation/predicatecodableconfiguration": {
+      "abstract": [
+        {
+          "text": "A specification of the expected types and key paths found in an archived predicate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "PredicateCodableConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/predicatecodableconfiguration",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PredicateCodableConfiguration",
+      "type": "topic",
+      "url": "/documentation/foundation/predicatecodableconfiguration"
+    },
+    "doc://com.apple.documentation/documentation/foundation/predicatecodablekeypathproviding": {
+      "abstract": [
+        {
+          "text": "A type that provides the expected key paths found in an archived predicate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "PredicateCodableKeyPathProviding"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/predicatecodablekeypathproviding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PredicateCodableKeyPathProviding",
+      "type": "topic",
+      "url": "/documentation/foundation/predicatecodablekeypathproviding"
+    },
+    "doc://com.apple.documentation/documentation/foundation/predicateerror": {
+      "abstract": [
+        {
+          "text": "An error thrown while evaluating a predicate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "PredicateError"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/predicateerror",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PredicateError",
+      "type": "topic",
+      "url": "/documentation/foundation/predicateerror"
+    },
+    "doc://com.apple.documentation/documentation/foundation/predicateexpression": {
+      "abstract": [
+        {
+          "text": "A component expression that makes up part of a predicate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "PredicateExpression"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/predicateexpression",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PredicateExpression",
+      "type": "topic",
+      "url": "/documentation/foundation/predicateexpression"
+    },
+    "doc://com.apple.documentation/documentation/foundation/predicateexpressions": {
+      "abstract": [
+        {
+          "text": "The expressions that make up a predicate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "enum "
+        },
+        {
+          "kind": "identifier",
+          "text": "PredicateExpressions"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/predicateexpressions",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PredicateExpressions",
+      "type": "topic",
+      "url": "/documentation/foundation/predicateexpressions"
+    },
+    "doc://com.apple.documentation/documentation/foundation/standardpredicateexpression": {
+      "abstract": [
+        {
+          "text": "A component expression that makes up part of a predicate, and that's supported by the standard predicate type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "StandardPredicateExpression"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/standardpredicateexpression",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "StandardPredicateExpression",
+      "type": "topic",
+      "url": "/documentation/foundation/standardpredicateexpression"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/objectivec/nsobject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nscopying",
+        "doc://com.apple.documentation/documentation/foundation/nssecurecoding"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/predicate",
+        "doc://com.apple.documentation/documentation/foundation/predicateerror",
+        "doc://com.apple.documentation/documentation/foundation/predicatecodableconfiguration",
+        "doc://com.apple.documentation/documentation/foundation/predicatecodablekeypathproviding",
+        "doc://com.apple.documentation/documentation/foundation/predicateexpression",
+        "doc://com.apple.documentation/documentation/foundation/standardpredicateexpression",
+        "doc://com.apple.documentation/documentation/foundation/predicateexpressions",
+        "doc://com.apple.documentation/documentation/foundation/predicatebindings",
+        "doc://com.apple.documentation/documentation/foundation/nspredicate",
+        "doc://com.apple.documentation/documentation/foundation/nscomparisonpredicate",
+        "doc://com.apple.documentation/documentation/foundation/nscompoundpredicate"
+      ],
+      "title": "Filltering"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "1651279",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsexpression/1418351-init",
+        "doc://com.apple.documentation/documentation/foundation/nsexpression/1413484-init",
+        "doc://com.apple.documentation/documentation/foundation/nsexpression/1410346-init",
+        "doc://com.apple.documentation/documentation/foundation/nsexpression/3126725-init",
+        "doc://com.apple.documentation/documentation/foundation/nsexpression/1415409-init"
+      ],
+      "kind": "taskGroup",
+      "title": "Creating an Expression"
+    },
+    {
+      "anchor": "1651349",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsexpression/1415818-init",
+        "doc://com.apple.documentation/documentation/foundation/nsexpression/1411845-expressionforevaluatedobject",
+        "doc://com.apple.documentation/documentation/foundation/nsexpression/1408892-init",
+        "doc://com.apple.documentation/documentation/foundation/nsexpression/1417593-init",
+        "doc://com.apple.documentation/documentation/foundation/nsexpression/2908855-init",
+        "doc://com.apple.documentation/documentation/foundation/nsexpression/1410198-expressionforanykey"
+      ],
+      "kind": "taskGroup",
+      "title": "Creating an Expression for a Value"
+    },
+    {
+      "anchor": "1651434",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsexpression/1418366-init",
+        "doc://com.apple.documentation/documentation/foundation/nsexpression/1411585-init",
+        "doc://com.apple.documentation/documentation/foundation/nsexpression/1409706-init",
+        "doc://com.apple.documentation/documentation/foundation/nsexpression/1417659-init"
+      ],
+      "kind": "taskGroup",
+      "title": "Creating a Collection Expression"
+    },
+    {
+      "anchor": "1651479",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsexpression/1411651-init"
+      ],
+      "kind": "taskGroup",
+      "title": "Creating a Subquery"
+    },
+    {
+      "anchor": "3854015",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsexpression/1418004-init"
+      ],
+      "kind": "taskGroup",
+      "title": "Creating a Conditional Expression"
+    },
+    {
+      "anchor": "1651514",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsexpression/1407823-init"
+      ],
+      "kind": "taskGroup",
+      "title": "Creating an Expression Using Blocks"
+    },
+    {
+      "anchor": "1651540",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsexpression/1413747-init",
+        "doc://com.apple.documentation/documentation/foundation/nsexpression/1412905-init"
+      ],
+      "kind": "taskGroup",
+      "title": "Creating an Expression for a Function"
+    },
+    {
+      "anchor": "1651585",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsexpression/1411559-arguments",
+        "doc://com.apple.documentation/documentation/foundation/nsexpression/1415684-collection",
+        "doc://com.apple.documentation/documentation/foundation/nsexpression/1418093-constantvalue",
+        "doc://com.apple.documentation/documentation/foundation/nsexpression/1416975-expressiontype",
+        "doc://com.apple.documentation/documentation/foundation/nsexpression/expressiontype",
+        "doc://com.apple.documentation/documentation/foundation/nsexpression/1416200-function",
+        "doc://com.apple.documentation/documentation/foundation/nsexpression/1416071-keypath",
+        "doc://com.apple.documentation/documentation/foundation/nsexpression/1413698-operand",
+        "doc://com.apple.documentation/documentation/foundation/nsexpression/1407531-predicate",
+        "doc://com.apple.documentation/documentation/foundation/nsexpression/1415792-left",
+        "doc://com.apple.documentation/documentation/foundation/nsexpression/1416583-right",
+        "doc://com.apple.documentation/documentation/foundation/nsexpression/1413759-variable"
+      ],
+      "kind": "taskGroup",
+      "title": "Getting Information About an Expression"
+    },
+    {
+      "anchor": "1651707",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsexpression/1410363-expressionvalue",
+        "doc://com.apple.documentation/documentation/foundation/nsexpression/1409244-allowevaluation",
+        "doc://com.apple.documentation/documentation/foundation/nsexpression/1416488-false",
+        "doc://com.apple.documentation/documentation/foundation/nsexpression/1411874-true"
+      ],
+      "kind": "taskGroup",
+      "title": "Evaluating an Expression"
+    },
+    {
+      "anchor": "1651732",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsexpression/1409139-expressionblock"
+      ],
+      "kind": "taskGroup",
+      "title": "Accessing the Expression Block"
+    },
+    {
+      "anchor": "4422529",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsexpression/4395597-init"
+      ],
+      "kind": "taskGroup",
+      "title": "Initializers"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nsexpression"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/nsexpression"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

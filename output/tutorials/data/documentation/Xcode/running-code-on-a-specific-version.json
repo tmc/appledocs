@@ -1,0 +1,890 @@
+{
+  "abstract": [
+    {
+      "text": "Add conditional compilation markers around code that requires a",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "particular family of devices or minimum operating system version to run.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Xcode/documentation/Xcode",
+        "doc://com.apple.Xcode/documentation/Xcode/build-system"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Xcode/documentation/Xcode/running-code-on-a-specific-version"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Running code on a specific platform or OS version"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you invest time developing a new feature for an app, you want to get the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "maximum value out of the code you write. Creating a new project to support a new",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "platform or operating system version adds unnecessary work, especially if most",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of your code stays the same. The best solution is to maintain one version of",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "your app that runs on multiple platforms and operating system versions. To",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "achieve this, compile code conditionally for the target platform, or use",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "availability condition checks to run code based on operating system version.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Compile-code-for-a-specific-platform",
+          "level": 3,
+          "text": "Compile code for a specific platform",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Apple platforms support many of the same technologies, but some features might not",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "be available on every platform. For example, features on iOS devices might not",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "make sense on a macOS devices. To prevent code from compiling on an operating",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "system that doesn’t support the corresponding feature, add a conditional",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "compilation block to specify the target operating system.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "/// Swift",
+            "/// `iOS` specifies the operating system for which this code compiles. ",
+            "/// Change `iOS` to specify another operating system.",
+            "#if os(iOS)",
+            "   // iOS code",
+            "#endif"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "code": [
+            "/// Objective-C",
+            "/// `IOS` specifies the operating system for which this code compiles. ",
+            "/// Change `IOS` to specify another operating system. For the list of ",
+            "/// compilation macros, see the /usr/include/TargetConditionals.h ",
+            "/// header file in the appropriate SDK.",
+            "#if TARGET_OS_IOS",
+            "   // iOS code",
+            "#endif"
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can also compile or prevent compiling for specific environments, such",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "as Simulator or Mac Catalyst.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "/// Swift",
+            "/// `simulator` specifies an environment to compile the code for. ",
+            "/// Change `simulator` to specify another environment, such as `macCatalyst`.",
+            "#if targetEnvironment(simulator)",
+            "    // code for Simulator",
+            "#endif",
+            ""
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "code": [
+            "/// Objective-C",
+            "/// `SIMULATOR` specifies an environment this code depends on. ",
+            "/// Change `SIMULATOR` to specify another environment, such as `MACCATALYST`.",
+            "#if TARGET_OS_SIMULATOR",
+            "    // code for Simulator",
+            "#endif"
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your Swift code relies on a specific Swift package or framework, you can",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "check to see whether you can import the package or framework. This condition",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "tests whether it’s possible to import a module, but doesn’t actually import it.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This type of check has the advantage that your code uses the package or",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "framework if a future version of the operating system makes it available.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "/// Swift",
+            "/// `UIKit` specifies a module this code depends on. ",
+            "/// Change `UIKit` to specify another module.",
+            "#if canImport(UIKit)",
+            "    // code that requires UIKit",
+            "#endif"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information on the compiler control statements and the platforms conditions they support, see",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://docs.swift.org/swift-book/documentation/the-swift-programming-language/statements/#Compiler-Control-Statements",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in the Swift language documentation.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Require-a-minimum-operating-system-version-for-a-feature",
+          "level": 3,
+          "text": "Require a minimum operating system version for a feature",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your app’s minimum deployment target defines the range of operating system versions",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "your app supports. Rather than require the latest system software for",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "each app update, target one or two older operating system versions to give people time",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to transition gradually. When you implement features found only in the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "most recent operating system version, wrap your code with availability",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "markers.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In Swift, use the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "#available",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " compiler control statement to run code conditionally.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In Objective-C, use the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "@available",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " compiler directive to run code conditionally.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Platform names support both major and minor revision numbers",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "for releases, as shown in the following example:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "/// Swift",
+            "if #available(iOS 15.4.1, *) {",
+            "    // On iOS, this branch runs in versions 15.4.1 and greater. ",
+            "    // On any other OS, this branch runs in any version of that OS.",
+            "} else {",
+            "   // This branch runs in earlier iOS versions.",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "code": [
+            "/// Objective-C",
+            "if (@available(iOS 15.4.1, *)) {",
+            "    // On iOS, this branch runs in versions 15.4.1 and greater. ",
+            "    // On any other OS, this branch runs in any version of that OS.",
+            "} else {",
+            "   // This branch runs in earlier iOS versions.",
+            "}"
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "*",
+              "type": "codeVoice"
+            },
+            {
+              "text": " matches any other operating system. To specify versions for multiple operating systems, include multiple",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "operating system names separated by commas.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Swift",
+            "if #available(iOS 15, macOS 12, *) {",
+            "    // On iOS, this branch runs in iOS 15 or later.",
+            "    // On macOS, this branch runs in macOS 12 or later.",
+            "    // On any other OS, this branch will run in any version of that OS.",
+            "} else {",
+            "   // This branch runs in earlier iOS and macOS versions.",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "code": [
+            "// Objective-C",
+            "if (@available(iOS 15, macOS 12, *)) {",
+            "    // On iOS, this branch runs in iOS 15 or later.",
+            "    // On macOS, this branch runs in macOS 12 or later.",
+            "    // On any other OS, this branch will run in any version of that OS.",
+            "} else {",
+            "   // This branch runs in earlier iOS and macOS versions.",
+            "}"
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information on the availability condition statement, see",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://docs.swift.org/swift-book/documentation/the-swift-programming-language/statements/#Availability-Condition",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in the Swift language documentation.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Annotate-declarations-in-your-code",
+          "level": 3,
+          "text": "Annotate declarations in your code",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can reduce the number of conditional runtime checks your app performs by",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "factoring code with common requirements together and annotating your declarations.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In Swift, use the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "@available",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " attribute to indicate a declaration is available.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In Objective-C, use the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "API_AVAILABLE",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " macro to add availability information.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "code": [
+            "@available(iOS 15, macOS 12, *)",
+            "func newMethod() {",
+            "    // Use iOS 15 APIs.",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "code": [
+            "@interface MyViewController : UIViewController",
+            "- (void) newMethod API_AVAILABLE(ios(15));",
+            "@end"
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "With the above annotation in place, calling ",
+              "type": "text"
+            },
+            {
+              "code": "newMethod",
+              "type": "codeVoice"
+            },
+            {
+              "text": " might still require a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "compiler control statement, but you remove the need to check again inside the body.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about marking availability in Swift, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://docs.swift.org/swift-book/documentation/the-swift-programming-language/attributes/#available",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Xcode-PageImage-card.png": {
+      "alt": "The Xcode logo on a blue gradient background.",
+      "identifier": "Xcode-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cc63eacd8f7f660388b46204d1d9bbcb/Xcode-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/62dba87d5f60ec96eb48882c9dff86d8/Xcode-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Xcode/documentation/Xcode": {
+      "abstract": [
+        {
+          "text": "Build, test, and submit your app with Apple’s integrated development environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode",
+      "images": [
+        {
+          "identifier": "Xcode-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/build-system": {
+      "abstract": [
+        {
+          "text": "Compile your code into a binary format, and customize your project settings to build your code.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/build-system",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Build system",
+      "type": "topic",
+      "url": "/documentation/xcode/build-system"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/creating-build-rules-for-custom-file-types": {
+      "abstract": [
+        {
+          "text": "Tell Xcode how to build your project’s custom file types, and provide",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "dependency information to optimize the build process for each file.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/creating-build-rules-for-custom-file-types",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating build rules for custom file types",
+      "type": "topic",
+      "url": "/documentation/xcode/creating-build-rules-for-custom-file-types"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/customizing-the-build-phases-of-a-target": {
+      "abstract": [
+        {
+          "text": "Specify the tasks to perform during a build, including the source",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "files to compile, the scripts to run, and the resources to",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "include in the final product.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/customizing-the-build-phases-of-a-target",
+      "kind": "article",
+      "role": "article",
+      "title": "Customizing the build phases of a target",
+      "type": "topic",
+      "url": "/documentation/xcode/customizing-the-build-phases-of-a-target"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/customizing-the-build-schemes-for-a-project": {
+      "abstract": [
+        {
+          "text": "Specify which targets to build, and customize the settings Xcode uses",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "to build, run, test, and profile those targets.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/customizing-the-build-schemes-for-a-project",
+      "kind": "article",
+      "role": "article",
+      "title": "Customizing the build schemes for a project",
+      "type": "topic",
+      "url": "/documentation/xcode/customizing-the-build-schemes-for-a-project"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/running-custom-scripts-during-a-build": {
+      "abstract": [
+        {
+          "text": "Execute custom shell scripts during the build process, and",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "run tools or other commands that your project requires.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/running-custom-scripts-during-a-build",
+      "kind": "article",
+      "role": "article",
+      "title": "Running custom scripts during a build",
+      "type": "topic",
+      "url": "/documentation/xcode/running-custom-scripts-during-a-build"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://docs.swift.org/swift-book/documentation/the-swift-programming-language/attributes/#available": {
+      "identifier": "https://docs.swift.org/swift-book/documentation/the-swift-programming-language/attributes/#available",
+      "title": "available",
+      "titleInlineContent": [
+        {
+          "text": "available",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://docs.swift.org/swift-book/documentation/the-swift-programming-language/attributes/#available"
+    },
+    "https://docs.swift.org/swift-book/documentation/the-swift-programming-language/statements/#Availability-Condition": {
+      "identifier": "https://docs.swift.org/swift-book/documentation/the-swift-programming-language/statements/#Availability-Condition",
+      "title": "Availability Condition",
+      "titleInlineContent": [
+        {
+          "text": "Availability Condition",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://docs.swift.org/swift-book/documentation/the-swift-programming-language/statements/#Availability-Condition"
+    },
+    "https://docs.swift.org/swift-book/documentation/the-swift-programming-language/statements/#Compiler-Control-Statements": {
+      "identifier": "https://docs.swift.org/swift-book/documentation/the-swift-programming-language/statements/#Compiler-Control-Statements",
+      "title": "Compiler Control Statements",
+      "titleInlineContent": [
+        {
+          "text": "Compiler Control Statements",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://docs.swift.org/swift-book/documentation/the-swift-programming-language/statements/#Compiler-Control-Statements"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Build-customization",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Xcode/documentation/Xcode/customizing-the-build-schemes-for-a-project",
+        "doc://com.apple.Xcode/documentation/Xcode/customizing-the-build-phases-of-a-target",
+        "doc://com.apple.Xcode/documentation/Xcode/creating-build-rules-for-custom-file-types",
+        "doc://com.apple.Xcode/documentation/Xcode/running-custom-scripts-during-a-build"
+      ],
+      "title": "Build customization"
+    }
+  ]
+}

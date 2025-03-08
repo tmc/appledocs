@@ -1,0 +1,456 @@
+{
+  "abstract": [
+    {
+      "text": "An environment value that indicates whether the current device supports device discovery.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.devicediscoveryui/documentation/DeviceDiscoveryUI"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.devicediscoveryui/documentation/DeviceDiscoveryUI/DevicePickerSupportedAction"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:024_DeviceDiscoveryUI_SwiftC00A21PickerSupportedActionV",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "struct"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "DevicePickerSupportedAction"
+      }
+    ],
+    "modules": [
+      {
+        "name": "DeviceDiscoveryUI",
+        "relatedModules": [
+          "SwiftUI"
+        ]
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "DevicePickerSupportedAction"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "tvOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "DevicePickerSupportedAction"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "tvOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "DevicePickerSupportedAction"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Access the action using the ",
+              "type": "text"
+            },
+            {
+              "code": ".devicePickerSupports",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key. Then call it as a function, passing the same browse descriptor and parameters you use to search for devices.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct SettingsView: View {",
+            "",
+            "    @Environment{\\.devicePickerSupports} var myDevicePickerSupports",
+            "    @Binding var showDevicePicker: Bool",
+            "",
+            "    var body: some View {",
+            "        if myDevicePickerSupports(.applicationService(\"MyAppService\"),",
+            "                                  parameters: { .applicationService }) {",
+            "            Button(\"Select A Device\") {",
+            "                // Display a device picker.",
+            "                showDevicePicker = true",
+            "            }",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.devicediscoveryui/documentation/DeviceDiscoveryUI": {
+      "abstract": [
+        {
+          "text": "Display an interface that lets users connect a tvOS app to a mobile device over the local network.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicediscoveryui/documentation/DeviceDiscoveryUI",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "DeviceDiscoveryUI",
+      "type": "topic",
+      "url": "/documentation/devicediscoveryui"
+    },
+    "doc://com.apple.devicediscoveryui/documentation/DeviceDiscoveryUI/DDDevicePickerViewController": {
+      "abstract": [
+        {
+          "text": "A UIKit view that displays other devices on the network, and creates an encrypted connection to a copy of your app running on that device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DDDevicePickerViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.devicediscoveryui/documentation/DeviceDiscoveryUI/DDDevicePickerViewController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DDDevicePickerViewController"
+        }
+      ],
+      "role": "symbol",
+      "title": "DDDevicePickerViewController",
+      "type": "topic",
+      "url": "/documentation/devicediscoveryui/dddevicepickerviewcontroller"
+    },
+    "doc://com.apple.devicediscoveryui/documentation/DeviceDiscoveryUI/DevicePicker": {
+      "abstract": [
+        {
+          "text": "A SwiftUI view that displays other devices on the network, and creates an encrypted connection to a copy of your app running on that device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DevicePicker"
+        }
+      ],
+      "identifier": "doc://com.apple.devicediscoveryui/documentation/DeviceDiscoveryUI/DevicePicker",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DevicePicker"
+        }
+      ],
+      "role": "symbol",
+      "title": "DevicePicker",
+      "type": "topic",
+      "url": "/documentation/devicediscoveryui/devicepicker"
+    },
+    "doc://com.apple.devicediscoveryui/documentation/DeviceDiscoveryUI/DevicePickerSupportedAction": {
+      "abstract": [
+        {
+          "text": "An environment value that indicates whether the current device supports device discovery.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DevicePickerSupportedAction"
+        }
+      ],
+      "identifier": "doc://com.apple.devicediscoveryui/documentation/DeviceDiscoveryUI/DevicePickerSupportedAction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DevicePickerSupportedAction"
+        }
+      ],
+      "role": "symbol",
+      "title": "DevicePickerSupportedAction",
+      "type": "topic",
+      "url": "/documentation/devicediscoveryui/devicepickersupportedaction"
+    },
+    "doc://com.apple.devicediscoveryui/documentation/DeviceDiscoveryUI/DevicePickerSupportedAction/callAsFunction(_:parameters:)": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether the current device supports device discovery.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "callAsFunction"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Network9NWBrowserC",
+          "text": "NWBrowser"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Network9NWBrowserC10DescriptorO",
+          "text": "Descriptor"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "parameters"
+        },
+        {
+          "kind": "text",
+          "text": ": (() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Network12NWParametersC",
+          "text": "NWParameters"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.devicediscoveryui/documentation/DeviceDiscoveryUI/DevicePickerSupportedAction/callAsFunction(_:parameters:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "callAsFunction(_:parameters:)",
+      "type": "topic",
+      "url": "/documentation/devicediscoveryui/devicepickersupportedaction/callasfunction(_:parameters:)"
+    },
+    "doc://com.apple.devicediscoveryui/documentation/DeviceDiscoveryUI/connecting-a-tvos-app-to-other-devices-over-the-local-network": {
+      "abstract": [
+        {
+          "text": "Display a view in your tvOS app that lists available iOS, iPadOS, and watchOS devices that the user can connect to over their local network.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicediscoveryui/documentation/DeviceDiscoveryUI/connecting-a-tvos-app-to-other-devices-over-the-local-network",
+      "kind": "article",
+      "role": "article",
+      "title": "Connecting a tvOS app to other devices over the local network",
+      "type": "topic",
+      "url": "/documentation/devicediscoveryui/connecting-a-tvos-app-to-other-devices-over-the-local-network"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSApplicationServices": {
+      "abstract": [
+        {
+          "text": "A list of service providers and the devices that they support.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSApplicationServices",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSApplicationServices",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/NSApplicationServices"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Selecting-nearby-devices",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.devicediscoveryui/documentation/DeviceDiscoveryUI/connecting-a-tvos-app-to-other-devices-over-the-local-network",
+        "doc://com.apple.devicediscoveryui/documentation/DeviceDiscoveryUI/DevicePicker",
+        "doc://com.apple.devicediscoveryui/documentation/DeviceDiscoveryUI/DDDevicePickerViewController",
+        "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSApplicationServices"
+      ],
+      "title": "Selecting nearby devices"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Checking-for-support",
+      "identifiers": [
+        "doc://com.apple.devicediscoveryui/documentation/DeviceDiscoveryUI/DevicePickerSupportedAction/callAsFunction(_:parameters:)"
+      ],
+      "title": "Checking for support"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.devicediscoveryui~1documentation~1DeviceDiscoveryUI~1DDDevicePickerViewController/title",
+          "value": "DDDevicePickerViewController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.devicediscoveryui~1documentation~1DeviceDiscoveryUI~1DDDevicePickerViewController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "DDDevicePickerViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.devicediscoveryui~1documentation~1DeviceDiscoveryUI~1DDDevicePickerViewController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "DDDevicePickerViewController"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/devicediscoveryui/devicepickersupportedaction"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

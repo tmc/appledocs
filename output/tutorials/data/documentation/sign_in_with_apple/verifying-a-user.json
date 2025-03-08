@@ -1,0 +1,721 @@
+{
+  "abstract": [
+    {
+      "text": "Check the validity and integrity of a user’s identity token.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.signinwithapple/documentation/SigninwithApple",
+        "doc://com.apple.signinwithapple/documentation/SigninwithAppleRESTAPI"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.signinwithapple/documentation/sign_in_with_apple/verifying-a-user"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Sign in with Apple REST API"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Verifying a user"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After your app receives a user’s information, you can verify their associated identity token with the server to confirm that the token isn’t expired and ensure it hasn’t been tampered with or replayed to your app. For information about retrieving the identity token, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.signinwithapple/documentation/sign_in_with_apple/authenticating-users-with-sign-in-with-apple",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3384756",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Verify-the-identity-token",
+          "level": 3,
+          "text": "Verify the identity token",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Start by securely transmitting the identity token and authorization code to your app server. For more about the information required to verify a user’s identity, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.signinwithapple/documentation/sign_in_with_apple/authenticating-users-with-sign-in-with-apple",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "To obtain the identity token from their server, web apps must validate the authorization code using the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.signinwithapple/documentation/SigninwithAppleRESTAPI/Generate-and-validate-tokens",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " endpoint.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To verify the identity token, your app server must:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Verify the JWS E256 signature using the server’s public key",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Verify the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "nonce",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " for the authentication",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Verify that the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "iss",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " field contains ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "https://appleid.apple.com",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Verify that the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "aud",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " field is the developer’s ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "client_id",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Verify that the time is earlier than the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "exp",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " value of the token",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Obtain-a-refresh-token",
+          "level": 3,
+          "text": "Obtain a refresh token",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After verifying the identity token on your server, call the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.signinwithapple/documentation/SigninwithAppleRESTAPI/Generate-and-validate-tokens",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " endpoint with the ",
+              "type": "text"
+            },
+            {
+              "code": "client_id",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "client_secret",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "code": "nonce",
+              "type": "codeVoice"
+            },
+            {
+              "text": " information.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "On success, the server issues a refresh token, which you use to obtain access tokens with future calls. You may verify the refresh token up to once a day to confirm that the user’s Apple ID on that device is still in good standing with Apple’s servers. Apple’s servers may throttle your call if you attempt to verify a user’s Apple ID more than once a day.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You may continue to use the same refresh token until it’s invalidated — for example, by an Apple ID account password change, or when a user revokes access to your app — or the token verification fails. If any step of the token verification fails, direct your app to fetch a new identity token for the user. Obtaining a new identity token on the device requires user interaction.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Manage-the-user-session",
+          "level": 3,
+          "text": "Manage the user session",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After verifying the identity token, your app is responsible for managing the user session. You may tie the session’s lifetime to successful ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AuthenticationServices/ASAuthorizationAppleIDProvider/getCredentialState(forUserID:completion:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " calls on Apple devices. This is a local, inexpensive, nonnetwork call enabled by the Apple ID system that keeps the Apple ID state on a device in sync with Apple servers.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "User interaction is required any time a new identity token is requested. User sessions are long-lived on device, so calling for a new identity token on every launch, or more frequently than once a day, can result in your request failing due to throttling.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the user’s Apple ID changes in the system, calls to ",
+              "type": "text"
+            },
+            {
+              "code": "getCredentialState(forUserID:completion:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " indicate that the user changed. Assume that a different user has signed in and log out the app’s currently known user.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For apps running on other systems, use the periodic successful verification of the refresh token to determine the lifetime of the user session.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/AuthenticationServices/ASAuthorizationAppleIDProvider/getCredentialState(forUserID:completion:)": {
+      "abstract": [
+        {
+          "text": "Returns the credential state for the given user in a completion handler.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "getCredentialState"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "forUserID"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "userID"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completion"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "@escaping"
+        },
+        {
+          "kind": "text",
+          "text": " ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ASAuthorizationAppleIDProvider",
+          "text": "ASAuthorizationAppleIDProvider"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@ASAuthorizationAppleIDProviderCredentialState",
+          "text": "CredentialState"
+        },
+        {
+          "kind": "text",
+          "text": ", (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AuthenticationServices/ASAuthorizationAppleIDProvider/getCredentialState(forUserID:completion:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getCredentialState(forUserID:completion:)",
+      "type": "topic",
+      "url": "/documentation/AuthenticationServices/ASAuthorizationAppleIDProvider/getCredentialState(forUserID:completion:)"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.signinwithapple/documentation/SigninwithApple": {
+      "abstract": [
+        {
+          "text": "Provide users the ability to sign in to your apps and websites using their Apple ID.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.signinwithapple/documentation/SigninwithApple",
+      "kind": "article",
+      "role": "collection",
+      "title": "Sign in with Apple",
+      "type": "topic",
+      "url": "/documentation/signinwithapple"
+    },
+    "doc://com.apple.signinwithapple/documentation/SigninwithAppleRESTAPI": {
+      "abstract": [
+        {
+          "text": "Communicate between your app servers and Apple’s authentication servers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.signinwithapple/documentation/SigninwithAppleRESTAPI",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Sign in with Apple REST API",
+      "type": "topic",
+      "url": "/documentation/signinwithapplerestapi"
+    },
+    "doc://com.apple.signinwithapple/documentation/SigninwithAppleRESTAPI/Generate-and-validate-tokens": {
+      "abstract": [
+        {
+          "text": "Validate an authorization grant code delivered to your app to obtain tokens, or validate an existing refresh token.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.signinwithapple/documentation/SigninwithAppleRESTAPI/Generate-and-validate-tokens",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Generate and validate tokens"
+        }
+      ],
+      "role": "symbol",
+      "title": "Generate and validate tokens",
+      "type": "topic",
+      "url": "/documentation/signinwithapplerestapi/generate-and-validate-tokens"
+    },
+    "doc://com.apple.signinwithapple/documentation/sign_in_with_apple/authenticating-users-with-sign-in-with-apple": {
+      "abstract": [
+        {
+          "text": "Securely authenticate users and create accounts for them in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.signinwithapple/documentation/sign_in_with_apple/authenticating-users-with-sign-in-with-apple",
+      "kind": "article",
+      "role": "article",
+      "title": "Authenticating users with Sign in with Apple",
+      "type": "topic",
+      "url": "/documentation/sign_in_with_apple/authenticating-users-with-sign-in-with-apple"
+    },
+    "media-3384756": {
+      "alt": "A sequence diagram that describes the flow for verifying a user’s identity.",
+      "identifier": "media-3384756",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cac1b70f85ae9fc7b501e95dae854943/media-3384756@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5b2fbb0d930ba7dcd5573b63828adefd/media-3384756~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Authentication-and-verification-of-users",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.signinwithapple/documentation/sign_in_with_apple/authenticating-users-with-sign-in-with-apple"
+      ],
+      "title": "Authentication and verification of users"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AuthenticationServices~1ASAuthorizationAppleIDProvider~1getCredentialState(forUserID:completion:)/title",
+          "value": "getCredentialStateForUserID:completion:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AuthenticationServices~1ASAuthorizationAppleIDProvider~1getCredentialState(forUserID:completion:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "getCredentialStateForUserID:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSString",
+              "text": "NSString"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "userID"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "completion:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": " (^)("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@E@ASAuthorizationAppleIDProviderCredentialState",
+              "text": "ASAuthorizationAppleIDProviderCredentialState"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "credentialState"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSError",
+              "text": "NSError"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "internalParam",
+              "text": "error"
+            },
+            {
+              "kind": "text",
+              "text": ")) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "completion"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

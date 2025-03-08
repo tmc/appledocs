@@ -1,0 +1,1962 @@
+{
+  "abstract": [
+    {
+      "text": "A message from the Endpoint Security subsystem that describes a security event.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.endpointsecurity/documentation/EndpointSecurity"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_message_t"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@SA@es_message_t",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "struct"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "es_message_t"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Endpoint Security"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "es_message_t"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "es_message_t"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "Mac Catalyst",
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "es_message_t"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A message contains an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_message_t/event",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " monitored by Endpoint Security and an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_message_t/action",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to perform. The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_message_t/event",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " is a union of types specific to each kind of event. For example, a file-renaming event provides the source and destination paths as the union member ",
+              "type": "text"
+            },
+            {
+              "code": "rename",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". Similarly, a process fork event provides the process identifier of the new child process as the union member ",
+              "type": "text"
+            },
+            {
+              "code": "fork",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". Inspect the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_message_t/event_type",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to determine which member of the union to access.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A message can be an authorization request, or a notification of an event that has already taken place, as indicated by the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_message_t/action_type",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " field. For authorization messages, your client handler calls ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_respond_auth_result(_:_:_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_respond_flags_result(_:_:_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to authorize, deny, or pass behavior flags back to Endpoint Security.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.endpointsecurity/documentation/EndpointSecurity": {
+      "abstract": [
+        {
+          "text": "Develop system extensions that enhance user security.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.endpointsecurity/documentation/EndpointSecurity",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Endpoint Security",
+      "type": "topic",
+      "url": "/documentation/endpointsecurity"
+    },
+    "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_action_type_t": {
+      "abstract": [
+        {
+          "text": "The type of the message’s action.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "es_action_type_t"
+        }
+      ],
+      "identifier": "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_action_type_t",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "es_action_type_t"
+        }
+      ],
+      "role": "symbol",
+      "title": "es_action_type_t",
+      "type": "topic",
+      "url": "/documentation/endpointsecurity/es_action_type_t"
+    },
+    "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_event_id_t": {
+      "abstract": [
+        {
+          "text": "An opaque identifier for events.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "es_event_id_t"
+        }
+      ],
+      "identifier": "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_event_id_t",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "es_event_id_t"
+        }
+      ],
+      "role": "symbol",
+      "title": "es_event_id_t",
+      "type": "topic",
+      "url": "/documentation/endpointsecurity/es_event_id_t"
+    },
+    "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_event_type_t": {
+      "abstract": [
+        {
+          "text": "A type used to identify a message’s event type and subscribe to events of that type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "es_event_type_t"
+        }
+      ],
+      "identifier": "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_event_type_t",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "es_event_type_t"
+        }
+      ],
+      "role": "symbol",
+      "title": "es_event_type_t",
+      "type": "topic",
+      "url": "/documentation/endpointsecurity/es_event_type_t"
+    },
+    "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_events_t": {
+      "abstract": [
+        {
+          "text": "A C union of event-specific types.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "es_events_t"
+        }
+      ],
+      "identifier": "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_events_t",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "es_events_t"
+        }
+      ],
+      "role": "symbol",
+      "title": "es_events_t",
+      "type": "topic",
+      "url": "/documentation/endpointsecurity/es_events_t"
+    },
+    "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_message_t": {
+      "abstract": [
+        {
+          "text": "A message from the Endpoint Security subsystem that describes a security event.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "es_message_t"
+        }
+      ],
+      "identifier": "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_message_t",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "es_message_t"
+        }
+      ],
+      "role": "symbol",
+      "title": "es_message_t",
+      "type": "topic",
+      "url": "/documentation/endpointsecurity/es_message_t"
+    },
+    "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_message_t/action": {
+      "abstract": [
+        {
+          "text": "The action monitored by Endpoint Security.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "action"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@es_message_t",
+          "text": "es_message_t"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "__Unnamed_union_action"
+        }
+      ],
+      "identifier": "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_message_t/action",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "action"
+        }
+      ],
+      "role": "symbol",
+      "title": "action",
+      "type": "topic",
+      "url": "/documentation/endpointsecurity/es_message_t/action"
+    },
+    "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_message_t/action_type": {
+      "abstract": [
+        {
+          "text": "The type of action: authentication or notification.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "action_type"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@EA@es_action_type_t",
+          "text": "es_action_type_t"
+        }
+      ],
+      "identifier": "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_message_t/action_type",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "action_type"
+        }
+      ],
+      "role": "symbol",
+      "title": "action_type",
+      "type": "topic",
+      "url": "/documentation/endpointsecurity/es_message_t/action_type"
+    },
+    "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_message_t/deadline": {
+      "abstract": [
+        {
+          "text": "The deadline by which your app must respond to the event.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "deadline"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt64V",
+          "text": "UInt64"
+        }
+      ],
+      "identifier": "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_message_t/deadline",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "deadline"
+        }
+      ],
+      "role": "symbol",
+      "title": "deadline",
+      "type": "topic",
+      "url": "/documentation/endpointsecurity/es_message_t/deadline"
+    },
+    "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_message_t/event": {
+      "abstract": [
+        {
+          "text": "The event that triggered this message.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "event"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@UA@es_events_t",
+          "text": "es_events_t"
+        }
+      ],
+      "identifier": "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_message_t/event",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "event"
+        }
+      ],
+      "role": "symbol",
+      "title": "event",
+      "type": "topic",
+      "url": "/documentation/endpointsecurity/es_message_t/event"
+    },
+    "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_message_t/event_type": {
+      "abstract": [
+        {
+          "text": "The type of the message’s event.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "event_type"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@EA@es_event_type_t",
+          "text": "es_event_type_t"
+        }
+      ],
+      "identifier": "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_message_t/event_type",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "event_type"
+        }
+      ],
+      "role": "symbol",
+      "title": "event_type",
+      "type": "topic",
+      "url": "/documentation/endpointsecurity/es_message_t/event_type"
+    },
+    "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_message_t/global_seq_num": {
+      "abstract": [
+        {
+          "text": "The global sequence number of the message.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "global_seq_num"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt64V",
+          "text": "UInt64"
+        }
+      ],
+      "identifier": "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_message_t/global_seq_num",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "global_seq_num"
+        }
+      ],
+      "role": "symbol",
+      "title": "global_seq_num",
+      "type": "topic",
+      "url": "/documentation/endpointsecurity/es_message_t/global_seq_num"
+    },
+    "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_message_t/mach_time": {
+      "abstract": [
+        {
+          "text": "The time the event occurred, as a Mach time value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mach_time"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt64V",
+          "text": "UInt64"
+        }
+      ],
+      "identifier": "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_message_t/mach_time",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "mach_time"
+        }
+      ],
+      "role": "symbol",
+      "title": "mach_time",
+      "type": "topic",
+      "url": "/documentation/endpointsecurity/es_message_t/mach_time"
+    },
+    "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_message_t/opaque": {
+      "abstract": [
+        {
+          "text": "An opaque storage field.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "opaque"
+        }
+      ],
+      "identifier": "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_message_t/opaque",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "opaque",
+      "type": "topic",
+      "url": "/documentation/endpointsecurity/es_message_t/opaque"
+    },
+    "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_message_t/process": {
+      "abstract": [
+        {
+          "text": "The process that performed the action defined in a message.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "process"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@es_process_t",
+          "text": "es_process_t"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_message_t/process",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "process"
+        }
+      ],
+      "role": "symbol",
+      "title": "process",
+      "type": "topic",
+      "url": "/documentation/endpointsecurity/es_message_t/process"
+    },
+    "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_message_t/seq_num": {
+      "abstract": [
+        {
+          "text": "The sequence number of the message.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "seq_num"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt64V",
+          "text": "UInt64"
+        }
+      ],
+      "identifier": "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_message_t/seq_num",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "seq_num"
+        }
+      ],
+      "role": "symbol",
+      "title": "seq_num",
+      "type": "topic",
+      "url": "/documentation/endpointsecurity/es_message_t/seq_num"
+    },
+    "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_message_t/thread": {
+      "abstract": [
+        {
+          "text": "The thread that took the action defined in a message.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "thread"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@es_thread_t",
+          "text": "es_thread_t"
+        },
+        {
+          "kind": "text",
+          "text": ">?"
+        }
+      ],
+      "identifier": "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_message_t/thread",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "thread"
+        }
+      ],
+      "role": "symbol",
+      "title": "thread",
+      "type": "topic",
+      "url": "/documentation/endpointsecurity/es_message_t/thread"
+    },
+    "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_message_t/time": {
+      "abstract": [
+        {
+          "text": "The time the event occurred, expressed as a Darwin time value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "time"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@timespec",
+          "text": "timespec"
+        }
+      ],
+      "identifier": "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_message_t/time",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "time"
+        }
+      ],
+      "role": "symbol",
+      "title": "time",
+      "type": "topic",
+      "url": "/documentation/endpointsecurity/es_message_t/time"
+    },
+    "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_message_t/version": {
+      "abstract": [
+        {
+          "text": "The version of the Endpoint Security message.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "version"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        }
+      ],
+      "identifier": "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_message_t/version",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "version"
+        }
+      ],
+      "role": "symbol",
+      "title": "version",
+      "type": "topic",
+      "url": "/documentation/endpointsecurity/es_message_t/version"
+    },
+    "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_process_t": {
+      "abstract": [
+        {
+          "text": "A type that describes a process, as delivered by an Endpoint Security message.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "es_process_t"
+        }
+      ],
+      "identifier": "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_process_t",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "es_process_t"
+        }
+      ],
+      "role": "symbol",
+      "title": "es_process_t",
+      "type": "topic",
+      "url": "/documentation/endpointsecurity/es_process_t"
+    },
+    "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_respond_auth_result(_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Responds to an event that requires an authorization response.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "es_respond_auth_result"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s13OpaquePointerV",
+          "text": "OpaquePointer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@es_message_t",
+          "text": "es_message_t"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@EA@es_auth_result_t",
+          "text": "es_auth_result_t"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@EA@es_respond_result_t",
+          "text": "es_respond_result_t"
+        }
+      ],
+      "identifier": "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_respond_auth_result(_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "es_respond_auth_result"
+        }
+      ],
+      "role": "symbol",
+      "title": "es_respond_auth_result(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/endpointsecurity/es_respond_auth_result(_:_:_:_:)"
+    },
+    "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_respond_flags_result(_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Responds to an event that requires authorization flags as a response.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "es_respond_flags_result"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s13OpaquePointerV",
+          "text": "OpaquePointer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@es_message_t",
+          "text": "es_message_t"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@EA@es_respond_result_t",
+          "text": "es_respond_result_t"
+        }
+      ],
+      "identifier": "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_respond_flags_result(_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "es_respond_flags_result"
+        }
+      ],
+      "role": "symbol",
+      "title": "es_respond_flags_result(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/endpointsecurity/es_respond_flags_result(_:_:_:_:)"
+    },
+    "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_result_t": {
+      "abstract": [
+        {
+          "text": "The result of the Endpoint Security subsystem authorization process.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "es_result_t"
+        }
+      ],
+      "identifier": "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_result_t",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "es_result_t"
+        }
+      ],
+      "role": "symbol",
+      "title": "es_result_t",
+      "type": "topic",
+      "url": "/documentation/endpointsecurity/es_result_t"
+    },
+    "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_thread_t": {
+      "abstract": [
+        {
+          "text": "A structure that represents a thread in a process.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "es_thread_t"
+        }
+      ],
+      "identifier": "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_thread_t",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "es_thread_t"
+        }
+      ],
+      "role": "symbol",
+      "title": "es_thread_t",
+      "type": "topic",
+      "url": "/documentation/endpointsecurity/es_thread_t"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Inspecting-Message-Properties",
+      "identifiers": [
+        "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_message_t/action",
+        "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_message_t/action_type",
+        "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_action_type_t",
+        "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_event_id_t",
+        "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_result_t",
+        "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_message_t/version"
+      ],
+      "title": "Inspecting Message Properties"
+    },
+    {
+      "anchor": "Identifying-the-Matched-Event",
+      "identifiers": [
+        "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_message_t/event",
+        "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_events_t",
+        "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_message_t/event_type",
+        "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_event_type_t"
+      ],
+      "title": "Identifying the Matched Event"
+    },
+    {
+      "anchor": "Inspecting-Timing-Properties",
+      "identifiers": [
+        "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_message_t/time",
+        "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_message_t/mach_time",
+        "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_message_t/deadline",
+        "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_message_t/seq_num",
+        "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_message_t/global_seq_num"
+      ],
+      "title": "Inspecting Timing Properties"
+    },
+    {
+      "anchor": "Identifying-the-Source-Process",
+      "identifiers": [
+        "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_message_t/process",
+        "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_process_t"
+      ],
+      "title": "Identifying the Source Process"
+    },
+    {
+      "anchor": "Inspecting-Thread-Properties",
+      "identifiers": [
+        "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_message_t/thread",
+        "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_thread_t"
+      ],
+      "title": "Inspecting Thread Properties"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "macOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Structure"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "es_message_t"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "struct"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "es_message_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "es_message_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.endpointsecurity/documentation/EndpointSecurity"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Inspecting-Message-Properties",
+              "identifiers": [
+                "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_message_t/action",
+                "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_message_t/action_type",
+                "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_action_type_t",
+                "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_event_id_t",
+                "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_result_t",
+                "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_message_t/version"
+              ],
+              "title": "Inspecting Message Properties"
+            },
+            {
+              "anchor": "Identifying-the-Matched-Event",
+              "identifiers": [
+                "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_message_t/event",
+                "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_events_t",
+                "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_message_t/event_type",
+                "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_event_type_t"
+              ],
+              "title": "Identifying the Matched Event"
+            },
+            {
+              "anchor": "Inspecting-Timing-Properties",
+              "identifiers": [
+                "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_message_t/time",
+                "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_message_t/mach_time",
+                "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_message_t/deadline",
+                "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_message_t/seq_num",
+                "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_message_t/global_seq_num"
+              ],
+              "title": "Inspecting Timing Properties"
+            },
+            {
+              "anchor": "Identifying-the-Source-Process",
+              "identifiers": [
+                "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_message_t/process",
+                "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_process_t"
+              ],
+              "title": "Identifying the Source Process"
+            },
+            {
+              "anchor": "Inspecting-Thread-Properties",
+              "identifiers": [
+                "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_message_t/thread",
+                "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_thread_t"
+              ],
+              "title": "Inspecting Thread Properties"
+            },
+            {
+              "anchor": "Reserved-Properties",
+              "identifiers": [
+                "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_message_t/opaque"
+              ],
+              "title": "Reserved Properties"
+            }
+          ]
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "Mac Catalyst",
+                  "macOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "typedef"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "keyword",
+                    "text": "struct"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " { ... } "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "es_message_t"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ";"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.endpointsecurity~1documentation~1EndpointSecurity~1es_message_t~1action/title",
+          "value": "action"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.endpointsecurity~1documentation~1EndpointSecurity~1es_message_t~1action/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "action"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.endpointsecurity~1documentation~1EndpointSecurity~1es_message_t~1version/title",
+          "value": "version"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.endpointsecurity~1documentation~1EndpointSecurity~1es_message_t~1version/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "version"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.endpointsecurity~1documentation~1EndpointSecurity~1es_message_t~1mach_time/title",
+          "value": "mach_time"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.endpointsecurity~1documentation~1EndpointSecurity~1es_message_t~1mach_time/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "mach_time"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.endpointsecurity~1documentation~1EndpointSecurity~1es_message_t/title",
+          "value": "es_message_t"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.endpointsecurity~1documentation~1EndpointSecurity~1es_message_t/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "es_message_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.endpointsecurity~1documentation~1EndpointSecurity~1es_message_t/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "es_message_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.endpointsecurity~1documentation~1EndpointSecurity~1es_respond_flags_result(_:_:_:_:)/title",
+          "value": "es_respond_flags_result"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.endpointsecurity~1documentation~1EndpointSecurity~1es_respond_flags_result(_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "es_respond_flags_result"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.endpointsecurity~1documentation~1EndpointSecurity~1es_message_t~1time/title",
+          "value": "time"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.endpointsecurity~1documentation~1EndpointSecurity~1es_message_t~1time/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "time"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.endpointsecurity~1documentation~1EndpointSecurity~1es_respond_auth_result(_:_:_:_:)/title",
+          "value": "es_respond_auth_result"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.endpointsecurity~1documentation~1EndpointSecurity~1es_respond_auth_result(_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "es_respond_auth_result"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.endpointsecurity~1documentation~1EndpointSecurity~1es_action_type_t/title",
+          "value": "es_action_type_t"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.endpointsecurity~1documentation~1EndpointSecurity~1es_action_type_t/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "es_action_type_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.endpointsecurity~1documentation~1EndpointSecurity~1es_action_type_t/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "es_action_type_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.endpointsecurity~1documentation~1EndpointSecurity~1es_message_t~1process/title",
+          "value": "process"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.endpointsecurity~1documentation~1EndpointSecurity~1es_message_t~1process/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "process"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.endpointsecurity~1documentation~1EndpointSecurity~1es_message_t~1event/title",
+          "value": "event"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.endpointsecurity~1documentation~1EndpointSecurity~1es_message_t~1event/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "event"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.endpointsecurity~1documentation~1EndpointSecurity~1es_message_t~1action_type/title",
+          "value": "action_type"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.endpointsecurity~1documentation~1EndpointSecurity~1es_message_t~1action_type/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "action_type"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.endpointsecurity~1documentation~1EndpointSecurity~1es_message_t~1seq_num/title",
+          "value": "seq_num"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.endpointsecurity~1documentation~1EndpointSecurity~1es_message_t~1seq_num/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "seq_num"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.endpointsecurity~1documentation~1EndpointSecurity~1es_event_type_t/title",
+          "value": "es_event_type_t"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.endpointsecurity~1documentation~1EndpointSecurity~1es_event_type_t/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "es_event_type_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.endpointsecurity~1documentation~1EndpointSecurity~1es_event_type_t/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "es_event_type_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.endpointsecurity~1documentation~1EndpointSecurity~1es_message_t~1event_type/title",
+          "value": "event_type"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.endpointsecurity~1documentation~1EndpointSecurity~1es_message_t~1event_type/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "event_type"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.endpointsecurity~1documentation~1EndpointSecurity~1es_message_t~1thread/title",
+          "value": "thread"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.endpointsecurity~1documentation~1EndpointSecurity~1es_message_t~1thread/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "thread"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.endpointsecurity~1documentation~1EndpointSecurity~1es_message_t~1deadline/title",
+          "value": "deadline"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.endpointsecurity~1documentation~1EndpointSecurity~1es_message_t~1deadline/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "deadline"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.endpointsecurity~1documentation~1EndpointSecurity~1es_message_t~1global_seq_num/title",
+          "value": "global_seq_num"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.endpointsecurity~1documentation~1EndpointSecurity~1es_message_t~1global_seq_num/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "global_seq_num"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.endpointsecurity~1documentation~1EndpointSecurity~1es_thread_t/title",
+          "value": "es_thread_t"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.endpointsecurity~1documentation~1EndpointSecurity~1es_thread_t/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "es_thread_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.endpointsecurity~1documentation~1EndpointSecurity~1es_thread_t/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "es_thread_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.endpointsecurity~1documentation~1EndpointSecurity~1es_result_t/title",
+          "value": "es_result_t"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.endpointsecurity~1documentation~1EndpointSecurity~1es_result_t/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "es_result_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.endpointsecurity~1documentation~1EndpointSecurity~1es_result_t/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "es_result_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.endpointsecurity~1documentation~1EndpointSecurity~1es_events_t/title",
+          "value": "es_events_t"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.endpointsecurity~1documentation~1EndpointSecurity~1es_events_t/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "es_events_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.endpointsecurity~1documentation~1EndpointSecurity~1es_events_t/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "es_events_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.endpointsecurity~1documentation~1EndpointSecurity~1es_process_t/title",
+          "value": "es_process_t"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.endpointsecurity~1documentation~1EndpointSecurity~1es_process_t/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "es_process_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.endpointsecurity~1documentation~1EndpointSecurity~1es_process_t/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "es_process_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.endpointsecurity~1documentation~1EndpointSecurity~1es_event_id_t/title",
+          "value": "es_event_id_t"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.endpointsecurity~1documentation~1EndpointSecurity~1es_event_id_t/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "es_event_id_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.endpointsecurity~1documentation~1EndpointSecurity~1es_event_id_t/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "es_event_id_t"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/endpointsecurity/es_message_t"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/endpointsecurity/es_message_t"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,870 @@
+{
+  "abstract": [
+    {
+      "text": "Reduce fraudulent use of your services by managing device state and asserting app",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "integrity.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.DeviceCheck/documentation/DeviceCheck"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "DeviceCheck",
+    "modules": [
+      {
+        "name": "DeviceCheck"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "11.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "11.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "11.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "beta": false,
+        "introducedAt": "10.15",
+        "name": "macOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "11.0",
+        "name": "tvOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "9.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "collection",
+    "roleHeading": "Framework",
+    "symbolKind": "module",
+    "title": "DeviceCheck"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The DeviceCheck services consist of both a framework interface that you access from",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "your app and an Apple server interface that you access from your own server.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.DeviceCheck/documentation/DeviceCheck/DCDevice",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class in your app, you can get a token that you",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "use on your server to set and query two binary digits of data per device, while maintaining",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "user privacy. For example, you might use this data to identify devices that have",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "already taken advantage of a promotional offer that you provide, or to flag a device",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that you’ve determined to be fraudulent. The server-to-server APIs also let you verify",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that the token you receive comes from your app on an Apple device.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Someone who modifies your app and distributes it outside the App Store can add unauthorized",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "features like game cheats, ad removal, or access to premium content. The App Attest",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "service gives your app a way to assert its validity so that your server can more",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "confidently provide access to sensitive resources. You use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.DeviceCheck/documentation/DeviceCheck/DCAppAttestService",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "class to generate a special cryptographic key on the device, and have Apple attest",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to the validity of that key. You then use that key to assert the validity of your",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "app whenever you request sensitive data from your server.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "devicecheck-1",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "No single policy can eliminate all fraud. For example, App Attest can’t definitively",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "pinpoint a device with a compromised operating system. Instead, the DeviceCheck services",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "provide information that you can integrate into an overall risk assessment for a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "given device.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "devicecheck-1": {
+      "alt": "A diagram showing the connections between your app and App Attest, between your app and your server, and between your server and an Apple server.",
+      "identifier": "devicecheck-1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/dc22cc31ec504d09294006e63caf6ed9/devicecheck-1@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/0150816a2044d62097956e208948fa45/devicecheck-1~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.DeviceCheck/documentation/DeviceCheck": {
+      "abstract": [
+        {
+          "text": "Reduce fraudulent use of your services by managing device state and asserting app",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "integrity.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.DeviceCheck/documentation/DeviceCheck",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "DeviceCheck",
+      "type": "topic",
+      "url": "/documentation/devicecheck"
+    },
+    "doc://com.apple.DeviceCheck/documentation/DeviceCheck/DCAppAttestService": {
+      "abstract": [
+        {
+          "text": "A service that you use to validate the instance of your app running on a",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DCAppAttestService"
+        }
+      ],
+      "identifier": "doc://com.apple.DeviceCheck/documentation/DeviceCheck/DCAppAttestService",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DCAppAttestService"
+        }
+      ],
+      "role": "symbol",
+      "title": "DCAppAttestService",
+      "type": "topic",
+      "url": "/documentation/devicecheck/dcappattestservice"
+    },
+    "doc://com.apple.DeviceCheck/documentation/DeviceCheck/DCDevice": {
+      "abstract": [
+        {
+          "text": "A representation of a device that provides a unique, authenticated token.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DCDevice"
+        }
+      ],
+      "identifier": "doc://com.apple.DeviceCheck/documentation/DeviceCheck/DCDevice",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DCDevice"
+        }
+      ],
+      "role": "symbol",
+      "title": "DCDevice",
+      "type": "topic",
+      "url": "/documentation/devicecheck/dcdevice"
+    },
+    "doc://com.apple.DeviceCheck/documentation/DeviceCheck/DCError-swift.struct": {
+      "abstract": [
+        {
+          "text": "A type that indicates when DeviceCheck encounters an error.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DCError"
+        }
+      ],
+      "identifier": "doc://com.apple.DeviceCheck/documentation/DeviceCheck/DCError-swift.struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DCError"
+        }
+      ],
+      "role": "symbol",
+      "title": "DCError",
+      "type": "topic",
+      "url": "/documentation/devicecheck/dcerror-swift.struct"
+    },
+    "doc://com.apple.DeviceCheck/documentation/DeviceCheck/DCError-swift.struct/Code": {
+      "abstract": [
+        {
+          "text": "DeviceCheck error codes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Code"
+        }
+      ],
+      "identifier": "doc://com.apple.DeviceCheck/documentation/DeviceCheck/DCError-swift.struct/Code",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Code"
+        }
+      ],
+      "role": "symbol",
+      "title": "DCError.Code",
+      "type": "topic",
+      "url": "/documentation/devicecheck/dcerror-swift.struct/code"
+    },
+    "doc://com.apple.DeviceCheck/documentation/DeviceCheck/DCErrorDomain": {
+      "abstract": [
+        {
+          "text": "The error domain for errors associated with DeviceCheck APIs.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DCErrorDomain"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.DeviceCheck/documentation/DeviceCheck/DCErrorDomain",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DCErrorDomain"
+        }
+      ],
+      "role": "symbol",
+      "title": "DCErrorDomain",
+      "type": "topic",
+      "url": "/documentation/devicecheck/dcerrordomain"
+    },
+    "doc://com.apple.DeviceCheck/documentation/DeviceCheck/accessing-and-modifying-per-device-data": {
+      "abstract": [
+        {
+          "text": "Use a token from your app to query and modify two per-device binary digits stored",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "on an Apple server.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.DeviceCheck/documentation/DeviceCheck/accessing-and-modifying-per-device-data",
+      "kind": "article",
+      "role": "article",
+      "title": "Accessing and modifying per-device data",
+      "type": "topic",
+      "url": "/documentation/devicecheck/accessing-and-modifying-per-device-data"
+    },
+    "doc://com.apple.DeviceCheck/documentation/DeviceCheck/assessing-fraud-risk": {
+      "abstract": [
+        {
+          "text": "Request and analyze risk data using server-to-server calls.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.DeviceCheck/documentation/DeviceCheck/assessing-fraud-risk",
+      "kind": "article",
+      "role": "article",
+      "title": "Assessing fraud risk",
+      "type": "topic",
+      "url": "/documentation/devicecheck/assessing-fraud-risk"
+    },
+    "doc://com.apple.DeviceCheck/documentation/DeviceCheck/attestation-object-validation-guide": {
+      "abstract": [
+        {
+          "text": "Use this guide to validate your implementation of verifying the attestation object verification process.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.DeviceCheck/documentation/DeviceCheck/attestation-object-validation-guide",
+      "kind": "article",
+      "role": "article",
+      "title": "Attestation Object Validation Guide",
+      "type": "topic",
+      "url": "/documentation/devicecheck/attestation-object-validation-guide"
+    },
+    "doc://com.apple.DeviceCheck/documentation/DeviceCheck/establishing-your-app-s-integrity": {
+      "abstract": [
+        {
+          "text": "Ensure that requests your server receives come from legitimate instances of your",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.DeviceCheck/documentation/DeviceCheck/establishing-your-app-s-integrity",
+      "kind": "article",
+      "role": "article",
+      "title": "Establishing your app’s integrity",
+      "type": "topic",
+      "url": "/documentation/devicecheck/establishing-your-app-s-integrity"
+    },
+    "doc://com.apple.DeviceCheck/documentation/DeviceCheck/preparing-to-use-the-app-attest-service": {
+      "abstract": [
+        {
+          "text": "Test your implementation in a development environment and onboard users gradually.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.DeviceCheck/documentation/DeviceCheck/preparing-to-use-the-app-attest-service",
+      "kind": "article",
+      "role": "article",
+      "title": "Preparing to use the app attest service",
+      "type": "topic",
+      "url": "/documentation/devicecheck/preparing-to-use-the-app-attest-service"
+    },
+    "doc://com.apple.DeviceCheck/documentation/DeviceCheck/validating-apps-that-connect-to-your-server": {
+      "abstract": [
+        {
+          "text": "Verify that connections to your server come from legitimate instances of your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.DeviceCheck/documentation/DeviceCheck/validating-apps-that-connect-to-your-server",
+      "kind": "article",
+      "role": "article",
+      "title": "Validating apps that connect to your server",
+      "type": "topic",
+      "url": "/documentation/devicecheck/validating-apps-that-connect-to-your-server"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.devicecheck.appattest-environment": {
+      "abstract": [
+        {
+          "text": "The environment for an app that uses the App Attest service to validate itself.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.devicecheck.appattest-environment",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "App Attest Environment",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Entitlements/com.apple.developer.devicecheck.appattest-environment"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Device-identification",
+      "identifiers": [
+        "doc://com.apple.DeviceCheck/documentation/DeviceCheck/accessing-and-modifying-per-device-data",
+        "doc://com.apple.DeviceCheck/documentation/DeviceCheck/DCDevice"
+      ],
+      "title": "Device identification"
+    },
+    {
+      "anchor": "App-Attest",
+      "identifiers": [
+        "doc://com.apple.DeviceCheck/documentation/DeviceCheck/establishing-your-app-s-integrity",
+        "doc://com.apple.DeviceCheck/documentation/DeviceCheck/validating-apps-that-connect-to-your-server",
+        "doc://com.apple.DeviceCheck/documentation/DeviceCheck/assessing-fraud-risk",
+        "doc://com.apple.DeviceCheck/documentation/DeviceCheck/preparing-to-use-the-app-attest-service",
+        "doc://com.apple.DeviceCheck/documentation/DeviceCheck/DCAppAttestService",
+        "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.devicecheck.appattest-environment"
+      ],
+      "title": "App Attest"
+    },
+    {
+      "anchor": "Errors",
+      "identifiers": [
+        "doc://com.apple.DeviceCheck/documentation/DeviceCheck/DCError-swift.struct",
+        "doc://com.apple.DeviceCheck/documentation/DeviceCheck/DCError-swift.struct/Code",
+        "doc://com.apple.DeviceCheck/documentation/DeviceCheck/DCErrorDomain"
+      ],
+      "title": "Errors"
+    },
+    {
+      "anchor": "Articles",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.DeviceCheck/documentation/DeviceCheck/attestation-object-validation-guide"
+      ],
+      "title": "Articles"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Device-identification",
+              "identifiers": [
+                "doc://com.apple.DeviceCheck/documentation/DeviceCheck/accessing-and-modifying-per-device-data",
+                "doc://com.apple.DeviceCheck/documentation/DeviceCheck/DCDevice"
+              ],
+              "title": "Device identification"
+            },
+            {
+              "anchor": "App-Attest",
+              "identifiers": [
+                "doc://com.apple.DeviceCheck/documentation/DeviceCheck/establishing-your-app-s-integrity",
+                "doc://com.apple.DeviceCheck/documentation/DeviceCheck/validating-apps-that-connect-to-your-server",
+                "doc://com.apple.DeviceCheck/documentation/DeviceCheck/assessing-fraud-risk",
+                "doc://com.apple.DeviceCheck/documentation/DeviceCheck/preparing-to-use-the-app-attest-service",
+                "doc://com.apple.DeviceCheck/documentation/DeviceCheck/DCAppAttestService",
+                "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.devicecheck.appattest-environment"
+              ],
+              "title": "App Attest"
+            },
+            {
+              "anchor": "Errors",
+              "identifiers": [
+                "doc://com.apple.DeviceCheck/documentation/DeviceCheck/DCError-swift.struct/Code",
+                "doc://com.apple.DeviceCheck/documentation/DeviceCheck/DCErrorDomain"
+              ],
+              "title": "Errors"
+            },
+            {
+              "anchor": "Articles",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.DeviceCheck/documentation/DeviceCheck/attestation-object-validation-guide"
+              ],
+              "title": "Articles"
+            }
+          ]
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.DeviceCheck~1documentation~1DeviceCheck~1DCDevice/title",
+          "value": "DCDevice"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.DeviceCheck~1documentation~1DeviceCheck~1DCDevice/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "DCDevice"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.DeviceCheck~1documentation~1DeviceCheck~1DCDevice/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "DCDevice"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.DeviceCheck~1documentation~1DeviceCheck~1DCErrorDomain/title",
+          "value": "DCErrorDomain"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.DeviceCheck~1documentation~1DeviceCheck~1DCErrorDomain/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "DCErrorDomain"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.DeviceCheck~1documentation~1DeviceCheck~1DCError-swift.struct~1Code/title",
+          "value": "DCError"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.DeviceCheck~1documentation~1DeviceCheck~1DCError-swift.struct~1Code/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "DCError"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.DeviceCheck~1documentation~1DeviceCheck~1DCError-swift.struct~1Code/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "DCError"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.DeviceCheck~1documentation~1DeviceCheck~1DCAppAttestService/title",
+          "value": "DCAppAttestService"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.DeviceCheck~1documentation~1DeviceCheck~1DCAppAttestService/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "DCAppAttestService"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.DeviceCheck~1documentation~1DeviceCheck~1DCAppAttestService/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "DCAppAttestService"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/devicecheck"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/devicecheck"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

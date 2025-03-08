@@ -1,0 +1,2693 @@
+{
+  "abstract": [
+    {
+      "text": "Build a representation of your scene’s geometry using triangles and bounding volumes to quickly trace rays through the scene.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.metal/documentation/Metal"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.metal/documentation/Metal/ray-tracing-with-acceleration-structures"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Metal"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Ray Tracing with Acceleration Structures"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Ray tracing can improve your content’s realism by more accurately modeling the behavior of light than traditional rendering. You can also use ray tracing to implement similar techniques that rely on line-of-sight, such as sound obstruction or visually based AI functions.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To apply ray tracing in your app:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create acceleration structures that represent objects in a scene.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Define a ray’s behavior when it collides into parts of an acceleration structure by creating either intersectors or intersection queries.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Generate rays into the scene from a new or existing shader.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "intersector",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " uses a table of your intersection functions that define the custom behavior for each intersection type. An ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "intersection query",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " returns to your calling function to handle the custom behavior for all intersection types.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Intersectors work with compute kernels on all GPUs, and with render shaders only on Apple silicon GPUs. Alternatively, your app can use intersection queries on non-Apple GPUs, or for porting code from other graphics APIs.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.metal/documentation/Metal": {
+      "abstract": [
+        {
+          "text": "Render advanced 3D graphics and compute data in parallel with graphics processors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Metal",
+      "type": "topic",
+      "url": "/documentation/metal"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLAccelerationStructure": {
+      "abstract": [
+        {
+          "text": "A collection of model data for GPU-accelerated intersection of rays with the model.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLAccelerationStructure"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLAccelerationStructure",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLAccelerationStructure"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLAccelerationStructure",
+      "type": "topic",
+      "url": "/documentation/metal/mtlaccelerationstructure"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLAccelerationStructureBoundingBoxGeometryDescriptor": {
+      "abstract": [
+        {
+          "text": "A description of a list of bounding boxes to turn into an acceleration structure.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLAccelerationStructureBoundingBoxGeometryDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLAccelerationStructureBoundingBoxGeometryDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLAccelerationStructureBoundingBoxGeometryDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLAccelerationStructureBoundingBoxGeometryDescriptor",
+      "type": "topic",
+      "url": "/documentation/metal/mtlaccelerationstructureboundingboxgeometrydescriptor"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLAccelerationStructureCommandEncoder": {
+      "abstract": [
+        {
+          "text": "An object for encoding commands that build or refit acceleration structures.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLAccelerationStructureCommandEncoder"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLAccelerationStructureCommandEncoder",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLAccelerationStructureCommandEncoder"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLAccelerationStructureCommandEncoder",
+      "type": "topic",
+      "url": "/documentation/metal/mtlaccelerationstructurecommandencoder"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLAccelerationStructureCurveGeometryDescriptor": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLAccelerationStructureCurveGeometryDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLAccelerationStructureCurveGeometryDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLAccelerationStructureCurveGeometryDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLAccelerationStructureCurveGeometryDescriptor",
+      "type": "topic",
+      "url": "/documentation/metal/mtlaccelerationstructurecurvegeometrydescriptor"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLAccelerationStructureDescriptor": {
+      "abstract": [
+        {
+          "text": "A base class for classes that define the configuration for a new acceleration structure.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLAccelerationStructureDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLAccelerationStructureDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLAccelerationStructureDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLAccelerationStructureDescriptor",
+      "type": "topic",
+      "url": "/documentation/metal/mtlaccelerationstructuredescriptor"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLAccelerationStructureGeometryDescriptor": {
+      "abstract": [
+        {
+          "text": "A base class for descriptors that contain geometry data to convert into a ray-tracing acceleration structure.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLAccelerationStructureGeometryDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLAccelerationStructureGeometryDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLAccelerationStructureGeometryDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLAccelerationStructureGeometryDescriptor",
+      "type": "topic",
+      "url": "/documentation/metal/mtlaccelerationstructuregeometrydescriptor"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLAccelerationStructureInstanceDescriptor": {
+      "abstract": [
+        {
+          "text": "A description of an instance in an instanced geometry acceleration structure.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLAccelerationStructureInstanceDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLAccelerationStructureInstanceDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLAccelerationStructureInstanceDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLAccelerationStructureInstanceDescriptor",
+      "type": "topic",
+      "url": "/documentation/metal/mtlaccelerationstructureinstancedescriptor"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLAccelerationStructureInstanceOptions": {
+      "abstract": [
+        {
+          "text": "Options for adjusting the behavior of an instanced acceleration structure.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLAccelerationStructureInstanceOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLAccelerationStructureInstanceOptions",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLAccelerationStructureInstanceOptions"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLAccelerationStructureInstanceOptions",
+      "type": "topic",
+      "url": "/documentation/metal/mtlaccelerationstructureinstanceoptions"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLAccelerationStructureMotionBoundingBoxGeometryDescriptor": {
+      "abstract": [
+        {
+          "text": "A description of a list of bounding boxes, as motion keyframe data, to turn into an acceleration structure.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLAccelerationStructureMotionBoundingBoxGeometryDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLAccelerationStructureMotionBoundingBoxGeometryDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLAccelerationStructureMotionBoundingBoxGeometryDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLAccelerationStructureMotionBoundingBoxGeometryDescriptor",
+      "type": "topic",
+      "url": "/documentation/metal/mtlaccelerationstructuremotionboundingboxgeometrydescriptor"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLAccelerationStructureMotionCurveGeometryDescriptor": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLAccelerationStructureMotionCurveGeometryDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLAccelerationStructureMotionCurveGeometryDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLAccelerationStructureMotionCurveGeometryDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLAccelerationStructureMotionCurveGeometryDescriptor",
+      "type": "topic",
+      "url": "/documentation/metal/mtlaccelerationstructuremotioncurvegeometrydescriptor"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLAccelerationStructureMotionInstanceDescriptor": {
+      "abstract": [
+        {
+          "text": "A description of an instance in an instanced geometry acceleration structure, with the instance including a user identifier and motion data for the instance.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLAccelerationStructureMotionInstanceDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLAccelerationStructureMotionInstanceDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLAccelerationStructureMotionInstanceDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLAccelerationStructureMotionInstanceDescriptor",
+      "type": "topic",
+      "url": "/documentation/metal/mtlaccelerationstructuremotioninstancedescriptor"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLAccelerationStructureMotionTriangleGeometryDescriptor": {
+      "abstract": [
+        {
+          "text": "A description of a list of triangle primitives, as motion keyframe data, to turn into an acceleration structure.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLAccelerationStructureMotionTriangleGeometryDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLAccelerationStructureMotionTriangleGeometryDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLAccelerationStructureMotionTriangleGeometryDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLAccelerationStructureMotionTriangleGeometryDescriptor",
+      "type": "topic",
+      "url": "/documentation/metal/mtlaccelerationstructuremotiontrianglegeometrydescriptor"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLAccelerationStructurePassDescriptor": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLAccelerationStructurePassDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLAccelerationStructurePassDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLAccelerationStructurePassDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLAccelerationStructurePassDescriptor",
+      "type": "topic",
+      "url": "/documentation/metal/mtlaccelerationstructurepassdescriptor"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLAccelerationStructurePassSampleBufferAttachmentDescriptor": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLAccelerationStructurePassSampleBufferAttachmentDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLAccelerationStructurePassSampleBufferAttachmentDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLAccelerationStructurePassSampleBufferAttachmentDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLAccelerationStructurePassSampleBufferAttachmentDescriptor",
+      "type": "topic",
+      "url": "/documentation/metal/mtlaccelerationstructurepasssamplebufferattachmentdescriptor"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLAccelerationStructurePassSampleBufferAttachmentDescriptorArray": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLAccelerationStructurePassSampleBufferAttachmentDescriptorArray"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLAccelerationStructurePassSampleBufferAttachmentDescriptorArray",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLAccelerationStructurePassSampleBufferAttachmentDescriptorArray"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLAccelerationStructurePassSampleBufferAttachmentDescriptorArray",
+      "type": "topic",
+      "url": "/documentation/metal/mtlaccelerationstructurepasssamplebufferattachmentdescriptorarray"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLAccelerationStructureRefitOptions": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLAccelerationStructureRefitOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLAccelerationStructureRefitOptions",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLAccelerationStructureRefitOptions"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLAccelerationStructureRefitOptions",
+      "type": "topic",
+      "url": "/documentation/metal/mtlaccelerationstructurerefitoptions"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLAccelerationStructureTriangleGeometryDescriptor": {
+      "abstract": [
+        {
+          "text": "A description of a list of triangle primitives to turn into an acceleration structure.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLAccelerationStructureTriangleGeometryDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLAccelerationStructureTriangleGeometryDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLAccelerationStructureTriangleGeometryDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLAccelerationStructureTriangleGeometryDescriptor",
+      "type": "topic",
+      "url": "/documentation/metal/mtlaccelerationstructuretrianglegeometrydescriptor"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLAccelerationStructureUsage": {
+      "abstract": [
+        {
+          "text": "Options that describe which tasks you can perform on an acceleration structure and how the system performs those tasks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLAccelerationStructureUsage"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLAccelerationStructureUsage",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLAccelerationStructureUsage"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLAccelerationStructureUsage",
+      "type": "topic",
+      "url": "/documentation/metal/mtlaccelerationstructureusage"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLAccelerationStructureUserIDInstanceDescriptor": {
+      "abstract": [
+        {
+          "text": "A description of an instance in an instanced geometry acceleration structure, with the instance including a user identifier for the instance.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLAccelerationStructureUserIDInstanceDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLAccelerationStructureUserIDInstanceDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLAccelerationStructureUserIDInstanceDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLAccelerationStructureUserIDInstanceDescriptor",
+      "type": "topic",
+      "url": "/documentation/metal/mtlaccelerationstructureuseridinstancedescriptor"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLAxisAlignedBoundingBox": {
+      "abstract": [
+        {
+          "text": "The bounds for an axis-aligned bounding box.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLAxisAlignedBoundingBox"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLAxisAlignedBoundingBox",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLAxisAlignedBoundingBox"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLAxisAlignedBoundingBox",
+      "type": "topic",
+      "url": "/documentation/metal/mtlaxisalignedboundingbox"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCurveBasis": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLCurveBasis"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCurveBasis",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLCurveBasis"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLCurveBasis",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcurvebasis"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCurveEndCaps": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLCurveEndCaps"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCurveEndCaps",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLCurveEndCaps"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLCurveEndCaps",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcurveendcaps"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCurveType": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLCurveType"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCurveType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLCurveType"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLCurveType",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcurvetype"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLIndirectAccelerationStructureInstanceDescriptor": {
+      "abstract": [
+        {
+          "text": "A description of an instance in an instanced geometry acceleration structure that the GPU can populate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLIndirectAccelerationStructureInstanceDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLIndirectAccelerationStructureInstanceDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLIndirectAccelerationStructureInstanceDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLIndirectAccelerationStructureInstanceDescriptor",
+      "type": "topic",
+      "url": "/documentation/metal/mtlindirectaccelerationstructureinstancedescriptor"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLIndirectAccelerationStructureMotionInstanceDescriptor": {
+      "abstract": [
+        {
+          "text": "A description of an instance in an acceleration structure that the GPU can populate, with motion data for the instance.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLIndirectAccelerationStructureMotionInstanceDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLIndirectAccelerationStructureMotionInstanceDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLIndirectAccelerationStructureMotionInstanceDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLIndirectAccelerationStructureMotionInstanceDescriptor",
+      "type": "topic",
+      "url": "/documentation/metal/mtlindirectaccelerationstructuremotioninstancedescriptor"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLIndirectInstanceAccelerationStructureDescriptor": {
+      "abstract": [
+        {
+          "text": "A description of an acceleration structure that Metal derives from instances of primitive acceleration structures that the GPU can populate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLIndirectInstanceAccelerationStructureDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLIndirectInstanceAccelerationStructureDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLIndirectInstanceAccelerationStructureDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLIndirectInstanceAccelerationStructureDescriptor",
+      "type": "topic",
+      "url": "/documentation/metal/mtlindirectinstanceaccelerationstructuredescriptor"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLInstanceAccelerationStructureDescriptor": {
+      "abstract": [
+        {
+          "text": "A description of an acceleration structure that derives from instances of primitive acceleration structures.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLInstanceAccelerationStructureDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLInstanceAccelerationStructureDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLInstanceAccelerationStructureDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLInstanceAccelerationStructureDescriptor",
+      "type": "topic",
+      "url": "/documentation/metal/mtlinstanceaccelerationstructuredescriptor"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLIntersectionFunctionDescriptor": {
+      "abstract": [
+        {
+          "text": "A description of an intersection function that performs an intersection test.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLIntersectionFunctionDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLIntersectionFunctionDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLIntersectionFunctionDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLIntersectionFunctionDescriptor",
+      "type": "topic",
+      "url": "/documentation/metal/mtlintersectionfunctiondescriptor"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLIntersectionFunctionSignature": {
+      "abstract": [
+        {
+          "text": "Constants for specifying different types of custom intersection functions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLIntersectionFunctionSignature"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLIntersectionFunctionSignature",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLIntersectionFunctionSignature"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLIntersectionFunctionSignature",
+      "type": "topic",
+      "url": "/documentation/metal/mtlintersectionfunctionsignature"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLIntersectionFunctionTable": {
+      "abstract": [
+        {
+          "text": "A table of intersection functions that Metal calls to perform ray-tracing intersection tests.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLIntersectionFunctionTable"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLIntersectionFunctionTable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLIntersectionFunctionTable"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLIntersectionFunctionTable",
+      "type": "topic",
+      "url": "/documentation/metal/mtlintersectionfunctiontable"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLIntersectionFunctionTableDescriptor": {
+      "abstract": [
+        {
+          "text": "A specification of how to create an intersection function table.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLIntersectionFunctionTableDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLIntersectionFunctionTableDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLIntersectionFunctionTableDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLIntersectionFunctionTableDescriptor",
+      "type": "topic",
+      "url": "/documentation/metal/mtlintersectionfunctiontabledescriptor"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLMotionKeyframeData": {
+      "abstract": [
+        {
+          "text": "Geometry data for a specific keyframe to use in a moving object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLMotionKeyframeData"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLMotionKeyframeData",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLMotionKeyframeData"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLMotionKeyframeData",
+      "type": "topic",
+      "url": "/documentation/metal/mtlmotionkeyframedata"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLPackedFloat3": {
+      "abstract": [
+        {
+          "text": "A structure that contains three 32-bit floating-point values with no additional padding.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLPackedFloat3"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLPackedFloat3",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLPackedFloat3"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLPackedFloat3",
+      "type": "topic",
+      "url": "/documentation/metal/mtlpackedfloat3"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLPackedFloat3Make(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Returns a new packed vector with three floating-point values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLPackedFloat3Make"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "MTLPackedFloat3"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLPackedFloat3Make(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLPackedFloat3Make"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLPackedFloat3Make(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlpackedfloat3make(_:_:_:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLPackedFloat4x3": {
+      "abstract": [
+        {
+          "text": "A structure that contains the top three rows of a 4x4 matrix of 32-bit floating-point values, in column-major order.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLPackedFloat4x3"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLPackedFloat4x3",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLPackedFloat4x3"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLPackedFloat4x3",
+      "type": "topic",
+      "url": "/documentation/metal/mtlpackedfloat4x3"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLPrimitiveAccelerationStructureDescriptor": {
+      "abstract": [
+        {
+          "text": "A description of an acceleration structure that contains geometry primitives.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLPrimitiveAccelerationStructureDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLPrimitiveAccelerationStructureDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLPrimitiveAccelerationStructureDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLPrimitiveAccelerationStructureDescriptor",
+      "type": "topic",
+      "url": "/documentation/metal/mtlprimitiveaccelerationstructuredescriptor"
+    },
+    "doc://com.apple.metal/documentation/Metal/accelerating-ray-tracing-using-metal": {
+      "abstract": [
+        {
+          "text": "Implement ray-traced rendering using GPU-based parallel processing.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/accelerating-ray-tracing-using-metal",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Accelerating ray tracing using Metal",
+      "type": "topic",
+      "url": "/documentation/metal/accelerating-ray-tracing-using-metal"
+    },
+    "doc://com.apple.metal/documentation/Metal/blit-passes": {
+      "abstract": [
+        {
+          "text": "Encode a block information transfer pass to adjust and copy data to and from GPU resources, such as buffers and textures.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/blit-passes",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Blit Passes",
+      "type": "topic",
+      "url": "/documentation/metal/blit-passes"
+    },
+    "doc://com.apple.metal/documentation/Metal/compute-passes": {
+      "abstract": [
+        {
+          "text": "Encode a compute pass that runs computations in parallel on a thread grid, processing and manipulating Metal resource data on multiple cores of a GPU.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/compute-passes",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Compute Passes",
+      "type": "topic",
+      "url": "/documentation/metal/compute-passes"
+    },
+    "doc://com.apple.metal/documentation/Metal/control-the-ray-tracing-process-using-intersection-queries": {
+      "abstract": [
+        {
+          "text": "Explicitly enumerate a ray’s intersections with acceleration structures by creating an intersection query object.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/control-the-ray-tracing-process-using-intersection-queries",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Control the Ray Tracing Process Using Intersection Queries",
+      "type": "topic",
+      "url": "/documentation/metal/control-the-ray-tracing-process-using-intersection-queries"
+    },
+    "doc://com.apple.metal/documentation/Metal/improving-ray-tracing-data-access-using-per-primitive-data": {
+      "abstract": [
+        {
+          "text": "Simplify data access and improve GPU utilization by storing custom primitive data directly in the acceleration structure.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/improving-ray-tracing-data-access-using-per-primitive-data",
+      "kind": "article",
+      "role": "article",
+      "title": "Improving Ray-Tracing Data Access Using Per-Primitive Data",
+      "type": "topic",
+      "url": "/documentation/metal/improving-ray-tracing-data-access-using-per-primitive-data"
+    },
+    "doc://com.apple.metal/documentation/Metal/indirect-command-encoding": {
+      "abstract": [
+        {
+          "text": "Store draw commands in Metal buffers and run them at a later time on the GPU, either once or repeatedly.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/indirect-command-encoding",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Indirect Command Encoding",
+      "type": "topic",
+      "url": "/documentation/metal/indirect-command-encoding"
+    },
+    "doc://com.apple.metal/documentation/Metal/render-passes": {
+      "abstract": [
+        {
+          "text": "Encode a render pass to draw graphics into an image.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/render-passes",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Render Passes",
+      "type": "topic",
+      "url": "/documentation/metal/render-passes"
+    },
+    "doc://com.apple.metal/documentation/Metal/rendering-a-curve-primitive-in-a-ray-tracing-scene": {
+      "abstract": [
+        {
+          "text": "Implement ray traced rendering using GPU-based parallel processing.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/rendering-a-curve-primitive-in-a-ray-tracing-scene",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Rendering a curve primitive in a ray tracing scene",
+      "type": "topic",
+      "url": "/documentation/metal/rendering-a-curve-primitive-in-a-ray-tracing-scene"
+    },
+    "doc://com.apple.metal/documentation/Metal/rendering-reflections-in-real-time-using-ray-tracing": {
+      "abstract": [
+        {
+          "text": "Implement realistic real-time lighting by dynamically generating reflection maps",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "by encoding a ray-tracing compute pass.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/rendering-reflections-in-real-time-using-ray-tracing",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Rendering reflections in real time using ray tracing",
+      "type": "topic",
+      "url": "/documentation/metal/rendering-reflections-in-real-time-using-ray-tracing"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Command-Encoders",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/render-passes",
+        "doc://com.apple.metal/documentation/Metal/compute-passes",
+        "doc://com.apple.metal/documentation/Metal/blit-passes",
+        "doc://com.apple.metal/documentation/Metal/indirect-command-encoding"
+      ],
+      "title": "Command Encoders"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Ray-Tracing-Samples",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/accelerating-ray-tracing-using-metal",
+        "doc://com.apple.metal/documentation/Metal/control-the-ray-tracing-process-using-intersection-queries",
+        "doc://com.apple.metal/documentation/Metal/rendering-reflections-in-real-time-using-ray-tracing",
+        "doc://com.apple.metal/documentation/Metal/rendering-a-curve-primitive-in-a-ray-tracing-scene"
+      ],
+      "title": "Ray Tracing Samples"
+    },
+    {
+      "anchor": "Acceleration-Structures",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/improving-ray-tracing-data-access-using-per-primitive-data",
+        "doc://com.apple.metal/documentation/Metal/MTLAccelerationStructure",
+        "doc://com.apple.metal/documentation/Metal/MTLAccelerationStructureDescriptor",
+        "doc://com.apple.metal/documentation/Metal/MTLPrimitiveAccelerationStructureDescriptor",
+        "doc://com.apple.metal/documentation/Metal/MTLInstanceAccelerationStructureDescriptor",
+        "doc://com.apple.metal/documentation/Metal/MTLAccelerationStructureCommandEncoder",
+        "doc://com.apple.metal/documentation/Metal/MTLAccelerationStructureUsage",
+        "doc://com.apple.metal/documentation/Metal/MTLAccelerationStructureRefitOptions"
+      ],
+      "title": "Acceleration Structures"
+    },
+    {
+      "anchor": "Acceleration-Structures-Passes",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLAccelerationStructurePassDescriptor",
+        "doc://com.apple.metal/documentation/Metal/MTLAccelerationStructurePassSampleBufferAttachmentDescriptor",
+        "doc://com.apple.metal/documentation/Metal/MTLAccelerationStructurePassSampleBufferAttachmentDescriptorArray"
+      ],
+      "title": "Acceleration Structures Passes"
+    },
+    {
+      "anchor": "Geometry-Descriptors",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLAccelerationStructureGeometryDescriptor",
+        "doc://com.apple.metal/documentation/Metal/MTLAccelerationStructureTriangleGeometryDescriptor",
+        "doc://com.apple.metal/documentation/Metal/MTLAccelerationStructureCurveGeometryDescriptor",
+        "doc://com.apple.metal/documentation/Metal/MTLCurveType",
+        "doc://com.apple.metal/documentation/Metal/MTLCurveBasis",
+        "doc://com.apple.metal/documentation/Metal/MTLCurveEndCaps",
+        "doc://com.apple.metal/documentation/Metal/MTLAccelerationStructureBoundingBoxGeometryDescriptor"
+      ],
+      "title": "Geometry Descriptors"
+    },
+    {
+      "anchor": "Motion-Geometry-Descriptors",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLAccelerationStructureMotionTriangleGeometryDescriptor",
+        "doc://com.apple.metal/documentation/Metal/MTLAccelerationStructureMotionCurveGeometryDescriptor",
+        "doc://com.apple.metal/documentation/Metal/MTLAccelerationStructureMotionBoundingBoxGeometryDescriptor",
+        "doc://com.apple.metal/documentation/Metal/MTLMotionKeyframeData"
+      ],
+      "title": "Motion Geometry Descriptors"
+    },
+    {
+      "anchor": "Instance-Descriptors",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLAccelerationStructureInstanceDescriptor",
+        "doc://com.apple.metal/documentation/Metal/MTLAccelerationStructureUserIDInstanceDescriptor",
+        "doc://com.apple.metal/documentation/Metal/MTLAccelerationStructureMotionInstanceDescriptor",
+        "doc://com.apple.metal/documentation/Metal/MTLAccelerationStructureInstanceOptions",
+        "doc://com.apple.metal/documentation/Metal/MTLIndirectInstanceAccelerationStructureDescriptor",
+        "doc://com.apple.metal/documentation/Metal/MTLIndirectAccelerationStructureInstanceDescriptor",
+        "doc://com.apple.metal/documentation/Metal/MTLIndirectAccelerationStructureMotionInstanceDescriptor"
+      ],
+      "title": "Instance Descriptors"
+    },
+    {
+      "anchor": "Intersection-Function-Tables",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLIntersectionFunctionTable",
+        "doc://com.apple.metal/documentation/Metal/MTLIntersectionFunctionTableDescriptor",
+        "doc://com.apple.metal/documentation/Metal/MTLIntersectionFunctionDescriptor",
+        "doc://com.apple.metal/documentation/Metal/MTLIntersectionFunctionSignature"
+      ],
+      "title": "Intersection Function Tables"
+    },
+    {
+      "anchor": "Supporting-Types",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLAxisAlignedBoundingBox",
+        "doc://com.apple.metal/documentation/Metal/MTLPackedFloat3",
+        "doc://com.apple.metal/documentation/Metal/MTLPackedFloat4x3",
+        "doc://com.apple.metal/documentation/Metal/MTLPackedFloat3Make(_:_:_:)"
+      ],
+      "title": "Supporting Types"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Ray-Tracing-Samples",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/accelerating-ray-tracing-using-metal",
+                "doc://com.apple.metal/documentation/Metal/control-the-ray-tracing-process-using-intersection-queries",
+                "doc://com.apple.metal/documentation/Metal/rendering-reflections-in-real-time-using-ray-tracing",
+                "doc://com.apple.metal/documentation/Metal/rendering-a-curve-primitive-in-a-ray-tracing-scene"
+              ],
+              "title": "Ray Tracing Samples"
+            },
+            {
+              "anchor": "Acceleration-Structures",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/improving-ray-tracing-data-access-using-per-primitive-data",
+                "doc://com.apple.metal/documentation/Metal/MTLAccelerationStructure",
+                "doc://com.apple.metal/documentation/Metal/MTLAccelerationStructureDescriptor",
+                "doc://com.apple.metal/documentation/Metal/MTLPrimitiveAccelerationStructureDescriptor",
+                "doc://com.apple.metal/documentation/Metal/MTLInstanceAccelerationStructureDescriptor",
+                "doc://com.apple.metal/documentation/Metal/MTLAccelerationStructureCommandEncoder",
+                "doc://com.apple.metal/documentation/Metal/MTLAccelerationStructureUsage",
+                "doc://com.apple.metal/documentation/Metal/MTLAccelerationStructureRefitOptions"
+              ],
+              "title": "Acceleration Structures"
+            },
+            {
+              "anchor": "Acceleration-Structures-Passes",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLAccelerationStructurePassDescriptor",
+                "doc://com.apple.metal/documentation/Metal/MTLAccelerationStructurePassSampleBufferAttachmentDescriptor",
+                "doc://com.apple.metal/documentation/Metal/MTLAccelerationStructurePassSampleBufferAttachmentDescriptorArray"
+              ],
+              "title": "Acceleration Structures Passes"
+            },
+            {
+              "anchor": "Geometry-Descriptors",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLAccelerationStructureGeometryDescriptor",
+                "doc://com.apple.metal/documentation/Metal/MTLAccelerationStructureTriangleGeometryDescriptor",
+                "doc://com.apple.metal/documentation/Metal/MTLAccelerationStructureCurveGeometryDescriptor",
+                "doc://com.apple.metal/documentation/Metal/MTLCurveType",
+                "doc://com.apple.metal/documentation/Metal/MTLCurveBasis",
+                "doc://com.apple.metal/documentation/Metal/MTLCurveEndCaps",
+                "doc://com.apple.metal/documentation/Metal/MTLAccelerationStructureBoundingBoxGeometryDescriptor"
+              ],
+              "title": "Geometry Descriptors"
+            },
+            {
+              "anchor": "Motion-Geometry-Descriptors",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLAccelerationStructureMotionTriangleGeometryDescriptor",
+                "doc://com.apple.metal/documentation/Metal/MTLAccelerationStructureMotionCurveGeometryDescriptor",
+                "doc://com.apple.metal/documentation/Metal/MTLAccelerationStructureMotionBoundingBoxGeometryDescriptor",
+                "doc://com.apple.metal/documentation/Metal/MTLMotionKeyframeData"
+              ],
+              "title": "Motion Geometry Descriptors"
+            },
+            {
+              "anchor": "Instance-Descriptors",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLAccelerationStructureInstanceDescriptor",
+                "doc://com.apple.metal/documentation/Metal/MTLAccelerationStructureUserIDInstanceDescriptor",
+                "doc://com.apple.metal/documentation/Metal/MTLAccelerationStructureMotionInstanceDescriptor",
+                "doc://com.apple.metal/documentation/Metal/MTLAccelerationStructureInstanceOptions",
+                "doc://com.apple.metal/documentation/Metal/MTLIndirectInstanceAccelerationStructureDescriptor",
+                "doc://com.apple.metal/documentation/Metal/MTLIndirectAccelerationStructureInstanceDescriptor",
+                "doc://com.apple.metal/documentation/Metal/MTLIndirectAccelerationStructureMotionInstanceDescriptor"
+              ],
+              "title": "Instance Descriptors"
+            },
+            {
+              "anchor": "Intersection-Function-Tables",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLIntersectionFunctionTable",
+                "doc://com.apple.metal/documentation/Metal/MTLIntersectionFunctionTableDescriptor",
+                "doc://com.apple.metal/documentation/Metal/MTLIntersectionFunctionDescriptor",
+                "doc://com.apple.metal/documentation/Metal/MTLIntersectionFunctionSignature"
+              ],
+              "title": "Intersection Function Tables"
+            },
+            {
+              "anchor": "Supporting-Types",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLAxisAlignedBoundingBox",
+                "doc://com.apple.metal/documentation/Metal/MTLPackedFloat3",
+                "doc://com.apple.metal/documentation/Metal/MTLPackedFloat4x3",
+                "doc://com.apple.metal/documentation/Metal/MTLPackedFloat3Make(_:_:_:)"
+              ],
+              "title": "Supporting Types"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Command-Encoders",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/render-passes",
+                "doc://com.apple.metal/documentation/Metal/compute-passes",
+                "doc://com.apple.metal/documentation/Metal/blit-passes",
+                "doc://com.apple.metal/documentation/Metal/indirect-command-encoding"
+              ],
+              "title": "Command Encoders"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCurveType/title",
+          "value": "MTLCurveType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCurveType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLCurveType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCurveType/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLCurveType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLPrimitiveAccelerationStructureDescriptor/title",
+          "value": "MTLPrimitiveAccelerationStructureDescriptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLPrimitiveAccelerationStructureDescriptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLPrimitiveAccelerationStructureDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLPrimitiveAccelerationStructureDescriptor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLPrimitiveAccelerationStructureDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAccelerationStructureInstanceDescriptor/title",
+          "value": "MTLAccelerationStructureInstanceDescriptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAccelerationStructureInstanceDescriptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLAccelerationStructureInstanceDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAccelerationStructureInstanceDescriptor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLAccelerationStructureInstanceDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAccelerationStructurePassDescriptor/title",
+          "value": "MTLAccelerationStructurePassDescriptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAccelerationStructurePassDescriptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLAccelerationStructurePassDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAccelerationStructurePassDescriptor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLAccelerationStructurePassDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAccelerationStructurePassSampleBufferAttachmentDescriptor/title",
+          "value": "MTLAccelerationStructurePassSampleBufferAttachmentDescriptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAccelerationStructurePassSampleBufferAttachmentDescriptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLAccelerationStructurePassSampleBufferAttachmentDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAccelerationStructurePassSampleBufferAttachmentDescriptor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLAccelerationStructurePassSampleBufferAttachmentDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAccelerationStructureCommandEncoder/title",
+          "value": "MTLAccelerationStructureCommandEncoder"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAccelerationStructureCommandEncoder/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLAccelerationStructureCommandEncoder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAccelerationStructureCommandEncoder/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLAccelerationStructureCommandEncoder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIndirectInstanceAccelerationStructureDescriptor/title",
+          "value": "MTLIndirectInstanceAccelerationStructureDescriptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIndirectInstanceAccelerationStructureDescriptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLIndirectInstanceAccelerationStructureDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIndirectInstanceAccelerationStructureDescriptor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLIndirectInstanceAccelerationStructureDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIndirectAccelerationStructureInstanceDescriptor/title",
+          "value": "MTLIndirectAccelerationStructureInstanceDescriptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIndirectAccelerationStructureInstanceDescriptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLIndirectAccelerationStructureInstanceDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIndirectAccelerationStructureInstanceDescriptor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLIndirectAccelerationStructureInstanceDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAccelerationStructureMotionTriangleGeometryDescriptor/title",
+          "value": "MTLAccelerationStructureMotionTriangleGeometryDescriptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAccelerationStructureMotionTriangleGeometryDescriptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLAccelerationStructureMotionTriangleGeometryDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAccelerationStructureMotionTriangleGeometryDescriptor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLAccelerationStructureMotionTriangleGeometryDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLPackedFloat3Make(_:_:_:)/title",
+          "value": "MTLPackedFloat3Make"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLPackedFloat3Make(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLPackedFloat3Make"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAccelerationStructureGeometryDescriptor/title",
+          "value": "MTLAccelerationStructureGeometryDescriptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAccelerationStructureGeometryDescriptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLAccelerationStructureGeometryDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAccelerationStructureGeometryDescriptor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLAccelerationStructureGeometryDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIntersectionFunctionSignature/title",
+          "value": "MTLIntersectionFunctionSignature"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIntersectionFunctionSignature/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLIntersectionFunctionSignature"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIntersectionFunctionSignature/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLIntersectionFunctionSignature"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAccelerationStructureBoundingBoxGeometryDescriptor/title",
+          "value": "MTLAccelerationStructureBoundingBoxGeometryDescriptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAccelerationStructureBoundingBoxGeometryDescriptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLAccelerationStructureBoundingBoxGeometryDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAccelerationStructureBoundingBoxGeometryDescriptor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLAccelerationStructureBoundingBoxGeometryDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAccelerationStructureMotionInstanceDescriptor/title",
+          "value": "MTLAccelerationStructureMotionInstanceDescriptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAccelerationStructureMotionInstanceDescriptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLAccelerationStructureMotionInstanceDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAccelerationStructureMotionInstanceDescriptor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLAccelerationStructureMotionInstanceDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAccelerationStructureCurveGeometryDescriptor/title",
+          "value": "MTLAccelerationStructureCurveGeometryDescriptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAccelerationStructureCurveGeometryDescriptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLAccelerationStructureCurveGeometryDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAccelerationStructureCurveGeometryDescriptor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLAccelerationStructureCurveGeometryDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIntersectionFunctionTable/title",
+          "value": "MTLIntersectionFunctionTable"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIntersectionFunctionTable/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLIntersectionFunctionTable"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIntersectionFunctionTable/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLIntersectionFunctionTable"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAccelerationStructureUsage/title",
+          "value": "MTLAccelerationStructureUsage"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAccelerationStructureUsage/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLAccelerationStructureUsage"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAccelerationStructureUsage/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLAccelerationStructureUsage"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAccelerationStructureInstanceOptions/title",
+          "value": "MTLAccelerationStructureInstanceOptions"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAccelerationStructureInstanceOptions/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLAccelerationStructureInstanceOptions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAccelerationStructureInstanceOptions/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLAccelerationStructureInstanceOptions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLPackedFloat3/title",
+          "value": "MTLPackedFloat3"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLPackedFloat3/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLPackedFloat3"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLPackedFloat3/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLPackedFloat3"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIntersectionFunctionDescriptor/title",
+          "value": "MTLIntersectionFunctionDescriptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIntersectionFunctionDescriptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLIntersectionFunctionDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIntersectionFunctionDescriptor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLIntersectionFunctionDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAccelerationStructureMotionBoundingBoxGeometryDescriptor/title",
+          "value": "MTLAccelerationStructureMotionBoundingBoxGeometryDescriptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAccelerationStructureMotionBoundingBoxGeometryDescriptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLAccelerationStructureMotionBoundingBoxGeometryDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAccelerationStructureMotionBoundingBoxGeometryDescriptor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLAccelerationStructureMotionBoundingBoxGeometryDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCurveBasis/title",
+          "value": "MTLCurveBasis"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCurveBasis/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLCurveBasis"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCurveBasis/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLCurveBasis"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAccelerationStructureRefitOptions/title",
+          "value": "MTLAccelerationStructureRefitOptions"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAccelerationStructureRefitOptions/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLAccelerationStructureRefitOptions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAccelerationStructureRefitOptions/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLAccelerationStructureRefitOptions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLMotionKeyframeData/title",
+          "value": "MTLMotionKeyframeData"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLMotionKeyframeData/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLMotionKeyframeData"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLMotionKeyframeData/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLMotionKeyframeData"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLInstanceAccelerationStructureDescriptor/title",
+          "value": "MTLInstanceAccelerationStructureDescriptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLInstanceAccelerationStructureDescriptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLInstanceAccelerationStructureDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLInstanceAccelerationStructureDescriptor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLInstanceAccelerationStructureDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAccelerationStructureDescriptor/title",
+          "value": "MTLAccelerationStructureDescriptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAccelerationStructureDescriptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLAccelerationStructureDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAccelerationStructureDescriptor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLAccelerationStructureDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAccelerationStructure/title",
+          "value": "MTLAccelerationStructure"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAccelerationStructure/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLAccelerationStructure"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAccelerationStructure/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLAccelerationStructure"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAccelerationStructureTriangleGeometryDescriptor/title",
+          "value": "MTLAccelerationStructureTriangleGeometryDescriptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAccelerationStructureTriangleGeometryDescriptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLAccelerationStructureTriangleGeometryDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAccelerationStructureTriangleGeometryDescriptor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLAccelerationStructureTriangleGeometryDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIntersectionFunctionTableDescriptor/title",
+          "value": "MTLIntersectionFunctionTableDescriptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIntersectionFunctionTableDescriptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLIntersectionFunctionTableDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIntersectionFunctionTableDescriptor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLIntersectionFunctionTableDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLPackedFloat4x3/title",
+          "value": "MTLPackedFloat4x3"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLPackedFloat4x3/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLPackedFloat4x3"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLPackedFloat4x3/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLPackedFloat4x3"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAccelerationStructurePassSampleBufferAttachmentDescriptorArray/title",
+          "value": "MTLAccelerationStructurePassSampleBufferAttachmentDescriptorArray"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAccelerationStructurePassSampleBufferAttachmentDescriptorArray/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLAccelerationStructurePassSampleBufferAttachmentDescriptorArray"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAccelerationStructurePassSampleBufferAttachmentDescriptorArray/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLAccelerationStructurePassSampleBufferAttachmentDescriptorArray"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCurveEndCaps/title",
+          "value": "MTLCurveEndCaps"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCurveEndCaps/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLCurveEndCaps"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLCurveEndCaps/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLCurveEndCaps"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAxisAlignedBoundingBox/title",
+          "value": "MTLAxisAlignedBoundingBox"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAxisAlignedBoundingBox/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLAxisAlignedBoundingBox"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAxisAlignedBoundingBox/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLAxisAlignedBoundingBox"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIndirectAccelerationStructureMotionInstanceDescriptor/title",
+          "value": "MTLIndirectAccelerationStructureMotionInstanceDescriptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIndirectAccelerationStructureMotionInstanceDescriptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLIndirectAccelerationStructureMotionInstanceDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIndirectAccelerationStructureMotionInstanceDescriptor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLIndirectAccelerationStructureMotionInstanceDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAccelerationStructureMotionCurveGeometryDescriptor/title",
+          "value": "MTLAccelerationStructureMotionCurveGeometryDescriptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAccelerationStructureMotionCurveGeometryDescriptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLAccelerationStructureMotionCurveGeometryDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAccelerationStructureMotionCurveGeometryDescriptor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLAccelerationStructureMotionCurveGeometryDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAccelerationStructureUserIDInstanceDescriptor/title",
+          "value": "MTLAccelerationStructureUserIDInstanceDescriptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAccelerationStructureUserIDInstanceDescriptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLAccelerationStructureUserIDInstanceDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAccelerationStructureUserIDInstanceDescriptor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLAccelerationStructureUserIDInstanceDescriptor"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/metal/ray-tracing-with-acceleration-structures"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/metal/ray-tracing-with-acceleration-structures"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

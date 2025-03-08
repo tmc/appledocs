@@ -1,0 +1,916 @@
+{
+  "abstract": [
+    {
+      "text": "Expose custom views and modifiers in the Xcode library.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.DeveloperToolsSupport/documentation/DeveloperToolsSupport"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "DeveloperToolsSupport",
+    "modules": [
+      {
+        "name": "DeveloperToolsSupport"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "14.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "14.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "14.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "beta": false,
+        "introducedAt": "11.0",
+        "name": "macOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "14.0",
+        "name": "tvOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "7.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "collection",
+    "roleHeading": "Framework",
+    "symbolKind": "module",
+    "title": "DeveloperToolsSupport"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Using the DeveloperToolsSupport framework, you tell Xcode about your custom",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "SwiftUI views and view modifiers. After adding your views and modifiers, Xcode",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "makes them available to you when",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "you click the Library button (",
+              "type": "text"
+            },
+            {
+              "code": "+",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") in Xcode’s toolbar. You can select and drag",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the custom library items into code, just like you would for system-provided",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "items.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To add items to the library, create a structure that conforms to the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.DeveloperToolsSupport/documentation/DeveloperToolsSupport/LibraryContentProvider",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol and encapsulate any",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "items you want to add as ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.DeveloperToolsSupport/documentation/DeveloperToolsSupport/LibraryItem",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instances.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Implement the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.DeveloperToolsSupport/documentation/DeveloperToolsSupport/LibraryContentProvider/views",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "computed property to add library items containing views. Implement the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.DeveloperToolsSupport/documentation/DeveloperToolsSupport/LibraryContentProvider/modifiers(base:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "method to add items containing view modifiers.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Xcode harvests items from all of the library content providers in your project",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "as you work, and makes them available to you in its library.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.DeveloperToolsSupport/documentation/DeveloperToolsSupport": {
+      "abstract": [
+        {
+          "text": "Expose custom views and modifiers in the Xcode library.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.DeveloperToolsSupport/documentation/DeveloperToolsSupport",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "DeveloperToolsSupport",
+      "type": "topic",
+      "url": "/documentation/developertoolssupport"
+    },
+    "doc://com.apple.DeveloperToolsSupport/documentation/DeveloperToolsSupport/ColorResource": {
+      "abstract": [
+        {
+          "text": "A color resource.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ColorResource"
+        }
+      ],
+      "identifier": "doc://com.apple.DeveloperToolsSupport/documentation/DeveloperToolsSupport/ColorResource",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ColorResource"
+        }
+      ],
+      "role": "symbol",
+      "title": "ColorResource",
+      "type": "topic",
+      "url": "/documentation/developertoolssupport/colorresource"
+    },
+    "doc://com.apple.DeveloperToolsSupport/documentation/DeveloperToolsSupport/ImageResource": {
+      "abstract": [
+        {
+          "text": "An image resource.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ImageResource"
+        }
+      ],
+      "identifier": "doc://com.apple.DeveloperToolsSupport/documentation/DeveloperToolsSupport/ImageResource",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ImageResource"
+        }
+      ],
+      "role": "symbol",
+      "title": "ImageResource",
+      "type": "topic",
+      "url": "/documentation/developertoolssupport/imageresource"
+    },
+    "doc://com.apple.DeveloperToolsSupport/documentation/DeveloperToolsSupport/LibraryContentProvider": {
+      "abstract": [
+        {
+          "text": "A source of Xcode library and code completion content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LibraryContentProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.DeveloperToolsSupport/documentation/DeveloperToolsSupport/LibraryContentProvider",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LibraryContentProvider"
+        }
+      ],
+      "role": "symbol",
+      "title": "LibraryContentProvider",
+      "type": "topic",
+      "url": "/documentation/developertoolssupport/librarycontentprovider"
+    },
+    "doc://com.apple.DeveloperToolsSupport/documentation/DeveloperToolsSupport/LibraryContentProvider/modifiers(base:)": {
+      "abstract": [
+        {
+          "text": "Indicates a collection of SwiftUI view modifiers to add to the Xcode",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "library.",
+          "type": "text"
+        }
+      ],
+      "defaultImplementations": 1,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "modifiers"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "base"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:21DeveloperToolsSupport22LibraryContentProviderP12ModifierBaseQa",
+          "text": "ModifierBase"
+        },
+        {
+          "kind": "text",
+          "text": ") -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:21DeveloperToolsSupport11LibraryItemV",
+          "text": "LibraryItem"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.DeveloperToolsSupport/documentation/DeveloperToolsSupport/LibraryContentProvider/modifiers(base:)",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "modifiers(base:)",
+      "type": "topic",
+      "url": "/documentation/developertoolssupport/librarycontentprovider/modifiers(base:)"
+    },
+    "doc://com.apple.DeveloperToolsSupport/documentation/DeveloperToolsSupport/LibraryContentProvider/views": {
+      "abstract": [
+        {
+          "text": "The SwiftUI views that you want to add to the Xcode library.",
+          "type": "text"
+        }
+      ],
+      "defaultImplementations": 1,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "views"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:21DeveloperToolsSupport11LibraryItemV",
+          "text": "LibraryItem"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.DeveloperToolsSupport/documentation/DeveloperToolsSupport/LibraryContentProvider/views",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "views",
+      "type": "topic",
+      "url": "/documentation/developertoolssupport/librarycontentprovider/views"
+    },
+    "doc://com.apple.DeveloperToolsSupport/documentation/DeveloperToolsSupport/LibraryItem": {
+      "abstract": [
+        {
+          "text": "A single item to add to the Xcode library.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LibraryItem"
+        }
+      ],
+      "identifier": "doc://com.apple.DeveloperToolsSupport/documentation/DeveloperToolsSupport/LibraryItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LibraryItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "LibraryItem",
+      "type": "topic",
+      "url": "/documentation/developertoolssupport/libraryitem"
+    },
+    "doc://com.apple.DeveloperToolsSupport/documentation/DeveloperToolsSupport/Preview": {
+      "abstract": [
+        {
+          "text": "A base type that preview macros use to create previews.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Preview"
+        }
+      ],
+      "identifier": "doc://com.apple.DeveloperToolsSupport/documentation/DeveloperToolsSupport/Preview",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Preview"
+        }
+      ],
+      "role": "symbol",
+      "title": "Preview",
+      "type": "topic",
+      "url": "/documentation/developertoolssupport/preview"
+    },
+    "doc://com.apple.DeveloperToolsSupport/documentation/DeveloperToolsSupport/PreviewBodyBuilder": {
+      "abstract": [
+        {
+          "text": "Builder for preview body content within a ",
+          "type": "text"
+        },
+        {
+          "code": "#Preview",
+          "type": "codeVoice"
+        },
+        {
+          "text": " macro.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PreviewBodyBuilder"
+        }
+      ],
+      "identifier": "doc://com.apple.DeveloperToolsSupport/documentation/DeveloperToolsSupport/PreviewBodyBuilder",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PreviewBodyBuilder"
+        }
+      ],
+      "role": "symbol",
+      "title": "PreviewBodyBuilder",
+      "type": "topic",
+      "url": "/documentation/developertoolssupport/previewbodybuilder"
+    },
+    "doc://com.apple.DeveloperToolsSupport/documentation/DeveloperToolsSupport/PreviewCamera": {
+      "abstract": [
+        {
+          "text": "A camera that defines a viewpoint in a preview.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PreviewCamera"
+        }
+      ],
+      "identifier": "doc://com.apple.DeveloperToolsSupport/documentation/DeveloperToolsSupport/PreviewCamera",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PreviewCamera"
+        }
+      ],
+      "role": "symbol",
+      "title": "PreviewCamera",
+      "type": "topic",
+      "url": "/documentation/developertoolssupport/previewcamera"
+    },
+    "doc://com.apple.DeveloperToolsSupport/documentation/DeveloperToolsSupport/PreviewCameraBuilder": {
+      "abstract": [
+        {
+          "text": "A builder type that composes a collection of cameras for previewing a",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "view in a 3D scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PreviewCameraBuilder"
+        }
+      ],
+      "identifier": "doc://com.apple.DeveloperToolsSupport/documentation/DeveloperToolsSupport/PreviewCameraBuilder",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PreviewCameraBuilder"
+        }
+      ],
+      "role": "symbol",
+      "title": "PreviewCameraBuilder",
+      "type": "topic",
+      "url": "/documentation/developertoolssupport/previewcamerabuilder"
+    },
+    "doc://com.apple.DeveloperToolsSupport/documentation/DeveloperToolsSupport/PreviewLayout": {
+      "abstract": [
+        {
+          "text": "A size constraint for a preview.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PreviewLayout"
+        }
+      ],
+      "identifier": "doc://com.apple.DeveloperToolsSupport/documentation/DeveloperToolsSupport/PreviewLayout",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PreviewLayout"
+        }
+      ],
+      "role": "symbol",
+      "title": "PreviewLayout",
+      "type": "topic",
+      "url": "/documentation/developertoolssupport/previewlayout"
+    },
+    "doc://com.apple.DeveloperToolsSupport/documentation/DeveloperToolsSupport/PreviewMacroBodyBuilder": {
+      "abstract": [
+        {
+          "text": "Builder for preview body content within a ",
+          "type": "text"
+        },
+        {
+          "code": "#Preview",
+          "type": "codeVoice"
+        },
+        {
+          "text": " macro.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PreviewMacroBodyBuilder"
+        }
+      ],
+      "identifier": "doc://com.apple.DeveloperToolsSupport/documentation/DeveloperToolsSupport/PreviewMacroBodyBuilder",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PreviewMacroBodyBuilder"
+        }
+      ],
+      "role": "symbol",
+      "title": "PreviewMacroBodyBuilder",
+      "type": "topic",
+      "url": "/documentation/developertoolssupport/previewmacrobodybuilder"
+    },
+    "doc://com.apple.DeveloperToolsSupport/documentation/DeveloperToolsSupport/PreviewRegistry": {
+      "abstract": [
+        {
+          "text": "A protocol that the system uses to locate previews at runtime.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PreviewRegistry"
+        }
+      ],
+      "identifier": "doc://com.apple.DeveloperToolsSupport/documentation/DeveloperToolsSupport/PreviewRegistry",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PreviewRegistry"
+        }
+      ],
+      "role": "symbol",
+      "title": "PreviewRegistry",
+      "type": "topic",
+      "url": "/documentation/developertoolssupport/previewregistry"
+    },
+    "doc://com.apple.DeveloperToolsSupport/documentation/DeveloperToolsSupport/PreviewTrait": {
+      "abstract": [
+        {
+          "text": "Customizations that you can apply to a preview.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PreviewTrait"
+        }
+      ],
+      "identifier": "doc://com.apple.DeveloperToolsSupport/documentation/DeveloperToolsSupport/PreviewTrait",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PreviewTrait"
+        }
+      ],
+      "role": "symbol",
+      "title": "PreviewTrait",
+      "type": "topic",
+      "url": "/documentation/developertoolssupport/previewtrait"
+    },
+    "doc://com.apple.DeveloperToolsSupport/documentation/DeveloperToolsSupport/PreviewUnavailable": {
+      "abstract": [
+        {
+          "text": "An error that the system throws when a preview is unavailable at runtime.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PreviewUnavailable"
+        }
+      ],
+      "identifier": "doc://com.apple.DeveloperToolsSupport/documentation/DeveloperToolsSupport/PreviewUnavailable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PreviewUnavailable"
+        }
+      ],
+      "role": "symbol",
+      "title": "PreviewUnavailable",
+      "type": "topic",
+      "url": "/documentation/developertoolssupport/previewunavailable"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Library-Customization",
+      "identifiers": [
+        "doc://com.apple.DeveloperToolsSupport/documentation/DeveloperToolsSupport/LibraryContentProvider",
+        "doc://com.apple.DeveloperToolsSupport/documentation/DeveloperToolsSupport/LibraryItem"
+      ],
+      "title": "Library Customization"
+    },
+    {
+      "anchor": "Preview-Registration",
+      "identifiers": [
+        "doc://com.apple.DeveloperToolsSupport/documentation/DeveloperToolsSupport/PreviewRegistry",
+        "doc://com.apple.DeveloperToolsSupport/documentation/DeveloperToolsSupport/Preview",
+        "doc://com.apple.DeveloperToolsSupport/documentation/DeveloperToolsSupport/PreviewLayout",
+        "doc://com.apple.DeveloperToolsSupport/documentation/DeveloperToolsSupport/PreviewTrait"
+      ],
+      "title": "Preview Registration"
+    },
+    {
+      "anchor": "Resource-Definition",
+      "identifiers": [
+        "doc://com.apple.DeveloperToolsSupport/documentation/DeveloperToolsSupport/ColorResource",
+        "doc://com.apple.DeveloperToolsSupport/documentation/DeveloperToolsSupport/ImageResource"
+      ],
+      "title": "Resource Definition"
+    },
+    {
+      "anchor": "Camera-Management",
+      "identifiers": [
+        "doc://com.apple.DeveloperToolsSupport/documentation/DeveloperToolsSupport/PreviewCamera",
+        "doc://com.apple.DeveloperToolsSupport/documentation/DeveloperToolsSupport/PreviewCameraBuilder"
+      ],
+      "title": "Camera Management"
+    },
+    {
+      "anchor": "Structures",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.DeveloperToolsSupport/documentation/DeveloperToolsSupport/PreviewBodyBuilder",
+        "doc://com.apple.DeveloperToolsSupport/documentation/DeveloperToolsSupport/PreviewMacroBodyBuilder",
+        "doc://com.apple.DeveloperToolsSupport/documentation/DeveloperToolsSupport/PreviewUnavailable"
+      ],
+      "title": "Structures"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/developertoolssupport"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

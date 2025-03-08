@@ -1,0 +1,1064 @@
+{
+  "abstract": [
+    {
+      "text": "A status report of the device’s current state.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.devicemanagement/documentation/DeviceManagement/StatusReport"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "rmdm-protocol:StatusReport",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "object "
+      },
+      {
+        "kind": "identifier",
+        "text": "StatusReport"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Device Management"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "StatusReport"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "name": "Device Assignment Services"
+      },
+      {
+        "beta": false,
+        "name": "VPP License Management"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Object",
+    "symbolKind": "dictionary",
+    "title": "StatusReport"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "data"
+          ],
+          "platforms": [
+            "Unsupported OS: iOS",
+            "Unsupported OS: macOS",
+            "Unsupported OS: tvOS",
+            "Unsupported OS: visionOS",
+            "Unsupported OS: watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "text",
+              "text": "object "
+            },
+            {
+              "kind": "identifier",
+              "text": "StatusReport"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "items": [
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An array of errors for this status report.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Errors",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "["
+            },
+            {
+              "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/StatusReport/Error",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "rmdm-protocol:StatusReport.Error",
+              "text": "StatusReport.Error"
+            },
+            {
+              "kind": "text",
+              "text": "]"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "default",
+              "value": "false"
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "FullReport",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "boolean"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The status items for this report.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "StatusItems",
+          "required": true,
+          "type": [
+            {
+              "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/StatusReport/StatusItems-data.dictionary",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "rmdm-protocol:StatusReport.StatusItems",
+              "text": "StatusReport.StatusItems"
+            }
+          ]
+        }
+      ],
+      "kind": "properties",
+      "title": "Properties"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/leveraging-the-declarative-management-data-model-to-scale-devices"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Devices report status incrementally: in effect, the device sends status reports that only contain status items that have changed since the device last sent a successful status report. The device determines a status report has been successfully sent only when it receives an HTTP 200 status code from the server, in response to the status report request. If the response status code indicates an error, the device resends the status items in the next report, along with any others that may have since changed.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When a device activates a status subscription, any status items that the device hasn’t reported to the server, are immediately sent in a status report. This provides the server with initial values for the status items, to assist with processing incremental updates later.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Status items that use an array as their value, are also reported incrementally. Thus items in the array are only included when their value is different from what was successfully sent before. This allows status reporting to efficiently use network bandwidth by not sending every item in the array, even when they’re unchanged. To support this behavior the following applies to the schema for objects used in status item arrays:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Every status item array value object has an ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "identifier",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " whose value is an appropriate unique identifier for the object in the array of objects that forms the status item value. In many cases this is an opaque identifier, such as a UUID, but in others it may be a unique identifier for the underlying object, such as an app bundle id.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Other keys are present, and are specific to the type of object included in the status report (for example, accounts might contain a key for the server URL, or apps might contain a key for the app name).",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "removed",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " key, set to a value of ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "true",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", indicates when a device has removed a previously reported array object. In that case, the device reports only the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "identifier",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "removed",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " keys in the object in the status report.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The server uses the ",
+              "type": "text"
+            },
+            {
+              "code": "identifier",
+              "type": "codeVoice"
+            },
+            {
+              "text": " value to determine how to update its representation of the device status:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "identifier",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " value doesn’t match any in the status item array the server already has, and the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "removed",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " key isn’t present, then the reported object is a new array object that the server must add to the representation of the device status.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "identifier",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " value matches an item in the status item array the server already has, and the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "removed",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " key isn’t present, then the reported object is an update, and the entire object must replace the one with the matching key in the representation of the device status.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "identifier",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " value matches an item in the status item array the server already has, and only the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "removed",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " key is also present, then the report indicates a removal, and the server must remove the object with the matching key in the representation of the device status.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Applying these rules ensures the server’s state correctly matches that of the device.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement": {
+      "abstract": [
+        {
+          "text": "Manage your organization’s devices remotely.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Device Management",
+      "type": "topic",
+      "url": "/documentation/devicemanagement"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/StatusAppManagedList": {
+      "abstract": [
+        {
+          "text": "The device’s declarative managed apps.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "StatusAppManagedList"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/StatusAppManagedList",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "StatusAppManagedList"
+        }
+      ],
+      "role": "symbol",
+      "title": "StatusAppManagedList",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/statusappmanagedlist"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/StatusDeviceBatteryHealth": {
+      "abstract": [
+        {
+          "text": "The device’s battery health.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "StatusDeviceBatteryHealth"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/StatusDeviceBatteryHealth",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "StatusDeviceBatteryHealth"
+        }
+      ],
+      "role": "symbol",
+      "title": "StatusDeviceBatteryHealth",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/statusdevicebatteryhealth"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/StatusDeviceModelFamily": {
+      "abstract": [
+        {
+          "text": "A status report of the device’s hardware family.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "StatusDeviceModelFamily"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/StatusDeviceModelFamily",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "StatusDeviceModelFamily"
+        }
+      ],
+      "role": "symbol",
+      "title": "StatusDeviceModelFamily",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/statusdevicemodelfamily"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/StatusDeviceModelIdentifier": {
+      "abstract": [
+        {
+          "text": "A status report of the device’s hardware identifier.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "StatusDeviceModelIdentifier"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/StatusDeviceModelIdentifier",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "StatusDeviceModelIdentifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "StatusDeviceModelIdentifier",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/statusdevicemodelidentifier"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/StatusDeviceModelMarketingName": {
+      "abstract": [
+        {
+          "text": "A status report of the device’s marketing name.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "StatusDeviceModelMarketingName"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/StatusDeviceModelMarketingName",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "StatusDeviceModelMarketingName"
+        }
+      ],
+      "role": "symbol",
+      "title": "StatusDeviceModelMarketingName",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/statusdevicemodelmarketingname"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/StatusDeviceModelNumber": {
+      "abstract": [
+        {
+          "text": "A status report of the device’s hardware number.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "StatusDeviceModelNumber"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/StatusDeviceModelNumber",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "StatusDeviceModelNumber"
+        }
+      ],
+      "role": "symbol",
+      "title": "StatusDeviceModelNumber",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/statusdevicemodelnumber"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/StatusDeviceOperatingSystemBuildVersion": {
+      "abstract": [
+        {
+          "text": "A status report of the device’s software build identifier.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "StatusDeviceOperatingSystemBuildVersion"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/StatusDeviceOperatingSystemBuildVersion",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "StatusDeviceOperatingSystemBuildVersion"
+        }
+      ],
+      "role": "symbol",
+      "title": "StatusDeviceOperatingSystemBuildVersion",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/statusdeviceoperatingsystembuildversion"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/StatusDeviceOperatingSystemFamily": {
+      "abstract": [
+        {
+          "text": "A status report of the device’s operating system family.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "StatusDeviceOperatingSystemFamily"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/StatusDeviceOperatingSystemFamily",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "StatusDeviceOperatingSystemFamily"
+        }
+      ],
+      "role": "symbol",
+      "title": "StatusDeviceOperatingSystemFamily",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/statusdeviceoperatingsystemfamily"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/StatusDeviceOperatingSystemSupplementalBuildVersion": {
+      "abstract": [
+        {
+          "text": "A status report of the device’s operating system supplemental build identifier.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "StatusDeviceOperatingSystemSupplementalBuildVersion"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/StatusDeviceOperatingSystemSupplementalBuildVersion",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "StatusDeviceOperatingSystemSupplementalBuildVersion"
+        }
+      ],
+      "role": "symbol",
+      "title": "StatusDeviceOperatingSystemSupplementalBuildVersion",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/statusdeviceoperatingsystemsupplementalbuildversion"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/StatusDeviceOperatingSystemSupplementalExtraVersion": {
+      "abstract": [
+        {
+          "text": "A status report of the device’s operating system’s rapid security response identifier.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "StatusDeviceOperatingSystemSupplementalExtraVersion"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/StatusDeviceOperatingSystemSupplementalExtraVersion",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "StatusDeviceOperatingSystemSupplementalExtraVersion"
+        }
+      ],
+      "role": "symbol",
+      "title": "StatusDeviceOperatingSystemSupplementalExtraVersion",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/statusdeviceoperatingsystemsupplementalextraversion"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/StatusDeviceOperatingSystemVersion": {
+      "abstract": [
+        {
+          "text": "A status report of the device’s operating system version.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "StatusDeviceOperatingSystemVersion"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/StatusDeviceOperatingSystemVersion",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "StatusDeviceOperatingSystemVersion"
+        }
+      ],
+      "role": "symbol",
+      "title": "StatusDeviceOperatingSystemVersion",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/statusdeviceoperatingsystemversion"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/StatusDeviceSerialNumber": {
+      "abstract": [
+        {
+          "text": "A status report of the device’s serial number.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "StatusDeviceSerialNumber"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/StatusDeviceSerialNumber",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "StatusDeviceSerialNumber"
+        }
+      ],
+      "role": "symbol",
+      "title": "StatusDeviceSerialNumber",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/statusdeviceserialnumber"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/StatusDeviceUDID": {
+      "abstract": [
+        {
+          "text": "A status report of the device’s UDID.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "StatusDeviceUDID"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/StatusDeviceUDID",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "StatusDeviceUDID"
+        }
+      ],
+      "role": "symbol",
+      "title": "StatusDeviceUDID",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/statusdeviceudid"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/StatusDiskManagementFileVaultEnabled": {
+      "abstract": [
+        {
+          "text": "The enabled status of the File Vault.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "StatusDiskManagementFileVaultEnabled"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/StatusDiskManagementFileVaultEnabled",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "StatusDiskManagementFileVaultEnabled"
+        }
+      ],
+      "role": "symbol",
+      "title": "StatusDiskManagementFileVaultEnabled",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/statusdiskmanagementfilevaultenabled"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/StatusManagementClientCapabilities": {
+      "abstract": [
+        {
+          "text": "A status report of the client’s protocol capabilities.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "StatusManagementClientCapabilities"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/StatusManagementClientCapabilities",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "StatusManagementClientCapabilities"
+        }
+      ],
+      "role": "symbol",
+      "title": "StatusManagementClientCapabilities",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/statusmanagementclientcapabilities"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/StatusReport": {
+      "abstract": [
+        {
+          "text": "A status report of the device’s current state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "StatusReport"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/StatusReport",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "StatusReport"
+        }
+      ],
+      "role": "symbol",
+      "title": "StatusReport",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/statusreport"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/StatusReport/Error": {
+      "abstract": [
+        {
+          "text": "A status report’s error that contains the status item and the reasons for the error.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "StatusReport.Error"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/StatusReport/Error",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "StatusReport.Error"
+        }
+      ],
+      "role": "symbol",
+      "title": "StatusReport.Error",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/statusreport/error"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/StatusReport/StatusItems-data.dictionary": {
+      "abstract": [
+        {
+          "text": "The status items for a report.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "StatusReport.StatusItems"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/StatusReport/StatusItems-data.dictionary",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "StatusReport.StatusItems"
+        }
+      ],
+      "role": "symbol",
+      "title": "StatusReport.StatusItems",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/statusreport/statusitems-data.dictionary"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/leveraging-the-declarative-management-data-model-to-scale-devices": {
+      "abstract": [
+        {
+          "text": "Use declarative management to make devices more autonomous and proactive.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/leveraging-the-declarative-management-data-model-to-scale-devices",
+      "kind": "article",
+      "role": "article",
+      "title": "Leveraging the declarative management data model to scale devices",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/leveraging-the-declarative-management-data-model-to-scale-devices"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Status-Reports-and-Elements",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/StatusAppManagedList",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/StatusDeviceBatteryHealth",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/StatusDeviceModelFamily",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/StatusDeviceModelIdentifier",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/StatusDeviceModelMarketingName",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/StatusDeviceModelNumber",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/StatusDeviceOperatingSystemBuildVersion",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/StatusDeviceOperatingSystemFamily",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/StatusDeviceOperatingSystemSupplementalBuildVersion",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/StatusDeviceOperatingSystemSupplementalExtraVersion",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/StatusDeviceOperatingSystemVersion",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/StatusDeviceSerialNumber",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/StatusDeviceUDID",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/StatusDiskManagementFileVaultEnabled",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/StatusManagementClientCapabilities"
+      ],
+      "title": "Status Reports and Elements"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Supporting-Objects",
+      "identifiers": [
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/StatusReport/Error",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/StatusReport/StatusItems-data.dictionary"
+      ],
+      "title": "Supporting Objects"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/devicemanagement/statusreport"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

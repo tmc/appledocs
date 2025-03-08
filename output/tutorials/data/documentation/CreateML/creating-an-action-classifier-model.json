@@ -1,0 +1,2006 @@
+{
+  "abstract": [
+    {
+      "text": "Train a machine learning model to recognize a person’s body movements.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.CreateML/documentation/CreateML"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.CreateML/documentation/CreateML/creating-an-action-classifier-model"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Create ML"
+      }
+    ],
+    "role": "collectionGroup",
+    "title": "Creating an Action Classifier Model"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "action classifier",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " is a machine learning model that identifies a person’s body",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "movements in a video. For example, an action classifier you train to classify exercise",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "movements can predict “jumping jacks” when you provide it with a video of a person",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "doing jumping jacks.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Create an action classifier with Create ML by gathering example videos of individuals",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "performing each action you want the classifier to recognize and identify. For example,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to train an exercise action classifier, gather videos of individuals performing various",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "exercises, such as jumping jacks, squats, and lunges.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "creating-an-action-classifier-model-1",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Create ML uses ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Vision",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " during training",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to find significant points on a person’s body, called ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "landmarks",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", in each frame",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of a video. Action classifiers learn to recognize the movement patterns of these",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "points over time. For more information about how to use Vision to locate body landmarks,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Vision/detecting-human-body-poses-in-images",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Create ML developer tool helps you train, assess, and preview an action classifier",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "model. You can train multiple models in a single project by configuring a ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "model",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "source",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " — a combination of training data and parameters — for each. Once you’re satisfied",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "with an action classifier, export it as a Core ML model file to add it to your Xcode",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "project.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "At runtime, your app uses the action classifier to identify a person’s action by",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "analyzing a series of video frames from a camera or file.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "creating-an-action-classifier-model-2",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Training an action classifier with the Create ML developer tool follows the same",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "general workflow as other model types, such as an image classifier (see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.CreateML/documentation/CreateML/creating-an-image-classifier-model",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ").",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "However, the workflow for an action classifier has some important differences, including:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Configuring the action classifier’s frame rate based on its destination app",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Acquiring videos that meet or exceed that frame rate",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Acquiring videos of humans clearly performing actions in a suitable environment",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Acquiring videos of related but irrelevant actions",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Session 10043: ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/videos/play/wwdc2020/10043/",
+                  "isActive": true,
+                  "type": "reference"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Choose-a-Frame-Rate",
+          "level": 3,
+          "text": "Choose a Frame Rate",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before you create an action classifier, decide what ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "frame rate —",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " the number of",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "video frames, per second — the destination app uses from a camera or file.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Your app’s frame rate is a significant factor that affects your action",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "classifier and the training data you’ll need to collect.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Plan to match your action classifier’s frame rate to the destination app’s frame",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "rate. For example, if your app acquires video from a camera at 30 frames per second",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "(fps), plan to configure your action classifier to 30 fps.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Collect-Example-Action-Videos",
+          "level": 3,
+          "text": "Collect Example Action Videos",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Once you’ve determined your action classifier’s frame rate, collect training videos.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Unlike the classifier and destination app frame rates that need to match, the frame",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "rates of these videos can be greater than or equal to the classifier’s frame rate.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For example, you can use videos at 30, 50, or 60 frames per second to train an action",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "classifier you configure to 30 fps.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Collect at least 50 example videos for each action you want the action classifier",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to identify. Make sure each example video clearly shows a single person performing",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the action. For videos of multiple people, ensure the individual performing the action",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "is the largest and most dominant person in the frame.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Additionally, collect example videos for a ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "negative class",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", which is a group of",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "related actions the action classifier might see but aren’t relevant to your app.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Negative classes help action classifiers avoid mistaking irrelevant actions for relevant",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "ones.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.CreateML/documentation/CreateML/gathering-training-videos-for-an-action-classifier",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for more details on",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "collecting high-quality training videos and creating negative classes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Organize-the-Example-Videos",
+          "level": 3,
+          "text": "Organize the Example Videos",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Create ML developer tool supports several types of data sources, each with its",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "own arrangement of files within a parent folder. For example, two common data-source",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "types are:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Single-action video files sorted into labeled folders",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Single- or multiple-action video files and one annotation file",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "creating-an-action-classifier-model-3",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.CreateML/documentation/CreateML/building-an-action-classifier-data-source",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for detailed instructions on",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "organizing your video files into one of these arrangements.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Configure-an-Action-Classification-Project",
+          "level": 3,
+          "text": "Configure an Action Classification Project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Open the developer tool by choosing Xcode > Open Developer Tool > Create ML,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and create a new Action Classification project.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "creating-an-action-classifier-model-4",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the Data section of the model source’s Settings tab, drag the parent folder of",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "your training data source onto the Training Data box.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "creating-an-action-classifier-model-5",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If applicable, drag your validation and testing data sources’ folders onto the Validation",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Data and Testing Data boxes, respectively. If you don’t provide a data source for",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "validation, Create ML automatically configures Validation Data to use a portion of",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Training Data’s data source.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Configure the action classifier’s model source by setting the values in the Parameters",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "section. Set the Frame Rate parameter to the same value as your destination app’s",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "frame rate. For example, if the action classifier’s destination app captures and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "analyzes video at 30 frames per second, set Frame Rate to 30 fps.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Choose an Action Duration based on the time it takes to complete most of the data",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "source’s actions. For example, if the majority of actions in the training video files",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "take about two seconds, set Action Duration to 2 seconds.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "creating-an-action-classifier-model-6",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Create ML calculates the model’s prediction window size — the number of frames it",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "needs to make a prediction — by multiplying the Frame Rate and Action Duration settings.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "In this example, the prediction window is 60 frames long, or 30 fps multiplied by",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "2 seconds.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If all the actions are equally valid from the camera’s left or right, you can effectively",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "double your training data by enabling the Horizontal Flip augmentation. When you",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "enable Horizontal Flip, Create ML makes a horizontally mirrored copy of the landmark",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "position outputs for each video frame ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Vision",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "analyzes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Train-the-Action-Classifier",
+          "level": 3,
+          "text": "Train the Action Classifier",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To begin the training session, click Train. Create ML starts with the feature-extraction",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "phase, using a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Vision/VNDetectHumanBodyPoseRequest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to find the person’s body landmarks in each frame.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The feature-extraction phase can take some time, depending on the size of the training",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "data and your Mac’s performance. Upon completion, Create ML starts the training phase,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "where it teaches the action classifier to recognize the actions from sequences of",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "landmark outputs. As it learns, Create ML displays a plot of the model’s accuracy",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "against training iteration.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "creating-an-action-classifier-model-7",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you need to temporarily suspend the training session for any reason, such as to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "save battery power, click Pause. When you’re ready to continue training, click Resume.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you want to try a preliminary version of the model before it’s finished training,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "click Snapshot. You can create a Core ML model file from a snapshot by selecting",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the snapshot and then exporting it in the Output tab. See “",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.CreateML/documentation/CreateML/creating-an-action-classifier-model#Export-the-Action-Classifier",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "”",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "below for more details about the Output tab.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Assess-the-Action-Classifier",
+          "level": 3,
+          "text": "Assess the Action Classifier",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Evaluate the model’s prediction accuracy by inspecting its Recall and Precision metrics",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "for the training, validation, or testing phases in the Evaluation tab.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "creating-an-action-classifier-model-8",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the action classifier doesn’t meet your needs, click Train More to further train",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the model. If the additional training iterations don’t improve the action classifier’s",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "performance, you can select File > New Model Source to train a model with either",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "or both of the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A new or modified training-data source",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Different parameters",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you need an action classifier with better accuracy, try adjusting the Action Duration",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "parameter or enabling the Horizontal Flip augmentation. If the action classifier",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "struggles to identify specific actions, create or modify a data source with additional,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "high-quality example videos of those actions.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If an action classifier misidentifies a nonaction as an action, create or augment",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a negative class with examples of that irrelevant action. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.CreateML/documentation/CreateML/gathering-training-videos-for-an-action-classifier",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "for more information about creating a negative class.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Once you’ve configured the new model source, click Train to create a new action classifier",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "with that configuration. Repeat the process of evaluating, adjusting, and training",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "action classifiers until you’re satisfied with the performance of one of them.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Preview-the-Action-Classifier",
+          "level": 3,
+          "text": "Preview the Action Classifier",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the Preview tab to quickly test your action classifier before you add it to an",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Xcode project. Get a visual sense of how the model works by dragging in a video and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "clicking the Play button to see the model’s predictions.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "creating-an-action-classifier-model-9",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you drag in a video file, Create ML uses the action classifier to analyze the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "entire file at once. When you play the video, Create ML shows the action classifier’s",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "predictions for each frame in real time.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Quickly test an action classifier’s ability to recognize all of its action",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "classes by previewing an action montage video.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Tip",
+          "style": "tip",
+          "type": "aside"
+        },
+        {
+          "anchor": "Export-the-Action-Classifier",
+          "level": 3,
+          "text": "Export the Action Classifier",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To save an action classifier as a Core ML file, select the Output tab and click the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Get, Xcode, or Share button. You can export a model from any model source that’s",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "finished training or from any snapshot you created while training the model.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "creating-an-action-classifier-model-10",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For an example app that integrates and applies an action classifier, see the related",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "sample code projects:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/createml/detecting_human_actions_in_a_live_video_feed",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Vision/building-a-feature-rich-app-for-sports-analysis",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "creating-an-action-classifier-model-1": {
+      "alt": "Flow diagram of two stacks of video files labeled squats and lunges flowing into Create ML, which then produces a Core ML model file named “Action Classifier”.",
+      "identifier": "creating-an-action-classifier-model-1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5f62002f76ff0d8afd66ed9b60af059c/creating-an-action-classifier-model-1@2x.png"
+        }
+      ]
+    },
+    "creating-an-action-classifier-model-10": {
+      "alt": "Screenshot of the Output tab, highlighting three buttons on the right, labeled: Get, Xcode, and Share. ",
+      "identifier": "creating-an-action-classifier-model-10",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/72e5488326ec24c5ab791b2dfa302abb/creating-an-action-classifier-model-10@2x.png"
+        }
+      ]
+    },
+    "creating-an-action-classifier-model-2": {
+      "alt": "Flow diagram that starts with a person performing jumping jacks in front of a camera, then through the Vision framework and into an action classifier, which produces the prediction label, jumping jacks.",
+      "identifier": "creating-an-action-classifier-model-2",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/d974efe940e63662a713fb837a7f83c2/creating-an-action-classifier-model-2@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f7fc0ca5efd6679f27483b2e26fde55b/creating-an-action-classifier-model-2~dark@2x.png"
+        }
+      ]
+    },
+    "creating-an-action-classifier-model-3": {
+      "alt": "Flow diagram that shows two file-arrangement alternatives. On the left, a parent folder named Training Data 1 contains three labeled folders named, Squats, Lunges, and Jumping Jacks. Next to each labeled folder is a stack of video file icons with an arrow pointing toward its corresponding labeled directory. On the right, a parent folder named Training Data 2 contains 5 files named: annotations.csv, Squats1.mov, Squats2.mov, Jumping Jacks.mov, and Exercise montage 1.mov.",
+      "identifier": "creating-an-action-classifier-model-3",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/3318893c1d27da226d0e6a006fefa1b8/creating-an-action-classifier-model-3@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c97986c51a6f71c0d7cfef5a034ff38b/creating-an-action-classifier-model-3~dark@2x.png"
+        }
+      ]
+    },
+    "creating-an-action-classifier-model-4": {
+      "alt": "Screenshot of Create ML’s new project dialog highlighting the Action Classification template.",
+      "identifier": "creating-an-action-classifier-model-4",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/38c7f28b647dbfccbc2990468c340a44/creating-an-action-classifier-model-4@2x.png"
+        }
+      ]
+    },
+    "creating-an-action-classifier-model-5": {
+      "alt": "Screenshot of the model source’s Data section with the cursor dragging a folder named Training Data 1 onto the training data box.",
+      "identifier": "creating-an-action-classifier-model-5",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b601f871a91b39358acd52baf7046aad/creating-an-action-classifier-model-5@2x.png"
+        }
+      ]
+    },
+    "creating-an-action-classifier-model-6": {
+      "alt": "Screenshot of the model source’s Parameters section where Iterations is set to 80, Frame Rate is set to 30 FPS, Action Duration is set to 2 seconds, and the Horizontal Flip augmentation is selected.",
+      "identifier": "creating-an-action-classifier-model-6",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/6c35996d1b5e528e7c54e38cfd989e17/creating-an-action-classifier-model-6@2x.png"
+        }
+      ]
+    },
+    "creating-an-action-classifier-model-7": {
+      "alt": "Screenshot of the Training Tab highlighting the Pause and Snapshot buttons above a plot of the action classifier’s accuracy over its training iterations. The plot begins with both accuracies below 20%, and improve to where the training and validation accuracies are at 95.9% and 96.7%, respectively, after 86 iterations.",
+      "identifier": "creating-an-action-classifier-model-7",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/eec07bf4c375b3814a66d3539f0cae29/creating-an-action-classifier-model-7@2x.png"
+        }
+      ]
+    },
+    "creating-an-action-classifier-model-8": {
+      "alt": "Screenshot of the validation data’s precision and recall metrics in the Evaluation tab. All classes in the Precision column show 100% except for the None class which shows 76%. The recall column shows 100% for the Jumping Jacks and None classes, and a range between 90 and 96% for the remaining classes.",
+      "identifier": "creating-an-action-classifier-model-8",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b0e16a86bb370138f9c009b1b48eff32/creating-an-action-classifier-model-8@2x.png"
+        }
+      ]
+    },
+    "creating-an-action-classifier-model-9": {
+      "alt": "Screenshot of the Preview tab playing a video file of a person performing jumping jacks. The prediction label below the video is Jumping Jacks with a 100% confidence.",
+      "identifier": "creating-an-action-classifier-model-9",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/78af64f158184d826427091ea163ffc7/creating-an-action-classifier-model-9@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.CreateML/documentation/CreateML": {
+      "abstract": [
+        {
+          "text": "Create machine learning models for use in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Create ML",
+      "type": "topic",
+      "url": "/documentation/createml"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLActionClassifier": {
+      "abstract": [
+        {
+          "text": "A model you train with videos to classify a person’s body movements.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MLActionClassifier"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLActionClassifier",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MLActionClassifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "MLActionClassifier",
+      "type": "topic",
+      "url": "/documentation/createml/mlactionclassifier"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLHandActionClassifier": {
+      "abstract": [
+        {
+          "text": "A task that creates a hand action classification model by training with",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "videos of people’s hand movements that you provide.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MLHandActionClassifier"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLHandActionClassifier",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MLHandActionClassifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "MLHandActionClassifier",
+      "type": "topic",
+      "url": "/documentation/createml/mlhandactionclassifier"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLStyleTransfer": {
+      "abstract": [
+        {
+          "text": "A model you train to apply an image’s style to other images or videos.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MLStyleTransfer"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLStyleTransfer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MLStyleTransfer"
+        }
+      ],
+      "role": "symbol",
+      "title": "MLStyleTransfer",
+      "type": "topic",
+      "url": "/documentation/createml/mlstyletransfer"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/building-an-action-classifier-data-source": {
+      "abstract": [
+        {
+          "text": "Arrange your training videos in multiple folders with labels that describe actions,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "or in a single folder with an annotation file.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/building-an-action-classifier-data-source",
+      "kind": "article",
+      "role": "article",
+      "title": "Building an Action Classifier Data Source",
+      "type": "topic",
+      "url": "/documentation/createml/building-an-action-classifier-data-source"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/creating-an-action-classifier-model#Export-the-Action-Classifier": {
+      "abstract": [],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/creating-an-action-classifier-model#Export-the-Action-Classifier",
+      "kind": "section",
+      "title": "Export the Action Classifier",
+      "type": "topic",
+      "url": "/documentation/createml/creating-an-action-classifier-model#Export-the-Action-Classifier"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/creating-an-image-classifier-model": {
+      "abstract": [
+        {
+          "text": "Train a machine learning model to classify images, and add it to your Core ML app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/creating-an-image-classifier-model",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating an Image Classifier Model",
+      "type": "topic",
+      "url": "/documentation/createml/creating-an-image-classifier-model"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/gathering-training-videos-for-an-action-classifier": {
+      "abstract": [
+        {
+          "text": "Collect quality example videos that effectively train action classifiers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/gathering-training-videos-for-an-action-classifier",
+      "kind": "article",
+      "role": "article",
+      "title": "Gathering Training Videos for an Action Classifier",
+      "type": "topic",
+      "url": "/documentation/createml/gathering-training-videos-for-an-action-classifier"
+    },
+    "doc://com.apple.documentation/documentation/Vision": {
+      "abstract": [
+        {
+          "text": "Apply computer vision algorithms to perform a variety of tasks on input images and videos.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Vision",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Vision",
+      "type": "topic",
+      "url": "/documentation/Vision"
+    },
+    "doc://com.apple.documentation/documentation/Vision/VNDetectHumanBodyPoseRequest": {
+      "abstract": [
+        {
+          "text": "A request that detects a human body pose.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VNDetectHumanBodyPoseRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Vision/VNDetectHumanBodyPoseRequest",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "VNDetectHumanBodyPoseRequest",
+      "type": "topic",
+      "url": "/documentation/Vision/VNDetectHumanBodyPoseRequest"
+    },
+    "doc://com.apple.documentation/documentation/Vision/building-a-feature-rich-app-for-sports-analysis": {
+      "abstract": [
+        {
+          "text": "Detect and classify human activity in real time using computer vision and machine learning.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Vision/building-a-feature-rich-app-for-sports-analysis",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Building a feature-rich app for sports analysis",
+      "type": "topic",
+      "url": "/documentation/Vision/building-a-feature-rich-app-for-sports-analysis"
+    },
+    "doc://com.apple.documentation/documentation/Vision/detecting-human-body-poses-in-images": {
+      "abstract": [
+        {
+          "text": "Add the capability to detect human body poses to your app using the Vision framework.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Vision/detecting-human-body-poses-in-images",
+      "kind": "article",
+      "role": "article",
+      "title": "Detecting Human Body Poses in Images",
+      "type": "topic",
+      "url": "/documentation/Vision/detecting-human-body-poses-in-images"
+    },
+    "doc://com.apple.documentation/documentation/createml/detecting_human_actions_in_a_live_video_feed": {
+      "abstract": [
+        {
+          "text": "Identify body movements by sending a person’s pose data from a series of video frames to an action-classification model.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/createml/detecting_human_actions_in_a_live_video_feed",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Detecting Human Actions in a Live Video Feed",
+      "type": "topic",
+      "url": "/documentation/createml/detecting_human_actions_in_a_live_video_feed"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/videos/play/wwdc2020/10043/": {
+      "identifier": "https://developer.apple.com/videos/play/wwdc2020/10043/",
+      "title": "Build an Action Classifier with Create ML",
+      "titleInlineContent": [
+        {
+          "text": "Build an Action Classifier with Create ML",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/videos/play/wwdc2020/10043/"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Video-Models",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/createml/detecting_human_actions_in_a_live_video_feed",
+        "doc://com.apple.CreateML/documentation/CreateML/MLActionClassifier",
+        "doc://com.apple.CreateML/documentation/CreateML/MLHandActionClassifier",
+        "doc://com.apple.CreateML/documentation/CreateML/MLStyleTransfer"
+      ],
+      "title": "Video Models"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Action-Classifier-Data-Sources",
+      "identifiers": [
+        "doc://com.apple.CreateML/documentation/CreateML/gathering-training-videos-for-an-action-classifier",
+        "doc://com.apple.CreateML/documentation/CreateML/building-an-action-classifier-data-source"
+      ],
+      "title": "Action Classifier Data Sources"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Vision~1VNDetectHumanBodyPoseRequest/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "VNDetectHumanBodyPoseRequest"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)VNImageBasedRequest",
+              "text": "VNImageBasedRequest"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/createml/creating-an-action-classifier-model"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

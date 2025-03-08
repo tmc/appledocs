@@ -1,0 +1,1599 @@
+{
+  "abstract": [
+    {
+      "text": "Discover why the operating system terminated your app when available memory was low.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Xcode/documentation/Xcode",
+        "doc://com.apple.Xcode/documentation/Xcode/debugging",
+        "doc://com.apple.Xcode/documentation/Xcode/diagnosing-issues-using-crash-reports-and-device-logs"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Xcode/documentation/Xcode/identifying-high-memory-use-with-jetsam-event-reports"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Identifying high-memory use with jetsam event reports"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "iOS, iPadOS, tvOS, visionOS, and watchOS have a virtual memory system that relies on all apps",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "releasing memory when the operating system encounters ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "memory pressure",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", where available",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "memory is low and the system can’t meet the demands of all running apps. Under memory",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "pressure, apps free memory after receiving a low-memory notification. If all running",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "apps release enough total memory to alleviate memory pressure, your app will continue",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to run. But, if memory pressure continues because apps haven’t relinquished enough",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "memory, the system frees memory by terminating applications to reclaim their memory.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This is a ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "jetsam event",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", and the system creates a jetsam event report with information",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "about why it chose to jettison an app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Jetsam event reports differ from crash reports because they contain the overall memory",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "use of all apps and system processes on a device, they’re in JSON format, and they",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "don’t contain the backtraces of any threads in your app. If the system jettisons",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "your app due to memory pressure while the app is visible, it will look like your",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "app crashed. Use jetsam event reports to identify your app’s role in jetsam events,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "even if your app didn’t get jettisoned.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Identify-the-memory-page-size-and-largest-process",
+          "level": 3,
+          "text": "Identify the memory page size and largest process",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The jetsam event report records how much memory each process used before jettisoning",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "an app. The virtual memory system allocates and manages memory in chunks, called",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "memory pages",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", and the report lists the memory use as the number of memory pages",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "used. To convert the number of memory pages into the bytes of memory your app used,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "you need to know the ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "page size",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", which is the number of bytes in one memory page.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "pageSize",
+              "type": "codeVoice"
+            },
+            {
+              "text": " field in the jetsam event report header records the number of bytes",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in each memory page. In addition to the page size, the header of a jetsam report",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "describes the overall device environment, such as the operating system version and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "hardware model. In this example, the page size is 16,384 bytes, or 16 KB.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "\"crashReporterKey\" : \"b9aa251a63bd9e743afbb906f43eb7ea5f206292\",",
+            "\"product\" : \"iPad8,2\",",
+            "\"incident\" : \"32B05E3C-CB45-40F8-BA66-5668779740E1\",",
+            "\"date\" : \"2019-10-10 23:30:39.48 -0700\",",
+            "\"build\" : \"iPhone OS 13.1.2 (17A860)\",",
+            "\"memoryStatus\" : {",
+            "   \"pageSize\" : 16384,",
+            "},",
+            "\"largestProcess\" : \"OneCoolApp\",",
+            ""
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "This example shows the header fields needed to diagnose a crash from a jetsam",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "event report. The complete header information contains more fields than shown in",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "this example.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "While inspecting the header, examine the ",
+              "type": "text"
+            },
+            {
+              "code": "largestProcess",
+              "type": "codeVoice"
+            },
+            {
+              "text": " field—this field names",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the process using the highest number of memory pages on the system. If other apps",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in addition to yours are regularly jettisoned, and your app is the largest process,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "you should reduce your memory use to better cooperate with other apps’ memory needs.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Identify-the-jetsam-reason",
+          "level": 3,
+          "text": "Identify the jetsam reason",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A jetsam event report contains a ",
+              "type": "text"
+            },
+            {
+              "code": "processes",
+              "type": "codeVoice"
+            },
+            {
+              "text": " array, with each item in the array describing",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a single process in the system. Search for the ",
+              "type": "text"
+            },
+            {
+              "code": "reason",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key to identify the jettisoned",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "process and why the system jettisoned it. Only the jettisoned process has the reason",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "key.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If your app crashed, but the jettisoned process isn’t your app, then",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "the crash isn’t due to memory pressure. To diagnose your app’s issue, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.Xcode/documentation/Xcode/acquiring-crash-reports-and-diagnostic-logs",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "to locate its crash report.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This example is one process entry in the ",
+              "type": "text"
+            },
+            {
+              "code": "processes",
+              "type": "codeVoice"
+            },
+            {
+              "text": " array:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "    \"uuid\" : \"a02fb850-9725-4051-817a-8a5dc0950872\",",
+            "    \"states\" : [",
+            "      \"frontmost\"",
+            "    ],",
+            "    \"lifetimeMax\" : 92802,",
+            "    \"purgeable\" : 0,",
+            "    \"coalition\" : 68,",
+            "    \"rpages\" : 92802,",
+            "    \"reason\" : \"per-process-limit\",",
+            "    \"name\" : \"MyCoolApp\"",
+            "}"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "This example shows the process fields needed for diagnosing a crash from",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "a jetsam event report. The complete process information in a report contains more",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "fields than shown in this example.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the jettisoned process is your app, the value of the ",
+              "type": "text"
+            },
+            {
+              "code": "reason",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key explains the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "conditions that led to the jetsam event:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "per-process-limit",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ": The process crossed the resident memory limit imposed by the",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "system on all apps. Crossing this limit makes the process eligible for termination.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "If the process is an app extension from your app, note that extensions have a much",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "lower per-process memory limit than foreground apps. Carefully consider your needs",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "before using technologies with a high-baseline memory cost, such as ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SpriteKit",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "or a ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/MapKit/MKMapView",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", in an extension",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "point. Alternate solutions may be more appropriate. For example, an image created",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "by ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/MapKit/MKMapSnapshotter",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " has lower",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "memory use than a ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/MapKit/MKMapView",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ",",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "and is a better choice for many extension-point scenarios.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "vm-pageshortage",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ": The system experienced memory pressure and needed to free background",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "process memory for the current foreground app.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "vnode-limit",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ": Too many files were open across the system. The kernel has a finite",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "number of ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "vnodes",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": ", a memory structure backing open files, and these were almost",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "exhausted. To avoid terminating the frontmost app when vnodes are nearly exhausted,",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "the system may terminate your app in the background to free vnodes, even if your",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "app isn’t the source of excess vnode use.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "highwater",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ": A system daemon exceeded its highest-expected memory footprint.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "fc-thrashing",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ": A process thrashed the system file cache. This occurs when non-sequential",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "parts of memory-mapped files are read and written too frequently. To avoid terminating",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "the frontmost app, the system may terminate your app in the background to free space",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "in the file cache, even if your app isn’t thrashing the file cache.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "jettisoned",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ": The system jettisoned the process for some other reason.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To determine the amount of memory your app is using, multiply the number of memory",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "pages reported in the ",
+              "type": "text"
+            },
+            {
+              "code": "rpages",
+              "type": "codeVoice"
+            },
+            {
+              "text": " field by the page size value from the ",
+              "type": "text"
+            },
+            {
+              "code": "pageSize",
+              "type": "codeVoice"
+            },
+            {
+              "text": " field",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in the jetsam event report’s header. The result is the amount of memory your app",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "is using in bytes. For example, a process with a ",
+              "type": "text"
+            },
+            {
+              "code": "rpages",
+              "type": "codeVoice"
+            },
+            {
+              "text": " value of 92,802 multiplied",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "by a ",
+              "type": "text"
+            },
+            {
+              "code": "pageSize",
+              "type": "codeVoice"
+            },
+            {
+              "text": " value of 16,384 bytes is using 1,520,467,968 bytes (1.52 GB) of memory.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each item in the ",
+              "type": "text"
+            },
+            {
+              "code": "processes",
+              "type": "codeVoice"
+            },
+            {
+              "text": " array also has the following keys, which provide additional",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "information for diagnosing the issue.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "uuid",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ": The build UUID of the binary. This helps you identify the version of your",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "app by comparing this value to the available dSYM files for builds distributed to",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "customers. To learn more about the build UUID, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.Xcode/documentation/Xcode/building-your-app-to-include-debugging-information",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "states",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ": Describes the app’s current memory use state, such as using memory as",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "frontmost",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " app, or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "suspended",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and not actively using memory.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "lifetimeMax",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ": The highest number of memory pages allocated during the lifetime",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "of the process.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "coalition",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ": If your app’s process is part of a coalition that involves other system",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "processes doing work on behalf of your app, use this information to identify related",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "processes and their memory use, as your app can influence the memory use of other",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "coalition processes.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "name",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ": The process name. See if this name matches a binary from your app, or belongs",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "to another app or system process.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Make-changes-to-your-apps-memory-use",
+          "level": 3,
+          "text": "Make changes to your app’s memory use",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Once you confirm that your app is crashing due to high-memory use, by analyzing the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "jetsam event report, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/gathering-information-about-memory-use",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to understand your app’s memory use patterns, and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/making-changes-to-reduce-memory-use",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "for techniques to lower your memory use.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In addition to lowering your app’s memory use, ensure you are receiving the low-memory",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "warnings sent by the system and acting on these warnings to cooperate with the needs",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of the operating system and lower your appʼs memory use—see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/responding-to-low-memory-warnings",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "for the specific ways the system notifies your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Xcode-PageImage-card.png": {
+      "alt": "The Xcode logo on a blue gradient background.",
+      "identifier": "Xcode-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cc63eacd8f7f660388b46204d1d9bbcb/Xcode-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/62dba87d5f60ec96eb48882c9dff86d8/Xcode-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Xcode/documentation/Xcode": {
+      "abstract": [
+        {
+          "text": "Build, test, and submit your app with Apple’s integrated development environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode",
+      "images": [
+        {
+          "identifier": "Xcode-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/acquiring-crash-reports-and-diagnostic-logs": {
+      "abstract": [
+        {
+          "text": "Gather crash reports and device logs from the App Store, TestFlight, and directly",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "from devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/acquiring-crash-reports-and-diagnostic-logs",
+      "kind": "article",
+      "role": "article",
+      "title": "Acquiring crash reports and diagnostic logs",
+      "type": "topic",
+      "url": "/documentation/xcode/acquiring-crash-reports-and-diagnostic-logs"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/building-your-app-to-include-debugging-information": {
+      "abstract": [
+        {
+          "text": "Configure Xcode to produce the symbol information for debugging and crash reports.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/building-your-app-to-include-debugging-information",
+      "kind": "article",
+      "role": "article",
+      "title": "Building your app to include debugging information",
+      "type": "topic",
+      "url": "/documentation/xcode/building-your-app-to-include-debugging-information"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/debugging": {
+      "abstract": [
+        {
+          "text": "Identify and address issues in your app using the Xcode debugger, Xcode Organizer, Metal debugger, and Instruments.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/debugging",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Debugging",
+      "type": "topic",
+      "url": "/documentation/xcode/debugging"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/diagnosing-issues-using-crash-reports-and-device-logs": {
+      "abstract": [
+        {
+          "text": "Use crash reports and device logs to debug app issues.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/diagnosing-issues-using-crash-reports-and-device-logs",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Diagnosing issues using crash reports and device logs",
+      "type": "topic",
+      "url": "/documentation/xcode/diagnosing-issues-using-crash-reports-and-device-logs"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/gathering-information-about-memory-use": {
+      "abstract": [
+        {
+          "text": "Identify memory-use inefficiencies by measuring and profiling your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/gathering-information-about-memory-use",
+      "kind": "article",
+      "role": "article",
+      "title": "Gathering information about memory use",
+      "type": "topic",
+      "url": "/documentation/xcode/gathering-information-about-memory-use"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/making-changes-to-reduce-memory-use": {
+      "abstract": [
+        {
+          "text": "Decrease your app’s use of memory by addressing common causes of excessive use.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/making-changes-to-reduce-memory-use",
+      "kind": "article",
+      "role": "article",
+      "title": "Making changes to reduce memory use",
+      "type": "topic",
+      "url": "/documentation/xcode/making-changes-to-reduce-memory-use"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/reducing-your-app-s-memory-use": {
+      "abstract": [
+        {
+          "text": "Improve your app’s performance by analyzing memory-use metrics and making changes",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "to maximize memory efficiency.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/reducing-your-app-s-memory-use",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Reducing your app’s memory use",
+      "type": "topic",
+      "url": "/documentation/xcode/reducing-your-app-s-memory-use"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/responding-to-low-memory-warnings": {
+      "abstract": [
+        {
+          "text": "Detect when your app is using excessive memory, and bring memory use under control.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/responding-to-low-memory-warnings",
+      "kind": "article",
+      "role": "article",
+      "title": "Responding to low-memory warnings",
+      "type": "topic",
+      "url": "/documentation/xcode/responding-to-low-memory-warnings"
+    },
+    "doc://com.apple.documentation/documentation/MapKit/MKMapSnapshotter": {
+      "abstract": [
+        {
+          "text": "A utility class for capturing a map and its content into an image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MKMapSnapshotter"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/MapKit/MKMapSnapshotter",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MKMapSnapshotter",
+      "type": "topic",
+      "url": "/documentation/MapKit/MKMapSnapshotter"
+    },
+    "doc://com.apple.documentation/documentation/MapKit/MKMapView": {
+      "abstract": [
+        {
+          "text": "An embeddable map interface, similar to the one that the Maps app provides.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MKMapView"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/MapKit/MKMapView",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MKMapView",
+      "type": "topic",
+      "url": "/documentation/MapKit/MKMapView"
+    },
+    "doc://com.apple.documentation/documentation/SpriteKit": {
+      "abstract": [
+        {
+          "text": "Add high-performance 2D content with smooth animations to your app, or create a game with a high-level set of 2D game-based tools.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SpriteKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SpriteKit",
+      "type": "topic",
+      "url": "/documentation/SpriteKit"
+    },
+    "doc://com.apple.documentation/documentation/os/logging": {
+      "abstract": [
+        {
+          "text": "Capture telemetry from your app for debugging and performance analysis using the unified logging system.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/os/logging",
+      "kind": "article",
+      "role": "article",
+      "title": "Logging",
+      "type": "topic",
+      "url": "/documentation/os/logging"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Related-Documentation",
+      "identifiers": [
+        "doc://com.apple.Xcode/documentation/Xcode/reducing-your-app-s-memory-use"
+      ],
+      "title": "Related Documentation"
+    },
+    {
+      "anchor": "Device-logs",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/os/logging"
+      ],
+      "title": "Device logs"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1MapKit~1MKMapSnapshotter/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MKMapSnapshotter"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1MapKit~1MKMapView/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MKMapView"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSView",
+              "text": "NSView"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

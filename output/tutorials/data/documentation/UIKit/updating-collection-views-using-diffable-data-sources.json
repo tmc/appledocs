@@ -1,0 +1,3048 @@
+{
+  "abstract": [
+    {
+      "text": "Streamline the display and update of data in a collection view using a diffable data source that contains identifiers.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit",
+        "doc://com.apple.uikit/documentation/UIKit/views-and-controls",
+        "doc://com.apple.uikit/documentation/UIKit/collection-views"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.uikit/documentation/UIKit/updating-collection-views-using-diffable-data-sources"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "UIKit"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "15.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "15.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "15.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "beta": false,
+        "introducedAt": "13.2",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Updating collection views using diffable data sources"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "collection view",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " presents data in the form of sections and items, and an app that displays data in a collection view inserts those sections and items into the view. The app may also need to handle deleting or moving sections and items. For instance, the sample app in this project displays recipes in a collection view, and people using the app can add and delete recipes, and mark recipes as favorites. To support these actions, the sample app handles inserting, deleting, moving, and updating data within a collection view.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When populating a collection view in an app, you can create a custom data source that adopts the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewDataSource",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol. To keep the information in the collection view current, you determine what data changed and perform a batch update based on those changes, a process that requires careful coordination of inserts, deletes, and moves.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To avoid the complexity of that process, the sample app uses a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewDiffableDataSource-9tqpa",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object. A ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "diffable data source",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " stores a list of section and item ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "identifiers",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", which represents the identity of each section and item contained in a collection view. These identifiers are stable, meaning they don’t change. In contrast, a custom data source that conforms to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewDataSource",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " uses ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "indices",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "index paths",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", which aren’t stable. They represent the location of sections and items, which can change as the data source adds, removes, and rearranges the contents of a collection view. However, with identifiers a diffable data source can refer to a section or item without knowledge of its location within a collection view.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "This sample uses collection views to display data, but the concepts covered in this sample apply to table views as well. For more information about using a diffable data source with a table view, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.uikit/documentation/UIKit/UITableViewDiffableDataSource-2euir",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To use a value as an identifier, its data type must conform to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Swift/Hashable",
+              "isActive": true,
+              "overridingTitle": "Hashable",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "Hashable",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " protocol. Hashing allows data collections such as ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Swift/Set",
+              "isActive": true,
+              "overridingTitle": "Set",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "Set",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Swift/Dictionary",
+              "isActive": true,
+              "overridingTitle": "Dictionary",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "Dictionary",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ", and snapshots — instances of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/NSDiffableDataSourceSnapshot-swift.struct",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/NSDiffableDataSourceSectionSnapshot-swift.struct",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " — to use values as keys, providing quick and efficient lookups. Hashable types also conform to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Swift/Equatable",
+              "isActive": true,
+              "overridingTitle": "Equatable",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "Equatable",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " protocol, so your identifiers must properly implement equality. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Swift/Equatable",
+              "isActive": true,
+              "overridingTitle": "Equatable",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "Equatable",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "code": ".",
+              "type": "codeVoice"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because identifiers are hashable and equatable, a diffable data source can determine the differences between its current snapshot and another snapshot. Then it can insert, delete, and move sections and items within a collection view for you based on those differences, eliminating the need for custom code that performs batch updates.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Two identifiers that are equal must always have the same hash value. However, the converse isn’t true; two values with the same hash value aren’t required to be equal. This situation is called a ",
+                  "type": "text"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "hash collision",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "emphasis"
+                },
+                {
+                  "text": ". To increase efficiency, try to ensure that unequal identifiers have different hash values. The occasional hash collision is okay when it’s unavoidable, but keep the number of collisions to a minimum. Otherwise, the performance of lookups in the data collection may suffer.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Define-the-diffable-data-source",
+          "level": 3,
+          "text": "Define the diffable data source",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In this sample project, ",
+              "type": "text"
+            },
+            {
+              "code": "RecipeListViewController",
+              "type": "codeVoice"
+            },
+            {
+              "text": " displays a list of recipes in a collection view. Before the controller can display the recipes, it defines an instance variable to store a diffable data source.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "private var recipeListDataSource: UICollectionViewDiffableDataSource<RecipeListSection, Recipe.ID>!"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "RecipeListViewController",
+              "type": "codeVoice"
+            },
+            {
+              "text": " declares ",
+              "type": "text"
+            },
+            {
+              "code": "recipeListDataSource",
+              "type": "codeVoice"
+            },
+            {
+              "text": " with ",
+              "type": "text"
+            },
+            {
+              "code": "RecipeListSection",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as the section identifier type, and ",
+              "type": "text"
+            },
+            {
+              "code": "Recipe.ID",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as the item identifier type. These identifier types tell the data source the type of values it contains.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For the section identifier type, ",
+              "type": "text"
+            },
+            {
+              "code": "recipeListDataSource",
+              "type": "codeVoice"
+            },
+            {
+              "text": " uses ",
+              "type": "text"
+            },
+            {
+              "code": "RecipeListSection",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", an enumeration with a raw value of type ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Swift/Int",
+              "isActive": true,
+              "overridingTitle": "Int",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "Int",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " (in Swift, ",
+              "type": "text"
+            },
+            {
+              "code": "Int",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is hashable). Each enumeration case identifies a section of the collection view. In the sample, there’s only one section, ",
+              "type": "text"
+            },
+            {
+              "code": "main",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", which displays a list of recipes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "private enum RecipeListSection: Int {",
+            "    case main",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For the item identifier type, ",
+              "type": "text"
+            },
+            {
+              "code": "recipeListDataSource",
+              "type": "codeVoice"
+            },
+            {
+              "text": " uses ",
+              "type": "text"
+            },
+            {
+              "code": "Recipe.ID",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". This type comes from the ",
+              "type": "text"
+            },
+            {
+              "code": "Recipe",
+              "type": "codeVoice"
+            },
+            {
+              "text": " structure, defined as:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct Recipe: Identifiable, Codable {",
+            "    var id: Int",
+            "    var title: String",
+            "    var prepTime: Int   // In seconds.",
+            "    var cookTime: Int   // In seconds.",
+            "    var servings: String",
+            "    var ingredients: String",
+            "    var directions: String",
+            "    var isFavorite: Bool",
+            "    var collections: [String]",
+            "    fileprivate var addedOn: Date? = Date()",
+            "    fileprivate var imageNames: [String]",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This structure conforms to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Swift/Identifiable",
+              "isActive": true,
+              "overridingTitle": "Identifiable",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "Identifiable",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " protocol, which requires the structure to include an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Swift/Identifiable/id-8t2ws",
+              "isActive": true,
+              "overridingTitle": "id",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "id",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " property. By conforming to ",
+              "type": "text"
+            },
+            {
+              "code": "Identifiable",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", the ",
+              "type": "text"
+            },
+            {
+              "code": "Recipe",
+              "type": "codeVoice"
+            },
+            {
+              "text": " structure automatically exposes the associated type ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Swift/Identifiable/ID-swift.associatedtype",
+              "isActive": true,
+              "overridingTitle": "ID",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "ID",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ", which is a type determined based on the declaration of the ",
+              "type": "text"
+            },
+            {
+              "code": "id",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property in the structure. And because this type must be hashable, the sample app can use ",
+              "type": "text"
+            },
+            {
+              "code": "Recipe.ID",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as the item identifier type.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The ",
+                  "type": "text"
+                },
+                {
+                  "code": "Recipe",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " structure doesn’t conform to the ",
+                  "type": "text"
+                },
+                {
+                  "code": "Hashable",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " protocol. The structure doesn’t have to be hashable because the items stored in the diffable data source and the snapshots are recipe ",
+                  "type": "text"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "identifiers",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "emphasis"
+                },
+                {
+                  "text": " (",
+                  "type": "text"
+                },
+                {
+                  "code": "Recipe.ID",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " values the backing data store provides for each recipe), not complete recipe structures.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Using the ",
+              "type": "text"
+            },
+            {
+              "code": "Recipe.ID",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as the item identifier type for the ",
+              "type": "text"
+            },
+            {
+              "code": "recipeListDataSource",
+              "type": "codeVoice"
+            },
+            {
+              "text": " means that the data source, and any snapshots applied to it, contains only ",
+              "type": "text"
+            },
+            {
+              "code": "Recipe.ID",
+              "type": "codeVoice"
+            },
+            {
+              "text": " values and not the complete recipe data. This approach optimizes the diffable data source for peak performance when displaying recipes in a collection view because the identifier type is a simple, hashable type.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Configure-the-diffable-data-source",
+          "level": 3,
+          "text": "Configure the diffable data source",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before populating a collection view with data from a diffable data source, the sample app configures the data source. The app creates an instance of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewDiffableDataSource-9tqpa",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and sets its ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "cell provider",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", a closure that configures and returns a cell for the collection view.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "RecipeListViewController",
+              "type": "codeVoice"
+            },
+            {
+              "text": " configures ",
+              "type": "text"
+            },
+            {
+              "code": "recipeListDataSource",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in a helper method named ",
+              "type": "text"
+            },
+            {
+              "code": "configureDataSource()",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". The view controller calls this method in its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/viewDidLoad()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "configureDataSource()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method creates a cell registration and provides a handler closure that configures each cell with data from a recipe. The closure receives an instance of ",
+              "type": "text"
+            },
+            {
+              "code": "Recipe",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", which it uses to configure the cell.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The item type for a cell registration doesn’t have to match the item identifier type that the diffable data source uses.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Next, ",
+              "type": "text"
+            },
+            {
+              "code": "configureDataSource()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " creates an instance of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewDiffableDataSource-9tqpa",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and defines the cell provider closure. The closure receives the identifier of a recipe. It then retrieves the recipe from the backing data store (using the identifier) and passes the recipe structure to the cell registration’s handler closure.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "private func configureDataSource() {",
+            "    // Create a cell registration that the diffable data source will use.",
+            "    let recipeCellRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, Recipe> { cell, indexPath, recipe in",
+            "        var contentConfiguration = UIListContentConfiguration.subtitleCell()",
+            "        contentConfiguration.text = recipe.title",
+            "        contentConfiguration.secondaryText = recipe.subtitle",
+            "        contentConfiguration.image = recipe.smallImage",
+            "        contentConfiguration.imageProperties.cornerRadius = 4",
+            "        contentConfiguration.imageProperties.maximumSize = CGSize(width: 60, height: 60)",
+            "        ",
+            "        cell.contentConfiguration = contentConfiguration",
+            "        ",
+            "        if recipe.isFavorite {",
+            "            let image = UIImage(systemName: \"heart.fill\")",
+            "            let accessoryConfiguration = UICellAccessory.CustomViewConfiguration(customView: UIImageView(image: image),",
+            "                                                                                 placement: .trailing(displayed: .always),",
+            "                                                                                 tintColor: .secondaryLabel)",
+            "            cell.accessories = [.customView(configuration: accessoryConfiguration)]",
+            "        } else {",
+            "            cell.accessories = []",
+            "        }",
+            "    }",
+            "",
+            "    // Create the diffable data source and its cell provider.",
+            "    recipeListDataSource = UICollectionViewDiffableDataSource(collectionView: collectionView) {",
+            "        collectionView, indexPath, identifier -> UICollectionViewCell in",
+            "        // `identifier` is an instance of `Recipe.ID`. Use it to",
+            "        // retrieve the recipe from the backing data store.",
+            "        let recipe = dataStore.recipe(with: identifier)!",
+            "        return collectionView.dequeueConfiguredReusableCell(using: recipeCellRegistration, for: indexPath, item: recipe)",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Load-the-diffable-data-source-with-identifiers",
+          "level": 3,
+          "text": "Load the diffable data source with identifiers",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "With the diffable data source configured, ",
+              "type": "text"
+            },
+            {
+              "code": "RecipeListViewController",
+              "type": "codeVoice"
+            },
+            {
+              "text": " calls its helper method ",
+              "type": "text"
+            },
+            {
+              "code": "loadRecipeData()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to perform an initial load of data into the data source, which in turn populates a collection view with recipes. This method retrieves a list of recipe identifiers and creates an instance of  ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/NSDiffableDataSourceSnapshot-swift.struct",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Then it adds the ",
+              "type": "text"
+            },
+            {
+              "code": "main",
+              "type": "codeVoice"
+            },
+            {
+              "text": " section and recipe identifiers to the snapshot. Lastly, the method calls ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewDiffableDataSource-9tqpa/applySnapshotUsingReloadData(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to apply the snapshot to the data source, resetting the collection view to reflect the state of the data in the snapshot without computing a diff or animating the changes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "private func loadRecipeData() {",
+            "    // Retrieve the list of recipe identifiers determined based on a",
+            "    // selected sidebar item such as All Recipes or Favorites.",
+            "    guard let recipeIds = recipeSplitViewController.selectedRecipes?.recipeIds()",
+            "    else { return }",
+            "    ",
+            "    // Update the collection view by adding the recipe identifiers to",
+            "    // a new snapshot, and apply the snapshop to the diffable data source.",
+            "    var snapshot = NSDiffableDataSourceSnapshot<RecipeListSection, Recipe.ID>()",
+            "    snapshot.appendSections([.main])",
+            "    snapshot.appendItems(recipeIds, toSection: .main)",
+            "    recipeListDataSource.applySnapshotUsingReloadData(snapshot)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Each item identifier must be unique within a snapshot. As a result, an item identifier can’t appear in multiple locations within a snapshot. The same is true of section identifiers; they must be unique and can’t exist in multiple places within a snapshot.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Insert-delete-and-move-items",
+          "level": 3,
+          "text": "Insert, delete, and move items",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "People using the sample app can make two types of changes to the recipe data:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Changes to the collection of data itself, like adding or removing recipes, or reordering them.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Changes to the properties of existing items, like changing the name of a recipe or marking one as a favorite.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To handle changes to a data collection, the app creates a new snapshot that represents the current state of the data collection and applies it to the diffable data source. The data source compares its current snapshot with the new snapshot to determine the changes. Then it performs the necessary inserts, deletes, and moves into the collection view based on those changes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "While a diffable data source can determine the changes between its current snapshot and a new one, it doesn’t monitor the data collection for changes. Instead, it’s the responsibility of the app to detect data changes and tell the diffable data source about those changes, by applying a new snapshot.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An app can use different mechanisms, such as ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/notificationcenter",
+                  "isActive": true,
+                  "overridingTitle": "NotificationCenter",
+                  "overridingTitleInlineContent": [
+                    {
+                      "code": "NotificationCenter",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "reference"
+                },
+                {
+                  "text": " and ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/Combine",
+                  "isActive": true,
+                  "overridingTitle": "Combine",
+                  "overridingTitleInlineContent": [
+                    {
+                      "text": "Combine",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "reference"
+                },
+                {
+                  "text": ", to report data changes to other parts of the app. This sample uses ",
+                  "type": "text"
+                },
+                {
+                  "code": "NotificationCenter",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To inform other parts of the app that the list of recipes changed — for instance, after someone adds or removes a recipe — the sample uses a notification center to send a ",
+              "type": "text"
+            },
+            {
+              "code": "selectedRecipesDidChange",
+              "type": "codeVoice"
+            },
+            {
+              "text": " notification. To receive the notification, ",
+              "type": "text"
+            },
+            {
+              "code": "RecipeListViewController",
+              "type": "codeVoice"
+            },
+            {
+              "text": " adds a notification observer with ",
+              "type": "text"
+            },
+            {
+              "code": "selectedRecipesDidChange(_:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as its selector.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "NotificationCenter.default.addObserver(",
+            "    self,",
+            "    selector: #selector(selectedRecipesDidChange(_:)),",
+            "    name: .selectedRecipesDidChange,",
+            "    object: nil",
+            ")"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "selectedRecipesDidChange(_:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is similar to ",
+              "type": "text"
+            },
+            {
+              "code": "loadRecipeData()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " but it uses ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewDiffableDataSource-9tqpa/apply(_:animatingDifferences:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to apply the list of selected recipe identifiers that the notification provides instead of using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewDiffableDataSource-9tqpa/applySnapshotUsingReloadData(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewDiffableDataSource-9tqpa/apply(_:animatingDifferences:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method performs incremental updates to the collection view instead of entirely resetting the data displayed. And because ",
+              "type": "text"
+            },
+            {
+              "code": "animatingDifferences",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is ",
+              "type": "text"
+            },
+            {
+              "code": "true",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", the collection view animates the changes as they appear.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@objc",
+            "private func selectedRecipesDidChange(_ notification: Notification) {",
+            "    // Create a snapshot of the selected recipe identifiers from the notification's",
+            "    // `userInfo` dictionary, and apply it to the diffable data source.",
+            "    guard",
+            "        let userInfo = notification.userInfo,",
+            "        let selectedRecipeIds = userInfo[NotificationKeys.selectedRecipeIds] as? [Recipe.ID]",
+            "    else { return }",
+            "    ",
+            "    var snapshot = NSDiffableDataSourceSnapshot<RecipeListSection, Recipe.ID>()",
+            "    snapshot.appendSections([.main])",
+            "    snapshot.appendItems(selectedRecipeIds, toSection: .main)",
+            "    recipeListDataSource.apply(snapshot, animatingDifferences: true)",
+            "",
+            "    // The design of this sample app makes it possible for the selected",
+            "    // recipe displayed in the secondary (detail) view controller to exist",
+            "    // in the new snapshot but not exist in the collection view prior to",
+            "    // applying the snapshot. For instance, while displaying the list of",
+            "    // favorite recipes, a person can unfavorite the selected recipe by tapping",
+            "    // the `isFavorite` button. This removes the selected recipe from the",
+            "    // favorites list. Tap the button again and the recipe reappears in the",
+            "    // list. In this scenario, the app needs to re-select the recipe so it",
+            "    // appears as selected in the collection view.",
+            "    selectRecipeIfNeeded()",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Update-existing-items",
+          "level": 3,
+          "text": "Update existing items",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To handle changes to the properties of an existing item, an app retrieves the current snapshot from the diffable data source and calls either ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/NSDiffableDataSourceSnapshot-swift.struct/reconfigureItems(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/NSDiffableDataSourceSnapshot-swift.struct/reloadItems(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " on the snapshot. Then it applies the snapshot to the diffable data source, which updates the display of the specified items.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Again, the app, not the diffable data source, detects the data changes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To tell others parts of the app about a change to a recipe — for instance, when a person marks a recipe as a favorite — the sample sends a ",
+              "type": "text"
+            },
+            {
+              "code": "recipeDidChange",
+              "type": "codeVoice"
+            },
+            {
+              "text": " notification. ",
+              "type": "text"
+            },
+            {
+              "code": "RecipeListViewController",
+              "type": "codeVoice"
+            },
+            {
+              "text": " receives the notification using an observer with ",
+              "type": "text"
+            },
+            {
+              "code": "recipeDidChange(_:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as the selector.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "NotificationCenter.default.addObserver(",
+            "    self,",
+            "    selector: #selector(recipeDidChange(_:)),",
+            "    name: .recipeDidChange,",
+            "    object: nil",
+            ")"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "recipeDidChange",
+              "type": "codeVoice"
+            },
+            {
+              "text": " notification indicates that data for a single recipe changed. Because only one recipe changed, there’s no need to update the entire list of recipes shown in the collection view. Instead, the sample only updates the cell that displays the recipe that changed. For instance, when a person marks a recipe as a favorite, an icon of a heart appears beside that recipe. And when the person unmarks the recipe as a favorite, the heart disappears.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To update the cell with the latest recipe data, the ",
+              "type": "text"
+            },
+            {
+              "code": "recipeDidChange(_:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method confirms that the diffable data source contains the recipe identifier that the notification provides. Then the method retrieves the current snapshot from the data source and calls ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/NSDiffableDataSourceSnapshot-swift.struct/reconfigureItems(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", passing in the recipe identifier. This call tells the data source to update the data displayed in the cell identified by the recipe identifier. Finally, ",
+              "type": "text"
+            },
+            {
+              "code": "recipeDidChange(_:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " applies the updated snapshot to the data source.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@objc",
+            "private func recipeDidChange(_ notification: Notification) {",
+            "    guard",
+            "        // Get `recipeId` from from the `userInfo` dictionary.",
+            "        let userInfo = notification.userInfo,",
+            "        let recipeId = userInfo[NotificationKeys.recipeId] as? Recipe.ID,",
+            "        // Confirm that the data source contains the recipe.",
+            "        recipeListDataSource.indexPath(for: recipeId) != nil",
+            "    else { return }",
+            "    ",
+            "    // Get the diffable data source's current snapshot.",
+            "    var snapshot = recipeListDataSource.snapshot()",
+            "    // Update the recipe's data displayed in the collection view.",
+            "    snapshot.reconfigureItems([recipeId])",
+            "    recipeListDataSource.apply(snapshot, animatingDifferences: true)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The diffable data source compares the updated snapshot to its current snapshot and applies the difference — in this instance, a request to reconfigure the item that displays the recipe that changed. To fulfill the request, the data source invokes its cell provider closure, which retrieves the updated recipe and configures the cell with the latest recipe data. And because ",
+              "type": "text"
+            },
+            {
+              "code": "animatingDifferences",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is ",
+              "type": "text"
+            },
+            {
+              "code": "true",
+              "type": "codeVoice"
+            },
+            {
+              "text": " when applying the snapshot, the collection view animates the visual change of the cell by showing or hiding the heart icon.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Populate-snapshots-with-lightweight-data-structures",
+          "level": 3,
+          "text": "Populate snapshots with lightweight data structures",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An alternative approach to storing identifiers involves populating diffable data sources and snapshots with lightweight data structures. While the data structure approach is convenient and can be a good fit in some circumstances — like for quick prototyping, or displaying a collection of static items with properties that don’t change — it carries significant limitations and tradeoffs. For instance, the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Swift/Hashable",
+              "isActive": true,
+              "overridingTitle": "Hashable",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "Hashable",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Swift/Equatable",
+              "isActive": true,
+              "overridingTitle": "Equatable",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "Equatable",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " implementations must incorporate all properties of the structure that can change. Any changes to the data in the structure cause it to no longer be equal to the previous version, which the diffable data source uses to determine what changed when applying a new snapshot.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample uses this approach to show items in a sidebar. In ",
+              "type": "text"
+            },
+            {
+              "code": "SidebarViewController",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", the custom structure ",
+              "type": "text"
+            },
+            {
+              "code": "SidebarItem",
+              "type": "codeVoice"
+            },
+            {
+              "text": " defines the properties of a sidebar item, which are ",
+              "type": "text"
+            },
+            {
+              "code": "title",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "type",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "private struct SidebarItem: Hashable {",
+            "    let title: String",
+            "    let type: SidebarItemType",
+            "    ",
+            "    enum SidebarItemType {",
+            "        case standard, collection, expandableHeader",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The combination of these properties determine the hashing value for each sidebar item, and because the property values don’t change, populating the snapshot with this ",
+              "type": "text"
+            },
+            {
+              "code": "SidebarItem",
+              "type": "codeVoice"
+            },
+            {
+              "text": " structure instead of identifiers is an acceptable use case.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "private func createSnapshotOfStandardItems() -> NSDiffableDataSourceSectionSnapshot<SidebarItem> {",
+            "    let items = [",
+            "        SidebarItem(title: StandardSidebarItem.all.rawValue, type: .standard),",
+            "        SidebarItem(title: StandardSidebarItem.favorites.rawValue, type: .standard),",
+            "        SidebarItem(title: StandardSidebarItem.recents.rawValue, type: .standard)",
+            "    ]",
+            "    return createSidebarItemSnapshot(.standardItems, items: items)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The downside of this approach is that the diffable data source can no longer track identity. Any time an existing item changes, the diffable data source sees the change as a delete of the old item and an insert of a new item. As a result, the collection view loses important state tied to the item. For instance, a selected item becomes unselected when any property of the item changes because, from the diffable data source’s perspective, the app deleted the item and added a new one to take its place.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Also, if ",
+              "type": "text"
+            },
+            {
+              "code": "animatingDifferences",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is ",
+              "type": "text"
+            },
+            {
+              "code": "true",
+              "type": "codeVoice"
+            },
+            {
+              "text": " when applying the snapshot, every change requires the process of animating out the old cell and animating in a new cell, which can be detrimental to performance and cause loss of UI state, including animations, within the cell.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Additionally, this strategy precludes using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/NSDiffableDataSourceSnapshot-swift.struct/reconfigureItems(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/NSDiffableDataSourceSnapshot-swift.struct/reloadItems(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " methods when populating a snapshot with data structures, because those methods require the use of proper identifiers. The only mechanism to update the data for existing items is to apply a new snapshot containing the new data structures, which causes the diffable data source to perform a delete and an insert for each changed item.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Storing data structures directly into diffable data sources and snapshots isn’t a robust solution for many real-world use cases because the data source loses the ability to track identity. Only use this approach for simple use cases in which items don’t change, like the sidebar items in this sample, or when the identity of an item isn’t important. For all other use cases, or when in doubt as to which approach to use, populate diffable data sources and snapshots with proper identifiers.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "70021f020614/UpdatingCollectionViewsUsingDiffableDataSources.zip": {
+      "checksum": "70021f0206145eea1681741fc9c1f8038c9e09dc1d88ce8e0c7dc2b15a06e0b2c162ec48fb40142e342a1795b15e1d235cc3c4d94a74b7706ca0096540b124e8",
+      "identifier": "70021f020614/UpdatingCollectionViewsUsingDiffableDataSources.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/70021f020614/UpdatingCollectionViewsUsingDiffableDataSources.zip"
+    },
+    "Combine-PageImage-card.png": {
+      "alt": "The Swift language logo, overlaid by a graph of interconnected lines and points.",
+      "identifier": "Combine-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/8df9b2bdcd94118827dd29f28f3915d7/Combine-PageImage-card~dark@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ba2aa5f2e9d9ae5b196c642a6cf121dd/Combine-PageImage-card@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.documentation/documentation/Combine": {
+      "abstract": [
+        {
+          "text": "Customize handling of asynchronous events by combining event-processing operators.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Combine",
+      "images": [
+        {
+          "identifier": "Combine-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Combine",
+      "type": "topic",
+      "url": "/documentation/Combine"
+    },
+    "doc://com.apple.documentation/documentation/Swift/Dictionary": {
+      "abstract": [
+        {
+          "text": "A collection whose elements are key-value pairs.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@frozen"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Dictionary"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Key"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Value"
+        },
+        {
+          "kind": "text",
+          "text": "> "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Key"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SH",
+          "text": "Hashable"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Swift/Dictionary",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Dictionary",
+      "type": "topic",
+      "url": "/documentation/Swift/Dictionary"
+    },
+    "doc://com.apple.documentation/documentation/Swift/Equatable": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Swift/Equatable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.apple.documentation/documentation/Swift/Hashable": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Swift/Hashable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.apple.documentation/documentation/Swift/Identifiable": {
+      "abstract": [
+        {
+          "text": "A class of types whose instances hold the value of an entity with stable identity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Identifiable"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s12IdentifiableP2IDQa",
+          "text": "ID"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Swift/Identifiable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Identifiable",
+      "type": "topic",
+      "url": "/documentation/Swift/Identifiable"
+    },
+    "doc://com.apple.documentation/documentation/Swift/Identifiable/ID-swift.associatedtype": {
+      "abstract": [
+        {
+          "text": "A type representing the stable identity of the entity associated with an instance.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "associatedtype"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ID"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SH",
+          "text": "Hashable"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Swift/Identifiable/ID-swift.associatedtype",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ID",
+      "type": "topic",
+      "url": "/documentation/Swift/Identifiable/ID-swift.associatedtype"
+    },
+    "doc://com.apple.documentation/documentation/Swift/Identifiable/id-8t2ws": {
+      "abstract": [
+        {
+          "text": "The stable identity of the entity associated with this instance.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "id"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s12IdentifiableP2IDQa",
+          "text": "ID"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Swift/Identifiable/id-8t2ws",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "id",
+      "type": "topic",
+      "url": "/documentation/Swift/Identifiable/id-8t2ws"
+    },
+    "doc://com.apple.documentation/documentation/Swift/Int": {
+      "abstract": [
+        {
+          "text": "A signed integer value type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@frozen"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Swift/Int",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Int",
+      "type": "topic",
+      "url": "/documentation/Swift/Int"
+    },
+    "doc://com.apple.documentation/documentation/Swift/Set": {
+      "abstract": [
+        {
+          "text": "An unordered collection of unique elements.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@frozen"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Set"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Element"
+        },
+        {
+          "kind": "text",
+          "text": "> "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Element"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SH",
+          "text": "Hashable"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Swift/Set",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Set",
+      "type": "topic",
+      "url": "/documentation/Swift/Set"
+    },
+    "doc://com.apple.documentation/documentation/foundation/notificationcenter": {
+      "abstract": [
+        {
+          "text": "A notification dispatch mechanism that enables the broadcast of information to registered observers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NotificationCenter"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/notificationcenter",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NotificationCenter",
+      "type": "topic",
+      "url": "/documentation/foundation/notificationcenter"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.uikit/documentation/UIKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your iOS, iPadOS, or tvOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "UIKit",
+      "type": "topic",
+      "url": "/documentation/uikit"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/NSDiffableDataSourceSectionSnapshot-swift.struct": {
+      "abstract": [
+        {
+          "text": "A representation of the state of the data in a layout section at a specific point in time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSDiffableDataSourceSectionSnapshot"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/NSDiffableDataSourceSectionSnapshot-swift.struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSDiffableDataSourceSectionSnapshot"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSDiffableDataSourceSectionSnapshot",
+      "type": "topic",
+      "url": "/documentation/uikit/nsdiffabledatasourcesectionsnapshot-swift.struct"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/NSDiffableDataSourceSectionSnapshotReference": {
+      "abstract": [
+        {
+          "text": "A representation of the state of the data in a layout section at a specific point in time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSDiffableDataSourceSectionSnapshotReference"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/NSDiffableDataSourceSectionSnapshotReference",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSDiffableDataSourceSectionSnapshotReference"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSDiffableDataSourceSectionSnapshotReference",
+      "type": "topic",
+      "url": "/documentation/uikit/nsdiffabledatasourcesectionsnapshotreference"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/NSDiffableDataSourceSnapshot-swift.struct": {
+      "abstract": [
+        {
+          "text": "A representation of the state of the data in a view at a specific point in time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSDiffableDataSourceSnapshot"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/NSDiffableDataSourceSnapshot-swift.struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSDiffableDataSourceSnapshot"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSDiffableDataSourceSnapshot",
+      "type": "topic",
+      "url": "/documentation/uikit/nsdiffabledatasourcesnapshot-swift.struct"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/NSDiffableDataSourceSnapshot-swift.struct/reconfigureItems(_:)": {
+      "abstract": [
+        {
+          "text": "Updates the data for the items you specify in the snapshot, preserving the existing cells for the items.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "reconfigureItems"
+        },
+        {
+          "kind": "text",
+          "text": "(["
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "ItemIdentifierType"
+        },
+        {
+          "kind": "text",
+          "text": "])"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/NSDiffableDataSourceSnapshot-swift.struct/reconfigureItems(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "reconfigureItems(_:)",
+      "type": "topic",
+      "url": "/documentation/uikit/nsdiffabledatasourcesnapshot-swift.struct/reconfigureitems(_:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/NSDiffableDataSourceSnapshot-swift.struct/reloadItems(_:)": {
+      "abstract": [
+        {
+          "text": "Reloads the data within the specified items in the snapshot.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "reloadItems"
+        },
+        {
+          "kind": "text",
+          "text": "(["
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "ItemIdentifierType"
+        },
+        {
+          "kind": "text",
+          "text": "])"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/NSDiffableDataSourceSnapshot-swift.struct/reloadItems(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "reloadItems(_:)",
+      "type": "topic",
+      "url": "/documentation/uikit/nsdiffabledatasourcesnapshot-swift.struct/reloaditems(_:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/NSDiffableDataSourceSnapshotReference": {
+      "abstract": [
+        {
+          "text": "A representation of the state of the data in a view at a specific point in time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSDiffableDataSourceSnapshotReference"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/NSDiffableDataSourceSnapshotReference",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSDiffableDataSourceSnapshotReference"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSDiffableDataSourceSnapshotReference",
+      "type": "topic",
+      "url": "/documentation/uikit/nsdiffabledatasourcesnapshotreference"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionViewDataSource": {
+      "abstract": [
+        {
+          "text": "The methods adopted by the object you use to manage data and provide cells for a collection view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UICollectionViewDataSource"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewDataSource",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UICollectionViewDataSource"
+        }
+      ],
+      "role": "symbol",
+      "title": "UICollectionViewDataSource",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionviewdatasource"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionViewDataSourcePrefetching": {
+      "abstract": [
+        {
+          "text": "A protocol that provides advance warning of the data requirements for a collection view, allowing the triggering of asynchronous data load operations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UICollectionViewDataSourcePrefetching"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewDataSourcePrefetching",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UICollectionViewDataSourcePrefetching"
+        }
+      ],
+      "role": "symbol",
+      "title": "UICollectionViewDataSourcePrefetching",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionviewdatasourceprefetching"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionViewDiffableDataSource-9tqpa": {
+      "abstract": [
+        {
+          "text": "The object you use to manage data and provide cells for a collection view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UICollectionViewDiffableDataSource"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewDiffableDataSource-9tqpa",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UICollectionViewDiffableDataSource"
+        }
+      ],
+      "role": "symbol",
+      "title": "UICollectionViewDiffableDataSource",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionviewdiffabledatasource-9tqpa"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionViewDiffableDataSource-9tqpa/apply(_:animatingDifferences:)": {
+      "abstract": [
+        {
+          "text": "Updates the UI to reflect the state of the data in the snapshot, optionally animating the UI changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "apply"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:5UIKit28NSDiffableDataSourceSnapshotV",
+          "text": "NSDiffableDataSourceSnapshot"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "SectionIdentifierType"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "ItemIdentifierType"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "animatingDifferences"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewDiffableDataSource-9tqpa/apply(_:animatingDifferences:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "apply(_:animatingDifferences:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionviewdiffabledatasource-9tqpa/apply(_:animatingdifferences:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionViewDiffableDataSource-9tqpa/applySnapshotUsingReloadData(_:)": {
+      "abstract": [
+        {
+          "text": "Resets the UI to reflect the state of the data in the snapshot without computing a diff or animating the changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "applySnapshotUsingReloadData"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:5UIKit28NSDiffableDataSourceSnapshotV",
+          "text": "NSDiffableDataSourceSnapshot"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "SectionIdentifierType"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "ItemIdentifierType"
+        },
+        {
+          "kind": "text",
+          "text": ">) "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewDiffableDataSource-9tqpa/applySnapshotUsingReloadData(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "applySnapshotUsingReloadData(_:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionviewdiffabledatasource-9tqpa/applysnapshotusingreloaddata(_:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICollectionViewDiffableDataSourceReference": {
+      "abstract": [
+        {
+          "text": "The object you use to manage data and provide cells for a collection view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UICollectionViewDiffableDataSourceReference"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICollectionViewDiffableDataSourceReference",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UICollectionViewDiffableDataSourceReference"
+        }
+      ],
+      "role": "symbol",
+      "title": "UICollectionViewDiffableDataSourceReference",
+      "type": "topic",
+      "url": "/documentation/uikit/uicollectionviewdiffabledatasourcereference"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIRefreshControl": {
+      "abstract": [
+        {
+          "text": "A standard control that can initiate the refreshing of a scroll view’s contents.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIRefreshControl"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIRefreshControl",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIRefreshControl"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIRefreshControl",
+      "type": "topic",
+      "url": "/documentation/uikit/uirefreshcontrol"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITableViewDiffableDataSource-2euir": {
+      "abstract": [
+        {
+          "text": "The object you use to manage data and provide cells for a table view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITableViewDiffableDataSource"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITableViewDiffableDataSource-2euir",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITableViewDiffableDataSource"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITableViewDiffableDataSource",
+      "type": "topic",
+      "url": "/documentation/uikit/uitableviewdiffabledatasource-2euir"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIViewController/viewDidLoad()": {
+      "abstract": [
+        {
+          "text": "Called after the controller’s view is loaded into memory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "viewDidLoad"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/viewDidLoad()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "viewDidLoad"
+        }
+      ],
+      "role": "symbol",
+      "title": "viewDidLoad()",
+      "type": "topic",
+      "url": "/documentation/uikit/uiviewcontroller/viewdidload()"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/building-high-performance-lists-and-collection-views": {
+      "abstract": [
+        {
+          "text": "Improve the performance of lists and collections in your app with prefetching and image preparation.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/building-high-performance-lists-and-collection-views",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Building high-performance lists and collection views",
+      "type": "topic",
+      "url": "/documentation/uikit/building-high-performance-lists-and-collection-views"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/collection-views": {
+      "abstract": [
+        {
+          "text": "Display nested views using a configurable and highly customizable layout.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/collection-views",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Collection views",
+      "type": "topic",
+      "url": "/documentation/uikit/collection-views"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/implementing-modern-collection-views": {
+      "abstract": [
+        {
+          "text": "Bring compositional layouts to your app and simplify updating your user interface with diffable data sources.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/implementing-modern-collection-views",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Implementing modern collection views",
+      "type": "topic",
+      "url": "/documentation/uikit/implementing-modern-collection-views"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/views-and-controls": {
+      "abstract": [
+        {
+          "text": "Present your content onscreen and define the interactions allowed with that content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/views-and-controls",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Views and controls",
+      "type": "topic",
+      "url": "/documentation/uikit/views-and-controls"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "70021f020614/UpdatingCollectionViewsUsingDiffableDataSources.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Data",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/implementing-modern-collection-views",
+        "doc://com.apple.uikit/documentation/UIKit/building-high-performance-lists-and-collection-views",
+        "doc://com.apple.uikit/documentation/UIKit/UICollectionViewDiffableDataSource-9tqpa",
+        "doc://com.apple.uikit/documentation/UIKit/UICollectionViewDataSource",
+        "doc://com.apple.uikit/documentation/UIKit/UICollectionViewDataSourcePrefetching",
+        "doc://com.apple.uikit/documentation/UIKit/NSDiffableDataSourceSnapshot-swift.struct",
+        "doc://com.apple.uikit/documentation/UIKit/NSDiffableDataSourceSectionSnapshot-swift.struct",
+        "doc://com.apple.uikit/documentation/UIKit/UIRefreshControl"
+      ],
+      "title": "Data"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Data",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/implementing-modern-collection-views",
+                "doc://com.apple.uikit/documentation/UIKit/building-high-performance-lists-and-collection-views",
+                "doc://com.apple.uikit/documentation/UIKit/UICollectionViewDiffableDataSourceReference",
+                "doc://com.apple.uikit/documentation/UIKit/UICollectionViewDataSource",
+                "doc://com.apple.uikit/documentation/UIKit/UICollectionViewDataSourcePrefetching",
+                "doc://com.apple.uikit/documentation/UIKit/NSDiffableDataSourceSnapshotReference",
+                "doc://com.apple.uikit/documentation/UIKit/NSDiffableDataSourceSectionSnapshotReference",
+                "doc://com.apple.uikit/documentation/UIKit/UIRefreshControl"
+              ],
+              "title": "Data"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController~1viewDidLoad()/title",
+          "value": "viewDidLoad"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController~1viewDidLoad()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "viewDidLoad"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSDiffableDataSourceSectionSnapshotReference/title",
+          "value": "NSDiffableDataSourceSectionSnapshot"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSDiffableDataSourceSectionSnapshotReference/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSDiffableDataSourceSectionSnapshot"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSDiffableDataSourceSectionSnapshotReference/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSDiffableDataSourceSectionSnapshot"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewDiffableDataSourceReference/title",
+          "value": "UICollectionViewDiffableDataSource"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewDiffableDataSourceReference/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICollectionViewDiffableDataSource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewDiffableDataSourceReference/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICollectionViewDiffableDataSource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1notificationcenter/title",
+          "value": "NSNotificationCenter"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewDataSourcePrefetching/title",
+          "value": "UICollectionViewDataSourcePrefetching"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewDataSourcePrefetching/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICollectionViewDataSourcePrefetching"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewDataSourcePrefetching/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICollectionViewDataSourcePrefetching"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIRefreshControl/title",
+          "value": "UIRefreshControl"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIRefreshControl/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIRefreshControl"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIRefreshControl/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIRefreshControl"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewDataSource/title",
+          "value": "UICollectionViewDataSource"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewDataSource/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICollectionViewDataSource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICollectionViewDataSource/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICollectionViewDataSource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSDiffableDataSourceSnapshotReference/title",
+          "value": "NSDiffableDataSourceSnapshot"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSDiffableDataSourceSnapshotReference/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSDiffableDataSourceSnapshot"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1NSDiffableDataSourceSnapshotReference/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSDiffableDataSourceSnapshot"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/uikit/updating-collection-views-using-diffable-data-sources"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/uikit/updating-collection-views-using-diffable-data-sources"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

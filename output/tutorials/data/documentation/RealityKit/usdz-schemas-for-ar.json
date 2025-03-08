@@ -1,0 +1,725 @@
+{
+  "abstract": [
+    {
+      "text": "Add augmented reality functionality to your 3D content using USDZ schemas.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.RealityKit/documentation/RealityKit",
+        "doc://com.apple.RealityKit/documentation/RealityKit/realitykit-usd-assets"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.RealityKit/documentation/RealityKit/usdz-schemas-for-ar"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "RealityKit"
+      }
+    ],
+    "role": "collectionGroup",
+    "title": "USDZ schemas for AR"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Leveraging Pixar’s Universal Scene Description standard, USDZ delivers AR and 3D content to Apple devices. Apple developed a set of new schemas in collaboration with Pixar to further extend the format for AR use cases. Simply add data to a USDZ file to give your 3D assets AR abilities, such as the ability to:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Anchor 3D content at a specific location in the real world.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "React to real-world situations.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Participate in a physics simulation.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Connect audio effects to a location.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Annotate the environment by displaying text.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A USDZ file uses these schemas to add features to an augmented reality experience in AR Quick Look or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/RealityKit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in place of ",
+              "type": "text"
+            },
+            {
+              "code": ".reality",
+              "type": "codeVoice"
+            },
+            {
+              "text": " files",
+              "type": "text"
+            },
+            {
+              "code": ",",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": ".rcproject",
+              "type": "codeVoice"
+            },
+            {
+              "text": " files, or custom code to implement AR functionality. Reality Composer describes AR features in its USDZ export using these schemas, too (see ",
+              "type": "text"
+            },
+            {
+              "code": "Exporting a Reality Composer Scene to USDZ",
+              "type": "codeVoice"
+            },
+            {
+              "text": "). To enable AR features in assets from a third-party digital content-creation (DCC) tool such as Maya or Houdini, edit the file in ",
+              "type": "text"
+            },
+            {
+              "code": ".usda",
+              "type": "codeVoice"
+            },
+            {
+              "text": " textual format using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://graphics.pixar.com/usd/docs/USD-Toolset.html",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "These new schemas (see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/schema-definitions-for-third-party-dccs",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ") are included in the Universal Scene Description specification as an addendum and are marked as preliminary. The addendum also adds metadata (name-value pairs; see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "http://graphics.pixar.com/usd/docs/USD-Glossary.html#USDGlossary-Metadata",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": "), and new data properties (",
+                  "type": "text"
+                },
+                {
+                  "identifier": "http://graphics.pixar.com/usd/docs/USD-Glossary.html#USDGlossary-Property",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": "). To provide feedback on the addendum, use the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://feedbackassistant.apple.com/welcome",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Implement-AR-functionality",
+          "level": 3,
+          "text": "Implement AR functionality",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following illustration depicts a virtual castle rendered by a ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "runtime",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", the app or system framework that implements the AR functionality described in the schemas. The prim for the virtual castle (USD refers to individual units of 3D content as ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "prims;",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://graphics.pixar.com/usd/docs/api/class_usd_prim.html",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ") instructs the runtime to place the castle on a known image in the physical environment, called the image anchor. When the user comes into proximity with the anchor, the runtime displays the 3D visualization of the castle. Falling snowflakes represent additional prims that behave as if in accordance with gravity, and disappear as they approach a real-world surface.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "usdz-schemas-for-ar-1",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.RealityKit/documentation/RealityKit": {
+      "abstract": [
+        {
+          "text": "Simulate and render 3D content for use in your augmented reality apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "RealityKit",
+      "type": "topic",
+      "url": "/documentation/realitykit"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/actions-and-triggers": {
+      "abstract": [
+        {
+          "text": "Enable visual and audible responses to programmatic or environmental events.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/actions-and-triggers",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Actions and triggers",
+      "type": "topic",
+      "url": "/documentation/realitykit/actions-and-triggers"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/autoplay": {
+      "abstract": [
+        {
+          "text": "Metadata that specifies whether an animation plays automatically on load.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/autoplay",
+      "kind": "article",
+      "role": "article",
+      "title": "autoPlay",
+      "type": "topic",
+      "url": "/documentation/realitykit/autoplay"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/creating-usd-files-for-apple-devices": {
+      "abstract": [
+        {
+          "text": "Generate 3D assets that render as expected.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/creating-usd-files-for-apple-devices",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Creating USD files for Apple devices",
+      "type": "topic",
+      "url": "/documentation/realitykit/creating-usd-files-for-apple-devices"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/exporting-a-reality-composer-scene-to-usdz": {
+      "abstract": [
+        {
+          "text": "Save a scene or project as USDZ to read, collect, or display in an app or website.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/exporting-a-reality-composer-scene-to-usdz",
+      "kind": "article",
+      "role": "article",
+      "title": "Exporting a Reality Composer Scene to USDZ",
+      "type": "topic",
+      "url": "/documentation/realitykit/exporting-a-reality-composer-scene-to-usdz"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/placing-a-prim-in-the-real-world": {
+      "abstract": [
+        {
+          "text": "Anchor a prim to a real-world object that the runtime recognizes in the physical environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/placing-a-prim-in-the-real-world",
+      "kind": "article",
+      "role": "article",
+      "title": "Placing a prim in the real world",
+      "type": "topic",
+      "url": "/documentation/realitykit/placing-a-prim-in-the-real-world"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/playbackmode": {
+      "abstract": [
+        {
+          "text": "Metadata that controls animation idling until a behavior takes over.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/playbackmode",
+      "kind": "article",
+      "role": "article",
+      "title": "playbackMode",
+      "type": "topic",
+      "url": "/documentation/realitykit/playbackmode"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/preferrediblversion": {
+      "abstract": [
+        {
+          "text": "Metadata that determines the lighting environment of virtual content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/preferrediblversion",
+      "kind": "article",
+      "role": "article",
+      "title": "preferredIblVersion",
+      "type": "topic",
+      "url": "/documentation/realitykit/preferrediblversion"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/preliminary-anchoringapi": {
+      "abstract": [
+        {
+          "text": "A schema that defines the placement of a prim and its children at a real-world location.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/preliminary-anchoringapi",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Preliminary_AnchoringAPI",
+      "type": "topic",
+      "url": "/documentation/realitykit/preliminary-anchoringapi"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/preliminary-referenceimage": {
+      "abstract": [
+        {
+          "text": "A schema that defines the properties of an image in the physical environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/preliminary-referenceimage",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Preliminary_ReferenceImage",
+      "type": "topic",
+      "url": "/documentation/realitykit/preliminary-referenceimage"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/preliminary-text": {
+      "abstract": [
+        {
+          "text": "A prim that renders 3D text in a scene.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/preliminary-text",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Preliminary_Text",
+      "type": "topic",
+      "url": "/documentation/realitykit/preliminary-text"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/realitykit-usd-assets": {
+      "abstract": [
+        {
+          "text": "Import and use 3D scenes by importing USD files.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/realitykit-usd-assets",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "USD Assets",
+      "type": "topic",
+      "url": "/documentation/realitykit/realitykit-usd-assets"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/scenelibrary": {
+      "abstract": [
+        {
+          "text": "Metadata that partitions an asset into scene-based units.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/scenelibrary",
+      "kind": "article",
+      "role": "article",
+      "title": "sceneLibrary",
+      "type": "topic",
+      "url": "/documentation/realitykit/scenelibrary"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/schema-definitions-for-third-party-dccs": {
+      "abstract": [
+        {
+          "text": "Update your local USD library to add interactive and augmented reality features.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/schema-definitions-for-third-party-dccs",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Schema definitions for third-party DCCs",
+      "type": "topic",
+      "url": "/documentation/realitykit/schema-definitions-for-third-party-dccs"
+    },
+    "doc://com.apple.documentation/documentation/ARKit/specifying-a-lighting-environment-in-ar-quick-look": {
+      "abstract": [
+        {
+          "text": "Add metadata to your USDZ file to specify its lighting characteristics.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ARKit/specifying-a-lighting-environment-in-ar-quick-look",
+      "kind": "article",
+      "role": "article",
+      "title": "Specifying a lighting environment in AR Quick Look",
+      "type": "topic",
+      "url": "/documentation/ARKit/specifying-a-lighting-environment-in-ar-quick-look"
+    },
+    "doc://com.apple.documentation/documentation/RealityKit": {
+      "abstract": [
+        {
+          "text": "Simulate and render 3D content for use in your augmented reality apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/RealityKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "RealityKit",
+      "type": "topic",
+      "url": "/documentation/RealityKit"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "http://graphics.pixar.com/usd/docs/USD-Glossary.html#USDGlossary-Metadata": {
+      "identifier": "http://graphics.pixar.com/usd/docs/USD-Glossary.html#USDGlossary-Metadata",
+      "title": "Metadata",
+      "titleInlineContent": [
+        {
+          "text": "Metadata",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "http://graphics.pixar.com/usd/docs/USD-Glossary.html#USDGlossary-Metadata"
+    },
+    "http://graphics.pixar.com/usd/docs/USD-Glossary.html#USDGlossary-Property": {
+      "identifier": "http://graphics.pixar.com/usd/docs/USD-Glossary.html#USDGlossary-Property",
+      "title": "Property",
+      "titleInlineContent": [
+        {
+          "text": "Property",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "http://graphics.pixar.com/usd/docs/USD-Glossary.html#USDGlossary-Property"
+    },
+    "https://feedbackassistant.apple.com/welcome": {
+      "identifier": "https://feedbackassistant.apple.com/welcome",
+      "title": "Feedback Assistant",
+      "titleInlineContent": [
+        {
+          "text": "Feedback Assistant",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://feedbackassistant.apple.com/welcome"
+    },
+    "https://graphics.pixar.com/usd/docs/USD-Toolset.html": {
+      "identifier": "https://graphics.pixar.com/usd/docs/USD-Toolset.html",
+      "title": "USD Toolset",
+      "titleInlineContent": [
+        {
+          "text": "USD Toolset",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://graphics.pixar.com/usd/docs/USD-Toolset.html"
+    },
+    "https://graphics.pixar.com/usd/docs/api/class_usd_prim.html": {
+      "identifier": "https://graphics.pixar.com/usd/docs/api/class_usd_prim.html",
+      "title": "UsdPrim",
+      "titleInlineContent": [
+        {
+          "text": "UsdPrim",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://graphics.pixar.com/usd/docs/api/class_usd_prim.html"
+    },
+    "usdz-schemas-for-ar-1": {
+      "alt": "An illustration of two tables. On the surface of the table on the left, a two-dimensional image of a castle labeled “image anchor” is outlined by a dotted line to indicate that it is replaceable. The table on the right is the same table, viewed through an AR experience created by the app’s camera pass-through on an iOS device. A virtual castle rests on top of the table in place of the 2D image. Virtual snowflakes descend from virtual clouds to fall around the 3D visualization of the castle. Shadows on the table beneath the snowflakes indicate that the runtime projects the location at which each snowflake will land on the table.",
+      "identifier": "usdz-schemas-for-ar-1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/50d3890af48ae074a7c3c96da56ba618/usdz-schemas-for-ar-1@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/27fe9f1a1d625f3721e9b07c64aa66e9/usdz-schemas-for-ar-1~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/exporting-a-reality-composer-scene-to-usdz",
+        "doc://com.apple.RealityKit/documentation/RealityKit/creating-usd-files-for-apple-devices"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "topicSections": [
+    {
+      "abstract": [
+        {
+          "text": "Control animation playback with metadata.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Animation",
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/autoplay",
+        "doc://com.apple.RealityKit/documentation/RealityKit/playbackmode"
+      ],
+      "title": "Animation"
+    },
+    {
+      "abstract": [
+        {
+          "text": "Place a prim at the physical location of a real-world object.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Anchoring",
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/placing-a-prim-in-the-real-world",
+        "doc://com.apple.RealityKit/documentation/RealityKit/preliminary-anchoringapi",
+        "doc://com.apple.RealityKit/documentation/RealityKit/preliminary-referenceimage"
+      ],
+      "title": "Anchoring"
+    },
+    {
+      "anchor": "Behaviors",
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/actions-and-triggers"
+      ],
+      "title": "Behaviors"
+    },
+    {
+      "anchor": "Text",
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/preliminary-text"
+      ],
+      "title": "Text"
+    },
+    {
+      "anchor": "Scenes-and-lighting",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/ARKit/specifying-a-lighting-environment-in-ar-quick-look",
+        "doc://com.apple.RealityKit/documentation/RealityKit/preferrediblversion",
+        "doc://com.apple.RealityKit/documentation/RealityKit/scenelibrary"
+      ],
+      "title": "Scenes and lighting"
+    },
+    {
+      "anchor": "Digital-content-creation",
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/schema-definitions-for-third-party-dccs"
+      ],
+      "title": "Digital content creation"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/realitykit/usdz-schemas-for-ar"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

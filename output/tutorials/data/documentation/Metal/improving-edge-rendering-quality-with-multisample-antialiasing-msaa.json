@@ -1,0 +1,1805 @@
+{
+  "abstract": [
+    {
+      "text": "Use Metal’s MSAA to enhance the rendering of edges with custom resolve options and immediate and tile-based resolve paths.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.metal/documentation/Metal",
+        "doc://com.apple.metal/documentation/Metal/metal-sample-code-library"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.metal/documentation/Metal/improving-edge-rendering-quality-with-multisample-antialiasing-msaa"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Metal"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "13.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "13.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "11.0",
+        "name": "macOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "14.5",
+        "name": "tvOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "14.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Improving edge-rendering quality with multisample antialiasing (MSAA)"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "MSAA improves the rendering of lines and edges by using several color and depth samples per pixel.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "An MSAA texture normally stores two or four samples per pixel.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "But some GPU devices support eight samples per pixel.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "After the app renders a scene to the MSAA texture, it ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "resolves",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " it to a normal texture that contains one sample per pixel.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The built-in resolve uses a simple average, but sometimes you want to use a custom resolve.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A custom resolve is essential when the built-in resolve isn’t sufficient.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For example, you may want to tone-map high dynamic range (HDR) samples before averaging them.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "HDR means that color values exceed the normal color intensity range of zero to one.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Tone-mapping means that values are compressed into the zero-to-one range for output to a display device.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample shows you how to use a custom resolve with immediate-mode devices and tile-based deferred rendering devices.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The immediate-mode custom resolve uses a compute kernel to process the MSAA texture, while a tile-based shader works before the rendering is completed, saving time and memory bandwidth.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The following image shows the results of applying MSAA to a colored set of thin shards with one, two, four, and eight samples per pixel.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "msaa-hd-comparison",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample displays a user interface for you to control the code paths to use MSAA.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The app customizes the options presented based on the current device.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Some devices support eight samples or the tile-based resolve.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You can choose between the built-in resolve or a custom resolve that replicates the built-in choice or applies a tone-mapping operator to the samples.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You can choose between two, four, or eight samples per pixel and the immediate-mode path or the tile-based resolve.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "There’s a checkbox to toggle MSAA on and off.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "There’s also a list of reduced resolutions—ranging from one-sixteenth resolution to full-resolution—that makes it easier to see the difference MSAA makes.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Pressing the space bar on a macOS device or tapping the display on an iOS device causes the shards to rotate.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Configure-the-sample-code-project",
+          "level": 3,
+          "text": "Configure the sample code project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To run this sample, you need Xcode 12 or later on a macOS, iOS, or tvOS device or simulator.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "To experience the tile-based custom resolve feature, you need a physical device that supports ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLGPUFamily/apple4",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", such as:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A Mac with Apple silicon running macOS 11 or later",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "An iOS device with an A11 chip or later running iOS 13 or later",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A tvOS device with an A12 chip or later running tvOS 14.5 or later",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "On a device with an Intel or AMD GPU, or on a simulator, this sample runs with the custom resolve in immediate-mode rendering (IMR) only.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Check-for-MSAA-support",
+          "level": 3,
+          "text": "Check for MSAA support",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "GPUs on Apple devices can support a variety of sample counts but must support at least a sample count of four.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The app checks the device’s supported sample count with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLDevice/supportsTextureSampleCount(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and uses a default sample count of four.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "NSUInteger sampleCounts[AAPLSampleCountOptionsCount] = { 2, 4, 8 };",
+            "for (int i = 0; i < AAPLSampleCountOptionsCount; i++)",
+            "{",
+            "    sampleCountSupported[i] = [_view.device supportsTextureSampleCount:sampleCounts[i]];",
+            "}"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Create-a-multisample-texture",
+          "level": 3,
+          "text": "Create a multisample texture",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app needs to create a multisample texture before rendering the scene.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The following code shows that the texture declaration is the same as a normal texture.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "id<MTLTexture> _multisampleTexture;"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app configures the texture using a texture descriptor.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "It uses ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLTextureType/type2DMultisample",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " as the texture type, and sets the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLTextureDescriptor/sampleCount",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property with the current count selected in the UI.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "_multisampleTextureDescriptor.textureType = MTLTextureType2DMultisample;",
+            "_multisampleTextureDescriptor.sampleCount = _antialiasingSampleCount;"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the app is running on a device that supports tile shaders, then the usage and storage mode enable the renderer to take advantage of memoryless storage.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "That means the device discards the texture when it finishes the tile-based resolve.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "In comparison, the immediate-mode custom resolve requires the texture to stay in memory, and the renderer uses a separate compute pass to resolve the MSAA texture.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The app sets the shader-read flag to allow the compute kernel to access the texture.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The following code shows how to set the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLTextureDescriptor/usage",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLTextureDescriptor/storageMode",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " properties in the descriptor.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "if (_resolvingOnTileShaders)",
+            "{",
+            "    _multisampleTextureDescriptor.usage = MTLTextureUsageRenderTarget;",
+            "    _multisampleTextureDescriptor.storageMode = MTLStorageModeMemoryless;",
+            "}",
+            "else",
+            "{",
+            "    _multisampleTextureDescriptor.usage = MTLTextureUsageRenderTarget | MTLTextureUsageShaderRead;",
+            "    _multisampleTextureDescriptor.storageMode = MTLStorageModePrivate;",
+            "}"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The renderer also creates a resolve texture to store the final image that’ll be copied to the drawable texture.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The following code shows how it uses the same width and height for both textures.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "_resolveTextureDescriptor",
+              "type": "codeVoice"
+            },
+            {
+              "text": " uses a single sample for the resolve texture.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "_multisampleTextureDescriptor.width = _viewportSize.x;",
+            "_multisampleTextureDescriptor.height = _viewportSize.y;",
+            "",
+            "_multisampleTexture = [_device newTextureWithDescriptor:_multisampleTextureDescriptor];",
+            "",
+            "_multisampleTexture.label = @\"Multisampled Texture\";",
+            "",
+            "_resolveTextureDescriptor.width = _viewportSize.x;",
+            "_resolveTextureDescriptor.height = _viewportSize.y;",
+            "",
+            "_resolveResultTexture = [_device newTextureWithDescriptor:_resolveTextureDescriptor];",
+            "",
+            "_resolveResultTexture.label = @\"Resolved Texture\";"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Configure-the-render-pipeline",
+          "level": 3,
+          "text": "Configure the render pipeline",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The renderer ensures the render pipeline state object (PSO) has the current sample count as the texture to use as a render target.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "It also decides the correct fragment function depending on whether HDR is enabled or not.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The app uses a separate custom resolve step if HDR is enabled, so it doesn’t apply tone-mapping.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "But if antialiasing is disabled, then it uses a fragment function that applies tone-mapping.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "If the HDR resolve option is chosen in the UI, then toggling MSAA on and off shows the result of using tone-mapping.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The following code shows how the renderer customizes the render pipeline descriptor before it creates the PSO.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "if (_antialiasingEnabled)",
+            "{",
+            "    _renderPipelineDescriptor.sampleCount = _antialiasingSampleCount;",
+            "    _renderPipelineDescriptor.fragmentFunction = _fragmentFunctionNonHDR;",
+            "}",
+            "else",
+            "{",
+            "    _renderPipelineDescriptor.sampleCount = 1;",
+            "    _renderPipelineDescriptor.fragmentFunction = _usesHDR ? _fragmentFunctionHDR : _fragmentFunctionNonHDR;",
+            "}",
+            "_renderPipelineState = [_device newRenderPipelineStateWithDescriptor:_renderPipelineDescriptor error:nil];"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After the the renderer sets up the PSO, it also sets up the render pass descriptor to use the multisample texture as a color attachment.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "If MSAA isn’t enabled, then it sets up the ",
+              "type": "text"
+            },
+            {
+              "code": "_resolveResultTexture",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as the main color attachment.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "But if MSAA is enabled, then the following code shows how the renderer chooses the store action.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "If tile shaders are available or you choose the built-in resolve, then Metal resolves the texture without needing an extra compute pass.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The code also shows how to prepare the render pass for a resolve using tile shaders that the README discusses later.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "if (_resolvingOnTileShaders)",
+            "{",
+            "    renderPassDescriptor.tileWidth = AAPLTileWidth;",
+            "    renderPassDescriptor.tileHeight = AAPLTileHeight;",
+            "    renderPassDescriptor.imageblockSampleLength = 32;",
+            "}",
+            "",
+            "MTLStoreAction storeAction = shouldResolve ? MTLStoreActionMultisampleResolve : MTLStoreActionStore;",
+            "renderPassDescriptor.colorAttachments[0].storeAction = storeAction;",
+            "renderPassDescriptor.colorAttachments[0].texture = _multisampleTexture;",
+            "renderPassDescriptor.colorAttachments[0].resolveTexture = shouldResolve ? _resolveResultTexture : nil;"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Use-a-custom-resolve-in-IMR",
+          "level": 3,
+          "text": "Use a custom resolve in IMR",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The built-in resolve averages the color samples in the texture together to create the final pixel color in the resolve texture.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "But developers can use a custom resolve by using a compute kernel.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Devices that don’t support tile-based rendering need to use a compute kernel.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The compute kernel reads the multisample texture and writes a normal texture.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The following code shows a compute kernel that accumulates the samples and calculates their average.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "/// A custom resolve kernel that averages color at all sample points.",
+            "kernel void",
+            "averageResolveKernel(texture2d_ms<float, access::read> multisampledTexture [[texture(0)]],",
+            "                     texture2d<float, access::write> resolvedTexture [[texture(1)]],",
+            "                     uint2 gid [[thread_position_in_grid]])",
+            "{",
+            "    const uint count = multisampledTexture.get_num_samples();",
+            "    ",
+            "    float4 resolved_color = 0;",
+            "    ",
+            "    for (uint i = 0; i < count; ++i)",
+            "    {",
+            "        resolved_color += multisampledTexture.read(gid, i);",
+            "    }",
+            "    ",
+            "    resolved_color /= count;",
+            "    ",
+            "    resolvedTexture.write(resolved_color, gid);",
+            "}"
+          ],
+          "syntax": "metal",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code shows how to resolve an MSAA texture with the compute kernel.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "It sets the two input textures for the kernel and dispatches the work.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Resolve the multisample texture with the chosen custom filter.",
+            "id<MTLComputeCommandEncoder> computeEncoder = [commandBuffer computeCommandEncoder];",
+            "",
+            "computeEncoder.label = @\"Resolve on Compute\";",
+            "",
+            "[computeEncoder setComputePipelineState:_resolveComputePipelineState];",
+            "",
+            "[computeEncoder setTexture:_multisampleTexture atIndex:0];",
+            "[computeEncoder setTexture:_resolveResultTexture atIndex:1];",
+            "",
+            "[computeEncoder dispatchThreadgroups:_threadgroupsInGrid",
+            "               threadsPerThreadgroup:_intrinsicThreadgroupSize];",
+            "",
+            "[computeEncoder endEncoding];"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Use-a-custom-resolve-to-tone-map-an-HDR-image",
+          "level": 3,
+          "text": "Use a custom resolve to tone-map an HDR image",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Images with HDR need a tone-mapping operator before they’re output to a computer display.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The sample shows how to use a custom resolve to prepare the image.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The following code shows the simple tone-mapping operator that uses luminance to scale the input color.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "/// Tone-maps an input color by calculating its Rec. 709 luminance and applying a simple tone-mapping operator.",
+            "half3 tonemapByLuminance(half3 inColor)",
+            "{",
+            "    const half3 kRec709Luma(0.2126h, 0.7152h, 0.0722h);",
+            "    ",
+            "    const half luminance = dot(inColor, kRec709Luma);",
+            "    ",
+            "    return inColor / (1 + luminance);",
+            "}"
+          ],
+          "syntax": "metal",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample uses a different kernel function, ",
+              "type": "text"
+            },
+            {
+              "code": "hdrResolveKernel",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", that tone-maps the samples before it takes the average.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Developers may choose to use a similar approach for applications where two mathematical functions don’t commute.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "In this case, tone-mapping the average of four samples isn’t necessarily the same numerical result as averaging four tone-mapped samples.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "for (uint i = 0; i < count; ++i)",
+            "{",
+            "    const half4 sampleColor = multisampledTexture.read(gid, i);",
+            "    ",
+            "    const half3 tonemappedColor = tonemapByLuminance(sampleColor.xyz);",
+            "    ",
+            "    resolved_color += half4(tonemappedColor, 1);",
+            "}"
+          ],
+          "syntax": "metal",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Use-a-tile-based-resolve-on-an-Apple-silicon-device",
+          "level": 3,
+          "text": "Use a tile-based resolve on an Apple silicon device",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "On Apple silicon devices, this app can resolve a multisample texture using a tile-based resolve, allowing the device to perform the resolve before the device saves the tile to memory.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The app gains two advantages: The multisample texture doesn’t need to be stored, saving memory space, and it doesn’t require a second render or compute pass, saving compute time and memory bandwidth.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Not all devices support tile shaders, so the app uses the following code to check whether the device supports the feature.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "/// Checks whether the device supports tile shaders that were introduced with Apple GPU family 4.",
+            "- (BOOL)supportsTileShaders",
+            "{",
+            "    return [_device supportsFamily:MTLGPUFamilyApple4];",
+            "}"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the device supports the feature, then the renderer creates a new PSO that uses the ",
+              "type": "text"
+            },
+            {
+              "code": "_averageResolveTileKernelFuncion",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The following code shows how to set the kernel function, pixel format, sample count, and whether the kernel function expects the tile size to match the thread group size.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "_resolveTileRenderPipelineDescriptor = [MTLTileRenderPipelineDescriptor new];",
+            "",
+            "_resolveTileRenderPipelineDescriptor.label = @\"CustomResolvePipeline\";",
+            "_resolveTileRenderPipelineDescriptor.tileFunction = _averageResolveTileKernelFunction;",
+            "_resolveTileRenderPipelineDescriptor.threadgroupSizeMatchesTileSize = YES;",
+            "_resolveTileRenderPipelineDescriptor.colorAttachments[0].pixelFormat = _renderTargetPixelFormat;",
+            "",
+            "_resolveTileRenderPipelineDescriptor.rasterSampleCount = _antialiasingSampleCount;",
+            "",
+            "_resolveTileRenderPipelineState = [_device newRenderPipelineStateWithTileDescriptor:_resolveTileRenderPipelineDescriptor",
+            "                                                                            options:0",
+            "                                                                         reflection:nil",
+            "                                                                              error:&error];",
+            "NSAssert(_resolveTileRenderPipelineState, @\"Failed aquiring pipeline state: %@\", error);"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After it creates the PSO, the renderer can dispatch the work before it finishes encoding the work.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The following code shows how the app avoids this step when it uses the built-in resolve.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "if (_antialiasingEnabled && _resolveOption != AAPLResolveOptionBuiltin)",
+            "{",
+            "    // Resolve MSAA with a custom resolve filter.",
+            "    [renderEncoder setRenderPipelineState:_resolveTileRenderPipelineState];",
+            "    ",
+            "    [renderEncoder dispatchThreadsPerTile:MTLSizeMake(16, 16, 1)];",
+            "}",
+            "",
+            "[renderEncoder endEncoding];"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Finally, the following code shows a custom kernel function that resolves the MSAA texture when the input texture has HDR samples.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The other custom kernel function in the app is similar, but it only averages the sample values, like the built-in resolve.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "/// A tile kernel for a custom MSAA resolve that applies tone-mapping to HDR color samples before it calculates the average color for the pixel.",
+            "kernel void",
+            "hdrResolveTileKernel(imageblock<FragData> img_blk_colors,",
+            "                     ushort2 tid [[thread_position_in_threadgroup]])",
+            "{",
+            "    ",
+            "    const ushort pixelColorCount = img_blk_colors.get_num_colors(tid);",
+            "    ",
+            "    half4 resolved_color = half4(0);",
+            "    ",
+            "    for (ushort i = 0; i < pixelColorCount; ++i)",
+            "    {",
+            "        const half4 color = img_blk_colors.read(tid, i, imageblock_data_rate::color).resolvedColor;",
+            "        ",
+            "        const ushort sampleColorCount = popcount(img_blk_colors.get_color_coverage_mask(tid, i));",
+            "        ",
+            "        const half3 tonemappedColor = tonemapByLuminance(color.xyz);",
+            "        ",
+            "        resolved_color += half4(tonemappedColor, 1) * sampleColorCount;",
+            "    }",
+            "    ",
+            "    resolved_color /= img_blk_colors.get_num_samples();",
+            "    ",
+            "    const ushort output_sample_mask = 0xF;",
+            "    ",
+            "    img_blk_colors.write(FragData{resolved_color}, tid, output_sample_mask);",
+            "}"
+          ],
+          "syntax": "metal",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "a70ddf995c41/ImprovingEdgeRenderingQualityWithMultisampleAntialiasingMSAA.zip": {
+      "checksum": "a70ddf995c41ca95301ef8ac0df76a1c779f263bdc8d9d5d61a90dc1df81268844f5d4d61b4ff208a17d12abea5ca2107d99c11d7ab9ed680e9bbe1986ee8edd",
+      "identifier": "a70ddf995c41/ImprovingEdgeRenderingQualityWithMultisampleAntialiasingMSAA.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/a70ddf995c41/ImprovingEdgeRenderingQualityWithMultisampleAntialiasingMSAA.zip"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.metal/documentation/Metal": {
+      "abstract": [
+        {
+          "text": "Render advanced 3D graphics and compute data in parallel with graphics processors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Metal",
+      "type": "topic",
+      "url": "/documentation/metal"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLDevice/supportsTextureSampleCount(_:)": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether the GPU can sample a texture with a specific number of sample points.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "supportsTextureSampleCount"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLDevice/supportsTextureSampleCount(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "supportsTextureSampleCount:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "supportsTextureSampleCount(_:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtldevice/supportstexturesamplecount(_:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLGPUFamily/apple4": {
+      "abstract": [
+        {
+          "text": "Represents the Apple family 4 GPU features that correspond to the Apple A11 GPUs.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "apple4"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLGPUFamily/apple4",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLGPUFamilyApple4"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLGPUFamily.apple4",
+      "type": "topic",
+      "url": "/documentation/metal/mtlgpufamily/apple4"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLTextureDescriptor/sampleCount": {
+      "abstract": [
+        {
+          "text": "The number of samples in each fragment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sampleCount"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLTextureDescriptor/sampleCount",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "sampleCount"
+        }
+      ],
+      "role": "symbol",
+      "title": "sampleCount",
+      "type": "topic",
+      "url": "/documentation/metal/mtltexturedescriptor/samplecount"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLTextureDescriptor/storageMode": {
+      "abstract": [
+        {
+          "text": "The location and access permissions of the texture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "storageMode"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MTLStorageMode",
+          "text": "MTLStorageMode"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLTextureDescriptor/storageMode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "storageMode"
+        }
+      ],
+      "role": "symbol",
+      "title": "storageMode",
+      "type": "topic",
+      "url": "/documentation/metal/mtltexturedescriptor/storagemode"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLTextureDescriptor/usage": {
+      "abstract": [
+        {
+          "text": "Options that determine how you can use the texture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "usage"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MTLTextureUsage",
+          "text": "MTLTextureUsage"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLTextureDescriptor/usage",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "usage"
+        }
+      ],
+      "role": "symbol",
+      "title": "usage",
+      "type": "topic",
+      "url": "/documentation/metal/mtltexturedescriptor/usage"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLTextureType/type2DMultisample": {
+      "abstract": [
+        {
+          "text": "A two-dimensional texture image that uses more than one sample for each pixel.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "type2DMultisample"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLTextureType/type2DMultisample",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLTextureType2DMultisample"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLTextureType.type2DMultisample",
+      "type": "topic",
+      "url": "/documentation/metal/mtltexturetype/type2dmultisample"
+    },
+    "doc://com.apple.metal/documentation/Metal/achieving-smooth-frame-rates-with-metal-s-display-link": {
+      "abstract": [
+        {
+          "text": "Pace rendering with minimal input latency while providing essential information to the operating system for power-efficient rendering, thermal mitigation, and the scheduling of sustainable workloads.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/achieving-smooth-frame-rates-with-metal-s-display-link",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Achieving smooth frame rates with Metal’s display link",
+      "type": "topic",
+      "url": "/documentation/metal/achieving-smooth-frame-rates-with-metal-s-display-link"
+    },
+    "doc://com.apple.metal/documentation/Metal/adjusting-the-level-of-detail-using-metal-mesh-shaders": {
+      "abstract": [
+        {
+          "text": "Choose and render meshes with several levels of detail using object and mesh shaders.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/adjusting-the-level-of-detail-using-metal-mesh-shaders",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Adjusting the level of detail using Metal mesh shaders",
+      "type": "topic",
+      "url": "/documentation/metal/adjusting-the-level-of-detail-using-metal-mesh-shaders"
+    },
+    "doc://com.apple.metal/documentation/Metal/calculating-primitive-visibility-using-depth-testing": {
+      "abstract": [
+        {
+          "text": "Determine which pixels are visible in a scene by using a depth texture.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/calculating-primitive-visibility-using-depth-testing",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Calculating Primitive Visibility Using Depth Testing",
+      "type": "topic",
+      "url": "/documentation/metal/calculating-primitive-visibility-using-depth-testing"
+    },
+    "doc://com.apple.metal/documentation/Metal/creating-a-3d-application-with-hydra-rendering": {
+      "abstract": [
+        {
+          "text": "Build a 3D application that integrates with Hydra and USD.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/creating-a-3d-application-with-hydra-rendering",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Creating a 3D application with Hydra rendering",
+      "type": "topic",
+      "url": "/documentation/metal/creating-a-3d-application-with-hydra-rendering"
+    },
+    "doc://com.apple.metal/documentation/Metal/creating-a-custom-metal-view": {
+      "abstract": [
+        {
+          "text": "Implement a lightweight view for Metal rendering that’s customized to your app’s needs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/creating-a-custom-metal-view",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Creating a Custom Metal View",
+      "type": "topic",
+      "url": "/documentation/metal/creating-a-custom-metal-view"
+    },
+    "doc://com.apple.metal/documentation/Metal/culling-occluded-geometry-using-the-visibility-result-buffer": {
+      "abstract": [
+        {
+          "text": "Draw a scene without rendering hidden geometry by checking whether each object in the scene is visible.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/culling-occluded-geometry-using-the-visibility-result-buffer",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Culling occluded geometry using the visibility result buffer",
+      "type": "topic",
+      "url": "/documentation/metal/culling-occluded-geometry-using-the-visibility-result-buffer"
+    },
+    "doc://com.apple.metal/documentation/Metal/customizing-render-pass-setup": {
+      "abstract": [
+        {
+          "text": "Render into an offscreen texture by creating a custom render pass.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/customizing-render-pass-setup",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Customizing Render Pass Setup",
+      "type": "topic",
+      "url": "/documentation/metal/customizing-render-pass-setup"
+    },
+    "doc://com.apple.metal/documentation/Metal/encoding-indirect-command-buffers-on-the-cpu": {
+      "abstract": [
+        {
+          "text": "Reduce CPU overhead and simplify your command execution by reusing commands.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/encoding-indirect-command-buffers-on-the-cpu",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Encoding Indirect Command Buffers on the CPU",
+      "type": "topic",
+      "url": "/documentation/metal/encoding-indirect-command-buffers-on-the-cpu"
+    },
+    "doc://com.apple.metal/documentation/Metal/implementing-order-independent-transparency-with-image-blocks": {
+      "abstract": [
+        {
+          "text": "Draw overlapping, transparent surfaces in any order by using tile shaders and image blocks.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/implementing-order-independent-transparency-with-image-blocks",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Implementing Order-Independent Transparency with Image Blocks",
+      "type": "topic",
+      "url": "/documentation/metal/implementing-order-independent-transparency-with-image-blocks"
+    },
+    "doc://com.apple.metal/documentation/Metal/loading-textures-and-models-using-metal-fast-resource-loading": {
+      "abstract": [
+        {
+          "text": "Stream texture and buffer data directly from disk into Metal resources using fast resource loading.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/loading-textures-and-models-using-metal-fast-resource-loading",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Loading textures and models using Metal fast resource loading",
+      "type": "topic",
+      "url": "/documentation/metal/loading-textures-and-models-using-metal-fast-resource-loading"
+    },
+    "doc://com.apple.metal/documentation/Metal/metal-sample-code-library": {
+      "abstract": [
+        {
+          "text": "Explore the complete set of Metal samples.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/metal-sample-code-library",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Metal Sample Code Library",
+      "type": "topic",
+      "url": "/documentation/metal/metal-sample-code-library"
+    },
+    "doc://com.apple.metal/documentation/Metal/selecting-device-objects-for-graphics-rendering": {
+      "abstract": [
+        {
+          "text": "Switch dynamically between multiple GPUs to efficiently render to a display.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/selecting-device-objects-for-graphics-rendering",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Selecting Device Objects for Graphics Rendering",
+      "type": "topic",
+      "url": "/documentation/metal/selecting-device-objects-for-graphics-rendering"
+    },
+    "doc://com.apple.metal/documentation/Metal/using-a-render-pipeline-to-render-primitives": {
+      "abstract": [
+        {
+          "text": "Render a simple 2D triangle.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/using-a-render-pipeline-to-render-primitives",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Using a Render Pipeline to Render Primitives",
+      "type": "topic",
+      "url": "/documentation/metal/using-a-render-pipeline-to-render-primitives"
+    },
+    "doc://com.apple.metal/documentation/Metal/using-metal-to-draw-a-view's-contents": {
+      "abstract": [
+        {
+          "text": "Create a MetalKit view and a render pass to draw the view’s contents.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/using-metal-to-draw-a-view's-contents",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Using Metal to Draw a View’s Contents",
+      "type": "topic",
+      "url": "/documentation/metal/using-metal-to-draw-a-view's-contents"
+    },
+    "msaa-hd-comparison": {
+      "alt": "The four multisample-antialiasing images compared. From left to right: disabled, 2x, 4x, and 8x.",
+      "identifier": "msaa-hd-comparison",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/379a8b33971dc9876d0b08d6429e84a2/msaa-hd-comparison.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b8f8385f6539374613799f1885d51482/msaa-hd-comparison~dark.png"
+        }
+      ]
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "a70ddf995c41/ImprovingEdgeRenderingQualityWithMultisampleAntialiasingMSAA.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Render-Workflows",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/using-metal-to-draw-a-view's-contents",
+        "doc://com.apple.metal/documentation/Metal/using-a-render-pipeline-to-render-primitives",
+        "doc://com.apple.metal/documentation/Metal/selecting-device-objects-for-graphics-rendering",
+        "doc://com.apple.metal/documentation/Metal/customizing-render-pass-setup",
+        "doc://com.apple.metal/documentation/Metal/creating-a-custom-metal-view",
+        "doc://com.apple.metal/documentation/Metal/calculating-primitive-visibility-using-depth-testing",
+        "doc://com.apple.metal/documentation/Metal/encoding-indirect-command-buffers-on-the-cpu",
+        "doc://com.apple.metal/documentation/Metal/implementing-order-independent-transparency-with-image-blocks",
+        "doc://com.apple.metal/documentation/Metal/loading-textures-and-models-using-metal-fast-resource-loading",
+        "doc://com.apple.metal/documentation/Metal/adjusting-the-level-of-detail-using-metal-mesh-shaders",
+        "doc://com.apple.metal/documentation/Metal/creating-a-3d-application-with-hydra-rendering",
+        "doc://com.apple.metal/documentation/Metal/culling-occluded-geometry-using-the-visibility-result-buffer",
+        "doc://com.apple.metal/documentation/Metal/achieving-smooth-frame-rates-with-metal-s-display-link"
+      ],
+      "title": "Render Workflows"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Render-Workflows",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/using-metal-to-draw-a-view's-contents",
+                "doc://com.apple.metal/documentation/Metal/using-a-render-pipeline-to-render-primitives",
+                "doc://com.apple.metal/documentation/Metal/selecting-device-objects-for-graphics-rendering",
+                "doc://com.apple.metal/documentation/Metal/customizing-render-pass-setup",
+                "doc://com.apple.metal/documentation/Metal/creating-a-custom-metal-view",
+                "doc://com.apple.metal/documentation/Metal/calculating-primitive-visibility-using-depth-testing",
+                "doc://com.apple.metal/documentation/Metal/encoding-indirect-command-buffers-on-the-cpu",
+                "doc://com.apple.metal/documentation/Metal/implementing-order-independent-transparency-with-image-blocks",
+                "doc://com.apple.metal/documentation/Metal/loading-textures-and-models-using-metal-fast-resource-loading",
+                "doc://com.apple.metal/documentation/Metal/adjusting-the-level-of-detail-using-metal-mesh-shaders",
+                "doc://com.apple.metal/documentation/Metal/creating-a-3d-application-with-hydra-rendering",
+                "doc://com.apple.metal/documentation/Metal/culling-occluded-geometry-using-the-visibility-result-buffer",
+                "doc://com.apple.metal/documentation/Metal/achieving-smooth-frame-rates-with-metal-s-display-link"
+              ],
+              "title": "Render Workflows"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLGPUFamily~1apple4/title",
+          "value": "MTLGPUFamilyApple4"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLGPUFamily~1apple4/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLGPUFamilyApple4"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLTextureType~1type2DMultisample/title",
+          "value": "MTLTextureType2DMultisample"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLTextureType~1type2DMultisample/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLTextureType2DMultisample"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLTextureDescriptor~1sampleCount/title",
+          "value": "sampleCount"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLTextureDescriptor~1sampleCount/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "sampleCount"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLTextureDescriptor~1storageMode/title",
+          "value": "storageMode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLTextureDescriptor~1storageMode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "storageMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice~1supportsTextureSampleCount(_:)/title",
+          "value": "supportsTextureSampleCount:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice~1supportsTextureSampleCount(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "supportsTextureSampleCount:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLTextureDescriptor~1usage/title",
+          "value": "usage"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLTextureDescriptor~1usage/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "usage"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/metal/improving-edge-rendering-quality-with-multisample-antialiasing-msaa"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/metal/improving-edge-rendering-quality-with-multisample-antialiasing-msaa"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

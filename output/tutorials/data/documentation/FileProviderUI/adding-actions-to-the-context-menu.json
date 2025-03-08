@@ -1,0 +1,1614 @@
+{
+  "abstract": [
+    {
+      "text": "Present custom actions from your File Provider extension in the system’s file browser.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.fileproviderui/documentation/FileProviderUI"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.fileproviderui/documentation/FileProviderUI/adding-actions-to-the-context-menu"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "File Provider UI"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Adding Actions to the Context Menu"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In your File Provider UI extension’s ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file, you can define custom actions that appear in the context menu when the user long-presses an item while browsing your file provider’s content. When the user selects the action, the system presents a custom user interface element from your File Provider UI extension.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In macOS 11 and later, you can define custom actions directly in the File Provider extension. The system also adds these actions to the context menu; however, when the user selects them, your extension performs the action without presenting any additional UI elements. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/FileProvider/NSFileProviderCustomAction",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-Actions-to-the-Context-Menu",
+          "level": 3,
+          "text": "Add Actions to the Context Menu",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Add an ",
+              "type": "text"
+            },
+            {
+              "code": "NSExtensionFileProviderActions",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key to the ",
+              "type": "text"
+            },
+            {
+              "code": "NSExtension",
+              "type": "codeVoice"
+            },
+            {
+              "text": " dictionary in your ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file, as shown in the example below.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "<key>NSExtensionFileProviderActions</key>",
+            "<array>",
+            "\t<dict>",
+            "\t\t<key>NSExtensionFileProviderActionIdentifier</key>",
+            "\t\t<string>com.example.MyFileProvider.setRating</string>",
+            "\t\t<key>NSExtensionFileProviderActionName</key>",
+            "\t\t<string>Rate</string>",
+            "\t\t<key>NSExtensionFileProviderActionActivationRule</key>",
+            "\t\t<string>SUBQUERY( fileproviderItems, $fileproviderItem, $fileproviderItem.userInfo.rank != nil ).@count > 0</string>",
+            "\t</dict>",
+            "</array>"
+          ],
+          "syntax": "xml",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "NSExtensionFileProviderActions",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key takes an array of dictionaries. Each dictionary represents a single action, and contains the keys shown in this table.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Key",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Type",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Description",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "NSExtensionFileProviderActionIdentifier",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "String",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A unique identifier for the action.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "NSExtensionFileProviderActionName",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "String",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " (Localizable)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The localized name that appears in the context menu.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "NSExtensionFileProviderActionActivationRule",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "Predicate",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A predicate that determines whether the action appears in the context menu.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following sequence of events occurs when the user selects one of your actions from the context menu:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The system instantiates your ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.fileproviderui/documentation/FileProviderUI/FPUIActionExtensionViewController",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " subclass.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The system calls your view controller’s ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.fileproviderui/documentation/FileProviderUI/FPUIActionExtensionViewController/prepare(forAction:itemIdentifiers:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method. You can override this method to configure the user interface for the selected action.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The system presents your view controller to the user.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "After the user has finished performing the action, you call the provided ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.fileproviderui/documentation/FileProviderUI/FPUIActionExtensionContext",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " object’s ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.fileproviderui/documentation/FileProviderUI/FPUIActionExtensionContext/cancelRequest(withError:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.fileproviderui/documentation/FileProviderUI/FPUIActionExtensionContext/completeRequest()",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method to complete the action.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "anchor": "Use-Predicates-to-Enable-and-Disable-Actions",
+          "level": 3,
+          "text": "Use Predicates to Enable and Disable Actions",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the ",
+              "type": "text"
+            },
+            {
+              "code": "NSExtensionFileProviderActionActivationRule",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key to enable or disable actions based on the selected file provider item. Set the key’s value to a predicate format string that the system uses to create an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nspredicate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object. The system calls the predicate’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nspredicate/1417924-evaluate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method, passing in the selected item, a dictionary with a single ",
+              "type": "text"
+            },
+            {
+              "code": "fileproviderItems",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key. The value is an array of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/FileProvider/NSFileProviderItem-swift.typealias",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects representing the selected items.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Your action must have a predicate or the system won’t display it in the action menu. To always show an action, use ",
+                  "type": "text"
+                },
+                {
+                  "code": "TRUEPREDICATE",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can use predicates to test the value of any of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/FileProvider/NSFileProviderItemProtocol",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object’s properties. For example, the following predicate tests whether the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/FileProvider/NSFileProviderItemProtocol/isUploaded",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property is set to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/swift/true",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "SUBQUERY ( fileproviderItems, $fileproviderItem, $fileproviderItem.uploadded == YES ).@count > 0"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can also use predicates to test custom data that you’ve added to the item’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/FileProvider/NSFileProviderItemProtocol/userInfo",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " dictionary. For example, the following predicate tests whether the ",
+              "type": "text"
+            },
+            {
+              "code": "com.example.testBit",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key has been set.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "SUBQUERY( fileproviderItems, $fileproviderItem, $fileproviderItem.userInfo.\"com.example.testBit\" == YES ).@count > 0"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If a predicate evaluates to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/swift/true",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", the context menu includes the action; if ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/swift/false",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", the context menu doesn’t include the action. For more about creating predicate format strings, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/Predicates/Articles/pSyntax.html#//apple_ref/doc/uid/TP40001795",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/FileProvider/NSFileProviderCustomAction": {
+      "abstract": [
+        {
+          "text": "Support for custom actions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSFileProviderCustomAction"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/FileProvider/NSFileProviderCustomAction",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSFileProviderCustomAction",
+      "type": "topic",
+      "url": "/documentation/FileProvider/NSFileProviderCustomAction"
+    },
+    "doc://com.apple.documentation/documentation/FileProvider/NSFileProviderItem-swift.typealias": {
+      "abstract": [
+        {
+          "text": "An item the File Provider extension manages.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSFileProviderItem"
+        },
+        {
+          "kind": "text",
+          "text": " = any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSFileProviderItem",
+          "text": "NSFileProviderItemProtocol"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/FileProvider/NSFileProviderItem-swift.typealias",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSFileProviderItem",
+      "type": "topic",
+      "url": "/documentation/FileProvider/NSFileProviderItem-swift.typealias"
+    },
+    "doc://com.apple.documentation/documentation/FileProvider/NSFileProviderItemProtocol": {
+      "abstract": [
+        {
+          "text": "A protocol that defines the properties of an item managed by the File Provider extension.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSFileProviderItemProtocol"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/FileProvider/NSFileProviderItemProtocol",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSFileProviderItemProtocol",
+      "type": "topic",
+      "url": "/documentation/FileProvider/NSFileProviderItemProtocol"
+    },
+    "doc://com.apple.documentation/documentation/FileProvider/NSFileProviderItemProtocol/isUploaded": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the item has been uploaded to your remote server.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "optional"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isUploaded"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/FileProvider/NSFileProviderItemProtocol/isUploaded",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isUploaded",
+      "type": "topic",
+      "url": "/documentation/FileProvider/NSFileProviderItemProtocol/isUploaded"
+    },
+    "doc://com.apple.documentation/documentation/FileProvider/NSFileProviderItemProtocol/userInfo": {
+      "abstract": [
+        {
+          "text": "A property list that contains additional data about the item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "optional"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "userInfo"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s11AnyHashableV",
+          "text": "AnyHashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]? { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/FileProvider/NSFileProviderItemProtocol/userInfo",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "userInfo",
+      "type": "topic",
+      "url": "/documentation/FileProvider/NSFileProviderItemProtocol/userInfo"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nspredicate": {
+      "abstract": [
+        {
+          "text": "A definition of logical conditions for constraining a search for a fetch or for in-memory filtering.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSPredicate"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nspredicate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSPredicate",
+      "type": "topic",
+      "url": "/documentation/foundation/nspredicate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nspredicate/1417924-evaluate": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether the specified object matches the conditions that the predicate specifies.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "evaluate"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": Any?) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nspredicate/1417924-evaluate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "evaluate(with:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nspredicate/1417924-evaluate"
+    },
+    "doc://com.apple.documentation/documentation/swift/false": {
+      "abstract": [
+        {
+          "text": "A false value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/swift/false",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "false",
+      "type": "topic",
+      "url": "/documentation/swift/false"
+    },
+    "doc://com.apple.documentation/documentation/swift/true": {
+      "abstract": [
+        {
+          "text": "A true value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/swift/true",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "true",
+      "type": "topic",
+      "url": "/documentation/swift/true"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.fileproviderui/documentation/FileProviderUI": {
+      "abstract": [
+        {
+          "text": "Add actions to the document browser’s context menu.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.fileproviderui/documentation/FileProviderUI",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "File Provider UI",
+      "type": "topic",
+      "url": "/documentation/fileproviderui"
+    },
+    "doc://com.apple.fileproviderui/documentation/FileProviderUI/FPUIActionExtensionContext": {
+      "abstract": [
+        {
+          "text": "An extension context provided to File Provider UI extensions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FPUIActionExtensionContext"
+        }
+      ],
+      "identifier": "doc://com.apple.fileproviderui/documentation/FileProviderUI/FPUIActionExtensionContext",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FPUIActionExtensionContext"
+        }
+      ],
+      "role": "symbol",
+      "title": "FPUIActionExtensionContext",
+      "type": "topic",
+      "url": "/documentation/fileproviderui/fpuiactionextensioncontext"
+    },
+    "doc://com.apple.fileproviderui/documentation/FileProviderUI/FPUIActionExtensionContext/cancelRequest(withError:)": {
+      "abstract": [
+        {
+          "text": "Cancels the action and returns the provided error.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "cancelRequest"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withError"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.fileproviderui/documentation/FileProviderUI/FPUIActionExtensionContext/cancelRequest(withError:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "cancelRequestWithError:"
+        }
+      ],
+      "role": "symbol",
+      "title": "cancelRequest(withError:)",
+      "type": "topic",
+      "url": "/documentation/fileproviderui/fpuiactionextensioncontext/cancelrequest(witherror:)"
+    },
+    "doc://com.apple.fileproviderui/documentation/FileProviderUI/FPUIActionExtensionContext/completeRequest()": {
+      "abstract": [
+        {
+          "text": "Marks the action as complete.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "completeRequest"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.fileproviderui/documentation/FileProviderUI/FPUIActionExtensionContext/completeRequest()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "completeRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "completeRequest()",
+      "type": "topic",
+      "url": "/documentation/fileproviderui/fpuiactionextensioncontext/completerequest()"
+    },
+    "doc://com.apple.fileproviderui/documentation/FileProviderUI/FPUIActionExtensionViewController": {
+      "abstract": [
+        {
+          "text": "The custom user interface used to perform a selected action.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FPUIActionExtensionViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.fileproviderui/documentation/FileProviderUI/FPUIActionExtensionViewController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FPUIActionExtensionViewController"
+        }
+      ],
+      "role": "symbol",
+      "title": "FPUIActionExtensionViewController",
+      "type": "topic",
+      "url": "/documentation/fileproviderui/fpuiactionextensionviewcontroller"
+    },
+    "doc://com.apple.fileproviderui/documentation/FileProviderUI/FPUIActionExtensionViewController/prepare(forAction:itemIdentifiers:)": {
+      "abstract": [
+        {
+          "text": "Performs any necessary setup or configuration for the specified action.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "prepare"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "forAction"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "itemIdentifiers"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSFileProviderItemIdentifier",
+          "text": "NSFileProviderItemIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": "])"
+        }
+      ],
+      "identifier": "doc://com.apple.fileproviderui/documentation/FileProviderUI/FPUIActionExtensionViewController/prepare(forAction:itemIdentifiers:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "prepareForActionWithIdentifier:itemIdentifiers:"
+        }
+      ],
+      "role": "symbol",
+      "title": "prepare(forAction:itemIdentifiers:)",
+      "type": "topic",
+      "url": "/documentation/fileproviderui/fpuiactionextensionviewcontroller/prepare(foraction:itemidentifiers:)"
+    },
+    "https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/Predicates/Articles/pSyntax.html#//apple_ref/doc/uid/TP40001795": {
+      "identifier": "https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/Predicates/Articles/pSyntax.html#//apple_ref/doc/uid/TP40001795",
+      "title": "Predicate Format String Syntax",
+      "titleInlineContent": [
+        {
+          "text": "Predicate Format String Syntax",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/Predicates/Articles/pSyntax.html#//apple_ref/doc/uid/TP40001795"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Document-Browser-Customization",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.fileproviderui/documentation/FileProviderUI/FPUIActionExtensionViewController"
+      ],
+      "title": "Document Browser Customization"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Document-Browser-Customization",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.fileproviderui/documentation/FileProviderUI/FPUIActionExtensionViewController"
+              ],
+              "title": "Document Browser Customization"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1FileProvider~1NSFileProviderItemProtocol~1isUploaded/title",
+          "value": "uploaded"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1FileProvider~1NSFileProviderItemProtocol~1isUploaded/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "nonatomic"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "readonly"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "getter"
+            },
+            {
+              "kind": "text",
+              "text": "="
+            },
+            {
+              "kind": "identifier",
+              "text": "isUploaded"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@BOOL",
+              "text": "BOOL"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "uploaded"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1FileProvider~1NSFileProviderCustomAction/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSFileProviderCustomAction"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileproviderui~1documentation~1FileProviderUI~1FPUIActionExtensionViewController/title",
+          "value": "FPUIActionExtensionViewController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileproviderui~1documentation~1FileProviderUI~1FPUIActionExtensionViewController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FPUIActionExtensionViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileproviderui~1documentation~1FileProviderUI~1FPUIActionExtensionViewController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FPUIActionExtensionViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileproviderui~1documentation~1FileProviderUI~1FPUIActionExtensionContext~1cancelRequest(withError:)/title",
+          "value": "cancelRequestWithError:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileproviderui~1documentation~1FileProviderUI~1FPUIActionExtensionContext~1cancelRequest(withError:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "cancelRequestWithError:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1FileProvider~1NSFileProviderItemProtocol/title",
+          "value": "NSFileProviderItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1FileProvider~1NSFileProviderItemProtocol/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSFileProviderItem"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1FileProvider~1NSFileProviderItemProtocol~1userInfo/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "nonatomic"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "strong"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "readonly"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSDictionary",
+              "text": "NSDictionary"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "identifier",
+              "text": "userInfo"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileproviderui~1documentation~1FileProviderUI~1FPUIActionExtensionContext/title",
+          "value": "FPUIActionExtensionContext"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileproviderui~1documentation~1FileProviderUI~1FPUIActionExtensionContext/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FPUIActionExtensionContext"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileproviderui~1documentation~1FileProviderUI~1FPUIActionExtensionContext/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "FPUIActionExtensionContext"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1FileProvider~1NSFileProviderItem-swift.typealias/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "typedef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:Qoobjc(pl)NSFileProviderItem",
+              "text": "id<NSFileProviderItem>"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSFileProviderItem"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1nspredicate~11417924-evaluate/title",
+          "value": "evaluateWithObject:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileproviderui~1documentation~1FileProviderUI~1FPUIActionExtensionViewController~1prepare(forAction:itemIdentifiers:)/title",
+          "value": "prepareForActionWithIdentifier:itemIdentifiers:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileproviderui~1documentation~1FileProviderUI~1FPUIActionExtensionViewController~1prepare(forAction:itemIdentifiers:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "prepareForActionWithIdentifier:itemIdentifiers:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileproviderui~1documentation~1FileProviderUI~1FPUIActionExtensionContext~1completeRequest()/title",
+          "value": "completeRequest"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.fileproviderui~1documentation~1FileProviderUI~1FPUIActionExtensionContext~1completeRequest()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "completeRequest"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/fileproviderui/adding-actions-to-the-context-menu"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/fileproviderui/adding-actions-to-the-context-menu"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

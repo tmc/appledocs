@@ -1,0 +1,1065 @@
+{
+  "abstract": [
+    {
+      "text": "Considerations for running iPhone and iPad apps on Macs with Apple silicon.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.macOS-Release-Notes/documentation/macos-release-notes"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-big-sur-11_0_1-ios-ipados-apps-on-mac-release-notes"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "macOS Big Sur 11.0.1 iOS & iPadOS Apps on Mac Release Notes"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Macs with Apple silicon can run many iPad and iPhone apps as-is, and these apps will be made available to users on the Mac through the Mac App Store. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Apple-Silicon/running-your-ios-apps-in-macos",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and watch ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/videos/play/wwdc2020/10114",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "macOS Big Sur 11.0.1 enables you to test your iPad and iPhone apps through Xcode. Below are notes pertaining to running these apps on macOS Big Sur 11.0.1. For additional macOS 11 changes, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-big-sur-11_0_1-release-notes",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "General",
+          "level": 3,
+          "text": "General",
+          "type": "heading"
+        },
+        {
+          "anchor": "Known-Issues",
+          "level": 4,
+          "text": "Known Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "iOS apps which don’t support iPad multitasking might display certain content in an incorrect orientation. (64660250)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "WebGL",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " content in ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/WebKit/WKWebView",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " might experience reduced performance. (70587571)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Apps that specify ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "LSMinimumSystemVersion",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " in their ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Info.plist",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " will be held to that value when running on macOS. Use the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "MinimumOSVersion",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Info.plist",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " key. (56477669)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "When ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsattributedstring",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " loads HTML, the runloop might not run. (56722469)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Don’t assume the user’s home directory is in ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "/private",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". (59908476)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Methods that aren’t declared but are present on iOS such as ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/httpurlresponse/1417930-allheaderfields",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/httpurlresponse/1409395-statuscode",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " aren’t present on macOS. Instead, use the declared methods on ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nshttpurlresponse",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". (61076809)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "iOS applications on macOS use slide-over and split-screen capabilities to resize windows. Your windows might be created in a state that doesn’t match the UIScreen, as though the application was launched in a split or slide-over. (61219476)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Device validation by checking for paths such as ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "/usr/libexec/sftp-server",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "/usr/sbin/sshd",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " isn’t supported. (62360582)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "App content might be visible during a resize. Don’t rely on your content being blurred like it is when resizing a split on iPad. (63582198)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Don’t assume via runtime checks like ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/1395135-nsclassfromstring",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " that ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSViewController",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " won’t be present. (63995458)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/QuartzCore/CATransaction",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " commits might be delayed until an appropriate time. Don’t make assumptions about the timing of commits and instead use appropriate transaction or animation completion handlers to order your work. (64013629)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Don’t assume that ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "/var/mobile exists",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". (64650450)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Ensure apps using ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/WebKit/WKWebView",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIWebView",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " correctly handle JavaScript mouse or pointer events. This can be alternatively tested by using a mouse or trackpad with iPad. (64668138)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Ensure you’ve registered your Mac with Apple silicon’s hardware identifier (available in the System Information app Hardware > Provisioning UDID field) in your account on ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/account",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". Find the archive in the Organizer window, click on Distribute App, select either “Ad Hoc” or “Development,” choose your distribution options, select “Automatically manage signing,” and proceed through the remainder of the distribution assistant to create an IPA. Once you’ve created the IPA, you can transfer it to your Mac with Apple silicon, and double-click it to install. During the app’s first launch, macOS prompts you to open the Security & Privacy preferences pane to enable the app. To see the launch button in the preferences pane, make sure your Mac is configured to only allow apps from the App Store and identified developers. (68513041, 68528315)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/AppKit/NSViewController": {
+      "abstract": [
+        {
+          "text": "A controller that manages a view, typically loaded from a nib file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSViewController",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSViewController",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSViewController"
+    },
+    "doc://com.apple.documentation/documentation/Apple-Silicon/running-your-ios-apps-in-macos": {
+      "abstract": [
+        {
+          "text": "Modernize the iOS apps you choose to run on a Mac with Apple silicon, or opt out of running on a Mac altogether.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Apple-Silicon/running-your-ios-apps-in-macos",
+      "kind": "article",
+      "role": "article",
+      "title": "Running your iOS apps in macOS",
+      "type": "topic",
+      "url": "/documentation/Apple-Silicon/running-your-ios-apps-in-macos"
+    },
+    "doc://com.apple.documentation/documentation/QuartzCore/CATransaction": {
+      "abstract": [
+        {
+          "text": "A mechanism for grouping multiple layer-tree operations into atomic updates to the render tree.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CATransaction"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/QuartzCore/CATransaction",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CATransaction",
+      "type": "topic",
+      "url": "/documentation/QuartzCore/CATransaction"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIWebView": {
+      "abstract": [
+        {
+          "text": "A view that embeds web content in your app.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIWebView"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIWebView",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIWebView",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIWebView"
+    },
+    "doc://com.apple.documentation/documentation/WebKit/WKWebView": {
+      "abstract": [
+        {
+          "text": "An object that displays interactive web content, such as for an in-app browser.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKWebView"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/WebKit/WKWebView",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "WKWebView",
+      "type": "topic",
+      "url": "/documentation/WebKit/WKWebView"
+    },
+    "doc://com.apple.documentation/documentation/foundation/1395135-nsclassfromstring": {
+      "abstract": [
+        {
+          "text": "Obtains a class by name.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSClassFromString"
+        },
+        {
+          "kind": "text",
+          "text": "(String) -> AnyClass?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/1395135-nsclassfromstring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSClassFromString(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/1395135-nsclassfromstring"
+    },
+    "doc://com.apple.documentation/documentation/foundation/httpurlresponse/1409395-statuscode": {
+      "abstract": [
+        {
+          "text": "The response’s HTTP status code.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "statusCode"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/httpurlresponse/1409395-statuscode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "statusCode",
+      "type": "topic",
+      "url": "/documentation/foundation/httpurlresponse/1409395-statuscode"
+    },
+    "doc://com.apple.documentation/documentation/foundation/httpurlresponse/1417930-allheaderfields": {
+      "abstract": [
+        {
+          "text": "All HTTP header fields of the response.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "allHeaderFields"
+        },
+        {
+          "kind": "text",
+          "text": ": [AnyHashable : Any]"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/httpurlresponse/1417930-allheaderfields",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "allHeaderFields",
+      "type": "topic",
+      "url": "/documentation/foundation/httpurlresponse/1417930-allheaderfields"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsattributedstring": {
+      "abstract": [
+        {
+          "text": "A string of text that manages data, layout, and stylistic information for ranges of characters to support rendering.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSAttributedString"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsattributedstring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSAttributedString",
+      "type": "topic",
+      "url": "/documentation/foundation/nsattributedstring"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nshttpurlresponse": {
+      "abstract": [
+        {
+          "text": "The metadata associated with the response to an HTTP protocol URL load request.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nshttpurlresponse",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSHTTPURLResponse",
+      "type": "topic",
+      "url": "/documentation/foundation/nshttpurlresponse"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-big-sur-11_0_1-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-big-sur-11_0_1-release-notes",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "macOS Big Sur 11.0.1 Release Notes",
+      "type": "topic",
+      "url": "/documentation/macos-release-notes/macos-big-sur-11_0_1-release-notes"
+    },
+    "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-big-sur-11_0_1-universal-apps-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to support Macs with Apple silicon.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-big-sur-11_0_1-universal-apps-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "macOS Big Sur 11.0.1 Universal Apps Release Notes",
+      "type": "topic",
+      "url": "/documentation/macos-release-notes/macos-big-sur-11_0_1-universal-apps-release-notes"
+    },
+    "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-big-sur-11_1-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-big-sur-11_1-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "macOS Big Sur 11.1 Release Notes",
+      "type": "topic",
+      "url": "/documentation/macos-release-notes/macos-big-sur-11_1-release-notes"
+    },
+    "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-big-sur-11_2-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-big-sur-11_2-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "macOS Big Sur 11.2 Release Notes",
+      "type": "topic",
+      "url": "/documentation/macos-release-notes/macos-big-sur-11_2-release-notes"
+    },
+    "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-big-sur-11_3-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-big-sur-11_3-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "macOS Big Sur 11.3 Release Notes",
+      "type": "topic",
+      "url": "/documentation/macos-release-notes/macos-big-sur-11_3-release-notes"
+    },
+    "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-big-sur-11_4-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-big-sur-11_4-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "macOS Big Sur 11.4 Release Notes",
+      "type": "topic",
+      "url": "/documentation/macos-release-notes/macos-big-sur-11_4-release-notes"
+    },
+    "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-big-sur-11_5-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-big-sur-11_5-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "macOS Big Sur 11.5 Release Notes",
+      "type": "topic",
+      "url": "/documentation/macos-release-notes/macos-big-sur-11_5-release-notes"
+    },
+    "doc://com.apple.macOS-Release-Notes/documentation/macos-release-notes": {
+      "abstract": [
+        {
+          "text": "Learn about changes to the macOS SDK.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.macOS-Release-Notes/documentation/macos-release-notes",
+      "kind": "article",
+      "role": "collection",
+      "title": "macOS Release Notes",
+      "type": "topic",
+      "url": "/documentation/macos-release-notes"
+    },
+    "https://developer.apple.com/account": {
+      "identifier": "https://developer.apple.com/account",
+      "title": "https://developer.apple.com/account",
+      "titleInlineContent": [
+        {
+          "text": "https://developer.apple.com/account",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/account"
+    },
+    "https://developer.apple.com/videos/play/wwdc2020/10114": {
+      "identifier": "https://developer.apple.com/videos/play/wwdc2020/10114",
+      "title": "iPad and iPhone apps on Macs with Apple silicon",
+      "titleInlineContent": [
+        {
+          "text": "iPad and iPhone apps on Macs with Apple silicon",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/videos/play/wwdc2020/10114"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "macOS-11",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-big-sur-11_5-release-notes",
+        "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-big-sur-11_4-release-notes",
+        "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-big-sur-11_3-release-notes",
+        "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-big-sur-11_2-release-notes",
+        "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-big-sur-11_1-release-notes",
+        "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-big-sur-11_0_1-release-notes",
+        "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/macos-big-sur-11_0_1-universal-apps-release-notes"
+      ],
+      "title": "macOS 11"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1WebKit~1WKWebView/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "WKWebView"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSView",
+              "text": "NSView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSViewController/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSViewController"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSResponder",
+              "text": "NSResponder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIWebView/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIWebView"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIView",
+              "text": "UIView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1QuartzCore~1CATransaction/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CATransaction"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~11395135-nsclassfromstring/title",
+          "value": "NSClassFromString"
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1nshttpurlresponse/title",
+          "value": "HTTPURLResponse"
+        },
+        {
+          "op": "add",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1nshttpurlresponse/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "class "
+            },
+            {
+              "kind": "identifier",
+              "text": "HTTPURLResponse"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

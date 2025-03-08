@@ -1,0 +1,6002 @@
+{
+  "abstract": [
+    {
+      "text": "A source of various particle effects.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.spritekit/documentation/SpriteKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)SKEmitterNode",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "SKEmitterNode"
+      }
+    ],
+    "modules": [
+      {
+        "name": "SpriteKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "SKEmitterNode"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "SKEmitterNode"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "SKEmitterNode"
+            }
+          ]
+        },
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "attribute",
+              "text": "@"
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+              "kind": "attribute",
+              "preciseIdentifier": "s:ScM",
+              "text": "MainActor"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "SKEmitterNode"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.spritekit/documentation/SpriteKit/using-keyframe-sequence-to-effect-custom-interpolation",
+        "doc://com.apple.spritekit/documentation/SpriteKit/creating-particle-effects",
+        "doc://com.apple.spritekit/documentation/SpriteKit/animate-the-warping-of-a-sprite",
+        "doc://com.apple.spritekit/documentation/SpriteKit/animating-particle-properties-across-disparate-values"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object is a node that automatically creates and renders small particle sprites. Particles are privately owned by ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SpriteKit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "—your game cannot access the generated sprites. For example, you cannot add physics shapes to particles. Emitter nodes are often used to create smoke, fire, sparks, and other particle effects. A ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "particle",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " is similar to an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKSpriteNode",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object; it renders a textured or untextured image that is sized, colorized, and blended into the scene. However, particles differ from sprites in two important ways:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A particle’s texture is always stretched uniformly.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Particles are not represented by objects in SpriteKit. This means you cannot perform node-related tasks on particles, nor can you associate physics bodies with particles to make them interact with other content. Although there is no visible class representing particles added by the emitter node, you can think of a particle as having properties like any other object.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Particles are purely visual objects, and their behavior is entirely defined by the emitter node that created them. The emitter node contains many properties to control the behavior of the particles it generates, including:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The birth rate and lifetime of the particle. You can also specify the order in which the particles are rendered and the maximum number of particles that are created before the emitter turns itself off.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The starting values of the particle, including its position, orientation, color, and size. You can choose to have these starting values randomized.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The changes to apply to the particle over its lifetime. Typically, these are specified as a rate of change over time. For example, you might specify that a particle rotates at a particular rate, in radians per second. The emitter automatically updates the particle data for each frame. In most cases, you can also create more sophisticated behaviors using keyframe sequences. For example, you might specify a keyframe sequence for a particle so that it starts out small, scales up to a larger size, then shrinks before dying.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/SpriteKit": {
+      "abstract": [
+        {
+          "text": "Add high-performance 2D content with smooth animations to your app, or create a game with a high-level set of 2D game-based tools.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SpriteKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SpriteKit",
+      "type": "topic",
+      "url": "/documentation/SpriteKit"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit": {
+      "abstract": [
+        {
+          "text": "Add high-performance 2D content with smooth animations to your app, or create a game with a high-level set of 2D game-based tools.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SpriteKit",
+      "type": "topic",
+      "url": "/documentation/spritekit"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SK3DNode": {
+      "abstract": [
+        {
+          "text": "3D SceneKit content drawn as a flattened sprite.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SK3DNode"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SK3DNode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SK3DNode"
+        }
+      ],
+      "role": "symbol",
+      "title": "SK3DNode",
+      "type": "topic",
+      "url": "/documentation/spritekit/sk3dnode"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode": {
+      "abstract": [
+        {
+          "text": "A source of various particle effects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKEmitterNode"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKEmitterNode"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKEmitterNode",
+      "type": "topic",
+      "url": "/documentation/spritekit/skemitternode"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/advanceSimulationTime(_:)": {
+      "abstract": [
+        {
+          "text": "Advances the emitter particle simulation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "advanceSimulationTime"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/advanceSimulationTime(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "advanceSimulationTime:"
+        }
+      ],
+      "role": "symbol",
+      "title": "advanceSimulationTime(_:)",
+      "type": "topic",
+      "url": "/documentation/spritekit/skemitternode/advancesimulationtime(_:)"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/attributeValues": {
+      "abstract": [
+        {
+          "text": "The values of each attribute associated with the node’s attached shader.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "attributeValues"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SKAttributeValue",
+          "text": "SKAttributeValue"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/attributeValues",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "attributeValues"
+        }
+      ],
+      "role": "symbol",
+      "title": "attributeValues",
+      "type": "topic",
+      "url": "/documentation/spritekit/skemitternode/attributevalues"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/emissionAngle": {
+      "abstract": [
+        {
+          "text": "The average initial direction of a particle, expressed as an angle in radians.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "emissionAngle"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/emissionAngle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "emissionAngle"
+        }
+      ],
+      "role": "symbol",
+      "title": "emissionAngle",
+      "type": "topic",
+      "url": "/documentation/spritekit/skemitternode/emissionangle"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/emissionAngleRange": {
+      "abstract": [
+        {
+          "text": "The range of allowed random values for a particle’s initial direction, expressed as an angle in radians.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "emissionAngleRange"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/emissionAngleRange",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "emissionAngleRange"
+        }
+      ],
+      "role": "symbol",
+      "title": "emissionAngleRange",
+      "type": "topic",
+      "url": "/documentation/spritekit/skemitternode/emissionanglerange"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/fieldBitMask": {
+      "abstract": [
+        {
+          "text": "A mask that defines which categories of physics fields can exert forces on the particles.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "fieldBitMask"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/fieldBitMask",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "fieldBitMask"
+        }
+      ],
+      "role": "symbol",
+      "title": "fieldBitMask",
+      "type": "topic",
+      "url": "/documentation/spritekit/skemitternode/fieldbitmask"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/numParticlesToEmit": {
+      "abstract": [
+        {
+          "text": "The number of particles the emitter should emit before stopping.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "numParticlesToEmit"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/numParticlesToEmit",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "numParticlesToEmit"
+        }
+      ],
+      "role": "symbol",
+      "title": "numParticlesToEmit",
+      "type": "topic",
+      "url": "/documentation/spritekit/skemitternode/numparticlestoemit"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleAction": {
+      "abstract": [
+        {
+          "text": "An action executed by new particles.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "particleAction"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SKAction",
+          "text": "SKAction"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleAction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "particleAction"
+        }
+      ],
+      "role": "symbol",
+      "title": "particleAction",
+      "type": "topic",
+      "url": "/documentation/spritekit/skemitternode/particleaction"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleAlpha": {
+      "abstract": [
+        {
+          "text": "The average starting alpha value for a particle.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "particleAlpha"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleAlpha",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "particleAlpha"
+        }
+      ],
+      "role": "symbol",
+      "title": "particleAlpha",
+      "type": "topic",
+      "url": "/documentation/spritekit/skemitternode/particlealpha"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleAlphaRange": {
+      "abstract": [
+        {
+          "text": "The range of allowed random values for a particle’s starting alpha value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "particleAlphaRange"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleAlphaRange",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "particleAlphaRange"
+        }
+      ],
+      "role": "symbol",
+      "title": "particleAlphaRange",
+      "type": "topic",
+      "url": "/documentation/spritekit/skemitternode/particlealpharange"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleAlphaSequence": {
+      "abstract": [
+        {
+          "text": "The sequence used to specify the alpha value of a particle over its lifetime.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "particleAlphaSequence"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SKKeyframeSequence",
+          "text": "SKKeyframeSequence"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleAlphaSequence",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "particleAlphaSequence"
+        }
+      ],
+      "role": "symbol",
+      "title": "particleAlphaSequence",
+      "type": "topic",
+      "url": "/documentation/spritekit/skemitternode/particlealphasequence"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleAlphaSpeed": {
+      "abstract": [
+        {
+          "text": "The rate at which the alpha value of a particle changes per second.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "particleAlphaSpeed"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleAlphaSpeed",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "particleAlphaSpeed"
+        }
+      ],
+      "role": "symbol",
+      "title": "particleAlphaSpeed",
+      "type": "topic",
+      "url": "/documentation/spritekit/skemitternode/particlealphaspeed"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleBirthRate": {
+      "abstract": [
+        {
+          "text": "The rate at which new particles are created.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "particleBirthRate"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleBirthRate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "particleBirthRate"
+        }
+      ],
+      "role": "symbol",
+      "title": "particleBirthRate",
+      "type": "topic",
+      "url": "/documentation/spritekit/skemitternode/particlebirthrate"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleBlendMode": {
+      "abstract": [
+        {
+          "text": "The blending mode used to blend particles into the framebuffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "particleBlendMode"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@SKBlendMode",
+          "text": "SKBlendMode"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleBlendMode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "particleBlendMode"
+        }
+      ],
+      "role": "symbol",
+      "title": "particleBlendMode",
+      "type": "topic",
+      "url": "/documentation/spritekit/skemitternode/particleblendmode"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleColor": {
+      "abstract": [
+        {
+          "text": "The average initial color for a particle.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "particleColor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIColor",
+          "text": "UIColor"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleColor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "particleColor"
+        }
+      ],
+      "role": "symbol",
+      "title": "particleColor",
+      "type": "topic",
+      "url": "/documentation/spritekit/skemitternode/particlecolor"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleColorAlphaRange": {
+      "abstract": [
+        {
+          "text": "The range of allowed random values for the alpha component of a particle’s initial color.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "particleColorAlphaRange"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleColorAlphaRange",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "particleColorAlphaRange"
+        }
+      ],
+      "role": "symbol",
+      "title": "particleColorAlphaRange",
+      "type": "topic",
+      "url": "/documentation/spritekit/skemitternode/particlecoloralpharange"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleColorAlphaSpeed": {
+      "abstract": [
+        {
+          "text": "The rate at which the alpha component of a particle’s color changes per second.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "particleColorAlphaSpeed"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleColorAlphaSpeed",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "particleColorAlphaSpeed"
+        }
+      ],
+      "role": "symbol",
+      "title": "particleColorAlphaSpeed",
+      "type": "topic",
+      "url": "/documentation/spritekit/skemitternode/particlecoloralphaspeed"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleColorBlendFactor": {
+      "abstract": [
+        {
+          "text": "The average starting value for the color blend factor.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "particleColorBlendFactor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleColorBlendFactor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "particleColorBlendFactor"
+        }
+      ],
+      "role": "symbol",
+      "title": "particleColorBlendFactor",
+      "type": "topic",
+      "url": "/documentation/spritekit/skemitternode/particlecolorblendfactor"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleColorBlendFactorRange": {
+      "abstract": [
+        {
+          "text": "The range of allowed random values for a particle’s starting color blend factor.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "particleColorBlendFactorRange"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleColorBlendFactorRange",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "particleColorBlendFactorRange"
+        }
+      ],
+      "role": "symbol",
+      "title": "particleColorBlendFactorRange",
+      "type": "topic",
+      "url": "/documentation/spritekit/skemitternode/particlecolorblendfactorrange"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleColorBlendFactorSequence": {
+      "abstract": [
+        {
+          "text": "The sequence used to specify the color blend factor of a particle over its lifetime.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "particleColorBlendFactorSequence"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SKKeyframeSequence",
+          "text": "SKKeyframeSequence"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleColorBlendFactorSequence",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "particleColorBlendFactorSequence"
+        }
+      ],
+      "role": "symbol",
+      "title": "particleColorBlendFactorSequence",
+      "type": "topic",
+      "url": "/documentation/spritekit/skemitternode/particlecolorblendfactorsequence"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleColorBlendFactorSpeed": {
+      "abstract": [
+        {
+          "text": "The rate at which the color blend factor changes per second.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "particleColorBlendFactorSpeed"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleColorBlendFactorSpeed",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "particleColorBlendFactorSpeed"
+        }
+      ],
+      "role": "symbol",
+      "title": "particleColorBlendFactorSpeed",
+      "type": "topic",
+      "url": "/documentation/spritekit/skemitternode/particlecolorblendfactorspeed"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleColorBlueRange": {
+      "abstract": [
+        {
+          "text": "The range of allowed random values for the blue component of a particle’s initial color.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "particleColorBlueRange"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleColorBlueRange",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "particleColorBlueRange"
+        }
+      ],
+      "role": "symbol",
+      "title": "particleColorBlueRange",
+      "type": "topic",
+      "url": "/documentation/spritekit/skemitternode/particlecolorbluerange"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleColorBlueSpeed": {
+      "abstract": [
+        {
+          "text": "The rate at which the blue component of a particle’s color changes per second.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "particleColorBlueSpeed"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleColorBlueSpeed",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "particleColorBlueSpeed"
+        }
+      ],
+      "role": "symbol",
+      "title": "particleColorBlueSpeed",
+      "type": "topic",
+      "url": "/documentation/spritekit/skemitternode/particlecolorbluespeed"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleColorGreenRange": {
+      "abstract": [
+        {
+          "text": "The range of allowed random values for the green component of a particle’s initial color.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "particleColorGreenRange"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleColorGreenRange",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "particleColorGreenRange"
+        }
+      ],
+      "role": "symbol",
+      "title": "particleColorGreenRange",
+      "type": "topic",
+      "url": "/documentation/spritekit/skemitternode/particlecolorgreenrange"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleColorGreenSpeed": {
+      "abstract": [
+        {
+          "text": "The rate at which the green component of a particle’s color changes per second.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "particleColorGreenSpeed"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleColorGreenSpeed",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "particleColorGreenSpeed"
+        }
+      ],
+      "role": "symbol",
+      "title": "particleColorGreenSpeed",
+      "type": "topic",
+      "url": "/documentation/spritekit/skemitternode/particlecolorgreenspeed"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleColorRedRange": {
+      "abstract": [
+        {
+          "text": "The range of allowed random values for the red component of a particle’s initial color.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "particleColorRedRange"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleColorRedRange",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "particleColorRedRange"
+        }
+      ],
+      "role": "symbol",
+      "title": "particleColorRedRange",
+      "type": "topic",
+      "url": "/documentation/spritekit/skemitternode/particlecolorredrange"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleColorRedSpeed": {
+      "abstract": [
+        {
+          "text": "The rate at which the red component of a particle’s color changes per second.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "particleColorRedSpeed"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleColorRedSpeed",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "particleColorRedSpeed"
+        }
+      ],
+      "role": "symbol",
+      "title": "particleColorRedSpeed",
+      "type": "topic",
+      "url": "/documentation/spritekit/skemitternode/particlecolorredspeed"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleColorSequence": {
+      "abstract": [
+        {
+          "text": "The sequence used to specify the color components of a particle over its lifetime.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "particleColorSequence"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SKKeyframeSequence",
+          "text": "SKKeyframeSequence"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleColorSequence",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "particleColorSequence"
+        }
+      ],
+      "role": "symbol",
+      "title": "particleColorSequence",
+      "type": "topic",
+      "url": "/documentation/spritekit/skemitternode/particlecolorsequence"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleLifetime": {
+      "abstract": [
+        {
+          "text": "The average lifetime of a particle, in seconds.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "particleLifetime"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleLifetime",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "particleLifetime"
+        }
+      ],
+      "role": "symbol",
+      "title": "particleLifetime",
+      "type": "topic",
+      "url": "/documentation/spritekit/skemitternode/particlelifetime"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleLifetimeRange": {
+      "abstract": [
+        {
+          "text": "The range of allowed random values for a particle’s lifetime.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "particleLifetimeRange"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleLifetimeRange",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "particleLifetimeRange"
+        }
+      ],
+      "role": "symbol",
+      "title": "particleLifetimeRange",
+      "type": "topic",
+      "url": "/documentation/spritekit/skemitternode/particlelifetimerange"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particlePosition": {
+      "abstract": [
+        {
+          "text": "The average starting position for a particle.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "particlePosition"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGPoint",
+          "text": "CGPoint"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particlePosition",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "particlePosition"
+        }
+      ],
+      "role": "symbol",
+      "title": "particlePosition",
+      "type": "topic",
+      "url": "/documentation/spritekit/skemitternode/particleposition"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particlePositionRange": {
+      "abstract": [
+        {
+          "text": "The range of allowed random values for a particle’s position.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "particlePositionRange"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGVector",
+          "text": "CGVector"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particlePositionRange",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "particlePositionRange"
+        }
+      ],
+      "role": "symbol",
+      "title": "particlePositionRange",
+      "type": "topic",
+      "url": "/documentation/spritekit/skemitternode/particlepositionrange"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleRenderOrder": {
+      "abstract": [
+        {
+          "text": "The order in which the emitter’s particles are rendered.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "particleRenderOrder"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@SKParticleRenderOrder",
+          "text": "SKParticleRenderOrder"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleRenderOrder",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "particleRenderOrder"
+        }
+      ],
+      "role": "symbol",
+      "title": "particleRenderOrder",
+      "type": "topic",
+      "url": "/documentation/spritekit/skemitternode/particlerenderorder"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleRotation": {
+      "abstract": [
+        {
+          "text": "The average initial rotation of a particle, expressed as an angle in radians.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "particleRotation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleRotation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "particleRotation"
+        }
+      ],
+      "role": "symbol",
+      "title": "particleRotation",
+      "type": "topic",
+      "url": "/documentation/spritekit/skemitternode/particlerotation"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleRotationRange": {
+      "abstract": [
+        {
+          "text": "The range of allowed random values for a particle’s initial rotation, expressed as an angle in radians.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "particleRotationRange"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleRotationRange",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "particleRotationRange"
+        }
+      ],
+      "role": "symbol",
+      "title": "particleRotationRange",
+      "type": "topic",
+      "url": "/documentation/spritekit/skemitternode/particlerotationrange"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleRotationSpeed": {
+      "abstract": [
+        {
+          "text": "The speed at which a particle rotates, expressed in radians per second.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "particleRotationSpeed"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleRotationSpeed",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "particleRotationSpeed"
+        }
+      ],
+      "role": "symbol",
+      "title": "particleRotationSpeed",
+      "type": "topic",
+      "url": "/documentation/spritekit/skemitternode/particlerotationspeed"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleScale": {
+      "abstract": [
+        {
+          "text": "The average initial scale factor of a particle.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "particleScale"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleScale",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "particleScale"
+        }
+      ],
+      "role": "symbol",
+      "title": "particleScale",
+      "type": "topic",
+      "url": "/documentation/spritekit/skemitternode/particlescale"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleScaleRange": {
+      "abstract": [
+        {
+          "text": "The range of allowed random values for a particle’s initial scale.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "particleScaleRange"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleScaleRange",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "particleScaleRange"
+        }
+      ],
+      "role": "symbol",
+      "title": "particleScaleRange",
+      "type": "topic",
+      "url": "/documentation/spritekit/skemitternode/particlescalerange"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleScaleSequence": {
+      "abstract": [
+        {
+          "text": "The sequence used to specify the scale factor of a particle over its lifetime.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "particleScaleSequence"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SKKeyframeSequence",
+          "text": "SKKeyframeSequence"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleScaleSequence",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "particleScaleSequence"
+        }
+      ],
+      "role": "symbol",
+      "title": "particleScaleSequence",
+      "type": "topic",
+      "url": "/documentation/spritekit/skemitternode/particlescalesequence"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleScaleSpeed": {
+      "abstract": [
+        {
+          "text": "The rate at which a particle’s scale factor changes per second.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "particleScaleSpeed"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleScaleSpeed",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "particleScaleSpeed"
+        }
+      ],
+      "role": "symbol",
+      "title": "particleScaleSpeed",
+      "type": "topic",
+      "url": "/documentation/spritekit/skemitternode/particlescalespeed"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleSize": {
+      "abstract": [
+        {
+          "text": "The starting size of each particle.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "particleSize"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGSize",
+          "text": "CGSize"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleSize",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "particleSize"
+        }
+      ],
+      "role": "symbol",
+      "title": "particleSize",
+      "type": "topic",
+      "url": "/documentation/spritekit/skemitternode/particlesize"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleSpeed": {
+      "abstract": [
+        {
+          "text": "The average initial speed of a new particle, in points per second.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "particleSpeed"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleSpeed",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "particleSpeed"
+        }
+      ],
+      "role": "symbol",
+      "title": "particleSpeed",
+      "type": "topic",
+      "url": "/documentation/spritekit/skemitternode/particlespeed"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleSpeedRange": {
+      "abstract": [
+        {
+          "text": "The range of allowed random values for a particle’s initial speed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "particleSpeedRange"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleSpeedRange",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "particleSpeedRange"
+        }
+      ],
+      "role": "symbol",
+      "title": "particleSpeedRange",
+      "type": "topic",
+      "url": "/documentation/spritekit/skemitternode/particlespeedrange"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleTexture": {
+      "abstract": [
+        {
+          "text": "The texture to use to render a particle.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "particleTexture"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SKTexture",
+          "text": "SKTexture"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleTexture",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "particleTexture"
+        }
+      ],
+      "role": "symbol",
+      "title": "particleTexture",
+      "type": "topic",
+      "url": "/documentation/spritekit/skemitternode/particletexture"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleZPosition": {
+      "abstract": [
+        {
+          "text": "The average starting depth of a particle.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "particleZPosition"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleZPosition",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "particleZPosition"
+        }
+      ],
+      "role": "symbol",
+      "title": "particleZPosition",
+      "type": "topic",
+      "url": "/documentation/spritekit/skemitternode/particlezposition"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleZPositionRange": {
+      "abstract": [
+        {
+          "text": "The range of allowed random values for a particle’s depth.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "particleZPositionRange"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleZPositionRange",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "particleZPositionRange"
+        }
+      ],
+      "role": "symbol",
+      "title": "particleZPositionRange",
+      "type": "topic",
+      "url": "/documentation/spritekit/skemitternode/particlezpositionrange"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleZPositionSpeed": {
+      "abstract": [
+        {
+          "text": "The speed at which the particle’s depth changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "particleZPositionSpeed"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleZPositionSpeed",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "particleZPositionSpeed"
+        }
+      ],
+      "role": "symbol",
+      "title": "particleZPositionSpeed",
+      "type": "topic",
+      "url": "/documentation/spritekit/skemitternode/particlezpositionspeed"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/resetSimulation()": {
+      "abstract": [
+        {
+          "text": "Removes all existing particles and restarts the simulation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "resetSimulation"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/resetSimulation()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "resetSimulation"
+        }
+      ],
+      "role": "symbol",
+      "title": "resetSimulation()",
+      "type": "topic",
+      "url": "/documentation/spritekit/skemitternode/resetsimulation()"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/setValue(_:forAttribute:)": {
+      "abstract": [
+        {
+          "text": "Sets an attribute value for an attached shader.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setValue"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SKAttributeValue",
+          "text": "SKAttributeValue"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "forAttribute"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/setValue(_:forAttribute:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setValue:forAttributeNamed:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setValue(_:forAttribute:)",
+      "type": "topic",
+      "url": "/documentation/spritekit/skemitternode/setvalue(_:forattribute:)"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/shader": {
+      "abstract": [
+        {
+          "text": "A custom shader used to determine how particles are rendered.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "shader"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SKShader",
+          "text": "SKShader"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/shader",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "shader"
+        }
+      ],
+      "role": "symbol",
+      "title": "shader",
+      "type": "topic",
+      "url": "/documentation/spritekit/skemitternode/shader"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/targetNode": {
+      "abstract": [
+        {
+          "text": "The target node that renders the emitter’s particles.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "targetNode"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SKNode",
+          "text": "SKNode"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/targetNode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "targetNode"
+        }
+      ],
+      "role": "symbol",
+      "title": "targetNode",
+      "type": "topic",
+      "url": "/documentation/spritekit/skemitternode/targetnode"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/value(forAttributeNamed:)": {
+      "abstract": [
+        {
+          "text": "Gets the value of a shader attribute.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "value"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "forAttributeNamed"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SKAttributeValue",
+          "text": "SKAttributeValue"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/value(forAttributeNamed:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "valueForAttributeNamed:"
+        }
+      ],
+      "role": "symbol",
+      "title": "value(forAttributeNamed:)",
+      "type": "topic",
+      "url": "/documentation/spritekit/skemitternode/value(forattributenamed:)"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/xAcceleration": {
+      "abstract": [
+        {
+          "text": "The acceleration to apply to a particle’s horizontal velocity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "xAcceleration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/xAcceleration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "xAcceleration"
+        }
+      ],
+      "role": "symbol",
+      "title": "xAcceleration",
+      "type": "topic",
+      "url": "/documentation/spritekit/skemitternode/xacceleration"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/yAcceleration": {
+      "abstract": [
+        {
+          "text": "The acceleration to apply to a particle’s vertical velocity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "yAcceleration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/yAcceleration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "yAcceleration"
+        }
+      ],
+      "role": "symbol",
+      "title": "yAcceleration",
+      "type": "topic",
+      "url": "/documentation/spritekit/skemitternode/yacceleration"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKLabelNode": {
+      "abstract": [
+        {
+          "text": "A graphical element that draws text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKLabelNode"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKLabelNode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKLabelNode"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKLabelNode",
+      "type": "topic",
+      "url": "/documentation/spritekit/sklabelnode"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKNode": {
+      "abstract": [
+        {
+          "text": "The base class of all SpriteKit nodes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKNode"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKNode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKNode"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKNode",
+      "type": "topic",
+      "url": "/documentation/spritekit/sknode"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKParticleRenderOrder": {
+      "abstract": [
+        {
+          "text": "The order to use when the emitter’s particles are rendered.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKParticleRenderOrder"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKParticleRenderOrder",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKParticleRenderOrder"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKParticleRenderOrder",
+      "type": "topic",
+      "url": "/documentation/spritekit/skparticlerenderorder"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKShapeNode": {
+      "abstract": [
+        {
+          "text": "A mathematical shape that can be stroked or filled.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKShapeNode"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKShapeNode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKShapeNode"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKShapeNode",
+      "type": "topic",
+      "url": "/documentation/spritekit/skshapenode"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKSpriteNode": {
+      "abstract": [
+        {
+          "text": "An image or solid color.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKSpriteNode"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKSpriteNode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKSpriteNode"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKSpriteNode",
+      "type": "topic",
+      "url": "/documentation/spritekit/skspritenode"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKTileMapNode": {
+      "abstract": [
+        {
+          "text": "A two-dimensional array of images.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKTileMapNode"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKTileMapNode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKTileMapNode"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKTileMapNode",
+      "type": "topic",
+      "url": "/documentation/spritekit/sktilemapnode"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKVideoNode": {
+      "abstract": [
+        {
+          "text": "A graphical element that plays video content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKVideoNode"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKVideoNode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKVideoNode"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKVideoNode",
+      "type": "topic",
+      "url": "/documentation/spritekit/skvideonode"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/animate-the-warping-of-a-sprite": {
+      "abstract": [
+        {
+          "text": "Interpolate warping from source to destination warp geometry grids.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/animate-the-warping-of-a-sprite",
+      "kind": "article",
+      "role": "article",
+      "title": "Animate the Warping of a Sprite",
+      "type": "topic",
+      "url": "/documentation/spritekit/animate-the-warping-of-a-sprite"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/animating-particle-properties-across-disparate-values": {
+      "abstract": [
+        {
+          "text": "Supply keyframe sequences to do linear or nonlinear particle animations.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/animating-particle-properties-across-disparate-values",
+      "kind": "article",
+      "role": "article",
+      "title": "Animating Particle Properties Across Disparate Values",
+      "type": "topic",
+      "url": "/documentation/spritekit/animating-particle-properties-across-disparate-values"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/changing-the-location-of-particles-in-your-scene": {
+      "abstract": [
+        {
+          "text": "Set a target node from which SpriteKit creates particles.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/changing-the-location-of-particles-in-your-scene",
+      "kind": "article",
+      "role": "article",
+      "title": "Changing the Location of Particles in Your Scene",
+      "type": "topic",
+      "url": "/documentation/spritekit/changing-the-location-of-particles-in-your-scene"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/creating-particle-effects": {
+      "abstract": [
+        {
+          "text": "Add particle effects to your app by creating repeatable particles in Xcode’s editor, or in code.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/creating-particle-effects",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating Particle Effects",
+      "type": "topic",
+      "url": "/documentation/spritekit/creating-particle-effects"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/getting-started-with-particle-shaders": {
+      "abstract": [
+        {
+          "text": "Provide custom shader code to alter a particle’s look.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/getting-started-with-particle-shaders",
+      "kind": "article",
+      "role": "article",
+      "title": "Getting Started with Particle Shaders",
+      "type": "topic",
+      "url": "/documentation/spritekit/getting-started-with-particle-shaders"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/maximizing-node-drawing-performance": {
+      "abstract": [
+        {
+          "text": "Structure your nodes for maximum performance.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/maximizing-node-drawing-performance",
+      "kind": "article",
+      "role": "article",
+      "title": "Maximizing Node Drawing Performance",
+      "type": "topic",
+      "url": "/documentation/spritekit/maximizing-node-drawing-performance"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/optimizing-emitter-node-performance": {
+      "abstract": [
+        {
+          "text": "Use proven methods to rapidly create and play back performant particle effects.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/optimizing-emitter-node-performance",
+      "kind": "article",
+      "role": "article",
+      "title": "Optimizing Emitter Node Performance",
+      "type": "topic",
+      "url": "/documentation/spritekit/optimizing-emitter-node-performance"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/using-keyframe-sequence-to-effect-custom-interpolation": {
+      "abstract": [
+        {
+          "text": "See a few examples of what keyframe sequence can do.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/using-keyframe-sequence-to-effect-custom-interpolation",
+      "kind": "article",
+      "role": "article",
+      "title": "Using Keyframe Sequence to effect Custom Interpolation",
+      "type": "topic",
+      "url": "/documentation/spritekit/using-keyframe-sequence-to-effect-custom-interpolation"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables an object to be encoded and decoded for archiving and distribution.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCoding"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoding"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying": {
+      "abstract": [
+        {
+          "text": "A protocol that objects adopt to provide functional copies of themselves.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCopying"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCopying",
+      "type": "topic",
+      "url": "/documentation/foundation/nscopying"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables encoding and decoding in a manner that is robust against object substitution attacks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSSecureCoding"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSecureCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nssecurecoding"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSStandardKeyBindingResponding": {
+      "abstract": [
+        {
+          "text": "Methods that responder subclasses implement to support key binding commands, such as inserting tabs and newlines, or moving the insertion point.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSStandardKeyBindingResponding"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSStandardKeyBindingResponding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSStandardKeyBindingResponding",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSStandardKeyBindingResponding"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSTouchBarProvider": {
+      "abstract": [
+        {
+          "text": "A protocol that an object adopts to create a bar object in your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSTouchBarProvider"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSTouchBarProvider",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSTouchBarProvider",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSTouchBarProvider"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSUserActivityRestoring": {
+      "abstract": [
+        {
+          "text": "A protocol that marks classes to restore the state of your app to continue a user activity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSUserActivityRestoring"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSUserActivityRestoring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSUserActivityRestoring",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSUserActivityRestoring"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)UIActivityItemsConfigurationProviding": {
+      "abstract": [
+        {
+          "text": "An interface that provides a source for shareable content to fulfill user requests to share current content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIActivityItemsConfigurationProviding"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)UIActivityItemsConfigurationProviding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIActivityItemsConfigurationProviding",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIActivityItemsConfigurationProviding"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)UICoordinateSpace": {
+      "abstract": [
+        {
+          "text": "A set of methods for converting between different frames of reference on a screen.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UICoordinateSpace"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)UICoordinateSpace",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UICoordinateSpace",
+      "type": "topic",
+      "url": "/documentation/UIKit/UICoordinateSpace"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)UIFocusEnvironment": {
+      "abstract": [
+        {
+          "text": "A set of methods that define the focus behavior for a branch of the view hierarchy.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIFocusEnvironment"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)UIFocusEnvironment",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIFocusEnvironment",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIFocusEnvironment"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)UIFocusItem": {
+      "abstract": [
+        {
+          "text": "An object that can become focused.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIFocusItem"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)UIFocusEnvironment",
+          "text": "UIFocusEnvironment"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)UIFocusItem",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIFocusItem",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIFocusItem"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)UIFocusItemContainer": {
+      "abstract": [
+        {
+          "text": "The container responsible for providing geometric context to focus items within a given focus environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIFocusItemContainer"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)UIFocusItemContainer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIFocusItemContainer",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIFocusItemContainer"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)UIPasteConfigurationSupporting": {
+      "abstract": [
+        {
+          "text": "The interface that determines whether a responder object supports paste configuration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIPasteConfigurationSupporting"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)UIPasteConfigurationSupporting",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIPasteConfigurationSupporting",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIPasteConfigurationSupporting"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)UIResponderStandardEditActions": {
+      "abstract": [
+        {
+          "text": "A set of standard methods that apps can adopt to support editing.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIResponderStandardEditActions"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)UIResponderStandardEditActions",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIResponderStandardEditActions",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIResponderStandardEditActions"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)UIUserActivityRestoring": {
+      "abstract": [
+        {
+          "text": "The protocol you adopt to restore an object’s state from a user activity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIUserActivityRestoring"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)UIUserActivityRestoring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIUserActivityRestoring",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIUserActivityRestoring"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:ScM": {
+      "abstract": [
+        {
+          "text": "A singleton actor whose executor is equivalent to the main dispatch queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@globalActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "final"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "actor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MainActor"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MainActor",
+      "type": "topic",
+      "url": "/documentation/Swift/MainActor"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKNode"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSSecureCoding",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSStandardKeyBindingResponding",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSTouchBarProvider",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSUserActivityRestoring",
+        "doc://com.externally.resolved.symbol/s:s8SendableP",
+        "doc://com.externally.resolved.symbol/c:objc(pl)UIActivityItemsConfigurationProviding",
+        "doc://com.externally.resolved.symbol/c:objc(pl)UICoordinateSpace",
+        "doc://com.externally.resolved.symbol/c:objc(pl)UIFocusEnvironment",
+        "doc://com.externally.resolved.symbol/c:objc(pl)UIFocusItem",
+        "doc://com.externally.resolved.symbol/c:objc(pl)UIFocusItemContainer",
+        "doc://com.externally.resolved.symbol/c:objc(pl)UIPasteConfigurationSupporting",
+        "doc://com.externally.resolved.symbol/c:objc(pl)UIResponderStandardEditActions",
+        "doc://com.externally.resolved.symbol/c:objc(pl)UIUserActivityRestoring"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Nodes-that-Draw",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.spritekit/documentation/SpriteKit/maximizing-node-drawing-performance",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKSpriteNode",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKShapeNode",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKLabelNode",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKVideoNode",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKTileMapNode",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SK3DNode"
+      ],
+      "title": "Nodes that Draw"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "First-Steps",
+      "identifiers": [
+        "doc://com.apple.spritekit/documentation/SpriteKit/creating-particle-effects"
+      ],
+      "title": "First Steps"
+    },
+    {
+      "abstract": [
+        {
+          "text": "Choose which node in the scene emits particles.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Choosing-Which-Node-in-the-Scene-Emits-Particles",
+      "identifiers": [
+        "doc://com.apple.spritekit/documentation/SpriteKit/changing-the-location-of-particles-in-your-scene",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/targetNode"
+      ],
+      "title": "Choosing Which Node in the Scene Emits Particles"
+    },
+    {
+      "anchor": "Controlling-When-Particles-Are-Created",
+      "identifiers": [
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/advanceSimulationTime(_:)",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/resetSimulation()",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleBirthRate",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/numParticlesToEmit"
+      ],
+      "title": "Controlling When Particles Are Created"
+    },
+    {
+      "anchor": "Controlling-the-Rendering-Order-of-an-Emitters-Particles",
+      "identifiers": [
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleRenderOrder",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKParticleRenderOrder"
+      ],
+      "title": "Controlling the Rendering Order of an Emitter’s Particles"
+    },
+    {
+      "anchor": "Controlling-Particle-Lifetime",
+      "identifiers": [
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleLifetime",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleLifetimeRange"
+      ],
+      "title": "Controlling Particle Lifetime"
+    },
+    {
+      "anchor": "Controlling-Particle-Position",
+      "identifiers": [
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particlePosition",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particlePositionRange",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleZPosition",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleZPositionRange"
+      ],
+      "title": "Controlling Particle Position"
+    },
+    {
+      "anchor": "Controlling-Particle-Velocity-and-Acceleration",
+      "identifiers": [
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleSpeed",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleSpeedRange",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/emissionAngle",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/emissionAngleRange",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/xAcceleration",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/yAcceleration",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleZPositionSpeed"
+      ],
+      "title": "Controlling Particle Velocity and Acceleration"
+    },
+    {
+      "anchor": "Adjusting-a-Particles-Rotation",
+      "identifiers": [
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleRotation",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleRotationRange",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleRotationSpeed"
+      ],
+      "title": "Adjusting a Particle’s Rotation"
+    },
+    {
+      "anchor": "Scaling-Particles-by-a-Factor",
+      "identifiers": [
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleScale",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleScaleRange",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleScaleSpeed",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleScaleSequence"
+      ],
+      "title": "Scaling Particles by a Factor"
+    },
+    {
+      "anchor": "Changing-a-Particles-Source-Image-and-Size",
+      "identifiers": [
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleTexture",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleSize"
+      ],
+      "title": "Changing a Particle’s Source Image and Size"
+    },
+    {
+      "anchor": "Configuring-Particle-Color",
+      "identifiers": [
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleColorSequence",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleColor",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleColorAlphaRange",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleColorBlueRange",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleColorGreenRange",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleColorRedRange",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleColorAlphaSpeed",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleColorBlueSpeed",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleColorGreenSpeed",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleColorRedSpeed"
+      ],
+      "title": "Configuring Particle Color"
+    },
+    {
+      "anchor": "Controlling-How-the-Texture-is-Blended-with-Particle-Color",
+      "identifiers": [
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleColorBlendFactorSequence",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleColorBlendFactor",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleColorBlendFactorRange",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleColorBlendFactorSpeed"
+      ],
+      "title": "Controlling How the Texture is Blended with Particle Color"
+    },
+    {
+      "abstract": [
+        {
+          "text": "Change how an emitter uses an alpha value, such as additive blending, that results in the emitter being brighter than it was before.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Blending-Particles-with-the-Framebuffer",
+      "identifiers": [
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleBlendMode",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleAlphaSequence",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleAlpha",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleAlphaRange",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleAlphaSpeed"
+      ],
+      "title": "Blending Particles with the Framebuffer"
+    },
+    {
+      "abstract": [
+        {
+          "text": "Change particles over time using actions or keyframe sequences.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Animating-Particles",
+      "identifiers": [
+        "doc://com.apple.spritekit/documentation/SpriteKit/animating-particle-properties-across-disparate-values",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleAction"
+      ],
+      "title": "Animating Particles"
+    },
+    {
+      "anchor": "Applying-Physics-Fields-to-the-Particles",
+      "identifiers": [
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/fieldBitMask"
+      ],
+      "title": "Applying Physics Fields to the Particles"
+    },
+    {
+      "anchor": "Taking-Full-Control-of-Particle-Drawing-with-a-Shader",
+      "identifiers": [
+        "doc://com.apple.spritekit/documentation/SpriteKit/getting-started-with-particle-shaders",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/shader",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/attributeValues",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/setValue(_:forAttribute:)",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/value(forAttributeNamed:)"
+      ],
+      "title": "Taking Full Control of Particle Drawing with a Shader"
+    },
+    {
+      "anchor": "Maximizing-Particle-Run-Time-Performance",
+      "identifiers": [
+        "doc://com.apple.spritekit/documentation/SpriteKit/optimizing-emitter-node-performance"
+      ],
+      "title": "Maximizing Particle Run-Time Performance"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "visionOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "watchOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "SKEmitterNode"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKEmitterNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKEmitterNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.spritekit/documentation/SpriteKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "First-Steps",
+              "identifiers": [
+                "doc://com.apple.spritekit/documentation/SpriteKit/creating-particle-effects"
+              ],
+              "title": "First Steps"
+            },
+            {
+              "abstract": [
+                {
+                  "text": "Choose which node in the scene emits particles.",
+                  "type": "text"
+                }
+              ],
+              "anchor": "Choosing-Which-Node-in-the-Scene-Emits-Particles",
+              "identifiers": [
+                "doc://com.apple.spritekit/documentation/SpriteKit/changing-the-location-of-particles-in-your-scene",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/targetNode"
+              ],
+              "title": "Choosing Which Node in the Scene Emits Particles"
+            },
+            {
+              "anchor": "Controlling-When-Particles-Are-Created",
+              "identifiers": [
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/advanceSimulationTime(_:)",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/resetSimulation()",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleBirthRate",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/numParticlesToEmit"
+              ],
+              "title": "Controlling When Particles Are Created"
+            },
+            {
+              "anchor": "Controlling-the-Rendering-Order-of-an-Emitters-Particles",
+              "identifiers": [
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleRenderOrder",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKParticleRenderOrder"
+              ],
+              "title": "Controlling the Rendering Order of an Emitter’s Particles"
+            },
+            {
+              "anchor": "Controlling-Particle-Lifetime",
+              "identifiers": [
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleLifetime",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleLifetimeRange"
+              ],
+              "title": "Controlling Particle Lifetime"
+            },
+            {
+              "anchor": "Controlling-Particle-Position",
+              "identifiers": [
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particlePosition",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particlePositionRange",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleZPosition",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleZPositionRange"
+              ],
+              "title": "Controlling Particle Position"
+            },
+            {
+              "anchor": "Controlling-Particle-Velocity-and-Acceleration",
+              "identifiers": [
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleSpeed",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleSpeedRange",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/emissionAngle",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/emissionAngleRange",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/xAcceleration",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/yAcceleration",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleZPositionSpeed"
+              ],
+              "title": "Controlling Particle Velocity and Acceleration"
+            },
+            {
+              "anchor": "Adjusting-a-Particles-Rotation",
+              "identifiers": [
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleRotation",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleRotationRange",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleRotationSpeed"
+              ],
+              "title": "Adjusting a Particle’s Rotation"
+            },
+            {
+              "anchor": "Scaling-Particles-by-a-Factor",
+              "identifiers": [
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleScale",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleScaleRange",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleScaleSpeed",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleScaleSequence"
+              ],
+              "title": "Scaling Particles by a Factor"
+            },
+            {
+              "anchor": "Changing-a-Particles-Source-Image-and-Size",
+              "identifiers": [
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleTexture",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleSize"
+              ],
+              "title": "Changing a Particle’s Source Image and Size"
+            },
+            {
+              "anchor": "Configuring-Particle-Color",
+              "identifiers": [
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleColorSequence",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleColor",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleColorAlphaRange",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleColorBlueRange",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleColorGreenRange",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleColorRedRange",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleColorAlphaSpeed",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleColorBlueSpeed",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleColorGreenSpeed",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleColorRedSpeed"
+              ],
+              "title": "Configuring Particle Color"
+            },
+            {
+              "anchor": "Controlling-How-the-Texture-is-Blended-with-Particle-Color",
+              "identifiers": [
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleColorBlendFactorSequence",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleColorBlendFactor",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleColorBlendFactorRange",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleColorBlendFactorSpeed"
+              ],
+              "title": "Controlling How the Texture is Blended with Particle Color"
+            },
+            {
+              "abstract": [
+                {
+                  "text": "Change how an emitter uses an alpha value, such as additive blending, that results in the emitter being brighter than it was before.",
+                  "type": "text"
+                }
+              ],
+              "anchor": "Blending-Particles-with-the-Framebuffer",
+              "identifiers": [
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleBlendMode",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleAlphaSequence",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleAlpha",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleAlphaRange",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleAlphaSpeed"
+              ],
+              "title": "Blending Particles with the Framebuffer"
+            },
+            {
+              "abstract": [
+                {
+                  "text": "Change particles over time using actions or keyframe sequences.",
+                  "type": "text"
+                }
+              ],
+              "anchor": "Animating-Particles",
+              "identifiers": [
+                "doc://com.apple.spritekit/documentation/SpriteKit/animating-particle-properties-across-disparate-values",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleAction"
+              ],
+              "title": "Animating Particles"
+            },
+            {
+              "anchor": "Applying-Physics-Fields-to-the-Particles",
+              "identifiers": [
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/fieldBitMask"
+              ],
+              "title": "Applying Physics Fields to the Particles"
+            },
+            {
+              "anchor": "Taking-Full-Control-of-Particle-Drawing-with-a-Shader",
+              "identifiers": [
+                "doc://com.apple.spritekit/documentation/SpriteKit/getting-started-with-particle-shaders",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/shader",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/attributeValues",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/setValue(_:forAttribute:)",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/value(forAttributeNamed:)"
+              ],
+              "title": "Taking Full Control of Particle Drawing with a Shader"
+            },
+            {
+              "anchor": "Maximizing-Particle-Run-Time-Performance",
+              "identifiers": [
+                "doc://com.apple.spritekit/documentation/SpriteKit/optimizing-emitter-node-performance"
+              ],
+              "title": "Maximizing Particle Run-Time Performance"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKNode"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Nodes-that-Draw",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.spritekit/documentation/SpriteKit/maximizing-node-drawing-performance",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKSpriteNode",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKShapeNode",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKLabelNode",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKVideoNode",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SKTileMapNode",
+                "doc://com.apple.spritekit/documentation/SpriteKit/SK3DNode"
+              ],
+              "title": "Nodes that Draw"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "SKEmitterNode"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKNode",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)SKNode",
+                    "text": "SKNode"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEmitterNode~1targetNode/title",
+          "value": "targetNode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEmitterNode~1targetNode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "targetNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)UIActivityItemsConfigurationProviding/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIActivityItemsConfigurationProviding"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEmitterNode~1particleColorBlendFactorSpeed/title",
+          "value": "particleColorBlendFactorSpeed"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEmitterNode~1particleColorBlendFactorSpeed/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "particleColorBlendFactorSpeed"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)UIUserActivityRestoring/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIUserActivityRestoring"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEmitterNode~1particleRotationRange/title",
+          "value": "particleRotationRange"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEmitterNode~1particleRotationRange/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "particleRotationRange"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEmitterNode~1particleColorBlendFactorSequence/title",
+          "value": "particleColorBlendFactorSequence"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEmitterNode~1particleColorBlendFactorSequence/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "particleColorBlendFactorSequence"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEmitterNode~1particleColorSequence/title",
+          "value": "particleColorSequence"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEmitterNode~1particleColorSequence/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "particleColorSequence"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKNode/title",
+          "value": "SKNode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKNode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKNode/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSStandardKeyBindingResponding/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSStandardKeyBindingResponding"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEmitterNode~1particleSize/title",
+          "value": "particleSize"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEmitterNode~1particleSize/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "particleSize"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEmitterNode~1advanceSimulationTime(_:)/title",
+          "value": "advanceSimulationTime:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEmitterNode~1advanceSimulationTime(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "advanceSimulationTime:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)UIFocusItemContainer/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIFocusItemContainer"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEmitterNode~1yAcceleration/title",
+          "value": "yAcceleration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEmitterNode~1yAcceleration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "yAcceleration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEmitterNode~1shader/title",
+          "value": "shader"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEmitterNode~1shader/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "shader"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEmitterNode~1particleScale/title",
+          "value": "particleScale"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEmitterNode~1particleScale/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "particleScale"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEmitterNode~1particleAlpha/title",
+          "value": "particleAlpha"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEmitterNode~1particleAlpha/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "particleAlpha"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEmitterNode~1emissionAngleRange/title",
+          "value": "emissionAngleRange"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEmitterNode~1emissionAngleRange/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "emissionAngleRange"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEmitterNode~1particleColorAlphaRange/title",
+          "value": "particleColorAlphaRange"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEmitterNode~1particleColorAlphaRange/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "particleColorAlphaRange"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEmitterNode~1particleLifetimeRange/title",
+          "value": "particleLifetimeRange"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEmitterNode~1particleLifetimeRange/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "particleLifetimeRange"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSTouchBarProvider/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSTouchBarProvider"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEmitterNode~1emissionAngle/title",
+          "value": "emissionAngle"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEmitterNode~1emissionAngle/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "emissionAngle"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEmitterNode~1particleScaleSpeed/title",
+          "value": "particleScaleSpeed"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEmitterNode~1particleScaleSpeed/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "particleScaleSpeed"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEmitterNode~1particleBlendMode/title",
+          "value": "particleBlendMode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEmitterNode~1particleBlendMode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "particleBlendMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEmitterNode~1particleBirthRate/title",
+          "value": "particleBirthRate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEmitterNode~1particleBirthRate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "particleBirthRate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEmitterNode~1attributeValues/title",
+          "value": "attributeValues"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEmitterNode~1attributeValues/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "attributeValues"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEmitterNode~1particleColorBlendFactor/title",
+          "value": "particleColorBlendFactor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEmitterNode~1particleColorBlendFactor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "particleColorBlendFactor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEmitterNode~1particleAlphaSequence/title",
+          "value": "particleAlphaSequence"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEmitterNode~1particleAlphaSequence/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "particleAlphaSequence"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKShapeNode/title",
+          "value": "SKShapeNode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKShapeNode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKShapeNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKShapeNode/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKShapeNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)UIResponderStandardEditActions/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIResponderStandardEditActions"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEmitterNode~1particleColorGreenSpeed/title",
+          "value": "particleColorGreenSpeed"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEmitterNode~1particleColorGreenSpeed/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "particleColorGreenSpeed"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEmitterNode~1particleColorGreenRange/title",
+          "value": "particleColorGreenRange"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEmitterNode~1particleColorGreenRange/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "particleColorGreenRange"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEmitterNode~1particleRotationSpeed/title",
+          "value": "particleRotationSpeed"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEmitterNode~1particleRotationSpeed/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "particleRotationSpeed"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKParticleRenderOrder/title",
+          "value": "SKParticleRenderOrder"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKParticleRenderOrder/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKParticleRenderOrder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKParticleRenderOrder/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKParticleRenderOrder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEmitterNode~1particlePosition/title",
+          "value": "particlePosition"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEmitterNode~1particlePosition/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "particlePosition"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEmitterNode~1particleAlphaRange/title",
+          "value": "particleAlphaRange"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEmitterNode~1particleAlphaRange/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "particleAlphaRange"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSUserActivityRestoring/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSUserActivityRestoring"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEmitterNode~1particleScaleRange/title",
+          "value": "particleScaleRange"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEmitterNode~1particleScaleRange/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "particleScaleRange"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEmitterNode~1particleTexture/title",
+          "value": "particleTexture"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEmitterNode~1particleTexture/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "particleTexture"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEmitterNode~1value(forAttributeNamed:)/title",
+          "value": "valueForAttributeNamed:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEmitterNode~1value(forAttributeNamed:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "valueForAttributeNamed:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEmitterNode~1particleColor/title",
+          "value": "particleColor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEmitterNode~1particleColor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "particleColor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEmitterNode~1particleZPositionRange/title",
+          "value": "particleZPositionRange"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEmitterNode~1particleZPositionRange/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "particleZPositionRange"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEmitterNode~1particleColorRedRange/title",
+          "value": "particleColorRedRange"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEmitterNode~1particleColorRedRange/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "particleColorRedRange"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEmitterNode~1particleScaleSequence/title",
+          "value": "particleScaleSequence"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEmitterNode~1particleScaleSequence/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "particleScaleSequence"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEmitterNode~1particleColorBlueSpeed/title",
+          "value": "particleColorBlueSpeed"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEmitterNode~1particleColorBlueSpeed/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "particleColorBlueSpeed"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEmitterNode~1particleColorAlphaSpeed/title",
+          "value": "particleColorAlphaSpeed"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEmitterNode~1particleColorAlphaSpeed/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "particleColorAlphaSpeed"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SK3DNode/title",
+          "value": "SK3DNode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SK3DNode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SK3DNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SK3DNode/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SK3DNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEmitterNode~1fieldBitMask/title",
+          "value": "fieldBitMask"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEmitterNode~1fieldBitMask/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "fieldBitMask"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEmitterNode~1setValue(_:forAttribute:)/title",
+          "value": "setValue:forAttributeNamed:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEmitterNode~1setValue(_:forAttribute:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setValue:forAttributeNamed:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEmitterNode/title",
+          "value": "SKEmitterNode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEmitterNode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKEmitterNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEmitterNode/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKEmitterNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEmitterNode~1particleColorBlendFactorRange/title",
+          "value": "particleColorBlendFactorRange"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEmitterNode~1particleColorBlendFactorRange/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "particleColorBlendFactorRange"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEmitterNode~1particleZPositionSpeed/title",
+          "value": "particleZPositionSpeed"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEmitterNode~1particleZPositionSpeed/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "particleZPositionSpeed"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEmitterNode~1particleZPosition/title",
+          "value": "particleZPosition"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEmitterNode~1particleZPosition/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "particleZPosition"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEmitterNode~1xAcceleration/title",
+          "value": "xAcceleration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEmitterNode~1xAcceleration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "xAcceleration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)UIPasteConfigurationSupporting/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIPasteConfigurationSupporting"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEmitterNode~1particleSpeedRange/title",
+          "value": "particleSpeedRange"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEmitterNode~1particleSpeedRange/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "particleSpeedRange"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)UIFocusItem/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIFocusItem"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)UIFocusEnvironment",
+              "text": "UIFocusEnvironment"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)UIFocusEnvironment/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIFocusEnvironment"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEmitterNode~1resetSimulation()/title",
+          "value": "resetSimulation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEmitterNode~1resetSimulation()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "resetSimulation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKSpriteNode/title",
+          "value": "SKSpriteNode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKSpriteNode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKSpriteNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKSpriteNode/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKSpriteNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEmitterNode~1particleRenderOrder/title",
+          "value": "particleRenderOrder"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEmitterNode~1particleRenderOrder/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "particleRenderOrder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEmitterNode~1particleSpeed/title",
+          "value": "particleSpeed"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEmitterNode~1particleSpeed/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "particleSpeed"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKTileMapNode/title",
+          "value": "SKTileMapNode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKTileMapNode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKTileMapNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKTileMapNode/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKTileMapNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEmitterNode~1particleColorBlueRange/title",
+          "value": "particleColorBlueRange"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEmitterNode~1particleColorBlueRange/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "particleColorBlueRange"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEmitterNode~1particleAction/title",
+          "value": "particleAction"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEmitterNode~1particleAction/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "particleAction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEmitterNode~1particleColorRedSpeed/title",
+          "value": "particleColorRedSpeed"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEmitterNode~1particleColorRedSpeed/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "particleColorRedSpeed"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEmitterNode~1particleAlphaSpeed/title",
+          "value": "particleAlphaSpeed"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEmitterNode~1particleAlphaSpeed/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "particleAlphaSpeed"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEmitterNode~1particlePositionRange/title",
+          "value": "particlePositionRange"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEmitterNode~1particlePositionRange/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "particlePositionRange"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEmitterNode~1particleRotation/title",
+          "value": "particleRotation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEmitterNode~1particleRotation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "particleRotation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)UICoordinateSpace/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UICoordinateSpace"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKLabelNode/title",
+          "value": "SKLabelNode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKLabelNode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKLabelNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKLabelNode/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKLabelNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKVideoNode/title",
+          "value": "SKVideoNode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKVideoNode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKVideoNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKVideoNode/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKVideoNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEmitterNode~1particleLifetime/title",
+          "value": "particleLifetime"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEmitterNode~1particleLifetime/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "particleLifetime"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEmitterNode~1numParticlesToEmit/title",
+          "value": "numParticlesToEmit"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEmitterNode~1numParticlesToEmit/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "numParticlesToEmit"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/spritekit/skemitternode"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/spritekit/skemitternode"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

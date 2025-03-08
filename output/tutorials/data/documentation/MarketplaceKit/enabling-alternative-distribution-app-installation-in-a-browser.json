@@ -1,0 +1,1206 @@
+{
+  "abstract": [
+    {
+      "text": "Add support for browser apps to install alternative distribution apps from websites.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.MarketplaceKit/documentation/MarketplaceKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.MarketplaceKit/documentation/marketplacekit/enabling-alternative-distribution-app-installation-in-a-browser"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "MarketplaceKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Enabling alternative distribution app installation in a browser"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To enable the installation of an alternative distribution app from a webpage, your browser listens for installation requests from the website visitor’s interaction with the page and hands off the request to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.MarketplaceKit/documentation/MarketplaceKit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". The installation request uses a specific URL scheme (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.MarketplaceKit/documentation/MarketplaceKit/MarketplaceKitURIScheme",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ") that the marketplace page assigns to a button. ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.MarketplaceKit/documentation/MarketplaceKit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " handles the request by presenting the app install sheet, in which the person can confirm and install the alternative distribution app on their device.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "enabling-alternative-distribution-app-installation-in-a-browser-1.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.MarketplaceKit/documentation/MarketplaceKit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " requires a one-to-one mapping between an alternative distribution app and the domain of the website that distributes it. When a page visitor taps a button to install the app, your browser app passes the origin of the site’s main frame to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.MarketplaceKit/documentation/MarketplaceKit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", which confirms that the owner of the domain also owns the app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The system requires that your browser app have a specific entitlement to call the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.MarketplaceKit/documentation/MarketplaceKit",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " installation method. For more information and to request the entitlement, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.browser.app-installation",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Respond-to-app-installation-requests-using-BrowserEngineKit",
+          "level": 2,
+          "text": "Respond to app installation requests using BrowserEngineKit",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Browsers that render using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BrowserEngineKit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " hand off app installation requests to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.MarketplaceKit/documentation/MarketplaceKit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Your browser listens for invocations to a URL with the scheme ",
+              "type": "text"
+            },
+            {
+              "code": "MarketplaceKit/MarketplaceKitURIScheme",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "marketplace-kit://install",
+            "    ?alternativeDistributionPackage=<url>",
+            "    &installVerificationToken=<install verification token>",
+            "    &token=<authentication token>",
+            "    &account=<user id>",
+            "    &appShareURL=<URL>;"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The URL parameters are:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "URL parameter",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Description",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "alternativeDistributionPackage",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The app to install in the form of an alternative distribution package.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "installVerificationToken",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A required JSON web signature (JWS).",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "token",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "An optional authentication token.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "account",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "An optional user ID for the page visitor.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "appShareURL",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "An optional URL to a product landing page for the app on the marketplace website.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about the parameters, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.MarketplaceKit/documentation/MarketplaceKit/MarketplaceKitURIScheme",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To forward the navigation request to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.MarketplaceKit/documentation/MarketplaceKit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", call the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.MarketplaceKit/documentation/MarketplaceKit/AppLibrary/requestAppInstallationFromBrowser(for:referrer:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to display the app install sheet and pass in the following parameters:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "URL parameter",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Description",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "url",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The unparsed ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.MarketplaceKit/documentation/MarketplaceKit/MarketplaceKitURIScheme",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " URL that triggers the installation request.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "referrer",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The origin of the main frame that contains the alternative marketplace installation URL.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "To comply with operation system requirements, ignore the ",
+                  "type": "text"
+                },
+                {
+                  "code": "marketplace-kit://",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " URL invocation if the navigation doesn’t result from a user interaction, such as tapping a button, or if the navigation results from a redirect.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Respond-to-app-installation-requests-using-WebKit",
+          "level": 2,
+          "text": "Respond to app installation requests using WebKit",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your browser app uses ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/WebKit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", modify your app’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/WebKit/WKNavigationDelegate/webView(_:decidePolicyFor:decisionHandler:)-2ni62",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " navigation delegate method. When the system calls the delegate method with a URL matching the  ",
+              "type": "text"
+            },
+            {
+              "code": "MarketplaceKitURIScheme",
+              "type": "codeVoice"
+            },
+            {
+              "text": " scheme, call the ",
+              "type": "text"
+            },
+            {
+              "code": "decisionHandler",
+              "type": "codeVoice"
+            },
+            {
+              "text": " with a value of ",
+              "type": "text"
+            },
+            {
+              "code": "WKNavigationActionPolicyAllow",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Don’t call the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.MarketplaceKit/documentation/MarketplaceKit/AppLibrary/requestAppInstallationFromBrowser(for:referrer:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method directly. WebKit handles the interaction with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.MarketplaceKit/documentation/MarketplaceKit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " after you call the navigation delegate’s ",
+              "type": "text"
+            },
+            {
+              "code": "decisionHandler",
+              "type": "codeVoice"
+            },
+            {
+              "text": " with a value of ",
+              "type": "text"
+            },
+            {
+              "code": "WKNavigationActionPolicyAllow",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Safari is an example of a browser app that uses ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/WebKit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". When a person taps on an ",
+              "type": "text"
+            },
+            {
+              "code": "MarketplaceKitURIScheme",
+              "type": "codeVoice"
+            },
+            {
+              "text": " URL, it calls Safari’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/WebKit/WKNavigationDelegate/webView(_:decidePolicyFor:decisionHandler:)-2ni62",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " navigation delegate method with a URL matching the ",
+              "type": "text"
+            },
+            {
+              "code": "MarketplaceKitURIScheme",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". Safari responds by calling ",
+              "type": "text"
+            },
+            {
+              "code": "decisionHandler",
+              "type": "codeVoice"
+            },
+            {
+              "text": " with ",
+              "type": "text"
+            },
+            {
+              "code": "WKNavigationActionPolicyAllow",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", which then causes WebKit to pass the URL to MarketplaceKit and display an install sheet.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Test-web-distribution-during-development",
+          "level": 2,
+          "text": "Test web distribution during development",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In iOS or iPadOS 18.2 and later, development builds of browser apps with the default browser entitlement (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.web-browser",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ") can test the installation of app marketplaces and other apps that distribute over the web. A development build signed with a development or Ad Hoc provisioning profile can run on Simulator and all supported physical devices (iPhone and iPad).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.MarketplaceKit/documentation/MarketplaceKit": {
+      "abstract": [
+        {
+          "text": "Create an alternative app marketplace, distribute your app on an alternative app marketplace, or distribute your app from your website.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.MarketplaceKit/documentation/MarketplaceKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "MarketplaceKit",
+      "type": "topic",
+      "url": "/documentation/marketplacekit"
+    },
+    "doc://com.apple.MarketplaceKit/documentation/MarketplaceKit/AppLibrary/requestAppInstallationFromBrowser(for:referrer:)": {
+      "abstract": [
+        {
+          "text": "Forwards an app installation request from the developer’s webpage.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "requestAppInstallationFromBrowser"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "referrer"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.MarketplaceKit/documentation/MarketplaceKit/AppLibrary/requestAppInstallationFromBrowser(for:referrer:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "requestAppInstallationFromBrowser(for:referrer:)",
+      "type": "topic",
+      "url": "/documentation/marketplacekit/applibrary/requestappinstallationfrombrowser(for:referrer:)"
+    },
+    "doc://com.apple.MarketplaceKit/documentation/MarketplaceKit/MarketplaceKitURIScheme": {
+      "abstract": [
+        {
+          "text": "A URI scheme that defines an alternative distribution app installation link.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MarketplaceKitURIScheme"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.MarketplaceKit/documentation/MarketplaceKit/MarketplaceKitURIScheme",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MarketplaceKitURIScheme",
+      "type": "topic",
+      "url": "/documentation/marketplacekit/marketplacekiturischeme"
+    },
+    "doc://com.apple.documentation/documentation/BrowserEngineKit": {
+      "abstract": [
+        {
+          "text": "Create a browser that renders content using an alternative browser engine.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BrowserEngineKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "BrowserEngineKit",
+      "type": "topic",
+      "url": "/documentation/BrowserEngineKit"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.browser.app-installation": {
+      "abstract": [
+        {
+          "text": "The entitlement that enables a browser to install alternative-distribution apps from a website.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.browser.app-installation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "com.apple.developer.browser.app-installation",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Entitlements/com.apple.developer.browser.app-installation"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.web-browser": {
+      "abstract": [
+        {
+          "text": "A Boolean that indicates whether the app can act as the user’s default web browser.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.web-browser",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "com.apple.developer.web-browser",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Entitlements/com.apple.developer.web-browser"
+    },
+    "doc://com.apple.documentation/documentation/WebKit": {
+      "abstract": [
+        {
+          "text": "Integrate web content seamlessly into your app, and customize content interactions to meet your app’s needs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/WebKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "WebKit",
+      "type": "topic",
+      "url": "/documentation/WebKit"
+    },
+    "doc://com.apple.documentation/documentation/WebKit/WKNavigationDelegate/webView(_:decidePolicyFor:decisionHandler:)-2ni62": {
+      "abstract": [
+        {
+          "text": "Asks the delegate for permission to navigate to new content based on the specified action information.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "optional"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "webView"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "webView"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)WKWebView",
+          "text": "WKWebView"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "decidePolicyFor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "navigationAction"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)WKNavigationAction",
+          "text": "WKNavigationAction"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "decisionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "@escaping"
+        },
+        {
+          "kind": "text",
+          "text": " @"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@WKNavigationActionPolicy",
+          "text": "WKNavigationActionPolicy"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/WebKit/WKNavigationDelegate/webView(_:decidePolicyFor:decisionHandler:)-2ni62",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "webView(_:decidePolicyFor:decisionHandler:)",
+      "type": "topic",
+      "url": "/documentation/WebKit/WKNavigationDelegate/webView(_:decidePolicyFor:decisionHandler:)-2ni62"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "enabling-alternative-distribution-app-installation-in-a-browser-1.png": {
+      "alt": "Three screenshots of iPhone that show the stages of installing a fictional alternative app marketplace called Megabyte Mart from a website. The left screenshot has the caption App marketplace website and shows the app icon for Megabyte Mart, which is a representation of a shopping basket, below that is the app title Megabyte Mart, below that are lines that represent descriptive text, and below that is the button Install Megabyte Mart. The center screenshot has the caption Install sheet and shows a confirmation, the title of the sheet is megabytemart.com Would Like to Install an App Marketplace, followed by lines that represent descriptive text, followed by the Megabyte Mart app info, which includes the developer name Tapland, Inc. as well as screenshots, below the app info is the Install App Marketplace button, followed by a cancel button. The right screenshot has the caption Installed app marketplace and shows a representation of the homescreen with Megabyte Mart installed.",
+      "identifier": "enabling-alternative-distribution-app-installation-in-a-browser-1.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/6480f09e557a4dc0b48881538c1f92b9/enabling-alternative-distribution-app-installation-in-a-browser-1@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/6734737fde6b856a66dc73fcff672be2/enabling-alternative-distribution-app-installation-in-a-browser-1~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1WebKit~1WKNavigationDelegate~1webView(_:decidePolicyFor:decisionHandler:)-2ni62/title",
+          "value": "webView:decidePolicyForNavigationAction:decisionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1WebKit~1WKNavigationDelegate~1webView(_:decidePolicyFor:decisionHandler:)-2ni62/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "webView:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)WKWebView",
+              "text": "WKWebView"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "webView"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "decidePolicyForNavigationAction:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)WKNavigationAction",
+              "text": "WKNavigationAction"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "navigationAction"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "decisionHandler:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:BFv(#$@E@WKNavigationActionPolicy)",
+              "text": "void (^)(enum WKNavigationActionPolicy)"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "internalParam",
+              "text": "decisionHandler"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/marketplacekit/enabling-alternative-distribution-app-installation-in-a-browser"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

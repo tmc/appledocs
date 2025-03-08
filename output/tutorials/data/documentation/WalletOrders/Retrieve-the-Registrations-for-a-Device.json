@@ -1,0 +1,475 @@
+{
+  "abstract": [
+    {
+      "text": "Retrieves the identifiers of the orders that the device registered for.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.walletorders/documentation/WalletOrders"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.walletorders/documentation/WalletOrders/Retrieve-the-Registrations-for-a-Device"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "rest:WalletOrders:get:v1-devices-{}-registrations-{}?ordersModifiedSince={}",
+    "modules": [
+      {
+        "name": "Wallet Orders"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "Retrieve the Registrations for a Device"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "16.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "16.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "13.0",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Web Service Endpoint",
+    "symbolKind": "httpRequest",
+    "title": "Retrieve the registrations for a device"
+  },
+  "primaryContentSections": [
+    {
+      "kind": "restEndpoint",
+      "title": "URL",
+      "tokens": [
+        {
+          "kind": "method",
+          "text": "GET"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "baseURL",
+          "text": "https://your-web-service.com/"
+        },
+        {
+          "kind": "path",
+          "text": "v1/devices/"
+        },
+        {
+          "kind": "parameter",
+          "text": "{deviceIdentifier}"
+        },
+        {
+          "kind": "path",
+          "text": "/registrations/"
+        },
+        {
+          "kind": "parameter",
+          "text": "{orderTypeIdentifier}"
+        },
+        {
+          "kind": "path",
+          "text": "?ordersModifiedSince="
+        },
+        {
+          "kind": "parameter",
+          "text": "{lastModified}"
+        }
+      ]
+    },
+    {
+      "items": [
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The order type identifier of the order. This value corresponds to the value of the ",
+                  "type": "text"
+                },
+                {
+                  "code": "orderTypeIdentifier",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " key of the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.walletorders/documentation/WalletOrders/Order",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "orderTypeIdentifier",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ],
+          "typeDetails": [
+            {
+              "baseType": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A unique identifier used to recognize and authenticate the device.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "deviceIdentifier",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ],
+          "typeDetails": [
+            {
+              "baseType": "string"
+            }
+          ]
+        }
+      ],
+      "kind": "restParameters",
+      "source": "path",
+      "title": "Path Parameters"
+    },
+    {
+      "items": [
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The value of the ",
+                  "type": "text"
+                },
+                {
+                  "code": "lastModified",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " key from the response to a previous request. This value limits the results of the current request to the orders modified since the previous request.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "lastModified",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ],
+          "typeDetails": [
+            {
+              "baseType": "string"
+            }
+          ]
+        }
+      ],
+      "kind": "restParameters",
+      "source": "query",
+      "title": "Query Parameters"
+    },
+    {
+      "items": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The request was successful and the response includes the identifiers for the matching orders.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Matching Orders",
+          "status": 200,
+          "type": [
+            {
+              "identifier": "doc://com.apple.walletorders/documentation/WalletOrders/OrderIdentifiers",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:WalletOrders:OrderIdentifiers",
+              "text": "OrderIdentifiers"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "There are no matching orders.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "reason": "No Matching Orders",
+          "status": 204,
+          "type": []
+        }
+      ],
+      "kind": "restResponses",
+      "title": "Response Codes"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.walletorders/documentation/WalletOrders": {
+      "abstract": [
+        {
+          "text": "Create, distribute, and update orders in Wallet.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.walletorders/documentation/WalletOrders",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Wallet Orders",
+      "type": "topic",
+      "url": "/documentation/walletorders"
+    },
+    "doc://com.apple.walletorders/documentation/WalletOrders/Order": {
+      "abstract": [
+        {
+          "text": "The order’s details, including information about the products or services rendered, customer service, and fulfillment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Order"
+        }
+      ],
+      "identifier": "doc://com.apple.walletorders/documentation/WalletOrders/Order",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Order"
+        }
+      ],
+      "role": "symbol",
+      "title": "Order",
+      "type": "topic",
+      "url": "/documentation/walletorders/order"
+    },
+    "doc://com.apple.walletorders/documentation/WalletOrders/OrderIdentifiers": {
+      "abstract": [
+        {
+          "text": "The unique identifiers associated with orders.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "OrderIdentifiers"
+        }
+      ],
+      "identifier": "doc://com.apple.walletorders/documentation/WalletOrders/OrderIdentifiers",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "OrderIdentifiers"
+        }
+      ],
+      "role": "symbol",
+      "title": "OrderIdentifiers",
+      "type": "topic",
+      "url": "/documentation/walletorders/orderidentifiers"
+    },
+    "doc://com.apple.walletorders/documentation/WalletOrders/Retrieve-the-Latest-Version-of-an-Order": {
+      "abstract": [
+        {
+          "text": "Retrieves the latest signed and compressed version of an order.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.walletorders/documentation/WalletOrders/Retrieve-the-Latest-Version-of-an-Order",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Retrieve the Latest Version of an Order"
+        }
+      ],
+      "role": "symbol",
+      "title": "Retrieve the latest version of an order",
+      "type": "topic",
+      "url": "/documentation/walletorders/retrieve-the-latest-version-of-an-order"
+    },
+    "doc://com.apple.walletorders/documentation/WalletOrders/Retrieve-the-Registrations-for-a-Device": {
+      "abstract": [
+        {
+          "text": "Retrieves the identifiers of the orders that the device registered for.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.walletorders/documentation/WalletOrders/Retrieve-the-Registrations-for-a-Device",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Retrieve the Registrations for a Device"
+        }
+      ],
+      "role": "symbol",
+      "title": "Retrieve the registrations for a device",
+      "type": "topic",
+      "url": "/documentation/walletorders/retrieve-the-registrations-for-a-device"
+    },
+    "doc://com.apple.walletorders/documentation/WalletOrders/building-a-distributable-order-package": {
+      "abstract": [
+        {
+          "text": "Prepare an order for distribution by building, signing, and compressing the source files.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.walletorders/documentation/WalletOrders/building-a-distributable-order-package",
+      "kind": "article",
+      "role": "article",
+      "title": "Building a distributable order package",
+      "type": "topic",
+      "url": "/documentation/walletorders/building-a-distributable-order-package"
+    },
+    "doc://com.apple.walletorders/documentation/WalletOrders/creating-the-source-for-an-order": {
+      "abstract": [
+        {
+          "text": "Define an order by creating the directory structure, and adding source files and images.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.walletorders/documentation/WalletOrders/creating-the-source-for-an-order",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating the source for an order",
+      "type": "topic",
+      "url": "/documentation/walletorders/creating-the-source-for-an-order"
+    },
+    "doc://com.apple.walletorders/documentation/WalletOrders/example-order-packages": {
+      "abstract": [
+        {
+          "text": "Edit, build, and add example order packages to Wallet.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.walletorders/documentation/WalletOrders/example-order-packages",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Example Order Packages",
+      "type": "topic",
+      "url": "/documentation/walletorders/example-order-packages"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.walletorders/documentation/WalletOrders/creating-the-source-for-an-order",
+        "doc://com.apple.walletorders/documentation/WalletOrders/building-a-distributable-order-package",
+        "doc://com.apple.walletorders/documentation/WalletOrders/Retrieve-the-Latest-Version-of-an-Order",
+        "doc://com.apple.walletorders/documentation/WalletOrders/Order",
+        "doc://com.apple.walletorders/documentation/WalletOrders/example-order-packages"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/walletorders/retrieve-the-registrations-for-a-device"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

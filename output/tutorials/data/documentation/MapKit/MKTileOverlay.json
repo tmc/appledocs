@@ -1,0 +1,1646 @@
+{
+  "abstract": [
+    {
+      "text": "An overlay that covers an area of the map with tiles of bitmap images.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.mapkit/documentation/MapKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.mapkit/documentation/MapKit/MKTileOverlay"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)MKTileOverlay",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "MKTileOverlay"
+      }
+    ],
+    "modules": [
+      {
+        "name": "MapKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "MKTileOverlay"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "7.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "7.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.9",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.2",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "MKTileOverlay"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MKTileOverlay"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You use tile overlay objects to represent your own tile-based content and to coordinate the display of that content in a map view. Your tiles can supplement the underlying map content or replace it completely. A tile overlay object coordinates the loading and management of the tiles, and a corresponding ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKTileOverlayRenderer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object handles the actual drawing of the tiles on the map.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can use a single tile overlay object to represent all of the tiles at one or more zoom levels of the map. The default tile overlay object uses a template string to build URLs so that it can locate the map tiles it needs. Each URL incorporates the x and y index of the map tile, the zoom level it’s intended for, and the scale factor corresponding to the screen resolution on which to display the tile. The default class lets you specify map tiles with indexes that start in either the upper-left corner or lower-left corner of the map. If you use a different indexing scheme for your tiles, you can also subclass and override the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKTileOverlay/url(forTilePath:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKTileOverlay/loadTile(at:result:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " methods to map between the requested tile and your custom indexing scheme.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit": {
+      "abstract": [
+        {
+          "text": "Display map or satellite imagery within your app, call out points of interest, and determine placemark information for map coordinates.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "MapKit",
+      "type": "topic",
+      "url": "/documentation/mapkit"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit/MKAnnotation": {
+      "abstract": [
+        {
+          "text": "An interface for associating your content with a specific map location.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MKAnnotation"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKAnnotation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MKAnnotation"
+        }
+      ],
+      "role": "symbol",
+      "title": "MKAnnotation",
+      "type": "topic",
+      "url": "/documentation/mapkit/mkannotation"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit/MKOverlay": {
+      "abstract": [
+        {
+          "text": "An interface for associating content with a specific map region.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MKOverlay"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKOverlay",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MKOverlay"
+        }
+      ],
+      "role": "symbol",
+      "title": "MKOverlay",
+      "type": "topic",
+      "url": "/documentation/mapkit/mkoverlay"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit/MKTileOverlay": {
+      "abstract": [
+        {
+          "text": "An overlay that covers an area of the map with tiles of bitmap images.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MKTileOverlay"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKTileOverlay",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MKTileOverlay"
+        }
+      ],
+      "role": "symbol",
+      "title": "MKTileOverlay",
+      "type": "topic",
+      "url": "/documentation/mapkit/mktileoverlay"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit/MKTileOverlay/canReplaceMapContent": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the tile content is fully opaque.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "canReplaceMapContent"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKTileOverlay/canReplaceMapContent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "canReplaceMapContent"
+        }
+      ],
+      "role": "symbol",
+      "title": "canReplaceMapContent",
+      "type": "topic",
+      "url": "/documentation/mapkit/mktileoverlay/canreplacemapcontent"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit/MKTileOverlay/init(urlTemplate:)": {
+      "abstract": [
+        {
+          "text": "Creates and returns a tile overlay object using the specified tile-access template.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "urlTemplate"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKTileOverlay/init(urlTemplate:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithURLTemplate:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(urlTemplate:)",
+      "type": "topic",
+      "url": "/documentation/mapkit/mktileoverlay/init(urltemplate:)"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit/MKTileOverlay/isGeometryFlipped": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates the orientation of tile indexes along the y-axis.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isGeometryFlipped"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKTileOverlay/isGeometryFlipped",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "geometryFlipped"
+        }
+      ],
+      "role": "symbol",
+      "title": "isGeometryFlipped",
+      "type": "topic",
+      "url": "/documentation/mapkit/mktileoverlay/isgeometryflipped"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit/MKTileOverlay/loadTile(at:result:)": {
+      "abstract": [
+        {
+          "text": "Loads the specified tile asynchronously.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "loadTile"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@MKTileOverlayPath",
+          "text": "MKTileOverlayPath"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "result"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": "?, (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKTileOverlay/loadTile(at:result:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "loadTileAtPath:result:"
+        }
+      ],
+      "role": "symbol",
+      "title": "loadTile(at:result:)",
+      "type": "topic",
+      "url": "/documentation/mapkit/mktileoverlay/loadtile(at:result:)"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit/MKTileOverlay/maximumZ": {
+      "abstract": [
+        {
+          "text": "The maximum zoom level that the tiles of this overlay object support.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "maximumZ"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKTileOverlay/maximumZ",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "maximumZ"
+        }
+      ],
+      "role": "symbol",
+      "title": "maximumZ",
+      "type": "topic",
+      "url": "/documentation/mapkit/mktileoverlay/maximumz"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit/MKTileOverlay/minimumZ": {
+      "abstract": [
+        {
+          "text": "The minimum zoom level that the tiles of this overlay object support.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "minimumZ"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKTileOverlay/minimumZ",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "minimumZ"
+        }
+      ],
+      "role": "symbol",
+      "title": "minimumZ",
+      "type": "topic",
+      "url": "/documentation/mapkit/mktileoverlay/minimumz"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit/MKTileOverlay/tileSize": {
+      "abstract": [
+        {
+          "text": "The size (in pixels) of your tile images.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "tileSize"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGSize",
+          "text": "CGSize"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKTileOverlay/tileSize",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "tileSize"
+        }
+      ],
+      "role": "symbol",
+      "title": "tileSize",
+      "type": "topic",
+      "url": "/documentation/mapkit/mktileoverlay/tilesize"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit/MKTileOverlay/url(forTilePath:)": {
+      "abstract": [
+        {
+          "text": "Returns the URL to use to access the specified tile.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "url"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "forTilePath"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@MKTileOverlayPath",
+          "text": "MKTileOverlayPath"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKTileOverlay/url(forTilePath:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "URLForTilePath:"
+        }
+      ],
+      "role": "symbol",
+      "title": "url(forTilePath:)",
+      "type": "topic",
+      "url": "/documentation/mapkit/mktileoverlay/url(fortilepath:)"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit/MKTileOverlay/urlTemplate": {
+      "abstract": [
+        {
+          "text": "The template for generating tile image URLs.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "urlTemplate"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKTileOverlay/urlTemplate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "URLTemplate"
+        }
+      ],
+      "role": "symbol",
+      "title": "urlTemplate",
+      "type": "topic",
+      "url": "/documentation/mapkit/mktileoverlay/urltemplate"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit/MKTileOverlayPath": {
+      "abstract": [
+        {
+          "text": "Values that specify the path indexes for a single overlay tile.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MKTileOverlayPath"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKTileOverlayPath",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MKTileOverlayPath"
+        }
+      ],
+      "role": "symbol",
+      "title": "MKTileOverlayPath",
+      "type": "topic",
+      "url": "/documentation/mapkit/mktileoverlaypath"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit/MKTileOverlayRenderer": {
+      "abstract": [
+        {
+          "text": "The renderer for a tile overlay that handles the drawing of bitmap images on the map surface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MKTileOverlayRenderer"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKTileOverlayRenderer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MKTileOverlayRenderer"
+        }
+      ],
+      "role": "symbol",
+      "title": "MKTileOverlayRenderer",
+      "type": "topic",
+      "url": "/documentation/mapkit/mktileoverlayrenderer"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.apple.mapkit/documentation/MapKit/MKAnnotation",
+        "doc://com.apple.mapkit/documentation/MapKit/MKOverlay",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Tiled-image-overlays",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.mapkit/documentation/MapKit/MKTileOverlayRenderer"
+      ],
+      "title": "Tiled image overlays"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-tile-overlay",
+      "identifiers": [
+        "doc://com.apple.mapkit/documentation/MapKit/MKTileOverlay/init(urlTemplate:)"
+      ],
+      "title": "Creating a tile overlay"
+    },
+    {
+      "anchor": "Accessing-the-tile-attributes",
+      "identifiers": [
+        "doc://com.apple.mapkit/documentation/MapKit/MKTileOverlay/tileSize",
+        "doc://com.apple.mapkit/documentation/MapKit/MKTileOverlay/isGeometryFlipped",
+        "doc://com.apple.mapkit/documentation/MapKit/MKTileOverlay/minimumZ",
+        "doc://com.apple.mapkit/documentation/MapKit/MKTileOverlay/maximumZ",
+        "doc://com.apple.mapkit/documentation/MapKit/MKTileOverlay/canReplaceMapContent"
+      ],
+      "title": "Accessing the tile attributes"
+    },
+    {
+      "anchor": "Customizing-the-loading-of-tiles",
+      "identifiers": [
+        "doc://com.apple.mapkit/documentation/MapKit/MKTileOverlay/urlTemplate",
+        "doc://com.apple.mapkit/documentation/MapKit/MKTileOverlay/url(forTilePath:)",
+        "doc://com.apple.mapkit/documentation/MapKit/MKTileOverlay/loadTile(at:result:)",
+        "doc://com.apple.mapkit/documentation/MapKit/MKTileOverlayPath"
+      ],
+      "title": "Customizing the loading of tiles"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "7.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "7.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.9",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "9.2",
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "MKTileOverlay"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MKTileOverlay"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MKTileOverlay"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.mapkit/documentation/MapKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Creating-a-tile-overlay",
+              "identifiers": [
+                "doc://com.apple.mapkit/documentation/MapKit/MKTileOverlay/init(urlTemplate:)"
+              ],
+              "title": "Creating a tile overlay"
+            },
+            {
+              "anchor": "Accessing-the-tile-attributes",
+              "identifiers": [
+                "doc://com.apple.mapkit/documentation/MapKit/MKTileOverlay/tileSize",
+                "doc://com.apple.mapkit/documentation/MapKit/MKTileOverlay/isGeometryFlipped",
+                "doc://com.apple.mapkit/documentation/MapKit/MKTileOverlay/minimumZ",
+                "doc://com.apple.mapkit/documentation/MapKit/MKTileOverlay/maximumZ",
+                "doc://com.apple.mapkit/documentation/MapKit/MKTileOverlay/canReplaceMapContent"
+              ],
+              "title": "Accessing the tile attributes"
+            },
+            {
+              "anchor": "Customizing-the-loading-of-tiles",
+              "identifiers": [
+                "doc://com.apple.mapkit/documentation/MapKit/MKTileOverlay/urlTemplate",
+                "doc://com.apple.mapkit/documentation/MapKit/MKTileOverlay/url(forTilePath:)",
+                "doc://com.apple.mapkit/documentation/MapKit/MKTileOverlay/loadTile(at:result:)",
+                "doc://com.apple.mapkit/documentation/MapKit/MKTileOverlayPath"
+              ],
+              "title": "Customizing the loading of tiles"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            },
+            {
+              "identifiers": [
+                "doc://com.apple.mapkit/documentation/MapKit/MKOverlay"
+              ],
+              "kind": "relationships",
+              "title": "Conforms To",
+              "type": "conformsTo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Tiled-image-overlays",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.mapkit/documentation/MapKit/MKTileOverlayRenderer"
+              ],
+              "title": "Tiled image overlays"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "MKTileOverlay"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKTileOverlay~1isGeometryFlipped/title",
+          "value": "geometryFlipped"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKTileOverlay~1isGeometryFlipped/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "geometryFlipped"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKTileOverlay~1minimumZ/title",
+          "value": "minimumZ"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKTileOverlay~1minimumZ/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "minimumZ"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKTileOverlay~1urlTemplate/title",
+          "value": "URLTemplate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKTileOverlay~1urlTemplate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "URLTemplate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKTileOverlay~1maximumZ/title",
+          "value": "maximumZ"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKTileOverlay~1maximumZ/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "maximumZ"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKTileOverlay~1url(forTilePath:)/title",
+          "value": "URLForTilePath:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKTileOverlay~1url(forTilePath:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "URLForTilePath:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKTileOverlayPath/title",
+          "value": "MKTileOverlayPath"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKTileOverlayPath/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MKTileOverlayPath"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKTileOverlayPath/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MKTileOverlayPath"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKTileOverlay~1canReplaceMapContent/title",
+          "value": "canReplaceMapContent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKTileOverlay~1canReplaceMapContent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "canReplaceMapContent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKTileOverlayRenderer/title",
+          "value": "MKTileOverlayRenderer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKTileOverlayRenderer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MKTileOverlayRenderer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKTileOverlayRenderer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MKTileOverlayRenderer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKTileOverlay~1loadTile(at:result:)/title",
+          "value": "loadTileAtPath:result:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKTileOverlay~1loadTile(at:result:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "loadTileAtPath:result:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKTileOverlay/title",
+          "value": "MKTileOverlay"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKTileOverlay/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MKTileOverlay"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKTileOverlay/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MKTileOverlay"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKAnnotation/title",
+          "value": "MKAnnotation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKAnnotation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MKAnnotation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKAnnotation/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MKAnnotation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKOverlay/title",
+          "value": "MKOverlay"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKOverlay/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MKOverlay"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKOverlay/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MKOverlay"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKTileOverlay~1tileSize/title",
+          "value": "tileSize"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKTileOverlay~1tileSize/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "tileSize"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKTileOverlay~1init(urlTemplate:)/title",
+          "value": "initWithURLTemplate:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKTileOverlay~1init(urlTemplate:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithURLTemplate:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/mapkit/mktileoverlay"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/mapkit/mktileoverlay"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

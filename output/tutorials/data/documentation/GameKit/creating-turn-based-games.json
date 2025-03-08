@@ -1,0 +1,4528 @@
+{
+  "abstract": [
+    {
+      "text": "Develop games where multiple players take turns and can exchange data while waiting for their turn.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.gamekit/documentation/GameKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.gamekit/documentation/GameKit/creating-turn-based-games"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "GameKit"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "15.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "15.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "15.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Creating turn-based games"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample code project uses the GameKit framework to create a simple turn-based game where two players take turns incrementing a counter until a player stops playing or forfeits the match. The game uses the turn-based matchmaker interface for starting and managing multiple turn-based matches. This game also uses the GameKit exchanges feature for participants in a turn-based game to message and exchange data.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create your own turn-based game, replace the SwiftUI files with your gameplay interface, and modify the ",
+              "type": "text"
+            },
+            {
+              "code": "TurnBasedGame",
+              "type": "codeVoice"
+            },
+            {
+              "text": " class to support your game.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Configure-the-sample-code-project",
+          "level": 3,
+          "text": "Configure the sample code project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To configure the sample code project, perform the following steps in Xcode:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If necessary, change the Bundle Identifier to a unique ID on the Signing & Capabilities pane.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Add your Apple ID account and assign the target to a team so Xcode can enable Game Center.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In App Store Connect, create an app record that matches the bundle ID (see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/help/app-store-connect/create-an-app-record/add-a-new-app",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " in App Store Connect Help).",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Connect two iOS devices to your Mac.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If necessary, click Register Device in the Signing & Capabilities pane to create the provisioning profile.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Build and run the sample on the two iOS devices.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If the Welcome to Game Center sheet appears, sign in using a different Apple ID on each device.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "anchor": "Authenticate-the-player-and-register-for-turn-based-events",
+          "level": 3,
+          "text": "Authenticate the player and register for turn-based events",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before using any GameKit APIs, the game needs to authenticate the local player by presenting an interface for them to sign in to Game Center on their device.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "TurnBasedGame.authenticatePlayer()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "method handles the authentication flow and, when complete, registers for turn-based game events.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Register for turn-based invitations and other events.",
+            "GKLocalPlayer.local.register(self)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Start-a-turn-based-match",
+          "level": 3,
+          "text": "Start a turn-based match",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To start or join an existing match, the player taps the Start Match button on the content view. Then the ",
+              "type": "text"
+            },
+            {
+              "code": "TurnBasedGame.startMatch()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " action method creates a match request and presents a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/GameKit/GKTurnBasedMatchmakerViewController",
+              "isActive": true,
+              "overridingTitle": "GKTurnBasedMatchmakerViewController",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "GKTurnBasedMatchmakerViewController",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " interface where the player can invite friends or automatch to fill empty slots.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Create a match request.",
+            "let request = GKMatchRequest()",
+            "request.minPlayers = minPlayers",
+            "request.maxPlayers = maxPlayers",
+            "if playersToInvite != nil {",
+            "    request.recipients = playersToInvite",
+            "}",
+            "",
+            "// Present the interface where the player selects opponents and starts the game.",
+            "let viewController = GKTurnBasedMatchmakerViewController(matchRequest: request)",
+            "viewController.turnBasedMatchmakerDelegate = self",
+            "rootViewController?.present(viewController, animated: true) { }"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After the player selects opponents in the Game Center interface, GameKit dismisses the view controller and invokes the ",
+              "type": "text"
+            },
+            {
+              "code": "GKTurnBasedEventListener.",
+              "type": "codeVoice"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/GameKit/GKTurnBasedEventListener/player(_:receivedTurnEventFor:didBecomeActive:)",
+              "isActive": true,
+              "overridingTitle": "player(_:receivedTurnEventFor:didBecomeActive:)",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "player(_:receivedTurnEventFor:didBecomeActive:)",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " protocol method, passing a new ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/GameKit/GKTurnBasedMatch",
+              "isActive": true,
+              "overridingTitle": "GKTurnBasedMatch",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "GKTurnBasedMatch",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " object. This method handles a variety of turn-based events throughout the match.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The first time GameKit invokes the ",
+              "type": "text"
+            },
+            {
+              "code": "player(_:receivedTurnEventFor:didBecomeActive:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method, the local player is the current participant. This method sets the ",
+              "type": "text"
+            },
+            {
+              "code": "myTurn",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property to ",
+              "type": "text"
+            },
+            {
+              "code": "true",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", which enables the Take Turn button in the game view interface.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Update the interface depending on whether it's the local player's turn.",
+            "myTurn = GKLocalPlayer.local == match.currentParticipant?.player ? true : false"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "GameKit doesn’t send invitations to the match until the participant who starts the match takes the first turn. Therefore, this method displays a placeholder name and avatar for the opponent until the opponent joins the match.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Instead of retaining the ",
+              "type": "text"
+            },
+            {
+              "code": "GKTurnBasedMatch",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object, which can change during the course of the match, this method retains the match ID so the game can fetch the current match object as necessary later.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Retain the match ID so action methods can load the current match object later.",
+            "currentMatchID = match.matchID"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Pass-the-turn-to-the-next-participant",
+          "level": 3,
+          "text": "Pass the turn to the next participant",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the current participant taps the Take Turn button, the ",
+              "type": "text"
+            },
+            {
+              "code": "TurnBasedGame.takeTurn()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " action method increments the count and passes the turn to the opponent.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "First the ",
+              "type": "text"
+            },
+            {
+              "code": "takeTurn()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method loads the current match object using the match ID it retains in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/GameKit/GKTurnBasedEventListener/player(_:receivedTurnEventFor:didBecomeActive:)",
+              "isActive": true,
+              "overridingTitle": "player(_:receivedTurnEventFor:didBecomeActive:)",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "player(_:receivedTurnEventFor:didBecomeActive:)",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Load the most recent match object from the match ID.",
+            "let match = try await GKTurnBasedMatch.load(withID: currentMatchID!)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This method passes the turn to the opponent using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/GameKit/GKTurnBasedMatch/endTurn(withNextParticipants:turnTimeout:match:completionHandler:)",
+              "isActive": true,
+              "overridingTitle": "endTurn(withNextParticipants:turnTimeout:match:completionHandler:)",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "endTurn(withNextParticipants:turnTimeout:match:completionHandler:)",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " method. It passes the next participant an array containing just the opponent, and a ",
+              "type": "text"
+            },
+            {
+              "code": "Data",
+              "type": "codeVoice"
+            },
+            {
+              "text": " representation of the game state that contains the current count.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Create the game data to store in Game Center.",
+            "let gameData = (encodeGameData() ?? match.matchData)!",
+            "",
+            "// Remove the current participant from the match participants.",
+            "let nextParticipants = activeParticipants.filter {",
+            "    $0 != match.currentParticipant",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Then pass the next participants and the game data, specifying a timeout in case the receipients don’t respond, to the ",
+              "type": "text"
+            },
+            {
+              "code": "endTurn(withNextParticipants:turnTimeout:match:completionHandler:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Pass the turn to the next participant.",
+            "try await match.endTurn(withNextParticipants: nextParticipants, turnTimeout: GKTurnTimeoutDefault,",
+            "                        match: gameData)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "In games with more than two participants, best practice is to add multiple participants to the array for the next participants. Then if communication fails, or a participant doesn’t finish their turn within the time limit, Game Center passes the turn to the next participant in the array to keep the match going.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The first time the game passes the turn, GameKit sends invitations to all the participants.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Accept-turn-based-match-invitations",
+          "level": 3,
+          "text": "Accept turn-based match invitations",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the opponent taps the Accept button in the dialog that GameKit displays on their device, GameKit invokes the ",
+              "type": "text"
+            },
+            {
+              "code": "GKTurnBasedEventListener.",
+              "type": "codeVoice"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/GameKit/GKTurnBasedEventListener/player(_:receivedTurnEventFor:didBecomeActive:)",
+              "isActive": true,
+              "overridingTitle": "player(_:receivedTurnEventFor:didBecomeActive:)",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "player(_:receivedTurnEventFor:didBecomeActive:)",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the local player accepts the invitation, the other participant’s status is ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/GameKit/GKTurnBasedParticipant/Status-swift.enum/active",
+              "isActive": true,
+              "overridingTitle": "GKTurnBasedParticipant.Status.active",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "GKTurnBasedParticipant.Status.active",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " and its player property is non-",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", allowing this method to get the opponent’s name and load their avatar from the ",
+              "type": "text"
+            },
+            {
+              "code": "GKPlayer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// If the player starts the match, the opponent hasn't accepted the invitation and has no player object.",
+            "let participant = participants.first",
+            "if (participant != nil) && (participant?.status != .matching) && (participant?.player != nil) {",
+            "    if opponent == nil {",
+            "        // Load the opponent's avatar and create the opponent object.",
+            "        let image = try await participant?.player?.loadPhoto(for: GKPlayer.PhotoSize.small)",
+            "        opponent = Participant(player: (participant?.player)!,",
+            "                               avatar: Image(uiImage: image!))",
+            "    }",
+            "    ",
+            "    // Restore the current game data from the match object.",
+            "    decodeGameData(matchData: match.matchData!)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The match object also contains data, such as the current count, that this method encodes to update the game view interface. The ",
+              "type": "text"
+            },
+            {
+              "code": "TurnBasedGame.encodeGameData()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "TurnBasedGame.decodeGameData()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " methods store just the game properties that you need to continue playing when GameKit sends turn-based events between participants.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Forfeit-a-turn-based-match",
+          "level": 3,
+          "text": "Forfeit a turn-based match",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If a participant taps the Forfeit button, the ",
+              "type": "text"
+            },
+            {
+              "code": "TurnBasedGame.forfeitMatch()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " action method quits the match whether it’s the participant’s turn or not. Because only the current participant can update the match data, GameKit provides two different methods to leave a match.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When it’s the local player’s turn, the ",
+              "type": "text"
+            },
+            {
+              "code": "forfeitMatch()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method creates a ",
+              "type": "text"
+            },
+            {
+              "code": "Data",
+              "type": "codeVoice"
+            },
+            {
+              "text": " representation of the game data, selects the next participants, and invokes the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/GameKit/GKTurnBasedMatch/participantQuitInTurn(with:nextParticipants:turnTimeout:match:completionHandler:)",
+              "isActive": true,
+              "overridingTitle": "participantQuitInTurn(with:nextParticipants:turnTimeout:match:completionHandler:)",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "participantQuitInTurn(with:nextParticipants:turnTimeout:match:completionHandler:)",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " method, passing ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/GameKit/GKTurnBasedMatch/Outcome/quit",
+              "isActive": true,
+              "overridingTitle": "GKTurnBasedMatch.Outcome.quit",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "GKTurnBasedMatch.Outcome.quit",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " as the outcome.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Create the game data to store in Game Center.",
+            "let gameData = (encodeGameData() ?? match.matchData)!",
+            "",
+            "// Remove the participants who quit and the current participant.",
+            "let nextParticipants = match.participants.filter {",
+            "  ($0.status != .done) && ($0 != match.currentParticipant)",
+            "}",
+            "",
+            "// Forfeit the match.",
+            "try await match.participantQuitInTurn(",
+            "    with: GKTurnBasedMatch.Outcome.quit,",
+            "    nextParticipants: nextParticipants,",
+            "    turnTimeout: GKTurnTimeoutDefault,",
+            "    match: gameData)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When it’s not the local player’s turn, the ",
+              "type": "text"
+            },
+            {
+              "code": "forfeitMatch()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method calls the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/GameKit/GKTurnBasedMatch/participantQuitOutOfTurn(with:withCompletionHandler:)",
+              "isActive": true,
+              "overridingTitle": "participantQuitOutOfTurn(with:withCompletionHandler:)",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "participantQuitOutOfTurn(with:withCompletionHandler:)",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Forfeit the match while it's not the local player's turn.",
+            "try await match.participantQuitOutOfTurn(with: GKTurnBasedMatch.Outcome.quit)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Both of these methods change the status of the participant to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/GameKit/GKTurnBasedParticipant/Status-swift.enum/done",
+              "isActive": true,
+              "overridingTitle": "GKTurnBasedParticipant.Status.done",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "GKTurnBasedParticipant.Status.done",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " and generate a turn-based event that invokes the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/GameKit/GKTurnBasedEventListener/player(_:receivedTurnEventFor:didBecomeActive:)",
+              "isActive": true,
+              "overridingTitle": "player(_:receivedTurnEventFor:didBecomeActive:)",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "player(_:receivedTurnEventFor:didBecomeActive:)",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " method. If there aren’t enough participants to continue (when there’s only one participant remaining in the match), this method sets the outcome of the recipient to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/GameKit/GKTurnBasedMatch/Outcome/won",
+              "isActive": true,
+              "overridingTitle": "GKTurnBasedMatch.Outcome.won",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "GKTurnBasedMatch.Outcome.won",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " and ends the game.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Remove participants who quit or otherwise aren't in the match.",
+            "let nextParticipants = match.participants.filter {",
+            "    $0.status != .done",
+            "}",
+            "",
+            "// End the match if active participants drop below the minimum.",
+            "if nextParticipants.count < minPlayers {",
+            "    // Set the match outcomes for the active participants.",
+            "    for participant in nextParticipants {",
+            "        participant.matchOutcome = .won",
+            "    }",
+            "    ",
+            "    // End the match in turn.",
+            "    try await match.endMatchInTurn(withMatch: match.matchData!)",
+            "    ",
+            "    // Notify the local player when the match ends.",
+            "    youWon = true",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "takeTurn()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " action method also ends the match with a win if there aren’t enough participants to continue.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Exchange-data-between-participants",
+          "level": 3,
+          "text": "Exchange data between participants",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Participants can message other participants and exchange items while they’re waiting for the current participant to take their turn. When a participant taps the message bubble in the game view, the chat view sheet appears so the participant can send a text message to the opponent.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "TurnBasedGame.sendMessage()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method sends the text message as the data in an exchange request. It passes the data, a localizable message, and a response timeout to the ",
+              "type": "text"
+            },
+            {
+              "code": "GKTurnBasedMatch.",
+              "type": "codeVoice"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/GameKit/GKTurnBasedMatch/sendExchange(to:data:localizableMessageKey:arguments:timeout:completionHandler:)",
+              "isActive": true,
+              "overridingTitle": "sendExchange(to:data:localizableMessageKey:arguments:timeout:completionHandler:)",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "sendExchange(to:data:localizableMessageKey:arguments:timeout:completionHandler:)",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Create the exchange data.",
+            "guard let data = content.data(using: .utf8) else { return }",
+            "",
+            "// Load the most recent match object from the match ID.",
+            "let match = try await GKTurnBasedMatch.load(withID: currentMatchID!)",
+            "",
+            "// Remove the local player (the sender) from the recipients;",
+            "// otherwise, GameKit doesn't send the exchange request.",
+            "let participants = match.participants.filter {",
+            "    localParticipant?.player.displayName != $0.player?.displayName",
+            "}",
+            "",
+            "// Send the exchange request with the message.",
+            "try await match.sendExchange(to: participants, data: data,",
+            "                             localizableMessageKey: \"This is my text message.\",",
+            "                             arguments: [], timeout: GKTurnTimeoutDefault)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the recipient’s game instance, GameKit invokes the ",
+              "type": "text"
+            },
+            {
+              "code": "GKTurnBasedEventListener.",
+              "type": "codeVoice"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/GameKit/GKTurnBasedEventListener/player(_:receivedExchangeRequest:for:)",
+              "isActive": true,
+              "overridingTitle": "player(_:receivedExchangeRequest:for:)",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "player(_:receivedExchangeRequest:for:)",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " protocol method, passing the player, the exchange object, and the match object. This method displays the message to the recipient when they have the chat view sheet open. Otherwise, the message appears in the chat view thread the next time the participant opens it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Unpack the exchange data and display the message in the chat view.",
+            "let content = String(decoding: exchange.data!, as: UTF8.self)",
+            "let message = Message(content: content, playerName: exchange.sender.player?.displayName ?? \"unknown\", isLocalPlayer: false)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For expedience, this method immediately accepts the exchange request when the exchange status is ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/GameKit/GKTurnBasedExchangeStatus/active",
+              "isActive": true,
+              "overridingTitle": "GKTurnBasedExchangeStatus.active",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "GKTurnBasedExchangeStatus.active",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "try await exchange.reply(withLocalizableMessageKey: \"I accept the exchange request.\", arguments: [], data: Data())"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Save-completed-exchanges",
+          "level": 3,
+          "text": "Save completed exchanges",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the sample, each participant starts with 50 items next to their names. To exchange items, a participant",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "clicks the Exchange Item button below the Send Reminder button. The same code that accepts the chat messages",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "also automatically accepts the exchange item request.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When participants reply to exchange requests, GameKit invokes the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/GameKit/GKTurnBasedEventListener/player(_:receivedExchangeReplies:forCompletedExchange:for:)",
+              "isActive": true,
+              "overridingTitle": "player(_:receivedExchangeReplies:forCompletedExchange:for:)",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "player(_:receivedExchangeReplies:forCompletedExchange:for:)",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " protocol method in the current participant and the sender’s game instance. In this sample, the ",
+              "type": "text"
+            },
+            {
+              "code": "player(_:receivedExchangeReplies:forCompletedExchange:for:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method invokes the ",
+              "type": "text"
+            },
+            {
+              "code": "TurnBasedGame.saveExchanges()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because GameKit requires that the current participant save completed exchanges before ending a match, the ",
+              "type": "text"
+            },
+            {
+              "code": "takeTurn()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method also invokes the ",
+              "type": "text"
+            },
+            {
+              "code": "saveExchanges(for:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method before ending a match.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because only the current participant can save exchanges, the ",
+              "type": "text"
+            },
+            {
+              "code": "saveExchanges(for:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method first checks whether the local player is the current participant before continuing.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Check whether the local player is the current participant who can save exchanges.",
+            "guard myTurn else { return }"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This method resolves the exchange by transferring one item from the recipient to the sender of the exchange request. Then it adds the participant’s exchange items to the game data, and passes it with the completed exchanges to the ",
+              "type": "text"
+            },
+            {
+              "code": "GKTurnBasedMatch.",
+              "type": "codeVoice"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/GameKit/GKTurnBasedMatch/saveMergedMatch(_:withResolvedExchanges:completionHandler:)",
+              "isActive": true,
+              "overridingTitle": "saveMergedMatch(_:withResolvedExchanges:completionHandler:)",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "saveMergedMatch(_:withResolvedExchanges:completionHandler:)",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Resolve the game data to pass to all participants.",
+            "let gameData = (encodeGameData() ?? match.matchData)!",
+            "",
+            "// Save and forward the game data with the latest items.",
+            "Task {",
+            "    try await match.saveMergedMatch(gameData, withResolvedExchanges: completedExchanges)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "saveMergedMatch(_:withResolvedExchanges:completionHandler:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method removes the completed exchange objects from the ",
+              "type": "text"
+            },
+            {
+              "code": "GKTurnBasedMatch",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/GameKit/GKTurnBasedMatch/completedExchanges",
+              "isActive": true,
+              "overridingTitle": "completedExchanges",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "completedExchanges",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/GameKit/GKTurnBasedMatch/exchanges",
+              "isActive": true,
+              "overridingTitle": "exchanges",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "exchanges",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " properties.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because the match data changes, GameKit invokes the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/GameKit/GKTurnBasedEventListener/player(_:receivedTurnEventFor:didBecomeActive:)",
+              "isActive": true,
+              "overridingTitle": "player(_:receivedTurnEventFor:didBecomeActive:)",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "player(_:receivedTurnEventFor:didBecomeActive:)",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " method in the other participants’ game instances. The ",
+              "type": "text"
+            },
+            {
+              "code": "player(_:receivedTurnEventFor:didBecomeActive:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method unpacks the match data and displays the exchanged items.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "90a936966de7/CreatingTurnBasedGames.zip": {
+      "checksum": "90a936966de709d4ab5138a2ea2d12167b76d23ec8ccef906f1db8f828597de9242b7cdae4a0ed1315e236dec454908798636b8e0796a9b9afd76dfdb94bf959",
+      "identifier": "90a936966de7/CreatingTurnBasedGames.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/90a936966de7/CreatingTurnBasedGames.zip"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/GKGameCenterBadgingDisabled": {
+      "abstract": [
+        {
+          "text": "A Boolean value indicating whether GameKit can add badges to a turn-based game icon.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/GKGameCenterBadgingDisabled",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GKGameCenterBadgingDisabled",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/GKGameCenterBadgingDisabled"
+    },
+    "doc://com.apple.documentation/documentation/GameKit/GKTurnBasedEventListener/player(_:receivedExchangeReplies:forCompletedExchange:for:)": {
+      "abstract": [
+        {
+          "text": "Handles when all recipients of an exchange request respond.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "optional"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "player"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "player"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)GKPlayer",
+          "text": "GKPlayer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "receivedExchangeReplies"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "replies"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)GKTurnBasedExchangeReply",
+          "text": "GKTurnBasedExchangeReply"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "forCompletedExchange"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "exchange"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)GKTurnBasedExchange",
+          "text": "GKTurnBasedExchange"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "match"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)GKTurnBasedMatch",
+          "text": "GKTurnBasedMatch"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/GameKit/GKTurnBasedEventListener/player(_:receivedExchangeReplies:forCompletedExchange:for:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "player(_:receivedExchangeReplies:forCompletedExchange:for:)",
+      "type": "topic",
+      "url": "/documentation/GameKit/GKTurnBasedEventListener/player(_:receivedExchangeReplies:forCompletedExchange:for:)"
+    },
+    "doc://com.apple.documentation/documentation/GameKit/GKTurnBasedEventListener/player(_:receivedExchangeRequest:for:)": {
+      "abstract": [
+        {
+          "text": "Handles when the local player receives an exchange request from another participant.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "optional"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "player"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "player"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)GKPlayer",
+          "text": "GKPlayer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "receivedExchangeRequest"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "exchange"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)GKTurnBasedExchange",
+          "text": "GKTurnBasedExchange"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "match"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)GKTurnBasedMatch",
+          "text": "GKTurnBasedMatch"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/GameKit/GKTurnBasedEventListener/player(_:receivedExchangeRequest:for:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "player(_:receivedExchangeRequest:for:)",
+      "type": "topic",
+      "url": "/documentation/GameKit/GKTurnBasedEventListener/player(_:receivedExchangeRequest:for:)"
+    },
+    "doc://com.apple.documentation/documentation/GameKit/GKTurnBasedEventListener/player(_:receivedTurnEventFor:didBecomeActive:)": {
+      "abstract": [
+        {
+          "text": "Handles turn-based match events, such as accepting invitations, passing turns, and saving match data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "optional"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "player"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "player"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)GKPlayer",
+          "text": "GKPlayer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "receivedTurnEventFor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "match"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)GKTurnBasedMatch",
+          "text": "GKTurnBasedMatch"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didBecomeActive"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/GameKit/GKTurnBasedEventListener/player(_:receivedTurnEventFor:didBecomeActive:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "player(_:receivedTurnEventFor:didBecomeActive:)",
+      "type": "topic",
+      "url": "/documentation/GameKit/GKTurnBasedEventListener/player(_:receivedTurnEventFor:didBecomeActive:)"
+    },
+    "doc://com.apple.documentation/documentation/GameKit/GKTurnBasedExchangeStatus/active": {
+      "abstract": [
+        {
+          "text": "GameKit sent the exchange request to recipients but not all recipients replied.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "active"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/GameKit/GKTurnBasedExchangeStatus/active",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GKTurnBasedExchangeStatus.active",
+      "type": "topic",
+      "url": "/documentation/GameKit/GKTurnBasedExchangeStatus/active"
+    },
+    "doc://com.apple.documentation/documentation/GameKit/GKTurnBasedMatch": {
+      "abstract": [
+        {
+          "text": "An object that encapsulates the match data for games where players take turns.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GKTurnBasedMatch"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/GameKit/GKTurnBasedMatch",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GKTurnBasedMatch",
+      "type": "topic",
+      "url": "/documentation/GameKit/GKTurnBasedMatch"
+    },
+    "doc://com.apple.documentation/documentation/GameKit/GKTurnBasedMatch/Outcome/quit": {
+      "abstract": [
+        {
+          "text": "The participant forfeits the match.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "quit"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/GameKit/GKTurnBasedMatch/Outcome/quit",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GKTurnBasedMatch.Outcome.quit",
+      "type": "topic",
+      "url": "/documentation/GameKit/GKTurnBasedMatch/Outcome/quit"
+    },
+    "doc://com.apple.documentation/documentation/GameKit/GKTurnBasedMatch/Outcome/won": {
+      "abstract": [
+        {
+          "text": "The participant wins the match.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "won"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/GameKit/GKTurnBasedMatch/Outcome/won",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GKTurnBasedMatch.Outcome.won",
+      "type": "topic",
+      "url": "/documentation/GameKit/GKTurnBasedMatch/Outcome/won"
+    },
+    "doc://com.apple.documentation/documentation/GameKit/GKTurnBasedMatch/completedExchanges": {
+      "abstract": [
+        {
+          "text": "The exchange requests that all recipients replied to and the current participant needs to save.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "completedExchanges"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)GKTurnBasedExchange",
+          "text": "GKTurnBasedExchange"
+        },
+        {
+          "kind": "text",
+          "text": "]? { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/GameKit/GKTurnBasedMatch/completedExchanges",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "completedExchanges",
+      "type": "topic",
+      "url": "/documentation/GameKit/GKTurnBasedMatch/completedExchanges"
+    },
+    "doc://com.apple.documentation/documentation/GameKit/GKTurnBasedMatch/endTurn(withNextParticipants:turnTimeout:match:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Passes the turn from the current participant to the next participant.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "endTurn"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withNextParticipants"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "nextParticipants"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)GKTurnBasedParticipant",
+          "text": "GKTurnBasedParticipant"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "turnTimeout"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "timeout"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "match"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "matchData"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": (((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")? = nil)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/GameKit/GKTurnBasedMatch/endTurn(withNextParticipants:turnTimeout:match:completionHandler:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "endTurn(withNextParticipants:turnTimeout:match:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/GameKit/GKTurnBasedMatch/endTurn(withNextParticipants:turnTimeout:match:completionHandler:)"
+    },
+    "doc://com.apple.documentation/documentation/GameKit/GKTurnBasedMatch/exchanges": {
+      "abstract": [
+        {
+          "text": "The exchange requests that are active or complete.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "exchanges"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)GKTurnBasedExchange",
+          "text": "GKTurnBasedExchange"
+        },
+        {
+          "kind": "text",
+          "text": "]? { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/GameKit/GKTurnBasedMatch/exchanges",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "exchanges",
+      "type": "topic",
+      "url": "/documentation/GameKit/GKTurnBasedMatch/exchanges"
+    },
+    "doc://com.apple.documentation/documentation/GameKit/GKTurnBasedMatch/participantQuitInTurn(with:nextParticipants:turnTimeout:match:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Forfeits the match on behalf of the local player when it’s their turn.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "participantQuitInTurn"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "matchOutcome"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)GKTurnBasedMatch",
+          "text": "GKTurnBasedMatch"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@GKTurnBasedMatchOutcome",
+          "text": "Outcome"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "nextParticipants"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)GKTurnBasedParticipant",
+          "text": "GKTurnBasedParticipant"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "turnTimeout"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "timeout"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "match"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "matchData"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": (((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")? = nil)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/GameKit/GKTurnBasedMatch/participantQuitInTurn(with:nextParticipants:turnTimeout:match:completionHandler:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "participantQuitInTurn(with:nextParticipants:turnTimeout:match:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/GameKit/GKTurnBasedMatch/participantQuitInTurn(with:nextParticipants:turnTimeout:match:completionHandler:)"
+    },
+    "doc://com.apple.documentation/documentation/GameKit/GKTurnBasedMatch/participantQuitOutOfTurn(with:withCompletionHandler:)": {
+      "abstract": [
+        {
+          "text": "Forfeits the match on behalf of the local player when it’s not their turn.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "participantQuitOutOfTurn"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "matchOutcome"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)GKTurnBasedMatch",
+          "text": "GKTurnBasedMatch"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@GKTurnBasedMatchOutcome",
+          "text": "Outcome"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "withCompletionHandler"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": (((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")? = nil)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/GameKit/GKTurnBasedMatch/participantQuitOutOfTurn(with:withCompletionHandler:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "participantQuitOutOfTurn(with:withCompletionHandler:)",
+      "type": "topic",
+      "url": "/documentation/GameKit/GKTurnBasedMatch/participantQuitOutOfTurn(with:withCompletionHandler:)"
+    },
+    "doc://com.apple.documentation/documentation/GameKit/GKTurnBasedMatch/saveMergedMatch(_:withResolvedExchanges:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Saves match data for completed exchanges without ending the turn.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "saveMergedMatch"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "matchData"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "withResolvedExchanges"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "exchanges"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)GKTurnBasedExchange",
+          "text": "GKTurnBasedExchange"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": (((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")? = nil)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/GameKit/GKTurnBasedMatch/saveMergedMatch(_:withResolvedExchanges:completionHandler:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "saveMergedMatch(_:withResolvedExchanges:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/GameKit/GKTurnBasedMatch/saveMergedMatch(_:withResolvedExchanges:completionHandler:)"
+    },
+    "doc://com.apple.documentation/documentation/GameKit/GKTurnBasedMatch/sendExchange(to:data:localizableMessageKey:arguments:timeout:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Sends an exchange request that contains your game data to one or more participants.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sendExchange"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "participants"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)GKTurnBasedParticipant",
+          "text": "GKTurnBasedParticipant"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "data"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "localizableMessageKey"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "key"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "arguments"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "timeout"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": (("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)GKTurnBasedExchange",
+          "text": "GKTurnBasedExchange"
+        },
+        {
+          "kind": "text",
+          "text": "?, (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")? = nil)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/GameKit/GKTurnBasedMatch/sendExchange(to:data:localizableMessageKey:arguments:timeout:completionHandler:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sendExchange(to:data:localizableMessageKey:arguments:timeout:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/GameKit/GKTurnBasedMatch/sendExchange(to:data:localizableMessageKey:arguments:timeout:completionHandler:)"
+    },
+    "doc://com.apple.documentation/documentation/GameKit/GKTurnBasedMatchmakerViewController": {
+      "abstract": [
+        {
+          "text": "An interface that allows a player to invite other players to a turn-based match and automatch to fill any empty slots.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GKTurnBasedMatchmakerViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/GameKit/GKTurnBasedMatchmakerViewController",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GKTurnBasedMatchmakerViewController",
+      "type": "topic",
+      "url": "/documentation/GameKit/GKTurnBasedMatchmakerViewController"
+    },
+    "doc://com.apple.documentation/documentation/GameKit/GKTurnBasedParticipant/Status-swift.enum/active": {
+      "abstract": [
+        {
+          "text": "The participant joins the match and is an active player.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "active"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/GameKit/GKTurnBasedParticipant/Status-swift.enum/active",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GKTurnBasedParticipant.Status.active",
+      "type": "topic",
+      "url": "/documentation/GameKit/GKTurnBasedParticipant/Status-swift.enum/active"
+    },
+    "doc://com.apple.documentation/documentation/GameKit/GKTurnBasedParticipant/Status-swift.enum/done": {
+      "abstract": [
+        {
+          "text": "The participant leaves the match.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "done"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/GameKit/GKTurnBasedParticipant/Status-swift.enum/done",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GKTurnBasedParticipant.Status.done",
+      "type": "topic",
+      "url": "/documentation/GameKit/GKTurnBasedParticipant/Status-swift.enum/done"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit": {
+      "abstract": [
+        {
+          "text": "Enable players to interact with friends, compare leaderboard ranks, earn achievements, and participate in multiplayer games.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "GameKit",
+      "type": "topic",
+      "url": "/documentation/gamekit"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKTurnBasedEventListener": {
+      "abstract": [
+        {
+          "text": "The protocol that handles turn-based and data-exchange events between participants in a match.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GKTurnBasedEventListener"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKTurnBasedEventListener",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GKTurnBasedEventListener"
+        }
+      ],
+      "role": "symbol",
+      "title": "GKTurnBasedEventListener",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkturnbasedeventlistener"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKTurnBasedExchange": {
+      "abstract": [
+        {
+          "text": "Exchange request information that participants send in a turn-based match.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GKTurnBasedExchange"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKTurnBasedExchange",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GKTurnBasedExchange"
+        }
+      ],
+      "role": "symbol",
+      "title": "GKTurnBasedExchange",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkturnbasedexchange"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKTurnBasedExchangeReply": {
+      "abstract": [
+        {
+          "text": "Details about a recipient’s response to an exchange request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GKTurnBasedExchangeReply"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKTurnBasedExchangeReply",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GKTurnBasedExchangeReply"
+        }
+      ],
+      "role": "symbol",
+      "title": "GKTurnBasedExchangeReply",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkturnbasedexchangereply"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKTurnBasedMatch": {
+      "abstract": [
+        {
+          "text": "An object that encapsulates the match data for games where players take turns.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GKTurnBasedMatch"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKTurnBasedMatch",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GKTurnBasedMatch"
+        }
+      ],
+      "role": "symbol",
+      "title": "GKTurnBasedMatch",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkturnbasedmatch"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKTurnBasedMatchmakerViewController": {
+      "abstract": [
+        {
+          "text": "An interface that allows a player to invite other players to a turn-based match and automatch to fill any empty slots.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GKTurnBasedMatchmakerViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKTurnBasedMatchmakerViewController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GKTurnBasedMatchmakerViewController"
+        }
+      ],
+      "role": "symbol",
+      "title": "GKTurnBasedMatchmakerViewController",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkturnbasedmatchmakerviewcontroller"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKTurnBasedParticipant": {
+      "abstract": [
+        {
+          "text": "A participant in a turn-based match.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GKTurnBasedParticipant"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKTurnBasedParticipant",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GKTurnBasedParticipant"
+        }
+      ],
+      "role": "symbol",
+      "title": "GKTurnBasedParticipant",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkturnbasedparticipant"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/exchanging-data-between-players-in-turn-based-games": {
+      "abstract": [
+        {
+          "text": "Add the ability for players to exchange game data and send messages while waiting for their turns.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/exchanging-data-between-players-in-turn-based-games",
+      "kind": "article",
+      "role": "article",
+      "title": "Exchanging data between players in turn-based games",
+      "type": "topic",
+      "url": "/documentation/gamekit/exchanging-data-between-players-in-turn-based-games"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/sending-messages-to-players-in-turn-based-games": {
+      "abstract": [
+        {
+          "text": "Notify players of match events by sending messages and game data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/sending-messages-to-players-in-turn-based-games",
+      "kind": "article",
+      "role": "article",
+      "title": "Sending messages to players in turn-based games",
+      "type": "topic",
+      "url": "/documentation/gamekit/sending-messages-to-players-in-turn-based-games"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/starting-turn-based-matches-and-passing-turns-between-players": {
+      "abstract": [
+        {
+          "text": "Let Game Center store and forward match data between players in a turn-based game.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/starting-turn-based-matches-and-passing-turns-between-players",
+      "kind": "article",
+      "role": "article",
+      "title": "Starting turn-based matches and passing turns between players",
+      "type": "topic",
+      "url": "/documentation/gamekit/starting-turn-based-matches-and-passing-turns-between-players"
+    },
+    "https://developer.apple.com/help/app-store-connect/create-an-app-record/add-a-new-app": {
+      "identifier": "https://developer.apple.com/help/app-store-connect/create-an-app-record/add-a-new-app",
+      "title": "Add a new app",
+      "titleInlineContent": [
+        {
+          "text": "Add a new app",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/help/app-store-connect/create-an-app-record/add-a-new-app"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "90a936966de7/CreatingTurnBasedGames.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Turn-based-games",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.gamekit/documentation/GameKit/starting-turn-based-matches-and-passing-turns-between-players",
+        "doc://com.apple.gamekit/documentation/GameKit/sending-messages-to-players-in-turn-based-games",
+        "doc://com.apple.gamekit/documentation/GameKit/exchanging-data-between-players-in-turn-based-games",
+        "doc://com.apple.gamekit/documentation/GameKit/GKTurnBasedMatchmakerViewController",
+        "doc://com.apple.gamekit/documentation/GameKit/GKTurnBasedMatch",
+        "doc://com.apple.gamekit/documentation/GameKit/GKTurnBasedParticipant",
+        "doc://com.apple.gamekit/documentation/GameKit/GKTurnBasedEventListener",
+        "doc://com.apple.gamekit/documentation/GameKit/GKTurnBasedExchange",
+        "doc://com.apple.gamekit/documentation/GameKit/GKTurnBasedExchangeReply",
+        "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/GKGameCenterBadgingDisabled"
+      ],
+      "title": "Turn-based games"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Turn-based-games",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.gamekit/documentation/GameKit/starting-turn-based-matches-and-passing-turns-between-players",
+                "doc://com.apple.gamekit/documentation/GameKit/sending-messages-to-players-in-turn-based-games",
+                "doc://com.apple.gamekit/documentation/GameKit/exchanging-data-between-players-in-turn-based-games",
+                "doc://com.apple.gamekit/documentation/GameKit/GKTurnBasedMatchmakerViewController",
+                "doc://com.apple.gamekit/documentation/GameKit/GKTurnBasedMatch",
+                "doc://com.apple.gamekit/documentation/GameKit/GKTurnBasedParticipant",
+                "doc://com.apple.gamekit/documentation/GameKit/GKTurnBasedEventListener",
+                "doc://com.apple.gamekit/documentation/GameKit/GKTurnBasedExchange",
+                "doc://com.apple.gamekit/documentation/GameKit/GKTurnBasedExchangeReply",
+                "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/GKGameCenterBadgingDisabled"
+              ],
+              "title": "Turn-based games"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKTurnBasedMatchmakerViewController/title",
+          "value": "GKTurnBasedMatchmakerViewController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKTurnBasedMatchmakerViewController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKTurnBasedMatchmakerViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKTurnBasedMatchmakerViewController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKTurnBasedMatchmakerViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1GameKit~1GKTurnBasedMatch~1exchanges/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "nonatomic"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "strong"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "readonly"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:Q$objc(cs)NSArray",
+              "text": "NSArray<GKTurnBasedExchange *>"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "identifier",
+              "text": "exchanges"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1GameKit~1GKTurnBasedMatchmakerViewController/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "GKTurnBasedMatchmakerViewController"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UINavigationController",
+              "text": "UINavigationController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKTurnBasedEventListener/title",
+          "value": "GKTurnBasedEventListener"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKTurnBasedEventListener/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKTurnBasedEventListener"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKTurnBasedEventListener/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKTurnBasedEventListener"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1GameKit~1GKTurnBasedMatch~1Outcome~1quit/title",
+          "value": "GKTurnBasedMatchOutcomeQuit"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1GameKit~1GKTurnBasedMatch~1Outcome~1quit/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKTurnBasedMatchOutcomeQuit"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1GameKit~1GKTurnBasedEventListener~1player(_:receivedTurnEventFor:didBecomeActive:)/title",
+          "value": "player:receivedTurnEventForMatch:didBecomeActive:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1GameKit~1GKTurnBasedEventListener~1player(_:receivedTurnEventFor:didBecomeActive:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "player:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)GKPlayer",
+              "text": "GKPlayer"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "player"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "receivedTurnEventForMatch:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)GKTurnBasedMatch",
+              "text": "GKTurnBasedMatch"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "match"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "didBecomeActive:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@BOOL",
+              "text": "BOOL"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "internalParam",
+              "text": "didBecomeActive"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKTurnBasedMatch/title",
+          "value": "GKTurnBasedMatch"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKTurnBasedMatch/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKTurnBasedMatch"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKTurnBasedMatch/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKTurnBasedMatch"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1GameKit~1GKTurnBasedMatch~1participantQuitInTurn(with:nextParticipants:turnTimeout:match:completionHandler:)/title",
+          "value": "participantQuitInTurnWithOutcome:nextParticipants:turnTimeout:matchData:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1GameKit~1GKTurnBasedMatch~1participantQuitInTurn(with:nextParticipants:turnTimeout:match:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "participantQuitInTurnWithOutcome:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@E@GKTurnBasedMatchOutcome",
+              "text": "GKTurnBasedMatchOutcome"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "internalParam",
+              "text": "matchOutcome"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "nextParticipants:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:Q$objc(cs)NSArray",
+              "text": "NSArray<GKTurnBasedParticipant *>"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "nextParticipants"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "turnTimeout:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@NSTimeInterval",
+              "text": "NSTimeInterval"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "internalParam",
+              "text": "timeout"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "matchData:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSData",
+              "text": "NSData"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "matchData"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "completionHandler:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": " (^)("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSError",
+              "text": "NSError"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "internalParam",
+              "text": "error"
+            },
+            {
+              "kind": "text",
+              "text": ")) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "completionHandler"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKTurnBasedParticipant/title",
+          "value": "GKTurnBasedParticipant"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKTurnBasedParticipant/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKTurnBasedParticipant"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKTurnBasedParticipant/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKTurnBasedParticipant"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1GameKit~1GKTurnBasedMatch~1saveMergedMatch(_:withResolvedExchanges:completionHandler:)/title",
+          "value": "saveMergedMatchData:withResolvedExchanges:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1GameKit~1GKTurnBasedMatch~1saveMergedMatch(_:withResolvedExchanges:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "saveMergedMatchData:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSData",
+              "text": "NSData"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "matchData"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "withResolvedExchanges:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:Q$objc(cs)NSArray",
+              "text": "NSArray<GKTurnBasedExchange *>"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "exchanges"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "completionHandler:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": " (^)("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSError",
+              "text": "NSError"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "internalParam",
+              "text": "error"
+            },
+            {
+              "kind": "text",
+              "text": ")) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "completionHandler"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1GameKit~1GKTurnBasedMatch~1sendExchange(to:data:localizableMessageKey:arguments:timeout:completionHandler:)/title",
+          "value": "sendExchangeToParticipants:data:localizableMessageKey:arguments:timeout:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1GameKit~1GKTurnBasedMatch~1sendExchange(to:data:localizableMessageKey:arguments:timeout:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "sendExchangeToParticipants:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:Q$objc(cs)NSArray",
+              "text": "NSArray<GKTurnBasedParticipant *>"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "participants"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "data:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSData",
+              "text": "NSData"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "data"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "localizableMessageKey:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSString",
+              "text": "NSString"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "key"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "arguments:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:Q$objc(cs)NSArray",
+              "text": "NSArray<NSString *>"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "arguments"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "timeout:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@NSTimeInterval",
+              "text": "NSTimeInterval"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "internalParam",
+              "text": "timeout"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "completionHandler:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": " (^)("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)GKTurnBasedExchange",
+              "text": "GKTurnBasedExchange"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "internalParam",
+              "text": "exchange"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSError",
+              "text": "NSError"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "internalParam",
+              "text": "error"
+            },
+            {
+              "kind": "text",
+              "text": ")) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "completionHandler"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1GameKit~1GKTurnBasedExchangeStatus~1active/title",
+          "value": "GKTurnBasedExchangeStatusActive"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1GameKit~1GKTurnBasedExchangeStatus~1active/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKTurnBasedExchangeStatusActive"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1GameKit~1GKTurnBasedParticipant~1Status-swift.enum~1done/title",
+          "value": "GKTurnBasedParticipantStatusDone"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1GameKit~1GKTurnBasedParticipant~1Status-swift.enum~1done/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKTurnBasedParticipantStatusDone"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1GameKit~1GKTurnBasedParticipant~1Status-swift.enum~1active/title",
+          "value": "GKTurnBasedParticipantStatusActive"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1GameKit~1GKTurnBasedParticipant~1Status-swift.enum~1active/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKTurnBasedParticipantStatusActive"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKTurnBasedExchange/title",
+          "value": "GKTurnBasedExchange"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKTurnBasedExchange/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKTurnBasedExchange"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKTurnBasedExchange/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKTurnBasedExchange"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1GameKit~1GKTurnBasedMatch~1completedExchanges/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "atomic"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "strong"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "readonly"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:Q$objc(cs)NSArray",
+              "text": "NSArray<GKTurnBasedExchange *>"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "identifier",
+              "text": "completedExchanges"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1GameKit~1GKTurnBasedEventListener~1player(_:receivedExchangeRequest:for:)/title",
+          "value": "player:receivedExchangeRequest:forMatch:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1GameKit~1GKTurnBasedEventListener~1player(_:receivedExchangeRequest:for:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "player:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)GKPlayer",
+              "text": "GKPlayer"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "player"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "receivedExchangeRequest:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)GKTurnBasedExchange",
+              "text": "GKTurnBasedExchange"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "exchange"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "forMatch:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)GKTurnBasedMatch",
+              "text": "GKTurnBasedMatch"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "match"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1GameKit~1GKTurnBasedMatch/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "GKTurnBasedMatch"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKTurnBasedExchangeReply/title",
+          "value": "GKTurnBasedExchangeReply"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKTurnBasedExchangeReply/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKTurnBasedExchangeReply"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKTurnBasedExchangeReply/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKTurnBasedExchangeReply"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1GameKit~1GKTurnBasedEventListener~1player(_:receivedExchangeReplies:forCompletedExchange:for:)/title",
+          "value": "player:receivedExchangeReplies:forCompletedExchange:forMatch:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1GameKit~1GKTurnBasedEventListener~1player(_:receivedExchangeReplies:forCompletedExchange:for:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "player:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)GKPlayer",
+              "text": "GKPlayer"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "player"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "receivedExchangeReplies:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:Q$objc(cs)NSArray",
+              "text": "NSArray<GKTurnBasedExchangeReply *>"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "replies"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "forCompletedExchange:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)GKTurnBasedExchange",
+              "text": "GKTurnBasedExchange"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "exchange"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "forMatch:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)GKTurnBasedMatch",
+              "text": "GKTurnBasedMatch"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "match"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1GameKit~1GKTurnBasedMatch~1Outcome~1won/title",
+          "value": "GKTurnBasedMatchOutcomeWon"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1GameKit~1GKTurnBasedMatch~1Outcome~1won/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKTurnBasedMatchOutcomeWon"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1GameKit~1GKTurnBasedMatch~1endTurn(withNextParticipants:turnTimeout:match:completionHandler:)/title",
+          "value": "endTurnWithNextParticipants:turnTimeout:matchData:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1GameKit~1GKTurnBasedMatch~1endTurn(withNextParticipants:turnTimeout:match:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "endTurnWithNextParticipants:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:Q$objc(cs)NSArray",
+              "text": "NSArray<GKTurnBasedParticipant *>"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "nextParticipants"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "turnTimeout:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@NSTimeInterval",
+              "text": "NSTimeInterval"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "internalParam",
+              "text": "timeout"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "matchData:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSData",
+              "text": "NSData"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "matchData"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "completionHandler:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": " (^)("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSError",
+              "text": "NSError"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "internalParam",
+              "text": "error"
+            },
+            {
+              "kind": "text",
+              "text": ")) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "completionHandler"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1GameKit~1GKTurnBasedMatch~1participantQuitOutOfTurn(with:withCompletionHandler:)/title",
+          "value": "participantQuitOutOfTurnWithOutcome:withCompletionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1GameKit~1GKTurnBasedMatch~1participantQuitOutOfTurn(with:withCompletionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "participantQuitOutOfTurnWithOutcome:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@E@GKTurnBasedMatchOutcome",
+              "text": "GKTurnBasedMatchOutcome"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "internalParam",
+              "text": "matchOutcome"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "withCompletionHandler:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": " (^)("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSError",
+              "text": "NSError"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "internalParam",
+              "text": "error"
+            },
+            {
+              "kind": "text",
+              "text": ")) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "completionHandler"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/gamekit/creating-turn-based-games"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/gamekit/creating-turn-based-games"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,638 @@
+{
+  "abstract": [
+    {
+      "text": "Ensure that your app behaves as expected by adapting it to support later versions of the operating system.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit",
+        "doc://com.apple.uikit/documentation/UIKit/app-and-environment"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.uikit/documentation/UIKit/updating-your-app-from-32-bit-to-64-bit-architecture"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "UIKit"
+      }
+    ],
+    "role": "collectionGroup",
+    "title": "Updating your app from 32-bit to 64-bit architecture"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In iOS 11 and later, all apps use the 64-bit architecture. If your app targets an earlier version of iOS, you must update it to run on later versions.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Update-your-app-to-the-latest-SDK",
+          "level": 3,
+          "text": "Update your app to the latest SDK",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Begin by updating your existing app to iOS 11 or later. By updating your app first, you can remove deprecated code paths, address any compiler warnings, and search your code for specific 64-bit issues.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Install the latest version of Xcode and open your project. Xcode prompts you to ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "modernize",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": " the project. Modernizing adds new warnings and errors that are important when compiling your app for 64-bit architecture.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Update your project settings to support the latest version of iOS. You can’t build a 64-bit project if it targets an iOS version earlier than iOS 5.1.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Change the Architectures build setting in your project to Standard Architectures.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Update your app to support the 64-bit runtime environment. The new compiler warnings and errors help guide you through this process.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Test your app on actual 64-bit hardware. Don’t rely on the Simulator app. Although it can be helpful during development, some changes, such as the function-calling conventions, are visible only when your app is running on a device.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Tune your app’s memory performance by using Instruments.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "anchor": "Audit-your-code",
+          "level": 3,
+          "text": "Audit your code",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "It’s critical that you review your code for proper pointer usage. Assumptions in pointer sizes can lead to erratic behavior and even crashes. Focus on the following areas:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/updating-data-structures",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". Eliminate assumptions about type size and alignment in structures, and use explicit data types.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/auditing-pointer-usage",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". Adhere to proper casting behaviors and review your methods for allocating memory.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/managing-functions-and-function-pointers",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": ".",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " Use function prototypes for safety, and review the calling of functions that have variable-length argument lists.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "With pointer usage addressed, your app should be stable and you can focus on performance and optimize accordingly:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/optimizing-memory-performance",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". Establish performance tests that measure your use of memory in the context of 64-bit runtime.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/verifying-mathematical-calculations",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". Verify signed values in math operations to ensure accurate results, and review your use of bit mask operations.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.uikit/documentation/UIKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your iOS, iPadOS, or tvOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "UIKit",
+      "type": "topic",
+      "url": "/documentation/uikit"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIApplicationMain(_:_:_:_:)-1yub7": {
+      "abstract": [
+        {
+          "text": "Creates the application object and the application delegate and sets up the event cycle.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIApplicationMain"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5CChara",
+          "text": "CChar"
+        },
+        {
+          "kind": "text",
+          "text": ">?>, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIApplicationMain(_:_:_:_:)-1yub7",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIApplicationMain"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIApplicationMain(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiapplicationmain(_:_:_:_:)-1yub7"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/app-and-environment": {
+      "abstract": [
+        {
+          "text": "Manage life-cycle events and your app’s UI scenes, and get information about traits and the environment in which your app runs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/app-and-environment",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "App and environment",
+      "type": "topic",
+      "url": "/documentation/uikit/app-and-environment"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/auditing-pointer-usage": {
+      "abstract": [
+        {
+          "text": "Ensure that the pointers in your code are safe for the 64-bit runtime.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/auditing-pointer-usage",
+      "kind": "article",
+      "role": "article",
+      "title": "Auditing pointer usage",
+      "type": "topic",
+      "url": "/documentation/uikit/auditing-pointer-usage"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/managing-functions-and-function-pointers": {
+      "abstract": [
+        {
+          "text": "Ensure that your code correctly handles functions, function pointers, and Objective-C messages.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/managing-functions-and-function-pointers",
+      "kind": "article",
+      "role": "article",
+      "title": "Managing functions and function pointers",
+      "type": "topic",
+      "url": "/documentation/uikit/managing-functions-and-function-pointers"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/optimizing-memory-performance": {
+      "abstract": [
+        {
+          "text": "Measure the impact of the 64-bit runtime on your app’s memory usage.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/optimizing-memory-performance",
+      "kind": "article",
+      "role": "article",
+      "title": "Optimizing memory performance",
+      "type": "topic",
+      "url": "/documentation/uikit/optimizing-memory-performance"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/updating-data-structures": {
+      "abstract": [
+        {
+          "text": "Review your app’s data design and update it to conform with 64-bit architecture.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/updating-data-structures",
+      "kind": "article",
+      "role": "article",
+      "title": "Updating data structures",
+      "type": "topic",
+      "url": "/documentation/uikit/updating-data-structures"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/verifying-mathematical-calculations": {
+      "abstract": [
+        {
+          "text": "Ensure the accuracy of your math operations in 64-bit architecture.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/verifying-mathematical-calculations",
+      "kind": "article",
+      "role": "article",
+      "title": "Verifying mathematical calculations",
+      "type": "topic",
+      "url": "/documentation/uikit/verifying-mathematical-calculations"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Architecture",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIApplicationMain(_:_:_:_:)-1yub7"
+      ],
+      "title": "Architecture"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Memory-and-pointer-access",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/updating-data-structures",
+        "doc://com.apple.uikit/documentation/UIKit/auditing-pointer-usage",
+        "doc://com.apple.uikit/documentation/UIKit/managing-functions-and-function-pointers"
+      ],
+      "title": "Memory and pointer access"
+    },
+    {
+      "anchor": "Performance-and-accuracy",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/optimizing-memory-performance",
+        "doc://com.apple.uikit/documentation/UIKit/verifying-mathematical-calculations"
+      ],
+      "title": "Performance and accuracy"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Memory-and-pointer-access",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/updating-data-structures",
+                "doc://com.apple.uikit/documentation/UIKit/auditing-pointer-usage",
+                "doc://com.apple.uikit/documentation/UIKit/managing-functions-and-function-pointers"
+              ],
+              "title": "Memory and pointer access"
+            },
+            {
+              "anchor": "Performance-and-accuracy",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/optimizing-memory-performance",
+                "doc://com.apple.uikit/documentation/UIKit/verifying-mathematical-calculations"
+              ],
+              "title": "Performance and accuracy"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Architecture",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIApplicationMain(_:_:_:_:)-1yub7"
+              ],
+              "title": "Architecture"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIApplicationMain(_:_:_:_:)-1yub7/title",
+          "value": "UIApplicationMain"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIApplicationMain(_:_:_:_:)-1yub7/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIApplicationMain"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/uikit/updating-your-app-from-32-bit-to-64-bit-architecture"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/uikit/updating-your-app-from-32-bit-to-64-bit-architecture"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

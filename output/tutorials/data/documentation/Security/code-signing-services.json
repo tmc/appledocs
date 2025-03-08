@@ -1,0 +1,3873 @@
+{
+  "abstract": [
+    {
+      "text": "Examine and validate signed code running on the system.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.security/documentation/Security"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.security/documentation/Security/code-signing-services"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Security"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Code Signing Services"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Code signing is a macOS security technology that you use to certify that an app was created by you. Once an app is signed, the system can detect any change to the app—whether the change is introduced accidentally or by malicious code. You can control how your signed code loads signed plug-ins and other signed code without invalidating the signatures of the host code or of the guest (dynamically loaded) code.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You work with code objects that represent uniquely identified elements of running code in the system. In addition to UNIX processes, these elements can include scripts, applets, widgets, and so forth. You also work with ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "static",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " code objects that represent code in the file system. Static code includes applications, tools, frameworks, plug-ins, scripts, and so on. Generally, a code object has a specific static code object from which it originates and that holds its static signing data. The reverse, however, is not true—given a static code object, it is not possible to find, enumerate, or control any code object that originated from it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.security/documentation/Security": {
+      "abstract": [
+        {
+          "text": "Secure the data your app manages, and control access to your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Security",
+      "type": "topic",
+      "url": "/documentation/security"
+    },
+    "doc://com.apple.security/documentation/Security/SecCSDigestAlgorithm": {
+      "abstract": [
+        {
+          "text": "The list of digest algorithms available for code signatures.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecCSDigestAlgorithm"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecCSDigestAlgorithm",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecCSDigestAlgorithm"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecCSDigestAlgorithm",
+      "type": "topic",
+      "url": "/documentation/security/seccsdigestalgorithm"
+    },
+    "doc://com.apple.security/documentation/Security/SecCSFlags": {
+      "abstract": [
+        {
+          "text": "Values that can be used in the ",
+          "type": "text"
+        },
+        {
+          "code": "flags",
+          "type": "codeVoice"
+        },
+        {
+          "text": " parameter to most code signing functions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecCSFlags"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecCSFlags",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecCSFlags"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecCSFlags",
+      "type": "topic",
+      "url": "/documentation/security/seccsflags"
+    },
+    "doc://com.apple.security/documentation/Security/SecCode": {
+      "abstract": [
+        {
+          "text": "A code object representing signed code running on the system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecCode"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecCode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecCode"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecCode",
+      "type": "topic",
+      "url": "/documentation/security/seccode"
+    },
+    "doc://com.apple.security/documentation/Security/SecCodeCheckValidity(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Performs dynamic validation of signed code.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecCodeCheckValidity"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecCodeRef",
+          "text": "SecCode"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@SecCSFlags",
+          "text": "SecCSFlags"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecRequirementRef",
+          "text": "SecRequirement"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecCodeCheckValidity(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecCodeCheckValidity"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecCodeCheckValidity(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/seccodecheckvalidity(_:_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecCodeCheckValidityWithErrors(_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Performs dynamic validation of signed code and returns detailed error information in the case of failure.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecCodeCheckValidityWithErrors"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecCodeRef",
+          "text": "SecCode"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@SecCSFlags",
+          "text": "SecCSFlags"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecRequirementRef",
+          "text": "SecRequirement"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s9UnmanagedV",
+          "text": "Unmanaged"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFErrorRef",
+          "text": "CFError"
+        },
+        {
+          "kind": "text",
+          "text": ">?>?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecCodeCheckValidityWithErrors(_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecCodeCheckValidityWithErrors"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecCodeCheckValidityWithErrors(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/seccodecheckvaliditywitherrors(_:_:_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecCodeCopyDesignatedRequirement(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Retrieves the designated code requirement of signed code.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecCodeCopyDesignatedRequirement"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecStaticCodeRef",
+          "text": "SecStaticCode"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@SecCSFlags",
+          "text": "SecCSFlags"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecRequirementRef",
+          "text": "SecRequirement"
+        },
+        {
+          "kind": "text",
+          "text": "?>) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecCodeCopyDesignatedRequirement(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecCodeCopyDesignatedRequirement"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecCodeCopyDesignatedRequirement(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/seccodecopydesignatedrequirement(_:_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecCodeCopyGuestWithAttributes(_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Asks a code host to identify one of its guests given the type and value of specific attributes of the guest code.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecCodeCopyGuestWithAttributes"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecCodeRef",
+          "text": "SecCode"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFDictionaryRef",
+          "text": "CFDictionary"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@SecCSFlags",
+          "text": "SecCSFlags"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecCodeRef",
+          "text": "SecCode"
+        },
+        {
+          "kind": "text",
+          "text": "?>) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecCodeCopyGuestWithAttributes(_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecCodeCopyGuestWithAttributes"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecCodeCopyGuestWithAttributes(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/seccodecopyguestwithattributes(_:_:_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecCodeCopyHost(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Retrieves the code object for the host of specified guest code.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecCodeCopyHost"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecCodeRef",
+          "text": "SecCode"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@SecCSFlags",
+          "text": "SecCSFlags"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecCodeRef",
+          "text": "SecCode"
+        },
+        {
+          "kind": "text",
+          "text": "?>) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecCodeCopyHost(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecCodeCopyHost"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecCodeCopyHost(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/seccodecopyhost(_:_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecCodeCopyPath(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Retrieves the location on disk of signed code, given a code or static code object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecCodeCopyPath"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecStaticCodeRef",
+          "text": "SecStaticCode"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@SecCSFlags",
+          "text": "SecCSFlags"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFURLRef",
+          "text": "CFURL"
+        },
+        {
+          "kind": "text",
+          "text": "?>) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecCodeCopyPath(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecCodeCopyPath"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecCodeCopyPath(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/seccodecopypath(_:_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecCodeCopySelf(_:_:)": {
+      "abstract": [
+        {
+          "text": "Retrieves the code object for the code making the call.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecCodeCopySelf"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@SecCSFlags",
+          "text": "SecCSFlags"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecCodeRef",
+          "text": "SecCode"
+        },
+        {
+          "kind": "text",
+          "text": "?>) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecCodeCopySelf(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecCodeCopySelf"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecCodeCopySelf(_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/seccodecopyself(_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecCodeCopySigningInformation(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Retrieves various pieces of information from a code signature.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecCodeCopySigningInformation"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecStaticCodeRef",
+          "text": "SecStaticCode"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@SecCSFlags",
+          "text": "SecCSFlags"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFDictionaryRef",
+          "text": "CFDictionary"
+        },
+        {
+          "kind": "text",
+          "text": "?>) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecCodeCopySigningInformation(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecCodeCopySigningInformation"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecCodeCopySigningInformation(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/seccodecopysigninginformation(_:_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecCodeCopyStaticCode(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Returns a static code object representing the on-disk version of the given running code.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecCodeCopyStaticCode"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecCodeRef",
+          "text": "SecCode"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@SecCSFlags",
+          "text": "SecCSFlags"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecStaticCodeRef",
+          "text": "SecStaticCode"
+        },
+        {
+          "kind": "text",
+          "text": "?>) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecCodeCopyStaticCode(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecCodeCopyStaticCode"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecCodeCopyStaticCode(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/seccodecopystaticcode(_:_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecCodeGetTypeID()": {
+      "abstract": [
+        {
+          "text": "Returns the unique identifier of the opaque type to which a code object belongs.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecCodeGetTypeID"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFTypeID",
+          "text": "CFTypeID"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecCodeGetTypeID()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecCodeGetTypeID"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecCodeGetTypeID()",
+      "type": "topic",
+      "url": "/documentation/security/seccodegettypeid()"
+    },
+    "doc://com.apple.security/documentation/Security/SecCodeMapMemory(_:_:)": {
+      "abstract": [
+        {
+          "text": "Asks the kernel to accept the signing information currently attached to a code object and uses it to validate memory page-ins.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecCodeMapMemory"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecStaticCodeRef",
+          "text": "SecStaticCode"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@SecCSFlags",
+          "text": "SecCSFlags"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecCodeMapMemory(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecCodeMapMemory"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecCodeMapMemory(_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/seccodemapmemory(_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecCodeSignatureFlags": {
+      "abstract": [
+        {
+          "text": "Specify option flags that can be embedded in a code signature during signing and that govern the use of the signature.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecCodeSignatureFlags"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecCodeSignatureFlags",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecCodeSignatureFlags"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecCodeSignatureFlags",
+      "type": "topic",
+      "url": "/documentation/security/seccodesignatureflags"
+    },
+    "doc://com.apple.security/documentation/Security/SecCodeStatus": {
+      "abstract": [
+        {
+          "text": "Operational flags attached by code signing services to running code.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecCodeStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecCodeStatus",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecCodeStatus"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecCodeStatus",
+      "type": "topic",
+      "url": "/documentation/security/seccodestatus"
+    },
+    "doc://com.apple.security/documentation/Security/SecGuestRef": {
+      "abstract": [
+        {
+          "text": "A reference to a guest object, which identifies a particular block of guest code in the context of its code signing host.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecGuestRef"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecGuestRef",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecGuestRef"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecGuestRef",
+      "type": "topic",
+      "url": "/documentation/security/secguestref"
+    },
+    "doc://com.apple.security/documentation/Security/SecHostCreateGuest": {
+      "abstract": [
+        {
+          "text": "Creates a new guest and describes its initial properties.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SecHostCreateGuest"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecHostCreateGuest",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SecHostCreateGuest",
+      "type": "topic",
+      "url": "/documentation/security/sechostcreateguest"
+    },
+    "doc://com.apple.security/documentation/Security/SecHostRemoveGuest": {
+      "abstract": [
+        {
+          "text": "Removes a guest from a host.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SecHostRemoveGuest"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecHostRemoveGuest",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SecHostRemoveGuest",
+      "type": "topic",
+      "url": "/documentation/security/sechostremoveguest"
+    },
+    "doc://com.apple.security/documentation/Security/SecHostSelectGuest": {
+      "abstract": [
+        {
+          "text": "Makes the calling thread the proxy for a specified guest.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SecHostSelectGuest"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecHostSelectGuest",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SecHostSelectGuest",
+      "type": "topic",
+      "url": "/documentation/security/sechostselectguest"
+    },
+    "doc://com.apple.security/documentation/Security/SecHostSelectedGuest": {
+      "abstract": [
+        {
+          "text": "Retrieves the handle for the guest currently selected for the calling thread.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SecHostSelectedGuest"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecHostSelectedGuest",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SecHostSelectedGuest",
+      "type": "topic",
+      "url": "/documentation/security/sechostselectedguest"
+    },
+    "doc://com.apple.security/documentation/Security/SecHostSetGuestStatus": {
+      "abstract": [
+        {
+          "text": "Updates the status and attributes of a particular guest.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SecHostSetGuestStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecHostSetGuestStatus",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SecHostSetGuestStatus",
+      "type": "topic",
+      "url": "/documentation/security/sechostsetgueststatus"
+    },
+    "doc://com.apple.security/documentation/Security/SecHostSetHostingPort": {
+      "abstract": [
+        {
+          "text": "Tells code signing services that the calling code will directly respond to hosting inquiries over the given port.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SecHostSetHostingPort"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecHostSetHostingPort",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SecHostSetHostingPort",
+      "type": "topic",
+      "url": "/documentation/security/sechostsethostingport"
+    },
+    "doc://com.apple.security/documentation/Security/SecRequirement": {
+      "abstract": [
+        {
+          "text": "A code requirement object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecRequirement"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecRequirement",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecRequirement"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecRequirement",
+      "type": "topic",
+      "url": "/documentation/security/secrequirement"
+    },
+    "doc://com.apple.security/documentation/Security/SecRequirementCopyData(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Extracts a binary form of a code requirement from a code requirement object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecRequirementCopyData"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecRequirementRef",
+          "text": "SecRequirement"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@SecCSFlags",
+          "text": "SecCSFlags"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFDataRef",
+          "text": "CFData"
+        },
+        {
+          "kind": "text",
+          "text": "?>) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecRequirementCopyData(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecRequirementCopyData"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecRequirementCopyData(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/secrequirementcopydata(_:_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecRequirementCopyString(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Converts a code requirement object into text form.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecRequirementCopyString"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecRequirementRef",
+          "text": "SecRequirement"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@SecCSFlags",
+          "text": "SecCSFlags"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        },
+        {
+          "kind": "text",
+          "text": "?>) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecRequirementCopyString(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecRequirementCopyString"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecRequirementCopyString(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/secrequirementcopystring(_:_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecRequirementCreateWithData(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Creates a code requirement object from the binary form of a code requirement.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecRequirementCreateWithData"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFDataRef",
+          "text": "CFData"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@SecCSFlags",
+          "text": "SecCSFlags"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecRequirementRef",
+          "text": "SecRequirement"
+        },
+        {
+          "kind": "text",
+          "text": "?>) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecRequirementCreateWithData(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecRequirementCreateWithData"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecRequirementCreateWithData(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/secrequirementcreatewithdata(_:_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecRequirementCreateWithString(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Creates a code requirement object by compiling a valid text representation of a code requirement.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecRequirementCreateWithString"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@SecCSFlags",
+          "text": "SecCSFlags"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecRequirementRef",
+          "text": "SecRequirement"
+        },
+        {
+          "kind": "text",
+          "text": "?>) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecRequirementCreateWithString(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecRequirementCreateWithString"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecRequirementCreateWithString(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/secrequirementcreatewithstring(_:_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecRequirementCreateWithStringAndErrors(_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Creates a code requirement object by compiling a valid text representation of a code requirement and returns detailed error information in the case of failure.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecRequirementCreateWithStringAndErrors"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@SecCSFlags",
+          "text": "SecCSFlags"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s9UnmanagedV",
+          "text": "Unmanaged"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFErrorRef",
+          "text": "CFError"
+        },
+        {
+          "kind": "text",
+          "text": ">?>?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecRequirementRef",
+          "text": "SecRequirement"
+        },
+        {
+          "kind": "text",
+          "text": "?>) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecRequirementCreateWithStringAndErrors(_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecRequirementCreateWithStringAndErrors"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecRequirementCreateWithStringAndErrors(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/secrequirementcreatewithstringanderrors(_:_:_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecRequirementGetTypeID()": {
+      "abstract": [
+        {
+          "text": "Returns the unique identifier of the opaque type to which a code requirement object belongs.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecRequirementGetTypeID"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFTypeID",
+          "text": "CFTypeID"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecRequirementGetTypeID()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecRequirementGetTypeID"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecRequirementGetTypeID()",
+      "type": "topic",
+      "url": "/documentation/security/secrequirementgettypeid()"
+    },
+    "doc://com.apple.security/documentation/Security/SecRequirementType": {
+      "abstract": [
+        {
+          "text": "An enumeration indicating different types of internal requirements for code.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecRequirementType"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecRequirementType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecRequirementType"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecRequirementType",
+      "type": "topic",
+      "url": "/documentation/security/secrequirementtype"
+    },
+    "doc://com.apple.security/documentation/Security/SecStaticCode": {
+      "abstract": [
+        {
+          "text": "A static code object representing signed code on disk.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecStaticCode"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecStaticCode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecStaticCode"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecStaticCode",
+      "type": "topic",
+      "url": "/documentation/security/secstaticcode"
+    },
+    "doc://com.apple.security/documentation/Security/SecStaticCodeCheckValidity(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Validates a static code object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecStaticCodeCheckValidity"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecStaticCodeRef",
+          "text": "SecStaticCode"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@SecCSFlags",
+          "text": "SecCSFlags"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecRequirementRef",
+          "text": "SecRequirement"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecStaticCodeCheckValidity(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecStaticCodeCheckValidity"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecStaticCodeCheckValidity(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/secstaticcodecheckvalidity(_:_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecStaticCodeCheckValidityWithErrors(_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Performs static validation of static signed code and returns detailed error information in the case of failure.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecStaticCodeCheckValidityWithErrors"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecStaticCodeRef",
+          "text": "SecStaticCode"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@SecCSFlags",
+          "text": "SecCSFlags"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecRequirementRef",
+          "text": "SecRequirement"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s9UnmanagedV",
+          "text": "Unmanaged"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFErrorRef",
+          "text": "CFError"
+        },
+        {
+          "kind": "text",
+          "text": ">?>?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecStaticCodeCheckValidityWithErrors(_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecStaticCodeCheckValidityWithErrors"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecStaticCodeCheckValidityWithErrors(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/secstaticcodecheckvaliditywitherrors(_:_:_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecStaticCodeCreateWithPath(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Creates a static code object representing the code at a specified file system path.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecStaticCodeCreateWithPath"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFURLRef",
+          "text": "CFURL"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@SecCSFlags",
+          "text": "SecCSFlags"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecStaticCodeRef",
+          "text": "SecStaticCode"
+        },
+        {
+          "kind": "text",
+          "text": "?>) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecStaticCodeCreateWithPath(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecStaticCodeCreateWithPath"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecStaticCodeCreateWithPath(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/secstaticcodecreatewithpath(_:_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecStaticCodeCreateWithPathAndAttributes(_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Creates a static code object representing the code at a specified file system path using an attributes dictionary.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecStaticCodeCreateWithPathAndAttributes"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFURLRef",
+          "text": "CFURL"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@SecCSFlags",
+          "text": "SecCSFlags"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFDictionaryRef",
+          "text": "CFDictionary"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecStaticCodeRef",
+          "text": "SecStaticCode"
+        },
+        {
+          "kind": "text",
+          "text": "?>) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecStaticCodeCreateWithPathAndAttributes(_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecStaticCodeCreateWithPathAndAttributes"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecStaticCodeCreateWithPathAndAttributes(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/secstaticcodecreatewithpathandattributes(_:_:_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecStaticCodeGetTypeID()": {
+      "abstract": [
+        {
+          "text": "Returns the unique identifier of the opaque type to which a static code object belongs.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecStaticCodeGetTypeID"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFTypeID",
+          "text": "CFTypeID"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecStaticCodeGetTypeID()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecStaticCodeGetTypeID"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecStaticCodeGetTypeID()",
+      "type": "topic",
+      "url": "/documentation/security/secstaticcodegettypeid()"
+    },
+    "doc://com.apple.security/documentation/Security/SecTask": {
+      "abstract": [
+        {
+          "text": "The Core Foundation type representing a task.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecTask"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecTask",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecTask"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecTask",
+      "type": "topic",
+      "url": "/documentation/security/sectask"
+    },
+    "doc://com.apple.security/documentation/Security/SecTaskCopySigningIdentifier(_:_:)": {
+      "abstract": [
+        {
+          "text": "Returns the value of the code signing identifier.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecTaskCopySigningIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecTaskRef",
+          "text": "SecTask"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s9UnmanagedV",
+          "text": "Unmanaged"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFErrorRef",
+          "text": "CFError"
+        },
+        {
+          "kind": "text",
+          "text": ">?>?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecTaskCopySigningIdentifier(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecTaskCopySigningIdentifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecTaskCopySigningIdentifier(_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/sectaskcopysigningidentifier(_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecTaskCopyValueForEntitlement(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Returns the value of a single entitlement for the represented task.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecTaskCopyValueForEntitlement"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecTaskRef",
+          "text": "SecTask"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s9UnmanagedV",
+          "text": "Unmanaged"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFErrorRef",
+          "text": "CFError"
+        },
+        {
+          "kind": "text",
+          "text": ">?>?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFTypeRef",
+          "text": "CFTypeRef"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecTaskCopyValueForEntitlement(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecTaskCopyValueForEntitlement"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecTaskCopyValueForEntitlement(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/sectaskcopyvalueforentitlement(_:_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecTaskCopyValuesForEntitlements(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Returns the values of multiple entitlements for the represented task.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecTaskCopyValuesForEntitlements"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecTaskRef",
+          "text": "SecTask"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFArrayRef",
+          "text": "CFArray"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s9UnmanagedV",
+          "text": "Unmanaged"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFErrorRef",
+          "text": "CFError"
+        },
+        {
+          "kind": "text",
+          "text": ">?>?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFDictionaryRef",
+          "text": "CFDictionary"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecTaskCopyValuesForEntitlements(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecTaskCopyValuesForEntitlements"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecTaskCopyValuesForEntitlements(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/sectaskcopyvaluesforentitlements(_:_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecTaskCreateFromSelf(_:)": {
+      "abstract": [
+        {
+          "text": "Creates a task object for the current task.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecTaskCreateFromSelf"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFAllocatorRef",
+          "text": "CFAllocator"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecTaskRef",
+          "text": "SecTask"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecTaskCreateFromSelf(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecTaskCreateFromSelf"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecTaskCreateFromSelf(_:)",
+      "type": "topic",
+      "url": "/documentation/security/sectaskcreatefromself(_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecTaskCreateWithAuditToken(_:_:)": {
+      "abstract": [
+        {
+          "text": "Creates a task object for the task that sent the Mach message represented by the audit token.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecTaskCreateWithAuditToken"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFAllocatorRef",
+          "text": "CFAllocator"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@audit_token_t",
+          "text": "audit_token_t"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecTaskRef",
+          "text": "SecTask"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecTaskCreateWithAuditToken(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecTaskCreateWithAuditToken"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecTaskCreateWithAuditToken(_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/sectaskcreatewithaudittoken(_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecTaskGetTypeID()": {
+      "abstract": [
+        {
+          "text": "Returns the unique identifier of the opaque type to which a task object belongs.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecTaskGetTypeID"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFTypeID",
+          "text": "CFTypeID"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecTaskGetTypeID()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecTaskGetTypeID"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecTaskGetTypeID()",
+      "type": "topic",
+      "url": "/documentation/security/sectaskgettypeid()"
+    },
+    "doc://com.apple.security/documentation/Security/applying-code-requirements": {
+      "abstract": [
+        {
+          "text": "Manage the code requirements that apply to your signed code.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/applying-code-requirements",
+      "kind": "article",
+      "role": "article",
+      "title": "Applying Code Requirements",
+      "type": "topic",
+      "url": "/documentation/security/applying-code-requirements"
+    },
+    "doc://com.apple.security/documentation/Security/code-attributes": {
+      "abstract": [
+        {
+          "text": "Specify these keys from the attribute dictionary when you create a static code instance.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/code-attributes",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Code Attributes",
+      "type": "topic",
+      "url": "/documentation/security/code-attributes"
+    },
+    "doc://com.apple.security/documentation/Security/code-signing-architecture-flags": {
+      "abstract": [
+        {
+          "text": "Use these supplemental flags to get static code.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/code-signing-architecture-flags",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Code Signing Architecture Flags",
+      "type": "topic",
+      "url": "/documentation/security/code-signing-architecture-flags"
+    },
+    "doc://com.apple.security/documentation/Security/code-signing-information-flags": {
+      "abstract": [
+        {
+          "text": "Use these supplemental flags to retrieve signing information.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/code-signing-information-flags",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Code Signing Information Flags",
+      "type": "topic",
+      "url": "/documentation/security/code-signing-information-flags"
+    },
+    "doc://com.apple.security/documentation/Security/code-signing-services-result-codes": {
+      "abstract": [
+        {
+          "text": "Recognize result codes specific to the code signing services API.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/code-signing-services-result-codes",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Code Signing Services Result Codes",
+      "type": "topic",
+      "url": "/documentation/security/code-signing-services-result-codes"
+    },
+    "doc://com.apple.security/documentation/Security/guest-attribute-dictionary-keys": {
+      "abstract": [
+        {
+          "text": "Specify attributes of guest code.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/guest-attribute-dictionary-keys",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Guest Attribute Dictionary Keys",
+      "type": "topic",
+      "url": "/documentation/security/guest-attribute-dictionary-keys"
+    },
+    "doc://com.apple.security/documentation/Security/guest-creation-flags": {
+      "abstract": [
+        {
+          "text": "Use these supplemental flags to create a guest object.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/guest-creation-flags",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Guest Creation Flags",
+      "type": "topic",
+      "url": "/documentation/security/guest-creation-flags"
+    },
+    "doc://com.apple.security/documentation/Security/hosting-guest-code": {
+      "abstract": [
+        {
+          "text": "Securely launch and manage plug-ins and other executable entities, known as guest code, from within your app acting as a host.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/hosting-guest-code",
+      "kind": "article",
+      "role": "article",
+      "title": "Hosting Guest Code",
+      "type": "topic",
+      "url": "/documentation/security/hosting-guest-code"
+    },
+    "doc://com.apple.security/documentation/Security/null-guest-handle": {
+      "abstract": [
+        {
+          "text": "Use this special value to stand in for a null guest object.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/null-guest-handle",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Null Guest Handle",
+      "type": "topic",
+      "url": "/documentation/security/null-guest-handle"
+    },
+    "doc://com.apple.security/documentation/Security/signing-information-dictionary-keys": {
+      "abstract": [
+        {
+          "text": "Use these keys from the information dictionary when you retrieve information from a code signature.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/signing-information-dictionary-keys",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Signing Information Dictionary Keys",
+      "type": "topic",
+      "url": "/documentation/security/signing-information-dictionary-keys"
+    },
+    "doc://com.apple.security/documentation/Security/static-code-validation-flags": {
+      "abstract": [
+        {
+          "text": "Use these supplemental flags to test the validity of a static code signature.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/static-code-validation-flags",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Static Code Validation Flags",
+      "type": "topic",
+      "url": "/documentation/security/static-code-validation-flags"
+    },
+    "doc://com.apple.security/documentation/Security/user-info-dictionary-error-keys": {
+      "abstract": [
+        {
+          "text": "Recognize the keys of the user info dictionary provided by functions that return error objects.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/user-info-dictionary-error-keys",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "User Info Dictionary Error Keys",
+      "type": "topic",
+      "url": "/documentation/security/user-info-dictionary-error-keys"
+    },
+    "https://developer.apple.com/library/archive/documentation/Security/Conceptual/CodeSigningGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40005929": {
+      "identifier": "https://developer.apple.com/library/archive/documentation/Security/Conceptual/CodeSigningGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40005929",
+      "title": "Code Signing Guide",
+      "titleInlineContent": [
+        {
+          "text": "Code Signing Guide",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/Security/Conceptual/CodeSigningGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40005929"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Related-Documentation",
+      "identifiers": [
+        "https://developer.apple.com/library/archive/documentation/Security/Conceptual/CodeSigningGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40005929"
+      ],
+      "title": "Related Documentation"
+    }
+  ],
+  "topicSections": [
+    {
+      "abstract": [
+        {
+          "text": "Work with signed code loaded into memory.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Code-Objects",
+      "identifiers": [
+        "doc://com.apple.security/documentation/Security/SecCode",
+        "doc://com.apple.security/documentation/Security/SecCodeCopySelf(_:_:)",
+        "doc://com.apple.security/documentation/Security/SecCSFlags",
+        "doc://com.apple.security/documentation/Security/SecCodeGetTypeID()"
+      ],
+      "title": "Code Objects"
+    },
+    {
+      "abstract": [
+        {
+          "text": "Work with signed code on disk.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Static-Code",
+      "identifiers": [
+        "doc://com.apple.security/documentation/Security/SecStaticCode",
+        "doc://com.apple.security/documentation/Security/SecStaticCodeCreateWithPath(_:_:_:)",
+        "doc://com.apple.security/documentation/Security/SecStaticCodeCreateWithPathAndAttributes(_:_:_:_:)",
+        "doc://com.apple.security/documentation/Security/code-attributes",
+        "doc://com.apple.security/documentation/Security/SecStaticCodeGetTypeID()"
+      ],
+      "title": "Static Code"
+    },
+    {
+      "anchor": "Working-with-Code-Objects",
+      "identifiers": [
+        "doc://com.apple.security/documentation/Security/SecCodeCopyPath(_:_:_:)",
+        "doc://com.apple.security/documentation/Security/SecCodeCopyStaticCode(_:_:_:)",
+        "doc://com.apple.security/documentation/Security/code-signing-architecture-flags"
+      ],
+      "title": "Working with Code Objects"
+    },
+    {
+      "anchor": "Code-Signatures",
+      "identifiers": [
+        "doc://com.apple.security/documentation/Security/SecCodeCopySigningInformation(_:_:_:)",
+        "doc://com.apple.security/documentation/Security/code-signing-information-flags",
+        "doc://com.apple.security/documentation/Security/signing-information-dictionary-keys",
+        "doc://com.apple.security/documentation/Security/SecCodeSignatureFlags",
+        "doc://com.apple.security/documentation/Security/SecCSDigestAlgorithm"
+      ],
+      "title": "Code Signatures"
+    },
+    {
+      "anchor": "Code-Requirements",
+      "identifiers": [
+        "doc://com.apple.security/documentation/Security/applying-code-requirements",
+        "doc://com.apple.security/documentation/Security/SecCodeCopyDesignatedRequirement(_:_:_:)",
+        "doc://com.apple.security/documentation/Security/SecRequirement",
+        "doc://com.apple.security/documentation/Security/SecRequirementGetTypeID()",
+        "doc://com.apple.security/documentation/Security/SecRequirementType"
+      ],
+      "title": "Code Requirements"
+    },
+    {
+      "anchor": "Code-Requirements-as-Data",
+      "identifiers": [
+        "doc://com.apple.security/documentation/Security/SecRequirementCopyData(_:_:_:)",
+        "doc://com.apple.security/documentation/Security/SecRequirementCreateWithData(_:_:_:)"
+      ],
+      "title": "Code Requirements as Data"
+    },
+    {
+      "anchor": "Code-Requirements-as-Text",
+      "identifiers": [
+        "doc://com.apple.security/documentation/Security/SecRequirementCopyString(_:_:_:)",
+        "doc://com.apple.security/documentation/Security/SecRequirementCreateWithString(_:_:_:)",
+        "doc://com.apple.security/documentation/Security/SecRequirementCreateWithStringAndErrors(_:_:_:_:)"
+      ],
+      "title": "Code Requirements as Text"
+    },
+    {
+      "anchor": "Guest-Code",
+      "identifiers": [
+        "doc://com.apple.security/documentation/Security/hosting-guest-code",
+        "doc://com.apple.security/documentation/Security/SecCodeCopyGuestWithAttributes(_:_:_:_:)",
+        "doc://com.apple.security/documentation/Security/null-guest-handle",
+        "doc://com.apple.security/documentation/Security/SecCodeStatus",
+        "doc://com.apple.security/documentation/Security/guest-creation-flags",
+        "doc://com.apple.security/documentation/Security/guest-attribute-dictionary-keys",
+        "doc://com.apple.security/documentation/Security/SecGuestRef"
+      ],
+      "title": "Guest Code"
+    },
+    {
+      "anchor": "Guest-Management",
+      "identifiers": [
+        "doc://com.apple.security/documentation/Security/SecCodeCopyHost(_:_:_:)",
+        "doc://com.apple.security/documentation/Security/SecCodeMapMemory(_:_:)"
+      ],
+      "title": "Guest Management"
+    },
+    {
+      "anchor": "Tasks",
+      "identifiers": [
+        "doc://com.apple.security/documentation/Security/SecTaskCreateFromSelf(_:)",
+        "doc://com.apple.security/documentation/Security/SecTaskCreateWithAuditToken(_:_:)",
+        "doc://com.apple.security/documentation/Security/SecTask",
+        "doc://com.apple.security/documentation/Security/SecTaskGetTypeID()",
+        "doc://com.apple.security/documentation/Security/SecTaskCopySigningIdentifier(_:_:)",
+        "doc://com.apple.security/documentation/Security/SecTaskCopyValueForEntitlement(_:_:_:)",
+        "doc://com.apple.security/documentation/Security/SecTaskCopyValuesForEntitlements(_:_:_:)"
+      ],
+      "title": "Tasks"
+    },
+    {
+      "anchor": "Code-Signature-Validity",
+      "identifiers": [
+        "doc://com.apple.security/documentation/Security/SecCodeCheckValidity(_:_:_:)",
+        "doc://com.apple.security/documentation/Security/SecCodeCheckValidityWithErrors(_:_:_:_:)",
+        "doc://com.apple.security/documentation/Security/SecStaticCodeCheckValidity(_:_:_:)",
+        "doc://com.apple.security/documentation/Security/SecStaticCodeCheckValidityWithErrors(_:_:_:_:)",
+        "doc://com.apple.security/documentation/Security/static-code-validation-flags"
+      ],
+      "title": "Code Signature Validity"
+    },
+    {
+      "anchor": "Result-Codes",
+      "identifiers": [
+        "doc://com.apple.security/documentation/Security/code-signing-services-result-codes",
+        "doc://com.apple.security/documentation/Security/user-info-dictionary-error-keys"
+      ],
+      "title": "Result Codes"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "abstract": [
+                {
+                  "text": "Work with signed code loaded into memory.",
+                  "type": "text"
+                }
+              ],
+              "anchor": "Code-Objects",
+              "identifiers": [
+                "doc://com.apple.security/documentation/Security/SecCode",
+                "doc://com.apple.security/documentation/Security/SecCodeCopySelf(_:_:)",
+                "doc://com.apple.security/documentation/Security/SecCSFlags",
+                "doc://com.apple.security/documentation/Security/SecCodeGetTypeID()"
+              ],
+              "title": "Code Objects"
+            },
+            {
+              "abstract": [
+                {
+                  "text": "Work with signed code on disk.",
+                  "type": "text"
+                }
+              ],
+              "anchor": "Static-Code",
+              "identifiers": [
+                "doc://com.apple.security/documentation/Security/SecStaticCode",
+                "doc://com.apple.security/documentation/Security/SecStaticCodeCreateWithPath(_:_:_:)",
+                "doc://com.apple.security/documentation/Security/SecStaticCodeCreateWithPathAndAttributes(_:_:_:_:)",
+                "doc://com.apple.security/documentation/Security/code-attributes",
+                "doc://com.apple.security/documentation/Security/SecStaticCodeGetTypeID()"
+              ],
+              "title": "Static Code"
+            },
+            {
+              "anchor": "Working-with-Code-Objects",
+              "identifiers": [
+                "doc://com.apple.security/documentation/Security/SecCodeCopyPath(_:_:_:)",
+                "doc://com.apple.security/documentation/Security/SecCodeCopyStaticCode(_:_:_:)",
+                "doc://com.apple.security/documentation/Security/code-signing-architecture-flags"
+              ],
+              "title": "Working with Code Objects"
+            },
+            {
+              "anchor": "Code-Signatures",
+              "identifiers": [
+                "doc://com.apple.security/documentation/Security/SecCodeCopySigningInformation(_:_:_:)",
+                "doc://com.apple.security/documentation/Security/code-signing-information-flags",
+                "doc://com.apple.security/documentation/Security/signing-information-dictionary-keys",
+                "doc://com.apple.security/documentation/Security/SecCodeSignatureFlags",
+                "doc://com.apple.security/documentation/Security/SecCSDigestAlgorithm"
+              ],
+              "title": "Code Signatures"
+            },
+            {
+              "anchor": "Code-Requirements",
+              "identifiers": [
+                "doc://com.apple.security/documentation/Security/applying-code-requirements",
+                "doc://com.apple.security/documentation/Security/SecCodeCopyDesignatedRequirement(_:_:_:)",
+                "doc://com.apple.security/documentation/Security/SecRequirement",
+                "doc://com.apple.security/documentation/Security/SecRequirementGetTypeID()",
+                "doc://com.apple.security/documentation/Security/SecRequirementType"
+              ],
+              "title": "Code Requirements"
+            },
+            {
+              "anchor": "Code-Requirements-as-Data",
+              "identifiers": [
+                "doc://com.apple.security/documentation/Security/SecRequirementCopyData(_:_:_:)",
+                "doc://com.apple.security/documentation/Security/SecRequirementCreateWithData(_:_:_:)"
+              ],
+              "title": "Code Requirements as Data"
+            },
+            {
+              "anchor": "Code-Requirements-as-Text",
+              "identifiers": [
+                "doc://com.apple.security/documentation/Security/SecRequirementCopyString(_:_:_:)",
+                "doc://com.apple.security/documentation/Security/SecRequirementCreateWithString(_:_:_:)",
+                "doc://com.apple.security/documentation/Security/SecRequirementCreateWithStringAndErrors(_:_:_:_:)"
+              ],
+              "title": "Code Requirements as Text"
+            },
+            {
+              "anchor": "Guest-Code",
+              "identifiers": [
+                "doc://com.apple.security/documentation/Security/hosting-guest-code",
+                "doc://com.apple.security/documentation/Security/SecHostCreateGuest",
+                "doc://com.apple.security/documentation/Security/SecHostSetGuestStatus",
+                "doc://com.apple.security/documentation/Security/SecCodeCopyGuestWithAttributes(_:_:_:_:)",
+                "doc://com.apple.security/documentation/Security/null-guest-handle",
+                "doc://com.apple.security/documentation/Security/SecCodeStatus",
+                "doc://com.apple.security/documentation/Security/guest-creation-flags",
+                "doc://com.apple.security/documentation/Security/guest-attribute-dictionary-keys",
+                "doc://com.apple.security/documentation/Security/SecGuestRef"
+              ],
+              "title": "Guest Code"
+            },
+            {
+              "anchor": "Guest-Management",
+              "identifiers": [
+                "doc://com.apple.security/documentation/Security/SecCodeCopyHost(_:_:_:)",
+                "doc://com.apple.security/documentation/Security/SecHostRemoveGuest",
+                "doc://com.apple.security/documentation/Security/SecHostSelectGuest",
+                "doc://com.apple.security/documentation/Security/SecHostSelectedGuest",
+                "doc://com.apple.security/documentation/Security/SecHostSetHostingPort",
+                "doc://com.apple.security/documentation/Security/SecCodeMapMemory(_:_:)"
+              ],
+              "title": "Guest Management"
+            },
+            {
+              "anchor": "Tasks",
+              "identifiers": [
+                "doc://com.apple.security/documentation/Security/SecTaskCreateFromSelf(_:)",
+                "doc://com.apple.security/documentation/Security/SecTaskCreateWithAuditToken(_:_:)",
+                "doc://com.apple.security/documentation/Security/SecTask",
+                "doc://com.apple.security/documentation/Security/SecTaskGetTypeID()",
+                "doc://com.apple.security/documentation/Security/SecTaskCopySigningIdentifier(_:_:)",
+                "doc://com.apple.security/documentation/Security/SecTaskCopyValueForEntitlement(_:_:_:)",
+                "doc://com.apple.security/documentation/Security/SecTaskCopyValuesForEntitlements(_:_:_:)"
+              ],
+              "title": "Tasks"
+            },
+            {
+              "anchor": "Code-Signature-Validity",
+              "identifiers": [
+                "doc://com.apple.security/documentation/Security/SecCodeCheckValidity(_:_:_:)",
+                "doc://com.apple.security/documentation/Security/SecCodeCheckValidityWithErrors(_:_:_:_:)",
+                "doc://com.apple.security/documentation/Security/SecStaticCodeCheckValidity(_:_:_:)",
+                "doc://com.apple.security/documentation/Security/SecStaticCodeCheckValidityWithErrors(_:_:_:_:)",
+                "doc://com.apple.security/documentation/Security/static-code-validation-flags"
+              ],
+              "title": "Code Signature Validity"
+            },
+            {
+              "anchor": "Result-Codes",
+              "identifiers": [
+                "doc://com.apple.security/documentation/Security/code-signing-services-result-codes",
+                "doc://com.apple.security/documentation/Security/user-info-dictionary-error-keys"
+              ],
+              "title": "Result Codes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Related-Documentation",
+              "identifiers": [
+                "https://developer.apple.com/library/archive/documentation/Security/Conceptual/CodeSigningGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40005929"
+              ],
+              "title": "Related Documentation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTask/title",
+          "value": "SecTaskRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTask/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecTaskRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTask/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecTaskRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecRequirement/title",
+          "value": "SecRequirementRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecRequirement/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecRequirementRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecRequirement/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecRequirementRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecCSDigestAlgorithm/title",
+          "value": "SecCSDigestAlgorithm"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecCSDigestAlgorithm/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecCSDigestAlgorithm"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecCSDigestAlgorithm/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecCSDigestAlgorithm"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecCodeCheckValidity(_:_:_:)/title",
+          "value": "SecCodeCheckValidity"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecCodeCheckValidity(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecCodeCheckValidity"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecCodeCopyDesignatedRequirement(_:_:_:)/title",
+          "value": "SecCodeCopyDesignatedRequirement"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecCodeCopyDesignatedRequirement(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecCodeCopyDesignatedRequirement"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecRequirementCreateWithString(_:_:_:)/title",
+          "value": "SecRequirementCreateWithString"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecRequirementCreateWithString(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecRequirementCreateWithString"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecRequirementCreateWithData(_:_:_:)/title",
+          "value": "SecRequirementCreateWithData"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecRequirementCreateWithData(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecRequirementCreateWithData"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecCodeCopyStaticCode(_:_:_:)/title",
+          "value": "SecCodeCopyStaticCode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecCodeCopyStaticCode(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecCodeCopyStaticCode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTaskCreateFromSelf(_:)/title",
+          "value": "SecTaskCreateFromSelf"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTaskCreateFromSelf(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecTaskCreateFromSelf"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecGuestRef/title",
+          "value": "SecGuestRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecGuestRef/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecGuestRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecGuestRef/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecGuestRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecRequirementCreateWithStringAndErrors(_:_:_:_:)/title",
+          "value": "SecRequirementCreateWithStringAndErrors"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecRequirementCreateWithStringAndErrors(_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecRequirementCreateWithStringAndErrors"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecCodeCopyGuestWithAttributes(_:_:_:_:)/title",
+          "value": "SecCodeCopyGuestWithAttributes"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecCodeCopyGuestWithAttributes(_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecCodeCopyGuestWithAttributes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecStaticCodeCheckValidityWithErrors(_:_:_:_:)/title",
+          "value": "SecStaticCodeCheckValidityWithErrors"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecStaticCodeCheckValidityWithErrors(_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecStaticCodeCheckValidityWithErrors"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecStaticCodeCreateWithPathAndAttributes(_:_:_:_:)/title",
+          "value": "SecStaticCodeCreateWithPathAndAttributes"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecStaticCodeCreateWithPathAndAttributes(_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecStaticCodeCreateWithPathAndAttributes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecRequirementGetTypeID()/title",
+          "value": "SecRequirementGetTypeID"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecRequirementGetTypeID()/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecRequirementGetTypeID"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecCodeCopyHost(_:_:_:)/title",
+          "value": "SecCodeCopyHost"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecCodeCopyHost(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecCodeCopyHost"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecStaticCodeCheckValidity(_:_:_:)/title",
+          "value": "SecStaticCodeCheckValidity"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecStaticCodeCheckValidity(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecStaticCodeCheckValidity"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTaskGetTypeID()/title",
+          "value": "SecTaskGetTypeID"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTaskGetTypeID()/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecTaskGetTypeID"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecCodeCopyPath(_:_:_:)/title",
+          "value": "SecCodeCopyPath"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecCodeCopyPath(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecCodeCopyPath"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecCodeStatus/title",
+          "value": "SecCodeStatus"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecCodeStatus/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecCodeStatus"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecCodeStatus/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecCodeStatus"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecStaticCodeGetTypeID()/title",
+          "value": "SecStaticCodeGetTypeID"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecStaticCodeGetTypeID()/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecStaticCodeGetTypeID"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecCodeCopySelf(_:_:)/title",
+          "value": "SecCodeCopySelf"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecCodeCopySelf(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecCodeCopySelf"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTaskCopySigningIdentifier(_:_:)/title",
+          "value": "SecTaskCopySigningIdentifier"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTaskCopySigningIdentifier(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecTaskCopySigningIdentifier"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecStaticCodeCreateWithPath(_:_:_:)/title",
+          "value": "SecStaticCodeCreateWithPath"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecStaticCodeCreateWithPath(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecStaticCodeCreateWithPath"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTaskCopyValuesForEntitlements(_:_:_:)/title",
+          "value": "SecTaskCopyValuesForEntitlements"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTaskCopyValuesForEntitlements(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecTaskCopyValuesForEntitlements"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecCodeCopySigningInformation(_:_:_:)/title",
+          "value": "SecCodeCopySigningInformation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecCodeCopySigningInformation(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecCodeCopySigningInformation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecRequirementType/title",
+          "value": "SecRequirementType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecRequirementType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecRequirementType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecRequirementType/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecRequirementType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecCodeGetTypeID()/title",
+          "value": "SecCodeGetTypeID"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecCodeGetTypeID()/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecCodeGetTypeID"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecRequirementCopyString(_:_:_:)/title",
+          "value": "SecRequirementCopyString"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecRequirementCopyString(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecRequirementCopyString"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecCodeSignatureFlags/title",
+          "value": "SecCodeSignatureFlags"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecCodeSignatureFlags/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecCodeSignatureFlags"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecCodeSignatureFlags/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecCodeSignatureFlags"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTaskCreateWithAuditToken(_:_:)/title",
+          "value": "SecTaskCreateWithAuditToken"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTaskCreateWithAuditToken(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecTaskCreateWithAuditToken"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecCode/title",
+          "value": "SecCodeRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecCode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecCodeRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecCode/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecCodeRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecCodeMapMemory(_:_:)/title",
+          "value": "SecCodeMapMemory"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecCodeMapMemory(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecCodeMapMemory"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTaskCopyValueForEntitlement(_:_:_:)/title",
+          "value": "SecTaskCopyValueForEntitlement"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTaskCopyValueForEntitlement(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecTaskCopyValueForEntitlement"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecCSFlags/title",
+          "value": "SecCSFlags"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecCSFlags/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecCSFlags"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecCSFlags/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecCSFlags"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecRequirementCopyData(_:_:_:)/title",
+          "value": "SecRequirementCopyData"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecRequirementCopyData(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecRequirementCopyData"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecCodeCheckValidityWithErrors(_:_:_:_:)/title",
+          "value": "SecCodeCheckValidityWithErrors"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecCodeCheckValidityWithErrors(_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecCodeCheckValidityWithErrors"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecStaticCode/title",
+          "value": "SecStaticCodeRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecStaticCode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecStaticCodeRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecStaticCode/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecStaticCodeRef"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/security/code-signing-services"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/security/code-signing-services"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

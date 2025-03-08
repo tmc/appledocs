@@ -1,0 +1,1796 @@
+{
+  "abstract": [
+    {
+      "text": "Publish a configuration specification and implement a decoder that parses and validates configuration provided by an MDM admin.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.managedapp/documentation/ManagedApp"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.managedapp/documentation/ManagedApp/specifying-and-decoding-a-configuration"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "ManagedApp"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": true,
+        "introducedAt": "18.4",
+        "name": "iOS"
+      },
+      {
+        "beta": true,
+        "introducedAt": "18.4",
+        "name": "iPadOS"
+      },
+      {
+        "beta": true,
+        "introducedAt": "2.4",
+        "name": "visionOS"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Specifying and decoding a configuration"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your app can allow device management administrators (MDM admins) to configure properties that customize your app’s user experience on a specific device or a collection of devices. To provide this functionality, implement a configuration class. To be effective, ensure that your configuration class:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Contains the information for features that fulfill an organization’s needs",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Decodes and validates the configuration that MDM admins supply",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Generates actionable errors so MDM admins can troubleshoot in the event that they provide an invalid configuration",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You define the configurable options that your app offers. For example, your app can specify that the following data is configurable: a server URL that has a customizable region, a timeout, and a role property that selectively enables user interface based on a person’s job function. The following image illustrates such a configuration:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "specifying-and-decoding-a-configuration-2",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You design the features that an MDM admin can customize for their deployment. Implement a decoder that parses a configuration based on your specification. To communicate the format to the admin, publish the specification in a place that they can access. The MDM admin configures their unique setup on their MDM server, which delivers the configuration to managed devices.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The device receives a configuration from the server through ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/DeviceManagement",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". The MDM admin sets the configuration as needed and triggers the server to send it in the ",
+              "type": "text"
+            },
+            {
+              "code": "AppConfig",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key (or ",
+              "type": "text"
+            },
+            {
+              "code": "ExtensionConfigs",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", for app extensions) of an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/DeviceManagement/AppManaged",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " declaration. ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.managedapp/documentation/ManagedApp",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ingests the configuration and passes it to your app after you call ",
+              "type": "text"
+            },
+            {
+              "code": "ManagedAppConfigurationProvider/configurations(_:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to provide the framework with your decoder.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "specifying-and-decoding-a-configuration-1",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ingestion of a configuration, its decoding, and yielding of a decoded configuration object repeats as the MDM admin provides or updates the configuration at runtime.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Create a configuration decoder to enable the customization of arbitrary properties.  For information about handling secure credentials such as passwords, certificates, and identities, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.managedapp/documentation/ManagedApp/accessing-provisioned-secrets-with-identifiers",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Design-a-configuration-specification",
+          "level": 2,
+          "text": "Design a configuration specification",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Create a formal specification document for your app’s configuration. You can create a table or use the ",
+              "type": "text"
+            },
+            {
+              "code": "appconfig.org",
+              "type": "codeVoice"
+            },
+            {
+              "text": " schema. A specification typically includes the following information for every property: key name, value type, whether the property is required, a default value, allowed values, and descriptive text. For example:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Configuration key name",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Type",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Required",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Default value",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Allowed values",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Description",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "server",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "string",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "true",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "N/A",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "N/A",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The app’s device management server.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "timeout",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "integer",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "false",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "60",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "N/A",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A timeout, in seconds, for the server.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "role",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "string",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "false",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "staff",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "sales, marketing, engineering, operations, staff",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The person’s job, which can determine that an extra tab displays.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "When designing your specification, keep the configuration small to facilitate fast transmission. For example, recommend that the MDM admin store any large files that your app needs on an asset server rather than as serialized data in the configuration and include any credentials needed to authenticate their download using a separate network request.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Implement-a-configuration-decoder",
+          "level": 2,
+          "text": "Implement a configuration decoder",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the device receives your configuration from the server, the framework hands the configuration to your app in the form of a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Swift/Decoder",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". You author a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Swift/Decodable",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " type that receives the decoder and parses out the properties according to your specification.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Implement a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Swift/Decodable",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " that defines your configuration layout. The following example type holds three custom properties, ",
+              "type": "text"
+            },
+            {
+              "code": "server",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "timeout",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "code": "role",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct MyAppConfiguration: Decodable {",
+            "    private(set) var server: String",
+            "    private(set) var timeout: Int",
+            "    private(set) var role: String",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The decoder requires coding keys to map coded data to your configurable properties. Extend your custom configuration type to add coding keys according to the specification:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "extension MyAppConfiguration {",
+            "    enum CodingKeys: String, CodingKey {",
+            "        case server",
+            "        case timeout",
+            "        case role",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Implement an ",
+              "type": "text"
+            },
+            {
+              "code": "init(decoder:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method that ManagedApp uses to receive and parse your configurable properties:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "extension MyAppConfiguration {",
+            "    // Initialize your configuration type using info from the server. ",
+            "    init(from decoder: Decoder) throws {",
+            "        // Decode the configuration using the specified coding keys.  ",
+            "        let values = try decoder.container(keyedBy: CodingKeys.self)",
+            "        // Decode the required `server` value. ",
+            "        server = try values.decode(String.self, forKey: .server)",
+            "        // Decode the optional `timeout` value. ",
+            "        if values.contains(.timeout) {",
+            "            timeout = try values.decode(Int.self, forKey: .timeout)",
+            "        } else {",
+            "            // Set a default timeout if not present. ",
+            "            timeout = MyAppConfiguration.defaultTimeout",
+            "        }",
+            "        // Decode the `role` value. ",
+            "        role = try values.decode(String.self, forKey: .role)",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Only decode the incoming configuration in ",
+              "type": "text"
+            },
+            {
+              "code": "init(from:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". The framework enforces a timeout on decoding the configuration by throwing a ",
+              "type": "text"
+            },
+            {
+              "code": "ManagedAppConfigurationDecodingError",
+              "type": "codeVoice"
+            },
+            {
+              "text": " with the ",
+              "type": "text"
+            },
+            {
+              "code": "timeout",
+              "type": "codeVoice"
+            },
+            {
+              "text": " code if your initializer takes too long to complete.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Publish-your-configuration-specification",
+          "level": 2,
+          "text": "Publish your configuration specification",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Provide your app’s specification document to MDM admins by storing it in a place they can access, such as by hosting it on your app website. Additionally, you can provide an example configuration that conforms to your specification. The following example property list has the configurable properties, ",
+              "type": "text"
+            },
+            {
+              "code": "server",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "timeout",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "code": "role",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "<?xml version=\"1.0\" encoding=\"UTF-8\"?>",
+            "<!DOCTYPE plist PUBLIC \"-//Apple//DTD PLIST 1.0//EN\" ",
+            "    \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">",
+            "<plist version=\"1.0\">",
+            "<dict>",
+            "    <key>configuration</key>",
+            "    <dict>",
+            "        <key>server</key>",
+            "        <string>https://example.com/path/region</string>",
+            "        <key>timeout</key>",
+            "        <integer>60</integer>",
+            "        <key>role</key>",
+            "        <string>sales</string>",
+            "    </dict>",
+            "</dict>",
+            "</plist>"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The MDM admin sets the values as needed and stores the configuration on the MDM server for communication to managed devices using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/DeviceManagement",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". The MDM server sends the configuration through the ",
+              "type": "text"
+            },
+            {
+              "code": "AppConfig",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key (or ",
+              "type": "text"
+            },
+            {
+              "code": "ExtensionConfigs",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", for app extensions) of an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/DeviceManagement/AppManaged",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " declaration. From the perspective of your app, the device and the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.managedapp/documentation/ManagedApp",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " framework obtain your app’s configuration automatically.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Access-a-configuration-provider-and-set-defaults",
+          "level": 2,
+          "text": "Access a configuration provider and set defaults",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To supply your app access to the current configuration, implement a class that contains the framework’s configuration provider. For example:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "class MyAppConfigurationProvider {",
+            "    // Your app's custom configuration type. ",
+            "    private(set) var configuration: MyAppConfiguration",
+            "    // An instance of the underlying framework configuration provider. ",
+            "    private var configurationProvider: ManagedAppConfigurationProvider",
+            "    // Singleton setup. ",
+            "    // Enable global access to the configuration.   ",
+            "    static let shared: MyAppConfigurationProvider = {",
+            "        let instance = MyAppConfigurationProvider()",
+            "        return instance",
+            "    }()",
+            "    // Initializes a singleton. ",
+            "    private init() {        ",
+            "        // ... ",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Although not required, this example uses a singleton to let you access the configuration globally.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Tip",
+          "style": "tip",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Rely on default values while your app hasn’t yet received a configuration from the server. The following example adds defaults to the custom configuration type:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "extension MyAppConfiguration {",
+            "    // A default configuration. ",
+            "    static let defaultConfiguration = MyAppConfiguration(",
+            "                                        server: defaultServer, ",
+            "                                        timeout: defaultTimeout",
+            "                                        role: defaultRole)",
+            "    // Set default values for configurable properties. ",
+            "    static private let defaultServer = \"default.example.com\"",
+            "    static private let defaultTimeout = 60",
+            "    static private let defaultRole = \"staff\"",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Set the default configuration as your app starts, such as during the initialization of your app’s custom configuration provider:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "class MyAppConfigurationProvider {",
+            "    // Singleton setup.",
+            "    // ...",
+            "    // Initializes a singleton. ",
+            "    private init() {",
+            "        // Start with the defaults. ",
+            "        configuration = MyAppConfiguration.defaultConfiguration",
+            "        // Initialize the underlying provider.",
+            "        configurationProvider = ManagedAppConfigurationProvider()",
+            "        // Receive the configuration. ",
+            "        // ...",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Validate-decoded-values-and-throw-decoding-errors",
+          "level": 2,
+          "text": "Validate decoded values and throw decoding errors",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your configuration type needs to validate the values the admin supplies. Define valid ranges for properties as static additions to your custom type, for example, a lower bound on timeout:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "extension MyAppConfiguration {",
+            "    // Range validation. ",
+            "    static private let minimumTimeout = 5",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As the decoder parses properties, check that their values are within the expected range.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Let the MDM admin know which values are valid by including allowable ranges in your specification. The following table adds a ",
+              "type": "text"
+            },
+            {
+              "code": "minimum value",
+              "type": "codeVoice"
+            },
+            {
+              "text": " column to the previous example specification:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Configuration key name",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Type",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Required?",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Default value",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Minimum value",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Description",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "timeout",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "integer",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "false",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "60",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "5",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A timeout, in seconds, for the server.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If ",
+              "type": "text"
+            },
+            {
+              "code": "timeout",
+              "type": "codeVoice"
+            },
+            {
+              "text": " isn’t in the allowable range, the following ",
+              "type": "text"
+            },
+            {
+              "code": "guard",
+              "type": "codeVoice"
+            },
+            {
+              "text": " block throws a ",
+              "type": "text"
+            },
+            {
+              "code": "MyAppConfigurationDecoderError",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", with a specific ",
+              "type": "text"
+            },
+            {
+              "code": "ManagedAppConfigurationDecodingErrorCode",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "guard timeout >= MyAppConfiguration.minimumTimeout else {",
+            "    throw MyAppConfigurationDecoderError(code: MyAppConfiguration.timeoutTooLowErrorCode, ",
+            "        message: \"Timeout \\(timeout) is below minimum \\(MyAppConfiguration.minimumTimeout).\")",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can define this custom error, for example:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "extension MyAppConfiguration {",
+            "    struct MyAppConfigurationDecoderError : ManagedAppConfigurationDecodingError {",
+            "        var code: ManagedAppConfigurationDecodingErrorCode",
+            "        var message: String",
+            "    }",
+            "    static let timeoutTooLowErrorCode = ManagedAppConfigurationDecodingErrorCode(rawValue: 100)!"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Document-custom-errors-for-a-decoding-feedback-loop",
+          "level": 2,
+          "text": "Document custom errors for a decoding feedback loop",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Include the errors in your specification so the MDM admin can understand custom error codes. For example, document a code for setting a timeout that’s too low:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Error name",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Code",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Description",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "timeOutTooLowError",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "100",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Server timeout is below the minimum allowed.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the decoder finishes, the device reports the decoding results to the MDM server using Device Management ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/DeviceManagement/status-reports",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "On success, the device reports a valid state to the server.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "If the decoder throws an error and it conforms to ",
+              "type": "text"
+            },
+            {
+              "code": "ManagedAppConfigurationDecodingError",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", the device provides a status report with an invalid state to the server and logs the error in the device’s event log.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The log includes the ",
+              "type": "text"
+            },
+            {
+              "code": "ManagedAppConfigurationDecodingError/code",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "ManagedAppConfigurationDecodingError/message",
+              "type": "codeVoice"
+            },
+            {
+              "text": " properties. If the server receives an invalid state, the MDM admin can request device logs to understand the cause.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the error doesn’t conform to ",
+              "type": "text"
+            },
+            {
+              "code": "ManagedAppConfigurationDecodingError",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or if the error code is reserved, the device reports a generic error.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information on status reporting, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/DeviceManagement/leveraging-the-declarative-management-data-model-to-scale-devices#Use-status-to-report-device-state",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Because the framework logs errors, don’t include sensitive information in error messages.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Receive-the-configuration-and-any-updates",
+          "level": 2,
+          "text": "Receive the configuration and any updates",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Inside your custom provider’s singleton initializer, receive a configuration:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "Task { /* Configuration provider task */",
+            "    for await configuration in configurationProvider.configurations(MyAppConfiguration.self) {",
+            "        self.configuration = configuration ?? MyAppConfiguration.defaultConfiguration",
+            "    } ",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the custom configuration provider’s initializer, add the task declaration after setting the default configuration and initializing the custom configuration provider. In the ",
+              "type": "text"
+            },
+            {
+              "code": "for await",
+              "type": "codeVoice"
+            },
+            {
+              "text": " block, process the new configuration. For example, you can calculate changes in configuration or schedule UI updates in your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For the lifetime of the task, the ",
+              "type": "text"
+            },
+            {
+              "code": "for await",
+              "type": "codeVoice"
+            },
+            {
+              "text": " waits for an updated configuration from the MDM admin and yields the new value as soon as it successfully decodes. If decoding fails, such as if the MDM admin fails to include a required value, the sequence yields ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". Keep the task running to watch for changes that the MDM admin makes to the configuration.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Because the configuration can contain sensitive information, don’t log or displaying decoded portions of the configuration.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Apply-configured-values",
+          "level": 2,
+          "text": "Apply configured values",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After your app receives the configuration, it can adjust to the new information. For example if it receives a server URL, your app can request the URL and access the configurable asset or page it refers to. As another example, your app might reveal a Sales tab after learning that the person is a member of the sales team.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "specifying-and-decoding-a-configuration-3",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/DeviceManagement": {
+      "abstract": [
+        {
+          "text": "Manage your organization’s devices remotely.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/DeviceManagement",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Device Management",
+      "type": "topic",
+      "url": "/documentation/DeviceManagement"
+    },
+    "doc://com.apple.documentation/documentation/DeviceManagement/AppManaged": {
+      "abstract": [
+        {
+          "text": "The declaration to configure a managed app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "AppManaged"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/DeviceManagement/AppManaged",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AppManaged",
+      "type": "topic",
+      "url": "/documentation/DeviceManagement/AppManaged"
+    },
+    "doc://com.apple.documentation/documentation/DeviceManagement/leveraging-the-declarative-management-data-model-to-scale-devices#Use-status-to-report-device-state": {
+      "abstract": [
+        {
+          "text": "Use declarative management to make devices more autonomous and proactive.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/DeviceManagement/leveraging-the-declarative-management-data-model-to-scale-devices#Use-status-to-report-device-state",
+      "kind": "article",
+      "role": "article",
+      "title": "Leveraging the declarative management data model to scale devices",
+      "type": "topic",
+      "url": "/documentation/DeviceManagement/leveraging-the-declarative-management-data-model-to-scale-devices"
+    },
+    "doc://com.apple.documentation/documentation/DeviceManagement/status-reports": {
+      "abstract": [
+        {
+          "text": "Reports from the device about its current state.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/DeviceManagement/status-reports",
+      "kind": "article",
+      "role": "article",
+      "title": "Status Reports",
+      "type": "topic",
+      "url": "/documentation/DeviceManagement/status-reports"
+    },
+    "doc://com.apple.documentation/documentation/Swift/Decodable": {
+      "abstract": [
+        {
+          "text": "A type that can decode itself from an external representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Decodable"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Swift/Decodable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Decodable",
+      "type": "topic",
+      "url": "/documentation/Swift/Decodable"
+    },
+    "doc://com.apple.documentation/documentation/Swift/Decoder": {
+      "abstract": [
+        {
+          "text": "A type that can decode values from a native format into in-memory representations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Decoder"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Swift/Decoder",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Decoder",
+      "type": "topic",
+      "url": "/documentation/Swift/Decoder"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.managedapp/documentation/ManagedApp": {
+      "abstract": [
+        {
+          "text": "Customize your app for managed deployments by providing configurable features that rely on secure access to secrets and data that an administrator provisions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.managedapp/documentation/ManagedApp",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "ManagedApp",
+      "type": "topic",
+      "url": "/documentation/managedapp"
+    },
+    "doc://com.apple.managedapp/documentation/ManagedApp/accessing-provisioned-secrets-with-identifiers": {
+      "abstract": [
+        {
+          "text": "Specify the secrets your app requires for device management features, receive secrets from MDM servers and use secrets in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.managedapp/documentation/ManagedApp/accessing-provisioned-secrets-with-identifiers",
+      "kind": "article",
+      "role": "article",
+      "title": "Accessing provisioned secrets with identifiers",
+      "type": "topic",
+      "url": "/documentation/managedapp/accessing-provisioned-secrets-with-identifiers"
+    },
+    "specifying-and-decoding-a-configuration-1": {
+      "alt": "A flow chart with three actors and boxes containing text that represent actions and objects. The actors are, from left to right, App developer, iOS device, and MDM admin. The iOS device actor is split into two inner actors, with the actor at left labeled App and the actor at right labeled ManagedApp framework. Flow begins with three sequential boxes of the App developer actor, which read from top to bottom, Designs configuration specification, Implements decoder class, and Publishes specification. Flow continues to the right to two sequential boxes of the MDM admin actor, which read from top to bottom Reads specification, and Creates or updates configuration. Flow continues to the left to the iOS device actor on the ManagedApp framework side to a box labeled Ingests configuration. To the immediate left in the App column of the iOS device actor resides a box that reads Calls configuration(",
+      "identifier": "specifying-and-decoding-a-configuration-1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/0f6cd10d81a0996ca8afec1d510a7f04/specifying-and-decoding-a-configuration-1@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/0c8f24e8399c24d638d1ec5d3336cea4/specifying-and-decoding-a-configuration-1~dark@2x.png"
+        }
+      ]
+    },
+    "specifying-and-decoding-a-configuration-2": {
+      "alt": "An entity-relationship diagram that contains a box titled Configuration. Inside the box resides three other boxes flowing downward that each contain a key/value pair. The upper key reads server with a value of https>//example.com/path/region. The middle key reads timeout with a value of 60. The lower key reads role with a value of Sales.",
+      "identifier": "specifying-and-decoding-a-configuration-2",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/be561391d727e90169364ad5598d8f39/specifying-and-decoding-a-configuration-2@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b1333ba93d6668c7be0efb00f2843504/specifying-and-decoding-a-configuration-2~dark@2x.png"
+        }
+      ]
+    },
+    "specifying-and-decoding-a-configuration-3": {
+      "alt": null,
+      "identifier": "specifying-and-decoding-a-configuration-3",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4f9ee175d39d73ad7fde21731043b4ba/specifying-and-decoding-a-configuration-3@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/384b1680ca310dca2bc00ad0ec88741c/specifying-and-decoding-a-configuration-3~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/managedapp/specifying-and-decoding-a-configuration"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,652 @@
+{
+  "abstract": [
+    {
+      "text": "Creates and returns a renderer information object that contains properties and values for all renderers driving the specified displays.",
+      "type": "text"
+    }
+  ],
+  "deprecationSummary": [
+    {
+      "inlineContent": [
+        {
+          "text": "Instead use ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.agl/documentation/AGL/AGL-collection",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "type": "paragraph"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.agl/documentation/AGL"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.agl/documentation/AGL/aglQueryRendererInfo"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@F@aglQueryRendererInfo",
+    "fragments": [
+      {
+        "kind": "identifier",
+        "text": "aglQueryRendererInfo"
+      }
+    ],
+    "modules": [
+      {
+        "name": "AGL"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "aglQueryRendererInfo"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "deprecatedAt": "10.5",
+        "introducedAt": "10.0",
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Function",
+    "symbolKind": "func",
+    "title": "aglQueryRendererInfo"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "identifier": "doc://com.apple.agl/documentation/AGL/AGLRendererInfo",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@AGLRendererInfo",
+              "text": "AGLRendererInfo"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "aglQueryRendererInfo"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "identifier": "doc://com.apple.agl/documentation/AGL/AGLDevice",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@AGLDevice",
+              "text": "AGLDevice"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "const"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "internalParam",
+              "text": "gdevs"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:@T@GLint",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@GLint",
+              "text": "GLint"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "ndev"
+            },
+            {
+              "kind": "text",
+              "text": ");"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A pointer to a list of graphics devices to which you want to restrict the query. Pass ",
+                  "type": "text"
+                },
+                {
+                  "code": "NULL",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " to obtain information for all graphics devices on the system.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "gdevs"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The number of graphics devices in ",
+                  "type": "text"
+                },
+                {
+                  "code": "gdev",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ". Pass ",
+                  "type": "text"
+                },
+                {
+                  "code": "0",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " if ",
+                  "type": "text"
+                },
+                {
+                  "code": "gdevs",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " is ",
+                  "type": "text"
+                },
+                {
+                  "code": "NULL",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ". AGL sets the ",
+                  "type": "text"
+                },
+                {
+                  "code": "AGL_BAD_DEVICE",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " error if the ",
+                  "type": "text"
+                },
+                {
+                  "code": "ndev",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " parameter is nonzero and the ",
+                  "type": "text"
+                },
+                {
+                  "code": "gdevs",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " parameter is not an array of valid devices.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "ndev"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return-value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A renderer information object that describes all renderers able to drive the devices specified by the ",
+              "type": "text"
+            },
+            {
+              "code": "gdevs",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter.  The function returns ",
+              "type": "text"
+            },
+            {
+              "code": "NULL",
+              "type": "codeVoice"
+            },
+            {
+              "text": " if it fails for any reason. If an error occurs, call the function ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.agl/documentation/AGL/aglGetError",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to determine what the error is.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This function normally returns a list of more than one renderer information object—one for each renderer found on the system. To access data in the first renderer information object tin the list, call the function ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.agl/documentation/AGL/aglDescribeRenderer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". To access data in a renderer information object that is not the first one in the list, use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.agl/documentation/AGL/aglNextRendererInfo",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.agl/documentation/AGL": {
+      "abstract": [
+        {
+          "text": "Create and manage OpenGL rendering contexts for use in macOS, and perform operations on drawable objects.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.agl/documentation/AGL",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AGL",
+      "type": "topic",
+      "url": "/documentation/agl"
+    },
+    "doc://com.apple.agl/documentation/AGL/AGL-collection": {
+      "abstract": [
+        {
+          "text": "Create and manage OpenGL rendering contexts for use in macOS, and perform operations on drawable objects.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.agl/documentation/AGL/AGL-collection",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "AGL",
+      "type": "topic",
+      "url": "/documentation/agl/agl-collection"
+    },
+    "doc://com.apple.agl/documentation/AGL/AGLDevice": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "AGLDevice"
+        }
+      ],
+      "identifier": "doc://com.apple.agl/documentation/AGL/AGLDevice",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AGLDevice",
+      "type": "topic",
+      "url": "/documentation/agl/agldevice"
+    },
+    "doc://com.apple.agl/documentation/AGL/AGLRendererInfo": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "AGLRendererInfo"
+        }
+      ],
+      "identifier": "doc://com.apple.agl/documentation/AGL/AGLRendererInfo",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AGLRendererInfo",
+      "type": "topic",
+      "url": "/documentation/agl/aglrendererinfo"
+    },
+    "doc://com.apple.agl/documentation/AGL/aglDescribeRenderer": {
+      "abstract": [
+        {
+          "text": "Obtains the value associated with a renderer property.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "aglDescribeRenderer"
+        }
+      ],
+      "identifier": "doc://com.apple.agl/documentation/AGL/aglDescribeRenderer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "aglDescribeRenderer",
+      "type": "topic",
+      "url": "/documentation/agl/agldescriberenderer"
+    },
+    "doc://com.apple.agl/documentation/AGL/aglDestroyRendererInfo": {
+      "abstract": [
+        {
+          "text": "Frees resources associated with a renderer information object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "aglDestroyRendererInfo"
+        }
+      ],
+      "identifier": "doc://com.apple.agl/documentation/AGL/aglDestroyRendererInfo",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "aglDestroyRendererInfo",
+      "type": "topic",
+      "url": "/documentation/agl/agldestroyrendererinfo"
+    },
+    "doc://com.apple.agl/documentation/AGL/aglGetError": {
+      "abstract": [
+        {
+          "text": "Returns an AGL error code.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "aglGetError"
+        }
+      ],
+      "identifier": "doc://com.apple.agl/documentation/AGL/aglGetError",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "aglGetError",
+      "type": "topic",
+      "url": "/documentation/agl/aglgeterror"
+    },
+    "doc://com.apple.agl/documentation/AGL/aglNextRendererInfo": {
+      "abstract": [
+        {
+          "text": "Returns the next renderer information object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "aglNextRendererInfo"
+        }
+      ],
+      "identifier": "doc://com.apple.agl/documentation/AGL/aglNextRendererInfo",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "aglNextRendererInfo",
+      "type": "topic",
+      "url": "/documentation/agl/aglnextrendererinfo"
+    },
+    "doc://com.apple.agl/documentation/AGL/aglQueryRendererInfo": {
+      "abstract": [
+        {
+          "text": "Creates and returns a renderer information object that contains properties and values for all renderers driving the specified displays.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "aglQueryRendererInfo"
+        }
+      ],
+      "identifier": "doc://com.apple.agl/documentation/AGL/aglQueryRendererInfo",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "aglQueryRendererInfo",
+      "type": "topic",
+      "url": "/documentation/agl/aglqueryrendererinfo"
+    },
+    "doc://com.apple.agl/documentation/AGL/aglQueryRendererInfoForCGDirectDisplayIDs": {
+      "abstract": [
+        {
+          "text": "Creates and returns a renderer information object that contains properties and values for all renderers driving the specified displays.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "aglQueryRendererInfoForCGDirectDisplayIDs"
+        }
+      ],
+      "identifier": "doc://com.apple.agl/documentation/AGL/aglQueryRendererInfoForCGDirectDisplayIDs",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "aglQueryRendererInfoForCGDirectDisplayIDs",
+      "type": "topic",
+      "url": "/documentation/agl/aglqueryrendererinfoforcgdirectdisplayids"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:@T@GLint": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GLint"
+        },
+        {
+          "kind": "text",
+          "text": " = "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:@T@GLint",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GLint",
+      "type": "topic",
+      "url": "/documentation/OpenGLES/GLint"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Getting-Renderer-Information",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.agl/documentation/AGL/aglDescribeRenderer",
+        "doc://com.apple.agl/documentation/AGL/aglDestroyRendererInfo",
+        "doc://com.apple.agl/documentation/AGL/aglNextRendererInfo",
+        "doc://com.apple.agl/documentation/AGL/aglQueryRendererInfoForCGDirectDisplayIDs"
+      ],
+      "title": "Getting Renderer Information"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:@T@GLint/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "typedef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@int32_t",
+              "text": "int32_t"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "GLint"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/agl/aglqueryrendererinfo"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

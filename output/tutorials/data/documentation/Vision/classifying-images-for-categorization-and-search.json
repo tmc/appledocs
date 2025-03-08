@@ -1,0 +1,1241 @@
+{
+  "abstract": [
+    {
+      "text": "Analyze and label images using a Vision classification request.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.vision/documentation/Vision"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.vision/documentation/Vision",
+        "doc://com.apple.vision/documentation/Vision/original-objective-c-and-swift-api"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.vision/documentation/Vision/classifying-images-for-categorization-and-search"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "images": [
+      {
+        "identifier": "classifying-images-for-categorization-and-search-PageImage-card.png",
+        "type": "card"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Vision"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "15.0",
+        "name": "macOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "16.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Classifying images for categorization and search"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "With the help of machine learning to perform image analysis, the Vision framework can identify, recognize, and label objects in an image you provide. The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Vision/ClassifyImageRequest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " structure generates the image analysis results in the form of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Vision/ClassificationObservation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects. Each object contains a classification label (such as ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "bicycle",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": "), and an associated confidence value to indicate the level of certainty in the observation.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample app demonstrates how to set up and perform the classification request on a single image or on a collection of images. For a collection of images, the sample shows you how to process the images concurrently using Swift concurrency. Finally, the sample shows how you access and display the results from the request.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Perform-the-request",
+          "level": 3,
+          "text": "Perform the request",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "First, the app creates the ",
+              "type": "text"
+            },
+            {
+              "code": "ClassifyImageRequest",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and performs it on an image. The request returns the entire taxonomy as ",
+              "type": "text"
+            },
+            {
+              "code": "ClassificationObservation",
+              "type": "codeVoice"
+            },
+            {
+              "text": " objects, and stores the objects in an array. For each observation, the request assigns a label in the form of an identifier, along with a floating-point confidence value in the range of ",
+              "type": "text"
+            },
+            {
+              "code": "0.0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to ",
+              "type": "text"
+            },
+            {
+              "code": "1.0",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". A value of ",
+              "type": "text"
+            },
+            {
+              "code": "0.0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " indicates that the observation is not likely in the image, while a value of ",
+              "type": "text"
+            },
+            {
+              "code": "1.0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " indicates that the observation is certain to be in the image.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the request returns the results, the app performs a high-recall ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Swift/String/filter(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and only retains the observations that meet a confidence threshold. This threshold is set by the app with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Vision/ClassificationObservation/hasMinimumPrecision(_:forRecall:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method from ",
+              "type": "text"
+            },
+            {
+              "code": "Vision",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". A high-recall filter provides a much broader range of observations, but can result in more false positive results. For example, with this filter, an ambiguous image of a bear may result in an observation with the label ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "dog",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If an app can’t tolerate false positive results, the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Vision/ClassificationObservation/hasMinimumRecall(_:forPrecision:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method allows for a high-precision filter. A high-precision filter retains a smaller number of observations, but less chance to contain false positives. Increasing precision decreases recall, and increasing recall decreases precision. Testing can help determine the balance point that returns the best results for a specific use case.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app stores the final results in the ",
+              "type": "text"
+            },
+            {
+              "code": "observations",
+              "type": "codeVoice"
+            },
+            {
+              "text": " dictionary. The dictionary’s key is the identifier (the label of the observation), and its value is the confidence level.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Returns an `ImageFile` object based on the `ClassifyImageRequest` results.",
+            "func classifyImage(url: URL) async throws -> ImageFile {",
+            "    var image = ImageFile(url: url)",
+            "    ",
+            "    // Vision request to classify an image.",
+            "    let request = ClassifyImageRequest()",
+            "    ",
+            "    // Perform the request on the image, and return an array of `ClassificationObservation` objects.",
+            "    let results = try await request.perform(on: url)",
+            "        // Use `hasMinimumPrecision` for a high-recall filter.",
+            "        .filter { $0.hasMinimumPrecision(0.1, forRecall: 0.8) }",
+            "        // Use `hasMinimumRecall` for a high-precision filter.",
+            "        // .filter { $0.hasMinimumRecall(0.01, forPrecision: 0.9) }",
+            "    ",
+            "    // Add each classification identifier and its respective confidence level into the observations dictionary.",
+            "    for classification in results {",
+            "        image.observations[classification.identifier] = classification.confidence",
+            "    }",
+            "    ",
+            "    return image",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Processing a large collection of images can take time, so the app uses Swift concurrency to help with speed and efficiency. Using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Swift/TaskGroup",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", the app processes the images in parallel instead of sequentially in a loop. When the request returns results, the app adds each image’s observations to an array. For more information on using Swift concurrency, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://docs.swift.org/swift-book/documentation/the-swift-programming-language/concurrency/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func classifyAllImages(urls: [URL]) async throws -> [ImageFile] {",
+            "    var images = [ImageFile]()",
+            "    ",
+            "    try await withThrowingTaskGroup(of: ImageFile.self) { group in",
+            "        for url in urls {",
+            "            group.addTask {",
+            "                return try await classifyImage(url: url)",
+            "            }",
+            "        }",
+            "        ",
+            "        for try await image in group {",
+            "            images.append(image)",
+            "        }",
+            "    }",
+            "    ",
+            "    return images",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Retrieve-and-search-the-results",
+          "level": 3,
+          "text": "Retrieve and search the results",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample provides the ability to search for images by their classification labels. If the search bar is empty, the app presents all the images. If the search bar is not empty, the app only presents images with classification labels equal to the search term.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "var searchResults: [ImageFile] {",
+            "    if searchTerm.isEmpty {",
+            "        // If the search bar is empty, keep all of the images available.",
+            "        return images",
+            "    } else {",
+            "        // The only images that are available are those that contain classification labels equal to the search term.",
+            "        return images.filter({ $0.observations.keys.contains(searchTerm) })",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Clicking an image navigates to the results view and displays the results of the image analysis. Using a ",
+              "type": "text"
+            },
+            {
+              "code": "ForEach",
+              "type": "codeVoice"
+            },
+            {
+              "text": " loop, the app iterates through the observations. The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Swift/Array/sorted(by:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method sorts the observations in descending order of their confidence levels. The ",
+              "type": "text"
+            },
+            {
+              "code": "ForEach",
+              "type": "codeVoice"
+            },
+            {
+              "text": " loop accesses the values of the observation with the dictionary’s key and value keywords. Note that any confidence values of ",
+              "type": "text"
+            },
+            {
+              "code": "0.0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " are greater than zero due to rounding.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "List {",
+            "    if image.observations.isEmpty {",
+            "        Text(\"No observations found with significant confidence.\")",
+            "            .font(.title2)",
+            "            .padding(10)",
+            "    }",
+            "                ",
+            "    ForEach(image.observations.sorted(by: { $0.value > $1.value }), id: \\.key) { key, value in",
+            "        Text(\"\\(value, specifier: \"%.2f\"): \\(key.capitalized)\")",
+            "            .font(.title2)",
+            "            .padding(10)",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "9ae69e242f73/ClassifyingImagesForCategorizationAndSearch.zip": {
+      "checksum": "9ae69e242f73de150a4166b054aed92a843d104e42223ffec651466ae0c40f57bb243b0623ef68e0288dd28171c7cc00044cd0c0d82c24cbac6da59385111748",
+      "identifier": "9ae69e242f73/ClassifyingImagesForCategorizationAndSearch.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/9ae69e242f73/ClassifyingImagesForCategorizationAndSearch.zip"
+    },
+    "classifying-images-for-categorization-and-search-PageImage-card.png": {
+      "alt": null,
+      "identifier": "classifying-images-for-categorization-and-search-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4eabbb99abb5c902d499f93f57a9cf22/classifying-images-for-categorization-and-search-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/477f01072bf9eb417cbb5cf846e38226/classifying-images-for-categorization-and-search-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.documentation/documentation/Swift/Array/sorted(by:)": {
+      "abstract": [
+        {
+          "text": "Returns the elements of the sequence, sorted using the given predicate as the comparison between elements.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sorted"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "by"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "areInIncreasingOrder"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:ST7ElementQa",
+          "text": "Element"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:ST7ElementQa",
+          "text": "Element"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "rethrows"
+        },
+        {
+          "kind": "text",
+          "text": " -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:ST7ElementQa",
+          "text": "Element"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Swift/Array/sorted(by:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sorted(by:)",
+      "type": "topic",
+      "url": "/documentation/Swift/Array/sorted(by:)"
+    },
+    "doc://com.apple.documentation/documentation/Swift/String/filter(_:)": {
+      "abstract": [
+        {
+          "text": "Returns a new collection of the same type containing, in order, the elements of the original collection that satisfy the given predicate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "filter"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "isIncluded"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:ST7ElementQa",
+          "text": "Element"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "rethrows"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Swift/String/filter(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "filter(_:)",
+      "type": "topic",
+      "url": "/documentation/Swift/String/filter(_:)"
+    },
+    "doc://com.apple.documentation/documentation/Swift/TaskGroup": {
+      "abstract": [
+        {
+          "text": "A group that contains dynamically created child tasks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@frozen"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TaskGroup"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "ChildTaskResult"
+        },
+        {
+          "kind": "text",
+          "text": "> "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "ChildTaskResult"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8SendableP",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Swift/TaskGroup",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "TaskGroup",
+      "type": "topic",
+      "url": "/documentation/Swift/TaskGroup"
+    },
+    "doc://com.apple.documentation/documentation/Vision/ClassificationObservation": {
+      "abstract": [
+        {
+          "text": "An object that represents classification information that an image-analysis request produces.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ClassificationObservation"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Vision/ClassificationObservation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ClassificationObservation",
+      "type": "topic",
+      "url": "/documentation/Vision/ClassificationObservation"
+    },
+    "doc://com.apple.documentation/documentation/Vision/ClassificationObservation/hasMinimumPrecision(_:forRecall:)": {
+      "abstract": [
+        {
+          "text": "Determines whether the observation has a minimum precision value for a specific recall.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "hasMinimumPrecision"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "minimumPrecision"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "forRecall"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "recall"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Vision/ClassificationObservation/hasMinimumPrecision(_:forRecall:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hasMinimumPrecision(_:forRecall:)",
+      "type": "topic",
+      "url": "/documentation/Vision/ClassificationObservation/hasMinimumPrecision(_:forRecall:)"
+    },
+    "doc://com.apple.documentation/documentation/Vision/ClassificationObservation/hasMinimumRecall(_:forPrecision:)": {
+      "abstract": [
+        {
+          "text": "Determines whether the observation has a minimum recall value for a specific precision.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "hasMinimumRecall"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "minimumRecall"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "forPrecision"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "precision"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Vision/ClassificationObservation/hasMinimumRecall(_:forPrecision:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hasMinimumRecall(_:forPrecision:)",
+      "type": "topic",
+      "url": "/documentation/Vision/ClassificationObservation/hasMinimumRecall(_:forPrecision:)"
+    },
+    "doc://com.apple.documentation/documentation/Vision/ClassifyImageRequest": {
+      "abstract": [
+        {
+          "text": "A request to classify an image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ClassifyImageRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Vision/ClassifyImageRequest",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ClassifyImageRequest",
+      "type": "topic",
+      "url": "/documentation/Vision/ClassifyImageRequest"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.vision/documentation/Vision": {
+      "abstract": [
+        {
+          "text": "Apply computer vision algorithms to perform a variety of tasks on input images and videos.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Vision",
+      "type": "topic",
+      "url": "/documentation/vision"
+    },
+    "doc://com.apple.vision/documentation/Vision/ClassifyImageRequest": {
+      "abstract": [
+        {
+          "text": "A request to classify an image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ClassifyImageRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/ClassifyImageRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ClassifyImageRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "ClassifyImageRequest",
+      "type": "topic",
+      "url": "/documentation/vision/classifyimagerequest"
+    },
+    "doc://com.apple.vision/documentation/Vision/ImageProcessingRequest": {
+      "abstract": [
+        {
+          "text": "A type for image-analysis requests that focus on a specific part of an image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ImageProcessingRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/ImageProcessingRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ImageProcessingRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "ImageProcessingRequest",
+      "type": "topic",
+      "url": "/documentation/vision/imageprocessingrequest"
+    },
+    "doc://com.apple.vision/documentation/Vision/ImageRequestHandler": {
+      "abstract": [
+        {
+          "text": "An object that processes one or more image-analysis requests pertaining to a single image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ImageRequestHandler"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/ImageRequestHandler",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ImageRequestHandler"
+        }
+      ],
+      "role": "symbol",
+      "title": "ImageRequestHandler",
+      "type": "topic",
+      "url": "/documentation/vision/imagerequesthandler"
+    },
+    "doc://com.apple.vision/documentation/Vision/VisionObservation": {
+      "abstract": [
+        {
+          "text": "A type for objects produced by image-analysis requests.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VisionObservation"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/VisionObservation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VisionObservation"
+        }
+      ],
+      "role": "symbol",
+      "title": "VisionObservation",
+      "type": "topic",
+      "url": "/documentation/vision/visionobservation"
+    },
+    "doc://com.apple.vision/documentation/Vision/VisionRequest": {
+      "abstract": [
+        {
+          "text": "A type for image-analysis requests.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VisionRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/VisionRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VisionRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "VisionRequest",
+      "type": "topic",
+      "url": "/documentation/vision/visionrequest"
+    },
+    "doc://com.apple.vision/documentation/Vision/original-objective-c-and-swift-api": {
+      "abstract": [],
+      "identifier": "doc://com.apple.vision/documentation/Vision/original-objective-c-and-swift-api",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Original Objective-C and Swift API",
+      "type": "topic",
+      "url": "/documentation/vision/original-objective-c-and-swift-api"
+    },
+    "https://docs.swift.org/swift-book/documentation/the-swift-programming-language/concurrency/": {
+      "identifier": "https://docs.swift.org/swift-book/documentation/the-swift-programming-language/concurrency/",
+      "title": "Concurrency",
+      "titleInlineContent": [
+        {
+          "text": "Concurrency",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://docs.swift.org/swift-book/documentation/the-swift-programming-language/concurrency/"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "9ae69e242f73/ClassifyingImagesForCategorizationAndSearch.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Still-image-analysis",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.vision/documentation/Vision/ClassifyImageRequest",
+        "doc://com.apple.vision/documentation/Vision/ImageProcessingRequest",
+        "doc://com.apple.vision/documentation/Vision/ImageRequestHandler",
+        "doc://com.apple.vision/documentation/Vision/VisionRequest",
+        "doc://com.apple.vision/documentation/Vision/VisionObservation"
+      ],
+      "title": "Still-image analysis"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/vision/classifying-images-for-categorization-and-search"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

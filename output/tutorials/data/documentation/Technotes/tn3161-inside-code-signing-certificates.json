@@ -1,0 +1,3941 @@
+{
+  "abstract": [
+    {
+      "text": "Learn how code signing uses certificates to identify code authors.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.technotes/documentation/Technotes"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.technotes/documentation/Technotes/tn3161-inside-code-signing-certificates"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "TN3161: Inside Code Signing: Certificates"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3125-inside-code-signing-provisioning-profiles",
+              "isActive": true,
+              "overridingTitle": "TN3125: Inside Code Signing: Provisioning Profiles",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "TN3125: Inside Code Signing: Provisioning Profiles",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " explains how Apple platforms use provisioning profiles to authorize the execution of third-party code.  A provisioning profile ties together five criteria: who, what, where, when, and how.  In the case of the who, TN3125 describes how every profile includes a certificate for each developer covered by that profile.  However, it doesn’t go into details as to what a certificate is.  This technote aims to fill in those details.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For advice on the day-to-day management of code-signing identities, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Xcode/distribution",
+              "isActive": true,
+              "overridingTitle": "Distribution",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "Distribution",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/help/account/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "About-this-technote-series",
+          "level": 3,
+          "text": "About this technote series",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Code signing is a foundational technology on all Apple platforms.  Many documents that discuss code signing focus on solving a specific problem.  The ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Inside Code Signing",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " technotes peek behind the code signing curtain, to give you a better understanding of how it works.  For a list of all the technotes in this series, see the introduction in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3125-inside-code-signing-provisioning-profiles",
+              "isActive": true,
+              "overridingTitle": "TN3125: Inside Code Signing: Provisioning Profiles",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "TN3125: Inside Code Signing: Provisioning Profiles",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The ",
+                  "type": "text"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Inside Code Signing",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "emphasis"
+                },
+                {
+                  "text": " technotes discuss code signing details that aren’t considered API.  The structure of a code signature has changed numerous times in the past and may well change again in the future.  Don’t encode this information in your product.  When signing code, use Xcode (all platforms) or the ",
+                  "type": "text"
+                },
+                {
+                  "code": "codesign",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " tool (macOS only).  To get information or validate a code signature, use the ",
+                  "type": "text"
+                },
+                {
+                  "code": "codesign",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " tool or the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/Security/code-signing-services",
+                  "isActive": true,
+                  "overridingTitle": "Code Signing Services",
+                  "overridingTitleInlineContent": [
+                    {
+                      "text": "Code Signing Services",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "reference"
+                },
+                {
+                  "text": " API.  Apple updates these facilities to accommodate any changes to the code signature structure as they roll out.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Public-key-infrastructure",
+          "level": 2,
+          "text": "Public key infrastructure",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To understand certificates you must first understand a little about public key cryptography and its associated public key infrastructure (PKI).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Many of the Apple-specific processes described in this section are formally documented on the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://www.apple.com/certificateauthority/",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " page.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Public-key-cryptography",
+          "level": 3,
+          "text": "Public key cryptography",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Modern cryptography uses two different key systems.  Symmetric key cryptography has the same key for both encryption and decryption.  You encrypt a message with a key and anyone with that key can decrypt it.  Public key cryptography uses clever mathematics to create asymmetric key pairs.  You publish your public key widely.  Anyone can send you a message by encrypting it with that public key.  You retain the private key and use that to decrypt the message.  As long as you keep the private key secret, only you can read these messages.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Digital-signatures",
+          "level": 3,
+          "text": "Digital signatures",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Asymmetric key pairs also allow for digital signatures.  You keep the private key to yourself and you publish your public key.  If you sign a message with your private key, anyone can verify that signature with your public key.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "With some public key algorithms, signing a message is equivalent to encrypting a hash of that message, but that’s not universally true.  It’s best to think of encryption and signing as two conceptually different tasks.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Digital signatures are central to code signing.  Think of your code as a message which you sign and the operating system verifies before execution.  This verification has two steps:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Verify the signature itself, that is, nothing has changed since it was signed by your private key.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Evaluate whether your public key is trusted in this context.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This second step uses certificates.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Digital-certificate",
+          "level": 3,
+          "text": "Digital certificate",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the real world, a certificate is a document where the issuer attests to some facts about the subject.  For example, in your birth certificate:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The issuer is the regional authority of your birth.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The subject is you.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The facts are your name, date of birth, parents, and so on.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This system relies on the fact that real world certificates are non-trivial to forge: They’re printed on fancy paper, use special stamps, wax seals, and so on.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A digital certificate has the same goal as a real certificate: The issuer attests to some facts about the subject.  However, it can’t use fancy paper to prevent forgeries.  Instead, a digital certificate relies on public key cryptography.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Apple code signing uses the X.509 standard for digital certificates.  An X.509 certificate contains five pieces of information:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Details of the issuer",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Details of the subject",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The subject’s public key",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Required facts, like the valid date range",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Optional facts, known as extensions",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The issuer signs this information with their private key and then bundles it all together to form a certificate.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "For a detailed description of the X.509 certificate format, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://tools.ietf.org/html/rfc5280",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, if you download a code-signing certificate from the Developer website, you can dump the resulting ",
+              "type": "text"
+            },
+            {
+              "code": ".cer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file like so:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            " 1 % openssl x509 -in \"developerID_application.cer\" -inform der -text",
+            " 2 Certificate:",
+            " 3     Data:",
+            " 4         Version: 3 (0x2)",
+            " 5         Serial Number: 242040529399961421 (0x35be6944021d74d)",
+            " 6     Signature Algorithm: sha256WithRSAEncryption",
+            " 7         Issuer: CN=Developer ID Certification Authority, OU=Apple Certi…",
+            " 8         Validity",
+            " 9             Not Before: Jul 31 16:31:20 2017 GMT",
+            "10             Not After : Aug  1 16:31:20 2022 GMT",
+            "11         Subject: … CN=Developer ID Application: …, OU=SKMME9E2Y8, …",
+            "12         Subject Public Key Info:",
+            "13             …",
+            "14         X509v3 extensions:",
+            "15             …",
+            "16     Signature Algorithm: sha256WithRSAEncryption",
+            "17          cc:73:eb:43:51:a9:d4:d1:dc:5b:5a:fe:9a:d9:fe:eb:ea:c4:",
+            "18          …"
+          ],
+          "syntax": "shell",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Breaking this down:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Line 7 shows the details of the issuer, in this case the Developer ID Certification Authority.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Line 11 shows the details of the subject.  This example shows a Developer ID certificate, used for Mac code that’s distributed directly.  For code signing certificates, Apple places the developer’s Team ID into the subject’s Organization Unit (",
+                      "type": "text"
+                    },
+                    {
+                      "code": "OU",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ") field.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Lines 12 through 13 are the subject’s public key.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Lines 3 through 5 and 8 through 10 are the required facts, namely the certificate format version, serial number, and valid date range.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Lines 14 through 15 are the optional facts.  Code-signing certificates contain numerous extensions.  Some are industry standard extensions, while others are Apple-specific.   The latter are documented on the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://www.apple.com/certificateauthority/",
+                      "isActive": true,
+                      "overridingTitle": "Apple PKI",
+                      "overridingTitleInlineContent": [
+                        {
+                          "text": "Apple PKI",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "reference"
+                    },
+                    {
+                      "text": " page.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Lines 16 through 18 are the issuer’s signature.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To condense this into plain English, this certificate says that “Apple certifies that this developer is associated with this public key, and the matching private key can be used to sign Mac code.”  This is clearly a simplification—it doesn’t touch on the valid date range, serial number, or even how Apple identified the developer in the first place—but it’s a reasonable model to start out with.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Apple issues a variety of different code-signing certificate types.  For a complete list, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/help/account/reference/certificate-types",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Certificates are usually stored in one of two formats:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "This stores the binary certificate directly.  Apple tools and APIs prefer this format.  Files in this format typically have an extension of ",
+                        "type": "text"
+                      },
+                      {
+                        "code": ".cer",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " or ",
+                        "type": "text"
+                      },
+                      {
+                        "code": ".der",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "DER",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "This is a text rendition of the binary certificate.  Non-Apple tools and libraries, most notably OpenSSL, prefer this format.  Files in this format typically have the ",
+                        "type": "text"
+                      },
+                      {
+                        "code": ".pem",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " extension.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "PEM",
+                    "type": "text"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To convert between these formats, run the ",
+              "type": "text"
+            },
+            {
+              "code": "openssl",
+              "type": "codeVoice"
+            },
+            {
+              "text": " command-line tool with the ",
+              "type": "text"
+            },
+            {
+              "code": "x509",
+              "type": "codeVoice"
+            },
+            {
+              "text": " subcommand:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "% openssl x509 -in \"developerID_application.cer\" -inform der -out \"developerID_application.pem\"        ",
+            "% openssl x509 -in \"developerID_application.pem\" -out \"developerID_application.cer\" -outform der"
+          ],
+          "syntax": "shell",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Chain-of-trust",
+          "level": 3,
+          "text": "Chain of trust",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Certificates often form a chain of trust: the verifier uses the issuer information in a certificate to find the issuer’s certificate, then uses its issuer information to find the next certificate in the chain, and so on, until it hits an anchor, that is, a certificate it trusts as a matter of policy.  This process can be ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "very",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " complex, but for Apple’s code signing certificates it’s usually quite simple.  To view the certificate chain for an app, run the following command:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "% codesign --display -vvv \"MyApp.app\"",
+            "…",
+            "Authority=Developer ID Application: …",
+            "Authority=Developer ID Certification Authority",
+            "Authority=Apple Root CA",
+            "…"
+          ],
+          "syntax": "shell",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "For a detailed description of the standard algorithm to build a chain of trust, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://tools.ietf.org/html/rfc5280",
+                  "isActive": true,
+                  "overridingTitle": "RFC 5280",
+                  "overridingTitleInlineContent": [
+                    {
+                      "text": "RFC 5280",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In this example the Developer ID Application leaf certificate was issued by the Developer ID Certification Authority intermediate certificate which was issued by the Apple Root CA root certificate.  This three-level chain of trust is standard for Apple code signing, where:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The leaf certificate is issued to a developer by the Apple Developer website.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The intermediate certificate is one of a very limited set used for code signing, including Apple Worldwide Developer Relations Certification Authority and Developer ID Certification Authority.  Apple publishes these intermediate certificates on the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://www.apple.com/certificateauthority/",
+                      "isActive": true,
+                      "overridingTitle": "Apple PKI",
+                      "overridingTitleInlineContent": [
+                        {
+                          "text": "Apple PKI",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "reference"
+                    },
+                    {
+                      "text": " page.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The root certificate is Apple Root CA.  Apple operating systems trust this implicitly.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Don’t rely on the exact details of this chain of trust; it could change in the future.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "Authority",
+              "type": "codeVoice"
+            },
+            {
+              "text": " fields in the example above show a short summary of each certificate in the chain. To get the actual certificates, run ",
+              "type": "text"
+            },
+            {
+              "code": "codesign",
+              "type": "codeVoice"
+            },
+            {
+              "text": " with the ",
+              "type": "text"
+            },
+            {
+              "code": "--extract-certificates",
+              "type": "codeVoice"
+            },
+            {
+              "text": " option:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "% codesign --display --extract-certificates \"MyApp.app\""
+          ],
+          "syntax": "shell",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This creates a certificate file for each certificate in the chain, using ",
+              "type": "text"
+            },
+            {
+              "code": "codesign0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for the leaf, ",
+              "type": "text"
+            },
+            {
+              "code": "codesign1",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for its issuer, and so on.  So, to dump the leaf certificate, run this command:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "% openssl x509 -in codesign0 -inform der -text",
+            "Certificate:",
+            "    Data:",
+            "        Version: 3 (0x2)",
+            "        Serial Number: 242040529399961421 (0x35be6944021d74d)",
+            "    Signature Algorithm: sha256WithRSAEncryption",
+            "        Issuer: CN=Developer ID Certification Authority, OU=Apple Certi…",
+            "        Validity",
+            "            Not Before: Jul 31 16:31:20 2017 GMT",
+            "            Not After : Aug  1 16:31:20 2022 GMT",
+            "        Subject: … CN=Developer ID Application: …",
+            "        …"
+          ],
+          "syntax": "shell",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Digital-identity",
+          "level": 3,
+          "text": "Digital identity",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The previous section’s discussion of certificates was focused entirely on public keys.  Certificates are public data structures used to evaluate trust on the public key that’s, in turn, used to verify the signature.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To sign code you need a certificate and the private key that matches the public key in that certificate.  This combination is called a digital identity or, if it’s for signing code, a code-signing identity.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "As a certificate only contains a public key, you can’t use it to sign code.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Many people use the term ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "certificate",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " when they mean ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "digital identity",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ".  This industry-wide confusion extends into the Apple ecosystem.  For example, Xcode uses the term ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "signing certificate",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", Keychain Access uses ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "My Certificates",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", and Apple Mail uses ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "personal certificate",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Apple tools and APIs that work with a digital identity generally prefer the  PKCS#12 format.  PKCS#12 files usually have the ",
+              "type": "text"
+            },
+            {
+              "code": ".p12",
+              "type": "codeVoice"
+            },
+            {
+              "text": " extension, although ",
+              "type": "text"
+            },
+            {
+              "code": ".pfx",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is a common alternative.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "To learn more about PKCS#12, read ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://tools.ietf.org/html/rfc7292",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Non-Apple tools and libraries, most notably OpenSSL, work with digital identities in the PEM format.  In this case the PEM file contains two separate items: one for the certificate and one for the private key.  Such files can have a variety of extensions but one common one is ",
+              "type": "text"
+            },
+            {
+              "code": ".cer",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", further increasing the confusion between certificates and digital identities.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To convert between the PKCS#12 and PEM formats, run the ",
+              "type": "text"
+            },
+            {
+              "code": "openssl",
+              "type": "codeVoice"
+            },
+            {
+              "text": " command-line tool with the ",
+              "type": "text"
+            },
+            {
+              "code": "pkcs12",
+              "type": "codeVoice"
+            },
+            {
+              "text": " subcommand.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Certificate-signing-request",
+          "level": 3,
+          "text": "Certificate signing request",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Apple issues code-signing certificates in three different ways:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Manual certificate signing request (CSR) process",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Xcode’s certificate management",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Cloud-managed certificates",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "It’s important to understand how these issuing processes relate to the private key that, when combined with the certificate, forms your code-signing identity.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "https://developer.apple.com/help/account/",
+              "isActive": true,
+              "overridingTitle": "Developer Account Help",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "Developer Account Help",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " describes the manual CSR process.  A key step in that process is using Keychain Access to create a CSR.  This does two things:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "It creates a public / private key pair in your login keychain.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "It takes the public key, wraps it in a CSR structure, and prompts you to save that to a ",
+                      "type": "text"
+                    },
+                    {
+                      "code": ".certSigningRequest",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " file.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You then submit your CSR to the Developer website, which issues a certificate that contains your public key.  When you download this certificate and import it into your keychain, it forms a code-signing identity with the private key created in step 1.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "To learn more about CSRs in general, read ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://tools.ietf.org/html/rfc2986",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This process has some key advantages:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Your private key never leaves your Mac.  As long as you keep that key to yourself, no one can sign code as you.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You can choose to use a private key that’s stored on a smart card or some other type of hardware token.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "However, it does have one notable drawback: It’s easy to miss that your most critical code-signing asset, your private key, is tucked away in your login keychain.  And if you do miss that, you might lose your private key, for example, when you migrate to a new Mac.  If that happens, follow the advice in ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/support/certificates/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Xcode’s certificate management follows the same overall path as the manual CSR process.  For example, when you create a new code-signing identity using the process described in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Xcode/sharing-your-teams-signing-certificates",
+              "isActive": true,
+              "overridingTitle": "Synchronizing your code signing identities with Apple Developer Portal",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "Synchronizing your code signing identities with Apple Developer Portal",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ", Xcode effectively creates a CSR, submits it to the Developer website, downloads the resulting certificate, and adds that to your keychain.  It’s easy to use, but it has the same trap: Xcode automatically generates a private key and stores it in your login keychain.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you use a ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/help/account/create-certificates/cloud-managed-certificates",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "—for example, when building with Xcode Cloud—both the private key and the certificate are managed by Apple’s cloud signing infrastructure.  You don’t have direct access to either of them.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Cryptographic-Message-Syntax",
+          "level": 3,
+          "text": "Cryptographic Message Syntax",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Internally, code signing uses Cryptographic Message Syntax (CMS).  This is very much an implementation detail, but it can be fun to explore.  To extract the CMS structure for a code signature, run ",
+              "type": "text"
+            },
+            {
+              "code": "codesign",
+              "type": "codeVoice"
+            },
+            {
+              "text": " with the ",
+              "type": "text"
+            },
+            {
+              "code": "--dump-cms",
+              "type": "codeVoice"
+            },
+            {
+              "text": " option:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "% codesign --display --dump-cms=cms.asn1 \"MyApp.app\"",
+            "…",
+            "% openssl asn1parse -in cms.asn1 -inform der -i",
+            "    0:d=0  hl=2 l=inf  cons: SEQUENCE          ",
+            "    2:d=1  hl=2 l=   9 prim:  OBJECT            :pkcs7-signedData",
+            "    …"
+          ],
+          "syntax": "shell",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "To learn more about CMS, read ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://tools.ietf.org/html/rfc5652",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Code-signings-PKI-operations",
+          "level": 2,
+          "text": "Code signing’s PKI operations",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Code signing has three core operations:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Sign code",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Display a code signature",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Verify a code signature",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following sections explain how each of these operations interact with Apple’s code signing infrastructure.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Sign-code",
+          "level": 3,
+          "text": "Sign code",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you sign code, you pass ",
+              "type": "text"
+            },
+            {
+              "code": "codesign",
+              "type": "codeVoice"
+            },
+            {
+              "text": " the name of a code-signing identity using the ",
+              "type": "text"
+            },
+            {
+              "code": "--sign",
+              "type": "codeVoice"
+            },
+            {
+              "text": " subcommand.  For example:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "% codesign --sign \"Apple Development\" \"MyApp.app\""
+          ],
+          "syntax": "shell",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "This example uses the ",
+                  "type": "text"
+                },
+                {
+                  "code": "codesign",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " command-line tool, but these concepts also apply to Xcode.  To see how Xcode invokes ",
+                  "type": "text"
+                },
+                {
+                  "code": "codesign",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", go to the Reports navigator, find your Build report, and look at the CodeSign step in the build transcript.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "By default ",
+              "type": "text"
+            },
+            {
+              "code": "codesign",
+              "type": "codeVoice"
+            },
+            {
+              "text": " searches all keychains for a code-signing identity whose certificate matches the supplied name.  If multiple identities match, ",
+              "type": "text"
+            },
+            {
+              "code": "codesign",
+              "type": "codeVoice"
+            },
+            {
+              "text": " complains about the ambiguity.  To resolve this, either pass in the full name or pass in the SHA-1 hash of the identity’s certificate.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "codesign",
+              "type": "codeVoice"
+            },
+            {
+              "text": " man page explains this search process in detail.  For general information about man pages, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/os/reading-unix-manual-pages",
+              "isActive": true,
+              "overridingTitle": "Reading UNIX Manual Pages",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "Reading UNIX Manual Pages",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When searching for code-signing identities, ",
+              "type": "text"
+            },
+            {
+              "code": "codesign",
+              "type": "codeVoice"
+            },
+            {
+              "text": " checks certain aspects of each identity’s certificate:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "It checks that it can build a chain of trust from the certificate to a trusted root.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "It checks that the current time is within the certificate’s valid range.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "It checks that the certificate supports code signing.  Specifically, it looks for Code Signing within the certificate’s Extended Key Usage extension:",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "code": [
+            "% openssl x509 -in \"developerID_application.cer\" -inform der -text",
+            "        …",
+            "        X509v3 extensions:",
+            "            …",
+            "            X509v3 Extended Key Usage: critical",
+            "                Code Signing",
+            "            …"
+          ],
+          "syntax": "shell",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To see all available code-signing identities, run this command:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "% security find-identity -p codesigning",
+            "",
+            "Policy: Code Signing",
+            "  Matching identities",
+            "  1) 8CEF1273B13E1C6E7F6E73EBBEF42278F0D88C97 \"Apple Development: …\"",
+            "  2) ADC03B244F4C1018384DCAFFC920F26136F6B59B \"Developer ID Application: …\" (CSSMERR_TP_CERT_EXPIRED)",
+            "  3) 3F8BE319780F84EB2E94ABDFA24E8045A0572A7B \"Developer ID Application: …\"",
+            "     3 identities found",
+            "",
+            "  Valid identities only",
+            "  1) 8CEF1273B13E1C6E7F6E73EBBEF42278F0D88C97 \"Apple Development: …\"",
+            "  2) 3F8BE319780F84EB2E94ABDFA24E8045A0572A7B \"Developer ID Application: …\"",
+            "     2 valid identities found"
+          ],
+          "syntax": "shell",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Note how there are three code-signing identities but one of them has expired leaving only two valid ones.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The hex string next to each identity is the SHA-1 hash of its certificate, which is a good way to resolve any ambiguities with the name.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Unless you specify a keychain file using the ",
+              "type": "text"
+            },
+            {
+              "code": "--keychain",
+              "type": "codeVoice"
+            },
+            {
+              "text": " option, ",
+              "type": "text"
+            },
+            {
+              "code": "codesign",
+              "type": "codeVoice"
+            },
+            {
+              "text": " searches all keychains including the data protection keychain.  If you do supply a keychain file, ",
+              "type": "text"
+            },
+            {
+              "code": "codesign",
+              "type": "codeVoice"
+            },
+            {
+              "text": " searches just that keychain.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If you’re unfamiliar with the data protection keychain, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3137-on-mac-keychains",
+                  "isActive": true,
+                  "overridingTitle": "TN3137: On Mac keychain APIs and implementations",
+                  "overridingTitleInlineContent": [
+                    {
+                      "text": "TN3137: On Mac keychain APIs and implementations",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "codesign",
+              "type": "codeVoice"
+            },
+            {
+              "text": " tool is able to find and use code-signing identities in the data protection keychain, including ones stored in a smart card or some other type of hardware token.  However:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "security find-identity",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " command only searches keychain files; it won’t show identities in the data protection keychain.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If you want to use a code-signing identity stored in the data protection keychain, don’t specify a keychain file using the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "--keychain",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " option, because that tells ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "codesign",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to search just that file.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If you sign your code with Xcode, use Xcode 13 or later.  Earlier versions of Xcode only work with file-based code-signing identities.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "macOS has built-in support for PIV smart cards.  Third-party developers can add support for other types of hardware tokens by creating a ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/CryptoTokenKit",
+                  "isActive": true,
+                  "overridingTitle": "CryptoTokenKit",
+                  "overridingTitleInlineContent": [
+                    {
+                      "text": "CryptoTokenKit",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "reference"
+                },
+                {
+                  "text": " app extension.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Once ",
+              "type": "text"
+            },
+            {
+              "code": "codesign",
+              "type": "codeVoice"
+            },
+            {
+              "text": " has determined the code-signing identity to use, it builds a chain of trust between the identity’s certificate and a trusted anchor.  If it’s unable to build that chain, it fails with an error ",
+              "type": "text"
+            },
+            {
+              "code": "unable to build chain to self-signed root",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".  The most common cause of that failure is a missing intermediate certificate.  The intermediate certificates used by ",
+              "type": "text"
+            },
+            {
+              "code": "codesign",
+              "type": "codeVoice"
+            },
+            {
+              "text": " are automatically installed by Xcode.  If you’re not using Xcode, download these intermediate certificates from the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://www.apple.com/certificateauthority/",
+              "isActive": true,
+              "overridingTitle": "Apple PKI",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "Apple PKI",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " page and install them yourself.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "codesign",
+              "type": "codeVoice"
+            },
+            {
+              "text": " tool adds the full chain of trust to the CMS structure within the code signature.  When you run code on a device, the system uses the intermediate certificates in this CMS structure to build its chain of trust.  That means that user devices don’t have to have the code signing intermediate certificates installed.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Display-a-code-signature",
+          "level": 3,
+          "text": "Display a code signature",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To display the chain of trust for a code signature, run the ",
+              "type": "text"
+            },
+            {
+              "code": "codesign",
+              "type": "codeVoice"
+            },
+            {
+              "text": " command with the ",
+              "type": "text"
+            },
+            {
+              "code": "--display",
+              "type": "codeVoice"
+            },
+            {
+              "text": " subcommand and two ",
+              "type": "text"
+            },
+            {
+              "code": "-v",
+              "type": "codeVoice"
+            },
+            {
+              "text": " options:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "% codesign --display -vv \"MyApp.app\"",
+            "…",
+            "Authority=Apple Development: …",
+            "Authority=Apple Worldwide Developer Relations Certification Authority",
+            "Authority=Apple Root CA",
+            "…"
+          ],
+          "syntax": "shell",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each ",
+              "type": "text"
+            },
+            {
+              "code": "Authority",
+              "type": "codeVoice"
+            },
+            {
+              "text": " field represents a link in the chain of trust.  This is just a short summary.  To see the full certificates, use the ",
+              "type": "text"
+            },
+            {
+              "code": "--extract-certificates",
+              "type": "codeVoice"
+            },
+            {
+              "text": " option:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "% codesign --display --extract-certificates \"MyApp.app\"",
+            "…",
+            "% openssl x509 -in codesign0 -inform der -text",
+            "Certificate:",
+            "    …",
+            "    Signature Algorithm: sha256WithRSAEncryption",
+            "        …",
+            "        Subject: … CN=Apple Development: …",
+            "        …"
+          ],
+          "syntax": "shell",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "One oddity of this feature is that ",
+              "type": "text"
+            },
+            {
+              "code": "codesign",
+              "type": "codeVoice"
+            },
+            {
+              "text": " doesn’t simply print the list of certificates stored in the CMS structure within the code signature.  Rather, it builds the chain of trust from scratch by performing a standard trust evaluation on the CMS leaf certificate.  It does this using a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Security/trust",
+              "isActive": true,
+              "overridingTitle": "trust object",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "trust object",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".  In most cases that produces a chain of trust that matches the one in the CMS structure, but that’s not ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "guaranteed",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " to be the case.  If ",
+              "type": "text"
+            },
+            {
+              "code": "codesign",
+              "type": "codeVoice"
+            },
+            {
+              "text": " displays a chain of trust that seems odd (for example, it might show just a single ",
+              "type": "text"
+            },
+            {
+              "code": "Authority",
+              "type": "codeVoice"
+            },
+            {
+              "text": " field) extract the CMS structure and look at its certificates.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For instructions on how to extract the CMS structure, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3161-inside-code-signing-certificates#Cryptographic-Message-Syntax",
+              "isActive": true,
+              "overridingTitle": "Cryptographic Message Syntax",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "Cryptographic Message Syntax",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Verify-a-code-signature",
+          "level": 3,
+          "text": "Verify a code signature",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To verify a code signature, run the ",
+              "type": "text"
+            },
+            {
+              "code": "codesign",
+              "type": "codeVoice"
+            },
+            {
+              "text": " command with the ",
+              "type": "text"
+            },
+            {
+              "code": "--verify",
+              "type": "codeVoice"
+            },
+            {
+              "text": " subcommand:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "% codesign --verify \"MyApp.app\" ; echo $?",
+            "0"
+          ],
+          "syntax": "shell",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "That command succeeds silently, only setting the status, so add a few ",
+              "type": "text"
+            },
+            {
+              "code": "-v",
+              "type": "codeVoice"
+            },
+            {
+              "text": " options to increase the verbosity:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "% codesign --verify -vvv \"MyApp.app\"",
+            "MyApp.app: valid on disk",
+            "MyApp.app: satisfies its Designated Requirement"
+          ],
+          "syntax": "shell",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For a more in-depth check, add the ",
+              "type": "text"
+            },
+            {
+              "code": "--strict",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "--deep",
+              "type": "codeVoice"
+            },
+            {
+              "text": " options:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "% codesign --verify -vvv --deep --strict \"/Applications/Xcode.app\" ",
+            "--prepared:/Applications/Xcode.app/Contents/SharedFrameworks/XCUnit.framew…",
+            "--prepared:/Applications/Xcode.app/Contents/SharedFrameworks/GLToolsInterf…",
+            "…",
+            "/Applications/Xcode.app: valid on disk",
+            "/Applications/Xcode.app: satisfies its Designated Requirement"
+          ],
+          "syntax": "shell",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Be careful how you interpret this output.  It isn’t saying that the code is fit for some specific purpose, like running on your Mac or installing on your iPhone.  Rather, it says that the code is internally consistent, that is:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "All of the expected files are present.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "There are no extra files.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "None of the files have been modified.  To learn how code signing checks for changes, read ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3126-inside-code-signing-hashes",
+                      "isActive": true,
+                      "overridingTitle": "TN3126: Inside Code Signing: Hashes",
+                      "overridingTitleInlineContent": [
+                        {
+                          "text": "TN3126: Inside Code Signing: Hashes",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A basic X.509 trust evaluation of the leaf certificate succeeded.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The code satisfies its own designated requirement (DR).  To learn more about code signing requirements in general, and the significance of the DR in particular, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3127-inside-code-signing-requirements",
+                      "isActive": true,
+                      "overridingTitle": "TN3127: Inside Code Signing: Requirements",
+                      "overridingTitleInlineContent": [
+                        {
+                          "text": "TN3127: Inside Code Signing: Requirements",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To check whether the code is fit for a specific purpose, you need some other mechanism:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "For an app you’re submitting to the App Store, use ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "altool",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " with the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "--validate-app",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " subcommand.  For more on this, see the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "altool",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/os/reading-unix-manual-pages",
+                      "isActive": true,
+                      "overridingTitle": "man page",
+                      "overridingTitleInlineContent": [
+                        {
+                          "text": "man page",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".  This uses the same infrastructure as the Validate App button in the Xcode organizer.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "For Mac apps that you directly distribute using Developer ID code signing, use the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "syspolicy_check",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " tool.  To learn more about this tool, see its ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/os/reading-unix-manual-pages",
+                      "isActive": true,
+                      "overridingTitle": "man page",
+                      "overridingTitleInlineContent": [
+                        {
+                          "text": "man page",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Non-Apple-certificates",
+          "level": 2,
+          "text": "Non-Apple certificates",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Apple’s code signing support was created before Apple started issuing code signing certificates to third-party developers.  That results in some behavior that seems odd today:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "When signing code, ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "codesign",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " doesn’t check that the code-signing identity’s certificate was issued by Apple.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "When verifying code, ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "codesign",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " doesn’t check if the code will be accepted by the target platform.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Historically it might have made sense to sign code with a code-signing identity whose certificate wasn’t issued by Apple.  That’s no longer the case.  Most Apple platforms only run code with an Apple-issued certificate.  The only exception to this is macOS, which can run code with other certificates, or indeed with no certificate.  However, that’s not useful in practice because Gatekeeper blocks code with a non-Apple certificate.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For general information about Gatekeeper, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://support.apple.com/en-us/HT202491",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "App-Store-re-signing",
+          "level": 2,
+          "text": "App Store re-signing",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you distribute an app on the App Store, the App Store re-signs your app as part of the distribution process.  It’s easy to confirm this on macOS.  Imagine you have an app called MyAppStoreApp that’s available on the Mac App Store.  Install the app and then run this command to display its code signature:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "% codesign --display -vv \"/Applications/MyAppStoreApp.app\"",
+            "…",
+            "Authority=Apple Mac OS Application Signing",
+            "Authority=Apple Worldwide Developer Relations Certification Authority",
+            "Authority=Apple Root CA",
+            "…"
+          ],
+          "syntax": "shell",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The leaf certificate is ",
+              "type": "text"
+            },
+            {
+              "code": "Apple Mac OS Application Signing",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".  This doesn’t match the certificate from the code-signing identity you used to sign your app prior to submission, which is named either ",
+              "type": "text"
+            },
+            {
+              "code": "Apple Distribution: <Team>",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "code": "3rd Party Mac Developer Application: TTT <Team>",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", where ",
+              "type": "text"
+            },
+            {
+              "code": "<Team>",
+              "type": "codeVoice"
+            },
+            {
+              "text": " identifies your team.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "While this example was from macOS, this re-signing happens for all App Store apps on all platforms.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In most cases you don’t notice that your app has been re-signed, but there are a few places where it matters:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "App Store apps are signed with credentials that don’t expire.  In contrast, your distribution certificate and provisioning profiles can expire.  However, this re-signing means that your credentials only need to be valid at the time that you submit your app.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The App Store must be able to re-sign all of your code.  If it can’t see a particular code item, it can’t re-sign that code and the code won’t run.  A common example of this problem is code embedded in an archive, like a ",
+                      "type": "text"
+                    },
+                    {
+                      "code": ".zip",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " or a ",
+                      "type": "text"
+                    },
+                    {
+                      "code": ".jar",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " file.  For best results, follow the rules in ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/BundleResources/placing-content-in-a-bundle",
+                      "isActive": true,
+                      "overridingTitle": "Placing Content in a Bundle",
+                      "overridingTitleInlineContent": [
+                        {
+                          "text": "Placing Content in a Bundle",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Apps that try to do their own tamper detection have to take this re-signing into account.  It’s common for such code to fail when Apple reworks the App Store distribution process.  To avoid such problems, use the App Attest feature of the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/DeviceCheck",
+                      "isActive": true,
+                      "overridingTitle": "DeviceCheck",
+                      "overridingTitleInlineContent": [
+                        {
+                          "text": "DeviceCheck",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "reference"
+                    },
+                    {
+                      "text": " framework to establish your app’s integrity.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You sign your app for distribution as part of the App Store submission process.  That’s the intended use for an App Store distribution-signed app.  You can’t run such an app yourself.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "With regards that last point, the one exception is macOS.  In some situations macOS is able to run an App Store distribution-signed app.  However, this isn’t supported, and it currently fails if the app claims a restricted entitlement.  For more about restricted entitlements, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3125-inside-code-signing-provisioning-profiles",
+              "isActive": true,
+              "overridingTitle": "TN3125: Inside Code Signing: Provisioning Profiles",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "TN3125: Inside Code Signing: Provisioning Profiles",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because you can’t reliably run your App Store distribution-signed app, you need some other way to test it before release.  A great option for this is ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/testflight/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".  TestFlight has many fine features, but a key benefit in this context is that it re-signs your app, much like the App Store.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Certificate-expiration",
+          "level": 2,
+          "text": "Certificate expiration",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "All X.509 certificates have a valid date range.  For Apple code-signing certificates that’s typically a year from the date of issue, although the exact duration varies based on the certificate type.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For App Store apps certificate expiration isn’t complicated.  When you submit an app to the App Store, it checks that the app’s distribution certificate is currently valid.  The App Store then re-signs your app, making it independent of your distribution certificate’s expiry date.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This mechanism only works for App Store apps, which raises the question of what happens when you use Developer ID signing to directly distribute Mac software.  People who install your product expect it to continue working, regardless of your certificate’s expiration date.  Apple enables this by embedding a secure timestamp within your code signature.  This records when your code was signed.  When you run the code, macOS checks that its Developer ID certificate was valid at the time that it was signed.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Xcode automatically adds a secure timestamp when it signs code with a Developer ID code-signing identity.  If you sign code using ",
+              "type": "text"
+            },
+            {
+              "code": "codesign",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", pass in the ",
+              "type": "text"
+            },
+            {
+              "code": "--timestamp",
+              "type": "codeVoice"
+            },
+            {
+              "text": " option to add a secure timestamp.  The Apple notary service ensures that all code has a secure timestamp, so if you get this wrong you’ll learn about it when you go to notarize your code.  For more about notarization, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Security/notarizing-macos-software-before-distribution",
+              "isActive": true,
+              "overridingTitle": "Notarizing macOS software before distribution",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "Notarizing macOS software before distribution",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To check whether your code has a secure timestamp, look at the output from the ",
+              "type": "text"
+            },
+            {
+              "code": "--display",
+              "type": "codeVoice"
+            },
+            {
+              "text": " subcommand.  For example:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "% codesign --display -v \"MyApp.app\"",
+            "…",
+            "Timestamp=27 Jan 2024 at 10:52:13",
+            "…"
+          ],
+          "syntax": "shell",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "Timestamp",
+              "type": "codeVoice"
+            },
+            {
+              "text": " field represents the secure timestamp.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Don’t confused the ",
+              "type": "text"
+            },
+            {
+              "code": "Timestamp",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "Signed Time",
+              "type": "codeVoice"
+            },
+            {
+              "text": " fields.  The latter is not secured by the Apple timestamp service.  Rather, ",
+              "type": "text"
+            },
+            {
+              "code": "codesign",
+              "type": "codeVoice"
+            },
+            {
+              "text": " sets this field based on your Mac’s current time.  You typically see this field in development-signed code.  For example:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "% codesign --sign \"Apple Development\" -f \"MyApp.app\" ",
+            "…",
+            "% codesign --display -v \"MyTool.app\"",
+            "…",
+            "Signed Time=27 Jan 2024 at 10:53:29",
+            "…"
+          ],
+          "syntax": "shell",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The secure timestamp requirement has one important consequence: You must have access to the internet to sign code with a Developer ID code-signing identity.  Specifically, ",
+              "type": "text"
+            },
+            {
+              "code": "codesign",
+              "type": "codeVoice"
+            },
+            {
+              "text": " currently talks to the Apple timestamp service at ",
+              "type": "text"
+            },
+            {
+              "code": "timestamp.apple.com",
+              "type": "codeVoice"
+            },
+            {
+              "text": " using a protocol based on the X.509 Time-Stamp Protocol, as described in ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://tools.ietf.org/html/rfc3161",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".  If you’re unable to sign code when running on a particular network, check that its firewall allows these connections.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The Apple timestamp service is reserved for use by code signing.  Its name and behaviour are considered implementation details.  Don’t ship a product that depends on those details.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Certificates aren’t the only code-signing asset that expire.  Provisioning profiles also have an expiration date.  To learn more about that, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3125-inside-code-signing-provisioning-profiles",
+              "isActive": true,
+              "overridingTitle": "TN3125: Inside Code Signing: Provisioning Profiles",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "TN3125: Inside Code Signing: Provisioning Profiles",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Revision-History",
+          "level": 2,
+          "text": "Revision History",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "2024-02-13",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " Made a minor editorial change.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "2024-02-06",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " First published.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/BundleResources/placing-content-in-a-bundle": {
+      "abstract": [
+        {
+          "text": "Place bundle content in the correct location based on its type.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/placing-content-in-a-bundle",
+      "kind": "article",
+      "role": "article",
+      "title": "Placing content in a bundle",
+      "type": "topic",
+      "url": "/documentation/BundleResources/placing-content-in-a-bundle"
+    },
+    "doc://com.apple.documentation/documentation/CryptoTokenKit": {
+      "abstract": [
+        {
+          "text": "Access security tokens and the cryptographic assets they store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CryptoTokenKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "CryptoTokenKit",
+      "type": "topic",
+      "url": "/documentation/CryptoTokenKit"
+    },
+    "doc://com.apple.documentation/documentation/DeviceCheck": {
+      "abstract": [
+        {
+          "text": "Reduce fraudulent use of your services by managing device state and asserting app integrity.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/DeviceCheck",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "DeviceCheck",
+      "type": "topic",
+      "url": "/documentation/DeviceCheck"
+    },
+    "doc://com.apple.documentation/documentation/Security/code-signing-services": {
+      "abstract": [
+        {
+          "text": "Examine and validate signed code running on the system.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Security/code-signing-services",
+      "kind": "article",
+      "role": "article",
+      "title": "Code Signing Services",
+      "type": "topic",
+      "url": "/documentation/Security/code-signing-services"
+    },
+    "doc://com.apple.documentation/documentation/Security/notarizing-macos-software-before-distribution": {
+      "abstract": [
+        {
+          "text": "Give users even more confidence in your macOS software by submitting it to Apple for notarization.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Security/notarizing-macos-software-before-distribution",
+      "kind": "article",
+      "role": "article",
+      "title": "Notarizing macOS software before distribution",
+      "type": "topic",
+      "url": "/documentation/Security/notarizing-macos-software-before-distribution"
+    },
+    "doc://com.apple.documentation/documentation/Security/trust": {
+      "abstract": [
+        {
+          "text": "Evaluate trust based on a given policy.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Security/trust",
+      "kind": "article",
+      "role": "article",
+      "title": "Trust",
+      "type": "topic",
+      "url": "/documentation/Security/trust"
+    },
+    "doc://com.apple.documentation/documentation/Xcode/distribution": {
+      "abstract": [
+        {
+          "text": "Prepare your app and share it with your team, beta testers, and customers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Xcode/distribution",
+      "kind": "article",
+      "role": "article",
+      "title": "Distribution",
+      "type": "topic",
+      "url": "/documentation/Xcode/distribution"
+    },
+    "doc://com.apple.documentation/documentation/Xcode/sharing-your-teams-signing-certificates": {
+      "abstract": [
+        {
+          "text": "Ensure you and other team members can sign your organization’s code and installer packages in Xcode.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Xcode/sharing-your-teams-signing-certificates",
+      "kind": "article",
+      "role": "article",
+      "title": "Synchronizing code signing identities with your developer account",
+      "type": "topic",
+      "url": "/documentation/Xcode/sharing-your-teams-signing-certificates"
+    },
+    "doc://com.apple.documentation/documentation/os/reading-unix-manual-pages": {
+      "abstract": [
+        {
+          "text": "Use the Terminal app to read the documentation for low-level UNIX tools and APIs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/os/reading-unix-manual-pages",
+      "kind": "article",
+      "role": "article",
+      "title": "Reading UNIX Manual Pages",
+      "type": "topic",
+      "url": "/documentation/os/reading-unix-manual-pages"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.technotes/documentation/Technotes": {
+      "abstract": [
+        {
+          "text": "Learn about specific development topics through these in-depth technical articles.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes",
+      "kind": "article",
+      "role": "collection",
+      "title": "Technotes",
+      "type": "topic",
+      "url": "/documentation/technotes"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3111-ios-wifi-api-overview": {
+      "abstract": [
+        {
+          "text": "Explore the various Wi-Fi APIs available on iOS and their expected use cases.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3111-ios-wifi-api-overview",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3111: iOS Wi-Fi API overview",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3111-ios-wifi-api-overview"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3124-debugging-coordinate-transformations": {
+      "abstract": [
+        {
+          "text": "Learn techniques to help debug any coordinate space issue.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3124-debugging-coordinate-transformations",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3124: Debugging coordinate space issues",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3124-debugging-coordinate-transformations"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3125-inside-code-signing-provisioning-profiles": {
+      "abstract": [
+        {
+          "text": "Learn how provisioning profiles enable third-party code to run on Apple platforms.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3125-inside-code-signing-provisioning-profiles",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3125: Inside Code Signing: Provisioning Profiles",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3125-inside-code-signing-provisioning-profiles"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3126-inside-code-signing-hashes": {
+      "abstract": [
+        {
+          "text": "Look inside a code signature to see how it uses hashes to protect the code’s executable pages, resources, and metadata from tampering.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3126-inside-code-signing-hashes",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3126: Inside Code Signing: Hashes",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3126-inside-code-signing-hashes"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3127-inside-code-signing-requirements": {
+      "abstract": [
+        {
+          "text": "Explore how macOS uses code signing requirements to reason about code identity.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3127-inside-code-signing-requirements",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3127: Inside Code Signing: Requirements",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3127-inside-code-signing-requirements"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3137-on-mac-keychains": {
+      "abstract": [
+        {
+          "text": "Learn how the keychain on macOS differs from other Apple platforms.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3137-on-mac-keychains",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3137: On Mac keychain APIs and implementations",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3137-on-mac-keychains"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3161-inside-code-signing-certificates#Cryptographic-Message-Syntax": {
+      "abstract": [],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3161-inside-code-signing-certificates#Cryptographic-Message-Syntax",
+      "kind": "section",
+      "title": "Cryptographic Message Syntax",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3161-inside-code-signing-certificates#Cryptographic-Message-Syntax"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3168-making-your-app-clip-available-app-store": {
+      "abstract": [
+        {
+          "text": "Learn how to configure your App Clip to prevent it from being unavailable in the App Store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3168-making-your-app-clip-available-app-store",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3168: Making your App Clip available in the App Store",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3168-making-your-app-clip-available-app-store"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3173-troubleshooting-issues-with-your-apple-pay-merchant-id-configuration": {
+      "abstract": [
+        {
+          "text": "Diagnose errors due to invalid Apple Pay merchant identifier configurations by",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "identifying the underlying causes of common errors and explore their",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "potential solutions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3173-troubleshooting-issues-with-your-apple-pay-merchant-id-configuration",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3173: Troubleshooting issues with your Apple Pay merchant identifier configuration",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3173-troubleshooting-issues-with-your-apple-pay-merchant-id-configuration"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3174-diagnosing-issues-with-the-apple-pay-payment-sheet-on-your-website": {
+      "abstract": [
+        {
+          "text": "Diagnose errors received while presenting the Apple Pay payment sheet on",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "your website by identifying the underlying causes of common errors and explore",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "their potential solutions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3174-diagnosing-issues-with-the-apple-pay-payment-sheet-on-your-website",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3174: Diagnosing issues with the Apple Pay payment sheet on your website",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3174-diagnosing-issues-with-the-apple-pay-payment-sheet-on-your-website"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3175-diagnosing-issues-with-displaying-the-apple-pay-button-on-your-website": {
+      "abstract": [
+        {
+          "text": "Diagnose common errors received while displaying the Apple Pay button on your",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "website by identifying the underlying causes, and explore potential solutions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3175-diagnosing-issues-with-displaying-the-apple-pay-button-on-your-website",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3175: Diagnosing issues with displaying the Apple Pay button on your website",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3175-diagnosing-issues-with-displaying-the-apple-pay-button-on-your-website"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3176-troubleshooting-apple-pay-payment-processing-issues": {
+      "abstract": [
+        {
+          "text": "Diagnose errors that occur when processing Apple Pay payments,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "identify common causes, and explore potential solutions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3176-troubleshooting-apple-pay-payment-processing-issues",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3176: Troubleshooting Apple Pay payment processing issues",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3176-troubleshooting-apple-pay-payment-processing-issues"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3177-understanding-alternate-audio-track-groups-in-movie-files": {
+      "abstract": [
+        {
+          "text": "Learn how alternate groups collect audio tracks, and how to choose which audio track to use in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3177-understanding-alternate-audio-track-groups-in-movie-files",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3177: Understanding alternate audio track groups in movie files",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3177-understanding-alternate-audio-track-groups-in-movie-files"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3178-checking-for-and-resolving-build-uuid-problems": {
+      "abstract": [
+        {
+          "text": "Ensure that every Mach-O image has a UUID, and that every distinct Mach-O image has its own unique UUID.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3178-checking-for-and-resolving-build-uuid-problems",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3178: Checking for and resolving build UUID problems",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3178-checking-for-and-resolving-build-uuid-problems"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3179-understanding-local-network-privacy": {
+      "abstract": [
+        {
+          "text": "Learn how local network privacy affects your software.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3179-understanding-local-network-privacy",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3179: Understanding local network privacy",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3179-understanding-local-network-privacy"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3180-reverting-app-store-server-notifications-v1": {
+      "abstract": [
+        {
+          "text": "Migrate from version 2 to version 1 of App Store Server Notifications using the Modify an App endpoint.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3180-reverting-app-store-server-notifications-v1",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3180: Reverting to App Store Server Notifications V1",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3180-reverting-app-store-server-notifications-v1"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3181-debugging-invalid-privacy-manifest": {
+      "abstract": [
+        {
+          "text": "Identify common configurations that cause unsuccessful privacy manifest validation with the App Store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3181-debugging-invalid-privacy-manifest",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3181: Debugging an invalid privacy manifest",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3181-debugging-invalid-privacy-manifest"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3182-adding-privacy-tracking-keys-to-your-privacy-manifest": {
+      "abstract": [
+        {
+          "text": "Declare the tracking domains you use in your app or third-party SDK in a privacy manifest.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3182-adding-privacy-tracking-keys-to-your-privacy-manifest",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3182: Adding privacy tracking keys to your privacy manifest",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3182-adding-privacy-tracking-keys-to-your-privacy-manifest"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3183-adding-required-reason-api-entries-to-your-privacy-manifest": {
+      "abstract": [
+        {
+          "text": "Declare the APIs that can potentially fingerprint devices in your app or third-party SDK in a privacy manifest.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3183-adding-required-reason-api-entries-to-your-privacy-manifest",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3183: Adding required reason API entries to your privacy manifest",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3183-adding-required-reason-api-entries-to-your-privacy-manifest"
+    },
+    "doc://com.apple.technotes/documentation/Technotes/tn3184-adding-data-collection-details-to-your-privacy-manifest": {
+      "abstract": [
+        {
+          "text": "Declare the data your app or third-party SDK collects in a privacy manifest.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.technotes/documentation/Technotes/tn3184-adding-data-collection-details-to-your-privacy-manifest",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3184: Adding data collection details to your privacy manifest",
+      "type": "topic",
+      "url": "/documentation/technotes/tn3184-adding-data-collection-details-to-your-privacy-manifest"
+    },
+    "https://developer.apple.com/help/account/": {
+      "identifier": "https://developer.apple.com/help/account/",
+      "title": "Developer Account Help",
+      "titleInlineContent": [
+        {
+          "text": "Developer Account Help",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/help/account/"
+    },
+    "https://developer.apple.com/help/account/create-certificates/cloud-managed-certificates": {
+      "identifier": "https://developer.apple.com/help/account/create-certificates/cloud-managed-certificates",
+      "title": "cloud-managed certificate",
+      "titleInlineContent": [
+        {
+          "text": "cloud-managed certificate",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/help/account/create-certificates/cloud-managed-certificates"
+    },
+    "https://developer.apple.com/help/account/reference/certificate-types": {
+      "identifier": "https://developer.apple.com/help/account/reference/certificate-types",
+      "title": "Certificate types",
+      "titleInlineContent": [
+        {
+          "text": "Certificate types",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/help/account/reference/certificate-types"
+    },
+    "https://developer.apple.com/support/certificates/": {
+      "identifier": "https://developer.apple.com/support/certificates/",
+      "title": "Developer > Support > Certificates",
+      "titleInlineContent": [
+        {
+          "text": "Developer > Support > Certificates",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/support/certificates/"
+    },
+    "https://developer.apple.com/testflight/": {
+      "identifier": "https://developer.apple.com/testflight/",
+      "title": "TestFlight",
+      "titleInlineContent": [
+        {
+          "text": "TestFlight",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/testflight/"
+    },
+    "https://support.apple.com/en-us/HT202491": {
+      "identifier": "https://support.apple.com/en-us/HT202491",
+      "title": "Safely open apps on your Mac",
+      "titleInlineContent": [
+        {
+          "text": "Safely open apps on your Mac",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://support.apple.com/en-us/HT202491"
+    },
+    "https://tools.ietf.org/html/rfc2986": {
+      "identifier": "https://tools.ietf.org/html/rfc2986",
+      "title": "RFC 2986",
+      "titleInlineContent": [
+        {
+          "text": "RFC 2986",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://tools.ietf.org/html/rfc2986"
+    },
+    "https://tools.ietf.org/html/rfc3161": {
+      "identifier": "https://tools.ietf.org/html/rfc3161",
+      "title": "RFC 3161",
+      "titleInlineContent": [
+        {
+          "text": "RFC 3161",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://tools.ietf.org/html/rfc3161"
+    },
+    "https://tools.ietf.org/html/rfc5280": {
+      "identifier": "https://tools.ietf.org/html/rfc5280",
+      "title": "RFC 5280",
+      "titleInlineContent": [
+        {
+          "text": "RFC 5280",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://tools.ietf.org/html/rfc5280"
+    },
+    "https://tools.ietf.org/html/rfc5652": {
+      "identifier": "https://tools.ietf.org/html/rfc5652",
+      "title": "RFC 5652",
+      "titleInlineContent": [
+        {
+          "text": "RFC 5652",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://tools.ietf.org/html/rfc5652"
+    },
+    "https://tools.ietf.org/html/rfc7292": {
+      "identifier": "https://tools.ietf.org/html/rfc7292",
+      "title": "RFC 7292",
+      "titleInlineContent": [
+        {
+          "text": "RFC 7292",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://tools.ietf.org/html/rfc7292"
+    },
+    "https://www.apple.com/certificateauthority/": {
+      "identifier": "https://www.apple.com/certificateauthority/",
+      "title": "Apple PKI",
+      "titleInlineContent": [
+        {
+          "text": "Apple PKI",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://www.apple.com/certificateauthority/"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Latest",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.technotes/documentation/Technotes/tn3182-adding-privacy-tracking-keys-to-your-privacy-manifest",
+        "doc://com.apple.technotes/documentation/Technotes/tn3183-adding-required-reason-api-entries-to-your-privacy-manifest",
+        "doc://com.apple.technotes/documentation/Technotes/tn3184-adding-data-collection-details-to-your-privacy-manifest",
+        "doc://com.apple.technotes/documentation/Technotes/tn3181-debugging-invalid-privacy-manifest",
+        "doc://com.apple.technotes/documentation/Technotes/tn3180-reverting-app-store-server-notifications-v1",
+        "doc://com.apple.technotes/documentation/Technotes/tn3179-understanding-local-network-privacy",
+        "doc://com.apple.technotes/documentation/Technotes/tn3178-checking-for-and-resolving-build-uuid-problems",
+        "doc://com.apple.technotes/documentation/Technotes/tn3177-understanding-alternate-audio-track-groups-in-movie-files",
+        "doc://com.apple.technotes/documentation/Technotes/tn3111-ios-wifi-api-overview",
+        "doc://com.apple.technotes/documentation/Technotes/tn3176-troubleshooting-apple-pay-payment-processing-issues",
+        "doc://com.apple.technotes/documentation/Technotes/tn3175-diagnosing-issues-with-displaying-the-apple-pay-button-on-your-website",
+        "doc://com.apple.technotes/documentation/Technotes/tn3174-diagnosing-issues-with-the-apple-pay-payment-sheet-on-your-website",
+        "doc://com.apple.technotes/documentation/Technotes/tn3173-troubleshooting-issues-with-your-apple-pay-merchant-id-configuration",
+        "doc://com.apple.technotes/documentation/Technotes/tn3168-making-your-app-clip-available-app-store",
+        "doc://com.apple.technotes/documentation/Technotes/tn3124-debugging-coordinate-transformations"
+      ],
+      "title": "Latest"
+    }
+  ]
+}

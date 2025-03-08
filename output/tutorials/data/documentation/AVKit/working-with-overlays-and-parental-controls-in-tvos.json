@@ -1,0 +1,1134 @@
+{
+  "abstract": [
+    {
+      "text": "Add interactive overlays, parental controls, and livestream channel flipping using a player view controller.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.avkit/documentation/AVKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.avkit/documentation/AVKit/working-with-overlays-and-parental-controls-in-tvos"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "AVKit"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "13.0",
+        "name": "tvOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "15.3",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Working with Overlays and Parental Controls in tvOS"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "This sample code project is associated with WWDC 2019 session ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/videos/play/wwdc19/503/",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Configure-the-Sample-Code-Project",
+          "level": 3,
+          "text": "Configure the Sample Code Project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Only navigation from live streaming supports channel flipping, so you need to replace the assets in this sample with your live content to demonstrate this behavior.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "By default, the sample demonstrates automatic support for parental controls. Activate parental restrictions by following the steps below:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Go to Settings > General > Restrictions.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Turn on Restrictions.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Set a passcode (1111 for demonstration purposes; remember this passcode).",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Scroll down to the Allowed Content section.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select Movies and/or TV Shows.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Set a restriction level (for example, PG or PG-13 if you are in the United States).",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The first demo video has a rating of PG, and the second has a rating of PG-13. You can find or edit these ratings in ",
+              "type": "text"
+            },
+            {
+              "code": "MainViewController.swift",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample also demonstrates explicit support for parental restrictions by directly calling ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVPlayerItem/requestPlaybackRestrictionsAuthorization(_:)",
+              "isActive": true,
+              "overridingTitle": "playerItem.requestPlaybackRestrictionsAuthorization(_ completion)",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "playerItem.requestPlaybackRestrictionsAuthorization(_ completion)",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ". You can test explicit support by changing the value of ",
+              "type": "text"
+            },
+            {
+              "code": "checkParentalControlsExplicitly",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in the sample.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "1dd35d609d9b/WorkingWithOverlaysAndParentalControlsInTvOS.zip": {
+      "checksum": "1dd35d609d9bc1cc6e8a0a809a459d94bba0322e0658c590fc26144798966a838a5dfd24fde4cd24d48904423a157d65438a210635deb26870630bbe04658660",
+      "identifier": "1dd35d609d9b/WorkingWithOverlaysAndParentalControlsInTvOS.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/1dd35d609d9b/WorkingWithOverlaysAndParentalControlsInTvOS.zip"
+    },
+    "doc://com.apple.avkit/documentation/AVKit": {
+      "abstract": [
+        {
+          "text": "Create user interfaces for media playback, complete with transport controls, chapter navigation, picture-in-picture support, and display of subtitles and closed captions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avkit/documentation/AVKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AVKit",
+      "type": "topic",
+      "url": "/documentation/avkit"
+    },
+    "doc://com.apple.avkit/documentation/AVKit/AVContentProposalViewController": {
+      "abstract": [
+        {
+          "text": "A view controller that proposes content to watch next.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVContentProposalViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.avkit/documentation/AVKit/AVContentProposalViewController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVContentProposalViewController"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVContentProposalViewController",
+      "type": "topic",
+      "url": "/documentation/avkit/avcontentproposalviewcontroller"
+    },
+    "doc://com.apple.avkit/documentation/AVKit/AVContinuityDevicePickerViewController": {
+      "abstract": [
+        {
+          "text": "A view controller that provides an interface to a person so they can select and connect a continuity device to the system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVContinuityDevicePickerViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.avkit/documentation/AVKit/AVContinuityDevicePickerViewController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVContinuityDevicePickerViewController"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVContinuityDevicePickerViewController",
+      "type": "topic",
+      "url": "/documentation/avkit/avcontinuitydevicepickerviewcontroller"
+    },
+    "doc://com.apple.avkit/documentation/AVKit/AVContinuityDevicePickerViewControllerDelegate": {
+      "abstract": [
+        {
+          "text": "An interface that responds to events from a continuity device picker view controller.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVContinuityDevicePickerViewControllerDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.avkit/documentation/AVKit/AVContinuityDevicePickerViewControllerDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVContinuityDevicePickerViewControllerDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVContinuityDevicePickerViewControllerDelegate",
+      "type": "topic",
+      "url": "/documentation/avkit/avcontinuitydevicepickerviewcontrollerdelegate"
+    },
+    "doc://com.apple.avkit/documentation/AVKit/AVDisplayManager": {
+      "abstract": [
+        {
+          "text": "A tvOS management object that controls whether a TV switches modes to match the video’s native mode.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVDisplayManager"
+        }
+      ],
+      "identifier": "doc://com.apple.avkit/documentation/AVKit/AVDisplayManager",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVDisplayManager"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVDisplayManager",
+      "type": "topic",
+      "url": "/documentation/avkit/avdisplaymanager"
+    },
+    "doc://com.apple.avkit/documentation/AVKit/AVInterstitialTimeRange": {
+      "abstract": [
+        {
+          "text": "A time range in an audiovisual presentation for content with an interstitial designation, such as advertisements or legal notices.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVInterstitialTimeRange"
+        }
+      ],
+      "identifier": "doc://com.apple.avkit/documentation/AVKit/AVInterstitialTimeRange",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVInterstitialTimeRange"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVInterstitialTimeRange",
+      "type": "topic",
+      "url": "/documentation/avkit/avinterstitialtimerange"
+    },
+    "doc://com.apple.avkit/documentation/AVKit/AVNavigationMarkersGroup": {
+      "abstract": [
+        {
+          "text": "A set of markers for navigating playback of an audiovisual presentation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVNavigationMarkersGroup"
+        }
+      ],
+      "identifier": "doc://com.apple.avkit/documentation/AVKit/AVNavigationMarkersGroup",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVNavigationMarkersGroup"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVNavigationMarkersGroup",
+      "type": "topic",
+      "url": "/documentation/avkit/avnavigationmarkersgroup"
+    },
+    "doc://com.apple.avkit/documentation/AVKit/AVPlayerViewController": {
+      "abstract": [
+        {
+          "text": "A view controller that displays content from a player and presents a native user interface to control playback.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVPlayerViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.avkit/documentation/AVKit/AVPlayerViewController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVPlayerViewController"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVPlayerViewController",
+      "type": "topic",
+      "url": "/documentation/avkit/avplayerviewcontroller"
+    },
+    "doc://com.apple.avkit/documentation/AVKit/AVPlayerViewControllerDelegate": {
+      "abstract": [
+        {
+          "text": "A protocol that defines the methods to implement to respond to player view controller events.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVPlayerViewControllerDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.avkit/documentation/AVKit/AVPlayerViewControllerDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVPlayerViewControllerDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVPlayerViewControllerDelegate",
+      "type": "topic",
+      "url": "/documentation/avkit/avplayerviewcontrollerdelegate"
+    },
+    "doc://com.apple.avkit/documentation/AVKit/customizing-the-tvos-playback-experience": {
+      "abstract": [
+        {
+          "text": "Adopt the latest features of the redesigned tvOS player user interface to provide a more streamlined way to watch your content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avkit/documentation/AVKit/customizing-the-tvos-playback-experience",
+      "kind": "article",
+      "role": "article",
+      "title": "Customizing the tvOS Playback Experience",
+      "type": "topic",
+      "url": "/documentation/avkit/customizing-the-tvos-playback-experience"
+    },
+    "doc://com.apple.avkit/documentation/AVKit/presenting-content-proposals-in-tvos": {
+      "abstract": [
+        {
+          "text": "Display a preview of an upcoming media item at the conclusion of the currently playing media item.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avkit/documentation/AVKit/presenting-content-proposals-in-tvos",
+      "kind": "article",
+      "role": "article",
+      "title": "Presenting Content Proposals in tvOS",
+      "type": "topic",
+      "url": "/documentation/avkit/presenting-content-proposals-in-tvos"
+    },
+    "doc://com.apple.avkit/documentation/AVKit/presenting-navigation-markers": {
+      "abstract": [
+        {
+          "text": "Present navigation markers in the Chapters panel to help users quickly navigate your content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avkit/documentation/AVKit/presenting-navigation-markers",
+      "kind": "article",
+      "role": "article",
+      "title": "Presenting Navigation Markers",
+      "type": "topic",
+      "url": "/documentation/avkit/presenting-navigation-markers"
+    },
+    "doc://com.apple.avkit/documentation/AVKit/supporting-continuity-camera-in-your-tvos-app": {
+      "abstract": [
+        {
+          "text": "Capture high-quality photos, video, and audio in your Apple TV app by connecting",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "an iPhone or iPad as a continuity device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avkit/documentation/AVKit/supporting-continuity-camera-in-your-tvos-app",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Supporting Continuity Camera in your tvOS app",
+      "type": "topic",
+      "url": "/documentation/avkit/supporting-continuity-camera-in-your-tvos-app"
+    },
+    "doc://com.apple.avkit/documentation/AVKit/working-with-interstitial-content": {
+      "abstract": [
+        {
+          "text": "Present additional content alongside your main media presentation using HTTP Live Streaming support.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avkit/documentation/AVKit/working-with-interstitial-content",
+      "kind": "article",
+      "role": "article",
+      "title": "Working with Interstitial Content",
+      "type": "topic",
+      "url": "/documentation/avkit/working-with-interstitial-content"
+    },
+    "doc://com.apple.documentation/documentation/AVFoundation/AVPlayerItem/requestPlaybackRestrictionsAuthorization(_:)": {
+      "abstract": [
+        {
+          "text": "Determines whether this item is subject to parental restrictions, and, if so, prompts the user to enter the restrictions passcode.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "requestPlaybackRestrictionsAuthorization"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "completion"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "@escaping"
+        },
+        {
+          "kind": "text",
+          "text": " ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVPlayerItem/requestPlaybackRestrictionsAuthorization(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "requestPlaybackRestrictionsAuthorization(_:)",
+      "type": "topic",
+      "url": "/documentation/AVFoundation/AVPlayerItem/requestPlaybackRestrictionsAuthorization(_:)"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/videos/play/wwdc19/503/": {
+      "identifier": "https://developer.apple.com/videos/play/wwdc19/503/",
+      "title": "503: Delivering Intuitive Media Playback with AVKit",
+      "titleInlineContent": [
+        {
+          "text": "503: Delivering Intuitive Media Playback",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "with AVKit",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/videos/play/wwdc19/503/"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "1dd35d609d9b/WorkingWithOverlaysAndParentalControlsInTvOS.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "tvOS-Playback-and-Capture",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.avkit/documentation/AVKit/customizing-the-tvos-playback-experience",
+        "doc://com.apple.avkit/documentation/AVKit/presenting-navigation-markers",
+        "doc://com.apple.avkit/documentation/AVKit/working-with-interstitial-content",
+        "doc://com.apple.avkit/documentation/AVKit/presenting-content-proposals-in-tvos",
+        "doc://com.apple.avkit/documentation/AVKit/supporting-continuity-camera-in-your-tvos-app",
+        "doc://com.apple.avkit/documentation/AVKit/AVPlayerViewController",
+        "doc://com.apple.avkit/documentation/AVKit/AVPlayerViewControllerDelegate",
+        "doc://com.apple.avkit/documentation/AVKit/AVInterstitialTimeRange",
+        "doc://com.apple.avkit/documentation/AVKit/AVNavigationMarkersGroup",
+        "doc://com.apple.avkit/documentation/AVKit/AVContentProposalViewController",
+        "doc://com.apple.avkit/documentation/AVKit/AVDisplayManager",
+        "doc://com.apple.avkit/documentation/AVKit/AVContinuityDevicePickerViewController",
+        "doc://com.apple.avkit/documentation/AVKit/AVContinuityDevicePickerViewControllerDelegate"
+      ],
+      "title": "tvOS Playback and Capture"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "tvOS-Playback-and-Capture",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.avkit/documentation/AVKit/customizing-the-tvos-playback-experience",
+                "doc://com.apple.avkit/documentation/AVKit/presenting-navigation-markers",
+                "doc://com.apple.avkit/documentation/AVKit/working-with-interstitial-content",
+                "doc://com.apple.avkit/documentation/AVKit/presenting-content-proposals-in-tvos",
+                "doc://com.apple.avkit/documentation/AVKit/supporting-continuity-camera-in-your-tvos-app",
+                "doc://com.apple.avkit/documentation/AVKit/AVPlayerViewController",
+                "doc://com.apple.avkit/documentation/AVKit/AVPlayerViewControllerDelegate",
+                "doc://com.apple.avkit/documentation/AVKit/AVInterstitialTimeRange",
+                "doc://com.apple.avkit/documentation/AVKit/AVNavigationMarkersGroup",
+                "doc://com.apple.avkit/documentation/AVKit/AVContentProposalViewController",
+                "doc://com.apple.avkit/documentation/AVKit/AVDisplayManager",
+                "doc://com.apple.avkit/documentation/AVKit/AVContinuityDevicePickerViewController",
+                "doc://com.apple.avkit/documentation/AVKit/AVContinuityDevicePickerViewControllerDelegate"
+              ],
+              "title": "tvOS Playback and Capture"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVContentProposalViewController/title",
+          "value": "AVContentProposalViewController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVContentProposalViewController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVContentProposalViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVContentProposalViewController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVContentProposalViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVPlayerViewControllerDelegate/title",
+          "value": "AVPlayerViewControllerDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVPlayerViewControllerDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVPlayerViewControllerDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVPlayerViewControllerDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVPlayerViewControllerDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVInterstitialTimeRange/title",
+          "value": "AVInterstitialTimeRange"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVInterstitialTimeRange/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVInterstitialTimeRange"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVInterstitialTimeRange/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVInterstitialTimeRange"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFoundation~1AVPlayerItem~1requestPlaybackRestrictionsAuthorization(_:)/title",
+          "value": "requestPlaybackRestrictionsAuthorization:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFoundation~1AVPlayerItem~1requestPlaybackRestrictionsAuthorization(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "requestPlaybackRestrictionsAuthorization:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": " (^)("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@BOOL",
+              "text": "BOOL"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "isAuthorized"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSError",
+              "text": "NSError"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "internalParam",
+              "text": "error"
+            },
+            {
+              "kind": "text",
+              "text": ")) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "completion"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVPlayerViewController/title",
+          "value": "AVPlayerViewController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVPlayerViewController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVPlayerViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVPlayerViewController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVPlayerViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVContinuityDevicePickerViewController/title",
+          "value": "AVContinuityDevicePickerViewController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVContinuityDevicePickerViewController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVContinuityDevicePickerViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVContinuityDevicePickerViewController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVContinuityDevicePickerViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVNavigationMarkersGroup/title",
+          "value": "AVNavigationMarkersGroup"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVNavigationMarkersGroup/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVNavigationMarkersGroup"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVNavigationMarkersGroup/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVNavigationMarkersGroup"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVContinuityDevicePickerViewControllerDelegate/title",
+          "value": "AVContinuityDevicePickerViewControllerDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVContinuityDevicePickerViewControllerDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVContinuityDevicePickerViewControllerDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVContinuityDevicePickerViewControllerDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVContinuityDevicePickerViewControllerDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVDisplayManager/title",
+          "value": "AVDisplayManager"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVDisplayManager/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVDisplayManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVDisplayManager/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVDisplayManager"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/avkit/working-with-overlays-and-parental-controls-in-tvos"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/avkit/working-with-overlays-and-parental-controls-in-tvos"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

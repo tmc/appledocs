@@ -1,0 +1,1172 @@
+{
+  "abstract": [
+    {
+      "text": "A strategy that determines how to format the fractional part of a duration if the allowed units can’t represent it exactly.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Swift/documentation/Swift",
+        "doc://com.apple.Swift/documentation/Swift/Duration",
+        "doc://com.apple.Swift/documentation/Swift/Duration/UnitsFormatStyle"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Swift/documentation/Swift/Duration/UnitsFormatStyle/FractionalPartDisplayStrategy"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:s8DurationV10FoundationE16UnitsFormatStyleV29FractionalPartDisplayStrategyV",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "struct"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "FractionalPartDisplayStrategy"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Swift"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "FractionalPartDisplayStrategy"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "Duration.UnitsFormatStyle.FractionalPartDisplayStrategy"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "FractionalPartDisplayStrategy"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When using a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Swift/Duration/UnitsFormatStyle",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", specifying a ",
+              "type": "text"
+            },
+            {
+              "code": "FractionalPartDisplayStrategy",
+              "type": "codeVoice"
+            },
+            {
+              "text": " enables you to decide how to balance between accuracy and verbosity when you’re not using all of the available units (hours, minutes, and seconds). When a formatted duration has a fractional part, you can hide it entirely, round the unit up or down while hiding the fractional part, or show the unit with a fraction.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following example shows different display strategies used with a duration of 1 hour, 15 minutes and unit format styles that only show hours.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let duration = Duration.seconds(75 * 60) // 1 minute, 15 seconds",
+            "let hide = duration.formatted(",
+            "    .units(allowed: [.hours],",
+            "           width: .wide,",
+            "           fractionalPart: .hide)) // 1 hour",
+            "let hideRounded = duration.formatted(",
+            "    .units(allowed: [.hours],",
+            "           width: .wide,",
+            "           fractionalPart: .hide(rounded:.up))) // 2 hours",
+            "let show = duration.formatted(",
+            "    .units(allowed: [.hours],",
+            "           width: .wide,",
+            "           fractionalPart: .show(length: 2))) // 1.25 hours"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Swift-PageImage-card.png": {
+      "alt": "An orange Swift logo on a gradient background.",
+      "identifier": "Swift-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/81257762cf893d205c049e3021340e5f/Swift-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4d2ed632470b4616483901941fae4098/Swift-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Swift/documentation/Swift": {
+      "abstract": [
+        {
+          "text": "Build apps using a powerful open language.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift",
+      "images": [
+        {
+          "identifier": "Swift-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Swift",
+      "type": "topic",
+      "url": "/documentation/swift"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Decodable": {
+      "abstract": [
+        {
+          "text": "A type that can decode itself from an external representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Decodable"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Decodable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Decodable"
+        }
+      ],
+      "role": "symbol",
+      "title": "Decodable",
+      "type": "topic",
+      "url": "/documentation/swift/decodable"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Duration": {
+      "abstract": [
+        {
+          "text": "A representation of high precision time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Duration"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Duration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Duration"
+        }
+      ],
+      "role": "symbol",
+      "title": "Duration",
+      "type": "topic",
+      "url": "/documentation/swift/duration"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Duration/UnitsFormatStyle": {
+      "abstract": [
+        {
+          "text": "A format style that shows durations with localized labeled components",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UnitsFormatStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Duration/UnitsFormatStyle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UnitsFormatStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "Duration.UnitsFormatStyle",
+      "type": "topic",
+      "url": "/documentation/swift/duration/unitsformatstyle"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Duration/UnitsFormatStyle/FractionalPartDisplayStrategy": {
+      "abstract": [
+        {
+          "text": "A strategy that determines how to format the fractional part of a duration if the allowed units can’t represent it exactly.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FractionalPartDisplayStrategy"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Duration/UnitsFormatStyle/FractionalPartDisplayStrategy",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FractionalPartDisplayStrategy"
+        }
+      ],
+      "role": "symbol",
+      "title": "Duration.UnitsFormatStyle.FractionalPartDisplayStrategy",
+      "type": "topic",
+      "url": "/documentation/swift/duration/unitsformatstyle/fractionalpartdisplaystrategy"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Duration/UnitsFormatStyle/FractionalPartDisplayStrategy/hide": {
+      "abstract": [
+        {
+          "text": "A display strategy that hides any fractional part by truncating it.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "hide"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8DurationV",
+          "text": "Duration"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8DurationV10FoundationE16UnitsFormatStyleV",
+          "text": "UnitsFormatStyle"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8DurationV10FoundationE16UnitsFormatStyleV29FractionalPartDisplayStrategyV",
+          "text": "FractionalPartDisplayStrategy"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Duration/UnitsFormatStyle/FractionalPartDisplayStrategy/hide",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hide",
+      "type": "topic",
+      "url": "/documentation/swift/duration/unitsformatstyle/fractionalpartdisplaystrategy/hide"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Duration/UnitsFormatStyle/FractionalPartDisplayStrategy/hide(rounded:)": {
+      "abstract": [
+        {
+          "text": "Creates a display strategy that hides any fractional part rounding the unit value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "hide"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "rounded"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s25FloatingPointRoundingRuleO",
+          "text": "FloatingPointRoundingRule"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8DurationV",
+          "text": "Duration"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8DurationV10FoundationE16UnitsFormatStyleV",
+          "text": "UnitsFormatStyle"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8DurationV10FoundationE16UnitsFormatStyleV29FractionalPartDisplayStrategyV",
+          "text": "FractionalPartDisplayStrategy"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Duration/UnitsFormatStyle/FractionalPartDisplayStrategy/hide(rounded:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hide(rounded:)",
+      "type": "topic",
+      "url": "/documentation/swift/duration/unitsformatstyle/fractionalpartdisplaystrategy/hide(rounded:)"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Duration/UnitsFormatStyle/FractionalPartDisplayStrategy/init(lengthLimits:roundingRule:roundingIncrement:)": {
+      "abstract": [
+        {
+          "text": "Creates a fractional part display strategy that uses the provided behaviors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Range"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "lengthLimits"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Range"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "roundingRule"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s25FloatingPointRoundingRuleO",
+          "text": "FloatingPointRoundingRule"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "roundingIncrement"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Duration/UnitsFormatStyle/FractionalPartDisplayStrategy/init(lengthLimits:roundingRule:roundingIncrement:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(lengthLimits:roundingRule:roundingIncrement:)",
+      "type": "topic",
+      "url": "/documentation/swift/duration/unitsformatstyle/fractionalpartdisplaystrategy/init(lengthlimits:roundingrule:roundingincrement:)"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Duration/UnitsFormatStyle/FractionalPartDisplayStrategy/maximumLength": {
+      "abstract": [
+        {
+          "text": "The maximum length of the fractional part, if shown.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "maximumLength"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Duration/UnitsFormatStyle/FractionalPartDisplayStrategy/maximumLength",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "maximumLength",
+      "type": "topic",
+      "url": "/documentation/swift/duration/unitsformatstyle/fractionalpartdisplaystrategy/maximumlength"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Duration/UnitsFormatStyle/FractionalPartDisplayStrategy/minimumLength": {
+      "abstract": [
+        {
+          "text": "The minimum length of the fractional part, if shown.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "minimumLength"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Duration/UnitsFormatStyle/FractionalPartDisplayStrategy/minimumLength",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "minimumLength",
+      "type": "topic",
+      "url": "/documentation/swift/duration/unitsformatstyle/fractionalpartdisplaystrategy/minimumlength"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Duration/UnitsFormatStyle/FractionalPartDisplayStrategy/roundingIncrement": {
+      "abstract": [
+        {
+          "text": "A multiple by which a formatter rounds a fractional part of a duration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "roundingIncrement"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Duration/UnitsFormatStyle/FractionalPartDisplayStrategy/roundingIncrement",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "roundingIncrement",
+      "type": "topic",
+      "url": "/documentation/swift/duration/unitsformatstyle/fractionalpartdisplaystrategy/roundingincrement"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Duration/UnitsFormatStyle/FractionalPartDisplayStrategy/roundingRule": {
+      "abstract": [
+        {
+          "text": "The rule for rounding a unit up or down if it has a fractional part.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "roundingRule"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s25FloatingPointRoundingRuleO",
+          "text": "FloatingPointRoundingRule"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Duration/UnitsFormatStyle/FractionalPartDisplayStrategy/roundingRule",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "roundingRule",
+      "type": "topic",
+      "url": "/documentation/swift/duration/unitsformatstyle/fractionalpartdisplaystrategy/roundingrule"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Duration/UnitsFormatStyle/FractionalPartDisplayStrategy/show(length:rounded:increment:)": {
+      "abstract": [
+        {
+          "text": "Creates a display strategy that shows a fractional part.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "show"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "length"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "rounded"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s25FloatingPointRoundingRuleO",
+          "text": "FloatingPointRoundingRule"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "increment"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8DurationV",
+          "text": "Duration"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8DurationV10FoundationE16UnitsFormatStyleV",
+          "text": "UnitsFormatStyle"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8DurationV10FoundationE16UnitsFormatStyleV29FractionalPartDisplayStrategyV",
+          "text": "FractionalPartDisplayStrategy"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Duration/UnitsFormatStyle/FractionalPartDisplayStrategy/show(length:rounded:increment:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "show(length:rounded:increment:)",
+      "type": "topic",
+      "url": "/documentation/swift/duration/unitsformatstyle/fractionalpartdisplaystrategy/show(length:rounded:increment:)"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Duration/UnitsFormatStyle/fractionalPartDisplay": {
+      "abstract": [
+        {
+          "text": "The strategy for displaying a duration if it cannot be represented exactly with the allowed units.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "fractionalPartDisplay"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8DurationV",
+          "text": "Duration"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8DurationV10FoundationE16UnitsFormatStyleV",
+          "text": "UnitsFormatStyle"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8DurationV10FoundationE16UnitsFormatStyleV29FractionalPartDisplayStrategyV",
+          "text": "FractionalPartDisplayStrategy"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Duration/UnitsFormatStyle/fractionalPartDisplay",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "fractionalPartDisplay",
+      "type": "topic",
+      "url": "/documentation/swift/duration/unitsformatstyle/fractionalpartdisplay"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Encodable": {
+      "abstract": [
+        {
+          "text": "A type that can encode itself to an external representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Encodable"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Encodable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Encodable"
+        }
+      ],
+      "role": "symbol",
+      "title": "Encodable",
+      "type": "topic",
+      "url": "/documentation/swift/encodable"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Equatable": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Equatable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/swift/equatable"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Hashable": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a ",
+          "type": "text"
+        },
+        {
+          "code": "Hasher",
+          "type": "codeVoice"
+        },
+        {
+          "text": " to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Hashable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        }
+      ],
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/swift/hashable"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Sendable": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Sendable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/swift/sendable"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/Decodable",
+        "doc://com.apple.Swift/documentation/Swift/Encodable",
+        "doc://com.apple.Swift/documentation/Swift/Equatable",
+        "doc://com.apple.Swift/documentation/Swift/Hashable",
+        "doc://com.apple.Swift/documentation/Swift/Sendable"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Working-with-fractional-values",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/Duration/UnitsFormatStyle/fractionalPartDisplay"
+      ],
+      "title": "Working with fractional values"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-fractional-part-display-strategy",
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/Duration/UnitsFormatStyle/FractionalPartDisplayStrategy/init(lengthLimits:roundingRule:roundingIncrement:)"
+      ],
+      "title": "Creating a fractional part display strategy"
+    },
+    {
+      "anchor": "Using-common-strategies",
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/Duration/UnitsFormatStyle/FractionalPartDisplayStrategy/hide",
+        "doc://com.apple.Swift/documentation/Swift/Duration/UnitsFormatStyle/FractionalPartDisplayStrategy/hide(rounded:)",
+        "doc://com.apple.Swift/documentation/Swift/Duration/UnitsFormatStyle/FractionalPartDisplayStrategy/show(length:rounded:increment:)"
+      ],
+      "title": "Using common strategies"
+    },
+    {
+      "anchor": "Working-with-strategy-properties",
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/Duration/UnitsFormatStyle/FractionalPartDisplayStrategy/minimumLength",
+        "doc://com.apple.Swift/documentation/Swift/Duration/UnitsFormatStyle/FractionalPartDisplayStrategy/maximumLength",
+        "doc://com.apple.Swift/documentation/Swift/Duration/UnitsFormatStyle/FractionalPartDisplayStrategy/roundingIncrement",
+        "doc://com.apple.Swift/documentation/Swift/Duration/UnitsFormatStyle/FractionalPartDisplayStrategy/roundingRule"
+      ],
+      "title": "Working with strategy properties"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/swift/duration/unitsformatstyle/fractionalpartdisplaystrategy"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

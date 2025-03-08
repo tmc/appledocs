@@ -1,0 +1,2166 @@
+{
+  "abstract": [
+    {
+      "text": "Store structured app and user data in iCloud containers that all users of your app can share.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.cloudkit/documentation/CloudKit"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "CloudKit",
+    "modules": [
+      {
+        "name": "CloudKit"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "8.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "8.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "beta": false,
+        "introducedAt": "10.10",
+        "name": "macOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "3.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "collection",
+    "roleHeading": "Framework",
+    "symbolKind": "module",
+    "title": "CloudKit"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The CloudKit framework provides interfaces for moving data between your app and your iCloud containers. You use CloudKit to store your app’s existing data in the cloud so that the user can access it on multiple devices. You can also store data in a public area where all users can access it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Using-the-CloudKit-framework",
+          "level": 3,
+          "text": "Using the CloudKit framework",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "CloudKit isn’t a replacement for your app’s existing data objects. Instead, CloudKit provides complementary services for managing the transfer of data to and from iCloud servers. Because it provides minimal offline caching support, CloudKit relies on the presence of the network and, optionally, a valid iCloud account. A valid iCloud account is only necessary when you want to save data that is specific to a single user. Apps can always store data in a public area that is readable by all users.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Records are at the heart of all data transactions in CloudKit. A record is a dictionary of key-value pairs that represents the data you want to save. You can add new keys and values to records at any time, and you can create links between related records to organize your data. The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class defines the interfaces for managing the contents of records. CloudKit also relies heavily on the use of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/operation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects to manage the asynchronous transfer of data to and from the server.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before using CloudKit, make sure it’s the most suitable option for your app. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/deciding-whether-cloudkit-is-right-for-your-app",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "The classes of the CloudKit framework aren’t for subclassing. Use these classes as-is to save, retrieve, and manipulate data in iCloud. In addition, many of the protocols of this framework aren’t for adoption by classes outside of CloudKit and UIKit. Each protocol reference document includes information about whether you can adopt the protocol in your own classes.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.cloudkit/documentation/CloudKit": {
+      "abstract": [
+        {
+          "text": "Store structured app and user data in iCloud containers that all users of your app can share.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "CloudKit",
+      "type": "topic",
+      "url": "/documentation/cloudkit"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKAsset": {
+      "abstract": [
+        {
+          "text": "An external file that belongs to a record.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CKAsset"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKAsset",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CKAsset"
+        }
+      ],
+      "role": "symbol",
+      "title": "CKAsset",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckasset"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKContainer": {
+      "abstract": [
+        {
+          "text": "A conduit to your app’s databases.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CKContainer"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKContainer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CKContainer"
+        }
+      ],
+      "role": "symbol",
+      "title": "CKContainer",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckcontainer"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKDatabase": {
+      "abstract": [
+        {
+          "text": "An object that represents a collection of record zones and subscriptions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CKDatabase"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKDatabase",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CKDatabase"
+        }
+      ],
+      "role": "symbol",
+      "title": "CKDatabase",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckdatabase"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKError": {
+      "abstract": [
+        {
+          "text": "A type that describes a CloudKit error.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CKError"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CKError"
+        }
+      ],
+      "role": "symbol",
+      "title": "CKError",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckerror"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKError/Code": {
+      "abstract": [
+        {
+          "text": "The error codes that CloudKit returns.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Code"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKError/Code",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Code"
+        }
+      ],
+      "role": "symbol",
+      "title": "CKError.Code",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckerror/code"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKErrorDomain": {
+      "abstract": [
+        {
+          "text": "The error domain for CloudKit errors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CKErrorDomain"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKErrorDomain",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CKErrorDomain"
+        }
+      ],
+      "role": "symbol",
+      "title": "CKErrorDomain",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckerrordomain"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKErrorRetryAfterKey": {
+      "abstract": [
+        {
+          "text": "The key to retrieve the number of seconds to wait before you retry a request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CKErrorRetryAfterKey"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKErrorRetryAfterKey",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CKErrorRetryAfterKey"
+        }
+      ],
+      "role": "symbol",
+      "title": "CKErrorRetryAfterKey",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckerrorretryafterkey"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKErrorUserDidResetEncryptedDataKey": {
+      "abstract": [
+        {
+          "text": "The key that determines whether CloudKit deletes a record zone because of a user action.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CKErrorUserDidResetEncryptedDataKey"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKErrorUserDidResetEncryptedDataKey",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CKErrorUserDidResetEncryptedDataKey"
+        }
+      ],
+      "role": "symbol",
+      "title": "CKErrorUserDidResetEncryptedDataKey",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckerroruserdidresetencrypteddatakey"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKFetchWebAuthTokenOperation": {
+      "abstract": [
+        {
+          "text": "An operation that creates an authentication token for use with CloudKit web services.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CKFetchWebAuthTokenOperation"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKFetchWebAuthTokenOperation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CKFetchWebAuthTokenOperation"
+        }
+      ],
+      "role": "symbol",
+      "title": "CKFetchWebAuthTokenOperation",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckfetchwebauthtokenoperation"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKOperationGroup": {
+      "abstract": [
+        {
+          "text": "An explicit association between two or more operations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CKOperationGroup"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKOperationGroup",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CKOperationGroup"
+        }
+      ],
+      "role": "symbol",
+      "title": "CKOperationGroup",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckoperationgroup"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKPartialErrorsByItemIDKey": {
+      "abstract": [
+        {
+          "text": "The key to retrieve partial errors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CKPartialErrorsByItemIDKey"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKPartialErrorsByItemIDKey",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CKPartialErrorsByItemIDKey"
+        }
+      ],
+      "role": "symbol",
+      "title": "CKPartialErrorsByItemIDKey",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckpartialerrorsbyitemidkey"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord": {
+      "abstract": [
+        {
+          "text": "A collection of key-value pairs that store your app’s data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CKRecord"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CKRecord"
+        }
+      ],
+      "role": "symbol",
+      "title": "CKRecord",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckrecord"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord/Reference": {
+      "abstract": [
+        {
+          "text": "A relationship between two records in a record zone.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Reference"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord/Reference",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Reference"
+        }
+      ],
+      "role": "symbol",
+      "title": "CKRecord.Reference",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckrecord/reference"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKRecordParentKey-1elhg": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CKRecordParentKey"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKRecordParentKey-1elhg",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CKRecordParentKey",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckrecordparentkey-1elhg"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKRecordShareKey-gc8w": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CKRecordShareKey"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKRecordShareKey-gc8w",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CKRecordShareKey",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckrecordsharekey-gc8w"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKRecordTypeShare-7lec1": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CKRecordTypeShare"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKRecordTypeShare-7lec1",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CKRecordTypeShare",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckrecordtypeshare-7lec1"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKRecordTypeUserRecord-6iwgn": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CKRecordTypeUserRecord"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKRecordTypeUserRecord-6iwgn",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CKRecordTypeUserRecord",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckrecordtypeuserrecord-6iwgn"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKRecordValue-c.protocol": {
+      "abstract": [
+        {
+          "text": "The protocol that provides strong type-checking for objects that the CloudKit framework stores on the server.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "CKRecordValue"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKRecordValue-c.protocol",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CKRecordValue",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckrecordvalue-c.protocol"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKRecordZone": {
+      "abstract": [
+        {
+          "text": "A database partition that contains related records.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CKRecordZone"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKRecordZone",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CKRecordZone"
+        }
+      ],
+      "role": "symbol",
+      "title": "CKRecordZone",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckrecordzone"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKRecordZoneDefaultName-1uuiu": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CKRecordZoneDefaultName"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKRecordZoneDefaultName-1uuiu",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CKRecordZoneDefaultName",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckrecordzonedefaultname-1uuiu"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKShareThumbnailImageDataKey-rxjd": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CKShareThumbnailImageDataKey"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKShareThumbnailImageDataKey-rxjd",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CKShareThumbnailImageDataKey",
+      "type": "topic",
+      "url": "/documentation/cloudkit/cksharethumbnailimagedatakey-rxjd"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKShareTitleKey-1cs9j": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CKShareTitleKey"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKShareTitleKey-1cs9j",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CKShareTitleKey",
+      "type": "topic",
+      "url": "/documentation/cloudkit/cksharetitlekey-1cs9j"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKShareTypeKey-5m83p": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CKShareTypeKey"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKShareTypeKey-5m83p",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CKShareTypeKey",
+      "type": "topic",
+      "url": "/documentation/cloudkit/cksharetypekey-5m83p"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngine-4b4w9": {
+      "abstract": [
+        {
+          "text": "An object that manages the synchronization of local and remote record data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "CKSyncEngine"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngine-4b4w9",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CKSyncEngine",
+      "type": "topic",
+      "url": "/documentation/cloudkit/cksyncengine-4b4w9"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngine-5sie5": {
+      "abstract": [
+        {
+          "text": "An object that manages the synchronization of local and remote record data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CKSyncEngine"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngine-5sie5",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CKSyncEngine"
+        }
+      ],
+      "role": "symbol",
+      "title": "CKSyncEngine",
+      "type": "topic",
+      "url": "/documentation/cloudkit/cksyncengine-5sie5"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineFetchChangesContext": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "CKSyncEngineFetchChangesContext"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineFetchChangesContext",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CKSyncEngineFetchChangesContext",
+      "type": "topic",
+      "url": "/documentation/cloudkit/cksyncenginefetchchangescontext"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineFetchChangesScope": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "CKSyncEngineFetchChangesScope"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineFetchChangesScope",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CKSyncEngineFetchChangesScope",
+      "type": "topic",
+      "url": "/documentation/cloudkit/cksyncenginefetchchangesscope"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineSendChangesScope": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "CKSyncEngineSendChangesScope"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineSendChangesScope",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CKSyncEngineSendChangesScope",
+      "type": "topic",
+      "url": "/documentation/cloudkit/cksyncenginesendchangesscope"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKUserIdentity": {
+      "abstract": [
+        {
+          "text": "The identity of a user.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CKUserIdentity"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKUserIdentity",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CKUserIdentity"
+        }
+      ],
+      "role": "symbol",
+      "title": "CKUserIdentity",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckuseridentity"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKUserIdentity/LookupInfo-swift.class": {
+      "abstract": [
+        {
+          "text": "The criteria to use when searching for discoverable iCloud users.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LookupInfo"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKUserIdentity/LookupInfo-swift.class",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LookupInfo"
+        }
+      ],
+      "role": "symbol",
+      "title": "CKUserIdentity.LookupInfo",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckuseridentity/lookupinfo-swift.class"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CK_EXTERN": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "CK_EXTERN"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CK_EXTERN",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CK_EXTERN",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ck_extern"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CK_EXTERN_HIDDEN": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "CK_EXTERN_HIDDEN"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CK_EXTERN_HIDDEN",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CK_EXTERN_HIDDEN",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ck_extern_hidden"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CK_HIDDEN": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "CK_HIDDEN"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CK_HIDDEN",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CK_HIDDEN",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ck_hidden"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CK_NEWLY_UNAVAILABLE": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "CK_NEWLY_UNAVAILABLE"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CK_NEWLY_UNAVAILABLE",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CK_NEWLY_UNAVAILABLE",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ck_newly_unavailable"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CK_SUBCLASSING_DEPRECATED": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "CK_SUBCLASSING_DEPRECATED"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CK_SUBCLASSING_DEPRECATED",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CK_SUBCLASSING_DEPRECATED",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ck_subclassing_deprecated"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CK_SUBCLASSING_RESTRICTED": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "CK_SUBCLASSING_RESTRICTED"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CK_SUBCLASSING_RESTRICTED",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CK_SUBCLASSING_RESTRICTED",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ck_subclassing_restricted"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CK_SWIFT_AVAILABILITY": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "CK_SWIFT_AVAILABILITY"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CK_SWIFT_AVAILABILITY",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CK_SWIFT_AVAILABILITY",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ck_swift_availability"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CK_SWIFT_DEPRECATED": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "CK_SWIFT_DEPRECATED"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CK_SWIFT_DEPRECATED",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CK_SWIFT_DEPRECATED",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ck_swift_deprecated"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CK_UNAVAILABLE": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "CK_UNAVAILABLE"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CK_UNAVAILABLE",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CK_UNAVAILABLE",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ck_unavailable"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/changing-access-controls-on-user-data": {
+      "abstract": [
+        {
+          "text": "Restrict access to or remove restrictions from a user’s data at their request.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/changing-access-controls-on-user-data",
+      "kind": "article",
+      "role": "article",
+      "title": "Changing Access Controls on User Data",
+      "type": "topic",
+      "url": "/documentation/cloudkit/changing-access-controls-on-user-data"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/deciding-whether-cloudkit-is-right-for-your-app": {
+      "abstract": [
+        {
+          "text": "Explore the various options you have for using iCloud to store and sync your app’s data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/deciding-whether-cloudkit-is-right-for-your-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Deciding whether CloudKit is right for your app",
+      "type": "topic",
+      "url": "/documentation/cloudkit/deciding-whether-cloudkit-is-right-for-your-app"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/deprecated-symbols": {
+      "abstract": [
+        {
+          "text": "Review unsupported symbols and their replacements.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/deprecated-symbols",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Deprecated Symbols",
+      "type": "topic",
+      "url": "/documentation/cloudkit/deprecated-symbols"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/designing-and-creating-a-cloudkit-database": {
+      "abstract": [
+        {
+          "text": "Create a schema to store your app’s objects as records in iCloud using CloudKit.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/designing-and-creating-a-cloudkit-database",
+      "kind": "article",
+      "role": "article",
+      "title": "Designing and Creating a CloudKit Database",
+      "type": "topic",
+      "url": "/documentation/cloudkit/designing-and-creating-a-cloudkit-database"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/enabling-cloudkit-in-your-app": {
+      "abstract": [
+        {
+          "text": "Configure your app to store data in iCloud using CloudKit.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/enabling-cloudkit-in-your-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Enabling CloudKit in Your App",
+      "type": "topic",
+      "url": "/documentation/cloudkit/enabling-cloudkit-in-your-app"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/encrypting-user-data": {
+      "abstract": [
+        {
+          "text": "Deploy industry-standard security technologies using CloudKit encryption.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/encrypting-user-data",
+      "kind": "article",
+      "role": "article",
+      "title": "Encrypting User Data",
+      "type": "topic",
+      "url": "/documentation/cloudkit/encrypting-user-data"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/identifying-an-app-s-containers": {
+      "abstract": [
+        {
+          "text": "Use Xcode’s Project navigator to find the identifiers of active CloudKit containers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/identifying-an-app-s-containers",
+      "kind": "article",
+      "role": "article",
+      "title": "Identifying an App’s Containers",
+      "type": "topic",
+      "url": "/documentation/cloudkit/identifying-an-app-s-containers"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/integrating-a-text-based-schema-into-your-workflow": {
+      "abstract": [
+        {
+          "text": "Define and update your schema with the CloudKit Schema Language.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/integrating-a-text-based-schema-into-your-workflow",
+      "kind": "article",
+      "role": "article",
+      "title": "Integrating a Text-Based Schema into Your Workflow",
+      "type": "topic",
+      "url": "/documentation/cloudkit/integrating-a-text-based-schema-into-your-workflow"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/local-records": {
+      "abstract": [
+        {
+          "text": "Manipulate records on-device and save changes to the server.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/local-records",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Local Records",
+      "type": "topic",
+      "url": "/documentation/cloudkit/local-records"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/managing-icloud-containers-with-cloudkit-database-app": {
+      "abstract": [
+        {
+          "text": "Inspect and modify the schema and data for your app’s iCloud container.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/managing-icloud-containers-with-cloudkit-database-app",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Managing iCloud Containers with CloudKit Database App",
+      "type": "topic",
+      "url": "/documentation/cloudkit/managing-icloud-containers-with-cloudkit-database-app"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/providing-user-access-to-cloudkit-data": {
+      "abstract": [
+        {
+          "text": "Provide users access to the data your app stores on their behalf.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/providing-user-access-to-cloudkit-data",
+      "kind": "article",
+      "role": "article",
+      "title": "Providing User Access to CloudKit Data",
+      "type": "topic",
+      "url": "/documentation/cloudkit/providing-user-access-to-cloudkit-data"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/record-changed-error-keys": {
+      "abstract": [
+        {
+          "text": "Constants that represent conflicting records in a save operation.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/record-changed-error-keys",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Record Changed Error Keys",
+      "type": "topic",
+      "url": "/documentation/cloudkit/record-changed-error-keys"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/remote-records": {
+      "abstract": [
+        {
+          "text": "Use subscriptions and change tokens to efficiently manage modifications to remote records.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/remote-records",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Remote Records",
+      "type": "topic",
+      "url": "/documentation/cloudkit/remote-records"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/responding-to-requests-to-delete-data": {
+      "abstract": [
+        {
+          "text": "Provide options for users to delete their CloudKit data from your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/responding-to-requests-to-delete-data",
+      "kind": "article",
+      "role": "article",
+      "title": "Responding to Requests to Delete Data",
+      "type": "topic",
+      "url": "/documentation/cloudkit/responding-to-requests-to-delete-data"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/shared-records": {
+      "abstract": [
+        {
+          "text": "Share one or more records with other iCloud users.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/shared-records",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Shared Records",
+      "type": "topic",
+      "url": "/documentation/cloudkit/shared-records"
+    },
+    "doc://com.apple.documentation/documentation/foundation/operation": {
+      "abstract": [
+        {
+          "text": "An abstract class that represents the code and data associated with a single task.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "Operation"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/operation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Operation",
+      "type": "topic",
+      "url": "/documentation/foundation/operation"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Essentials",
+      "identifiers": [
+        "doc://com.apple.cloudkit/documentation/CloudKit/deciding-whether-cloudkit-is-right-for-your-app",
+        "doc://com.apple.cloudkit/documentation/CloudKit/enabling-cloudkit-in-your-app"
+      ],
+      "title": "Essentials"
+    },
+    {
+      "anchor": "Schemas",
+      "identifiers": [
+        "doc://com.apple.cloudkit/documentation/CloudKit/designing-and-creating-a-cloudkit-database",
+        "doc://com.apple.cloudkit/documentation/CloudKit/managing-icloud-containers-with-cloudkit-database-app",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKRecordZone",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord/Reference",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKAsset",
+        "doc://com.apple.cloudkit/documentation/CloudKit/integrating-a-text-based-schema-into-your-workflow"
+      ],
+      "title": "Schemas"
+    },
+    {
+      "anchor": "Records",
+      "identifiers": [
+        "doc://com.apple.cloudkit/documentation/CloudKit/local-records",
+        "doc://com.apple.cloudkit/documentation/CloudKit/remote-records",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngine-5sie5",
+        "doc://com.apple.cloudkit/documentation/CloudKit/shared-records"
+      ],
+      "title": "Records"
+    },
+    {
+      "anchor": "User-discovery",
+      "identifiers": [
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKUserIdentity",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKUserIdentity/LookupInfo-swift.class"
+      ],
+      "title": "User discovery"
+    },
+    {
+      "anchor": "Core-objects",
+      "identifiers": [
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKContainer",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKDatabase",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKOperationGroup"
+      ],
+      "title": "Core objects"
+    },
+    {
+      "anchor": "Privacy",
+      "identifiers": [
+        "doc://com.apple.cloudkit/documentation/CloudKit/encrypting-user-data",
+        "doc://com.apple.cloudkit/documentation/CloudKit/providing-user-access-to-cloudkit-data",
+        "doc://com.apple.cloudkit/documentation/CloudKit/changing-access-controls-on-user-data",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKFetchWebAuthTokenOperation",
+        "doc://com.apple.cloudkit/documentation/CloudKit/responding-to-requests-to-delete-data",
+        "doc://com.apple.cloudkit/documentation/CloudKit/identifying-an-app-s-containers"
+      ],
+      "title": "Privacy"
+    },
+    {
+      "anchor": "Errors",
+      "identifiers": [
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKErrorDomain",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKError",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKError/Code",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKErrorRetryAfterKey",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKErrorUserDidResetEncryptedDataKey",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKPartialErrorsByItemIDKey",
+        "doc://com.apple.cloudkit/documentation/CloudKit/record-changed-error-keys"
+      ],
+      "title": "Errors"
+    },
+    {
+      "anchor": "Deprecated",
+      "identifiers": [
+        "doc://com.apple.cloudkit/documentation/CloudKit/deprecated-symbols"
+      ],
+      "title": "Deprecated"
+    },
+    {
+      "anchor": "Variables",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKRecordParentKey-1elhg",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKRecordShareKey-gc8w",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKRecordTypeShare-7lec1",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKRecordTypeUserRecord-6iwgn",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKRecordZoneDefaultName-1uuiu",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKShareThumbnailImageDataKey-rxjd",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKShareTitleKey-1cs9j",
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKShareTypeKey-5m83p"
+      ],
+      "title": "Variables"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Essentials",
+              "identifiers": [
+                "doc://com.apple.cloudkit/documentation/CloudKit/deciding-whether-cloudkit-is-right-for-your-app",
+                "doc://com.apple.cloudkit/documentation/CloudKit/enabling-cloudkit-in-your-app"
+              ],
+              "title": "Essentials"
+            },
+            {
+              "anchor": "Schemas",
+              "identifiers": [
+                "doc://com.apple.cloudkit/documentation/CloudKit/designing-and-creating-a-cloudkit-database",
+                "doc://com.apple.cloudkit/documentation/CloudKit/managing-icloud-containers-with-cloudkit-database-app",
+                "doc://com.apple.cloudkit/documentation/CloudKit/CKRecordZone",
+                "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord",
+                "doc://com.apple.cloudkit/documentation/CloudKit/CKRecord/Reference",
+                "doc://com.apple.cloudkit/documentation/CloudKit/CKAsset",
+                "doc://com.apple.cloudkit/documentation/CloudKit/integrating-a-text-based-schema-into-your-workflow"
+              ],
+              "title": "Schemas"
+            },
+            {
+              "anchor": "Records",
+              "identifiers": [
+                "doc://com.apple.cloudkit/documentation/CloudKit/local-records",
+                "doc://com.apple.cloudkit/documentation/CloudKit/remote-records",
+                "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngine-4b4w9",
+                "doc://com.apple.cloudkit/documentation/CloudKit/shared-records"
+              ],
+              "title": "Records"
+            },
+            {
+              "anchor": "User-discovery",
+              "identifiers": [
+                "doc://com.apple.cloudkit/documentation/CloudKit/CKUserIdentity",
+                "doc://com.apple.cloudkit/documentation/CloudKit/CKUserIdentity/LookupInfo-swift.class"
+              ],
+              "title": "User discovery"
+            },
+            {
+              "anchor": "Core-objects",
+              "identifiers": [
+                "doc://com.apple.cloudkit/documentation/CloudKit/CKContainer",
+                "doc://com.apple.cloudkit/documentation/CloudKit/CKDatabase",
+                "doc://com.apple.cloudkit/documentation/CloudKit/CKOperationGroup",
+                "doc://com.apple.cloudkit/documentation/CloudKit/CKRecordValue-c.protocol"
+              ],
+              "title": "Core objects"
+            },
+            {
+              "anchor": "Privacy",
+              "identifiers": [
+                "doc://com.apple.cloudkit/documentation/CloudKit/encrypting-user-data",
+                "doc://com.apple.cloudkit/documentation/CloudKit/providing-user-access-to-cloudkit-data",
+                "doc://com.apple.cloudkit/documentation/CloudKit/changing-access-controls-on-user-data",
+                "doc://com.apple.cloudkit/documentation/CloudKit/CKFetchWebAuthTokenOperation",
+                "doc://com.apple.cloudkit/documentation/CloudKit/responding-to-requests-to-delete-data",
+                "doc://com.apple.cloudkit/documentation/CloudKit/identifying-an-app-s-containers"
+              ],
+              "title": "Privacy"
+            },
+            {
+              "anchor": "Errors",
+              "identifiers": [
+                "doc://com.apple.cloudkit/documentation/CloudKit/CKErrorDomain",
+                "doc://com.apple.cloudkit/documentation/CloudKit/CKError/Code",
+                "doc://com.apple.cloudkit/documentation/CloudKit/CKErrorRetryAfterKey",
+                "doc://com.apple.cloudkit/documentation/CloudKit/CKErrorUserDidResetEncryptedDataKey",
+                "doc://com.apple.cloudkit/documentation/CloudKit/CKPartialErrorsByItemIDKey",
+                "doc://com.apple.cloudkit/documentation/CloudKit/record-changed-error-keys"
+              ],
+              "title": "Errors"
+            },
+            {
+              "anchor": "Deprecated",
+              "identifiers": [
+                "doc://com.apple.cloudkit/documentation/CloudKit/deprecated-symbols"
+              ],
+              "title": "Deprecated"
+            },
+            {
+              "anchor": "Classes",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineFetchChangesContext",
+                "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineFetchChangesScope",
+                "doc://com.apple.cloudkit/documentation/CloudKit/CKSyncEngineSendChangesScope"
+              ],
+              "title": "Classes"
+            },
+            {
+              "anchor": "Macros",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.cloudkit/documentation/CloudKit/CK_EXTERN",
+                "doc://com.apple.cloudkit/documentation/CloudKit/CK_EXTERN_HIDDEN",
+                "doc://com.apple.cloudkit/documentation/CloudKit/CK_HIDDEN",
+                "doc://com.apple.cloudkit/documentation/CloudKit/CK_NEWLY_UNAVAILABLE",
+                "doc://com.apple.cloudkit/documentation/CloudKit/CK_SUBCLASSING_DEPRECATED",
+                "doc://com.apple.cloudkit/documentation/CloudKit/CK_SUBCLASSING_RESTRICTED",
+                "doc://com.apple.cloudkit/documentation/CloudKit/CK_SWIFT_AVAILABILITY",
+                "doc://com.apple.cloudkit/documentation/CloudKit/CK_SWIFT_DEPRECATED",
+                "doc://com.apple.cloudkit/documentation/CloudKit/CK_UNAVAILABLE"
+              ],
+              "title": "Macros"
+            }
+          ]
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKDatabase/title",
+          "value": "CKDatabase"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKDatabase/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CKDatabase"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKDatabase/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CKDatabase"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKUserIdentity/title",
+          "value": "CKUserIdentity"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKUserIdentity/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CKUserIdentity"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKUserIdentity/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CKUserIdentity"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKError~1Code/title",
+          "value": "CKErrorCode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKError~1Code/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CKErrorCode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKError~1Code/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CKErrorCode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1operation/title",
+          "value": "NSOperation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKRecord/title",
+          "value": "CKRecord"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKRecord/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CKRecord"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKRecord/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CKRecord"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKContainer/title",
+          "value": "CKContainer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKContainer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CKContainer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKContainer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CKContainer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKRecord~1Reference/title",
+          "value": "CKReference"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKRecord~1Reference/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CKReference"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKRecord~1Reference/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CKReference"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKFetchWebAuthTokenOperation/title",
+          "value": "CKFetchWebAuthTokenOperation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKFetchWebAuthTokenOperation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CKFetchWebAuthTokenOperation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKFetchWebAuthTokenOperation/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CKFetchWebAuthTokenOperation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKRecordZone/title",
+          "value": "CKRecordZone"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKRecordZone/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CKRecordZone"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKRecordZone/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CKRecordZone"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKErrorRetryAfterKey/title",
+          "value": "CKErrorRetryAfterKey"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKErrorRetryAfterKey/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CKErrorRetryAfterKey"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKOperationGroup/title",
+          "value": "CKOperationGroup"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKOperationGroup/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CKOperationGroup"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKOperationGroup/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CKOperationGroup"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKAsset/title",
+          "value": "CKAsset"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKAsset/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CKAsset"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKAsset/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CKAsset"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKUserIdentity~1LookupInfo-swift.class/title",
+          "value": "CKUserIdentityLookupInfo"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKUserIdentity~1LookupInfo-swift.class/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CKUserIdentityLookupInfo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKUserIdentity~1LookupInfo-swift.class/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CKUserIdentityLookupInfo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKPartialErrorsByItemIDKey/title",
+          "value": "CKPartialErrorsByItemIDKey"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKPartialErrorsByItemIDKey/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CKPartialErrorsByItemIDKey"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKErrorUserDidResetEncryptedDataKey/title",
+          "value": "CKErrorUserDidResetEncryptedDataKey"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKErrorUserDidResetEncryptedDataKey/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CKErrorUserDidResetEncryptedDataKey"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKErrorDomain/title",
+          "value": "CKErrorDomain"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.cloudkit~1documentation~1CloudKit~1CKErrorDomain/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CKErrorDomain"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/cloudkit"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/cloudkit"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

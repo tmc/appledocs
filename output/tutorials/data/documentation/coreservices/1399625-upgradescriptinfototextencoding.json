@@ -1,0 +1,599 @@
+{
+  "abstract": [
+    {
+      "text": "Converts any combination of a Mac OS script code, a languagecode, a region code, and a font name to a text encoding.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/coreservices",
+        "doc://com.apple.documentation/documentation/coreservices/carbon_core",
+        "doc://com.apple.documentation/documentation/coreservices/carbon_core/text_encoding_conversion_manager"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/coreservices/1399625-upgradescriptinfototextencoding"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1399625,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@F@UpgradeScriptInfoToTextEncoding",
+    "modules": [
+      {
+        "name": "Core Services"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "15.4",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Function",
+    "symbolKind": "func",
+    "title": "UpgradeScriptInfoToTextEncoding"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "identifier": "symbol-1586802",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@OSStatus",
+              "text": "OSStatus"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UpgradeScriptInfoToTextEncoding"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@ScriptCode",
+              "text": "ScriptCode"
+            },
+            {
+              "kind": "text",
+              "text": " iTextScriptID, "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@LangCode",
+              "text": "LangCode"
+            },
+            {
+              "kind": "text",
+              "text": " iTextLanguageID, "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@RegionCode",
+              "text": "RegionCode"
+            },
+            {
+              "kind": "text",
+              "text": " iRegionID, "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@ConstStr255Param",
+              "text": "ConstStr255Param"
+            },
+            {
+              "kind": "text",
+              "text": " iTextFontname, "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreservices/textencoding",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@TextEncoding",
+              "text": "TextEncoding"
+            },
+            {
+              "kind": "text",
+              "text": " *oEncoding);"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "languages": [
+        "occ"
+      ],
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A valid Script Manager script code. The Mac OS Script Manager defines constants for script codes using this format: ",
+                  "type": "text"
+                },
+                {
+                  "code": "sm",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": "Xxx. To designate the system script, specify the meta-value of ",
+                  "type": "text"
+                },
+                {
+                  "code": "smSystemScript",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ". To designate the current script based on the font specified in the graphics port (",
+                  "type": "text"
+                },
+                {
+                  "code": "grafPort",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": "), specify the metavalue of ",
+                  "type": "text"
+                },
+                {
+                  "code": "smCurrentScript",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ". To indicate that you do not want to provide a script code for this parameter, specify the constant ",
+                  "type": "text"
+                },
+                {
+                  "code": "kTextScriptDontCare",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ". ",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "iTextScriptID"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A valid Script Manager language code. The Mac OS Script Manager defines constants for language codes using this format: ",
+                  "type": "text"
+                },
+                {
+                  "code": "lang",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": "Xxx. To indicate that you do not want to provide a language code for this parameter, specify the constant ",
+                  "type": "text"
+                },
+                {
+                  "code": "kTextLanguageDontCare",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ". ",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "iTextLanguageID"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A valid Script Manager region code. The Mac OS Script Manager defines constants for region codes using this format: ",
+                  "type": "text"
+                },
+                {
+                  "code": "ver",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": "Xxx. To indicate that you do not want to provide a region code for this parameter, specify the constant ",
+                  "type": "text"
+                },
+                {
+                  "code": "kTextRegionDontCare",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ". ",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "iRegionID"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The name of a font associated with a particular text encoding specification, such as Symbol or Zapf Dingbats, or the name of any font that is currently installed on the system. To indicate that you do not want to provide a font name, specify a value of ",
+                  "type": "text"
+                },
+                {
+                  "code": "NULL",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ". ",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "iTextFontname"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A pointer to a value of type ",
+                  "type": "text"
+                },
+                {
+                  "code": "TextEncoding",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ". On return, this value holds the text encoding specification that the function created from the other values you provided. ",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "oEncoding"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return_value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A resultcode. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreservices/carbon_core/text_encoding_conversion_manager#1664324",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". This function returns ",
+              "type": "text"
+            },
+            {
+              "code": "paramErr",
+              "type": "codeVoice"
+            },
+            {
+              "text": " iftwo or more of the input parameter values conflict in some way—forexample, the Mac OS language code does not belong to the script whosescript code you specified, or if the input parameter values are invalid.The function returns a ",
+              "type": "text"
+            },
+            {
+              "code": "kTECTableFormatErr",
+              "type": "codeVoice"
+            },
+            {
+              "text": " resultcode if the internal mapping tables used for translation are invalid.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "UpgradeScriptInfoToTextEncoding",
+              "type": "codeVoice"
+            },
+            {
+              "text": " functionallows you to derive a text encoding specification from script codes,language codes, region codes, and font names. A one-to-one correspondenceexists between many of the Script Manager’s script codes and aparticular Mac OS text encoding base value. However, because textencodings are a superset of script codes, some combinations of scriptcode, language code, region code, and font name might result ina different text encoding base value than would be the case if thetranslation were based on the script code alone. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you call the ",
+              "type": "text"
+            },
+            {
+              "code": "UpgradeScriptInfoToTextEncoding",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function,you can specify any combination of its parameters, but you mustspecify at least one. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you don’t specify an explicit value for a script, language,or region code parameter, you must pass the do-not-care constantappropriate to that parameter. If you do not specify an explicitvalue for ",
+              "type": "text"
+            },
+            {
+              "code": "iTextFontName",
+              "type": "codeVoice"
+            },
+            {
+              "text": ",you must pass ",
+              "type": "text"
+            },
+            {
+              "code": "NULL",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". ",
+              "type": "text"
+            },
+            {
+              "code": "UpgradeScriptInfoToTextEncoding",
+              "type": "codeVoice"
+            },
+            {
+              "text": " usesas much information as you supply to determine the equivalent textencoding or the closest approximation. If you provide more thanone parameter, all parameters are checked against one another toensure that they are valid in combination. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A font name, such as ",
+              "type": "text"
+            },
+            {
+              "code": "'Symbol'",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "code": "'ZapfDingbats,'",
+              "type": "codeVoice"
+            },
+            {
+              "text": " can indicate a particular textencoding base. Other font names can indicate particular variantsassociated with a particular text encoding base. Otherwise, thefont name is used to obtain a script code, and this script code willbe checked against any script code you supply (in this case, thefont must be installed; if it is not, the function returns a ",
+              "type": "text"
+            },
+            {
+              "code": "paramErr",
+              "type": "codeVoice"
+            },
+            {
+              "text": " resultcode). If you do not supply either a language code or a region codeand the script code you supply or the one that is derived matchesthe system script, then the system’s localization is used to determinethe appropriate region and language code. This is used for derivingtext encoding base values that depend on region and language, suchas ",
+              "type": "text"
+            },
+            {
+              "code": "kTextEncodingMacTurkish",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information see the  ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreservices/1400023-reverttextencodingtoscriptinfo",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "  functionand  ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreservices/textencodingbase",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/coreservices": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Services",
+      "type": "topic",
+      "url": "/documentation/coreservices"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1399625-upgradescriptinfototextencoding": {
+      "abstract": [
+        {
+          "text": "Converts any combination of a Mac OS script code, a languagecode, a region code, and a font name to a text encoding.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1399625-upgradescriptinfototextencoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UpgradeScriptInfoToTextEncoding",
+      "type": "topic",
+      "url": "/documentation/coreservices/1399625-upgradescriptinfototextencoding"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1400023-reverttextencodingtoscriptinfo": {
+      "abstract": [
+        {
+          "text": "Converts the given Mac OS text encoding specificationto the corresponding script code and, if possible, language codeand font name.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1400023-reverttextencodingtoscriptinfo",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "RevertTextEncodingToScriptInfo",
+      "type": "topic",
+      "url": "/documentation/coreservices/1400023-reverttextencodingtoscriptinfo"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/carbon_core": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/carbon_core",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Carbon Core",
+      "type": "topic",
+      "url": "/documentation/coreservices/carbon_core"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/carbon_core/text_encoding_conversion_manager": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/carbon_core/text_encoding_conversion_manager",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Text Encoding Conversion Manager",
+      "type": "topic",
+      "url": "/documentation/coreservices/carbon_core/text_encoding_conversion_manager"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/carbon_core/text_encoding_conversion_manager#1664324": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/carbon_core/text_encoding_conversion_manager#1664324",
+      "kind": "article",
+      "role": "task",
+      "title": "Result Codes",
+      "type": "section",
+      "url": "/documentation/coreservices/carbon_core/text_encoding_conversion_manager#1664324"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/textencoding": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/textencoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "TextEncoding",
+      "type": "topic",
+      "url": "/documentation/coreservices/textencoding"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/textencodingbase": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/textencodingbase",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "TextEncodingBase",
+      "type": "topic",
+      "url": "/documentation/coreservices/textencodingbase"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreservices/1400023-reverttextencodingtoscriptinfo"
+      ],
+      "title": "Converting Between Script Manager Values and Text Encodings"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/coreservices/1399625-upgradescriptinfototextencoding"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

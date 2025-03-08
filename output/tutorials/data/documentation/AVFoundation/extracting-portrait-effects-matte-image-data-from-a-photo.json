@@ -1,0 +1,1269 @@
+{
+  "abstract": [
+    {
+      "text": "Check for portrait effects matte metadata in existing images.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.avfoundation/documentation/AVFoundation",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/photo-capture",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVPortraitEffectsMatte"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.avfoundation/documentation/AVFoundation/extracting-portrait-effects-matte-image-data-from-a-photo"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "AVFoundation"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Extracting Portrait Effects Matte Image Data from a Photo"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The portrait effects matte is stored in the image file alongside the depth data auxiliary image. You can load, view, and edit the portrait effects matte as a high-level object called an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVPortraitEffectsMatte",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", analogous to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVDepthData",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". This mirrors traditional depth map access using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVDepthData",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in its technique to get the elementary auxiliary image bits out of the file.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3030225",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Load-and-View-a-Matting-Image-from-File",
+          "level": 3,
+          "text": "Load and View a Matting Image from File",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Load the portrait effects matte by using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/ImageIO",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to extract an auxiliary image of type ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/ImageIO/kCGImageAuxiliaryDataTypePortraitEffectsMatte",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Convert this auxiliary image to an auxiliary information dictionary, which contains the matte as metadata of class ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/ImageIO/CGImageMetadata",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Generate the portrait effects matte object, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVPortraitEffectsMatte",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", by passing the dictionary to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVPortraitEffectsMatte/init(fromDictionaryRepresentation:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". From this object, you can generate a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object to bring the image into viewable forms, like ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIImage",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "func portraitEffectsMatteImage(at path: String) -> UIImage? {",
+                    "    let bundlePath = Bundle.main.bundlePath",
+                    "    let fileURL = URL(fileURLWithPath: bundlePath).appendingPathComponent(path)",
+                    "        ",
+                    "    guard let source = CGImageSourceCreateWithURL(fileURL as CFURL, nil),",
+                    "          let auxiliaryInfoDict = CGImageSourceCopyAuxiliaryDataInfoAtIndex(source, 0, kCGImageAuxiliaryDataTypePortraitEffectsMatte) as? [AnyHashable: Any] else { return nil }",
+                    "        ",
+                    "    // Create a portrait effects matte from the auxiliary information.",
+                    "    if let matteData = try? AVPortraitEffectsMatte(fromDictionaryRepresentation: auxiliaryInfoDict),",
+                    "       let matteCIImage = CIImage(portaitEffectsMatte: matteData) {",
+                    "        // Return a matte image by using the core image representation.",
+                    "        return UIImage(ciImage: matteCIImage)",
+                    "    }",
+                    "    return nil",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "- (UIImage*) portraitEffectsMatteImageAtPath: (NSString*)path",
+                    "{",
+                    "    // Convert image path to a file URL:",
+                    "    NSString* bundlePath = [NSBundle mainBundle].bundlePath;",
+                    "    NSString* filePath = [bundlePath stringByAppendingPathComponent:path];",
+                    "    CFURLRef urlRef = CFBridgingRetain([NSURL fileURLWithPath:filePath]);",
+                    "    ",
+                    "    // Get reference to the image data:",
+                    "    CGImageSourceRef source = CGImageSourceCreateWithURL(urlRef, nil);",
+                    "    ",
+                    "    // Query for auxiliary data of specific type:",
+                    "    CFDictionaryRef auxiliaryInfoDict = CGImageSourceCopyAuxiliaryDataInfoAtIndex(source, 0, kCGImageAuxiliaryDataTypePortraitEffectsMatte);",
+                    "    ",
+                    "    NSDictionary* auxDataDictionary = (__bridge NSDictionary*)auxiliaryInfoDict;",
+                    "    if (auxDataDictionary) {",
+                    "        AVPortraitEffectsMatte* matteData = [AVPortraitEffectsMatte portraitEffectsMatteFromDictionaryRepresentation:auxDataDictionary error:nil];",
+                    "        ",
+                    "        // Load matte data into Core Image for conversion to UIImage:",
+                    "        CIImage* matteCIImage = [CIImage imageWithPortaitEffectsMatte:matteData];",
+                    "        return [UIImage imageWithCIImage:matteCIImage];",
+                    "    }",
+                    "    else {",
+                    "        return nil;",
+                    "    }",
+                    "}"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "With this matte image, your app can:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Access the uncompressed pixels of the portrait effects matte in memory.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create rotated or flipped derivative copies of the mask.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Replace a pixel of the matte with one of your own, reflecting an effect you’re applying to the main image.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create a dictionary of elementary PEM parts suitable for writing to a file using Image I/O’s ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/ImageIO/CGImageDestination",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When decompressed, the matte images are natively L008 (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreVideo/kCVPixelFormatType_OneComponent8",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "), which is an 8-bit one-component format where black is zero. Portrait effects matte images are not gamma corrected. They’re tagged with a linear transfer function, indicating that no color correction should be applied when working with them.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.avfoundation/documentation/AVFoundation": {
+      "abstract": [
+        {
+          "text": "Work with audiovisual assets, control device cameras, process audio, and configure system audio interactions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AVFoundation",
+      "type": "topic",
+      "url": "/documentation/avfoundation"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVDepthData": {
+      "abstract": [
+        {
+          "text": "A container for per-pixel distance or disparity information captured by compatible camera devices.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVDepthData"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVDepthData",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVDepthData"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVDepthData",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avdepthdata"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVPortraitEffectsMatte": {
+      "abstract": [
+        {
+          "text": "An auxiliary image used to separate foreground from background with high resolution.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVPortraitEffectsMatte"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVPortraitEffectsMatte",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVPortraitEffectsMatte"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVPortraitEffectsMatte",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avportraiteffectsmatte"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVPortraitEffectsMatte/dictionaryRepresentation(forAuxiliaryDataType:)": {
+      "abstract": [
+        {
+          "text": "A dictionary of primitive map information used for writing an image file with a portrait effects matte.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "dictionaryRepresentation"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "forAuxiliaryDataType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SA",
+          "text": "AutoreleasingUnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSString",
+          "text": "NSString"
+        },
+        {
+          "kind": "text",
+          "text": "?>?) -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s11AnyHashableV",
+          "text": "AnyHashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]?"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVPortraitEffectsMatte/dictionaryRepresentation(forAuxiliaryDataType:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "dictionaryRepresentationForAuxiliaryDataType:"
+        }
+      ],
+      "role": "symbol",
+      "title": "dictionaryRepresentation(forAuxiliaryDataType:)",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avportraiteffectsmatte/dictionaryrepresentation(forauxiliarydatatype:)"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVPortraitEffectsMatte/init(fromDictionaryRepresentation:)": {
+      "abstract": [
+        {
+          "text": "Initializes a portrait effects matte instance from auxiliary image information in an image file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "convenience"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "fromDictionaryRepresentation"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s11AnyHashableV",
+          "text": "AnyHashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]) "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVPortraitEffectsMatte/init(fromDictionaryRepresentation:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "portraitEffectsMatteFromDictionaryRepresentation:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(fromDictionaryRepresentation:)",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avportraiteffectsmatte/init(fromdictionaryrepresentation:)"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVPortraitEffectsMatte/mattingImage": {
+      "abstract": [
+        {
+          "text": "The portrait effects matte’s internal image, formatted as a pixel buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mattingImage"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CVPixelBufferRef",
+          "text": "CVPixelBuffer"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVPortraitEffectsMatte/mattingImage",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "mattingImage"
+        }
+      ],
+      "role": "symbol",
+      "title": "mattingImage",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avportraiteffectsmatte/mattingimage"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/AVPortraitEffectsMatte/pixelFormatType": {
+      "abstract": [
+        {
+          "text": "The pixel format type of this portrait effects matte’s internal image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "pixelFormatType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSType",
+          "text": "OSType"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/AVPortraitEffectsMatte/pixelFormatType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "pixelFormatType"
+        }
+      ],
+      "role": "symbol",
+      "title": "pixelFormatType",
+      "type": "topic",
+      "url": "/documentation/avfoundation/avportraiteffectsmatte/pixelformattype"
+    },
+    "doc://com.apple.avfoundation/documentation/AVFoundation/photo-capture": {
+      "abstract": [
+        {
+          "text": "Capture high-quality still images, Live Photos, and supporting photo data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfoundation/documentation/AVFoundation/photo-capture",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Photo capture",
+      "type": "topic",
+      "url": "/documentation/avfoundation/photo-capture"
+    },
+    "doc://com.apple.documentation/documentation/CoreVideo/kCVPixelFormatType_OneComponent8": {
+      "abstract": [
+        {
+          "text": "8-bit one component, black is zero.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kCVPixelFormatType_OneComponent8"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSType",
+          "text": "OSType"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreVideo/kCVPixelFormatType_OneComponent8",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kCVPixelFormatType_OneComponent8",
+      "type": "topic",
+      "url": "/documentation/CoreVideo/kCVPixelFormatType_OneComponent8"
+    },
+    "doc://com.apple.documentation/documentation/ImageIO": {
+      "abstract": [
+        {
+          "text": "Read and write most image file formats, and access an image’s metadata.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ImageIO",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Image I/O",
+      "type": "topic",
+      "url": "/documentation/ImageIO"
+    },
+    "doc://com.apple.documentation/documentation/ImageIO/CGImageDestination": {
+      "abstract": [
+        {
+          "text": "An opaque type that you use to write image data to a URL, data object, or data consumer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CGImageDestination"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ImageIO/CGImageDestination",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGImageDestination",
+      "type": "topic",
+      "url": "/documentation/ImageIO/CGImageDestination"
+    },
+    "doc://com.apple.documentation/documentation/ImageIO/CGImageMetadata": {
+      "abstract": [
+        {
+          "text": "An immutable object that contains the XMP metadata associated with an image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CGImageMetadata"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ImageIO/CGImageMetadata",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGImageMetadata",
+      "type": "topic",
+      "url": "/documentation/ImageIO/CGImageMetadata"
+    },
+    "doc://com.apple.documentation/documentation/ImageIO/kCGImageAuxiliaryDataTypePortraitEffectsMatte": {
+      "abstract": [
+        {
+          "text": "The type for portrait effects matte information.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kCGImageAuxiliaryDataTypePortraitEffectsMatte"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ImageIO/kCGImageAuxiliaryDataTypePortraitEffectsMatte",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kCGImageAuxiliaryDataTypePortraitEffectsMatte",
+      "type": "topic",
+      "url": "/documentation/ImageIO/kCGImageAuxiliaryDataTypePortraitEffectsMatte"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIImage": {
+      "abstract": [
+        {
+          "text": "An object that manages image data in your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIImage"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIImage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIImage",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIImage"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciimage": {
+      "abstract": [
+        {
+          "text": "A representation of an image to be processed or produced by Core Image filters.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "CIImage"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CIImage",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciimage"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "media-3030225": {
+      "alt": "Juxtaposition of the depth map and portrait effects matte of a photo showing a girl holding a flower.",
+      "identifier": "media-3030225",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/83298edb81ee6a98d7b6d8df552121ab/media-3030225@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Examining-a-Portrait-Effects-Matte",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVPortraitEffectsMatte/mattingImage",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVPortraitEffectsMatte/pixelFormatType",
+        "doc://com.apple.avfoundation/documentation/AVFoundation/AVPortraitEffectsMatte/dictionaryRepresentation(forAuxiliaryDataType:)"
+      ],
+      "title": "Examining a Portrait Effects Matte"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Examining-a-Portrait-Effects-Matte",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVPortraitEffectsMatte/mattingImage",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVPortraitEffectsMatte/pixelFormatType",
+                "doc://com.apple.avfoundation/documentation/AVFoundation/AVPortraitEffectsMatte/dictionaryRepresentation(forAuxiliaryDataType:)"
+              ],
+              "title": "Examining a Portrait Effects Matte"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPortraitEffectsMatte~1init(fromDictionaryRepresentation:)/title",
+          "value": "portraitEffectsMatteFromDictionaryRepresentation:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPortraitEffectsMatte~1init(fromDictionaryRepresentation:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "portraitEffectsMatteFromDictionaryRepresentation:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1ImageIO~1kCGImageAuxiliaryDataTypePortraitEffectsMatte/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CFStringRef",
+              "text": "CFStringRef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "const"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "kCGImageAuxiliaryDataTypePortraitEffectsMatte"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVDepthData/title",
+          "value": "AVDepthData"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVDepthData/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVDepthData"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVDepthData/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVDepthData"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPortraitEffectsMatte/title",
+          "value": "AVPortraitEffectsMatte"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPortraitEffectsMatte/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVPortraitEffectsMatte"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPortraitEffectsMatte/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVPortraitEffectsMatte"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1ImageIO~1CGImageDestination/title",
+          "value": "CGImageDestinationRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1ImageIO~1CGImageDestination/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "typedef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@S@CGImageDestination",
+              "text": "CGImageDestination"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "identifier",
+              "text": "CGImageDestinationRef"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIImage/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIImage"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPortraitEffectsMatte~1pixelFormatType/title",
+          "value": "pixelFormatType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPortraitEffectsMatte~1pixelFormatType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "pixelFormatType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1ImageIO~1CGImageMetadata/title",
+          "value": "CGImageMetadataRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1ImageIO~1CGImageMetadata/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "typedef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "const"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@S@CGImageMetadata",
+              "text": "CGImageMetadata"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "identifier",
+              "text": "CGImageMetadataRef"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPortraitEffectsMatte~1mattingImage/title",
+          "value": "mattingImage"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPortraitEffectsMatte~1mattingImage/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "mattingImage"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPortraitEffectsMatte~1dictionaryRepresentation(forAuxiliaryDataType:)/title",
+          "value": "dictionaryRepresentationForAuxiliaryDataType:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfoundation~1documentation~1AVFoundation~1AVPortraitEffectsMatte~1dictionaryRepresentation(forAuxiliaryDataType:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "dictionaryRepresentationForAuxiliaryDataType:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreVideo~1kCVPixelFormatType_OneComponent8/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kCVPixelFormatType_OneComponent8"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/avfoundation/extracting-portrait-effects-matte-image-data-from-a-photo"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/avfoundation/extracting-portrait-effects-matte-image-data-from-a-photo"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

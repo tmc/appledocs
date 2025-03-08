@@ -1,0 +1,723 @@
+{
+  "abstract": [
+    {
+      "text": "Create a shader library that you can add to an Xcode project with the Metal compiler tools in a command-line environment.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.metal/documentation/Metal",
+        "doc://com.apple.metal/documentation/Metal/shader-libraries",
+        "doc://com.apple.metal/documentation/Metal/metal-libraries"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.metal/documentation/Metal/building-a-shader-library-by-precompiling-source-files"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Metal"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Building a Shader Library by Precompiling Source Files"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Manually compile your Metal Shading Language (MSL) source files into a Metal shader library outside of an Xcode project with the Metal command-line tools. The ",
+              "type": "text"
+            },
+            {
+              "code": "metal",
+              "type": "codeVoice"
+            },
+            {
+              "text": " compiler tool converts each shader source file into an intermediate representation file. The ",
+              "type": "text"
+            },
+            {
+              "code": "metallib",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "metal-ar",
+              "type": "codeVoice"
+            },
+            {
+              "text": " tools then compile intermediate representation files into a library and a binary archive, respectively.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-2955174",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can create a library from one or more intermediate representation files, one or more archive files, or a combination of both.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Compile-a-Shader-Source-File-into-a-Library",
+          "level": 3,
+          "text": "Compile a Shader Source File into a Library",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The simplest way to compile and build a single MSL source file into a library file is with two commands. The first command invokes the ",
+              "type": "text"
+            },
+            {
+              "code": "metal",
+              "type": "codeVoice"
+            },
+            {
+              "text": " compiler tool, which compiles the source file into an intermediate representation file.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "% xcrun -sdk macosx metal -o Shadow.ir  -c Shadow.metal",
+            "% xcrun -sdk macosx metal -o PointLights.ir  -c PointLights.metal",
+            "% xcrun -sdk macosx metal -o DirectionalLight.ir  -c DirectionalLight.metal"
+          ],
+          "syntax": "shell",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "-o",
+              "type": "codeVoice"
+            },
+            {
+              "text": " option indicates the output file name and the ",
+              "type": "text"
+            },
+            {
+              "code": "-c",
+              "type": "codeVoice"
+            },
+            {
+              "text": " option tells the tool to preprocess, compile, and assemble the source file.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "This example uses the ",
+                  "type": "text"
+                },
+                {
+                  "code": "macosx",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " SDK, but you can use any SDK your app targets.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Optionally, you can combine several intermediate representation files into a single Metal archive with the ",
+              "type": "text"
+            },
+            {
+              "code": "metal-ar",
+              "type": "codeVoice"
+            },
+            {
+              "text": " tool.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "% xcrun -sdk macosx metal-ar -q Lights.metalar DirectionalLight.ir PointLights.ir"
+          ],
+          "syntax": "shell",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "-q",
+              "type": "codeVoice"
+            },
+            {
+              "text": " option tells the tool to quickly append to its argument, which creates a new archive file if it doesn’t already exist.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Build a Metal library from one or more intermediate representation files, one or more archive files, or a combination of both with the ",
+              "type": "text"
+            },
+            {
+              "code": "metallib",
+              "type": "codeVoice"
+            },
+            {
+              "text": " command.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "% xcrun -sdk macosx metallib -o LightsAndShadow.metallib Lights.metalar Shadow.ir"
+          ],
+          "syntax": "shell",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The command produces a Metal library that your app can load at runtime. One way to do this is by adding it to your project’s build targets in Xcode.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "The Metal command-line tools for Windows use the same options and arguments as their macOS counterparts.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Retrieve-and-Load-a-Library",
+          "level": 3,
+          "text": "Retrieve and Load a Library",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "At runtime, you can access a library by creating an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLLibrary",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLDevice/makeLibrary(URL:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "func createLibrary(_ device: MTLDevice, libraryName: String) -> MTLLibrary? {",
+                    "    let libraryURL = Bundle.main.url(forResource: libraryName,",
+                    "                                     withExtension: \"metallib\")",
+                    "",
+                    "    guard let libraryURL else {",
+                    "        print(\"Couldn't find library file: \\(libraryName)\");",
+                    "        return nil;",
+                    "    }",
+                    "",
+                    "    let library: MTLLibrary",
+                    "    do {",
+                    "        library = try device.makeLibrary(URL: libraryURL)",
+                    "    } catch {",
+                    "        print(\"Couldn't find library file: \\(libraryName)\");",
+                    "        print(\"Error descriotion: \\(error.localizedDescription)\")",
+                    "        return nil",
+                    "    }",
+                    "",
+                    "    return library",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "+ (id<MTLLibrary>) createLibrary:(id<MTLDevice>)device",
+                    "                        fromName:(NSString*)libraryName",
+                    "{",
+                    "    NSURL *libraryURL = [[NSBundle mainBundle] URLForResource:libraryName",
+                    "                                                withExtension:@\"metallib\"];",
+                    "",
+                    "    if (libraryURL == nil) {",
+                    "        NSLog(@\"Couldn't find library file: %@\", libraryName);",
+                    "        return nil;",
+                    "    }",
+                    "",
+                    "    NSError *libraryError = nil;",
+                    "    id <MTLLibrary> library = [device newLibraryWithURL:libraryURL",
+                    "                                                  error:&libraryError];",
+                    "    if (library == nil) {",
+                    "        NSLog(@\"Couldn't create library: %@\", libraryName);",
+                    "",
+                    "        if (description != nil) {",
+                    "            NSLog(@\"Error description: %@\", libraryError.localizedDescription);",
+                    "        }",
+                    "        return nil;",
+                    "    }",
+                    "",
+                    "    return library;",
+                    "}"
+                  ],
+                  "syntax": "objective-c",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.metal/documentation/Metal": {
+      "abstract": [
+        {
+          "text": "Render advanced 3D graphics and compute data in parallel with graphics processors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Metal",
+      "type": "topic",
+      "url": "/documentation/metal"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLDevice/makeLibrary(URL:)": {
+      "abstract": [
+        {
+          "text": "Creates a Metal library instance that contains the functions in the Metal library file at a URL.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "makeLibrary"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLLibrary",
+          "text": "MTLLibrary"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLDevice/makeLibrary(URL:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "newLibraryWithURL:error:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "makeLibrary(URL:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtldevice/makelibrary(url:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLLibrary": {
+      "abstract": [
+        {
+          "text": "A collection of Metal shader functions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLLibrary"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLLibrary",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLLibrary"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLLibrary",
+      "type": "topic",
+      "url": "/documentation/metal/mtllibrary"
+    },
+    "doc://com.apple.metal/documentation/Metal/generating-and-loading-a-metal-library-symbol-file": {
+      "abstract": [
+        {
+          "text": "Debug your Metal shaders from your production apps by creating companion symbol files at compile time and loading them at debug time.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/generating-and-loading-a-metal-library-symbol-file",
+      "kind": "article",
+      "role": "article",
+      "title": "Generating and Loading a Metal Library Symbol File",
+      "type": "topic",
+      "url": "/documentation/metal/generating-and-loading-a-metal-library-symbol-file"
+    },
+    "doc://com.apple.metal/documentation/Metal/metal-libraries": {
+      "abstract": [
+        {
+          "text": "Compile and manage Metal libraries from the command line.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/metal-libraries",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Metal Libraries",
+      "type": "topic",
+      "url": "/documentation/metal/metal-libraries"
+    },
+    "doc://com.apple.metal/documentation/Metal/minimizing-the-binary-size-of-a-shader-library": {
+      "abstract": [
+        {
+          "text": "Reduce the storage footprint of your shaders, and potentially reduce their compile time, by selecting the Metal compiler’s size optimization option.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/minimizing-the-binary-size-of-a-shader-library",
+      "kind": "article",
+      "role": "article",
+      "title": "Minimizing the Binary Size of a Shader Library",
+      "type": "topic",
+      "url": "/documentation/metal/minimizing-the-binary-size-of-a-shader-library"
+    },
+    "doc://com.apple.metal/documentation/Metal/shader-libraries": {
+      "abstract": [
+        {
+          "text": "Manage and load your app’s Metal shaders.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/shader-libraries",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Shader Libraries",
+      "type": "topic",
+      "url": "/documentation/metal/shader-libraries"
+    },
+    "media-2955174": {
+      "alt": "A block flow diagram of the compilation stages for Metal shaders that produce both a shader library and shader archive.  The diagram starts at the Metal source code stage, which contains multiple files that end with a dot-metal suffix. Metal source code stage flows through the command line tool named ‘metal’ and into the intermediate representation stage, which contains files that end with a dot AIR suffix.  The intermediate representation stage flows to both the library stage and the archive stage. The line to the archive stage goes through a command line tool named ‘metal’ dash, AR. The archive stage contains multiple files that end with a dot ‘metal’ AR suffix (without a dash).  Both the archive stage and the intermediate representation stage flow to the library stage through a command line tool named ‘metal’ LIB. The library stage contains one file that ends with a ‘metal’ LIB suffix.",
+      "identifier": "media-2955174",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/261e920b717302612c65f9afa03a67d4/media-2955174@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/261e920b717302612c65f9afa03a67d4/media-2955174~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Working-with-Metal-Intermediate-Representation-Libraries",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/minimizing-the-binary-size-of-a-shader-library",
+        "doc://com.apple.metal/documentation/Metal/generating-and-loading-a-metal-library-symbol-file"
+      ],
+      "title": "Working with Metal Intermediate Representation Libraries"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Working-with-Metal-Intermediate-Representation-Libraries",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/minimizing-the-binary-size-of-a-shader-library",
+                "doc://com.apple.metal/documentation/Metal/generating-and-loading-a-metal-library-symbol-file"
+              ],
+              "title": "Working with Metal Intermediate Representation Libraries"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice~1makeLibrary(URL:)/title",
+          "value": "newLibraryWithURL:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice~1makeLibrary(URL:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "newLibraryWithURL:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLLibrary/title",
+          "value": "MTLLibrary"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLLibrary/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLLibrary"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLLibrary/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLLibrary"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/metal/building-a-shader-library-by-precompiling-source-files"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/metal/building-a-shader-library-by-precompiling-source-files"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

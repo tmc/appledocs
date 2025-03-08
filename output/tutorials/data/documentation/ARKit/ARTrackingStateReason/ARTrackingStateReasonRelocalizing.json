@@ -1,0 +1,519 @@
+{
+  "abstract": [
+    {
+      "text": "The AR session is attempting to resume after an interruption.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.arkit/documentation/ARKit",
+        "doc://com.apple.arkit/documentation/ARKit/ARTrackingStateReason"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.arkit/documentation/ARKit/ARTrackingStateReason/ARTrackingStateReasonRelocalizing"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@E@ARTrackingStateReason@ARTrackingStateReasonRelocalizing",
+    "fragments": [
+      {
+        "kind": "identifier",
+        "text": "ARTrackingStateReasonRelocalizing"
+      }
+    ],
+    "modules": [
+      {
+        "name": "ARKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "ARTrackingStateReasonRelocalizing"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "11.3",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "11.3",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Enumeration Case",
+    "symbolKind": "case",
+    "title": "ARTrackingStateReasonRelocalizing"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst"
+          ],
+          "tokens": [
+            {
+              "kind": "identifier",
+              "text": "ARTrackingStateReasonRelocalizing"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "ARKit cannot track device position or orientation when the session has been interrupted (for example, by dismissing the view hosting an AR session or switching to another app). When resuming the session after an interruption, you cannot be certain that the world coordinate system (used for placing anchors) matches the device’s real-world environment.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your session or view delegate implements the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSessionObserver/sessionShouldAttemptRelocalization(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method and returns ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/swift/true",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ARKit attempts to reconcile pre- and post-interruption world tracking state. During this process, called ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "relocalization",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", world tracking quality is ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARTrackingState/ARTrackingStateLimited",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARTrackingStateReason/ARTrackingStateReasonRelocalizing",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " as the reason for limited quality.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If successful, the relocalization process ends after a short time, tracking quality returns to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARTrackingState/ARTrackingStateNormal",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " state, and the world coordinate system and anchor positions generally reflect their state before the interruption.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "However, the speed and success rate of relocalization can vary depending on real-world conditions. You may wish to hide AR content or disable UI during relocalization, and reset tracking if relocalization doesn’t succeed within a time frame appropriate for your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.arkit/documentation/ARKit": {
+      "abstract": [
+        {
+          "text": "Integrate hardware sensing features to produce augmented reality apps and games.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "ARKit",
+      "type": "topic",
+      "url": "/documentation/arkit"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARSessionObserver/sessionShouldAttemptRelocalization(_:)": {
+      "abstract": [
+        {
+          "text": "Asks the delegate whether to attempt recovery of world-tracking state after an interruption.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sessionShouldAttemptRelocalization"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARSession",
+          "text": "ARSession"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARSessionObserver/sessionShouldAttemptRelocalization(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "sessionShouldAttemptRelocalization:"
+        }
+      ],
+      "role": "symbol",
+      "title": "sessionShouldAttemptRelocalization(_:)",
+      "type": "topic",
+      "url": "/documentation/arkit/arsessionobserver/sessionshouldattemptrelocalization(_:)"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARTrackingState/ARTrackingStateLimited": {
+      "abstract": [
+        {
+          "text": "Tracking is available, but the quality of results is questionable.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "ARTrackingStateLimited"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARTrackingState/ARTrackingStateLimited",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ARTrackingStateLimited",
+      "type": "topic",
+      "url": "/documentation/arkit/artrackingstate/artrackingstatelimited"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARTrackingState/ARTrackingStateNormal": {
+      "abstract": [
+        {
+          "text": "Camera position tracking is providing optimal results.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "ARTrackingStateNormal"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARTrackingState/ARTrackingStateNormal",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ARTrackingStateNormal",
+      "type": "topic",
+      "url": "/documentation/arkit/artrackingstate/artrackingstatenormal"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARTrackingStateReason": {
+      "abstract": [
+        {
+          "text": "Possible causes for limited position-tracking quality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "ARTrackingStateReason"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARTrackingStateReason",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ARTrackingStateReason",
+      "type": "topic",
+      "url": "/documentation/arkit/artrackingstatereason"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARTrackingStateReason/ARTrackingStateReasonExcessiveMotion": {
+      "abstract": [
+        {
+          "text": "The device is moving too fast for accurate image-based position tracking.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "ARTrackingStateReasonExcessiveMotion"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARTrackingStateReason/ARTrackingStateReasonExcessiveMotion",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ARTrackingStateReasonExcessiveMotion",
+      "type": "topic",
+      "url": "/documentation/arkit/artrackingstatereason/artrackingstatereasonexcessivemotion"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARTrackingStateReason/ARTrackingStateReasonInitializing": {
+      "abstract": [
+        {
+          "text": "The AR session has not yet gathered enough camera or motion data to provide tracking information.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "ARTrackingStateReasonInitializing"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARTrackingStateReason/ARTrackingStateReasonInitializing",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ARTrackingStateReasonInitializing",
+      "type": "topic",
+      "url": "/documentation/arkit/artrackingstatereason/artrackingstatereasoninitializing"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARTrackingStateReason/ARTrackingStateReasonInsufficientFeatures": {
+      "abstract": [
+        {
+          "text": "The scene visible to the camera does not contain enough distinguishable features for image-based position tracking.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "ARTrackingStateReasonInsufficientFeatures"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARTrackingStateReason/ARTrackingStateReasonInsufficientFeatures",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ARTrackingStateReasonInsufficientFeatures",
+      "type": "topic",
+      "url": "/documentation/arkit/artrackingstatereason/artrackingstatereasoninsufficientfeatures"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARTrackingStateReason/ARTrackingStateReasonNone": {
+      "abstract": [
+        {
+          "text": "The current tracking state is not limited.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "ARTrackingStateReasonNone"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARTrackingStateReason/ARTrackingStateReasonNone",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ARTrackingStateReasonNone",
+      "type": "topic",
+      "url": "/documentation/arkit/artrackingstatereason/artrackingstatereasonnone"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARTrackingStateReason/ARTrackingStateReasonRelocalizing": {
+      "abstract": [
+        {
+          "text": "The AR session is attempting to resume after an interruption.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "ARTrackingStateReasonRelocalizing"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARTrackingStateReason/ARTrackingStateReasonRelocalizing",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ARTrackingStateReasonRelocalizing",
+      "type": "topic",
+      "url": "/documentation/arkit/artrackingstatereason/artrackingstatereasonrelocalizing"
+    },
+    "doc://com.apple.documentation/documentation/swift/true": {
+      "abstract": [
+        {
+          "text": "A true value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/swift/true",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "true",
+      "type": "topic",
+      "url": "/documentation/swift/true"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Reason-Values",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.arkit/documentation/ARKit/ARTrackingStateReason/ARTrackingStateReasonNone",
+        "doc://com.apple.arkit/documentation/ARKit/ARTrackingStateReason/ARTrackingStateReasonInitializing",
+        "doc://com.apple.arkit/documentation/ARKit/ARTrackingStateReason/ARTrackingStateReasonExcessiveMotion",
+        "doc://com.apple.arkit/documentation/ARKit/ARTrackingStateReason/ARTrackingStateReasonInsufficientFeatures"
+      ],
+      "title": "Reason Values"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSessionObserver~1sessionShouldAttemptRelocalization(_:)/title",
+          "value": "sessionShouldAttemptRelocalization:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARSessionObserver~1sessionShouldAttemptRelocalization(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "sessionShouldAttemptRelocalization:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/arkit/artrackingstatereason/artrackingstatereasonrelocalizing"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

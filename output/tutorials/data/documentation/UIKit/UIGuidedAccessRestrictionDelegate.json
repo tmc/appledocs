@@ -1,0 +1,1196 @@
+{
+  "abstract": [
+    {
+      "text": "A set of methods you use to add custom restrictions for the Guided Access feature in iOS.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.uikit/documentation/UIKit/UIGuidedAccessRestrictionDelegate"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(pl)UIGuidedAccessRestrictionDelegate",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "protocol"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "UIGuidedAccessRestrictionDelegate"
+      }
+    ],
+    "modules": [
+      {
+        "name": "UIKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "UIGuidedAccessRestrictionDelegate"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "7.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "7.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Protocol",
+    "symbolKind": "protocol",
+    "title": "UIGuidedAccessRestrictionDelegate"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "attribute",
+              "text": "@"
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+              "kind": "attribute",
+              "preciseIdentifier": "s:ScM",
+              "text": "MainActor"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIGuidedAccessRestrictionDelegate"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObjectProtocol"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Custom restrictions are represented by string identifiers provided by the developer in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIGuidedAccessRestrictionDelegate/guidedAccessRestrictionIdentifiers",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. Each identifier represents an operation in the app that the developer wishes to allow users to restrict using Guided Access. The default for all operations is allow. Users can deny operations using the normal Guided Access user interface. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "http://support.apple.com/kb/HT5509",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for a description of how to enable and configure Guided Access on iOS.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Apps describe their custom restrictions by implementing the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIGuidedAccessRestrictionDelegate/textForGuidedAccessRestriction(withIdentifier:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIGuidedAccessRestrictionDelegate/detailTextForGuidedAccessRestriction(withIdentifier:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " methods to return appropriate localized, human-readable strings.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, a photo editing app might allow users to disable deleting photos. The app would return an identifier representing this restriction in its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIGuidedAccessRestrictionDelegate/guidedAccessRestrictionIdentifiers",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. It would also implement ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIGuidedAccessRestrictionDelegate/textForGuidedAccessRestriction(withIdentifier:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to provide a human-readable description of the restriction. Finally, the app would implement ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIGuidedAccessRestrictionDelegate/guidedAccessRestriction(withIdentifier:didChange:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to notice when a user indicates that they want to enable the restriction. When the app sees the state change to “deny”, it would configure itself to prevent the deletion of photos by any means. Similarly, when the app sees the state change to “allow”, it would configure itself to allow photo deletion.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Apps can use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIAccessibility/guidedAccessRestrictionState(forIdentifier:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function to check the state of a restriction at any time.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.uikit/documentation/UIKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your iOS, iPadOS, or tvOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "UIKit",
+      "type": "topic",
+      "url": "/documentation/uikit"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIAccessibility/GuidedAccessRestrictionState": {
+      "abstract": [
+        {
+          "text": "Constants that describe the state of a restriction, either allow or deny.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GuidedAccessRestrictionState"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIAccessibility/GuidedAccessRestrictionState",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GuidedAccessRestrictionState"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIAccessibility.GuidedAccessRestrictionState",
+      "type": "topic",
+      "url": "/documentation/uikit/uiaccessibility/guidedaccessrestrictionstate"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIAccessibility/guidedAccessRestrictionState(forIdentifier:)": {
+      "abstract": [
+        {
+          "text": "Returns the restriction state for the specified guided access restriction.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "guidedAccessRestrictionState"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "forIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@UIAccessibility",
+          "text": "UIAccessibility"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@UIGuidedAccessRestrictionState",
+          "text": "GuidedAccessRestrictionState"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIAccessibility/guidedAccessRestrictionState(forIdentifier:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIGuidedAccessRestrictionStateForIdentifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "guidedAccessRestrictionState(forIdentifier:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiaccessibility/guidedaccessrestrictionstate(foridentifier:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIGuidedAccessRestrictionDelegate": {
+      "abstract": [
+        {
+          "text": "A set of methods you use to add custom restrictions for the Guided Access feature in iOS.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIGuidedAccessRestrictionDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIGuidedAccessRestrictionDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIGuidedAccessRestrictionDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIGuidedAccessRestrictionDelegate",
+      "type": "topic",
+      "url": "/documentation/uikit/uiguidedaccessrestrictiondelegate"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIGuidedAccessRestrictionDelegate/detailTextForGuidedAccessRestriction(withIdentifier:)": {
+      "abstract": [
+        {
+          "text": "Provides more detailed information about the restriction for the specified identifier.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "detailTextForGuidedAccessRestriction"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIGuidedAccessRestrictionDelegate/detailTextForGuidedAccessRestriction(withIdentifier:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "detailTextForGuidedAccessRestrictionWithIdentifier:"
+        }
+      ],
+      "role": "symbol",
+      "title": "detailTextForGuidedAccessRestriction(withIdentifier:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiguidedaccessrestrictiondelegate/detailtextforguidedaccessrestriction(withidentifier:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIGuidedAccessRestrictionDelegate/guidedAccessRestriction(withIdentifier:didChange:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that the restriction associated with the identifier has changed state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "guidedAccessRestriction"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didChange"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@UIAccessibility",
+          "text": "UIAccessibility"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@UIGuidedAccessRestrictionState",
+          "text": "GuidedAccessRestrictionState"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIGuidedAccessRestrictionDelegate/guidedAccessRestriction(withIdentifier:didChange:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "guidedAccessRestrictionWithIdentifier:didChangeState:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "guidedAccessRestriction(withIdentifier:didChange:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiguidedaccessrestrictiondelegate/guidedaccessrestriction(withidentifier:didchange:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIGuidedAccessRestrictionDelegate/guidedAccessRestrictionIdentifiers": {
+      "abstract": [
+        {
+          "text": "An array of strings identifying custom restrictions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "guidedAccessRestrictionIdentifiers"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "]?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIGuidedAccessRestrictionDelegate/guidedAccessRestrictionIdentifiers",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "guidedAccessRestrictionIdentifiers"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "guidedAccessRestrictionIdentifiers",
+      "type": "topic",
+      "url": "/documentation/uikit/uiguidedaccessrestrictiondelegate/guidedaccessrestrictionidentifiers"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIGuidedAccessRestrictionDelegate/textForGuidedAccessRestriction(withIdentifier:)": {
+      "abstract": [
+        {
+          "text": "Provides a succinct description of the restriction for the specified identifier.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "textForGuidedAccessRestriction"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIGuidedAccessRestrictionDelegate/textForGuidedAccessRestriction(withIdentifier:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "textForGuidedAccessRestrictionWithIdentifier:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "textForGuidedAccessRestriction(withIdentifier:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiguidedaccessrestrictiondelegate/textforguidedaccessrestriction(withidentifier:)"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:ScM": {
+      "abstract": [
+        {
+          "text": "A singleton actor whose executor is equivalent to the main dispatch queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@globalActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "final"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "actor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MainActor"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MainActor",
+      "type": "topic",
+      "url": "/documentation/Swift/MainActor"
+    },
+    "http://support.apple.com/kb/HT5509": {
+      "identifier": "http://support.apple.com/kb/HT5509",
+      "title": "http://support.apple.com/kb/HT5509",
+      "titleInlineContent": [
+        {
+          "text": "http://support.apple.com/kb/HT5509",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "http://support.apple.com/kb/HT5509"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Guided-Access",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIAccessibility/guidedAccessRestrictionState(forIdentifier:)"
+      ],
+      "title": "Guided Access"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Identifying-custom-Guided-Access-restrictions",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIGuidedAccessRestrictionDelegate/guidedAccessRestrictionIdentifiers",
+        "doc://com.apple.uikit/documentation/UIKit/UIGuidedAccessRestrictionDelegate/textForGuidedAccessRestriction(withIdentifier:)",
+        "doc://com.apple.uikit/documentation/UIKit/UIGuidedAccessRestrictionDelegate/detailTextForGuidedAccessRestriction(withIdentifier:)"
+      ],
+      "title": "Identifying custom Guided Access restrictions"
+    },
+    {
+      "anchor": "Implementing-restrictions",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIGuidedAccessRestrictionDelegate/guidedAccessRestriction(withIdentifier:didChange:)",
+        "doc://com.apple.uikit/documentation/UIKit/UIAccessibility/GuidedAccessRestrictionState"
+      ],
+      "title": "Implementing restrictions"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "7.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "7.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Protocol"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "UIGuidedAccessRestrictionDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "protocol"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIGuidedAccessRestrictionDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIGuidedAccessRestrictionDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.uikit/documentation/UIKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Identifying-custom-Guided-Access-restrictions",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIGuidedAccessRestrictionDelegate/guidedAccessRestrictionIdentifiers",
+                "doc://com.apple.uikit/documentation/UIKit/UIGuidedAccessRestrictionDelegate/textForGuidedAccessRestriction(withIdentifier:)",
+                "doc://com.apple.uikit/documentation/UIKit/UIGuidedAccessRestrictionDelegate/detailTextForGuidedAccessRestriction(withIdentifier:)"
+              ],
+              "title": "Identifying custom Guided Access restrictions"
+            },
+            {
+              "anchor": "Implementing-restrictions",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIGuidedAccessRestrictionDelegate/guidedAccessRestriction(withIdentifier:didChange:)",
+                "doc://com.apple.uikit/documentation/UIKit/UIAccessibility/GuidedAccessRestrictionState"
+              ],
+              "title": "Implementing restrictions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Guided-Access",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIAccessibility/guidedAccessRestrictionState(forIdentifier:)"
+              ],
+              "title": "Guided Access"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "tvOS",
+                  "visionOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@protocol"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "UIGuidedAccessRestrictionDelegate"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " <"
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(pl)NSObject",
+                    "text": "NSObject"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ">"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIGuidedAccessRestrictionDelegate~1textForGuidedAccessRestriction(withIdentifier:)/title",
+          "value": "textForGuidedAccessRestrictionWithIdentifier:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIGuidedAccessRestrictionDelegate~1textForGuidedAccessRestriction(withIdentifier:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "textForGuidedAccessRestrictionWithIdentifier:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAccessibility~1guidedAccessRestrictionState(forIdentifier:)/title",
+          "value": "UIGuidedAccessRestrictionStateForIdentifier"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAccessibility~1guidedAccessRestrictionState(forIdentifier:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIGuidedAccessRestrictionStateForIdentifier"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIGuidedAccessRestrictionDelegate~1guidedAccessRestrictionIdentifiers/title",
+          "value": "guidedAccessRestrictionIdentifiers"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIGuidedAccessRestrictionDelegate~1guidedAccessRestrictionIdentifiers/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "guidedAccessRestrictionIdentifiers"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIGuidedAccessRestrictionDelegate~1guidedAccessRestriction(withIdentifier:didChange:)/title",
+          "value": "guidedAccessRestrictionWithIdentifier:didChangeState:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIGuidedAccessRestrictionDelegate~1guidedAccessRestriction(withIdentifier:didChange:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "guidedAccessRestrictionWithIdentifier:didChangeState:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIGuidedAccessRestrictionDelegate~1detailTextForGuidedAccessRestriction(withIdentifier:)/title",
+          "value": "detailTextForGuidedAccessRestrictionWithIdentifier:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIGuidedAccessRestrictionDelegate~1detailTextForGuidedAccessRestriction(withIdentifier:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "detailTextForGuidedAccessRestrictionWithIdentifier:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAccessibility~1GuidedAccessRestrictionState/title",
+          "value": "UIGuidedAccessRestrictionState"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAccessibility~1GuidedAccessRestrictionState/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIGuidedAccessRestrictionState"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIAccessibility~1GuidedAccessRestrictionState/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIGuidedAccessRestrictionState"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIGuidedAccessRestrictionDelegate/title",
+          "value": "UIGuidedAccessRestrictionDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIGuidedAccessRestrictionDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIGuidedAccessRestrictionDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIGuidedAccessRestrictionDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIGuidedAccessRestrictionDelegate"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/uikit/uiguidedaccessrestrictiondelegate"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/uikit/uiguidedaccessrestrictiondelegate"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

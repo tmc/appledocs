@@ -1,0 +1,2122 @@
+{
+  "abstract": [
+    {
+      "text": "Executes the inference graph with the input and output data, batch size, and execution options you specify.",
+      "type": "text"
+    }
+  ],
+  "deprecationSummary": [
+    {
+      "inlineContent": [
+        {
+          "text": "Use Metal Performance Shaders Graph or BNNS instead.",
+          "type": "text"
+        }
+      ],
+      "type": "paragraph"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.mlcompute/documentation/MLCompute",
+        "doc://com.apple.mlcompute/documentation/MLCompute/MLCInferenceGraph"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.mlcompute/documentation/MLCompute/MLCInferenceGraph/execute(inputsData:lossLabelsData:lossLabelWeightsData:outputsData:batchSize:options:)"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "extendedModule": "MLCompute",
+    "externalID": "s:So17MLCInferenceGraphC9MLComputeE7execute10inputsData010lossLabelsF00g12LabelWeightsF007outputsF09batchSize7optionsSo9MLCTensorCSg6result_Sd13executionTimetSDySSSo0oF0CG_ARSgA2SSiSo19MLCExecutionOptionsVtYaKF",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "func"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "execute"
+      },
+      {
+        "kind": "text",
+        "text": "("
+      },
+      {
+        "kind": "externalParam",
+        "text": "inputsData"
+      },
+      {
+        "kind": "text",
+        "text": ": ["
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "s:SS",
+        "text": "String"
+      },
+      {
+        "kind": "text",
+        "text": " : "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "c:objc(cs)MLCTensorData",
+        "text": "MLCTensorData"
+      },
+      {
+        "kind": "text",
+        "text": "], "
+      },
+      {
+        "kind": "externalParam",
+        "text": "lossLabelsData"
+      },
+      {
+        "kind": "text",
+        "text": ": ["
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "s:SS",
+        "text": "String"
+      },
+      {
+        "kind": "text",
+        "text": " : "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "c:objc(cs)MLCTensorData",
+        "text": "MLCTensorData"
+      },
+      {
+        "kind": "text",
+        "text": "]?, "
+      },
+      {
+        "kind": "externalParam",
+        "text": "lossLabelWeightsData"
+      },
+      {
+        "kind": "text",
+        "text": ": ["
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "s:SS",
+        "text": "String"
+      },
+      {
+        "kind": "text",
+        "text": " : "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "c:objc(cs)MLCTensorData",
+        "text": "MLCTensorData"
+      },
+      {
+        "kind": "text",
+        "text": "]?, "
+      },
+      {
+        "kind": "externalParam",
+        "text": "outputsData"
+      },
+      {
+        "kind": "text",
+        "text": ": ["
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "s:SS",
+        "text": "String"
+      },
+      {
+        "kind": "text",
+        "text": " : "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "c:objc(cs)MLCTensorData",
+        "text": "MLCTensorData"
+      },
+      {
+        "kind": "text",
+        "text": "]?, "
+      },
+      {
+        "kind": "externalParam",
+        "text": "batchSize"
+      },
+      {
+        "kind": "text",
+        "text": ": "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "s:Si",
+        "text": "Int"
+      },
+      {
+        "kind": "text",
+        "text": ", "
+      },
+      {
+        "kind": "externalParam",
+        "text": "options"
+      },
+      {
+        "kind": "text",
+        "text": ": "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "c:@E@MLCExecutionOptions",
+        "text": "MLCExecutionOptions"
+      },
+      {
+        "kind": "text",
+        "text": ") "
+      },
+      {
+        "kind": "keyword",
+        "text": "async"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "keyword",
+        "text": "throws"
+      },
+      {
+        "kind": "text",
+        "text": " -> (result"
+      },
+      {
+        "kind": "text",
+        "text": ": "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "c:objc(cs)MLCTensor",
+        "text": "MLCTensor"
+      },
+      {
+        "kind": "text",
+        "text": "?, executionTime"
+      },
+      {
+        "kind": "text",
+        "text": ": "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "c:@T@NSTimeInterval",
+        "text": "TimeInterval"
+      },
+      {
+        "kind": "text",
+        "text": ")"
+      }
+    ],
+    "modules": [
+      {
+        "name": "ML Compute"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "deprecatedAt": "17.0",
+        "introducedAt": "15.0",
+        "message": "Use Metal Performance Shaders Graph or BNNS instead.",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "deprecatedAt": "17.0",
+        "introducedAt": "15.0",
+        "message": "Use Metal Performance Shaders Graph or BNNS instead.",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "deprecatedAt": "17.0",
+        "introducedAt": "15.0",
+        "message": "Use Metal Performance Shaders Graph or BNNS instead.",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "deprecatedAt": "14.0",
+        "introducedAt": "12.0",
+        "message": "Use Metal Performance Shaders Graph or BNNS instead.",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "deprecatedAt": "17.0",
+        "introducedAt": "15.0",
+        "message": "Use Metal Performance Shaders Graph or BNNS instead.",
+        "name": "tvOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Method",
+    "symbolKind": "method",
+    "title": "execute(inputsData:lossLabelsData:lossLabelWeightsData:outputsData:batchSize:options:)"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS"
+          ],
+          "tokens": [
+            {
+              "kind": "attribute",
+              "text": "@discardableResult"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "func"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "execute"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "externalParam",
+              "text": "inputsData"
+            },
+            {
+              "kind": "text",
+              "text": ": ["
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:SS",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:SS",
+              "text": "String"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.mlcompute/documentation/MLCompute/MLCTensorData",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)MLCTensorData",
+              "text": "MLCTensorData"
+            },
+            {
+              "kind": "text",
+              "text": "], "
+            },
+            {
+              "kind": "externalParam",
+              "text": "lossLabelsData"
+            },
+            {
+              "kind": "text",
+              "text": ": ["
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:SS",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:SS",
+              "text": "String"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.mlcompute/documentation/MLCompute/MLCTensorData",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)MLCTensorData",
+              "text": "MLCTensorData"
+            },
+            {
+              "kind": "text",
+              "text": "]? = nil, "
+            },
+            {
+              "kind": "externalParam",
+              "text": "lossLabelWeightsData"
+            },
+            {
+              "kind": "text",
+              "text": ": ["
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:SS",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:SS",
+              "text": "String"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.mlcompute/documentation/MLCompute/MLCTensorData",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)MLCTensorData",
+              "text": "MLCTensorData"
+            },
+            {
+              "kind": "text",
+              "text": "]? = nil, "
+            },
+            {
+              "kind": "externalParam",
+              "text": "outputsData"
+            },
+            {
+              "kind": "text",
+              "text": ": ["
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:SS",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:SS",
+              "text": "String"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.mlcompute/documentation/MLCompute/MLCTensorData",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)MLCTensorData",
+              "text": "MLCTensorData"
+            },
+            {
+              "kind": "text",
+              "text": "]? = nil, "
+            },
+            {
+              "kind": "externalParam",
+              "text": "batchSize"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:Si",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:Si",
+              "text": "Int"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "externalParam",
+              "text": "options"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.mlcompute/documentation/MLCompute/MLCExecutionOptions",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@E@MLCExecutionOptions",
+              "text": "MLCExecutionOptions"
+            },
+            {
+              "kind": "text",
+              "text": " = []) "
+            },
+            {
+              "kind": "keyword",
+              "text": "async"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "throws"
+            },
+            {
+              "kind": "text",
+              "text": " -> (result"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.mlcompute/documentation/MLCompute/MLCTensor",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)MLCTensor",
+              "text": "MLCTensor"
+            },
+            {
+              "kind": "text",
+              "text": "?, executionTime"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:@T@NSTimeInterval",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@NSTimeInterval",
+              "text": "TimeInterval"
+            },
+            {
+              "kind": "text",
+              "text": ")"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A dictionary that contains input data.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "inputsData"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A dictionary that contains loss label data.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "lossLabelsData"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A dictionary that contains loss label weight data.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "lossLabelWeightsData"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A dictionary that contains output data.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "outputsData"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The batch size.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "batchSize"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The execution options.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "options"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return-value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The result tensor, if any, and the execution time if you specify ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.mlcompute/documentation/MLCompute/MLCExecutionOptions/profiling",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.mlcompute/documentation/MLCompute": {
+      "abstract": [
+        {
+          "text": "Accelerate training and validation of neural networks across the CPU and one or more GPUs.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.mlcompute/documentation/MLCompute",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "ML Compute",
+      "type": "topic",
+      "url": "/documentation/mlcompute"
+    },
+    "doc://com.apple.mlcompute/documentation/MLCompute/MLCExecutionOptions": {
+      "abstract": [
+        {
+          "text": "A bitmask that specifies the options you use when executing a graph.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MLCExecutionOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.mlcompute/documentation/MLCompute/MLCExecutionOptions",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MLCExecutionOptions"
+        }
+      ],
+      "role": "symbol",
+      "title": "MLCExecutionOptions",
+      "type": "topic",
+      "url": "/documentation/mlcompute/mlcexecutionoptions"
+    },
+    "doc://com.apple.mlcompute/documentation/MLCompute/MLCExecutionOptions/profiling": {
+      "abstract": [
+        {
+          "text": "The option to return profiling information in the callback before returning from execution.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "profiling"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MLCExecutionOptions",
+          "text": "MLCExecutionOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.mlcompute/documentation/MLCompute/MLCExecutionOptions/profiling",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MLCExecutionOptionsProfiling"
+        }
+      ],
+      "role": "symbol",
+      "title": "profiling",
+      "type": "topic",
+      "url": "/documentation/mlcompute/mlcexecutionoptions/profiling"
+    },
+    "doc://com.apple.mlcompute/documentation/MLCompute/MLCGraphCompletionHandler": {
+      "abstract": [
+        {
+          "text": "A callback completion handler you execute when a graph finishes execution.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MLCGraphCompletionHandler"
+        }
+      ],
+      "identifier": "doc://com.apple.mlcompute/documentation/MLCompute/MLCGraphCompletionHandler",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MLCGraphCompletionHandler"
+        }
+      ],
+      "role": "symbol",
+      "title": "MLCGraphCompletionHandler",
+      "type": "topic",
+      "url": "/documentation/mlcompute/mlcgraphcompletionhandler"
+    },
+    "doc://com.apple.mlcompute/documentation/MLCompute/MLCInferenceGraph": {
+      "abstract": [
+        {
+          "text": "An inference graph created from one or more MLCGraph instances plus additional layers added directly to the inference graph.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MLCInferenceGraph"
+        }
+      ],
+      "identifier": "doc://com.apple.mlcompute/documentation/MLCompute/MLCInferenceGraph",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MLCInferenceGraph"
+        }
+      ],
+      "role": "symbol",
+      "title": "MLCInferenceGraph",
+      "type": "topic",
+      "url": "/documentation/mlcompute/mlcinferencegraph"
+    },
+    "doc://com.apple.mlcompute/documentation/MLCompute/MLCInferenceGraph/execute(inputsData:batchSize:options:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Executes the inference graph with the inputs data, batch size, execution options, and completion handler you specify.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "execute"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "inputsData"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MLCTensorData",
+          "text": "MLCTensorData"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "batchSize"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MLCExecutionOptions",
+          "text": "MLCExecutionOptions"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@MLCGraphCompletionHandler",
+          "text": "MLCGraphCompletionHandler"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.mlcompute/documentation/MLCompute/MLCInferenceGraph/execute(inputsData:batchSize:options:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "executeWithInputsData:batchSize:options:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "execute(inputsData:batchSize:options:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/mlcompute/mlcinferencegraph/execute(inputsdata:batchsize:options:completionhandler:)"
+    },
+    "doc://com.apple.mlcompute/documentation/MLCompute/MLCInferenceGraph/execute(inputsData:lossLabelsData:lossLabelWeightsData:batchSize:options:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Executes the inference graph with the input data, batch size, execution options and completion handler you specify.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "execute"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "inputsData"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MLCTensorData",
+          "text": "MLCTensorData"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "lossLabelsData"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MLCTensorData",
+          "text": "MLCTensorData"
+        },
+        {
+          "kind": "text",
+          "text": "]?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "lossLabelWeightsData"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MLCTensorData",
+          "text": "MLCTensorData"
+        },
+        {
+          "kind": "text",
+          "text": "]?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "batchSize"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MLCExecutionOptions",
+          "text": "MLCExecutionOptions"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@MLCGraphCompletionHandler",
+          "text": "MLCGraphCompletionHandler"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.mlcompute/documentation/MLCompute/MLCInferenceGraph/execute(inputsData:lossLabelsData:lossLabelWeightsData:batchSize:options:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "executeWithInputsData:lossLabelsData:lossLabelWeightsData:batchSize:options:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "execute(inputsData:lossLabelsData:lossLabelWeightsData:batchSize:options:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/mlcompute/mlcinferencegraph/execute(inputsdata:losslabelsdata:losslabelweightsdata:batchsize:options:completionhandler:)"
+    },
+    "doc://com.apple.mlcompute/documentation/MLCompute/MLCInferenceGraph/execute(inputsData:lossLabelsData:lossLabelWeightsData:outputsData:batchSize:options:)": {
+      "abstract": [
+        {
+          "text": "Executes the inference graph with the input and output data, batch size, and execution options you specify.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "execute"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "inputsData"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MLCTensorData",
+          "text": "MLCTensorData"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "lossLabelsData"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MLCTensorData",
+          "text": "MLCTensorData"
+        },
+        {
+          "kind": "text",
+          "text": "]?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "lossLabelWeightsData"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MLCTensorData",
+          "text": "MLCTensorData"
+        },
+        {
+          "kind": "text",
+          "text": "]?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "outputsData"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MLCTensorData",
+          "text": "MLCTensorData"
+        },
+        {
+          "kind": "text",
+          "text": "]?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "batchSize"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MLCExecutionOptions",
+          "text": "MLCExecutionOptions"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> (result"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MLCTensor",
+          "text": "MLCTensor"
+        },
+        {
+          "kind": "text",
+          "text": "?, executionTime"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.mlcompute/documentation/MLCompute/MLCInferenceGraph/execute(inputsData:lossLabelsData:lossLabelWeightsData:outputsData:batchSize:options:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "execute(inputsData:lossLabelsData:lossLabelWeightsData:outputsData:batchSize:options:)",
+      "type": "topic",
+      "url": "/documentation/mlcompute/mlcinferencegraph/execute(inputsdata:losslabelsdata:losslabelweightsdata:outputsdata:batchsize:options:)"
+    },
+    "doc://com.apple.mlcompute/documentation/MLCompute/MLCInferenceGraph/execute(inputsData:lossLabelsData:lossLabelWeightsData:outputsData:batchSize:options:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Executes the inference graph with the input and output data, batch size, execution options, and completion handler that you specify.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "execute"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "inputsData"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MLCTensorData",
+          "text": "MLCTensorData"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "lossLabelsData"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MLCTensorData",
+          "text": "MLCTensorData"
+        },
+        {
+          "kind": "text",
+          "text": "]?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "lossLabelWeightsData"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MLCTensorData",
+          "text": "MLCTensorData"
+        },
+        {
+          "kind": "text",
+          "text": "]?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "outputsData"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MLCTensorData",
+          "text": "MLCTensorData"
+        },
+        {
+          "kind": "text",
+          "text": "]?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "batchSize"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MLCExecutionOptions",
+          "text": "MLCExecutionOptions"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@MLCGraphCompletionHandler",
+          "text": "MLCGraphCompletionHandler"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.mlcompute/documentation/MLCompute/MLCInferenceGraph/execute(inputsData:lossLabelsData:lossLabelWeightsData:outputsData:batchSize:options:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "executeWithInputsData:lossLabelsData:lossLabelWeightsData:outputsData:batchSize:options:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "execute(inputsData:lossLabelsData:lossLabelWeightsData:outputsData:batchSize:options:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/mlcompute/mlcinferencegraph/execute(inputsdata:losslabelsdata:losslabelweightsdata:outputsdata:batchsize:options:completionhandler:)"
+    },
+    "doc://com.apple.mlcompute/documentation/MLCompute/MLCInferenceGraph/execute(inputsData:outputsData:batchSize:options:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Executes the inference graph with the inputs and outputs data, batch size, execution options, and completion handler that you specify.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "execute"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "inputsData"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MLCTensorData",
+          "text": "MLCTensorData"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "outputsData"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MLCTensorData",
+          "text": "MLCTensorData"
+        },
+        {
+          "kind": "text",
+          "text": "]?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "batchSize"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MLCExecutionOptions",
+          "text": "MLCExecutionOptions"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@MLCGraphCompletionHandler",
+          "text": "MLCGraphCompletionHandler"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.mlcompute/documentation/MLCompute/MLCInferenceGraph/execute(inputsData:outputsData:batchSize:options:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "executeWithInputsData:outputsData:batchSize:options:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "execute(inputsData:outputsData:batchSize:options:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/mlcompute/mlcinferencegraph/execute(inputsdata:outputsdata:batchsize:options:completionhandler:)"
+    },
+    "doc://com.apple.mlcompute/documentation/MLCompute/MLCTensor": {
+      "abstract": [
+        {
+          "text": "The data object you use throughout the framework.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MLCTensor"
+        }
+      ],
+      "identifier": "doc://com.apple.mlcompute/documentation/MLCompute/MLCTensor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MLCTensor"
+        }
+      ],
+      "role": "symbol",
+      "title": "MLCTensor",
+      "type": "topic",
+      "url": "/documentation/mlcompute/mlctensor"
+    },
+    "doc://com.apple.mlcompute/documentation/MLCompute/MLCTensorData": {
+      "abstract": [
+        {
+          "text": "An encapsulation of the memory that tensor data uses.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MLCTensorData"
+        }
+      ],
+      "identifier": "doc://com.apple.mlcompute/documentation/MLCompute/MLCTensorData",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MLCTensorData"
+        }
+      ],
+      "role": "symbol",
+      "title": "MLCTensorData",
+      "type": "topic",
+      "url": "/documentation/mlcompute/mlctensordata"
+    },
+    "doc://com.externally.resolved.symbol/c:@T@NSTimeInterval": {
+      "abstract": [
+        {
+          "text": "A number of seconds.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "TimeInterval"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:@T@NSTimeInterval",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "TimeInterval",
+      "type": "topic",
+      "url": "/documentation/foundation/timeinterval"
+    },
+    "doc://com.externally.resolved.symbol/s:SS": {
+      "abstract": [
+        {
+          "text": "A Unicode string value that is a collection of characters.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@frozen"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SS",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "String",
+      "type": "topic",
+      "url": "/documentation/Swift/String"
+    },
+    "doc://com.externally.resolved.symbol/s:Si": {
+      "abstract": [
+        {
+          "text": "A signed integer value type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@frozen"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:Si",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Int",
+      "type": "topic",
+      "url": "/documentation/Swift/Int"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Executing-Inference-Graphs",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.mlcompute/documentation/MLCompute/MLCInferenceGraph/execute(inputsData:batchSize:options:completionHandler:)",
+        "doc://com.apple.mlcompute/documentation/MLCompute/MLCInferenceGraph/execute(inputsData:outputsData:batchSize:options:completionHandler:)",
+        "doc://com.apple.mlcompute/documentation/MLCompute/MLCInferenceGraph/execute(inputsData:lossLabelsData:lossLabelWeightsData:batchSize:options:completionHandler:)",
+        "doc://com.apple.mlcompute/documentation/MLCompute/MLCInferenceGraph/execute(inputsData:lossLabelsData:lossLabelWeightsData:outputsData:batchSize:options:completionHandler:)",
+        "doc://com.apple.mlcompute/documentation/MLCompute/MLCExecutionOptions",
+        "doc://com.apple.mlcompute/documentation/MLCompute/MLCGraphCompletionHandler"
+      ],
+      "title": "Executing Inference Graphs"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mlcompute~1documentation~1MLCompute~1MLCExecutionOptions/title",
+          "value": "MLCExecutionOptions"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mlcompute~1documentation~1MLCompute~1MLCExecutionOptions/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MLCExecutionOptions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mlcompute~1documentation~1MLCompute~1MLCExecutionOptions/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MLCExecutionOptions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mlcompute~1documentation~1MLCompute~1MLCGraphCompletionHandler/title",
+          "value": "MLCGraphCompletionHandler"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mlcompute~1documentation~1MLCompute~1MLCGraphCompletionHandler/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MLCGraphCompletionHandler"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mlcompute~1documentation~1MLCompute~1MLCGraphCompletionHandler/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MLCGraphCompletionHandler"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mlcompute~1documentation~1MLCompute~1MLCTensor/title",
+          "value": "MLCTensor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mlcompute~1documentation~1MLCompute~1MLCTensor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MLCTensor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mlcompute~1documentation~1MLCompute~1MLCTensor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MLCTensor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mlcompute~1documentation~1MLCompute~1MLCInferenceGraph/title",
+          "value": "MLCInferenceGraph"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mlcompute~1documentation~1MLCompute~1MLCInferenceGraph/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MLCInferenceGraph"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mlcompute~1documentation~1MLCompute~1MLCInferenceGraph/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MLCInferenceGraph"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mlcompute~1documentation~1MLCompute~1MLCInferenceGraph~1execute(inputsData:outputsData:batchSize:options:completionHandler:)/title",
+          "value": "executeWithInputsData:outputsData:batchSize:options:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mlcompute~1documentation~1MLCompute~1MLCInferenceGraph~1execute(inputsData:outputsData:batchSize:options:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "executeWithInputsData:outputsData:batchSize:options:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mlcompute~1documentation~1MLCompute~1MLCTensorData/title",
+          "value": "MLCTensorData"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mlcompute~1documentation~1MLCompute~1MLCTensorData/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MLCTensorData"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mlcompute~1documentation~1MLCompute~1MLCTensorData/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MLCTensorData"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mlcompute~1documentation~1MLCompute~1MLCExecutionOptions~1profiling/title",
+          "value": "MLCExecutionOptionsProfiling"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mlcompute~1documentation~1MLCompute~1MLCExecutionOptions~1profiling/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MLCExecutionOptionsProfiling"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:@T@NSTimeInterval/title",
+          "value": "NSTimeInterval"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mlcompute~1documentation~1MLCompute~1MLCInferenceGraph~1execute(inputsData:batchSize:options:completionHandler:)/title",
+          "value": "executeWithInputsData:batchSize:options:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mlcompute~1documentation~1MLCompute~1MLCInferenceGraph~1execute(inputsData:batchSize:options:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "executeWithInputsData:batchSize:options:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mlcompute~1documentation~1MLCompute~1MLCInferenceGraph~1execute(inputsData:lossLabelsData:lossLabelWeightsData:outputsData:batchSize:options:completionHandler:)/title",
+          "value": "executeWithInputsData:lossLabelsData:lossLabelWeightsData:outputsData:batchSize:options:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mlcompute~1documentation~1MLCompute~1MLCInferenceGraph~1execute(inputsData:lossLabelsData:lossLabelWeightsData:outputsData:batchSize:options:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "executeWithInputsData:lossLabelsData:lossLabelWeightsData:outputsData:batchSize:options:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mlcompute~1documentation~1MLCompute~1MLCInferenceGraph~1execute(inputsData:lossLabelsData:lossLabelWeightsData:batchSize:options:completionHandler:)/title",
+          "value": "executeWithInputsData:lossLabelsData:lossLabelWeightsData:batchSize:options:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mlcompute~1documentation~1MLCompute~1MLCInferenceGraph~1execute(inputsData:lossLabelsData:lossLabelWeightsData:batchSize:options:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "executeWithInputsData:lossLabelsData:lossLabelWeightsData:batchSize:options:completionHandler:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/mlcompute/mlcinferencegraph/execute(inputsdata:losslabelsdata:losslabelweightsdata:outputsdata:batchsize:options:)"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

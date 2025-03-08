@@ -1,0 +1,1164 @@
+{
+  "abstract": [
+    {
+      "text": "Demonstrates adding a watermark to a PDF page.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.pdfkit/documentation/PDFKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.pdfkit/documentation/PDFKit/custom-graphics"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "PDFKit"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "11.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "11.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "11.3",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Custom Graphics"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can add a custom drawing to a page or annotation by overriding that class’s draw method. Adding drawings  to pages can be useful for adding custom layered effects or, as shown in this sample, watermarking a document.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Register-the-Delegate-and-Set-the-Page-Class",
+          "level": 3,
+          "text": "Register the Delegate and Set the Page Class",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIViewController",
+              "isActive": true,
+              "overridingTitle": "ViewController",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "ViewController",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " class first initializes a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.pdfkit/documentation/PDFKit/PDFDocument",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance and sets its delegate to ",
+              "type": "text"
+            },
+            {
+              "code": "self",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// 1. Set delegate",
+            "document.delegate = self",
+            "pdfView?.document = document"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The delegate, of type ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.pdfkit/documentation/PDFKit/PDFDocumentDelegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", implements a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.pdfkit/documentation/PDFKit/PDFDocumentDelegate/classForPage()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. This method returns ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Swift/AnyClass",
+              "isActive": true,
+              "overridingTitle": "AnyClass",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "AnyClass",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " and declares that all instances of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.pdfkit/documentation/PDFKit/PDFPage",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for the document presented through ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.pdfkit/documentation/PDFKit/PDFView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " should instantiate the subclass ",
+              "type": "text"
+            },
+            {
+              "code": "WatermarkPage",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This subclass, found in ",
+              "type": "text"
+            },
+            {
+              "code": "WatermarkPage.swift",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", implements custom drawing.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// 2. Return your custom PDFPage class",
+            "/// - Tag: ClassForPage",
+            "func classForPage() -> AnyClass {",
+            "    return WatermarkPage.self",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "ViewController",
+              "type": "codeVoice"
+            },
+            {
+              "text": " loads a URL to the ",
+              "type": "text"
+            },
+            {
+              "code": "Sample.pdf",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file through the app’s main bundle. This URL is then used to instantiate a ",
+              "type": "text"
+            },
+            {
+              "code": "PDFDocument",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". On success, the document is assigned to the ",
+              "type": "text"
+            },
+            {
+              "code": "PDFView",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", which was set up in Interface Builder.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The delegate is assigned before the document, so ",
+              "type": "text"
+            },
+            {
+              "code": "classForPage()",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", a ",
+              "type": "text"
+            },
+            {
+              "code": "PDFDocumentDelegate",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method, is implemented. This method returns the ",
+              "type": "text"
+            },
+            {
+              "code": "PDFPage",
+              "type": "codeVoice"
+            },
+            {
+              "text": " subclass used for custom drawing.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Override-the-Draw-Method",
+          "level": 3,
+          "text": "Override the Draw Method",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "WatermarkPage",
+              "type": "codeVoice"
+            },
+            {
+              "text": " subclasses ",
+              "type": "text"
+            },
+            {
+              "code": "PDFPage",
+              "type": "codeVoice"
+            },
+            {
+              "text": " so that it can override the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.pdfkit/documentation/PDFKit/PDFPage/draw(with:to:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. This method is called by ",
+              "type": "text"
+            },
+            {
+              "code": "PDFDocument",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to draw the page in a ",
+              "type": "text"
+            },
+            {
+              "code": "PDFView",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". All custom drawing for a PDF page should be done through this mechanism.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// 3. Override PDFPage custom draw",
+            "/// - Tag: OverrideDraw",
+            "override func draw(with box: PDFDisplayBox, to context: CGContext) {",
+            "",
+            "    // Draw original content",
+            "    super.draw(with: box, to: context)",
+            "",
+            "    // Draw rotated overlay string",
+            "    UIGraphicsPushContext(context)",
+            "    context.saveGState()",
+            "",
+            "    let pageBounds = self.bounds(for: box)",
+            "    context.translateBy(x: 0.0, y: pageBounds.size.height)",
+            "    context.scaleBy(x: 1.0, y: -1.0)",
+            "    context.rotate(by: CGFloat.pi / 4.0)",
+            "",
+            "    let string: NSString = \"U s e r   3 1 4 1 5 9\"",
+            "    let attributes: [NSAttributedString.Key: Any] = [",
+            "        NSAttributedString.Key.foregroundColor: #colorLiteral(red: 0.4980392157, green: 0.4980392157, blue: 0.4980392157, alpha: 0.5),",
+            "        NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 64)",
+            "    ]",
+            "",
+            "    string.draw(at: CGPoint(x: 250, y: 40), withAttributes: attributes)",
+            "",
+            "    context.restoreGState()",
+            "    UIGraphicsPopContext()",
+            "",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Custom drawing methods should always be thread-safe and call the superclass method, which is required to draw the original ",
+              "type": "text"
+            },
+            {
+              "code": "PDFPage",
+              "type": "codeVoice"
+            },
+            {
+              "text": " content. Custom drawing code can execute before or after this superclass call, although order matters. If your graphics run before the superclass call, they’re drawn below the ",
+              "type": "text"
+            },
+            {
+              "code": "PDFPage",
+              "type": "codeVoice"
+            },
+            {
+              "text": " content. Conversely, if your graphics run after the superclass call, they’re drawn above the ",
+              "type": "text"
+            },
+            {
+              "code": "PDFPage",
+              "type": "codeVoice"
+            },
+            {
+              "text": " content.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "87e25620b08d/CustomGraphics.zip": {
+      "checksum": "87e25620b08d32ebc7f10f223f1ab3dfc7e08e0f09705b3d939bb335132f2090650a8732b5a0b71813a1e537344060250bf7a1697695109a1bd0a603041f0b7e",
+      "identifier": "87e25620b08d/CustomGraphics.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/87e25620b08d/CustomGraphics.zip"
+    },
+    "doc://com.apple.documentation/documentation/Swift/AnyClass": {
+      "abstract": [
+        {
+          "text": "The protocol to which all class types implicitly conform.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AnyClass"
+        },
+        {
+          "kind": "text",
+          "text": " = any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s9AnyObjecta",
+          "text": "AnyObject"
+        },
+        {
+          "kind": "text",
+          "text": ".Type"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Swift/AnyClass",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AnyClass",
+      "type": "topic",
+      "url": "/documentation/Swift/AnyClass"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIViewController": {
+      "abstract": [
+        {
+          "text": "An object that manages a view hierarchy for your UIKit app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIViewController",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIViewController",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIViewController"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.pdfkit/documentation/PDFKit": {
+      "abstract": [
+        {
+          "text": "Display and manipulate PDF documents in your apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.pdfkit/documentation/PDFKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "PDFKit",
+      "type": "topic",
+      "url": "/documentation/pdfkit"
+    },
+    "doc://com.apple.pdfkit/documentation/PDFKit/PDFAnnotation": {
+      "abstract": [
+        {
+          "text": "An annotation in a PDF document.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PDFAnnotation"
+        }
+      ],
+      "identifier": "doc://com.apple.pdfkit/documentation/PDFKit/PDFAnnotation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PDFAnnotation"
+        }
+      ],
+      "role": "symbol",
+      "title": "PDFAnnotation",
+      "type": "topic",
+      "url": "/documentation/pdfkit/pdfannotation"
+    },
+    "doc://com.apple.pdfkit/documentation/PDFKit/PDFDocument": {
+      "abstract": [
+        {
+          "text": "An object that represents PDF data or a PDF file and defines methods for writing, searching, and selecting PDF data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PDFDocument"
+        }
+      ],
+      "identifier": "doc://com.apple.pdfkit/documentation/PDFKit/PDFDocument",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PDFDocument"
+        }
+      ],
+      "role": "symbol",
+      "title": "PDFDocument",
+      "type": "topic",
+      "url": "/documentation/pdfkit/pdfdocument"
+    },
+    "doc://com.apple.pdfkit/documentation/PDFKit/PDFDocumentDelegate": {
+      "abstract": [
+        {
+          "text": "The delegate for the ",
+          "type": "text"
+        },
+        {
+          "code": "PDFDocument",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PDFDocumentDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.pdfkit/documentation/PDFKit/PDFDocumentDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PDFDocumentDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "PDFDocumentDelegate",
+      "type": "topic",
+      "url": "/documentation/pdfkit/pdfdocumentdelegate"
+    },
+    "doc://com.apple.pdfkit/documentation/PDFKit/PDFDocumentDelegate/classForPage()": {
+      "abstract": [
+        {
+          "text": "Returns a ",
+          "type": "text"
+        },
+        {
+          "code": "PDFPage",
+          "type": "codeVoice"
+        },
+        {
+          "text": " subclass for a page object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "classForPage"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8AnyClassa",
+          "text": "AnyClass"
+        }
+      ],
+      "identifier": "doc://com.apple.pdfkit/documentation/PDFKit/PDFDocumentDelegate/classForPage()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "classForPage"
+        }
+      ],
+      "role": "symbol",
+      "title": "classForPage()",
+      "type": "topic",
+      "url": "/documentation/pdfkit/pdfdocumentdelegate/classforpage()"
+    },
+    "doc://com.apple.pdfkit/documentation/PDFKit/PDFPage": {
+      "abstract": [
+        {
+          "code": "PDFPage",
+          "type": "codeVoice"
+        },
+        {
+          "text": ", a subclass of ",
+          "type": "text"
+        },
+        {
+          "code": "NSObject",
+          "type": "codeVoice"
+        },
+        {
+          "text": ", defines methods used to render PDF pages and work with annotations, text, and selections.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PDFPage"
+        }
+      ],
+      "identifier": "doc://com.apple.pdfkit/documentation/PDFKit/PDFPage",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PDFPage"
+        }
+      ],
+      "role": "symbol",
+      "title": "PDFPage",
+      "type": "topic",
+      "url": "/documentation/pdfkit/pdfpage"
+    },
+    "doc://com.apple.pdfkit/documentation/PDFKit/PDFPage/draw(with:to:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "draw"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@PDFDisplayBox",
+          "text": "PDFDisplayBox"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CGContextRef",
+          "text": "CGContext"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.pdfkit/documentation/PDFKit/PDFPage/draw(with:to:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "drawWithBox:toContext:"
+        }
+      ],
+      "role": "symbol",
+      "title": "draw(with:to:)",
+      "type": "topic",
+      "url": "/documentation/pdfkit/pdfpage/draw(with:to:)"
+    },
+    "doc://com.apple.pdfkit/documentation/PDFKit/PDFView": {
+      "abstract": [
+        {
+          "text": "An object that encapsulates the functionality of PDF Kit into a single widget that you can add to your application using Interface Builder.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PDFView"
+        }
+      ],
+      "identifier": "doc://com.apple.pdfkit/documentation/PDFKit/PDFView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PDFView"
+        }
+      ],
+      "role": "symbol",
+      "title": "PDFView",
+      "type": "topic",
+      "url": "/documentation/pdfkit/pdfview"
+    },
+    "doc://com.apple.pdfkit/documentation/PDFKit/adding-custom-graphics-to-a-pdf": {
+      "abstract": [
+        {
+          "text": "Create and add custom annotation and page graphics to your PDF document.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.pdfkit/documentation/PDFKit/adding-custom-graphics-to-a-pdf",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding Custom Graphics to a PDF",
+      "type": "topic",
+      "url": "/documentation/pdfkit/adding-custom-graphics-to-a-pdf"
+    },
+    "doc://com.apple.pdfkit/documentation/PDFKit/adding-widgets-to-a-pdf-document": {
+      "abstract": [
+        {
+          "text": "Add text, button, and choice widgets to a PDF document.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.pdfkit/documentation/PDFKit/adding-widgets-to-a-pdf-document",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding Widgets to a PDF Document",
+      "type": "topic",
+      "url": "/documentation/pdfkit/adding-widgets-to-a-pdf-document"
+    },
+    "doc://com.apple.pdfkit/documentation/PDFKit/pdf-widgets": {
+      "abstract": [
+        {
+          "text": "Demonstrates adding widgets—interactive form elements—to a PDF document.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.pdfkit/documentation/PDFKit/pdf-widgets",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "PDF Widgets",
+      "type": "topic",
+      "url": "/documentation/pdfkit/pdf-widgets"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "87e25620b08d/CustomGraphics.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Annotations",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.pdfkit/documentation/PDFKit/adding-widgets-to-a-pdf-document",
+        "doc://com.apple.pdfkit/documentation/PDFKit/adding-custom-graphics-to-a-pdf",
+        "doc://com.apple.pdfkit/documentation/PDFKit/pdf-widgets",
+        "doc://com.apple.pdfkit/documentation/PDFKit/PDFAnnotation"
+      ],
+      "title": "Annotations"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Annotations",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.pdfkit/documentation/PDFKit/adding-widgets-to-a-pdf-document",
+                "doc://com.apple.pdfkit/documentation/PDFKit/adding-custom-graphics-to-a-pdf",
+                "doc://com.apple.pdfkit/documentation/PDFKit/pdf-widgets",
+                "doc://com.apple.pdfkit/documentation/PDFKit/PDFAnnotation"
+              ],
+              "title": "Annotations"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pdfkit~1documentation~1PDFKit~1PDFView/title",
+          "value": "PDFView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pdfkit~1documentation~1PDFKit~1PDFView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PDFView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pdfkit~1documentation~1PDFKit~1PDFView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PDFView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pdfkit~1documentation~1PDFKit~1PDFDocumentDelegate/title",
+          "value": "PDFDocumentDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pdfkit~1documentation~1PDFKit~1PDFDocumentDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PDFDocumentDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pdfkit~1documentation~1PDFKit~1PDFDocumentDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PDFDocumentDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIViewController/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIViewController"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIResponder",
+              "text": "UIResponder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pdfkit~1documentation~1PDFKit~1PDFAnnotation/title",
+          "value": "PDFAnnotation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pdfkit~1documentation~1PDFKit~1PDFAnnotation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PDFAnnotation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pdfkit~1documentation~1PDFKit~1PDFAnnotation/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PDFAnnotation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pdfkit~1documentation~1PDFKit~1PDFPage/title",
+          "value": "PDFPage"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pdfkit~1documentation~1PDFKit~1PDFPage/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PDFPage"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pdfkit~1documentation~1PDFKit~1PDFPage/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PDFPage"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pdfkit~1documentation~1PDFKit~1PDFPage~1draw(with:to:)/title",
+          "value": "drawWithBox:toContext:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pdfkit~1documentation~1PDFKit~1PDFPage~1draw(with:to:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "drawWithBox:toContext:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pdfkit~1documentation~1PDFKit~1PDFDocumentDelegate~1classForPage()/title",
+          "value": "classForPage"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pdfkit~1documentation~1PDFKit~1PDFDocumentDelegate~1classForPage()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "classForPage"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pdfkit~1documentation~1PDFKit~1PDFDocument/title",
+          "value": "PDFDocument"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pdfkit~1documentation~1PDFKit~1PDFDocument/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PDFDocument"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pdfkit~1documentation~1PDFKit~1PDFDocument/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PDFDocument"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/pdfkit/custom-graphics"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/pdfkit/custom-graphics"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

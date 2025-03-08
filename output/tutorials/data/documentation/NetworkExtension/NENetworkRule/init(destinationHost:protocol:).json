@@ -1,0 +1,1342 @@
+{
+  "abstract": [
+    {
+      "text": "Creates a rule that matches network traffic destined for a host within a specific DNS domain.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.networkextension/documentation/NetworkExtension",
+        "doc://com.apple.networkextension/documentation/NetworkExtension/NENetworkRule"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.networkextension/documentation/NetworkExtension/NENetworkRule/init(destinationHost:protocol:)"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NENetworkRule(im)initWithDestinationHost:protocol:",
+    "fragments": [
+      {
+        "kind": "identifier",
+        "text": "init"
+      },
+      {
+        "kind": "text",
+        "text": "("
+      },
+      {
+        "kind": "externalParam",
+        "text": "destinationHost"
+      },
+      {
+        "kind": "text",
+        "text": ": "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "c:objc(cs)NWHostEndpoint",
+        "text": "NWHostEndpoint"
+      },
+      {
+        "kind": "text",
+        "text": ", "
+      },
+      {
+        "kind": "externalParam",
+        "text": "protocol"
+      },
+      {
+        "kind": "text",
+        "text": ": "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "c:objc(cs)NENetworkRule",
+        "text": "NENetworkRule"
+      },
+      {
+        "kind": "text",
+        "text": "."
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "c:@E@NENetworkRuleProtocol",
+        "text": "Protocol"
+      },
+      {
+        "kind": "text",
+        "text": ")"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Network Extension"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "initWithDestinationHost:protocol:"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "deprecatedAt": "15.0",
+        "introducedAt": "10.15",
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Initializer",
+    "symbolKind": "init",
+    "title": "init(destinationHost:protocol:)"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "init"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "externalParam",
+              "text": "destinationHost"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "hostEndpoint"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NWHostEndpoint",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NWHostEndpoint",
+              "text": "NWHostEndpoint"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "externalParam",
+              "text": "protocol"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NENetworkRule",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NENetworkRule",
+              "text": "NENetworkRule"
+            },
+            {
+              "kind": "text",
+              "text": "."
+            },
+            {
+              "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NENetworkRule/Protocol",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@E@NENetworkRuleProtocol",
+              "text": "Protocol"
+            },
+            {
+              "kind": "text",
+              "text": ")"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An endpoint instance that contains the port and hostname or domain that the rule matches.",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "This endpoint must contain a hostname, not an address.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "hostEndpoint"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The protocol that the rule matches.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "protocol"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the port string of ",
+              "type": "text"
+            },
+            {
+              "code": "destinationHost",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is ",
+              "type": "text"
+            },
+            {
+              "code": "0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or is the empty string, then the rule matches traffic on any port destined for the given hostname or domain.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the hostname string of ",
+              "type": "text"
+            },
+            {
+              "code": "destinationHost",
+              "type": "codeVoice"
+            },
+            {
+              "text": " consists of a single label, then the rule matches traffic destined to the specific host with that single label as its name.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the hostname string of ",
+              "type": "text"
+            },
+            {
+              "code": "destinationHost",
+              "type": "codeVoice"
+            },
+            {
+              "text": " consists of two or more labels, then the rule matches traffic destined to hosts within the domain specified by the hostname string.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Examples",
+          "level": 3,
+          "text": "Examples",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following example makes a rule that matches all TCP and UDP traffic to a host named ",
+              "type": "text"
+            },
+            {
+              "code": "com",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in Swift.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let endpoint = NWHostEndpoint(hostname: \"com\", port: \"0\")",
+            "let rule = NENetworkRule(destinationHost: endpoint, protocol: .any)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Here’s the same example in ObjectiveC.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "NWHostEndpoint *endpoint = [NWHostEndpoint endpointWithHostname:@\"com\"",
+            "                                                           port:@\"0\"];",
+            "",
+            "NENetworkRule *rule = [[NENetworkRule alloc] initWithDestinationHost:endpoint",
+            "                                                            protocol:NENetworkRuleProtocolAny];"
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The next example matches all TCP and UDP traffic to hosts in the ",
+              "type": "text"
+            },
+            {
+              "code": "example.com",
+              "type": "codeVoice"
+            },
+            {
+              "text": " DNS domain,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "including all DNS queries for names in the ",
+              "type": "text"
+            },
+            {
+              "code": "example.com",
+              "type": "codeVoice"
+            },
+            {
+              "text": " DNS domain.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let endpoint = NWHostEndpoint(hostname: \"example.com\", port: \"0\")",
+            "let rule = NENetworkRule(destinationHost: endpoint, protocol: .any)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Here’s the same example in ObjectiveC.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "NWHostEndpoint *endpoint = [NWHostEndpoint endpointWithHostname:@\"example.com\"",
+            "                                                           port:@\"0\"];",
+            "",
+            "NENetworkRule *rule = [[NENetworkRule alloc] initWithDestinationHost:endpoint",
+            "                                                            protocol:NENetworkRuleProtocolAny];"
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The next example makes a rule that matches all DNS queries and responses for hosts in the ",
+              "type": "text"
+            },
+            {
+              "code": "example.com",
+              "type": "codeVoice"
+            },
+            {
+              "text": " domain.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let endpoint = NWHostEndpoint(hostname: \"example.com\", port: \"53\")",
+            "let rule = NENetworkRule(destinationHost: endpoint, protocol: .any)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Here’s the same example in ObjectiveC.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "NWHostEndpoint *endpoint = [NWHostEndpoint endpointWithHostname:@\"example.com\"",
+            "                                                           port:@\"53\"];",
+            "",
+            "NENetworkRule *rule = [[NENetworkRule alloc] initWithDestinationHost:endpoint",
+            "                                                            protocol:NENetworkRuleProtocolAny];"
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The last example makes a rule that matches all TCP port 443 traffic to hosts in the ",
+              "type": "text"
+            },
+            {
+              "code": "example.com",
+              "type": "codeVoice"
+            },
+            {
+              "text": " domain.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let endpoint = NWHostEndpoint(hostname: \"example.com\", port: \"443\")",
+            "let rule = NENetworkRule(destinationHost: endpoint, protocol: .TCP)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Here’s the same example in ObjectiveC.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "NWHostEndpoint *endpoint = [NWHostEndpoint endpointWithHostname:@\"example.com\"",
+            "                                                           port:@\"443\"];",
+            "",
+            "NENetworkRule *rule = [[NENetworkRule alloc] initWithDestinationHost:endpoint",
+            "                                                            protocol:NENetworkRuleProtocolTCP];"
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension": {
+      "abstract": [
+        {
+          "text": "Customize and extend core networking features.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Network Extension",
+      "type": "topic",
+      "url": "/documentation/networkextension"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NENetworkRule": {
+      "abstract": [
+        {
+          "text": "A rule to match attributes of network traffic.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NENetworkRule"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NENetworkRule",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NENetworkRule"
+        }
+      ],
+      "role": "symbol",
+      "title": "NENetworkRule",
+      "type": "topic",
+      "url": "/documentation/networkextension/nenetworkrule"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NENetworkRule/Protocol": {
+      "abstract": [
+        {
+          "text": "A type to represent network protocols used by routing rules.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Protocol"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NENetworkRule/Protocol",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Protocol"
+        }
+      ],
+      "role": "symbol",
+      "title": "NENetworkRule.Protocol",
+      "type": "topic",
+      "url": "/documentation/networkextension/nenetworkrule/protocol"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NENetworkRule/init(destinationHost:protocol:)": {
+      "abstract": [
+        {
+          "text": "Creates a rule that matches network traffic destined for a host within a specific DNS domain.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "destinationHost"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NWHostEndpoint",
+          "text": "NWHostEndpoint"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NENetworkRule",
+          "text": "NENetworkRule"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NENetworkRuleProtocol",
+          "text": "Protocol"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NENetworkRule/init(destinationHost:protocol:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithDestinationHost:protocol:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(destinationHost:protocol:)",
+      "type": "topic",
+      "url": "/documentation/networkextension/nenetworkrule/init(destinationhost:protocol:)"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NENetworkRule/init(destinationNetwork:prefix:protocol:)": {
+      "abstract": [
+        {
+          "text": "Creates a rule that matches network traffic destined for a host within a specific network.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "destinationNetwork"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NWHostEndpoint",
+          "text": "NWHostEndpoint"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "prefix"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NENetworkRule",
+          "text": "NENetworkRule"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NENetworkRuleProtocol",
+          "text": "Protocol"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NENetworkRule/init(destinationNetwork:prefix:protocol:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithDestinationNetwork:prefix:protocol:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(destinationNetwork:prefix:protocol:)",
+      "type": "topic",
+      "url": "/documentation/networkextension/nenetworkrule/init(destinationnetwork:prefix:protocol:)"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NENetworkRule/init(remoteNetwork:remotePrefix:localNetwork:localPrefix:protocol:direction:)": {
+      "abstract": [
+        {
+          "text": "Creates a rule that matches traffic by remote network, local network, protocol, and direction.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "remoteNetwork"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NWHostEndpoint",
+          "text": "NWHostEndpoint"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "remotePrefix"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "localNetwork"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NWHostEndpoint",
+          "text": "NWHostEndpoint"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "localPrefix"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NENetworkRule",
+          "text": "NENetworkRule"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NENetworkRuleProtocol",
+          "text": "Protocol"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "direction"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NETrafficDirection",
+          "text": "NETrafficDirection"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NENetworkRule/init(remoteNetwork:remotePrefix:localNetwork:localPrefix:protocol:direction:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithRemoteNetwork:remotePrefix:localNetwork:localPrefix:protocol:direction:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(remoteNetwork:remotePrefix:localNetwork:localPrefix:protocol:direction:)",
+      "type": "topic",
+      "url": "/documentation/networkextension/nenetworkrule/init(remotenetwork:remoteprefix:localnetwork:localprefix:protocol:direction:)"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NWHostEndpoint": {
+      "abstract": [
+        {
+          "text": "A network endpoint specified by DNS name (or IP address) and port.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NWHostEndpoint"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NWHostEndpoint",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NWHostEndpoint"
+        }
+      ],
+      "role": "symbol",
+      "title": "NWHostEndpoint",
+      "type": "topic",
+      "url": "/documentation/networkextension/nwhostendpoint"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Creating-a-network-rule",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.networkextension/documentation/NetworkExtension/NENetworkRule/init(destinationNetwork:prefix:protocol:)",
+        "doc://com.apple.networkextension/documentation/NetworkExtension/NENetworkRule/init(remoteNetwork:remotePrefix:localNetwork:localPrefix:protocol:direction:)"
+      ],
+      "title": "Creating a network rule"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "deprecatedAt": "15.0",
+              "introducedAt": "10.15",
+              "name": "macOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Instance Method"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "initWithDestinationHost:protocol:"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "method"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithDestinationHost:protocol:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.networkextension/documentation/NetworkExtension",
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NENetworkRule"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Creating-a-network-rule",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NENetworkRule/init(destinationNetwork:prefix:protocol:)",
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NENetworkRule/init(remoteNetwork:remotePrefix:localNetwork:localPrefix:protocol:direction:)"
+              ],
+              "title": "Creating a network rule"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "text",
+                    "text": "- ("
+                  },
+                  {
+                    "kind": "keyword",
+                    "text": "instancetype"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ") "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "initWithDestinationHost:"
+                  },
+                  {
+                    "kind": "text",
+                    "text": "("
+                  },
+                  {
+                    "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NWHostEndpoint",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NWHostEndpoint",
+                    "text": "NWHostEndpoint"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " *) "
+                  },
+                  {
+                    "kind": "internalParam",
+                    "text": "hostEndpoint"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "protocol:"
+                  },
+                  {
+                    "kind": "text",
+                    "text": "("
+                  },
+                  {
+                    "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NENetworkRule/Protocol",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:@E@NENetworkRuleProtocol",
+                    "text": "NENetworkRuleProtocol"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ") "
+                  },
+                  {
+                    "kind": "internalParam",
+                    "text": "protocol"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ";"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/1",
+          "value": {
+            "kind": "parameters",
+            "parameters": [
+              {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "An endpoint instance that contains the port and hostname or domain that the rule matches.",
+                        "type": "text"
+                      },
+                      {
+                        "text": " ",
+                        "type": "text"
+                      },
+                      {
+                        "text": "This endpoint must contain a hostname, not an address.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ],
+                "name": "hostEndpoint"
+              },
+              {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The protocol that the rule matches.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ],
+                "name": "protocol"
+              }
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NWHostEndpoint/title",
+          "value": "NWHostEndpoint"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NWHostEndpoint/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NWHostEndpoint"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NWHostEndpoint/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NWHostEndpoint"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NENetworkRule~1init(destinationHost:protocol:)/title",
+          "value": "initWithDestinationHost:protocol:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NENetworkRule~1init(destinationHost:protocol:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithDestinationHost:protocol:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NENetworkRule/title",
+          "value": "NENetworkRule"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NENetworkRule/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NENetworkRule"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NENetworkRule/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NENetworkRule"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NENetworkRule~1Protocol/title",
+          "value": "NENetworkRuleProtocol"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NENetworkRule~1Protocol/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NENetworkRuleProtocol"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NENetworkRule~1Protocol/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NENetworkRuleProtocol"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NENetworkRule~1init(remoteNetwork:remotePrefix:localNetwork:localPrefix:protocol:direction:)/title",
+          "value": "initWithRemoteNetwork:remotePrefix:localNetwork:localPrefix:protocol:direction:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NENetworkRule~1init(remoteNetwork:remotePrefix:localNetwork:localPrefix:protocol:direction:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithRemoteNetwork:remotePrefix:localNetwork:localPrefix:protocol:direction:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NENetworkRule~1init(destinationNetwork:prefix:protocol:)/title",
+          "value": "initWithDestinationNetwork:prefix:protocol:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NENetworkRule~1init(destinationNetwork:prefix:protocol:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithDestinationNetwork:prefix:protocol:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/networkextension/nenetworkrule/init(destinationhost:protocol:)"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/networkextension/nenetworkrule/init(destinationhost:protocol:)"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

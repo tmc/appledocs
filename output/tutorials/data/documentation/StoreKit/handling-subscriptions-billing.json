@@ -1,0 +1,1268 @@
+{
+  "abstract": [
+    {
+      "text": "Build logic around the date and time constraints of subscription products, while planning for all scenarios where you control access to content.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.storekit/documentation/StoreKit",
+        "doc://com.apple.storekit/documentation/StoreKit/in-app-purchase",
+        "doc://com.apple.storekit/documentation/StoreKit/original-api-for-in-app-purchase",
+        "doc://com.apple.storekit/documentation/StoreKit/subscriptions-and-offers"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.storekit/documentation/StoreKit/handling-subscriptions-billing"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "StoreKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Handling Subscriptions Billing"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Apps that offer subscriptions have some unique behaviors and considerations. Because subscriptions involve an element of time, your app must be able to determine whether the subscription is currently active and determine the subscription states for past dates. Your app must also react to new, renewed, and lapsed subscriptions, and properly handle expired auto-renewable subscriptions that may be in a billing retry state.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To validate changes in and identify the status of a subscription, you can use the different values in the receipt, which provides details on app and in-app purchases. For information about server-side receipt validation, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/validating-receipts-with-the-app-store",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Each subscription has a unique product identifier associated with a single app. Apps with an iOS and a macOS version have separate products, with a unique product identifier on each platform. You could let users who have a subscription in an iOS app access the content from a macOS app, or vice versa, but implementing that functionality is your responsibility. In order to support cross-platform subscription products, you would need a system to identify users and keep track of the content to which they subscribe. For more information, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.storekit/documentation/StoreKit/offering-a-subscription-across-multiple-apps",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "There are two types of subscriptions you can offer in your app: ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "non-renewing",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "auto-renewable",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ". Non-renewing subscriptions differ from auto-renewable subscriptions in a few key ways. These differences give your app the flexibility to implement the correct behavior for a non-renewing subscription, as follows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Your app is responsible for calculating the time period that the subscription is active and determining what content needs to be made available to the user.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Your app is responsible for detecting that a non-renewing subscription is approaching its expiration date and prompting the user to renew the subscription by purchasing the same product again.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Your app is responsible for making purchased subscriptions available across all the user’s devices and for letting users restore past purchases. For example, most subscriptions are provided by a server; your server would need some mechanism to identify users and associate subscription purchases with the user who purchased them.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following sections provide guidance for handling auto-renewable subscriptions. To quickly react to changes in users’ auto-renewable subscriptions, you can choose to receive status update notifications on your server. Status update notifications inform you of real-time changes in a user’s subscription status and are only supported for auto-renewable subscriptions. For more information on setting up and handling server notifications, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/enabling-app-store-server-notifications",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Calculate-a-Subscriptions-Promotional-Offer-Status",
+          "level": 3,
+          "text": "Calculate a Subscription’s Promotional Offer Status",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can set up promotional offers in App Store Connect to provide users with free or discounted service for a subscription. All new and eligible subscribers can redeem an introductory offer, and all lapsed and existing subscribers can redeem a subscription offer. There are multiple types of introductory and subscription offers, each with different billing cycles. Customers who redeem a free trial introductory offer or a downgrade subscription offer will not be billed for the subscription until the end of the free trial period. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/implementing-introductory-offers-in-your-app",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/implementing-promotional-offers-in-your-app",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Check the ",
+              "type": "text"
+            },
+            {
+              "code": "is_in_intro_offer_period",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "code": "is_trial_period",
+              "type": "codeVoice"
+            },
+            {
+              "text": " field from each receipt entry to validate whether the user redeemed an introductory offer at the beginning of their subscription. You can use this information to accurately present subscription products from the same subscription group at the end of the introductory offer period for that user. Check the ",
+              "type": "text"
+            },
+            {
+              "code": "promotional_offer_id",
+              "type": "codeVoice"
+            },
+            {
+              "text": " field from each receipt entry to validate whether the user redeemed a subscription offer. You can use this information to determine eligibility for this user to redeem subscription offers in the future.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Calculate-a-Subscriptions-Active-Period",
+          "level": 3,
+          "text": "Calculate a Subscription’s Active Period",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your app needs to determine which content the user has access to based on the period of time their auto-renewable subscription is active. To provide the customer access to the content to which they are entitled, keep a record of the date that each piece of content is published. Read the ",
+              "type": "text"
+            },
+            {
+              "code": "original_purchase_date",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "purchase_date",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "code": "expires_date",
+              "type": "codeVoice"
+            },
+            {
+              "text": " field from each receipt entry to determine the start and end dates of each subscription period. The user has access to all content published between each subscription start and end date in addition to the content that was initially unlocked when the subscription was purchased.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, because purchasing a subscription always unlocks content, a user who purchases a monthly subscription mid-month to a magazine that publishes a new issue on the first day of every month gets access to two issues in their first month of subscribing: the most recently published issue, which is unlocked at the time that the subscription is purchased, and the issue you publish on the subsequent first day of the month, which is unlocked at the time you publish it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Don’t calculate the subscription period by adding a subscription duration to the purchase date. That approach fails to take into account the free trial period, the marketing opt-in period, and the content made available immediately after the user purchased the subscription.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the subscription lapsed, there will be multiple periods of time during which the subscription was active, and there will be pieces of content unlocked at the beginning of a subscription period. To identify lapses in a subscription, compare the ",
+              "type": "text"
+            },
+            {
+              "code": "expires_date",
+              "type": "codeVoice"
+            },
+            {
+              "text": " field from each receipt entry to the ",
+              "type": "text"
+            },
+            {
+              "code": "purchase_date",
+              "type": "codeVoice"
+            },
+            {
+              "text": " field of the previous receipt entry for all entries in the receipt.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Detect-an-Expiration-or-Renewal",
+          "level": 3,
+          "text": "Detect an Expiration or Renewal",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The subscription renewal process begins in the 10 days before the expiration date. During those 10 days, the App Store checks for any billing issues that might delay or prevent the subscription from being automatically renewed, for example, whether:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The customer’s payment method is active.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The product increased in price since the user bought the subscription.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The product is no longer available.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The App Store notifies users of any issue so that they can resolve it before the subscription expires and avoid an interruption in their service.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "During the 24-hour period before the subscription expires, the App Store starts trying to renew it automatically. The App Store makes several attempts to automatically renew the subscription over a period of time but eventually stops if there are too many failed attempts.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Handle-Lapsed-Subscriptions",
+          "level": 3,
+          "text": "Handle Lapsed Subscriptions",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The App Store renews the subscription slightly before it expires, to prevent any lapse in the subscription. However, lapses are still possible. For example, if the user’s payment information is no longer valid, the first renewal attempt fails. Billing-related issues trigger the subscription to enter a billing retry state where the App Store attempts to renew the subscription for up to 60 days. You can check the ",
+              "type": "text"
+            },
+            {
+              "code": "expiration_intent",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "is_in_billing_retry_period",
+              "type": "codeVoice"
+            },
+            {
+              "text": " values to monitor the retry status of the subscription. During this period, your app may optionally offer a grace period to the user and show them a message in the app to update their payment information. Additionally, your app can deep link customers to the payment details page within App Store on their device by opening this URL",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "https://apps.apple.com/account/billing"
+          ],
+          "syntax": "http",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The user can also cancel their subscription by disabling auto-renew and intentionally letting their subscription lapse. This action triggers the App Store to send your server a status update notification of type ",
+              "type": "text"
+            },
+            {
+              "code": "DID_CHANGE_RENEWAL_STATUS",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". Your server can parse the ",
+              "type": "text"
+            },
+            {
+              "code": "auto_renew_status",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and the ",
+              "type": "text"
+            },
+            {
+              "code": "auto_renew_status_change_date",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to determine the current renewal status of the subscription.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can also check the ",
+              "type": "text"
+            },
+            {
+              "code": "expiration_intent",
+              "type": "codeVoice"
+            },
+            {
+              "text": " field in the receipt to further validate the reason for the subscription to lapse. Make sure your app’s subscription logic can handle different values of ",
+              "type": "text"
+            },
+            {
+              "code": "expiration_intent",
+              "type": "codeVoice"
+            },
+            {
+              "text": " along with ",
+              "type": "text"
+            },
+            {
+              "code": "expires_date",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to show the appropriate message to the user.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Detect-a-Refund",
+          "level": 3,
+          "text": "Detect a Refund",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Users pay for a subscription when they purchase it, and they can receive a refund by contacting Apple customer service. For example, if the user accidentally buys the wrong product and requests a refund, customer support can cancel the subscription and issue a full or partial refund. Customers may cancel a subscription in the middle of a subscription period, but the subscription remains paid through the end of the same period. Additionally, users may also receive a refund when they upgrade their subscription to another subscription product at a higher level in the same subscription group.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To identify whether a subscription has been refunded, look for the ",
+              "type": "text"
+            },
+            {
+              "code": "cancellation_date",
+              "type": "codeVoice"
+            },
+            {
+              "text": " field in the receipt. The App Store notifies your server of refunds with a status update notification of type ",
+              "type": "text"
+            },
+            {
+              "code": "CANCEL",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", at which point you can handle the refund. For example, if the user upgraded the subscription, immediately unlock service for the higher level subscription product purchased.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Identify-a-Renewed-Subscription-After-a-Lapse",
+          "level": 3,
+          "text": "Identify a Renewed Subscription After a Lapse",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A user-initiated payment information update for an auto-renewable subscription in the billing retry period triggers an automatic renewal attempt to succeed. For this event, the App Store notifies your server with a notification of type ",
+              "type": "text"
+            },
+            {
+              "code": "RENEWAL",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and a new receipt will be generated for the successful transaction. You can look for a new value of the ",
+              "type": "text"
+            },
+            {
+              "code": "expires_date",
+              "type": "codeVoice"
+            },
+            {
+              "text": " field to know the next renewal date of the subscription.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "StoreKit adds a new transaction for the renewal to the transaction queue on the device. Your app can check the transaction queue on launch and handle the renewal the same way as any other transaction. If your app is already running when the subscription renews, the transaction observer is not called; your app finds out about the renewal the next time the app launches.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Detect-Upgrades-or-Plan-Changes",
+          "level": 3,
+          "text": "Detect Upgrades or Plan Changes",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Users can manage their auto-renewable subscriptions in their App Store settings on-device or within your app’s interface. For each subscription purchased by the user, the App Store shows all the renewal options that the subscription group offers. Users can easily change their service levels and choose to upgrade, downgrade, or cross-grade as often as they like. Upgrades of any duration or cross-grades with same durations go into effect immediately. Downgrades of any duration or cross-grades with different durations go into effect at the next renewal date.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can check the receipt’s ",
+              "type": "text"
+            },
+            {
+              "code": "auto_renew_product_id",
+              "type": "codeVoice"
+            },
+            {
+              "text": " field to learn about any plan changes the user selected that will go into effect at the next renewal date. Additionally, you can also use the notification of type ",
+              "type": "text"
+            },
+            {
+              "code": "DID_CHANGE_RENEWAL_PREF",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to get notified for any user initiated plan changes that will go into effect at the next renewal date.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Manage-Subscription-Price-Consent",
+          "level": 3,
+          "text": "Manage Subscription Price Consent",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you increase the price of a subscription, the App Store informs the affected subscribers with an email, push notification, and in-app price consent sheet, and asks your subscribers to agree to the new price. In the app, the system asks your delegate’s function ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKPaymentQueueDelegate/paymentQueueShouldShowPriceConsent(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " whether to immediately display the price consent sheet, or to delay displaying the sheet until later. For example, you may want to delay showing the sheet if it would interrupt a multistep user interaction, such as setting up a user account. Return ",
+              "type": "text"
+            },
+            {
+              "code": "false",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKPaymentQueueDelegate/paymentQueueShouldShowPriceConsent(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to prevent the dialog from displaying immediately.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To show the price consent sheet after a delay, call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKPaymentQueue/showPriceConsentIfNeeded()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", which shows the sheet only if the user hasn’t responded to the price increase notifications.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If users don’t agree to the subscription price increase or take no action, their subscription expires at the end of their current billing cycle. App Store attempts to notify users in the app twice. For a notification schedule, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://help.apple.com/app-store-connect/#/devc9870599e",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "The price consent sheet appears only on devices running iOS. All affected subscribers receive an email and push notification.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Enable-Users-to-Manage-Subscriptions",
+          "level": 3,
+          "text": "Enable Users to Manage Subscriptions",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Consider building auto-renewable subscription management UI in the app for subscribers to easily move between different subscription levels in their subscription group. Use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKProduct/subscriptionGroupIdentifier",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property of ",
+              "type": "text"
+            },
+            {
+              "code": "SKProduct",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to determine which products to display in the UI. For users who wish to cancel their subscription, your app can open the following URL:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "https://apps.apple.com/account/subscriptions"
+          ],
+          "syntax": "http",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Opening this URL launches iTunes or iTunes Store and displays the Manage Subscriptions page where the user can upgrade, downgrade, or cancel their subscription by disabling auto-renew. If you configure your backend server to receive status update notifications, your server receives a ",
+              "type": "text"
+            },
+            {
+              "code": "DID_CHANGE_RENEWAL_STATUS",
+              "type": "codeVoice"
+            },
+            {
+              "text": " notification if the user cancels their subscription.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit": {
+      "abstract": [
+        {
+          "text": "Support In-App Purchases and interactions with the App Store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "StoreKit",
+      "type": "topic",
+      "url": "/documentation/storekit"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SKPaymentQueue/showPriceConsentIfNeeded()": {
+      "abstract": [
+        {
+          "text": "Asks the system to display the price consent sheet if the user hasn’t yet responded to a subscription price increase.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "showPriceConsentIfNeeded"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKPaymentQueue/showPriceConsentIfNeeded()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "showPriceConsentIfNeeded"
+        }
+      ],
+      "role": "symbol",
+      "title": "showPriceConsentIfNeeded()",
+      "type": "topic",
+      "url": "/documentation/storekit/skpaymentqueue/showpriceconsentifneeded()"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SKPaymentQueueDelegate/paymentQueueShouldShowPriceConsent(_:)": {
+      "abstract": [
+        {
+          "text": "Asks the delegate whether to immediately display a price consent sheet.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "paymentQueueShouldShowPriceConsent"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SKPaymentQueue",
+          "text": "SKPaymentQueue"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKPaymentQueueDelegate/paymentQueueShouldShowPriceConsent(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "paymentQueueShouldShowPriceConsent:"
+        }
+      ],
+      "role": "symbol",
+      "title": "paymentQueueShouldShowPriceConsent(_:)",
+      "type": "topic",
+      "url": "/documentation/storekit/skpaymentqueuedelegate/paymentqueueshouldshowpriceconsent(_:)"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SKProduct/subscriptionGroupIdentifier": {
+      "abstract": [
+        {
+          "text": "The identifier of the subscription group to which the subscription belongs.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "subscriptionGroupIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKProduct/subscriptionGroupIdentifier",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "subscriptionGroupIdentifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "subscriptionGroupIdentifier",
+      "type": "topic",
+      "url": "/documentation/storekit/skproduct/subscriptiongroupidentifier"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/enabling-app-store-server-notifications": {
+      "abstract": [
+        {
+          "text": "Configure your server and provide an HTTPS URL to receive notifications about in-app purchase events and unreported external purchase tokens.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/enabling-app-store-server-notifications",
+      "kind": "article",
+      "role": "article",
+      "title": "Enabling App Store Server Notifications",
+      "type": "topic",
+      "url": "/documentation/storekit/enabling-app-store-server-notifications"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/implementing-introductory-offers-in-your-app": {
+      "abstract": [
+        {
+          "text": "Offer introductory pricing for auto-renewable subscriptions to eligible users.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/implementing-introductory-offers-in-your-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Implementing introductory offers in your app",
+      "type": "topic",
+      "url": "/documentation/storekit/implementing-introductory-offers-in-your-app"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/implementing-promotional-offers-in-your-app": {
+      "abstract": [
+        {
+          "text": "Offer discounted pricing for auto-renewable subscription products to eligible subscribers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/implementing-promotional-offers-in-your-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Implementing promotional offers in your app",
+      "type": "topic",
+      "url": "/documentation/storekit/implementing-promotional-offers-in-your-app"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/in-app-purchase": {
+      "abstract": [
+        {
+          "text": "Offer content and services in your app across Apple platforms using a Swift-based interface.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/in-app-purchase",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "In-App Purchase",
+      "type": "topic",
+      "url": "/documentation/storekit/in-app-purchase"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/offering-a-subscription-across-multiple-apps": {
+      "abstract": [
+        {
+          "text": "Support a single auto-renewable subscription across multiple apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/offering-a-subscription-across-multiple-apps",
+      "kind": "article",
+      "role": "article",
+      "title": "Offering a Subscription Across Multiple Apps",
+      "type": "topic",
+      "url": "/documentation/storekit/offering-a-subscription-across-multiple-apps"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/original-api-for-in-app-purchase": {
+      "abstract": [
+        {
+          "text": "Offer additional content and services in your app using the Original In-App Purchase API.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/original-api-for-in-app-purchase",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Original API for In-App Purchase",
+      "type": "topic",
+      "url": "/documentation/storekit/original-api-for-in-app-purchase"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/reducing-involuntary-subscriber-churn": {
+      "abstract": [
+        {
+          "text": "Prevent unintentional loss of subscribers due to billing issues.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/reducing-involuntary-subscriber-churn",
+      "kind": "article",
+      "role": "article",
+      "title": "Reducing Involuntary Subscriber Churn",
+      "type": "topic",
+      "url": "/documentation/storekit/reducing-involuntary-subscriber-churn"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/subscriptions-and-offers": {
+      "abstract": [
+        {
+          "text": "Offer customers additional time-based content and services through purchases they make within your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/subscriptions-and-offers",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Subscriptions and offers",
+      "type": "topic",
+      "url": "/documentation/storekit/subscriptions-and-offers"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/validating-receipts-with-the-app-store": {
+      "abstract": [
+        {
+          "text": "Verify transactions with the App Store on a secure server.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/validating-receipts-with-the-app-store",
+      "kind": "article",
+      "role": "article",
+      "title": "Validating receipts with the App Store",
+      "type": "topic",
+      "url": "/documentation/storekit/validating-receipts-with-the-app-store"
+    },
+    "https://help.apple.com/app-store-connect/#/devc9870599e": {
+      "identifier": "https://help.apple.com/app-store-connect/#/devc9870599e",
+      "title": "Increase the price of an auto-renewable subscription",
+      "titleInlineContent": [
+        {
+          "text": "Increase the price of an auto-renewable subscription",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://help.apple.com/app-store-connect/#/devc9870599e"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.storekit/documentation/StoreKit/enabling-app-store-server-notifications",
+        "doc://com.apple.storekit/documentation/StoreKit/offering-a-subscription-across-multiple-apps",
+        "doc://com.apple.storekit/documentation/StoreKit/reducing-involuntary-subscriber-churn"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Essentials",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.storekit/documentation/StoreKit/enabling-app-store-server-notifications",
+                "doc://com.apple.storekit/documentation/StoreKit/offering-a-subscription-across-multiple-apps",
+                "doc://com.apple.storekit/documentation/StoreKit/reducing-involuntary-subscriber-churn"
+              ],
+              "title": "Essentials"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKPaymentQueueDelegate~1paymentQueueShouldShowPriceConsent(_:)/title",
+          "value": "paymentQueueShouldShowPriceConsent:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKPaymentQueueDelegate~1paymentQueueShouldShowPriceConsent(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "paymentQueueShouldShowPriceConsent:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKProduct~1subscriptionGroupIdentifier/title",
+          "value": "subscriptionGroupIdentifier"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKProduct~1subscriptionGroupIdentifier/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "subscriptionGroupIdentifier"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKPaymentQueue~1showPriceConsentIfNeeded()/title",
+          "value": "showPriceConsentIfNeeded"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKPaymentQueue~1showPriceConsentIfNeeded()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "showPriceConsentIfNeeded"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/storekit/handling-subscriptions-billing"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/storekit/handling-subscriptions-billing"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

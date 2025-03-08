@@ -1,0 +1,485 @@
+{
+  "deprecationSummary": [
+    {
+      "inlineContent": [
+        {
+          "text": "In macOS 10.8 and later, use ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/nsurl/1417657-resourcevaluesforkeys",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " instead.",
+          "type": "text"
+        }
+      ],
+      "type": "paragraph"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/coreservices",
+        "doc://com.apple.documentation/documentation/coreservices/carbon_core",
+        "doc://com.apple.documentation/documentation/coreservices/carbon_core/file_manager"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/coreservices/1565356-fsgetcataloginfo"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1565356,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@F@FSGetCatalogInfo",
+    "modules": [
+      {
+        "name": "Core Services"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "15.4",
+        "deprecated": true,
+        "deprecatedAt": "10.8",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Function",
+    "symbolKind": "func",
+    "title": "FSGetCatalogInfo"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@OSErr",
+              "text": "OSErr"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "FSGetCatalogInfo"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "keyword",
+              "text": "const"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreservices/fsref",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@FSRef",
+              "text": "FSRef"
+            },
+            {
+              "kind": "text",
+              "text": " *ref, "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreservices/fscataloginfobitmap",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@FSCatalogInfoBitmap",
+              "text": "FSCatalogInfoBitmap"
+            },
+            {
+              "kind": "text",
+              "text": " whichInfo, "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreservices/fscataloginfo",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@FSCatalogInfo",
+              "text": "FSCatalogInfo"
+            },
+            {
+              "kind": "text",
+              "text": " *catalogInfo, "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/hfsunistr255",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@HFSUniStr255",
+              "text": "HFSUniStr255"
+            },
+            {
+              "kind": "text",
+              "text": " *outName, "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreservices/fsspecptr",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@FSSpecPtr",
+              "text": "FSSpecPtr"
+            },
+            {
+              "kind": "text",
+              "text": " fsSpec, "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreservices/fsref",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@FSRef",
+              "text": "FSRef"
+            },
+            {
+              "kind": "text",
+              "text": " *parentRef);"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Avoid using this function to determine whether a file has changed. The fractional dates returned by the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/coreservices/1565356-fsgetcataloginfo",
+                  "isActive": false,
+                  "type": "reference"
+                },
+                {
+                  "text": " function don't compare exactly to the fractional dates returned by the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "devLink-1764781",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " date properties, because of differences in rounding and precision.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Instead, call the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/nsurl/1408874-getresourcevalue",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " method of ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "devLink-1764781",
+                  "isActive": false,
+                  "type": "reference"
+                },
+                {
+                  "text": " with ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlgenerationidentifierkey",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ". On file systems that don't support generation identifiers, call the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/nsurl/1408874-getresourcevalue",
+                  "isActive": false,
+                  "type": "reference"
+                },
+                {
+                  "text": " method with ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlcontentmodificationdatekey",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "devLink-1764781": {
+      "identifier": "devLink-1764781",
+      "title": "NSURL",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/releasenotes/Foundation/RN-Foundation-older-but-post-10.8/index.html#//apple_ref/doc/uid/TP40016592-TRANSLATED_CHAPTER_965-TRANSLATED_DEST_20"
+    },
+    "doc://com.apple.documentation/documentation/coreservices": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Services",
+      "type": "topic",
+      "url": "/documentation/coreservices"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1565271-pbsetcataloginfosync": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1565271-pbsetcataloginfosync",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PBSetCatalogInfoSync",
+      "type": "topic",
+      "url": "/documentation/coreservices/1565271-pbsetcataloginfosync"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1565356-fsgetcataloginfo": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1565356-fsgetcataloginfo",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSGetCatalogInfo",
+      "type": "topic",
+      "url": "/documentation/coreservices/1565356-fsgetcataloginfo"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1565934-pbgetcataloginfoasync": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1565934-pbgetcataloginfoasync",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PBGetCatalogInfoAsync",
+      "type": "topic",
+      "url": "/documentation/coreservices/1565934-pbgetcataloginfoasync"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1566328-pbgetcataloginfosync": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1566328-pbgetcataloginfosync",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PBGetCatalogInfoSync",
+      "type": "topic",
+      "url": "/documentation/coreservices/1566328-pbgetcataloginfosync"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1566340-pbsetcataloginfoasync": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1566340-pbsetcataloginfoasync",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PBSetCatalogInfoAsync",
+      "type": "topic",
+      "url": "/documentation/coreservices/1566340-pbsetcataloginfoasync"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1566580-fssetcataloginfo": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1566580-fssetcataloginfo",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSSetCatalogInfo",
+      "type": "topic",
+      "url": "/documentation/coreservices/1566580-fssetcataloginfo"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/carbon_core": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/carbon_core",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Carbon Core",
+      "type": "topic",
+      "url": "/documentation/coreservices/carbon_core"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/carbon_core/file_manager": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/carbon_core/file_manager",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "File Manager",
+      "type": "topic",
+      "url": "/documentation/coreservices/carbon_core/file_manager"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/fscataloginfo": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/fscataloginfo",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSCatalogInfo",
+      "type": "topic",
+      "url": "/documentation/coreservices/fscataloginfo"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/fscataloginfobitmap": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/fscataloginfobitmap",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSCatalogInfoBitmap",
+      "type": "topic",
+      "url": "/documentation/coreservices/fscataloginfobitmap"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/fsref": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/fsref",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSRef",
+      "type": "topic",
+      "url": "/documentation/coreservices/fsref"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/fsspecptr": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/fsspecptr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FSSpecPtr",
+      "type": "topic",
+      "url": "/documentation/coreservices/fsspecptr"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurl/1408874-getresourcevalue": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getResourceValue:forKey:error:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurl/1408874-getresourcevalue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getResourceValue:forKey:error:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurl/1408874-getresourcevalue"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurl/1417657-resourcevaluesforkeys": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "resourceValuesForKeys:error:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurl/1417657-resourcevaluesforkeys",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "resourceValuesForKeys:error:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurl/1417657-resourcevaluesforkeys"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlcontentmodificationdatekey": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlcontentmodificationdatekey",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSURLContentModificationDateKey",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlcontentmodificationdatekey"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlgenerationidentifierkey": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlgenerationidentifierkey",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSURLGenerationIdentifierKey",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlgenerationidentifierkey"
+    },
+    "doc://com.apple.documentation/documentation/kernel/hfsunistr255": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/hfsunistr255",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "HFSUniStr255",
+      "type": "topic",
+      "url": "/documentation/kernel/hfsunistr255"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreservices/1565934-pbgetcataloginfoasync",
+        "doc://com.apple.documentation/documentation/coreservices/1566328-pbgetcataloginfosync",
+        "doc://com.apple.documentation/documentation/coreservices/1566340-pbsetcataloginfoasync",
+        "doc://com.apple.documentation/documentation/coreservices/1565271-pbsetcataloginfosync",
+        "doc://com.apple.documentation/documentation/coreservices/1566580-fssetcataloginfo"
+      ],
+      "title": "Accessing Information About Files and Directories"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/coreservices/1565356-fsgetcataloginfo"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

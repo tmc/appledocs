@@ -1,0 +1,1057 @@
+{
+  "abstract": [
+    {
+      "text": "Configure subscription groups with the App Store Connect API.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/auto-renewable-subscriptions"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/creating-auto-renewable-subscription-groups"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "App Store Connect API"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Creating auto-renewable subscription groups"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The App Store Connect API lets you create and configure auto-renewable subscriptions for your app. After you create an auto-renewable subscription, you can add metadata, such as a display name, description, and duration. You can also choose your subscription pricing, create promotional and introductory offers, and set up subscription offer codes. When your app is fully configured, you can submit your subscription for review. After you receive approval, you can make pricing changes and edit some metadata for your subscription.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Review-App-Store-Connect-API-usage",
+          "level": 3,
+          "text": "Review App Store Connect API usage",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To manage auto-renewable subscriptions with the App Store Connect API, you need to understand key concepts for using the API. If you’re new to using the App Store Connect API, make sure to read the documentation in the Essentials section of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and learn how to create API keys, generate JWTs, identify rate limits, and more.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create and manage auto-renewable subscriptions, be sure you have one of the following user roles:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "ACCOUNT_HOLDER",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "ADMIN",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "APP_MANAGER",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For the full list of App Store Connect user roles, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/UserRole",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/support/roles",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Plan-your-subscription-offerings",
+          "level": 3,
+          "text": "Plan your subscription offerings",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before you get started with creating your subscription, first identify which app to include this subscription in. To get the Apple ID of the app, use ",
+              "type": "text"
+            },
+            {
+              "code": "GET /v1/apps",
+              "type": "codeVoice"
+            },
+            {
+              "text": " (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-apps",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ") and search the resulting pages for the name of the app you want to use. In the response, make note of the ",
+              "type": "text"
+            },
+            {
+              "code": "id",
+              "type": "codeVoice"
+            },
+            {
+              "text": " of that app, which appears in the following format:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "\"data\" : [ {",
+            "\"type\" : \"apps\",",
+            "\"id\" : \"525463029\",",
+            "...."
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "You can also get the Apple ID of the app in App Store Connect.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Tip",
+          "style": "tip",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To arrange your subscription groups, make sure to map out all your offerings clearly. The following table shows an example for planning your subscriptions in a subscription group. The example uses subscriptions for a series of ukulele lessons with different levels of instructor feedback and detail, available for various time periods.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Subscription Name",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Duration",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Level of Detail (1 is greatest)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Price (in USD)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "All Access",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "1 Month",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "1",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "24.99",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "All Access",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "1 Year",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "1",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "149.99",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Ukulele Beginner Lessons",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "1 Month",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "3",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "9.99",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Ukulele Beginner Lessons",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "1 Year",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "3",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "49.99",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Ukulele Advanced Lessons",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "1 Month",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "2",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "19.99",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Ukulele Advanced Lessons",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "1 Year",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "2",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "99.99",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "anchor": "Create-your-subscription-group",
+          "level": 3,
+          "text": "Create your subscription group",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you plan your subscription offerings, create a subscription group, which is the container for your subscriptions. You can create your subscription group by using ",
+              "type": "text"
+            },
+            {
+              "code": "POST /v1/subscriptionGroups",
+              "type": "codeVoice"
+            },
+            {
+              "text": " (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/POST-v1-subscriptionGroups",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ") with a payload.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Here’s an example payload:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "  \"data\": {",
+            "    \"type\": \"subscriptionGroups\",",
+            "    \"attributes\": {",
+            "      \"referenceName\": \"Ukulele Lessons\"",
+            "    },",
+            "    \"relationships\": {",
+            "      \"app\": {",
+            "        \"data\": {",
+            "          \"type\": \"apps\",",
+            "          \"id\": \"6446148572\"",
+            "        }",
+            "      }",
+            "    }",
+            "  }",
+            "}"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "The ",
+                  "type": "text"
+                },
+                {
+                  "code": "referenceName",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " field is internal and isn’t displayed to users. Use a descriptive string that’s useful for your own organization and recognition purposes.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Here’s an example response, truncated for clarity:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "  \"data\" : {",
+            "    \"type\" : \"subscriptionGroups\",",
+            "    \"id\" : \"2000036297\",",
+            "    \"attributes\" : {",
+            "      \"referenceName\" : \"Ukulele Lessons\"",
+            "    },"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The response contains an ",
+              "type": "text"
+            },
+            {
+              "code": "id",
+              "type": "codeVoice"
+            },
+            {
+              "text": " field in the primary ",
+              "type": "text"
+            },
+            {
+              "code": "data",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object. You need this ID for subsequent steps.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-your-subscription-group-localization",
+          "level": 3,
+          "text": "Create your subscription group localization",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your localized subscription group name shows up in your app when a user goes through the process of reviewing or purchasing your auto-renewable subscription. To add a localization to your subscription group, you need the ",
+              "type": "text"
+            },
+            {
+              "code": "id",
+              "type": "codeVoice"
+            },
+            {
+              "text": " of the subscription group from the previous step.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use ",
+              "type": "text"
+            },
+            {
+              "code": "POST /v1/subscriptionGroupLocalizations",
+              "type": "codeVoice"
+            },
+            {
+              "text": " (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/POST-v1-subscriptionGroupLocalizations",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ") with a payload that specifies the localized name of the subscription group, the locale that you’re adding, and an optional custom app name. Depending on your app and subscriptions, you might need to add many localizations. If that’s the case, you can add many in one call to ",
+              "type": "text"
+            },
+            {
+              "code": "/v1/subscriptionGroupLocalizations",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Here’s an example payload:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "  \"data\": {",
+            "    \"type\": \"subscriptionGroupLocalizations\",",
+            "    \"attributes\": {",
+            "      \"name\": \"Ukulele Lessons\",",
+            "      \"locale\": \"en-AU\",",
+            "      \"customAppName\": \"The Best Ukulele Lessons\"",
+            "    },",
+            "    \"relationships\": {",
+            "      \"subscriptionGroup\": {",
+            "        \"data\": {",
+            "          \"type\": \"subscriptionGroups\",",
+            "          \"id\": \"2000036297\"",
+            "        }",
+            "      }",
+            "    }",
+            "  }",
+            "}"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you configure your subscription group, create your subscription following the steps in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/managing-auto-renewable-subscriptions",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI": {
+      "abstract": [
+        {
+          "text": "Automate the tasks you perform on the Apple Developer website and in App Store Connect.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "App Store Connect API",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-apps": {
+      "abstract": [
+        {
+          "text": "Find and list apps in App Store Connect.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-apps",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GET /v1/apps"
+        }
+      ],
+      "role": "symbol",
+      "title": "List Apps",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/get-v1-apps"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/POST-v1-subscriptionGroupLocalizations": {
+      "abstract": [
+        {
+          "text": "Create a localized display name and optional custom app name for a subscription group.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/POST-v1-subscriptionGroupLocalizations",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "POST /v1/subscriptionGroupLocalizations"
+        }
+      ],
+      "role": "symbol",
+      "title": "Create a Subscription Group Localization",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/post-v1-subscriptiongrouplocalizations"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/POST-v1-subscriptionGroups": {
+      "abstract": [
+        {
+          "text": "Create a subscription group for an app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/POST-v1-subscriptionGroups",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "POST /v1/subscriptionGroups"
+        }
+      ],
+      "role": "symbol",
+      "title": "Create a Subscription Group",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/post-v1-subscriptiongroups"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/UserRole": {
+      "abstract": [
+        {
+          "text": "Strings that represent user roles and permissions in App Store Connect.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "UserRole"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/UserRole",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UserRole"
+        }
+      ],
+      "role": "symbol",
+      "title": "UserRole",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/userrole"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store": {
+      "abstract": [
+        {
+          "text": "Manage all aspects of your app, App Clips, in-app purchases, and customer reviews in the App Store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/app-store",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "App Store",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/app-store"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/auto-renewable-subscriptions": {
+      "abstract": [
+        {
+          "text": "Create and manage auto-renewable subscriptions, including managing subscription groups and submissions for review.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/auto-renewable-subscriptions",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Auto-Renewable Subscriptions",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/auto-renewable-subscriptions"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/managing-auto-renewable-subscriptions": {
+      "abstract": [
+        {
+          "text": "Create and manage subscriptions with the App Store Connect API.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/managing-auto-renewable-subscriptions",
+      "kind": "article",
+      "role": "article",
+      "title": "Managing auto-renewable subscriptions",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/managing-auto-renewable-subscriptions"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/subscription-group-localizations": {
+      "abstract": [
+        {
+          "text": "Create, modify, and delete localized metadata for subscription groups.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/subscription-group-localizations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Subscription Group Localizations",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/subscription-group-localizations"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/subscription-groups": {
+      "abstract": [
+        {
+          "text": "Create, modify, and delete subscription groups for your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/subscription-groups",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Subscription Groups",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/subscription-groups"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/support/roles": {
+      "identifier": "https://developer.apple.com/support/roles",
+      "title": "Program Roles",
+      "titleInlineContent": [
+        {
+          "text": "Program Roles",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/support/roles"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Managing-Subscription-Groups",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/subscription-groups",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/subscription-group-localizations"
+      ],
+      "title": "Managing Subscription Groups"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/appstoreconnectapi/creating-auto-renewable-subscription-groups"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

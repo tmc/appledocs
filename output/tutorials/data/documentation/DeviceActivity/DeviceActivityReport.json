@@ -1,0 +1,849 @@
+{
+  "abstract": [
+    {
+      "text": "A view that reports the user’s application, category, and web domain activity in a privacy-preserving way.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "beta": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.3 beta 1",
+        "16.3 beta 2"
+      ]
+    },
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.DeviceActivity/documentation/DeviceActivity"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.DeviceActivity/documentation/DeviceActivity/DeviceActivityReport"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:23_DeviceActivity_SwiftUI0aB6ReportV",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "struct"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "DeviceActivityReport"
+      }
+    ],
+    "modules": [
+      {
+        "name": "DeviceActivity",
+        "relatedModules": [
+          "SwiftUI"
+        ]
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "DeviceActivityReport"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "DeviceActivityReport"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst"
+          ],
+          "tokens": [
+            {
+              "kind": "attribute",
+              "text": "@"
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+              "kind": "attribute",
+              "preciseIdentifier": "s:ScM",
+              "text": "MainActor"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "attribute",
+              "text": "@preconcurrency"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "DeviceActivityReport"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you create a report, the system asks your app’s device activity report extension to provide a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " representing the user’s device activity. To protect the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "user’s privacy, your extension runs in a sandbox. This sandbox prevents your extension from making network requests or moving",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "sensitive content outside the extension’s address space. The extension point identifier for all device activity report extensions is",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "com.apple.deviceactivityui.report-extension",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". You can configure a report with a custom context and filter, and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "then display the report like any SwiftUI view.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct ExampleView: View {",
+            "    let selectedApps: Set<ApplicationToken>",
+            "    let selectedCategories: Set<ActivityCategoryToken>",
+            "    let selectedWebDomains: Set<WebDomainToken>",
+            "",
+            "    @State private var context: DeviceActivityReport.Context = .barGraph",
+            "    @State private var filter = DeviceActivityFilter(",
+            "        segment: .daily(",
+            "            during: Calendar.current.dateInterval(",
+            "               of: .weekOfYear, for: .now",
+            "            )!",
+            "        ),",
+            "        users: .children,",
+            "        devices: .init([.iPhone, .iPad]),",
+            "        applications: selectedApps,",
+            "        categories: selectedCategories,",
+            "        webDomains: selectedWebDomains",
+            "    )",
+            "",
+            "    public var body: some View {",
+            "        VStack {",
+            "            DeviceActivityReport(context, filter: filter)",
+            "",
+            "            // A picker used to change the report's context.",
+            "            Picker(selection: $context, label: Text(\"Context: \")) {",
+            "                Text(\"Bar Graph\")",
+            "                    .tag(DeviceActivityReport.Context.barGraph)",
+            "                Text(\"Pie Chart\")",
+            "                     .tag(DeviceActivityReport.Context.pieChart)",
+            "            }",
+            "",
+            "            // A picker used to change the filter's segment interval.",
+            "            Picker(",
+            "                selection: $filter.segmentInterval,",
+            "                 label: Text(\"Segment Interval: \")",
+            "            ) {",
+            "                Text(\"Hourly\")",
+            "                    .tag(DeviceActivityFilter.SegmentInterval.hourly())",
+            "                Text(\"Daily\")",
+            "                    .tag(DeviceActivityFilter.SegmentInterval.daily(",
+            "                        during: Calendar.current.dateInterval(",
+            "                             of: .weekOfYear, for: .now",
+            "                        )!",
+            "                    ))",
+            "                Text(\"Weekly\")",
+            "                    .tag(DeviceActivityFilter.SegmentInterval.weekly(",
+            "                        during: Calendar.current.dateInterval(",
+            "                            of: .month, for: .now",
+            "                        )!",
+            "                    ))",
+            "            }",
+            "            // ...",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system will only provide your extension with device activity data if the user has authorized your app for family",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "controls on their device or on the device(s) of children in their iCloud family. See",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/FamilyControls/AuthorizationCenter",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "for more details.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.DeviceActivity/documentation/DeviceActivity": {
+      "abstract": [
+        {
+          "text": "Monitor device activity with your app extension while maintaining user privacy.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.DeviceActivity/documentation/DeviceActivity",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "DeviceActivity",
+      "type": "topic",
+      "url": "/documentation/deviceactivity"
+    },
+    "doc://com.apple.DeviceActivity/documentation/DeviceActivity/DeviceActivityReport": {
+      "abstract": [
+        {
+          "text": "A view that reports the user’s application, category, and web domain activity in a privacy-preserving way.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DeviceActivityReport"
+        }
+      ],
+      "identifier": "doc://com.apple.DeviceActivity/documentation/DeviceActivity/DeviceActivityReport",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DeviceActivityReport"
+        }
+      ],
+      "role": "symbol",
+      "title": "DeviceActivityReport",
+      "type": "topic",
+      "url": "/documentation/deviceactivity/deviceactivityreport"
+    },
+    "doc://com.apple.DeviceActivity/documentation/DeviceActivity/DeviceActivityReport/Body-swift.typealias": {
+      "abstract": [
+        {
+          "text": "The type of view representing the body of this view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Body"
+        }
+      ],
+      "identifier": "doc://com.apple.DeviceActivity/documentation/DeviceActivity/DeviceActivityReport/Body-swift.typealias",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Body"
+        }
+      ],
+      "role": "symbol",
+      "title": "DeviceActivityReport.Body",
+      "type": "topic",
+      "url": "/documentation/deviceactivity/deviceactivityreport/body-swift.typealias"
+    },
+    "doc://com.apple.DeviceActivity/documentation/DeviceActivity/DeviceActivityReport/Context": {
+      "abstract": [
+        {
+          "text": "A context indicating how your device activity report extension should configure its ",
+          "type": "text"
+        },
+        {
+          "code": "DeviceActivityReportView",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Context"
+        }
+      ],
+      "identifier": "doc://com.apple.DeviceActivity/documentation/DeviceActivity/DeviceActivityReport/Context",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Context"
+        }
+      ],
+      "role": "symbol",
+      "title": "DeviceActivityReport.Context",
+      "type": "topic",
+      "url": "/documentation/deviceactivity/deviceactivityreport/context"
+    },
+    "doc://com.apple.DeviceActivity/documentation/DeviceActivity/DeviceActivityReport/View-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.DeviceActivity/documentation/DeviceActivity/DeviceActivityReport/View-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "View Implementations",
+      "type": "topic",
+      "url": "/documentation/deviceactivity/deviceactivityreport/view-implementations"
+    },
+    "doc://com.apple.DeviceActivity/documentation/DeviceActivity/DeviceActivityReport/body-swift.property": {
+      "abstract": [
+        {
+          "text": "The content of the device activity report.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "body"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.DeviceActivity/documentation/DeviceActivity/DeviceActivityReport/body-swift.property",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "body",
+      "type": "topic",
+      "url": "/documentation/deviceactivity/deviceactivityreport/body-swift.property"
+    },
+    "doc://com.apple.DeviceActivity/documentation/DeviceActivity/DeviceActivityReport/init(_:filter:)": {
+      "abstract": [
+        {
+          "text": "Creates a new device activity report.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:23_DeviceActivity_SwiftUI0aB6ReportV",
+          "text": "DeviceActivityReport"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:23_DeviceActivity_SwiftUI0aB6ReportV7ContextV",
+          "text": "Context"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "filter"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14DeviceActivity0aB6FilterV",
+          "text": "DeviceActivityFilter"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.DeviceActivity/documentation/DeviceActivity/DeviceActivityReport/init(_:filter:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(_:filter:)",
+      "type": "topic",
+      "url": "/documentation/deviceactivity/deviceactivityreport/init(_:filter:)"
+    },
+    "doc://com.apple.documentation/documentation/FamilyControls/AuthorizationCenter": {
+      "abstract": [
+        {
+          "text": "The center for requesting authorization to provide parental controls.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AuthorizationCenter"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/FamilyControls/AuthorizationCenter",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AuthorizationCenter",
+      "type": "topic",
+      "url": "/documentation/FamilyControls/AuthorizationCenter"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/View": {
+      "abstract": [
+        {
+          "text": "A type that represents part of your app’s user interface and provides modifiers that you use to configure views.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "View",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/s:7SwiftUI4ViewP": {
+      "abstract": [
+        {
+          "text": "A type that represents part of your app’s user interface and provides modifiers that you use to configure views.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:7SwiftUI4ViewP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "View",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View"
+    },
+    "doc://com.externally.resolved.symbol/s:ScM": {
+      "abstract": [
+        {
+          "text": "A singleton actor whose executor is equivalent to the main dispatch queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@globalActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "final"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "actor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MainActor"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MainActor",
+      "type": "topic",
+      "url": "/documentation/Swift/MainActor"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s8SendableP",
+        "doc://com.externally.resolved.symbol/s:7SwiftUI4ViewP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Structures",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.DeviceActivity/documentation/DeviceActivity/DeviceActivityReport/Context"
+      ],
+      "title": "Structures"
+    },
+    {
+      "anchor": "Initializers",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.DeviceActivity/documentation/DeviceActivity/DeviceActivityReport/init(_:filter:)"
+      ],
+      "title": "Initializers"
+    },
+    {
+      "anchor": "Instance-Properties",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.DeviceActivity/documentation/DeviceActivity/DeviceActivityReport/body-swift.property"
+      ],
+      "title": "Instance Properties"
+    },
+    {
+      "anchor": "Type-Aliases",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.DeviceActivity/documentation/DeviceActivity/DeviceActivityReport/Body-swift.typealias"
+      ],
+      "title": "Type Aliases"
+    },
+    {
+      "anchor": "Default-Implementations",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.DeviceActivity/documentation/DeviceActivity/DeviceActivityReport/View-Implementations"
+      ],
+      "title": "Default Implementations"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/deviceactivity/deviceactivityreport"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,470 @@
+{
+  "abstract": [
+    {
+      "text": "Sets the style for radio group style pickers within this view to be",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "horizontally positioned with the radio buttons inside the layout.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.MusicKit/documentation/MusicKit",
+        "doc://com.apple.MusicKit/documentation/MusicKit/ArtworkImage"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.MusicKit/documentation/MusicKit/ArtworkImage/horizontalRadioGroupLayout()"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "extendedModule": "SwiftUI",
+    "externalID": "s:7SwiftUI4ViewPAAE26horizontalRadioGroupLayoutQryF::SYNTHESIZED::s:17_MusicKit_SwiftUI12ArtworkImageV",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "func"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "horizontalRadioGroupLayout"
+      },
+      {
+        "kind": "text",
+        "text": "() -> "
+      },
+      {
+        "kind": "keyword",
+        "text": "some"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "s:7SwiftUI4ViewP",
+        "text": "View"
+      }
+    ],
+    "modules": [
+      {
+        "name": "MusicKit",
+        "relatedModules": [
+          "SwiftUI"
+        ]
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.15",
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Method",
+    "symbolKind": "method",
+    "title": "horizontalRadioGroupLayout()"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "attribute",
+              "text": "nonisolated"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "func"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "horizontalRadioGroupLayout"
+            },
+            {
+              "kind": "text",
+              "text": "() -> "
+            },
+            {
+              "kind": "keyword",
+              "text": "some"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:7SwiftUI4ViewP",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:7SwiftUI4ViewP",
+              "text": "View"
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use ",
+              "type": "text"
+            },
+            {
+              "code": "horizontalRadioGroupLayout()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to configure the visual layout of",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "radio buttons in a ",
+              "type": "text"
+            },
+            {
+              "code": "Picker",
+              "type": "codeVoice"
+            },
+            {
+              "text": " so that the radio buttons are arranged",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "horizontally in the view.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The example below shows two ",
+              "type": "text"
+            },
+            {
+              "code": "Picker",
+              "type": "codeVoice"
+            },
+            {
+              "text": " controls configured as radio",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "button groups; the first group shows the default vertical layout; the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "second group shows the effect of ",
+              "type": "text"
+            },
+            {
+              "code": "horizontalRadioGroupLayout()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " which",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "renders the radio buttons horizontally.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct HorizontalRadioGroupLayout: View {",
+            "    @State private var selected = 1",
+            "    var body: some View {",
+            "        VStack(spacing: 20) {",
+            "            Picker(selection: $selected, label: Text(\"Favorite Color\")) {",
+            "                Text(\"Red\").tag(1)",
+            "                Text(\"Green\").tag(2)",
+            "                Text(\"Blue\").tag(3)",
+            "                Text(\"Other\").tag(4)",
+            "            }",
+            "            .pickerStyle(.radioGroup)",
+            "",
+            "            Picker(selection: $selected, label: Text(\"Favorite Color\")) {",
+            "                Text(\"Red\").tag(1)",
+            "                Text(\"Green\").tag(2)",
+            "                Text(\"Blue\").tag(3)",
+            "                Text(\"Other\").tag(4)",
+            "            }",
+            "            .pickerStyle(.radioGroup)",
+            "            .horizontalRadioGroupLayout()",
+            "        }",
+            "        .padding(20)",
+            "        .border(Color.gray)",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.MusicKit/documentation/MusicKit": {
+      "abstract": [
+        {
+          "text": "Integrate your app with Apple Music.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.MusicKit/documentation/MusicKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "MusicKit",
+      "type": "topic",
+      "url": "/documentation/musickit"
+    },
+    "doc://com.apple.MusicKit/documentation/MusicKit/ArtworkImage": {
+      "abstract": [
+        {
+          "text": "A view that displays the image for a music item’s artwork.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ArtworkImage"
+        }
+      ],
+      "identifier": "doc://com.apple.MusicKit/documentation/MusicKit/ArtworkImage",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ArtworkImage"
+        }
+      ],
+      "role": "symbol",
+      "title": "ArtworkImage",
+      "type": "topic",
+      "url": "/documentation/musickit/artworkimage"
+    },
+    "doc://com.apple.MusicKit/documentation/MusicKit/ArtworkImage/horizontalRadioGroupLayout()": {
+      "abstract": [
+        {
+          "text": "Sets the style for radio group style pickers within this view to be",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "horizontally positioned with the radio buttons inside the layout.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "horizontalRadioGroupLayout"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.MusicKit/documentation/MusicKit/ArtworkImage/horizontalRadioGroupLayout()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "horizontalRadioGroupLayout()",
+      "type": "topic",
+      "url": "/documentation/musickit/artworkimage/horizontalradiogrouplayout()"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/s:7SwiftUI4ViewP": {
+      "abstract": [
+        {
+          "text": "A type that represents part of your app’s user interface and provides modifiers that you use to configure views.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:7SwiftUI4ViewP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "View",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/musickit/artworkimage/horizontalradiogrouplayout()"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

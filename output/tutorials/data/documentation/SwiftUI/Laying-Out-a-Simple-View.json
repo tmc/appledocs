@@ -1,0 +1,1975 @@
+{
+  "abstract": [
+    {
+      "text": "Create a view layout by adjusting the size of views.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Layout-adjustments"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.SwiftUI/documentation/SwiftUI/Laying-Out-a-Simple-View"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "SwiftUI"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Laying out a simple view"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create a layout for a view, start by composing a hierarchy of child views.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Then, refine the size and spacing of the child views with configuration parameters,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and by adding view modifiers, like those that affect a view’s frame and padding.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "To review how to compose layouts, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Building-Layouts-with-Stack-Views",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Establish-a-view-hierarchy",
+          "level": 3,
+          "text": "Establish a view hierarchy",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following example creates a view to display an incoming message from a messaging service.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The view uses an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/HStack",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to collect a view that identifies the sender and another",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that provides the content of the message:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct MessageRow: View {",
+            "    let message: Message",
+            "",
+            "    var body: some View {",
+            "        HStack {",
+            "            ZStack {",
+            "                Circle()",
+            "                    .fill(Color.yellow)",
+            "                Text(message.initials)",
+            "            }",
+            "",
+            "            Text(message.content)",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following screenshot of a ",
+              "type": "text"
+            },
+            {
+              "code": "MessageRow",
+              "type": "codeVoice"
+            },
+            {
+              "text": " view",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "includes a border that shows its bounds.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Note the large size of the circle, which fills the space available to it:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "Laying-Out-a-Simple-View-1.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When SwiftUI renders a view hierarchy,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "it recursively evaluates each child view:",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The parent view proposes a size to the child views it contains,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and the child views respond with a computed size.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "Laying-Out-a-Simple-View-2.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "MessageRow",
+              "type": "codeVoice"
+            },
+            {
+              "text": " view proposes a size to its only child, the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/HStack",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ",",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "which is the full size proposed to it by its own parent.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The stack proportionally divides this space between its child views,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "with system-default spacing between each child.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This continues recursively:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ZStack",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " proposes a size to its child views, the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Circle",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Text",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " views.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Circle",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " expands up to the size offered, while the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Text",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " takes just enough space for the string it contains.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ZStack",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " returns the size of its largest child view, in this case the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Circle",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When all child views have reported their size, the parent view renders them.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For a hands-on approach to learning how the SwiftUI view hierarchy works,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "see the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/tutorials/SwiftUI/building-lists-and-navigation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " section in the Introducing SwiftUI tutorial.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Limit-the-view-size",
+          "level": 3,
+          "text": "Limit the view size",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the example above,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "SwiftUI has built-in views that manage size in different ways,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "including views that:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Expand to fill the space offered by their parent, like ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Color",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/LinearGradient",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", and ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Circle",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Have an ideal size that varies according to their contents, like ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Text",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and the container views.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Have an ideal size that never varies, like ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Toggle",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/DatePicker",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can constrain a view to a fixed size by adding a frame modifier.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For example, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/frame(width:height:alignment:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " modifier to limit the width the circle to ",
+              "type": "text"
+            },
+            {
+              "code": "40",
+              "type": "codeVoice"
+            },
+            {
+              "text": " points:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct MessageRow: View {",
+            "    let message: Message",
+            "",
+            "    var body: some View {",
+            "        HStack {",
+            "            ZStack {",
+            "                Circle()",
+            "                    .fill(Color.yellow)",
+            "                Text(message.initials)",
+            "            }",
+            "            .frame(width: 40)",
+            "",
+            "            Text(message.content)",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you add a frame modifier, SwiftUI wraps the affected view,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "effectively adding a new view to the view hierarchy.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "Laying-Out-a-Simple-View-3.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When SwiftUI evaluates this new hierarchy,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the frame modifier fixes the width of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ZStack",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " that it wraps",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "by passing along the value you specified as its parameter.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The remainder of the size evaluation proceeds as before,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "where the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Circle",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " now expands to fill a smaller space,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "constrained by the frame’s 40 point width.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This enables the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/HStack",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to provide more space to its other child,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "which displays the message text.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "Laying-Out-a-Simple-View-4.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Position-content-with-alignment",
+          "level": 3,
+          "text": "Position content with alignment",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you want the top of the circle aligned with the top of the message content text, you can refine the view by applying an alignment to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/HStack",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "To position the content vertically within the stack, specify the ",
+              "type": "text"
+            },
+            {
+              "code": "alignment",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/VerticalAlignment/top",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct MessageRow: View {",
+            "    let message: Message",
+            "",
+            "    var body: some View {",
+            "        HStack(alignment: .top) {",
+            "            ZStack {",
+            "                Circle()",
+            "                    .fill(Color.yellow)",
+            "                Text(message.initials)",
+            "            }",
+            "            .frame(width: 40)",
+            "",
+            "            Text(message.content)",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "With the alignment applied, you get an unexpected result.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The tops of the views don’t appear to align:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "Laying-Out-a-Simple-View-5.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "However, if you select the circle in Xcode,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "or temporarily add a border to the circle,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "you can see the tops of the views do in fact align.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For more information on inspecting the size of a view, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Inspecting-View-Layout",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "Laying-Out-a-Simple-View-6.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the previous section, you applied a frame with only a width constraint.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "SwiftUI drew a circle limited by that width.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "But because the height was left unspecified,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the circle’s frame separately expanded to fill the available height,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "even though that extra space had no visible impact on the rendered circle.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You can resolve this problem by adding an explicit ",
+              "type": "text"
+            },
+            {
+              "code": "height",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct MessageRow: View {",
+            "    let message: Message",
+            "",
+            "    var body: some View {",
+            "        HStack(alignment: .top) {",
+            "            ZStack {",
+            "                Circle()",
+            "                    .fill(Color.yellow)",
+            "                Text(message.initials)",
+            "            }",
+            "            .frame(width: 40, height: 40)",
+            "",
+            "            Text(message.content)",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The contents of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/HStack",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " are now top aligned, although the stack itself is centered in the ",
+              "type": "text"
+            },
+            {
+              "code": "MessageRow",
+              "type": "codeVoice"
+            },
+            {
+              "text": " view as shown by the border displaying the row’s boundaries.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "Laying-Out-a-Simple-View-7.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-padding-to-the-view",
+          "level": 3,
+          "text": "Add padding to the view",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To avoid visually crowding the outer edges of a view, add padding.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This introduces a fixed amount of space along the specified edges,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "reducing the space available for the contents of the view by a corresponding amount.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For example, you can use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/padding(_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to add extra space along the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Edge/Set/horizontal",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " edges of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/HStack",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct MessageRow: View {",
+            "    let message: Message",
+            "",
+            "    var body: some View {",
+            "        HStack(alignment: .top) {",
+            "            ZStack {",
+            "                Circle()",
+            "                    .fill(Color.yellow)",
+            "                Text(message.initials)",
+            "            }",
+            "            .frame(width: 40, height: 40)",
+            "",
+            "            Text(message.content)",
+            "        }",
+            "        .padding([.horizontal])",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The padding modifier defaults to system-standard spacing,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "although you can alternatively choose different values for the padding modifier.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "Laying-Out-a-Simple-View-8.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Laying-Out-a-Simple-View-1.png": {
+      "alt": "A screenshot showing a black rectangle as the border of the view, inside of which is a large yellow circle on the left side of the view, with the letters “MR” in the center of the circle. On the right side of the view there are five lines of text. The text and circle are centered vertically in the view.",
+      "identifier": "Laying-Out-a-Simple-View-1.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f20ed122640c8964c328188150eaf94a/Laying-Out-a-Simple-View-1@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5c597a12e437524269e287909300fcc4/Laying-Out-a-Simple-View-1~dark@2x.png"
+        }
+      ]
+    },
+    "Laying-Out-a-Simple-View-2.png": {
+      "alt": "A vertically stacked view hierarchy shown as boxes, which each list names of views. The top box is labeled MessageRow, connected with a straight line to an HStack box, just below it. The HStack connects by a straight line to three views beneath it, labeled ZStack, Spacer, and Text. The ZStack has two views connected by straight line under it, labeled Circle and Text. Circle has a single view connected beneath it, labeled fill. Dashed arrows on the left of the hierarchy indicate the flow of requests for size for the circle, starting with MessageRow. The flow proceeds down to HStack, ZStack, and Circle. Solid arrows on the right of the hierarchy represent answers being returned, starting at the Circle, then moving back toward the top of the image, to ZStack, HStack, and MessageRow.",
+      "identifier": "Laying-Out-a-Simple-View-2.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e1cbe425ff7f8d0cc33fba41be03ab2b/Laying-Out-a-Simple-View-2@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c42bfe746b43bd20a62a425793a6d0d9/Laying-Out-a-Simple-View-2~dark@2x.png"
+        }
+      ]
+    },
+    "Laying-Out-a-Simple-View-3.png": {
+      "alt": "A view hierarchy shown as boxes, in which are names of views. The top most box is labeled MessageRow, connected with a line to an HStack, just beneath it. The HStack connects to three view beneath it, boxes labeled frame, Spacer, and Text. Frame connects to a single view beneath it: ZStack. The ZStack has two views connected under it: box labeled Circle, and another labeled Text. The Circle has a single view connected beneath it, labeled fill. The view labeled frame is highlighted to indiciate that it was added compared to the previous view hierarchy example. Dashed arrows on the left of the hierarchy indicate the flow of requests for size for the circle, starting with HStack. The flow proceeds down to frame, ZStack, and then to Circle. Solid arrows on the right of the hierarchy represent answers being returned, starting at the Circle, then to ZStack, frame, and HStack.",
+      "identifier": "Laying-Out-a-Simple-View-3.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a24eb510c178bf5265e83230d8a360c0/Laying-Out-a-Simple-View-3@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/6c6c6bd5e10ad71df84fdccc5bcea16b/Laying-Out-a-Simple-View-3~dark@2x.png"
+        }
+      ]
+    },
+    "Laying-Out-a-Simple-View-4.png": {
+      "alt": "A figure of a black rectangle as the border of a view, inside which is a small yellow circle on the left side, constrained to 40 points in diameter, with the letters “MR” at the center of the circle. On the right side are three lines of text. The text and circle are centered vertically.",
+      "identifier": "Laying-Out-a-Simple-View-4.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a6e7bfc9121d7f8c4b2a117f2c3e5175/Laying-Out-a-Simple-View-4@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f199400c606d84516ad25e0efed3d48d/Laying-Out-a-Simple-View-4~dark@2x.png"
+        }
+      ]
+    },
+    "Laying-Out-a-Simple-View-5.png": {
+      "alt": "A figure of a black rectangle as the border of a view, inside which is a small yellow circle on the left side, constrained to 40 points in diameter, with the letters “MR” at the center of the circle. On the right side are three lines of text. The circle is centered vertically, while the text is aligned at the top of the view.",
+      "identifier": "Laying-Out-a-Simple-View-5.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/0448450b8ddb8ae7aad485b4f2b320a3/Laying-Out-a-Simple-View-5@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/7849fe0c2781d344bc973fc519321477/Laying-Out-a-Simple-View-5~dark@2x.png"
+        }
+      ]
+    },
+    "Laying-Out-a-Simple-View-6.png": {
+      "alt": "A figure of a black rectangle as the border of a view, inside which is a small yellow circle on the left side, constrained to 40 points in diameter, with the letters “MR” at the center of the circle. On the right side are three lines of text. The circle appears to be centered vertically, while the text is aligned at the top of the view. A figure of a blue box shows the border of the view enclosing the circle, which takes the full height of its parent view.",
+      "identifier": "Laying-Out-a-Simple-View-6.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/d5d6b624121cbff1e64d2f88084806ef/Laying-Out-a-Simple-View-6@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/69f1e7ccc12215ff58bcb407675d685b/Laying-Out-a-Simple-View-6~dark@2x.png"
+        }
+      ]
+    },
+    "Laying-Out-a-Simple-View-7.png": {
+      "alt": "A black rectangle shows the border of the view, inside which is a small yellow circle on the left, constrained to 40 points in diameter, with the letters “MR” at the center of the circle. On the right are three lines of text. The top of the circle is aligned with the top of the lines of text. The view shows extra space above and below the circle and text, but none to the left or right. The circle and text press against the left and right edges of the border of the view.",
+      "identifier": "Laying-Out-a-Simple-View-7.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ac2edec19ebced4085a476ae36cb585e/Laying-Out-a-Simple-View-7@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/42f6f15e5e024d221f81412d63ba69cc/Laying-Out-a-Simple-View-7~dark@2x.png"
+        }
+      ]
+    },
+    "Laying-Out-a-Simple-View-8.png": {
+      "alt": "A black rectangle shows the border of the view, inside which is a small yellow circle on the left, constrained to 40 points in diameter, with the letters “MR” at the center of the circle. On the right are three lines of text. The top of the circle is aligned with the top of the lines of text. The view shows extra space above and below the circle and text, and padding to the left and right of the circle and text, respectively.",
+      "identifier": "Laying-Out-a-Simple-View-8.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/0cceee5a785112b2ad9096287f162163/Laying-Out-a-Simple-View-8@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c6c497325f6267e2c76a30431cf92f74/Laying-Out-a-Simple-View-8~dark@2x.png"
+        }
+      ]
+    },
+    "SwiftUI-PageImage-card.png": {
+      "alt": "A black Swift logo on a swirly blue and purple background.",
+      "identifier": "SwiftUI-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b1de0de086f81a5d0eac3839a0af6e6f/SwiftUI-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1450d0b30a6b024e10c148e3f31dafe9/SwiftUI-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI": {
+      "abstract": [
+        {
+          "text": "Declare the user interface and behavior for your app on every platform.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI",
+      "images": [
+        {
+          "identifier": "SwiftUI-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SwiftUI",
+      "type": "topic",
+      "url": "/documentation/swiftui"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Building-Layouts-with-Stack-Views": {
+      "abstract": [
+        {
+          "text": "Compose complex layouts from primitive container views.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Building-Layouts-with-Stack-Views",
+      "kind": "article",
+      "role": "article",
+      "title": "Building layouts with stack views",
+      "type": "topic",
+      "url": "/documentation/swiftui/building-layouts-with-stack-views"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Circle": {
+      "abstract": [
+        {
+          "text": "A circle centered on the frame of the view containing it.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Circle"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Circle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Circle"
+        }
+      ],
+      "role": "symbol",
+      "title": "Circle",
+      "type": "topic",
+      "url": "/documentation/swiftui/circle"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Color": {
+      "abstract": [
+        {
+          "text": "A representation of a color that adapts to a given context.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Color"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Color",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Color"
+        }
+      ],
+      "role": "symbol",
+      "title": "Color",
+      "type": "topic",
+      "url": "/documentation/swiftui/color"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/DatePicker": {
+      "abstract": [
+        {
+          "text": "A control for selecting an absolute date.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DatePicker"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/DatePicker",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DatePicker"
+        }
+      ],
+      "role": "symbol",
+      "title": "DatePicker",
+      "type": "topic",
+      "url": "/documentation/swiftui/datepicker"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Edge/Set/horizontal": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "horizontal"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4EdgeO",
+          "text": "Edge"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4EdgeO3SetV",
+          "text": "Set"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Edge/Set/horizontal",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "horizontal",
+      "type": "topic",
+      "url": "/documentation/swiftui/edge/set/horizontal"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/HStack": {
+      "abstract": [
+        {
+          "text": "A view that arranges its subviews in a horizontal line.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HStack"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/HStack",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HStack"
+        }
+      ],
+      "role": "symbol",
+      "title": "HStack",
+      "type": "topic",
+      "url": "/documentation/swiftui/hstack"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Inspecting-View-Layout": {
+      "abstract": [
+        {
+          "text": "Determine the position and extent of a view using Xcode previews or",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "by adding temporary borders.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Inspecting-View-Layout",
+      "kind": "article",
+      "role": "article",
+      "title": "Inspecting view layout",
+      "type": "topic",
+      "url": "/documentation/swiftui/inspecting-view-layout"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Layout-adjustments": {
+      "abstract": [
+        {
+          "text": "Make fine adjustments to alignment, spacing, padding, and other layout parameters.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Layout-adjustments",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Layout adjustments",
+      "type": "topic",
+      "url": "/documentation/swiftui/layout-adjustments"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/LinearGradient": {
+      "abstract": [
+        {
+          "text": "A linear gradient.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LinearGradient"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/LinearGradient",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LinearGradient"
+        }
+      ],
+      "role": "symbol",
+      "title": "LinearGradient",
+      "type": "topic",
+      "url": "/documentation/swiftui/lineargradient"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Text": {
+      "abstract": [
+        {
+          "text": "A view that displays one or more lines of read-only text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Text",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Text"
+        }
+      ],
+      "role": "symbol",
+      "title": "Text",
+      "type": "topic",
+      "url": "/documentation/swiftui/text"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Toggle": {
+      "abstract": [
+        {
+          "text": "A control that toggles between on and off states.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Toggle"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Toggle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Toggle"
+        }
+      ],
+      "role": "symbol",
+      "title": "Toggle",
+      "type": "topic",
+      "url": "/documentation/swiftui/toggle"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/VerticalAlignment/top": {
+      "abstract": [
+        {
+          "text": "A guide that marks the top edge of the view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "top"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI17VerticalAlignmentV",
+          "text": "VerticalAlignment"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/VerticalAlignment/top",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "top",
+      "type": "topic",
+      "url": "/documentation/swiftui/verticalalignment/top"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/frame(width:height:alignment:)": {
+      "abstract": [
+        {
+          "text": "Positions this view within an invisible frame with the specified size.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "frame"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "width"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "height"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "alignment"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI9AlignmentV",
+          "text": "Alignment"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/frame(width:height:alignment:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "frame(width:height:alignment:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/frame(width:height:alignment:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/padding(_:_:)": {
+      "abstract": [
+        {
+          "text": "Adds an equal padding amount to specific edges of this view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "padding"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4EdgeO",
+          "text": "Edge"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4EdgeO3SetV",
+          "text": "Set"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/padding(_:_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "padding(_:_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/padding(_:_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/ZStack": {
+      "abstract": [
+        {
+          "text": "A view that overlays its subviews, aligning them in both axes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ZStack"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ZStack",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ZStack"
+        }
+      ],
+      "role": "symbol",
+      "title": "ZStack",
+      "type": "topic",
+      "url": "/documentation/swiftui/zstack"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.documentation/tutorials/SwiftUI/building-lists-and-navigation": {
+      "abstract": [
+        {
+          "text": "With the basic landmark detail view set up, you need to provide a way for users to see the full list of landmarks, and to view the details about each location.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/tutorials/SwiftUI/building-lists-and-navigation",
+      "kind": "project",
+      "role": "project",
+      "title": "Building lists and navigation",
+      "type": "topic",
+      "url": "/tutorials/SwiftUI/building-lists-and-navigation"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Finetuning-a-layout",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Inspecting-View-Layout"
+      ],
+      "title": "Finetuning a layout"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/swiftui/laying-out-a-simple-view"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

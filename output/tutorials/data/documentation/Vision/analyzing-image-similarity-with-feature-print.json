@@ -1,0 +1,678 @@
+{
+  "abstract": [
+    {
+      "text": "Generate a feature print to compute distance between images.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.vision/documentation/Vision",
+        "doc://com.apple.vision/documentation/Vision/original-objective-c-and-swift-api"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.vision/documentation/Vision/analyzing-image-similarity-with-feature-print"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Vision"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "13.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "13.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "11.0",
+        "name": "Xcode"
+      },
+      {
+        "beta": false,
+        "introducedAt": "13.0",
+        "name": "iPad"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Analyzing Image Similarity with Feature Print"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "For more information about this sample code project, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/videos/play/wwdc19/222/",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "cfefa2e36cc5/AnalyzingImageSimilarityWithFeaturePrint.zip": {
+      "checksum": "cfefa2e36cc5429638bde018a688f6ad20de6bfbb82dfd924da4b969ee5af95eb5e4844b46cf16f1235259b4cceff53c25f1eaa716cd7a90876453efc3f56755",
+      "identifier": "cfefa2e36cc5/AnalyzingImageSimilarityWithFeaturePrint.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/cfefa2e36cc5/AnalyzingImageSimilarityWithFeaturePrint.zip"
+    },
+    "classifying-images-for-categorization-and-search-PageImage-card.png": {
+      "alt": "[An illustration depicting the selection of one image out of multiple images.]",
+      "identifier": "classifying-images-for-categorization-and-search-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4eabbb99abb5c902d499f93f57a9cf22/classifying-images-for-categorization-and-search-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/477f01072bf9eb417cbb5cf846e38226/classifying-images-for-categorization-and-search-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.vision/documentation/Vision": {
+      "abstract": [
+        {
+          "text": "Apply computer vision algorithms to perform a variety of tasks on input images and videos.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Vision",
+      "type": "topic",
+      "url": "/documentation/vision"
+    },
+    "doc://com.apple.vision/documentation/Vision/VNClassifyImageRequest": {
+      "abstract": [
+        {
+          "text": "A request to classify an image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VNClassifyImageRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/VNClassifyImageRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VNClassifyImageRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "VNClassifyImageRequest",
+      "type": "topic",
+      "url": "/documentation/vision/vnclassifyimagerequest"
+    },
+    "doc://com.apple.vision/documentation/Vision/VNFeaturePrintObservation": {
+      "abstract": [
+        {
+          "text": "An observation that provides the recognized feature print.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VNFeaturePrintObservation"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/VNFeaturePrintObservation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VNFeaturePrintObservation"
+        }
+      ],
+      "role": "symbol",
+      "title": "VNFeaturePrintObservation",
+      "type": "topic",
+      "url": "/documentation/vision/vnfeatureprintobservation"
+    },
+    "doc://com.apple.vision/documentation/Vision/VNGenerateImageFeaturePrintRequest": {
+      "abstract": [
+        {
+          "text": "An image-based request to generate feature prints from an image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VNGenerateImageFeaturePrintRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/VNGenerateImageFeaturePrintRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VNGenerateImageFeaturePrintRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "VNGenerateImageFeaturePrintRequest",
+      "type": "topic",
+      "url": "/documentation/vision/vngenerateimagefeatureprintrequest"
+    },
+    "doc://com.apple.vision/documentation/Vision/VNImageBasedRequest": {
+      "abstract": [
+        {
+          "text": "The abstract superclass for image-analysis requests that focus on a specific part of an image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VNImageBasedRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/VNImageBasedRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VNImageBasedRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "VNImageBasedRequest",
+      "type": "topic",
+      "url": "/documentation/vision/vnimagebasedrequest"
+    },
+    "doc://com.apple.vision/documentation/Vision/VNImageRequestHandler": {
+      "abstract": [
+        {
+          "text": "An object that processes one or more image-analysis request pertaining to a single image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VNImageRequestHandler"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/VNImageRequestHandler",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VNImageRequestHandler"
+        }
+      ],
+      "role": "symbol",
+      "title": "VNImageRequestHandler",
+      "type": "topic",
+      "url": "/documentation/vision/vnimagerequesthandler"
+    },
+    "doc://com.apple.vision/documentation/Vision/VNObservation": {
+      "abstract": [
+        {
+          "text": "The abstract superclass for analysis results.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VNObservation"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/VNObservation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VNObservation"
+        }
+      ],
+      "role": "symbol",
+      "title": "VNObservation",
+      "type": "topic",
+      "url": "/documentation/vision/vnobservation"
+    },
+    "doc://com.apple.vision/documentation/Vision/VNRequest": {
+      "abstract": [
+        {
+          "text": "The abstract superclass for analysis requests.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VNRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/VNRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VNRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "VNRequest",
+      "type": "topic",
+      "url": "/documentation/vision/vnrequest"
+    },
+    "doc://com.apple.vision/documentation/Vision/classifying-images-for-categorization-and-search": {
+      "abstract": [
+        {
+          "text": "Analyze and label images using a Vision classification request.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/classifying-images-for-categorization-and-search",
+      "images": [
+        {
+          "identifier": "classifying-images-for-categorization-and-search-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Classifying images for categorization and search",
+      "type": "topic",
+      "url": "/documentation/vision/classifying-images-for-categorization-and-search"
+    },
+    "doc://com.apple.vision/documentation/Vision/detecting-objects-in-still-images": {
+      "abstract": [
+        {
+          "text": "Locate and demarcate rectangles, faces, barcodes, and text in images using the Vision framework.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/detecting-objects-in-still-images",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Detecting Objects in Still Images",
+      "type": "topic",
+      "url": "/documentation/vision/detecting-objects-in-still-images"
+    },
+    "doc://com.apple.vision/documentation/Vision/original-objective-c-and-swift-api": {
+      "abstract": [],
+      "identifier": "doc://com.apple.vision/documentation/Vision/original-objective-c-and-swift-api",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Original Objective-C and Swift API",
+      "type": "topic",
+      "url": "/documentation/vision/original-objective-c-and-swift-api"
+    },
+    "https://developer.apple.com/videos/play/wwdc19/222/": {
+      "identifier": "https://developer.apple.com/videos/play/wwdc19/222/",
+      "title": "WWDC 2019 Session 222: Understanding Images in Vision Framework",
+      "titleInlineContent": [
+        {
+          "text": "WWDC 2019 Session 222: Understanding Images in Vision Framework",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/videos/play/wwdc19/222/"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "cfefa2e36cc5/AnalyzingImageSimilarityWithFeaturePrint.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Still-image-analysis",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.vision/documentation/Vision/detecting-objects-in-still-images",
+        "doc://com.apple.vision/documentation/Vision/classifying-images-for-categorization-and-search",
+        "doc://com.apple.vision/documentation/Vision/VNRequest",
+        "doc://com.apple.vision/documentation/Vision/VNImageBasedRequest",
+        "doc://com.apple.vision/documentation/Vision/VNClassifyImageRequest",
+        "doc://com.apple.vision/documentation/Vision/VNGenerateImageFeaturePrintRequest",
+        "doc://com.apple.vision/documentation/Vision/VNFeaturePrintObservation",
+        "doc://com.apple.vision/documentation/Vision/VNImageRequestHandler",
+        "doc://com.apple.vision/documentation/Vision/VNObservation"
+      ],
+      "title": "Still-image analysis"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNImageBasedRequest/title",
+          "value": "VNImageBasedRequest"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNImageBasedRequest/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VNImageBasedRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNImageBasedRequest/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VNImageBasedRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNObservation/title",
+          "value": "VNObservation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNObservation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VNObservation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNObservation/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VNObservation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNClassifyImageRequest/title",
+          "value": "VNClassifyImageRequest"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNClassifyImageRequest/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VNClassifyImageRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNClassifyImageRequest/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VNClassifyImageRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNRequest/title",
+          "value": "VNRequest"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNRequest/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VNRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNRequest/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VNRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNFeaturePrintObservation/title",
+          "value": "VNFeaturePrintObservation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNFeaturePrintObservation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VNFeaturePrintObservation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNFeaturePrintObservation/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VNFeaturePrintObservation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNGenerateImageFeaturePrintRequest/title",
+          "value": "VNGenerateImageFeaturePrintRequest"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNGenerateImageFeaturePrintRequest/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VNGenerateImageFeaturePrintRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNGenerateImageFeaturePrintRequest/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VNGenerateImageFeaturePrintRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNImageRequestHandler/title",
+          "value": "VNImageRequestHandler"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNImageRequestHandler/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VNImageRequestHandler"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNImageRequestHandler/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VNImageRequestHandler"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/vision/analyzing-image-similarity-with-feature-print"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

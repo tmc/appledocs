@@ -1,0 +1,451 @@
+{
+  "abstract": [
+    {
+      "text": "Use the available radios in iOS devices to improve your app’s network reliability and performance.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/url_loading_system",
+        "doc://com.apple.documentation/documentation/foundation/nsurlsession",
+        "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration/improving_network_reliability_using_multipath_tcp"
+  },
+  "kind": "article",
+  "legacy_identifier": 2919101,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Improving network reliability using Multipath TCP"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When using your app on an iOS device, users are likely to move in and out of range of Wi-Fi, switching to cellular networks and back again.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Multipath TCP improves the performance of your app when a user is in a location with limited Wi-Fi and while their device is transitioning to and from cellular data usage. In its default configuration, a URL session uses a single radio for a network call, preferring Wi-Fi over cellular. However, with Multipath TCP enabled, the URL session initiates the request on both radios and selects the more responsive of the two with a preference for Wi-Fi.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "2930782",
+          "level": 3,
+          "text": "Enable Multipath TCP in your app",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "These steps are required:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Enable the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.networking.multipath",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " in the Xcode Capabilities pane for your app target.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Set the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration/2875967-multipathservicetype",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " property in ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to a mode other than ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "none",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". For most cases, the handover mode is the best option. This mode provides your users with a seamless transition between Wi-Fi and cellular, allowing uninterrupted usage of your app. (For information about other modes, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsessionmultipathservicetype",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "While the user’s device is connected to a reliable Wi-Fi network, your app uses only Wi-Fi, and no cellular data is consumed. As the user leaves the range of the Wi-Fi network and the signal starts to deteriorate, Multipath TCP begins transitioning data usage to the cellular network to provide a seamless transition.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Multipath TCP requires the destination server to have Multipath TCP enabled. Many commercial load balancers already support Multipath TCP, and you can enable it in the configuration. For Linux-based servers, the Linux kernel with Multipath TCP is available at the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "link-2930784",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " website.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "2923118",
+          "level": 3,
+          "text": "Limitations when using Multipath TCP with Wi-Fi Assist",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because Wi-Fi Assist is a user selectable, device-wide option, there are a few limitations when using Multipath TCP with that option enabled:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Wi-Fi Assist prevents flows from using cellular data when your app is in the background.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Wi-Fi Assist limits the amount of data that your app can send over cellular networks. When the limit is reached, Multipath TCP is disabled.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Wi-Fi Assist is integrated into the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " API and doesn’t require any changes to the session configuration. At the start of each URL session task, Wi-Fi Assist determines whether to use Wi-Fi or cellular data for the connection.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After the URL session task begins, Wi-Fi Assist doesn’t change from Wi-Fi to cellular or from cellular to Wi-Fi. Multipath TCP extends the performance-improving capabilities of Wi-Fi Assist to provide seamless radio transition and improved throughput.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "When using a developer-enabled device for testing, you can disable the Wi-Fi Assist data limitation in the developer section of the Settings app.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.networking.multipath": {
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.networking.multipath",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Multipath Entitlement",
+      "type": "topic",
+      "url": "/documentation/bundleresources/entitlements/com.apple.developer.networking.multipath"
+    },
+    "doc://com.apple.documentation/documentation/bundleresources/entitlements/com.apple.developer.networking.multipath": {
+      "abstract": [
+        {
+          "text": "A Boolean value indicating whether your app may use Multipath protocols to seamlessly transition between Wi-Fi and cellular networks.",
+          "type": "text"
+        }
+      ],
+      "ideTitle": "Multipath Entitlement",
+      "identifier": "doc://com.apple.documentation/documentation/bundleresources/entitlements/com.apple.developer.networking.multipath",
+      "kind": "symbol",
+      "name": "com.apple.developer.networking.multipath",
+      "role": "symbol",
+      "title": "Multipath Entitlement",
+      "titleStyle": "title",
+      "type": "topic",
+      "url": "/documentation/bundleresources/entitlements/com.apple.developer.networking.multipath"
+    },
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlsession": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSURLSession",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlsession"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSURLSessionConfiguration",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlsessionconfiguration"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration/2875967-multipathservicetype": {
+      "abstract": [
+        {
+          "text": "A service type that specifies the Multipath TCP connection policy for transmitting data over Wi-Fi and cellular interfaces.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration/2875967-multipathservicetype",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "multipathServiceType",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlsessionconfiguration/2875967-multipathservicetype"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration/improving_network_reliability_using_multipath_tcp": {
+      "abstract": [
+        {
+          "text": "Use the available radios in iOS devices to improve your app’s network reliability and performance.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration/improving_network_reliability_using_multipath_tcp",
+      "kind": "article",
+      "role": "article",
+      "title": "Improving network reliability using Multipath TCP",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlsessionconfiguration/improving_network_reliability_using_multipath_tcp"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlsessionmultipathservicetype": {
+      "abstract": [
+        {
+          "text": "Constants that specify the type of service that Multipath TCP uses.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsessionmultipathservicetype",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSURLSessionMultipathServiceType",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlsessionmultipathservicetype"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url_loading_system": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "URL Loading System",
+      "type": "topic",
+      "url": "/documentation/foundation/url_loading_system"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "link-2930784": {
+      "identifier": "link-2930784",
+      "kind": "article",
+      "role": "link",
+      "title": "Multipath TCP",
+      "type": "topic",
+      "url": "https://multipath-tcp.org"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsurlsessionconfiguration/2875967-multipathservicetype",
+        "doc://com.apple.documentation/documentation/foundation/nsurlsessionmultipathservicetype",
+        "doc://com.apple.documentation/documentation/bundleresources/entitlements/com.apple.developer.networking.multipath"
+      ],
+      "title": "Supporting Multipath TCP"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nsurlsessionconfiguration/improving_network_reliability_using_multipath_tcp"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/urlsessionconfiguration/improving_network_reliability_using_multipath_tcp"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

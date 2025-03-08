@@ -1,0 +1,1148 @@
+{
+  "abstract": [
+    {
+      "text": "An object that records and matches a recording with captured sound in the Shazam catalog or your custom catalog.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.shazamkit/documentation/ShazamKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.shazamkit/documentation/ShazamKit/SHManagedSession"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:9ShazamKit16SHManagedSessionC",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "SHManagedSession"
+      }
+    ],
+    "modules": [
+      {
+        "name": "ShazamKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "SHManagedSession"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "SHManagedSession"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "final"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "SHManagedSession"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This session is an alternative for ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.shazamkit/documentation/ShazamKit/SHSession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " if you prefer ShazamKit to manage recording.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "There are two main differences between this managed session and the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.shazamkit/documentation/ShazamKit/SHSession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.shazamkit/documentation/ShazamKit/SHManagedSession",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " performs all recording of audio and signature generation.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.shazamkit/documentation/ShazamKit/SHManagedSession",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " won’t accept audio or Signatures that it didn’t generate.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Matching songs in Shazam requires enabling your app to access the catalog. For more information on enabling your app, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/help/account/configure-app-services/shazamkit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The code below shows searching for a match in the Shazam catalog using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.shazamkit/documentation/ShazamKit/SHManagedSession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Set up the session.",
+            "let session = SHManagedSession()",
+            "",
+            "// Check for a match.",
+            "let result = await session.result()",
+            "",
+            "// Use the result.",
+            "switch result {",
+            "  case .match(let match):",
+            "       // Match found.",
+            "  case .noMatch(let signature):",
+            "       // No match found.",
+            "  case .error(let error, let signature):",
+            "       // An error occurred.",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.shazamkit/documentation/ShazamKit": {
+      "abstract": [
+        {
+          "text": "Find information about a specific audio recording when a segment of it’s part of captured sound in the Shazam catalog or your custom catalog.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.shazamkit/documentation/ShazamKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "ShazamKit",
+      "type": "topic",
+      "url": "/documentation/shazamkit"
+    },
+    "doc://com.apple.shazamkit/documentation/ShazamKit/SHManagedSession": {
+      "abstract": [
+        {
+          "text": "An object that records and matches a recording with captured sound in the Shazam catalog or your custom catalog.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SHManagedSession"
+        }
+      ],
+      "identifier": "doc://com.apple.shazamkit/documentation/ShazamKit/SHManagedSession",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SHManagedSession"
+        }
+      ],
+      "role": "symbol",
+      "title": "SHManagedSession",
+      "type": "topic",
+      "url": "/documentation/shazamkit/shmanagedsession"
+    },
+    "doc://com.apple.shazamkit/documentation/ShazamKit/SHManagedSession/State-swift.enum": {
+      "abstract": [
+        {
+          "text": "The state of a managed session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "State"
+        }
+      ],
+      "identifier": "doc://com.apple.shazamkit/documentation/ShazamKit/SHManagedSession/State-swift.enum",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "State"
+        }
+      ],
+      "role": "symbol",
+      "title": "SHManagedSession.State",
+      "type": "topic",
+      "url": "/documentation/shazamkit/shmanagedsession/state-swift.enum"
+    },
+    "doc://com.apple.shazamkit/documentation/ShazamKit/SHManagedSession/cancel()": {
+      "abstract": [
+        {
+          "text": "Cancels the currently running match attempt.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "cancel"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.shazamkit/documentation/ShazamKit/SHManagedSession/cancel()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cancel()",
+      "type": "topic",
+      "url": "/documentation/shazamkit/shmanagedsession/cancel()"
+    },
+    "doc://com.apple.shazamkit/documentation/ShazamKit/SHManagedSession/init()": {
+      "abstract": [
+        {
+          "text": "Creates a new managed session object for matching songs in the Shazam Music catalog.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.shazamkit/documentation/ShazamKit/SHManagedSession/init()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init()",
+      "type": "topic",
+      "url": "/documentation/shazamkit/shmanagedsession/init()"
+    },
+    "doc://com.apple.shazamkit/documentation/ShazamKit/SHManagedSession/init(catalog:)": {
+      "abstract": [
+        {
+          "text": "Creates a new managed session object for matching audio in a custom catalog.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "catalog"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SHCatalog",
+          "text": "SHCatalog"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.shazamkit/documentation/ShazamKit/SHManagedSession/init(catalog:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(catalog:)",
+      "type": "topic",
+      "url": "/documentation/shazamkit/shmanagedsession/init(catalog:)"
+    },
+    "doc://com.apple.shazamkit/documentation/ShazamKit/SHManagedSession/prepare()": {
+      "abstract": [
+        {
+          "text": "Preallocates the resources needed for a match, which increases the responsiveness of matches.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "prepare"
+        },
+        {
+          "kind": "text",
+          "text": "() "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        }
+      ],
+      "identifier": "doc://com.apple.shazamkit/documentation/ShazamKit/SHManagedSession/prepare()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "prepare()",
+      "type": "topic",
+      "url": "/documentation/shazamkit/shmanagedsession/prepare()"
+    },
+    "doc://com.apple.shazamkit/documentation/ShazamKit/SHManagedSession/result()": {
+      "abstract": [
+        {
+          "text": "Performs an asynchronous match with a single signature.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "result"
+        },
+        {
+          "kind": "text",
+          "text": "() "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SHSession",
+          "text": "SHSession"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:So9SHSessionC9ShazamKitE6ResultO",
+          "text": "Result"
+        }
+      ],
+      "identifier": "doc://com.apple.shazamkit/documentation/ShazamKit/SHManagedSession/result()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "result()",
+      "type": "topic",
+      "url": "/documentation/shazamkit/shmanagedsession/result()"
+    },
+    "doc://com.apple.shazamkit/documentation/ShazamKit/SHManagedSession/results": {
+      "abstract": [
+        {
+          "text": "The results as an asynchronous sequence of matches.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "results"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SHSession",
+          "text": "SHSession"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:So9SHSessionC9ShazamKitE7ResultsV",
+          "text": "Results"
+        }
+      ],
+      "identifier": "doc://com.apple.shazamkit/documentation/ShazamKit/SHManagedSession/results",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "results",
+      "type": "topic",
+      "url": "/documentation/shazamkit/shmanagedsession/results"
+    },
+    "doc://com.apple.shazamkit/documentation/ShazamKit/SHManagedSession/state-swift.property": {
+      "abstract": [
+        {
+          "text": "The current state of the managed session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "state"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9ShazamKit16SHManagedSessionC",
+          "text": "SHManagedSession"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9ShazamKit16SHManagedSessionC5StateO",
+          "text": "State"
+        }
+      ],
+      "identifier": "doc://com.apple.shazamkit/documentation/ShazamKit/SHManagedSession/state-swift.property",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "state",
+      "type": "topic",
+      "url": "/documentation/shazamkit/shmanagedsession/state-swift.property"
+    },
+    "doc://com.apple.shazamkit/documentation/ShazamKit/SHMatch": {
+      "abstract": [
+        {
+          "text": "An object that represents the catalog media items that match a query.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SHMatch"
+        }
+      ],
+      "identifier": "doc://com.apple.shazamkit/documentation/ShazamKit/SHMatch",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SHMatch"
+        }
+      ],
+      "role": "symbol",
+      "title": "SHMatch",
+      "type": "topic",
+      "url": "/documentation/shazamkit/shmatch"
+    },
+    "doc://com.apple.shazamkit/documentation/ShazamKit/SHMatchedMediaItem": {
+      "abstract": [
+        {
+          "text": "An object that represents the metadata for a matched reference signature.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SHMatchedMediaItem"
+        }
+      ],
+      "identifier": "doc://com.apple.shazamkit/documentation/ShazamKit/SHMatchedMediaItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SHMatchedMediaItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "SHMatchedMediaItem",
+      "type": "topic",
+      "url": "/documentation/shazamkit/shmatchedmediaitem"
+    },
+    "doc://com.apple.shazamkit/documentation/ShazamKit/SHMediaItem": {
+      "abstract": [
+        {
+          "text": "An object that represents the metadata for a reference signature.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SHMediaItem"
+        }
+      ],
+      "identifier": "doc://com.apple.shazamkit/documentation/ShazamKit/SHMediaItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SHMediaItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "SHMediaItem",
+      "type": "topic",
+      "url": "/documentation/shazamkit/shmediaitem"
+    },
+    "doc://com.apple.shazamkit/documentation/ShazamKit/SHSession": {
+      "abstract": [
+        {
+          "text": "An object that matches a specific audio recording when a segment of that recording is part of captured sound in the Shazam catalog or your custom catalog.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SHSession"
+        }
+      ],
+      "identifier": "doc://com.apple.shazamkit/documentation/ShazamKit/SHSession",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SHSession"
+        }
+      ],
+      "role": "symbol",
+      "title": "SHSession",
+      "type": "topic",
+      "url": "/documentation/shazamkit/shsession"
+    },
+    "doc://com.apple.shazamkit/documentation/ShazamKit/SHSessionDelegate": {
+      "abstract": [
+        {
+          "text": "Methods that the session calls with the result of a match request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SHSessionDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.shazamkit/documentation/ShazamKit/SHSessionDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SHSessionDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "SHSessionDelegate",
+      "type": "topic",
+      "url": "/documentation/shazamkit/shsessiondelegate"
+    },
+    "doc://com.externally.resolved.symbol/s:11Observation10ObservableP": {
+      "abstract": [
+        {
+          "text": "A type that emits notifications to observers when underlying data changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Observable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:11Observation10ObservableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Observable",
+      "type": "topic",
+      "url": "/documentation/Observation/Observable"
+    },
+    "doc://com.externally.resolved.symbol/s:s8CopyableP": {
+      "abstract": [
+        {
+          "text": "A type whose values can be implicitly or explicitly copied.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Copyable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8CopyableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Copyable",
+      "type": "topic",
+      "url": "/documentation/Swift/Copyable"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    },
+    "https://developer.apple.com/help/account/configure-app-services/shazamkit": {
+      "identifier": "https://developer.apple.com/help/account/configure-app-services/shazamkit",
+      "title": "Enable ShazamKit for an App ID",
+      "titleInlineContent": [
+        {
+          "text": "Enable ShazamKit for an App ID",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/help/account/configure-app-services/shazamkit"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s8CopyableP",
+        "doc://com.externally.resolved.symbol/s:11Observation10ObservableP",
+        "doc://com.externally.resolved.symbol/s:s8SendableP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Match-audio",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.shazamkit/documentation/ShazamKit/SHSession",
+        "doc://com.apple.shazamkit/documentation/ShazamKit/SHSessionDelegate",
+        "doc://com.apple.shazamkit/documentation/ShazamKit/SHMatch",
+        "doc://com.apple.shazamkit/documentation/ShazamKit/SHMatchedMediaItem",
+        "doc://com.apple.shazamkit/documentation/ShazamKit/SHMediaItem"
+      ],
+      "title": "Match audio"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-managed-session-object",
+      "identifiers": [
+        "doc://com.apple.shazamkit/documentation/ShazamKit/SHManagedSession/init()",
+        "doc://com.apple.shazamkit/documentation/ShazamKit/SHManagedSession/init(catalog:)"
+      ],
+      "title": "Creating a managed session object"
+    },
+    {
+      "anchor": "Getting-the-session-state",
+      "identifiers": [
+        "doc://com.apple.shazamkit/documentation/ShazamKit/SHManagedSession/state-swift.property",
+        "doc://com.apple.shazamkit/documentation/ShazamKit/SHManagedSession/State-swift.enum"
+      ],
+      "title": "Getting the session state"
+    },
+    {
+      "anchor": "Returning-queries",
+      "identifiers": [
+        "doc://com.apple.shazamkit/documentation/ShazamKit/SHManagedSession/result()",
+        "doc://com.apple.shazamkit/documentation/ShazamKit/SHManagedSession/results",
+        "doc://com.apple.shazamkit/documentation/ShazamKit/SHManagedSession/cancel()",
+        "doc://com.apple.shazamkit/documentation/ShazamKit/SHManagedSession/prepare()"
+      ],
+      "title": "Returning queries"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.shazamkit~1documentation~1ShazamKit~1SHMatchedMediaItem/title",
+          "value": "SHMatchedMediaItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.shazamkit~1documentation~1ShazamKit~1SHMatchedMediaItem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SHMatchedMediaItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.shazamkit~1documentation~1ShazamKit~1SHMatchedMediaItem/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SHMatchedMediaItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.shazamkit~1documentation~1ShazamKit~1SHMatch/title",
+          "value": "SHMatch"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.shazamkit~1documentation~1ShazamKit~1SHMatch/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SHMatch"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.shazamkit~1documentation~1ShazamKit~1SHMatch/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SHMatch"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.shazamkit~1documentation~1ShazamKit~1SHSessionDelegate/title",
+          "value": "SHSessionDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.shazamkit~1documentation~1ShazamKit~1SHSessionDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SHSessionDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.shazamkit~1documentation~1ShazamKit~1SHSessionDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SHSessionDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.shazamkit~1documentation~1ShazamKit~1SHSession/title",
+          "value": "SHSession"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.shazamkit~1documentation~1ShazamKit~1SHSession/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SHSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.shazamkit~1documentation~1ShazamKit~1SHSession/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SHSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.shazamkit~1documentation~1ShazamKit~1SHMediaItem/title",
+          "value": "SHMediaItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.shazamkit~1documentation~1ShazamKit~1SHMediaItem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SHMediaItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.shazamkit~1documentation~1ShazamKit~1SHMediaItem/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SHMediaItem"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/shazamkit/shmanagedsession"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

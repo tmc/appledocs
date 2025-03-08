@@ -1,0 +1,966 @@
+{
+  "abstract": [
+    {
+      "text": "Registers the service so it can begin launching subject to user approval.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.servicemanagement/documentation/ServiceManagement",
+        "doc://com.apple.servicemanagement/documentation/ServiceManagement/SMAppService"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.servicemanagement/documentation/ServiceManagement/SMAppService/register()"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)SMAppService(im)registerAndReturnError:",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "func"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "register"
+      },
+      {
+        "kind": "text",
+        "text": "() "
+      },
+      {
+        "kind": "keyword",
+        "text": "throws"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Service Management"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "registerAndReturnError:"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Method",
+    "symbolKind": "method",
+    "title": "register()"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "Mac Catalyst",
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "func"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "register"
+            },
+            {
+              "kind": "text",
+              "text": "() "
+            },
+            {
+              "kind": "keyword",
+              "text": "throws"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The registration process applies to the following rules, depending upon the type of service:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If the service corresponds to a LoginItem bundle, the helper starts immediately and on subsequent logins. If the helper crashes or exits with a non-zero status, the system relaunches it.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If the service corresponds to the main application, the application launches on subsequent logins.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If the service corresponds to a LaunchAgent, the LaunchAgent is immediately bootstrapped and may begin running. In addition LaunchAgents registered with this method bootstrap on each subsequent login.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If an app needs to register a LaunchAgent for multiple users, you must call the API once per user while that user is running the app.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If the service corresponds to a LaunchDaemon, the system won’t bootstrap the LaunchDaemon until an admin approves the LaunchDaemon in System Preferences. The system bootstraps LaunchDaemons registered with this method and approved by an admin on each subsequent boot.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the service is already registered, this method returns ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.servicemanagement/documentation/ServiceManagement/kSMErrorAlreadyRegistered",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the service isn’t approved by the user, this method returns ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.servicemanagement/documentation/ServiceManagement/kSMErrorLaunchDeniedByUser",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/swift/false": {
+      "abstract": [
+        {
+          "text": "A false value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/swift/false",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "false",
+      "type": "topic",
+      "url": "/documentation/swift/false"
+    },
+    "doc://com.apple.documentation/documentation/swift/true": {
+      "abstract": [
+        {
+          "text": "A true value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/swift/true",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "true",
+      "type": "topic",
+      "url": "/documentation/swift/true"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.servicemanagement/documentation/ServiceManagement": {
+      "abstract": [
+        {
+          "text": "Manage startup items, launch agents, and launch daemons from within an app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.servicemanagement/documentation/ServiceManagement",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Service Management",
+      "type": "topic",
+      "url": "/documentation/servicemanagement"
+    },
+    "doc://com.apple.servicemanagement/documentation/ServiceManagement/SMAppService": {
+      "abstract": [
+        {
+          "text": "An object the framework uses to control helper executables that live inside an app’s main bundle.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SMAppService"
+        }
+      ],
+      "identifier": "doc://com.apple.servicemanagement/documentation/ServiceManagement/SMAppService",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SMAppService"
+        }
+      ],
+      "role": "symbol",
+      "title": "SMAppService",
+      "type": "topic",
+      "url": "/documentation/servicemanagement/smappservice"
+    },
+    "doc://com.apple.servicemanagement/documentation/ServiceManagement/SMAppService/register()": {
+      "abstract": [
+        {
+          "text": "Registers the service so it can begin launching subject to user approval.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "register"
+        },
+        {
+          "kind": "text",
+          "text": "() "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.servicemanagement/documentation/ServiceManagement/SMAppService/register()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "registerAndReturnError:"
+        }
+      ],
+      "role": "symbol",
+      "title": "register()",
+      "type": "topic",
+      "url": "/documentation/servicemanagement/smappservice/register()"
+    },
+    "doc://com.apple.servicemanagement/documentation/ServiceManagement/SMAppService/unregister()": {
+      "abstract": [
+        {
+          "text": "Unregisters the service so the system no longer launches it.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "unregister"
+        },
+        {
+          "kind": "text",
+          "text": "() "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.servicemanagement/documentation/ServiceManagement/SMAppService/unregister()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "unregisterAndReturnError:"
+        }
+      ],
+      "role": "symbol",
+      "title": "unregister()",
+      "type": "topic",
+      "url": "/documentation/servicemanagement/smappservice/unregister()"
+    },
+    "doc://com.apple.servicemanagement/documentation/ServiceManagement/SMAppService/unregister(completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Unregisters the service so the system no longer launches it and calls a completion handler you provide with the resulting error value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "unregister"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.servicemanagement/documentation/ServiceManagement/SMAppService/unregister(completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "unregisterWithCompletionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "unregister(completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/servicemanagement/smappservice/unregister(completionhandler:)"
+    },
+    "doc://com.apple.servicemanagement/documentation/ServiceManagement/kSMErrorAlreadyRegistered": {
+      "abstract": [
+        {
+          "text": "The application is already registered.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kSMErrorAlreadyRegistered"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.servicemanagement/documentation/ServiceManagement/kSMErrorAlreadyRegistered",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kSMErrorAlreadyRegistered"
+        }
+      ],
+      "role": "symbol",
+      "title": "kSMErrorAlreadyRegistered",
+      "type": "topic",
+      "url": "/documentation/servicemanagement/ksmerroralreadyregistered"
+    },
+    "doc://com.apple.servicemanagement/documentation/ServiceManagement/kSMErrorLaunchDeniedByUser": {
+      "abstract": [
+        {
+          "text": "The user denied the app’s launch request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kSMErrorLaunchDeniedByUser"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.servicemanagement/documentation/ServiceManagement/kSMErrorLaunchDeniedByUser",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kSMErrorLaunchDeniedByUser"
+        }
+      ],
+      "role": "symbol",
+      "title": "kSMErrorLaunchDeniedByUser",
+      "type": "topic",
+      "url": "/documentation/servicemanagement/ksmerrorlaunchdeniedbyuser"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Registering-services",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.servicemanagement/documentation/ServiceManagement/SMAppService/unregister()",
+        "doc://com.apple.servicemanagement/documentation/ServiceManagement/SMAppService/unregister(completionHandler:)"
+      ],
+      "title": "Registering services"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "16.0",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.0",
+              "name": "macOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Instance Method"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "registerAndReturnError:"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "method"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "registerAndReturnError:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.servicemanagement/documentation/ServiceManagement",
+                "doc://com.apple.servicemanagement/documentation/ServiceManagement/SMAppService"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Registering-services",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.servicemanagement/documentation/ServiceManagement/SMAppService/unregister()",
+                "doc://com.apple.servicemanagement/documentation/ServiceManagement/SMAppService/unregister(completionHandler:)"
+              ],
+              "title": "Registering services"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "Mac Catalyst",
+                  "macOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "text",
+                    "text": "- ("
+                  },
+                  {
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:@T@BOOL",
+                    "text": "BOOL"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ") "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "registerAndReturnError:"
+                  },
+                  {
+                    "kind": "text",
+                    "text": "("
+                  },
+                  {
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSError",
+                    "text": "NSError"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " * *) "
+                  },
+                  {
+                    "kind": "internalParam",
+                    "text": "error"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ";"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "add",
+          "path": "/primaryContentSections/1",
+          "value": {
+            "kind": "parameters",
+            "parameters": [
+              {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "On output, a pointer to an error object that describes why the method failed, or ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "nil",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " if no error occurred. If you are not interested in the error information, pass ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "nil",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " for this parameter.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ],
+                "name": "error"
+              }
+            ]
+          }
+        },
+        {
+          "op": "add",
+          "path": "/primaryContentSections/2",
+          "value": {
+            "content": [
+              {
+                "anchor": "return-value",
+                "level": 2,
+                "text": "Return Value",
+                "type": "heading"
+              },
+              {
+                "inlineContent": [
+                  {
+                    "text": "Returns ",
+                    "type": "text"
+                  },
+                  {
+                    "identifier": "doc://com.apple.documentation/documentation/swift/true",
+                    "isActive": true,
+                    "type": "reference"
+                  },
+                  {
+                    "text": " if the service was successfully registered; otherwise, ",
+                    "type": "text"
+                  },
+                  {
+                    "identifier": "doc://com.apple.documentation/documentation/swift/false",
+                    "isActive": true,
+                    "type": "reference"
+                  },
+                  {
+                    "text": ".",
+                    "type": "text"
+                  }
+                ],
+                "type": "paragraph"
+              }
+            ],
+            "kind": "content"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.servicemanagement~1documentation~1ServiceManagement~1kSMErrorAlreadyRegistered/title",
+          "value": "kSMErrorAlreadyRegistered"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.servicemanagement~1documentation~1ServiceManagement~1kSMErrorAlreadyRegistered/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kSMErrorAlreadyRegistered"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.servicemanagement~1documentation~1ServiceManagement~1SMAppService~1register()/title",
+          "value": "registerAndReturnError:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.servicemanagement~1documentation~1ServiceManagement~1SMAppService~1register()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "registerAndReturnError:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.servicemanagement~1documentation~1ServiceManagement~1SMAppService~1unregister(completionHandler:)/title",
+          "value": "unregisterWithCompletionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.servicemanagement~1documentation~1ServiceManagement~1SMAppService~1unregister(completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "unregisterWithCompletionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.servicemanagement~1documentation~1ServiceManagement~1kSMErrorLaunchDeniedByUser/title",
+          "value": "kSMErrorLaunchDeniedByUser"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.servicemanagement~1documentation~1ServiceManagement~1kSMErrorLaunchDeniedByUser/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kSMErrorLaunchDeniedByUser"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.servicemanagement~1documentation~1ServiceManagement~1SMAppService~1unregister()/title",
+          "value": "unregisterAndReturnError:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.servicemanagement~1documentation~1ServiceManagement~1SMAppService~1unregister()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "unregisterAndReturnError:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.servicemanagement~1documentation~1ServiceManagement~1SMAppService/title",
+          "value": "SMAppService"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.servicemanagement~1documentation~1ServiceManagement~1SMAppService/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SMAppService"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.servicemanagement~1documentation~1ServiceManagement~1SMAppService/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SMAppService"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/servicemanagement/smappservice/register()"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/servicemanagement/smappservice/register()"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

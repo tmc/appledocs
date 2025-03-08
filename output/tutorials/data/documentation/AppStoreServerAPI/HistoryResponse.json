@@ -1,0 +1,806 @@
+{
+  "abstract": [
+    {
+      "text": "A response that contains the customer’s transaction history for an app.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "App Store Server API",
+      "versions": [
+        "1.0 beta 1",
+        "1.13"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/HistoryResponse"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "data:app_store_server_api:HistoryResponse",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "object "
+      },
+      {
+        "kind": "identifier",
+        "text": "HistoryResponse"
+      }
+    ],
+    "modules": [
+      {
+        "name": "App Store Server API"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "HistoryResponse"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "1.0",
+        "name": "App Store Server API"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Object",
+    "symbolKind": "dictionary",
+    "title": "HistoryResponse"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "data"
+          ],
+          "platforms": [
+            "Unsupported OS: App Store Server API"
+          ],
+          "tokens": [
+            {
+              "kind": "text",
+              "text": "object "
+            },
+            {
+              "kind": "identifier",
+              "text": "HistoryResponse"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "items": [
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The app’s identifier in the App Store.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "appAppleId",
+          "required": false,
+          "type": [
+            {
+              "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/appAppleId",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:app_store_server_api:appAppleId",
+              "text": "appAppleId"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The bundle identifier of the app.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "bundleId",
+          "required": false,
+          "type": [
+            {
+              "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/bundleId",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:app_store_server_api:bundleId",
+              "text": "bundleId"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The server environment in which you’re making the request, whether sandbox or production.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "environment",
+          "required": false,
+          "type": [
+            {
+              "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/environment",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:app_store_server_api:environment",
+              "text": "environment"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A Boolean value that indicates whether the App Store has more transactions than it returns in this response. If the value is ",
+                  "type": "text"
+                },
+                {
+                  "code": "true",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", use the ",
+                  "type": "text"
+                },
+                {
+                  "code": "revision",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " token to request the next set of transactions.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "hasMore",
+          "required": false,
+          "type": [
+            {
+              "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/hasMore",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:app_store_server_api:hasMore",
+              "text": "hasMore"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A token you use in a query to request the next set of transactions from the endpoint.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "revision",
+          "required": false,
+          "type": [
+            {
+              "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/revision",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:app_store_server_api:revision",
+              "text": "revision"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An array of in-app purchase transactions for the customer, signed by Apple, in JSON Web Signature (JWS) format.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "signedTransactions",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "["
+            },
+            {
+              "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/JWSTransaction",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:app_store_server_api:JWSTransaction",
+              "text": "JWSTransaction"
+            },
+            {
+              "kind": "text",
+              "text": "]"
+            }
+          ]
+        }
+      ],
+      "kind": "properties",
+      "title": "Properties"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/GET-v2-history-_transactionId_",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " endpoint returns the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/HistoryResponse",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". This response contains results for all in-app purchase product types: auto-renewable subscriptions, non-renewing subscriptions, non-consumables, and consumables. The result includes transactions in any state, including transactions that are refunded or revoked, and transactions that the app has or hasn’t marked as finished.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The history response returns a maximum of 20 transactions per response. If your customer has more than 20 in-app transactions, the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/HistoryResponse/hasMore",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " value is ",
+              "type": "text"
+            },
+            {
+              "code": "true",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". Each response includes a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/HistoryResponse/revision",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " value. Call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/GET-v2-history-_transactionId_",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " again with the ",
+              "type": "text"
+            },
+            {
+              "code": "revision",
+              "type": "codeVoice"
+            },
+            {
+              "text": " token in the query to receive the next set of transactions; use the same query parameters for each subsequent call that includes ",
+              "type": "text"
+            },
+            {
+              "code": "revision",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". When the App Store has no more transactions to send, the ",
+              "type": "text"
+            },
+            {
+              "code": "hasMore",
+              "type": "codeVoice"
+            },
+            {
+              "text": " value is ",
+              "type": "text"
+            },
+            {
+              "code": "false",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If a customer upgrades a subscription or the App Store revokes an in-app purchase while you’re receiving transaction history, the App Store updates the relevant transaction. If the response is sorted in ",
+              "type": "text"
+            },
+            {
+              "code": "ASCENDING",
+              "type": "codeVoice"
+            },
+            {
+              "text": " order, you receive the transaction again, with updated data.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "The ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/GET-v1-history-_transactionId_",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " endpoint also returns the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/HistoryResponse",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ", however, it doesn’t include consumable in-app purchases that the app has marked as finished. Use ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/GET-v2-history-_transactionId_",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " instead.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI": {
+      "abstract": [
+        {
+          "text": "Manage your customers’ App Store transactions from your server.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "App Store Server API",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi"
+    },
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/GET-v1-history-_transactionId_": {
+      "abstract": [
+        {
+          "text": "Get a customer’s in-app purchase transaction history for your app, except finished consumable in-app purchases.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/GET-v1-history-_transactionId_",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GET /v1/history/{transactionId}"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get Transaction History V1",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi/get-v1-history-_transactionid_"
+    },
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/GET-v2-history-_transactionId_": {
+      "abstract": [
+        {
+          "text": "Get a customer’s in-app purchase transaction history for your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/GET-v2-history-_transactionId_",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GET /v2/history/{transactionId}"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get Transaction History",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi/get-v2-history-_transactionid_"
+    },
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/HistoryResponse": {
+      "abstract": [
+        {
+          "text": "A response that contains the customer’s transaction history for an app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "HistoryResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/HistoryResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HistoryResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "HistoryResponse",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi/historyresponse"
+    },
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/HistoryResponse/hasMore": {
+      "abstract": [],
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/HistoryResponse/hasMore",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "hasMore"
+        }
+      ],
+      "role": "symbol",
+      "title": "hasMore",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi/historyresponse/hasmore"
+    },
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/HistoryResponse/revision": {
+      "abstract": [],
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/HistoryResponse/revision",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "revision"
+        }
+      ],
+      "role": "symbol",
+      "title": "revision",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi/historyresponse/revision"
+    },
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/JWSTransaction": {
+      "abstract": [
+        {
+          "text": "Transaction information signed by the App Store, in JSON Web Signature (JWS) Compact Serialization format.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "JWSTransaction"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/JWSTransaction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "JWSTransaction"
+        }
+      ],
+      "role": "symbol",
+      "title": "JWSTransaction",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi/jwstransaction"
+    },
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/appAppleId": {
+      "abstract": [
+        {
+          "text": "The unique identifier of an app in the App Store.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "appAppleId"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/appAppleId",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "appAppleId"
+        }
+      ],
+      "role": "symbol",
+      "title": "appAppleId",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi/appappleid"
+    },
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/bundleId": {
+      "abstract": [
+        {
+          "text": "The bundle identifier of an app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "bundleId"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/bundleId",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "bundleId"
+        }
+      ],
+      "role": "symbol",
+      "title": "bundleId",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi/bundleid"
+    },
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/environment": {
+      "abstract": [
+        {
+          "text": "The server environment, either sandbox or production.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "environment"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/environment",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "environment"
+        }
+      ],
+      "role": "symbol",
+      "title": "environment",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi/environment"
+    },
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/hasMore": {
+      "abstract": [
+        {
+          "text": "A Boolean value indicating whether the App Store has more transaction data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "hasMore"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/hasMore",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "hasMore"
+        }
+      ],
+      "role": "symbol",
+      "title": "hasMore",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi/hasmore"
+    },
+    "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/revision": {
+      "abstract": [
+        {
+          "text": "A token you use in a query to request the next set of transactions for the customer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "revision"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/revision",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "revision"
+        }
+      ],
+      "role": "symbol",
+      "title": "revision",
+      "type": "topic",
+      "url": "/documentation/appstoreserverapi/revision"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "In-app-purchase-history",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/GET-v2-history-_transactionId_",
+        "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/GET-v1-history-_transactionId_"
+      ],
+      "title": "In-app purchase history"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Response-data-types",
+      "identifiers": [
+        "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/appAppleId",
+        "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/bundleId",
+        "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/environment",
+        "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/hasMore",
+        "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/revision",
+        "doc://com.apple.appstoreserverapi/documentation/AppStoreServerAPI/JWSTransaction"
+      ],
+      "title": "Response data types"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/appstoreserverapi/historyresponse"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

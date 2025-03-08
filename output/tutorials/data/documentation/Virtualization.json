@@ -1,0 +1,1191 @@
+{
+  "abstract": [
+    {
+      "text": "Create virtual machines and run macOS and Linux-based operating systems.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.virtualization/documentation/Virtualization"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "Virtualization",
+    "modules": [
+      {
+        "name": "Virtualization"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "11.0",
+        "name": "macOS"
+      }
+    ],
+    "role": "collection",
+    "roleHeading": "Framework",
+    "symbolKind": "module",
+    "title": "Virtualization"
+  },
+  "primaryContentSections": [
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.virtualization/documentation/Virtualization/creating-and-running-a-linux-virtual-machine"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Virtualization framework provides high-level APIs for creating and managing virtual machines (VM) on Apple silicon and Intel-based Mac computers. Use this framework to boot and run macOS or Linux-based operating systems in custom environments that you define. The framework supports the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://docs.oasis-open.org/virtio/virtio/v1.1/csprd01/virtio-v1.1-csprd01.html",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " specification, which defines standard interfaces for many device types, including network, socket, serial port, storage, entropy, and memory-balloon devices.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To set up a VM, configure a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZVirtualMachineConfiguration",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". If you’re creating a macOS guest also configure a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZMacPlatformConfiguration",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and then add the devices you want to expose to the guest operating system. Then, create a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZVirtualMachineConfiguration",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object with your configuration data, and use that VM object to start, pause, and resume the VM environment. To interact with the guest, you create a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZVirtualMachineView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZVirtualMachine",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object to display and interact with the graphical content in a window.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.security.virtualization": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether your app can use the Virtualization framework.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.security.virtualization",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "com.apple.security.virtualization",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Entitlements/com.apple.security.virtualization"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization": {
+      "abstract": [
+        {
+          "text": "Create virtual machines and run macOS and Linux-based operating systems.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Virtualization",
+      "type": "topic",
+      "url": "/documentation/virtualization"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/VZError": {
+      "abstract": [
+        {
+          "text": "Errors that you might encounter when configuring or using a VM.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VZError"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VZError"
+        }
+      ],
+      "role": "symbol",
+      "title": "VZError",
+      "type": "topic",
+      "url": "/documentation/virtualization/vzerror"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/VZErrorDomain": {
+      "abstract": [
+        {
+          "text": "The error domain for the Virtualization framework.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VZErrorDomain"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZErrorDomain",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VZErrorDomain"
+        }
+      ],
+      "role": "symbol",
+      "title": "VZErrorDomain",
+      "type": "topic",
+      "url": "/documentation/virtualization/vzerrordomain"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/VZLinuxRosettaDirectoryShare": {
+      "abstract": [
+        {
+          "text": "The Linux directory share for Rosetta.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VZLinuxRosettaDirectoryShare"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZLinuxRosettaDirectoryShare",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VZLinuxRosettaDirectoryShare"
+        }
+      ],
+      "role": "symbol",
+      "title": "VZLinuxRosettaDirectoryShare",
+      "type": "topic",
+      "url": "/documentation/virtualization/vzlinuxrosettadirectoryshare"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/VZMacPlatformConfiguration": {
+      "abstract": [
+        {
+          "text": "The platform configuration for booting macOS on Apple silicon.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VZMacPlatformConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZMacPlatformConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VZMacPlatformConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "VZMacPlatformConfiguration",
+      "type": "topic",
+      "url": "/documentation/virtualization/vzmacplatformconfiguration"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/VZVirtualMachine": {
+      "abstract": [
+        {
+          "text": "An object that manages the overall state and configuration of your VM.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VZVirtualMachine"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZVirtualMachine",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VZVirtualMachine"
+        }
+      ],
+      "role": "symbol",
+      "title": "VZVirtualMachine",
+      "type": "topic",
+      "url": "/documentation/virtualization/vzvirtualmachine"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/VZVirtualMachineConfiguration": {
+      "abstract": [
+        {
+          "text": "The environment attributes and list of devices to use during the configuration of macOS or Linux VMs.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VZVirtualMachineConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZVirtualMachineConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VZVirtualMachineConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "VZVirtualMachineConfiguration",
+      "type": "topic",
+      "url": "/documentation/virtualization/vzvirtualmachineconfiguration"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/VZVirtualMachineView": {
+      "abstract": [
+        {
+          "text": "A view that allows user interaction with a VM.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VZVirtualMachineView"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/VZVirtualMachineView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VZVirtualMachineView"
+        }
+      ],
+      "role": "symbol",
+      "title": "VZVirtualMachineView",
+      "type": "topic",
+      "url": "/documentation/virtualization/vzvirtualmachineview"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/accelerating-the-performance-of-rosetta": {
+      "abstract": [
+        {
+          "text": "Improve Rosetta performance by adding support for the total store ordering (TSO) memory model to your Linux kernel.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/accelerating-the-performance-of-rosetta",
+      "kind": "article",
+      "role": "article",
+      "title": "Accelerating the performance of Rosetta",
+      "type": "topic",
+      "url": "/documentation/virtualization/accelerating-the-performance-of-rosetta"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/adding-the-virtualization-entitlement-to-your-project": {
+      "abstract": [
+        {
+          "text": "Configure your project to use the Virtualization framework.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/adding-the-virtualization-entitlement-to-your-project",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding the Virtualization Entitlement to Your Project",
+      "type": "topic",
+      "url": "/documentation/virtualization/adding-the-virtualization-entitlement-to-your-project"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/audio": {
+      "abstract": [
+        {
+          "text": "Configure audio devices that enable the guest operating system to perform audio playback and capture through the host’s audio devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/audio",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Audio",
+      "type": "topic",
+      "url": "/documentation/virtualization/audio"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/clipboard-sharing": {
+      "abstract": [
+        {
+          "text": "Share the pasteboard between the host and guest system.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/clipboard-sharing",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Clipboard sharing",
+      "type": "topic",
+      "url": "/documentation/virtualization/clipboard-sharing"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/consoles": {
+      "abstract": [
+        {
+          "text": "Configure a device that manages multiport console communication with the guest system.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/consoles",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Consoles",
+      "type": "topic",
+      "url": "/documentation/virtualization/consoles"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/creating-and-running-a-linux-virtual-machine": {
+      "abstract": [
+        {
+          "text": "Design and run custom Linux guests on Apple silicon or Intel-based Mac Computers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/creating-and-running-a-linux-virtual-machine",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating and Running a Linux Virtual Machine",
+      "type": "topic",
+      "url": "/documentation/virtualization/creating-and-running-a-linux-virtual-machine"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/graphics": {
+      "abstract": [
+        {
+          "text": "Configure a device for a guest to display its UI.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/graphics",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Graphics",
+      "type": "topic",
+      "url": "/documentation/virtualization/graphics"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/installing-macos-on-a-virtual-machine": {
+      "abstract": [
+        {
+          "text": "Download a macOS restore image and install it in a new VM.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/installing-macos-on-a-virtual-machine",
+      "kind": "article",
+      "role": "article",
+      "title": "Installing macOS on a Virtual Machine",
+      "type": "topic",
+      "url": "/documentation/virtualization/installing-macos-on-a-virtual-machine"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/keyboards-and-pointing-devices": {
+      "abstract": [
+        {
+          "text": "Configure devices that connect a mouse and keyboard to the guest system.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/keyboards-and-pointing-devices",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Keyboards and pointing devices",
+      "type": "topic",
+      "url": "/documentation/virtualization/keyboards-and-pointing-devices"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/memory": {
+      "abstract": [
+        {
+          "text": "Configure a memory balloon device to change the allocated memory for the guest system.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/memory",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Memory",
+      "type": "topic",
+      "url": "/documentation/virtualization/memory"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/network": {
+      "abstract": [
+        {
+          "text": "Configure the devices that connect the guest system to the network.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/network",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Network",
+      "type": "topic",
+      "url": "/documentation/virtualization/network"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/randomization": {
+      "abstract": [
+        {
+          "text": "Configure a device for the guest system to use to generate random numbers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/randomization",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Randomization",
+      "type": "topic",
+      "url": "/documentation/virtualization/randomization"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/running-gui-linux-in-a-virtual-machine-on-a-mac": {
+      "abstract": [
+        {
+          "text": "Install and run GUI Linux in a virtual machine using the Virtualization framework.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/running-gui-linux-in-a-virtual-machine-on-a-mac",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Running GUI Linux in a virtual machine on a Mac",
+      "type": "topic",
+      "url": "/documentation/virtualization/running-gui-linux-in-a-virtual-machine-on-a-mac"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/running-intel-binaries-in-linux-vms-with-rosetta": {
+      "abstract": [
+        {
+          "text": "Run x86_64 Linux binaries under ARM Linux on Apple silicon.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/running-intel-binaries-in-linux-vms-with-rosetta",
+      "kind": "article",
+      "role": "article",
+      "title": "Running Intel Binaries in Linux VMs with Rosetta",
+      "type": "topic",
+      "url": "/documentation/virtualization/running-intel-binaries-in-linux-vms-with-rosetta"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/running-linux-in-a-virtual-machine": {
+      "abstract": [
+        {
+          "text": "Run a Linux operating system on your Mac using the Virtualization framework.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/running-linux-in-a-virtual-machine",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Running Linux in a Virtual Machine",
+      "type": "topic",
+      "url": "/documentation/virtualization/running-linux-in-a-virtual-machine"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/running-macos-in-a-virtual-machine-on-apple-silicon": {
+      "abstract": [
+        {
+          "text": "Install and run macOS in a virtual machine using the Virtualization framework.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/running-macos-in-a-virtual-machine-on-apple-silicon",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Running macOS in a virtual machine on Apple silicon",
+      "type": "topic",
+      "url": "/documentation/virtualization/running-macos-in-a-virtual-machine-on-apple-silicon"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/serial-ports": {
+      "abstract": [
+        {
+          "text": "Configure the serial devices that you use to communicate with the guest system.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/serial-ports",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Serial ports",
+      "type": "topic",
+      "url": "/documentation/virtualization/serial-ports"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/shared-directories": {
+      "abstract": [
+        {
+          "text": "Configure devices that share directories from the host into the guest system.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/shared-directories",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Shared directories",
+      "type": "topic",
+      "url": "/documentation/virtualization/shared-directories"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/sockets": {
+      "abstract": [
+        {
+          "text": "Configure a device that manages port-based communication with the guest system.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/sockets",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Sockets",
+      "type": "topic",
+      "url": "/documentation/virtualization/sockets"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/storage": {
+      "abstract": [
+        {
+          "text": "Configure the block-storage devices that represent the disks of the guest system.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/storage",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Storage",
+      "type": "topic",
+      "url": "/documentation/virtualization/storage"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/usb-devices": {
+      "abstract": [],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/usb-devices",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "USB Devices",
+      "type": "topic",
+      "url": "/documentation/virtualization/usb-devices"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/using-icloud-with-macos-virtual-machines": {
+      "abstract": [
+        {
+          "text": "Access iCloud from macOS guest virtual machines.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/using-icloud-with-macos-virtual-machines",
+      "kind": "article",
+      "role": "article",
+      "title": "Using iCloud with macOS virtual machines",
+      "type": "topic",
+      "url": "/documentation/virtualization/using-icloud-with-macos-virtual-machines"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/virtualization-enumerations": {
+      "abstract": [
+        {
+          "text": "Control the caching modes, disk synchronization, and macOS auxiliary storage options of VMs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/virtualization-enumerations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Virtualization enumerations",
+      "type": "topic",
+      "url": "/documentation/virtualization/virtualization-enumerations"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/virtualization-macros": {
+      "abstract": [],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/virtualization-macros",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Virtualization macros",
+      "type": "topic",
+      "url": "/documentation/virtualization/virtualization-macros"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/virtualize-linux-on-a-mac": {
+      "abstract": [
+        {
+          "text": "Configure and run Linux guests on Apple silicon and Intel-based Mac computers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/virtualize-linux-on-a-mac",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Virtualize Linux on a Mac",
+      "type": "topic",
+      "url": "/documentation/virtualization/virtualize-linux-on-a-mac"
+    },
+    "doc://com.apple.virtualization/documentation/Virtualization/virtualize-macos-on-a-mac": {
+      "abstract": [
+        {
+          "text": "Configure and run macOS guests on Apple silicon.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.virtualization/documentation/Virtualization/virtualize-macos-on-a-mac",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Virtualize macOS on a Mac",
+      "type": "topic",
+      "url": "/documentation/virtualization/virtualize-macos-on-a-mac"
+    },
+    "https://docs.oasis-open.org/virtio/virtio/v1.1/csprd01/virtio-v1.1-csprd01.html": {
+      "identifier": "https://docs.oasis-open.org/virtio/virtio/v1.1/csprd01/virtio-v1.1-csprd01.html",
+      "title": "Virtual I/O Device (VIRTIO)",
+      "titleInlineContent": [
+        {
+          "text": "Virtual I/O Device (VIRTIO)",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://docs.oasis-open.org/virtio/virtio/v1.1/csprd01/virtio-v1.1-csprd01.html"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Essentials",
+      "identifiers": [
+        "doc://com.apple.virtualization/documentation/Virtualization/adding-the-virtualization-entitlement-to-your-project",
+        "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.security.virtualization",
+        "doc://com.apple.virtualization/documentation/Virtualization/using-icloud-with-macos-virtual-machines"
+      ],
+      "title": "Essentials"
+    },
+    {
+      "abstract": [
+        {
+          "text": "Configure and boot different guest operating systems.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Virtual-machine-setup",
+      "identifiers": [
+        "doc://com.apple.virtualization/documentation/Virtualization/running-macos-in-a-virtual-machine-on-apple-silicon",
+        "doc://com.apple.virtualization/documentation/Virtualization/running-linux-in-a-virtual-machine",
+        "doc://com.apple.virtualization/documentation/Virtualization/running-gui-linux-in-a-virtual-machine-on-a-mac",
+        "doc://com.apple.virtualization/documentation/Virtualization/installing-macos-on-a-virtual-machine",
+        "doc://com.apple.virtualization/documentation/Virtualization/creating-and-running-a-linux-virtual-machine",
+        "doc://com.apple.virtualization/documentation/Virtualization/virtualize-macos-on-a-mac",
+        "doc://com.apple.virtualization/documentation/Virtualization/virtualize-linux-on-a-mac",
+        "doc://com.apple.virtualization/documentation/Virtualization/running-intel-binaries-in-linux-vms-with-rosetta",
+        "doc://com.apple.virtualization/documentation/Virtualization/accelerating-the-performance-of-rosetta"
+      ],
+      "title": "Virtual machine setup"
+    },
+    {
+      "abstract": [
+        {
+          "text": "View or control guest operating systems.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Runtime",
+      "identifiers": [
+        "doc://com.apple.virtualization/documentation/Virtualization/VZVirtualMachine",
+        "doc://com.apple.virtualization/documentation/Virtualization/VZVirtualMachineView",
+        "doc://com.apple.virtualization/documentation/Virtualization/VZLinuxRosettaDirectoryShare"
+      ],
+      "title": "Runtime"
+    },
+    {
+      "abstract": [
+        {
+          "text": "Configure and connect devices to guest operating system instances.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Devices",
+      "identifiers": [
+        "doc://com.apple.virtualization/documentation/Virtualization/audio",
+        "doc://com.apple.virtualization/documentation/Virtualization/graphics",
+        "doc://com.apple.virtualization/documentation/Virtualization/keyboards-and-pointing-devices",
+        "doc://com.apple.virtualization/documentation/Virtualization/memory",
+        "doc://com.apple.virtualization/documentation/Virtualization/network",
+        "doc://com.apple.virtualization/documentation/Virtualization/randomization",
+        "doc://com.apple.virtualization/documentation/Virtualization/serial-ports",
+        "doc://com.apple.virtualization/documentation/Virtualization/shared-directories",
+        "doc://com.apple.virtualization/documentation/Virtualization/sockets",
+        "doc://com.apple.virtualization/documentation/Virtualization/storage",
+        "doc://com.apple.virtualization/documentation/Virtualization/consoles",
+        "doc://com.apple.virtualization/documentation/Virtualization/clipboard-sharing",
+        "doc://com.apple.virtualization/documentation/Virtualization/usb-devices"
+      ],
+      "title": "Devices"
+    },
+    {
+      "anchor": "Enumerations",
+      "identifiers": [
+        "doc://com.apple.virtualization/documentation/Virtualization/virtualization-enumerations"
+      ],
+      "title": "Enumerations"
+    },
+    {
+      "anchor": "Errors",
+      "identifiers": [
+        "doc://com.apple.virtualization/documentation/Virtualization/VZErrorDomain",
+        "doc://com.apple.virtualization/documentation/Virtualization/VZError"
+      ],
+      "title": "Errors"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Essentials",
+              "identifiers": [
+                "doc://com.apple.virtualization/documentation/Virtualization/adding-the-virtualization-entitlement-to-your-project",
+                "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.security.virtualization",
+                "doc://com.apple.virtualization/documentation/Virtualization/using-icloud-with-macos-virtual-machines"
+              ],
+              "title": "Essentials"
+            },
+            {
+              "abstract": [
+                {
+                  "text": "Configure and boot different guest operating systems.",
+                  "type": "text"
+                }
+              ],
+              "anchor": "Virtual-machine-setup",
+              "identifiers": [
+                "doc://com.apple.virtualization/documentation/Virtualization/running-macos-in-a-virtual-machine-on-apple-silicon",
+                "doc://com.apple.virtualization/documentation/Virtualization/running-linux-in-a-virtual-machine",
+                "doc://com.apple.virtualization/documentation/Virtualization/running-gui-linux-in-a-virtual-machine-on-a-mac",
+                "doc://com.apple.virtualization/documentation/Virtualization/installing-macos-on-a-virtual-machine",
+                "doc://com.apple.virtualization/documentation/Virtualization/creating-and-running-a-linux-virtual-machine",
+                "doc://com.apple.virtualization/documentation/Virtualization/virtualize-macos-on-a-mac",
+                "doc://com.apple.virtualization/documentation/Virtualization/virtualize-linux-on-a-mac",
+                "doc://com.apple.virtualization/documentation/Virtualization/running-intel-binaries-in-linux-vms-with-rosetta",
+                "doc://com.apple.virtualization/documentation/Virtualization/accelerating-the-performance-of-rosetta"
+              ],
+              "title": "Virtual machine setup"
+            },
+            {
+              "abstract": [
+                {
+                  "text": "View or control guest operating systems.",
+                  "type": "text"
+                }
+              ],
+              "anchor": "Runtime",
+              "identifiers": [
+                "doc://com.apple.virtualization/documentation/Virtualization/VZVirtualMachine",
+                "doc://com.apple.virtualization/documentation/Virtualization/VZVirtualMachineView",
+                "doc://com.apple.virtualization/documentation/Virtualization/VZLinuxRosettaDirectoryShare"
+              ],
+              "title": "Runtime"
+            },
+            {
+              "abstract": [
+                {
+                  "text": "Configure and connect devices to guest operating system instances.",
+                  "type": "text"
+                }
+              ],
+              "anchor": "Devices",
+              "identifiers": [
+                "doc://com.apple.virtualization/documentation/Virtualization/audio",
+                "doc://com.apple.virtualization/documentation/Virtualization/graphics",
+                "doc://com.apple.virtualization/documentation/Virtualization/keyboards-and-pointing-devices",
+                "doc://com.apple.virtualization/documentation/Virtualization/memory",
+                "doc://com.apple.virtualization/documentation/Virtualization/network",
+                "doc://com.apple.virtualization/documentation/Virtualization/randomization",
+                "doc://com.apple.virtualization/documentation/Virtualization/serial-ports",
+                "doc://com.apple.virtualization/documentation/Virtualization/shared-directories",
+                "doc://com.apple.virtualization/documentation/Virtualization/sockets",
+                "doc://com.apple.virtualization/documentation/Virtualization/storage",
+                "doc://com.apple.virtualization/documentation/Virtualization/consoles",
+                "doc://com.apple.virtualization/documentation/Virtualization/clipboard-sharing",
+                "doc://com.apple.virtualization/documentation/Virtualization/usb-devices"
+              ],
+              "title": "Devices"
+            },
+            {
+              "anchor": "Enumerations",
+              "identifiers": [
+                "doc://com.apple.virtualization/documentation/Virtualization/virtualization-enumerations"
+              ],
+              "title": "Enumerations"
+            },
+            {
+              "anchor": "Errors",
+              "identifiers": [
+                "doc://com.apple.virtualization/documentation/Virtualization/VZErrorDomain"
+              ],
+              "title": "Errors"
+            },
+            {
+              "anchor": "Reference",
+              "identifiers": [
+                "doc://com.apple.virtualization/documentation/Virtualization/virtualization-macros"
+              ],
+              "title": "Reference"
+            }
+          ]
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZVirtualMachine/title",
+          "value": "VZVirtualMachine"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZVirtualMachine/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VZVirtualMachine"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZVirtualMachine/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VZVirtualMachine"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZMacPlatformConfiguration/title",
+          "value": "VZMacPlatformConfiguration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZMacPlatformConfiguration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VZMacPlatformConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZMacPlatformConfiguration/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VZMacPlatformConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZErrorDomain/title",
+          "value": "VZErrorDomain"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZErrorDomain/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VZErrorDomain"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZVirtualMachineConfiguration/title",
+          "value": "VZVirtualMachineConfiguration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZVirtualMachineConfiguration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VZVirtualMachineConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZVirtualMachineConfiguration/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VZVirtualMachineConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZVirtualMachineView/title",
+          "value": "VZVirtualMachineView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZVirtualMachineView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VZVirtualMachineView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZVirtualMachineView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VZVirtualMachineView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZLinuxRosettaDirectoryShare/title",
+          "value": "VZLinuxRosettaDirectoryShare"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZLinuxRosettaDirectoryShare/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VZLinuxRosettaDirectoryShare"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.virtualization~1documentation~1Virtualization~1VZLinuxRosettaDirectoryShare/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VZLinuxRosettaDirectoryShare"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/virtualization"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/virtualization"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

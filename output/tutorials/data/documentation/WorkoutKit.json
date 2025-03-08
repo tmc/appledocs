@@ -1,0 +1,1004 @@
+{
+  "abstract": [
+    {
+      "text": "Create, preview, and sync workout compositions to the Workout app.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.workoutkit/documentation/WorkoutKit"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "WorkoutKit",
+    "modules": [
+      {
+        "name": "WorkoutKit"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "17.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "17.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "17.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "beta": false,
+        "introducedAt": "10.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "collection",
+    "roleHeading": "Framework",
+    "symbolKind": "module",
+    "title": "WorkoutKit"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The WorkoutKit framework provides models and utilities for creating and previewing workouts in your iOS and watchOS apps, and for syncing scheduled workouts to the Workout app on Apple Watch. The framework supports the following types of workouts:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A structured interval workout with a series of steps containing custom goals and alerts",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "identifier": "doc://com.apple.workoutkit/documentation/WorkoutKit/CustomWorkout",
+                    "isActive": true,
+                    "type": "reference"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A workout with a single goal, such as distance, energy, or time",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "identifier": "doc://com.apple.workoutkit/documentation/WorkoutKit/SingleGoalWorkout",
+                    "isActive": true,
+                    "type": "reference"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A workout with distance and time goals",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "identifier": "doc://com.apple.workoutkit/documentation/WorkoutKit/PacerWorkout",
+                    "isActive": true,
+                    "type": "reference"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A workout that allows triathletes to seamlessly transition between swim, bike, and run activities",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "identifier": "doc://com.apple.workoutkit/documentation/WorkoutKit/SwimBikeRunWorkout",
+                    "isActive": true,
+                    "type": "reference"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You define a workout by initializing one of these workout types. Then you use the workout to create a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.workoutkit/documentation/WorkoutKit/WorkoutPlan",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", which provides methods for previewing, syncing, or exporting the plan. To open the plan in Workout on Apple Watch, call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.workoutkit/documentation/WorkoutKit/WorkoutPlan/openInWorkoutApp()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". To export the plan, call the ",
+              "type": "text"
+            },
+            {
+              "code": "dataRepresentation(as:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can also use WorkoutKit to create and maintain a workout schedule and, with the user’s permission, sync scheduled compositions to Apple Watch. These compositions appear in a dedicated space in the Workout app and include your app’s icon and name.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before you can schedule a workout, you must ask for permission. Get the shared ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.workoutkit/documentation/WorkoutKit/WorkoutScheduler",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance, and call its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.workoutkit/documentation/WorkoutKit/WorkoutScheduler/requestAuthorization()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. Then call the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.workoutkit/documentation/WorkoutKit/WorkoutScheduler/schedule(_:at:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to schedule workouts.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To access health data for the workout, see the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/HealthKit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " framework.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/HealthKit": {
+      "abstract": [
+        {
+          "text": "Access and share health and fitness data while maintaining the user’s privacy and control.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/HealthKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "HealthKit",
+      "type": "topic",
+      "url": "/documentation/HealthKit"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.workoutkit/documentation/WorkoutKit": {
+      "abstract": [
+        {
+          "text": "Create, preview, and sync workout compositions to the Workout app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.workoutkit/documentation/WorkoutKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "WorkoutKit",
+      "type": "topic",
+      "url": "/documentation/workoutkit"
+    },
+    "doc://com.apple.workoutkit/documentation/WorkoutKit/CustomWorkout": {
+      "abstract": [
+        {
+          "text": "A workout that includes a repeating series of work and recovery steps.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomWorkout"
+        }
+      ],
+      "identifier": "doc://com.apple.workoutkit/documentation/WorkoutKit/CustomWorkout",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CustomWorkout"
+        }
+      ],
+      "role": "symbol",
+      "title": "CustomWorkout",
+      "type": "topic",
+      "url": "/documentation/workoutkit/customworkout"
+    },
+    "doc://com.apple.workoutkit/documentation/WorkoutKit/IntervalBlock": {
+      "abstract": [
+        {
+          "text": "Blocks of work and recovery steps that repeat in a custom workout.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "IntervalBlock"
+        }
+      ],
+      "identifier": "doc://com.apple.workoutkit/documentation/WorkoutKit/IntervalBlock",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "IntervalBlock"
+        }
+      ],
+      "role": "symbol",
+      "title": "IntervalBlock",
+      "type": "topic",
+      "url": "/documentation/workoutkit/intervalblock"
+    },
+    "doc://com.apple.workoutkit/documentation/WorkoutKit/IntervalStep": {
+      "abstract": [
+        {
+          "text": "An interval that represents a work or recovery step in a workout.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "IntervalStep"
+        }
+      ],
+      "identifier": "doc://com.apple.workoutkit/documentation/WorkoutKit/IntervalStep",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "IntervalStep"
+        }
+      ],
+      "role": "symbol",
+      "title": "IntervalStep",
+      "type": "topic",
+      "url": "/documentation/workoutkit/intervalstep"
+    },
+    "doc://com.apple.workoutkit/documentation/WorkoutKit/PacerWorkout": {
+      "abstract": [
+        {
+          "text": "A workout in which a person covers a specific distance in a given time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PacerWorkout"
+        }
+      ],
+      "identifier": "doc://com.apple.workoutkit/documentation/WorkoutKit/PacerWorkout",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PacerWorkout"
+        }
+      ],
+      "role": "symbol",
+      "title": "PacerWorkout",
+      "type": "topic",
+      "url": "/documentation/workoutkit/pacerworkout"
+    },
+    "doc://com.apple.workoutkit/documentation/WorkoutKit/ScheduledWorkoutPlan": {
+      "abstract": [
+        {
+          "text": "A wrapper around a workout plan that your app can use to schedule the workout plan.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ScheduledWorkoutPlan"
+        }
+      ],
+      "identifier": "doc://com.apple.workoutkit/documentation/WorkoutKit/ScheduledWorkoutPlan",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ScheduledWorkoutPlan"
+        }
+      ],
+      "role": "symbol",
+      "title": "ScheduledWorkoutPlan",
+      "type": "topic",
+      "url": "/documentation/workoutkit/scheduledworkoutplan"
+    },
+    "doc://com.apple.workoutkit/documentation/WorkoutKit/SingleGoalWorkout": {
+      "abstract": [
+        {
+          "text": "A workout with a single goal.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SingleGoalWorkout"
+        }
+      ],
+      "identifier": "doc://com.apple.workoutkit/documentation/WorkoutKit/SingleGoalWorkout",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SingleGoalWorkout"
+        }
+      ],
+      "role": "symbol",
+      "title": "SingleGoalWorkout",
+      "type": "topic",
+      "url": "/documentation/workoutkit/singlegoalworkout"
+    },
+    "doc://com.apple.workoutkit/documentation/WorkoutKit/StateError": {
+      "abstract": [
+        {
+          "text": "An error that occurs while previewing a workout composition.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "StateError"
+        }
+      ],
+      "identifier": "doc://com.apple.workoutkit/documentation/WorkoutKit/StateError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "StateError"
+        }
+      ],
+      "role": "symbol",
+      "title": "StateError",
+      "type": "topic",
+      "url": "/documentation/workoutkit/stateerror"
+    },
+    "doc://com.apple.workoutkit/documentation/WorkoutKit/SwimBikeRunWorkout": {
+      "abstract": [
+        {
+          "text": "A workout for multisport activities that include running, biking, and swimming.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SwimBikeRunWorkout"
+        }
+      ],
+      "identifier": "doc://com.apple.workoutkit/documentation/WorkoutKit/SwimBikeRunWorkout",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SwimBikeRunWorkout"
+        }
+      ],
+      "role": "symbol",
+      "title": "SwimBikeRunWorkout",
+      "type": "topic",
+      "url": "/documentation/workoutkit/swimbikerunworkout"
+    },
+    "doc://com.apple.workoutkit/documentation/WorkoutKit/WorkoutAlert": {
+      "abstract": [
+        {
+          "text": "An alert that notifies the user of significant events during a workout.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WorkoutAlert"
+        }
+      ],
+      "identifier": "doc://com.apple.workoutkit/documentation/WorkoutKit/WorkoutAlert",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WorkoutAlert"
+        }
+      ],
+      "role": "symbol",
+      "title": "WorkoutAlert",
+      "type": "topic",
+      "url": "/documentation/workoutkit/workoutalert"
+    },
+    "doc://com.apple.workoutkit/documentation/WorkoutKit/WorkoutGoal": {
+      "abstract": [
+        {
+          "text": "A value that specifies the goal for a workout.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WorkoutGoal"
+        }
+      ],
+      "identifier": "doc://com.apple.workoutkit/documentation/WorkoutKit/WorkoutGoal",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WorkoutGoal"
+        }
+      ],
+      "role": "symbol",
+      "title": "WorkoutGoal",
+      "type": "topic",
+      "url": "/documentation/workoutkit/workoutgoal"
+    },
+    "doc://com.apple.workoutkit/documentation/WorkoutKit/WorkoutPlan": {
+      "abstract": [
+        {
+          "text": "A wrapper around a workout object that your app can use to open the object in Workout or schedule it for later.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WorkoutPlan"
+        }
+      ],
+      "identifier": "doc://com.apple.workoutkit/documentation/WorkoutKit/WorkoutPlan",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WorkoutPlan"
+        }
+      ],
+      "role": "symbol",
+      "title": "WorkoutPlan",
+      "type": "topic",
+      "url": "/documentation/workoutkit/workoutplan"
+    },
+    "doc://com.apple.workoutkit/documentation/WorkoutKit/WorkoutPlan/openInWorkoutApp()": {
+      "abstract": [
+        {
+          "text": "Opens the workout in Workout on Apple Watch.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "openInWorkoutApp"
+        },
+        {
+          "kind": "text",
+          "text": "() "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.workoutkit/documentation/WorkoutKit/WorkoutPlan/openInWorkoutApp()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "openInWorkoutApp()",
+      "type": "topic",
+      "url": "/documentation/workoutkit/workoutplan/openinworkoutapp()"
+    },
+    "doc://com.apple.workoutkit/documentation/WorkoutKit/WorkoutScheduler": {
+      "abstract": [
+        {
+          "text": "An object for scheduling and managing workouts.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WorkoutScheduler"
+        }
+      ],
+      "identifier": "doc://com.apple.workoutkit/documentation/WorkoutKit/WorkoutScheduler",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WorkoutScheduler"
+        }
+      ],
+      "role": "symbol",
+      "title": "WorkoutScheduler",
+      "type": "topic",
+      "url": "/documentation/workoutkit/workoutscheduler"
+    },
+    "doc://com.apple.workoutkit/documentation/WorkoutKit/WorkoutScheduler/requestAuthorization()": {
+      "abstract": [
+        {
+          "text": "Requests authorization to schedule workouts.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "requestAuthorization"
+        },
+        {
+          "kind": "text",
+          "text": "() "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10WorkoutKit0A9SchedulerC",
+          "text": "WorkoutScheduler"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10WorkoutKit0A9SchedulerC18AuthorizationStateO",
+          "text": "AuthorizationState"
+        }
+      ],
+      "identifier": "doc://com.apple.workoutkit/documentation/WorkoutKit/WorkoutScheduler/requestAuthorization()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "requestAuthorization()",
+      "type": "topic",
+      "url": "/documentation/workoutkit/workoutscheduler/requestauthorization()"
+    },
+    "doc://com.apple.workoutkit/documentation/WorkoutKit/WorkoutScheduler/schedule(_:at:)": {
+      "abstract": [
+        {
+          "text": "Schedules the provided workout at the specified date.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "schedule"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10WorkoutKit0A4PlanV",
+          "text": "WorkoutPlan"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation14DateComponentsV",
+          "text": "DateComponents"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        }
+      ],
+      "identifier": "doc://com.apple.workoutkit/documentation/WorkoutKit/WorkoutScheduler/schedule(_:at:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "schedule(_:at:)",
+      "type": "topic",
+      "url": "/documentation/workoutkit/workoutscheduler/schedule(_:at:)"
+    },
+    "doc://com.apple.workoutkit/documentation/WorkoutKit/WorkoutStep": {
+      "abstract": [
+        {
+          "text": "A step in a workout.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WorkoutStep"
+        }
+      ],
+      "identifier": "doc://com.apple.workoutkit/documentation/WorkoutKit/WorkoutStep",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WorkoutStep"
+        }
+      ],
+      "role": "symbol",
+      "title": "WorkoutStep",
+      "type": "topic",
+      "url": "/documentation/workoutkit/workoutstep"
+    },
+    "doc://com.apple.workoutkit/documentation/WorkoutKit/customizing-workouts-with-workoutkit": {
+      "abstract": [
+        {
+          "text": "Create, preview, and sync workouts for use in the Workout app on Apple Watch.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.workoutkit/documentation/WorkoutKit/customizing-workouts-with-workoutkit",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Customizing workouts with WorkoutKit",
+      "type": "topic",
+      "url": "/documentation/workoutkit/customizing-workouts-with-workoutkit"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Essentials",
+      "identifiers": [
+        "doc://com.apple.workoutkit/documentation/WorkoutKit/customizing-workouts-with-workoutkit"
+      ],
+      "title": "Essentials"
+    },
+    {
+      "anchor": "Common-workouts",
+      "identifiers": [
+        "doc://com.apple.workoutkit/documentation/WorkoutKit/SingleGoalWorkout",
+        "doc://com.apple.workoutkit/documentation/WorkoutKit/PacerWorkout",
+        "doc://com.apple.workoutkit/documentation/WorkoutKit/SwimBikeRunWorkout"
+      ],
+      "title": "Common workouts"
+    },
+    {
+      "anchor": "Custom-interval-workouts",
+      "identifiers": [
+        "doc://com.apple.workoutkit/documentation/WorkoutKit/CustomWorkout",
+        "doc://com.apple.workoutkit/documentation/WorkoutKit/WorkoutStep",
+        "doc://com.apple.workoutkit/documentation/WorkoutKit/IntervalBlock",
+        "doc://com.apple.workoutkit/documentation/WorkoutKit/IntervalStep",
+        "doc://com.apple.workoutkit/documentation/WorkoutKit/WorkoutGoal",
+        "doc://com.apple.workoutkit/documentation/WorkoutKit/WorkoutAlert"
+      ],
+      "title": "Custom interval workouts"
+    },
+    {
+      "anchor": "Workout-plans-and-schedules",
+      "identifiers": [
+        "doc://com.apple.workoutkit/documentation/WorkoutKit/WorkoutPlan",
+        "doc://com.apple.workoutkit/documentation/WorkoutKit/ScheduledWorkoutPlan",
+        "doc://com.apple.workoutkit/documentation/WorkoutKit/WorkoutScheduler"
+      ],
+      "title": "Workout plans and schedules"
+    },
+    {
+      "anchor": "Errors",
+      "identifiers": [
+        "doc://com.apple.workoutkit/documentation/WorkoutKit/StateError"
+      ],
+      "title": "Errors"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/workoutkit"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

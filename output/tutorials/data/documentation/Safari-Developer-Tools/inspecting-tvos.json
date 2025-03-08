@@ -1,0 +1,613 @@
+{
+  "abstract": [
+    {
+      "text": "Inspect JavaScript and TVML content on tvOS from a Mac on the same network.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.safari.developer-tools/documentation/safari-developer-tools"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.safari.developer-tools/documentation/Safari-Developer-Tools/inspecting-tvos"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Safari Developer Features"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Inspecting tvOS"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "JavaScript and TVML in your apps can be inspected from a Mac on the same network as your Apple TV. You can also use simulators on macOS to debug your JavaScript and TVML without having to use a physical device. To learn more about getting simulators for device, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.safari.developer-tools/documentation/Safari-Developer-Tools/installing-xcode-and-simulators",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Enabling-inspecting-your-device-from-a-Mac-on-the-same-network",
+          "level": 2,
+          "text": "Enabling inspecting your device from a Mac on the same network",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Unlike iOS and iPadOS devices, Apple TV does not have a way to connect physically to your Mac. Instead you must pair the Apple TV over the network:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Make sure both your Mac and Apple TV are connected to the same network, either wirelessly or using a network cable.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "On your Apple TV, open ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Settings",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": ", then choose ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Remotes and Devices",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " > ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Remote App and Devices",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": ". The Apple TV is now available for pairing from any Mac on the network.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In Safari, go to the ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Develop",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " menu and find your Apple TV in the list of devices.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "From the device’s submenu, choose ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Use for Development…",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Enter the six digit PIN code shown on the Apple TV into the PIN field shown on your Mac.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Once paired, you can inspect content on the device like any other device. In Safari, the device appears in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.safari.developer-tools/documentation/Safari-Developer-Tools/develop-menu",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Alternatively, you can also ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://help.apple.com/xcode/mac/current/#/devbc48d1bad",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "tvOS-simulators",
+          "level": 3,
+          "text": "tvOS simulators",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Web Inspector",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            },
+            {
+              "text": " is always enabled for simulators, and currently booted simulators will appear in the ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Develop",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            },
+            {
+              "text": " menu just like connected devices. You do not need to pair simulators.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Inspecting-JavaScript-and-TVML-in-apps",
+          "level": 2,
+          "text": "Inspecting JavaScript and TVML in apps",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.documentation/documentation/JavaScriptCore/JSContext",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "s in apps can be made inspectable, allowing any user who enables ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Web Inspector",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            },
+            {
+              "text": " on the device to inspect them. When content in an application is inspectable it will appear in a submenu for the connected device of the ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Develop",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " menu of Safari on a connected Mac. webpages (and other content) is separated by app, making it easier to find the webpage you want to inspect.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Learn more about ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.safari.developer-tools/documentation/Safari-Developer-Tools/enabling-inspecting-content-in-your-apps",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Additionally, TVML content in developer-provisions apps can be inspected to debug layout and design issues.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Safari-Developer-Tools-PageImage-card.png": {
+      "alt": "A blue tools logo on a gradient background.",
+      "identifier": "Safari-Developer-Tools-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/77bad5e1be417d2e9f3bb2ff2698c1f9/Safari-Developer-Tools-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ae177e98052f40b765cec73979b779b7/Safari-Developer-Tools-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.documentation/documentation/JavaScriptCore/JSContext": {
+      "abstract": [
+        {
+          "text": "A JavaScript execution environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "JSContext"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/JavaScriptCore/JSContext",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "JSContext",
+      "type": "topic",
+      "url": "/documentation/JavaScriptCore/JSContext"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.safari.developer-tools/documentation/Safari-Developer-Tools/develop-menu": {
+      "abstract": [
+        {
+          "text": "Access tools for debugging webpages in Safari, as well as tools for debugging web content in other apps and on other devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safari.developer-tools/documentation/Safari-Developer-Tools/develop-menu",
+      "kind": "article",
+      "role": "article",
+      "title": "Develop menu",
+      "type": "topic",
+      "url": "/documentation/safari-developer-tools/develop-menu"
+    },
+    "doc://com.apple.safari.developer-tools/documentation/Safari-Developer-Tools/enabling-inspecting-content-in-your-apps": {
+      "abstract": [
+        {
+          "text": "Enable the inspection of webpages and JavaScript in apps you develop when inspected from a connected Mac.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safari.developer-tools/documentation/Safari-Developer-Tools/enabling-inspecting-content-in-your-apps",
+      "kind": "article",
+      "role": "article",
+      "title": "Enabling inspecting content in your apps",
+      "type": "topic",
+      "url": "/documentation/safari-developer-tools/enabling-inspecting-content-in-your-apps"
+    },
+    "doc://com.apple.safari.developer-tools/documentation/Safari-Developer-Tools/inspecting-ios": {
+      "abstract": [
+        {
+          "text": "Inspect webpages, Service Workers, Home Screen web apps, extensions, and content inside apps on iOS and iPadOS devices and simulators from a connected Mac.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safari.developer-tools/documentation/Safari-Developer-Tools/inspecting-ios",
+      "kind": "article",
+      "role": "article",
+      "title": "Inspecting iOS and iPadOS",
+      "type": "topic",
+      "url": "/documentation/safari-developer-tools/inspecting-ios"
+    },
+    "doc://com.apple.safari.developer-tools/documentation/Safari-Developer-Tools/inspecting-safari-macos": {
+      "abstract": [
+        {
+          "text": "Inspect webpages, Service Workers, and extensions in Safari on macOS.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safari.developer-tools/documentation/Safari-Developer-Tools/inspecting-safari-macos",
+      "kind": "article",
+      "role": "article",
+      "title": "Inspecting Safari on macOS",
+      "type": "topic",
+      "url": "/documentation/safari-developer-tools/inspecting-safari-macos"
+    },
+    "doc://com.apple.safari.developer-tools/documentation/Safari-Developer-Tools/inspecting-visionos": {
+      "abstract": [
+        {
+          "text": "Inspect webpages, service workers, extensions, and content inside apps in visionOS from a Mac on the same network.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safari.developer-tools/documentation/Safari-Developer-Tools/inspecting-visionos",
+      "kind": "article",
+      "role": "article",
+      "title": "Inspecting visionOS",
+      "type": "topic",
+      "url": "/documentation/safari-developer-tools/inspecting-visionos"
+    },
+    "doc://com.apple.safari.developer-tools/documentation/Safari-Developer-Tools/installing-xcode-and-simulators": {
+      "abstract": [
+        {
+          "text": "Install simulators to use for web development.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safari.developer-tools/documentation/Safari-Developer-Tools/installing-xcode-and-simulators",
+      "kind": "article",
+      "role": "article",
+      "title": "Installing Xcode and Simulators",
+      "type": "topic",
+      "url": "/documentation/safari-developer-tools/installing-xcode-and-simulators"
+    },
+    "doc://com.apple.safari.developer-tools/documentation/safari-developer-tools": {
+      "abstract": [
+        {
+          "text": "Inspect, debug, and test web content in Safari, in other apps, and on other devices including iPhone and iPad.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safari.developer-tools/documentation/safari-developer-tools",
+      "images": [
+        {
+          "identifier": "Safari-Developer-Tools-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Safari Developer Features",
+      "type": "topic",
+      "url": "/documentation/safari-developer-tools"
+    },
+    "https://help.apple.com/xcode/mac/current/#/devbc48d1bad": {
+      "identifier": "https://help.apple.com/xcode/mac/current/#/devbc48d1bad",
+      "title": "pair with the device using Xcode",
+      "titleInlineContent": [
+        {
+          "text": "pair with the device using Xcode",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://help.apple.com/xcode/mac/current/#/devbc48d1bad"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Inspecting-content",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.safari.developer-tools/documentation/Safari-Developer-Tools/inspecting-safari-macos",
+        "doc://com.apple.safari.developer-tools/documentation/Safari-Developer-Tools/inspecting-ios",
+        "doc://com.apple.safari.developer-tools/documentation/Safari-Developer-Tools/inspecting-visionos",
+        "doc://com.apple.safari.developer-tools/documentation/Safari-Developer-Tools/enabling-inspecting-content-in-your-apps"
+      ],
+      "title": "Inspecting content"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1JavaScriptCore~1JSContext/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "JSContext"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/safari-developer-tools/inspecting-tvos"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

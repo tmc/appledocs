@@ -1,0 +1,1385 @@
+{
+  "abstract": [
+    {
+      "text": "Make your SwiftUI apps accessible to everyone, including people with",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "disabilities.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.SwiftUI/documentation/SwiftUI/Accessibility-fundamentals"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "SwiftUI"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Accessibility fundamentals"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Like all Apple UI frameworks, SwiftUI comes with built-in",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "accessibility support. The framework introspects common elements like",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "navigation views, lists, text fields, sliders, buttons, and so on, and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "provides basic accessibility labels and values by default. You",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "don’t have to do any extra work to enable these standard accessibility",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "features.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "accessibility-fundamentals-hero",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "SwiftUI also provides tools to help you enhance the accessibility",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of your app. To find out what enhancements you need, try using your app",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "with accessibility features like VoiceOver, Voice Control, and Switch",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Control, or get feedback from users of your app that regularly use",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "these features. Then use the accessibility view modifiers that SwiftUI",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "provides to improve the experience. For example, you can explicitly add",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "accessibility labels to elements in your UI using the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/accessibilityLabel(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/accessibilityValue(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " view modifier.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Customize your use of accessibility modifiers for all the platforms that your",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "app runs on. For example, you may need to adjust the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "accessibility elements for a companion Apple Watch app that shares a common",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "code base with an iOS app. If you integrate AppKit or UIKit controls in",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "SwiftUI, expose any accessibility labels and make them accessible from your",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/NSViewRepresentable",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/UIViewRepresentable",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " views, or provide custom",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "accessibility information if the underlying accessibility labels aren’t",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "available.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For design guidance, see",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/design/Human-Interface-Guidelines/accessibility",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in the Human Interface Guidelines.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "SwiftUI-PageImage-card.png": {
+      "alt": "A black Swift logo on a swirly blue and purple background.",
+      "identifier": "SwiftUI-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b1de0de086f81a5d0eac3839a0af6e6f/SwiftUI-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1450d0b30a6b024e10c148e3f31dafe9/SwiftUI-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "accessibility-fundamentals-hero": {
+      "alt": null,
+      "identifier": "accessibility-fundamentals-hero",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/3e38dd74355b2499d9edb9d09f567c62/accessibility-fundamentals-hero@2x.png"
+        }
+      ]
+    },
+    "accessibility.svg": {
+      "alt": null,
+      "identifier": "accessibility.svg",
+      "type": "image",
+      "variants": [
+        {
+          "svgID": "accessibility",
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/83c941607786e0ba1f582082f4e94361/accessibility.svg"
+        }
+      ]
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI": {
+      "abstract": [
+        {
+          "text": "Declare the user interface and behavior for your app on every platform.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI",
+      "images": [
+        {
+          "identifier": "SwiftUI-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SwiftUI",
+      "type": "topic",
+      "url": "/documentation/swiftui"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/AccessibilityAttachmentModifier": {
+      "abstract": [
+        {
+          "text": "A view modifier that adds accessibility properties to the view",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AccessibilityAttachmentModifier"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/AccessibilityAttachmentModifier",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AccessibilityAttachmentModifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "AccessibilityAttachmentModifier",
+      "type": "topic",
+      "url": "/documentation/swiftui/accessibilityattachmentmodifier"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/AccessibilityChildBehavior": {
+      "abstract": [
+        {
+          "text": "Defines the behavior for the child elements of the new parent element.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AccessibilityChildBehavior"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/AccessibilityChildBehavior",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AccessibilityChildBehavior"
+        }
+      ],
+      "role": "symbol",
+      "title": "AccessibilityChildBehavior",
+      "type": "topic",
+      "url": "/documentation/swiftui/accessibilitychildbehavior"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/AccessibilityTechnologies": {
+      "abstract": [
+        {
+          "text": "Accessibility technologies available to the system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AccessibilityTechnologies"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/AccessibilityTechnologies",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AccessibilityTechnologies"
+        }
+      ],
+      "role": "symbol",
+      "title": "AccessibilityTechnologies",
+      "type": "topic",
+      "url": "/documentation/swiftui/accessibilitytechnologies"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Accessible-appearance": {
+      "abstract": [
+        {
+          "text": "Enhance the legibility of content in your app’s interface.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Accessible-appearance",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Accessible appearance",
+      "type": "topic",
+      "url": "/documentation/swiftui/accessible-appearance"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Accessible-controls": {
+      "abstract": [
+        {
+          "text": "Improve access to actions that your app can undertake.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Accessible-controls",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Accessible controls",
+      "type": "topic",
+      "url": "/documentation/swiftui/accessible-controls"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Accessible-descriptions": {
+      "abstract": [
+        {
+          "text": "Describe interface elements to help people understand what they represent.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Accessible-descriptions",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Accessible descriptions",
+      "type": "topic",
+      "url": "/documentation/swiftui/accessible-descriptions"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Accessible-navigation": {
+      "abstract": [
+        {
+          "text": "Enable users to navigate to specific user interface elements using rotors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Accessible-navigation",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Accessible navigation",
+      "type": "topic",
+      "url": "/documentation/swiftui/accessible-navigation"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/NSViewRepresentable": {
+      "abstract": [
+        {
+          "text": "A wrapper that you use to integrate an AppKit view into your SwiftUI view",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "hierarchy.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSViewRepresentable"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/NSViewRepresentable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSViewRepresentable"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSViewRepresentable",
+      "type": "topic",
+      "url": "/documentation/swiftui/nsviewrepresentable"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/UIViewRepresentable": {
+      "abstract": [
+        {
+          "text": "A wrapper for a UIKit view that you use to integrate that view into your",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "SwiftUI view hierarchy.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIViewRepresentable"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/UIViewRepresentable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIViewRepresentable"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIViewRepresentable",
+      "type": "topic",
+      "url": "/documentation/swiftui/uiviewrepresentable"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/accessibilityChildren(children:)": {
+      "abstract": [
+        {
+          "text": "Replaces the existing accessibility element’s children with one or",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "more new synthetic accessibility elements.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "accessibilityChildren"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "V"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "children"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "V"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/accessibilityChildren(children:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "accessibilityChildren(children:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/accessibilitychildren(children:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/accessibilityElement(children:)": {
+      "abstract": [
+        {
+          "text": "Creates a new accessibility element, or modifies the",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/AccessibilityChildBehavior",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " of the existing accessibility element.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "accessibilityElement"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "children"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI26AccessibilityChildBehaviorV",
+          "text": "AccessibilityChildBehavior"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/accessibilityElement(children:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "accessibilityElement(children:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/accessibilityelement(children:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/accessibilityHidden(_:)": {
+      "abstract": [
+        {
+          "text": "Specifies whether to hide this view from system accessibility features.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "accessibilityHidden"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI15ModifiedContentV",
+          "text": "ModifiedContent"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI31AccessibilityAttachmentModifierV",
+          "text": "AccessibilityAttachmentModifier"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/accessibilityHidden(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "accessibilityHidden(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/accessibilityhidden(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/accessibilityHidden(_:isEnabled:)": {
+      "abstract": [
+        {
+          "text": "Specifies whether to hide this view from system accessibility features.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "accessibilityHidden"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "isEnabled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI15ModifiedContentV",
+          "text": "ModifiedContent"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI31AccessibilityAttachmentModifierV",
+          "text": "AccessibilityAttachmentModifier"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/accessibilityHidden(_:isEnabled:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "accessibilityHidden(_:isEnabled:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/accessibilityhidden(_:isenabled:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/accessibilityIdentifier(_:)": {
+      "abstract": [
+        {
+          "text": "Uses the string you specify to identify the view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "accessibilityIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI15ModifiedContentV",
+          "text": "ModifiedContent"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI31AccessibilityAttachmentModifierV",
+          "text": "AccessibilityAttachmentModifier"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/accessibilityIdentifier(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "accessibilityIdentifier(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/accessibilityidentifier(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/accessibilityIdentifier(_:isEnabled:)": {
+      "abstract": [
+        {
+          "text": "Uses the string you specify to identify the view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "accessibilityIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "isEnabled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI15ModifiedContentV",
+          "text": "ModifiedContent"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI31AccessibilityAttachmentModifierV",
+          "text": "AccessibilityAttachmentModifier"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/accessibilityIdentifier(_:isEnabled:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "accessibilityIdentifier(_:isEnabled:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/accessibilityidentifier(_:isenabled:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/accessibilityLabel(_:)": {
+      "abstract": [
+        {
+          "text": "Adds a label to the view that describes its contents.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "accessibilityLabel"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": ":)"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/accessibilityLabel(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "accessibilityLabel(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/accessibilitylabel(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/accessibilityRepresentation(representation:)": {
+      "abstract": [
+        {
+          "text": "Replaces one or more accessibility elements for this view with new",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "accessibility elements.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "accessibilityRepresentation"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "V"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "representation"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "V"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/accessibilityRepresentation(representation:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "accessibilityRepresentation(representation:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/accessibilityrepresentation(representation:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/accessibilityValue(_:)": {
+      "abstract": [
+        {
+          "text": "Adds a textual description of the value that the view contains.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "accessibilityValue"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": ":)"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/accessibilityValue(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "accessibilityValue(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/accessibilityvalue(_:)"
+    },
+    "doc://com.apple.documentation/design/Human-Interface-Guidelines/accessibility": {
+      "abstract": [
+        {
+          "text": "Accessible user interfaces empower everyone to have a great experience with your app or game.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/design/Human-Interface-Guidelines/accessibility",
+      "images": [
+        {
+          "identifier": "accessibility.svg",
+          "type": "icon"
+        },
+        {
+          "identifier": "foundations-accessibility-thumbnail.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "article",
+      "title": "Accessibility",
+      "type": "topic",
+      "url": "/design/Human-Interface-Guidelines/accessibility"
+    },
+    "doc://com.apple.documentation/documentation/swiftui/creating_accessible_views": {
+      "abstract": [
+        {
+          "text": "Make your app accessible to everyone by applying accessibility modifiers to your SwiftUI views.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/swiftui/creating_accessible_views",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Creating Accessible Views",
+      "type": "topic",
+      "url": "/documentation/swiftui/creating_accessible_views"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "foundations-accessibility-thumbnail.png": {
+      "alt": null,
+      "identifier": "foundations-accessibility-thumbnail.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/8b7b11d06dd958f4e9449f0a5acdadbd/foundations-accessibility-thumbnail@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/fea544b1ff706c10ba3a1d06f528da46/foundations-accessibility-thumbnail~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Accessibility",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Accessible-appearance",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Accessible-controls",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Accessible-descriptions",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Accessible-navigation"
+      ],
+      "title": "Accessibility"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Essentials",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/swiftui/creating_accessible_views"
+      ],
+      "title": "Essentials"
+    },
+    {
+      "anchor": "Creating-accessible-elements",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/accessibilityElement(children:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/accessibilityChildren(children:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/accessibilityRepresentation(representation:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/AccessibilityChildBehavior"
+      ],
+      "title": "Creating accessible elements"
+    },
+    {
+      "anchor": "Identifying-elements",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/accessibilityIdentifier(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/accessibilityIdentifier(_:isEnabled:)"
+      ],
+      "title": "Identifying elements"
+    },
+    {
+      "anchor": "Hiding-elements",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/accessibilityHidden(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/accessibilityHidden(_:isEnabled:)"
+      ],
+      "title": "Hiding elements"
+    },
+    {
+      "anchor": "Supporting-types",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/AccessibilityTechnologies",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/AccessibilityAttachmentModifier"
+      ],
+      "title": "Supporting types"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/swiftui/accessibility-fundamentals"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

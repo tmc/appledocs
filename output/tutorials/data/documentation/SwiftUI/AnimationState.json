@@ -1,0 +1,1139 @@
+{
+  "abstract": [
+    {
+      "text": "A container that stores the state for a custom animation.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.SwiftUI/documentation/SwiftUI/AnimationState"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:7SwiftUI14AnimationStateV",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "struct"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "AnimationState"
+      }
+    ],
+    "modules": [
+      {
+        "name": "SwiftUI"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "AnimationState"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "AnimationState"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AnimationState"
+            },
+            {
+              "kind": "text",
+              "text": "<"
+            },
+            {
+              "kind": "genericParameter",
+              "text": "Value"
+            },
+            {
+              "kind": "text",
+              "text": "> "
+            },
+            {
+              "kind": "keyword",
+              "text": "where"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "text": "Value"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/VectorArithmetic",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:7SwiftUI16VectorArithmeticP",
+              "text": "VectorArithmetic"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/AnimationContext",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " uses this type to store state for a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/CustomAnimation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". To retrieve the stored state of a context, you can",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/AnimationContext/state",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property. However, a more convenient",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "way to access the animation state is to define an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/AnimationStateKey",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and extend ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/AnimationContext",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " with a computed property that gets",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and sets the animation state, as shown in the following code:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "private struct PausableState<Value: VectorArithmetic>: AnimationStateKey {",
+            "    static var defaultValue: Self { .init() }",
+            "}",
+            "",
+            "extension AnimationContext {",
+            "    fileprivate var pausableState: PausableState<Value> {",
+            "        get { state[PausableState<Value>.self] }",
+            "        set { state[PausableState<Value>.self] = newValue }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When creating an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/AnimationStateKey",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", it’s convenient to define the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "state values that your custom animation needs. For example, the following",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "code adds the properties ",
+              "type": "text"
+            },
+            {
+              "code": "paused",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "pauseTime",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to the ",
+              "type": "text"
+            },
+            {
+              "code": "PausableState",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "animation state key:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "private struct PausableState<Value: VectorArithmetic>: AnimationStateKey {",
+            "    var paused = false",
+            "    var pauseTime: TimeInterval = 0.0",
+            "",
+            "    static var defaultValue: Self { .init() }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To access the pausable state in a ",
+              "type": "text"
+            },
+            {
+              "code": "PausableAnimation",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", the follow code",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "calls ",
+              "type": "text"
+            },
+            {
+              "code": "pausableState",
+              "type": "codeVoice"
+            },
+            {
+              "text": " instead of using the context’s",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/AnimationContext/state",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property. And because the animation state key",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "PausableState",
+              "type": "codeVoice"
+            },
+            {
+              "text": " defines properties for state values, the custom animation",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "can read and write those values.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct PausableAnimation: CustomAnimation {",
+            "    let base: Animation",
+            "",
+            "    func animate<V>(value: V, time: TimeInterval, context: inout AnimationContext<V>) -> V? where V : VectorArithmetic {",
+            "        let paused = context.environment.animationPaused",
+            "",
+            "        let pausableState = context.pausableState",
+            "        var pauseTime = pausableState.pauseTime",
+            "        if pausableState.paused != paused {",
+            "            pauseTime = time - pauseTime",
+            "            context.pausableState = PausableState(paused: paused, pauseTime: pauseTime)",
+            "        }",
+            "",
+            "        let effectiveTime = paused ? pauseTime : time - pauseTime",
+            "        let result = base.animate(value: value, time: effectiveTime, context: &context)",
+            "        return result",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Storing-state-for-secondary-animations",
+          "level": 3,
+          "text": "Storing state for secondary animations",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A custom animation can also use ",
+              "type": "text"
+            },
+            {
+              "code": "AnimationState",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to store the state of a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "secondary animation. For example, the following code creates an",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/AnimationStateKey",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " that includes the property ",
+              "type": "text"
+            },
+            {
+              "code": "secondaryState",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", which a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "custom animation can use to store other state:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "private struct TargetState<Value: VectorArithmetic>: AnimationStateKey {",
+            "    var timeDelta = 0.0",
+            "    var valueDelta = Value.zero",
+            "    var secondaryState: AnimationState<Value>? = .init()",
+            "",
+            "    static var defaultValue: Self { .init() }",
+            "}",
+            "",
+            "extension AnimationContext {",
+            "    fileprivate var targetState: TargetState<Value> {",
+            "        get { state[TargetState<Value>.self] }",
+            "        set { state[TargetState<Value>.self] = newValue }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The custom animation ",
+              "type": "text"
+            },
+            {
+              "code": "TargetAnimation",
+              "type": "codeVoice"
+            },
+            {
+              "text": " uses ",
+              "type": "text"
+            },
+            {
+              "code": "TargetState",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to store state",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "data in ",
+              "type": "text"
+            },
+            {
+              "code": "secondaryState",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for another animation that runs as part of the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "target animation.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct TargetAnimation: CustomAnimation {",
+            "    var base: Animation",
+            "    var secondary: Animation",
+            "",
+            "    func animate<V: VectorArithmetic>(value: V, time: Double, context: inout AnimationContext<V>) -> V? {",
+            "        var targetValue = value",
+            "        if let secondaryState = context.targetState.secondaryState {",
+            "            var secondaryContext = context",
+            "            secondaryContext.state = secondaryState",
+            "            let secondaryValue = value - context.targetState.valueDelta",
+            "            let result = secondary.animate(",
+            "                value: secondaryValue, time: time - context.targetState.timeDelta,",
+            "                context: &secondaryContext)",
+            "            if let result = result {",
+            "                context.targetState.secondaryState = secondaryContext.state",
+            "                targetValue = result + context.targetState.valueDelta",
+            "            } else {",
+            "                context.targetState.secondaryState = nil",
+            "            }",
+            "        }",
+            "        let result = base.animate(value: targetValue, time: time, context: &context)",
+            "        if let result = result {",
+            "            targetValue = result",
+            "        } else if context.targetState.secondaryState == nil {",
+            "            return nil",
+            "        }",
+            "        return targetValue",
+            "}",
+            "",
+            "    func shouldMerge<V: VectorArithmetic>(previous: Animation, value: V, time: Double, context: inout AnimationContext<V>) -> Bool {",
+            "        guard let previous = previous.base as? Self else { return false }",
+            "        var secondaryContext = context",
+            "        if let secondaryState = context.targetState.secondaryState {",
+            "            secondaryContext.state = secondaryState",
+            "            context.targetState.valueDelta = secondary.animate(",
+            "                value: value, time: time - context.targetState.timeDelta,",
+            "                context: &secondaryContext) ?? value",
+            "        } else {",
+            "            context.targetState.valueDelta = value",
+            "        }",
+            "        // Reset the target each time a merge occurs.",
+            "        context.targetState.secondaryState = .init()",
+            "        context.targetState.timeDelta = time",
+            "        return base.shouldMerge(",
+            "            previous: previous.base, value: value, time: time,",
+            "            context: &context)",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "SwiftUI-PageImage-card.png": {
+      "alt": "A black Swift logo on a swirly blue and purple background.",
+      "identifier": "SwiftUI-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b1de0de086f81a5d0eac3839a0af6e6f/SwiftUI-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1450d0b30a6b024e10c148e3f31dafe9/SwiftUI-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI": {
+      "abstract": [
+        {
+          "text": "Declare the user interface and behavior for your app on every platform.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI",
+      "images": [
+        {
+          "identifier": "SwiftUI-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SwiftUI",
+      "type": "topic",
+      "url": "/documentation/swiftui"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/AnimationContext": {
+      "abstract": [
+        {
+          "text": "Contextual values that a custom animation can use to manage state and",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "access a view’s environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AnimationContext"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/AnimationContext",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AnimationContext"
+        }
+      ],
+      "role": "symbol",
+      "title": "AnimationContext",
+      "type": "topic",
+      "url": "/documentation/swiftui/animationcontext"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/AnimationContext/state": {
+      "abstract": [
+        {
+          "text": "The current state of a custom animation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "state"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI14AnimationStateV",
+          "text": "AnimationState"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Value"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/AnimationContext/state",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "state",
+      "type": "topic",
+      "url": "/documentation/swiftui/animationcontext/state"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/AnimationState": {
+      "abstract": [
+        {
+          "text": "A container that stores the state for a custom animation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AnimationState"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/AnimationState",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AnimationState"
+        }
+      ],
+      "role": "symbol",
+      "title": "AnimationState",
+      "type": "topic",
+      "url": "/documentation/swiftui/animationstate"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/AnimationState/init()": {
+      "abstract": [
+        {
+          "text": "Create an empty state container.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/AnimationState/init()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init()",
+      "type": "topic",
+      "url": "/documentation/swiftui/animationstate/init()"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/AnimationState/subscript(_:)": {
+      "abstract": [
+        {
+          "text": "Accesses the state for a custom key.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "subscript"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "K"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "K"
+        },
+        {
+          "kind": "text",
+          "text": ".Type) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "K"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI17AnimationStateKeyP5ValueQa",
+          "text": "Value"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/AnimationState/subscript(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "subscript(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/animationstate/subscript(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/AnimationStateKey": {
+      "abstract": [
+        {
+          "text": "A key for accessing animation state values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AnimationStateKey"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/AnimationStateKey",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AnimationStateKey"
+        }
+      ],
+      "role": "symbol",
+      "title": "AnimationStateKey",
+      "type": "topic",
+      "url": "/documentation/swiftui/animationstatekey"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/CustomAnimation": {
+      "abstract": [
+        {
+          "text": "A type that defines how an animatable value changes over time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomAnimation"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/CustomAnimation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CustomAnimation"
+        }
+      ],
+      "role": "symbol",
+      "title": "CustomAnimation",
+      "type": "topic",
+      "url": "/documentation/swiftui/customanimation"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Spring": {
+      "abstract": [
+        {
+          "text": "A representation of a spring’s motion.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Spring"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Spring",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Spring"
+        }
+      ],
+      "role": "symbol",
+      "title": "Spring",
+      "type": "topic",
+      "url": "/documentation/swiftui/spring"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/UnitCurve": {
+      "abstract": [
+        {
+          "text": "A  function defined by a two-dimensional curve that maps an input",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "progress in the range [0,1] to an output progress that is also in the",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "range [0,1]. By changing the shape of the curve, the effective speed",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "of an animation or other interpolation can be changed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UnitCurve"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/UnitCurve",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UnitCurve"
+        }
+      ],
+      "role": "symbol",
+      "title": "UnitCurve",
+      "type": "topic",
+      "url": "/documentation/swiftui/unitcurve"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/VectorArithmetic": {
+      "abstract": [
+        {
+          "text": "A type that can serve as the animatable data of an animatable type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VectorArithmetic"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/VectorArithmetic",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VectorArithmetic"
+        }
+      ],
+      "role": "symbol",
+      "title": "VectorArithmetic",
+      "type": "topic",
+      "url": "/documentation/swiftui/vectorarithmetic"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Creating-custom-animations",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/CustomAnimation",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/AnimationContext",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/AnimationStateKey",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/UnitCurve",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Spring"
+      ],
+      "title": "Creating custom animations"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-animation-state",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/AnimationState/init()"
+      ],
+      "title": "Creating animation state"
+    },
+    {
+      "anchor": "Accessing-custom-keys",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/AnimationState/subscript(_:)"
+      ],
+      "title": "Accessing custom keys"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/swiftui/animationstate"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

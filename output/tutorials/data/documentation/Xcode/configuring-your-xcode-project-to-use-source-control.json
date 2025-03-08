@@ -1,0 +1,1115 @@
+{
+  "abstract": [
+    {
+      "text": "Sync code changes between team members and development computers by setting up",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "your Xcode project to use Git source control.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Xcode/documentation/Xcode",
+        "doc://com.apple.Xcode/documentation/Xcode/source-control-management"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Xcode/documentation/Xcode/configuring-your-xcode-project-to-use-source-control"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Configuring your Xcode project to use source control"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you’re building a project with a team, or by yourself using more than one development",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "computer, use Xcode’s support for Git source control to coordinate code changes between",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "team members or computers, and keep them all in sync.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Git relies on a ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "source control repository",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " to track a history of your project’s code",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "changes and to sync those changes across other devices.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Set up your Xcode project to use Git by creating and configuring a new source control",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "repository, or by downloading an existing source control repository.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Customize-your-author-name-and-email",
+          "level": 3,
+          "text": "Customize your author name and email",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before you configure a source control repository for a specific project, customize your",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "name and email address for source control for all projects in Xcode.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "When you make changes to your source code and commit them to your source control",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "repository, Xcode includes your name and email address as the author in the source control",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "history. Users can Control-click a history entry to email the author.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To customize your name and email address for source control for all projects, choose",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Xcode > Settings > Source Control and click the Git tab. Enter your preferred author name and email",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "address in the applicable fields.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "configuring-your-xcode-project-to-use-source-control-1",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If the Git tab doesn’t appear, make sure you select the Enable Source Control",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "option in the General tab.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Tip",
+          "style": "tip",
+          "type": "aside"
+        },
+        {
+          "anchor": "Create-a-local-repository-with-your-new-project",
+          "level": 3,
+          "text": "Create a local repository with your new project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you create a new Xcode project, one of the final steps is to specify where you",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "want to save your project files. At this point, you can quickly create a local Git",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "source control repository for your project by selecting the “Create Git repository",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "on my Mac” option and then clicking the Create button.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "configuring-your-xcode-project-to-use-source-control-2",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Xcode creates your project in the folder you specify, initializes a local Git source control",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "repository for your project, and commits all the files that it creates for your project",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in an initial commit. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/creating-an-xcode-project-for-an-app",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Get-a-project-from-a-remote-repository",
+          "level": 3,
+          "text": "Get a project from a remote repository",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can also create a local copy, or ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "clone",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", of an existing remote Git repository",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to update and sync changes with. If the repository you want to clone uses Bitbucket,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "GitHub, or GitLab as its host, and requires authentication, you need to set up account",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "information to access the repository. Choose Xcode > Settings > Accounts, click",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the Add button (+), select the type of account to add, and click Continue.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "configuring-your-xcode-project-to-use-source-control-3",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the dialog that appears, click the “Create a Token on [",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Source Control Platform",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": "]”",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "button if you don’t have a token already. Otherwise, provide your account information and personal",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "token to connect to the remote repository, and click Sign In.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To copy a remote repository, select Source Control > Clone.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "configuring-your-xcode-project-to-use-source-control-4",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you add one or more source control accounts, Xcode shows a list of the projects",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that you can select to clone. Alternatively, get a URL for a remote repository, paste",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "it into the repository URL field, and press Enter. If the remote repository corresponds to an",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Xcode project, Xcode scans the project and provides a list of branches available to clone.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Select a branch to clone, and provide a location for Xcode to save the cloned project.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Xcode creates a copy of the project from the remote repository, saves it in the location",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "you specify, checks out the branch you select, and opens the project.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Connect-to-a-remote-repository-to-sync-changes",
+          "level": 3,
+          "text": "Connect to a remote repository to sync changes",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Share your changes with other developers on your team, or maintain a backup of your",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "project by syncing changes with a remote repository. To sync with a remote repository,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "you need to configure your source control settings for your project to point to the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "remote repository. If you cloned your local repository from a remote repository,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "your project already has a connection to the remote repository. Otherwise, create",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a new remote repository or connect to an existing one. To accomplish these tasks,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "select the Source Control navigator (the second navigator from the left, next to the Project",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "navigator). In the Source Control navigator, select the Repositories navigator.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Create a new remote repository in the Source Control navigator by Control-clicking",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the Remotes folder for your project and choosing New “[",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "project name",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": "]” Remote. Provide",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the information and click Create to create and connect the new remote repository.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "configuring-your-xcode-project-to-use-source-control-5",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Add a connection to an existing remote repository in the Source Control navigator",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "by Control-clicking the Remotes folder for your project and choosing Add Existing",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Remote. Provide a name and URL for the remote repository, and click Add to set up",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the connection.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "configuring-your-xcode-project-to-use-source-control-6",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Retrieve-changes-from-a-remote-repository",
+          "level": 3,
+          "text": "Retrieve changes from a remote repository",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Get changes from the remote repository by choosing Source Control > Pull. In the dialog",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that appears, select the branch with the changes you want to apply to your local repository,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "select the “Rebase local changes onto upstream changes” option if you want, and click Pull.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "configuring-your-xcode-project-to-use-source-control-7",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Alternatively, choose Source Control > Fetch Changes to download the changes from",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "your remote repository without applying them to your working copy.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Share-changes-to-a-remote-repository",
+          "level": 3,
+          "text": "Share changes to a remote repository",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you’re ready to share your work, choose Source Control > Push. In the dialog",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that appears, select the branch you want to share, select the Include Tags option",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "if you want to push tags to the remote repository, and then click Push to sync your",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "changes with the remote repository.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "configuring-your-xcode-project-to-use-source-control-8",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To add a collaborator to your remote repository, sign in to your source control account",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in a web browser and add a new collaborator in your repository’s Settings.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For information about configuring additional settings for source control management",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in Xcode, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/configuring-source-control-preferences-in-xcode",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Xcode-PageImage-card.png": {
+      "alt": "The Xcode logo on a blue gradient background.",
+      "identifier": "Xcode-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cc63eacd8f7f660388b46204d1d9bbcb/Xcode-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/62dba87d5f60ec96eb48882c9dff86d8/Xcode-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "configuring-your-xcode-project-to-use-source-control-1": {
+      "alt": "The Xcode Settings dialog showing the Source Control preference pane with the Git tab in a selected state. The Author Name, Author Email, and Ignored Files fields contain example values.",
+      "identifier": "configuring-your-xcode-project-to-use-source-control-1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/385c8d57207cfbe73a7dc60eafa1fa40/configuring-your-xcode-project-to-use-source-control-1@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/aa04317f14929a60e2adfcc8b3646311/configuring-your-xcode-project-to-use-source-control-1~dark@2x.png"
+        }
+      ]
+    },
+    "configuring-your-xcode-project-to-use-source-control-2": {
+      "alt": "An Xcode file selection dialog for specifying where to save a new project. The Create Git repository on my Mac option is in a selected state.",
+      "identifier": "configuring-your-xcode-project-to-use-source-control-2",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/6f50739643ada970e6d786b7a7e0b5ee/configuring-your-xcode-project-to-use-source-control-2@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/353c7f8f2adc756761bdc209f821edf3/configuring-your-xcode-project-to-use-source-control-2~dark@2x.png"
+        }
+      ]
+    },
+    "configuring-your-xcode-project-to-use-source-control-3": {
+      "alt": "An Xcode dialog entitled Sign in to your GitHub account, with fields to enter an account and personal access token. There’s also a button to create a personal access token.",
+      "identifier": "configuring-your-xcode-project-to-use-source-control-3",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ccf1adef82d268224876194893b3b144/configuring-your-xcode-project-to-use-source-control-3@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/03217ca2cd5390c8d1229219ac45bd0d/configuring-your-xcode-project-to-use-source-control-3~dark@2x.png"
+        }
+      ]
+    },
+    "configuring-your-xcode-project-to-use-source-control-4": {
+      "alt": "An Xcode dialog for entering a repository URL to clone a source-control repository, or to select from a list of repositories for an account. An option to add a hosted account is also visible.",
+      "identifier": "configuring-your-xcode-project-to-use-source-control-4",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ab0c677008f30a9ad668788aa1a35173/configuring-your-xcode-project-to-use-source-control-4@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/45d87a9bdd4cee11a3cec73108576599/configuring-your-xcode-project-to-use-source-control-4~dark@2x.png"
+        }
+      ]
+    },
+    "configuring-your-xcode-project-to-use-source-control-5": {
+      "alt": "An Xcode dialog for creating a new remote repository for a project. The dialog has fields for the account, owner, repository name, description, and remote name, as well as options for visibility (public or private).",
+      "identifier": "configuring-your-xcode-project-to-use-source-control-5",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e992043d93f91202151de9eb3b21344b/configuring-your-xcode-project-to-use-source-control-5@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ae8288e7a3978826846b9ec62f3f8894/configuring-your-xcode-project-to-use-source-control-5~dark@2x.png"
+        }
+      ]
+    },
+    "configuring-your-xcode-project-to-use-source-control-6": {
+      "alt": "An Xcode dialog to add an existing remote repository to the project. The dialog has fields for the remote name and location (URL).",
+      "identifier": "configuring-your-xcode-project-to-use-source-control-6",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/98c4a460b75d3165f7722fe9d0793156/configuring-your-xcode-project-to-use-source-control-6@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1cca23a131b8b1d1d1c90939f34f6229/configuring-your-xcode-project-to-use-source-control-6~dark@2x.png"
+        }
+      ]
+    },
+    "configuring-your-xcode-project-to-use-source-control-7": {
+      "alt": "An Xcode dialog to pull changes from a remote repository. The dialog has a drop-down selector to choose a repository and branch, and an option to Rebase local changes onto upstream changes.",
+      "identifier": "configuring-your-xcode-project-to-use-source-control-7",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/509678632d46a268740fc957c80225e2/configuring-your-xcode-project-to-use-source-control-7@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a16d5b4fdb0cf3dedbe0acc541209e59/configuring-your-xcode-project-to-use-source-control-7~dark@2x.png"
+        }
+      ]
+    },
+    "configuring-your-xcode-project-to-use-source-control-8": {
+      "alt": "An Xcode dialog to push changes to a remote repository. The dialog has a drop-down selector to choose a repository and branch, and an option to Include tags with the push.",
+      "identifier": "configuring-your-xcode-project-to-use-source-control-8",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/0b81fc62c182f51d398f94893fa71549/configuring-your-xcode-project-to-use-source-control-8@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/dc43009f97eb3f4d481c75677a916b86/configuring-your-xcode-project-to-use-source-control-8~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Xcode/documentation/Xcode": {
+      "abstract": [
+        {
+          "text": "Build, test, and submit your app with Apple’s integrated development environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode",
+      "images": [
+        {
+          "identifier": "Xcode-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/configuring-source-control-preferences-in-xcode": {
+      "abstract": [
+        {
+          "text": "Customize the default Xcode Settings for connecting to Git repositories, applying code changes, and more options for configuring source control.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/configuring-source-control-preferences-in-xcode",
+      "kind": "article",
+      "role": "article",
+      "title": "Configuring source control preferences in Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode/configuring-source-control-preferences-in-xcode"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/creating-an-xcode-project-for-an-app": {
+      "abstract": [
+        {
+          "text": "Start developing your app by creating an Xcode project from a template.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/creating-an-xcode-project-for-an-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating an Xcode project for an app",
+      "type": "topic",
+      "url": "/documentation/xcode/creating-an-xcode-project-for-an-app"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/source-control-management": {
+      "abstract": [
+        {
+          "text": "Back up your files, collaborate with others, and tag your releases with",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "source control support in Xcode.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/source-control-management",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Source control management",
+      "type": "topic",
+      "url": "/documentation/xcode/source-control-management"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/tracking-code-changes-in-a-source-control-repository": {
+      "abstract": [
+        {
+          "text": "Create a history of incremental code changes to your Xcode project’s source control",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "repository with Git commits.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/tracking-code-changes-in-a-source-control-repository",
+      "kind": "article",
+      "role": "article",
+      "title": "Tracking code changes in a source control repository",
+      "type": "topic",
+      "url": "/documentation/xcode/tracking-code-changes-in-a-source-control-repository"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Xcode/documentation/Xcode/tracking-code-changes-in-a-source-control-repository"
+      ],
+      "title": "Essentials"
+    }
+  ]
+}

@@ -1,0 +1,2054 @@
+{
+  "abstract": [
+    {
+      "text": "Customize the layout of your user interface to support all Apple Watch sizes.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/supporting-multiple-watch-sizes"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Supporting multiple watch sizes"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "With the addition of Apple Watch Series 10, watchOS apps now support seven watch sizes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Devices",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Sizes",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Apple Watch Series 4, 5, 6, and SE",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "40 mm and 44 mm",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Apple Watch Series 7, 8, and 9",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "41 mm and 45 mm",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Apple Watch Series 10",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "42 mm and 46 mm",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Apple Watch Ultra",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "49 mm",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In addition to adding two new sizes, Apple Watch Series 10 also has a slightly different aspect ratio–gaining a bit more width. It also has rounder corners.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "screen-comparison",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When Apple Watch Series 10 runs an app compiled for watchOS 10 or earlier, the system letterboxes the interface, centering it on the screen. Additionally, the Series 10 clips the corners of the letter-boxed content; however, it doesn’t clip the safe area. To fully use the Series 10 sizes, build your app with the watchOS 11 SDK or later.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-a-dynamic-layout",
+          "level": 3,
+          "text": "Create a dynamic layout",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When designing your app, be sure to consider all available watch sizes. Where possible, use resizable objects to fill the available space. Resizable objects help create flexible layouts and minimize the amount of customization you need to support for the different sizes. If necessary, you can customize your layout for specific sizes; however, when creating the layout for larger screens, use the additional space to display larger controls and assets, rather than filling the screen with additional controls.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For additional design information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/design/Human-Interface-Guidelines/designing-for-watchos",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Use-safe-areas-and-scene-padding",
+          "level": 3,
+          "text": "Use safe areas and scene padding",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Most watches have rounded corners that may clip scrolling content. Some also bend content around the bevel, which can affect the appearance of anything placed near the sides. Finally, each screen keeps a margin between the text in its status and notification bars, and the edge of the screen. When laying out your content, you typically align text with the leading edge of the navigation bar’s title or the back button, and the trailing edge of the status bar’s text.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system provides the following tools to help you manage your content:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Defines the area on the screen where you can safely display content. The safe area is the region below the status bar that avoids the rounded corners.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Safe area insets",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Provides the same leading and trailing margin as the navigation and status bars. This padding also ensures that the watch’s bevel doesn’t distort the content.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Scene padding",
+                    "type": "text"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following figures show the safe area and scene padding for all watch sizes. The ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "h",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " value at the top is the number of points from the top of the safe area to the bottom of the status bar. The ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "y",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " distance indicates the size of the text margin.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "columns": [
+                    {
+                      "content": [
+                        {
+                          "inlineContent": [
+                            {
+                              "identifier": "40mm-list-view",
+                              "type": "image"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ],
+                      "size": 1
+                    },
+                    {
+                      "content": [
+                        {
+                          "inlineContent": [
+                            {
+                              "identifier": "44mm-list-view",
+                              "type": "image"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ],
+                      "size": 1
+                    }
+                  ],
+                  "numberOfColumns": 2,
+                  "type": "row"
+                }
+              ],
+              "title": "Series 4, 5, 6, and SE (40mm and 44mm)"
+            },
+            {
+              "content": [
+                {
+                  "columns": [
+                    {
+                      "content": [
+                        {
+                          "inlineContent": [
+                            {
+                              "identifier": "41mm-list-view",
+                              "type": "image"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ],
+                      "size": 1
+                    },
+                    {
+                      "content": [
+                        {
+                          "inlineContent": [
+                            {
+                              "identifier": "45mm-list-view",
+                              "type": "image"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ],
+                      "size": 1
+                    }
+                  ],
+                  "numberOfColumns": 2,
+                  "type": "row"
+                }
+              ],
+              "title": "Series 7, 8, and 9 (41mm and 45mm)"
+            },
+            {
+              "content": [
+                {
+                  "columns": [
+                    {
+                      "content": [
+                        {
+                          "inlineContent": [
+                            {
+                              "identifier": "42mm-list-view",
+                              "type": "image"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ],
+                      "size": 1
+                    },
+                    {
+                      "content": [
+                        {
+                          "inlineContent": [
+                            {
+                              "identifier": "46mm-list-view",
+                              "type": "image"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ],
+                      "size": 1
+                    }
+                  ],
+                  "numberOfColumns": 2,
+                  "type": "row"
+                }
+              ],
+              "title": "Series 10 (42mm and 46mm)"
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "49mm-list-view",
+                      "type": "image"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              "title": "Ultra (49mm)"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "By default, SwiftUI views fill the safe area. Scrolling content, such as a list view, automatically settles within the safe areas. To disable the safe area, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/ignoresSafeArea(_:edges:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " view modifier.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To align items with the status and navigation bar, call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/scenePadding(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " on the view. In general, align text with the status and navigation bar. In watchOS 11 and later, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Button",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "  automatically aligns to the text margins. The rounded rectangle for a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/List",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " horizontally fills the safe area, but its content aligns with the status and navigation bar.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@State var showing = true",
+            "",
+            "var body: some View {",
+            "    Text(\"Hello World\")",
+            "    // Displaying a sheet ensures that there are items on both sides",
+            "    // of the status bar.",
+            "        .sheet(isPresented: $showing) {",
+            "            VStack {",
+            "                ",
+            "                Spacer()",
+            "                                    ",
+            "                // Align the text with the status bar.",
+            "                Text(\"The quick brown fox jumps over the lazy dog.\")",
+            "                    .scenePadding(.horizontal)",
+            "                ",
+            "                Spacer()",
+            "                                    ",
+            "                // The button automatically aligns with the status bar.",
+            "                Button(\"My Button\") {",
+            "                    print(\"Button Pressed!\")",
+            "                }",
+            "            }",
+            "        }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "scene-padding",
+              "type": "image"
+            },
+            {
+              "text": " For additional design information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/design/Human-Interface-Guidelines/layout",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Support-dynamic-type",
+          "level": 3,
+          "text": "Support dynamic type",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use dynamic type so the wearer can modify the size of text components in your app. Dynamic type helps users who need larger text for better readability. It also accommodates those who can read smaller text, allowing more information to appear on the screen. Apps that support Dynamic Type provide an experience that is consistent with the system apps. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Applying-Custom-Fonts-to-Text",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Different watch sizes use different default dynamic type sizes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Device",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Dynamic type size",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "40 mm, 41 mm, and 42 mm",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Large",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "44 mm, 45 mm, 46 mm, and 49 mm",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "XLarge",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The wearer can change the dynamic type size, including using accessibility sizes. Always check your app’s appearance with all available type sizes.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For additional design information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/design/Human-Interface-Guidelines/typography",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Manage-assets",
+          "level": 3,
+          "text": "Manage assets",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To provide an asset that adapts to all watch sizes, create a scalable PDF asset. Add a PDF to the asset catalog as a 2x image asset, then set its Auto Scaling attribute to Automatic.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "screensize-preview",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you load the PDF, the system scales the image based on the current device’s size as listed in the table.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Watch Size",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Image Scale",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "38 mm",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "90%",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "40 mm",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "100%",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "41 mm",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "106%",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "42 mm (Series 3)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "100%",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "42 mm (Series 10)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "106%",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "44 mm",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "110%",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "45 mm",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "119%",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "46 mm",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "119%",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "49 mm",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "119%",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more design information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/design/Human-Interface-Guidelines/images",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Preview-multiple-sizes",
+          "level": 3,
+          "text": "Preview multiple sizes",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When designing a watchOS app, you can use Xcode previews to check your app’s layout. You can display one or more previews using the ",
+              "type": "text"
+            },
+            {
+              "code": "#Preview",
+              "type": "codeVoice"
+            },
+            {
+              "text": " macro.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "#Preview {",
+            "    ContentView()",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can then use the Preview destination picker to switch between different devices.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "screensize-preview",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can also view all the dynamic type sizes for that device by selecting the Dynamic Type Variants option.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "preview-dynamic-type",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Xcode/previewing-your-apps-interface-in-xcode",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "40mm-list-view": {
+      "alt": "A figure that shows the safe area and text margins for the 40mm watch.",
+      "identifier": "40mm-list-view",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/113ad2ac0a6e25fc8f5b8101385b3ef6/40mm-list-view@2x.png"
+        }
+      ]
+    },
+    "41mm-list-view": {
+      "alt": "A figure that shows the safe area and text margins for the 41mm watch.",
+      "identifier": "41mm-list-view",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/9808a32c258bad603302dff3ba4d2a9a/41mm-list-view@2x.png"
+        }
+      ]
+    },
+    "42mm-list-view": {
+      "alt": "A figure that shows the safe area and text margins for the 42mm watch (Series .",
+      "identifier": "42mm-list-view",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/bcea8455456ecc4ebe0cdef759b8a41b/42mm-list-view@2x.png"
+        }
+      ]
+    },
+    "44mm-list-view": {
+      "alt": "A figure that shows the safe area and text margins for the 44mm watch.",
+      "identifier": "44mm-list-view",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/dde50127146cbda32e6f936218619b4c/44mm-list-view@2x.png"
+        }
+      ]
+    },
+    "45mm-list-view": {
+      "alt": "A figure that shows the safe area and text margins for the 45mm watch.",
+      "identifier": "45mm-list-view",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/70cef97c4802b5832d779e9cf89fe87b/45mm-list-view@2x.png"
+        }
+      ]
+    },
+    "46mm-list-view": {
+      "alt": "A figure that shows the safe area and text margins for the 46mm watch.",
+      "identifier": "46mm-list-view",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ba4d45735933f6f93c34fb3018ace90d/46mm-list-view@2x.png"
+        }
+      ]
+    },
+    "49mm-list-view": {
+      "alt": "A figure that shows the safe area and text margins for the 49mm watch.",
+      "identifier": "49mm-list-view",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1d9b8b0e933a694582e7589f6cc04869/49mm-list-view@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.documentation/design/Human-Interface-Guidelines/designing-for-watchos": {
+      "abstract": [
+        {
+          "text": "When people glance at their Apple Watch, they know they can access essential information and perform simple, timely tasks whether they’re stationary or in motion.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/design/Human-Interface-Guidelines/designing-for-watchos",
+      "images": [
+        {
+          "identifier": "watchos.svg",
+          "type": "icon"
+        },
+        {
+          "identifier": "platforms-designing-for-watchos-thumbnail.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "article",
+      "title": "Designing for watchOS",
+      "type": "topic",
+      "url": "/design/Human-Interface-Guidelines/designing-for-watchos"
+    },
+    "doc://com.apple.documentation/design/Human-Interface-Guidelines/images": {
+      "abstract": [
+        {
+          "text": "To make sure your artwork looks great on all devices you support, learn how the system displays content and how to deliver art at the appropriate scale factors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/design/Human-Interface-Guidelines/images",
+      "images": [
+        {
+          "identifier": "images.svg",
+          "type": "icon"
+        },
+        {
+          "identifier": "foundations-images-thumbnail.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "article",
+      "title": "Images",
+      "type": "topic",
+      "url": "/design/Human-Interface-Guidelines/images"
+    },
+    "doc://com.apple.documentation/design/Human-Interface-Guidelines/layout": {
+      "abstract": [
+        {
+          "text": "A consistent layout that adapts to various contexts makes your experience more approachable and helps people enjoy their favorite apps and games on all their devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/design/Human-Interface-Guidelines/layout",
+      "images": [
+        {
+          "identifier": "layout.svg",
+          "type": "icon"
+        },
+        {
+          "identifier": "foundations-layout-thumbnail.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "article",
+      "title": "Layout",
+      "type": "topic",
+      "url": "/design/Human-Interface-Guidelines/layout"
+    },
+    "doc://com.apple.documentation/design/Human-Interface-Guidelines/typography": {
+      "abstract": [
+        {
+          "text": "Your typographic choices can help you display legible text, convey an information hierarchy, communicate important content, and express your brand or style.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/design/Human-Interface-Guidelines/typography",
+      "images": [
+        {
+          "identifier": "typography.svg",
+          "type": "icon"
+        },
+        {
+          "identifier": "foundations-typography-thumbnail.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "article",
+      "title": "Typography",
+      "type": "topic",
+      "url": "/design/Human-Interface-Guidelines/typography"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/Applying-Custom-Fonts-to-Text": {
+      "abstract": [
+        {
+          "text": "Add and use a font in your app that scales with Dynamic Type.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Applying-Custom-Fonts-to-Text",
+      "kind": "article",
+      "role": "article",
+      "title": "Applying custom fonts to text",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/Applying-Custom-Fonts-to-Text"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/Button": {
+      "abstract": [
+        {
+          "text": "A control that initiates an action.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Button"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Label"
+        },
+        {
+          "kind": "text",
+          "text": "> "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Label"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Button",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Button",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/Button"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/List": {
+      "abstract": [
+        {
+          "text": "A container that presents rows of data arranged in a single column, optionally providing the ability to select one or more members.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "List"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "SelectionValue"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": "> "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "SelectionValue"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SH",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/List",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "List",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/List"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/View/ignoresSafeArea(_:edges:)": {
+      "abstract": [
+        {
+          "text": "Expands the safe area of a view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ignoresSafeArea"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "regions"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI15SafeAreaRegionsV",
+          "text": "SafeAreaRegions"
+        },
+        {
+          "kind": "text",
+          "text": " = .all, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "edges"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4EdgeO",
+          "text": "Edge"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4EdgeO3SetV",
+          "text": "Set"
+        },
+        {
+          "kind": "text",
+          "text": " = .all) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/ignoresSafeArea(_:edges:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ignoresSafeArea(_:edges:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View/ignoresSafeArea(_:edges:)"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/View/scenePadding(_:)": {
+      "abstract": [
+        {
+          "text": "Adds padding to the specified edges of this view using an amount that’s appropriate for the current scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "scenePadding"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "edges"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4EdgeO",
+          "text": "Edge"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4EdgeO3SetV",
+          "text": "Set"
+        },
+        {
+          "kind": "text",
+          "text": " = .all) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/scenePadding(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "scenePadding(_:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View/scenePadding(_:)"
+    },
+    "doc://com.apple.documentation/documentation/Xcode/previewing-your-apps-interface-in-xcode": {
+      "abstract": [
+        {
+          "text": "Iterate designs quickly and preview your apps’ displays across different Apple devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Xcode/previewing-your-apps-interface-in-xcode",
+      "kind": "article",
+      "role": "article",
+      "title": "Previewing your app’s interface in Xcode",
+      "type": "topic",
+      "url": "/documentation/Xcode/previewing-your-apps-interface-in-xcode"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.documentation/documentation/watchos-apps/building_a_productivity_app_for_apple_watch": {
+      "abstract": [
+        {
+          "text": "Create a watch app to manage and share a task list and visualize the status with a chart.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/watchos-apps/building_a_productivity_app_for_apple_watch",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Building a productivity app for Apple Watch",
+      "type": "topic",
+      "url": "/documentation/watchos-apps/building_a_productivity_app_for_apple_watch"
+    },
+    "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps": {
+      "abstract": [
+        {
+          "text": "Build watchOS apps that combine complications, notifications, and Siri to create",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "a personal experience on Apple Watch.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps",
+      "images": [
+        {
+          "identifier": "watchOSApps-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "watchOS apps",
+      "type": "topic",
+      "url": "/documentation/watchos-apps"
+    },
+    "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/designing-your-app-for-the-always-on-state": {
+      "abstract": [
+        {
+          "text": "Customize your watchOS app’s user interface for continuous display.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/designing-your-app-for-the-always-on-state",
+      "kind": "article",
+      "role": "article",
+      "title": "Designing your app for the Always On state",
+      "type": "topic",
+      "url": "/documentation/watchos-apps/designing-your-app-for-the-always-on-state"
+    },
+    "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/setting-the-app-s-accent-color": {
+      "abstract": [
+        {
+          "text": "Set your app’s accent color.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/setting-the-app-s-accent-color",
+      "kind": "article",
+      "role": "article",
+      "title": "Setting the app’s accent color",
+      "type": "topic",
+      "url": "/documentation/watchos-apps/setting-the-app-s-accent-color"
+    },
+    "foundations-images-thumbnail.png": {
+      "alt": null,
+      "identifier": "foundations-images-thumbnail.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/885bec6d2d90bc7a965ecd5db6b8e145/foundations-images-thumbnail@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/fc6bf8417d3a06c11f2046d7a4fb0fb5/foundations-images-thumbnail~dark@2x.png"
+        }
+      ]
+    },
+    "foundations-layout-thumbnail.png": {
+      "alt": null,
+      "identifier": "foundations-layout-thumbnail.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/0db27821e97ac9613ac0cc103892a10d/foundations-layout-thumbnail@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ecc4143dcd694cda5cb3b5e1afde9733/foundations-layout-thumbnail~dark@2x.png"
+        }
+      ]
+    },
+    "foundations-typography-thumbnail.png": {
+      "alt": null,
+      "identifier": "foundations-typography-thumbnail.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/23ea64595d6aa11df430ab85a3681efd/foundations-typography-thumbnail~dark@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/30a9c2adbbfa1602133dcfb2f5bfeaab/foundations-typography-thumbnail@2x.png"
+        }
+      ]
+    },
+    "images.svg": {
+      "alt": null,
+      "identifier": "images.svg",
+      "type": "image",
+      "variants": [
+        {
+          "svgID": "images",
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/622f1bc92665b4bea75242308b7ec901/images.svg"
+        }
+      ]
+    },
+    "layout.svg": {
+      "alt": null,
+      "identifier": "layout.svg",
+      "type": "image",
+      "variants": [
+        {
+          "svgID": "layout",
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f3e002314da7a56d2f24cdec3be06327/layout.svg"
+        }
+      ]
+    },
+    "platforms-designing-for-watchos-thumbnail.png": {
+      "alt": null,
+      "identifier": "platforms-designing-for-watchos-thumbnail.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/0686f93dddf6ba103cc46001a38ee538/platforms-designing-for-watchos-thumbnail~dark@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/dd69cccef7898c67b4c69998b9a766a3/platforms-designing-for-watchos-thumbnail@2x.png"
+        }
+      ]
+    },
+    "preview-dynamic-type": {
+      "alt": "A screenshot of Xcode that shows a preview of all the dynamic type variants.",
+      "identifier": "preview-dynamic-type",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/7466437f47c55047cc34dc51ca0733fb/preview-dynamic-type@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/3625b36ffec5d79f8e02f557c3cc8498/preview-dynamic-type~dark@2x.png"
+        }
+      ]
+    },
+    "scene-padding": {
+      "alt": "An image of a watch face that displays the result of the code listing Both the text and the button align with the text margins.",
+      "identifier": "scene-padding",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4965427b195b15c102c781e3f64b03a7/scene-padding@2x.png"
+        }
+      ]
+    },
+    "screen-comparison": {
+      "alt": "A figure with the Series 9 screen placed over the Series 10 screen. This shows the difference in size, aspect, and shape between the two screens.",
+      "identifier": "screen-comparison",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/545a3f73364055658d64e3b965a4c97f/screen-comparison@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c9f02de4bddcd70c8f0b9672d036ed42/screen-comparison~dark@2x.png"
+        }
+      ]
+    },
+    "screensize-preview": {
+      "alt": "A screenshot of Xcode that shows Apple Watch Series 4 40 mm selected in the destination picker.",
+      "identifier": "screensize-preview",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5ec86df7540a6ca7fbd09984655daa6a/screensize-preview@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/7fa748bff2c133e9e3211d0522c1d9be/screensize-preview~dark@2x.png"
+        }
+      ]
+    },
+    "typography.svg": {
+      "alt": null,
+      "identifier": "typography.svg",
+      "type": "image",
+      "variants": [
+        {
+          "svgID": "typography",
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2b0ebfb3e9329c6ae3eac3d8f579a474/typography.svg"
+        }
+      ]
+    },
+    "watchOSApps-PageImage-card.png": {
+      "alt": "A stylized representation of Apple Watch.",
+      "identifier": "watchOSApps-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5e043ca96ec9c9e5579649124c448c35/watchOSApps-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2e82e5f258fb084d7b684889cabbe515/watchOSApps-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "watchos.svg": {
+      "alt": null,
+      "identifier": "watchos.svg",
+      "type": "image",
+      "variants": [
+        {
+          "svgID": "watchos",
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e3afc34edc848f8ea56d5cc1cb2b7495/watchos.svg"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "User-interface",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/watchos-apps/building_a_productivity_app_for_apple_watch",
+        "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/designing-your-app-for-the-always-on-state",
+        "doc://com.apple.watchOS-Apps/documentation/watchOS-Apps/setting-the-app-s-accent-color"
+      ],
+      "title": "User interface"
+    }
+  ]
+}

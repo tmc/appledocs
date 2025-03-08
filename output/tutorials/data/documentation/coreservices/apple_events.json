@@ -1,0 +1,4960 @@
+{
+  "abstract": [
+    {
+      "text": "Communicate messages across process boundaries that can be performed and responded to with a reply event.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/coreservices"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/coreservices/apple_events"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 2934431,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Core Services"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Apple Events"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When a script that targets an application is executed, commands are sent to the application in the form of ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Apple events",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", a kind of interprocess message. Cocoa scripting helps you create scriptable applications by doing much of the work of receiving these Apple events, extracting information from them, and invoking methods in your scriptable classes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "devLink-1727275": {
+      "identifier": "devLink-1727275",
+      "title": "Cocoa Scripting Guide",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/ScriptableCocoaApplications/SApps_intro/SAppsIntro.html#//apple_ref/doc/uid/TP40002164"
+    },
+    "doc://com.apple.documentation/documentation/coreservices": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Services",
+      "type": "topic",
+      "url": "/documentation/coreservices"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1441790-aeputattributedesc": {
+      "abstract": [
+        {
+          "text": "Adds a descriptor and a keyword to an Apple event as an attribute.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "AEPutAttributeDesc"
+        },
+        {
+          "kind": "text",
+          "text": "(UnsafeMutablePointer<AppleEvent>!, AEKeyword, UnsafePointer<AEDesc>!) -> OSErr"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1441790-aeputattributedesc",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AEPutAttributeDesc(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1441790-aeputattributedesc"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1441808-aeflattendesc": {
+      "abstract": [
+        {
+          "text": "Flattens the specified descriptor and stores the data in the supplied buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "AEFlattenDesc"
+        },
+        {
+          "kind": "text",
+          "text": "(UnsafePointer<AEDesc>!, Ptr!, Size, UnsafeMutablePointer<Size>!) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1441808-aeflattendesc",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AEFlattenDesc(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1441808-aeflattendesc"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1441846-aecoerceptr": {
+      "abstract": [
+        {
+          "text": "Coerces data to a desired descriptor type and creates a descriptor containing the newly coerced data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "AECoercePtr"
+        },
+        {
+          "kind": "text",
+          "text": "(DescType, UnsafeRawPointer!, Size, DescType, UnsafeMutablePointer<AEDesc>!) -> OSErr"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1441846-aecoerceptr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AECoercePtr(_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1441846-aecoerceptr"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1441907-aeremovecoercionhandler": {
+      "abstract": [
+        {
+          "text": "Removes a coercion handler from a coercion handler dispatch table.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "AERemoveCoercionHandler"
+        },
+        {
+          "kind": "text",
+          "text": "(DescType, DescType, AECoercionHandlerUPP!, Bool) -> OSErr"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1441907-aeremovecoercionhandler",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AERemoveCoercionHandler(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1441907-aeremovecoercionhandler"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1442535-aeputarray": {
+      "abstract": [
+        {
+          "text": "Inserts the data for an Apple event array into a descriptor list, replacing any previous descriptors in the list.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "AEPutArray"
+        },
+        {
+          "kind": "text",
+          "text": "(UnsafeMutablePointer<AEDescList>!, AEArrayType, UnsafePointer<AEArrayData>!, DescType, Size, Int) -> OSErr"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1442535-aeputarray",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AEPutArray(_:_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1442535-aeputarray"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1442552-aeremoveobjectaccessor": {
+      "abstract": [
+        {
+          "text": "Removes an object accessor function from an object accessor dispatch table. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "AERemoveObjectAccessor"
+        },
+        {
+          "kind": "text",
+          "text": "(DescType, DescType, OSLAccessorUPP!, Bool) -> OSErr"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1442552-aeremoveobjectaccessor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AERemoveObjectAccessor(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1442552-aeremoveobjectaccessor"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1442568-aestreamwritekeydesc": {
+      "abstract": [
+        {
+          "text": "Writes a complete keyword/descriptor pair to an ",
+          "type": "text"
+        },
+        {
+          "code": "AEStreamRef",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "AEStreamWriteKeyDesc"
+        },
+        {
+          "kind": "text",
+          "text": "(AEStreamRef!, AEKeyword, DescType, UnsafeRawPointer!, Size) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1442568-aestreamwritekeydesc",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AEStreamWriteKeyDesc(_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1442568-aestreamwritekeydesc"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1442572-aedisposeremoteprocessresolver": {
+      "abstract": [
+        {
+          "text": "Disposes of an ",
+          "type": "text"
+        },
+        {
+          "code": "AERemoteProcessResolverRef",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "AEDisposeRemoteProcessResolver"
+        },
+        {
+          "kind": "text",
+          "text": "(AERemoteProcessResolverRef!)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1442572-aedisposeremoteprocessresolver",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AEDisposeRemoteProcessResolver(_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1442572-aedisposeremoteprocessresolver"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1442610-aestreamwritedata": {
+      "abstract": [
+        {
+          "text": "Appends data to the current descriptor in an ",
+          "type": "text"
+        },
+        {
+          "code": "AEStreamRef",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "AEStreamWriteData"
+        },
+        {
+          "kind": "text",
+          "text": "(AEStreamRef!, UnsafeRawPointer!, Size) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1442610-aestreamwritedata",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AEStreamWriteData(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1442610-aestreamwritedata"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1442661-aeduplicatedesc": {
+      "abstract": [
+        {
+          "text": "Creates a copy of a descriptor.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "AEDuplicateDesc"
+        },
+        {
+          "kind": "text",
+          "text": "(UnsafePointer<AEDesc>!, UnsafeMutablePointer<AEDesc>!) -> OSErr"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1442661-aeduplicatedesc",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AEDuplicateDesc(_:_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1442661-aeduplicatedesc"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1442897-aestreamopenkeydesc": {
+      "abstract": [
+        {
+          "text": "Marks the beginning of a key descriptor in an ",
+          "type": "text"
+        },
+        {
+          "code": "AEStreamRef",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "AEStreamOpenKeyDesc"
+        },
+        {
+          "kind": "text",
+          "text": "(AEStreamRef!, AEKeyword, DescType) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1442897-aestreamopenkeydesc",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AEStreamOpenKeyDesc(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1442897-aestreamopenkeydesc"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1442994-aesendmessage": {
+      "abstract": [
+        {
+          "text": "Sends an AppleEvent to a target process without some of the overhead required by ",
+          "type": "text"
+        },
+        {
+          "code": "AESend",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "AESendMessage"
+        },
+        {
+          "kind": "text",
+          "text": "(UnsafePointer<AppleEvent>!, UnsafeMutablePointer<AppleEvent>!, AESendMode, Int) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1442994-aesendmessage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AESendMessage(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1442994-aesendmessage"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1444011-aecheckisrecord": {
+      "abstract": [
+        {
+          "text": "Determines whether a descriptor is truly an ",
+          "type": "text"
+        },
+        {
+          "code": "AERecord",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "AECheckIsRecord"
+        },
+        {
+          "kind": "text",
+          "text": "(UnsafePointer<AEDesc>!) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1444011-aecheckisrecord",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AECheckIsRecord(_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1444011-aecheckisrecord"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1444069-aegetparamptr": {
+      "abstract": [
+        {
+          "text": "Gets a copy of the data for a specified Apple event parameter from an Apple event or an Apple event record.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "AEGetParamPtr"
+        },
+        {
+          "kind": "text",
+          "text": "(UnsafePointer<AppleEvent>!, AEKeyword, DescType, UnsafeMutablePointer<DescType>!, UnsafeMutableRawPointer!, Size, UnsafeMutablePointer<Size>!) -> OSErr"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1444069-aegetparamptr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AEGetParamPtr(_:_:_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1444069-aegetparamptr"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1444208-aedisposedesc": {
+      "abstract": [
+        {
+          "text": "Deallocates the memory used by a descriptor.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "AEDisposeDesc"
+        },
+        {
+          "kind": "text",
+          "text": "(UnsafeMutablePointer<AEDesc>!) -> OSErr"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1444208-aedisposedesc",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AEDisposeDesc(_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1444208-aedisposedesc"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1444274-aegetspecialhandler": {
+      "abstract": [
+        {
+          "text": "Gets a specified handler from a special handler dispatch table.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "AEGetSpecialHandler"
+        },
+        {
+          "kind": "text",
+          "text": "(AEKeyword, UnsafeMutablePointer<AEEventHandlerUPP?>!, Bool) -> OSErr"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1444274-aegetspecialhandler",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AEGetSpecialHandler(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1444274-aegetspecialhandler"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1444338-aedeleteparam": {
+      "abstract": [
+        {
+          "text": "Deletes a keyword-specified parameter from an Apple event record.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "AEDeleteParam"
+        },
+        {
+          "kind": "text",
+          "text": "(UnsafeMutablePointer<AppleEvent>!, AEKeyword) -> OSErr"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1444338-aedeleteparam",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AEDeleteParam(_:_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1444338-aedeleteparam"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1444387-aeprocessmessage": {
+      "abstract": [
+        {
+          "text": "Decodes and dispatches a low level Mach message event to an event handler, including packaging and returning the reply to the sender.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "AEProcessMessage"
+        },
+        {
+          "kind": "text",
+          "text": "(UnsafeMutablePointer<mach_msg_header_t>!) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1444387-aeprocessmessage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AEProcessMessage(_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1444387-aeprocessmessage"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1444427-aegetdescdata": {
+      "abstract": [
+        {
+          "text": "Gets the data from the specified descriptor.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "AEGetDescData"
+        },
+        {
+          "kind": "text",
+          "text": "(UnsafePointer<AEDesc>!, UnsafeMutableRawPointer!, Size) -> OSErr"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1444427-aegetdescdata",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AEGetDescData(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1444427-aegetdescdata"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1444456-aeremoteprocessresolvergetproces": {
+      "abstract": [
+        {
+          "text": "Returns an array of objects containing information about processes running on a remote machine.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "AERemoteProcessResolverGetProcesses"
+        },
+        {
+          "kind": "text",
+          "text": "(AERemoteProcessResolverRef!, UnsafeMutablePointer<CFStreamError>!) -> Unmanaged<CFArray>!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1444456-aeremoteprocessresolvergetproces",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AERemoteProcessResolverGetProcesses(_:_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1444456-aeremoteprocessresolvergetproces"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1444481-aestreamoptionalparam": {
+      "abstract": [
+        {
+          "text": "Designates a parameter in an Apple event as optional.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "AEStreamOptionalParam"
+        },
+        {
+          "kind": "text",
+          "text": "(AEStreamRef!, AEKeyword) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1444481-aestreamoptionalparam",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AEStreamOptionalParam(_:_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1444481-aestreamoptionalparam"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1445109-aegetattributeptr": {
+      "abstract": [
+        {
+          "text": "Gets a copy of the data for a specified Apple event attribute from an Apple event; typically used when your application needs to work with the data directly.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "AEGetAttributePtr"
+        },
+        {
+          "kind": "text",
+          "text": "(UnsafePointer<AppleEvent>!, AEKeyword, DescType, UnsafeMutablePointer<DescType>!, UnsafeMutableRawPointer!, Size, UnsafeMutablePointer<Size>!) -> OSErr"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1445109-aegetattributeptr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AEGetAttributePtr(_:_:_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1445109-aegetattributeptr"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1445158-aeprintdesctohandle": {
+      "abstract": [
+        {
+          "text": "Provides a pretty printer facility for displaying the contents of Apple event descriptors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "AEPrintDescToHandle"
+        },
+        {
+          "kind": "text",
+          "text": "(UnsafePointer<AEDesc>!, UnsafeMutablePointer<Handle?>!) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1445158-aeprintdesctohandle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AEPrintDescToHandle(_:_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1445158-aeprintdesctohandle"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1445239-aeremoveeventhandler": {
+      "abstract": [
+        {
+          "text": "Removes an event handler entry from an Apple event dispatch table.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "AERemoveEventHandler"
+        },
+        {
+          "kind": "text",
+          "text": "(AEEventClass, AEEventID, AEEventHandlerUPP!, Bool) -> OSErr"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1445239-aeremoveeventhandler",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AERemoveEventHandler(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1445239-aeremoveeventhandler"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1445287-aeputptr": {
+      "abstract": [
+        {
+          "text": "Inserts data specified in a buffer into a descriptor list as a descriptor, possibly replacing an existing descriptor in the list.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "AEPutPtr"
+        },
+        {
+          "kind": "text",
+          "text": "(UnsafeMutablePointer<AEDescList>!, Int, DescType, UnsafeRawPointer!, Size) -> OSErr"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1445287-aeputptr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AEPutPtr(_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1445287-aeputptr"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1445348-aegetcoercionhandler": {
+      "abstract": [
+        {
+          "text": "Gets the coercion handler for a specified descriptor type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "AEGetCoercionHandler"
+        },
+        {
+          "kind": "text",
+          "text": "(DescType, DescType, UnsafeMutablePointer<AECoercionHandlerUPP?>!, UnsafeMutablePointer<SRefCon?>!, UnsafeMutablePointer<DarwinBoolean>!, Bool) -> OSErr"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1445348-aegetcoercionhandler",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AEGetCoercionHandler(_:_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1445348-aegetcoercionhandler"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1445366-aestreamopenevent": {
+      "abstract": [
+        {
+          "text": "Opens a stream for an existing Apple event.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "AEStreamOpenEvent"
+        },
+        {
+          "kind": "text",
+          "text": "(UnsafeMutablePointer<AppleEvent>!) -> AEStreamRef!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1445366-aestreamopenevent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AEStreamOpenEvent(_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1445366-aestreamopenevent"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1445532-aeinstallspecialhandler": {
+      "abstract": [
+        {
+          "text": "Installs a callback function in a special handler dispatch table.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "AEInstallSpecialHandler"
+        },
+        {
+          "kind": "text",
+          "text": "(AEKeyword, AEEventHandlerUPP!, Bool) -> OSErr"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1445532-aeinstallspecialhandler",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AEInstallSpecialHandler(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1445532-aeinstallspecialhandler"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1445548-aeinstallcoercionhandler": {
+      "abstract": [
+        {
+          "text": "Installs a coercion handler in either the application or system coercion handler dispatch table.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "AEInstallCoercionHandler"
+        },
+        {
+          "kind": "text",
+          "text": "(DescType, DescType, AECoercionHandlerUPP!, SRefCon!, Bool, Bool) -> OSErr"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1445548-aeinstallcoercionhandler",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AEInstallCoercionHandler(_:_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1445548-aeinstallcoercionhandler"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1445631-aegeteventhandler": {
+      "abstract": [
+        {
+          "text": "Gets an event handler from an Apple event dispatch table.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "AEGetEventHandler"
+        },
+        {
+          "kind": "text",
+          "text": "(AEEventClass, AEEventID, UnsafeMutablePointer<AEEventHandlerUPP?>!, UnsafeMutablePointer<SRefCon?>!, Bool) -> OSErr"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1445631-aegeteventhandler",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AEGetEventHandler(_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1445631-aegeteventhandler"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1445692-aecreateremoteprocessresolver": {
+      "abstract": [
+        {
+          "text": "Creates an object for resolving a list of remote processes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "AECreateRemoteProcessResolver"
+        },
+        {
+          "kind": "text",
+          "text": "(CFAllocator!, CFURL!) -> AERemoteProcessResolverRef!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1445692-aecreateremoteprocessresolver",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AECreateRemoteProcessResolver(_:_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1445692-aecreateremoteprocessresolver"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1445720-aegetarray": {
+      "abstract": [
+        {
+          "text": "Extracts data from an Apple event array created with the ",
+          "type": "text"
+        },
+        {
+          "code": "AEPutArray",
+          "type": "codeVoice"
+        },
+        {
+          "text": " function and stores it as a standard array of fixed size items in the specified buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "AEGetArray"
+        },
+        {
+          "kind": "text",
+          "text": "(UnsafePointer<AEDescList>!, AEArrayType, AEArrayDataPointer!, Size, UnsafeMutablePointer<DescType>!, UnsafeMutablePointer<Size>!, UnsafeMutablePointer<Int>!) -> OSErr"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1445720-aegetarray",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AEGetArray(_:_:_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1445720-aegetarray"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1445764-aesizeofattribute": {
+      "abstract": [
+        {
+          "text": "Gets the size and descriptor type of an Apple event attribute from a descriptor of type ",
+          "type": "text"
+        },
+        {
+          "code": "AppleEvent",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "AESizeOfAttribute"
+        },
+        {
+          "kind": "text",
+          "text": "(UnsafePointer<AppleEvent>!, AEKeyword, UnsafeMutablePointer<DescType>!, UnsafeMutablePointer<Size>!) -> OSErr"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1445764-aesizeofattribute",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AESizeOfAttribute(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1445764-aesizeofattribute"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1445940-aeputattributeptr": {
+      "abstract": [
+        {
+          "text": "Adds a pointer to data, a descriptor type, and a keyword to an Apple event as an attribute.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "AEPutAttributePtr"
+        },
+        {
+          "kind": "text",
+          "text": "(UnsafeMutablePointer<AppleEvent>!, AEKeyword, DescType, UnsafeRawPointer!, Size) -> OSErr"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1445940-aeputattributeptr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AEPutAttributePtr(_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1445940-aeputattributeptr"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1446047-aeinitializedesc": {
+      "abstract": [
+        {
+          "text": "Initializes a new descriptor. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "AEInitializeDesc"
+        },
+        {
+          "kind": "text",
+          "text": "(UnsafeMutablePointer<AEDesc>!)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1446047-aeinitializedesc",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AEInitializeDesc(_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1446047-aeinitializedesc"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1446239-aecreatedescfromexternalptr": {
+      "abstract": [
+        {
+          "text": "Creates a new descriptor that uses a memory buffer supplied by the caller.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "AECreateDescFromExternalPtr"
+        },
+        {
+          "kind": "text",
+          "text": "(OSType, UnsafeRawPointer!, Size, AEDisposeExternalUPP!, SRefCon!, UnsafeMutablePointer<AEDesc>!) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1446239-aecreatedescfromexternalptr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AECreateDescFromExternalPtr(_:_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1446239-aecreatedescfromexternalptr"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1446519-aecoercedesc": {
+      "abstract": [
+        {
+          "text": "Coerces the data in a descriptor to another descriptor type and creates a descriptor containing the newly coerced data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "AECoerceDesc"
+        },
+        {
+          "kind": "text",
+          "text": "(UnsafePointer<AEDesc>!, DescType, UnsafeMutablePointer<AEDesc>!) -> OSErr"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1446519-aecoercedesc",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AECoerceDesc(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1446519-aecoercedesc"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1446544-aestreamopendesc": {
+      "abstract": [
+        {
+          "text": "Marks the beginning of a descriptor in an ",
+          "type": "text"
+        },
+        {
+          "code": "AEStreamRef",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "AEStreamOpenDesc"
+        },
+        {
+          "kind": "text",
+          "text": "(AEStreamRef!, DescType) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1446544-aestreamopendesc",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AEStreamOpenDesc(_:_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1446544-aestreamopendesc"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1446560-aegetdescdatarange": {
+      "abstract": [
+        {
+          "text": "Retrieves a specified series of bytes from the specified descriptor.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "AEGetDescDataRange"
+        },
+        {
+          "kind": "text",
+          "text": "(UnsafePointer<AEDesc>!, UnsafeMutableRawPointer!, Size, Size) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1446560-aegetdescdatarange",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AEGetDescDataRange(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1446560-aegetdescdatarange"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1446562-aestreamcreateevent": {
+      "abstract": [
+        {
+          "text": "Creates a new Apple event and opens a stream for writing data to it.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "AEStreamCreateEvent"
+        },
+        {
+          "kind": "text",
+          "text": "(AEEventClass, AEEventID, DescType, UnsafeRawPointer!, Size, Int16, Int32) -> AEStreamRef!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1446562-aestreamcreateevent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AEStreamCreateEvent(_:_:_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1446562-aestreamcreateevent"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1446695-aereplacedescdata": {
+      "abstract": [
+        {
+          "text": "Copies the specified data into the specified descriptor, replacing any previous data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "AEReplaceDescData"
+        },
+        {
+          "kind": "text",
+          "text": "(DescType, UnsafeRawPointer!, Size, UnsafeMutablePointer<AEDesc>!) -> OSErr"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1446695-aereplacedescdata",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AEReplaceDescData(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1446695-aereplacedescdata"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1446783-aedisposetoken": {
+      "abstract": [
+        {
+          "text": "Deallocates the memory used by a token.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "AEDisposeToken"
+        },
+        {
+          "kind": "text",
+          "text": "(UnsafeMutablePointer<AEDesc>!) -> OSErr"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1446783-aedisposetoken",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AEDisposeToken(_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1446783-aedisposetoken"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1447059-aecallobjectaccessor": {
+      "abstract": [
+        {
+          "text": "Invokes the appropriate object accessor function for a specific desired type and container type. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "AECallObjectAccessor"
+        },
+        {
+          "kind": "text",
+          "text": "(DescType, UnsafePointer<AEDesc>!, DescType, DescType, UnsafePointer<AEDesc>!, UnsafeMutablePointer<AEDesc>!) -> OSErr"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1447059-aecallobjectaccessor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AECallObjectAccessor(_:_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1447059-aecallobjectaccessor"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1447141-aestreamopenrecord": {
+      "abstract": [
+        {
+          "text": "Marks the beginning of an Apple event record in an ",
+          "type": "text"
+        },
+        {
+          "code": "AEStreamRef",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "AEStreamOpenRecord"
+        },
+        {
+          "kind": "text",
+          "text": "(AEStreamRef!, DescType) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1447141-aestreamopenrecord",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AEStreamOpenRecord(_:_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1447141-aestreamopenrecord"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1447164-aedeleteitem": {
+      "abstract": [
+        {
+          "text": "Deletes a descriptor from a descriptor list, causing all subsequent descriptors to move up one place. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "AEDeleteItem"
+        },
+        {
+          "kind": "text",
+          "text": "(UnsafeMutablePointer<AEDescList>!, Int) -> OSErr"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1447164-aedeleteitem",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AEDeleteItem(_:_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1447164-aedeleteitem"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1447259-aeremoteprocessresolverschedulew": {
+      "abstract": [
+        {
+          "text": "Schedules a resolver for execution on a given run loop in a given mode.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "AERemoteProcessResolverScheduleWithRunLoop"
+        },
+        {
+          "kind": "text",
+          "text": "(AERemoteProcessResolverRef!, CFRunLoop!, CFString!, AERemoteProcessResolverCallback!, UnsafePointer<AERemoteProcessResolverContext>!)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1447259-aeremoteprocessresolverschedulew",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AERemoteProcessResolverScheduleWithRunLoop(_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1447259-aeremoteprocessresolverschedulew"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1447305-aesizeofflatteneddesc": {
+      "abstract": [
+        {
+          "text": "Returns the amount of buffer space needed to store the descriptor after flattening it.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "AESizeOfFlattenedDesc"
+        },
+        {
+          "kind": "text",
+          "text": "(UnsafePointer<AEDesc>!) -> Size"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1447305-aesizeofflatteneddesc",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AESizeOfFlattenedDesc(_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1447305-aesizeofflatteneddesc"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1447307-aesizeofnthitem": {
+      "abstract": [
+        {
+          "text": "Gets the data size and descriptor type of the descriptor at a specified position in a descriptor list.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "AESizeOfNthItem"
+        },
+        {
+          "kind": "text",
+          "text": "(UnsafePointer<AEDescList>!, Int, UnsafeMutablePointer<DescType>!, UnsafeMutablePointer<Size>!) -> OSErr"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1447307-aesizeofnthitem",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AESizeOfNthItem(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1447307-aesizeofnthitem"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1447372-aeobjectinit": {
+      "abstract": [
+        {
+          "text": "Initializes the Object Support Library.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "AEObjectInit"
+        },
+        {
+          "kind": "text",
+          "text": "() -> OSErr"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1447372-aeobjectinit",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AEObjectInit()",
+      "type": "topic",
+      "url": "/documentation/coreservices/1447372-aeobjectinit"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1447539-aegetnthptr": {
+      "abstract": [
+        {
+          "text": "Gets a copy of the data from a descriptor at a specified position in a descriptor list; typically used when your application needs to work with the extracted data directly.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "AEGetNthPtr"
+        },
+        {
+          "kind": "text",
+          "text": "(UnsafePointer<AEDescList>!, Int, DescType, UnsafeMutablePointer<AEKeyword>!, UnsafeMutablePointer<DescType>!, UnsafeMutableRawPointer!, Size, UnsafeMutablePointer<Size>!) -> OSErr"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1447539-aegetnthptr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AEGetNthPtr(_:_:_:_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1447539-aegetnthptr"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1447576-aeputparamdesc": {
+      "abstract": [
+        {
+          "text": "Inserts a descriptor and a keyword into an Apple event or Apple event record as an Apple event parameter.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "AEPutParamDesc"
+        },
+        {
+          "kind": "text",
+          "text": "(UnsafeMutablePointer<AppleEvent>!, AEKeyword, UnsafePointer<AEDesc>!) -> OSErr"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1447576-aeputparamdesc",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AEPutParamDesc(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1447576-aeputparamdesc"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1447704-aestreamsetrecordtype": {
+      "abstract": [
+        {
+          "text": "Sets the type of the most recently created record in an ",
+          "type": "text"
+        },
+        {
+          "code": "AEStreamRef",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "AEStreamSetRecordType"
+        },
+        {
+          "kind": "text",
+          "text": "(AEStreamRef!, DescType) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1447704-aestreamsetrecordtype",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AEStreamSetRecordType(_:_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1447704-aestreamsetrecordtype"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1447732-aestreamopen": {
+      "abstract": [
+        {
+          "text": "Opens a new ",
+          "type": "text"
+        },
+        {
+          "code": "AEStreamRef",
+          "type": "codeVoice"
+        },
+        {
+          "text": " for use in building a descriptor.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "AEStreamOpen"
+        },
+        {
+          "kind": "text",
+          "text": "() -> AEStreamRef!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1447732-aestreamopen",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AEStreamOpen()",
+      "type": "topic",
+      "url": "/documentation/coreservices/1447732-aestreamopen"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1447756-aesetobjectcallbacks": {
+      "abstract": [
+        {
+          "text": "Specifies the object callback functions for your application.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "AESetObjectCallbacks"
+        },
+        {
+          "kind": "text",
+          "text": "(OSLCompareUPP!, OSLCountUPP!, OSLDisposeTokenUPP!, OSLGetMarkTokenUPP!, OSLMarkUPP!, OSLAdjustMarksUPP!, OSLGetErrDescUPP!) -> OSErr"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1447756-aesetobjectcallbacks",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AESetObjectCallbacks(_:_:_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1447756-aesetobjectcallbacks"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1447827-aedecodemessage": {
+      "abstract": [
+        {
+          "text": "Decodes a Mach message and converts it into an Apple event and its related reply.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "AEDecodeMessage"
+        },
+        {
+          "kind": "text",
+          "text": "(UnsafeMutablePointer<mach_msg_header_t>!, UnsafeMutablePointer<AppleEvent>!, UnsafeMutablePointer<AppleEvent>!) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1447827-aedecodemessage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AEDecodeMessage(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1447827-aedecodemessage"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1447905-aeinstallobjectaccessor": {
+      "abstract": [
+        {
+          "text": "Adds or replaces an entry for an object accessor function to an object accessor dispatch table.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "AEInstallObjectAccessor"
+        },
+        {
+          "kind": "text",
+          "text": "(DescType, DescType, OSLAccessorUPP!, SRefCon!, Bool) -> OSErr"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1447905-aeinstallobjectaccessor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AEInstallObjectAccessor(_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1447905-aeinstallobjectaccessor"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1447960-aeremovespecialhandler": {
+      "abstract": [
+        {
+          "text": "Removes a handler from a special handler dispatch table.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "AERemoveSpecialHandler"
+        },
+        {
+          "kind": "text",
+          "text": "(AEKeyword, AEEventHandlerUPP!, Bool) -> OSErr"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1447960-aeremovespecialhandler",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AERemoveSpecialHandler(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1447960-aeremovespecialhandler"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1448185-aestreamcloselist": {
+      "abstract": [
+        {
+          "text": "Marks the end of a list of descriptors in an ",
+          "type": "text"
+        },
+        {
+          "code": "AEStreamRef",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "AEStreamCloseList"
+        },
+        {
+          "kind": "text",
+          "text": "(AEStreamRef!) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1448185-aestreamcloselist",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AEStreamCloseList(_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1448185-aestreamcloselist"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1448326-aegetnthdesc": {
+      "abstract": [
+        {
+          "text": " Copies a descriptor from a specified position in a descriptor list into a specified descriptor; typically used when your application needs to pass the extracted data to another function as a descriptor.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "AEGetNthDesc"
+        },
+        {
+          "kind": "text",
+          "text": "(UnsafePointer<AEDescList>!, Int, DescType, UnsafeMutablePointer<AEKeyword>!, UnsafeMutablePointer<AEDesc>!) -> OSErr"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1448326-aegetnthdesc",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AEGetNthDesc(_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1448326-aegetnthdesc"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1448487-aestreamwriteaedesc": {
+      "abstract": [
+        {
+          "text": "Copies an existing descriptor into an ",
+          "type": "text"
+        },
+        {
+          "code": "AEStreamRef",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "AEStreamWriteAEDesc"
+        },
+        {
+          "kind": "text",
+          "text": "(AEStreamRef!, UnsafePointer<AEDesc>!) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1448487-aestreamwriteaedesc",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AEStreamWriteAEDesc(_:_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1448487-aestreamwriteaedesc"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1448525-aecreateappleevent": {
+      "abstract": [
+        {
+          "text": "Creates an Apple event with several important attributes but no parameters.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "AECreateAppleEvent"
+        },
+        {
+          "kind": "text",
+          "text": "(AEEventClass, AEEventID, UnsafePointer<AEAddressDesc>!, AEReturnID, AETransactionID, UnsafeMutablePointer<AppleEvent>!) -> OSErr"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1448525-aecreateappleevent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AECreateAppleEvent(_:_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1448525-aecreateappleevent"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1448535-aecreatedesc": {
+      "abstract": [
+        {
+          "text": "Creates a new descriptor that incorporates the specified data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "AECreateDesc"
+        },
+        {
+          "kind": "text",
+          "text": "(DescType, UnsafeRawPointer!, Size, UnsafeMutablePointer<AEDesc>!) -> OSErr"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1448535-aecreatedesc",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AECreateDesc(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1448535-aecreatedesc"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1448594-aestreamopenlist": {
+      "abstract": [
+        {
+          "text": "Marks the beginning of a descriptor list in an ",
+          "type": "text"
+        },
+        {
+          "code": "AEStreamRef",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "AEStreamOpenList"
+        },
+        {
+          "kind": "text",
+          "text": "(AEStreamRef!) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1448594-aestreamopenlist",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AEStreamOpenList(_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1448594-aestreamopenlist"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1448596-aeinstalleventhandler": {
+      "abstract": [
+        {
+          "text": "Adds an entry for an event handler to an Apple event dispatch table.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "AEInstallEventHandler"
+        },
+        {
+          "kind": "text",
+          "text": "(AEEventClass, AEEventID, AEEventHandlerUPP!, SRefCon!, Bool) -> OSErr"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1448596-aeinstalleventhandler",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AEInstallEventHandler(_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1448596-aeinstalleventhandler"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1448643-aecreatelist": {
+      "abstract": [
+        {
+          "text": "Creates an empty descriptor list or Apple event record.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "AECreateList"
+        },
+        {
+          "kind": "text",
+          "text": "(UnsafeRawPointer!, Size, Bool, UnsafeMutablePointer<AEDescList>!) -> OSErr"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1448643-aecreatelist",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AECreateList(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1448643-aecreatelist"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1448750-aestreamwritekey": {
+      "abstract": [
+        {
+          "text": "Marks the beginning of a keyword/descriptor pair for a descriptor in an ",
+          "type": "text"
+        },
+        {
+          "code": "AEStreamRef",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "AEStreamWriteKey"
+        },
+        {
+          "kind": "text",
+          "text": "(AEStreamRef!, AEKeyword) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1448750-aestreamwritekey",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AEStreamWriteKey(_:_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1448750-aestreamwritekey"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1448782-aecomparedesc": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "AECompareDesc"
+        },
+        {
+          "kind": "text",
+          "text": "(UnsafePointer<AEDesc>!, UnsafePointer<AEDesc>!, UnsafeMutablePointer<DarwinBoolean>!) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1448782-aecomparedesc",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AECompareDesc(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1448782-aecomparedesc"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1448997-aeunflattendesc": {
+      "abstract": [
+        {
+          "text": "Unflattens the data in the passed buffer and creates a descriptor from it.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "AEUnflattenDesc"
+        },
+        {
+          "kind": "text",
+          "text": "(UnsafeRawPointer!, UnsafeMutablePointer<AEDesc>!) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1448997-aeunflattendesc",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AEUnflattenDesc(_:_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1448997-aeunflattendesc"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1449054-aegetobjectaccessor": {
+      "abstract": [
+        {
+          "text": "Gets an object accessor function from an object accessor dispatch table. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "AEGetObjectAccessor"
+        },
+        {
+          "kind": "text",
+          "text": "(DescType, DescType, UnsafeMutablePointer<OSLAccessorUPP?>!, UnsafeMutablePointer<SRefCon?>!, Bool) -> OSErr"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1449054-aegetobjectaccessor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AEGetObjectAccessor(_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1449054-aegetobjectaccessor"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1449233-aegetparamdesc": {
+      "abstract": [
+        {
+          "text": "Gets a copy of the descriptor for a keyword-specified Apple event parameter from an Apple event or an Apple event record.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "AEGetParamDesc"
+        },
+        {
+          "kind": "text",
+          "text": "(UnsafePointer<AppleEvent>!, AEKeyword, DescType, UnsafeMutablePointer<AEDesc>!) -> OSErr"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1449233-aegetparamdesc",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AEGetParamDesc(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1449233-aegetparamdesc"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1449263-aeputparamptr": {
+      "abstract": [
+        {
+          "text": "Inserts data, a descriptor type, and a keyword into an Apple event or Apple event record as an Apple event parameter.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "AEPutParamPtr"
+        },
+        {
+          "kind": "text",
+          "text": "(UnsafeMutablePointer<AppleEvent>!, AEKeyword, DescType, UnsafeRawPointer!, Size) -> OSErr"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1449263-aeputparamptr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AEPutParamPtr(_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1449263-aeputparamptr"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1449272-aestreamclosedesc": {
+      "abstract": [
+        {
+          "text": "Marks the end of a descriptor in an ",
+          "type": "text"
+        },
+        {
+          "code": "AEStreamRef",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "AEStreamCloseDesc"
+        },
+        {
+          "kind": "text",
+          "text": "(AEStreamRef!) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1449272-aestreamclosedesc",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AEStreamCloseDesc(_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1449272-aestreamclosedesc"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1449373-aemanagerinfo": {
+      "abstract": [
+        {
+          "text": "Provides information about the version of the Apple Event Manager currently available or the number of processes that are currently recording Apple events.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "AEManagerInfo"
+        },
+        {
+          "kind": "text",
+          "text": "(AEKeyword, UnsafeMutablePointer<Int>!) -> OSErr"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1449373-aemanagerinfo",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AEManagerInfo(_:_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1449373-aemanagerinfo"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1449522-aestreamcloserecord": {
+      "abstract": [
+        {
+          "text": "Marks the end of a record in an ",
+          "type": "text"
+        },
+        {
+          "code": "AEStreamRef",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "AEStreamCloseRecord"
+        },
+        {
+          "kind": "text",
+          "text": "(AEStreamRef!) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1449522-aestreamcloserecord",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AEStreamCloseRecord(_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1449522-aestreamcloserecord"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1449533-aecountitems": {
+      "abstract": [
+        {
+          "text": "Counts the number of descriptors in a descriptor list.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "AECountItems"
+        },
+        {
+          "kind": "text",
+          "text": "(UnsafePointer<AEDescList>!, UnsafeMutablePointer<Int>!) -> OSErr"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1449533-aecountitems",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AECountItems(_:_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1449533-aecountitems"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1449720-aeresolve": {
+      "abstract": [
+        {
+          "text": "Resolves an object specifier.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "AEResolve"
+        },
+        {
+          "kind": "text",
+          "text": "(UnsafePointer<AEDesc>!, Int16, UnsafeMutablePointer<AEDesc>!) -> OSErr"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1449720-aeresolve",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AEResolve(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1449720-aeresolve"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1449736-aegetregisteredmachport": {
+      "abstract": [
+        {
+          "text": "Returns the Mach port (in the form of a ",
+          "type": "text"
+        },
+        {
+          "code": "mach_port_t",
+          "type": "codeVoice"
+        },
+        {
+          "text": ") that was registered with the bootstrap server for this process.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "AEGetRegisteredMachPort"
+        },
+        {
+          "kind": "text",
+          "text": "() -> mach_port_t"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1449736-aegetregisteredmachport",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AEGetRegisteredMachPort()",
+      "type": "topic",
+      "url": "/documentation/coreservices/1449736-aegetregisteredmachport"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1449821-aestreamclose": {
+      "abstract": [
+        {
+          "text": "Closes and deallocates an ",
+          "type": "text"
+        },
+        {
+          "code": "AEStreamRef",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "AEStreamClose"
+        },
+        {
+          "kind": "text",
+          "text": "(AEStreamRef!, UnsafeMutablePointer<AEDesc>!) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1449821-aestreamclose",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AEStreamClose(_:_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1449821-aestreamclose"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1449998-aesizeofparam": {
+      "abstract": [
+        {
+          "text": "Gets the size and descriptor type of an Apple event parameter from a descriptor of type ",
+          "type": "text"
+        },
+        {
+          "code": "AERecord",
+          "type": "codeVoice"
+        },
+        {
+          "text": " or ",
+          "type": "text"
+        },
+        {
+          "code": "AppleEvent",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "AESizeOfParam"
+        },
+        {
+          "kind": "text",
+          "text": "(UnsafePointer<AppleEvent>!, AEKeyword, UnsafeMutablePointer<DescType>!, UnsafeMutablePointer<Size>!) -> OSErr"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1449998-aesizeofparam",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AESizeOfParam(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1449998-aesizeofparam"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1450093-aeputdesc": {
+      "abstract": [
+        {
+          "text": "Adds a descriptor to any descriptor list, possibly replacing an existing descriptor in the list.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "AEPutDesc"
+        },
+        {
+          "kind": "text",
+          "text": "(UnsafeMutablePointer<AEDescList>!, Int, UnsafePointer<AEDesc>!) -> OSErr"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1450093-aeputdesc",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AEPutDesc(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1450093-aeputdesc"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1450119-aegetdescdatasize": {
+      "abstract": [
+        {
+          "text": "Gets the size, in bytes, of the data in the specified descriptor.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "AEGetDescDataSize"
+        },
+        {
+          "kind": "text",
+          "text": "(UnsafePointer<AEDesc>!) -> Size"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1450119-aegetdescdatasize",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AEGetDescDataSize(_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1450119-aegetdescdatasize"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1450314-aegetattributedesc": {
+      "abstract": [
+        {
+          "text": "Gets a copy of the descriptor for a specified Apple event attribute from an Apple event; typically used when your application needs to pass the descriptor on to another function.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "AEGetAttributeDesc"
+        },
+        {
+          "kind": "text",
+          "text": "(UnsafePointer<AppleEvent>!, AEKeyword, DescType, UnsafeMutablePointer<AEDesc>!) -> OSErr"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1450314-aegetattributedesc",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AEGetAttributeDesc(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1450314-aegetattributedesc"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1450387-aestreamwritedesc": {
+      "abstract": [
+        {
+          "text": "Appends the data for a complete descriptor to an ",
+          "type": "text"
+        },
+        {
+          "code": "AEStreamRef",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "AEStreamWriteDesc"
+        },
+        {
+          "kind": "text",
+          "text": "(AEStreamRef!, DescType, UnsafeRawPointer!, Size) -> OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1450387-aestreamwritedesc",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AEStreamWriteDesc(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1450387-aestreamwritedesc"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/aeaddressdesc": {
+      "abstract": [
+        {
+          "text": "A descriptor that contains the address of an application, used to describe the target application for an Apple event.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "AEAddressDesc"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/aeaddressdesc",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AEAddressDesc",
+      "type": "topic",
+      "url": "/documentation/coreservices/aeaddressdesc"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/aearraydata": {
+      "abstract": [
+        {
+          "text": "Stores array information to be put into a descriptor listwith the ",
+          "type": "text"
+        },
+        {
+          "code": "AEPutArray",
+          "type": "codeVoice"
+        },
+        {
+          "text": " functionor extracted from a descriptor list with the ",
+          "type": "text"
+        },
+        {
+          "code": "AEGetArray",
+          "type": "codeVoice"
+        },
+        {
+          "text": " function.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "AEArrayData"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/aearraydata",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AEArrayData",
+      "type": "topic",
+      "url": "/documentation/coreservices/aearraydata"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/aearraydatapointer": {
+      "abstract": [
+        {
+          "text": "A pointer to a union of type ",
+          "type": "text"
+        },
+        {
+          "code": "AEArrayData",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "AEArrayDataPointer"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/aearraydatapointer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AEArrayDataPointer",
+      "type": "topic",
+      "url": "/documentation/coreservices/aearraydatapointer"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/aearraytype": {
+      "abstract": [
+        {
+          "text": "Stores a value that specifies an array type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "AEArrayType"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/aearraytype",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AEArrayType",
+      "type": "topic",
+      "url": "/documentation/coreservices/aearraytype"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/aebuilderror": {
+      "abstract": [
+        {
+          "text": "Defines a structure for storing additional error codeinformation for “AEBuild” routines.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "AEBuildError"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/aebuilderror",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AEBuildError",
+      "type": "topic",
+      "url": "/documentation/coreservices/aebuilderror"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/aebuilderrorcode": {
+      "abstract": [
+        {
+          "text": "Represents syntax errors found by an Apple Event build routine.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "AEBuildErrorCode"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/aebuilderrorcode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AEBuildErrorCode",
+      "type": "topic",
+      "url": "/documentation/coreservices/aebuilderrorcode"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/aecoercedescprocptr": {
+      "abstract": [
+        {
+          "text": "Defines a pointer to a function that coerces data stored in a descriptor. Your descriptor coercion callback function coerces the data from the passed descriptor to the specified type, returning the coerced data in a second descriptor.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "AECoerceDescProcPtr"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/aecoercedescprocptr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AECoerceDescProcPtr",
+      "type": "topic",
+      "url": "/documentation/coreservices/aecoercedescprocptr"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/aecoercedescupp": {
+      "abstract": [
+        {
+          "text": "Defines a data type for the universal procedure pointer for the ",
+          "type": "text"
+        },
+        {
+          "code": "AECoerceDescProcPtr",
+          "type": "codeVoice"
+        },
+        {
+          "text": " callback function pointer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "AECoerceDescUPP"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/aecoercedescupp",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AECoerceDescUPP",
+      "type": "topic",
+      "url": "/documentation/coreservices/aecoercedescupp"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/aecoerceptrprocptr": {
+      "abstract": [
+        {
+          "text": "Defines a pointer to a function that coerces data stored in a buffer. Your pointer coercion callback routine coerces the data from the passed buffer to the specified type, returning the coerced data in a descriptor.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "AECoercePtrProcPtr"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/aecoerceptrprocptr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AECoercePtrProcPtr",
+      "type": "topic",
+      "url": "/documentation/coreservices/aecoerceptrprocptr"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/aecoerceptrupp": {
+      "abstract": [
+        {
+          "text": "Defines a data type for the universal procedure pointer for the ",
+          "type": "text"
+        },
+        {
+          "code": "AECoercePtrProcPtr",
+          "type": "codeVoice"
+        },
+        {
+          "text": " callback function pointer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "AECoercePtrUPP"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/aecoerceptrupp",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AECoercePtrUPP",
+      "type": "topic",
+      "url": "/documentation/coreservices/aecoerceptrupp"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/aecoercionhandlerupp": {
+      "abstract": [
+        {
+          "text": "Defines a data type for the universal procedure pointer for the ",
+          "type": "text"
+        },
+        {
+          "code": "AECoercionHandlerUPP",
+          "type": "codeVoice"
+        },
+        {
+          "text": " callback function pointer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "AECoercionHandlerUPP"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/aecoercionhandlerupp",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AECoercionHandlerUPP",
+      "type": "topic",
+      "url": "/documentation/coreservices/aecoercionhandlerupp"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/aedatastorage": {
+      "abstract": [
+        {
+          "text": "A pointer to an opaque data type that provides storage for an ",
+          "type": "text"
+        },
+        {
+          "code": "AEDesc",
+          "type": "codeVoice"
+        },
+        {
+          "text": " descriptor.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "AEDataStorage"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/aedatastorage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AEDataStorage",
+      "type": "topic",
+      "url": "/documentation/coreservices/aedatastorage"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/aedatastoragetype": {
+      "abstract": [
+        {
+          "text": "An opaque data type used to store data in Apple event descriptors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "AEDataStorageType"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/aedatastoragetype",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AEDataStorageType",
+      "type": "topic",
+      "url": "/documentation/coreservices/aedatastoragetype"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/aedesc": {
+      "abstract": [
+        {
+          "text": "Stores data and an accompanying descriptor type to formthe basic building block of all Apple Events.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "AEDesc"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/aedesc",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AEDesc",
+      "type": "topic",
+      "url": "/documentation/coreservices/aedesc"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/aedesclist": {
+      "abstract": [
+        {
+          "text": "A descriptor whose data consists of a list of one or more descriptors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "AEDescList"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/aedesclist",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AEDescList",
+      "type": "topic",
+      "url": "/documentation/coreservices/aedesclist"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/aedescptr": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "AEDescPtr"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/aedescptr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AEDescPtr",
+      "type": "topic",
+      "url": "/documentation/coreservices/aedescptr"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/aedisposeexternalprocptr": {
+      "abstract": [
+        {
+          "text": "Defines a pointer to a function the Apple Event Manager calls to dispose of a descriptor created by the ",
+          "type": "text"
+        },
+        {
+          "code": "AECreateDescFromExternalPtr",
+          "type": "codeVoice"
+        },
+        {
+          "text": " function. Your callback function disposes of the buffer you originally passed to that function.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "AEDisposeExternalProcPtr"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/aedisposeexternalprocptr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AEDisposeExternalProcPtr",
+      "type": "topic",
+      "url": "/documentation/coreservices/aedisposeexternalprocptr"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/aedisposeexternalupp": {
+      "abstract": [
+        {
+          "text": "Defines a universal procedure pointer to a function the Apple Event Manager calls to dispose of a descriptor created by the ",
+          "type": "text"
+        },
+        {
+          "code": "AECreateDescFromExternalPtr",
+          "type": "codeVoice"
+        },
+        {
+          "text": " function.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "AEDisposeExternalUPP"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/aedisposeexternalupp",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AEDisposeExternalUPP",
+      "type": "topic",
+      "url": "/documentation/coreservices/aedisposeexternalupp"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/aeeventclass": {
+      "abstract": [
+        {
+          "text": "Specifies the event class of an Apple event.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "AEEventClass"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/aeeventclass",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AEEventClass",
+      "type": "topic",
+      "url": "/documentation/coreservices/aeeventclass"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/aeeventhandlerprocptr": {
+      "abstract": [
+        {
+          "text": "Defines a pointer to a function that handles one or more Apple events. Your Apple event handler function performs any action requested by the Apple event, adds parameters to the reply Apple event if appropriate (possibly including error information), and returns a result code.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "AEEventHandlerProcPtr"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/aeeventhandlerprocptr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AEEventHandlerProcPtr",
+      "type": "topic",
+      "url": "/documentation/coreservices/aeeventhandlerprocptr"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/aeeventhandlerupp": {
+      "abstract": [
+        {
+          "text": "Defines a data type for the universal procedure pointer for the ",
+          "type": "text"
+        },
+        {
+          "code": "AEEventHandlerUPP",
+          "type": "codeVoice"
+        },
+        {
+          "text": " callback function pointer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "AEEventHandlerUPP"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/aeeventhandlerupp",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AEEventHandlerUPP",
+      "type": "topic",
+      "url": "/documentation/coreservices/aeeventhandlerupp"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/aeeventid": {
+      "abstract": [
+        {
+          "text": "Specifies the event ID of an Apple event.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "AEEventID"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/aeeventid",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AEEventID",
+      "type": "topic",
+      "url": "/documentation/coreservices/aeeventid"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/aeeventsource": {
+      "abstract": [
+        {
+          "text": "A data type for values that specify how an Apple event was delivered.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "AEEventSource"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/aeeventsource",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AEEventSource",
+      "type": "topic",
+      "url": "/documentation/coreservices/aeeventsource"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/aekeydesc": {
+      "abstract": [
+        {
+          "text": "Associates a keyword with a descriptor to form a keyword-specifieddescriptor.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "AEKeyDesc"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/aekeydesc",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AEKeyDesc",
+      "type": "topic",
+      "url": "/documentation/coreservices/aekeydesc"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/aekeyword": {
+      "abstract": [
+        {
+          "text": "A four-character code that uniquely identifies a descriptor in an Apple event record or an Apple event.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "AEKeyword"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/aekeyword",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AEKeyword",
+      "type": "topic",
+      "url": "/documentation/coreservices/aekeyword"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/aerecord": {
+      "abstract": [
+        {
+          "text": "A descriptor whose data is a list of keyword-specified descriptors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "AERecord"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/aerecord",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AERecord",
+      "type": "topic",
+      "url": "/documentation/coreservices/aerecord"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/aeremoteprocessresolvercallback": {
+      "abstract": [
+        {
+          "text": "Defines a pointer to a function the Apple Event Manager calls when the asynchronous execution of a remote process resolver completes, either due to success or failure, after a call to the ",
+          "type": "text"
+        },
+        {
+          "code": "AERemoteProcessResolverScheduleWithRunLoop",
+          "type": "codeVoice"
+        },
+        {
+          "text": " function. Your callback function can use the reference passed to it to get the remote process information.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "AERemoteProcessResolverCallback"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/aeremoteprocessresolvercallback",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AERemoteProcessResolverCallback",
+      "type": "topic",
+      "url": "/documentation/coreservices/aeremoteprocessresolvercallback"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/aeremoteprocessresolvercontext": {
+      "abstract": [
+        {
+          "text": "Supplied as a parameter when performing asynchronous resolutionof remote processes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "AERemoteProcessResolverContext"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/aeremoteprocessresolvercontext",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AERemoteProcessResolverContext",
+      "type": "topic",
+      "url": "/documentation/coreservices/aeremoteprocessresolvercontext"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/aeremoteprocessresolverref": {
+      "abstract": [
+        {
+          "text": "An opaque reference to an object that encapsulates the mechanism for obtaining a list of processes running on a remote machine.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "AERemoteProcessResolverRef"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/aeremoteprocessresolverref",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AERemoteProcessResolverRef",
+      "type": "topic",
+      "url": "/documentation/coreservices/aeremoteprocessresolverref"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/aereturnid": {
+      "abstract": [
+        {
+          "text": "Specifies a return ID for a created Apple event.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "AEReturnID"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/aereturnid",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AEReturnID",
+      "type": "topic",
+      "url": "/documentation/coreservices/aereturnid"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/aesendmode": {
+      "abstract": [
+        {
+          "text": "Specify send preferences to the ",
+          "type": "text"
+        },
+        {
+          "code": "AESend",
+          "type": "codeVoice"
+        },
+        {
+          "text": " function.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "AESendMode"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/aesendmode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AESendMode",
+      "type": "topic",
+      "url": "/documentation/coreservices/aesendmode"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/aesendpriority": {
+      "abstract": [
+        {
+          "text": "Specifies the processing priority for a sent Apple event.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "AESendPriority"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/aesendpriority",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AESendPriority",
+      "type": "topic",
+      "url": "/documentation/coreservices/aesendpriority"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/aestreamref": {
+      "abstract": [
+        {
+          "text": "An opaque data structure for storing stream-based descriptor data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "AEStreamRef"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/aestreamref",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AEStreamRef",
+      "type": "topic",
+      "url": "/documentation/coreservices/aestreamref"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/aetransactionid": {
+      "abstract": [
+        {
+          "text": "Specifies a transaction ID.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "AETransactionID"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/aetransactionid",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AETransactionID",
+      "type": "topic",
+      "url": "/documentation/coreservices/aetransactionid"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/apple_events/1457902-kaeuserterminology": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/apple_events/1457902-kaeuserterminology",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "kAEUserTerminology",
+      "type": "topic",
+      "url": "/documentation/coreservices/apple_events/1457902-kaeuserterminology"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/apple_events/1457911-kaeuthasreturningparam": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/apple_events/1457911-kaeuthasreturningparam",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "kAEUTHasReturningParam",
+      "type": "topic",
+      "url": "/documentation/coreservices/apple_events/1457911-kaeuthasreturningparam"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/apple_events/1527201-event_source_constants": {
+      "abstract": [
+        {
+          "text": "Identify how an Apple event was delivered.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/apple_events/1527201-event_source_constants",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Event Source Constants",
+      "type": "topic",
+      "url": "/documentation/coreservices/apple_events/1527201-event_source_constants"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/apple_events/1527206-keyword_parameter_constants": {
+      "abstract": [
+        {
+          "text": "Specify keyword values for Apple event parameters, as well as information for the ",
+          "type": "text"
+        },
+        {
+          "code": "AEManagerInfo",
+          "type": "codeVoice"
+        },
+        {
+          "text": " function to retrieve. Some common key word values are shown here.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/apple_events/1527206-keyword_parameter_constants",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Keyword Parameter Constants",
+      "type": "topic",
+      "url": "/documentation/coreservices/apple_events/1527206-keyword_parameter_constants"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/apple_events/1527210-event_class_constants": {
+      "abstract": [
+        {
+          "text": "Specify the event class for an Apple event.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/apple_events/1527210-event_class_constants",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Event Class Constants",
+      "type": "topic",
+      "url": "/documentation/coreservices/apple_events/1527210-event_class_constants"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/apple_events/1527223-event_id_constants": {
+      "abstract": [
+        {
+          "text": "Specify the event ID for an Apple event.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/apple_events/1527223-event_id_constants",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Event ID Constants",
+      "type": "topic",
+      "url": "/documentation/coreservices/apple_events/1527223-event_id_constants"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/apple_events/1527224-apple_event_recording_event_id_c": {
+      "abstract": [
+        {
+          "text": "Specify event IDs for events that deal with Apple event recording.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/apple_events/1527224-apple_event_recording_event_id_c",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Apple Event Recording Event ID Constants",
+      "type": "topic",
+      "url": "/documentation/coreservices/apple_events/1527224-apple_event_recording_event_id_c"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/apple_events/1542760-other_descriptor_type_constants": {
+      "abstract": [
+        {
+          "text": "Specify types for Boolean and character descriptors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/apple_events/1542760-other_descriptor_type_constants",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Other Descriptor Type Constants",
+      "type": "topic",
+      "url": "/documentation/coreservices/apple_events/1542760-other_descriptor_type_constants"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/apple_events/1542780-keyusernameattr": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/apple_events/1542780-keyusernameattr",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "keyUserNameAttr",
+      "type": "topic",
+      "url": "/documentation/coreservices/apple_events/1542780-keyusernameattr"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/apple_events/1542788-descriptor_type_constants": {
+      "abstract": [
+        {
+          "text": "Specify types for descriptors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/apple_events/1542788-descriptor_type_constants",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Descriptor Type Constants",
+      "type": "topic",
+      "url": "/documentation/coreservices/apple_events/1542788-descriptor_type_constants"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/apple_events/1542797-keysoapstructuremetadata": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/apple_events/1542797-keysoapstructuremetadata",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "keySOAPStructureMetaData",
+      "type": "topic",
+      "url": "/documentation/coreservices/apple_events/1542797-keysoapstructuremetadata"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/apple_events/1542799-id_constants_for_the_aecreateapp": {
+      "abstract": [
+        {
+          "text": "Specify values for the ID parameters of the ",
+          "type": "text"
+        },
+        {
+          "code": "AECreateAppleEvent",
+          "type": "codeVoice"
+        },
+        {
+          "text": " function.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/apple_events/1542799-id_constants_for_the_aecreateapp",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "ID Constants for the AECreateAppleEvent Function",
+      "type": "topic",
+      "url": "/documentation/coreservices/apple_events/1542799-id_constants_for_the_aecreateapp"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/apple_events/1542814-timeout_constants": {
+      "abstract": [
+        {
+          "text": "Specify a timeout value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/apple_events/1542814-timeout_constants",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Timeout Constants",
+      "type": "topic",
+      "url": "/documentation/coreservices/apple_events/1542814-timeout_constants"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/apple_events/1542824-kaeusehttpproxyattr": {
+      "abstract": [
+        {
+          "text": "Web Services Proxy support—these constants should be added as attributes of the event that is being sent (not as part of the direct object).",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/apple_events/1542824-kaeusehttpproxyattr",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "kAEUseHTTPProxyAttr",
+      "type": "topic",
+      "url": "/documentation/coreservices/apple_events/1542824-kaeusehttpproxyattr"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/apple_events/1542840-priority_constants_for_the_aesen": {
+      "abstract": [
+        {
+          "text": "Specify a value for the ",
+          "type": "text"
+        },
+        {
+          "code": "sendPriority",
+          "type": "codeVoice"
+        },
+        {
+          "text": " parameter of the ",
+          "type": "text"
+        },
+        {
+          "code": "AESend",
+          "type": "codeVoice"
+        },
+        {
+          "text": " function.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/apple_events/1542840-priority_constants_for_the_aesen",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Priority Constants for the AESend Function (Deprecated in macOS)",
+      "type": "topic",
+      "url": "/documentation/coreservices/apple_events/1542840-priority_constants_for_the_aesen"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/apple_events/1542847-kaesocks4protocol": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/apple_events/1542847-kaesocks4protocol",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "kAESocks4Protocol",
+      "type": "topic",
+      "url": "/documentation/coreservices/apple_events/1542847-kaesocks4protocol"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/apple_events/1542848-data_array_constants": {
+      "abstract": [
+        {
+          "text": "Specify an array type for storing or extracting descriptor lists with the ",
+          "type": "text"
+        },
+        {
+          "code": "AEPutArray",
+          "type": "codeVoice"
+        },
+        {
+          "text": " and ",
+          "type": "text"
+        },
+        {
+          "code": "AEGetArray",
+          "type": "codeVoice"
+        },
+        {
+          "text": " functions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/apple_events/1542848-data_array_constants",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Data Array Constants",
+      "type": "topic",
+      "url": "/documentation/coreservices/apple_events/1542848-data_array_constants"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/apple_events/1542854-kaedebugpostheader": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/apple_events/1542854-kaedebugpostheader",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "kAEDebugPOSTHeader",
+      "type": "topic",
+      "url": "/documentation/coreservices/apple_events/1542854-kaedebugpostheader"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/apple_events/1542872-numeric_descriptor_type_constant": {
+      "abstract": [
+        {
+          "text": "Specify types for numeric descriptors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/apple_events/1542872-numeric_descriptor_type_constant",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Numeric Descriptor Type Constants",
+      "type": "topic",
+      "url": "/documentation/coreservices/apple_events/1542872-numeric_descriptor_type_constant"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/apple_events/1542886-kaehandlearray": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/apple_events/1542886-kaehandlearray",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "kAEHandleArray",
+      "type": "topic",
+      "url": "/documentation/coreservices/apple_events/1542886-kaehandlearray"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/apple_events/1542920-keyword_attribute_constants": {
+      "abstract": [
+        {
+          "text": "Specify keyword values for Apple event attributes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/apple_events/1542920-keyword_attribute_constants",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Keyword Attribute Constants",
+      "type": "topic",
+      "url": "/documentation/coreservices/apple_events/1542920-keyword_attribute_constants"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/apple_events/1542928-factoring_constants": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/apple_events/1542928-factoring_constants",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Factoring Constants",
+      "type": "topic",
+      "url": "/documentation/coreservices/apple_events/1542928-factoring_constants"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/apple_events/1542933-kaeusesocksattr": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/apple_events/1542933-kaeusesocksattr",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "kAEUseSocksAttr",
+      "type": "topic",
+      "url": "/documentation/coreservices/apple_events/1542933-kaeusesocksattr"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/apple_events/1556362-kaeisgeturl": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/apple_events/1556362-kaeisgeturl",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "kAEISGetURL",
+      "type": "topic",
+      "url": "/documentation/coreservices/apple_events/1556362-kaeisgeturl"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/apple_events/1556365-kaezoomin": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/apple_events/1556365-kaezoomin",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "kAEZoomIn",
+      "type": "topic",
+      "url": "/documentation/coreservices/apple_events/1556365-kaezoomin"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/apple_events/1556368-object_class_id_constants": {
+      "abstract": [
+        {
+          "text": "Specify the object class for an Apple event object.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/apple_events/1556368-object_class_id_constants",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Object Class ID Constants",
+      "type": "topic",
+      "url": "/documentation/coreservices/apple_events/1556368-object_class_id_constants"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/apple_events/1556370-keyaesuiteid": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/apple_events/1556370-keyaesuiteid",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "keyAESuiteID",
+      "type": "topic",
+      "url": "/documentation/coreservices/apple_events/1556370-keyaesuiteid"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/apple_events/1556374-keyaekeyword": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/apple_events/1556374-keyaekeyword",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "keyAEKeyword",
+      "type": "topic",
+      "url": "/documentation/coreservices/apple_events/1556374-keyaekeyword"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/apple_events/1556377-kaeqdnotor": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/apple_events/1556377-kaeqdnotor",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "kAEQDNotOr",
+      "type": "topic",
+      "url": "/documentation/coreservices/apple_events/1556377-kaeqdnotor"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/apple_events/1556379-keyaehiliterange": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/apple_events/1556379-keyaehiliterange",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "keyAEHiliteRange",
+      "type": "topic",
+      "url": "/documentation/coreservices/apple_events/1556379-keyaehiliterange"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/apple_events/1556380-keyaeangle": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/apple_events/1556380-keyaeangle",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "keyAEAngle",
+      "type": "topic",
+      "url": "/documentation/coreservices/apple_events/1556380-keyaeangle"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/apple_events/1556381-keymenuid": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/apple_events/1556381-keymenuid",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "keyMenuID",
+      "type": "topic",
+      "url": "/documentation/coreservices/apple_events/1556381-keymenuid"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/apple_events/1556383-keyaebaseaddr": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/apple_events/1556383-keyaebaseaddr",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "keyAEBaseAddr",
+      "type": "topic",
+      "url": "/documentation/coreservices/apple_events/1556383-keyaebaseaddr"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/apple_events/1556386-kaenonmodifiable": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/apple_events/1556386-kaenonmodifiable",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "kAENonmodifiable",
+      "type": "topic",
+      "url": "/documentation/coreservices/apple_events/1556386-kaenonmodifiable"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/apple_events/1556387-keyaedoscale": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/apple_events/1556387-keyaedoscale",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "keyAEDoScale",
+      "type": "topic",
+      "url": "/documentation/coreservices/apple_events/1556387-keyaedoscale"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/apple_events/1556388-kaeinternetsuite": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/apple_events/1556388-kaeinternetsuite",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "kAEInternetSuite",
+      "type": "topic",
+      "url": "/documentation/coreservices/apple_events/1556388-kaeinternetsuite"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/apple_events/1556392-kaemenuclass": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/apple_events/1556392-kaemenuclass",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "kAEMenuClass",
+      "type": "topic",
+      "url": "/documentation/coreservices/apple_events/1556392-kaemenuclass"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/apple_events/1556393-kaeinfo": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/apple_events/1556393-kaeinfo",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "kAEInfo",
+      "type": "topic",
+      "url": "/documentation/coreservices/apple_events/1556393-kaeinfo"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/apple_events/1556395-kaelogout": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/apple_events/1556395-kaelogout",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "kAELogOut",
+      "type": "topic",
+      "url": "/documentation/coreservices/apple_events/1556395-kaelogout"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/apple_events/1556399-keymiscellaneous": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/apple_events/1556399-keymiscellaneous",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "keyMiscellaneous",
+      "type": "topic",
+      "url": "/documentation/coreservices/apple_events/1556399-keymiscellaneous"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/apple_events/1556404-kaeishttpsearchargs": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/apple_events/1556404-kaeishttpsearchargs",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "kAEISHTTPSearchArgs",
+      "type": "topic",
+      "url": "/documentation/coreservices/apple_events/1556404-kaeishttpsearchargs"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/apple_events/1556407-kaesetposition": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/apple_events/1556407-kaesetposition",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "kAESetPosition",
+      "type": "topic",
+      "url": "/documentation/coreservices/apple_events/1556407-kaesetposition"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/apple_events/1556409-kaemouseclass": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/apple_events/1556409-kaemouseclass",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "kAEMouseClass",
+      "type": "topic",
+      "url": "/documentation/coreservices/apple_events/1556409-kaemouseclass"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/apple_events/1556410-launch_apple_event_constants": {
+      "abstract": [
+        {
+          "text": "In a ",
+          "type": "text"
+        },
+        {
+          "code": "kAEOpenApplication",
+          "type": "codeVoice"
+        },
+        {
+          "text": " event, specify information about how the receiving application was launched.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/apple_events/1556410-launch_apple_event_constants",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Launch Apple Event Constants",
+      "type": "topic",
+      "url": "/documentation/coreservices/apple_events/1556410-launch_apple_event_constants"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/apple_events/1571648-keyreplyportattr": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/apple_events/1571648-keyreplyportattr",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "keyReplyPortAttr",
+      "type": "topic",
+      "url": "/documentation/coreservices/apple_events/1571648-keyreplyportattr"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/apple_events/1572726-special_handler_callback_constan": {
+      "abstract": [
+        {
+          "text": "Specify an object callback function to install, get, or remove from the special handler dispatch table.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/apple_events/1572726-special_handler_callback_constan",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Special Handler Callback Constants",
+      "type": "topic",
+      "url": "/documentation/coreservices/apple_events/1572726-special_handler_callback_constan"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/apple_events/1572731-key_form_and_descriptor_type_obj": {
+      "abstract": [
+        {
+          "text": "Specify possible values for the ",
+          "type": "text"
+        },
+        {
+          "code": "keyAEKeyForm",
+          "type": "codeVoice"
+        },
+        {
+          "text": " field of an object specifier, as well as descriptor types used in resolving object specifiers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/apple_events/1572731-key_form_and_descriptor_type_obj",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Key Form and Descriptor Type Object Specifier Constants",
+      "type": "topic",
+      "url": "/documentation/coreservices/apple_events/1572731-key_form_and_descriptor_type_obj"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/apple_events/1572741-callback_constants_for_the_aeres": {
+      "abstract": [
+        {
+          "text": "Specify supported callback features to the ",
+          "type": "text"
+        },
+        {
+          "code": "AEResolve",
+          "type": "codeVoice"
+        },
+        {
+          "text": " function.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/apple_events/1572741-callback_constants_for_the_aeres",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Callback Constants for the AEResolve Function",
+      "type": "topic",
+      "url": "/documentation/coreservices/apple_events/1572741-callback_constants_for_the_aeres"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/apple_events/1572744-constants_for_object_specifiers_": {
+      "abstract": [
+        {
+          "text": "Specify the types of the four keyword-specified descriptors that make up the data in an object specifier, as well as constants for position, logical operations, and comparison operations.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/apple_events/1572744-constants_for_object_specifiers_",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Constants for Object Specifiers, Positions, and Logical and Comparison Operations",
+      "type": "topic",
+      "url": "/documentation/coreservices/apple_events/1572744-constants_for_object_specifiers_"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/kaeremoteprocessnamekey": {
+      "abstract": [
+        {
+          "text": "Use this key to obtain the visible name of the remote process, in the localization supplied by the server, as a ",
+          "type": "text"
+        },
+        {
+          "code": "CFStringRef",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "let "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAERemoteProcessNameKey"
+        },
+        {
+          "kind": "text",
+          "text": ": CFString!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/kaeremoteprocessnamekey",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kAERemoteProcessNameKey",
+      "type": "topic",
+      "url": "/documentation/coreservices/kaeremoteprocessnamekey"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/kaeremoteprocessprocessidkey": {
+      "abstract": [
+        {
+          "text": "Use this key to obtain the process ID of the remote process, if available; if so, returned as a ",
+          "type": "text"
+        },
+        {
+          "code": "CFNumberRef",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "let "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAERemoteProcessProcessIDKey"
+        },
+        {
+          "kind": "text",
+          "text": ": CFString!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/kaeremoteprocessprocessidkey",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kAERemoteProcessProcessIDKey",
+      "type": "topic",
+      "url": "/documentation/coreservices/kaeremoteprocessprocessidkey"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/kaeremoteprocessurlkey": {
+      "abstract": [
+        {
+          "text": "Use this key to obtain the full URL to the remote process, as a ",
+          "type": "text"
+        },
+        {
+          "code": "CFURLRef",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "let "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAERemoteProcessURLKey"
+        },
+        {
+          "kind": "text",
+          "text": ": CFString!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/kaeremoteprocessurlkey",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kAERemoteProcessURLKey",
+      "type": "topic",
+      "url": "/documentation/coreservices/kaeremoteprocessurlkey"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/kaeremoteprocessuseridkey": {
+      "abstract": [
+        {
+          "text": "Use this key to obtain the user ID of the remote process, if available; if so, returned as a ",
+          "type": "text"
+        },
+        {
+          "code": "CFNumberRef",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "let "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAERemoteProcessUserIDKey"
+        },
+        {
+          "kind": "text",
+          "text": ": CFString!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/kaeremoteprocessuseridkey",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kAERemoteProcessUserIDKey",
+      "type": "topic",
+      "url": "/documentation/coreservices/kaeremoteprocessuseridkey"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/oslaccessorprocptr": {
+      "abstract": [
+        {
+          "text": "Your object accessor function either finds elements or properties of an Apple event object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "OSLAccessorProcPtr"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/oslaccessorprocptr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSLAccessorProcPtr",
+      "type": "topic",
+      "url": "/documentation/coreservices/oslaccessorprocptr"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/oslaccessorupp": {
+      "abstract": [
+        {
+          "text": "Defines a data type for the universal procedure pointer for the ",
+          "type": "text"
+        },
+        {
+          "code": "OSLAccessorProcPtr",
+          "type": "codeVoice"
+        },
+        {
+          "text": " callback function pointer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "OSLAccessorUPP"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/oslaccessorupp",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSLAccessorUPP",
+      "type": "topic",
+      "url": "/documentation/coreservices/oslaccessorupp"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/osladjustmarksprocptr": {
+      "abstract": [
+        {
+          "text": "Defines a pointer to an adjust marks callback function. Your adjust marks function unmarks objects previously marked by a call to your marking function.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "OSLAdjustMarksProcPtr"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/osladjustmarksprocptr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSLAdjustMarksProcPtr",
+      "type": "topic",
+      "url": "/documentation/coreservices/osladjustmarksprocptr"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/osladjustmarksupp": {
+      "abstract": [
+        {
+          "text": "Defines a data type for the universal procedure pointer for the ",
+          "type": "text"
+        },
+        {
+          "code": "OSLAdjustMarksProcPtr",
+          "type": "codeVoice"
+        },
+        {
+          "text": " callback function pointer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "OSLAdjustMarksUPP"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/osladjustmarksupp",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSLAdjustMarksUPP",
+      "type": "topic",
+      "url": "/documentation/coreservices/osladjustmarksupp"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/oslcompareprocptr": {
+      "abstract": [
+        {
+          "text": "Defines a pointer to an object comparison callback function. Your object comparison function compares one Apple event object to another or to the data for a descriptor.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "OSLCompareProcPtr"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/oslcompareprocptr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSLCompareProcPtr",
+      "type": "topic",
+      "url": "/documentation/coreservices/oslcompareprocptr"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/oslcompareupp": {
+      "abstract": [
+        {
+          "text": "Defines a data type for the universal procedure pointer for the ",
+          "type": "text"
+        },
+        {
+          "code": "OSLCompareProcPtr",
+          "type": "codeVoice"
+        },
+        {
+          "text": " callback function pointer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "OSLCompareUPP"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/oslcompareupp",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSLCompareUPP",
+      "type": "topic",
+      "url": "/documentation/coreservices/oslcompareupp"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/oslcountprocptr": {
+      "abstract": [
+        {
+          "text": "Defines a pointer to an object counting callback function. Your object counting function counts the number of Apple event objects of a specified class in a specified container object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "OSLCountProcPtr"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/oslcountprocptr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSLCountProcPtr",
+      "type": "topic",
+      "url": "/documentation/coreservices/oslcountprocptr"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/oslcountupp": {
+      "abstract": [
+        {
+          "text": "Defines a data type for the universal procedure pointer for the ",
+          "type": "text"
+        },
+        {
+          "code": "OSLCountProcPtr",
+          "type": "codeVoice"
+        },
+        {
+          "text": " callback function pointer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "OSLCountUPP"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/oslcountupp",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSLCountUPP",
+      "type": "topic",
+      "url": "/documentation/coreservices/oslcountupp"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/osldisposetokenprocptr": {
+      "abstract": [
+        {
+          "text": "Defines a pointer to a dispose token callback function. Your dispose token function, required only if you use a complex token format, disposes of the specified token.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "OSLDisposeTokenProcPtr"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/osldisposetokenprocptr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSLDisposeTokenProcPtr",
+      "type": "topic",
+      "url": "/documentation/coreservices/osldisposetokenprocptr"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/osldisposetokenupp": {
+      "abstract": [
+        {
+          "text": "Defines a data type for the universal procedure pointer for the ",
+          "type": "text"
+        },
+        {
+          "code": "OSLDisposeTokenProcPtr",
+          "type": "codeVoice"
+        },
+        {
+          "text": " callback function pointer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "OSLDisposeTokenUPP"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/osldisposetokenupp",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSLDisposeTokenUPP",
+      "type": "topic",
+      "url": "/documentation/coreservices/osldisposetokenupp"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/oslgeterrdescprocptr": {
+      "abstract": [
+        {
+          "text": "Defines a pointer to an error descriptor callback function. Your error descriptor callback function supplies a pointer to an address where the Apple Event Manager can store the current descriptor if an error occurs during a call to the ",
+          "type": "text"
+        },
+        {
+          "code": "AEResolve",
+          "type": "codeVoice"
+        },
+        {
+          "text": " function.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "OSLGetErrDescProcPtr"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/oslgeterrdescprocptr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSLGetErrDescProcPtr",
+      "type": "topic",
+      "url": "/documentation/coreservices/oslgeterrdescprocptr"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/oslgeterrdescupp": {
+      "abstract": [
+        {
+          "text": "Defines a data type for the universal procedure pointer for the ",
+          "type": "text"
+        },
+        {
+          "code": "OSLGetErrDescProcPtr",
+          "type": "codeVoice"
+        },
+        {
+          "text": " callback function pointer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "OSLGetErrDescUPP"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/oslgeterrdescupp",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSLGetErrDescUPP",
+      "type": "topic",
+      "url": "/documentation/coreservices/oslgeterrdescupp"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/oslgetmarktokenprocptr": {
+      "abstract": [
+        {
+          "text": "Defines a pointer to a mark token callback function. Your mark token function returns a mark token.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "OSLGetMarkTokenProcPtr"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/oslgetmarktokenprocptr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSLGetMarkTokenProcPtr",
+      "type": "topic",
+      "url": "/documentation/coreservices/oslgetmarktokenprocptr"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/oslgetmarktokenupp": {
+      "abstract": [
+        {
+          "text": "Defines a data type for the universal procedure pointer for the ",
+          "type": "text"
+        },
+        {
+          "code": "OSLGetMarkTokenProcPtr",
+          "type": "codeVoice"
+        },
+        {
+          "text": " callback function pointer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "OSLGetMarkTokenUPP"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/oslgetmarktokenupp",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSLGetMarkTokenUPP",
+      "type": "topic",
+      "url": "/documentation/coreservices/oslgetmarktokenupp"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/oslmarkprocptr": {
+      "abstract": [
+        {
+          "text": "Defines a pointer to an object marking callback function. Your object-marking function marks a specific Apple event object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "OSLMarkProcPtr"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/oslmarkprocptr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSLMarkProcPtr",
+      "type": "topic",
+      "url": "/documentation/coreservices/oslmarkprocptr"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/oslmarkupp": {
+      "abstract": [
+        {
+          "text": "Defines a data type for the universal procedure pointer for the ",
+          "type": "text"
+        },
+        {
+          "code": "OSLMarkProcPtr",
+          "type": "codeVoice"
+        },
+        {
+          "text": " callback function pointer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "OSLMarkUPP"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/oslmarkupp",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSLMarkUPP",
+      "type": "topic",
+      "url": "/documentation/coreservices/oslmarkupp"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": false,
+      "identifiers": [
+        "devLink-1727275"
+      ],
+      "title": "Related Documentation"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "2934430",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreservices/1447059-aecallobjectaccessor",
+        "doc://com.apple.documentation/documentation/coreservices/1444011-aecheckisrecord",
+        "doc://com.apple.documentation/documentation/coreservices/1446519-aecoercedesc",
+        "doc://com.apple.documentation/documentation/coreservices/1441846-aecoerceptr",
+        "doc://com.apple.documentation/documentation/coreservices/1448782-aecomparedesc",
+        "doc://com.apple.documentation/documentation/coreservices/1449533-aecountitems",
+        "doc://com.apple.documentation/documentation/coreservices/1448525-aecreateappleevent",
+        "doc://com.apple.documentation/documentation/coreservices/1448535-aecreatedesc",
+        "doc://com.apple.documentation/documentation/coreservices/1446239-aecreatedescfromexternalptr",
+        "doc://com.apple.documentation/documentation/coreservices/1448643-aecreatelist",
+        "doc://com.apple.documentation/documentation/coreservices/1445692-aecreateremoteprocessresolver",
+        "doc://com.apple.documentation/documentation/coreservices/1447827-aedecodemessage",
+        "doc://com.apple.documentation/documentation/coreservices/1447164-aedeleteitem",
+        "doc://com.apple.documentation/documentation/coreservices/1444338-aedeleteparam",
+        "doc://com.apple.documentation/documentation/coreservices/1444208-aedisposedesc",
+        "doc://com.apple.documentation/documentation/coreservices/1442572-aedisposeremoteprocessresolver",
+        "doc://com.apple.documentation/documentation/coreservices/1446783-aedisposetoken",
+        "doc://com.apple.documentation/documentation/coreservices/1442661-aeduplicatedesc",
+        "doc://com.apple.documentation/documentation/coreservices/1441808-aeflattendesc",
+        "doc://com.apple.documentation/documentation/coreservices/1445720-aegetarray",
+        "doc://com.apple.documentation/documentation/coreservices/1450314-aegetattributedesc",
+        "doc://com.apple.documentation/documentation/coreservices/1445109-aegetattributeptr",
+        "doc://com.apple.documentation/documentation/coreservices/1445348-aegetcoercionhandler",
+        "doc://com.apple.documentation/documentation/coreservices/1444427-aegetdescdata",
+        "doc://com.apple.documentation/documentation/coreservices/1446560-aegetdescdatarange",
+        "doc://com.apple.documentation/documentation/coreservices/1450119-aegetdescdatasize",
+        "doc://com.apple.documentation/documentation/coreservices/1445631-aegeteventhandler",
+        "doc://com.apple.documentation/documentation/coreservices/1448326-aegetnthdesc",
+        "doc://com.apple.documentation/documentation/coreservices/1447539-aegetnthptr",
+        "doc://com.apple.documentation/documentation/coreservices/1449054-aegetobjectaccessor",
+        "doc://com.apple.documentation/documentation/coreservices/1449233-aegetparamdesc",
+        "doc://com.apple.documentation/documentation/coreservices/1444069-aegetparamptr",
+        "doc://com.apple.documentation/documentation/coreservices/1449736-aegetregisteredmachport",
+        "doc://com.apple.documentation/documentation/coreservices/1444274-aegetspecialhandler",
+        "doc://com.apple.documentation/documentation/coreservices/1446047-aeinitializedesc",
+        "doc://com.apple.documentation/documentation/coreservices/1445548-aeinstallcoercionhandler",
+        "doc://com.apple.documentation/documentation/coreservices/1448596-aeinstalleventhandler",
+        "doc://com.apple.documentation/documentation/coreservices/1447905-aeinstallobjectaccessor",
+        "doc://com.apple.documentation/documentation/coreservices/1445532-aeinstallspecialhandler",
+        "doc://com.apple.documentation/documentation/coreservices/1449373-aemanagerinfo",
+        "doc://com.apple.documentation/documentation/coreservices/1447372-aeobjectinit",
+        "doc://com.apple.documentation/documentation/coreservices/1445158-aeprintdesctohandle",
+        "doc://com.apple.documentation/documentation/coreservices/1444387-aeprocessmessage",
+        "doc://com.apple.documentation/documentation/coreservices/1442535-aeputarray",
+        "doc://com.apple.documentation/documentation/coreservices/1441790-aeputattributedesc",
+        "doc://com.apple.documentation/documentation/coreservices/1445940-aeputattributeptr",
+        "doc://com.apple.documentation/documentation/coreservices/1450093-aeputdesc",
+        "doc://com.apple.documentation/documentation/coreservices/1447576-aeputparamdesc",
+        "doc://com.apple.documentation/documentation/coreservices/1449263-aeputparamptr",
+        "doc://com.apple.documentation/documentation/coreservices/1445287-aeputptr",
+        "doc://com.apple.documentation/documentation/coreservices/1444456-aeremoteprocessresolvergetproces",
+        "doc://com.apple.documentation/documentation/coreservices/1447259-aeremoteprocessresolverschedulew",
+        "doc://com.apple.documentation/documentation/coreservices/1441907-aeremovecoercionhandler",
+        "doc://com.apple.documentation/documentation/coreservices/1445239-aeremoveeventhandler",
+        "doc://com.apple.documentation/documentation/coreservices/1442552-aeremoveobjectaccessor",
+        "doc://com.apple.documentation/documentation/coreservices/1447960-aeremovespecialhandler",
+        "doc://com.apple.documentation/documentation/coreservices/1446695-aereplacedescdata",
+        "doc://com.apple.documentation/documentation/coreservices/1449720-aeresolve",
+        "doc://com.apple.documentation/documentation/coreservices/1442994-aesendmessage",
+        "doc://com.apple.documentation/documentation/coreservices/1447756-aesetobjectcallbacks",
+        "doc://com.apple.documentation/documentation/coreservices/1445764-aesizeofattribute",
+        "doc://com.apple.documentation/documentation/coreservices/1447305-aesizeofflatteneddesc",
+        "doc://com.apple.documentation/documentation/coreservices/1447307-aesizeofnthitem",
+        "doc://com.apple.documentation/documentation/coreservices/1449998-aesizeofparam",
+        "doc://com.apple.documentation/documentation/coreservices/1449821-aestreamclose",
+        "doc://com.apple.documentation/documentation/coreservices/1449272-aestreamclosedesc",
+        "doc://com.apple.documentation/documentation/coreservices/1448185-aestreamcloselist",
+        "doc://com.apple.documentation/documentation/coreservices/1449522-aestreamcloserecord",
+        "doc://com.apple.documentation/documentation/coreservices/1446562-aestreamcreateevent",
+        "doc://com.apple.documentation/documentation/coreservices/1447732-aestreamopen",
+        "doc://com.apple.documentation/documentation/coreservices/1446544-aestreamopendesc",
+        "doc://com.apple.documentation/documentation/coreservices/1445366-aestreamopenevent",
+        "doc://com.apple.documentation/documentation/coreservices/1442897-aestreamopenkeydesc",
+        "doc://com.apple.documentation/documentation/coreservices/1448594-aestreamopenlist",
+        "doc://com.apple.documentation/documentation/coreservices/1447141-aestreamopenrecord",
+        "doc://com.apple.documentation/documentation/coreservices/1444481-aestreamoptionalparam",
+        "doc://com.apple.documentation/documentation/coreservices/1447704-aestreamsetrecordtype",
+        "doc://com.apple.documentation/documentation/coreservices/1448487-aestreamwriteaedesc",
+        "doc://com.apple.documentation/documentation/coreservices/1442610-aestreamwritedata",
+        "doc://com.apple.documentation/documentation/coreservices/1450387-aestreamwritedesc",
+        "doc://com.apple.documentation/documentation/coreservices/1448750-aestreamwritekey",
+        "doc://com.apple.documentation/documentation/coreservices/1442568-aestreamwritekeydesc",
+        "doc://com.apple.documentation/documentation/coreservices/1448997-aeunflattendesc",
+        "doc://com.apple.documentation/documentation/coreservices/aearraydata",
+        "doc://com.apple.documentation/documentation/coreservices/aebuilderror",
+        "doc://com.apple.documentation/documentation/coreservices/aedesc",
+        "doc://com.apple.documentation/documentation/coreservices/aekeydesc",
+        "doc://com.apple.documentation/documentation/coreservices/aeremoteprocessresolvercontext"
+      ],
+      "kind": "taskGroup",
+      "title": "Structures"
+    },
+    {
+      "anchor": "2934434",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreservices/kaeremoteprocessnamekey",
+        "doc://com.apple.documentation/documentation/coreservices/kaeremoteprocessprocessidkey",
+        "doc://com.apple.documentation/documentation/coreservices/kaeremoteprocessurlkey",
+        "doc://com.apple.documentation/documentation/coreservices/kaeremoteprocessuseridkey"
+      ],
+      "kind": "taskGroup",
+      "title": "Constants"
+    },
+    {
+      "anchor": "2934433",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreservices/oslaccessorprocptr",
+        "doc://com.apple.documentation/documentation/coreservices/oslaccessorupp",
+        "doc://com.apple.documentation/documentation/coreservices/osladjustmarksprocptr",
+        "doc://com.apple.documentation/documentation/coreservices/osladjustmarksupp",
+        "doc://com.apple.documentation/documentation/coreservices/oslcompareprocptr",
+        "doc://com.apple.documentation/documentation/coreservices/oslcompareupp",
+        "doc://com.apple.documentation/documentation/coreservices/oslcountprocptr",
+        "doc://com.apple.documentation/documentation/coreservices/oslcountupp",
+        "doc://com.apple.documentation/documentation/coreservices/osldisposetokenprocptr",
+        "doc://com.apple.documentation/documentation/coreservices/osldisposetokenupp",
+        "doc://com.apple.documentation/documentation/coreservices/oslgeterrdescprocptr",
+        "doc://com.apple.documentation/documentation/coreservices/oslgeterrdescupp",
+        "doc://com.apple.documentation/documentation/coreservices/oslgetmarktokenprocptr",
+        "doc://com.apple.documentation/documentation/coreservices/oslgetmarktokenupp",
+        "doc://com.apple.documentation/documentation/coreservices/oslmarkprocptr",
+        "doc://com.apple.documentation/documentation/coreservices/oslmarkupp",
+        "doc://com.apple.documentation/documentation/coreservices/aeaddressdesc",
+        "doc://com.apple.documentation/documentation/coreservices/aearraydatapointer",
+        "doc://com.apple.documentation/documentation/coreservices/aearraytype",
+        "doc://com.apple.documentation/documentation/coreservices/aebuilderrorcode",
+        "doc://com.apple.documentation/documentation/coreservices/aecoercedescprocptr",
+        "doc://com.apple.documentation/documentation/coreservices/aecoercedescupp",
+        "doc://com.apple.documentation/documentation/coreservices/aecoerceptrprocptr",
+        "doc://com.apple.documentation/documentation/coreservices/aecoerceptrupp",
+        "doc://com.apple.documentation/documentation/coreservices/aecoercionhandlerupp",
+        "doc://com.apple.documentation/documentation/coreservices/aedatastorage",
+        "doc://com.apple.documentation/documentation/coreservices/aedatastoragetype",
+        "doc://com.apple.documentation/documentation/coreservices/aedesclist",
+        "doc://com.apple.documentation/documentation/coreservices/aedescptr",
+        "doc://com.apple.documentation/documentation/coreservices/aedisposeexternalprocptr",
+        "doc://com.apple.documentation/documentation/coreservices/aedisposeexternalupp",
+        "doc://com.apple.documentation/documentation/coreservices/aeeventclass",
+        "doc://com.apple.documentation/documentation/coreservices/aeeventhandlerprocptr",
+        "doc://com.apple.documentation/documentation/coreservices/aeeventhandlerupp",
+        "doc://com.apple.documentation/documentation/coreservices/aeeventid",
+        "doc://com.apple.documentation/documentation/coreservices/aeeventsource",
+        "doc://com.apple.documentation/documentation/coreservices/aekeyword",
+        "doc://com.apple.documentation/documentation/coreservices/aerecord",
+        "doc://com.apple.documentation/documentation/coreservices/aeremoteprocessresolvercallback",
+        "doc://com.apple.documentation/documentation/coreservices/aeremoteprocessresolverref",
+        "doc://com.apple.documentation/documentation/coreservices/aereturnid",
+        "doc://com.apple.documentation/documentation/coreservices/aesendmode",
+        "doc://com.apple.documentation/documentation/coreservices/aesendpriority",
+        "doc://com.apple.documentation/documentation/coreservices/aestreamref",
+        "doc://com.apple.documentation/documentation/coreservices/aetransactionid"
+      ],
+      "kind": "taskGroup",
+      "title": "Data Types"
+    },
+    {
+      "anchor": "2934726",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreservices/apple_events/1542854-kaedebugpostheader",
+        "doc://com.apple.documentation/documentation/coreservices/apple_events/1542886-kaehandlearray",
+        "doc://com.apple.documentation/documentation/coreservices/apple_events/1556362-kaeisgeturl",
+        "doc://com.apple.documentation/documentation/coreservices/apple_events/1556404-kaeishttpsearchargs",
+        "doc://com.apple.documentation/documentation/coreservices/apple_events/1556393-kaeinfo",
+        "doc://com.apple.documentation/documentation/coreservices/apple_events/1556388-kaeinternetsuite",
+        "doc://com.apple.documentation/documentation/coreservices/apple_events/1556395-kaelogout",
+        "doc://com.apple.documentation/documentation/coreservices/apple_events/1556392-kaemenuclass",
+        "doc://com.apple.documentation/documentation/coreservices/apple_events/1556409-kaemouseclass",
+        "doc://com.apple.documentation/documentation/coreservices/apple_events/1556386-kaenonmodifiable",
+        "doc://com.apple.documentation/documentation/coreservices/apple_events/1556377-kaeqdnotor",
+        "doc://com.apple.documentation/documentation/coreservices/apple_events/1556407-kaesetposition",
+        "doc://com.apple.documentation/documentation/coreservices/apple_events/1542847-kaesocks4protocol",
+        "doc://com.apple.documentation/documentation/coreservices/apple_events/1457911-kaeuthasreturningparam",
+        "doc://com.apple.documentation/documentation/coreservices/apple_events/1542824-kaeusehttpproxyattr",
+        "doc://com.apple.documentation/documentation/coreservices/apple_events/1542933-kaeusesocksattr",
+        "doc://com.apple.documentation/documentation/coreservices/apple_events/1457902-kaeuserterminology",
+        "doc://com.apple.documentation/documentation/coreservices/apple_events/1556365-kaezoomin",
+        "doc://com.apple.documentation/documentation/coreservices/apple_events/1556380-keyaeangle",
+        "doc://com.apple.documentation/documentation/coreservices/apple_events/1556383-keyaebaseaddr",
+        "doc://com.apple.documentation/documentation/coreservices/apple_events/1556387-keyaedoscale",
+        "doc://com.apple.documentation/documentation/coreservices/apple_events/1556379-keyaehiliterange",
+        "doc://com.apple.documentation/documentation/coreservices/apple_events/1556374-keyaekeyword",
+        "doc://com.apple.documentation/documentation/coreservices/apple_events/1556370-keyaesuiteid",
+        "doc://com.apple.documentation/documentation/coreservices/apple_events/1556381-keymenuid",
+        "doc://com.apple.documentation/documentation/coreservices/apple_events/1556399-keymiscellaneous",
+        "doc://com.apple.documentation/documentation/coreservices/apple_events/1571648-keyreplyportattr",
+        "doc://com.apple.documentation/documentation/coreservices/apple_events/1542797-keysoapstructuremetadata",
+        "doc://com.apple.documentation/documentation/coreservices/apple_events/1542780-keyusernameattr",
+        "doc://com.apple.documentation/documentation/coreservices/apple_events/1527224-apple_event_recording_event_id_c",
+        "doc://com.apple.documentation/documentation/coreservices/apple_events/1572741-callback_constants_for_the_aeres",
+        "doc://com.apple.documentation/documentation/coreservices/apple_events/1572744-constants_for_object_specifiers_",
+        "doc://com.apple.documentation/documentation/coreservices/apple_events/1542848-data_array_constants",
+        "doc://com.apple.documentation/documentation/coreservices/apple_events/1542788-descriptor_type_constants",
+        "doc://com.apple.documentation/documentation/coreservices/apple_events/1527210-event_class_constants",
+        "doc://com.apple.documentation/documentation/coreservices/apple_events/1527223-event_id_constants",
+        "doc://com.apple.documentation/documentation/coreservices/apple_events/1527201-event_source_constants",
+        "doc://com.apple.documentation/documentation/coreservices/apple_events/1542928-factoring_constants",
+        "doc://com.apple.documentation/documentation/coreservices/apple_events/1542799-id_constants_for_the_aecreateapp",
+        "doc://com.apple.documentation/documentation/coreservices/apple_events/1572731-key_form_and_descriptor_type_obj",
+        "doc://com.apple.documentation/documentation/coreservices/apple_events/1542920-keyword_attribute_constants",
+        "doc://com.apple.documentation/documentation/coreservices/apple_events/1527206-keyword_parameter_constants",
+        "doc://com.apple.documentation/documentation/coreservices/apple_events/1556410-launch_apple_event_constants",
+        "doc://com.apple.documentation/documentation/coreservices/apple_events/1542872-numeric_descriptor_type_constant",
+        "doc://com.apple.documentation/documentation/coreservices/apple_events/1556368-object_class_id_constants",
+        "doc://com.apple.documentation/documentation/coreservices/apple_events/1542760-other_descriptor_type_constants",
+        "doc://com.apple.documentation/documentation/coreservices/apple_events/1542840-priority_constants_for_the_aesen",
+        "doc://com.apple.documentation/documentation/coreservices/apple_events/1572726-special_handler_callback_constan",
+        "doc://com.apple.documentation/documentation/coreservices/apple_events/1542814-timeout_constants"
+      ],
+      "kind": "taskGroup",
+      "title": "Enumerations"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/coreservices/apple_events"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/coreservices/apple_events"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

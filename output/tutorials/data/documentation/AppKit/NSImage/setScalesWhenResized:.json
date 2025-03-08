@@ -1,0 +1,1263 @@
+{
+  "abstract": [
+    {
+      "text": "Sets whether to scale different-sized image representations to fit the image’s size.",
+      "type": "text"
+    }
+  ],
+  "deprecationSummary": [
+    {
+      "inlineContent": [
+        {
+          "text": "This method was related to caching behavior. In macOS 10.6 and later, image caching is no longer necessary and as a result there is no replacement necessary.",
+          "type": "text"
+        }
+      ],
+      "type": "paragraph"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.appkit/documentation/AppKit",
+        "doc://com.apple.appkit/documentation/AppKit/NSImage"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.appkit/documentation/AppKit/NSImage/setScalesWhenResized:"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSImage(im)setScalesWhenResized:",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "- "
+      },
+      {
+        "kind": "identifier",
+        "text": "setScalesWhenResized:"
+      }
+    ],
+    "modules": [
+      {
+        "name": "AppKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "setScalesWhenResized:"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "deprecatedAt": "10.6",
+        "introducedAt": "10.0",
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Method",
+    "symbolKind": "method",
+    "title": "setScalesWhenResized:"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "Mac Catalyst",
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "setScalesWhenResized:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:@T@BOOL",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@BOOL",
+              "text": "BOOL"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "internalParam",
+              "text": "flag"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/swift/true",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " if image representations are scaled to fit; otherwise ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/swift/false",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "flag"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Most images (especially those loaded from files and URLs) contain only a single image representation whose size is the same as the receiver. It is possible to add image representations using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSImage/addRepresentation(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSImage/addRepresentations(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " methods but doing so is rarely necessary because modern hardware is powerful enough to resize and scale images quickly. The only reason to consider creating new representations is if each representations contains a customized version of the image at a specific size. (TIFF images may also contain a thumbnail version of an image, which is stored using a separate image representation.) If you pass ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/swift/true",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in the ",
+              "type": "text"
+            },
+            {
+              "code": "flag",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter, and subsequently assign a new value to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSImage/size",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property, all such image representations would be scaled to the same size. Scaling of bitmap images usually results in the interpolation of the bitmap data.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This method does not invalidate the caches of any of the receiver’s image representations. The caches are not invalidated until you change the image size using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSImage/size",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property. Scaling affects only the cached offscreen data for a given image representation.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.appkit/documentation/AppKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your macOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AppKit",
+      "type": "topic",
+      "url": "/documentation/appkit"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSImage": {
+      "abstract": [
+        {
+          "text": "A high-level interface for manipulating image data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSImage"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSImage",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSImage"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSImage",
+      "type": "topic",
+      "url": "/documentation/appkit/nsimage"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSImage/addRepresentation(_:)": {
+      "abstract": [
+        {
+          "text": "Adds the specified image representation object to the image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "addRepresentation"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSImageRep",
+          "text": "NSImageRep"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSImage/addRepresentation(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "addRepresentation:"
+        }
+      ],
+      "role": "symbol",
+      "title": "addRepresentation(_:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsimage/addrepresentation(_:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSImage/addRepresentations(_:)": {
+      "abstract": [
+        {
+          "text": "Adds an array of image representation objects to the image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "addRepresentations"
+        },
+        {
+          "kind": "text",
+          "text": "(["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSImageRep",
+          "text": "NSImageRep"
+        },
+        {
+          "kind": "text",
+          "text": "])"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSImage/addRepresentations(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "addRepresentations:"
+        }
+      ],
+      "role": "symbol",
+      "title": "addRepresentations(_:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsimage/addrepresentations(_:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSImage/bestRepresentationForDevice:": {
+      "abstract": [
+        {
+          "text": "Returns the best representation for the device with the specified characteristics.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "bestRepresentationForDevice:"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSImage/bestRepresentationForDevice:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "bestRepresentationForDevice:"
+        }
+      ],
+      "role": "symbol",
+      "title": "bestRepresentationForDevice:",
+      "type": "topic",
+      "url": "/documentation/appkit/nsimage/bestrepresentationfordevice:"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSImage/compositeToPoint:fromRect:operation:": {
+      "abstract": [
+        {
+          "text": "Composites a portion of the image to the specified point in the current coordinate system.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "compositeToPoint:fromRect:operation:"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSImage/compositeToPoint:fromRect:operation:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "compositeToPoint:fromRect:operation:"
+        }
+      ],
+      "role": "symbol",
+      "title": "compositeToPoint:fromRect:operation:",
+      "type": "topic",
+      "url": "/documentation/appkit/nsimage/compositetopoint:fromrect:operation:"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSImage/compositeToPoint:fromRect:operation:fraction:": {
+      "abstract": [
+        {
+          "text": "Composites a portion of the image at the specified opacity to the current coordinate system.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "compositeToPoint:fromRect:operation:fraction:"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSImage/compositeToPoint:fromRect:operation:fraction:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "compositeToPoint:fromRect:operation:fraction:"
+        }
+      ],
+      "role": "symbol",
+      "title": "compositeToPoint:fromRect:operation:fraction:",
+      "type": "topic",
+      "url": "/documentation/appkit/nsimage/compositetopoint:fromrect:operation:fraction:"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSImage/compositeToPoint:operation:": {
+      "abstract": [
+        {
+          "text": "Composites the entire image to the specified point in the current coordinate system.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "compositeToPoint:operation:"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSImage/compositeToPoint:operation:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "compositeToPoint:operation:"
+        }
+      ],
+      "role": "symbol",
+      "title": "compositeToPoint:operation:",
+      "type": "topic",
+      "url": "/documentation/appkit/nsimage/compositetopoint:operation:"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSImage/compositeToPoint:operation:fraction:": {
+      "abstract": [
+        {
+          "text": "Composites the entire image at the specified opacity in the current coordinate system.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "compositeToPoint:operation:fraction:"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSImage/compositeToPoint:operation:fraction:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "compositeToPoint:operation:fraction:"
+        }
+      ],
+      "role": "symbol",
+      "title": "compositeToPoint:operation:fraction:",
+      "type": "topic",
+      "url": "/documentation/appkit/nsimage/compositetopoint:operation:fraction:"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSImage/dissolveToPoint:fraction:": {
+      "abstract": [
+        {
+          "text": "Composites the entire image to the specified location using the source-over operator.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "dissolveToPoint:fraction:"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSImage/dissolveToPoint:fraction:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "dissolveToPoint:fraction:"
+        }
+      ],
+      "role": "symbol",
+      "title": "dissolveToPoint:fraction:",
+      "type": "topic",
+      "url": "/documentation/appkit/nsimage/dissolvetopoint:fraction:"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSImage/dissolveToPoint:fromRect:fraction:": {
+      "abstract": [
+        {
+          "text": "Composites a portion of the image to the specified location using the source-over operator.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "dissolveToPoint:fromRect:fraction:"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSImage/dissolveToPoint:fromRect:fraction:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "dissolveToPoint:fromRect:fraction:"
+        }
+      ],
+      "role": "symbol",
+      "title": "dissolveToPoint:fromRect:fraction:",
+      "type": "topic",
+      "url": "/documentation/appkit/nsimage/dissolvetopoint:fromrect:fraction:"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSImage/init(iconRef:)": {
+      "abstract": [
+        {
+          "text": "Initializes the image object with a Carbon-style icon resource.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "convenience"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "iconRef"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@IconRef",
+          "text": "IconRef"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSImage/init(iconRef:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithIconRef:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(iconRef:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsimage/init(iconref:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSImage/isDataRetained": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that incidates whether the image retains its source image data.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "isDataRetained"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSImage/isDataRetained",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "isDataRetained"
+        }
+      ],
+      "role": "symbol",
+      "title": "isDataRetained",
+      "type": "topic",
+      "url": "/documentation/appkit/nsimage/isdataretained"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSImage/lockFocus()": {
+      "abstract": [
+        {
+          "text": "Prepares the image to receive drawing commands.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "lockFocus"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSImage/lockFocus()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "lockFocus"
+        }
+      ],
+      "role": "symbol",
+      "title": "lockFocus()",
+      "type": "topic",
+      "url": "/documentation/appkit/nsimage/lockfocus()"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSImage/lockFocusFlipped(_:)": {
+      "abstract": [
+        {
+          "text": "Prepares the image to receive drawing commands using the specified flipped state.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "lockFocusFlipped"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSImage/lockFocusFlipped(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "lockFocusFlipped:"
+        }
+      ],
+      "role": "symbol",
+      "title": "lockFocusFlipped(_:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nsimage/lockfocusflipped(_:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSImage/lockFocusOnRepresentation:": {
+      "abstract": [
+        {
+          "text": "Prepares the specified image representation to receive drawing commands.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "lockFocusOnRepresentation:"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSImage/lockFocusOnRepresentation:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "lockFocusOnRepresentation:"
+        }
+      ],
+      "role": "symbol",
+      "title": "lockFocusOnRepresentation:",
+      "type": "topic",
+      "url": "/documentation/appkit/nsimage/lockfocusonrepresentation:"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSImage/scalesWhenResized": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether to scale image representations to fit the image’s size.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "scalesWhenResized"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSImage/scalesWhenResized",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "scalesWhenResized"
+        }
+      ],
+      "role": "symbol",
+      "title": "scalesWhenResized",
+      "type": "topic",
+      "url": "/documentation/appkit/nsimage/scaleswhenresized"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSImage/setDataRetained:": {
+      "abstract": [
+        {
+          "text": "Sets whether the image retains its source image data.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setDataRetained:"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSImage/setDataRetained:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setDataRetained:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setDataRetained:",
+      "type": "topic",
+      "url": "/documentation/appkit/nsimage/setdataretained:"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSImage/setScalesWhenResized:": {
+      "abstract": [
+        {
+          "text": "Sets whether to scale different-sized image representations to fit the image’s size.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setScalesWhenResized:"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSImage/setScalesWhenResized:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setScalesWhenResized:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setScalesWhenResized:",
+      "type": "topic",
+      "url": "/documentation/appkit/nsimage/setscaleswhenresized:"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSImage/size": {
+      "abstract": [
+        {
+          "text": "The size of the image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "size"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSSize",
+          "text": "NSSize"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSImage/size",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "size"
+        }
+      ],
+      "role": "symbol",
+      "title": "size",
+      "type": "topic",
+      "url": "/documentation/appkit/nsimage/size"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSImage/unlockFocus()": {
+      "abstract": [
+        {
+          "text": "Removes the focus from the image.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "unlockFocus"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSImage/unlockFocus()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "unlockFocus"
+        }
+      ],
+      "role": "symbol",
+      "title": "unlockFocus()",
+      "type": "topic",
+      "url": "/documentation/appkit/nsimage/unlockfocus()"
+    },
+    "doc://com.apple.documentation/documentation/swift/false": {
+      "abstract": [
+        {
+          "text": "A false value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/swift/false",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "false",
+      "type": "topic",
+      "url": "/documentation/swift/false"
+    },
+    "doc://com.apple.documentation/documentation/swift/true": {
+      "abstract": [
+        {
+          "text": "A true value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/swift/true",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "true",
+      "type": "topic",
+      "url": "/documentation/swift/true"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:@T@BOOL": {
+      "abstract": [
+        {
+          "text": "Type to represent a Boolean value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:@T@BOOL",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "BOOL",
+      "type": "topic",
+      "url": "/documentation/objectivec/bool"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Related-Documentation",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSImage/scalesWhenResized"
+      ],
+      "title": "Related Documentation"
+    },
+    {
+      "anchor": "Instance-Methods",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSImage/lockFocus()",
+        "doc://com.apple.appkit/documentation/AppKit/NSImage/lockFocusFlipped(_:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSImage/unlockFocus()",
+        "doc://com.apple.appkit/documentation/AppKit/NSImage/init(iconRef:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSImage/lockFocusOnRepresentation:",
+        "doc://com.apple.appkit/documentation/AppKit/NSImage/bestRepresentationForDevice:",
+        "doc://com.apple.appkit/documentation/AppKit/NSImage/compositeToPoint:operation:",
+        "doc://com.apple.appkit/documentation/AppKit/NSImage/compositeToPoint:fromRect:operation:",
+        "doc://com.apple.appkit/documentation/AppKit/NSImage/compositeToPoint:fromRect:operation:fraction:",
+        "doc://com.apple.appkit/documentation/AppKit/NSImage/compositeToPoint:operation:fraction:",
+        "doc://com.apple.appkit/documentation/AppKit/NSImage/dissolveToPoint:fraction:",
+        "doc://com.apple.appkit/documentation/AppKit/NSImage/dissolveToPoint:fromRect:fraction:",
+        "doc://com.apple.appkit/documentation/AppKit/NSImage/scalesWhenResized",
+        "doc://com.apple.appkit/documentation/AppKit/NSImage/setDataRetained:",
+        "doc://com.apple.appkit/documentation/AppKit/NSImage/isDataRetained"
+      ],
+      "title": "Instance Methods"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSImage~1lockFocusFlipped(_:)/title",
+          "value": "lockFocusFlipped:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSImage~1lockFocusFlipped(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "lockFocusFlipped:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSImage~1addRepresentations(_:)/title",
+          "value": "addRepresentations:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSImage~1addRepresentations(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "addRepresentations:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSImage~1init(iconRef:)/title",
+          "value": "initWithIconRef:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSImage~1init(iconRef:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithIconRef:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSImage~1addRepresentation(_:)/title",
+          "value": "addRepresentation:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSImage~1addRepresentation(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "addRepresentation:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSImage~1unlockFocus()/title",
+          "value": "unlockFocus"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSImage~1unlockFocus()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "unlockFocus"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSImage/title",
+          "value": "NSImage"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSImage/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSImage"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSImage/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSImage"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSImage~1size/title",
+          "value": "size"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSImage~1size/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "size"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSImage~1lockFocus()/title",
+          "value": "lockFocus"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSImage~1lockFocus()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "lockFocus"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/appkit/nsimage/setscaleswhenresized:"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

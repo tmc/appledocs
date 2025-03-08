@@ -1,0 +1,718 @@
+{
+  "abstract": [
+    {
+      "text": "Provide a safer experience in your app by detecting and alerting users to nudity",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "in images and videos before displaying them onscreen.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.SensitiveContentAnalysis/documentation/SensitiveContentAnalysis"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "SensitiveContentAnalysis",
+    "modules": [
+      {
+        "name": "SensitiveContentAnalysis"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "17.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "17.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "17.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "beta": false,
+        "introducedAt": "14.0",
+        "name": "macOS"
+      }
+    ],
+    "role": "collection",
+    "roleHeading": "Framework",
+    "symbolKind": "module",
+    "title": "SensitiveContentAnalysis"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This framework enables an app to check content for nudity. In iOS and macOS, the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Sensitive Content Warning user preference or Communication Safety parental control",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in Screen Time offer people the option to indicate their desire to guard against",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "unexpected or unwanted exposure to images that contain nudity. Provide people with",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the experience they request in these settings by using SensitiveContentAnalysis to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "check for sensitive content before displaying it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Consider situations in which your app acquires externally-sourced images or video,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and use this framework to check if the media is sensitive. For example, a messaging",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "app checks each image it receives from a contact. A classroom app evaluates uploads",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "from personal devices to a shared location for classwork submission or other classroom",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "activities.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "sensitivecontentanalysis-1",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Intervene-when-content-is-sensitive",
+          "level": 3,
+          "text": "Intervene when content is sensitive",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the framework determines that some media contains sensitive content, call the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "user’s attention to the issue and avoid displaying the media until the user decides",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "what to do.  For example, the following image depicts Messages in iOS 17 as a potentially",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "explicit image arrives. The user interface blurs the image and:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Displays the flagged content, if the user chooses.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Offers a menu of additional actions, such as blocking the contact.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "sensitivecontentanalysis-2",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.SensitiveContentAnalysis/documentation/SensitiveContentAnalysis": {
+      "abstract": [
+        {
+          "text": "Provide a safer experience in your app by detecting and alerting users to nudity",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "in images and videos before displaying them onscreen.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SensitiveContentAnalysis/documentation/SensitiveContentAnalysis",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SensitiveContentAnalysis",
+      "type": "topic",
+      "url": "/documentation/sensitivecontentanalysis"
+    },
+    "doc://com.apple.SensitiveContentAnalysis/documentation/SensitiveContentAnalysis/SCSensitivityAnalysis": {
+      "abstract": [
+        {
+          "text": "An object that determines if checked content contains nudity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCSensitivityAnalysis"
+        }
+      ],
+      "identifier": "doc://com.apple.SensitiveContentAnalysis/documentation/SensitiveContentAnalysis/SCSensitivityAnalysis",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCSensitivityAnalysis"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCSensitivityAnalysis",
+      "type": "topic",
+      "url": "/documentation/sensitivecontentanalysis/scsensitivityanalysis"
+    },
+    "doc://com.apple.SensitiveContentAnalysis/documentation/SensitiveContentAnalysis/SCSensitivityAnalysisPolicy": {
+      "abstract": [
+        {
+          "text": "Configurations that represent the way the framework checks for sensitive content",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "and how the app responds.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCSensitivityAnalysisPolicy"
+        }
+      ],
+      "identifier": "doc://com.apple.SensitiveContentAnalysis/documentation/SensitiveContentAnalysis/SCSensitivityAnalysisPolicy",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCSensitivityAnalysisPolicy"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCSensitivityAnalysisPolicy",
+      "type": "topic",
+      "url": "/documentation/sensitivecontentanalysis/scsensitivityanalysispolicy"
+    },
+    "doc://com.apple.SensitiveContentAnalysis/documentation/SensitiveContentAnalysis/SCSensitivityAnalyzer": {
+      "abstract": [
+        {
+          "text": "An object that analyzes media for sensitive content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCSensitivityAnalyzer"
+        }
+      ],
+      "identifier": "doc://com.apple.SensitiveContentAnalysis/documentation/SensitiveContentAnalysis/SCSensitivityAnalyzer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCSensitivityAnalyzer"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCSensitivityAnalyzer",
+      "type": "topic",
+      "url": "/documentation/sensitivecontentanalysis/scsensitivityanalyzer"
+    },
+    "doc://com.apple.SensitiveContentAnalysis/documentation/SensitiveContentAnalysis/detecting-nudity-in-media-and-providing-intervention-options": {
+      "abstract": [
+        {
+          "text": "Alert people before displaying images or video that might be sensitive.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SensitiveContentAnalysis/documentation/SensitiveContentAnalysis/detecting-nudity-in-media-and-providing-intervention-options",
+      "kind": "article",
+      "role": "article",
+      "title": "Detecting nudity in media and providing intervention options",
+      "type": "topic",
+      "url": "/documentation/sensitivecontentanalysis/detecting-nudity-in-media-and-providing-intervention-options"
+    },
+    "doc://com.apple.SensitiveContentAnalysis/documentation/SensitiveContentAnalysis/testing-your-app-s-response-to-sensitive-media": {
+      "abstract": [
+        {
+          "text": "Trigger your app’s intervention flow by using a special QR code and profile that",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "Apple provides for testing.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SensitiveContentAnalysis/documentation/SensitiveContentAnalysis/testing-your-app-s-response-to-sensitive-media",
+      "kind": "article",
+      "role": "article",
+      "title": "Testing your app’s response to sensitive media",
+      "type": "topic",
+      "url": "/documentation/sensitivecontentanalysis/testing-your-app-s-response-to-sensitive-media"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.sensitivecontentanalysis.client": {
+      "abstract": [
+        {
+          "text": "A code-signing entitlement that enables an app to detect nudity in images and video.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.sensitivecontentanalysis.client",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "com.apple.developer.sensitivecontentanalysis.client",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Entitlements/com.apple.developer.sensitivecontentanalysis.client"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "sensitivecontentanalysis-1": {
+      "alt": "A flowchart that progresses from left to right. The chart has three areas. The left area contains the label Third party app, with text that indicates the app receives an image over a network. An arrow flows to the right from this area to a box that contains the label Sensitivity Analyzer, which resides in the center. The overall central area of the flowchart is the labeled Sensitive Content Analysis. An arrow flows from the Sensitivity Analyzer box to two other boxes within the center that contain the labels Yes, and No, respectively. Text on the arrow itself reads Is Sensitive, which represents the condition on which the chart’s flow branches. An arrow flows to the right of the Yes box to the right section of the chart, which contains two boxes. The top box contains text that reads: The app avoids displaying sensitive content. A second arrow flows to the right of the No box to another box that reads: The app displays content that’s not sensitive. ",
+      "identifier": "sensitivecontentanalysis-1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4cbaecea0bbe206c2ac1f4afb2406bdb/sensitivecontentanalysis-1@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f024225078a132b8cbeec58fd20b8558/sensitivecontentanalysis-1~dark@2x.png"
+        }
+      ]
+    },
+    "sensitivecontentanalysis-2": {
+      "alt": "An image of two iPhones side by side that display the Messages app. The phone on the left renders a view of an image that the user received in a conversation. A callout points to the image and contains the text Blurred view. Text referring to the blurred image reads: This may be sensitive. The view contains a button with the text Show and a callout that reads: UI to show content. The phone on the right displays the same conversation in Messages with a detailed image in the view. A callout extends from the detailed image that reads: Shown content. The view contains a button with a warning triangle, from which a callout extends with text that reads: Alternative / additional options.",
+      "identifier": "sensitivecontentanalysis-2",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/8f61ec0f4dde803c8f7a0e9c6e87bcbd/sensitivecontentanalysis-2@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b266a0fa980fd3b5cc0b3e200e137495/sensitivecontentanalysis-2~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Setup",
+      "identifiers": [
+        "doc://com.apple.SensitiveContentAnalysis/documentation/SensitiveContentAnalysis/detecting-nudity-in-media-and-providing-intervention-options"
+      ],
+      "title": "Setup"
+    },
+    {
+      "anchor": "Authorization",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.sensitivecontentanalysis.client"
+      ],
+      "title": "Authorization"
+    },
+    {
+      "anchor": "Content-analysis",
+      "identifiers": [
+        "doc://com.apple.SensitiveContentAnalysis/documentation/SensitiveContentAnalysis/SCSensitivityAnalyzer",
+        "doc://com.apple.SensitiveContentAnalysis/documentation/SensitiveContentAnalysis/SCSensitivityAnalysisPolicy"
+      ],
+      "title": "Content analysis"
+    },
+    {
+      "anchor": "Analysis-results",
+      "identifiers": [
+        "doc://com.apple.SensitiveContentAnalysis/documentation/SensitiveContentAnalysis/SCSensitivityAnalysis"
+      ],
+      "title": "Analysis results"
+    },
+    {
+      "anchor": "Testing",
+      "identifiers": [
+        "doc://com.apple.SensitiveContentAnalysis/documentation/SensitiveContentAnalysis/testing-your-app-s-response-to-sensitive-media"
+      ],
+      "title": "Testing"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Setup",
+              "identifiers": [
+                "doc://com.apple.SensitiveContentAnalysis/documentation/SensitiveContentAnalysis/detecting-nudity-in-media-and-providing-intervention-options"
+              ],
+              "title": "Setup"
+            },
+            {
+              "anchor": "Authorization",
+              "identifiers": [
+                "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.sensitivecontentanalysis.client"
+              ],
+              "title": "Authorization"
+            },
+            {
+              "anchor": "Content-analysis",
+              "identifiers": [
+                "doc://com.apple.SensitiveContentAnalysis/documentation/SensitiveContentAnalysis/SCSensitivityAnalyzer",
+                "doc://com.apple.SensitiveContentAnalysis/documentation/SensitiveContentAnalysis/SCSensitivityAnalysisPolicy"
+              ],
+              "title": "Content analysis"
+            },
+            {
+              "anchor": "Analysis-results",
+              "identifiers": [
+                "doc://com.apple.SensitiveContentAnalysis/documentation/SensitiveContentAnalysis/SCSensitivityAnalysis"
+              ],
+              "title": "Analysis results"
+            },
+            {
+              "anchor": "Testing",
+              "identifiers": [
+                "doc://com.apple.SensitiveContentAnalysis/documentation/SensitiveContentAnalysis/testing-your-app-s-response-to-sensitive-media"
+              ],
+              "title": "Testing"
+            }
+          ]
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.SensitiveContentAnalysis~1documentation~1SensitiveContentAnalysis~1SCSensitivityAnalysisPolicy/title",
+          "value": "SCSensitivityAnalysisPolicy"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.SensitiveContentAnalysis~1documentation~1SensitiveContentAnalysis~1SCSensitivityAnalysisPolicy/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCSensitivityAnalysisPolicy"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.SensitiveContentAnalysis~1documentation~1SensitiveContentAnalysis~1SCSensitivityAnalysisPolicy/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCSensitivityAnalysisPolicy"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.SensitiveContentAnalysis~1documentation~1SensitiveContentAnalysis~1SCSensitivityAnalyzer/title",
+          "value": "SCSensitivityAnalyzer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.SensitiveContentAnalysis~1documentation~1SensitiveContentAnalysis~1SCSensitivityAnalyzer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCSensitivityAnalyzer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.SensitiveContentAnalysis~1documentation~1SensitiveContentAnalysis~1SCSensitivityAnalyzer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCSensitivityAnalyzer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.SensitiveContentAnalysis~1documentation~1SensitiveContentAnalysis~1SCSensitivityAnalysis/title",
+          "value": "SCSensitivityAnalysis"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.SensitiveContentAnalysis~1documentation~1SensitiveContentAnalysis~1SCSensitivityAnalysis/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCSensitivityAnalysis"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.SensitiveContentAnalysis~1documentation~1SensitiveContentAnalysis~1SCSensitivityAnalysis/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCSensitivityAnalysis"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/sensitivecontentanalysis"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/sensitivecontentanalysis"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

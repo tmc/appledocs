@@ -1,0 +1,438 @@
+{
+  "abstract": [
+    {
+      "text": "Create a single Metal library containing reusable code to reduce library size and avoid repeated shader compilation at runtime.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.metal/documentation/Metal",
+        "doc://com.apple.metal/documentation/Metal/shader-libraries"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.metal/documentation/Metal/metal-dynamic-libraries"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Metal"
+      }
+    ],
+    "role": "collectionGroup",
+    "title": "Metal Dynamic Libraries"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As shaders grow in size, complexity, and scope, they often end up sharing utility functions. Under Metal’s default compilation model, linking embeds libraries, similar to static linking with the LLVM linker. For Metal, embedding libraries in this manner has two consequences: an increase in binary size, and an increase in compilation time. As each library loads, it compiles its own version of any utility functions, meaning Metal compiles and duplicates your utility functions multiple times.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To avoid this problem, Metal offers dynamic libraries, similar to an LLVM dynamically shared library. Your app loads and compiles dynamic libraries for the device GPU once, the first time a shader requests them. Subsequent shader calls use these compiled utility functions instead of compiling a separate version of the same shader binary.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To support Metal dynamic libraries in your app, call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLDevice/makeDynamicLibrary(library:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " with a dynamic library that you bundle as part of your app. Then add it to a pipeline descriptor’s dynamic library information through a property like ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLComputePipelineDescriptor/preloadedLibraries",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.metal/documentation/Metal": {
+      "abstract": [
+        {
+          "text": "Render advanced 3D graphics and compute data in parallel with graphics processors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Metal",
+      "type": "topic",
+      "url": "/documentation/metal"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLComputePipelineDescriptor/preloadedLibraries": {
+      "abstract": [
+        {
+          "text": "The dynamic libraries that contain precompiled shader functions you want to link.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "preloadedLibraries"
+        },
+        {
+          "kind": "text",
+          "text": ": [any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLDynamicLibrary",
+          "text": "MTLDynamicLibrary"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLComputePipelineDescriptor/preloadedLibraries",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "preloadedLibraries"
+        }
+      ],
+      "role": "symbol",
+      "title": "preloadedLibraries",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcomputepipelinedescriptor/preloadedlibraries"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLDevice/makeDynamicLibrary(library:)": {
+      "abstract": [
+        {
+          "text": "Creates a Metal dynamic library instance from a Metal library instance.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "makeDynamicLibrary"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "library"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLLibrary",
+          "text": "MTLLibrary"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLDynamicLibrary",
+          "text": "MTLDynamicLibrary"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLDevice/makeDynamicLibrary(library:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "newDynamicLibrary:error:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "makeDynamicLibrary(library:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtldevice/makedynamiclibrary(library:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/compiling-and-linking-metal-dynamic-libraries": {
+      "abstract": [
+        {
+          "text": "Build a Metal dynamic library from the command line, allowing for runtime loading of shared shaders.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/compiling-and-linking-metal-dynamic-libraries",
+      "kind": "article",
+      "role": "article",
+      "title": "Compiling and Linking Metal Dynamic Libraries",
+      "type": "topic",
+      "url": "/documentation/metal/compiling-and-linking-metal-dynamic-libraries"
+    },
+    "doc://com.apple.metal/documentation/Metal/creating-a-metal-dynamic-library": {
+      "abstract": [
+        {
+          "text": "Compile a library of shaders and write it to a file as a dynamically linked library.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/creating-a-metal-dynamic-library",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Creating a Metal Dynamic Library",
+      "type": "topic",
+      "url": "/documentation/metal/creating-a-metal-dynamic-library"
+    },
+    "doc://com.apple.metal/documentation/Metal/metal-binary-archives": {
+      "abstract": [
+        {
+          "text": "Distribute precompiled GPU-specific binaries as part of your app to avoid runtime compilation of Metal shaders.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/metal-binary-archives",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Metal Binary Archives",
+      "type": "topic",
+      "url": "/documentation/metal/metal-binary-archives"
+    },
+    "doc://com.apple.metal/documentation/Metal/metal-libraries": {
+      "abstract": [
+        {
+          "text": "Compile and manage Metal libraries from the command line.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/metal-libraries",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Metal Libraries",
+      "type": "topic",
+      "url": "/documentation/metal/metal-libraries"
+    },
+    "doc://com.apple.metal/documentation/Metal/shader-libraries": {
+      "abstract": [
+        {
+          "text": "Manage and load your app’s Metal shaders.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/shader-libraries",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Shader Libraries",
+      "type": "topic",
+      "url": "/documentation/metal/shader-libraries"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Shader-Compilation",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/metal-libraries",
+        "doc://com.apple.metal/documentation/Metal/metal-binary-archives"
+      ],
+      "title": "Shader Compilation"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Working-with-Metal-Dynamic-Libraries",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/compiling-and-linking-metal-dynamic-libraries",
+        "doc://com.apple.metal/documentation/Metal/creating-a-metal-dynamic-library"
+      ],
+      "title": "Working with Metal Dynamic Libraries"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Working-with-Metal-Dynamic-Libraries",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/compiling-and-linking-metal-dynamic-libraries",
+                "doc://com.apple.metal/documentation/Metal/creating-a-metal-dynamic-library"
+              ],
+              "title": "Working with Metal Dynamic Libraries"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Shader-Compilation",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/metal-libraries",
+                "doc://com.apple.metal/documentation/Metal/metal-binary-archives"
+              ],
+              "title": "Shader Compilation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice~1makeDynamicLibrary(library:)/title",
+          "value": "newDynamicLibrary:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice~1makeDynamicLibrary(library:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "newDynamicLibrary:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLComputePipelineDescriptor~1preloadedLibraries/title",
+          "value": "preloadedLibraries"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLComputePipelineDescriptor~1preloadedLibraries/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "preloadedLibraries"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/metal/metal-dynamic-libraries"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/metal/metal-dynamic-libraries"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

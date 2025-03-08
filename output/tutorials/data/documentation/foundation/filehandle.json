@@ -1,0 +1,2185 @@
+{
+  "abstract": [
+    {
+      "text": "An object-oriented wrapper for a file descriptor.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/file_system"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/filehandle"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1416656,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSFileHandle",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "class "
+      },
+      {
+        "kind": "identifier",
+        "text": "FileHandle"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "FileHandle"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "FileHandle"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You use file handle objects to access data associated with files, sockets, pipes, and devices. For files, you can read, write, and seek within the file. For sockets, pipes, and devices, you can use a file handle object to monitor the device and process data asynchronously.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Most creation methods for ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/filehandle",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " cause the file handle object to take ownership of the associated file descriptor. This means that the file handle object both creates the file descriptor and is responsible for closing it later, usually when the system deallocates the file handle object. If you want to use a file handle object with a file descriptor that you created, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/filehandle/1409825-init",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method or use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/filehandle/1408522-init",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method and pass ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/swift/false",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " for the ",
+              "type": "text"
+            },
+            {
+              "code": "flag",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "1651179",
+          "level": 3,
+          "text": "Run Loop Considerations",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When using a file handle object to communicate asynchronously with a socket, you must initiate the corresponding operations from a thread with an active run loop. Although the read, accept, and wait operations themselves are performed asynchronously on background threads, the file handle uses a run loop source to monitor the operations and notify your code appropriately. Therefore, you must call those methods from your application’s main thread or from any thread where you’ve configured a run loop and are using it to process events.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.Swift/documentation/Swift/Sendable": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Sendable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/swift/sendable"
+    },
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/file_system": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/file_system",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "File System",
+      "type": "topic",
+      "url": "/documentation/foundation/file_system"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filehandle": {
+      "abstract": [
+        {
+          "text": "An object-oriented wrapper for a file descriptor.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "FileHandle"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filehandle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FileHandle",
+      "type": "topic",
+      "url": "/documentation/foundation/filehandle"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filehandle/1408422-init": {
+      "abstract": [
+        {
+          "text": "Returns a file handle initialized for reading the file, device, or named socket at the specified URL.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forReadingFrom"
+        },
+        {
+          "kind": "text",
+          "text": ": URL)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filehandle/1408422-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(forReadingFrom:)",
+      "type": "topic",
+      "url": "/documentation/foundation/filehandle/1408422-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filehandle/1408461-offsetinfile": {
+      "abstract": [
+        {
+          "text": "The position of the file pointer within the file represented by the file handle.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "offsetInFile"
+        },
+        {
+          "kind": "text",
+          "text": ": UInt64"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filehandle/1408461-offsetinfile",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "offsetInFile",
+      "type": "topic",
+      "url": "/documentation/foundation/filehandle/1408461-offsetinfile"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filehandle/1408522-init": {
+      "abstract": [
+        {
+          "text": "Creates and returns a file handle object associated with the specified file descriptor and deallocation policy.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "fileDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": ": Int32, "
+        },
+        {
+          "kind": "identifier",
+          "text": "closeOnDealloc"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filehandle/1408522-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(fileDescriptor:closeOnDealloc:)",
+      "type": "topic",
+      "url": "/documentation/foundation/filehandle/1408522-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filehandle/1409270-waitfordatainbackgroundandnotify": {
+      "abstract": [
+        {
+          "text": "Asynchronously checks to see if data is available.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "waitForDataInBackgroundAndNotify"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filehandle/1409270-waitfordatainbackgroundandnotify",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "waitForDataInBackgroundAndNotify()",
+      "type": "topic",
+      "url": "/documentation/foundation/filehandle/1409270-waitfordatainbackgroundandnotify"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filehandle/1409825-init": {
+      "abstract": [
+        {
+          "text": "Creates and returns a file handle object associated with the specified file descriptor.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "fileDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": ": Int32)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filehandle/1409825-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(fileDescriptor:)",
+      "type": "topic",
+      "url": "/documentation/foundation/filehandle/1409825-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filehandle/1410326-filedescriptor": {
+      "abstract": [
+        {
+          "text": "The POSIX file descriptor associated with the receiver.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "fileDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": ": Int32"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filehandle/1410326-filedescriptor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "fileDescriptor",
+      "type": "topic",
+      "url": "/documentation/foundation/filehandle/1410326-filedescriptor"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filehandle/1410936-write": {
+      "abstract": [
+        {
+          "text": "Writes the specified data synchronously to the file handle.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "write"
+        },
+        {
+          "kind": "text",
+          "text": "(Data)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filehandle/1410936-write",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "write(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/filehandle/1410936-write"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filehandle/1411001-standarderror": {
+      "abstract": [
+        {
+          "text": "The file handle associated with the standard error file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class var "
+        },
+        {
+          "kind": "identifier",
+          "text": "standardError"
+        },
+        {
+          "kind": "text",
+          "text": ": FileHandle"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filehandle/1411001-standarderror",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "standardError",
+      "type": "topic",
+      "url": "/documentation/foundation/filehandle/1411001-standarderror"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filehandle/1411016-synchronizefile": {
+      "abstract": [
+        {
+          "text": "Causes all in-memory data and attributes of the file represented by the handle to write to permanent storage.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "synchronizeFile"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filehandle/1411016-synchronizefile",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "synchronizeFile()",
+      "type": "topic",
+      "url": "/documentation/foundation/filehandle/1411016-synchronizefile"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filehandle/1411131-init": {
+      "abstract": [
+        {
+          "text": "Returns a file handle initialized for reading and writing to the file, device, or named socket at the specified path.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "identifier",
+          "text": "forUpdatingAtPath"
+        },
+        {
+          "kind": "text",
+          "text": ": String)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filehandle/1411131-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(forUpdatingAtPath:)",
+      "type": "topic",
+      "url": "/documentation/foundation/filehandle/1411131-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filehandle/1411174-init": {
+      "abstract": [
+        {
+          "text": "Returns a file handle initialized from data in an unarchiver.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "identifier",
+          "text": "coder"
+        },
+        {
+          "kind": "text",
+          "text": ": NSCoder)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filehandle/1411174-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(coder:)",
+      "type": "topic",
+      "url": "/documentation/foundation/filehandle/1411174-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filehandle/1411250-init": {
+      "abstract": [
+        {
+          "text": "Returns a file handle initialized for reading the file, device, or named socket at the specified path.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "identifier",
+          "text": "forReadingAtPath"
+        },
+        {
+          "kind": "text",
+          "text": ": String)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filehandle/1411250-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(forReadingAtPath:)",
+      "type": "topic",
+      "url": "/documentation/foundation/filehandle/1411250-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filehandle/1411311-seektoendoffile": {
+      "abstract": [
+        {
+          "text": "Places the file pointer at the end of the file referenced by the file handle and returns the new file offset.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "seekToEndOfFile"
+        },
+        {
+          "kind": "text",
+          "text": "() -> UInt64"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filehandle/1411311-seektoendoffile",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "seekToEndOfFile()",
+      "type": "topic",
+      "url": "/documentation/foundation/filehandle/1411311-seektoendoffile"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filehandle/1411463-availabledata": {
+      "abstract": [
+        {
+          "text": "The data currently available in the receiver.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "availableData"
+        },
+        {
+          "kind": "text",
+          "text": ": Data"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filehandle/1411463-availabledata",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "availableData",
+      "type": "topic",
+      "url": "/documentation/foundation/filehandle/1411463-availabledata"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filehandle/1411490-readdatatoendoffile": {
+      "abstract": [
+        {
+          "text": "Reads the available data synchronously up to the end of file or maximum number of bytes.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "readDataToEndOfFile"
+        },
+        {
+          "kind": "text",
+          "text": "() -> Data"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filehandle/1411490-readdatatoendoffile",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "readDataToEndOfFile()",
+      "type": "topic",
+      "url": "/documentation/foundation/filehandle/1411490-readdatatoendoffile"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filehandle/1411716-truncatefile": {
+      "abstract": [
+        {
+          "text": "Truncates or extends the file represented by the file handle to a specified offset within the file and puts the file pointer at that position.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "truncateFile"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "atOffset"
+        },
+        {
+          "kind": "text",
+          "text": ": UInt64)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filehandle/1411716-truncatefile",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "truncateFile(atOffset:)",
+      "type": "topic",
+      "url": "/documentation/foundation/filehandle/1411716-truncatefile"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filehandle/1412135-seek": {
+      "abstract": [
+        {
+          "text": "Moves the file pointer to the specified offset within the file represented by the receiver.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "seek"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "toFileOffset"
+        },
+        {
+          "kind": "text",
+          "text": ": UInt64)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filehandle/1412135-seek",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "seek(toFileOffset:)",
+      "type": "topic",
+      "url": "/documentation/foundation/filehandle/1412135-seek"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filehandle/1412413-readabilityhandler": {
+      "abstract": [
+        {
+          "text": "The block to use for reading the contents of the file handle asynchronously.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "readabilityHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": (FileHandle) -> Void)?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filehandle/1412413-readabilityhandler",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "readabilityHandler",
+      "type": "topic",
+      "url": "/documentation/foundation/filehandle/1412413-readabilityhandler"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filehandle/1412997-acceptconnectioninbackgroundandn": {
+      "abstract": [
+        {
+          "text": "Accepts a socket connection (for stream-type sockets only) in the background and creates a file handle for the “near” (client) end of the communications channel.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "acceptConnectionInBackgroundAndNotify"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forModes"
+        },
+        {
+          "kind": "text",
+          "text": ": [RunLoop.Mode]?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filehandle/1412997-acceptconnectioninbackgroundandn",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "acceptConnectionInBackgroundAndNotify(forModes:)",
+      "type": "topic",
+      "url": "/documentation/foundation/filehandle/1412997-acceptconnectioninbackgroundandn"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filehandle/1413309-acceptconnectioninbackgroundandn": {
+      "abstract": [
+        {
+          "text": "Accepts a socket connection (for stream-type sockets only) in the background and creates a file handle for the “near” (client) end of the communications channel.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "acceptConnectionInBackgroundAndNotify"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filehandle/1413309-acceptconnectioninbackgroundandn",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "acceptConnectionInBackgroundAndNotify()",
+      "type": "topic",
+      "url": "/documentation/foundation/filehandle/1413309-acceptconnectioninbackgroundandn"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filehandle/1413393-closefile": {
+      "abstract": [
+        {
+          "text": "Disallows further access to the represented file or communications channel and signals end of file on communications channels that permit writing.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "closeFile"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filehandle/1413393-closefile",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "closeFile()",
+      "type": "topic",
+      "url": "/documentation/foundation/filehandle/1413393-closefile"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filehandle/1413686-standardinput": {
+      "abstract": [
+        {
+          "text": "The file handle associated with the standard input file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class var "
+        },
+        {
+          "kind": "identifier",
+          "text": "standardInput"
+        },
+        {
+          "kind": "text",
+          "text": ": FileHandle"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filehandle/1413686-standardinput",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "standardInput",
+      "type": "topic",
+      "url": "/documentation/foundation/filehandle/1413686-standardinput"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filehandle/1413881-nulldevice": {
+      "abstract": [
+        {
+          "text": "The file handle associated with a null device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class var "
+        },
+        {
+          "kind": "identifier",
+          "text": "nullDevice"
+        },
+        {
+          "kind": "text",
+          "text": ": FileHandle"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filehandle/1413881-nulldevice",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "nullDevice",
+      "type": "topic",
+      "url": "/documentation/foundation/filehandle/1413881-nulldevice"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filehandle/1413916-readdata": {
+      "abstract": [
+        {
+          "text": "Reads data synchronously up to the specified number of bytes.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "readData"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "ofLength"
+        },
+        {
+          "kind": "text",
+          "text": ": Int) -> Data"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filehandle/1413916-readdata",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "readData(ofLength:)",
+      "type": "topic",
+      "url": "/documentation/foundation/filehandle/1413916-readdata"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filehandle/1414257-readcompletionnotification": {
+      "abstract": [
+        {
+          "text": "Posted when the file handle reads the data currently available in a file or at a communications channel.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class let "
+        },
+        {
+          "kind": "identifier",
+          "text": "readCompletionNotification"
+        },
+        {
+          "kind": "text",
+          "text": ": NSNotification.Name"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filehandle/1414257-readcompletionnotification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "readCompletionNotification",
+      "type": "topic",
+      "url": "/documentation/foundation/filehandle/1414257-readcompletionnotification"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filehandle/1414405-init": {
+      "abstract": [
+        {
+          "text": "Returns a file handle initialized for writing to the file, device, or named socket at the specified path.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "identifier",
+          "text": "forWritingAtPath"
+        },
+        {
+          "kind": "text",
+          "text": ": String)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filehandle/1414405-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(forWritingAtPath:)",
+      "type": "topic",
+      "url": "/documentation/foundation/filehandle/1414405-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filehandle/1414643-waitfordatainbackgroundandnotify": {
+      "abstract": [
+        {
+          "text": "Asynchronously checks to see if data is available.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "waitForDataInBackgroundAndNotify"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forModes"
+        },
+        {
+          "kind": "text",
+          "text": ": [RunLoop.Mode]?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filehandle/1414643-waitfordatainbackgroundandnotify",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "waitForDataInBackgroundAndNotify(forModes:)",
+      "type": "topic",
+      "url": "/documentation/foundation/filehandle/1414643-waitfordatainbackgroundandnotify"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filehandle/1415313-readtoendoffileinbackgroundandno": {
+      "abstract": [
+        {
+          "text": "Reads to the end of file from the file or communications channel in the background and posts a notification when finished.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "readToEndOfFileInBackgroundAndNotify"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filehandle/1415313-readtoendoffileinbackgroundandno",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "readToEndOfFileInBackgroundAndNotify()",
+      "type": "topic",
+      "url": "/documentation/foundation/filehandle/1415313-readtoendoffileinbackgroundandno"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filehandle/1415367-writeabilityhandler": {
+      "abstract": [
+        {
+          "text": "The block to use for writing the contents of the file handle asynchronously.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "writeabilityHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": (FileHandle) -> Void)?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filehandle/1415367-writeabilityhandler",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "writeabilityHandler",
+      "type": "topic",
+      "url": "/documentation/foundation/filehandle/1415367-writeabilityhandler"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filehandle/1416294-readinbackgroundandnotify": {
+      "abstract": [
+        {
+          "text": "Reads from the file or communications channel in the background and posts a notification when finished.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "readInBackgroundAndNotify"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forModes"
+        },
+        {
+          "kind": "text",
+          "text": ": [RunLoop.Mode]?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filehandle/1416294-readinbackgroundandnotify",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "readInBackgroundAndNotify(forModes:)",
+      "type": "topic",
+      "url": "/documentation/foundation/filehandle/1416294-readinbackgroundandnotify"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filehandle/1416892-init": {
+      "abstract": [
+        {
+          "text": "Returns a file handle initialized for writing to the file, device, or named socket at the specified URL.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forWritingTo"
+        },
+        {
+          "kind": "text",
+          "text": ": URL)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filehandle/1416892-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(forWritingTo:)",
+      "type": "topic",
+      "url": "/documentation/foundation/filehandle/1416892-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filehandle/1416965-standardoutput": {
+      "abstract": [
+        {
+          "text": "The file handle associated with the standard output file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class var "
+        },
+        {
+          "kind": "identifier",
+          "text": "standardOutput"
+        },
+        {
+          "kind": "text",
+          "text": ": FileHandle"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filehandle/1416965-standardoutput",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "standardOutput",
+      "type": "topic",
+      "url": "/documentation/foundation/filehandle/1416965-standardoutput"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filehandle/1417026-init": {
+      "abstract": [
+        {
+          "text": "Returns a file handle initialized for reading and writing to the file, device, or named socket at the specified URL.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forUpdating"
+        },
+        {
+          "kind": "text",
+          "text": ": URL)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filehandle/1417026-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(forUpdating:)",
+      "type": "topic",
+      "url": "/documentation/foundation/filehandle/1417026-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filehandle/1417321-readtoendoffileinbackgroundandno": {
+      "abstract": [
+        {
+          "text": "Reads to the end of file from the file or communications channel in the background and posts a notification when finished.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "readToEndOfFileInBackgroundAndNotify"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forModes"
+        },
+        {
+          "kind": "text",
+          "text": ": [RunLoop.Mode]?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filehandle/1417321-readtoendoffileinbackgroundandno",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "readToEndOfFileInBackgroundAndNotify(forModes:)",
+      "type": "topic",
+      "url": "/documentation/foundation/filehandle/1417321-readtoendoffileinbackgroundandno"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filehandle/1417635-readinbackgroundandnotify": {
+      "abstract": [
+        {
+          "text": "Reads from the file or communications channel in the background and posts a notification when finished.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "readInBackgroundAndNotify"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filehandle/1417635-readinbackgroundandnotify",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "readInBackgroundAndNotify()",
+      "type": "topic",
+      "url": "/documentation/foundation/filehandle/1417635-readinbackgroundandnotify"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filehandle/3172525-close": {
+      "abstract": [
+        {
+          "text": "Disallows further access to the represented file or communications channel and signals end of file on communications channels that permit writing.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "close"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filehandle/3172525-close",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "close()",
+      "type": "topic",
+      "url": "/documentation/foundation/filehandle/3172525-close"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filehandle/3172530-seek": {
+      "abstract": [
+        {
+          "text": "Moves the file pointer to the specified offset within the file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "seek"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "toOffset"
+        },
+        {
+          "kind": "text",
+          "text": ": UInt64)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filehandle/3172530-seek",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "seek(toOffset:)",
+      "type": "topic",
+      "url": "/documentation/foundation/filehandle/3172530-seek"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filehandle/3172531-synchronize": {
+      "abstract": [
+        {
+          "text": "Causes all in-memory data and attributes of the file represented by the file handle to write to permanent storage.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "synchronize"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filehandle/3172531-synchronize",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "synchronize()",
+      "type": "topic",
+      "url": "/documentation/foundation/filehandle/3172531-synchronize"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filehandle/3172532-truncate": {
+      "abstract": [
+        {
+          "text": "Truncates or extends the file represented by the file handle to a specified offset within the file and puts the file pointer at that position.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "truncate"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "atOffset"
+        },
+        {
+          "kind": "text",
+          "text": ": UInt64)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filehandle/3172532-truncate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "truncate(atOffset:)",
+      "type": "topic",
+      "url": "/documentation/foundation/filehandle/3172532-truncate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filehandle/3516316-offset": {
+      "abstract": [
+        {
+          "text": "Gets the position of the file pointer within the file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "offset"
+        },
+        {
+          "kind": "text",
+          "text": "() -> UInt64"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filehandle/3516316-offset",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "offset()",
+      "type": "topic",
+      "url": "/documentation/foundation/filehandle/3516316-offset"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filehandle/3516317-read": {
+      "abstract": [
+        {
+          "text": "Reads data synchronously up to the specified number of bytes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "read"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "upToCount"
+        },
+        {
+          "kind": "text",
+          "text": ": Int) -> Data?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filehandle/3516317-read",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "read(upToCount:)",
+      "type": "topic",
+      "url": "/documentation/foundation/filehandle/3516317-read"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filehandle/3516318-readtoend": {
+      "abstract": [
+        {
+          "text": "Reads the available data synchronously up to the end of file or maximum number of bytes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "readToEnd"
+        },
+        {
+          "kind": "text",
+          "text": "() -> Data?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filehandle/3516318-readtoend",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "readToEnd()",
+      "type": "topic",
+      "url": "/documentation/foundation/filehandle/3516318-readtoend"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filehandle/3516319-seektoend": {
+      "abstract": [
+        {
+          "text": "Places the file pointer at the end of the file referenced by the file handle and returns the new file offset.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "seekToEnd"
+        },
+        {
+          "kind": "text",
+          "text": "() -> UInt64"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filehandle/3516319-seektoend",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "seekToEnd()",
+      "type": "topic",
+      "url": "/documentation/foundation/filehandle/3516319-seektoend"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filehandle/3516320-write": {
+      "abstract": [
+        {
+          "text": "Writes the specified data synchronously to the file handle.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "write"
+        },
+        {
+          "kind": "text",
+          "text": "<T>("
+        },
+        {
+          "kind": "identifier",
+          "text": "contentsOf"
+        },
+        {
+          "kind": "text",
+          "text": ": T)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filehandle/3516320-write",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "write(contentsOf:)",
+      "type": "topic",
+      "url": "/documentation/foundation/filehandle/3516320-write"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filehandle/3766681-bytes": {
+      "abstract": [
+        {
+          "text": "The file’s contents, as an asynchronous sequence of bytes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "bytes"
+        },
+        {
+          "kind": "text",
+          "text": ": FileHandle.AsyncBytes"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filehandle/3766681-bytes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "bytes",
+      "type": "topic",
+      "url": "/documentation/foundation/filehandle/3766681-bytes"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filehandle/asyncbytes": {
+      "abstract": [
+        {
+          "text": "An asynchronous sequence of bytes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "FileHandle.AsyncBytes"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filehandle/asyncbytes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FileHandle.AsyncBytes",
+      "type": "topic",
+      "url": "/documentation/foundation/filehandle/asyncbytes"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filehandle/exception_names": {
+      "abstract": [
+        {
+          "text": "Constant that defines the name of a file operation exception.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filehandle/exception_names",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Exception Names",
+      "type": "topic",
+      "url": "/documentation/foundation/filehandle/exception_names"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filehandle/keys_for_notification_userinfo_dictionary": {
+      "abstract": [
+        {
+          "text": "Strings that the system uses as keys in a userinfo dictionary during a file handle notification.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filehandle/keys_for_notification_userinfo_dictionary",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Keys for Notification UserInfo Dictionary",
+      "type": "topic",
+      "url": "/documentation/foundation/filehandle/keys_for_notification_userinfo_dictionary"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filewrapper": {
+      "abstract": [
+        {
+          "text": "A representation of a node (a file, directory, or symbolic link) in the file system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "FileWrapper"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filewrapper",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FileWrapper",
+      "type": "topic",
+      "url": "/documentation/foundation/filewrapper"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsfilehandlenotificationmonitormodes": {
+      "abstract": [
+        {
+          "text": "Currently unused.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "let "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSFileHandleNotificationMonitorModes"
+        },
+        {
+          "kind": "text",
+          "text": ": String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsfilehandlenotificationmonitormodes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSFileHandleNotificationMonitorModes",
+      "type": "topic",
+      "url": "/documentation/foundation/nsfilehandlenotificationmonitormodes"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsfilesecurity": {
+      "abstract": [
+        {
+          "text": "A stub class that encapsulates security information about a file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSFileSecurity"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsfilesecurity",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSFileSecurity",
+      "type": "topic",
+      "url": "/documentation/foundation/nsfilesecurity"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsfileversion": {
+      "abstract": [
+        {
+          "text": "A snapshot of a file at a specific point in time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSFileVersion"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsfileversion",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSFileVersion",
+      "type": "topic",
+      "url": "/documentation/foundation/nsfileversion"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1415913-nsfilehandledataavailable": {
+      "abstract": [
+        {
+          "text": "Posted when the file handle determines that data is currently available for reading in a file or at a communications channel.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static let "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSFileHandleDataAvailable"
+        },
+        {
+          "kind": "text",
+          "text": ": NSNotification.Name"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1415913-nsfilehandledataavailable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSFileHandleDataAvailable",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnotification/name/1415913-nsfilehandledataavailable"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1416927-nsfilehandlereadtoendoffilecompl": {
+      "abstract": [
+        {
+          "text": "Posted when the file handle reads all data in the file or, in a communications channel, until the other process signals the end of data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static let "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSFileHandleReadToEndOfFileCompletion"
+        },
+        {
+          "kind": "text",
+          "text": ": NSNotification.Name"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1416927-nsfilehandlereadtoendoffilecompl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSFileHandleReadToEndOfFileCompletion",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnotification/name/1416927-nsfilehandlereadtoendoffilecompl"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1417116-nsfilehandleconnectionaccepted": {
+      "abstract": [
+        {
+          "text": "Posted when a file handle object establishes a socket connection between two processes, creates a file handle object for one end of the connection, and makes this object available to observers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static let "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSFileHandleConnectionAccepted"
+        },
+        {
+          "kind": "text",
+          "text": ": NSNotification.Name"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1417116-nsfilehandleconnectionaccepted",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSFileHandleConnectionAccepted",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnotification/name/1417116-nsfilehandleconnectionaccepted"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nssecurecoding": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nssecurecoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSecureCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nssecurecoding"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.apple.documentation/documentation/swift/false": {
+      "identifier": "doc://com.apple.documentation/documentation/swift/false",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "false",
+      "type": "topic",
+      "url": "/documentation/swift/false"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/objectivec/nsobject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nssecurecoding",
+        "doc://com.apple.Swift/documentation/Swift/Sendable"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsfilesecurity",
+        "doc://com.apple.documentation/documentation/foundation/nsfileversion",
+        "doc://com.apple.documentation/documentation/foundation/filewrapper"
+      ],
+      "title": "Managed file access"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "1651367",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/filehandle/1409825-init",
+        "doc://com.apple.documentation/documentation/foundation/filehandle/1408522-init",
+        "doc://com.apple.documentation/documentation/foundation/filehandle/1411250-init",
+        "doc://com.apple.documentation/documentation/foundation/filehandle/1408422-init",
+        "doc://com.apple.documentation/documentation/foundation/filehandle/1414405-init",
+        "doc://com.apple.documentation/documentation/foundation/filehandle/1416892-init",
+        "doc://com.apple.documentation/documentation/foundation/filehandle/1411131-init",
+        "doc://com.apple.documentation/documentation/foundation/filehandle/1417026-init",
+        "doc://com.apple.documentation/documentation/foundation/filehandle/1411174-init"
+      ],
+      "kind": "taskGroup",
+      "title": "Creating a File Handle"
+    },
+    {
+      "anchor": "1651201",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/filehandle/1411001-standarderror",
+        "doc://com.apple.documentation/documentation/foundation/filehandle/1413686-standardinput",
+        "doc://com.apple.documentation/documentation/foundation/filehandle/1416965-standardoutput",
+        "doc://com.apple.documentation/documentation/foundation/filehandle/1413881-nulldevice"
+      ],
+      "kind": "taskGroup",
+      "title": "Getting a File Handle"
+    },
+    {
+      "anchor": "1651425",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/filehandle/1410326-filedescriptor"
+      ],
+      "kind": "taskGroup",
+      "title": "Getting a File Descriptor"
+    },
+    {
+      "anchor": "3786968",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/filehandle/3766681-bytes",
+        "doc://com.apple.documentation/documentation/foundation/filehandle/asyncbytes"
+      ],
+      "kind": "taskGroup",
+      "title": "Reading from a File Handle Asynchronously"
+    },
+    {
+      "anchor": "1651453",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/filehandle/1411463-availabledata",
+        "doc://com.apple.documentation/documentation/foundation/filehandle/3516318-readtoend",
+        "doc://com.apple.documentation/documentation/foundation/filehandle/3516317-read"
+      ],
+      "kind": "taskGroup",
+      "title": "Reading from a File Handle Synchronously"
+    },
+    {
+      "anchor": "1651582",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/filehandle/1413309-acceptconnectioninbackgroundandn",
+        "doc://com.apple.documentation/documentation/foundation/filehandle/1412997-acceptconnectioninbackgroundandn",
+        "doc://com.apple.documentation/documentation/foundation/filehandle/1417635-readinbackgroundandnotify",
+        "doc://com.apple.documentation/documentation/foundation/filehandle/1416294-readinbackgroundandnotify",
+        "doc://com.apple.documentation/documentation/foundation/filehandle/1415313-readtoendoffileinbackgroundandno",
+        "doc://com.apple.documentation/documentation/foundation/filehandle/1417321-readtoendoffileinbackgroundandno",
+        "doc://com.apple.documentation/documentation/foundation/filehandle/1409270-waitfordatainbackgroundandnotify",
+        "doc://com.apple.documentation/documentation/foundation/filehandle/1414643-waitfordatainbackgroundandnotify"
+      ],
+      "kind": "taskGroup",
+      "title": "Reading Asynchronously with Notifications"
+    },
+    {
+      "anchor": "1651506",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/filehandle/3516320-write"
+      ],
+      "kind": "taskGroup",
+      "title": "Writing to a File Handle"
+    },
+    {
+      "anchor": "1651664",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/filehandle/3516316-offset",
+        "doc://com.apple.documentation/documentation/foundation/filehandle/3516319-seektoend",
+        "doc://com.apple.documentation/documentation/foundation/filehandle/3172530-seek"
+      ],
+      "kind": "taskGroup",
+      "title": "Seeking Within a File"
+    },
+    {
+      "anchor": "1651711",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/filehandle/3172525-close",
+        "doc://com.apple.documentation/documentation/foundation/filehandle/3172531-synchronize",
+        "doc://com.apple.documentation/documentation/foundation/filehandle/3172532-truncate"
+      ],
+      "kind": "taskGroup",
+      "title": "Operating on a File"
+    },
+    {
+      "abstract": [
+        {
+          "text": "Set these properties if you want to use a block that reads or writes based on the file handle’s availability.",
+          "type": "text"
+        }
+      ],
+      "anchor": "1651530",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/filehandle/1412413-readabilityhandler",
+        "doc://com.apple.documentation/documentation/foundation/filehandle/1415367-writeabilityhandler"
+      ],
+      "kind": "taskGroup",
+      "title": "Monitoring for Readability and Writability"
+    },
+    {
+      "anchor": "1679827",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/filehandle/keys_for_notification_userinfo_dictionary",
+        "doc://com.apple.documentation/documentation/foundation/filehandle/exception_names"
+      ],
+      "kind": "taskGroup",
+      "title": "Constants"
+    },
+    {
+      "anchor": "1651843",
+      "discussion": {
+        "content": [
+          {
+            "inlineContent": [
+              {
+                "code": "NSFileHandle",
+                "type": "codeVoice"
+              },
+              {
+                "text": " posts several notifications related to asynchronous background I/O operations. They are set to post when the run loop of the thread that started the asynchronous operation is idle.",
+                "type": "text"
+              }
+            ],
+            "type": "paragraph"
+          }
+        ],
+        "kind": "content"
+      },
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1417116-nsfilehandleconnectionaccepted",
+        "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1415913-nsfilehandledataavailable",
+        "doc://com.apple.documentation/documentation/foundation/filehandle/1414257-readcompletionnotification",
+        "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1416927-nsfilehandlereadtoendoffilecompl"
+      ],
+      "kind": "taskGroup",
+      "title": "Notifications"
+    },
+    {
+      "anchor": "3900869",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/filehandle/1411490-readdatatoendoffile",
+        "doc://com.apple.documentation/documentation/foundation/filehandle/1413916-readdata",
+        "doc://com.apple.documentation/documentation/foundation/filehandle/1410936-write",
+        "doc://com.apple.documentation/documentation/foundation/filehandle/1408461-offsetinfile",
+        "doc://com.apple.documentation/documentation/foundation/filehandle/1411311-seektoendoffile",
+        "doc://com.apple.documentation/documentation/foundation/filehandle/1412135-seek",
+        "doc://com.apple.documentation/documentation/foundation/filehandle/1413393-closefile",
+        "doc://com.apple.documentation/documentation/foundation/filehandle/1411016-synchronizefile",
+        "doc://com.apple.documentation/documentation/foundation/filehandle/1411716-truncatefile",
+        "doc://com.apple.documentation/documentation/foundation/nsfilehandlenotificationmonitormodes"
+      ],
+      "kind": "taskGroup",
+      "title": "Deprecated"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nsfilehandle"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/filehandle"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

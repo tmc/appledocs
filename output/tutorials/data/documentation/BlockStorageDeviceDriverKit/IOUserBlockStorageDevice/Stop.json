@@ -1,0 +1,480 @@
+{
+  "abstract": [
+    {
+      "text": "Stops the service associated with the specified provider.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.blockstoragedevicedriverkit/documentation/BlockStorageDeviceDriverKit",
+        "doc://com.apple.blockstoragedevicedriverkit/documentation/BlockStorageDeviceDriverKit/IOUserBlockStorageDevice"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.blockstoragedevicedriverkit/documentation/BlockStorageDeviceDriverKit/IOUserBlockStorageDevice/Stop"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@S@IOUserBlockStorageDevice@F@Stop#*$@S@IOService#",
+    "fragments": [
+      {
+        "kind": "identifier",
+        "text": "Stop"
+      }
+    ],
+    "modules": [
+      {
+        "name": "BlockStorageDeviceDriverKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "Stop"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "21.0",
+        "name": "DriverKit"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Method",
+    "symbolKind": "method",
+    "title": "Stop"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "Unsupported OS: driverkit"
+          ],
+          "tokens": [
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:@T@kern_return_t",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@kern_return_t",
+              "text": "kern_return_t"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "Stop"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:@S@IOService",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@S@IOService",
+              "text": "IOService"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "internalParam",
+              "text": "provider"
+            },
+            {
+              "kind": "text",
+              "text": ");"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The provider associated with the current service. This object is the same one that the system previously passed to your service’s ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.blockstoragedevicedriverkit/documentation/BlockStorageDeviceDriverKit/IOUserBlockStorageDevice/Start",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " method.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "provider"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return-value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A value that indicates the service-stopping result. Return ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/driverkit/kioreturnsuccess",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to inidicate success. To indicate a failure, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/iokit/iokit_constants",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for error definitions.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before terminating the object in ",
+              "type": "text"
+            },
+            {
+              "code": "provider",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", the system calls this method to stop the service associated with that object. Use your implementation of this method to stop all activity and put your driver in a quiescent state. If your driver has any in-progress asynchronous tasks, cancel those tasks and wait for DriverKit to call the associated cancellation handler before calling the ",
+              "type": "text"
+            },
+            {
+              "code": "super",
+              "type": "codeVoice"
+            },
+            {
+              "text": " version of this method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Call ",
+              "type": "text"
+            },
+            {
+              "code": "super",
+              "type": "codeVoice"
+            },
+            {
+              "text": " at the end of your implementation. After calling ",
+              "type": "text"
+            },
+            {
+              "code": "super",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", it’s a programmer error to access the provider object.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Don’t use this method to release your ",
+              "type": "text"
+            },
+            {
+              "code": "ivars",
+              "type": "codeVoice"
+            },
+            {
+              "text": " structure; use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.blockstoragedevicedriverkit/documentation/BlockStorageDeviceDriverKit/IOUserBlockStorageDevice/free",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method instead.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.blockstoragedevicedriverkit/documentation/BlockStorageDeviceDriverKit": {
+      "abstract": [
+        {
+          "text": "Develop drivers for custom storage devices that communicate with the driver using custom protocols.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.blockstoragedevicedriverkit/documentation/BlockStorageDeviceDriverKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "BlockStorageDeviceDriverKit",
+      "type": "topic",
+      "url": "/documentation/blockstoragedevicedriverkit"
+    },
+    "doc://com.apple.blockstoragedevicedriverkit/documentation/BlockStorageDeviceDriverKit/IOUserBlockStorageDevice": {
+      "abstract": [
+        {
+          "text": "A DriverKit provider object that manages communications with a block storage device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "IOUserBlockStorageDevice"
+        }
+      ],
+      "identifier": "doc://com.apple.blockstoragedevicedriverkit/documentation/BlockStorageDeviceDriverKit/IOUserBlockStorageDevice",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOUserBlockStorageDevice",
+      "type": "topic",
+      "url": "/documentation/blockstoragedevicedriverkit/iouserblockstoragedevice"
+    },
+    "doc://com.apple.blockstoragedevicedriverkit/documentation/BlockStorageDeviceDriverKit/IOUserBlockStorageDevice/Start": {
+      "abstract": [
+        {
+          "text": "Starts the current service and associates it with the specified provider.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "Start"
+        }
+      ],
+      "identifier": "doc://com.apple.blockstoragedevicedriverkit/documentation/BlockStorageDeviceDriverKit/IOUserBlockStorageDevice/Start",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Start",
+      "type": "topic",
+      "url": "/documentation/blockstoragedevicedriverkit/iouserblockstoragedevice/start"
+    },
+    "doc://com.apple.blockstoragedevicedriverkit/documentation/BlockStorageDeviceDriverKit/IOUserBlockStorageDevice/Stop": {
+      "abstract": [
+        {
+          "text": "Stops the service associated with the specified provider.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "Stop"
+        }
+      ],
+      "identifier": "doc://com.apple.blockstoragedevicedriverkit/documentation/BlockStorageDeviceDriverKit/IOUserBlockStorageDevice/Stop",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Stop",
+      "type": "topic",
+      "url": "/documentation/blockstoragedevicedriverkit/iouserblockstoragedevice/stop"
+    },
+    "doc://com.apple.blockstoragedevicedriverkit/documentation/BlockStorageDeviceDriverKit/IOUserBlockStorageDevice/free": {
+      "abstract": [
+        {
+          "text": "Performs any final cleanup for the service.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "free"
+        }
+      ],
+      "identifier": "doc://com.apple.blockstoragedevicedriverkit/documentation/BlockStorageDeviceDriverKit/IOUserBlockStorageDevice/free",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "free",
+      "type": "topic",
+      "url": "/documentation/blockstoragedevicedriverkit/iouserblockstoragedevice/free"
+    },
+    "doc://com.apple.blockstoragedevicedriverkit/documentation/BlockStorageDeviceDriverKit/IOUserBlockStorageDevice/init": {
+      "abstract": [
+        {
+          "text": "Handles the basic initialization of the service.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        }
+      ],
+      "identifier": "doc://com.apple.blockstoragedevicedriverkit/documentation/BlockStorageDeviceDriverKit/IOUserBlockStorageDevice/init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init",
+      "type": "topic",
+      "url": "/documentation/blockstoragedevicedriverkit/iouserblockstoragedevice/init"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/kioreturnsuccess": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/kioreturnsuccess",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kIOReturnSuccess",
+      "type": "topic",
+      "url": "/documentation/driverkit/kioreturnsuccess"
+    },
+    "doc://com.apple.documentation/documentation/iokit/iokit_constants": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/iokit/iokit_constants",
+      "kind": "article",
+      "role": "article",
+      "title": "IOKit Constants",
+      "type": "topic",
+      "url": "/documentation/iokit/iokit_constants"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:@S@IOService": {
+      "abstract": [
+        {
+          "text": "The base class for managing the setup and registration of your driver.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:@S@IOService",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOService",
+      "type": "topic",
+      "url": "/documentation/driverkit/ioservice"
+    },
+    "doc://com.externally.resolved.symbol/c:@T@kern_return_t": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:@T@kern_return_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kern_return_t",
+      "type": "topic",
+      "url": "/documentation/kernel/kern_return_t"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Running-the-Service",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.blockstoragedevicedriverkit/documentation/BlockStorageDeviceDriverKit/IOUserBlockStorageDevice/init",
+        "doc://com.apple.blockstoragedevicedriverkit/documentation/BlockStorageDeviceDriverKit/IOUserBlockStorageDevice/Start",
+        "doc://com.apple.blockstoragedevicedriverkit/documentation/BlockStorageDeviceDriverKit/IOUserBlockStorageDevice/free"
+      ],
+      "title": "Running the Service"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/blockstoragedevicedriverkit/iouserblockstoragedevice/stop"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,4542 @@
+{
+  "abstract": [
+    {
+      "text": "Represents a location in the file system.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.SwiftSystem/documentation/System"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.SwiftSystem/documentation/System/FilePath"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:6System8FilePathV",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "struct"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "FilePath"
+      }
+    ],
+    "modules": [
+      {
+        "name": "System"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "FilePath"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "11.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "7.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "FilePath"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "FilePath"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This structure recognizes directory separators  (e.g. ",
+              "type": "text"
+            },
+            {
+              "code": "/",
+              "type": "codeVoice"
+            },
+            {
+              "text": "), roots, and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "requires that the content terminates in a NUL (",
+              "type": "text"
+            },
+            {
+              "code": "0x0",
+              "type": "codeVoice"
+            },
+            {
+              "text": "). Beyond that, it",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "does not give any meaning to the bytes that it contains. The file system",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "defines how the content is interpreted; for example, by its choice of string",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "encoding.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "On construction, ",
+              "type": "text"
+            },
+            {
+              "code": "FilePath",
+              "type": "codeVoice"
+            },
+            {
+              "text": " will normalize separators by removing",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "redundant intermediary separators and stripping any trailing separators.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "On Windows, ",
+              "type": "text"
+            },
+            {
+              "code": "FilePath",
+              "type": "codeVoice"
+            },
+            {
+              "text": " will also normalize forward slashes ",
+              "type": "text"
+            },
+            {
+              "code": "/",
+              "type": "codeVoice"
+            },
+            {
+              "text": " into",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "backslashes ",
+              "type": "text"
+            },
+            {
+              "code": "\\",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", as preferred by the platform.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The code below creates a file path from a string literal,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and then uses it to open and append to a log file:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let message: String = \"This is a log message.\"",
+            "let path: FilePath = \"/tmp/log\"",
+            "let fd = try FileDescriptor.open(path, .writeOnly, options: .append)",
+            "try fd.closeAfter { try fd.writeAll(message.utf8) }"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "File paths conform to the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Swift/Equatable",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Swift/Hashable",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocols",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "by performing the protocols’ operations on their raw byte contents.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This conformance allows file paths to be used,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "for example, as keys in a dictionary.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "However, the rules for path equivalence",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "are file-system–specific and have additional considerations",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "like case insensitivity, Unicode normalization, and symbolic links.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.SwiftSystem/documentation/System": {
+      "abstract": [
+        {
+          "text": "Perform low-level file operations using type-safe APIs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftSystem/documentation/System",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "System",
+      "type": "topic",
+      "url": "/documentation/system"
+    },
+    "doc://com.apple.SwiftSystem/documentation/System/FileDescriptor": {
+      "abstract": [
+        {
+          "text": "An abstract handle to an input or output data resource,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "such as a file or a socket.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FileDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftSystem/documentation/System/FileDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FileDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "FileDescriptor",
+      "type": "topic",
+      "url": "/documentation/system/filedescriptor"
+    },
+    "doc://com.apple.SwiftSystem/documentation/System/FilePath": {
+      "abstract": [
+        {
+          "text": "Represents a location in the file system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FilePath"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftSystem/documentation/System/FilePath",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FilePath"
+        }
+      ],
+      "role": "symbol",
+      "title": "FilePath",
+      "type": "topic",
+      "url": "/documentation/system/filepath"
+    },
+    "doc://com.apple.SwiftSystem/documentation/System/FilePath/!=(_:_:)": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value indicating whether two values are not equal.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "!="
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftSystem/documentation/System/FilePath/!=(_:_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "!=(_:_:)",
+      "type": "topic",
+      "url": "/documentation/system/filepath/!=(_:_:)"
+    },
+    "doc://com.apple.SwiftSystem/documentation/System/FilePath/==(_:_:)": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value indicating whether two values are equal.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "=="
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6System8FilePathV",
+          "text": "FilePath"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6System8FilePathV",
+          "text": "FilePath"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftSystem/documentation/System/FilePath/==(_:_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "==(_:_:)",
+      "type": "topic",
+      "url": "/documentation/system/filepath/==(_:_:)"
+    },
+    "doc://com.apple.SwiftSystem/documentation/System/FilePath/Component": {
+      "abstract": [
+        {
+          "text": "Represents an individual, non-root component of a file path.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Component"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftSystem/documentation/System/FilePath/Component",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Component"
+        }
+      ],
+      "role": "symbol",
+      "title": "FilePath.Component",
+      "type": "topic",
+      "url": "/documentation/system/filepath/component"
+    },
+    "doc://com.apple.SwiftSystem/documentation/System/FilePath/ComponentView": {
+      "abstract": [
+        {
+          "text": "A bidirectional, range replaceable collection of the non-root components",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "that make up a file path.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ComponentView"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftSystem/documentation/System/FilePath/ComponentView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ComponentView"
+        }
+      ],
+      "role": "symbol",
+      "title": "FilePath.ComponentView",
+      "type": "topic",
+      "url": "/documentation/system/filepath/componentview"
+    },
+    "doc://com.apple.SwiftSystem/documentation/System/FilePath/CustomDebugStringConvertible-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.SwiftSystem/documentation/System/FilePath/CustomDebugStringConvertible-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CustomDebugStringConvertible Implementations",
+      "type": "topic",
+      "url": "/documentation/system/filepath/customdebugstringconvertible-implementations"
+    },
+    "doc://com.apple.SwiftSystem/documentation/System/FilePath/CustomStringConvertible-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.SwiftSystem/documentation/System/FilePath/CustomStringConvertible-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CustomStringConvertible Implementations",
+      "type": "topic",
+      "url": "/documentation/system/filepath/customstringconvertible-implementations"
+    },
+    "doc://com.apple.SwiftSystem/documentation/System/FilePath/Decodable-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.SwiftSystem/documentation/System/FilePath/Decodable-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Decodable Implementations",
+      "type": "topic",
+      "url": "/documentation/system/filepath/decodable-implementations"
+    },
+    "doc://com.apple.SwiftSystem/documentation/System/FilePath/Encodable-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.SwiftSystem/documentation/System/FilePath/Encodable-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Encodable Implementations",
+      "type": "topic",
+      "url": "/documentation/system/filepath/encodable-implementations"
+    },
+    "doc://com.apple.SwiftSystem/documentation/System/FilePath/Equatable-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.SwiftSystem/documentation/System/FilePath/Equatable-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Equatable Implementations",
+      "type": "topic",
+      "url": "/documentation/system/filepath/equatable-implementations"
+    },
+    "doc://com.apple.SwiftSystem/documentation/System/FilePath/ExpressibleByExtendedGraphemeClusterLiteral-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.SwiftSystem/documentation/System/FilePath/ExpressibleByExtendedGraphemeClusterLiteral-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "ExpressibleByExtendedGraphemeClusterLiteral Implementations",
+      "type": "topic",
+      "url": "/documentation/system/filepath/expressiblebyextendedgraphemeclusterliteral-implementations"
+    },
+    "doc://com.apple.SwiftSystem/documentation/System/FilePath/ExpressibleByStringLiteral-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.SwiftSystem/documentation/System/FilePath/ExpressibleByStringLiteral-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "ExpressibleByStringLiteral Implementations",
+      "type": "topic",
+      "url": "/documentation/system/filepath/expressiblebystringliteral-implementations"
+    },
+    "doc://com.apple.SwiftSystem/documentation/System/FilePath/ExpressibleByUnicodeScalarLiteral-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.SwiftSystem/documentation/System/FilePath/ExpressibleByUnicodeScalarLiteral-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "ExpressibleByUnicodeScalarLiteral Implementations",
+      "type": "topic",
+      "url": "/documentation/system/filepath/expressiblebyunicodescalarliteral-implementations"
+    },
+    "doc://com.apple.SwiftSystem/documentation/System/FilePath/Hashable-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.SwiftSystem/documentation/System/FilePath/Hashable-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Hashable Implementations",
+      "type": "topic",
+      "url": "/documentation/system/filepath/hashable-implementations"
+    },
+    "doc://com.apple.SwiftSystem/documentation/System/FilePath/Root-swift.struct": {
+      "abstract": [
+        {
+          "text": "Represents a root of a file path.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Root"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftSystem/documentation/System/FilePath/Root-swift.struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Root"
+        }
+      ],
+      "role": "symbol",
+      "title": "FilePath.Root",
+      "type": "topic",
+      "url": "/documentation/system/filepath/root-swift.struct"
+    },
+    "doc://com.apple.SwiftSystem/documentation/System/FilePath/append(_:)-66nkr": {
+      "abstract": [
+        {
+          "text": "Append ",
+          "type": "text"
+        },
+        {
+          "code": "components",
+          "type": "codeVoice"
+        },
+        {
+          "text": " on to the end of this path.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "append"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "C"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftSystem/documentation/System/FilePath/append(_:)-66nkr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "append(_:)",
+      "type": "topic",
+      "url": "/documentation/system/filepath/append(_:)-66nkr"
+    },
+    "doc://com.apple.SwiftSystem/documentation/System/FilePath/append(_:)-7ttzp": {
+      "abstract": [
+        {
+          "text": "Append the contents of ",
+          "type": "text"
+        },
+        {
+          "code": "other",
+          "type": "codeVoice"
+        },
+        {
+          "text": ", ignoring any spurious leading separators.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "append"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftSystem/documentation/System/FilePath/append(_:)-7ttzp",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "append(_:)",
+      "type": "topic",
+      "url": "/documentation/system/filepath/append(_:)-7ttzp"
+    },
+    "doc://com.apple.SwiftSystem/documentation/System/FilePath/append(_:)-8f41n": {
+      "abstract": [
+        {
+          "text": "Append a ",
+          "type": "text"
+        },
+        {
+          "code": "component",
+          "type": "codeVoice"
+        },
+        {
+          "text": " on to the end of this path.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "append"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6System8FilePathV",
+          "text": "FilePath"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6System8FilePathV9ComponentV",
+          "text": "Component"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftSystem/documentation/System/FilePath/append(_:)-8f41n",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "append(_:)",
+      "type": "topic",
+      "url": "/documentation/system/filepath/append(_:)-8f41n"
+    },
+    "doc://com.apple.SwiftSystem/documentation/System/FilePath/appending(_:)-1dtn3": {
+      "abstract": [
+        {
+          "text": "Non-mutating version of ",
+          "type": "text"
+        },
+        {
+          "code": "append(_:String)",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "appending"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6System8FilePathV",
+          "text": "FilePath"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftSystem/documentation/System/FilePath/appending(_:)-1dtn3",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "appending(_:)",
+      "type": "topic",
+      "url": "/documentation/system/filepath/appending(_:)-1dtn3"
+    },
+    "doc://com.apple.SwiftSystem/documentation/System/FilePath/appending(_:)-24s87": {
+      "abstract": [
+        {
+          "text": "Non-mutating version of ",
+          "type": "text"
+        },
+        {
+          "code": "append(_:Component)",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "appending"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6System8FilePathV",
+          "text": "FilePath"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6System8FilePathV9ComponentV",
+          "text": "Component"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6System8FilePathV",
+          "text": "FilePath"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftSystem/documentation/System/FilePath/appending(_:)-24s87",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "appending(_:)",
+      "type": "topic",
+      "url": "/documentation/system/filepath/appending(_:)-24s87"
+    },
+    "doc://com.apple.SwiftSystem/documentation/System/FilePath/appending(_:)-60fwk": {
+      "abstract": [
+        {
+          "text": "Non-mutating version of ",
+          "type": "text"
+        },
+        {
+          "code": "append(_:C)",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "appending"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "C"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6System8FilePathV",
+          "text": "FilePath"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftSystem/documentation/System/FilePath/appending(_:)-60fwk",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "appending(_:)",
+      "type": "topic",
+      "url": "/documentation/system/filepath/appending(_:)-60fwk"
+    },
+    "doc://com.apple.SwiftSystem/documentation/System/FilePath/components": {
+      "abstract": [
+        {
+          "text": "View the non-root components that make up this path.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "components"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6System8FilePathV",
+          "text": "FilePath"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6System8FilePathV13ComponentViewV",
+          "text": "ComponentView"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftSystem/documentation/System/FilePath/components",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "components",
+      "type": "topic",
+      "url": "/documentation/system/filepath/components"
+    },
+    "doc://com.apple.SwiftSystem/documentation/System/FilePath/debugDescription": {
+      "abstract": [
+        {
+          "text": "A textual representation of the file path, suitable for debugging.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "debugDescription"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftSystem/documentation/System/FilePath/debugDescription",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "debugDescription",
+      "type": "topic",
+      "url": "/documentation/system/filepath/debugdescription"
+    },
+    "doc://com.apple.SwiftSystem/documentation/System/FilePath/description": {
+      "abstract": [
+        {
+          "text": "A textual representation of the file path.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "description"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftSystem/documentation/System/FilePath/description",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "description",
+      "type": "topic",
+      "url": "/documentation/system/filepath/description"
+    },
+    "doc://com.apple.SwiftSystem/documentation/System/FilePath/encode(to:)": {
+      "abstract": [
+        {
+          "text": "Encodes this value into the given encoder.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "encode"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s7EncoderP",
+          "text": "Encoder"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftSystem/documentation/System/FilePath/encode(to:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "encode(to:)",
+      "type": "topic",
+      "url": "/documentation/system/filepath/encode(to:)"
+    },
+    "doc://com.apple.SwiftSystem/documentation/System/FilePath/ends(with:)": {
+      "abstract": [
+        {
+          "text": "Returns whether ",
+          "type": "text"
+        },
+        {
+          "code": "other",
+          "type": "codeVoice"
+        },
+        {
+          "text": " is a suffix of ",
+          "type": "text"
+        },
+        {
+          "code": "self",
+          "type": "codeVoice"
+        },
+        {
+          "text": ", only considering",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "whole path components.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ends"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6System8FilePathV",
+          "text": "FilePath"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftSystem/documentation/System/FilePath/ends(with:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ends(with:)",
+      "type": "topic",
+      "url": "/documentation/system/filepath/ends(with:)"
+    },
+    "doc://com.apple.SwiftSystem/documentation/System/FilePath/extension": {
+      "abstract": [
+        {
+          "text": "The extension of the file or directory last component.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "`extension`"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftSystem/documentation/System/FilePath/extension",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "extension",
+      "type": "topic",
+      "url": "/documentation/system/filepath/extension"
+    },
+    "doc://com.apple.SwiftSystem/documentation/System/FilePath/hash(into:)": {
+      "abstract": [
+        {
+          "text": "Hashes the essential components of this value by feeding them into the",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "given hasher.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "hash"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "into"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "inout"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6HasherV",
+          "text": "Hasher"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftSystem/documentation/System/FilePath/hash(into:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hash(into:)",
+      "type": "topic",
+      "url": "/documentation/system/filepath/hash(into:)"
+    },
+    "doc://com.apple.SwiftSystem/documentation/System/FilePath/hashValue": {
+      "abstract": [
+        {
+          "text": "The hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "hashValue"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftSystem/documentation/System/FilePath/hashValue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hashValue",
+      "type": "topic",
+      "url": "/documentation/system/filepath/hashvalue"
+    },
+    "doc://com.apple.SwiftSystem/documentation/System/FilePath/init()": {
+      "abstract": [
+        {
+          "text": "Creates an empty, null-terminated path.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftSystem/documentation/System/FilePath/init()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init()",
+      "type": "topic",
+      "url": "/documentation/system/filepath/init()"
+    },
+    "doc://com.apple.SwiftSystem/documentation/System/FilePath/init(_:)-2gkpw": {
+      "abstract": [
+        {
+          "text": "Creates a file path from a URL",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftSystem/documentation/System/FilePath/init(_:)-2gkpw",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(_:)",
+      "type": "topic",
+      "url": "/documentation/system/filepath/init(_:)-2gkpw"
+    },
+    "doc://com.apple.SwiftSystem/documentation/System/FilePath/init(_:)-61dsw": {
+      "abstract": [
+        {
+          "text": "Creates a file path from a string.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftSystem/documentation/System/FilePath/init(_:)-61dsw",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(_:)",
+      "type": "topic",
+      "url": "/documentation/system/filepath/init(_:)-61dsw"
+    },
+    "doc://com.apple.SwiftSystem/documentation/System/FilePath/init(cString:)-2hetg": {
+      "abstract": [],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "cString"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5CChara",
+          "text": "CChar"
+        },
+        {
+          "kind": "text",
+          "text": "])"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftSystem/documentation/System/FilePath/init(cString:)-2hetg",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(cString:)",
+      "type": "topic",
+      "url": "/documentation/system/filepath/init(cstring:)-2hetg"
+    },
+    "doc://com.apple.SwiftSystem/documentation/System/FilePath/init(cString:)-3xw0n": {
+      "abstract": [],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "cString"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftSystem/documentation/System/FilePath/init(cString:)-3xw0n",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(cString:)",
+      "type": "topic",
+      "url": "/documentation/system/filepath/init(cstring:)-3xw0n"
+    },
+    "doc://com.apple.SwiftSystem/documentation/System/FilePath/init(cString:)-5igtz": {
+      "abstract": [
+        {
+          "text": "For backwards compatibility only. This initializer is equivalent to",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "the preferred ",
+          "type": "text"
+        },
+        {
+          "code": "FilePath(platformString:)",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "cString"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5CChara",
+          "text": "CChar"
+        },
+        {
+          "kind": "text",
+          "text": ">)"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftSystem/documentation/System/FilePath/init(cString:)-5igtz",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(cString:)",
+      "type": "topic",
+      "url": "/documentation/system/filepath/init(cstring:)-5igtz"
+    },
+    "doc://com.apple.SwiftSystem/documentation/System/FilePath/init(cString:)-8d3vx": {
+      "abstract": [],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "cString"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "inout"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5CChara",
+          "text": "CChar"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftSystem/documentation/System/FilePath/init(cString:)-8d3vx",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(cString:)",
+      "type": "topic",
+      "url": "/documentation/system/filepath/init(cstring:)-8d3vx"
+    },
+    "doc://com.apple.SwiftSystem/documentation/System/FilePath/init(extendedGraphemeClusterLiteral:)": {
+      "abstract": [],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "ExtendedGraphemeClusterLiteralType",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "Self.StringLiteralType",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "extendedGraphemeClusterLiteral"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s26ExpressibleByStringLiteralP0cD4TypeQa",
+          "text": "StringLiteralType"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftSystem/documentation/System/FilePath/init(extendedGraphemeClusterLiteral:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(extendedGraphemeClusterLiteral:)",
+      "type": "topic",
+      "url": "/documentation/system/filepath/init(extendedgraphemeclusterliteral:)"
+    },
+    "doc://com.apple.SwiftSystem/documentation/System/FilePath/init(from:)": {
+      "abstract": [
+        {
+          "text": "Creates a new instance by decoding from the given decoder.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s7DecoderP",
+          "text": "Decoder"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftSystem/documentation/System/FilePath/init(from:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(from:)",
+      "type": "topic",
+      "url": "/documentation/system/filepath/init(from:)"
+    },
+    "doc://com.apple.SwiftSystem/documentation/System/FilePath/init(platformString:)-4b3o6": {
+      "abstract": [],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "platformString"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "inout"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6System8CInteropO",
+          "text": "CInterop"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6System8CInteropO12PlatformChara",
+          "text": "PlatformChar"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftSystem/documentation/System/FilePath/init(platformString:)-4b3o6",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(platformString:)",
+      "type": "topic",
+      "url": "/documentation/system/filepath/init(platformstring:)-4b3o6"
+    },
+    "doc://com.apple.SwiftSystem/documentation/System/FilePath/init(platformString:)-5o7oh": {
+      "abstract": [
+        {
+          "text": "Creates a file path by copying bytes from a null-terminated platform",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "string.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "platformString"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6System8CInteropO",
+          "text": "CInterop"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6System8CInteropO12PlatformChara",
+          "text": "PlatformChar"
+        },
+        {
+          "kind": "text",
+          "text": ">)"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftSystem/documentation/System/FilePath/init(platformString:)-5o7oh",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(platformString:)",
+      "type": "topic",
+      "url": "/documentation/system/filepath/init(platformstring:)-5o7oh"
+    },
+    "doc://com.apple.SwiftSystem/documentation/System/FilePath/init(platformString:)-6i5cc": {
+      "abstract": [],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "platformString"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftSystem/documentation/System/FilePath/init(platformString:)-6i5cc",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(platformString:)",
+      "type": "topic",
+      "url": "/documentation/system/filepath/init(platformstring:)-6i5cc"
+    },
+    "doc://com.apple.SwiftSystem/documentation/System/FilePath/init(platformString:)-8amn5": {
+      "abstract": [
+        {
+          "text": "Creates a file path by copying bytes from a null-terminated platform",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "string.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "platformString"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6System8CInteropO",
+          "text": "CInterop"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6System8CInteropO12PlatformChara",
+          "text": "PlatformChar"
+        },
+        {
+          "kind": "text",
+          "text": "])"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftSystem/documentation/System/FilePath/init(platformString:)-8amn5",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(platformString:)",
+      "type": "topic",
+      "url": "/documentation/system/filepath/init(platformstring:)-8amn5"
+    },
+    "doc://com.apple.SwiftSystem/documentation/System/FilePath/init(root:_:)-19uu0": {
+      "abstract": [
+        {
+          "text": "Create a file path from a root and a collection of components.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "C"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "root"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6System8FilePathV",
+          "text": "FilePath"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6System8FilePathV4RootV",
+          "text": "Root"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftSystem/documentation/System/FilePath/init(root:_:)-19uu0",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(root:_:)",
+      "type": "topic",
+      "url": "/documentation/system/filepath/init(root:_:)-19uu0"
+    },
+    "doc://com.apple.SwiftSystem/documentation/System/FilePath/init(root:_:)-19xzy": {
+      "abstract": [
+        {
+          "text": "Create a file path from an optional root and a slice of another path’s",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "components.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "root"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6System8FilePathV",
+          "text": "FilePath"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6System8FilePathV4RootV",
+          "text": "Root"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6System8FilePathV",
+          "text": "FilePath"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6System8FilePathV13ComponentViewV",
+          "text": "ComponentView"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6System8FilePathV13ComponentViewV11SubSequencea",
+          "text": "SubSequence"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftSystem/documentation/System/FilePath/init(root:_:)-19xzy",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(root:_:)",
+      "type": "topic",
+      "url": "/documentation/system/filepath/init(root:_:)-19xzy"
+    },
+    "doc://com.apple.SwiftSystem/documentation/System/FilePath/init(root:components:)": {
+      "abstract": [
+        {
+          "text": "Create a file path from a root and any number of components.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "root"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6System8FilePathV",
+          "text": "FilePath"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6System8FilePathV4RootV",
+          "text": "Root"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "components"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6System8FilePathV",
+          "text": "FilePath"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6System8FilePathV9ComponentV",
+          "text": "Component"
+        },
+        {
+          "kind": "text",
+          "text": "...)"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftSystem/documentation/System/FilePath/init(root:components:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(root:components:)",
+      "type": "topic",
+      "url": "/documentation/system/filepath/init(root:components:)"
+    },
+    "doc://com.apple.SwiftSystem/documentation/System/FilePath/init(stringLiteral:)": {
+      "abstract": [
+        {
+          "text": "Creates a file path from a string literal.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "stringLiteral"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftSystem/documentation/System/FilePath/init(stringLiteral:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(stringLiteral:)",
+      "type": "topic",
+      "url": "/documentation/system/filepath/init(stringliteral:)"
+    },
+    "doc://com.apple.SwiftSystem/documentation/System/FilePath/init(unicodeScalarLiteral:)": {
+      "abstract": [],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "ExtendedGraphemeClusterLiteralType",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "Self.UnicodeScalarLiteralType",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "unicodeScalarLiteral"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s43ExpressibleByExtendedGraphemeClusterLiteralP0cdeF4TypeQa",
+          "text": "ExtendedGraphemeClusterLiteralType"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftSystem/documentation/System/FilePath/init(unicodeScalarLiteral:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(unicodeScalarLiteral:)",
+      "type": "topic",
+      "url": "/documentation/system/filepath/init(unicodescalarliteral:)"
+    },
+    "doc://com.apple.SwiftSystem/documentation/System/FilePath/isAbsolute": {
+      "abstract": [
+        {
+          "text": "Returns true if this path uniquely identifies the location of",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "a file without reference to an additional starting location.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isAbsolute"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftSystem/documentation/System/FilePath/isAbsolute",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isAbsolute",
+      "type": "topic",
+      "url": "/documentation/system/filepath/isabsolute"
+    },
+    "doc://com.apple.SwiftSystem/documentation/System/FilePath/isEmpty": {
+      "abstract": [
+        {
+          "text": "Whether this path is empty",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isEmpty"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftSystem/documentation/System/FilePath/isEmpty",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isEmpty",
+      "type": "topic",
+      "url": "/documentation/system/filepath/isempty"
+    },
+    "doc://com.apple.SwiftSystem/documentation/System/FilePath/isLexicallyNormal": {
+      "abstract": [
+        {
+          "text": "Whether the path is in lexical-normal form, that is ",
+          "type": "text"
+        },
+        {
+          "code": ".",
+          "type": "codeVoice"
+        },
+        {
+          "text": " and ",
+          "type": "text"
+        },
+        {
+          "code": "..",
+          "type": "codeVoice"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "components have been collapsed lexically (i.e. without following",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "symlinks).",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isLexicallyNormal"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftSystem/documentation/System/FilePath/isLexicallyNormal",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isLexicallyNormal",
+      "type": "topic",
+      "url": "/documentation/system/filepath/islexicallynormal"
+    },
+    "doc://com.apple.SwiftSystem/documentation/System/FilePath/isRelative": {
+      "abstract": [
+        {
+          "text": "Returns true if this path is not absolute (see ",
+          "type": "text"
+        },
+        {
+          "code": "isAbsolute",
+          "type": "codeVoice"
+        },
+        {
+          "text": ").",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isRelative"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftSystem/documentation/System/FilePath/isRelative",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isRelative",
+      "type": "topic",
+      "url": "/documentation/system/filepath/isrelative"
+    },
+    "doc://com.apple.SwiftSystem/documentation/System/FilePath/lastComponent": {
+      "abstract": [
+        {
+          "text": "Returns the final component of the path.",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "Returns ",
+          "type": "text"
+        },
+        {
+          "code": "nil",
+          "type": "codeVoice"
+        },
+        {
+          "text": " if the path is empty or only contains a root.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "lastComponent"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6System8FilePathV",
+          "text": "FilePath"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6System8FilePathV9ComponentV",
+          "text": "Component"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftSystem/documentation/System/FilePath/lastComponent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "lastComponent",
+      "type": "topic",
+      "url": "/documentation/system/filepath/lastcomponent"
+    },
+    "doc://com.apple.SwiftSystem/documentation/System/FilePath/length": {
+      "abstract": [
+        {
+          "text": "The length of the file path, excluding the null terminator.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "length"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftSystem/documentation/System/FilePath/length",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "length",
+      "type": "topic",
+      "url": "/documentation/system/filepath/length"
+    },
+    "doc://com.apple.SwiftSystem/documentation/System/FilePath/lexicallyNormalize()": {
+      "abstract": [
+        {
+          "text": "Collapse ",
+          "type": "text"
+        },
+        {
+          "code": ".",
+          "type": "codeVoice"
+        },
+        {
+          "text": " and ",
+          "type": "text"
+        },
+        {
+          "code": "..",
+          "type": "codeVoice"
+        },
+        {
+          "text": " components lexically (i.e. without following",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "symlinks).",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "lexicallyNormalize"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftSystem/documentation/System/FilePath/lexicallyNormalize()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "lexicallyNormalize()",
+      "type": "topic",
+      "url": "/documentation/system/filepath/lexicallynormalize()"
+    },
+    "doc://com.apple.SwiftSystem/documentation/System/FilePath/lexicallyNormalized()": {
+      "abstract": [
+        {
+          "text": "Returns a copy of ",
+          "type": "text"
+        },
+        {
+          "code": "self",
+          "type": "codeVoice"
+        },
+        {
+          "text": " in lexical-normal form, that is ",
+          "type": "text"
+        },
+        {
+          "code": ".",
+          "type": "codeVoice"
+        },
+        {
+          "text": " and ",
+          "type": "text"
+        },
+        {
+          "code": "..",
+          "type": "codeVoice"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "components have been collapsed lexically (i.e. without following",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "symlinks). See ",
+          "type": "text"
+        },
+        {
+          "code": "lexicallyNormalize",
+          "type": "codeVoice"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "lexicallyNormalized"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6System8FilePathV",
+          "text": "FilePath"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftSystem/documentation/System/FilePath/lexicallyNormalized()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "lexicallyNormalized()",
+      "type": "topic",
+      "url": "/documentation/system/filepath/lexicallynormalized()"
+    },
+    "doc://com.apple.SwiftSystem/documentation/System/FilePath/lexicallyResolving(_:)": {
+      "abstract": [
+        {
+          "text": "Create a new ",
+          "type": "text"
+        },
+        {
+          "code": "FilePath",
+          "type": "codeVoice"
+        },
+        {
+          "text": " by resolving ",
+          "type": "text"
+        },
+        {
+          "code": "subpath",
+          "type": "codeVoice"
+        },
+        {
+          "text": " relative to ",
+          "type": "text"
+        },
+        {
+          "code": "self",
+          "type": "codeVoice"
+        },
+        {
+          "text": ",",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "ensuring that the result is lexically contained within ",
+          "type": "text"
+        },
+        {
+          "code": "self",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "lexicallyResolving"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6System8FilePathV",
+          "text": "FilePath"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6System8FilePathV",
+          "text": "FilePath"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftSystem/documentation/System/FilePath/lexicallyResolving(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "lexicallyResolving(_:)",
+      "type": "topic",
+      "url": "/documentation/system/filepath/lexicallyresolving(_:)"
+    },
+    "doc://com.apple.SwiftSystem/documentation/System/FilePath/push(_:)": {
+      "abstract": [
+        {
+          "text": "If ",
+          "type": "text"
+        },
+        {
+          "code": "other",
+          "type": "codeVoice"
+        },
+        {
+          "text": " does not have a root, append each component of ",
+          "type": "text"
+        },
+        {
+          "code": "other",
+          "type": "codeVoice"
+        },
+        {
+          "text": ". If",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "code": "other",
+          "type": "codeVoice"
+        },
+        {
+          "text": " has a root, replaces ",
+          "type": "text"
+        },
+        {
+          "code": "self",
+          "type": "codeVoice"
+        },
+        {
+          "text": " with other.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "push"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6System8FilePathV",
+          "text": "FilePath"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftSystem/documentation/System/FilePath/push(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "push(_:)",
+      "type": "topic",
+      "url": "/documentation/system/filepath/push(_:)"
+    },
+    "doc://com.apple.SwiftSystem/documentation/System/FilePath/pushing(_:)": {
+      "abstract": [
+        {
+          "text": "Non-mutating version of ",
+          "type": "text"
+        },
+        {
+          "code": "push()",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "pushing"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6System8FilePathV",
+          "text": "FilePath"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6System8FilePathV",
+          "text": "FilePath"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftSystem/documentation/System/FilePath/pushing(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "pushing(_:)",
+      "type": "topic",
+      "url": "/documentation/system/filepath/pushing(_:)"
+    },
+    "doc://com.apple.SwiftSystem/documentation/System/FilePath/removeAll(keepingCapacity:)": {
+      "abstract": [
+        {
+          "text": "Remove the contents of the path, keeping the null terminator.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeAll"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "keepingCapacity"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftSystem/documentation/System/FilePath/removeAll(keepingCapacity:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "removeAll(keepingCapacity:)",
+      "type": "topic",
+      "url": "/documentation/system/filepath/removeall(keepingcapacity:)"
+    },
+    "doc://com.apple.SwiftSystem/documentation/System/FilePath/removeLastComponent()": {
+      "abstract": [
+        {
+          "text": "In-place mutating variant of ",
+          "type": "text"
+        },
+        {
+          "code": "removingLastComponent",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeLastComponent"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftSystem/documentation/System/FilePath/removeLastComponent()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "removeLastComponent()",
+      "type": "topic",
+      "url": "/documentation/system/filepath/removelastcomponent()"
+    },
+    "doc://com.apple.SwiftSystem/documentation/System/FilePath/removePrefix(_:)": {
+      "abstract": [
+        {
+          "text": "If ",
+          "type": "text"
+        },
+        {
+          "code": "prefix",
+          "type": "codeVoice"
+        },
+        {
+          "text": " is a prefix of ",
+          "type": "text"
+        },
+        {
+          "code": "self",
+          "type": "codeVoice"
+        },
+        {
+          "text": ", removes it and returns ",
+          "type": "text"
+        },
+        {
+          "code": "true",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "Otherwise returns ",
+          "type": "text"
+        },
+        {
+          "code": "false",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "removePrefix"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6System8FilePathV",
+          "text": "FilePath"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftSystem/documentation/System/FilePath/removePrefix(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "removePrefix(_:)",
+      "type": "topic",
+      "url": "/documentation/system/filepath/removeprefix(_:)"
+    },
+    "doc://com.apple.SwiftSystem/documentation/System/FilePath/removingLastComponent()": {
+      "abstract": [
+        {
+          "text": "Creates a new path with everything up to but not including",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "code": "lastComponent",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "removingLastComponent"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6System8FilePathV",
+          "text": "FilePath"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftSystem/documentation/System/FilePath/removingLastComponent()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "removingLastComponent()",
+      "type": "topic",
+      "url": "/documentation/system/filepath/removinglastcomponent()"
+    },
+    "doc://com.apple.SwiftSystem/documentation/System/FilePath/removingRoot()": {
+      "abstract": [
+        {
+          "text": "Creates a new path containing just the components, i.e. everything",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "after ",
+          "type": "text"
+        },
+        {
+          "code": "root",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "removingRoot"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6System8FilePathV",
+          "text": "FilePath"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftSystem/documentation/System/FilePath/removingRoot()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "removingRoot()",
+      "type": "topic",
+      "url": "/documentation/system/filepath/removingroot()"
+    },
+    "doc://com.apple.SwiftSystem/documentation/System/FilePath/reserveCapacity(_:)": {
+      "abstract": [
+        {
+          "text": "Reserve enough storage space to store ",
+          "type": "text"
+        },
+        {
+          "code": "minimumCapacity",
+          "type": "codeVoice"
+        },
+        {
+          "text": " platform",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "characters.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "reserveCapacity"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftSystem/documentation/System/FilePath/reserveCapacity(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "reserveCapacity(_:)",
+      "type": "topic",
+      "url": "/documentation/system/filepath/reservecapacity(_:)"
+    },
+    "doc://com.apple.SwiftSystem/documentation/System/FilePath/root-swift.property": {
+      "abstract": [
+        {
+          "text": "Returns the root of a path if there is one, otherwise ",
+          "type": "text"
+        },
+        {
+          "code": "nil",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "root"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6System8FilePathV",
+          "text": "FilePath"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6System8FilePathV4RootV",
+          "text": "Root"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftSystem/documentation/System/FilePath/root-swift.property",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "root",
+      "type": "topic",
+      "url": "/documentation/system/filepath/root-swift.property"
+    },
+    "doc://com.apple.SwiftSystem/documentation/System/FilePath/starts(with:)": {
+      "abstract": [
+        {
+          "text": "Returns whether ",
+          "type": "text"
+        },
+        {
+          "code": "other",
+          "type": "codeVoice"
+        },
+        {
+          "text": " is a prefix of ",
+          "type": "text"
+        },
+        {
+          "code": "self",
+          "type": "codeVoice"
+        },
+        {
+          "text": ", only considering",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "whole path components.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "starts"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6System8FilePathV",
+          "text": "FilePath"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftSystem/documentation/System/FilePath/starts(with:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "starts(with:)",
+      "type": "topic",
+      "url": "/documentation/system/filepath/starts(with:)"
+    },
+    "doc://com.apple.SwiftSystem/documentation/System/FilePath/stem": {
+      "abstract": [
+        {
+          "text": "The non-extension portion of the file or directory last component.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "stem"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftSystem/documentation/System/FilePath/stem",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "stem",
+      "type": "topic",
+      "url": "/documentation/system/filepath/stem"
+    },
+    "doc://com.apple.SwiftSystem/documentation/System/FilePath/string": {
+      "abstract": [
+        {
+          "text": "Creates a string by interpreting the path’s content as UTF-8 on Unix",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "and UTF-16 on Windows.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "string"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftSystem/documentation/System/FilePath/string",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "string",
+      "type": "topic",
+      "url": "/documentation/system/filepath/string"
+    },
+    "doc://com.apple.SwiftSystem/documentation/System/FilePath/withCString(_:)": {
+      "abstract": [
+        {
+          "text": "For backwards compatibility only. This function is equivalent to",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "the preferred ",
+          "type": "text"
+        },
+        {
+          "code": "withPlatformString",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "withCString"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Result"
+        },
+        {
+          "kind": "text",
+          "text": ">(("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5CChara",
+          "text": "CChar"
+        },
+        {
+          "kind": "text",
+          "text": ">) "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Result"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "rethrows"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Result"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftSystem/documentation/System/FilePath/withCString(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "withCString(_:)",
+      "type": "topic",
+      "url": "/documentation/system/filepath/withcstring(_:)"
+    },
+    "doc://com.apple.SwiftSystem/documentation/System/FilePath/withPlatformString(_:)": {
+      "abstract": [
+        {
+          "text": "Calls the given closure with a pointer to the contents of the file path,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "represented as a null-terminated platform string.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "withPlatformString"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Result"
+        },
+        {
+          "kind": "text",
+          "text": ">(("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6System8CInteropO",
+          "text": "CInterop"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6System8CInteropO12PlatformChara",
+          "text": "PlatformChar"
+        },
+        {
+          "kind": "text",
+          "text": ">) "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Result"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "rethrows"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Result"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftSystem/documentation/System/FilePath/withPlatformString(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "withPlatformString(_:)",
+      "type": "topic",
+      "url": "/documentation/system/filepath/withplatformstring(_:)"
+    },
+    "doc://com.apple.SwiftSystem/documentation/System/FilePermissions": {
+      "abstract": [
+        {
+          "text": "The access permissions for a file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FilePermissions"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftSystem/documentation/System/FilePermissions",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FilePermissions"
+        }
+      ],
+      "role": "symbol",
+      "title": "FilePermissions",
+      "type": "topic",
+      "url": "/documentation/system/filepermissions"
+    },
+    "doc://com.apple.documentation/documentation/Swift/Equatable": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Swift/Equatable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.apple.documentation/documentation/Swift/Hashable": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Swift/Hashable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/s:SE": {
+      "abstract": [
+        {
+          "text": "A type that can encode itself to an external representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Encodable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SE",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Encodable",
+      "type": "topic",
+      "url": "/documentation/Swift/Encodable"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:Se": {
+      "abstract": [
+        {
+          "text": "A type that can decode itself from an external representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Decodable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:Se",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Decodable",
+      "type": "topic",
+      "url": "/documentation/Swift/Decodable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s26ExpressibleByStringLiteralP": {
+      "abstract": [
+        {
+          "text": "A type that can be initialized with a string literal.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ExpressibleByStringLiteral"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s43ExpressibleByExtendedGraphemeClusterLiteralP",
+          "text": "ExpressibleByExtendedGraphemeClusterLiteral"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s26ExpressibleByStringLiteralP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ExpressibleByStringLiteral",
+      "type": "topic",
+      "url": "/documentation/Swift/ExpressibleByStringLiteral"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s33ExpressibleByUnicodeScalarLiteralP": {
+      "abstract": [
+        {
+          "text": "A type that can be initialized with a string literal containing a single Unicode scalar value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ExpressibleByUnicodeScalarLiteral"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s33ExpressibleByUnicodeScalarLiteralP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ExpressibleByUnicodeScalarLiteral",
+      "type": "topic",
+      "url": "/documentation/Swift/ExpressibleByUnicodeScalarLiteral"
+    },
+    "doc://com.externally.resolved.symbol/s:s43ExpressibleByExtendedGraphemeClusterLiteralP": {
+      "abstract": [
+        {
+          "text": "A type that can be initialized with a string literal containing a single extended grapheme cluster.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ExpressibleByExtendedGraphemeClusterLiteral"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s33ExpressibleByUnicodeScalarLiteralP",
+          "text": "ExpressibleByUnicodeScalarLiteral"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s43ExpressibleByExtendedGraphemeClusterLiteralP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ExpressibleByExtendedGraphemeClusterLiteral",
+      "type": "topic",
+      "url": "/documentation/Swift/ExpressibleByExtendedGraphemeClusterLiteral"
+    },
+    "doc://com.externally.resolved.symbol/s:s8CopyableP": {
+      "abstract": [
+        {
+          "text": "A type whose values can be implicitly or explicitly copied.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Copyable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8CopyableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Copyable",
+      "type": "topic",
+      "url": "/documentation/Swift/Copyable"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s8CopyableP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:Se",
+        "doc://com.externally.resolved.symbol/s:SE",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:s43ExpressibleByExtendedGraphemeClusterLiteralP",
+        "doc://com.externally.resolved.symbol/s:s26ExpressibleByStringLiteralP",
+        "doc://com.externally.resolved.symbol/s:s33ExpressibleByUnicodeScalarLiteralP",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/s:s8SendableP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Files",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.SwiftSystem/documentation/System/FileDescriptor",
+        "doc://com.apple.SwiftSystem/documentation/System/FilePermissions"
+      ],
+      "title": "Files"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-File-Path",
+      "identifiers": [
+        "doc://com.apple.SwiftSystem/documentation/System/FilePath/init()",
+        "doc://com.apple.SwiftSystem/documentation/System/FilePath/init(stringLiteral:)",
+        "doc://com.apple.SwiftSystem/documentation/System/FilePath/init(extendedGraphemeClusterLiteral:)",
+        "doc://com.apple.SwiftSystem/documentation/System/FilePath/init(unicodeScalarLiteral:)"
+      ],
+      "title": "Creating a File Path"
+    },
+    {
+      "anchor": "Working-with-File-Paths",
+      "identifiers": [
+        "doc://com.apple.SwiftSystem/documentation/System/FilePath/length",
+        "doc://com.apple.SwiftSystem/documentation/System/FilePath/description",
+        "doc://com.apple.SwiftSystem/documentation/System/FilePath/debugDescription"
+      ],
+      "title": "Working with File Paths"
+    },
+    {
+      "anchor": "Interacting-with-C-APIs",
+      "identifiers": [
+        "doc://com.apple.SwiftSystem/documentation/System/FilePath/withCString(_:)"
+      ],
+      "title": "Interacting with C APIs"
+    },
+    {
+      "anchor": "Comparing-File-Paths",
+      "identifiers": [
+        "doc://com.apple.SwiftSystem/documentation/System/FilePath/==(_:_:)",
+        "doc://com.apple.SwiftSystem/documentation/System/FilePath/!=(_:_:)",
+        "doc://com.apple.SwiftSystem/documentation/System/FilePath/hash(into:)",
+        "doc://com.apple.SwiftSystem/documentation/System/FilePath/hashValue"
+      ],
+      "title": "Comparing File Paths"
+    },
+    {
+      "anchor": "Encoding-File-Paths",
+      "identifiers": [
+        "doc://com.apple.SwiftSystem/documentation/System/FilePath/init(from:)",
+        "doc://com.apple.SwiftSystem/documentation/System/FilePath/encode(to:)"
+      ],
+      "title": "Encoding File Paths"
+    },
+    {
+      "anchor": "Structures",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.SwiftSystem/documentation/System/FilePath/Component",
+        "doc://com.apple.SwiftSystem/documentation/System/FilePath/ComponentView",
+        "doc://com.apple.SwiftSystem/documentation/System/FilePath/Root-swift.struct"
+      ],
+      "title": "Structures"
+    },
+    {
+      "anchor": "Initializers",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.SwiftSystem/documentation/System/FilePath/init(_:)-2gkpw",
+        "doc://com.apple.SwiftSystem/documentation/System/FilePath/init(_:)-61dsw",
+        "doc://com.apple.SwiftSystem/documentation/System/FilePath/init(cString:)-2hetg",
+        "doc://com.apple.SwiftSystem/documentation/System/FilePath/init(cString:)-3xw0n",
+        "doc://com.apple.SwiftSystem/documentation/System/FilePath/init(cString:)-5igtz",
+        "doc://com.apple.SwiftSystem/documentation/System/FilePath/init(cString:)-8d3vx",
+        "doc://com.apple.SwiftSystem/documentation/System/FilePath/init(platformString:)-4b3o6",
+        "doc://com.apple.SwiftSystem/documentation/System/FilePath/init(platformString:)-5o7oh",
+        "doc://com.apple.SwiftSystem/documentation/System/FilePath/init(platformString:)-6i5cc",
+        "doc://com.apple.SwiftSystem/documentation/System/FilePath/init(platformString:)-8amn5",
+        "doc://com.apple.SwiftSystem/documentation/System/FilePath/init(root:_:)-19uu0",
+        "doc://com.apple.SwiftSystem/documentation/System/FilePath/init(root:_:)-19xzy",
+        "doc://com.apple.SwiftSystem/documentation/System/FilePath/init(root:components:)"
+      ],
+      "title": "Initializers"
+    },
+    {
+      "anchor": "Instance-Properties",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.SwiftSystem/documentation/System/FilePath/components",
+        "doc://com.apple.SwiftSystem/documentation/System/FilePath/extension",
+        "doc://com.apple.SwiftSystem/documentation/System/FilePath/isAbsolute",
+        "doc://com.apple.SwiftSystem/documentation/System/FilePath/isEmpty",
+        "doc://com.apple.SwiftSystem/documentation/System/FilePath/isLexicallyNormal",
+        "doc://com.apple.SwiftSystem/documentation/System/FilePath/isRelative",
+        "doc://com.apple.SwiftSystem/documentation/System/FilePath/lastComponent",
+        "doc://com.apple.SwiftSystem/documentation/System/FilePath/root-swift.property",
+        "doc://com.apple.SwiftSystem/documentation/System/FilePath/stem",
+        "doc://com.apple.SwiftSystem/documentation/System/FilePath/string"
+      ],
+      "title": "Instance Properties"
+    },
+    {
+      "anchor": "Instance-Methods",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.SwiftSystem/documentation/System/FilePath/append(_:)-66nkr",
+        "doc://com.apple.SwiftSystem/documentation/System/FilePath/append(_:)-7ttzp",
+        "doc://com.apple.SwiftSystem/documentation/System/FilePath/append(_:)-8f41n",
+        "doc://com.apple.SwiftSystem/documentation/System/FilePath/appending(_:)-1dtn3",
+        "doc://com.apple.SwiftSystem/documentation/System/FilePath/appending(_:)-24s87",
+        "doc://com.apple.SwiftSystem/documentation/System/FilePath/appending(_:)-60fwk",
+        "doc://com.apple.SwiftSystem/documentation/System/FilePath/ends(with:)",
+        "doc://com.apple.SwiftSystem/documentation/System/FilePath/lexicallyNormalize()",
+        "doc://com.apple.SwiftSystem/documentation/System/FilePath/lexicallyNormalized()",
+        "doc://com.apple.SwiftSystem/documentation/System/FilePath/lexicallyResolving(_:)",
+        "doc://com.apple.SwiftSystem/documentation/System/FilePath/push(_:)",
+        "doc://com.apple.SwiftSystem/documentation/System/FilePath/pushing(_:)",
+        "doc://com.apple.SwiftSystem/documentation/System/FilePath/removeAll(keepingCapacity:)",
+        "doc://com.apple.SwiftSystem/documentation/System/FilePath/removeLastComponent()",
+        "doc://com.apple.SwiftSystem/documentation/System/FilePath/removePrefix(_:)",
+        "doc://com.apple.SwiftSystem/documentation/System/FilePath/removingLastComponent()",
+        "doc://com.apple.SwiftSystem/documentation/System/FilePath/removingRoot()",
+        "doc://com.apple.SwiftSystem/documentation/System/FilePath/reserveCapacity(_:)",
+        "doc://com.apple.SwiftSystem/documentation/System/FilePath/starts(with:)",
+        "doc://com.apple.SwiftSystem/documentation/System/FilePath/withPlatformString(_:)"
+      ],
+      "title": "Instance Methods"
+    },
+    {
+      "anchor": "Default-Implementations",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.SwiftSystem/documentation/System/FilePath/CustomDebugStringConvertible-Implementations",
+        "doc://com.apple.SwiftSystem/documentation/System/FilePath/CustomStringConvertible-Implementations",
+        "doc://com.apple.SwiftSystem/documentation/System/FilePath/Decodable-Implementations",
+        "doc://com.apple.SwiftSystem/documentation/System/FilePath/Encodable-Implementations",
+        "doc://com.apple.SwiftSystem/documentation/System/FilePath/Equatable-Implementations",
+        "doc://com.apple.SwiftSystem/documentation/System/FilePath/ExpressibleByExtendedGraphemeClusterLiteral-Implementations",
+        "doc://com.apple.SwiftSystem/documentation/System/FilePath/ExpressibleByStringLiteral-Implementations",
+        "doc://com.apple.SwiftSystem/documentation/System/FilePath/ExpressibleByUnicodeScalarLiteral-Implementations",
+        "doc://com.apple.SwiftSystem/documentation/System/FilePath/Hashable-Implementations"
+      ],
+      "title": "Default Implementations"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/system/filepath"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

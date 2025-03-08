@@ -1,0 +1,1012 @@
+{
+  "abstract": [
+    {
+      "text": "Retrieves details on the outcome of a call to the function ",
+      "type": "text"
+    },
+    {
+      "code": "SecTrustEvaluate",
+      "type": "codeVoice"
+    },
+    {
+      "text": ".",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.security/documentation/Security"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.security/documentation/Security/SecTrustGetResult"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@F@SecTrustGetResult",
+    "fragments": [
+      {
+        "kind": "identifier",
+        "text": "SecTrustGetResult"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Security"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "SecTrustGetResult"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "deprecatedAt": "10.7",
+        "introducedAt": "10.2",
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Function",
+    "symbolKind": "func",
+    "title": "SecTrustGetResult"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@OSStatus",
+              "text": "OSStatus"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "SecTrustGetResult"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/SecTrust",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@SecTrustRef",
+              "text": "SecTrustRef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "trustRef"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/SecTrustResultType",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@E@SecTrustResultType",
+              "text": "SecTrustResultType"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "internalParam",
+              "text": "result"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:@T@CFArrayRef",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CFArrayRef",
+              "text": "CFArrayRef"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "internalParam",
+              "text": "certChain"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/CSSM_TP_APPLE_EVIDENCE_INFO",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@SA@CSSM_TP_APPLE_EVIDENCE_INFO",
+              "text": "CSSM_TP_APPLE_EVIDENCE_INFO"
+            },
+            {
+              "kind": "text",
+              "text": " * * "
+            },
+            {
+              "kind": "internalParam",
+              "text": "statusChain"
+            },
+            {
+              "kind": "text",
+              "text": ");"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A trust management object that has previously been sent to the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.security/documentation/Security/SecTrustEvaluate(_:_:)",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " function for evaluation.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "trustRef"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A pointer to the result type returned in the ",
+                  "type": "text"
+                },
+                {
+                  "code": "result",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " parameter by the ",
+                  "type": "text"
+                },
+                {
+                  "code": "SecTrustEvaluate",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " function.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "result"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "On return, points to an array of certificates that constitute the certificate chain used to verify the input certificate. In Objective-C, call the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/corefoundation/1521153-cfrelease",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " function to release this object when you are finished with it.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "certChain"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "On return, points to an array of ",
+                  "type": "text"
+                },
+                {
+                  "code": "CSSM_TP_APPLE_EVIDENCE_INFO",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " structures, one for each certificate in the certificate chain. The first item in the array corresponds to the leaf certificate, and the last item corresponds to the anchor (assuming that verification of the chain did not fail before reaching the anchor certificate). Each structure describes the status of one certificate in the chain. This structure is defined in ",
+                  "type": "text"
+                },
+                {
+                  "code": "cssmapple.h",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ". Do not attempt to free this pointer; it remains valid until the trust management object is released or until the next call to the function ",
+                  "type": "text"
+                },
+                {
+                  "code": "SecTrustEvaluate",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " that uses this trust management object.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "statusChain"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return-value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A result code. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/security-framework-result-codes",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After calling the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/SecTrustEvaluate(_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function, you can call the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/SecTrustGetResult",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function or the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/SecTrustGetCssmResult",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function to get detailed information about the results of the evaluation. Whereas the ",
+              "type": "text"
+            },
+            {
+              "code": "SecTrustGetResult",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function returns the information in a form that you can interpret without extensive knowledge of CSSM, the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/SecTrustGetCssmResult",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function returns information in a form that can be passed directly to CSSM functions.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can call the ",
+              "type": "text"
+            },
+            {
+              "code": "SFCertificateTrustPanel",
+              "type": "codeVoice"
+            },
+            {
+              "text": " class in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SecurityInterface",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to display these results to the user.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "It is safe to call this function concurrently on two or more threads as long as it is not used to get values from a trust management object that is simultaneously being changed by another function. For example, you can call this function on two threads at the same time, but not if you are simultaneously calling the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/SecTrustSetVerifyDate(_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function for the same trust management object on another thread.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Special-Considerations",
+          "level": 3,
+          "text": "Special Considerations",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/SecTrustGetTrustResult(_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for new development instead.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/SecurityInterface": {
+      "abstract": [
+        {
+          "text": "Provide user interface elements for security features such as authorization, access to digital certificates, and access to items in keychains.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SecurityInterface",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Security Interface",
+      "type": "topic",
+      "url": "/documentation/SecurityInterface"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1521153-cfrelease": {
+      "abstract": [
+        {
+          "text": "Releases a Core Foundation object.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1521153-cfrelease",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFRelease",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1521153-cfrelease"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.security/documentation/Security": {
+      "abstract": [
+        {
+          "text": "Secure the data your app manages, and control access to your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Security",
+      "type": "topic",
+      "url": "/documentation/security"
+    },
+    "doc://com.apple.security/documentation/Security/CSSM_TP_APPLE_EVIDENCE_INFO": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "CSSM_TP_APPLE_EVIDENCE_INFO"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/CSSM_TP_APPLE_EVIDENCE_INFO",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CSSM_TP_APPLE_EVIDENCE_INFO",
+      "type": "topic",
+      "url": "/documentation/security/cssm_tp_apple_evidence_info"
+    },
+    "doc://com.apple.security/documentation/Security/SecTrust": {
+      "abstract": [
+        {
+          "text": "An object used to evaluate trust.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecTrust"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecTrust",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecTrust"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecTrust",
+      "type": "topic",
+      "url": "/documentation/security/sectrust"
+    },
+    "doc://com.apple.security/documentation/Security/SecTrustEvaluate(_:_:)": {
+      "abstract": [
+        {
+          "text": "Evaluates trust for the specified certificate and policies.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecTrustEvaluate"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecTrustRef",
+          "text": "SecTrust"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@SecTrustResultType",
+          "text": "SecTrustResultType"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecTrustEvaluate(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecTrustEvaluate"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecTrustEvaluate(_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/sectrustevaluate(_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecTrustGetCssmResult": {
+      "abstract": [
+        {
+          "text": "Retrieves the CSSM trust result.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SecTrustGetCssmResult"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecTrustGetCssmResult",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SecTrustGetCssmResult",
+      "type": "topic",
+      "url": "/documentation/security/sectrustgetcssmresult"
+    },
+    "doc://com.apple.security/documentation/Security/SecTrustGetResult": {
+      "abstract": [
+        {
+          "text": "Retrieves details on the outcome of a call to the function ",
+          "type": "text"
+        },
+        {
+          "code": "SecTrustEvaluate",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SecTrustGetResult"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecTrustGetResult",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SecTrustGetResult",
+      "type": "topic",
+      "url": "/documentation/security/sectrustgetresult"
+    },
+    "doc://com.apple.security/documentation/Security/SecTrustGetTrustResult(_:_:)": {
+      "abstract": [
+        {
+          "text": "Returns the result code from the most recent trust evaluation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecTrustGetTrustResult"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecTrustRef",
+          "text": "SecTrust"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@SecTrustResultType",
+          "text": "SecTrustResultType"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecTrustGetTrustResult(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecTrustGetTrustResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecTrustGetTrustResult(_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/sectrustgettrustresult(_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecTrustResultType": {
+      "abstract": [
+        {
+          "text": "Trust evaluation result codes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecTrustResultType"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecTrustResultType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecTrustResultType"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecTrustResultType",
+      "type": "topic",
+      "url": "/documentation/security/sectrustresulttype"
+    },
+    "doc://com.apple.security/documentation/Security/SecTrustSetVerifyDate(_:_:)": {
+      "abstract": [
+        {
+          "text": "Sets the date and time against which the certificates in a trust management object are verified.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecTrustSetVerifyDate"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@SecTrustRef",
+          "text": "SecTrust"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFDateRef",
+          "text": "CFDate"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecTrustSetVerifyDate(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecTrustSetVerifyDate"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecTrustSetVerifyDate(_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/sectrustsetverifydate(_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/security-framework-result-codes": {
+      "abstract": [
+        {
+          "text": "Evaluate result codes common to many Security framework functions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/security-framework-result-codes",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Security Framework Result Codes",
+      "type": "topic",
+      "url": "/documentation/security/security-framework-result-codes"
+    },
+    "doc://com.externally.resolved.symbol/c:@T@CFArrayRef": {
+      "abstract": [
+        {
+          "text": "A reference to an immutable array object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFArray"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:@T@CFArrayRef",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFArray",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfarray"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTrustResultType/title",
+          "value": "SecTrustResultType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTrustResultType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecTrustResultType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTrustResultType/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecTrustResultType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTrust/title",
+          "value": "SecTrustRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTrust/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecTrustRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTrust/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecTrustRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTrustEvaluate(_:_:)/title",
+          "value": "SecTrustEvaluate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTrustEvaluate(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecTrustEvaluate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTrustGetTrustResult(_:_:)/title",
+          "value": "SecTrustGetTrustResult"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTrustGetTrustResult(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecTrustGetTrustResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:@T@CFArrayRef/title",
+          "value": "CFArrayRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTrustSetVerifyDate(_:_:)/title",
+          "value": "SecTrustSetVerifyDate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecTrustSetVerifyDate(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecTrustSetVerifyDate"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/security/sectrustgetresult"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

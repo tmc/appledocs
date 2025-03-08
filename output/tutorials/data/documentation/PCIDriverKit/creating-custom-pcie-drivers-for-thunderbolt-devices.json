@@ -1,0 +1,780 @@
+{
+  "abstract": [
+    {
+      "text": "Create a DriverKit extension to support your Thunderbolt device’s custom features.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.pcidriverkit/documentation/PCIDriverKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/creating-custom-pcie-drivers-for-thunderbolt-devices"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "PCIDriverKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Creating Custom PCIe Drivers for Thunderbolt Devices"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "All hardware devices require special software — called drivers — to communicate with macOS. Thunderbolt devices communicate using the PCIe interface, and so they use PCIe drivers with extra support for Thunderbolt features.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your Thunderbolt device uses popular PCIe Ethernet controllers from Intel, Broadcom, or Aquantia, or if your device communicates using industry-standard protocols such as XHCI, AHCI, NVMe, or FireWire, you don’t need to create a custom driver. Apple supplies built-in drivers that already support these chip sets and interfaces. The only time you need to create a custom driver is when your hardware supports proprietary features. In macOS 11 and later, build any custom drivers as DriverKit extensions using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.pcidriverkit/documentation/PCIDriverKit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " framework.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "If your Thunderbolt device requires capabilities that DriverKit doesn’t support, such as manipulating audio or communicating wirelessly over Bluetooth or Wi-Fi, create your driver as an IOKit kernel extension instead. For more information, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/kernel/hardware_families/pci/implementing_a_pcie_kext_for_a_thunderbolt_device",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For basic information on how to create a DriverKit extension, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/driverkit/creating_a_driver_using_the_driverkit_sdk",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Request-the-Entitlements-Required-to-Run-Your-Driver",
+          "level": 3,
+          "text": "Request the Entitlements Required to Run Your Driver",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system requires every DriverKit driver to have an appropriate set of entitlements. Drivers interact with sensitive parts of the system, including the kernel and attached hardware peripherals. Entitlements protect those resources by ensuring that only authorized drivers communicate with them. Specifically, the system prevents drivers from accessing resources for which they don’t have the appropriate entitlements.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Drivers for Thunderbolt devices must have the following entitlements:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.driverkit",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.transport.pci",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You request DriverKit entitlements directly from Apple, which adds the entitlements to your developer account. You then add those entitlements to your Xcode project, and to the provisioning profile you use to cryptographically sign your app. For information about how to request DriverKit entitlements and add them to your Xcode project, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/driverkit/requesting_entitlements_for_driverkit_development",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-Thunderbolt-Support-to-Your-Drivers-Personality-Data",
+          "level": 3,
+          "text": "Add Thunderbolt Support to Your Driver’s Personality Data",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When it detects new hardware, the system must find an appropriate set of drivers to manage that hardware. It does so by comparing the hardware details to information found in the ",
+              "type": "text"
+            },
+            {
+              "code": "kIOKitPersonalitiesKey",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key of each driver’s ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file, and identifying the drivers that best match the hardware. For example, a driver might match only against devices from a specific manufacturer, or devices that support only a specific communication protocol.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To indicate that your PCIe driver supports Thunderbolt, include the ",
+              "type": "text"
+            },
+            {
+              "code": "IOPCITunnelCompatible",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key in your driver’s personality dictionaries. Include this key only if the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/driverkit/ioservice",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " subclass in the ",
+              "type": "text"
+            },
+            {
+              "code": "IOClass",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key of that dictionary is able to communicate with your Thunderbolt device. The following example shows the presence of this key in a custom PCI driver.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "<key>MyDriverKitDriver</key>",
+            "<dict>",
+            "    <key>CFBundleIdentifier</key>",
+            "    <string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>",
+            "    <key>CFBundleIdentifierKernel</key>",
+            "    <string>com.apple.kpi.iokit</string>",
+            "    <key>IOClass</key>",
+            "    <string>IOUserService</string>",
+            "    <key>IOPCIPauseCompatible</key>",
+            "    <true/>",
+            "    <key>IOPCIPrimaryMatch</key>",
+            "    <string>0x0000ABCD&amp;0x0000FFFF</string>",
+            "    <key>IOPCITunnelCompatible</key>",
+            "    <true/>",
+            "    <key>IOProviderClass</key>",
+            "    <string>IOPCIDevice</string>",
+            "    <key>IOResourceMatch</key>",
+            "    <string>IOKit</string>",
+            "    <key>IOUserClass</key>",
+            "    <string>MyPCIDriverKitDriverClassName</string>",
+            "    <key>IOUserServerName</key>",
+            "    <string>com.apple.MyDriverKitDriver</string>",
+            "</dict>"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Notify-the-System-of-External-Storage-Devices",
+          "level": 3,
+          "text": "Notify the System of External Storage Devices",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Users can disconnect most Thunderbolt devices at any time, but macOS doesn’t allow them to disconnect external storage devices without properly ejecting them. If your PCI driver presents the device as storage to the system, notify the system early in your driver’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/3180710-start",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method by setting the ",
+              "type": "text"
+            },
+            {
+              "code": "Physical Interconnect Location",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property to ",
+              "type": "text"
+            },
+            {
+              "code": "External",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", as in the following example:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Add the Physical Interconnect Location property to the driver.",
+            "OSDictionary* dict = OSDictionary::withCapacity(1);",
+            "OSString* externalStr = OSString::withCString(\"External\");",
+            "dict->setObject(\"Physical Interconnect Location\", externalStr);",
+            "SetProperties(dict);",
+            "OSSafeReleaseNULL(externalStr);",
+            "OSSafeReleaseNULL(dict);"
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Always set the ",
+                  "type": "text"
+                },
+                {
+                  "code": "Physical Interconnect Location",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " property early in your driver’s ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/3180710-start",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " method. Don’t set it after you access the device.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Support-Message-Signaled-Interrupts-in-Your-Device",
+          "level": 3,
+          "text": "Support Message Signaled Interrupts in Your Device",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Always use Message Signaled Interrupts (MSI) to generate hardware interrupts from your Thunderbolt devices. You can implement a DriverKit extension with legacy interrupts, but doing so adds latency to any device that shares the interrupt. If you need to support legacy interrupts, the better alternative is to implement your driver as a kernel extension.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For MSI-enabled Thunderbolt devices, the system routes interrupts to the appropriate ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/driverkit/iointerruptdispatchsource",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object in your driver. Create and configure interrupt dispatch sources in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/3180710-start",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method of your custom ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/driverkit/ioservice",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " subclass. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/iointerruptdispatchsource",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Read-and-Write-From-the-Configuration-and-MMIO-Spaces",
+          "level": 3,
+          "text": "Read and Write From the Configuration and MMIO Spaces",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Drivers communicate with a PCI device primarily through one of the following memory spaces:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "configuration space",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": " contains the registers that you use to manage the state of the device and its settings. For example, use these registers to configure the power management behavior of the device.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "memory-mapped I/O",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": " (MMIO) space contains the device’s custom data. When your driver needs to interact with device-specific features, read or write in the MMIO space according to the device’s specifications.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Older PCI devices may also support the I/O memory space, which is similar to the MMIO space. Macs with Apple silicon don’t support the I/O space, and Apple discourages the use of the I/O space in your devices or drivers. Instead, use the MMIO space for custom communication between your driver and device.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about the memory spaces to use in your drivers, see the PCI specification at ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://pcisig.com",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.driverkit": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether your extension has permission to run as a user-space driver.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.driverkit",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "com.apple.developer.driverkit",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Entitlements/com.apple.developer.driverkit"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.transport.pci": {
+      "abstract": [
+        {
+          "text": "An array of PCI device descriptors that your custom driver supports.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.transport.pci",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "com.apple.developer.driverkit.transport.pci",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.transport.pci"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/creating_a_driver_using_the_driverkit_sdk": {
+      "abstract": [
+        {
+          "text": "Create a driver that supports proprietary features of your company’s hardware devices. ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/creating_a_driver_using_the_driverkit_sdk",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating a Driver Using the DriverKit SDK",
+      "type": "topic",
+      "url": "/documentation/driverkit/creating_a_driver_using_the_driverkit_sdk"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/iointerruptdispatchsource": {
+      "abstract": [
+        {
+          "text": "A dispatch source that reports hardware-related interrupt events to your driver.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/iointerruptdispatchsource",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOInterruptDispatchSource",
+      "type": "topic",
+      "url": "/documentation/driverkit/iointerruptdispatchsource"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/ioservice": {
+      "abstract": [
+        {
+          "text": "The base class for managing the setup and registration of your driver.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/ioservice",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOService",
+      "type": "topic",
+      "url": "/documentation/driverkit/ioservice"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/requesting_entitlements_for_driverkit_development": {
+      "abstract": [
+        {
+          "text": "Request the entitlement for DriverKit development, and request other entitlements your driver needs to interact with specific devices and interfaces.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/requesting_entitlements_for_driverkit_development",
+      "kind": "article",
+      "role": "article",
+      "title": "Requesting Entitlements for DriverKit Development",
+      "type": "topic",
+      "url": "/documentation/driverkit/requesting_entitlements_for_driverkit_development"
+    },
+    "doc://com.apple.documentation/documentation/kernel/hardware_families/pci/implementing_a_pcie_kext_for_a_thunderbolt_device": {
+      "abstract": [
+        {
+          "text": "Create an IOKit driver to support Thunderbolt devices that implement features not supported in PCIDriverKit, such as wireless networking or audio. ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/hardware_families/pci/implementing_a_pcie_kext_for_a_thunderbolt_device",
+      "kind": "article",
+      "role": "article",
+      "title": "Implementing a PCIe Kext for a Thunderbolt Device",
+      "type": "topic",
+      "url": "/documentation/kernel/hardware_families/pci/implementing_a_pcie_kext_for_a_thunderbolt_device"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iointerruptdispatchsource": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iointerruptdispatchsource",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOInterruptDispatchSource",
+      "type": "topic",
+      "url": "/documentation/kernel/iointerruptdispatchsource"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/3180710-start": {
+      "abstract": [
+        {
+          "text": "Starts the current service and associates it with the specified provider.  ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/3180710-start",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Start",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/3180710-start"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.pcidriverkit/documentation/PCIDriverKit": {
+      "abstract": [
+        {
+          "text": "Develop device drivers for Peripheral Component Interconnect (PCI) accessories.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.pcidriverkit/documentation/PCIDriverKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "PCIDriverKit",
+      "type": "topic",
+      "url": "/documentation/pcidriverkit"
+    },
+    "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/IOPCIDevice": {
+      "abstract": [
+        {
+          "text": "A DriverKit provider object that manages access to your custom PCI hardware.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "IOPCIDevice"
+        }
+      ],
+      "identifier": "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/IOPCIDevice",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOPCIDevice",
+      "type": "topic",
+      "url": "/documentation/pcidriverkit/iopcidevice"
+    },
+    "https://pcisig.com": {
+      "identifier": "https://pcisig.com",
+      "title": "https://pcisig.com",
+      "titleInlineContent": [
+        {
+          "text": "https://pcisig.com",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://pcisig.com"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Device-Interface",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.pcidriverkit/documentation/PCIDriverKit/IOPCIDevice"
+      ],
+      "title": "Device Interface"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/pcidriverkit/creating-custom-pcie-drivers-for-thunderbolt-devices"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1481 @@
+{
+  "abstract": [
+    {
+      "text": "Build systems that run distributed code across multiple processes and devices.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Swift/documentation/Distributed"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "Distributed",
+    "modules": [
+      {
+        "name": "Distributed"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "16.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "16.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "16.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "beta": false,
+        "introducedAt": "13.0",
+        "name": "macOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "16.0",
+        "name": "tvOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "9.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "collection",
+    "roleHeading": "Framework",
+    "symbolKind": "module",
+    "title": "Distributed"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Distributed actors share many characteristics with Swift actors,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and include additional isolation checks to ensure",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "location transparency and safety in a distributed environment.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Similar to how actors make it easier to write concurrent code",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that’s safe and correct to run on a single computer,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "distributed actors make it easier to write code",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that runs across multiple computers.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "distributed-module",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You use three main parts when writing code with distributed actors:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Swift language support for actors and distributed actors.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "For more information,",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://docs.swift.org/swift-book/LanguageGuide/Concurrency.html",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " in ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "identifier": "https://docs.swift.org/swift-book/",
+                          "isActive": true,
+                          "type": "reference"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The Distributed module, which includes the types and protocols you need",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "to declare and use distribute actors.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "For example, it has",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "protocols to which distributed actors and distributed actor systems conform,",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "and structures that encapsulate information about calls to a distributed actor.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "distributed actor system",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": ", also called a cluster runtime,",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "provides an implementation of the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.Swift/documentation/Distributed/DistributedActorSystem",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " protocol",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "and coordinates between the cluster’s nodes.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "A distributed actor is always part of some distributed actor system;",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "that distributed actor system handles the serialization and networking",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "necessary to perform remote method calls.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "For local testing, you can use ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.Swift/documentation/Distributed/LocalTestingDistributedActorSystem",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "For production,",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "you can use the distributed actor system",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "from the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://github.com/apple/swift-distributed-actors/",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " library,",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "use another library,",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "or write your own distributed actor system.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "distributed-module": {
+      "alt": "A diagram showing two columns of actors. The left column includes a remote actor reference. The right column includes a local distributed actor. An arrow points from the remote actor reference to the local distributed actor that it refers to.",
+      "identifier": "distributed-module",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2bf6622bede5876c3f4d6d1a4e1f1089/distributed-module@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cd017db796d96e6502922b3aa19c062f/distributed-module~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Swift/documentation/Distributed": {
+      "abstract": [
+        {
+          "text": "Build systems that run distributed code across multiple processes and devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Distributed",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Distributed",
+      "type": "topic",
+      "url": "/documentation/distributed"
+    },
+    "doc://com.apple.Swift/documentation/Distributed/DistributedActor": {
+      "abstract": [
+        {
+          "text": "Common protocol to which all distributed actors conform implicitly.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DistributedActor"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Distributed/DistributedActor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DistributedActor"
+        }
+      ],
+      "role": "symbol",
+      "title": "DistributedActor",
+      "type": "topic",
+      "url": "/documentation/distributed/distributedactor"
+    },
+    "doc://com.apple.Swift/documentation/Distributed/DistributedActorCodingError": {
+      "abstract": [
+        {
+          "text": "Error thrown by distributed actor systems while encountering encoding/decoding",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "issues.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DistributedActorCodingError"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Distributed/DistributedActorCodingError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DistributedActorCodingError"
+        }
+      ],
+      "role": "symbol",
+      "title": "DistributedActorCodingError",
+      "type": "topic",
+      "url": "/documentation/distributed/distributedactorcodingerror"
+    },
+    "doc://com.apple.Swift/documentation/Distributed/DistributedActorSystem": {
+      "abstract": [
+        {
+          "text": "A distributed actor system underpins and implements all functionality of distributed actors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DistributedActorSystem"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Distributed/DistributedActorSystem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DistributedActorSystem"
+        }
+      ],
+      "role": "symbol",
+      "title": "DistributedActorSystem",
+      "type": "topic",
+      "url": "/documentation/distributed/distributedactorsystem"
+    },
+    "doc://com.apple.Swift/documentation/Distributed/DistributedActorSystem/executeDistributedTarget(on:target:invocationDecoder:handler:)": {
+      "abstract": [
+        {
+          "text": "Prepare and execute a call to the distributed function identified by the passed arguments,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "on the passed ",
+          "type": "text"
+        },
+        {
+          "code": "actor",
+          "type": "codeVoice"
+        },
+        {
+          "text": ", and collect its results using the ",
+          "type": "text"
+        },
+        {
+          "code": "ResultHandler",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "executeDistributedTarget"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Act"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "on"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Act"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "target"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11Distributed16RemoteCallTargetV",
+          "text": "RemoteCallTarget"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "invocationDecoder"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "inout"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11Distributed0A11ActorSystemP17InvocationDecoderQa",
+          "text": "InvocationDecoder"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "handler"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:11Distributed0A11ActorSystemP13ResultHandlerQa",
+          "text": "ResultHandler"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Distributed/DistributedActorSystem/executeDistributedTarget(on:target:invocationDecoder:handler:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "executeDistributedTarget(on:target:invocationDecoder:handler:)",
+      "type": "topic",
+      "url": "/documentation/distributed/distributedactorsystem/executedistributedtarget(on:target:invocationdecoder:handler:)"
+    },
+    "doc://com.apple.Swift/documentation/Distributed/DistributedActorSystemError": {
+      "abstract": [
+        {
+          "text": "Error protocol to which errors thrown by any ",
+          "type": "text"
+        },
+        {
+          "code": "DistributedActorSystem",
+          "type": "codeVoice"
+        },
+        {
+          "text": " should conform.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DistributedActorSystemError"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Distributed/DistributedActorSystemError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DistributedActorSystemError"
+        }
+      ],
+      "role": "symbol",
+      "title": "DistributedActorSystemError",
+      "type": "topic",
+      "url": "/documentation/distributed/distributedactorsystemerror"
+    },
+    "doc://com.apple.Swift/documentation/Distributed/DistributedTargetInvocationDecoder": {
+      "abstract": [
+        {
+          "text": "Decoder that must be provided to ",
+          "type": "text"
+        },
+        {
+          "code": "executeDistributedTarget",
+          "type": "codeVoice"
+        },
+        {
+          "text": " and is used",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "by the Swift runtime to decode arguments of the invocation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DistributedTargetInvocationDecoder"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Distributed/DistributedTargetInvocationDecoder",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DistributedTargetInvocationDecoder"
+        }
+      ],
+      "role": "symbol",
+      "title": "DistributedTargetInvocationDecoder",
+      "type": "topic",
+      "url": "/documentation/distributed/distributedtargetinvocationdecoder"
+    },
+    "doc://com.apple.Swift/documentation/Distributed/DistributedTargetInvocationEncoder": {
+      "abstract": [
+        {
+          "text": "Used to encode an invocation of a distributed target (method or computed property).",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DistributedTargetInvocationEncoder"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Distributed/DistributedTargetInvocationEncoder",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DistributedTargetInvocationEncoder"
+        }
+      ],
+      "role": "symbol",
+      "title": "DistributedTargetInvocationEncoder",
+      "type": "topic",
+      "url": "/documentation/distributed/distributedtargetinvocationencoder"
+    },
+    "doc://com.apple.Swift/documentation/Distributed/DistributedTargetInvocationResultHandler": {
+      "abstract": [
+        {
+          "text": "Protocol a distributed invocation execution’s result handler.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DistributedTargetInvocationResultHandler"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Distributed/DistributedTargetInvocationResultHandler",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DistributedTargetInvocationResultHandler"
+        }
+      ],
+      "role": "symbol",
+      "title": "DistributedTargetInvocationResultHandler",
+      "type": "topic",
+      "url": "/documentation/distributed/distributedtargetinvocationresulthandler"
+    },
+    "doc://com.apple.Swift/documentation/Distributed/ExecuteDistributedTargetError": {
+      "abstract": [
+        {
+          "text": "Error thrown by ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.Swift/documentation/Distributed/DistributedActorSystem/executeDistributedTarget(on:target:invocationDecoder:handler:)",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ExecuteDistributedTargetError"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Distributed/ExecuteDistributedTargetError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ExecuteDistributedTargetError"
+        }
+      ],
+      "role": "symbol",
+      "title": "ExecuteDistributedTargetError",
+      "type": "topic",
+      "url": "/documentation/distributed/executedistributedtargeterror"
+    },
+    "doc://com.apple.Swift/documentation/Distributed/LocalTestingActorAddress": {
+      "abstract": [],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LocalTestingActorAddress"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Distributed/LocalTestingActorAddress",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LocalTestingActorAddress"
+        }
+      ],
+      "role": "symbol",
+      "title": "LocalTestingActorAddress",
+      "type": "topic",
+      "url": "/documentation/distributed/localtestingactoraddress"
+    },
+    "doc://com.apple.Swift/documentation/Distributed/LocalTestingActorID": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LocalTestingActorID"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Distributed/LocalTestingActorID",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LocalTestingActorID"
+        }
+      ],
+      "role": "symbol",
+      "title": "LocalTestingActorID",
+      "type": "topic",
+      "url": "/documentation/distributed/localtestingactorid"
+    },
+    "doc://com.apple.Swift/documentation/Distributed/LocalTestingDistributedActorSystem": {
+      "abstract": [
+        {
+          "text": "A ",
+          "type": "text"
+        },
+        {
+          "code": "DistributedActorSystem",
+          "type": "codeVoice"
+        },
+        {
+          "text": " designed for local only testing.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LocalTestingDistributedActorSystem"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Distributed/LocalTestingDistributedActorSystem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LocalTestingDistributedActorSystem"
+        }
+      ],
+      "role": "symbol",
+      "title": "LocalTestingDistributedActorSystem",
+      "type": "topic",
+      "url": "/documentation/distributed/localtestingdistributedactorsystem"
+    },
+    "doc://com.apple.Swift/documentation/Distributed/LocalTestingDistributedActorSystemError": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LocalTestingDistributedActorSystemError"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Distributed/LocalTestingDistributedActorSystemError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LocalTestingDistributedActorSystemError"
+        }
+      ],
+      "role": "symbol",
+      "title": "LocalTestingDistributedActorSystemError",
+      "type": "topic",
+      "url": "/documentation/distributed/localtestingdistributedactorsystemerror"
+    },
+    "doc://com.apple.Swift/documentation/Distributed/LocalTestingInvocationDecoder": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LocalTestingInvocationDecoder"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Distributed/LocalTestingInvocationDecoder",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LocalTestingInvocationDecoder"
+        }
+      ],
+      "role": "symbol",
+      "title": "LocalTestingInvocationDecoder",
+      "type": "topic",
+      "url": "/documentation/distributed/localtestinginvocationdecoder"
+    },
+    "doc://com.apple.Swift/documentation/Distributed/LocalTestingInvocationEncoder": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LocalTestingInvocationEncoder"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Distributed/LocalTestingInvocationEncoder",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LocalTestingInvocationEncoder"
+        }
+      ],
+      "role": "symbol",
+      "title": "LocalTestingInvocationEncoder",
+      "type": "topic",
+      "url": "/documentation/distributed/localtestinginvocationencoder"
+    },
+    "doc://com.apple.Swift/documentation/Distributed/LocalTestingInvocationResultHandler": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LocalTestingInvocationResultHandler"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Distributed/LocalTestingInvocationResultHandler",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LocalTestingInvocationResultHandler"
+        }
+      ],
+      "role": "symbol",
+      "title": "LocalTestingInvocationResultHandler",
+      "type": "topic",
+      "url": "/documentation/distributed/localtestinginvocationresulthandler"
+    },
+    "doc://com.apple.Swift/documentation/Distributed/RemoteCallArgument": {
+      "abstract": [
+        {
+          "text": "Represents an argument passed to a distributed call target.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RemoteCallArgument"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Distributed/RemoteCallArgument",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RemoteCallArgument"
+        }
+      ],
+      "role": "symbol",
+      "title": "RemoteCallArgument",
+      "type": "topic",
+      "url": "/documentation/distributed/remotecallargument"
+    },
+    "doc://com.apple.Swift/documentation/Distributed/RemoteCallTarget": {
+      "abstract": [
+        {
+          "text": "Represents a ‘target’ of a distributed call, such as a ",
+          "type": "text"
+        },
+        {
+          "code": "distributed func",
+          "type": "codeVoice"
+        },
+        {
+          "text": " or",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "code": "distributed",
+          "type": "codeVoice"
+        },
+        {
+          "text": " computed property. Identification schemes may vary between",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "systems, and are subject to evolution.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RemoteCallTarget"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Distributed/RemoteCallTarget",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RemoteCallTarget"
+        }
+      ],
+      "role": "symbol",
+      "title": "RemoteCallTarget",
+      "type": "topic",
+      "url": "/documentation/distributed/remotecalltarget"
+    },
+    "doc://com.apple.Swift/documentation/Distributed/Resolvable()": {
+      "abstract": [
+        {
+          "text": "Enables the attached to protocol to be resolved as remote distributed",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "actor reference.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "macro"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Resolvable"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Distributed/Resolvable()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Resolvable()",
+      "type": "topic",
+      "url": "/documentation/distributed/resolvable()"
+    },
+    "doc://com.apple.Swift/documentation/Distributed/buildDefaultDistributedRemoteActorExecutor(_:)": {
+      "abstract": [
+        {
+          "text": "Obtain the unowned ",
+          "type": "text"
+        },
+        {
+          "code": "SerialExecutor",
+          "type": "codeVoice"
+        },
+        {
+          "text": " that is used by by remote distributed actor references.",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "The executor is shared between all remote default executor remote distributed actors,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "and it will crash if any job is enqueued on it.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "buildDefaultDistributedRemoteActorExecutor"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Act"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Act"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sce",
+          "text": "UnownedSerialExecutor"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Distributed/buildDefaultDistributedRemoteActorExecutor(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "buildDefaultDistributedRemoteActorExecutor(_:)",
+      "type": "topic",
+      "url": "/documentation/distributed/builddefaultdistributedremoteactorexecutor(_:)"
+    },
+    "doc://com.apple.documentation/documentation/swift/tictacfish_implementing_a_game_using_distributed_actors": {
+      "abstract": [
+        {
+          "text": "Use distributed actors to take your Swift concurrency and actor-based apps beyond a single process.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/swift/tictacfish_implementing_a_game_using_distributed_actors",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "TicTacFish: Implementing a game using distributed actors",
+      "type": "topic",
+      "url": "/documentation/swift/tictacfish_implementing_a_game_using_distributed_actors"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://docs.swift.org/swift-book/": {
+      "identifier": "https://docs.swift.org/swift-book/",
+      "title": "The Swift Programming Language",
+      "titleInlineContent": [
+        {
+          "text": "The Swift Programming Language",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://docs.swift.org/swift-book/"
+    },
+    "https://docs.swift.org/swift-book/LanguageGuide/Concurrency.html": {
+      "identifier": "https://docs.swift.org/swift-book/LanguageGuide/Concurrency.html",
+      "title": "Concurrency",
+      "titleInlineContent": [
+        {
+          "text": "Concurrency",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://docs.swift.org/swift-book/LanguageGuide/Concurrency.html"
+    },
+    "https://github.com/apple/swift-distributed-actors/": {
+      "identifier": "https://github.com/apple/swift-distributed-actors/",
+      "title": "Swift Distributed Actors",
+      "titleInlineContent": [
+        {
+          "text": "Swift Distributed Actors",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://github.com/apple/swift-distributed-actors/"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Essentials",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/swift/tictacfish_implementing_a_game_using_distributed_actors"
+      ],
+      "title": "Essentials"
+    },
+    {
+      "anchor": "Distributed-Actors",
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Distributed/DistributedActor",
+        "doc://com.apple.Swift/documentation/Distributed/DistributedActorSystem",
+        "doc://com.apple.Swift/documentation/Distributed/Resolvable()",
+        "doc://com.apple.Swift/documentation/Distributed/buildDefaultDistributedRemoteActorExecutor(_:)"
+      ],
+      "title": "Distributed Actors"
+    },
+    {
+      "anchor": "Remote-Calls",
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Distributed/RemoteCallTarget",
+        "doc://com.apple.Swift/documentation/Distributed/RemoteCallArgument",
+        "doc://com.apple.Swift/documentation/Distributed/DistributedTargetInvocationEncoder",
+        "doc://com.apple.Swift/documentation/Distributed/DistributedTargetInvocationDecoder",
+        "doc://com.apple.Swift/documentation/Distributed/DistributedTargetInvocationResultHandler"
+      ],
+      "title": "Remote Calls"
+    },
+    {
+      "anchor": "Local-Testing",
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Distributed/LocalTestingDistributedActorSystem",
+        "doc://com.apple.Swift/documentation/Distributed/LocalTestingActorID",
+        "doc://com.apple.Swift/documentation/Distributed/LocalTestingActorAddress",
+        "doc://com.apple.Swift/documentation/Distributed/LocalTestingInvocationEncoder",
+        "doc://com.apple.Swift/documentation/Distributed/LocalTestingInvocationDecoder",
+        "doc://com.apple.Swift/documentation/Distributed/LocalTestingInvocationResultHandler"
+      ],
+      "title": "Local Testing"
+    },
+    {
+      "anchor": "Errors",
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Distributed/DistributedActorCodingError",
+        "doc://com.apple.Swift/documentation/Distributed/DistributedActorSystemError",
+        "doc://com.apple.Swift/documentation/Distributed/ExecuteDistributedTargetError",
+        "doc://com.apple.Swift/documentation/Distributed/LocalTestingDistributedActorSystemError"
+      ],
+      "title": "Errors"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/distributed"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

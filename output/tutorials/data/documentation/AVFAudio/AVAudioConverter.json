@@ -1,0 +1,2586 @@
+{
+  "abstract": [
+    {
+      "text": "An object that converts streams of audio between formats.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.avfaudio/documentation/AVFAudio"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioConverter"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)AVAudioConverter",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "AVAudioConverter"
+      }
+    ],
+    "modules": [
+      {
+        "name": "AVFAudio"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "AVAudioConverter"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.11",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "2.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "AVAudioConverter"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AVAudioConverter"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The audio converter class transforms audio between file formats and audio encodings.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Supported transformations include:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "PCM float, integer, or bit depth conversions",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "PCM sample rate conversion",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "PCM interleaving and deinterleaving",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Encoding PCM to compressed formats",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Decoding compressed formats to PCM",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A single audio converter instance may perform more than one of the above transformations.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.avfaudio/documentation/AVFAudio": {
+      "abstract": [
+        {
+          "text": "Play, record, and process audio; configure your app’s system audio behavior.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AVFAudio",
+      "type": "topic",
+      "url": "/documentation/avfaudio"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioConverter": {
+      "abstract": [
+        {
+          "text": "An object that converts streams of audio between formats.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAudioConverter"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioConverter",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAudioConverter"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAudioConverter",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudioconverter"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioConverter/applicableEncodeBitRates": {
+      "abstract": [
+        {
+          "text": "An array of bit rates the framework applies during encoding according to the current formats and settings.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "applicableEncodeBitRates"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSNumber",
+          "text": "NSNumber"
+        },
+        {
+          "kind": "text",
+          "text": "]?"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioConverter/applicableEncodeBitRates",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "applicableEncodeBitRates"
+        }
+      ],
+      "role": "symbol",
+      "title": "applicableEncodeBitRates",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudioconverter/applicableencodebitrates"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioConverter/applicableEncodeSampleRates": {
+      "abstract": [
+        {
+          "text": "An array of output sample rates that the converter applies according to the current formats and settings, when encoding.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "applicableEncodeSampleRates"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSNumber",
+          "text": "NSNumber"
+        },
+        {
+          "kind": "text",
+          "text": "]?"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioConverter/applicableEncodeSampleRates",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "applicableEncodeSampleRates"
+        }
+      ],
+      "role": "symbol",
+      "title": "applicableEncodeSampleRates",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudioconverter/applicableencodesamplerates"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioConverter/availableEncodeBitRates": {
+      "abstract": [
+        {
+          "text": "An array of all bit rates the codec provides when encoding.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "availableEncodeBitRates"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSNumber",
+          "text": "NSNumber"
+        },
+        {
+          "kind": "text",
+          "text": "]?"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioConverter/availableEncodeBitRates",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "availableEncodeBitRates"
+        }
+      ],
+      "role": "symbol",
+      "title": "availableEncodeBitRates",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudioconverter/availableencodebitrates"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioConverter/availableEncodeChannelLayoutTags": {
+      "abstract": [
+        {
+          "text": "An array of all output channel layout tags the codec provides when encoding.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "availableEncodeChannelLayoutTags"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSNumber",
+          "text": "NSNumber"
+        },
+        {
+          "kind": "text",
+          "text": "]?"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioConverter/availableEncodeChannelLayoutTags",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "availableEncodeChannelLayoutTags"
+        }
+      ],
+      "role": "symbol",
+      "title": "availableEncodeChannelLayoutTags",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudioconverter/availableencodechannellayouttags"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioConverter/availableEncodeSampleRates": {
+      "abstract": [
+        {
+          "text": "An array of all output sample rates the codec provides when encoding.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "availableEncodeSampleRates"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSNumber",
+          "text": "NSNumber"
+        },
+        {
+          "kind": "text",
+          "text": "]?"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioConverter/availableEncodeSampleRates",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "availableEncodeSampleRates"
+        }
+      ],
+      "role": "symbol",
+      "title": "availableEncodeSampleRates",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudioconverter/availableencodesamplerates"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioConverter/bitRate": {
+      "abstract": [
+        {
+          "text": "The bit rate, in bits per second.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "bitRate"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioConverter/bitRate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "bitRate"
+        }
+      ],
+      "role": "symbol",
+      "title": "bitRate",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudioconverter/bitrate"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioConverter/bitRateStrategy": {
+      "abstract": [
+        {
+          "text": "A key value constant the framework uses during encoding.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "bitRateStrategy"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioConverter/bitRateStrategy",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "bitRateStrategy"
+        }
+      ],
+      "role": "symbol",
+      "title": "bitRateStrategy",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudioconverter/bitratestrategy"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioConverter/channelMap": {
+      "abstract": [
+        {
+          "text": "An array of integers that indicates which input to derive each output from.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "channelMap"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSNumber",
+          "text": "NSNumber"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioConverter/channelMap",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "channelMap"
+        }
+      ],
+      "role": "symbol",
+      "title": "channelMap",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudioconverter/channelmap"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioConverter/convert(to:error:withInputFrom:)": {
+      "abstract": [
+        {
+          "text": "Performs a conversion between audio formats, if the system supports it.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "convert"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVAudioBuffer",
+          "text": "AVAudioBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "error"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation14NSErrorPointera",
+          "text": "NSErrorPointer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "withInputFrom"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AVAudioConverterInputBlock",
+          "text": "AVAudioConverterInputBlock"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@AVAudioConverterOutputStatus",
+          "text": "AVAudioConverterOutputStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioConverter/convert(to:error:withInputFrom:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "convertToBuffer:error:withInputFromBlock:"
+        }
+      ],
+      "role": "symbol",
+      "title": "convert(to:error:withInputFrom:)",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudioconverter/convert(to:error:withinputfrom:)"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioConverter/convert(to:from:)": {
+      "abstract": [
+        {
+          "text": "Performs a basic conversion between audio formats that doesn’t involve converting codecs or sample rates.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "convert"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVAudioPCMBuffer",
+          "text": "AVAudioPCMBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVAudioPCMBuffer",
+          "text": "AVAudioPCMBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioConverter/convert(to:from:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "convertToBuffer:fromBuffer:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "convert(to:from:)",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudioconverter/convert(to:from:)"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioConverter/dither": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether dither is on.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "dither"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioConverter/dither",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "dither"
+        }
+      ],
+      "role": "symbol",
+      "title": "dither",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudioconverter/dither"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioConverter/downmix": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the framework mixes the channels instead of remapping.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "downmix"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioConverter/downmix",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "downmix"
+        }
+      ],
+      "role": "symbol",
+      "title": "downmix",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudioconverter/downmix"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioConverter/init(from:to:)": {
+      "abstract": [
+        {
+          "text": "Creates an audio converter object from the specified input and output formats.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "externalParam",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVAudioFormat",
+          "text": "AVAudioFormat"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVAudioFormat",
+          "text": "AVAudioFormat"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioConverter/init(from:to:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initFromFormat:toFormat:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(from:to:)",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudioconverter/init(from:to:)"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioConverter/inputFormat": {
+      "abstract": [
+        {
+          "text": "The format of the input audio stream.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "inputFormat"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVAudioFormat",
+          "text": "AVAudioFormat"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioConverter/inputFormat",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "inputFormat"
+        }
+      ],
+      "role": "symbol",
+      "title": "inputFormat",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudioconverter/inputformat"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioConverter/magicCookie": {
+      "abstract": [
+        {
+          "text": "An object that contains metadata for encoders and decoders.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "magicCookie"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioConverter/magicCookie",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "magicCookie"
+        }
+      ],
+      "role": "symbol",
+      "title": "magicCookie",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudioconverter/magiccookie"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioConverter/maximumOutputPacketSize": {
+      "abstract": [
+        {
+          "text": "The maximum size of an output packet, in bytes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "maximumOutputPacketSize"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioConverter/maximumOutputPacketSize",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "maximumOutputPacketSize"
+        }
+      ],
+      "role": "symbol",
+      "title": "maximumOutputPacketSize",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudioconverter/maximumoutputpacketsize"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioConverter/outputFormat": {
+      "abstract": [
+        {
+          "text": "The format of the output audio stream.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "outputFormat"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVAudioFormat",
+          "text": "AVAudioFormat"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioConverter/outputFormat",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "outputFormat"
+        }
+      ],
+      "role": "symbol",
+      "title": "outputFormat",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudioconverter/outputformat"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioConverter/primeInfo": {
+      "abstract": [
+        {
+          "text": "The number of priming frames the converter uses.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "primeInfo"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@AVAudioConverterPrimeInfo",
+          "text": "AVAudioConverterPrimeInfo"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioConverter/primeInfo",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "primeInfo"
+        }
+      ],
+      "role": "symbol",
+      "title": "primeInfo",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudioconverter/primeinfo"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioConverter/primeMethod": {
+      "abstract": [
+        {
+          "text": "The priming method the sample rate converter or decoder uses.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "primeMethod"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@AVAudioConverterPrimeMethod",
+          "text": "AVAudioConverterPrimeMethod"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioConverter/primeMethod",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "primeMethod"
+        }
+      ],
+      "role": "symbol",
+      "title": "primeMethod",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudioconverter/primemethod"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioConverter/reset()": {
+      "abstract": [
+        {
+          "text": "Resets the converter so you can convert a new audio stream.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "reset"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioConverter/reset()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "reset"
+        }
+      ],
+      "role": "symbol",
+      "title": "reset()",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudioconverter/reset()"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioConverter/sampleRateConverterAlgorithm": {
+      "abstract": [
+        {
+          "text": "The priming method the sample rate converter or decoder uses.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sampleRateConverterAlgorithm"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioConverter/sampleRateConverterAlgorithm",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "sampleRateConverterAlgorithm"
+        }
+      ],
+      "role": "symbol",
+      "title": "sampleRateConverterAlgorithm",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudioconverter/samplerateconverteralgorithm"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioConverter/sampleRateConverterQuality": {
+      "abstract": [
+        {
+          "text": "A sample rate converter algorithm key value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sampleRateConverterQuality"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioConverter/sampleRateConverterQuality",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "sampleRateConverterQuality"
+        }
+      ],
+      "role": "symbol",
+      "title": "sampleRateConverterQuality",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudioconverter/samplerateconverterquality"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioConverterInputStatus": {
+      "abstract": [
+        {
+          "text": "An option that indicates the status of an audio converter input block.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAudioConverterInputStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioConverterInputStatus",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAudioConverterInputStatus"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAudioConverterInputStatus",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudioconverterinputstatus"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioConverterOutputStatus": {
+      "abstract": [
+        {
+          "text": "An option that indicates the return status of an audio converter method.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAudioConverterOutputStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioConverterOutputStatus",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAudioConverterOutputStatus"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAudioConverterOutputStatus",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudioconverteroutputstatus"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioConverterPrimeInfo": {
+      "abstract": [
+        {
+          "text": "Priming information for audio conversion.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAudioConverterPrimeInfo"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioConverterPrimeInfo",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAudioConverterPrimeInfo"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAudioConverterPrimeInfo",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudioconverterprimeinfo"
+    },
+    "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioConverterPrimeMethod": {
+      "abstract": [
+        {
+          "text": "Options for the prime method property.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVAudioConverterPrimeMethod"
+        }
+      ],
+      "identifier": "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioConverterPrimeMethod",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVAudioConverterPrimeMethod"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVAudioConverterPrimeMethod",
+      "type": "topic",
+      "url": "/documentation/avfaudio/avaudioconverterprimemethod"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Creating-an-Audio-Converter",
+      "identifiers": [
+        "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioConverter/init(from:to:)"
+      ],
+      "title": "Creating an Audio Converter"
+    },
+    {
+      "anchor": "Converting-Audio-Formats",
+      "identifiers": [
+        "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioConverter/convert(to:error:withInputFrom:)",
+        "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioConverter/convert(to:from:)",
+        "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioConverterInputStatus",
+        "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioConverterOutputStatus"
+      ],
+      "title": "Converting Audio Formats"
+    },
+    {
+      "anchor": "Resetting-an-Audio-Converter",
+      "identifiers": [
+        "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioConverter/reset()"
+      ],
+      "title": "Resetting an Audio Converter"
+    },
+    {
+      "anchor": "Getting-Audio-Converter-Properties",
+      "identifiers": [
+        "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioConverter/channelMap",
+        "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioConverter/dither",
+        "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioConverter/downmix",
+        "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioConverter/inputFormat",
+        "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioConverter/outputFormat",
+        "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioConverter/magicCookie",
+        "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioConverter/maximumOutputPacketSize"
+      ],
+      "title": "Getting Audio Converter Properties"
+    },
+    {
+      "anchor": "Getting-Bit-Rate-Properties",
+      "identifiers": [
+        "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioConverter/applicableEncodeBitRates",
+        "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioConverter/availableEncodeBitRates",
+        "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioConverter/availableEncodeChannelLayoutTags",
+        "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioConverter/bitRate",
+        "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioConverter/bitRateStrategy"
+      ],
+      "title": "Getting Bit Rate Properties"
+    },
+    {
+      "anchor": "Getting-Sample-Rate-Properties",
+      "identifiers": [
+        "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioConverter/sampleRateConverterQuality",
+        "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioConverter/sampleRateConverterAlgorithm",
+        "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioConverter/applicableEncodeSampleRates",
+        "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioConverter/availableEncodeSampleRates"
+      ],
+      "title": "Getting Sample Rate Properties"
+    },
+    {
+      "anchor": "Getting-Priming-Information",
+      "identifiers": [
+        "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioConverter/primeInfo",
+        "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioConverter/primeMethod",
+        "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioConverterPrimeInfo",
+        "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioConverterPrimeMethod"
+      ],
+      "title": "Getting Priming Information"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "9.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "9.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.11",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "9.0",
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "2.0",
+              "name": "watchOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "AVAudioConverter"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioConverter"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioConverter"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.avfaudio/documentation/AVFAudio"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Creating-an-Audio-Converter",
+              "identifiers": [
+                "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioConverter/init(from:to:)"
+              ],
+              "title": "Creating an Audio Converter"
+            },
+            {
+              "anchor": "Converting-Audio-Formats",
+              "identifiers": [
+                "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioConverter/convert(to:error:withInputFrom:)",
+                "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioConverter/convert(to:from:)",
+                "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioConverterInputStatus",
+                "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioConverterOutputStatus"
+              ],
+              "title": "Converting Audio Formats"
+            },
+            {
+              "anchor": "Resetting-an-Audio-Converter",
+              "identifiers": [
+                "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioConverter/reset()"
+              ],
+              "title": "Resetting an Audio Converter"
+            },
+            {
+              "anchor": "Getting-Audio-Converter-Properties",
+              "identifiers": [
+                "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioConverter/channelMap",
+                "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioConverter/dither",
+                "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioConverter/downmix",
+                "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioConverter/inputFormat",
+                "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioConverter/outputFormat",
+                "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioConverter/magicCookie",
+                "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioConverter/maximumOutputPacketSize"
+              ],
+              "title": "Getting Audio Converter Properties"
+            },
+            {
+              "anchor": "Getting-Bit-Rate-Properties",
+              "identifiers": [
+                "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioConverter/applicableEncodeBitRates",
+                "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioConverter/availableEncodeBitRates",
+                "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioConverter/availableEncodeChannelLayoutTags",
+                "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioConverter/bitRate",
+                "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioConverter/bitRateStrategy"
+              ],
+              "title": "Getting Bit Rate Properties"
+            },
+            {
+              "anchor": "Getting-Sample-Rate-Properties",
+              "identifiers": [
+                "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioConverter/sampleRateConverterQuality",
+                "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioConverter/sampleRateConverterAlgorithm",
+                "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioConverter/applicableEncodeSampleRates",
+                "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioConverter/availableEncodeSampleRates"
+              ],
+              "title": "Getting Sample Rate Properties"
+            },
+            {
+              "anchor": "Getting-Priming-Information",
+              "identifiers": [
+                "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioConverter/primeInfo",
+                "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioConverter/primeMethod",
+                "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioConverterPrimeInfo",
+                "doc://com.apple.avfaudio/documentation/AVFAudio/AVAudioConverterPrimeMethod"
+              ],
+              "title": "Getting Priming Information"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "AVAudioConverter"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioConverter~1bitRate/title",
+          "value": "bitRate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioConverter~1bitRate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "bitRate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioConverter~1primeInfo/title",
+          "value": "primeInfo"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioConverter~1primeInfo/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "primeInfo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioConverter~1convert(to:from:)/title",
+          "value": "convertToBuffer:fromBuffer:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioConverter~1convert(to:from:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "convertToBuffer:fromBuffer:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioConverter~1magicCookie/title",
+          "value": "magicCookie"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioConverter~1magicCookie/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "magicCookie"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioConverter~1downmix/title",
+          "value": "downmix"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioConverter~1downmix/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "downmix"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioConverterOutputStatus/title",
+          "value": "AVAudioConverterOutputStatus"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioConverterOutputStatus/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioConverterOutputStatus"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioConverterOutputStatus/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioConverterOutputStatus"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioConverter~1availableEncodeChannelLayoutTags/title",
+          "value": "availableEncodeChannelLayoutTags"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioConverter~1availableEncodeChannelLayoutTags/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "availableEncodeChannelLayoutTags"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioConverter~1init(from:to:)/title",
+          "value": "initFromFormat:toFormat:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioConverter~1init(from:to:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initFromFormat:toFormat:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioConverter~1convert(to:error:withInputFrom:)/title",
+          "value": "convertToBuffer:error:withInputFromBlock:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioConverter~1convert(to:error:withInputFrom:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "convertToBuffer:error:withInputFromBlock:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioConverterPrimeInfo/title",
+          "value": "AVAudioConverterPrimeInfo"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioConverterPrimeInfo/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioConverterPrimeInfo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioConverterPrimeInfo/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioConverterPrimeInfo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioConverter~1sampleRateConverterQuality/title",
+          "value": "sampleRateConverterQuality"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioConverter~1sampleRateConverterQuality/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "sampleRateConverterQuality"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioConverter~1availableEncodeBitRates/title",
+          "value": "availableEncodeBitRates"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioConverter~1availableEncodeBitRates/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "availableEncodeBitRates"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioConverter~1sampleRateConverterAlgorithm/title",
+          "value": "sampleRateConverterAlgorithm"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioConverter~1sampleRateConverterAlgorithm/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "sampleRateConverterAlgorithm"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioConverter~1availableEncodeSampleRates/title",
+          "value": "availableEncodeSampleRates"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioConverter~1availableEncodeSampleRates/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "availableEncodeSampleRates"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioConverter~1primeMethod/title",
+          "value": "primeMethod"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioConverter~1primeMethod/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "primeMethod"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioConverter~1applicableEncodeBitRates/title",
+          "value": "applicableEncodeBitRates"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioConverter~1applicableEncodeBitRates/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "applicableEncodeBitRates"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioConverter~1applicableEncodeSampleRates/title",
+          "value": "applicableEncodeSampleRates"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioConverter~1applicableEncodeSampleRates/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "applicableEncodeSampleRates"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioConverter~1dither/title",
+          "value": "dither"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioConverter~1dither/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "dither"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioConverter~1maximumOutputPacketSize/title",
+          "value": "maximumOutputPacketSize"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioConverter~1maximumOutputPacketSize/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "maximumOutputPacketSize"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioConverterPrimeMethod/title",
+          "value": "AVAudioConverterPrimeMethod"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioConverterPrimeMethod/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioConverterPrimeMethod"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioConverterPrimeMethod/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioConverterPrimeMethod"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioConverter/title",
+          "value": "AVAudioConverter"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioConverter/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioConverter"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioConverter/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioConverter"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioConverter~1reset()/title",
+          "value": "reset"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioConverter~1reset()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "reset"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioConverterInputStatus/title",
+          "value": "AVAudioConverterInputStatus"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioConverterInputStatus/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioConverterInputStatus"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioConverterInputStatus/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVAudioConverterInputStatus"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioConverter~1outputFormat/title",
+          "value": "outputFormat"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioConverter~1outputFormat/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "outputFormat"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioConverter~1inputFormat/title",
+          "value": "inputFormat"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioConverter~1inputFormat/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "inputFormat"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioConverter~1bitRateStrategy/title",
+          "value": "bitRateStrategy"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioConverter~1bitRateStrategy/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "bitRateStrategy"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioConverter~1channelMap/title",
+          "value": "channelMap"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avfaudio~1documentation~1AVFAudio~1AVAudioConverter~1channelMap/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "channelMap"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/avfaudio/avaudioconverter"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/avfaudio/avaudioconverter"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

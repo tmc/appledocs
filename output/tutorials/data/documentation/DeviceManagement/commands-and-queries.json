@@ -1,0 +1,1723 @@
+{
+  "abstract": [
+    {
+      "text": "Manage the configuration and behavior of your devices.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.devicemanagement/documentation/DeviceManagement/commands-and-queries"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Device Management"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Commands and Queries"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Mobile Device Management (MDM) protocol provides a way to tell a device to remotely execute certain management commands or queries. First, a device registers with the MDM server. Then, the server sends push notifications to the device when there are commands to process on the device.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the device receives the notification, it polls the server for the command, processes the command, and reports the command results to the server. The device then checks for other commands to process.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Mobile Device Management is for enterprise use only. To use it in your app, the Account Holder of your app’s development team must request the Mobile Device Management capability. See ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/contact/request/mdm-capability",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement": {
+      "abstract": [
+        {
+          "text": "Manage your organization’s devices remotely.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Device Management",
+      "type": "topic",
+      "url": "/documentation/devicemanagement"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Account-Configuration-Command": {
+      "abstract": [
+        {
+          "text": "Create and configure a local administrator account on a device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Account-Configuration-Command",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Account Configuration Command"
+        }
+      ],
+      "role": "symbol",
+      "title": "Account Configuration",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/account-configuration-command"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Activation-Lock-Bypass-Code-Command": {
+      "abstract": [
+        {
+          "text": "Get the code to bypass Activation Lock on a device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Activation-Lock-Bypass-Code-Command",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Activation Lock Bypass Code Command"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get the Bypass Code for Activation Lock",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/activation-lock-bypass-code-command"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Active-NSExtensions-Command": {
+      "abstract": [
+        {
+          "text": "Get a list of active extensions for a user on a device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Active-NSExtensions-Command",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Active NSExtensions Command"
+        }
+      ],
+      "role": "symbol",
+      "title": "List Active NSExtensions",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/active-nsextensions-command"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Apply-Redemption-Code-Command": {
+      "abstract": [
+        {
+          "text": "Complete the installation of an app using a redemption code.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Apply-Redemption-Code-Command",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Apply Redemption Code Command"
+        }
+      ],
+      "role": "symbol",
+      "title": "Apply a Redemption Code",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/apply-redemption-code-command"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Available-OS-Updates-Command": {
+      "abstract": [
+        {
+          "text": "Get a list of available operating-system updates for a device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Available-OS-Updates-Command",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Available OS Updates Command"
+        }
+      ],
+      "role": "symbol",
+      "title": "List the Available OS Updates",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/available-os-updates-command"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Certificate-List-Command": {
+      "abstract": [
+        {
+          "text": "Get a list of installed certificates on a device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Certificate-List-Command",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Certificate List Command"
+        }
+      ],
+      "role": "symbol",
+      "title": "List the Certificates",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/certificate-list-command"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Clear-Activation-Lock-Bypass-Code-Command": {
+      "abstract": [
+        {
+          "text": "Clear the Activation Lock bypass code on a device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Clear-Activation-Lock-Bypass-Code-Command",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Clear Activation Lock Bypass Code Command"
+        }
+      ],
+      "role": "symbol",
+      "title": "Clear the Bypass Code for Activation Lock",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/clear-activation-lock-bypass-code-command"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Clear-Passcode-Command": {
+      "abstract": [
+        {
+          "text": "Remove the passcode from a device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Clear-Passcode-Command",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Clear Passcode Command"
+        }
+      ],
+      "role": "symbol",
+      "title": "Clear the Passcode",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/clear-passcode-command"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Clear-Restrictions-Password-Command": {
+      "abstract": [
+        {
+          "text": "Clear the restrictions password and the restrictions on a device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Clear-Restrictions-Password-Command",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Clear Restrictions Password Command"
+        }
+      ],
+      "role": "symbol",
+      "title": "Clear the Restrictions Password",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/clear-restrictions-password-command"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Content-Caching-Information-Command": {
+      "abstract": [
+        {
+          "text": "Get the status of the content caches on a device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Content-Caching-Information-Command",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Content Caching Information Command"
+        }
+      ],
+      "role": "symbol",
+      "title": "Content Caching Information Command",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/content-caching-information-command"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Declarative-Management-Command": {
+      "abstract": [
+        {
+          "text": "Enable your server to support declarative management or trigger a declarative management synchronization operation on the device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Declarative-Management-Command",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Declarative Management Command"
+        }
+      ],
+      "role": "symbol",
+      "title": "Enable Declarative Management",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/declarative-management-command"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Delete-User-Command": {
+      "abstract": [
+        {
+          "text": "Delete a user’s account from a device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Delete-User-Command",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Delete User Command"
+        }
+      ],
+      "role": "symbol",
+      "title": "Delete a User",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/delete-user-command"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Device-Configured-Command": {
+      "abstract": [
+        {
+          "text": "Inform the device that it can allow the user to continue in Setup Assistant.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Device-Configured-Command",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Device Configured Command"
+        }
+      ],
+      "role": "symbol",
+      "title": "Release Device from Await Configuration",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/device-configured-command"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Device-Information-Command": {
+      "abstract": [
+        {
+          "text": "Get detailed information about a device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Device-Information-Command",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Device Information Command"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get Device Information",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/device-information-command"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Device-Location-Command": {
+      "abstract": [
+        {
+          "text": "Request the location of a device when in Lost Mode.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Device-Location-Command",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Device Location Command"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get the Location of a Device",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/device-location-command"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Device-Lock-Command": {
+      "abstract": [
+        {
+          "text": "Remotely and immediately lock a device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Device-Lock-Command",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Device Lock Command"
+        }
+      ],
+      "role": "symbol",
+      "title": "Lock a Device",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/device-lock-command"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Disable-Lost-Mode-Command": {
+      "abstract": [
+        {
+          "text": "Take the device out of Lost Mode.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Disable-Lost-Mode-Command",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Disable Lost Mode Command"
+        }
+      ],
+      "role": "symbol",
+      "title": "Disable Lost Mode",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/disable-lost-mode-command"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Disable-Remote-Desktop-Command": {
+      "abstract": [
+        {
+          "text": "Disable Remote Desktop on a device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Disable-Remote-Desktop-Command",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Disable Remote Desktop Command"
+        }
+      ],
+      "role": "symbol",
+      "title": "Disable Remote Desktop",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/disable-remote-desktop-command"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Enable-Lost-Mode-Command": {
+      "abstract": [
+        {
+          "text": "Enable Lost Mode on a device, which provides a message and phone number on the Lock screen.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Enable-Lost-Mode-Command",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Enable Lost Mode Command"
+        }
+      ],
+      "role": "symbol",
+      "title": "Enable Lost Mode",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/enable-lost-mode-command"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Enable-Remote-Desktop-Command": {
+      "abstract": [
+        {
+          "text": "Enable Remote Desktop on a device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Enable-Remote-Desktop-Command",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Enable Remote Desktop Command"
+        }
+      ],
+      "role": "symbol",
+      "title": "Enable Remote Desktop",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/enable-remote-desktop-command"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Erase-Device-Command": {
+      "abstract": [
+        {
+          "text": "Remotely and immediately erase a device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Erase-Device-Command",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Erase Device Command"
+        }
+      ],
+      "role": "symbol",
+      "title": "Erase a Device",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/erase-device-command"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Install-Application-Command": {
+      "abstract": [
+        {
+          "text": "Install a third-party app on a device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Install-Application-Command",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Install Application Command"
+        }
+      ],
+      "role": "symbol",
+      "title": "Install an App",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/install-application-command"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Install-Enterprise-Application-Command": {
+      "abstract": [
+        {
+          "text": "Install an enterprise app on a device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Install-Enterprise-Application-Command",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Install Enterprise Application Command"
+        }
+      ],
+      "role": "symbol",
+      "title": "Install an Enterprise App",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/install-enterprise-application-command"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Install-Media-Command": {
+      "abstract": [
+        {
+          "text": "Install a book on a device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Install-Media-Command",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Install Media Command"
+        }
+      ],
+      "role": "symbol",
+      "title": "Install Media",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/install-media-command"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Install-Profile-Command": {
+      "abstract": [
+        {
+          "text": "Install a configuration profile on a device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Install-Profile-Command",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Install Profile Command"
+        }
+      ],
+      "role": "symbol",
+      "title": "Install a Profile",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/install-profile-command"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Install-Provisioning-Profile-Command": {
+      "abstract": [
+        {
+          "text": "Install a provisioning profile on a device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Install-Provisioning-Profile-Command",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Install Provisioning Profile Command"
+        }
+      ],
+      "role": "symbol",
+      "title": "Install a Provisioning Profile",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/install-provisioning-profile-command"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Installed-Application-List-Command": {
+      "abstract": [
+        {
+          "text": "Get a list of the installed apps on a device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Installed-Application-List-Command",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Installed Application List Command"
+        }
+      ],
+      "role": "symbol",
+      "title": "List the Installed Apps",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/installed-application-list-command"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Invite-To-Program-Command": {
+      "abstract": [
+        {
+          "text": "Invite a user to join the Volume Purchase Program (VPP).",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Invite-To-Program-Command",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Invite To Program Command"
+        }
+      ],
+      "role": "symbol",
+      "title": "Invite to the Program",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/invite-to-program-command"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/LOM-Device-Request-Command": {
+      "abstract": [
+        {
+          "text": "Send requests to a device using lights-out management (LOM).",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/LOM-Device-Request-Command",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LOM Device Request Command"
+        }
+      ],
+      "role": "symbol",
+      "title": "LOM Device Request Command",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/lom-device-request-command"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/LOM-Setup-Request-Command": {
+      "abstract": [
+        {
+          "text": "Get information from a device to set up lights-out management (LOM).",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/LOM-Setup-Request-Command",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LOM Setup Request Command"
+        }
+      ],
+      "role": "symbol",
+      "title": "LOM Setup Request Command",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/lom-setup-request-command"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Log-Out-User-Command": {
+      "abstract": [
+        {
+          "text": "Force the current user to log out of a device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Log-Out-User-Command",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Log Out User Command"
+        }
+      ],
+      "role": "symbol",
+      "title": "Log Out the User",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/log-out-user-command"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Managed-Application-Attributes-Command": {
+      "abstract": [
+        {
+          "text": "Query attributes in managed apps on a device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Managed-Application-Attributes-Command",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Managed Application Attributes Command"
+        }
+      ],
+      "role": "symbol",
+      "title": "Query App Attributes",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/managed-application-attributes-command"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Managed-Application-Configuration-Command": {
+      "abstract": [
+        {
+          "text": "Get app configurations from managed apps on a device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Managed-Application-Configuration-Command",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Managed Application Configuration Command"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get App Configuration",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/managed-application-configuration-command"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Managed-Application-Feedback-Command": {
+      "abstract": [
+        {
+          "text": "Get app feedback from a managed app on the device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Managed-Application-Feedback-Command",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Managed Application Feedback Command"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get App Feedback",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/managed-application-feedback-command"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Managed-Application-List-Command": {
+      "abstract": [
+        {
+          "text": "Get the status of all managed apps on a device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Managed-Application-List-Command",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Managed Application List Command"
+        }
+      ],
+      "role": "symbol",
+      "title": "List the Managed Apps",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/managed-application-list-command"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Managed-Media-List-Command": {
+      "abstract": [
+        {
+          "text": "Get a list of the managed books on a device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Managed-Media-List-Command",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Managed Media List Command"
+        }
+      ],
+      "role": "symbol",
+      "title": "List the Managed Media",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/managed-media-list-command"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/NSExtension-Mappings-Command": {
+      "abstract": [
+        {
+          "text": "Get a list of the installed extensions for a user on a device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/NSExtension-Mappings-Command",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSExtension Mappings Command"
+        }
+      ],
+      "role": "symbol",
+      "title": "List the NSExtensions",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/nsextension-mappings-command"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/OS-Update-Status-Command": {
+      "abstract": [
+        {
+          "text": "Get the status of operating-system updates on a device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/OS-Update-Status-Command",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "OS Update Status Command"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get the OS Update Status",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/os-update-status-command"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Play-Lost-Mode-Sound-Command": {
+      "abstract": [
+        {
+          "text": "Play the Lost Mode sound on a device that’s in Lost Mode.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Play-Lost-Mode-Sound-Command",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Play Lost Mode Sound Command"
+        }
+      ],
+      "role": "symbol",
+      "title": "Play the Lost Mode Sound",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/play-lost-mode-sound-command"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Profile-List-Command": {
+      "abstract": [
+        {
+          "text": "Get a list of installed profiles on a device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Profile-List-Command",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Profile List Command"
+        }
+      ],
+      "role": "symbol",
+      "title": "List the Installed Profiles",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/profile-list-command"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Provisioning-Profile-List-Command": {
+      "abstract": [
+        {
+          "text": "Get a list of installed provisioning profiles on a device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Provisioning-Profile-List-Command",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Provisioning Profile List Command"
+        }
+      ],
+      "role": "symbol",
+      "title": "List the Installed Provisioning Profiles",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/provisioning-profile-list-command"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Refresh-Cellular-Plans-Command": {
+      "abstract": [
+        {
+          "text": "Query a carrier URL for active eSIM cellular-plan profiles on a device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Refresh-Cellular-Plans-Command",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Refresh Cellular Plans Command"
+        }
+      ],
+      "role": "symbol",
+      "title": "Update the eSIM Cellular Plan",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/refresh-cellular-plans-command"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Remove-Application-Command": {
+      "abstract": [
+        {
+          "text": "Remove an installed managed app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Remove-Application-Command",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Remove Application Command"
+        }
+      ],
+      "role": "symbol",
+      "title": "Remove an App",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/remove-application-command"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Remove-Media-Command": {
+      "abstract": [
+        {
+          "text": "Remove a previously installed book from a device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Remove-Media-Command",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Remove Media Command"
+        }
+      ],
+      "role": "symbol",
+      "title": "Remove Media",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/remove-media-command"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Remove-Profile-Command": {
+      "abstract": [
+        {
+          "text": "Remove a previously installed profile from the device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Remove-Profile-Command",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Remove Profile Command"
+        }
+      ],
+      "role": "symbol",
+      "title": "Remove a Profile",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/remove-profile-command"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Remove-Provisioning-Profile-Command": {
+      "abstract": [
+        {
+          "text": "Remove a previously installed provisioning profile from a device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Remove-Provisioning-Profile-Command",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Remove Provisioning Profile Command"
+        }
+      ],
+      "role": "symbol",
+      "title": "Remove a Provisioning Profile",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/remove-provisioning-profile-command"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Request-Mirroring-Command": {
+      "abstract": [
+        {
+          "text": "Prompt the user to share their screen using AirPlay Mirroring.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Request-Mirroring-Command",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Request Mirroring Command"
+        }
+      ],
+      "role": "symbol",
+      "title": "Start AirPlay Mirroring",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/request-mirroring-command"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Request-Unlock-Token-Command": {
+      "abstract": [
+        {
+          "text": "Request an unlock token from a device.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Request-Unlock-Token-Command",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Request Unlock Token Command"
+        }
+      ],
+      "role": "symbol",
+      "title": "Request the Unlock Token",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/request-unlock-token-command"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Restart-Device-Command": {
+      "abstract": [
+        {
+          "text": "Remotely and immediately restart a device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Restart-Device-Command",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Restart Device Command"
+        }
+      ],
+      "role": "symbol",
+      "title": "Restart a Device",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/restart-device-command"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Restrictions-Command": {
+      "abstract": [
+        {
+          "text": "Get a list of restrictions on the device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Restrictions-Command",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Restrictions Command"
+        }
+      ],
+      "role": "symbol",
+      "title": "List the Installed Restrictions",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/restrictions-command"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Rotate-FileVault-Key-Command": {
+      "abstract": [
+        {
+          "text": "Change the FileVault primary password on a device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Rotate-FileVault-Key-Command",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Rotate FileVault Key Command"
+        }
+      ],
+      "role": "symbol",
+      "title": "Rotate the FileVault Key",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/rotate-filevault-key-command"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Schedule-OS-Update-Command": {
+      "abstract": [
+        {
+          "text": "Schedule an update of the operating system on a device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Schedule-OS-Update-Command",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Schedule OS Update Command"
+        }
+      ],
+      "role": "symbol",
+      "title": "Schedule an OS Update",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/schedule-os-update-command"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Schedule-OS-Update-Scan-Command": {
+      "abstract": [
+        {
+          "text": "Schedule a background scan for operating-system updates on a device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Schedule-OS-Update-Scan-Command",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Schedule OS Update Scan Command"
+        }
+      ],
+      "role": "symbol",
+      "title": "Schedule an OS Update Scan",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/schedule-os-update-scan-command"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Security-Info-Command": {
+      "abstract": [
+        {
+          "text": "Get security-related information about a device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Security-Info-Command",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Security Info Command"
+        }
+      ],
+      "role": "symbol",
+      "title": "Security Information",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/security-info-command"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Set-Auto-Admin-Password-Command": {
+      "abstract": [
+        {
+          "text": "Update the local administrator account password.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Set-Auto-Admin-Password-Command",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Set Auto Admin Password Command"
+        }
+      ],
+      "role": "symbol",
+      "title": "Set the Local Administrator Password",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/set-auto-admin-password-command"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Set-Firmware-Password-Command": {
+      "abstract": [
+        {
+          "text": "Change or clear the firmware password on a device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Set-Firmware-Password-Command",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Set Firmware Password Command"
+        }
+      ],
+      "role": "symbol",
+      "title": "Set the Firmware Password",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/set-firmware-password-command"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Set-Recovery-Lock-Command": {
+      "abstract": [
+        {
+          "text": "Set or clear the Recovery Lock password.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Set-Recovery-Lock-Command",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Set Recovery Lock Command"
+        }
+      ],
+      "role": "symbol",
+      "title": "Set Recovery Lock Command",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/set-recovery-lock-command"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Settings-Command": {
+      "abstract": [
+        {
+          "text": "Configure settings on a device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Settings-Command",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Settings Command"
+        }
+      ],
+      "role": "symbol",
+      "title": "Configure Settings",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/settings-command"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Shut-Down-Device-Command": {
+      "abstract": [
+        {
+          "text": "Remotely and immediately shut down a device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Shut-Down-Device-Command",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Shut Down Device Command"
+        }
+      ],
+      "role": "symbol",
+      "title": "Shut Down a Device",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/shut-down-device-command"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Stop-Mirroring-Command": {
+      "abstract": [
+        {
+          "text": "Stop mirroring the display on another device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Stop-Mirroring-Command",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Stop Mirroring Command"
+        }
+      ],
+      "role": "symbol",
+      "title": "Stop AirPlay Mirroring",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/stop-mirroring-command"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Unlock-User-Account-Command": {
+      "abstract": [
+        {
+          "text": "Unlock a user account that the system locked because of too many failed password attempts.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Unlock-User-Account-Command",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Unlock User Account Command"
+        }
+      ],
+      "role": "symbol",
+      "title": "Unlock a User Account",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/unlock-user-account-command"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/User-Configured-Command": {
+      "abstract": [
+        {
+          "text": "Informs the device that it can continue past Setup Assistant and finish login.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/User-Configured-Command",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "User Configured Command"
+        }
+      ],
+      "role": "symbol",
+      "title": "User Configured Command",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/user-configured-command"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/User-List-Command": {
+      "abstract": [
+        {
+          "text": "Get a list of users with active accounts on a device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/User-List-Command",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "User List Command"
+        }
+      ],
+      "role": "symbol",
+      "title": "List the User Accounts",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/user-list-command"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Validate-Applications-Command": {
+      "abstract": [
+        {
+          "text": "Force validation of developer and universal provisioning profiles for enterprise apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Validate-Applications-Command",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Validate Applications Command"
+        }
+      ],
+      "role": "symbol",
+      "title": "Validate Apps",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/validate-applications-command"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Verify-Firmware-Password-Command": {
+      "abstract": [
+        {
+          "text": "Verify the firmware password on a device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Verify-Firmware-Password-Command",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Verify Firmware Password Command"
+        }
+      ],
+      "role": "symbol",
+      "title": "Verify the Firmware Password",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/verify-firmware-password-command"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Verify-Recovery-Lock-Command": {
+      "abstract": [
+        {
+          "text": "Verify the device’s Recovery Lock password.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Verify-Recovery-Lock-Command",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Verify Recovery Lock Command"
+        }
+      ],
+      "role": "symbol",
+      "title": "Verify Recovery Lock Command",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/verify-recovery-lock-command"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/check-in": {
+      "abstract": [
+        {
+          "text": "Authenticate devices and maintain push tokens with these commands.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/check-in",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Check-in",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/check-in"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/implementing-device-management": {
+      "abstract": [
+        {
+          "text": "Set up an MDM server and send commands to managed devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/implementing-device-management",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Implementing Device Management",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/implementing-device-management"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/user-enrollment": {
+      "abstract": [
+        {
+          "text": "Authenticate devices using an user identity focused workflow.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/user-enrollment",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "User Enrollment",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/user-enrollment"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/contact/request/mdm-capability": {
+      "identifier": "https://developer.apple.com/contact/request/mdm-capability",
+      "title": "Request a Mobile Device Management Capability",
+      "titleInlineContent": [
+        {
+          "text": "Request a Mobile Device Management Capability",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/contact/request/mdm-capability"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "MDM-Protocol",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/implementing-device-management",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/check-in",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/user-enrollment"
+      ],
+      "title": "MDM Protocol"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Profile-Management",
+      "identifiers": [
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/Install-Profile-Command",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/Profile-List-Command",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/Remove-Profile-Command",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/Install-Provisioning-Profile-Command",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/Provisioning-Profile-List-Command",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/Remove-Provisioning-Profile-Command"
+      ],
+      "title": "Profile Management"
+    },
+    {
+      "anchor": "Device-Details",
+      "identifiers": [
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/Installed-Application-List-Command",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/Device-Information-Command",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/Device-Configured-Command",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/User-Configured-Command",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/Restrictions-Command"
+      ],
+      "title": "Device Details"
+    },
+    {
+      "anchor": "Device-State",
+      "identifiers": [
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/Erase-Device-Command",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/Device-Lock-Command",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/Restart-Device-Command",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/Shut-Down-Device-Command"
+      ],
+      "title": "Device State"
+    },
+    {
+      "anchor": "Managed-Apps",
+      "identifiers": [
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/Install-Application-Command",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/Install-Enterprise-Application-Command",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/Apply-Redemption-Code-Command",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/Remove-Application-Command",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/Validate-Applications-Command",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/Managed-Application-List-Command",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/Managed-Application-Attributes-Command",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/Managed-Application-Configuration-Command",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/Managed-Application-Feedback-Command"
+      ],
+      "title": "Managed Apps"
+    },
+    {
+      "anchor": "Managed-Media",
+      "identifiers": [
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/Install-Media-Command",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/Managed-Media-List-Command",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/Remove-Media-Command"
+      ],
+      "title": "Managed Media"
+    },
+    {
+      "anchor": "Accounts",
+      "identifiers": [
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/Account-Configuration-Command",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/Invite-To-Program-Command"
+      ],
+      "title": "Accounts"
+    },
+    {
+      "anchor": "Passwords",
+      "identifiers": [
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/Clear-Passcode-Command",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/Clear-Restrictions-Password-Command",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/Unlock-User-Account-Command",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/Set-Auto-Admin-Password-Command",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/Set-Firmware-Password-Command",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/Verify-Firmware-Password-Command"
+      ],
+      "title": "Passwords"
+    },
+    {
+      "anchor": "Updates",
+      "identifiers": [
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/Schedule-OS-Update-Scan-Command",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/Available-OS-Updates-Command",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/Schedule-OS-Update-Command",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/OS-Update-Status-Command"
+      ],
+      "title": "Updates"
+    },
+    {
+      "anchor": "Lost-Device",
+      "identifiers": [
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/Enable-Lost-Mode-Command",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/Device-Location-Command",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/Play-Lost-Mode-Sound-Command",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/Disable-Lost-Mode-Command"
+      ],
+      "title": "Lost Device"
+    },
+    {
+      "anchor": "Recovery-Lock",
+      "identifiers": [
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/Set-Recovery-Lock-Command",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/Verify-Recovery-Lock-Command"
+      ],
+      "title": "Recovery Lock"
+    },
+    {
+      "anchor": "Content-Caching",
+      "identifiers": [
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/Content-Caching-Information-Command"
+      ],
+      "title": "Content Caching"
+    },
+    {
+      "anchor": "AirPlay-Mirroring",
+      "identifiers": [
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/Request-Mirroring-Command",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/Stop-Mirroring-Command"
+      ],
+      "title": "AirPlay Mirroring"
+    },
+    {
+      "anchor": "eSim-Management",
+      "identifiers": [
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/Refresh-Cellular-Plans-Command"
+      ],
+      "title": "eSim Management"
+    },
+    {
+      "anchor": "Managed-Settings",
+      "identifiers": [
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/Disable-Remote-Desktop-Command",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/Enable-Remote-Desktop-Command",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/Settings-Command"
+      ],
+      "title": "Managed Settings"
+    },
+    {
+      "anchor": "Lights-Out-Management",
+      "identifiers": [
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/LOM-Device-Request-Command",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/LOM-Setup-Request-Command"
+      ],
+      "title": "Lights-Out Management"
+    },
+    {
+      "anchor": "Security",
+      "identifiers": [
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/Security-Info-Command",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/Certificate-List-Command",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/Activation-Lock-Bypass-Code-Command",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/Clear-Activation-Lock-Bypass-Code-Command",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/Rotate-FileVault-Key-Command"
+      ],
+      "title": "Security"
+    },
+    {
+      "anchor": "Extensions",
+      "identifiers": [
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/Active-NSExtensions-Command",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/NSExtension-Mappings-Command"
+      ],
+      "title": "Extensions"
+    },
+    {
+      "anchor": "User-Management",
+      "identifiers": [
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/User-List-Command",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/Log-Out-User-Command",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/Delete-User-Command"
+      ],
+      "title": "User Management"
+    },
+    {
+      "anchor": "Declarative-Management",
+      "identifiers": [
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/Declarative-Management-Command"
+      ],
+      "title": "Declarative Management"
+    },
+    {
+      "anchor": "Deprecated",
+      "identifiers": [
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/Request-Unlock-Token-Command"
+      ],
+      "title": "Deprecated"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/devicemanagement/commands-and-queries"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

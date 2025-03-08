@@ -1,0 +1,1157 @@
+{
+  "abstract": [
+    {
+      "text": "Access a low-level interprocess communication mechanism.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.xpc/documentation/XPC"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "XPC",
+    "modules": [
+      {
+        "name": "XPC"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "17.4",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "17.4",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "beta": false,
+        "introducedAt": "10.10",
+        "name": "macOS"
+      }
+    ],
+    "role": "collection",
+    "roleHeading": "Framework",
+    "symbolKind": "module",
+    "title": "XPC"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "XPC provides a lightweight mechanism for basic interprocess communication. It allows you to create lightweight helper tools, called ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "XPC services",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", that perform work on behalf of your app. The ",
+              "type": "text"
+            },
+            {
+              "code": "launchd",
+              "type": "codeVoice"
+            },
+            {
+              "text": " system daemon manages these services, launching them on demand, shutting them down when idle, and restarting them if they crash. Benefits of XPC services include:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Centralize work from multiple processes or mediate access to a shared resource.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Delegate work so it continues beyond a client’s life cycle.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Privilege isolation to narrow the scope of access for different functionality.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Clients that make use of these services rely on peer-to-peer XPC connections to communicate across process boundaries. There are two sides to each connection. One side, the ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "listener",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " or server, responds to incoming connection requests and performs tasks. The other side, the client, initiates connections to an XPC service by creating a ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "session",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " with a listener. Once a client establishes a connection to the listener, it sends messages and receives replies from the service.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The type of XPC service you build depends on the requirements of the work it performs. The following table summarizes the types of services available and some differences in how they behave:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Service Type",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Process Environment",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Launch Agent",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "One process per logged-in user, running as that user. If multiple users log in using fast user switching, each user has their own running process.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Launch Daemon",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "One systemwide process that runs at a higher privilege level, as the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "root",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " user. LaunchDaemons can’t initiate connections to user processes but can respond to requests from them.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "XPC Service",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "One process per client of the service, tied to the lifetime of the client. When a client process connects to the service, ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "launchd",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " starts a process for the XPC service. When the client process exits, so does the XPC service. You bundle this type of service inside of an app or framework.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "The LaunchAgent and LaunchDaemon types require special installation and configuration. Prior to macOS 13, apps typically used installation scripts to configure these service types. In macOS 13 and later, the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/ServiceManagement",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " framework provides a new structure for packaging and installing these service types.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can build an XPC service using C, Swift, or Objective-C. There are both high- and low-level APIs for using XPC. If your project uses the Foundation framework, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsxpcconnection",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " provides a high-level object-oriented API that enables a transparent remote method dispatch mechanism between processes. Using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsxpcconnection",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in the Foundation framework lets you design a well-defined protocol for clients to use. If your project doesn’t or can’t link against Foundation, use the lower-level ",
+              "type": "text"
+            },
+            {
+              "code": "libSystem",
+              "type": "codeVoice"
+            },
+            {
+              "text": " APIs in the XPC framework.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/ServiceManagement": {
+      "abstract": [
+        {
+          "text": "Manage startup items, launch agents, and launch daemons from within an app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ServiceManagement",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Service Management",
+      "type": "topic",
+      "url": "/documentation/ServiceManagement"
+    },
+    "doc://com.apple.documentation/documentation/Updates/XPC": {
+      "abstract": [
+        {
+          "text": "Learn about important changes to XPC.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Updates/XPC",
+      "kind": "article",
+      "role": "article",
+      "title": "XPC updates",
+      "type": "topic",
+      "url": "/documentation/Updates/XPC"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsxpcconnection": {
+      "abstract": [
+        {
+          "text": "A bidirectional communication channel between two processes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSXPCConnection"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsxpcconnection",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSXPCConnection",
+      "type": "topic",
+      "url": "/documentation/foundation/nsxpcconnection"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.xpc/documentation/XPC": {
+      "abstract": [
+        {
+          "text": "Access a low-level interprocess communication mechanism.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "XPC",
+      "type": "topic",
+      "url": "/documentation/xpc"
+    },
+    "doc://com.apple.xpc/documentation/XPC/OS_xpc_session-c.protocol": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "OS_xpc_session"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/OS_xpc_session-c.protocol",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OS_xpc_session",
+      "type": "topic",
+      "url": "/documentation/xpc/os_xpc_session-c.protocol"
+    },
+    "doc://com.apple.xpc/documentation/XPC/OS_xpc_session-swift.class": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "OS_xpc_session"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/OS_xpc_session-swift.class",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "OS_xpc_session"
+        }
+      ],
+      "role": "symbol",
+      "title": "OS_xpc_session",
+      "type": "topic",
+      "url": "/documentation/xpc/os_xpc_session-swift.class"
+    },
+    "doc://com.apple.xpc/documentation/XPC/XPC-macros": {
+      "abstract": [
+        {
+          "text": "Macros for use with XPC when coding in Objective-C.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/XPC-macros",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Macros",
+      "type": "topic",
+      "url": "/documentation/xpc/xpc-macros"
+    },
+    "doc://com.apple.xpc/documentation/XPC/XPCListener": {
+      "abstract": [
+        {
+          "text": "A type that performs tasks for clients across process boundaries.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "XPCListener"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/XPCListener",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "XPCListener"
+        }
+      ],
+      "role": "symbol",
+      "title": "XPCListener",
+      "type": "topic",
+      "url": "/documentation/xpc/xpclistener"
+    },
+    "doc://com.apple.xpc/documentation/XPC/XPCReceivedMessage": {
+      "abstract": [
+        {
+          "text": "A type that represents a message sent between a session and a listener.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "XPCReceivedMessage"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/XPCReceivedMessage",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "XPCReceivedMessage"
+        }
+      ],
+      "role": "symbol",
+      "title": "XPCReceivedMessage",
+      "type": "topic",
+      "url": "/documentation/xpc/xpcreceivedmessage"
+    },
+    "doc://com.apple.xpc/documentation/XPC/XPCSession": {
+      "abstract": [
+        {
+          "text": "A type that sends messages to a server process.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "XPCSession"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/XPCSession",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "XPCSession"
+        }
+      ],
+      "role": "symbol",
+      "title": "XPCSession",
+      "type": "topic",
+      "url": "/documentation/xpc/xpcsession"
+    },
+    "doc://com.apple.xpc/documentation/XPC/XPC_CSTRING": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "XPC_CSTRING"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/XPC_CSTRING",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "XPC_CSTRING",
+      "type": "topic",
+      "url": "/documentation/xpc/xpc_cstring"
+    },
+    "doc://com.apple.xpc/documentation/XPC/XPC_GIVES_REFERENCE": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "XPC_GIVES_REFERENCE"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/XPC_GIVES_REFERENCE",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "XPC_GIVES_REFERENCE",
+      "type": "topic",
+      "url": "/documentation/xpc/xpc_gives_reference"
+    },
+    "doc://com.apple.xpc/documentation/XPC/XPC_PTR_ASSUMES_SINGLE": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "XPC_PTR_ASSUMES_SINGLE"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/XPC_PTR_ASSUMES_SINGLE",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "XPC_PTR_ASSUMES_SINGLE",
+      "type": "topic",
+      "url": "/documentation/xpc/xpc_ptr_assumes_single"
+    },
+    "doc://com.apple.xpc/documentation/XPC/XPC_SINGLE": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "XPC_SINGLE"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/XPC_SINGLE",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "XPC_SINGLE",
+      "type": "topic",
+      "url": "/documentation/xpc/xpc_single"
+    },
+    "doc://com.apple.xpc/documentation/XPC/XPC_TRANSACTION_DEPRECATED": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "XPC_TRANSACTION_DEPRECATED"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/XPC_TRANSACTION_DEPRECATED",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "XPC_TRANSACTION_DEPRECATED",
+      "type": "topic",
+      "url": "/documentation/xpc/xpc_transaction_deprecated"
+    },
+    "doc://com.apple.xpc/documentation/XPC/XPC_UNRETAINED": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "XPC_UNRETAINED"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/XPC_UNRETAINED",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "XPC_UNRETAINED",
+      "type": "topic",
+      "url": "/documentation/xpc/xpc_unretained"
+    },
+    "doc://com.apple.xpc/documentation/XPC/XPC_UNSAFE_INDEXABLE": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "XPC_UNSAFE_INDEXABLE"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/XPC_UNSAFE_INDEXABLE",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "XPC_UNSAFE_INDEXABLE",
+      "type": "topic",
+      "url": "/documentation/xpc/xpc_unsafe_indexable"
+    },
+    "doc://com.apple.xpc/documentation/XPC/creating-xpc-services": {
+      "abstract": [
+        {
+          "text": "Configure a listener, establish a client session, and exchange messages between processes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/creating-xpc-services",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating XPC services",
+      "type": "topic",
+      "url": "/documentation/xpc/creating-xpc-services"
+    },
+    "doc://com.apple.xpc/documentation/XPC/launchd": {
+      "abstract": [
+        {
+          "text": "Browse APIs for interacting with ",
+          "type": "text"
+        },
+        {
+          "code": "launchd",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/launchd",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "launchd",
+      "type": "topic",
+      "url": "/documentation/xpc/launchd"
+    },
+    "doc://com.apple.xpc/documentation/XPC/utilities": {
+      "abstract": [
+        {
+          "text": "Browse debugging utilities and constants to use with the XPC APIs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/utilities",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Utilities",
+      "type": "topic",
+      "url": "/documentation/xpc/utilities"
+    },
+    "doc://com.apple.xpc/documentation/XPC/xpc-activities": {
+      "abstract": [
+        {
+          "text": "Schedule background activities for the system to execute.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/xpc-activities",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "XPC activities",
+      "type": "topic",
+      "url": "/documentation/xpc/xpc-activities"
+    },
+    "doc://com.apple.xpc/documentation/XPC/xpc-connections": {
+      "abstract": [
+        {
+          "text": "Create and manage connections to services using connection-based APIs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/xpc-connections",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "XPC connections",
+      "type": "topic",
+      "url": "/documentation/xpc/xpc-connections"
+    },
+    "doc://com.apple.xpc/documentation/XPC/xpc-events": {
+      "abstract": [
+        {
+          "text": "Respond on demand to IOKit events and notifications.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/xpc-events",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "XPC events",
+      "type": "topic",
+      "url": "/documentation/xpc/xpc-events"
+    },
+    "doc://com.apple.xpc/documentation/XPC/xpc-objects": {
+      "abstract": [
+        {
+          "text": "Encapsulate data in objects that represent primitive types, collections, and more.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/xpc-objects",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "XPC objects",
+      "type": "topic",
+      "url": "/documentation/xpc/xpc-objects"
+    },
+    "doc://com.apple.xpc/documentation/XPC/xpc_listener_t": {
+      "abstract": [
+        {
+          "text": "A C type that performs tasks for clients across process boundaries.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "xpc_listener_t"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/xpc_listener_t",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "xpc_listener_t"
+        }
+      ],
+      "role": "symbol",
+      "title": "xpc_listener_t",
+      "type": "topic",
+      "url": "/documentation/xpc/xpc_listener_t"
+    },
+    "doc://com.apple.xpc/documentation/XPC/xpc_session_t-10if0": {
+      "abstract": [
+        {
+          "text": "A C type that sends messages to a server process.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "xpc_session_t"
+        }
+      ],
+      "identifier": "doc://com.apple.xpc/documentation/XPC/xpc_session_t-10if0",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "xpc_session_t"
+        }
+      ],
+      "role": "symbol",
+      "title": "xpc_session_t",
+      "type": "topic",
+      "url": "/documentation/xpc/xpc_session_t-10if0"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Essentials",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/Updates/XPC"
+      ],
+      "title": "Essentials"
+    },
+    {
+      "anchor": "Interprocess-communication",
+      "identifiers": [
+        "doc://com.apple.xpc/documentation/XPC/creating-xpc-services",
+        "doc://com.apple.xpc/documentation/XPC/XPCListener",
+        "doc://com.apple.xpc/documentation/XPC/XPCSession",
+        "doc://com.apple.xpc/documentation/XPC/XPCReceivedMessage",
+        "doc://com.apple.xpc/documentation/XPC/xpc_listener_t",
+        "doc://com.apple.xpc/documentation/XPC/xpc_session_t-10if0"
+      ],
+      "title": "Interprocess communication"
+    },
+    {
+      "anchor": "Tasks",
+      "identifiers": [
+        "doc://com.apple.xpc/documentation/XPC/xpc-activities"
+      ],
+      "title": "Tasks"
+    },
+    {
+      "anchor": "Events",
+      "identifiers": [
+        "doc://com.apple.xpc/documentation/XPC/xpc-events"
+      ],
+      "title": "Events"
+    },
+    {
+      "anchor": "Additional-Types",
+      "identifiers": [
+        "doc://com.apple.xpc/documentation/XPC/xpc-objects",
+        "doc://com.apple.xpc/documentation/XPC/utilities",
+        "doc://com.apple.xpc/documentation/XPC/xpc-connections"
+      ],
+      "title": "Additional Types"
+    },
+    {
+      "anchor": "Classes",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.xpc/documentation/XPC/OS_xpc_session-swift.class"
+      ],
+      "title": "Classes"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Essentials",
+              "identifiers": [
+                "doc://com.apple.documentation/documentation/Updates/XPC"
+              ],
+              "title": "Essentials"
+            },
+            {
+              "anchor": "Interprocess-communication",
+              "identifiers": [
+                "doc://com.apple.xpc/documentation/XPC/creating-xpc-services",
+                "doc://com.apple.xpc/documentation/XPC/xpc_listener_t",
+                "doc://com.apple.xpc/documentation/XPC/xpc_session_t-10if0"
+              ],
+              "title": "Interprocess communication"
+            },
+            {
+              "anchor": "Tasks",
+              "identifiers": [
+                "doc://com.apple.xpc/documentation/XPC/xpc-activities"
+              ],
+              "title": "Tasks"
+            },
+            {
+              "anchor": "Events",
+              "identifiers": [
+                "doc://com.apple.xpc/documentation/XPC/xpc-events"
+              ],
+              "title": "Events"
+            },
+            {
+              "anchor": "Additional-types",
+              "identifiers": [
+                "doc://com.apple.xpc/documentation/XPC/xpc-objects",
+                "doc://com.apple.xpc/documentation/XPC/launchd",
+                "doc://com.apple.xpc/documentation/XPC/utilities",
+                "doc://com.apple.xpc/documentation/XPC/xpc-connections"
+              ],
+              "title": "Additional types"
+            },
+            {
+              "anchor": "Reference",
+              "identifiers": [
+                "doc://com.apple.xpc/documentation/XPC/XPC-macros"
+              ],
+              "title": "Reference"
+            },
+            {
+              "anchor": "Protocols",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.xpc/documentation/XPC/OS_xpc_session-c.protocol"
+              ],
+              "title": "Protocols"
+            },
+            {
+              "anchor": "Macros",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.xpc/documentation/XPC/XPC_CSTRING",
+                "doc://com.apple.xpc/documentation/XPC/XPC_GIVES_REFERENCE",
+                "doc://com.apple.xpc/documentation/XPC/XPC_PTR_ASSUMES_SINGLE",
+                "doc://com.apple.xpc/documentation/XPC/XPC_SINGLE",
+                "doc://com.apple.xpc/documentation/XPC/XPC_TRANSACTION_DEPRECATED",
+                "doc://com.apple.xpc/documentation/XPC/XPC_UNRETAINED",
+                "doc://com.apple.xpc/documentation/XPC/XPC_UNSAFE_INDEXABLE"
+              ],
+              "title": "Macros"
+            }
+          ]
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xpc~1documentation~1XPC~1xpc_session_t-10if0/title",
+          "value": "xpc_session_t"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xpc~1documentation~1XPC~1xpc_session_t-10if0/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "xpc_session_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xpc~1documentation~1XPC~1xpc_session_t-10if0/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "xpc_session_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xpc~1documentation~1XPC~1xpc_listener_t/title",
+          "value": "xpc_listener_t"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xpc~1documentation~1XPC~1xpc_listener_t/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "xpc_listener_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.xpc~1documentation~1XPC~1xpc_listener_t/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "xpc_listener_t"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/xpc"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/xpc"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

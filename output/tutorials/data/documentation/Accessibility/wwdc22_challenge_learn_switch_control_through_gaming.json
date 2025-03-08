@@ -1,0 +1,561 @@
+{
+  "abstract": [
+    {
+      "text": "Play a card-matching game using Switch Control.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Accessibility/documentation/Accessibility"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Accessibility/documentation/Accessibility",
+        "doc://com.apple.Accessibility/documentation/Accessibility/assistive-technologies",
+        "doc://com.apple.Accessibility/documentation/Accessibility/switch-control"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Accessibility/documentation/Accessibility",
+        "doc://com.apple.Accessibility/documentation/Accessibility/mobility",
+        "doc://com.apple.Accessibility/documentation/Accessibility/switch-control"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Accessibility/documentation/Accessibility/wwdc22_challenge_learn_switch_control_through_gaming"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Accessibility"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "16.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "16.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "14.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "WWDC22 Challenge: Learn Switch Control through gaming"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "This is a companion project for WWDC22 Challenge ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/news/?id=2nfiv7v0",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Configure-the-sample-code-project",
+          "level": 3,
+          "text": "Configure the sample code project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This project requires an iPhone or iPad, that’s running iOS 16 or iPadOS 16. It doesn’t support running in Simulator.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Configure-and-enable-switch-control",
+          "level": 3,
+          "text": "Configure and enable switch control",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You need to enable and configure Switch Control to play this game. Switch Control is an accessibility feature that helps you interact with your device using a variety of software and hardware switches. These can be located on the screen, and can use the camera, sounds, or connected accessories.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "First, configure a switch for Switch Control:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Open the Settings app.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Choose Accessibility > Switch Control > Switches.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select Add New Switch, select a type of switch, then select an action for the switch.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Alternatively, you can choose Bluetooth Devices, select a device to use as a switch, and select an action for that switch.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you’ve finished setting up your switch, you’re ready to enable Switch Control on your device. If you don’t typically use Switch Control, you can set up an Accessibility Shortcut to quickly enable or disable it for the purposes of this challenge. Here’s how:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Open the Settings app.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Choose Accessibility > Accessibility Shortcut.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select Switch Control. Make sure this is the only enabled item in the list.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can now triple-click the Side button or Home button on your device to trigger the Accessibility Shortcut and toggle Switch Control on or off.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "70429c924eac/WWDC22ChallengeLearnSwitchControlThroughGaming.zip": {
+      "checksum": "70429c924eac5cb42bfd54c7bb588b8025565c0e953457e8c0334df9b899295fd9e0444922e0e38254e92396e529c76d79eb20aef8eab0dbc18f5c3078dcdfea",
+      "identifier": "70429c924eac/WWDC22ChallengeLearnSwitchControlThroughGaming.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/70429c924eac/WWDC22ChallengeLearnSwitchControlThroughGaming.zip"
+    },
+    "Accessibility-PageImage-card.png": {
+      "alt": "",
+      "identifier": "Accessibility-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/718b8a161d77a3423dde2dd53ac35ffb/Accessibility-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ed433f19cfa41ebf0c9f495a066b6bbd/Accessibility-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "accessibility-card-mobility.png": {
+      "alt": "An illustration that shows a person in a wheelchair using a MacBook in their lap.",
+      "identifier": "accessibility-card-mobility.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c55383b0bf084116e82d7e4aba87c3cc/accessibility-card-mobility@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/d0ce2da05b4c6805e5c3f5862222b099/accessibility-card-mobility~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Accessibility/documentation/Accessibility": {
+      "abstract": [
+        {
+          "text": "Make your apps accessible to everyone who uses Apple devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Accessibility/documentation/Accessibility",
+      "images": [
+        {
+          "identifier": "Accessibility-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Accessibility",
+      "type": "topic",
+      "url": "/documentation/accessibility"
+    },
+    "doc://com.apple.Accessibility/documentation/Accessibility/assistive-technologies": {
+      "abstract": [
+        {
+          "text": "Make sure your app provides a great experience for people who use assistive technologies.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Accessibility/documentation/Accessibility/assistive-technologies",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Assistive technologies",
+      "type": "topic",
+      "url": "/documentation/accessibility/assistive-technologies"
+    },
+    "doc://com.apple.Accessibility/documentation/Accessibility/mobility": {
+      "abstract": [
+        {
+          "text": "A person with reduced mobility may have difficulty holding a device",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "or tapping the interface.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Accessibility/documentation/Accessibility/mobility",
+      "images": [
+        {
+          "identifier": "accessibility-card-mobility.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Mobility",
+      "type": "topic",
+      "url": "/documentation/accessibility/mobility"
+    },
+    "doc://com.apple.Accessibility/documentation/Accessibility/switch-control": {
+      "abstract": [
+        {
+          "text": "An interface for navigating a device with a variety of adaptive switch hardware, wireless game controllers, or sounds such as a click or a pop.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Accessibility/documentation/Accessibility/switch-control",
+      "images": [
+        {
+          "identifier": "switch-control-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Switch Control",
+      "type": "topic",
+      "url": "/documentation/accessibility/switch-control"
+    },
+    "doc://com.apple.Accessibility/documentation/Accessibility/wwdc21_challenge_large_text_challenge": {
+      "abstract": [
+        {
+          "text": "Design for large text sizes by modifying the user interface.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Accessibility/documentation/Accessibility/wwdc21_challenge_large_text_challenge",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "WWDC21 Challenge: Large Text Challenge",
+      "type": "topic",
+      "url": "/documentation/accessibility/wwdc21_challenge_large_text_challenge"
+    },
+    "doc://com.apple.Accessibility/documentation/Accessibility/wwdc21_challenge_speech_synthesizer_simulator": {
+      "abstract": [
+        {
+          "text": "Simulate a conversation using speech synthesis.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Accessibility/documentation/Accessibility/wwdc21_challenge_speech_synthesizer_simulator",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "WWDC21 Challenge: Speech Synthesizer Simulator",
+      "type": "topic",
+      "url": "/documentation/accessibility/wwdc21_challenge_speech_synthesizer_simulator"
+    },
+    "doc://com.apple.Accessibility/documentation/Accessibility/wwdc21_challenge_voiceover_maze": {
+      "abstract": [
+        {
+          "text": "Navigate to the end of a dark maze using VoiceOver as your guide.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Accessibility/documentation/Accessibility/wwdc21_challenge_voiceover_maze",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "WWDC21 Challenge: VoiceOver Maze",
+      "type": "topic",
+      "url": "/documentation/accessibility/wwdc21_challenge_voiceover_maze"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/news/?id=2nfiv7v0": {
+      "identifier": "https://developer.apple.com/news/?id=2nfiv7v0",
+      "title": "Learn Switch Control through gaming",
+      "titleInlineContent": [
+        {
+          "text": "Learn Switch Control through gaming",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/news/?id=2nfiv7v0"
+    },
+    "switch-control-card.png": {
+      "alt": "",
+      "identifier": "switch-control-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4b37322483b5831fc6a7e44fb9dc05b4/switch-control-card@2x.png"
+        }
+      ]
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "70429c924eac/WWDC22ChallengeLearnSwitchControlThroughGaming.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "WWDC-Challenges",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Accessibility/documentation/Accessibility/wwdc21_challenge_large_text_challenge",
+        "doc://com.apple.Accessibility/documentation/Accessibility/wwdc21_challenge_speech_synthesizer_simulator",
+        "doc://com.apple.Accessibility/documentation/Accessibility/wwdc21_challenge_voiceover_maze"
+      ],
+      "title": "WWDC Challenges"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "WWDC-Challenges",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.Accessibility/documentation/Accessibility/wwdc21_challenge_large_text_challenge",
+                "doc://com.apple.Accessibility/documentation/Accessibility/wwdc21_challenge_speech_synthesizer_simulator",
+                "doc://com.apple.Accessibility/documentation/Accessibility/wwdc21_challenge_voiceover_maze"
+              ],
+              "title": "WWDC Challenges"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/accessibility/wwdc22_challenge_learn_switch_control_through_gaming"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/accessibility/wwdc22_challenge_learn_switch_control_through_gaming"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

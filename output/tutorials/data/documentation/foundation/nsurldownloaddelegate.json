@@ -1,0 +1,1195 @@
+{
+  "abstract": [
+    {
+      "text": "A protocol that URL download delegates implement to interact with a URL download request.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/url_loading_system",
+        "doc://com.apple.documentation/documentation/foundation/url_loading_system/legacy_url_loading_systems"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/nsurldownloaddelegate"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1415166,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(pl)NSURLDownloadDelegate",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "protocol "
+      },
+      {
+        "kind": "identifier",
+        "text": "NSURLDownloadDelegate"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "15.4",
+        "introducedAt": "10.2",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Protocol",
+    "symbolKind": "intf",
+    "title": "NSURLDownloadDelegate"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSURLDownloadDelegate"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsurldownloaddelegate",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " protocol defines methods that allow an object to receive informational callbacks about the asynchronous load of a download’s URL request. Other delegate methods provide facilities that allow the delegate to customize the process of performing an asynchronous URL load.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Note that these delegate methods will be called on the thread that started the asynchronous load operation for the associated ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsurldownload",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurldownloaddelegate/1409618-downloaddidbegin",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " message will be sent to the delegate immediately upon starting the download. ",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Zero or more ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurldownloaddelegate/1412181-download",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " messages will be sent to the delegate before any further messages are sent if it is determined that the download must redirect to a new location. The delegate can allow the redirect, modify the destination or deny the redirect.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Zero or more ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurldownloaddelegate/1411969-download",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " messages will be sent to the delegate if it is necessary to authenticate in order to download the request and NSURLDownload does not already have authenticated credentials.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Zero or more ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurldownloaddelegate/1416233-download",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " messages will be sent to the delegate if ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurldownload",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " cancels the authentication challenge due to encountering a protocol implementation error.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Zero or more ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurldownloaddelegate/1415460-download",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " messages will be sent to the delegate before receiving a ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurldownloaddelegate/1413663-download",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " message. The only case where ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurldownloaddelegate/1415460-download",
+                      "isActive": false,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " is not sent to a delegate is when the protocol implementation encounters an error before a response could be created. ",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Zero or more ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurldownloaddelegate/1413663-download",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " messages will be sent before ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurldownloaddelegate/1408884-downloaddidfinish",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurldownloaddelegate/1411640-download",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " is sent to the delegate. ",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Zero or one ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurldownloaddelegate/1413588-download",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " will be sent to the delegate when sufficient information has been received to determine the suggested filename for the downloaded file. The delegate will not receive this message if ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurldownload/1412923-setdestination",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " has already been sent to the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurldownload",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " instance.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurldownloaddelegate/1415265-download",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " message will be sent to the delegate when the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurldownload",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " instance creates the file on disk.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If NSURLDownload determines that the downloaded file is in a format that it is able to decode (MacBinary, Binhex or gzip), the delegate will receive a ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurldownloaddelegate/1408526-download",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". The delegate should return ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/swift/true",
+                      "isActive": false,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to decode the data, ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/swift/false",
+                      "isActive": false,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " otherwise.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Unless an ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurldownload",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " instance receives a ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurldownload/1415299-cancel",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " message, the delegate will receive one and only one ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurldownloaddelegate/1408884-downloaddidfinish",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurldownloaddelegate/1411640-download",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " message, but never both. In addition, once either of these messages are sent, the delegate will receive no further messages for the given ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurldownload",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". ",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurldownload": {
+      "abstract": [
+        {
+          "text": "An object that downloads a resource asynchronously and saves the data to a file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSURLDownload"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurldownload",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSURLDownload",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurldownload"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurldownload/1412923-setdestination": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurldownload/1412923-setdestination",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setDestination(_:allowOverwrite:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurldownload/1412923-setdestination"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurldownload/1415299-cancel": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurldownload/1415299-cancel",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cancel()",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurldownload/1415299-cancel"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurldownloaddelegate": {
+      "abstract": [
+        {
+          "text": "A protocol that URL download delegates implement to interact with a URL download request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSURLDownloadDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurldownloaddelegate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSURLDownloadDelegate",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurldownloaddelegate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurldownloaddelegate/1408526-download": {
+      "abstract": [
+        {
+          "text": "Sent when a download object determines that the downloaded file is encoded to inquire whether the file should be automatically decoded.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "download"
+        },
+        {
+          "kind": "text",
+          "text": "(NSURLDownload, "
+        },
+        {
+          "kind": "identifier",
+          "text": "shouldDecodeSourceDataOfMIMEType"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurldownloaddelegate/1408526-download",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "download(_:shouldDecodeSourceDataOfMIMEType:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurldownloaddelegate/1408526-download"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurldownloaddelegate/1408884-downloaddidfinish": {
+      "abstract": [
+        {
+          "text": "Sent when a download object has completed downloading successfully and has written its results to disk.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "downloadDidFinish"
+        },
+        {
+          "kind": "text",
+          "text": "(NSURLDownload)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurldownloaddelegate/1408884-downloaddidfinish",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "downloadDidFinish(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurldownloaddelegate/1408884-downloaddidfinish"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurldownloaddelegate/1409514-download": {
+      "abstract": [
+        {
+          "text": "Sent when a download object has received a response from the server after attempting to resume a download.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "download"
+        },
+        {
+          "kind": "text",
+          "text": "(NSURLDownload, "
+        },
+        {
+          "kind": "identifier",
+          "text": "willResumeWith"
+        },
+        {
+          "kind": "text",
+          "text": ": URLResponse, "
+        },
+        {
+          "kind": "identifier",
+          "text": "fromByte"
+        },
+        {
+          "kind": "text",
+          "text": ": Int64)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurldownloaddelegate/1409514-download",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "download(_:willResumeWith:fromByte:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurldownloaddelegate/1409514-download"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurldownloaddelegate/1409618-downloaddidbegin": {
+      "abstract": [
+        {
+          "text": "Sent immediately after a download object begins a download.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "downloadDidBegin"
+        },
+        {
+          "kind": "text",
+          "text": "(NSURLDownload)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurldownloaddelegate/1409618-downloaddidbegin",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "downloadDidBegin(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurldownloaddelegate/1409618-downloaddidbegin"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurldownloaddelegate/1411640-download": {
+      "abstract": [
+        {
+          "text": "Sent if the download fails or if an I/O error occurs when the file is written to disk.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "download"
+        },
+        {
+          "kind": "text",
+          "text": "(NSURLDownload, "
+        },
+        {
+          "kind": "identifier",
+          "text": "didFailWithError"
+        },
+        {
+          "kind": "text",
+          "text": ": any Error)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurldownloaddelegate/1411640-download",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "download(_:didFailWithError:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurldownloaddelegate/1411640-download"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurldownloaddelegate/1411969-download": {
+      "abstract": [
+        {
+          "text": "Sent when the URL download must authenticate a challenge in order to download the request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "download"
+        },
+        {
+          "kind": "text",
+          "text": "(NSURLDownload, "
+        },
+        {
+          "kind": "identifier",
+          "text": "didReceive"
+        },
+        {
+          "kind": "text",
+          "text": ": URLAuthenticationChallenge)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurldownloaddelegate/1411969-download",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "download(_:didReceive:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurldownloaddelegate/1411969-download"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurldownloaddelegate/1412181-download": {
+      "abstract": [
+        {
+          "text": "Sent when the download object determines that it must change URLs in order to continue loading a request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "download"
+        },
+        {
+          "kind": "text",
+          "text": "(NSURLDownload, "
+        },
+        {
+          "kind": "identifier",
+          "text": "willSend"
+        },
+        {
+          "kind": "text",
+          "text": ": URLRequest, "
+        },
+        {
+          "kind": "identifier",
+          "text": "redirectResponse"
+        },
+        {
+          "kind": "text",
+          "text": ": URLResponse?) -> URLRequest?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurldownloaddelegate/1412181-download",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "download(_:willSend:redirectResponse:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurldownloaddelegate/1412181-download"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurldownloaddelegate/1413588-download": {
+      "abstract": [
+        {
+          "text": "The delegate receives this message when ",
+          "type": "text"
+        },
+        {
+          "code": "download",
+          "type": "codeVoice"
+        },
+        {
+          "text": " has determined a suggested filename for the downloaded file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "download"
+        },
+        {
+          "kind": "text",
+          "text": "(NSURLDownload, "
+        },
+        {
+          "kind": "identifier",
+          "text": "decideDestinationWithSuggestedFilename"
+        },
+        {
+          "kind": "text",
+          "text": ": String)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurldownloaddelegate/1413588-download",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "download(_:decideDestinationWithSuggestedFilename:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurldownloaddelegate/1413588-download"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurldownloaddelegate/1413663-download": {
+      "abstract": [
+        {
+          "text": "Sent as a download object receives data incrementally. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "download"
+        },
+        {
+          "kind": "text",
+          "text": "(NSURLDownload, "
+        },
+        {
+          "kind": "identifier",
+          "text": "didReceiveDataOfLength"
+        },
+        {
+          "kind": "text",
+          "text": ": Int)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurldownloaddelegate/1413663-download",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "download(_:didReceiveDataOfLength:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurldownloaddelegate/1413663-download"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurldownloaddelegate/1415265-download": {
+      "abstract": [
+        {
+          "text": "Sent when the destination file is created.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "download"
+        },
+        {
+          "kind": "text",
+          "text": "(NSURLDownload, "
+        },
+        {
+          "kind": "identifier",
+          "text": "didCreateDestination"
+        },
+        {
+          "kind": "text",
+          "text": ": String)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurldownloaddelegate/1415265-download",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "download(_:didCreateDestination:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurldownloaddelegate/1415265-download"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurldownloaddelegate/1415460-download": {
+      "abstract": [
+        {
+          "text": "Sent when a download object has received sufficient load data to construct the NSURLResponse object for the download.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "download"
+        },
+        {
+          "kind": "text",
+          "text": "(NSURLDownload, "
+        },
+        {
+          "kind": "identifier",
+          "text": "didReceive"
+        },
+        {
+          "kind": "text",
+          "text": ": URLResponse)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurldownloaddelegate/1415460-download",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "download(_:didReceive:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurldownloaddelegate/1415460-download"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurldownloaddelegate/1416233-download": {
+      "abstract": [
+        {
+          "text": "Sent if an authentication challenge is canceled due to the protocol implementation encountering an error.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "download"
+        },
+        {
+          "kind": "text",
+          "text": "(NSURLDownload, "
+        },
+        {
+          "kind": "identifier",
+          "text": "didCancel"
+        },
+        {
+          "kind": "text",
+          "text": ": URLAuthenticationChallenge)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurldownloaddelegate/1416233-download",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "download(_:didCancel:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurldownloaddelegate/1416233-download"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurldownloaddelegate/1416506-downloadshouldusecredentialstora": {
+      "abstract": [
+        {
+          "text": "Sent to determine whether the URL loader should consult the credential storage to authenticate the download.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "downloadShouldUseCredentialStorage"
+        },
+        {
+          "kind": "text",
+          "text": "(NSURLDownload) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurldownloaddelegate/1416506-downloadshouldusecredentialstora",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "downloadShouldUseCredentialStorage(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurldownloaddelegate/1416506-downloadshouldusecredentialstora"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurldownloaddelegate/1417213-download": {
+      "abstract": [
+        {
+          "text": "Sent to determine whether the delegate is able to respond to a protection space’s form of authentication.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "download"
+        },
+        {
+          "kind": "text",
+          "text": "(NSURLDownload, "
+        },
+        {
+          "kind": "identifier",
+          "text": "canAuthenticateAgainstProtectionSpace"
+        },
+        {
+          "kind": "text",
+          "text": ": URLProtectionSpace) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurldownloaddelegate/1417213-download",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "download(_:canAuthenticateAgainstProtectionSpace:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurldownloaddelegate/1417213-download"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url_loading_system": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "URL Loading System",
+      "type": "topic",
+      "url": "/documentation/foundation/url_loading_system"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url_loading_system/legacy_url_loading_systems": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system/legacy_url_loading_systems",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Legacy URL Loading Systems",
+      "type": "topic",
+      "url": "/documentation/foundation/url_loading_system/legacy_url_loading_systems"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobjectprotocol": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobjectprotocol",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.apple.documentation/documentation/swift/false": {
+      "identifier": "doc://com.apple.documentation/documentation/swift/false",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "false",
+      "type": "topic",
+      "url": "/documentation/swift/false"
+    },
+    "doc://com.apple.documentation/documentation/swift/true": {
+      "identifier": "doc://com.apple.documentation/documentation/swift/true",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "true",
+      "type": "topic",
+      "url": "/documentation/swift/true"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/objectivec/nsobjectprotocol"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsurldownload"
+      ],
+      "title": "URL Download"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "1660426",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsurldownloaddelegate/1417213-download",
+        "doc://com.apple.documentation/documentation/foundation/nsurldownloaddelegate/1416233-download",
+        "doc://com.apple.documentation/documentation/foundation/nsurldownloaddelegate/1411969-download",
+        "doc://com.apple.documentation/documentation/foundation/nsurldownloaddelegate/1416506-downloadshouldusecredentialstora"
+      ],
+      "kind": "taskGroup",
+      "title": "Download Authentication"
+    },
+    {
+      "anchor": "1660501",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsurldownloaddelegate/1413588-download",
+        "doc://com.apple.documentation/documentation/foundation/nsurldownloaddelegate/1409618-downloaddidbegin",
+        "doc://com.apple.documentation/documentation/foundation/nsurldownloaddelegate/1415265-download",
+        "doc://com.apple.documentation/documentation/foundation/nsurldownloaddelegate/1415460-download",
+        "doc://com.apple.documentation/documentation/foundation/nsurldownloaddelegate/1413663-download",
+        "doc://com.apple.documentation/documentation/foundation/nsurldownloaddelegate/1408526-download",
+        "doc://com.apple.documentation/documentation/foundation/nsurldownloaddelegate/1409514-download",
+        "doc://com.apple.documentation/documentation/foundation/nsurldownloaddelegate/1412181-download"
+      ],
+      "kind": "taskGroup",
+      "title": "Download Data and Responses"
+    },
+    {
+      "anchor": "1660627",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsurldownloaddelegate/1411640-download",
+        "doc://com.apple.documentation/documentation/foundation/nsurldownloaddelegate/1408884-downloaddidfinish"
+      ],
+      "kind": "taskGroup",
+      "title": "Download Completion"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nsurldownloaddelegate"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/nsurldownloaddelegate"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

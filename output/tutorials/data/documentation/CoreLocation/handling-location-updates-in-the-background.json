@@ -1,0 +1,1161 @@
+{
+  "abstract": [
+    {
+      "text": "Configure your app to receive location updates when it isn’t running in the foreground.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.corelocation/documentation/CoreLocation"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.corelocation/documentation/CoreLocation",
+        "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManager",
+        "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManager/requestWhenInUseAuthorization()"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.corelocation/documentation/CoreLocation/handling-location-updates-in-the-background"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Core Location"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Handling location updates in the background"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "On some Apple devices, the operating system preserves battery life by suspending the execution of background apps. For example, on iOS, iPadOS, and watchOS, the system suspends the execution of most apps shortly after they move to the background. In this suspended state, apps don’t run and don’t receive location updates from the system. Instead, the system enqueues location updates and delivers them when the app runs again, either in the foreground or background. If your app needs updates in a more timely manner, you can ask the system to not suspend your app while location services are active.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Consider carefully whether your app really needs background location updates. Most apps need location data only while someone actively uses the app. Consider background updates only when your app needs to receive those updates in real time, perhaps to:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Track the precise path taken during a hike or fitness workout.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Provide navigation instructions in real time.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Generate time-sensitive notifications or updates.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Take immediate action when someone enters or exits a particular geographic region.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you need background location updates for an iOS, iPadOS, or watchOS app, update your project to support those updates. On macOS, you don’t need to add support for background updates because the system doesn’t suspend apps when they move to the background. Apps running in visionOS don’t receive background updates.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-the-background-mode-capability",
+          "level": 3,
+          "text": "Add the background mode capability",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The background mode capability lets the system know whether your app uses background updates. To add this capability, navigate to the Signing & Capabilities tab of your app target and enable the Location updates option. When you enable this capability, Xcode updates your app’s ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file with the keys needed to indicate your app supports background updates.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-4061646",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Receive-location-updates-in-the-background",
+          "level": 3,
+          "text": "Receive location updates in the background",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Create an instance of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLBackgroundActivitySession-3mzv3",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to start a background activity session so that you can receive location updates. It’s your responsibility to communicate that location updates will arrive before going to the background, and handle updates as they arrive.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Create a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLServiceSession-pt7n",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " requiring the relevant form of authorization  (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLServiceSession-pt7n/AuthorizationRequirement/whenInUse",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLServiceSession-pt7n/AuthorizationRequirement/always",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "). Create the session while your app is in the foreground. If your app terminates, you must recreate the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLServiceSession-pt7n",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " immediately upon launch in the background.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Core Location sets When in Use authorization implicitly when you process events from ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLMonitor-2r51v",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationUpdate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", or use a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLBackgroundActivitySession-3mzv3",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". The exception is if you set the ",
+              "type": "text"
+            },
+            {
+              "code": "NSLocationRequireExplicitServiceSession",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in your app’s ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "For Always authorization, inform the user that location updates arrive in the background. This provides transparency and lets the user know what’s happening.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Process-location-updates-after-an-app-launch",
+          "level": 3,
+          "text": "Process location updates after an app launch",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system can terminate apps at any time to free up memory or other system resources. If your app actively receives and processes location updates and terminates, it should restart those APIs upon launch in order to continue receiving updates. When you start those services, the system resumes the delivery of queued location updates. Don’t start these services at launch time if your app’s authorization status is undetermined.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.corelocation/documentation/CoreLocation": {
+      "abstract": [
+        {
+          "text": "Obtain the geographic location and orientation of a device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Location",
+      "type": "topic",
+      "url": "/documentation/corelocation"
+    },
+    "doc://com.apple.corelocation/documentation/CoreLocation/CLBackgroundActivitySession-3mzv3": {
+      "abstract": [
+        {
+          "text": "An object that manages a visual indicator that keeps your app in use in the background, allowing it to receive updates or events.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CLBackgroundActivitySession"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLBackgroundActivitySession-3mzv3",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CLBackgroundActivitySession"
+        }
+      ],
+      "role": "symbol",
+      "title": "CLBackgroundActivitySession",
+      "type": "topic",
+      "url": "/documentation/corelocation/clbackgroundactivitysession-3mzv3"
+    },
+    "doc://com.apple.corelocation/documentation/CoreLocation/CLBackgroundActivitySessionDiagnostic": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "CLBackgroundActivitySessionDiagnostic"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLBackgroundActivitySessionDiagnostic",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CLBackgroundActivitySessionDiagnostic",
+      "type": "topic",
+      "url": "/documentation/corelocation/clbackgroundactivitysessiondiagnostic"
+    },
+    "doc://com.apple.corelocation/documentation/CoreLocation/CLFloor": {
+      "abstract": [
+        {
+          "text": "The floor of a building on which the user’s device is located.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CLFloor"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLFloor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CLFloor"
+        }
+      ],
+      "role": "symbol",
+      "title": "CLFloor",
+      "type": "topic",
+      "url": "/documentation/corelocation/clfloor"
+    },
+    "doc://com.apple.corelocation/documentation/CoreLocation/CLLocation": {
+      "abstract": [
+        {
+          "text": "The latitude, longitude, and course information reported by the system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CLLocation"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLLocation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CLLocation"
+        }
+      ],
+      "role": "symbol",
+      "title": "CLLocation",
+      "type": "topic",
+      "url": "/documentation/corelocation/cllocation"
+    },
+    "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationCoordinate2D": {
+      "abstract": [
+        {
+          "text": "The latitude and longitude associated with a location, specified using the WGS 84 reference frame.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CLLocationCoordinate2D"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationCoordinate2D",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CLLocationCoordinate2D"
+        }
+      ],
+      "role": "symbol",
+      "title": "CLLocationCoordinate2D",
+      "type": "topic",
+      "url": "/documentation/corelocation/cllocationcoordinate2d"
+    },
+    "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManager": {
+      "abstract": [
+        {
+          "text": "The object you use to start and stop the delivery of location-related events to your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CLLocationManager"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManager",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CLLocationManager"
+        }
+      ],
+      "role": "symbol",
+      "title": "CLLocationManager",
+      "type": "topic",
+      "url": "/documentation/corelocation/cllocationmanager"
+    },
+    "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManager/requestWhenInUseAuthorization()": {
+      "abstract": [
+        {
+          "text": "Requests the user’s permission to use location services while the app is in use.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "requestWhenInUseAuthorization"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationManager/requestWhenInUseAuthorization()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "requestWhenInUseAuthorization"
+        }
+      ],
+      "role": "symbol",
+      "title": "requestWhenInUseAuthorization()",
+      "type": "topic",
+      "url": "/documentation/corelocation/cllocationmanager/requestwheninuseauthorization()"
+    },
+    "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationSourceInformation": {
+      "abstract": [
+        {
+          "text": "Information about the source that provides a location.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CLLocationSourceInformation"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationSourceInformation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CLLocationSourceInformation"
+        }
+      ],
+      "role": "symbol",
+      "title": "CLLocationSourceInformation",
+      "type": "topic",
+      "url": "/documentation/corelocation/cllocationsourceinformation"
+    },
+    "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationUpdate": {
+      "abstract": [
+        {
+          "text": "A structure that contains the location information the framework delivers with each update.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CLLocationUpdate"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationUpdate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CLLocationUpdate"
+        }
+      ],
+      "role": "symbol",
+      "title": "CLLocationUpdate",
+      "type": "topic",
+      "url": "/documentation/corelocation/cllocationupdate"
+    },
+    "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationUpdater": {
+      "abstract": [
+        {
+          "text": "An object that provides device location updates.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "CLLocationUpdater"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationUpdater",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CLLocationUpdater",
+      "type": "topic",
+      "url": "/documentation/corelocation/cllocationupdater"
+    },
+    "doc://com.apple.corelocation/documentation/CoreLocation/CLMonitor-2r51v": {
+      "abstract": [
+        {
+          "text": "An object that monitors the conditions you add to it.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "actor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CLMonitor"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLMonitor-2r51v",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CLMonitor"
+        }
+      ],
+      "role": "symbol",
+      "title": "CLMonitor",
+      "type": "topic",
+      "url": "/documentation/corelocation/clmonitor-2r51v"
+    },
+    "doc://com.apple.corelocation/documentation/CoreLocation/CLServiceSession-2ddhd": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "CLServiceSession"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLServiceSession-2ddhd",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CLServiceSession",
+      "type": "topic",
+      "url": "/documentation/corelocation/clservicesession-2ddhd"
+    },
+    "doc://com.apple.corelocation/documentation/CoreLocation/CLServiceSession-pt7n": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CLServiceSession"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLServiceSession-pt7n",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CLServiceSession"
+        }
+      ],
+      "role": "symbol",
+      "title": "CLServiceSession",
+      "type": "topic",
+      "url": "/documentation/corelocation/clservicesession-pt7n"
+    },
+    "doc://com.apple.corelocation/documentation/CoreLocation/CLServiceSession-pt7n/AuthorizationRequirement/always": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "always"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLServiceSession-pt7n/AuthorizationRequirement/always",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CLServiceSession.AuthorizationRequirement.always",
+      "type": "topic",
+      "url": "/documentation/corelocation/clservicesession-pt7n/authorizationrequirement/always"
+    },
+    "doc://com.apple.corelocation/documentation/CoreLocation/CLServiceSession-pt7n/AuthorizationRequirement/whenInUse": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "whenInUse"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLServiceSession-pt7n/AuthorizationRequirement/whenInUse",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CLServiceSession.AuthorizationRequirement.whenInUse",
+      "type": "topic",
+      "url": "/documentation/corelocation/clservicesession-pt7n/authorizationrequirement/wheninuse"
+    },
+    "doc://com.apple.corelocation/documentation/CoreLocation/CLServiceSessionDiagnostic": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "CLServiceSessionDiagnostic"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLServiceSessionDiagnostic",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CLServiceSessionDiagnostic",
+      "type": "topic",
+      "url": "/documentation/corelocation/clservicesessiondiagnostic"
+    },
+    "doc://com.apple.corelocation/documentation/CoreLocation/CLVisit": {
+      "abstract": [
+        {
+          "text": "Information about the user’s location during a specific period of time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CLVisit"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/CLVisit",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CLVisit"
+        }
+      ],
+      "role": "symbol",
+      "title": "CLVisit",
+      "type": "topic",
+      "url": "/documentation/corelocation/clvisit"
+    },
+    "doc://com.apple.corelocation/documentation/CoreLocation/creating-a-location-push-service-extension": {
+      "abstract": [
+        {
+          "text": "Add and configure an extension to enable your location-sharing app to access a user’s location in response to a request from another user.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/creating-a-location-push-service-extension",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating a location push service extension",
+      "type": "topic",
+      "url": "/documentation/corelocation/creating-a-location-push-service-extension"
+    },
+    "doc://com.apple.corelocation/documentation/CoreLocation/getting-the-current-location-of-a-device": {
+      "abstract": [
+        {
+          "text": "Start location services and provide information the system needs to optimize power usage for those services.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/getting-the-current-location-of-a-device",
+      "kind": "article",
+      "role": "article",
+      "title": "Getting the current location of a device",
+      "type": "topic",
+      "url": "/documentation/corelocation/getting-the-current-location-of-a-device"
+    },
+    "doc://com.apple.corelocation/documentation/CoreLocation/monitoring-location-changes-with-core-location": {
+      "abstract": [
+        {
+          "text": "Define boundaries and act on user location updates.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.corelocation/documentation/CoreLocation/monitoring-location-changes-with-core-location",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Monitoring location changes with Core Location",
+      "type": "topic",
+      "url": "/documentation/corelocation/monitoring-location-changes-with-core-location"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "media-4061646": {
+      "alt": "The capabilities pane in Xcode shows the Background Modes capability with the Location updates option selected.",
+      "identifier": "media-4061646",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c0f8aa3e82bfe5772ba30b60f500dfe6/media-4061646@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Location-updates",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.corelocation/documentation/CoreLocation/getting-the-current-location-of-a-device",
+        "doc://com.apple.corelocation/documentation/CoreLocation/creating-a-location-push-service-extension",
+        "doc://com.apple.corelocation/documentation/CoreLocation/CLLocation",
+        "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationCoordinate2D",
+        "doc://com.apple.corelocation/documentation/CoreLocation/CLFloor",
+        "doc://com.apple.corelocation/documentation/CoreLocation/CLVisit",
+        "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationSourceInformation",
+        "doc://com.apple.corelocation/documentation/CoreLocation/monitoring-location-changes-with-core-location",
+        "doc://com.apple.corelocation/documentation/CoreLocation/CLServiceSession-pt7n"
+      ],
+      "title": "Location updates"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Location-updates",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.corelocation/documentation/CoreLocation/getting-the-current-location-of-a-device",
+                "doc://com.apple.corelocation/documentation/CoreLocation/creating-a-location-push-service-extension",
+                "doc://com.apple.corelocation/documentation/CoreLocation/CLLocation",
+                "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationCoordinate2D",
+                "doc://com.apple.corelocation/documentation/CoreLocation/CLFloor",
+                "doc://com.apple.corelocation/documentation/CoreLocation/CLVisit",
+                "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationSourceInformation",
+                "doc://com.apple.corelocation/documentation/CoreLocation/CLServiceSession-2ddhd",
+                "doc://com.apple.corelocation/documentation/CoreLocation/CLServiceSessionDiagnostic",
+                "doc://com.apple.corelocation/documentation/CoreLocation/CLBackgroundActivitySessionDiagnostic",
+                "doc://com.apple.corelocation/documentation/CoreLocation/CLLocationUpdater"
+              ],
+              "title": "Location updates"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocationCoordinate2D/title",
+          "value": "CLLocationCoordinate2D"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocationCoordinate2D/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLLocationCoordinate2D"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocationCoordinate2D/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLLocationCoordinate2D"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocationSourceInformation/title",
+          "value": "CLLocationSourceInformation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocationSourceInformation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLLocationSourceInformation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocationSourceInformation/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLLocationSourceInformation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLVisit/title",
+          "value": "CLVisit"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLVisit/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLVisit"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLVisit/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLVisit"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLFloor/title",
+          "value": "CLFloor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLFloor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLFloor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLFloor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLFloor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocationManager~1requestWhenInUseAuthorization()/title",
+          "value": "requestWhenInUseAuthorization"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocationManager~1requestWhenInUseAuthorization()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "requestWhenInUseAuthorization"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocationManager/title",
+          "value": "CLLocationManager"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocationManager/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLLocationManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocationManager/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLLocationManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocation/title",
+          "value": "CLLocation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLLocation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corelocation~1documentation~1CoreLocation~1CLLocation/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLLocation"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/corelocation/handling-location-updates-in-the-background"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/corelocation/handling-location-updates-in-the-background"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

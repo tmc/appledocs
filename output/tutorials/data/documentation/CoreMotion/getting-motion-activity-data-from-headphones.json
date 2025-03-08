@@ -1,0 +1,490 @@
+{
+  "abstract": [
+    {
+      "text": "Configure your app to listen for motion-activity changes from headphones.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.coremotion/documentation/CoreMotion"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.coremotion/documentation/CoreMotion/getting-motion-activity-data-from-headphones"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "images": [
+      {
+        "identifier": "getting-motion-activity-data-from-headphones.png",
+        "type": "card"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Core Motion"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "18.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "18.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "16.1",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Getting motion-activity data from headphones"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample app demonstrates how to use ",
+              "type": "text"
+            },
+            {
+              "code": "CMHeadphoneActivityManager",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to request updates when the current type of motion changes. When a change occurs, the app receives update information as a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreMotion/CMMotionActivity",
+              "isActive": true,
+              "overridingTitle": "CMMotionActivity",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "CMMotionActivity",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " object, which it uses to show a text description of the motion change.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Configure-the-sample-code-project",
+          "level": 3,
+          "text": "Configure the sample code project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because this sample app uses headphone motion updates, it needs to run on a device, not in Simulator.  To run this sample, you’ll need the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "An iOS device with iOS 18 or later",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Headphones that support motion updates, such as AirPods Pro 2 or AirPods 4",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "dc6ec1e7e547/GettingMotionActivityDataFromHeadphones.zip": {
+      "checksum": "dc6ec1e7e54730f951830a2e8faba682501b6e036b498a83f022238ecb8d24b8fac63a4645e03fffc112503445eaddf365b61e837a56196a11b7704e09b8e73d",
+      "identifier": "dc6ec1e7e547/GettingMotionActivityDataFromHeadphones.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/dc6ec1e7e547/GettingMotionActivityDataFromHeadphones.zip"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion": {
+      "abstract": [
+        {
+          "text": "Process accelerometer, gyroscope, pedometer, and environment-related events.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Motion",
+      "type": "topic",
+      "url": "/documentation/coremotion"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMHeadphoneActivityManager": {
+      "abstract": [
+        {
+          "text": "An object that starts and manages headphone activity services.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMHeadphoneActivityManager"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMHeadphoneActivityManager",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMHeadphoneActivityManager"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMHeadphoneActivityManager",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmheadphoneactivitymanager"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMMotionActivity": {
+      "abstract": [
+        {
+          "text": "The data for a single motion update event.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMMotionActivity"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMMotionActivity",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMMotionActivity"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMMotionActivity",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmmotionactivity"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMMotionActivityManager": {
+      "abstract": [
+        {
+          "text": "An object that manages access to the motion data stored by the device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMMotionActivityManager"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMMotionActivityManager",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMMotionActivityManager"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMMotionActivityManager",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmmotionactivitymanager"
+    },
+    "doc://com.apple.documentation/documentation/CoreMotion/CMMotionActivity": {
+      "abstract": [
+        {
+          "text": "The data for a single motion update event.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMMotionActivity"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreMotion/CMMotionActivity",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CMMotionActivity",
+      "type": "topic",
+      "url": "/documentation/CoreMotion/CMMotionActivity"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "getting-motion-activity-data-from-headphones.png": {
+      "alt": null,
+      "identifier": "getting-motion-activity-data-from-headphones.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/fdf8e8887a3a3cb3c3375e813138c3db/getting-motion-activity-data-from-headphones.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c34157444c1926730c849d10cd7665b3/getting-motion-activity-data-from-headphones~dark.png"
+        }
+      ]
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "dc6ec1e7e547/GettingMotionActivityDataFromHeadphones.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Activity",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.coremotion/documentation/CoreMotion/CMMotionActivityManager",
+        "doc://com.apple.coremotion/documentation/CoreMotion/CMHeadphoneActivityManager",
+        "doc://com.apple.coremotion/documentation/CoreMotion/CMMotionActivity"
+      ],
+      "title": "Activity"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMMotionActivityManager/title",
+          "value": "CMMotionActivityManager"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMMotionActivityManager/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMMotionActivityManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMMotionActivityManager/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMMotionActivityManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreMotion~1CMMotionActivity/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CMMotionActivity"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)CMLogItem",
+              "text": "CMLogItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMMotionActivity/title",
+          "value": "CMMotionActivity"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMMotionActivity/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMMotionActivity"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMMotionActivity/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMMotionActivity"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMHeadphoneActivityManager/title",
+          "value": "CMHeadphoneActivityManager"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMHeadphoneActivityManager/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMHeadphoneActivityManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMHeadphoneActivityManager/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMHeadphoneActivityManager"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/coremotion/getting-motion-activity-data-from-headphones"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

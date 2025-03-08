@@ -1,0 +1,2192 @@
+{
+  "abstract": [
+    {
+      "text": "A formatter that converts between numeric values and their textual representations.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/numbers_data_and_basic_values"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/data_formatting"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/foundation/nsnumberformatter"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1417037,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSNumberFormatter",
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "NSNumberFormatter"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSNumberFormatter"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsformatter",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSFormatter",
+              "text": "NSFormatter"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Instances of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsnumberformatter",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " format the textual representation of cells that contain ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsnumber",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects and convert textual representations of numeric values into ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsnumber",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects. The representation encompasses integers, floats, and doubles; floats and doubles can be formatted to a specified decimal position. ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsnumberformatter",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " objects can also impose ranges on the numeric values cells can accept.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "In Swift, you can use ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/integerformatstyle",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ", ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ", or ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/decimal/formatstyle",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " rather than ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/nsnumberformatter",
+                  "isActive": false,
+                  "type": "reference"
+                },
+                {
+                  "text": ". The ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/formatstyle",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " API offers a declarative idiom for customizing the formatting of various types. Also, Foundation caches identical ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/formatstyle",
+                  "isActive": false,
+                  "type": "reference"
+                },
+                {
+                  "text": " instances, so you don’t need to pass them around your app, or risk wasting memory with duplicate formatters.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "style": "tip",
+          "type": "aside"
+        },
+        {
+          "anchor": "1680993",
+          "level": 3,
+          "text": "Significant Digits and Fraction Digits",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsnumberformatter",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " class provides flexible options for displaying non-zero fractional parts of numbers.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you set the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1417793-usessignificantdigits",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/yes",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": ", you can configure ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsnumberformatter",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " to display significant digits using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1410174-minimumsignificantdigits",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1412008-maximumsignificantdigits",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " properties. If ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1417793-usessignificantdigits",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " is ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/no",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": ", these properties are ignored. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsnumberformatter#1654815",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Otherwise, you can configure the minimum and maximum number of integer and fraction digits, or the numbers before and after the decimal separator, respectively, using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1410052-minimumintegerdigits",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1407284-maximumintegerdigits",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1410459-minimumfractiondigits",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1415364-maximumfractiondigits",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " properties. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsnumberformatter#1681276",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "1681006",
+          "level": 3,
+          "text": "Thread Safety",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "On iOS 7 and later ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsnumberformatter",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " is thread-safe.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In macOS 10.9 and later ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsnumberformatter",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " is thread-safe so long as you are using the modern behavior in a 64-bit app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "On earlier versions of the operating system, or when using the legacy formatter behavior or running in 32-bit in macOS, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsnumberformatter",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " is not thread-safe, and you therefore must not mutate a number formatter simultaneously from multiple threads.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/data_formatting": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/data_formatting",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Data Formatting",
+      "type": "topic",
+      "url": "/documentation/foundation/data_formatting"
+    },
+    "doc://com.apple.documentation/documentation/foundation/decimal/formatstyle": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/decimal/formatstyle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Decimal.FormatStyle",
+      "type": "topic",
+      "url": "/documentation/foundation/decimal/formatstyle"
+    },
+    "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/floatingpointformatstyle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FloatingPointFormatStyle",
+      "type": "topic",
+      "url": "/documentation/foundation/floatingpointformatstyle"
+    },
+    "doc://com.apple.documentation/documentation/foundation/formatstyle": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/formatstyle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FormatStyle",
+      "type": "topic",
+      "url": "/documentation/foundation/formatstyle"
+    },
+    "doc://com.apple.documentation/documentation/foundation/integerformatstyle": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/integerformatstyle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IntegerFormatStyle",
+      "type": "topic",
+      "url": "/documentation/foundation/integerformatstyle"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdecimal": {
+      "abstract": [
+        {
+          "text": "A structure representing a base-10 number.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdecimal",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSDecimal",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdecimal"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdecimalnumber": {
+      "abstract": [
+        {
+          "text": "An object for representing and performing arithmetic on base-10 numbers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdecimalnumber",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSDecimalNumber",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdecimalnumber"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdecimalnumberhandler": {
+      "abstract": [
+        {
+          "text": "A class that adopts the decimal number behaviors protocol. ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdecimalnumberhandler",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSDecimalNumberHandler",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdecimalnumberhandler"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsformatter": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsformatter",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSFormatter",
+      "type": "topic",
+      "url": "/documentation/foundation/nsformatter"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnumber": {
+      "abstract": [
+        {
+          "text": "An object wrapper for primitive scalar numeric values.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnumber",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSNumber",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnumber"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnumberformatter": {
+      "abstract": [
+        {
+          "text": "A formatter that converts between numeric values and their textual representations.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnumberformatter",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSNumberFormatter",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnumberformatter"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnumberformatter#1654815": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnumberformatter#1654815",
+      "kind": "article",
+      "role": "task",
+      "title": "Configuring Significant Digits",
+      "type": "section",
+      "url": "/documentation/foundation/nsnumberformatter#1654815"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnumberformatter#1681276": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnumberformatter#1681276",
+      "kind": "article",
+      "role": "task",
+      "title": "Configuring Integer and Fraction Digits",
+      "type": "section",
+      "url": "/documentation/foundation/nsnumberformatter#1681276"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1407247-currencydecimalseparator": {
+      "abstract": [
+        {
+          "text": "The string used by the receiver as a currency decimal separator.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1407247-currencydecimalseparator",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "currencyDecimalSeparator",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnumberformatter/1407247-currencydecimalseparator"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1407284-maximumintegerdigits": {
+      "abstract": [
+        {
+          "text": "The maximum number of digits before the decimal separator.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1407284-maximumintegerdigits",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "maximumIntegerDigits",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnumberformatter/1407284-maximumintegerdigits"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1407789-percentsymbol": {
+      "abstract": [
+        {
+          "text": "The string used to represent a percent symbol.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1407789-percentsymbol",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "percentSymbol",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnumberformatter/1407789-percentsymbol"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1408029-decimalseparator": {
+      "abstract": [
+        {
+          "text": "The character the receiver uses as a decimal separator.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1408029-decimalseparator",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "decimalSeparator",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnumberformatter/1408029-decimalseparator"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1408096-negativeprefix": {
+      "abstract": [
+        {
+          "text": "The string the receiver uses as a prefix for negative values.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1408096-negativeprefix",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "negativePrefix",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnumberformatter/1408096-negativeprefix"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1408133-localizesformat": {
+      "abstract": [
+        {
+          "text": "Determines whether the dollar sign character (",
+          "type": "text"
+        },
+        {
+          "code": "$",
+          "type": "codeVoice"
+        },
+        {
+          "text": "), decimal separator character (",
+          "type": "text"
+        },
+        {
+          "code": ".",
+          "type": "codeVoice"
+        },
+        {
+          "text": "), and thousand separator character (",
+          "type": "text"
+        },
+        {
+          "code": ",",
+          "type": "codeVoice"
+        },
+        {
+          "text": ") are converted to appropriately localized characters as specified by the user’s localization preference.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1408133-localizesformat",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "localizesFormat",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnumberformatter/1408133-localizesformat"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1408176-textattributesforpositiveinfinit": {
+      "abstract": [
+        {
+          "text": "The text attributes used to display the positive infinity symbol.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1408176-textattributesforpositiveinfinit",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "textAttributesForPositiveInfinity",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnumberformatter/1408176-textattributesforpositiveinfinit"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1408543-formattingcontext": {
+      "abstract": [
+        {
+          "text": "The capitalization formatting context used when formatting a number.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1408543-formattingcontext",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "formattingContext",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnumberformatter/1408543-formattingcontext"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1408550-alwaysshowsdecimalseparator": {
+      "abstract": [
+        {
+          "text": "Determines whether the receiver always shows the decimal separator, even for integer numbers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1408550-alwaysshowsdecimalseparator",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "alwaysShowsDecimalSeparator",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnumberformatter/1408550-alwaysshowsdecimalseparator"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1408601-multiplier": {
+      "abstract": [
+        {
+          "text": "The multiplier of the receiver.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1408601-multiplier",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "multiplier",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnumberformatter/1408601-multiplier"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1408845-numberfromstring": {
+      "abstract": [
+        {
+          "text": "Returns an ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/nsnumber",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " object created by parsing a given string.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "numberFromString:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1408845-numberfromstring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "numberFromString:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnumberformatter/1408845-numberfromstring"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1408943-textattributesfornil": {
+      "abstract": [
+        {
+          "text": "The text attributes used to display the ",
+          "type": "text"
+        },
+        {
+          "code": "nil",
+          "type": "codeVoice"
+        },
+        {
+          "text": " symbol.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1408943-textattributesfornil",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "textAttributesForNil",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnumberformatter/1408943-textattributesfornil"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1409416-minussign": {
+      "abstract": [
+        {
+          "text": "The string used to represent a minus sign.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1409416-minussign",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "minusSign",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnumberformatter/1409416-minussign"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1409563-textattributesforpositivevalues": {
+      "abstract": [
+        {
+          "text": "The text attributes to be used in displaying positive values.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1409563-textattributesforpositivevalues",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "textAttributesForPositiveValues",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnumberformatter/1409563-textattributesforpositivevalues"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1409880-usesgroupingseparator": {
+      "abstract": [
+        {
+          "text": "Determines whether the receiver displays the group separator.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1409880-usesgroupingseparator",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "usesGroupingSeparator",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnumberformatter/1409880-usesgroupingseparator"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1410052-minimumintegerdigits": {
+      "abstract": [
+        {
+          "text": "The minimum number of digits before the decimal separator.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1410052-minimumintegerdigits",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "minimumIntegerDigits",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnumberformatter/1410052-minimumintegerdigits"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1410174-minimumsignificantdigits": {
+      "abstract": [
+        {
+          "text": "The minimum number of significant digits for the number formatter.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1410174-minimumsignificantdigits",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "minimumSignificantDigits",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnumberformatter/1410174-minimumsignificantdigits"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1410405-zerosymbol": {
+      "abstract": [
+        {
+          "text": "The string used to represent a zero value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1410405-zerosymbol",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "zeroSymbol",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnumberformatter/1410405-zerosymbol"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1410417-textattributesfornegativeinfinit": {
+      "abstract": [
+        {
+          "text": "The text attributes used to display the negative infinity symbol.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1410417-textattributesfornegativeinfinit",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "textAttributesForNegativeInfinity",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnumberformatter/1410417-textattributesfornegativeinfinit"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1410459-minimumfractiondigits": {
+      "abstract": [
+        {
+          "text": "The minimum number of digits after the decimal separator.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1410459-minimumfractiondigits",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "minimumFractionDigits",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnumberformatter/1410459-minimumfractiondigits"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1410463-currencycode": {
+      "abstract": [
+        {
+          "text": "The receiver’s currency code.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1410463-currencycode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "currencyCode",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnumberformatter/1410463-currencycode"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1410503-generatesdecimalnumbers": {
+      "abstract": [
+        {
+          "text": "Determines whether the receiver creates instances of ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/nsdecimalnumber",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " when it converts strings to number objects.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1410503-generatesdecimalnumbers",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "generatesDecimalNumbers",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnumberformatter/1410503-generatesdecimalnumbers"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1410565-format": {
+      "abstract": [
+        {
+          "text": "The receiver’s format.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1410565-format",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "format",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnumberformatter/1410565-format"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1410737-positiveformat": {
+      "abstract": [
+        {
+          "text": "The format the receiver uses to display positive values.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1410737-positiveformat",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "positiveFormat",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnumberformatter/1410737-positiveformat"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1410959-textattributesfornotanumber": {
+      "abstract": [
+        {
+          "text": "The text attributes used to display the NaN (“not a number”) string.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1410959-textattributesfornotanumber",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "textAttributesForNotANumber",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnumberformatter/1410959-textattributesfornotanumber"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1411127-paddingposition": {
+      "abstract": [
+        {
+          "text": "The padding position used by the receiver.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1411127-paddingposition",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "paddingPosition",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnumberformatter/1411127-paddingposition"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1411156-roundingmode": {
+      "abstract": [
+        {
+          "text": "The rounding mode used by the receiver.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1411156-roundingmode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "roundingMode",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnumberformatter/1411156-roundingmode"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1411919-formatwidth": {
+      "abstract": [
+        {
+          "text": "The format width used by the receiver.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1411919-formatwidth",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "formatWidth",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnumberformatter/1411919-formatwidth"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1412008-maximumsignificantdigits": {
+      "abstract": [
+        {
+          "text": "The maximum number of significant digits for the number formatter.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1412008-maximumsignificantdigits",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "maximumSignificantDigits",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnumberformatter/1412008-maximumsignificantdigits"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1412157-groupingseparator": {
+      "abstract": [
+        {
+          "text": "The string used by the receiver for a grouping separator.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1412157-groupingseparator",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "groupingSeparator",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnumberformatter/1412157-groupingseparator"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1412244-partialstringvalidationenabled": {
+      "abstract": [
+        {
+          "text": "Determines whether partial string validation is enabled for the receiver.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1412244-partialstringvalidationenabled",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "partialStringValidationEnabled",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnumberformatter/1412244-partialstringvalidationenabled"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1412399-permillsymbol": {
+      "abstract": [
+        {
+          "text": "The string used to represent a per-mill (per-thousand) symbol.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1412399-permillsymbol",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "perMillSymbol",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnumberformatter/1412399-permillsymbol"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1412561-roundingincrement": {
+      "abstract": [
+        {
+          "text": "The rounding increment used by the receiver.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1412561-roundingincrement",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "roundingIncrement",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnumberformatter/1412561-roundingincrement"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1412588-getobjectvalue": {
+      "abstract": [
+        {
+          "text": "Returns by reference a cell-content object after creating it from a range of characters in a given string.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getObjectValue:forString:range:error:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1412588-getobjectvalue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getObjectValue:forString:range:error:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnumberformatter/1412588-getobjectvalue"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1412699-nilsymbol": {
+      "abstract": [
+        {
+          "text": "The string used to represent a ",
+          "type": "text"
+        },
+        {
+          "code": "nil",
+          "type": "codeVoice"
+        },
+        {
+          "text": " value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1412699-nilsymbol",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "nilSymbol",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnumberformatter/1412699-nilsymbol"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1412755-internationalcurrencysymbol": {
+      "abstract": [
+        {
+          "text": "The international currency symbol used by the receiver.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1412755-internationalcurrencysymbol",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "internationalCurrencySymbol",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnumberformatter/1412755-internationalcurrencysymbol"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1412771-thousandseparator": {
+      "abstract": [
+        {
+          "text": "The character the receiver uses as a thousand separator.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1412771-thousandseparator",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "thousandSeparator",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnumberformatter/1412771-thousandseparator"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1412976-positiveinfinitysymbol": {
+      "abstract": [
+        {
+          "text": "The string used to represent a positive infinity symbol. ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1412976-positiveinfinitysymbol",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "positiveInfinitySymbol",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnumberformatter/1412976-positiveinfinitysymbol"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1413348-secondarygroupingsize": {
+      "abstract": [
+        {
+          "text": "The secondary grouping size of the receiver.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1413348-secondarygroupingsize",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "secondaryGroupingSize",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnumberformatter/1413348-secondarygroupingsize"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1413690-paddingcharacter": {
+      "abstract": [
+        {
+          "text": "The string that the receiver uses to pad numbers in the formatted string representation.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1413690-paddingcharacter",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "paddingCharacter",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnumberformatter/1413690-paddingcharacter"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1413927-negativesuffix": {
+      "abstract": [
+        {
+          "text": "The string the receiver uses as a suffix for negative values.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1413927-negativesuffix",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "negativeSuffix",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnumberformatter/1413927-negativesuffix"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1414039-negativeformat": {
+      "abstract": [
+        {
+          "text": "The format the receiver uses to display negative values.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1414039-negativeformat",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "negativeFormat",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnumberformatter/1414039-negativeformat"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1414204-positiveprefix": {
+      "abstract": [
+        {
+          "text": "The string the receiver uses as the prefix for positive values.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1414204-positiveprefix",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "positivePrefix",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnumberformatter/1414204-positiveprefix"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1414530-textattributesfornegativevalues": {
+      "abstract": [
+        {
+          "text": "The text attributes to be used in displaying negative values.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1414530-textattributesfornegativevalues",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "textAttributesForNegativeValues",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnumberformatter/1414530-textattributesfornegativevalues"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1414668-currencysymbol": {
+      "abstract": [
+        {
+          "text": "The string used by the receiver as a local currency symbol.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1414668-currencysymbol",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "currencySymbol",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnumberformatter/1414668-currencysymbol"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1415071-positivesuffix": {
+      "abstract": [
+        {
+          "text": "The string the receiver uses as the suffix for positive values.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1415071-positivesuffix",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "positiveSuffix",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnumberformatter/1415071-positivesuffix"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1415137-defaultformatterbehavior": {
+      "abstract": [
+        {
+          "text": "Returns an ",
+          "type": "text"
+        },
+        {
+          "code": "NSNumberFormatterBehavior",
+          "type": "codeVoice"
+        },
+        {
+          "text": " constant that indicates default formatter behavior for new instances of ",
+          "type": "text"
+        },
+        {
+          "code": "NSNumberFormatter",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "defaultFormatterBehavior"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1415137-defaultformatterbehavior",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "defaultFormatterBehavior",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnumberformatter/1415137-defaultformatterbehavior"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1415364-maximumfractiondigits": {
+      "abstract": [
+        {
+          "text": "The maximum number of digits after the decimal separator.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1415364-maximumfractiondigits",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "maximumFractionDigits",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnumberformatter/1415364-maximumfractiondigits"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1415422-setdefaultformatterbehavior": {
+      "abstract": [
+        {
+          "text": "Sets the default formatter behavior for new instances of ",
+          "type": "text"
+        },
+        {
+          "code": "NSNumberFormatter",
+          "type": "codeVoice"
+        },
+        {
+          "text": " .",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "setDefaultFormatterBehavior:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1415422-setdefaultformatterbehavior",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setDefaultFormatterBehavior:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnumberformatter/1415422-setdefaultformatterbehavior"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1415516-attributedstringforzero": {
+      "abstract": [
+        {
+          "text": "The attributed string that the receiver uses to display zero values.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1415516-attributedstringforzero",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "attributedStringForZero",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnumberformatter/1415516-attributedstringforzero"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1415880-roundingbehavior": {
+      "abstract": [
+        {
+          "text": "The rounding behavior used by the receiver.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1415880-roundingbehavior",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "roundingBehavior",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnumberformatter/1415880-roundingbehavior"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1415971-textattributesforzero": {
+      "abstract": [
+        {
+          "text": "The text attributes used to display a zero value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1415971-textattributesforzero",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "textAttributesForZero",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnumberformatter/1415971-textattributesforzero"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1416119-allowsfloats": {
+      "abstract": [
+        {
+          "text": "Determines whether the receiver allows as input floating-point values (that is, values that include the period character [",
+          "type": "text"
+        },
+        {
+          "code": ".",
+          "type": "codeVoice"
+        },
+        {
+          "text": "]).",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1416119-allowsfloats",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "allowsFloats",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnumberformatter/1416119-allowsfloats"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1416167-groupingsize": {
+      "abstract": [
+        {
+          "text": "The grouping size of the receiver.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1416167-groupingsize",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "groupingSize",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnumberformatter/1416167-groupingsize"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1416184-attributedstringfornil": {
+      "abstract": [
+        {
+          "text": "The attributed string the receiver uses to display ",
+          "type": "text"
+        },
+        {
+          "code": "nil",
+          "type": "codeVoice"
+        },
+        {
+          "text": " values.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1416184-attributedstringfornil",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "attributedStringForNil",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnumberformatter/1416184-attributedstringfornil"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1416213-currencygroupingseparator": {
+      "abstract": [
+        {
+          "text": "The currency grouping separator for the receiver.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1416213-currencygroupingseparator",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "currencyGroupingSeparator",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnumberformatter/1416213-currencygroupingseparator"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1416418-localizedstringfromnumber": {
+      "abstract": [
+        {
+          "text": "Returns a localized number string with the specified style.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "localizedStringFromNumber:numberStyle:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1416418-localizedstringfromnumber",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "localizedStringFromNumber:numberStyle:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnumberformatter/1416418-localizedstringfromnumber"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1416423-plussign": {
+      "abstract": [
+        {
+          "text": "The string used to represent a plus sign.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1416423-plussign",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "plusSign",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnumberformatter/1416423-plussign"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1416451-hasthousandseparators": {
+      "abstract": [
+        {
+          "text": "Determines whether the receiver uses thousand separators.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1416451-hasthousandseparators",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hasThousandSeparators",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnumberformatter/1416451-hasthousandseparators"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1416819-attributedstringfornotanumber": {
+      "abstract": [
+        {
+          "text": "The attributed string the receiver uses to display “not a number” values.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1416819-attributedstringfornotanumber",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "attributedStringForNotANumber",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnumberformatter/1416819-attributedstringfornotanumber"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1416915-numberstyle": {
+      "abstract": [
+        {
+          "text": "The number style used by the receiver.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1416915-numberstyle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "numberStyle",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnumberformatter/1416915-numberstyle"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1416953-lenient": {
+      "abstract": [
+        {
+          "text": "Determines whether the receiver will use heuristics to guess at the number which is intended by a string.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1416953-lenient",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "lenient",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnumberformatter/1416953-lenient"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1416967-locale": {
+      "abstract": [
+        {
+          "text": "The locale of the receiver.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1416967-locale",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "locale",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnumberformatter/1416967-locale"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1416993-notanumbersymbol": {
+      "abstract": [
+        {
+          "text": "The string used to represent a NaN (“not a number”) value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1416993-notanumbersymbol",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "notANumberSymbol",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnumberformatter/1416993-notanumbersymbol"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1417223-exponentsymbol": {
+      "abstract": [
+        {
+          "text": "The string used to represent an exponent symbol.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1417223-exponentsymbol",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "exponentSymbol",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnumberformatter/1417223-exponentsymbol"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1417228-minimum": {
+      "abstract": [
+        {
+          "text": "The lowest number allowed as input by the receiver.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1417228-minimum",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "minimum",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnumberformatter/1417228-minimum"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1417642-formatterbehavior": {
+      "abstract": [
+        {
+          "text": "The formatter behavior of the receiver.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1417642-formatterbehavior",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "formatterBehavior",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnumberformatter/1417642-formatterbehavior"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1417787-maximum": {
+      "abstract": [
+        {
+          "text": "The highest number allowed as input by the receiver.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1417787-maximum",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "maximum",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnumberformatter/1417787-maximum"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1417793-usessignificantdigits": {
+      "abstract": [
+        {
+          "text": "A Boolean value indicating whether the formatter uses minimum and maximum significant digits when formatting numbers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1417793-usessignificantdigits",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "usesSignificantDigits",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnumberformatter/1417793-usessignificantdigits"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1417968-negativeinfinitysymbol": {
+      "abstract": [
+        {
+          "text": "The string used to represent a negative infinity symbol.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1417968-negativeinfinitysymbol",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "negativeInfinitySymbol",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnumberformatter/1417968-negativeinfinitysymbol"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1418046-stringfromnumber": {
+      "abstract": [
+        {
+          "text": "Returns a string containing the formatted value of the provided number object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "stringFromNumber:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1418046-stringfromnumber",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "stringFromNumber:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnumberformatter/1418046-stringfromnumber"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/4446097-minimumgroupingdigits": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/4446097-minimumgroupingdigits",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "minimumGroupingDigits",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnumberformatter/4446097-minimumgroupingdigits"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnumberformatterbehavior": {
+      "abstract": [
+        {
+          "text": "These constants specify the behavior of a number formatter. These constants are returned by the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1415137-defaultformatterbehavior",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " class method and the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1417642-formatterbehavior",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " property.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnumberformatterbehavior",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSNumberFormatterBehavior",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnumberformatterbehavior"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnumberformatterpadposition": {
+      "abstract": [
+        {
+          "text": "These constants are used to specify how numbers should be padded. These constants are used by the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1411127-paddingposition",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " property.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnumberformatterpadposition",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSNumberFormatterPadPosition",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnumberformatterpadposition"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnumberformatterroundingmode": {
+      "abstract": [
+        {
+          "text": "These constants are used to specify how numbers should be rounded. These constants are used by the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1411156-roundingmode",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " property.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnumberformatterroundingmode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSNumberFormatterRoundingMode",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnumberformatterroundingmode"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnumberformatterstyle": {
+      "abstract": [
+        {
+          "text": "The predefined number format styles used by the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1416915-numberstyle",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " property.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnumberformatterstyle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSNumberFormatterStyle",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnumberformatterstyle"
+    },
+    "doc://com.apple.documentation/documentation/foundation/numbers_data_and_basic_values": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/numbers_data_and_basic_values",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Numbers, Data, and Basic Values",
+      "type": "topic",
+      "url": "/documentation/foundation/numbers_data_and_basic_values"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/no": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/no",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NO",
+      "type": "topic",
+      "url": "/documentation/objectivec/no"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsinteger": {
+      "abstract": [
+        {
+          "text": "Describes an integer.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsinteger",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSInteger",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsinteger"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsuinteger": {
+      "abstract": [
+        {
+          "text": "Describes an unsigned integer.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsuinteger",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSUInteger",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsuinteger"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/yes": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/yes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "YES",
+      "type": "topic",
+      "url": "/documentation/objectivec/yes"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsformatter"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/objectivec/nsinteger",
+        "doc://com.apple.documentation/documentation/objectivec/nsuinteger",
+        "doc://com.apple.documentation/documentation/foundation/nsdecimal",
+        "doc://com.apple.documentation/documentation/foundation/nsdecimalnumber",
+        "doc://com.apple.documentation/documentation/foundation/nsnumber"
+      ],
+      "title": "Numbers"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "1653634",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1417642-formatterbehavior",
+        "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1415422-setdefaultformatterbehavior",
+        "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1415137-defaultformatterbehavior",
+        "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1416915-numberstyle",
+        "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1410503-generatesdecimalnumbers"
+      ],
+      "kind": "taskGroup",
+      "title": "Configuring Formatter Behavior and Style"
+    },
+    {
+      "anchor": "1653706",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1412588-getobjectvalue",
+        "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1408845-numberfromstring",
+        "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1418046-stringfromnumber",
+        "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1416418-localizedstringfromnumber"
+      ],
+      "kind": "taskGroup",
+      "title": "Converting Between Numbers and Strings"
+    },
+    {
+      "anchor": "1653781",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1408133-localizesformat",
+        "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1416967-locale"
+      ],
+      "kind": "taskGroup",
+      "title": "Managing Localization of Numbers"
+    },
+    {
+      "anchor": "1653826",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1415880-roundingbehavior",
+        "doc://com.apple.documentation/documentation/foundation/nsdecimalnumberhandler",
+        "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1412561-roundingincrement",
+        "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1411156-roundingmode"
+      ],
+      "kind": "taskGroup",
+      "title": "Configuring Rounding Behavior"
+    },
+    {
+      "anchor": "1681276",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1410052-minimumintegerdigits",
+        "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1407284-maximumintegerdigits",
+        "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1410459-minimumfractiondigits",
+        "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1415364-maximumfractiondigits"
+      ],
+      "kind": "taskGroup",
+      "title": "Configuring Integer and Fraction Digits"
+    },
+    {
+      "anchor": "1654815",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1417793-usessignificantdigits",
+        "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1410174-minimumsignificantdigits",
+        "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1412008-maximumsignificantdigits"
+      ],
+      "kind": "taskGroup",
+      "title": "Configuring Significant Digits"
+    },
+    {
+      "anchor": "1653883",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1410565-format",
+        "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1408543-formattingcontext",
+        "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1411919-formatwidth",
+        "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1414039-negativeformat",
+        "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1410737-positiveformat",
+        "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1408601-multiplier"
+      ],
+      "kind": "taskGroup",
+      "title": "Configuring Numeric Formats"
+    },
+    {
+      "anchor": "1653975",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1407789-percentsymbol",
+        "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1412399-permillsymbol",
+        "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1409416-minussign",
+        "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1416423-plussign",
+        "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1417223-exponentsymbol",
+        "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1410405-zerosymbol",
+        "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1412699-nilsymbol",
+        "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1416993-notanumbersymbol",
+        "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1417968-negativeinfinitysymbol",
+        "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1412976-positiveinfinitysymbol"
+      ],
+      "kind": "taskGroup",
+      "title": "Configuring Numeric Symbols"
+    },
+    {
+      "anchor": "1654136",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1414668-currencysymbol",
+        "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1410463-currencycode",
+        "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1412755-internationalcurrencysymbol",
+        "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1416213-currencygroupingseparator"
+      ],
+      "kind": "taskGroup",
+      "title": "Configuring the Format of Currency"
+    },
+    {
+      "anchor": "1654240",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1414204-positiveprefix",
+        "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1415071-positivesuffix",
+        "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1408096-negativeprefix",
+        "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1413927-negativesuffix"
+      ],
+      "kind": "taskGroup",
+      "title": "Configuring Numeric Prefixes and Suffixes"
+    },
+    {
+      "anchor": "1654317",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1414530-textattributesfornegativevalues",
+        "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1409563-textattributesforpositivevalues",
+        "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1415516-attributedstringforzero",
+        "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1415971-textattributesforzero",
+        "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1416184-attributedstringfornil",
+        "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1408943-textattributesfornil",
+        "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1416819-attributedstringfornotanumber",
+        "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1410959-textattributesfornotanumber",
+        "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1408176-textattributesforpositiveinfinit",
+        "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1410417-textattributesfornegativeinfinit"
+      ],
+      "kind": "taskGroup",
+      "title": "Configuring the Display of Numeric Values"
+    },
+    {
+      "anchor": "1654516",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1412157-groupingseparator",
+        "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1409880-usesgroupingseparator",
+        "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1412771-thousandseparator",
+        "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1416451-hasthousandseparators",
+        "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1408029-decimalseparator",
+        "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1408550-alwaysshowsdecimalseparator",
+        "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1407247-currencydecimalseparator",
+        "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1416167-groupingsize",
+        "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1413348-secondarygroupingsize"
+      ],
+      "kind": "taskGroup",
+      "title": "Configuring Separators and Grouping Size"
+    },
+    {
+      "anchor": "1654684",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1413690-paddingcharacter",
+        "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1411127-paddingposition"
+      ],
+      "kind": "taskGroup",
+      "title": "Managing the Padding of Numbers"
+    },
+    {
+      "anchor": "1654717",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1416119-allowsfloats",
+        "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1417228-minimum",
+        "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1417787-maximum"
+      ],
+      "kind": "taskGroup",
+      "title": "Managing Input and Output Attributes"
+    },
+    {
+      "anchor": "1654867",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1416953-lenient"
+      ],
+      "kind": "taskGroup",
+      "title": "Managing Leniency Behavior"
+    },
+    {
+      "anchor": "1654897",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/1412244-partialstringvalidationenabled"
+      ],
+      "kind": "taskGroup",
+      "title": "Managing the Validation of Partial Numeric Strings"
+    },
+    {
+      "anchor": "1654926",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsnumberformatterstyle",
+        "doc://com.apple.documentation/documentation/foundation/nsnumberformatterbehavior",
+        "doc://com.apple.documentation/documentation/foundation/nsnumberformatterpadposition",
+        "doc://com.apple.documentation/documentation/foundation/nsnumberformatterroundingmode"
+      ],
+      "kind": "taskGroup",
+      "title": "Constants"
+    },
+    {
+      "anchor": "4446653",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsnumberformatter/4446097-minimumgroupingdigits"
+      ],
+      "kind": "taskGroup",
+      "title": "Instance Properties"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nsnumberformatter"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/numberformatter"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

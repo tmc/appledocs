@@ -1,0 +1,713 @@
+{
+  "abstract": [
+    {
+      "text": "Respond to events on behalf of a delegator.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Swift/documentation/Swift",
+        "doc://com.apple.Swift/documentation/Swift/cocoa-design-patterns"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Swift/documentation/Swift/using-delegates-to-customize-object-behavior"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Swift"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Using Delegates to Customize Object Behavior"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You use delegates to interact with Cocoa objects that inform you of events in an",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Adopt-a-Delegate-Protocol",
+          "level": 3,
+          "text": "Adopt a Delegate Protocol",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Cocoa APIs often provide protocols that include delegate methods. When an event occurs—such",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "as a user resizing a window—a class that’s a delegator will detect the event and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "call delegate methods on the class you specify as the delegate. Delegate methods",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "can customize how an app responds to an event.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The example below adopts the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppKit/NSWindowDelegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "protocol and implements its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppKit/NSWindowDelegate/window(_:willUseFullScreenContentSize:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "method:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "class MyDelegate: NSObject, NSWindowDelegate {",
+            "    func window(_ window: NSWindow, willUseFullScreenContentSize proposedSize: NSSize) -> NSSize {",
+            "        return proposedSize",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Check-That-Delegates-Exist",
+          "level": 3,
+          "text": "Check That Delegates Exist",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Cocoa delegation pattern doesn’t require that delegates are instantiated. If",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "you don’t need to respond to events, you don’t need to create a delegate. Before",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "you call a method on an object’s delegate, make sure that the delegate isn’t ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The example below creates an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppKit/NSWindow",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and uses optional chaining to check that the window’s delegate exists before sending",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a message to the delegate.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let myWindow = NSWindow(",
+            "    contentRect: NSRect(x: 0, y: 0, width: 5120, height: 2880),",
+            "    styleMask: .fullScreen,",
+            "    backing: .buffered,",
+            "    defer: false",
+            ")",
+            "",
+            "myWindow.delegate = MyDelegate()",
+            "if let fullScreenSize = myWindow.delegate?.window(myWindow, willUseFullScreenContentSize: mySize) {",
+            "    print(NSStringFromSize(fullScreenSize))",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Swift-PageImage-card.png": {
+      "alt": "An orange Swift logo on a gradient background.",
+      "identifier": "Swift-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/81257762cf893d205c049e3021340e5f/Swift-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4d2ed632470b4616483901941fae4098/Swift-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Swift/documentation/Swift": {
+      "abstract": [
+        {
+          "text": "Build apps using a powerful open language.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift",
+      "images": [
+        {
+          "identifier": "Swift-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Swift",
+      "type": "topic",
+      "url": "/documentation/swift"
+    },
+    "doc://com.apple.Swift/documentation/Swift/about-imported-cocoa-error-parameters": {
+      "abstract": [
+        {
+          "text": "Learn how Cocoa error parameters are converted to Swift throwing methods.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/about-imported-cocoa-error-parameters",
+      "kind": "article",
+      "role": "article",
+      "title": "About Imported Cocoa Error Parameters",
+      "type": "topic",
+      "url": "/documentation/swift/about-imported-cocoa-error-parameters"
+    },
+    "doc://com.apple.Swift/documentation/Swift/cocoa-design-patterns": {
+      "abstract": [
+        {
+          "text": "Adopt and interoperate with Cocoa design patterns in your Swift apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/cocoa-design-patterns",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Cocoa Design Patterns",
+      "type": "topic",
+      "url": "/documentation/swift/cocoa-design-patterns"
+    },
+    "doc://com.apple.Swift/documentation/Swift/handling-cocoa-errors-in-swift": {
+      "abstract": [
+        {
+          "text": "Throw and catch errors that use Cocoa’s error types.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/handling-cocoa-errors-in-swift",
+      "kind": "article",
+      "role": "article",
+      "title": "Handling Cocoa Errors in Swift",
+      "type": "topic",
+      "url": "/documentation/swift/handling-cocoa-errors-in-swift"
+    },
+    "doc://com.apple.Swift/documentation/Swift/managing-a-shared-resource-using-a-singleton": {
+      "abstract": [
+        {
+          "text": "Provide access to a shared resource using a single, shared class instance.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/managing-a-shared-resource-using-a-singleton",
+      "kind": "article",
+      "role": "article",
+      "title": "Managing a Shared Resource Using a Singleton",
+      "type": "topic",
+      "url": "/documentation/swift/managing-a-shared-resource-using-a-singleton"
+    },
+    "doc://com.apple.Swift/documentation/Swift/using-key-value-observing-in-swift": {
+      "abstract": [
+        {
+          "text": "Notify objects about changes to the properties of other objects.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/using-key-value-observing-in-swift",
+      "kind": "article",
+      "role": "article",
+      "title": "Using Key-Value Observing in Swift",
+      "type": "topic",
+      "url": "/documentation/swift/using-key-value-observing-in-swift"
+    },
+    "doc://com.apple.documentation/documentation/AppKit/NSWindow": {
+      "abstract": [
+        {
+          "text": "A window that an app displays on the screen.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSWindow"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSWindow",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSWindow",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSWindow"
+    },
+    "doc://com.apple.documentation/documentation/AppKit/NSWindowDelegate": {
+      "abstract": [
+        {
+          "text": "A set of optional methods that a window’s delegate can implement to respond to events, such as window resizing, moving, exposing, and minimizing.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSWindowDelegate"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSObject",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSWindowDelegate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSWindowDelegate",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSWindowDelegate"
+    },
+    "doc://com.apple.documentation/documentation/AppKit/NSWindowDelegate/window(_:willUseFullScreenContentSize:)": {
+      "abstract": [
+        {
+          "text": "Called to allow the delegate to modify the full-screen content size.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "optional"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "window"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "window"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSWindow",
+          "text": "NSWindow"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "willUseFullScreenContentSize"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "proposedSize"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSSize",
+          "text": "NSSize"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSSize",
+          "text": "NSSize"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSWindowDelegate/window(_:willUseFullScreenContentSize:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "window(_:willUseFullScreenContentSize:)",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSWindowDelegate/window(_:willUseFullScreenContentSize:)"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Common-Patterns",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/using-key-value-observing-in-swift",
+        "doc://com.apple.Swift/documentation/Swift/managing-a-shared-resource-using-a-singleton",
+        "doc://com.apple.Swift/documentation/Swift/about-imported-cocoa-error-parameters",
+        "doc://com.apple.Swift/documentation/Swift/handling-cocoa-errors-in-swift"
+      ],
+      "title": "Common Patterns"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSWindow/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSWindow"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSResponder",
+              "text": "NSResponder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSWindowDelegate~1window(_:willUseFullScreenContentSize:)/title",
+          "value": "window:willUseFullScreenContentSize:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSWindowDelegate~1window(_:willUseFullScreenContentSize:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@NSSize",
+              "text": "NSSize"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "window:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSWindow",
+              "text": "NSWindow"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "window"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "willUseFullScreenContentSize:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@NSSize",
+              "text": "NSSize"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "internalParam",
+              "text": "proposedSize"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSWindowDelegate/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSWindowDelegate"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

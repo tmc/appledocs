@@ -1,0 +1,768 @@
+{
+  "abstract": [
+    {
+      "text": "Guard user data and operating system resources from malicious attacks by limiting your app’s access to files, network connections, and hardware capabilities.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.security/documentation/Security",
+        "doc://com.apple.security/documentation/Security/app-sandbox"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.security/documentation/Security/protecting-user-data-with-app-sandbox"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Security"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Protecting user data with App Sandbox"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Even if you adopted secure coding practices while developing your app, it may still have vulnerabilities that threaten your users’ security and privacy. App Sandbox — a requirement for distributing your app on the App Store — limits the scope for an attacker to abuse platform features via your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you create a new macOS app in Xcode, it receives the App Sandbox entitlement and a default set of capabilities. If you have an existing app, you can adopt App Sandbox to provide people with additional security.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "For information on enabling the App Sandbox capability in Xcode, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/Xcode/configuring-the-macos-app-sandbox",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Review-functionality-that-is-incompatible-with-App-Sandbox",
+          "level": 3,
+          "text": "Review functionality that is incompatible with App Sandbox",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Certain activities are forbidden by the operating system when an app runs in a sandbox. Identify whether your app performs these, and remove them or find alternative ways to provide the same functionality. The restricted activities are:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use of ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.security/documentation/Security/authorization-services",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " API.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use of accessibility APIs in assistive apps.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Sending Apple Events to arbitrary apps.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Sending ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification/1409222-userinfo",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " dictionaries in distributed notifications to other tasks.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Loading kernel extensions.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Simulating user input in Open and Save dialogs.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Accessing or modifying preferences in other apps.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Configuring network settings.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Terminating other running apps.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Place-data-files-and-scripts-in-standard-locations",
+          "level": 3,
+          "text": "Place data files and scripts in standard locations",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The operating system creates a container directory when launching your sandboxed app, to which the app has unrestricted read and write access. The sandboxed app doesn’t have unrestricted access to the user’s home folder. Use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/filemanager",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/filemanager/1407693-url",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to find common directories for user documents, scripts, and supporting files, as it returns a location within the app’s container for a sandboxed app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you are enabling App Sandbox for an existing app that already has documents, user scripts, or supporting files in the user’s home folder, refer to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/migrating-your-app-s-files-to-its-app-sandbox-container",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Configure-the-App-Sandbox-for-an-embedded-tool",
+          "level": 3,
+          "text": "Configure the App Sandbox for an embedded tool",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your macOS app embeds a command-line tool, that tool must inherit the containing app’s sandbox configuration. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Xcode/embedding-a-helper-tool-in-a-sandboxed-app",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Verify-that-your-app-uses-App-Sandbox",
+          "level": 3,
+          "text": "Verify that your app uses App Sandbox",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can verify if your app uses App Sandbox by looking for the process in Activity Monitor or with the ",
+              "type": "text"
+            },
+            {
+              "code": "codesign",
+              "type": "codeVoice"
+            },
+            {
+              "text": " command in Terminal.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To verify your app in Activity Monitor:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Open Activity Monitor.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Choose View > Columns, and choose Sandbox among the list of possible columns to monitor.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Launch your app.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Find your app in Activity Monitor’s process list, and verify that the value in the Sandbox column is Yes as shown in the figure below.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-4098973",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To verify your app’s App Sandbox configuration in Terminal, use the ",
+              "type": "text"
+            },
+            {
+              "code": "codesign",
+              "type": "codeVoice"
+            },
+            {
+              "text": " command:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "% codesign -dvvv --entitlements - <path to your app>"
+          ],
+          "syntax": "zsh",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your app has the App Sandbox entitlement, you will see the following in the output:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "    [Key] com.apple.security.app-sandbox",
+            "    [Value]",
+            "        [Bool] true"
+          ],
+          "syntax": "console",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/Xcode/configuring-the-macos-app-sandbox": {
+      "abstract": [
+        {
+          "text": "Protect system resources and user data from compromised apps by restricting access to the file system, network connections, and more.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Xcode/configuring-the-macos-app-sandbox",
+      "kind": "article",
+      "role": "article",
+      "title": "Configuring the macOS App Sandbox",
+      "type": "topic",
+      "url": "/documentation/Xcode/configuring-the-macos-app-sandbox"
+    },
+    "doc://com.apple.documentation/documentation/Xcode/embedding-a-helper-tool-in-a-sandboxed-app": {
+      "abstract": [
+        {
+          "text": "Add a command-line tool to a sandboxed app’s Xcode project so the resulting app can run it as a helper tool.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Xcode/embedding-a-helper-tool-in-a-sandboxed-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Embedding a command-line tool in a sandboxed app",
+      "type": "topic",
+      "url": "/documentation/Xcode/embedding-a-helper-tool-in-a-sandboxed-app"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filemanager": {
+      "abstract": [
+        {
+          "text": "A convenient interface to the contents of the file system, and the primary means of interacting with it.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "FileManager"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filemanager",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FileManager",
+      "type": "topic",
+      "url": "/documentation/foundation/filemanager"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filemanager/1407693-url": {
+      "abstract": [
+        {
+          "text": "Locates and optionally creates the specified common directory in a domain.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "url"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": FileManager.SearchPathDirectory, "
+        },
+        {
+          "kind": "identifier",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": FileManager.SearchPathDomainMask, "
+        },
+        {
+          "kind": "identifier",
+          "text": "appropriateFor"
+        },
+        {
+          "kind": "text",
+          "text": ": URL?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "create"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool) -> URL"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filemanager/1407693-url",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "url(for:in:appropriateFor:create:)",
+      "type": "topic",
+      "url": "/documentation/foundation/filemanager/1407693-url"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnotification/1409222-userinfo": {
+      "abstract": [
+        {
+          "text": "The user information dictionary associated with the notification.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "userInfo"
+        },
+        {
+          "kind": "text",
+          "text": ": [AnyHashable : Any]?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification/1409222-userinfo",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "userInfo",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnotification/1409222-userinfo"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.security/documentation/Security": {
+      "abstract": [
+        {
+          "text": "Secure the data your app manages, and control access to your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Security",
+      "type": "topic",
+      "url": "/documentation/security"
+    },
+    "doc://com.apple.security/documentation/Security/app-sandbox": {
+      "abstract": [
+        {
+          "text": "Restrict access to system resources and user data in macOS apps to contain damage if an app becomes compromised.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/app-sandbox",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "App Sandbox",
+      "type": "topic",
+      "url": "/documentation/security/app-sandbox"
+    },
+    "doc://com.apple.security/documentation/Security/authorization-services": {
+      "abstract": [
+        {
+          "text": "Access restricted areas of the operating system, and control access to particular features of your macOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/authorization-services",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Authorization Services",
+      "type": "topic",
+      "url": "/documentation/security/authorization-services"
+    },
+    "doc://com.apple.security/documentation/Security/migrating-your-app-s-files-to-its-app-sandbox-container": {
+      "abstract": [
+        {
+          "text": "Simplify your app’s access to documents and supporting files.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/migrating-your-app-s-files-to-its-app-sandbox-container",
+      "kind": "article",
+      "role": "article",
+      "title": "Migrating your app’s files to its App Sandbox container",
+      "type": "topic",
+      "url": "/documentation/security/migrating-your-app-s-files-to-its-app-sandbox-container"
+    },
+    "media-4098973": {
+      "alt": "A screenshot of Activity Monitor. The row describing an app is highlighted, calling out the value in the Sandbox column.",
+      "identifier": "media-4098973",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/3b8daaa3b19dd20062efd3c92e8f1f0d/media-4098973@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/81587f80fcc75a08a72b452d79ac1400/media-4098973~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1filemanager/title",
+          "value": "NSFileManager"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1filemanager~11407693-url/title",
+          "value": "URLForDirectory:inDomain:appropriateForURL:create:error:"
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/security/protecting-user-data-with-app-sandbox"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/security/protecting-user-data-with-app-sandbox"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

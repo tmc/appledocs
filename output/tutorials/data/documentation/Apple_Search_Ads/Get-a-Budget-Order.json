@@ -1,0 +1,689 @@
+{
+  "abstract": [
+    {
+      "text": "Fetches a specific budget order using a budget order identifier.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.applesearchads/documentation/apple_search_ads"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.applesearchads/documentation/apple_search_ads/Get-a-Budget-Order"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "rest:search_ads:get:v5-budgetorders-{}",
+    "modules": [
+      {
+        "name": "Apple Search Ads"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "Get a Budget Order"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "5.0",
+        "name": "Search Ads"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Web Service Endpoint",
+    "symbolKind": "httpRequest",
+    "title": "Get a Budget Order"
+  },
+  "primaryContentSections": [
+    {
+      "kind": "restEndpoint",
+      "title": "URL",
+      "tokens": [
+        {
+          "kind": "method",
+          "text": "GET"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "baseURL",
+          "text": "https://api.searchads.apple.com/api/"
+        },
+        {
+          "kind": "path",
+          "text": "v5/budgetorders/"
+        },
+        {
+          "kind": "parameter",
+          "text": "{boId}"
+        }
+      ]
+    },
+    {
+      "items": [
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The unique identifier for the budget order. You set the ",
+                  "type": "text"
+                },
+                {
+                  "code": "boID",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " when creating a budget order through the Apple Search Ads UI.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "boId",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "int64"
+            }
+          ]
+        }
+      ],
+      "kind": "restParameters",
+      "source": "path",
+      "title": "Path Parameters"
+    },
+    {
+      "items": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If the call succeeds, the API returns the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/BudgetOrderInfoResponse",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " object in the response payload with an HTTP status code of ",
+                  "type": "text"
+                },
+                {
+                  "code": "200(OK)",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ". If unsuccessful, the HTTP status code indicates the error with details in the error message.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "OK",
+          "status": 200,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/BudgetOrderInfoResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:search_ads:BudgetOrderInfoResponse",
+              "text": "BudgetOrderInfoResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An invalid query or missing required parameters.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Bad Request",
+          "status": 400,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/ApiErrorResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:search_ads:ApiErrorResponse",
+              "text": "ApiErrorResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An unauthenticated call fails to get the requested response.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Unauthorized",
+          "status": 401,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/ApiErrorResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:search_ads:ApiErrorResponse",
+              "text": "ApiErrorResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Insufficient rights to the resource.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Forbidden",
+          "status": 403,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/ApiErrorResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:search_ads:ApiErrorResponse",
+              "text": "ApiErrorResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The API can’t locate the resource.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Not Found",
+          "status": 404,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/ApiErrorResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:search_ads:ApiErrorResponse",
+              "text": "ApiErrorResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The API calls exceed rate-limit thresholds. See the Rate Limits subsection of ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.applesearchads/documentation/Apple_Search_Ads/calling-the-apple-search-ads-api",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "status": 429,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/ApiErrorResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:search_ads:ApiErrorResponse",
+              "text": "ApiErrorResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The Apple Search Ads server is temporarily down or unreachable. The request may be valid, but you need to retry it later.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Internal Server Error",
+          "status": 500,
+          "type": [
+            {
+              "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/ApiErrorResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:search_ads:ApiErrorResponse",
+              "text": "ApiErrorResponse"
+            }
+          ]
+        }
+      ],
+      "kind": "restResponses",
+      "title": "Response Codes"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This call retrieves a specific assigned budget order for your organization. It also returns completed and canceled orders. Budget orders also return when you use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/Create-a-Campaign",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/Update-a-Campaign",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " endpoints.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can’t set budget order invoicing through the API. You can only fetch a budget order using Get a Budget Order or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/Get-All-Budget-Orders",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Payload-example-Get-a-budget-order",
+          "level": 3,
+          "text": "Payload example: Get a budget order",
+          "type": "heading"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "GET https://api.searchads.apple.com/api/v5/budgetorders/{boId}"
+                  ],
+                  "syntax": null,
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Request"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "{",
+                    "  \"data\": {",
+                    "    \"orgIds\": [",
+                    "      3761812",
+                    "    ],",
+                    "    \"bo\": {",
+                    "      \"id\": 542370539,",
+                    "      \"name\": \"get a budget order example\",",
+                    "      \"startDate\": \"2024-04-08T00:00:00.000\",",
+                    "      \"endDate\": \"2024-04-09T23:59:59.999\",",
+                    "      \"budget\": {",
+                    "        \"amount\": \"2000\",",
+                    "        \"currency\": \"USD\"",
+                    "      },",
+                    "      \"orderNumber\": \"2376542\",",
+                    "      \"clientName\": \"Trip Trek\",",
+                    "      \"primaryBuyerName\": \"Trip Trek\",",
+                    "      \"primaryBuyerEmail\": \"buyer@triptrek.com\",",
+                    "      \"billingEmail\": \"billing@triptrek.com\",",
+                    "      \"status\": \"COMPLETED\",",
+                    "      \"parentOrgId\": 27154130,",
+                    "      \"supplySources\": [",
+                    "        \"APPSTORE_SEARCH_RESULTS\"",
+                    "      ]",
+                    "    }",
+                    "  },",
+                    "  \"pagination\": null,",
+                    "  \"error\": null",
+                    "}",
+                    ""
+                  ],
+                  "syntax": "json",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Response"
+            }
+          ],
+          "type": "tabNavigator"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.applesearchads/documentation/Apple_Search_Ads/calling-the-apple-search-ads-api": {
+      "abstract": [
+        {
+          "text": "Pass your access token in the authorization header of HTTP requests.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/Apple_Search_Ads/calling-the-apple-search-ads-api",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Calling the Apple Search Ads API",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/calling-the-apple-search-ads-api"
+    },
+    "doc://com.apple.applesearchads/documentation/apple_search_ads": {
+      "abstract": [
+        {
+          "text": "Drive app discovery by creating and managing campaigns with the Apple Search Ads Campaign Management API.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Apple Search Ads",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads"
+    },
+    "doc://com.apple.applesearchads/documentation/apple_search_ads/ApiErrorResponse": {
+      "abstract": [
+        {
+          "text": "A parent object of the error response body.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ApiErrorResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/ApiErrorResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ApiErrorResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "ApiErrorResponse",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/apierrorresponse"
+    },
+    "doc://com.apple.applesearchads/documentation/apple_search_ads/BudgetOrderInfoResponse": {
+      "abstract": [
+        {
+          "text": "A container for the budget order response body.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "BudgetOrderInfoResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/BudgetOrderInfoResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BudgetOrderInfoResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "BudgetOrderInfoResponse",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/budgetorderinforesponse"
+    },
+    "doc://com.apple.applesearchads/documentation/apple_search_ads/Create-a-Budget-Order": {
+      "abstract": [
+        {
+          "text": "Creates a budget order in the context of your org ID.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/Create-a-Budget-Order",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Create a Budget Order"
+        }
+      ],
+      "role": "symbol",
+      "title": "Create a Budget Order",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/create-a-budget-order"
+    },
+    "doc://com.apple.applesearchads/documentation/apple_search_ads/Create-a-Campaign": {
+      "abstract": [
+        {
+          "text": "Creates a campaign to promote an app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/Create-a-Campaign",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Create a Campaign"
+        }
+      ],
+      "role": "symbol",
+      "title": "Create a Campaign",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/create-a-campaign"
+    },
+    "doc://com.apple.applesearchads/documentation/apple_search_ads/Get-All-Budget-Orders": {
+      "abstract": [
+        {
+          "text": "Fetches all assigned budget orders for an organization.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/Get-All-Budget-Orders",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Get All Budget Orders"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get All Budget Orders",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/get-all-budget-orders"
+    },
+    "doc://com.apple.applesearchads/documentation/apple_search_ads/Get-a-Budget-Order": {
+      "abstract": [
+        {
+          "text": "Fetches a specific budget order using a budget order identifier.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/Get-a-Budget-Order",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Get a Budget Order"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get a Budget Order",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/get-a-budget-order"
+    },
+    "doc://com.apple.applesearchads/documentation/apple_search_ads/Update-a-Budget-Order": {
+      "abstract": [
+        {
+          "text": "Updates an existing budget order.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/Update-a-Budget-Order",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Update a Budget Order"
+        }
+      ],
+      "role": "symbol",
+      "title": "Update a Budget Order",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/update-a-budget-order"
+    },
+    "doc://com.apple.applesearchads/documentation/apple_search_ads/Update-a-Campaign": {
+      "abstract": [
+        {
+          "text": "Updates a campaign with a campaign identifier.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applesearchads/documentation/apple_search_ads/Update-a-Campaign",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Update a Campaign"
+        }
+      ],
+      "role": "symbol",
+      "title": "Update a Campaign",
+      "type": "topic",
+      "url": "/documentation/apple_search_ads/update-a-campaign"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Budget-Order-Endpoints",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.applesearchads/documentation/apple_search_ads/Create-a-Budget-Order",
+        "doc://com.apple.applesearchads/documentation/apple_search_ads/Update-a-Budget-Order",
+        "doc://com.apple.applesearchads/documentation/apple_search_ads/Get-All-Budget-Orders"
+      ],
+      "title": "Budget Order Endpoints"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/apple_search_ads/get-a-budget-order"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

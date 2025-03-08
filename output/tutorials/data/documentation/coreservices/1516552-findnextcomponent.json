@@ -1,0 +1,416 @@
+{
+  "abstract": [
+    {
+      "text": "Returns the component identifier for the next registered component that meets the selection criteria specified by your application. ",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/coreservices",
+        "doc://com.apple.documentation/documentation/coreservices/carbon_core",
+        "doc://com.apple.documentation/documentation/coreservices/carbon_core/component_manager"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/coreservices/1516552-findnextcomponent"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1516552,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@F@FindNextComponent",
+    "modules": [
+      {
+        "name": "Core Services"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "15.4",
+        "deprecated": true,
+        "deprecatedAt": "10.8",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Function",
+    "symbolKind": "func",
+    "title": "FindNextComponent"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreservices/component",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@Component",
+              "text": "Component"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "FindNextComponent"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreservices/component",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@Component",
+              "text": "Component"
+            },
+            {
+              "kind": "text",
+              "text": " aComponent, "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreservices/componentdescription",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@ComponentDescription",
+              "text": "ComponentDescription"
+            },
+            {
+              "kind": "text",
+              "text": " *looking);"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "languages": [
+        "occ"
+      ],
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The starting point for the search. Set this field to 0 to start the search at the beginning of the component list. If you are continuing a search, you can specify a component identifier previously returned by this function. The function then searches the remaining components. ",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "aComponent"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A pointer to a ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/coreservices/componentdescription",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " structure. Your application specifies the criteria for the component search in the fields of this structure.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "The Component Manager ignores fields in the component description structure that are set to 0. For example, if you set all the fields to 0, all components meet the search criteria. In this case, your application can retrieve information about all of the components that are registered in the system by repeatedly calling ",
+                  "type": "text"
+                },
+                {
+                  "code": "FindNextComponent",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " and ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/coreservices/1516438-getcomponentinfo",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " until the search is complete. Similarly, if you set all fields to 0 except for the ",
+                  "type": "text"
+                },
+                {
+                  "code": "componentManufacturer",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " field, the Component Manager searches all registered components for a component supplied by the manufacturer you specify. Note that this function does not modify the contents of the component description structure you supply. To retrieve detailed information about a component, you need to use the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/coreservices/1516438-getcomponentinfo",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " function to get the component description structure for each returned component.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "looking"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return_value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The component identifier of a component that meets the search criteria or 0 when there are no more matching components. Your application can use the component identifier returned by this function to get more information about the component, using ",
+              "type": "text"
+            },
+            {
+              "code": "GetComponentInfo",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", or to open the component, using either the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreservices/1516523-opendefaultcomponent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function or the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreservices/1516607-opencomponent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function. See the description of the ",
+              "type": "text"
+            },
+            {
+              "code": "Component",
+              "type": "codeVoice"
+            },
+            {
+              "text": " data type.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/coreservices": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Services",
+      "type": "topic",
+      "url": "/documentation/coreservices"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1516399-getcomponentlistmodseed": {
+      "abstract": [
+        {
+          "text": "Allows your application to determine if the list of registered components has changed. ",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1516399-getcomponentlistmodseed",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GetComponentListModSeed",
+      "type": "topic",
+      "url": "/documentation/coreservices/1516399-getcomponentlistmodseed"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1516438-getcomponentinfo": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1516438-getcomponentinfo",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GetComponentInfo",
+      "type": "topic",
+      "url": "/documentation/coreservices/1516438-getcomponentinfo"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1516484-resolvecomponentalias": {
+      "abstract": [],
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1516484-resolvecomponentalias",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ResolveComponentAlias",
+      "type": "topic",
+      "url": "/documentation/coreservices/1516484-resolvecomponentalias"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1516515-countcomponents": {
+      "abstract": [
+        {
+          "text": "Returns the number of registered components that meet the selection criteria specified by your application. ",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1516515-countcomponents",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CountComponents",
+      "type": "topic",
+      "url": "/documentation/coreservices/1516515-countcomponents"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1516523-opendefaultcomponent": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1516523-opendefaultcomponent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OpenDefaultComponent",
+      "type": "topic",
+      "url": "/documentation/coreservices/1516523-opendefaultcomponent"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1516552-findnextcomponent": {
+      "abstract": [
+        {
+          "text": "Returns the component identifier for the next registered component that meets the selection criteria specified by your application. ",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1516552-findnextcomponent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "FindNextComponent",
+      "type": "topic",
+      "url": "/documentation/coreservices/1516552-findnextcomponent"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1516607-opencomponent": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1516607-opencomponent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OpenComponent",
+      "type": "topic",
+      "url": "/documentation/coreservices/1516607-opencomponent"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1516653-getcomponenttypemodseed": {
+      "abstract": [],
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1516653-getcomponenttypemodseed",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GetComponentTypeModSeed",
+      "type": "topic",
+      "url": "/documentation/coreservices/1516653-getcomponenttypemodseed"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/carbon_core": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/carbon_core",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Carbon Core",
+      "type": "topic",
+      "url": "/documentation/coreservices/carbon_core"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/carbon_core/component_manager": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/carbon_core/component_manager",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Component Manager",
+      "type": "topic",
+      "url": "/documentation/coreservices/carbon_core/component_manager"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/component": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/component",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Component",
+      "type": "topic",
+      "url": "/documentation/coreservices/component"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/componentdescription": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/componentdescription",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ComponentDescription",
+      "type": "topic",
+      "url": "/documentation/coreservices/componentdescription"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreservices/1516515-countcomponents",
+        "doc://com.apple.documentation/documentation/coreservices/1516399-getcomponentlistmodseed",
+        "doc://com.apple.documentation/documentation/coreservices/1516653-getcomponenttypemodseed",
+        "doc://com.apple.documentation/documentation/coreservices/1516484-resolvecomponentalias"
+      ],
+      "title": "Finding Components"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/coreservices/1516552-findnextcomponent"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

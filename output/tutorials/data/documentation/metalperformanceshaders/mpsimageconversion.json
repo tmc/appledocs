@@ -1,0 +1,611 @@
+{
+  "abstract": [
+    {
+      "text": "A filter that performs a conversion of color space, alpha, or pixel format.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/image_filters"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimageconversion"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1648517,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)MPSImageConversion",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "class "
+      },
+      {
+        "kind": "identifier",
+        "text": "MPSImageConversion"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Metal Performance Shaders"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "10.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "10.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.13",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "10.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "MPSImageConversion"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MPSImageConversion"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsunaryimagekernel",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)MPSUnaryImageKernel",
+              "text": "MPSUnaryImageKernel"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimageconversion",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " filter allows you to change the alpha encoding or color space of an image. For example, you can convert an image with a premultiplied alpha to non-premultiplied, or change the color space from one variant to another.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As with all Metal Performance Shaders filters, the conversion filter allows for source and destination textures with different pixel formats and, in that case, will convert the source texture's format to the destination texture's format. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/image_filters#2793234",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for a list of supported pixel formats.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimageconversion#2851217",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " shows how you can create an image conversion filter to map the color intensity from the sRGB color space to a linear gamma curve.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "guard let srcColorSpace = CGColorSpace(name: CGColorSpace.sRGB),",
+            "    let dstColorSpace = CGColorSpace(name: CGColorSpace.linearSRGB),",
+            "    let device = MTLCreateSystemDefaultDevice() else {",
+            "        return",
+            "}",
+            "     ",
+            "let conversionInfo = CGColorConversionInfo(src: srcColorSpace,",
+            "                                           dst: dstColorSpace)",
+            "     ",
+            "let conversion = MPSImageConversion(device: device,",
+            "                                    srcAlpha: .alphaIsOne,",
+            "                                    destAlpha: .alphaIsOne,",
+            "                                    backgroundColor: nil,",
+            "                                    conversionInfo: conversionInfo)"
+          ],
+          "metadata": {
+            "abstract": [
+              {
+                "text": "Mapping color intensity from the sRGB color space to a linear gamma curve.",
+                "type": "text"
+              }
+            ],
+            "anchor": "2851217",
+            "title": "Listing 1"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/metalperformanceshaders": {
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Metal Performance Shaders",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/image_filters": {
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/image_filters",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Image Filters",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/image_filters"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/image_filters#2793234": {
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/image_filters#2793234",
+      "kind": "article",
+      "role": "subsection",
+      "title": "Supported Pixel Formats for Image Kernels",
+      "type": "section",
+      "url": "/documentation/metalperformanceshaders/image_filters#2793234"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsalphatype": {
+      "abstract": [
+        {
+          "text": "Premultiplication description for the color channels of an image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "enum "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSAlphaType"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsalphatype",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSAlphaType",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsalphatype"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimagebilinearscale": {
+      "abstract": [
+        {
+          "text": "A filter that resizes and changes the aspect ratio of an image using Bilinear resampling.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSImageBilinearScale"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimagebilinearscale",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSImageBilinearScale",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsimagebilinearscale"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimageconversion": {
+      "abstract": [
+        {
+          "text": "A filter that performs a conversion of color space, alpha, or pixel format.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSImageConversion"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimageconversion",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSImageConversion",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsimageconversion"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimageconversion#2851217": {
+      "abstract": [
+        {
+          "text": "Mapping color intensity from the sRGB color space to a linear gamma curve.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimageconversion#2851217",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/metalperformanceshaders/mpsimageconversion#2851217"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimageconversion/1648515-destinationalpha": {
+      "abstract": [
+        {
+          "text": "Premultiplication description for the destination texture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "destinationAlpha"
+        },
+        {
+          "kind": "text",
+          "text": ": MPSAlphaType"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimageconversion/1648515-destinationalpha",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "destinationAlpha",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsimageconversion/1648515-destinationalpha"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimageconversion/1648518-sourcealpha": {
+      "abstract": [
+        {
+          "text": "Premultiplication description for the source texture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "sourceAlpha"
+        },
+        {
+          "kind": "text",
+          "text": ": MPSAlphaType"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimageconversion/1648518-sourcealpha",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sourceAlpha",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsimageconversion/1648518-sourcealpha"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimageconversion/2206722-init": {
+      "abstract": [
+        {
+          "text": "Initializes a filter that can convert texture color space, alpha, and pixel format.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "device"
+        },
+        {
+          "kind": "text",
+          "text": ": any MTLDevice, "
+        },
+        {
+          "kind": "identifier",
+          "text": "srcAlpha"
+        },
+        {
+          "kind": "text",
+          "text": ": MPSAlphaType, "
+        },
+        {
+          "kind": "identifier",
+          "text": "destAlpha"
+        },
+        {
+          "kind": "text",
+          "text": ": MPSAlphaType, "
+        },
+        {
+          "kind": "identifier",
+          "text": "backgroundColor"
+        },
+        {
+          "kind": "text",
+          "text": ": UnsafeMutablePointer<CGFloat>?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "conversionInfo"
+        },
+        {
+          "kind": "text",
+          "text": ": CGColorConversionInfo?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimageconversion/2206722-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(device:srcAlpha:destAlpha:backgroundColor:conversionInfo:)",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsimageconversion/2206722-init"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimagelanczosscale": {
+      "abstract": [
+        {
+          "text": "A filter that resizes and changes the aspect ratio of an image using Lanczos resampling. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSImageLanczosScale"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimagelanczosscale",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSImageLanczosScale",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsimagelanczosscale"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimagescale": {
+      "abstract": [
+        {
+          "text": "A filter that resizes and changes the aspect ratio of an image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSImageScale"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimagescale",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSImageScale",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsimagescale"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimagetranspose": {
+      "abstract": [
+        {
+          "text": "A filter that transposes an image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSImageTranspose"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimagetranspose",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSImageTranspose",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsimagetranspose"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsunaryimagekernel": {
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsunaryimagekernel",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSUnaryImageKernel",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsunaryimagekernel"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsunaryimagekernel"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimagescale",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimagelanczosscale",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimagebilinearscale",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimagetranspose"
+      ],
+      "title": "Image Manipulation Filters"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "2317495",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimageconversion/2206722-init",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsalphatype"
+      ],
+      "kind": "taskGroup",
+      "title": "Methods"
+    },
+    {
+      "anchor": "2317496",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimageconversion/1648518-sourcealpha",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimageconversion/1648515-destinationalpha"
+      ],
+      "kind": "taskGroup",
+      "title": "Properties"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/metalperformanceshaders/mpsimageconversion"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/metalperformanceshaders/mpsimageconversion"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,506 @@
+{
+  "abstract": [
+    {
+      "text": "A 3D cellular noise generator.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://ShaderGraph-Docs/documentation/ShaderGraph",
+        "doc://ShaderGraph-Docs/documentation/ShaderGraph/3D-Procedural"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://ShaderGraph-Docs/documentation/ShaderGraph/3D-Procedural/Cellular-Noise-3D"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "Shader_ND_cellnoise3d_float",
+    "images": [
+      {
+        "identifier": "purple.circle.hexagongrid.png",
+        "type": "icon"
+      }
+    ],
+    "modules": [
+      {
+        "name": "ShaderGraph"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "ShaderGraph Node",
+    "symbolKind": "subscript",
+    "title": "Cellular Noise 3D"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Parameter-Types",
+          "level": 2,
+          "text": "Parameter Types",
+          "type": "heading"
+        },
+        {
+          "columns": [
+            {
+              "content": [
+                {
+                  "header": "row",
+                  "rows": [
+                    [
+                      [
+                        {
+                          "inlineContent": [
+                            {
+                              "text": "Input",
+                              "type": "text"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ],
+                      [
+                        {
+                          "inlineContent": [
+                            {
+                              "text": "Type",
+                              "type": "text"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    ],
+                    [
+                      [
+                        {
+                          "inlineContent": [
+                            {
+                              "code": "Position",
+                              "type": "codeVoice"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ],
+                      [
+                        {
+                          "inlineContent": [
+                            {
+                              "text": "Vector3f",
+                              "type": "text"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    ]
+                  ],
+                  "type": "table"
+                }
+              ],
+              "size": 1
+            },
+            {
+              "content": [
+                {
+                  "header": "row",
+                  "rows": [
+                    [
+                      [
+                        {
+                          "inlineContent": [
+                            {
+                              "text": "Output",
+                              "type": "text"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ],
+                      [
+                        {
+                          "inlineContent": [
+                            {
+                              "text": "Type",
+                              "type": "text"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    ],
+                    [
+                      [
+                        {
+                          "inlineContent": [
+                            {
+                              "code": "Out",
+                              "type": "codeVoice"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ],
+                      [
+                        {
+                          "inlineContent": [
+                            {
+                              "text": "Float",
+                              "type": "text"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    ]
+                  ],
+                  "type": "table"
+                }
+              ],
+              "size": 1
+            }
+          ],
+          "numberOfColumns": 2,
+          "type": "row"
+        },
+        {
+          "anchor": "Parameter-descriptions",
+          "level": 2,
+          "text": "Parameter descriptions",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The 3D coordinates at which the data is read in order to map the texture onto a surface. The default is to use the current 3D object-space coordinates.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "Position",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Cellular Noise 3D shader node procedurally generates noise patterns that can be used to add texture and variation to materials. Because this node generates noise in 3D, the texture will not repeat in the Z direction, but rather continue as depth changes.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Below is an example of a simple node graph that uses the Cellular Noise 3D Node to generate a black and white pattern procedurally.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "CellNoise3dGraph",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Multiply the incoming position with a constant float. The float changes the frequency of the generated noise to a higher number that corresponds with the pattern repeating more often.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The output of the node runs through a convert node in order to change the float output to a black and white color output.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Below, the resulting texture applies to a cube.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "CellNoise3dMaterial",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "CellNoise3dGraph": {
+      "alt": null,
+      "identifier": "CellNoise3dGraph",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4200e6f88d1d15770127a796b6cd87fc/CellNoise3dGraph.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/7ecfd250cc1e027087af23f4a8909acb/CellNoise3dGraph~dark.png"
+        }
+      ]
+    },
+    "CellNoise3dMaterial": {
+      "alt": null,
+      "identifier": "CellNoise3dMaterial",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/948eeb46004585adcd3e7ac2b89e1fc0/CellNoise3dMaterial.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/afae1a9ac6c362bd393a3fecf5d5f688/CellNoise3dMaterial~dark.png"
+        }
+      ]
+    },
+    "doc://ShaderGraph-Docs/documentation/ShaderGraph": {
+      "abstract": [
+        {
+          "text": "Create custom materials and effects for 3D content in Reality Composer Pro.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://ShaderGraph-Docs/documentation/ShaderGraph",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "ShaderGraph",
+      "type": "topic",
+      "url": "/documentation/shadergraph"
+    },
+    "doc://ShaderGraph-Docs/documentation/ShaderGraph/3D-Procedural": {
+      "abstract": [
+        {
+          "text": "Generate 3D noise patterns programmatically for your material.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://ShaderGraph-Docs/documentation/ShaderGraph/3D-Procedural",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "3D-Procedural",
+      "type": "topic",
+      "url": "/documentation/shadergraph/3d-procedural"
+    },
+    "doc://ShaderGraph-Docs/documentation/ShaderGraph/3D-Procedural/Cellular-Noise-3D": {
+      "abstract": [
+        {
+          "text": "A 3D cellular noise generator.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://ShaderGraph-Docs/documentation/ShaderGraph/3D-Procedural/Cellular-Noise-3D",
+      "images": [
+        {
+          "identifier": "purple.circle.hexagongrid.png",
+          "type": "icon"
+        }
+      ],
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Cellular Noise 3D",
+      "type": "topic",
+      "url": "/documentation/shadergraph/3d-procedural/cellular-noise-3d"
+    },
+    "doc://ShaderGraph-Docs/documentation/ShaderGraph/3D-Procedural/Fractal-Noise-3D": {
+      "abstract": [
+        {
+          "text": "Zero-centered 3D fractal noise created by summing several octaves of 3D Perlin noise.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://ShaderGraph-Docs/documentation/ShaderGraph/3D-Procedural/Fractal-Noise-3D",
+      "images": [
+        {
+          "identifier": "purple.seal.png",
+          "type": "icon"
+        }
+      ],
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Fractal Noise 3D",
+      "type": "topic",
+      "url": "/documentation/shadergraph/3d-procedural/fractal-noise-3d"
+    },
+    "doc://ShaderGraph-Docs/documentation/ShaderGraph/3D-Procedural/Noise-3D": {
+      "abstract": [
+        {
+          "text": "A 3D Perlin noise generator.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://ShaderGraph-Docs/documentation/ShaderGraph/3D-Procedural/Noise-3D",
+      "images": [
+        {
+          "identifier": "purple.circle.hexagongrid.png",
+          "type": "icon"
+        }
+      ],
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Noise 3D",
+      "type": "topic",
+      "url": "/documentation/shadergraph/3d-procedural/noise-3d"
+    },
+    "doc://ShaderGraph-Docs/documentation/ShaderGraph/3D-Procedural/Worley-Noise-3D": {
+      "abstract": [
+        {
+          "text": "A 3D Worley noise generator.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://ShaderGraph-Docs/documentation/ShaderGraph/3D-Procedural/Worley-Noise-3D",
+      "images": [
+        {
+          "identifier": "purple.circle.hexagongrid.png",
+          "type": "icon"
+        }
+      ],
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Worley Noise 3D",
+      "type": "topic",
+      "url": "/documentation/shadergraph/3d-procedural/worley-noise-3d"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "purple.circle.hexagongrid.png": {
+      "alt": "nil",
+      "identifier": "purple.circle.hexagongrid.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/d607f1a1f5add7da3fd22982133e27d5/purple.circle.hexagongrid.png"
+        }
+      ]
+    },
+    "purple.seal.png": {
+      "alt": "nil",
+      "identifier": "purple.seal.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a0c4f6dd53807e31d634935648388951/purple.seal.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Nodes",
+      "generated": true,
+      "identifiers": [
+        "doc://ShaderGraph-Docs/documentation/ShaderGraph/3D-Procedural/Noise-3D",
+        "doc://ShaderGraph-Docs/documentation/ShaderGraph/3D-Procedural/Fractal-Noise-3D",
+        "doc://ShaderGraph-Docs/documentation/ShaderGraph/3D-Procedural/Worley-Noise-3D"
+      ],
+      "title": "Nodes"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/shadergraph/3d-procedural/cellular-noise-3d"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

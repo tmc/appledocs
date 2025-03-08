@@ -1,0 +1,1065 @@
+{
+  "abstract": [
+    {
+      "text": "Use shareable events to synchronize your app’s work between a GPU and the CPU.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.metal/documentation/Metal",
+        "doc://com.apple.metal/documentation/Metal/resource-synchronization"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.metal/documentation/Metal/synchronizing-events-between-a-gpu-and-the-cpu"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Metal"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Synchronizing Events Between a GPU and the CPU"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A shared event has methods and properties that let your app execute code when the event is triggered, or update the event’s value.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Call the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLSharedEvent/notify(_:atValue:block:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to register a notification handler that listens for changes to a shared event’s value. When some other action signals the event to give it a new value that is equal or larger than this value, such as when you signal the event from a command you sent to the GPU, the notification handler executes the block of code that you provided.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Set the shared event’s  ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLSharedEvent/signaledValue",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property to signal the event from the CPU. The value is only updated if you set a value larger than the current value stored in the event. Setting the value unblocks any commands waiting on a value equal to or smaller than the new value, and similarly triggers any CPU-based notifications.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following figure and code show a shareable event that synchronizes GPU work and CPU work.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3400866",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "func setupGPUCPUEvent() {",
+                    "    // Shareable event",
+                    "    sharedEvent = device.makeSharedEvent()",
+                    "    ",
+                    "    // Shareable event listener",
+                    "    let myQueue = DispatchQueue(label: \"com.example.apple-samplecode.MyQueue\")",
+                    "    sharedEventListener = MTLSharedEventListener(dispatchQueue: myQueue)",
+                    "}",
+                    "",
+                    "func synchronizeGPUCPUEvent() {",
+                    "    guard",
+                    "        let sharedEvent = sharedEvent,",
+                    "        let sharedEventListener = sharedEventListener,",
+                    "        let commandBuffer = commandQueue.makeCommandBuffer()",
+                    "        else { return }",
+                    "    ",
+                    "    // Register CPU work",
+                    "    sharedEvent.notify(sharedEventListener, atValue: 2) { (sEvent, value) in",
+                    "        /* Do CPU work */",
+                    "        sEvent.signaledValue = 3",
+                    "    }",
+                    "    ",
+                    "    // Encode GPU work",
+                    "    /* Encode GPU work part 1 */",
+                    "    commandBuffer.encodeSignalEvent(sharedEvent, value: 1)",
+                    "    /* Encode GPU work part 2 */",
+                    "    commandBuffer.encodeSignalEvent(sharedEvent, value: 2)",
+                    "    commandBuffer.encodeWaitForEvent(sharedEvent, value: 3)",
+                    "    /* Encode GPU work part 3 */",
+                    "    commandBuffer.commit()",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "- (void)setupGPUCPUEvent",
+                    "{",
+                    "    // Shareable event",
+                    "    _sharedEvent = [_device newSharedEvent];",
+                    "    ",
+                    "    // Shareable event listener",
+                    "    dispatch_queue_t myQueue = dispatch_queue_create(\"com.example.apple-samplecode.MyQueue\", NULL);",
+                    "    _sharedEventListener = [[MTLSharedEventListener alloc] initWithDispatchQueue:myQueue];",
+                    "}",
+                    "",
+                    "- (void)renderFrame",
+                    "{",
+                    "    // Register CPU work",
+                    "    [_sharedEvent notifyListener:_sharedEventListener",
+                    "                         atValue:2",
+                    "                           block:^(id<MTLSharedEvent> sharedEvent, uint64_t value) {",
+                    "        /* Do CPU work */",
+                    "        sharedEvent.signaledValue = 3;",
+                    "    }];",
+                    "    ",
+                    "    // Encode GPU work",
+                    "    id<MTLCommandBuffer> commandBuffer = [_commandQueue commandBuffer];",
+                    "    /* Encode GPU work part 1 */",
+                    "    [commandBuffer encodeSignalEvent:_sharedEvent value:1];",
+                    "    /* Encode GPU work part 2 */",
+                    "    [commandBuffer encodeSignalEvent:_sharedEvent value:2];",
+                    "    [commandBuffer encodeWaitForEvent:_sharedEvent value:3];",
+                    "    /* Encode GPU work part 3 */",
+                    "    [commandBuffer commit];",
+                    "}"
+                  ],
+                  "syntax": "objective-c",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The setup code creates a shareable event and a listener object. Listener objects are used to dispatch notifications to the app when the event is signaled.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The work for this task is shared between the GPU and the CPU. As you can see in the figure above, the code needs to execute in the following order:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "GPU work part 1",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "GPU work part 2",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "CPU work",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "GPU part 3",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "setupGPUCPUEvent",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function uses signals to enforce this execution order. First, the function registers an event handler to be executed when the event is signaled. When called, this event handler executes the code for step 3 and then signals the event. That completes the CPU portion of the task.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Next, the function encodes the work for the GPU. It encodes the work for part 1, signals the event, and then does the same for part 2, and signals the event again. Part 3 of the GPU code needs to run after the event handler finishes executing, so next the function encodes a command to wait for the CPU to signal the event. After this, the function encodes the commands for part 3 and commits the command buffer for execution.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the function commits the command buffer, the following actions occur:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The GPU executes the first part of the task.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The GPU signals the event to a new value of 1.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The GPU executes the second part of the task.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The GPU signals the event to a new value of 2.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The CPU detects the signal value and runs the notification handler.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The notification handler signals the event to a new value of 3.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The GPU detects the signal value and executes the remaining commands.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.metal/documentation/Metal": {
+      "abstract": [
+        {
+          "text": "Render advanced 3D graphics and compute data in parallel with graphics processors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Metal",
+      "type": "topic",
+      "url": "/documentation/metal"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLEvent": {
+      "abstract": [
+        {
+          "text": "A simple semaphore to synchronize access to Metal resources.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLEvent"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLEvent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLEvent"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLEvent",
+      "type": "topic",
+      "url": "/documentation/metal/mtlevent"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLSharedEvent": {
+      "abstract": [
+        {
+          "text": "An object you use to synchronize access to Metal resources across multiple CPUs, GPUs, and processes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLSharedEvent"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLSharedEvent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLSharedEvent"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLSharedEvent",
+      "type": "topic",
+      "url": "/documentation/metal/mtlsharedevent"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLSharedEvent/notify(_:atValue:block:)": {
+      "abstract": [
+        {
+          "text": "Schedules a notification handler to be called after the shareable event’s signal value equals or exceeds a given value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "notify"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MTLSharedEventListener",
+          "text": "MTLSharedEventListener"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "atValue"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt64V",
+          "text": "UInt64"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "block"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@MTLSharedEventNotificationBlock",
+          "text": "MTLSharedEventNotificationBlock"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLSharedEvent/notify(_:atValue:block:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "notifyListener:atValue:block:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "notify(_:atValue:block:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlsharedevent/notify(_:atvalue:block:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLSharedEvent/signaledValue": {
+      "abstract": [
+        {
+          "text": "The current signal value for the shareable event.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "signaledValue"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt64V",
+          "text": "UInt64"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLSharedEvent/signaledValue",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "signaledValue"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "signaledValue",
+      "type": "topic",
+      "url": "/documentation/metal/mtlsharedevent/signaledvalue"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLSharedEventHandle": {
+      "abstract": [
+        {
+          "text": "An object you use to recreate a shareable event.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLSharedEventHandle"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLSharedEventHandle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLSharedEventHandle"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLSharedEventHandle",
+      "type": "topic",
+      "url": "/documentation/metal/mtlsharedeventhandle"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLSharedEventListener": {
+      "abstract": [
+        {
+          "text": "A listener for shareable event notifications.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLSharedEventListener"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLSharedEventListener",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLSharedEventListener"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLSharedEventListener",
+      "type": "topic",
+      "url": "/documentation/metal/mtlsharedeventlistener"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLSharedEventNotificationBlock": {
+      "abstract": [
+        {
+          "text": "A block of code invoked after a shareable event’s signal value equals or exceeds a given value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLSharedEventNotificationBlock"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLSharedEventNotificationBlock",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLSharedEventNotificationBlock"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLSharedEventNotificationBlock",
+      "type": "topic",
+      "url": "/documentation/metal/mtlsharedeventnotificationblock"
+    },
+    "doc://com.apple.metal/documentation/Metal/about-synchronization-events": {
+      "abstract": [
+        {
+          "text": "Synchronize access to resources in your app by signaling events.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/about-synchronization-events",
+      "kind": "article",
+      "role": "article",
+      "title": "About Synchronization Events",
+      "type": "topic",
+      "url": "/documentation/metal/about-synchronization-events"
+    },
+    "doc://com.apple.metal/documentation/Metal/implementing-a-multistage-image-filter-using-heaps-and-events": {
+      "abstract": [
+        {
+          "text": "Use events to synchronize access to resources allocated on a heap.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/implementing-a-multistage-image-filter-using-heaps-and-events",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Implementing a Multistage Image Filter Using Heaps and Events",
+      "type": "topic",
+      "url": "/documentation/metal/implementing-a-multistage-image-filter-using-heaps-and-events"
+    },
+    "doc://com.apple.metal/documentation/Metal/resource-synchronization": {
+      "abstract": [
+        {
+          "text": "Coordinate the contents of data buffers, textures, and other resources that CPUs and GPUs share access to.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/resource-synchronization",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Resource Synchronization",
+      "type": "topic",
+      "url": "/documentation/metal/resource-synchronization"
+    },
+    "doc://com.apple.metal/documentation/Metal/synchronizing-events-across-multiple-devices-or-processes": {
+      "abstract": [
+        {
+          "text": "Use shareable events to synchronize your app’s work across multiple devices or processes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/synchronizing-events-across-multiple-devices-or-processes",
+      "kind": "article",
+      "role": "article",
+      "title": "Synchronizing Events Across Multiple Devices or Processes",
+      "type": "topic",
+      "url": "/documentation/metal/synchronizing-events-across-multiple-devices-or-processes"
+    },
+    "doc://com.apple.metal/documentation/Metal/synchronizing-events-within-a-single-device": {
+      "abstract": [
+        {
+          "text": "Use nonshareable events to synchronize your app’s work within a single device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/synchronizing-events-within-a-single-device",
+      "kind": "article",
+      "role": "article",
+      "title": "Synchronizing Events Within a Single Device",
+      "type": "topic",
+      "url": "/documentation/metal/synchronizing-events-within-a-single-device"
+    },
+    "media-3400866": {
+      "alt": "Timeline diagram that shows shareable synchronization events for a GPU and the CPU, and the work that the GPU and CPU do.",
+      "identifier": "media-3400866",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/982692fdd01837bd9a1ab0ec43a73c87/media-3400866@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Signal-Events",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/implementing-a-multistage-image-filter-using-heaps-and-events",
+        "doc://com.apple.metal/documentation/Metal/about-synchronization-events",
+        "doc://com.apple.metal/documentation/Metal/synchronizing-events-within-a-single-device",
+        "doc://com.apple.metal/documentation/Metal/synchronizing-events-across-multiple-devices-or-processes",
+        "doc://com.apple.metal/documentation/Metal/MTLEvent",
+        "doc://com.apple.metal/documentation/Metal/MTLSharedEvent",
+        "doc://com.apple.metal/documentation/Metal/MTLSharedEventHandle",
+        "doc://com.apple.metal/documentation/Metal/MTLSharedEventListener",
+        "doc://com.apple.metal/documentation/Metal/MTLSharedEventNotificationBlock"
+      ],
+      "title": "Signal Events"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Signal-Events",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/implementing-a-multistage-image-filter-using-heaps-and-events",
+                "doc://com.apple.metal/documentation/Metal/about-synchronization-events",
+                "doc://com.apple.metal/documentation/Metal/synchronizing-events-within-a-single-device",
+                "doc://com.apple.metal/documentation/Metal/synchronizing-events-across-multiple-devices-or-processes",
+                "doc://com.apple.metal/documentation/Metal/MTLEvent",
+                "doc://com.apple.metal/documentation/Metal/MTLSharedEvent",
+                "doc://com.apple.metal/documentation/Metal/MTLSharedEventHandle",
+                "doc://com.apple.metal/documentation/Metal/MTLSharedEventListener",
+                "doc://com.apple.metal/documentation/Metal/MTLSharedEventNotificationBlock"
+              ],
+              "title": "Signal Events"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLSharedEventNotificationBlock/title",
+          "value": "MTLSharedEventNotificationBlock"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLSharedEventNotificationBlock/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLSharedEventNotificationBlock"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLSharedEventNotificationBlock/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLSharedEventNotificationBlock"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLSharedEvent~1signaledValue/title",
+          "value": "signaledValue"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLSharedEvent~1signaledValue/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "signaledValue"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLSharedEventListener/title",
+          "value": "MTLSharedEventListener"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLSharedEventListener/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLSharedEventListener"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLSharedEventListener/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLSharedEventListener"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLSharedEventHandle/title",
+          "value": "MTLSharedEventHandle"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLSharedEventHandle/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLSharedEventHandle"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLSharedEventHandle/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLSharedEventHandle"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLEvent/title",
+          "value": "MTLEvent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLEvent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLEvent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLEvent/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLEvent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLSharedEvent/title",
+          "value": "MTLSharedEvent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLSharedEvent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLSharedEvent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLSharedEvent/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLSharedEvent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLSharedEvent~1notify(_:atValue:block:)/title",
+          "value": "notifyListener:atValue:block:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLSharedEvent~1notify(_:atValue:block:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "notifyListener:atValue:block:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/metal/synchronizing-events-between-a-gpu-and-the-cpu"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/metal/synchronizing-events-between-a-gpu-and-the-cpu"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

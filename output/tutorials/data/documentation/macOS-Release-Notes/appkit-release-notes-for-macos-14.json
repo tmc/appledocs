@@ -1,0 +1,1627 @@
+{
+  "abstract": [
+    {
+      "text": "Update your apps to use new features, and test your apps against API changes.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.macOS-Release-Notes/documentation/macos-release-notes"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.macOS-Release-Notes/documentation/macOS-Release-Notes/appkit-release-notes-for-macos-14"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "AppKit Release Notes for macOS 14"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "AppKit in macOS14 includes new features, as well as API changes and deprecations.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "NSEPSImageRep",
+          "level": 4,
+          "text": "NSEPSImageRep",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Deprecated in macOS 14.0 as encapsulated PostScript (EPS) files are no longer supported by macOS. Learn more on Apple Support. (107052479)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Attempting to initialize an instance of ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NSEPSImageRep",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " will always return ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "nil",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " on macOS 14.0 and later.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Attempting to initialize an instance of",
+                      "type": "text"
+                    },
+                    {
+                      "code": " NSImage",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " with an EPS file or data will always return ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "nil",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " on macOS 14.0 and later.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If a multi-rep image is initialized by name ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "(NSImage(named:)",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Bundle.image(forResource:",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": "), etc.), it will no longer include EPS reps. If no supports (non-EPS) reps could be produced, this will result in ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "nil",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " being returned from these functions.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "NSImageDelegate",
+          "level": 4,
+          "text": "NSImageDelegate",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Deprecated four of the five NSImageDelegate methods as of Mac OS X 10.4 Tiger. (18422088)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "-image:willLoadRepresentation:",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "-image:didLoadRepresentationHeader:",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "-image:didLoadPartOfRepresentation:withValidRows:",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "-image:didLoadRepresentation:withStatus:",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "These methods haven’t been called by AppKit since Mac OS X 10.4 Tiger.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Using these symbols in Objective-C may produce warnings or errors, depending on the project’s build settings.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "These symbols are no longer available in Swift in the macOS 14.0 SDK.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "NSSavePanel-NSOpenPanel",
+          "level": 4,
+          "text": "NSSavePanel, NSOpenPanel",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Added the property identifier. (4228269)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Modeless and application modal open and save panels are now main windows. (14623155, 103038843)\u2028 This fixes a problem where menu items that weren’t applicable to the open or save panel remained ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "enabled.\u2028Open",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and save panels that are displayed as sheets are unchanged.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Removed the titlebar from modal and modeless ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NSSavePanels",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". (105212420)\u2028 This changes ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NSSavePanel",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to have consistent behavior with ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NSOpenPanel",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "NSPrintPanel-NSPageLayout",
+          "level": 4,
+          "text": "NSPrintPanel, NSPageLayout",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Applications linking against SDKs released for Fall 2023 may now release the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NSPrintInfo",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " instance and other related objects as soon as the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NSPrintPanel",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " / ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NSPageLayout",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " panel is dismissed.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Added block based variants of the begin-sheet methods (6990600):",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "code": [
+                    " class NSPrintPanel {",
+                    " \topen func beginSheet(using printInfo: NSPrintInfo, on parentWindow: NSWindow, completionHandler handler: ((NSPrintPanel.Result) -> Void)? = nil)",
+                    " \topen func beginSheet(using printInfo: NSPrintInfo, on parentWindow: NSWindow) async -> NSPrintPanel.Result",
+                    " }",
+                    "",
+                    " class NSPageLayout {",
+                    " \topen func beginSheet(using printInfo: NSPrintInfo, on parentWindow: NSWindow, completionHandler handler: ((NSPageLayout.Result) -> Void)? = nil)",
+                    " \topen func beginSheet(using printInfo: NSPrintInfo, on parentWindow: NSWindow) async -> NSPageLayout.Result",
+                    " }"
+                  ],
+                  "syntax": null,
+                  "type": "codeListing"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "NSColor",
+          "level": 4,
+          "text": "NSColor",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "NSColor.textInsertionPointColor",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " provides a robust way to get the current text insertion point color as defined by the system.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To be consistent with an ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NSTextView",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", use ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NSTextView.insertionPointColor",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Otherwise, if not using a text view, use ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NSColor.textInsertionPointColor",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "NSTextInsertionIndicator",
+          "level": 4,
+          "text": "NSTextInsertionIndicator",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "NSTextInsertionIndicator",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " is a new ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NSView",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " that encapsulates all the behavior for a text insertion indicator — such as blinking while waiting for typing and prompting during dictation. ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NSTextView ",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": "uses the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NSTextInsertionIndicator",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". But, if using a custom text implementation, instantiate and add an ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NSTextInsertionIndicator",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " as a subview of the custom text view. Its text implementation only needs to set the indicator view’s display mode—automatic, visible, or hidden—and frame. Based on the display mode the indicator view will infer from the frame whether it needs to blink or not.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "NSView",
+          "level": 4,
+          "text": "NSView",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In macOS 14, AppKit is exposing the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "clipsToBounds",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " property of ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NSView",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "For applications linked against the macOS 14 SDK, the default value of this property is ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "false",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". Apps linked against older SDKs default to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "true",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "Some classes, like ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NSClipView",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", continue to default to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "true",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "The change in defaults recognizes that it is vastly easier to reason about clipping a view’s descendants than it is to unclip a view’s ancestors.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Users can turn clipping back on by using the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NSView.clipsToBounds",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " setter or using the attributes inspector of a view in the Xcode interface builder.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "This property is available back to macOS 10.9. This availability is intended to allow code targeting older OSes to set this property to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "true",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " without guarding the setter in an availability check. Setting this property to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "false",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " on previous OSes may not work reliably.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Some patterns that have historically worked will require adjustment:",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "items": [
+                    {
+                      "content": [
+                        {
+                          "inlineContent": [
+                            {
+                              "text": "Showing or hiding UI by setting an ancestor’s frame to zero. When attempting to hide a view hierarchy by shrinking the size of an ancestor, or positioning a descendent view outside an ancestors view’s bounds, it is now necessary to set the ancestor’s view’s ",
+                              "type": "text"
+                            },
+                            {
+                              "code": ".clipsToBounds",
+                              "type": "codeVoice"
+                            },
+                            {
+                              "text": " property to ",
+                              "type": "text"
+                            },
+                            {
+                              "code": "true",
+                              "type": "codeVoice"
+                            },
+                            {
+                              "text": ". An alternative may be to set ",
+                              "type": "text"
+                            },
+                            {
+                              "code": "NSView.isHidden",
+                              "type": "codeVoice"
+                            },
+                            {
+                              "text": ", instead.",
+                              "type": "text"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    },
+                    {
+                      "content": [
+                        {
+                          "inlineContent": [
+                            {
+                              "text": "Filling the dirty rect of a view inside of ",
+                              "type": "text"
+                            },
+                            {
+                              "code": "-drawRect",
+                              "type": "codeVoice"
+                            },
+                            {
+                              "text": ". A fairly common pattern is to simply rect fill the dirty rect passed into an override of ",
+                              "type": "text"
+                            },
+                            {
+                              "code": "NSView.draw()",
+                              "type": "codeVoice"
+                            },
+                            {
+                              "text": ". The dirty rect can now extend outside of your view’s bounds. This pattern can be adjusted by filling the bounds instead of the dirty rect, or by setting ",
+                              "type": "text"
+                            },
+                            {
+                              "code": "clipsToBounds = true",
+                              "type": "codeVoice"
+                            },
+                            {
+                              "text": ".",
+                              "type": "text"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    },
+                    {
+                      "content": [
+                        {
+                          "inlineContent": [
+                            {
+                              "text": "Confusing a view’s bounds and its dirty rect. The dirty rect passed to ",
+                              "type": "text"
+                            },
+                            {
+                              "code": ".drawRect()",
+                              "type": "codeVoice"
+                            },
+                            {
+                              "text": " should be used to determine what to draw, not where to draw it. Use ",
+                              "type": "text"
+                            },
+                            {
+                              "code": "NSView.bounds",
+                              "type": "codeVoice"
+                            },
+                            {
+                              "text": " when determining the layout of what your view draws.  (10905750)",
+                              "type": "text"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    }
+                  ],
+                  "type": "unorderedList"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "NSViewController",
+          "level": 4,
+          "text": "NSViewController",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Added API:",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "code": [
+                    " open var viewIfLoaded: NSView? { get }",
+                    " open func loadViewIfNeeded()",
+                    " open func present(_ viewController: NSViewController, asPopoverRelativeTo positioningRect: NSRect, of positioningView: NSView, preferredEdge: NSRectEdge, behavior: NSPopover.Behavior, hasFullSizeContent: Bool)"
+                  ],
+                  "syntax": null,
+                  "type": "codeListing"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "NSViewController.loadView()",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " no longer throws an exception when the view controller’s nibName is nil. (81775005)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "TextKit-API-Coordinate-System-Changes",
+          "level": 4,
+          "text": "TextKit API Coordinate System Changes",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Applications linking against SDKs released for Fall 2023 have behavior changes from TextKit API.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "NSTextLineFragment.typographicBounds",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " is relative to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NSTextLayoutFragment.layoutFragmentFrame.origin",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " (instead of in the text container coordinate system as it was before)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "NSTextLineFragment.typographicBounds.size.width",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " doesn’t contain ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NSTextContainer.lineFragmentPadding",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". The side effect of this change is that the padding is also excluded from both ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NSTextLayoutFragment.layoutFragmentFrame",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NSTextLayoutManager.usageBoundsForTextContainer",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". Consequently, ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NSTextLineFragment.glyphOrigin.x",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " no longer includes the padding, either.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "NSTextLineFragment.locationForCharacterAtIndex()",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " used to return a point relative to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NSTextLayoutFragment.origin",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". It now returns a point relative to the text line fragment coordinate system as documented.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Restorable-State",
+          "level": 4,
+          "text": "Restorable State",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Secure coding is automatically enabled for restorable state for applications linked on the macOS 14.0 SDK. Applications that target prior versions of macOS should implement ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NSApplicationDelegate.applicationSupportsSecureRestorableState()",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to return ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "true",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " so it’s enabled on all supported OS versions.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Display-Link",
+          "level": 4,
+          "text": "Display Link",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "CADisplayLink",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " can be created via ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NSView.displayLink(target:selector:)",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". The ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "CADisplayLink",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " will automatically track the display the view is on, and will be automatically suspended if it isn’t on a display. A ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "CADisplayLink",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " instance can also be created from an ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NSWindow",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NSScreen",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "NSToolbar",
+          "level": 4,
+          "text": "NSToolbar",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Applications linked against the macOS 14.0 SDK will no longer show the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": ".toggleSidebar",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " toolbar item to the leading edge of the inline window title and will instead show relative to its order in the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "defaultItemIdentifiers",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " delegate method. It is recommended to place this item above the sidebar section of the toolbar as the leading most item of that section so that toggling the sidebar does not move the toolbar item itself. As a reminder, items placed before the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": ".sidebarTrackingSeparator",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " in the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "defaultItems",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " delegate method will appear above the sidebar in the toolbar. Similarly, the best place for the new ",
+                      "type": "text"
+                    },
+                    {
+                      "code": ".toggleInspector",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " item is above the inspector section of the toolbar as the trailing most item following the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": ".inspectorTrackingSeparator",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", but it may be placed elsewhere in the toolbar if appropriate.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "NSToolbar",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " now supports centering items in multiple sections of the toolbar. Use the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "centeredItemIdentifiers",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " property to specify a set of items and they will be centered in the section they appear in. The set of centered items no longer applies to a single section of the toolbar, but may be used to center one item in the sidebar section and another item in the content section for instance.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "NSToolbar",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " with ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "autosavesConfiguration",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " enabled and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "allowsUserCustomization",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " disabled will now persist manual changes to the toolbar from ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "-insertItemWithIdentifier:atIndex:",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "-removeItemAtIndex:",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " across app launches. Previously manual inserts/removes were not persisted. Additionally, ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NSToolbars",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " with ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "autosavesConfiguration",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " disabled will now sync manual inserts/removes to other ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NSToolbar",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " objects with the same ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "identifier",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", including new windows, but the toolbar’s configuration will not persist across app launches. If syncing across windows is not desired, each window’s toolbar should be given a unique ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "identifier",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".  (103038749)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Menus",
+          "level": 4,
+          "text": "Menus",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In macOS 14, menus have been reimplemented from the ground up to fully use AppKit.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "New section header API provides a consistent way to organize and structure menus.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "NSMenu has new ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "selectionBehavior",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " property, which allows the menu to automatically manage state of the same selection groups, reducing the amount of code the developer has to write.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Palette presentation style allows to show menu items in a horizontal series, embedded inline in the parent menu.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "NSMenuItem",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " has new API to create section header menu items, which are used to organize and structure menus. The appearance and behavior of section header items are entirely defined by ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NSMenu",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and cannot be customized.  (59962793)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "For applications linked against the macOS 14 SDK, ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NSMenu",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " will now assert if a secondary thread inserts or removes menu items from menus contained within the main menu. Making changes to the main menu from any thread other than the main thread has never been a supported or safe programming practice, because the main thread may be examining the main menu contents at any time (for example, to draw the menubar, to determine if a menu item matches a key event, to answer an accessibility request, etc), and there is no method for a background thread to modify the main menu while ensuring that the main thread is not simultaneously examining its contents. This practice is now prevented at runtime.  (96331659)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "App-Activation",
+          "level": 4,
+          "text": "App Activation",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In macOS 14, app activation is driven by user intent. It is treated by the system as a request and is not always guaranteed to be honored or to succeed. Apps have the ability to provide context with activation requests in cases where a more deterministic result is desired.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "NSApplication.activate(ignoringOtherApps:)",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NSApplication.ActivationOptions.ignoringOtherApps",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " are deprecated in macOS 14 and should not be used.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "NSApplication",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " has a new method, ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "activate",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", that sends the activation request to the system. The request may provide different results based on the context in which the app is running, user activity, and other factors. If necessary for app functionality, active status can be checked by querying the isActive property on ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NSApplication",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". In general, apps should not assume that activation requests will always succeed.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "macOS 14 provides more ways for apps to express the context in which activation should occur. A common scenario is cooperative activation, or passing the active state from one app to another. This process can be useful for apps that need to explicitly pass activation state, such as launchers and view services. The active app can use ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NSApplication.yield(to:)",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " method to yield its active state to an instance of ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NSRunningApplication",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "yield(toApplicationWithBundleIdentifier:)",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to yield to a bundle ID, which may be used in case the receiver app is not running or its status is unknown. Note that the sender does not deactivate at the time of invoking these methods. After yielding, the sender may activate the receiver using ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NSRunningApplication",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " API, or the target app may simply activate itself by invoking the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NSApplication.activate",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " method. The cooperative activation mechanism guarantees successful activation as long as the yielding app is active at the time of the request and the receiver can become active.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Existing calls to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NSApplication.deactivate()",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " should be replaced by ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NSApplication.yield(to:)",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to make activation handoff more explicit, and to delay changing the appearance of the calling app until the target app has activated.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.macOS-Release-Notes/documentation/macos-release-notes": {
+      "abstract": [
+        {
+          "text": "Learn about changes to the macOS SDK.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.macOS-Release-Notes/documentation/macos-release-notes",
+      "kind": "article",
+      "role": "collection",
+      "title": "macOS Release Notes",
+      "type": "topic",
+      "url": "/documentation/macos-release-notes"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": []
+}

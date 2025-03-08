@@ -1,0 +1,1573 @@
+{
+  "abstract": [
+    {
+      "text": "Access the system's user and group database and manage access controls.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/coreservices",
+        "doc://com.apple.documentation/documentation/coreservices/os_services"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/coreservices/os_services/identity_services"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 2934155,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Core Services"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Identity Services"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Core Services Identity Reference allows developers to support user and group creation, enumeration, attribute inspection, credential management as well as group membership management in their applications.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/coreservices": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Services",
+      "type": "topic",
+      "url": "/documentation/coreservices"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1428990-csidentityquerycreateforposixid": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CSIdentityQueryCreateForPosixID"
+        },
+        {
+          "kind": "text",
+          "text": "(CFAllocator!, id_t, CSIdentityClass, CSIdentityAuthority!) -> Unmanaged<CSIdentityQuery>!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1428990-csidentityquerycreateforposixid",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CSIdentityQueryCreateForPosixID(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1428990-csidentityquerycreateforposixid"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1428991-csidentityquerycreateforpersiste": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CSIdentityQueryCreateForPersistentReference"
+        },
+        {
+          "kind": "text",
+          "text": "(CFAllocator!, CFData!) -> Unmanaged<CSIdentityQuery>!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1428991-csidentityquerycreateforpersiste",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CSIdentityQueryCreateForPersistentReference(_:_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1428991-csidentityquerycreateforpersiste"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1428997-csidentityquerycreateforname": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CSIdentityQueryCreateForName"
+        },
+        {
+          "kind": "text",
+          "text": "(CFAllocator!, CFString!, CSIdentityQueryStringComparisonMethod, CSIdentityClass, CSIdentityAuthority!) -> Unmanaged<CSIdentityQuery>!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1428997-csidentityquerycreateforname",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CSIdentityQueryCreateForName(_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1428997-csidentityquerycreateforname"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1429003-csidentityquerycreate": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CSIdentityQueryCreate"
+        },
+        {
+          "kind": "text",
+          "text": "(CFAllocator!, CSIdentityClass, CSIdentityAuthority!) -> Unmanaged<CSIdentityQuery>!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1429003-csidentityquerycreate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CSIdentityQueryCreate(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1429003-csidentityquerycreate"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1429007-csidentityquerycreateforuuid": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CSIdentityQueryCreateForUUID"
+        },
+        {
+          "kind": "text",
+          "text": "(CFAllocator!, CFUUID!, CSIdentityAuthority!) -> Unmanaged<CSIdentityQuery>!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1429007-csidentityquerycreateforuuid",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CSIdentityQueryCreateForUUID(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1429007-csidentityquerycreateforuuid"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1429011-csidentityqueryexecuteasynchrono": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CSIdentityQueryExecuteAsynchronously"
+        },
+        {
+          "kind": "text",
+          "text": "(CSIdentityQuery!, CSIdentityQueryFlags, UnsafePointer<CSIdentityQueryClientContext>!, CFRunLoop!, CFString!) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1429011-csidentityqueryexecuteasynchrono",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CSIdentityQueryExecuteAsynchronously(_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1429011-csidentityqueryexecuteasynchrono"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1429012-csidentityquerygettypeid": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CSIdentityQueryGetTypeID"
+        },
+        {
+          "kind": "text",
+          "text": "() -> CFTypeID"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1429012-csidentityquerygettypeid",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CSIdentityQueryGetTypeID()",
+      "type": "topic",
+      "url": "/documentation/coreservices/1429012-csidentityquerygettypeid"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1429035-csidentityquerycopyresults": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CSIdentityQueryCopyResults"
+        },
+        {
+          "kind": "text",
+          "text": "(CSIdentityQuery!) -> Unmanaged<CFArray>!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1429035-csidentityquerycopyresults",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CSIdentityQueryCopyResults(_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1429035-csidentityquerycopyresults"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1429037-csidentityquerycreateforcurrentu": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CSIdentityQueryCreateForCurrentUser"
+        },
+        {
+          "kind": "text",
+          "text": "(CFAllocator!) -> Unmanaged<CSIdentityQuery>!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1429037-csidentityquerycreateforcurrentu",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CSIdentityQueryCreateForCurrentUser(_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1429037-csidentityquerycreateforcurrentu"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1429041-csidentityqueryexecute": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CSIdentityQueryExecute"
+        },
+        {
+          "kind": "text",
+          "text": "(CSIdentityQuery!, CSIdentityQueryFlags, UnsafeMutablePointer<Unmanaged<CFError>?>!) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1429041-csidentityqueryexecute",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CSIdentityQueryExecute(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1429041-csidentityqueryexecute"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1429047-csidentityquerystop": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CSIdentityQueryStop"
+        },
+        {
+          "kind": "text",
+          "text": "(CSIdentityQuery!)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1429047-csidentityquerystop",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CSIdentityQueryStop(_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1429047-csidentityquerystop"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1441866-csidentitysetimagedata": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CSIdentitySetImageData"
+        },
+        {
+          "kind": "text",
+          "text": "(CSIdentity!, CFData!, CFString!)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1441866-csidentitysetimagedata",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CSIdentitySetImageData(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1441866-csidentitysetimagedata"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1442114-csidentityremovealias": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CSIdentityRemoveAlias"
+        },
+        {
+          "kind": "text",
+          "text": "(CSIdentity!, CFString!)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1442114-csidentityremovealias",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CSIdentityRemoveAlias(_:_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1442114-csidentityremovealias"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1442616-csidentitydelete": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CSIdentityDelete"
+        },
+        {
+          "kind": "text",
+          "text": "(CSIdentity!)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1442616-csidentitydelete",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CSIdentityDelete(_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1442616-csidentitydelete"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1443028-csidentitysetisenabled": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CSIdentitySetIsEnabled"
+        },
+        {
+          "kind": "text",
+          "text": "(CSIdentity!, Bool)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1443028-csidentitysetisenabled",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CSIdentitySetIsEnabled(_:_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1443028-csidentitysetisenabled"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1443062-csidentityaddalias": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CSIdentityAddAlias"
+        },
+        {
+          "kind": "text",
+          "text": "(CSIdentity!, CFString!)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1443062-csidentityaddalias",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CSIdentityAddAlias(_:_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1443062-csidentityaddalias"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1443230-csidentitygetposixid": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CSIdentityGetPosixID"
+        },
+        {
+          "kind": "text",
+          "text": "(CSIdentity!) -> id_t"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1443230-csidentitygetposixid",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CSIdentityGetPosixID(_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1443230-csidentitygetposixid"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1443235-csidentitysetemailaddress": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CSIdentitySetEmailAddress"
+        },
+        {
+          "kind": "text",
+          "text": "(CSIdentity!, CFString!)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1443235-csidentitysetemailaddress",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CSIdentitySetEmailAddress(_:_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1443235-csidentitysetemailaddress"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1443379-csidentityisenabled": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CSIdentityIsEnabled"
+        },
+        {
+          "kind": "text",
+          "text": "(CSIdentity!) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1443379-csidentityisenabled",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CSIdentityIsEnabled(_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1443379-csidentityisenabled"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1443553-csidentitycreatecopy": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CSIdentityCreateCopy"
+        },
+        {
+          "kind": "text",
+          "text": "(CFAllocator!, CSIdentity!) -> Unmanaged<CSIdentity>!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1443553-csidentitycreatecopy",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CSIdentityCreateCopy(_:_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1443553-csidentitycreatecopy"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1443568-csidentitysetpassword": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CSIdentitySetPassword"
+        },
+        {
+          "kind": "text",
+          "text": "(CSIdentity!, CFString!)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1443568-csidentitysetpassword",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CSIdentitySetPassword(_:_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1443568-csidentitysetpassword"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1444037-csidentitycreatepersistentrefere": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CSIdentityCreatePersistentReference"
+        },
+        {
+          "kind": "text",
+          "text": "(CFAllocator!, CSIdentity!) -> Unmanaged<CFData>!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1444037-csidentitycreatepersistentrefere",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CSIdentityCreatePersistentReference(_:_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1444037-csidentitycreatepersistentrefere"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1444544-csidentitygetimagedata": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CSIdentityGetImageData"
+        },
+        {
+          "kind": "text",
+          "text": "(CSIdentity!) -> Unmanaged<CFData>!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1444544-csidentitygetimagedata",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CSIdentityGetImageData(_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1444544-csidentitygetimagedata"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1444732-csidentitygettypeid": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CSIdentityGetTypeID"
+        },
+        {
+          "kind": "text",
+          "text": "() -> CFTypeID"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1444732-csidentitygettypeid",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CSIdentityGetTypeID()",
+      "type": "topic",
+      "url": "/documentation/coreservices/1444732-csidentitygettypeid"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1444814-csgetlocalidentityauthority": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CSGetLocalIdentityAuthority"
+        },
+        {
+          "kind": "text",
+          "text": "() -> Unmanaged<CSIdentityAuthority>!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1444814-csgetlocalidentityauthority",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CSGetLocalIdentityAuthority()",
+      "type": "topic",
+      "url": "/documentation/coreservices/1444814-csgetlocalidentityauthority"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1446099-csidentitygetimageurl": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CSIdentityGetImageURL"
+        },
+        {
+          "kind": "text",
+          "text": "(CSIdentity!) -> Unmanaged<CFURL>!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1446099-csidentitygetimageurl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CSIdentityGetImageURL(_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1446099-csidentitygetimageurl"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1446211-csidentitygetemailaddress": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CSIdentityGetEmailAddress"
+        },
+        {
+          "kind": "text",
+          "text": "(CSIdentity!) -> Unmanaged<CFString>!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1446211-csidentitygetemailaddress",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CSIdentityGetEmailAddress(_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1446211-csidentitygetemailaddress"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1446455-csidentitygetaliases": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CSIdentityGetAliases"
+        },
+        {
+          "kind": "text",
+          "text": "(CSIdentity!) -> Unmanaged<CFArray>!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1446455-csidentitygetaliases",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CSIdentityGetAliases(_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1446455-csidentitygetaliases"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1446623-csidentitysetfullname": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CSIdentitySetFullName"
+        },
+        {
+          "kind": "text",
+          "text": "(CSIdentity!, CFString!)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1446623-csidentitysetfullname",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CSIdentitySetFullName(_:_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1446623-csidentitysetfullname"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1446717-csidentitysetimageurl": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CSIdentitySetImageURL"
+        },
+        {
+          "kind": "text",
+          "text": "(CSIdentity!, CFURL!)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1446717-csidentitysetimageurl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CSIdentitySetImageURL(_:_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1446717-csidentitysetimageurl"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1446750-csgetmanagedidentityauthority": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CSGetManagedIdentityAuthority"
+        },
+        {
+          "kind": "text",
+          "text": "() -> Unmanaged<CSIdentityAuthority>!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1446750-csgetmanagedidentityauthority",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CSGetManagedIdentityAuthority()",
+      "type": "topic",
+      "url": "/documentation/coreservices/1446750-csgetmanagedidentityauthority"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1446828-csidentitygetauthority": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CSIdentityGetAuthority"
+        },
+        {
+          "kind": "text",
+          "text": "(CSIdentity!) -> Unmanaged<CSIdentityAuthority>!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1446828-csidentitygetauthority",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CSIdentityGetAuthority(_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1446828-csidentitygetauthority"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1447194-csidentitygetclass": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CSIdentityGetClass"
+        },
+        {
+          "kind": "text",
+          "text": "(CSIdentity!) -> CSIdentityClass"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1447194-csidentitygetclass",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CSIdentityGetClass(_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1447194-csidentitygetclass"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1447210-csidentitygetposixname": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CSIdentityGetPosixName"
+        },
+        {
+          "kind": "text",
+          "text": "(CSIdentity!) -> Unmanaged<CFString>!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1447210-csidentitygetposixname",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CSIdentityGetPosixName(_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1447210-csidentitygetposixname"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1447315-csidentitygetfullname": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CSIdentityGetFullName"
+        },
+        {
+          "kind": "text",
+          "text": "(CSIdentity!) -> Unmanaged<CFString>!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1447315-csidentitygetfullname",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CSIdentityGetFullName(_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1447315-csidentitygetfullname"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1447478-csidentitygetimagedatatype": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CSIdentityGetImageDataType"
+        },
+        {
+          "kind": "text",
+          "text": "(CSIdentity!) -> Unmanaged<CFString>!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1447478-csidentitygetimagedatatype",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CSIdentityGetImageDataType(_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1447478-csidentitygetimagedatatype"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1447513-csidentityaddmember": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CSIdentityAddMember"
+        },
+        {
+          "kind": "text",
+          "text": "(CSIdentity!, CSIdentity!)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1447513-csidentityaddmember",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CSIdentityAddMember(_:_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1447513-csidentityaddmember"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1447616-csidentitycreate": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CSIdentityCreate"
+        },
+        {
+          "kind": "text",
+          "text": "(CFAllocator!, CSIdentityClass, CFString!, CFString!, CSIdentityFlags, CSIdentityAuthority!) -> Unmanaged<CSIdentity>!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1447616-csidentitycreate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CSIdentityCreate(_:_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1447616-csidentitycreate"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1447691-csidentitysetcertificate": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CSIdentitySetCertificate"
+        },
+        {
+          "kind": "text",
+          "text": "(CSIdentity!, SecCertificate!)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1447691-csidentitysetcertificate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CSIdentitySetCertificate(_:_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1447691-csidentitysetcertificate"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1447936-csidentitycommitasynchronously": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CSIdentityCommitAsynchronously"
+        },
+        {
+          "kind": "text",
+          "text": "(CSIdentity!, UnsafePointer<CSIdentityClientContext>!, CFRunLoop!, CFString!, AuthorizationRef!) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1447936-csidentitycommitasynchronously",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CSIdentityCommitAsynchronously(_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1447936-csidentitycommitasynchronously"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1447968-csdiskspacestartrecovery": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CSDiskSpaceStartRecovery"
+        },
+        {
+          "kind": "text",
+          "text": "(CFURL!, UInt64, CSDiskSpaceRecoveryOptions, UnsafeMutablePointer<Unmanaged<CFUUID>?>!, dispatch_queue_t!, CSDiskSpaceRecoveryCallback!)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1447968-csdiskspacestartrecovery",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CSDiskSpaceStartRecovery(_:_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1447968-csdiskspacestartrecovery"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1447987-csidentitygetuuid": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CSIdentityGetUUID"
+        },
+        {
+          "kind": "text",
+          "text": "(CSIdentity!) -> Unmanaged<CFUUID>!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1447987-csidentitygetuuid",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CSIdentityGetUUID(_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1447987-csidentitygetuuid"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1448335-csdiskspacecancelrecovery": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CSDiskSpaceCancelRecovery"
+        },
+        {
+          "kind": "text",
+          "text": "(CFUUID!)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1448335-csdiskspacecancelrecovery",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CSDiskSpaceCancelRecovery(_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1448335-csdiskspacecancelrecovery"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1448439-csdiskspacegetrecoveryestimate": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CSDiskSpaceGetRecoveryEstimate"
+        },
+        {
+          "kind": "text",
+          "text": "(CFURL!) -> UInt64"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1448439-csdiskspacegetrecoveryestimate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CSDiskSpaceGetRecoveryEstimate(_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1448439-csdiskspacegetrecoveryestimate"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1448582-csidentitygetcertificate": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CSIdentityGetCertificate"
+        },
+        {
+          "kind": "text",
+          "text": "(CSIdentity!) -> Unmanaged<SecCertificate>!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1448582-csidentitygetcertificate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CSIdentityGetCertificate(_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1448582-csidentitygetcertificate"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1448605-csidentitycreategroupmembershipq": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CSIdentityCreateGroupMembershipQuery"
+        },
+        {
+          "kind": "text",
+          "text": "(CFAllocator!, CSIdentity!) -> Unmanaged<CSIdentityQuery>!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1448605-csidentitycreategroupmembershipq",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CSIdentityCreateGroupMembershipQuery(_:_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1448605-csidentitycreategroupmembershipq"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1448796-csidentityremovemember": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CSIdentityRemoveMember"
+        },
+        {
+          "kind": "text",
+          "text": "(CSIdentity!, CSIdentity!)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1448796-csidentityremovemember",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CSIdentityRemoveMember(_:_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1448796-csidentityremovemember"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1448826-csgetdefaultidentityauthority": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CSGetDefaultIdentityAuthority"
+        },
+        {
+          "kind": "text",
+          "text": "() -> Unmanaged<CSIdentityAuthority>!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1448826-csgetdefaultidentityauthority",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CSGetDefaultIdentityAuthority()",
+      "type": "topic",
+      "url": "/documentation/coreservices/1448826-csgetdefaultidentityauthority"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1448933-csidentityremoveclient": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CSIdentityRemoveClient"
+        },
+        {
+          "kind": "text",
+          "text": "(CSIdentity!)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1448933-csidentityremoveclient",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CSIdentityRemoveClient(_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1448933-csidentityremoveclient"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1448990-csidentityauthoritycopylocalized": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CSIdentityAuthorityCopyLocalizedName"
+        },
+        {
+          "kind": "text",
+          "text": "(CSIdentityAuthority!) -> Unmanaged<CFString>!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1448990-csidentityauthoritycopylocalized",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CSIdentityAuthorityCopyLocalizedName(_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1448990-csidentityauthoritycopylocalized"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1449199-csidentityauthoritygettypeid": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CSIdentityAuthorityGetTypeID"
+        },
+        {
+          "kind": "text",
+          "text": "() -> CFTypeID"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1449199-csidentityauthoritygettypeid",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CSIdentityAuthorityGetTypeID()",
+      "type": "topic",
+      "url": "/documentation/coreservices/1449199-csidentityauthoritygettypeid"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1449237-csidentityismemberofgroup": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CSIdentityIsMemberOfGroup"
+        },
+        {
+          "kind": "text",
+          "text": "(CSIdentity!, CSIdentity!) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1449237-csidentityismemberofgroup",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CSIdentityIsMemberOfGroup(_:_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1449237-csidentityismemberofgroup"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1449476-csidentityishidden": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CSIdentityIsHidden"
+        },
+        {
+          "kind": "text",
+          "text": "(CSIdentity!) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1449476-csidentityishidden",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CSIdentityIsHidden(_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1449476-csidentityishidden"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1449575-csidentitycommit": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CSIdentityCommit"
+        },
+        {
+          "kind": "text",
+          "text": "(CSIdentity!, AuthorizationRef!, UnsafeMutablePointer<Unmanaged<CFError>?>!) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1449575-csidentitycommit",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CSIdentityCommit(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1449575-csidentitycommit"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1449734-csidentityiscommitting": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CSIdentityIsCommitting"
+        },
+        {
+          "kind": "text",
+          "text": "(CSIdentity!) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1449734-csidentityiscommitting",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CSIdentityIsCommitting(_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1449734-csidentityiscommitting"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1449855-csidentityauthenticateusingpassw": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CSIdentityAuthenticateUsingPassword"
+        },
+        {
+          "kind": "text",
+          "text": "(CSIdentity!, CFString!) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1449855-csidentityauthenticateusingpassw",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CSIdentityAuthenticateUsingPassword(_:_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1449855-csidentityauthenticateusingpassw"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/csidentity": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "CSIdentity"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/csidentity",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CSIdentity",
+      "type": "topic",
+      "url": "/documentation/coreservices/csidentity"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/csidentityauthority": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "CSIdentityAuthority"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/csidentityauthority",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CSIdentityAuthority",
+      "type": "topic",
+      "url": "/documentation/coreservices/csidentityauthority"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/csidentityclientcontext": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "CSIdentityClientContext"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/csidentityclientcontext",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CSIdentityClientContext",
+      "type": "topic",
+      "url": "/documentation/coreservices/csidentityclientcontext"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/csidentityquery": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "CSIdentityQuery"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/csidentityquery",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CSIdentityQuery",
+      "type": "topic",
+      "url": "/documentation/coreservices/csidentityquery"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/csidentityqueryclientcontext": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "CSIdentityQueryClientContext"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/csidentityqueryclientcontext",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CSIdentityQueryClientContext",
+      "type": "topic",
+      "url": "/documentation/coreservices/csidentityqueryclientcontext"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/kcsidentityerrordomain": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "let "
+        },
+        {
+          "kind": "identifier",
+          "text": "kCSIdentityErrorDomain"
+        },
+        {
+          "kind": "text",
+          "text": ": CFString!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/kcsidentityerrordomain",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kCSIdentityErrorDomain",
+      "type": "topic",
+      "url": "/documentation/coreservices/kcsidentityerrordomain"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/kcsidentitygenerateposixname": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "let "
+        },
+        {
+          "kind": "identifier",
+          "text": "kCSIdentityGeneratePosixName"
+        },
+        {
+          "kind": "text",
+          "text": ": CFString!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/kcsidentitygenerateposixname",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kCSIdentityGeneratePosixName",
+      "type": "topic",
+      "url": "/documentation/coreservices/kcsidentitygenerateposixname"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/os_services": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/os_services",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "OS Services",
+      "type": "topic",
+      "url": "/documentation/coreservices/os_services"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "2934097",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreservices/csidentity",
+        "doc://com.apple.documentation/documentation/coreservices/csidentityauthority",
+        "doc://com.apple.documentation/documentation/coreservices/csidentityquery"
+      ],
+      "kind": "taskGroup",
+      "title": "Classes"
+    },
+    {
+      "anchor": "2934157",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreservices/1448335-csdiskspacecancelrecovery",
+        "doc://com.apple.documentation/documentation/coreservices/1448439-csdiskspacegetrecoveryestimate",
+        "doc://com.apple.documentation/documentation/coreservices/1447968-csdiskspacestartrecovery",
+        "doc://com.apple.documentation/documentation/coreservices/1448826-csgetdefaultidentityauthority",
+        "doc://com.apple.documentation/documentation/coreservices/1444814-csgetlocalidentityauthority",
+        "doc://com.apple.documentation/documentation/coreservices/1446750-csgetmanagedidentityauthority",
+        "doc://com.apple.documentation/documentation/coreservices/1443062-csidentityaddalias",
+        "doc://com.apple.documentation/documentation/coreservices/1447513-csidentityaddmember",
+        "doc://com.apple.documentation/documentation/coreservices/1449855-csidentityauthenticateusingpassw",
+        "doc://com.apple.documentation/documentation/coreservices/1448990-csidentityauthoritycopylocalized",
+        "doc://com.apple.documentation/documentation/coreservices/1449199-csidentityauthoritygettypeid",
+        "doc://com.apple.documentation/documentation/coreservices/1449575-csidentitycommit",
+        "doc://com.apple.documentation/documentation/coreservices/1447936-csidentitycommitasynchronously",
+        "doc://com.apple.documentation/documentation/coreservices/1447616-csidentitycreate",
+        "doc://com.apple.documentation/documentation/coreservices/1443553-csidentitycreatecopy",
+        "doc://com.apple.documentation/documentation/coreservices/1448605-csidentitycreategroupmembershipq",
+        "doc://com.apple.documentation/documentation/coreservices/1444037-csidentitycreatepersistentrefere",
+        "doc://com.apple.documentation/documentation/coreservices/1442616-csidentitydelete",
+        "doc://com.apple.documentation/documentation/coreservices/1446455-csidentitygetaliases",
+        "doc://com.apple.documentation/documentation/coreservices/1446828-csidentitygetauthority",
+        "doc://com.apple.documentation/documentation/coreservices/1448582-csidentitygetcertificate",
+        "doc://com.apple.documentation/documentation/coreservices/1447194-csidentitygetclass",
+        "doc://com.apple.documentation/documentation/coreservices/1446211-csidentitygetemailaddress",
+        "doc://com.apple.documentation/documentation/coreservices/1447315-csidentitygetfullname",
+        "doc://com.apple.documentation/documentation/coreservices/1444544-csidentitygetimagedata",
+        "doc://com.apple.documentation/documentation/coreservices/1447478-csidentitygetimagedatatype",
+        "doc://com.apple.documentation/documentation/coreservices/1446099-csidentitygetimageurl",
+        "doc://com.apple.documentation/documentation/coreservices/1443230-csidentitygetposixid",
+        "doc://com.apple.documentation/documentation/coreservices/1447210-csidentitygetposixname",
+        "doc://com.apple.documentation/documentation/coreservices/1444732-csidentitygettypeid",
+        "doc://com.apple.documentation/documentation/coreservices/1447987-csidentitygetuuid",
+        "doc://com.apple.documentation/documentation/coreservices/1449734-csidentityiscommitting",
+        "doc://com.apple.documentation/documentation/coreservices/1443379-csidentityisenabled",
+        "doc://com.apple.documentation/documentation/coreservices/1449476-csidentityishidden",
+        "doc://com.apple.documentation/documentation/coreservices/1449237-csidentityismemberofgroup",
+        "doc://com.apple.documentation/documentation/coreservices/1429035-csidentityquerycopyresults",
+        "doc://com.apple.documentation/documentation/coreservices/1429003-csidentityquerycreate",
+        "doc://com.apple.documentation/documentation/coreservices/1429037-csidentityquerycreateforcurrentu",
+        "doc://com.apple.documentation/documentation/coreservices/1428997-csidentityquerycreateforname",
+        "doc://com.apple.documentation/documentation/coreservices/1428991-csidentityquerycreateforpersiste",
+        "doc://com.apple.documentation/documentation/coreservices/1428990-csidentityquerycreateforposixid",
+        "doc://com.apple.documentation/documentation/coreservices/1429007-csidentityquerycreateforuuid",
+        "doc://com.apple.documentation/documentation/coreservices/1429041-csidentityqueryexecute",
+        "doc://com.apple.documentation/documentation/coreservices/1429011-csidentityqueryexecuteasynchrono",
+        "doc://com.apple.documentation/documentation/coreservices/1429012-csidentityquerygettypeid",
+        "doc://com.apple.documentation/documentation/coreservices/1429047-csidentityquerystop",
+        "doc://com.apple.documentation/documentation/coreservices/1442114-csidentityremovealias",
+        "doc://com.apple.documentation/documentation/coreservices/1448933-csidentityremoveclient",
+        "doc://com.apple.documentation/documentation/coreservices/1448796-csidentityremovemember",
+        "doc://com.apple.documentation/documentation/coreservices/1447691-csidentitysetcertificate",
+        "doc://com.apple.documentation/documentation/coreservices/1443235-csidentitysetemailaddress",
+        "doc://com.apple.documentation/documentation/coreservices/1446623-csidentitysetfullname",
+        "doc://com.apple.documentation/documentation/coreservices/1441866-csidentitysetimagedata",
+        "doc://com.apple.documentation/documentation/coreservices/1446717-csidentitysetimageurl",
+        "doc://com.apple.documentation/documentation/coreservices/1443028-csidentitysetisenabled",
+        "doc://com.apple.documentation/documentation/coreservices/1443568-csidentitysetpassword"
+      ],
+      "kind": "taskGroup",
+      "title": "Functions"
+    },
+    {
+      "anchor": "2934727",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreservices/csidentityclientcontext",
+        "doc://com.apple.documentation/documentation/coreservices/csidentityqueryclientcontext"
+      ],
+      "kind": "taskGroup",
+      "title": "Structures"
+    },
+    {
+      "anchor": "2934728",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreservices/kcsidentityerrordomain",
+        "doc://com.apple.documentation/documentation/coreservices/kcsidentitygenerateposixname"
+      ],
+      "kind": "taskGroup",
+      "title": "Constants"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/coreservices/os_services/identity_services"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/coreservices/os_services/identity_services"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

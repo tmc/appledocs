@@ -1,0 +1,577 @@
+{
+  "abstract": [
+    {
+      "text": "An abstract class representing a unit of measure. ",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/units_and_measurement"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/unit"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1642564,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSUnit",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "class "
+      },
+      {
+        "kind": "identifier",
+        "text": "Unit"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "10.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "10.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.12",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "10.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "3.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "Unit"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "Unit"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each instance of an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/unit",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " subclass consists of a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/unit/1642700-symbol",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", which can be used to create string representations of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsmeasurement",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/measurementformatter",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/dimension",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " subclass is an abstract class that represents a dimensional unit, which can be converted into different units of the same type. The Foundation framework provides several concrete ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/dimension",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " subclasses to represent the most common physical quantities, including mass, length, duration, and speed.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "1891777",
+          "level": 3,
+          "text": "Subclassing Notes",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "NSUnit",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is intended for subclassing. For dimensional units, you should use one of the Apple provided ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/dimension",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " subclasses listed in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/dimension#1965627",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", or create a custom subclass of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/dimension",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". You can create a direct subclass of ",
+              "type": "text"
+            },
+            {
+              "code": "NSUnit",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to represent a custom dimensionless unit, such as a count, score, or ratio.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.Swift/documentation/Swift/Sendable": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Sendable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/swift/sendable"
+    },
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/dimension": {
+      "abstract": [
+        {
+          "text": "An abstract class representing a dimensional unit of measure.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "Dimension"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/dimension",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Dimension",
+      "type": "topic",
+      "url": "/documentation/foundation/dimension"
+    },
+    "doc://com.apple.documentation/documentation/foundation/dimension#1965627": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/dimension#1965627",
+      "kind": "article",
+      "role": "table",
+      "title": "Table 1",
+      "type": "section",
+      "url": "/documentation/foundation/dimension#1965627"
+    },
+    "doc://com.apple.documentation/documentation/foundation/measurement": {
+      "abstract": [
+        {
+          "text": "A numeric quantity labeled with a unit of measure, with support for unit conversion and unit-aware calculations. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "Measurement"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/measurement",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Measurement",
+      "type": "topic",
+      "url": "/documentation/foundation/measurement"
+    },
+    "doc://com.apple.documentation/documentation/foundation/measurementformatter": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/measurementformatter",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MeasurementFormatter",
+      "type": "topic",
+      "url": "/documentation/foundation/measurementformatter"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscopying": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscopying",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCopying",
+      "type": "topic",
+      "url": "/documentation/foundation/nscopying"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmeasurement": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmeasurement",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSMeasurement",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmeasurement"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nssecurecoding": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nssecurecoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSecureCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nssecurecoding"
+    },
+    "doc://com.apple.documentation/documentation/foundation/unit": {
+      "abstract": [
+        {
+          "text": "An abstract class representing a unit of measure. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "Unit"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/unit",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Unit",
+      "type": "topic",
+      "url": "/documentation/foundation/unit"
+    },
+    "doc://com.apple.documentation/documentation/foundation/unit/1642700-symbol": {
+      "abstract": [
+        {
+          "text": "The symbolic representation of the unit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "symbol"
+        },
+        {
+          "kind": "text",
+          "text": ": String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/unit/1642700-symbol",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "symbol",
+      "type": "topic",
+      "url": "/documentation/foundation/unit/1642700-symbol"
+    },
+    "doc://com.apple.documentation/documentation/foundation/unit/1690760-init": {
+      "abstract": [
+        {
+          "text": "Initializes a new unit with the specified symbol.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "symbol"
+        },
+        {
+          "kind": "text",
+          "text": ": String)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/unit/1690760-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(symbol:)",
+      "type": "topic",
+      "url": "/documentation/foundation/unit/1690760-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/units_and_measurement": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/units_and_measurement",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Units and Measurement",
+      "type": "topic",
+      "url": "/documentation/foundation/units_and_measurement"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/objectivec/nsobject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nscopying",
+        "doc://com.apple.documentation/documentation/foundation/nssecurecoding",
+        "doc://com.apple.Swift/documentation/Swift/Sendable"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/measurement",
+        "doc://com.apple.documentation/documentation/foundation/dimension"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "1844960",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/unit/1642700-symbol"
+      ],
+      "kind": "taskGroup",
+      "title": "Accessing Properties"
+    },
+    {
+      "anchor": "1844961",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/unit/1690760-init"
+      ],
+      "kind": "taskGroup",
+      "title": "Creating Units"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nsunit"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/unit"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

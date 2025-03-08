@@ -1,0 +1,525 @@
+{
+  "abstract": [
+    {
+      "text": "Get feedback on your extension from beta testers, then share your extension with customers in the App Store.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.safariservices/documentation/SafariServices",
+        "doc://com.apple.safariservices/documentation/SafariServices/safari-web-extensions"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.safariservices/documentation/SafariServices/distributing-your-safari-web-extension"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Safari Services"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Distributing your Safari web extension"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Safari supports distributing a web extension in a macOS app, a visionOS app, an iOS app, or a Mac app created using Mac Catalyst.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can test your unsigned macOS web extension in Safari during development and beta testing, but you need to sign your extension and containing macOS app to securely distribute it to users in the App Store.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can test your unsigned visionOS or iOS web extension in the simulators during development. For testing on device, beta testing with other users, and distributing to users in the App Store, you need to sign your extension and containing visionOS or iOS app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Join-the-Apple-Developer-Program",
+          "level": 3,
+          "text": "Join the Apple Developer Program",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To distribute your web extension, first join the Apple Developer Program. The Apple Developer Program provides resources to securely distribute your extension in the App Store. To learn more about enrolling in the program, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/programs/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Distribute-your-extension-for-beta-testing-in-visionOS-or-iOS",
+          "level": 3,
+          "text": "Distribute your extension for beta testing in visionOS or iOS",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For beta testing in visionOS or iOS, you can send beta testers a signed, ad-hoc distribution copy of the app containing your extension, and then instruct them how to install it. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Xcode/distributing-your-app-to-registered-devices",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Alternatively, you can distribute your extension to a wider group of beta testers using TestFlight. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Xcode/distributing-your-app-for-beta-testing-and-releases",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Distribute-your-extension-for-beta-testing-in-macOS",
+          "level": 3,
+          "text": "Distribute your extension for beta testing in macOS",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Safari only supports signed extensions, but for beta testing, you can send beta testers an unsigned copy of the macOS app containing your extension, and then instruct them how to enable testing. For more information on creating and uploading an archive, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Xcode/distributing-your-app-for-beta-testing-and-releases",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Use the “Copy App” distribution method, which will distribute a macOS app without code signing, to create a beta version of your macOS app and web extension.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Then, instruct your beta testers to enable unsigned extensions in Safari or the Mac web app in order to test your extension. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.safariservices/documentation/SafariServices/running-your-safari-web-extension#Configure-Safari-in-macOS-to-run-unsigned-extensions",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Distribute-your-extension-in-the-App-Store",
+          "level": 3,
+          "text": "Distribute your extension in the App Store",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you’re ready to ship your extension in the App Store, gather the assets and details you need to create your product page. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/app-store/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you provide your extension on more than one platform, consider selling them together as one product to improve the purchasing experience for your users. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/support/universal-purchase/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Create an archive of your app to use for submission, then upload the archive to the App Store. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Xcode/distributing-your-app-for-beta-testing-and-releases",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Choose the “App Store Connect” distribution method to send your macOS or iOS app binary to the app store in preparation for publishing.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Submit your app for review and publishing. For more information, see the section titled “Publish on the App Store” in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Xcode/distributing-your-app-for-beta-testing-and-releases",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Distribute-your-Developer-ID-signed-and-notarized-extension-outside-the-Mac-App-Store",
+          "level": 3,
+          "text": "Distribute your Developer ID–signed and notarized extension outside the Mac App Store",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you provide your extension in macOS and don’t want to use the Mac App Store for distribution, you can sign and notarize your extension’s app with a Developer ID to distribute it outside the Mac App Store. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/support/developer-id/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Security/notarizing-macos-software-before-distribution",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/Security/notarizing-macos-software-before-distribution": {
+      "abstract": [
+        {
+          "text": "Give users even more confidence in your macOS software by submitting it to Apple for notarization.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Security/notarizing-macos-software-before-distribution",
+      "kind": "article",
+      "role": "article",
+      "title": "Notarizing macOS software before distribution",
+      "type": "topic",
+      "url": "/documentation/Security/notarizing-macos-software-before-distribution"
+    },
+    "doc://com.apple.documentation/documentation/Xcode/distributing-your-app-for-beta-testing-and-releases": {
+      "abstract": [
+        {
+          "text": "Release your app to beta testers and users.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Xcode/distributing-your-app-for-beta-testing-and-releases",
+      "kind": "article",
+      "role": "article",
+      "title": "Distributing your app for beta testing and releases",
+      "type": "topic",
+      "url": "/documentation/Xcode/distributing-your-app-for-beta-testing-and-releases"
+    },
+    "doc://com.apple.documentation/documentation/Xcode/distributing-your-app-to-registered-devices": {
+      "abstract": [
+        {
+          "text": "Register devices in your developer account and deploy your app to them for testing.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Xcode/distributing-your-app-to-registered-devices",
+      "kind": "article",
+      "role": "article",
+      "title": "Distributing your app to registered devices",
+      "type": "topic",
+      "url": "/documentation/Xcode/distributing-your-app-to-registered-devices"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices": {
+      "abstract": [
+        {
+          "text": "Enable web views and services in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Safari Services",
+      "type": "topic",
+      "url": "/documentation/safariservices"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/running-your-safari-web-extension": {
+      "abstract": [
+        {
+          "text": "Install and update your extension in Safari as you make changes in development.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/running-your-safari-web-extension",
+      "kind": "article",
+      "role": "article",
+      "title": "Running your Safari web extension",
+      "type": "topic",
+      "url": "/documentation/safariservices/running-your-safari-web-extension"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/running-your-safari-web-extension#Configure-Safari-in-macOS-to-run-unsigned-extensions": {
+      "abstract": [],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/running-your-safari-web-extension#Configure-Safari-in-macOS-to-run-unsigned-extensions",
+      "kind": "section",
+      "title": "Configure Safari in macOS to run unsigned extensions",
+      "type": "topic",
+      "url": "/documentation/safariservices/running-your-safari-web-extension#Configure-Safari-in-macOS-to-run-unsigned-extensions"
+    },
+    "doc://com.apple.safariservices/documentation/SafariServices/safari-web-extensions": {
+      "abstract": [
+        {
+          "text": "Create web extensions that work in Safari and other browsers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safariservices/documentation/SafariServices/safari-web-extensions",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Safari web extensions",
+      "type": "topic",
+      "url": "/documentation/safariservices/safari-web-extensions"
+    },
+    "https://developer.apple.com/app-store/": {
+      "identifier": "https://developer.apple.com/app-store/",
+      "title": "Making the Most of the App Store",
+      "titleInlineContent": [
+        {
+          "text": "Making the Most of the App Store",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/app-store/"
+    },
+    "https://developer.apple.com/programs/": {
+      "identifier": "https://developer.apple.com/programs/",
+      "title": "Apple Developer Program",
+      "titleInlineContent": [
+        {
+          "text": "Apple Developer Program",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/programs/"
+    },
+    "https://developer.apple.com/support/developer-id/": {
+      "identifier": "https://developer.apple.com/support/developer-id/",
+      "title": "Developer ID",
+      "titleInlineContent": [
+        {
+          "text": "Developer ID",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/support/developer-id/"
+    },
+    "https://developer.apple.com/support/universal-purchase/": {
+      "identifier": "https://developer.apple.com/support/universal-purchase/",
+      "title": "Offering Universal Purchase",
+      "titleInlineContent": [
+        {
+          "text": "Offering Universal Purchase",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/support/universal-purchase/"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Installation-and-distribution",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.safariservices/documentation/SafariServices/running-your-safari-web-extension"
+      ],
+      "title": "Installation and distribution"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Installation-and-distribution",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.safariservices/documentation/SafariServices/running-your-safari-web-extension"
+              ],
+              "title": "Installation and distribution"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/safariservices/distributing-your-safari-web-extension"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/safariservices/distributing-your-safari-web-extension"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

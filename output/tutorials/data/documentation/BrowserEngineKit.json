@@ -1,0 +1,2386 @@
+{
+  "abstract": [
+    {
+      "text": "Create a browser that renders content using an alternative browser engine.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "BrowserEngineKit",
+    "modules": [
+      {
+        "name": "BrowserEngineKit"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "17.4",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "18.0",
+        "name": "iPadOS"
+      }
+    ],
+    "role": "collection",
+    "roleHeading": "Framework",
+    "symbolKind": "module",
+    "title": "BrowserEngineKit"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A web browser loads content and code from remote — and potentially untrusted — servers.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Design your browser app to isolate access to operating system resources, the data of the person using the app, and untrusted data from the web.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Code defensively to reduce the risk posed by vulnerabilities in your browser code.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/WebKit/WKWebView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to render web content in your browser app, WebKit automatically distributes its work to extensions that isolate their access to important resources and data.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Whether you use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/WebKit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or write your own alternative browser engine, you need to request the entitlement to act as a person’s default web browser.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Xcode/preparing-your-app-to-be-the-default-browser",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Build-a-multi-process-browser",
+          "level": 3,
+          "text": "Build a multi-process browser",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you use an alternative browser engine in your app, you must design your secure browser infrastructure to separate different components into extensions that your browser manages.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Design a limited inter-process communication (IPC) protocol that coordinates work across the extensions.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Separating your alternative browser engine into distinct extensions limits the impact of security vulnerabilities in any one process.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information on designing your browser extensions, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/designing-your-browser-architecture",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For information on using the extensions in your browser, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/managing-the-browser-extension-lifecycle",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Render-websites",
+          "level": 3,
+          "text": "Render websites",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your browser app can get significant benefits by integrating closely with UIKit. You can customize the way your app handles many low-level user interface events, ensure that your browser app correctly renders CSS, and that it properly manipulates the Javascript DOM.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You can use view classes in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BrowserEngineKit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to handle scrolling, drag interactions, and the context menu in your browser app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For information on integrating a custom text view with the UIKit text system, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/integrating-custom-browser-text-views-with-uikit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In your browser app, launch extensions as the person browses web content to make network requests, load the web content, and render media.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/managing-the-browser-extension-lifecycle",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/XPC",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to communicate between your browser app and extension processes.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/using-xpc-to-communicate-with-browser-extensions",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For information on installing alternative app marketplaces from their company websites within your browser app, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/appdistribution/enabling-alternative-distribution-app-installation-in-a-browser",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "To distribute an app that uses an alternative browser engine, you need to request the relevant entitlements for your developer account.",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "For more information and to request the entitlements, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/support/alternative-browser-engines",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit": {
+      "abstract": [
+        {
+          "text": "Create a browser that renders content using an alternative browser engine.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "BrowserEngineKit",
+      "type": "topic",
+      "url": "/documentation/browserenginekit"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BEAccessibility": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BEAccessibility"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BEAccessibility",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BEAccessibility"
+        }
+      ],
+      "role": "symbol",
+      "title": "BEAccessibility",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/beaccessibility"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BEAccessibility/menuItem": {
+      "abstract": [
+        {
+          "text": "The accessibility element behaves like a menu item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "menuItem"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@UIAccessibilityTraits",
+          "text": "UIAccessibilityTraits"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BEAccessibility/menuItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BEAccessibilityTraitMenuItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "menuItem",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/beaccessibility/menuitem"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BEAccessibility/popUpButton": {
+      "abstract": [
+        {
+          "text": "The accessibility element behaves like a pop-up button.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "popUpButton"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@UIAccessibilityTraits",
+          "text": "UIAccessibilityTraits"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BEAccessibility/popUpButton",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BEAccessibilityTraitPopUpButton"
+        }
+      ],
+      "role": "symbol",
+      "title": "popUpButton",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/beaccessibility/popupbutton"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BEAccessibility/radioButton": {
+      "abstract": [
+        {
+          "text": "The accessibility element behaves like a radio button.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "radioButton"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@UIAccessibilityTraits",
+          "text": "UIAccessibilityTraits"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BEAccessibility/radioButton",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BEAccessibilityTraitRadioButton"
+        }
+      ],
+      "role": "symbol",
+      "title": "radioButton",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/beaccessibility/radiobutton"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BEAccessibility/readOnly": {
+      "abstract": [
+        {
+          "text": "The accessibility element is read-only.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "readOnly"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@UIAccessibilityTraits",
+          "text": "UIAccessibilityTraits"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BEAccessibility/readOnly",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BEAccessibilityTraitReadOnly"
+        }
+      ],
+      "role": "symbol",
+      "title": "readOnly",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/beaccessibility/readonly"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BEAccessibility/selectionChangedNotification": {
+      "abstract": [
+        {
+          "text": "The notification you post when the selection inside an element changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "selectionChangedNotification"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@UIAccessibility",
+          "text": "UIAccessibility"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@UIAccessibilityNotifications",
+          "text": "Notification"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BEAccessibility/selectionChangedNotification",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BEAccessibilitySelectionChangedNotification"
+        }
+      ],
+      "role": "symbol",
+      "title": "selectionChangedNotification",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/beaccessibility/selectionchangednotification"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BEAccessibility/valueChangedNotification": {
+      "abstract": [
+        {
+          "text": "The notification you post when the value of an element changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "valueChangedNotification"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@UIAccessibility",
+          "text": "UIAccessibility"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@UIAccessibilityNotifications",
+          "text": "Notification"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BEAccessibility/valueChangedNotification",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BEAccessibilityValueChangedNotification"
+        }
+      ],
+      "role": "symbol",
+      "title": "valueChangedNotification",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/beaccessibility/valuechangednotification"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BEAccessibility/visited": {
+      "abstract": [
+        {
+          "text": "The accessibility element behaves like a link that someone previously visited.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "visited"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@UIAccessibilityTraits",
+          "text": "UIAccessibilityTraits"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BEAccessibility/visited",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BEAccessibilityTraitVisited"
+        }
+      ],
+      "role": "symbol",
+      "title": "visited",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/beaccessibility/visited"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BEAccessibilityContainerType": {
+      "abstract": [
+        {
+          "text": "An enumeration that indicates the type of container in which an element is located.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BEAccessibilityContainerType"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BEAccessibilityContainerType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BEAccessibilityContainerType"
+        }
+      ],
+      "role": "symbol",
+      "title": "BEAccessibilityContainerType",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/beaccessibilitycontainertype"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BEAccessibilityPressedState": {
+      "abstract": [
+        {
+          "text": "An enumeration that indicates whether an element is pressed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BEAccessibilityPressedState"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BEAccessibilityPressedState",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BEAccessibilityPressedState"
+        }
+      ],
+      "role": "symbol",
+      "title": "BEAccessibilityPressedState",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/beaccessibilitypressedstate"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BEAccessibilityTextMarkerSupport": {
+      "abstract": [
+        {
+          "text": "A set of methods that provide information about text offsets to support assistive features.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BEAccessibilityTextMarkerSupport"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BEAccessibilityTextMarkerSupport",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BEAccessibilityTextMarkerSupport"
+        }
+      ],
+      "role": "symbol",
+      "title": "BEAccessibilityTextMarkerSupport",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/beaccessibilitytextmarkersupport"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BEContextMenuConfiguration": {
+      "abstract": [
+        {
+          "text": "A specialized ",
+          "type": "text"
+        },
+        {
+          "code": "UIContextMenuConfiguration",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object to defer a context menu presentation when the",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "when the context menu gestures are first recognized and a possible menu presentation is not immediately known.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BEContextMenuConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BEContextMenuConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BEContextMenuConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "BEContextMenuConfiguration",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/becontextmenuconfiguration"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BEDownloadMonitor-9bwls": {
+      "abstract": [
+        {
+          "text": "An object that reports the status of web downloads to the system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BEDownloadMonitor"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BEDownloadMonitor-9bwls",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BEDownloadMonitor"
+        }
+      ],
+      "role": "symbol",
+      "title": "BEDownloadMonitor",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/bedownloadmonitor-9bwls"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BEDownloadMonitor-9y4hu": {
+      "abstract": [
+        {
+          "text": "An object that reports the status of web downloads to the system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "BEDownloadMonitor"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BEDownloadMonitor-9y4hu",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "BEDownloadMonitor",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/bedownloadmonitor-9y4hu"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BEDragInteraction": {
+      "abstract": [
+        {
+          "text": "A ",
+          "type": "text"
+        },
+        {
+          "code": "UIDragInteraction",
+          "type": "codeVoice"
+        },
+        {
+          "text": " subclass with features specific to browsers to enable asynchronous preparations and behaviours.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BEDragInteraction"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BEDragInteraction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BEDragInteraction"
+        }
+      ],
+      "role": "symbol",
+      "title": "BEDragInteraction",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/bedraginteraction"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BEDragInteractionDelegate": {
+      "abstract": [
+        {
+          "text": "A protocol to which the drag interaction delegates conform.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BEDragInteractionDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BEDragInteractionDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BEDragInteractionDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "BEDragInteractionDelegate",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/bedraginteractiondelegate"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BEMediaEnvironment-15xci": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BEMediaEnvironment"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BEMediaEnvironment-15xci",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BEMediaEnvironment"
+        }
+      ],
+      "role": "symbol",
+      "title": "BEMediaEnvironment",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/bemediaenvironment-15xci"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BEProcessCapability-76ijx": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BEProcessCapability"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BEProcessCapability-76ijx",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BEProcessCapability"
+        }
+      ],
+      "role": "symbol",
+      "title": "BEProcessCapability",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/beprocesscapability-76ijx"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BEScrollView": {
+      "abstract": [
+        {
+          "text": "A scroll view that works with its delegate to handle nesting, and customize scroll interactions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BEScrollView"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BEScrollView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BEScrollView"
+        }
+      ],
+      "role": "symbol",
+      "title": "BEScrollView",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/bescrollview"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BEScrollViewDelegate": {
+      "abstract": [
+        {
+          "text": "The protocol that browser scroll view delegates conform to.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BEScrollViewDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BEScrollViewDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BEScrollViewDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "BEScrollViewDelegate",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/bescrollviewdelegate"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BEScrollViewScrollUpdate": {
+      "abstract": [
+        {
+          "text": "An object that represents a change in a scroll view’s scroll state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BEScrollViewScrollUpdate"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BEScrollViewScrollUpdate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BEScrollViewScrollUpdate"
+        }
+      ],
+      "role": "symbol",
+      "title": "BEScrollViewScrollUpdate",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/bescrollviewscrollupdate"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BEWebAppManifest": {
+      "abstract": [
+        {
+          "text": "An object that represents a web app manifest.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BEWebAppManifest"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BEWebAppManifest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BEWebAppManifest"
+        }
+      ],
+      "role": "symbol",
+      "title": "BEWebAppManifest",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/bewebappmanifest"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BROWSERENGINEKIT_HAS_LIBXPC": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "BROWSERENGINEKIT_HAS_LIBXPC"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BROWSERENGINEKIT_HAS_LIBXPC",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "BROWSERENGINEKIT_HAS_LIBXPC",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/browserenginekit_has_libxpc"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BROWSERENGINEKIT_HAS_UIINTERACTION": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "BROWSERENGINEKIT_HAS_UIINTERACTION"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BROWSERENGINEKIT_HAS_UIINTERACTION",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "BROWSERENGINEKIT_HAS_UIINTERACTION",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/browserenginekit_has_uiinteraction"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BROWSERENGINEKIT_HAS_UIKIT": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "BROWSERENGINEKIT_HAS_UIKIT"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BROWSERENGINEKIT_HAS_UIKIT",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "BROWSERENGINEKIT_HAS_UIKIT",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/browserenginekit_has_uikit"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BROWSERENGINEKIT_HAS_UIVIEW": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "BROWSERENGINEKIT_HAS_UIVIEW"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BROWSERENGINEKIT_HAS_UIVIEW",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "BROWSERENGINEKIT_HAS_UIVIEW",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/browserenginekit_has_uiview"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/creating-browser-extensions-in-xcode": {
+      "abstract": [
+        {
+          "text": "Configure your Xcode project to support your alternative browser engine.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/creating-browser-extensions-in-xcode",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating browser extensions in Xcode",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/creating-browser-extensions-in-xcode"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/designing-your-browser-architecture": {
+      "abstract": [
+        {
+          "text": "Isolate privileged access to operating system resources and private data from untrusted code.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/designing-your-browser-architecture",
+      "kind": "article",
+      "role": "article",
+      "title": "Designing your browser architecture",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/designing-your-browser-architecture"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/developing-a-browser-app-that-uses-an-alternative-browser-engine": {
+      "abstract": [
+        {
+          "text": "Create a web browser app and associated extensions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/developing-a-browser-app-that-uses-an-alternative-browser-engine",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Developing a browser app that uses an alternative browser engine",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/developing-a-browser-app-that-uses-an-alternative-browser-engine"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/downloading-files-in-a-web-browser": {
+      "abstract": [
+        {
+          "text": "Report download progress to the system to keep your networking extension active.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/downloading-files-in-a-web-browser",
+      "kind": "article",
+      "role": "article",
+      "title": "Downloading files in a web browser with an alternative browser engine",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/downloading-files-in-a-web-browser"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/extension-lifecycle": {
+      "abstract": [
+        {
+          "text": "Launch, communicate with, and invalidate browser extensions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/extension-lifecycle",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Extension lifecycle",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/extension-lifecycle"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/extension-resources": {
+      "abstract": [
+        {
+          "text": "Control access to files and memory in browser extensions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/extension-resources",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Extension resources",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/extension-resources"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/improving-control-flow-integrity-with-pointer-authentication": {
+      "abstract": [
+        {
+          "text": "Increase confidence that your code uses pointers correctly.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/improving-control-flow-integrity-with-pointer-authentication",
+      "kind": "article",
+      "role": "article",
+      "title": "Improving control flow integrity with pointer authentication",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/improving-control-flow-integrity-with-pointer-authentication"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/integrating-custom-browser-text-views-with-uikit": {
+      "abstract": [
+        {
+          "text": "Process keyboard interactions asynchronously in your iOS browser app’s text view.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/integrating-custom-browser-text-views-with-uikit",
+      "kind": "article",
+      "role": "article",
+      "title": "Integrating custom browser text views with UIKit",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/integrating-custom-browser-text-views-with-uikit"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/managing-the-browser-extension-lifecycle": {
+      "abstract": [
+        {
+          "text": "Coordinate helper processes to efficiently support your browser app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/managing-the-browser-extension-lifecycle",
+      "kind": "article",
+      "role": "article",
+      "title": "Managing the browser extension life cycle",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/managing-the-browser-extension-lifecycle"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/protecting-code-compiled-just-in-time": {
+      "abstract": [
+        {
+          "text": "Toggle memory between being writable and executable.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/protecting-code-compiled-just-in-time",
+      "kind": "article",
+      "role": "article",
+      "title": "Protecting code compiled just in time",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/protecting-code-compiled-just-in-time"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/text-interaction": {
+      "abstract": [
+        {
+          "text": "Integrate your web browser engine asynchronously with the text system.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/text-interaction",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Text interaction",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/text-interaction"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/using-xpc-to-communicate-with-browser-extensions": {
+      "abstract": [
+        {
+          "text": "Build interprocess communication between your host app and extensions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/using-xpc-to-communicate-with-browser-extensions",
+      "kind": "article",
+      "role": "article",
+      "title": "Using XPC to communicate with browser extensions",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/using-xpc-to-communicate-with-browser-extensions"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/view-coordination": {
+      "abstract": [
+        {
+          "text": "Display content in the browser’s UI that an extension renders.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/view-coordination",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "View coordination",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/view-coordination"
+    },
+    "doc://com.apple.documentation/documentation/BrowserEngineCore/BE_JIT_WRITE_PROTECT_TAG": {
+      "abstract": [
+        {
+          "text": "A discriminator value the system uses to generate pointer authentication codes for just-in-time compilation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BE_JIT_WRITE_PROTECT_TAG"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BrowserEngineCore/BE_JIT_WRITE_PROTECT_TAG",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "BE_JIT_WRITE_PROTECT_TAG",
+      "type": "topic",
+      "url": "/documentation/BrowserEngineCore/BE_JIT_WRITE_PROTECT_TAG"
+    },
+    "doc://com.apple.documentation/documentation/BrowserEngineKit": {
+      "abstract": [
+        {
+          "text": "Create a browser that renders content using an alternative browser engine.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BrowserEngineKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "BrowserEngineKit",
+      "type": "topic",
+      "url": "/documentation/BrowserEngineKit"
+    },
+    "doc://com.apple.documentation/documentation/WebKit": {
+      "abstract": [
+        {
+          "text": "Integrate web content seamlessly into your app, and customize content interactions to meet your app’s needs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/WebKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "WebKit",
+      "type": "topic",
+      "url": "/documentation/WebKit"
+    },
+    "doc://com.apple.documentation/documentation/WebKit/WKWebView": {
+      "abstract": [
+        {
+          "text": "An object that displays interactive web content, such as for an in-app browser.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKWebView"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/WebKit/WKWebView",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "WKWebView",
+      "type": "topic",
+      "url": "/documentation/WebKit/WKWebView"
+    },
+    "doc://com.apple.documentation/documentation/XPC": {
+      "abstract": [
+        {
+          "text": "Access a low-level interprocess communication mechanism.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/XPC",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "XPC",
+      "type": "topic",
+      "url": "/documentation/XPC"
+    },
+    "doc://com.apple.documentation/documentation/Xcode/preparing-your-app-to-be-the-default-browser": {
+      "abstract": [
+        {
+          "text": "Configure your browser app so users can set it as the default on their device instead of Safari.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Xcode/preparing-your-app-to-be-the-default-browser",
+      "kind": "article",
+      "role": "article",
+      "title": "Preparing your app to be the default web browser",
+      "type": "topic",
+      "url": "/documentation/Xcode/preparing-your-app-to-be-the-default-browser"
+    },
+    "doc://com.apple.documentation/documentation/appdistribution/enabling-alternative-distribution-app-installation-in-a-browser": {
+      "abstract": [
+        {
+          "text": "Add support for browser apps to install alternative distribution apps from websites.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/appdistribution/enabling-alternative-distribution-app-installation-in-a-browser",
+      "kind": "article",
+      "role": "article",
+      "title": "Enabling alternative distribution app installation in a browser",
+      "type": "topic",
+      "url": "/documentation/appdistribution/enabling-alternative-distribution-app-installation-in-a-browser"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/support/alternative-browser-engines": {
+      "identifier": "https://developer.apple.com/support/alternative-browser-engines",
+      "title": "Using alternative browser engines in the European Union",
+      "titleInlineContent": [
+        {
+          "text": "Using alternative browser engines in the European Union",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/support/alternative-browser-engines"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Essentials",
+      "identifiers": [
+        "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/developing-a-browser-app-that-uses-an-alternative-browser-engine",
+        "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/designing-your-browser-architecture",
+        "doc://com.apple.documentation/documentation/Xcode/preparing-your-app-to-be-the-default-browser"
+      ],
+      "title": "Essentials"
+    },
+    {
+      "anchor": "Browser-extensions",
+      "identifiers": [
+        "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/creating-browser-extensions-in-xcode",
+        "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/extension-lifecycle",
+        "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/extension-resources"
+      ],
+      "title": "Browser extensions"
+    },
+    {
+      "anchor": "Web-content",
+      "identifiers": [
+        "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/view-coordination",
+        "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/text-interaction",
+        "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BEWebAppManifest"
+      ],
+      "title": "Web content"
+    },
+    {
+      "anchor": "Scroll-view-interaction",
+      "identifiers": [
+        "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BEScrollView",
+        "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BEScrollViewScrollUpdate",
+        "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BEScrollViewDelegate"
+      ],
+      "title": "Scroll view interaction"
+    },
+    {
+      "anchor": "Drag-interaction",
+      "identifiers": [
+        "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BEDragInteraction",
+        "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BEDragInteractionDelegate"
+      ],
+      "title": "Drag interaction"
+    },
+    {
+      "anchor": "Context-menus",
+      "identifiers": [
+        "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BEContextMenuConfiguration"
+      ],
+      "title": "Context menus"
+    },
+    {
+      "anchor": "Accessibility",
+      "identifiers": [
+        "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BEAccessibilityTextMarkerSupport",
+        "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BEAccessibility/valueChangedNotification",
+        "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BEAccessibility/selectionChangedNotification",
+        "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BEAccessibilityContainerType",
+        "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BEAccessibilityPressedState",
+        "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BEAccessibility/menuItem",
+        "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BEAccessibility/popUpButton",
+        "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BEAccessibility/radioButton",
+        "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BEAccessibility/readOnly",
+        "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BEAccessibility/visited"
+      ],
+      "title": "Accessibility"
+    },
+    {
+      "anchor": "Just-in-time-code-compilation",
+      "identifiers": [
+        "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/protecting-code-compiled-just-in-time",
+        "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/improving-control-flow-integrity-with-pointer-authentication",
+        "doc://com.apple.documentation/documentation/BrowserEngineCore/BE_JIT_WRITE_PROTECT_TAG"
+      ],
+      "title": "Just-in-time code compilation"
+    },
+    {
+      "anchor": "Downloads",
+      "identifiers": [
+        "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/downloading-files-in-a-web-browser",
+        "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BEDownloadMonitor-9bwls"
+      ],
+      "title": "Downloads"
+    },
+    {
+      "anchor": "Classes",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BEMediaEnvironment-15xci",
+        "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BEProcessCapability-76ijx"
+      ],
+      "title": "Classes"
+    },
+    {
+      "anchor": "Structures",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BEAccessibility"
+      ],
+      "title": "Structures"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Essentials",
+              "identifiers": [
+                "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/developing-a-browser-app-that-uses-an-alternative-browser-engine",
+                "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/designing-your-browser-architecture",
+                "doc://com.apple.documentation/documentation/Xcode/preparing-your-app-to-be-the-default-browser"
+              ],
+              "title": "Essentials"
+            },
+            {
+              "anchor": "Browser-extensions",
+              "identifiers": [
+                "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/creating-browser-extensions-in-xcode",
+                "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/extension-lifecycle",
+                "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/extension-resources"
+              ],
+              "title": "Browser extensions"
+            },
+            {
+              "anchor": "Web-content",
+              "identifiers": [
+                "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/view-coordination",
+                "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/text-interaction",
+                "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BEWebAppManifest"
+              ],
+              "title": "Web content"
+            },
+            {
+              "anchor": "Scroll-view-interaction",
+              "identifiers": [
+                "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BEScrollView",
+                "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BEScrollViewScrollUpdate",
+                "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BEScrollViewDelegate"
+              ],
+              "title": "Scroll view interaction"
+            },
+            {
+              "anchor": "Drag-interaction",
+              "identifiers": [
+                "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BEDragInteraction",
+                "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BEDragInteractionDelegate"
+              ],
+              "title": "Drag interaction"
+            },
+            {
+              "anchor": "Context-menus",
+              "identifiers": [
+                "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BEContextMenuConfiguration"
+              ],
+              "title": "Context menus"
+            },
+            {
+              "anchor": "Accessibility",
+              "identifiers": [
+                "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BEAccessibilityTextMarkerSupport",
+                "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BEAccessibility/valueChangedNotification",
+                "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BEAccessibility/selectionChangedNotification",
+                "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BEAccessibilityContainerType",
+                "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BEAccessibilityPressedState",
+                "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BEAccessibility/menuItem",
+                "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BEAccessibility/popUpButton",
+                "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BEAccessibility/radioButton",
+                "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BEAccessibility/readOnly",
+                "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BEAccessibility/visited"
+              ],
+              "title": "Accessibility"
+            },
+            {
+              "anchor": "Just-in-time-code-compilation",
+              "identifiers": [
+                "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/protecting-code-compiled-just-in-time",
+                "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/improving-control-flow-integrity-with-pointer-authentication",
+                "doc://com.apple.documentation/documentation/BrowserEngineCore/BE_JIT_WRITE_PROTECT_TAG"
+              ],
+              "title": "Just-in-time code compilation"
+            },
+            {
+              "anchor": "Downloads",
+              "identifiers": [
+                "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/downloading-files-in-a-web-browser",
+                "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BEDownloadMonitor-9y4hu"
+              ],
+              "title": "Downloads"
+            },
+            {
+              "anchor": "Macros",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BROWSERENGINEKIT_HAS_LIBXPC",
+                "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BROWSERENGINEKIT_HAS_UIINTERACTION",
+                "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BROWSERENGINEKIT_HAS_UIKIT",
+                "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/BROWSERENGINEKIT_HAS_UIVIEW"
+              ],
+              "title": "Macros"
+            }
+          ]
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BEContextMenuConfiguration/title",
+          "value": "BEContextMenuConfiguration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BEContextMenuConfiguration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BEContextMenuConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BEContextMenuConfiguration/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BEContextMenuConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BEAccessibility~1readOnly/title",
+          "value": "BEAccessibilityTraitReadOnly"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BEAccessibility~1readOnly/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BEAccessibilityTraitReadOnly"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BEDragInteraction/title",
+          "value": "BEDragInteraction"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BEDragInteraction/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BEDragInteraction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BEDragInteraction/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BEDragInteraction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BEAccessibilityTextMarkerSupport/title",
+          "value": "BEAccessibilityTextMarkerSupport"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BEAccessibilityTextMarkerSupport/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BEAccessibilityTextMarkerSupport"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BEAccessibilityTextMarkerSupport/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BEAccessibilityTextMarkerSupport"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BEAccessibility~1selectionChangedNotification/title",
+          "value": "BEAccessibilitySelectionChangedNotification"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BEAccessibility~1selectionChangedNotification/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BEAccessibilitySelectionChangedNotification"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BEScrollViewScrollUpdate/title",
+          "value": "BEScrollViewScrollUpdate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BEScrollViewScrollUpdate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BEScrollViewScrollUpdate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BEScrollViewScrollUpdate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BEScrollViewScrollUpdate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BEAccessibilityPressedState/title",
+          "value": "BEAccessibilityPressedState"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BEAccessibilityPressedState/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BEAccessibilityPressedState"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BEAccessibilityPressedState/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BEAccessibilityPressedState"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BEScrollViewDelegate/title",
+          "value": "BEScrollViewDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BEScrollViewDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BEScrollViewDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BEScrollViewDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BEScrollViewDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BEAccessibility~1radioButton/title",
+          "value": "BEAccessibilityTraitRadioButton"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BEAccessibility~1radioButton/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BEAccessibilityTraitRadioButton"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BEAccessibilityContainerType/title",
+          "value": "BEAccessibilityContainerType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BEAccessibilityContainerType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BEAccessibilityContainerType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BEAccessibilityContainerType/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BEAccessibilityContainerType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BEAccessibility~1menuItem/title",
+          "value": "BEAccessibilityTraitMenuItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BEAccessibility~1menuItem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BEAccessibilityTraitMenuItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BEAccessibility~1popUpButton/title",
+          "value": "BEAccessibilityTraitPopUpButton"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BEAccessibility~1popUpButton/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BEAccessibilityTraitPopUpButton"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1BrowserEngineCore~1BE_JIT_WRITE_PROTECT_TAG/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "#define"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "BE_JIT_WRITE_PROTECT_TAG"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BEWebAppManifest/title",
+          "value": "BEWebAppManifest"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BEWebAppManifest/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BEWebAppManifest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BEWebAppManifest/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BEWebAppManifest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BEAccessibility~1visited/title",
+          "value": "BEAccessibilityTraitVisited"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BEAccessibility~1visited/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BEAccessibilityTraitVisited"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BEAccessibility~1valueChangedNotification/title",
+          "value": "BEAccessibilityValueChangedNotification"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BEAccessibility~1valueChangedNotification/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BEAccessibilityValueChangedNotification"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BEScrollView/title",
+          "value": "BEScrollView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BEScrollView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BEScrollView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BEScrollView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BEScrollView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BEDragInteractionDelegate/title",
+          "value": "BEDragInteractionDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BEDragInteractionDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BEDragInteractionDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.BrowserEngineKit~1documentation~1BrowserEngineKit~1BEDragInteractionDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BEDragInteractionDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1WebKit~1WKWebView/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "WKWebView"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSView",
+              "text": "NSView"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/browserenginekit"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/browserenginekit"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

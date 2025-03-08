@@ -1,0 +1,1754 @@
+{
+  "abstract": [
+    {
+      "text": "Add and use a font in your app that scales with Dynamic Type.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Text-input-and-output"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.SwiftUI/documentation/SwiftUI/Applying-Custom-Fonts-to-Text"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "SwiftUI"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Applying custom fonts to text"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "SwiftUI supports styling text views using the built-in fonts, and uses a system font by default.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Rather than using a system-provided font, you can use custom fonts by including the font files",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in your Xcode project.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "To use a custom font, add the font file that contains your licensed font to your app,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and then apply the font to a text view or set it as a default font within a container view.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "SwiftUI’s adaptive text display scales the font automtically using Dynamic Type.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Dynamic Type allows users to choose the size of textual content displayed onscreen.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "It helps users who need larger text for better readability and accommodates those",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "who can read smaller text, allowing more information to appear onscreen.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-the-font-files-to-the-project",
+          "level": 3,
+          "text": "Add the font files to the project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To add the font files to your Xcode project:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In Xcode, select the Project navigator.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Drag your fonts from a Finder window into your project. This copies the fonts to your project.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select the font or folder with the fonts, and verify that the files show their target membership",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "checked for your app’s targets.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "Applying-Custom-Fonts-to-Text-1.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Identify-the-font-files-to-include-in-the-app-bundle",
+          "level": 3,
+          "text": "Identify the font files to include in the app bundle",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For iOS, watchOS, tvOS, or Mac Catalyst targets, add the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/UIAppFonts",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " key to your app’s ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For the key’s value, provide an array of strings containing the relative paths to any added font files.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For a macOS app target, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/ATSApplicationFontsPath",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " key in your target’s ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file, and provide the name of the folder that holds the fonts as the value for that key.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the following example, the font file is inside the ",
+              "type": "text"
+            },
+            {
+              "code": "project_fonts",
+              "type": "codeVoice"
+            },
+            {
+              "text": " directory, so you use ",
+              "type": "text"
+            },
+            {
+              "code": "project_fonts/MyFont.ttf",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as the string value in the ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "Applying-Custom-Fonts-to-Text-2.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Apply-a-font-supporting-dynamic-sizing",
+          "level": 3,
+          "text": "Apply a font supporting dynamic sizing",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Font/custom(_:size:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to retrieve an instance of your font and apply it to a text view with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Text/font(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " modifier.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "When retrieving the font with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Font/custom(_:size:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", match the name of the font with the font’s PostScript name.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You can find the postscript name of a font by opening it with the Font Book app and selecting the Font Info tab.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "If SwiftUI can’t retrieve and apply your font, it renders the text view with the default system font instead.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following example applies the font ",
+              "type": "text"
+            },
+            {
+              "code": "MyFont",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to a text view:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "Text(\"Hello, world!\")",
+            "    .font(Font.custom(\"MyFont\", size: 18))"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The font scales adaptively from the size provided to align with the default text style of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Font/body",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Use the ",
+              "type": "text"
+            },
+            {
+              "code": "relativeTo",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter to specify a text style to scale with other than the default of ",
+              "type": "text"
+            },
+            {
+              "code": "body",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For example, to set the font size to ",
+              "type": "text"
+            },
+            {
+              "code": "32",
+              "type": "codeVoice"
+            },
+            {
+              "text": " points and adaptively scale relative to the text style of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Font/title",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "Text(\"Hello, world!\")",
+            "    .font(Font.custom(\"MyFont\", size: 32, relativeTo: .title))"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "SwiftUI doesn’t synthesize bold or italic styling for fonts.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "If the font supports weighted or italic variants, you can customize the typography of the text view by styling the font using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Font/weight(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Font/italic()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " modifiers.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For design guidance on choosing fonts to enhance your app on your target platform,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/design/Human-Interface-Guidelines/typography",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in the Human Interface Guidelines.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Scale-padding-using-scaled-metric",
+          "level": 3,
+          "text": "Scale padding using scaled metric",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ScaledMetric",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property wrapper on a view property provides a scaled value that changes automatically with accessibility settings.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "When working with adpatively sized fonts, you can scale the spacing between or around the text to improve the visual design with this property wrapper.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following example uses ",
+              "type": "text"
+            },
+            {
+              "code": "@ScaledMetric",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to scale the padding value surrounding a text view relative to the ",
+              "type": "text"
+            },
+            {
+              "code": "body",
+              "type": "codeVoice"
+            },
+            {
+              "text": " text style, with a blue border added to identify the spacing that padding adds:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct ContentView: View {",
+            "    @ScaledMetric(relativeTo: .body) var scaledPadding: CGFloat = 10",
+            "",
+            "    var body: some View {",
+            "        Text(\"The quick brown fox jumps over the lazy dog.\")",
+            "            .font(Font.custom(\"MyFont\", size: 18))",
+            "            .padding(scaledPadding)",
+            "            .border(Color.blue)",
+            "    }",
+            "}",
+            "",
+            "struct ContentView_Previews: PreviewProvider {",
+            "    static var previews: some View {",
+            "        ContentView()",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The preview shows the following image without any accessibility settings turned on:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "Applying-Custom-Fonts-to-Text-3.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/environment(_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " modifier to set the accessibility size category on the preview to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ContentSizeCategory/accessibilityLarge",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct ContentView_Previews: PreviewProvider {",
+            "    static var previews: some View {",
+            "        ContentView()",
+            "            .environment(\\.sizeCategory, .accessibilityLarge)",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The preview then shows the following image that reflects the increased accessibility size and the scaled padding:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "Applying-Custom-Fonts-to-Text-4.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Applying-Custom-Fonts-to-Text-1.png": {
+      "alt": "A screenshot of Xcode showing the Info plist file with the fonts added to the selected app. The screenshot shows the target membership check boxes selected for macOS and iOS targets in the file inspector",
+      "identifier": "Applying-Custom-Fonts-to-Text-1.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/bada63b7739c3d71ab78b610e91f1a90/Applying-Custom-Fonts-to-Text-1@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5c591f4c565857ec0fe96dcaee4914ae/Applying-Custom-Fonts-to-Text-1~dark@2x.png"
+        }
+      ]
+    },
+    "Applying-Custom-Fonts-to-Text-2.png": {
+      "alt": "A screenshot of Xcode showing the Info plist file with the key Fonts provided by the app as an array that contains a single entry of project_fonts/MyFont.ttf",
+      "identifier": "Applying-Custom-Fonts-to-Text-2.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e2948092d14fe6c6e65ca4e17042bd47/Applying-Custom-Fonts-to-Text-2@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/149ec62df0606d1180bee72f0138f907/Applying-Custom-Fonts-to-Text-2~dark@2x.png"
+        }
+      ]
+    },
+    "Applying-Custom-Fonts-to-Text-3.png": {
+      "alt": "The text the quick brown fox jumps over the lazy dog in two lines with a blue border around it.",
+      "identifier": "Applying-Custom-Fonts-to-Text-3.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/8b3145aa514ece67af46743e7c41c63a/Applying-Custom-Fonts-to-Text-3@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f66c91c0d60375361192bb3cd64c0b97/Applying-Custom-Fonts-to-Text-3~dark@2x.png"
+        }
+      ]
+    },
+    "Applying-Custom-Fonts-to-Text-4.png": {
+      "alt": "The text the quick brown fox jumps over the lazy dog in three lines with a blue border around it with larger whitespace between the blue border and text content.",
+      "identifier": "Applying-Custom-Fonts-to-Text-4.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/edf5f88499adc59db582bbeb5192fc0b/Applying-Custom-Fonts-to-Text-4@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b639ab9f74df22738b0cce7a4b909c04/Applying-Custom-Fonts-to-Text-4~dark@2x.png"
+        }
+      ]
+    },
+    "SwiftUI-PageImage-card.png": {
+      "alt": "A black Swift logo on a swirly blue and purple background.",
+      "identifier": "SwiftUI-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b1de0de086f81a5d0eac3839a0af6e6f/SwiftUI-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1450d0b30a6b024e10c148e3f31dafe9/SwiftUI-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI": {
+      "abstract": [
+        {
+          "text": "Declare the user interface and behavior for your app on every platform.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI",
+      "images": [
+        {
+          "identifier": "SwiftUI-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SwiftUI",
+      "type": "topic",
+      "url": "/documentation/swiftui"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/ContentSizeCategory/accessibilityLarge": {
+      "abstract": [],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "accessibilityLarge"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ContentSizeCategory/accessibilityLarge",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ContentSizeCategory.accessibilityLarge",
+      "type": "topic",
+      "url": "/documentation/swiftui/contentsizecategory/accessibilitylarge"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/font": {
+      "abstract": [
+        {
+          "text": "The default font of this environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "font"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4FontV",
+          "text": "Font"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/font",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "font",
+      "type": "topic",
+      "url": "/documentation/swiftui/environmentvalues/font"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Font": {
+      "abstract": [
+        {
+          "text": "An environment-dependent font.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Font"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Font",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Font"
+        }
+      ],
+      "role": "symbol",
+      "title": "Font",
+      "type": "topic",
+      "url": "/documentation/swiftui/font"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Font/body": {
+      "abstract": [
+        {
+          "text": "A font with the body text style.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "body"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4FontV",
+          "text": "Font"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Font/body",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "body",
+      "type": "topic",
+      "url": "/documentation/swiftui/font/body"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Font/custom(_:size:)": {
+      "abstract": [
+        {
+          "text": "Create a custom font with the given ",
+          "type": "text"
+        },
+        {
+          "code": "name",
+          "type": "codeVoice"
+        },
+        {
+          "text": " and ",
+          "type": "text"
+        },
+        {
+          "code": "size",
+          "type": "codeVoice"
+        },
+        {
+          "text": " that scales with",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "the body text style.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "custom"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "size"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4FontV",
+          "text": "Font"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Font/custom(_:size:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "custom(_:size:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/font/custom(_:size:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Font/italic()": {
+      "abstract": [
+        {
+          "text": "Adds italics to the font.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "italic"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4FontV",
+          "text": "Font"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Font/italic()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "italic()",
+      "type": "topic",
+      "url": "/documentation/swiftui/font/italic()"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Font/title": {
+      "abstract": [
+        {
+          "text": "A font with the title text style.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "title"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4FontV",
+          "text": "Font"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Font/title",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "title",
+      "type": "topic",
+      "url": "/documentation/swiftui/font/title"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Font/weight(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the weight of the font.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "weight"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4FontV",
+          "text": "Font"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4FontV6WeightV",
+          "text": "Weight"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4FontV",
+          "text": "Font"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Font/weight(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "weight(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/font/weight(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/ScaledMetric": {
+      "abstract": [
+        {
+          "text": "A dynamic property that scales a numeric value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ScaledMetric"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ScaledMetric",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ScaledMetric"
+        }
+      ],
+      "role": "symbol",
+      "title": "ScaledMetric",
+      "type": "topic",
+      "url": "/documentation/swiftui/scaledmetric"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Text-input-and-output": {
+      "abstract": [
+        {
+          "text": "Display formatted text and get text input from the user.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Text-input-and-output",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Text input and output",
+      "type": "topic",
+      "url": "/documentation/swiftui/text-input-and-output"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Text/font(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the default font for text in the view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "font"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4FontV",
+          "text": "Font"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4TextV",
+          "text": "Text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Text/font(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "font(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/text/font(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/environment(_:_:)": {
+      "abstract": [
+        {
+          "text": "Sets the environment value of the specified key path to the given value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "environment"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "V"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s15WritableKeyPathC",
+          "text": "WritableKeyPath"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI17EnvironmentValuesV",
+          "text": "EnvironmentValues"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "V"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "V"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/environment(_:_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "environment(_:_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/environment(_:_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/font(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the default font for text in this view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "font"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4FontV",
+          "text": "Font"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/font(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "font(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/font(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/fontDesign(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the font design of the text in this view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "fontDesign"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4FontV",
+          "text": "Font"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4FontV6DesignO",
+          "text": "Design"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/fontDesign(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "fontDesign(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/fontdesign(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/fontWeight(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the font weight of the text in this view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "fontWeight"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4FontV",
+          "text": "Font"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4FontV6WeightV",
+          "text": "Weight"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/fontWeight(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "fontWeight(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/fontweight(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/fontWidth(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the font width of the text in this view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "fontWidth"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4FontV",
+          "text": "Font"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4FontV5WidthV",
+          "text": "Width"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/fontWidth(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "fontWidth(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/fontwidth(_:)"
+    },
+    "doc://com.apple.documentation/design/Human-Interface-Guidelines/typography": {
+      "abstract": [
+        {
+          "text": "Your typographic choices can help you display legible text, convey an information hierarchy, communicate important content, and express your brand or style.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/design/Human-Interface-Guidelines/typography",
+      "images": [
+        {
+          "identifier": "typography.svg",
+          "type": "icon"
+        },
+        {
+          "identifier": "foundations-typography-thumbnail.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "article",
+      "title": "Typography",
+      "type": "topic",
+      "url": "/design/Human-Interface-Guidelines/typography"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/ATSApplicationFontsPath": {
+      "abstract": [
+        {
+          "text": "The location of a font file or folder of fonts in the bundle’s Resources folder.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/ATSApplicationFontsPath",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ATSApplicationFontsPath",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/ATSApplicationFontsPath"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/UIAppFonts": {
+      "abstract": [
+        {
+          "text": "App-specific font files located in the bundle and that the system loads at runtime.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/UIAppFonts",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIAppFonts",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/UIAppFonts"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "foundations-typography-thumbnail.png": {
+      "alt": null,
+      "identifier": "foundations-typography-thumbnail.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/23ea64595d6aa11df430ab85a3681efd/foundations-typography-thumbnail~dark@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/30a9c2adbbfa1602133dcfb2f5bfeaab/foundations-typography-thumbnail@2x.png"
+        }
+      ]
+    },
+    "typography.svg": {
+      "alt": null,
+      "identifier": "typography.svg",
+      "type": "image",
+      "variants": [
+        {
+          "svgID": "typography",
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2b0ebfb3e9329c6ae3eac3d8f579a474/typography.svg"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Setting-a-font",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/font(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/fontDesign(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/fontWeight(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/fontWidth(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/font",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Font"
+      ],
+      "title": "Setting a font"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/swiftui/applying-custom-fonts-to-text"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

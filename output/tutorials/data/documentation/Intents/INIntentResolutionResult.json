@@ -1,0 +1,5214 @@
+{
+  "abstract": [
+    {
+      "text": "A resolution result for a parameter of an intent object.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.sirikit/documentation/Intents"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.sirikit/documentation/Intents/INIntentResolutionResult"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)INIntentResolutionResult",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "INIntentResolutionResult"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Intents"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "INIntentResolutionResult"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "11.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "3.2",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "INIntentResolutionResult"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "INIntentResolutionResult"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.sirikit/documentation/SiriKit/resolving-the-parameters-of-an-intent"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.sirikit/documentation/Intents/INIntentResolutionResult",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object describes how your app resolves a parameter of an intent object. This class is abstract and you don’t create instances of it directly. Instead, you use class methods to instantiate the appropriate subclass whose type matches the type of data that you’re trying to resolve. This class defines methods that are common to all resolution result objects.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "During the resolution phase of a request, each parameter you resolve requires a resolution result object of a specific type. When creating that resolution result object, use the class method that represents your resolution. Subclasses of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.sirikit/documentation/Intents/INIntentResolutionResult",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " define methods for returning a successful resolution and may contain other methods for confirming values or disambiguating from among several possible values. Use the methods of this class when a value isn’t required, when a required value is missing, or when the value specified by the user doesn’t correspond to a supported solution.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When creating resolution result objects, always strive toward successful resolutions. If needed, take advantage of information you’ve regarding the user’s behavior patterns or interactions with your app. For example, if the user always has the same workout goals, use the previous workout goals as default values rather than asking the user to specify goal information.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.sirikit/documentation/Intents": {
+      "abstract": [
+        {
+          "text": "Empower people to customize interactions for your app on their device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Intents",
+      "type": "topic",
+      "url": "/documentation/intents"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INAccountTypeResolutionResult": {
+      "abstract": [
+        {
+          "text": "A resolution result for account types.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INAccountTypeResolutionResult"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INAccountTypeResolutionResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INAccountTypeResolutionResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "INAccountTypeResolutionResult",
+      "type": "topic",
+      "url": "/documentation/intents/inaccounttyperesolutionresult"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INBalanceTypeResolutionResult": {
+      "abstract": [
+        {
+          "text": "A resolution result for balance types.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INBalanceTypeResolutionResult"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INBalanceTypeResolutionResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INBalanceTypeResolutionResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "INBalanceTypeResolutionResult",
+      "type": "topic",
+      "url": "/documentation/intents/inbalancetyperesolutionresult"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INBillPayeeResolutionResult": {
+      "abstract": [
+        {
+          "text": "A resolution result for the recipient of a bill payment.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INBillPayeeResolutionResult"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INBillPayeeResolutionResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INBillPayeeResolutionResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "INBillPayeeResolutionResult",
+      "type": "topic",
+      "url": "/documentation/intents/inbillpayeeresolutionresult"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INBillTypeResolutionResult": {
+      "abstract": [
+        {
+          "text": "A resolution result for the types of bills a user might pay.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INBillTypeResolutionResult"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INBillTypeResolutionResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INBillTypeResolutionResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "INBillTypeResolutionResult",
+      "type": "topic",
+      "url": "/documentation/intents/inbilltyperesolutionresult"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INBooleanResolutionResult": {
+      "abstract": [
+        {
+          "text": "A resolution result for a Boolean value associated with an intent.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INBooleanResolutionResult"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INBooleanResolutionResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INBooleanResolutionResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "INBooleanResolutionResult",
+      "type": "topic",
+      "url": "/documentation/intents/inbooleanresolutionresult"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INCallCapabilityResolutionResult": {
+      "abstract": [
+        {
+          "text": "A resolution result for the call capability for the call.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INCallCapabilityResolutionResult"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INCallCapabilityResolutionResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INCallCapabilityResolutionResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "INCallCapabilityResolutionResult",
+      "type": "topic",
+      "url": "/documentation/intents/incallcapabilityresolutionresult"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INCallDestinationTypeResolutionResult": {
+      "abstract": [
+        {
+          "text": "A resolution result for the destination type of a call.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INCallDestinationTypeResolutionResult"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INCallDestinationTypeResolutionResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INCallDestinationTypeResolutionResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "INCallDestinationTypeResolutionResult",
+      "type": "topic",
+      "url": "/documentation/intents/incalldestinationtyperesolutionresult"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INCallRecordResolutionResult": {
+      "abstract": [
+        {
+          "text": "A resolution result for the details of a call.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INCallRecordResolutionResult"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INCallRecordResolutionResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INCallRecordResolutionResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "INCallRecordResolutionResult",
+      "type": "topic",
+      "url": "/documentation/intents/incallrecordresolutionresult"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INCallRecordTypeOptionsResolutionResult": {
+      "abstract": [
+        {
+          "text": "A resolution result for the call types to include in a search.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INCallRecordTypeOptionsResolutionResult"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INCallRecordTypeOptionsResolutionResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INCallRecordTypeOptionsResolutionResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "INCallRecordTypeOptionsResolutionResult",
+      "type": "topic",
+      "url": "/documentation/intents/incallrecordtypeoptionsresolutionresult"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INCallRecordTypeResolutionResult": {
+      "abstract": [
+        {
+          "text": "A resolution result for the types of calls that your app handled.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INCallRecordTypeResolutionResult"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INCallRecordTypeResolutionResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INCallRecordTypeResolutionResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "INCallRecordTypeResolutionResult",
+      "type": "topic",
+      "url": "/documentation/intents/incallrecordtyperesolutionresult"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INCarAirCirculationModeResolutionResult": {
+      "abstract": [
+        {
+          "text": "A resolution result for the air circulation mode to use in a car.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INCarAirCirculationModeResolutionResult"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INCarAirCirculationModeResolutionResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INCarAirCirculationModeResolutionResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "INCarAirCirculationModeResolutionResult",
+      "type": "topic",
+      "url": "/documentation/intents/incaraircirculationmoderesolutionresult"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INCarAudioSourceResolutionResult": {
+      "abstract": [
+        {
+          "text": "A resolution result for the audio source to use in a car.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INCarAudioSourceResolutionResult"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INCarAudioSourceResolutionResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INCarAudioSourceResolutionResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "INCarAudioSourceResolutionResult",
+      "type": "topic",
+      "url": "/documentation/intents/incaraudiosourceresolutionresult"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INCarDefrosterResolutionResult": {
+      "abstract": [
+        {
+          "text": "A resolution result for which defroster to use in a car.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INCarDefrosterResolutionResult"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INCarDefrosterResolutionResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INCarDefrosterResolutionResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "INCarDefrosterResolutionResult",
+      "type": "topic",
+      "url": "/documentation/intents/incardefrosterresolutionresult"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INCarSeatResolutionResult": {
+      "abstract": [
+        {
+          "text": "A resolution result for a specific seat of the car.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INCarSeatResolutionResult"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INCarSeatResolutionResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INCarSeatResolutionResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "INCarSeatResolutionResult",
+      "type": "topic",
+      "url": "/documentation/intents/incarseatresolutionresult"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INCarSignalOptionsResolutionResult": {
+      "abstract": [
+        {
+          "text": "A resolution result for the signals the intent is managing on the car.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INCarSignalOptionsResolutionResult"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INCarSignalOptionsResolutionResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INCarSignalOptionsResolutionResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "INCarSignalOptionsResolutionResult",
+      "type": "topic",
+      "url": "/documentation/intents/incarsignaloptionsresolutionresult"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INCurrencyAmountResolutionResult": {
+      "abstract": [
+        {
+          "text": "A resolution result for a currency amount associated with an intent.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INCurrencyAmountResolutionResult"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INCurrencyAmountResolutionResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INCurrencyAmountResolutionResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "INCurrencyAmountResolutionResult",
+      "type": "topic",
+      "url": "/documentation/intents/incurrencyamountresolutionresult"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INDateComponentsRangeResolutionResult": {
+      "abstract": [
+        {
+          "text": "A resolution result for a range of dates in a parameter of an intent.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INDateComponentsRangeResolutionResult"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INDateComponentsRangeResolutionResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INDateComponentsRangeResolutionResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "INDateComponentsRangeResolutionResult",
+      "type": "topic",
+      "url": "/documentation/intents/indatecomponentsrangeresolutionresult"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INDateComponentsResolutionResult": {
+      "abstract": [
+        {
+          "text": "A resolution result for the date information associated with an intent.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INDateComponentsResolutionResult"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INDateComponentsResolutionResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INDateComponentsResolutionResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "INDateComponentsResolutionResult",
+      "type": "topic",
+      "url": "/documentation/intents/indatecomponentsresolutionresult"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INDateSearchTypeResolutionResult": {
+      "abstract": [
+        {
+          "text": "A resolution result for the types of dates supported by a search.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INDateSearchTypeResolutionResult"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INDateSearchTypeResolutionResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INDateSearchTypeResolutionResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "INDateSearchTypeResolutionResult",
+      "type": "topic",
+      "url": "/documentation/intents/indatesearchtyperesolutionresult"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INDoubleResolutionResult": {
+      "abstract": [
+        {
+          "text": "A resolution result for a double value associated with an intent.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INDoubleResolutionResult"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INDoubleResolutionResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INDoubleResolutionResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "INDoubleResolutionResult",
+      "type": "topic",
+      "url": "/documentation/intents/indoubleresolutionresult"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INEnergyResolutionResult": {
+      "abstract": [
+        {
+          "text": "A resolution result for an energy parameter associated with an intent.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INEnergyResolutionResult"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INEnergyResolutionResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INEnergyResolutionResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "INEnergyResolutionResult",
+      "type": "topic",
+      "url": "/documentation/intents/inenergyresolutionresult"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INEnumResolutionResult": {
+      "abstract": [
+        {
+          "text": "A resolution result for an enumeration associated with an intent.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INEnumResolutionResult"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INEnumResolutionResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INEnumResolutionResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "INEnumResolutionResult",
+      "type": "topic",
+      "url": "/documentation/intents/inenumresolutionresult"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INFileResolutionResult": {
+      "abstract": [
+        {
+          "text": "A resolution result for a file associated with an intent.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INFileResolutionResult"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INFileResolutionResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INFileResolutionResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "INFileResolutionResult",
+      "type": "topic",
+      "url": "/documentation/intents/infileresolutionresult"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INIntegerResolutionResult": {
+      "abstract": [
+        {
+          "text": "A resolution result for an integer value associated with an intent.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INIntegerResolutionResult"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INIntegerResolutionResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INIntegerResolutionResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "INIntegerResolutionResult",
+      "type": "topic",
+      "url": "/documentation/intents/inintegerresolutionresult"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INIntentResolutionResult": {
+      "abstract": [
+        {
+          "text": "A resolution result for a parameter of an intent object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INIntentResolutionResult"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INIntentResolutionResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INIntentResolutionResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "INIntentResolutionResult",
+      "type": "topic",
+      "url": "/documentation/intents/inintentresolutionresult"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INIntentResolutionResult/confirmationRequiredWithItemToConfirm:forReason:": {
+      "abstract": [
+        {
+          "text": "Creates an object whose resolution indicates that your app requires confirmation of the specified value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "confirmationRequiredWithItemToConfirm:forReason:"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INIntentResolutionResult/confirmationRequiredWithItemToConfirm:forReason:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "confirmationRequiredWithItemToConfirm:forReason:"
+        }
+      ],
+      "role": "symbol",
+      "title": "confirmationRequiredWithItemToConfirm:forReason:",
+      "type": "topic",
+      "url": "/documentation/intents/inintentresolutionresult/confirmationrequiredwithitemtoconfirm:forreason:"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INIntentResolutionResult/needsValue()": {
+      "abstract": [
+        {
+          "text": "Creates an object whose resolution indicates that a required parameter value is missing.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "needsValue"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INIntentResolutionResult/needsValue()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "needsValue"
+        }
+      ],
+      "role": "symbol",
+      "title": "needsValue()",
+      "type": "topic",
+      "url": "/documentation/intents/inintentresolutionresult/needsvalue()"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INIntentResolutionResult/notRequired()": {
+      "abstract": [
+        {
+          "text": "Creates an object whose resolution indicates that you don’t need the value of the parameter.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "notRequired"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INIntentResolutionResult/notRequired()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "notRequired"
+        }
+      ],
+      "role": "symbol",
+      "title": "notRequired()",
+      "type": "topic",
+      "url": "/documentation/intents/inintentresolutionresult/notrequired()"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INIntentResolutionResult/unsupported()": {
+      "abstract": [
+        {
+          "text": "Creates an object whose resolution indicates that your app doesn’t support the specified value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "unsupported"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INIntentResolutionResult/unsupported()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "unsupported"
+        }
+      ],
+      "role": "symbol",
+      "title": "unsupported()",
+      "type": "topic",
+      "url": "/documentation/intents/inintentresolutionresult/unsupported()"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INIntentResolutionResult/unsupportedWithReason:": {
+      "abstract": [
+        {
+          "text": "Creates an object whose resolution indicates that your app doesn’t support the specified value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "unsupportedWithReason:"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INIntentResolutionResult/unsupportedWithReason:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "unsupportedWithReason:"
+        }
+      ],
+      "role": "symbol",
+      "title": "unsupportedWithReason:",
+      "type": "topic",
+      "url": "/documentation/intents/inintentresolutionresult/unsupportedwithreason:"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INLengthResolutionResult": {
+      "abstract": [
+        {
+          "text": "A resolution result for a length associated with an intent.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INLengthResolutionResult"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INLengthResolutionResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INLengthResolutionResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "INLengthResolutionResult",
+      "type": "topic",
+      "url": "/documentation/intents/inlengthresolutionresult"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INLocationSearchTypeResolutionResult": {
+      "abstract": [
+        {
+          "text": "A resolution result for location-based searches.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INLocationSearchTypeResolutionResult"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INLocationSearchTypeResolutionResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INLocationSearchTypeResolutionResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "INLocationSearchTypeResolutionResult",
+      "type": "topic",
+      "url": "/documentation/intents/inlocationsearchtyperesolutionresult"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INMassResolutionResult": {
+      "abstract": [
+        {
+          "text": "A resolution result for a mass associated with an intent.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INMassResolutionResult"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INMassResolutionResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INMassResolutionResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "INMassResolutionResult",
+      "type": "topic",
+      "url": "/documentation/intents/inmassresolutionresult"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INMediaAffinityTypeResolutionResult": {
+      "abstract": [
+        {
+          "text": "A resolution result for the user’s affinity for a media item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INMediaAffinityTypeResolutionResult"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INMediaAffinityTypeResolutionResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INMediaAffinityTypeResolutionResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "INMediaAffinityTypeResolutionResult",
+      "type": "topic",
+      "url": "/documentation/intents/inmediaaffinitytyperesolutionresult"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INMediaDestinationResolutionResult": {
+      "abstract": [
+        {
+          "text": "A resolution result for the media destination types.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INMediaDestinationResolutionResult"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INMediaDestinationResolutionResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INMediaDestinationResolutionResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "INMediaDestinationResolutionResult",
+      "type": "topic",
+      "url": "/documentation/intents/inmediadestinationresolutionresult"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INMediaItemResolutionResult": {
+      "abstract": [
+        {
+          "text": "A resolution result for media item types.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INMediaItemResolutionResult"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INMediaItemResolutionResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INMediaItemResolutionResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "INMediaItemResolutionResult",
+      "type": "topic",
+      "url": "/documentation/intents/inmediaitemresolutionresult"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INMessageAttributeOptionsResolutionResult": {
+      "abstract": [
+        {
+          "text": "A resolution result for a search parameter that filters by message status.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INMessageAttributeOptionsResolutionResult"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INMessageAttributeOptionsResolutionResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INMessageAttributeOptionsResolutionResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "INMessageAttributeOptionsResolutionResult",
+      "type": "topic",
+      "url": "/documentation/intents/inmessageattributeoptionsresolutionresult"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INMessageAttributeResolutionResult": {
+      "abstract": [
+        {
+          "text": "A resolution result for assorted attributes of a message.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INMessageAttributeResolutionResult"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INMessageAttributeResolutionResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INMessageAttributeResolutionResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "INMessageAttributeResolutionResult",
+      "type": "topic",
+      "url": "/documentation/intents/inmessageattributeresolutionresult"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INNoteContentResolutionResult": {
+      "abstract": [
+        {
+          "text": "A resolution result for the content of notes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INNoteContentResolutionResult"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INNoteContentResolutionResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INNoteContentResolutionResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "INNoteContentResolutionResult",
+      "type": "topic",
+      "url": "/documentation/intents/innotecontentresolutionresult"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INNoteContentTypeResolutionResult": {
+      "abstract": [
+        {
+          "text": "A resolution result for the type of data contained in notes.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INNoteContentTypeResolutionResult"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INNoteContentTypeResolutionResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INNoteContentTypeResolutionResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "INNoteContentTypeResolutionResult",
+      "type": "topic",
+      "url": "/documentation/intents/innotecontenttyperesolutionresult"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INNoteResolutionResult": {
+      "abstract": [
+        {
+          "text": "A resolution result for notes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INNoteResolutionResult"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INNoteResolutionResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INNoteResolutionResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "INNoteResolutionResult",
+      "type": "topic",
+      "url": "/documentation/intents/innoteresolutionresult"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INNotebookItemTypeResolutionResult": {
+      "abstract": [
+        {
+          "text": "A resolution result for the type of items to look for during a search of notes and tasks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INNotebookItemTypeResolutionResult"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INNotebookItemTypeResolutionResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INNotebookItemTypeResolutionResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "INNotebookItemTypeResolutionResult",
+      "type": "topic",
+      "url": "/documentation/intents/innotebookitemtyperesolutionresult"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INObjectResolutionResult": {
+      "abstract": [
+        {
+          "text": "A resolution result for an Object associated with an intent.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INObjectResolutionResult"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INObjectResolutionResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INObjectResolutionResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "INObjectResolutionResult",
+      "type": "topic",
+      "url": "/documentation/intents/inobjectresolutionresult"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INOutgoingMessageTypeResolutionResult": {
+      "abstract": [
+        {
+          "text": "A resolution result for the message’s format.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INOutgoingMessageTypeResolutionResult"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INOutgoingMessageTypeResolutionResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INOutgoingMessageTypeResolutionResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "INOutgoingMessageTypeResolutionResult",
+      "type": "topic",
+      "url": "/documentation/intents/inoutgoingmessagetyperesolutionresult"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INPaymentAccountResolutionResult": {
+      "abstract": [
+        {
+          "text": "A resolution result for the user account that provides the funds to pay a bill.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INPaymentAccountResolutionResult"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INPaymentAccountResolutionResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INPaymentAccountResolutionResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "INPaymentAccountResolutionResult",
+      "type": "topic",
+      "url": "/documentation/intents/inpaymentaccountresolutionresult"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INPaymentAmountResolutionResult": {
+      "abstract": [
+        {
+          "text": "A resolution result for the amount to pay for a bill.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INPaymentAmountResolutionResult"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INPaymentAmountResolutionResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INPaymentAmountResolutionResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "INPaymentAmountResolutionResult",
+      "type": "topic",
+      "url": "/documentation/intents/inpaymentamountresolutionresult"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INPaymentMethodResolutionResult": {
+      "abstract": [
+        {
+          "text": "Describes the result of resolving a payment method.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INPaymentMethodResolutionResult"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INPaymentMethodResolutionResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INPaymentMethodResolutionResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "INPaymentMethodResolutionResult",
+      "type": "topic",
+      "url": "/documentation/intents/inpaymentmethodresolutionresult"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INPaymentStatusResolutionResult": {
+      "abstract": [
+        {
+          "text": "A resolution result for the payment status of a bill during a search.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INPaymentStatusResolutionResult"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INPaymentStatusResolutionResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INPaymentStatusResolutionResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "INPaymentStatusResolutionResult",
+      "type": "topic",
+      "url": "/documentation/intents/inpaymentstatusresolutionresult"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INPersonResolutionResult": {
+      "abstract": [
+        {
+          "text": "A resolution result for a user as a parameter of an intent.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INPersonResolutionResult"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INPersonResolutionResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INPersonResolutionResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "INPersonResolutionResult",
+      "type": "topic",
+      "url": "/documentation/intents/inpersonresolutionresult"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INPlacemarkResolutionResult": {
+      "abstract": [
+        {
+          "text": "A resolution result for placemark information associated with an intent.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INPlacemarkResolutionResult"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INPlacemarkResolutionResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INPlacemarkResolutionResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "INPlacemarkResolutionResult",
+      "type": "topic",
+      "url": "/documentation/intents/inplacemarkresolutionresult"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INPlaybackQueueLocationResolutionResult": {
+      "abstract": [
+        {
+          "text": "A resolution result for the requested playback queue location.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INPlaybackQueueLocationResolutionResult"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INPlaybackQueueLocationResolutionResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INPlaybackQueueLocationResolutionResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "INPlaybackQueueLocationResolutionResult",
+      "type": "topic",
+      "url": "/documentation/intents/inplaybackqueuelocationresolutionresult"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INPlaybackRepeatModeResolutionResult": {
+      "abstract": [
+        {
+          "text": "A resolution result for the playback repeat modes of a media item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INPlaybackRepeatModeResolutionResult"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INPlaybackRepeatModeResolutionResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INPlaybackRepeatModeResolutionResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "INPlaybackRepeatModeResolutionResult",
+      "type": "topic",
+      "url": "/documentation/intents/inplaybackrepeatmoderesolutionresult"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INRadioTypeResolutionResult": {
+      "abstract": [
+        {
+          "text": "A resolution result for the type of radio to use in a car.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INRadioTypeResolutionResult"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INRadioTypeResolutionResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INRadioTypeResolutionResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "INRadioTypeResolutionResult",
+      "type": "topic",
+      "url": "/documentation/intents/inradiotyperesolutionresult"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INRelativeReferenceResolutionResult": {
+      "abstract": [
+        {
+          "text": "A resolution result for a choice between the next or previous option.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INRelativeReferenceResolutionResult"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INRelativeReferenceResolutionResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INRelativeReferenceResolutionResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "INRelativeReferenceResolutionResult",
+      "type": "topic",
+      "url": "/documentation/intents/inrelativereferenceresolutionresult"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INRelativeSettingResolutionResult": {
+      "abstract": [
+        {
+          "text": "A resolution result for whether you can select the minimum, current, or maximum value.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INRelativeSettingResolutionResult"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INRelativeSettingResolutionResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INRelativeSettingResolutionResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "INRelativeSettingResolutionResult",
+      "type": "topic",
+      "url": "/documentation/intents/inrelativesettingresolutionresult"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INRestaurantGuestResolutionResult": {
+      "abstract": [
+        {
+          "text": "A resolution result for the identity of a user involved in booking a reservation at a restaurant.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INRestaurantGuestResolutionResult"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INRestaurantGuestResolutionResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INRestaurantGuestResolutionResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "INRestaurantGuestResolutionResult",
+      "type": "topic",
+      "url": "/documentation/intents/inrestaurantguestresolutionresult"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INRestaurantResolutionResult": {
+      "abstract": [
+        {
+          "text": "A resolution result for the restaurant selected by a user.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INRestaurantResolutionResult"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INRestaurantResolutionResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INRestaurantResolutionResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "INRestaurantResolutionResult",
+      "type": "topic",
+      "url": "/documentation/intents/inrestaurantresolutionresult"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INSpatialEventTriggerResolutionResult": {
+      "abstract": [
+        {
+          "text": "A resolution result for the location-based trigger associated with a task.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INSpatialEventTriggerResolutionResult"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INSpatialEventTriggerResolutionResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INSpatialEventTriggerResolutionResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "INSpatialEventTriggerResolutionResult",
+      "type": "topic",
+      "url": "/documentation/intents/inspatialeventtriggerresolutionresult"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INSpeakableStringResolutionResult": {
+      "abstract": [
+        {
+          "text": "A resolution result for a speakable string object associated with an intent.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INSpeakableStringResolutionResult"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INSpeakableStringResolutionResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INSpeakableStringResolutionResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "INSpeakableStringResolutionResult",
+      "type": "topic",
+      "url": "/documentation/intents/inspeakablestringresolutionresult"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INSpeedResolutionResult": {
+      "abstract": [
+        {
+          "text": "A resolution result for a speed associated with an intent.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INSpeedResolutionResult"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INSpeedResolutionResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INSpeedResolutionResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "INSpeedResolutionResult",
+      "type": "topic",
+      "url": "/documentation/intents/inspeedresolutionresult"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INStringResolutionResult": {
+      "abstract": [
+        {
+          "text": "A resolution result for a string value associated with an intent.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INStringResolutionResult"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INStringResolutionResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INStringResolutionResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "INStringResolutionResult",
+      "type": "topic",
+      "url": "/documentation/intents/instringresolutionresult"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INTaskListResolutionResult": {
+      "abstract": [
+        {
+          "text": "A resolution result for a list of tasks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INTaskListResolutionResult"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INTaskListResolutionResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INTaskListResolutionResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "INTaskListResolutionResult",
+      "type": "topic",
+      "url": "/documentation/intents/intasklistresolutionresult"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INTaskPriorityResolutionResult": {
+      "abstract": [
+        {
+          "text": "A resolution result for the priority associated with a task.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INTaskPriorityResolutionResult"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INTaskPriorityResolutionResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INTaskPriorityResolutionResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "INTaskPriorityResolutionResult",
+      "type": "topic",
+      "url": "/documentation/intents/intaskpriorityresolutionresult"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INTaskResolutionResult": {
+      "abstract": [
+        {
+          "text": "A resolution result for a single task within a task list.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INTaskResolutionResult"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INTaskResolutionResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INTaskResolutionResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "INTaskResolutionResult",
+      "type": "topic",
+      "url": "/documentation/intents/intaskresolutionresult"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INTaskStatusResolutionResult": {
+      "abstract": [
+        {
+          "text": "A resolution result for the status of a task.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INTaskStatusResolutionResult"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INTaskStatusResolutionResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INTaskStatusResolutionResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "INTaskStatusResolutionResult",
+      "type": "topic",
+      "url": "/documentation/intents/intaskstatusresolutionresult"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INTemperatureResolutionResult": {
+      "abstract": [
+        {
+          "text": "A resolution result for the units to use with a temperature value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INTemperatureResolutionResult"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INTemperatureResolutionResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INTemperatureResolutionResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "INTemperatureResolutionResult",
+      "type": "topic",
+      "url": "/documentation/intents/intemperatureresolutionresult"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INTemporalEventTriggerResolutionResult": {
+      "abstract": [
+        {
+          "text": "A resolution result for the time-based trigger associated with a task.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INTemporalEventTriggerResolutionResult"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INTemporalEventTriggerResolutionResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INTemporalEventTriggerResolutionResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "INTemporalEventTriggerResolutionResult",
+      "type": "topic",
+      "url": "/documentation/intents/intemporaleventtriggerresolutionresult"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INTemporalEventTriggerTypeOptionsResolutionResult": {
+      "abstract": [
+        {
+          "text": "A resolution result that adds a temporal event trigger.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INTemporalEventTriggerTypeOptionsResolutionResult"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INTemporalEventTriggerTypeOptionsResolutionResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INTemporalEventTriggerTypeOptionsResolutionResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "INTemporalEventTriggerTypeOptionsResolutionResult",
+      "type": "topic",
+      "url": "/documentation/intents/intemporaleventtriggertypeoptionsresolutionresult"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INTimeIntervalResolutionResult": {
+      "abstract": [
+        {
+          "text": "A resolution result for a time interval associated with an intent.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INTimeIntervalResolutionResult"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INTimeIntervalResolutionResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INTimeIntervalResolutionResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "INTimeIntervalResolutionResult",
+      "type": "topic",
+      "url": "/documentation/intents/intimeintervalresolutionresult"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INURLResolutionResult": {
+      "abstract": [
+        {
+          "text": "A resolution result for the types media destinations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INURLResolutionResult"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INURLResolutionResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INURLResolutionResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "INURLResolutionResult",
+      "type": "topic",
+      "url": "/documentation/intents/inurlresolutionresult"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INVisualCodeTypeResolutionResult": {
+      "abstract": [
+        {
+          "text": "A resolution result for the type of visual code used to exchange information.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INVisualCodeTypeResolutionResult"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INVisualCodeTypeResolutionResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INVisualCodeTypeResolutionResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "INVisualCodeTypeResolutionResult",
+      "type": "topic",
+      "url": "/documentation/intents/invisualcodetyperesolutionresult"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INVolumeResolutionResult": {
+      "abstract": [
+        {
+          "text": "A resolution result for a volume associated with an intent.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INVolumeResolutionResult"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INVolumeResolutionResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INVolumeResolutionResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "INVolumeResolutionResult",
+      "type": "topic",
+      "url": "/documentation/intents/involumeresolutionresult"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INWorkoutGoalUnitTypeResolutionResult": {
+      "abstract": [
+        {
+          "text": "A resolution result for the units of a workout goal.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INWorkoutGoalUnitTypeResolutionResult"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INWorkoutGoalUnitTypeResolutionResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INWorkoutGoalUnitTypeResolutionResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "INWorkoutGoalUnitTypeResolutionResult",
+      "type": "topic",
+      "url": "/documentation/intents/inworkoutgoalunittyperesolutionresult"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INWorkoutLocationTypeResolutionResult": {
+      "abstract": [
+        {
+          "text": "A resolution result for the location type where the workout occurs.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INWorkoutLocationTypeResolutionResult"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INWorkoutLocationTypeResolutionResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INWorkoutLocationTypeResolutionResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "INWorkoutLocationTypeResolutionResult",
+      "type": "topic",
+      "url": "/documentation/intents/inworkoutlocationtyperesolutionresult"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/resolving-the-parameters-of-an-intent": {
+      "abstract": [
+        {
+          "text": "Validate the parameters of an intent and make sure that you have the information you need to continue.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/resolving-the-parameters-of-an-intent",
+      "kind": "article",
+      "role": "article",
+      "title": "Resolving the Parameters of an Intent",
+      "type": "topic",
+      "url": "/documentation/sirikit/resolving-the-parameters-of-an-intent"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.apple.sirikit/documentation/Intents/INAccountTypeResolutionResult",
+        "doc://com.apple.sirikit/documentation/Intents/INBalanceTypeResolutionResult",
+        "doc://com.apple.sirikit/documentation/Intents/INBillPayeeResolutionResult",
+        "doc://com.apple.sirikit/documentation/Intents/INBillTypeResolutionResult",
+        "doc://com.apple.sirikit/documentation/Intents/INBooleanResolutionResult",
+        "doc://com.apple.sirikit/documentation/Intents/INCallCapabilityResolutionResult",
+        "doc://com.apple.sirikit/documentation/Intents/INCallDestinationTypeResolutionResult",
+        "doc://com.apple.sirikit/documentation/Intents/INCallRecordResolutionResult",
+        "doc://com.apple.sirikit/documentation/Intents/INCallRecordTypeOptionsResolutionResult",
+        "doc://com.apple.sirikit/documentation/Intents/INCallRecordTypeResolutionResult",
+        "doc://com.apple.sirikit/documentation/Intents/INCarAirCirculationModeResolutionResult",
+        "doc://com.apple.sirikit/documentation/Intents/INCarAudioSourceResolutionResult",
+        "doc://com.apple.sirikit/documentation/Intents/INCarDefrosterResolutionResult",
+        "doc://com.apple.sirikit/documentation/Intents/INCarSeatResolutionResult",
+        "doc://com.apple.sirikit/documentation/Intents/INCarSignalOptionsResolutionResult",
+        "doc://com.apple.sirikit/documentation/Intents/INCurrencyAmountResolutionResult",
+        "doc://com.apple.sirikit/documentation/Intents/INDateComponentsRangeResolutionResult",
+        "doc://com.apple.sirikit/documentation/Intents/INDateComponentsResolutionResult",
+        "doc://com.apple.sirikit/documentation/Intents/INDateSearchTypeResolutionResult",
+        "doc://com.apple.sirikit/documentation/Intents/INDoubleResolutionResult",
+        "doc://com.apple.sirikit/documentation/Intents/INEnergyResolutionResult",
+        "doc://com.apple.sirikit/documentation/Intents/INEnumResolutionResult",
+        "doc://com.apple.sirikit/documentation/Intents/INFileResolutionResult",
+        "doc://com.apple.sirikit/documentation/Intents/INIntegerResolutionResult",
+        "doc://com.apple.sirikit/documentation/Intents/INLengthResolutionResult",
+        "doc://com.apple.sirikit/documentation/Intents/INLocationSearchTypeResolutionResult",
+        "doc://com.apple.sirikit/documentation/Intents/INMassResolutionResult",
+        "doc://com.apple.sirikit/documentation/Intents/INMediaAffinityTypeResolutionResult",
+        "doc://com.apple.sirikit/documentation/Intents/INMediaDestinationResolutionResult",
+        "doc://com.apple.sirikit/documentation/Intents/INMediaItemResolutionResult",
+        "doc://com.apple.sirikit/documentation/Intents/INMessageAttributeOptionsResolutionResult",
+        "doc://com.apple.sirikit/documentation/Intents/INMessageAttributeResolutionResult",
+        "doc://com.apple.sirikit/documentation/Intents/INNoteContentResolutionResult",
+        "doc://com.apple.sirikit/documentation/Intents/INNoteContentTypeResolutionResult",
+        "doc://com.apple.sirikit/documentation/Intents/INNoteResolutionResult",
+        "doc://com.apple.sirikit/documentation/Intents/INNotebookItemTypeResolutionResult",
+        "doc://com.apple.sirikit/documentation/Intents/INObjectResolutionResult",
+        "doc://com.apple.sirikit/documentation/Intents/INOutgoingMessageTypeResolutionResult",
+        "doc://com.apple.sirikit/documentation/Intents/INPaymentAccountResolutionResult",
+        "doc://com.apple.sirikit/documentation/Intents/INPaymentAmountResolutionResult",
+        "doc://com.apple.sirikit/documentation/Intents/INPaymentMethodResolutionResult",
+        "doc://com.apple.sirikit/documentation/Intents/INPaymentStatusResolutionResult",
+        "doc://com.apple.sirikit/documentation/Intents/INPersonResolutionResult",
+        "doc://com.apple.sirikit/documentation/Intents/INPlacemarkResolutionResult",
+        "doc://com.apple.sirikit/documentation/Intents/INPlaybackQueueLocationResolutionResult",
+        "doc://com.apple.sirikit/documentation/Intents/INPlaybackRepeatModeResolutionResult",
+        "doc://com.apple.sirikit/documentation/Intents/INRadioTypeResolutionResult",
+        "doc://com.apple.sirikit/documentation/Intents/INRelativeReferenceResolutionResult",
+        "doc://com.apple.sirikit/documentation/Intents/INRelativeSettingResolutionResult",
+        "doc://com.apple.sirikit/documentation/Intents/INRestaurantGuestResolutionResult",
+        "doc://com.apple.sirikit/documentation/Intents/INRestaurantResolutionResult",
+        "doc://com.apple.sirikit/documentation/Intents/INSpatialEventTriggerResolutionResult",
+        "doc://com.apple.sirikit/documentation/Intents/INSpeakableStringResolutionResult",
+        "doc://com.apple.sirikit/documentation/Intents/INSpeedResolutionResult",
+        "doc://com.apple.sirikit/documentation/Intents/INStringResolutionResult",
+        "doc://com.apple.sirikit/documentation/Intents/INTaskListResolutionResult",
+        "doc://com.apple.sirikit/documentation/Intents/INTaskPriorityResolutionResult",
+        "doc://com.apple.sirikit/documentation/Intents/INTaskResolutionResult",
+        "doc://com.apple.sirikit/documentation/Intents/INTaskStatusResolutionResult",
+        "doc://com.apple.sirikit/documentation/Intents/INTemperatureResolutionResult",
+        "doc://com.apple.sirikit/documentation/Intents/INTemporalEventTriggerResolutionResult",
+        "doc://com.apple.sirikit/documentation/Intents/INTemporalEventTriggerTypeOptionsResolutionResult",
+        "doc://com.apple.sirikit/documentation/Intents/INTimeIntervalResolutionResult",
+        "doc://com.apple.sirikit/documentation/Intents/INURLResolutionResult",
+        "doc://com.apple.sirikit/documentation/Intents/INVisualCodeTypeResolutionResult",
+        "doc://com.apple.sirikit/documentation/Intents/INVolumeResolutionResult",
+        "doc://com.apple.sirikit/documentation/Intents/INWorkoutGoalUnitTypeResolutionResult",
+        "doc://com.apple.sirikit/documentation/Intents/INWorkoutLocationTypeResolutionResult"
+      ],
+      "kind": "relationships",
+      "title": "Inherited By",
+      "type": "inheritedBy"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Common-Results",
+      "identifiers": [
+        "doc://com.apple.sirikit/documentation/Intents/INIntentResolutionResult/needsValue()",
+        "doc://com.apple.sirikit/documentation/Intents/INIntentResolutionResult/notRequired()",
+        "doc://com.apple.sirikit/documentation/Intents/INIntentResolutionResult/unsupported()"
+      ],
+      "title": "Common Results"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "11.0",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "14.0",
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "3.2",
+              "name": "watchOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "INIntentResolutionResult"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INIntentResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INIntentResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.sirikit/documentation/Intents"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Common-Results",
+              "identifiers": [
+                "doc://com.apple.sirikit/documentation/Intents/INIntentResolutionResult/confirmationRequiredWithItemToConfirm:forReason:",
+                "doc://com.apple.sirikit/documentation/Intents/INIntentResolutionResult/unsupportedWithReason:",
+                "doc://com.apple.sirikit/documentation/Intents/INIntentResolutionResult/needsValue()",
+                "doc://com.apple.sirikit/documentation/Intents/INIntentResolutionResult/notRequired()",
+                "doc://com.apple.sirikit/documentation/Intents/INIntentResolutionResult/unsupported()"
+              ],
+              "title": "Common Results"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            },
+            {
+              "identifiers": [
+                "doc://com.apple.sirikit/documentation/Intents/INAccountTypeResolutionResult",
+                "doc://com.apple.sirikit/documentation/Intents/INBalanceTypeResolutionResult",
+                "doc://com.apple.sirikit/documentation/Intents/INBillPayeeResolutionResult",
+                "doc://com.apple.sirikit/documentation/Intents/INBillTypeResolutionResult",
+                "doc://com.apple.sirikit/documentation/Intents/INBooleanResolutionResult",
+                "doc://com.apple.sirikit/documentation/Intents/INCallCapabilityResolutionResult",
+                "doc://com.apple.sirikit/documentation/Intents/INCallDestinationTypeResolutionResult",
+                "doc://com.apple.sirikit/documentation/Intents/INCallRecordResolutionResult",
+                "doc://com.apple.sirikit/documentation/Intents/INCallRecordTypeOptionsResolutionResult",
+                "doc://com.apple.sirikit/documentation/Intents/INCallRecordTypeResolutionResult",
+                "doc://com.apple.sirikit/documentation/Intents/INCarAirCirculationModeResolutionResult",
+                "doc://com.apple.sirikit/documentation/Intents/INCarAudioSourceResolutionResult",
+                "doc://com.apple.sirikit/documentation/Intents/INCarDefrosterResolutionResult",
+                "doc://com.apple.sirikit/documentation/Intents/INCarSeatResolutionResult",
+                "doc://com.apple.sirikit/documentation/Intents/INCarSignalOptionsResolutionResult",
+                "doc://com.apple.sirikit/documentation/Intents/INCurrencyAmountResolutionResult",
+                "doc://com.apple.sirikit/documentation/Intents/INDateComponentsRangeResolutionResult",
+                "doc://com.apple.sirikit/documentation/Intents/INDateComponentsResolutionResult",
+                "doc://com.apple.sirikit/documentation/Intents/INDateSearchTypeResolutionResult",
+                "doc://com.apple.sirikit/documentation/Intents/INDoubleResolutionResult",
+                "doc://com.apple.sirikit/documentation/Intents/INEnergyResolutionResult",
+                "doc://com.apple.sirikit/documentation/Intents/INEnumResolutionResult",
+                "doc://com.apple.sirikit/documentation/Intents/INFileResolutionResult",
+                "doc://com.apple.sirikit/documentation/Intents/INIntegerResolutionResult",
+                "doc://com.apple.sirikit/documentation/Intents/INLengthResolutionResult",
+                "doc://com.apple.sirikit/documentation/Intents/INLocationSearchTypeResolutionResult",
+                "doc://com.apple.sirikit/documentation/Intents/INMassResolutionResult",
+                "doc://com.apple.sirikit/documentation/Intents/INMediaAffinityTypeResolutionResult",
+                "doc://com.apple.sirikit/documentation/Intents/INMediaDestinationResolutionResult",
+                "doc://com.apple.sirikit/documentation/Intents/INMediaItemResolutionResult",
+                "doc://com.apple.sirikit/documentation/Intents/INMessageAttributeOptionsResolutionResult",
+                "doc://com.apple.sirikit/documentation/Intents/INMessageAttributeResolutionResult",
+                "doc://com.apple.sirikit/documentation/Intents/INNoteContentResolutionResult",
+                "doc://com.apple.sirikit/documentation/Intents/INNoteContentTypeResolutionResult",
+                "doc://com.apple.sirikit/documentation/Intents/INNoteResolutionResult",
+                "doc://com.apple.sirikit/documentation/Intents/INNotebookItemTypeResolutionResult",
+                "doc://com.apple.sirikit/documentation/Intents/INObjectResolutionResult",
+                "doc://com.apple.sirikit/documentation/Intents/INOutgoingMessageTypeResolutionResult",
+                "doc://com.apple.sirikit/documentation/Intents/INPaymentAccountResolutionResult",
+                "doc://com.apple.sirikit/documentation/Intents/INPaymentAmountResolutionResult",
+                "doc://com.apple.sirikit/documentation/Intents/INPaymentMethodResolutionResult",
+                "doc://com.apple.sirikit/documentation/Intents/INPaymentStatusResolutionResult",
+                "doc://com.apple.sirikit/documentation/Intents/INPersonResolutionResult",
+                "doc://com.apple.sirikit/documentation/Intents/INPlacemarkResolutionResult",
+                "doc://com.apple.sirikit/documentation/Intents/INPlaybackQueueLocationResolutionResult",
+                "doc://com.apple.sirikit/documentation/Intents/INPlaybackRepeatModeResolutionResult",
+                "doc://com.apple.sirikit/documentation/Intents/INRadioTypeResolutionResult",
+                "doc://com.apple.sirikit/documentation/Intents/INRelativeReferenceResolutionResult",
+                "doc://com.apple.sirikit/documentation/Intents/INRelativeSettingResolutionResult",
+                "doc://com.apple.sirikit/documentation/Intents/INRestaurantGuestResolutionResult",
+                "doc://com.apple.sirikit/documentation/Intents/INRestaurantResolutionResult",
+                "doc://com.apple.sirikit/documentation/Intents/INSpatialEventTriggerResolutionResult",
+                "doc://com.apple.sirikit/documentation/Intents/INSpeakableStringResolutionResult",
+                "doc://com.apple.sirikit/documentation/Intents/INSpeedResolutionResult",
+                "doc://com.apple.sirikit/documentation/Intents/INStringResolutionResult",
+                "doc://com.apple.sirikit/documentation/Intents/INTaskListResolutionResult",
+                "doc://com.apple.sirikit/documentation/Intents/INTaskPriorityResolutionResult",
+                "doc://com.apple.sirikit/documentation/Intents/INTaskResolutionResult",
+                "doc://com.apple.sirikit/documentation/Intents/INTaskStatusResolutionResult",
+                "doc://com.apple.sirikit/documentation/Intents/INTemperatureResolutionResult",
+                "doc://com.apple.sirikit/documentation/Intents/INTemporalEventTriggerResolutionResult",
+                "doc://com.apple.sirikit/documentation/Intents/INTemporalEventTriggerTypeOptionsResolutionResult",
+                "doc://com.apple.sirikit/documentation/Intents/INTimeIntervalResolutionResult",
+                "doc://com.apple.sirikit/documentation/Intents/INURLResolutionResult",
+                "doc://com.apple.sirikit/documentation/Intents/INVisualCodeTypeResolutionResult",
+                "doc://com.apple.sirikit/documentation/Intents/INVolumeResolutionResult",
+                "doc://com.apple.sirikit/documentation/Intents/INWorkoutGoalUnitTypeResolutionResult",
+                "doc://com.apple.sirikit/documentation/Intents/INWorkoutLocationTypeResolutionResult"
+              ],
+              "kind": "relationships",
+              "title": "Inherited By",
+              "type": "inheritedBy"
+            }
+          ]
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "INIntentResolutionResult"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INIntentResolutionResult~1notRequired()/title",
+          "value": "notRequired"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INIntentResolutionResult~1notRequired()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "notRequired"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INIntentResolutionResult~1unsupported()/title",
+          "value": "unsupported"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INIntentResolutionResult~1unsupported()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "unsupported"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INFileResolutionResult/title",
+          "value": "INFileResolutionResult"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INFileResolutionResult/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INFileResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INFileResolutionResult/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INFileResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INCarSeatResolutionResult/title",
+          "value": "INCarSeatResolutionResult"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INCarSeatResolutionResult/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INCarSeatResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INCarSeatResolutionResult/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INCarSeatResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INTaskStatusResolutionResult/title",
+          "value": "INTaskStatusResolutionResult"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INTaskStatusResolutionResult/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INTaskStatusResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INTaskStatusResolutionResult/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INTaskStatusResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INStringResolutionResult/title",
+          "value": "INStringResolutionResult"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INStringResolutionResult/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INStringResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INStringResolutionResult/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INStringResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSpeedResolutionResult/title",
+          "value": "INSpeedResolutionResult"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSpeedResolutionResult/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INSpeedResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSpeedResolutionResult/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INSpeedResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INDateSearchTypeResolutionResult/title",
+          "value": "INDateSearchTypeResolutionResult"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INDateSearchTypeResolutionResult/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INDateSearchTypeResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INDateSearchTypeResolutionResult/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INDateSearchTypeResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INTaskPriorityResolutionResult/title",
+          "value": "INTaskPriorityResolutionResult"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INTaskPriorityResolutionResult/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INTaskPriorityResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INTaskPriorityResolutionResult/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INTaskPriorityResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INBillTypeResolutionResult/title",
+          "value": "INBillTypeResolutionResult"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INBillTypeResolutionResult/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INBillTypeResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INBillTypeResolutionResult/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INBillTypeResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INPlaybackRepeatModeResolutionResult/title",
+          "value": "INPlaybackRepeatModeResolutionResult"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INPlaybackRepeatModeResolutionResult/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INPlaybackRepeatModeResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INPlaybackRepeatModeResolutionResult/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INPlaybackRepeatModeResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INBooleanResolutionResult/title",
+          "value": "INBooleanResolutionResult"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INBooleanResolutionResult/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INBooleanResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INBooleanResolutionResult/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INBooleanResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INNoteContentResolutionResult/title",
+          "value": "INNoteContentResolutionResult"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INNoteContentResolutionResult/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INNoteContentResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INNoteContentResolutionResult/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INNoteContentResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INAccountTypeResolutionResult/title",
+          "value": "INAccountTypeResolutionResult"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INAccountTypeResolutionResult/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INAccountTypeResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INAccountTypeResolutionResult/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INAccountTypeResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INWorkoutGoalUnitTypeResolutionResult/title",
+          "value": "INWorkoutGoalUnitTypeResolutionResult"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INWorkoutGoalUnitTypeResolutionResult/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INWorkoutGoalUnitTypeResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INWorkoutGoalUnitTypeResolutionResult/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INWorkoutGoalUnitTypeResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INDateComponentsResolutionResult/title",
+          "value": "INDateComponentsResolutionResult"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INDateComponentsResolutionResult/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INDateComponentsResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INDateComponentsResolutionResult/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INDateComponentsResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INTaskListResolutionResult/title",
+          "value": "INTaskListResolutionResult"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INTaskListResolutionResult/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INTaskListResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INTaskListResolutionResult/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INTaskListResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INCarAudioSourceResolutionResult/title",
+          "value": "INCarAudioSourceResolutionResult"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INCarAudioSourceResolutionResult/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INCarAudioSourceResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INCarAudioSourceResolutionResult/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INCarAudioSourceResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INCurrencyAmountResolutionResult/title",
+          "value": "INCurrencyAmountResolutionResult"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INCurrencyAmountResolutionResult/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INCurrencyAmountResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INCurrencyAmountResolutionResult/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INCurrencyAmountResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INNotebookItemTypeResolutionResult/title",
+          "value": "INNotebookItemTypeResolutionResult"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INNotebookItemTypeResolutionResult/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INNotebookItemTypeResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INNotebookItemTypeResolutionResult/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INNotebookItemTypeResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INLocationSearchTypeResolutionResult/title",
+          "value": "INLocationSearchTypeResolutionResult"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INLocationSearchTypeResolutionResult/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INLocationSearchTypeResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INLocationSearchTypeResolutionResult/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INLocationSearchTypeResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSpeakableStringResolutionResult/title",
+          "value": "INSpeakableStringResolutionResult"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSpeakableStringResolutionResult/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INSpeakableStringResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSpeakableStringResolutionResult/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INSpeakableStringResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INPlacemarkResolutionResult/title",
+          "value": "INPlacemarkResolutionResult"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INPlacemarkResolutionResult/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INPlacemarkResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INPlacemarkResolutionResult/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INPlacemarkResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INRadioTypeResolutionResult/title",
+          "value": "INRadioTypeResolutionResult"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INRadioTypeResolutionResult/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INRadioTypeResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INRadioTypeResolutionResult/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INRadioTypeResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INObjectResolutionResult/title",
+          "value": "INObjectResolutionResult"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INObjectResolutionResult/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INObjectResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INObjectResolutionResult/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INObjectResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INRestaurantResolutionResult/title",
+          "value": "INRestaurantResolutionResult"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INRestaurantResolutionResult/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INRestaurantResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INRestaurantResolutionResult/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INRestaurantResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INRelativeReferenceResolutionResult/title",
+          "value": "INRelativeReferenceResolutionResult"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INRelativeReferenceResolutionResult/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INRelativeReferenceResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INRelativeReferenceResolutionResult/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INRelativeReferenceResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INMediaDestinationResolutionResult/title",
+          "value": "INMediaDestinationResolutionResult"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INMediaDestinationResolutionResult/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INMediaDestinationResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INMediaDestinationResolutionResult/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INMediaDestinationResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INTimeIntervalResolutionResult/title",
+          "value": "INTimeIntervalResolutionResult"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INTimeIntervalResolutionResult/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INTimeIntervalResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INTimeIntervalResolutionResult/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INTimeIntervalResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSpatialEventTriggerResolutionResult/title",
+          "value": "INSpatialEventTriggerResolutionResult"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSpatialEventTriggerResolutionResult/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INSpatialEventTriggerResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSpatialEventTriggerResolutionResult/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INSpatialEventTriggerResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INCallRecordResolutionResult/title",
+          "value": "INCallRecordResolutionResult"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INCallRecordResolutionResult/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INCallRecordResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INCallRecordResolutionResult/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INCallRecordResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INPersonResolutionResult/title",
+          "value": "INPersonResolutionResult"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INPersonResolutionResult/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INPersonResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INPersonResolutionResult/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INPersonResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INMediaAffinityTypeResolutionResult/title",
+          "value": "INMediaAffinityTypeResolutionResult"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INMediaAffinityTypeResolutionResult/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INMediaAffinityTypeResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INMediaAffinityTypeResolutionResult/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INMediaAffinityTypeResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INIntentResolutionResult~1needsValue()/title",
+          "value": "needsValue"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INIntentResolutionResult~1needsValue()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "needsValue"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INTemporalEventTriggerTypeOptionsResolutionResult/title",
+          "value": "INTemporalEventTriggerTypeOptionsResolutionResult"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INTemporalEventTriggerTypeOptionsResolutionResult/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INTemporalEventTriggerTypeOptionsResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INTemporalEventTriggerTypeOptionsResolutionResult/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INTemporalEventTriggerTypeOptionsResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INMassResolutionResult/title",
+          "value": "INMassResolutionResult"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INMassResolutionResult/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INMassResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INMassResolutionResult/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INMassResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INNoteContentTypeResolutionResult/title",
+          "value": "INNoteContentTypeResolutionResult"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INNoteContentTypeResolutionResult/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INNoteContentTypeResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INNoteContentTypeResolutionResult/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INNoteContentTypeResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INRestaurantGuestResolutionResult/title",
+          "value": "INRestaurantGuestResolutionResult"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INRestaurantGuestResolutionResult/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INRestaurantGuestResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INRestaurantGuestResolutionResult/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INRestaurantGuestResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INPaymentStatusResolutionResult/title",
+          "value": "INPaymentStatusResolutionResult"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INPaymentStatusResolutionResult/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INPaymentStatusResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INPaymentStatusResolutionResult/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INPaymentStatusResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INCarSignalOptionsResolutionResult/title",
+          "value": "INCarSignalOptionsResolutionResult"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INCarSignalOptionsResolutionResult/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INCarSignalOptionsResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INCarSignalOptionsResolutionResult/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INCarSignalOptionsResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INCallDestinationTypeResolutionResult/title",
+          "value": "INCallDestinationTypeResolutionResult"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INCallDestinationTypeResolutionResult/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INCallDestinationTypeResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INCallDestinationTypeResolutionResult/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INCallDestinationTypeResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INTaskResolutionResult/title",
+          "value": "INTaskResolutionResult"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INTaskResolutionResult/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INTaskResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INTaskResolutionResult/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INTaskResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INVolumeResolutionResult/title",
+          "value": "INVolumeResolutionResult"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INVolumeResolutionResult/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INVolumeResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INVolumeResolutionResult/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INVolumeResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INDateComponentsRangeResolutionResult/title",
+          "value": "INDateComponentsRangeResolutionResult"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INDateComponentsRangeResolutionResult/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INDateComponentsRangeResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INDateComponentsRangeResolutionResult/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INDateComponentsRangeResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INLengthResolutionResult/title",
+          "value": "INLengthResolutionResult"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INLengthResolutionResult/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INLengthResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INLengthResolutionResult/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INLengthResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INIntentResolutionResult/title",
+          "value": "INIntentResolutionResult"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INIntentResolutionResult/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INIntentResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INIntentResolutionResult/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INIntentResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INBalanceTypeResolutionResult/title",
+          "value": "INBalanceTypeResolutionResult"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INBalanceTypeResolutionResult/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INBalanceTypeResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INBalanceTypeResolutionResult/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INBalanceTypeResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INWorkoutLocationTypeResolutionResult/title",
+          "value": "INWorkoutLocationTypeResolutionResult"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INWorkoutLocationTypeResolutionResult/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INWorkoutLocationTypeResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INWorkoutLocationTypeResolutionResult/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INWorkoutLocationTypeResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INBillPayeeResolutionResult/title",
+          "value": "INBillPayeeResolutionResult"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INBillPayeeResolutionResult/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INBillPayeeResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INBillPayeeResolutionResult/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INBillPayeeResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INCallRecordTypeResolutionResult/title",
+          "value": "INCallRecordTypeResolutionResult"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INCallRecordTypeResolutionResult/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INCallRecordTypeResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INCallRecordTypeResolutionResult/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INCallRecordTypeResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INIntegerResolutionResult/title",
+          "value": "INIntegerResolutionResult"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INIntegerResolutionResult/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INIntegerResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INIntegerResolutionResult/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INIntegerResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INEnumResolutionResult/title",
+          "value": "INEnumResolutionResult"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INEnumResolutionResult/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INEnumResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INEnumResolutionResult/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INEnumResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INCallCapabilityResolutionResult/title",
+          "value": "INCallCapabilityResolutionResult"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INCallCapabilityResolutionResult/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INCallCapabilityResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INCallCapabilityResolutionResult/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INCallCapabilityResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INOutgoingMessageTypeResolutionResult/title",
+          "value": "INOutgoingMessageTypeResolutionResult"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INOutgoingMessageTypeResolutionResult/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INOutgoingMessageTypeResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INOutgoingMessageTypeResolutionResult/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INOutgoingMessageTypeResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INPlaybackQueueLocationResolutionResult/title",
+          "value": "INPlaybackQueueLocationResolutionResult"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INPlaybackQueueLocationResolutionResult/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INPlaybackQueueLocationResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INPlaybackQueueLocationResolutionResult/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INPlaybackQueueLocationResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INTemporalEventTriggerResolutionResult/title",
+          "value": "INTemporalEventTriggerResolutionResult"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INTemporalEventTriggerResolutionResult/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INTemporalEventTriggerResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INTemporalEventTriggerResolutionResult/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INTemporalEventTriggerResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INCarAirCirculationModeResolutionResult/title",
+          "value": "INCarAirCirculationModeResolutionResult"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INCarAirCirculationModeResolutionResult/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INCarAirCirculationModeResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INCarAirCirculationModeResolutionResult/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INCarAirCirculationModeResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INNoteResolutionResult/title",
+          "value": "INNoteResolutionResult"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INNoteResolutionResult/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INNoteResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INNoteResolutionResult/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INNoteResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INCallRecordTypeOptionsResolutionResult/title",
+          "value": "INCallRecordTypeOptionsResolutionResult"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INCallRecordTypeOptionsResolutionResult/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INCallRecordTypeOptionsResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INCallRecordTypeOptionsResolutionResult/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INCallRecordTypeOptionsResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INURLResolutionResult/title",
+          "value": "INURLResolutionResult"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INURLResolutionResult/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INURLResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INURLResolutionResult/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INURLResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INDoubleResolutionResult/title",
+          "value": "INDoubleResolutionResult"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INDoubleResolutionResult/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INDoubleResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INDoubleResolutionResult/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INDoubleResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INCarDefrosterResolutionResult/title",
+          "value": "INCarDefrosterResolutionResult"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INCarDefrosterResolutionResult/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INCarDefrosterResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INCarDefrosterResolutionResult/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INCarDefrosterResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INMediaItemResolutionResult/title",
+          "value": "INMediaItemResolutionResult"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INMediaItemResolutionResult/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INMediaItemResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INMediaItemResolutionResult/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INMediaItemResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INMessageAttributeResolutionResult/title",
+          "value": "INMessageAttributeResolutionResult"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INMessageAttributeResolutionResult/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INMessageAttributeResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INMessageAttributeResolutionResult/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INMessageAttributeResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INVisualCodeTypeResolutionResult/title",
+          "value": "INVisualCodeTypeResolutionResult"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INVisualCodeTypeResolutionResult/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INVisualCodeTypeResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INVisualCodeTypeResolutionResult/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INVisualCodeTypeResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INMessageAttributeOptionsResolutionResult/title",
+          "value": "INMessageAttributeOptionsResolutionResult"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INMessageAttributeOptionsResolutionResult/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INMessageAttributeOptionsResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INMessageAttributeOptionsResolutionResult/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INMessageAttributeOptionsResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INPaymentAmountResolutionResult/title",
+          "value": "INPaymentAmountResolutionResult"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INPaymentAmountResolutionResult/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INPaymentAmountResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INPaymentAmountResolutionResult/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INPaymentAmountResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INRelativeSettingResolutionResult/title",
+          "value": "INRelativeSettingResolutionResult"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INRelativeSettingResolutionResult/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INRelativeSettingResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INRelativeSettingResolutionResult/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INRelativeSettingResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INPaymentAccountResolutionResult/title",
+          "value": "INPaymentAccountResolutionResult"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INPaymentAccountResolutionResult/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INPaymentAccountResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INPaymentAccountResolutionResult/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INPaymentAccountResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INPaymentMethodResolutionResult/title",
+          "value": "INPaymentMethodResolutionResult"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INPaymentMethodResolutionResult/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INPaymentMethodResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INPaymentMethodResolutionResult/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INPaymentMethodResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INEnergyResolutionResult/title",
+          "value": "INEnergyResolutionResult"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INEnergyResolutionResult/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INEnergyResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INEnergyResolutionResult/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INEnergyResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INTemperatureResolutionResult/title",
+          "value": "INTemperatureResolutionResult"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INTemperatureResolutionResult/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INTemperatureResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INTemperatureResolutionResult/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INTemperatureResolutionResult"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/intents/inintentresolutionresult"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/intents/inintentresolutionresult"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

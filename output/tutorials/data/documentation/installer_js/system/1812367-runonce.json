@@ -1,0 +1,321 @@
+{
+  "abstract": [
+    {
+      "text": "Launches a given program in the ",
+      "type": "text"
+    },
+    {
+      "code": "Resources",
+      "type": "codeVoice"
+    },
+    {
+      "text": " directory of the installation package, if it has not been run already.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/installer_js",
+        "doc://com.apple.documentation/documentation/installer_js/system"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.documentation/documentation/installer_js/system/1812367-runonce"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1812367,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Installer JS"
+      }
+    ],
+    "parent": {
+      "title": "System"
+    },
+    "role": "pseudoSymbol",
+    "symbolKind": "uid",
+    "title": "runOnce"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "data"
+          ],
+          "platforms": [],
+          "tokens": [
+            {
+              "kind": "text",
+              "text": "run(programName, args...)"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "languages": [
+        "data"
+      ],
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Name of the program to execute.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "programName"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Arguments passed to the program.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "args..."
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return_value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After the program is executed, its exit code. If the program is not executed (see discussion), ",
+              "type": "text"
+            },
+            {
+              "code": "undefined",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "On subsequent invocations with the same arguments, the program is not launched and the exit code of the first execution is returned.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "allow-external-scripts",
+              "type": "codeVoice"
+            },
+            {
+              "text": " attribute of the ",
+              "type": "text"
+            },
+            {
+              "code": "options",
+              "type": "codeVoice"
+            },
+            {
+              "text": " element in the distribution definition must be ",
+              "type": "text"
+            },
+            {
+              "code": "'yes'",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for the program to be launched. And, the Installer application asks the user’s permission before launching the program. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "devLink-1733778",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for more information.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use this method instead of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/installer_js/system/1812364-run",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " when a program’s exit code using the same arguments is not expected to change.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "devLink-1733778": {
+      "identifier": "devLink-1733778",
+      "title": "Distribution Definition XML Schema Reference",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/DeveloperTools/Reference/DistributionDefinitionRef/Chapters/Introduction.html#//apple_ref/doc/uid/TP40005370"
+    },
+    "doc://com.apple.documentation/documentation/installer_js": {
+      "identifier": "doc://com.apple.documentation/documentation/installer_js",
+      "kind": "article",
+      "role": "pseudoCollection",
+      "title": "Installer JS",
+      "type": "topic",
+      "url": "/documentation/installer_js"
+    },
+    "doc://com.apple.documentation/documentation/installer_js/system": {
+      "abstract": [
+        {
+          "text": "An object that provides access to information about the target host. ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/installer_js/system",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "System",
+      "type": "topic",
+      "url": "/documentation/installer_js/system"
+    },
+    "doc://com.apple.documentation/documentation/installer_js/system/1812364-run": {
+      "abstract": [
+        {
+          "text": "Launches a given program in the ",
+          "type": "text"
+        },
+        {
+          "code": "Resources",
+          "type": "codeVoice"
+        },
+        {
+          "text": " directory of the installation package.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/installer_js/system/1812364-run",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "run",
+      "type": "topic",
+      "url": "/documentation/installer_js/system/1812364-run"
+    },
+    "doc://com.apple.documentation/documentation/installer_js/system/1812367-runonce": {
+      "abstract": [
+        {
+          "text": "Launches a given program in the ",
+          "type": "text"
+        },
+        {
+          "code": "Resources",
+          "type": "codeVoice"
+        },
+        {
+          "text": " directory of the installation package, if it has not been run already.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/installer_js/system/1812367-runonce",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "runOnce",
+      "type": "topic",
+      "url": "/documentation/installer_js/system/1812367-runonce"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/installer_js/system/1812364-run"
+      ],
+      "title": "Running Programs"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/installer_js/system/1812367-runonce"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

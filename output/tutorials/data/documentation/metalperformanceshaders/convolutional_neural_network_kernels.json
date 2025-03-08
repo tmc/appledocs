@@ -1,0 +1,3553 @@
+{
+  "abstract": [
+    {
+      "text": "Build neural networks with layers.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/metalperformanceshaders/convolutional_neural_network_kernels"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 2881268,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Metal Performance Shaders"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Convolutional Neural Network Kernels"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Think carefully about the edge mode requested for pooling layers. The default value is ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimageedgemode/zero",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", but there are times when a ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimageedgemode/clamp",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " value may be better.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To avoid reading off the edge of an image for filters that have a filter area (convolution, pooling), set ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "MPSCNNKernel.offset = (MPSOffset){ .x = kernelWidth/2, .y = kernelHeight/2, .z = 0}",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and reduce the size of the output image by ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "{kernelWidth-1, kernelHeight-1, 0}",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". The filter area stretches up and to the left of the kernel offset by ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "{kernelWidth/2, kernelHeight/2}",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Always remember the following distinction:",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "items": [
+                    {
+                      "content": [
+                        {
+                          "inlineContent": [
+                            {
+                              "text": "The ",
+                              "type": "text"
+                            },
+                            {
+                              "identifier": "link-2528271",
+                              "isActive": true,
+                              "type": "reference"
+                            },
+                            {
+                              "text": " class takes weights in the order ",
+                              "type": "text"
+                            },
+                            {
+                              "code": "weight[outputChannels][kernelHeight][kernelWidth][inputChannels/groups]",
+                              "type": "codeVoice"
+                            },
+                            {
+                              "text": ".",
+                              "type": "text"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    },
+                    {
+                      "content": [
+                        {
+                          "inlineContent": [
+                            {
+                              "text": "The ",
+                              "type": "text"
+                            },
+                            {
+                              "identifier": "link-2528272",
+                              "isActive": true,
+                              "type": "reference"
+                            },
+                            {
+                              "text": " class takes weights in the order ",
+                              "type": "text"
+                            },
+                            {
+                              "code": "weight[outputChannels][sourceWidth][sourceHeight][inputChannels]",
+                              "type": "codeVoice"
+                            },
+                            {
+                              "text": ".",
+                              "type": "text"
+                            }
+                          ],
+                          "type": "paragraph"
+                        }
+                      ]
+                    }
+                  ],
+                  "type": "unorderedList"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Initialize ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "link-2528269",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " objects once and reuse them.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You can use ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "link-2528275",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " objects and similar to perform pre-processing of images, such as scaling and resizing.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Specify a neuron filter with an ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "link-2528276",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " object to combine the convolution and neuron operations.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpstemporaryimage",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " objects for intermediate images that live for a short period of time (one ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " object).",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpstemporaryimage",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " objects can reduce the amount of memory used by the CNN by several folds, and similarly reduce the amount of CPU time spent allocating storage and latency between the time a command buffer is committed and when it is actually executed on the GPU.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You cannot read or write to a ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpstemporaryimage",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " object using the CPU. Generally, ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpstemporaryimage",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " objects should be created as needed and thrown away promptly. Persistent objects should not retain them.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Please be sure to understand the purpose of the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpstemporaryimage/2097546-readcount",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " property.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Because the Metal Performance Shaders framework encodes its work in place in your command buffer, you always have the option to insert your own code in between ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "link-2528269",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " encodings as a Metal function for tasks not covered by the framework. You do not need to use the Metal Performance Shaders framework for everything.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/metalperformanceshaders": {
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Metal Performance Shaders",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/convolutional_neural_network_kernels": {
+      "abstract": [
+        {
+          "text": "Build neural networks with layers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/convolutional_neural_network_kernels",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Convolutional Neural Network Kernels",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/convolutional_neural_network_kernels"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnadd": {
+      "abstract": [
+        {
+          "text": "An addition operator.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSCNNAdd"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnadd",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSCNNAdd",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpscnnadd"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnaddgradient": {
+      "abstract": [
+        {
+          "text": "A gradient addition operator.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSCNNAddGradient"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnaddgradient",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSCNNAddGradient",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpscnnaddgradient"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnarithmetic": {
+      "abstract": [
+        {
+          "text": "The base class for arithmetic operators.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSCNNArithmetic"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnarithmetic",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSCNNArithmetic",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpscnnarithmetic"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnarithmeticgradient": {
+      "abstract": [
+        {
+          "text": "The base class for gradient arithmetic operators.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSCNNArithmeticGradient"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnarithmeticgradient",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSCNNArithmeticGradient",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpscnnarithmeticgradient"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnarithmeticgradientstate": {
+      "abstract": [
+        {
+          "text": "An object that stores the clamp mask used by gradient arithmetic operators.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSCNNArithmeticGradientState"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnarithmeticgradientstate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSCNNArithmeticGradientState",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpscnnarithmeticgradientstate"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnbatchnormalization": {
+      "abstract": [
+        {
+          "text": "A batch normalization kernel.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSCNNBatchNormalization"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnbatchnormalization",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSCNNBatchNormalization",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpscnnbatchnormalization"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnbatchnormalizationgradient": {
+      "abstract": [
+        {
+          "text": "A gradient batch normalization kernel.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSCNNBatchNormalizationGradient"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnbatchnormalizationgradient",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSCNNBatchNormalizationGradient",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpscnnbatchnormalizationgradient"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnbatchnormalizationstate": {
+      "abstract": [
+        {
+          "text": "An object that stores data required to execute batch normalization.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSCNNBatchNormalizationState"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnbatchnormalizationstate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSCNNBatchNormalizationState",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpscnnbatchnormalizationstate"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnbatchnormalizationstatistics": {
+      "abstract": [
+        {
+          "text": "An object that stores statistics required to execute batch normalization.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSCNNBatchNormalizationStatistics"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnbatchnormalizationstatistics",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSCNNBatchNormalizationStatistics",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpscnnbatchnormalizationstatistics"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnbatchnormalizationstatisticsgradient": {
+      "abstract": [
+        {
+          "text": "An object that stores the gradient of the loss function with respect to the batch statistics and batch normalization weights.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSCNNBatchNormalizationStatisticsGradient"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnbatchnormalizationstatisticsgradient",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSCNNBatchNormalizationStatisticsGradient",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpscnnbatchnormalizationstatisticsgradient"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnbinaryconvolution": {
+      "abstract": [
+        {
+          "text": "A convolution kernel with binary weights and an input image using binary approximations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSCNNBinaryConvolution"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnbinaryconvolution",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSCNNBinaryConvolution",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpscnnbinaryconvolution"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnbinaryfullyconnected": {
+      "abstract": [
+        {
+          "text": "A fully connected convolution layer with binary weights and optionally binarized input image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSCNNBinaryFullyConnected"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnbinaryfullyconnected",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSCNNBinaryFullyConnected",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpscnnbinaryfullyconnected"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnbinarykernel": {
+      "abstract": [
+        {
+          "text": "A convolution neural network kernel.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSCNNBinaryKernel"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnbinarykernel",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSCNNBinaryKernel",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpscnnbinarykernel"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnconvolution": {
+      "abstract": [
+        {
+          "text": "A convolution kernel that convolves the input image with a set of filters, with each producing one feature map in the output image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSCNNConvolution"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnconvolution",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSCNNConvolution",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpscnnconvolution"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnconvolutiongradient": {
+      "abstract": [
+        {
+          "text": "A gradient convolution kernel.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSCNNConvolutionGradient"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnconvolutiongradient",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSCNNConvolutionGradient",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpscnnconvolutiongradient"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnconvolutiongradientstate": {
+      "abstract": [
+        {
+          "text": "An object that exposes a gradient convolution kernel's gradient with respect to weights and biases.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSCNNConvolutionGradientState"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnconvolutiongradientstate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSCNNConvolutionGradientState",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpscnnconvolutiongradientstate"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnconvolutiontranspose": {
+      "abstract": [
+        {
+          "text": "A transposed convolution kernel.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSCNNConvolutionTranspose"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnconvolutiontranspose",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSCNNConvolutionTranspose",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpscnnconvolutiontranspose"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnconvolutionweightsandbiasesstate": {
+      "abstract": [
+        {
+          "text": "A class that stores weights and biases.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSCNNConvolutionWeightsAndBiasesState"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnconvolutionweightsandbiasesstate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSCNNConvolutionWeightsAndBiasesState",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpscnnconvolutionweightsandbiasesstate"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnncrosschannelnormalization": {
+      "abstract": [
+        {
+          "text": "A normalization kernel applied across feature channels.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSCNNCrossChannelNormalization"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnncrosschannelnormalization",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSCNNCrossChannelNormalization",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpscnncrosschannelnormalization"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnncrosschannelnormalizationgradient": {
+      "abstract": [
+        {
+          "text": "A gradient normalization kernel applied across feature channels.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSCNNCrossChannelNormalizationGradient"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnncrosschannelnormalizationgradient",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSCNNCrossChannelNormalizationGradient",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpscnncrosschannelnormalizationgradient"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnndepthwiseconvolutiondescriptor": {
+      "abstract": [
+        {
+          "text": "A description of a convolution object that does depthwise convolution.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSCNNDepthWiseConvolutionDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnndepthwiseconvolutiondescriptor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSCNNDepthWiseConvolutionDescriptor",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpscnndepthwiseconvolutiondescriptor"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnndilatedpoolingmax": {
+      "abstract": [
+        {
+          "text": "A dilated max pooling filter.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSCNNDilatedPoolingMax"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnndilatedpoolingmax",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSCNNDilatedPoolingMax",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpscnndilatedpoolingmax"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnndilatedpoolingmaxgradient": {
+      "abstract": [
+        {
+          "text": "A gradient dilated max pooling filter.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSCNNDilatedPoolingMaxGradient"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnndilatedpoolingmaxgradient",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSCNNDilatedPoolingMaxGradient",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpscnndilatedpoolingmaxgradient"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnndivide": {
+      "abstract": [
+        {
+          "text": "A division operator.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSCNNDivide"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnndivide",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSCNNDivide",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpscnndivide"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnndropout": {
+      "abstract": [
+        {
+          "text": "A dropout filter.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSCNNDropout"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnndropout",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSCNNDropout",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpscnndropout"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnndropoutgradient": {
+      "abstract": [
+        {
+          "text": "A gradient dropout filter.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSCNNDropoutGradient"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnndropoutgradient",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSCNNDropoutGradient",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpscnndropoutgradient"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnndropoutgradientstate": {
+      "abstract": [
+        {
+          "text": "A class that stores the mask used by dropout and gradient dropout filters.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSCNNDropoutGradientState"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnndropoutgradientstate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSCNNDropoutGradientState",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpscnndropoutgradientstate"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnfullyconnected": {
+      "abstract": [
+        {
+          "text": "A fully connected convolution layer, also known as an inner product layer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSCNNFullyConnected"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnfullyconnected",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSCNNFullyConnected",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpscnnfullyconnected"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnfullyconnectedgradient": {
+      "abstract": [
+        {
+          "text": "A gradient fully connected convolution layer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSCNNFullyConnectedGradient"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnfullyconnectedgradient",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSCNNFullyConnectedGradient",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpscnnfullyconnectedgradient"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnngradientkernel": {
+      "abstract": [
+        {
+          "text": "The base class for gradient layers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSCNNGradientKernel"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnngradientkernel",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSCNNGradientKernel",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpscnngradientkernel"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnninstancenormalization": {
+      "abstract": [
+        {
+          "text": "An instance normalization kernel.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSCNNInstanceNormalization"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnninstancenormalization",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSCNNInstanceNormalization",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpscnninstancenormalization"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnninstancenormalizationgradient": {
+      "abstract": [
+        {
+          "text": "A gradient instance normalization kernel.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSCNNInstanceNormalizationGradient"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnninstancenormalizationgradient",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSCNNInstanceNormalizationGradient",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpscnninstancenormalizationgradient"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnninstancenormalizationgradientstate": {
+      "abstract": [
+        {
+          "text": "An object that stores information required to execute a gradient pass for instance normalization.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSCNNInstanceNormalizationGradientState"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnninstancenormalizationgradientstate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSCNNInstanceNormalizationGradientState",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpscnninstancenormalizationgradientstate"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnkernel": {
+      "abstract": [
+        {
+          "text": "Base class for neural network layers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSCNNKernel"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnkernel",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSCNNKernel",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpscnnkernel"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnlocalcontrastnormalization": {
+      "abstract": [
+        {
+          "text": "A local-contrast normalization kernel.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSCNNLocalContrastNormalization"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnlocalcontrastnormalization",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSCNNLocalContrastNormalization",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpscnnlocalcontrastnormalization"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnlocalcontrastnormalizationgradient": {
+      "abstract": [
+        {
+          "text": "A gradient local-contrast normalization kernel.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSCNNLocalContrastNormalizationGradient"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnlocalcontrastnormalizationgradient",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSCNNLocalContrastNormalizationGradient",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpscnnlocalcontrastnormalizationgradient"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnlogsoftmax": {
+      "abstract": [
+        {
+          "text": "A neural transfer function that  is useful for constructing a loss function to be minimized when training neural networks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSCNNLogSoftMax"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnlogsoftmax",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSCNNLogSoftMax",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpscnnlogsoftmax"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnlogsoftmaxgradient": {
+      "abstract": [
+        {
+          "text": "A gradient logarithmic softmax filter.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSCNNLogSoftMaxGradient"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnlogsoftmaxgradient",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSCNNLogSoftMaxGradient",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpscnnlogsoftmaxgradient"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnloss": {
+      "abstract": [
+        {
+          "text": "A kernel that computes the loss and loss gradient between specified predictions and labels.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSCNNLoss"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnloss",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSCNNLoss",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpscnnloss"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnlossdatadescriptor": {
+      "abstract": [
+        {
+          "text": "An object that specifies properties used by a loss data descriptor.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSCNNLossDataDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnlossdatadescriptor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSCNNLossDataDescriptor",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpscnnlossdatadescriptor"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnlossdescriptor": {
+      "abstract": [
+        {
+          "text": "An object that specifies properties used by a loss kernel.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSCNNLossDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnlossdescriptor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSCNNLossDescriptor",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpscnnlossdescriptor"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnlosslabels": {
+      "abstract": [
+        {
+          "text": "A class that stores the per-element weight buffer used by loss and gradient loss kernels.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSCNNLossLabels"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnlosslabels",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSCNNLossLabels",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpscnnlosslabels"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnmultiply": {
+      "abstract": [
+        {
+          "text": "A multiply operator.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSCNNMultiply"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnmultiply",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSCNNMultiply",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpscnnmultiply"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnmultiplygradient": {
+      "abstract": [
+        {
+          "text": "A gradient multiply operator.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSCNNMultiplyGradient"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnmultiplygradient",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSCNNMultiplyGradient",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpscnnmultiplygradient"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnneuron": {
+      "abstract": [
+        {
+          "text": "A filter that applies a neuron activation function.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSCNNNeuron"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnneuron",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSCNNNeuron",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpscnnneuron"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnneuronabsolute": {
+      "abstract": [
+        {
+          "text": "An absolute neuron filter.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSCNNNeuronAbsolute"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnneuronabsolute",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSCNNNeuronAbsolute",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpscnnneuronabsolute"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnneuronelu": {
+      "abstract": [
+        {
+          "text": "A parametric ELU neuron filter.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSCNNNeuronELU"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnneuronelu",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSCNNNeuronELU",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpscnnneuronelu"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnneuronexponential": {
+      "abstract": [
+        {
+          "text": "An exponential neuron filter.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSCNNNeuronExponential"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnneuronexponential",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSCNNNeuronExponential",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpscnnneuronexponential"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnneurongradient": {
+      "abstract": [
+        {
+          "text": "A gradient neuron filter.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSCNNNeuronGradient"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnneurongradient",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSCNNNeuronGradient",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpscnnneurongradient"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnneuronhardsigmoid": {
+      "abstract": [
+        {
+          "text": "A hard sigmoid neuron filter.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSCNNNeuronHardSigmoid"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnneuronhardsigmoid",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSCNNNeuronHardSigmoid",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpscnnneuronhardsigmoid"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnneuronlinear": {
+      "abstract": [
+        {
+          "text": "A linear neuron filter.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSCNNNeuronLinear"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnneuronlinear",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSCNNNeuronLinear",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpscnnneuronlinear"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnneuronlogarithm": {
+      "abstract": [
+        {
+          "text": "A logarithm neuron filter.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSCNNNeuronLogarithm"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnneuronlogarithm",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSCNNNeuronLogarithm",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpscnnneuronlogarithm"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnneuronpower": {
+      "abstract": [
+        {
+          "text": "A power neuron filter.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSCNNNeuronPower"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnneuronpower",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSCNNNeuronPower",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpscnnneuronpower"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnneuronprelu": {
+      "abstract": [
+        {
+          "text": "A parametric ReLU (Rectified Linear Unit) neuron filter.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSCNNNeuronPReLU"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnneuronprelu",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSCNNNeuronPReLU",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpscnnneuronprelu"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnneuronrelu": {
+      "abstract": [
+        {
+          "text": "A ReLU (Rectified Linear Unit) neuron filter.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSCNNNeuronReLU"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnneuronrelu",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSCNNNeuronReLU",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpscnnneuronrelu"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnneuronrelun": {
+      "abstract": [
+        {
+          "text": "A ReLUN neuron filter.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSCNNNeuronReLUN"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnneuronrelun",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSCNNNeuronReLUN",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpscnnneuronrelun"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnneuronsigmoid": {
+      "abstract": [
+        {
+          "text": "A sigmoid neuron filter.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSCNNNeuronSigmoid"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnneuronsigmoid",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSCNNNeuronSigmoid",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpscnnneuronsigmoid"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnneuronsoftplus": {
+      "abstract": [
+        {
+          "text": "A parametric softplus neuron filter.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSCNNNeuronSoftPlus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnneuronsoftplus",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSCNNNeuronSoftPlus",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpscnnneuronsoftplus"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnneuronsoftsign": {
+      "abstract": [
+        {
+          "text": "A softsign neuron filter.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSCNNNeuronSoftSign"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnneuronsoftsign",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSCNNNeuronSoftSign",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpscnnneuronsoftsign"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnneurontanh": {
+      "abstract": [
+        {
+          "text": "A hyperbolic tangent neuron filter.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSCNNNeuronTanH"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnneurontanh",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSCNNNeuronTanH",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpscnnneurontanh"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnnormalizationgammaandbetastate": {
+      "abstract": [
+        {
+          "text": "An object that stores gamma and beta terms used to apply a scale and bias in instance- or batch-normalization operations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSCNNNormalizationGammaAndBetaState"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnnormalizationgammaandbetastate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSCNNNormalizationGammaAndBetaState",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpscnnnormalizationgammaandbetastate"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnnormalizationmeanandvariancestate": {
+      "abstract": [
+        {
+          "text": "An object that stores mean and variance terms used to execute batch normalization.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSCNNNormalizationMeanAndVarianceState"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnnormalizationmeanandvariancestate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSCNNNormalizationMeanAndVarianceState",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpscnnnormalizationmeanandvariancestate"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnpooling": {
+      "abstract": [
+        {
+          "text": "A pooling kernel.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSCNNPooling"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnpooling",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSCNNPooling",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpscnnpooling"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnpoolingaverage": {
+      "abstract": [
+        {
+          "text": "An average pooling filter.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSCNNPoolingAverage"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnpoolingaverage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSCNNPoolingAverage",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpscnnpoolingaverage"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnpoolingaveragegradient": {
+      "abstract": [
+        {
+          "text": "A gradient average pooling filter.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSCNNPoolingAverageGradient"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnpoolingaveragegradient",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSCNNPoolingAverageGradient",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpscnnpoolingaveragegradient"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnpoolinggradient": {
+      "abstract": [
+        {
+          "text": "A gradient pooling kernel.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSCNNPoolingGradient"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnpoolinggradient",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSCNNPoolingGradient",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpscnnpoolinggradient"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnpoolingl2norm": {
+      "abstract": [
+        {
+          "text": "An L2-norm pooling filter.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSCNNPoolingL2Norm"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnpoolingl2norm",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSCNNPoolingL2Norm",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpscnnpoolingl2norm"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnpoolingl2normgradient": {
+      "abstract": [
+        {
+          "text": "A gradient L2-norm pooling filter.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSCNNPoolingL2NormGradient"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnpoolingl2normgradient",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSCNNPoolingL2NormGradient",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpscnnpoolingl2normgradient"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnpoolingmax": {
+      "abstract": [
+        {
+          "text": "A max pooling filter.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSCNNPoolingMax"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnpoolingmax",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSCNNPoolingMax",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpscnnpoolingmax"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnpoolingmaxgradient": {
+      "abstract": [
+        {
+          "text": "A gradient max pooling filter.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSCNNPoolingMaxGradient"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnpoolingmaxgradient",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSCNNPoolingMaxGradient",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpscnnpoolingmaxgradient"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnsoftmax": {
+      "abstract": [
+        {
+          "text": "A neural transfer function that is useful for classification tasks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSCNNSoftMax"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnsoftmax",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSCNNSoftMax",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpscnnsoftmax"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnsoftmaxgradient": {
+      "abstract": [
+        {
+          "text": "A gradient softmax filter.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSCNNSoftMaxGradient"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnsoftmaxgradient",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSCNNSoftMaxGradient",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpscnnsoftmaxgradient"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnspatialnormalization": {
+      "abstract": [
+        {
+          "text": "A spatial normalization kernel.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSCNNSpatialNormalization"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnspatialnormalization",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSCNNSpatialNormalization",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpscnnspatialnormalization"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnspatialnormalizationgradient": {
+      "abstract": [
+        {
+          "text": "A gradient spatial normalization kernel.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSCNNSpatialNormalizationGradient"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnspatialnormalizationgradient",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSCNNSpatialNormalizationGradient",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpscnnspatialnormalizationgradient"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnsubpixelconvolutiondescriptor": {
+      "abstract": [
+        {
+          "text": "A description of a convolution object that does subpixel upsampling and reshaping. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSCNNSubPixelConvolutionDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnsubpixelconvolutiondescriptor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSCNNSubPixelConvolutionDescriptor",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpscnnsubpixelconvolutiondescriptor"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnsubtract": {
+      "abstract": [
+        {
+          "text": "A subtraction operator.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSCNNSubtract"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnsubtract",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSCNNSubtract",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpscnnsubtract"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnsubtractgradient": {
+      "abstract": [
+        {
+          "text": "A gradient subtraction operator.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSCNNSubtractGradient"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnsubtractgradient",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSCNNSubtractGradient",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpscnnsubtractgradient"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnupsampling": {
+      "abstract": [
+        {
+          "text": "A filter that resamples an existing MPS image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSCNNUpsampling"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnupsampling",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSCNNUpsampling",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpscnnupsampling"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnupsamplingbilinear": {
+      "abstract": [
+        {
+          "text": "A bilinear spatial upsampling filter.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSCNNUpsamplingBilinear"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnupsamplingbilinear",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSCNNUpsamplingBilinear",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpscnnupsamplingbilinear"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnupsamplingbilineargradient": {
+      "abstract": [
+        {
+          "text": "A gradient bilinear spatial upsampling filter.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSCNNUpsamplingBilinearGradient"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnupsamplingbilineargradient",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSCNNUpsamplingBilinearGradient",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpscnnupsamplingbilineargradient"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnupsamplinggradient": {
+      "abstract": [
+        {
+          "text": "A gradient filter that upsamples an existing Metal Performance Shaders image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSCNNUpsamplingGradient"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnupsamplinggradient",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSCNNUpsamplingGradient",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpscnnupsamplinggradient"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnupsamplingnearest": {
+      "abstract": [
+        {
+          "text": "A nearest spatial upsampling filter.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSCNNUpsamplingNearest"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnupsamplingnearest",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSCNNUpsamplingNearest",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpscnnupsamplingnearest"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnupsamplingnearestgradient": {
+      "abstract": [
+        {
+          "text": "A gradient upsampling filter that samples the pixel nearest to the source when upsampling to the destination pixel.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSCNNUpsamplingNearestGradient"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnupsamplingnearestgradient",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSCNNUpsamplingNearestGradient",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpscnnupsamplingnearestgradient"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnyololoss": {
+      "abstract": [
+        {
+          "text": "A kernel that computes the YOLO loss and loss gradient between specified predictions and labels.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSCNNYOLOLoss"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnyololoss",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSCNNYOLOLoss",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpscnnyololoss"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnyololossdescriptor": {
+      "abstract": [
+        {
+          "text": "An object that specifies properties used by a YOLO loss kernel.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSCNNYOLOLossDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnyololossdescriptor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSCNNYOLOLossDescriptor",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpscnnyololossdescriptor"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage": {
+      "abstract": [
+        {
+          "text": "A texture that may have more than four channels for use in convolutional neural networks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSImage"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSImage",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsimage"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimageedgemode/clamp": {
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimageedgemode/clamp",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSImageEdgeMode.clamp",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsimageedgemode/clamp"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimageedgemode/zero": {
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimageedgemode/zero",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSImageEdgeMode.zero",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsimageedgemode/zero"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimagesizeencodingstate": {
+      "abstract": [
+        {
+          "text": "A protocol for objects that contain information about an image size elsewhere in the graph.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSImageSizeEncodingState"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimagesizeencodingstate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSImageSizeEncodingState",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsimagesizeencodingstate"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnndefaultpadding": {
+      "abstract": [
+        {
+          "text": "A class that provides predefined padding policies for common tasks.    ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSNNDefaultPadding"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnndefaultpadding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSNNDefaultPadding",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsnndefaultpadding"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnneurondescriptor": {
+      "abstract": [
+        {
+          "text": "An object that specifies properties used by a neuron kernel.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSNNNeuronDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnneurondescriptor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSNNNeuronDescriptor",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsnnneurondescriptor"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnoptimizer": {
+      "abstract": [
+        {
+          "text": "The base class for optimization layers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSNNOptimizer"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnoptimizer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSNNOptimizer",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsnnoptimizer"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnoptimizeradam": {
+      "abstract": [
+        {
+          "text": "An optimization layer that performs an Adam pdate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSNNOptimizerAdam"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnoptimizeradam",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSNNOptimizerAdam",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsnnoptimizeradam"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnoptimizerdescriptor": {
+      "abstract": [
+        {
+          "text": "An object that specifies properties used by an optimizer kernel.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSNNOptimizerDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnoptimizerdescriptor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSNNOptimizerDescriptor",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsnnoptimizerdescriptor"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnoptimizerrmsprop": {
+      "abstract": [
+        {
+          "text": "An optimization layer that performs a root mean square propagation update.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSNNOptimizerRMSProp"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnoptimizerrmsprop",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSNNOptimizerRMSProp",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsnnoptimizerrmsprop"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnoptimizerstochasticgradientdescent": {
+      "abstract": [
+        {
+          "text": "An optimization layer that performs a gradient descent with an optional momentum update.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSNNOptimizerStochasticGradientDescent"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnoptimizerstochasticgradientdescent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSNNOptimizerStochasticGradientDescent",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsnnoptimizerstochasticgradientdescent"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnreducebinary": {
+      "abstract": [
+        {
+          "text": "The base class for binary reduction filters.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSNNReduceBinary"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnreducebinary",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSNNReduceBinary",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsnnreducebinary"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnreducecolumnmax": {
+      "abstract": [
+        {
+          "text": "A reduction filter that returns the maximum value for each column in an image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSNNReduceColumnMax"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnreducecolumnmax",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSNNReduceColumnMax",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsnnreducecolumnmax"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnreducecolumnmean": {
+      "abstract": [
+        {
+          "text": "A reduction filter that returns the mean value for each column in an image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSNNReduceColumnMean"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnreducecolumnmean",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSNNReduceColumnMean",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsnnreducecolumnmean"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnreducecolumnmin": {
+      "abstract": [
+        {
+          "text": "A reduction filter that returns the minimum value for each column in an image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSNNReduceColumnMin"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnreducecolumnmin",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSNNReduceColumnMin",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsnnreducecolumnmin"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnreducecolumnsum": {
+      "abstract": [
+        {
+          "text": "A reduction filter that returns the sum of all values for each column in an image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSNNReduceColumnSum"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnreducecolumnsum",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSNNReduceColumnSum",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsnnreducecolumnsum"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnreducefeaturechannelsandweightsmean": {
+      "abstract": [
+        {
+          "text": "A reduction filter that returns the weighted sum for each feature channel in an image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSNNReduceFeatureChannelsAndWeightsMean"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnreducefeaturechannelsandweightsmean",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSNNReduceFeatureChannelsAndWeightsMean",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsnnreducefeaturechannelsandweightsmean"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnreducefeaturechannelsandweightssum": {
+      "abstract": [
+        {
+          "text": "A reduction filter that returns the weighted sum of all values for each feature channel in an image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSNNReduceFeatureChannelsAndWeightsSum"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnreducefeaturechannelsandweightssum",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSNNReduceFeatureChannelsAndWeightsSum",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsnnreducefeaturechannelsandweightssum"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnreducefeaturechannelsargumentmax": {
+      "abstract": [
+        {
+          "text": "A reduction filter that returns the index of the location of the maximum value for each feature channel in an image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSNNReduceFeatureChannelsArgumentMax"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnreducefeaturechannelsargumentmax",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSNNReduceFeatureChannelsArgumentMax",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsnnreducefeaturechannelsargumentmax"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnreducefeaturechannelsargumentmin": {
+      "abstract": [
+        {
+          "text": "A reduction filter that returns the index of the location of the minimum value for each feature channel in an image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSNNReduceFeatureChannelsArgumentMin"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnreducefeaturechannelsargumentmin",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSNNReduceFeatureChannelsArgumentMin",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsnnreducefeaturechannelsargumentmin"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnreducefeaturechannelsmax": {
+      "abstract": [
+        {
+          "text": "A reduction filter that returns the maximum value for each feature channel in an image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSNNReduceFeatureChannelsMax"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnreducefeaturechannelsmax",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSNNReduceFeatureChannelsMax",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsnnreducefeaturechannelsmax"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnreducefeaturechannelsmean": {
+      "abstract": [
+        {
+          "text": "A reduction filter that returns the mean value for each feature channel in an image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSNNReduceFeatureChannelsMean"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnreducefeaturechannelsmean",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSNNReduceFeatureChannelsMean",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsnnreducefeaturechannelsmean"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnreducefeaturechannelsmin": {
+      "abstract": [
+        {
+          "text": "A reduction filter that returns the minimum value for each feature channel in an image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSNNReduceFeatureChannelsMin"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnreducefeaturechannelsmin",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSNNReduceFeatureChannelsMin",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsnnreducefeaturechannelsmin"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnreducefeaturechannelssum": {
+      "abstract": [
+        {
+          "text": "A reduction filter that returns the sum of all values for each feature channel in an image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSNNReduceFeatureChannelsSum"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnreducefeaturechannelssum",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSNNReduceFeatureChannelsSum",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsnnreducefeaturechannelssum"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnreducerowmax": {
+      "abstract": [
+        {
+          "text": "A reduction filter that returns the maximum value for each row in an image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSNNReduceRowMax"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnreducerowmax",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSNNReduceRowMax",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsnnreducerowmax"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnreducerowmean": {
+      "abstract": [
+        {
+          "text": "A reduction filter that returns the mean value for each row in an image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSNNReduceRowMean"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnreducerowmean",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSNNReduceRowMean",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsnnreducerowmean"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnreducerowmin": {
+      "abstract": [
+        {
+          "text": "A reduction filter that returns the minimum value for each row in an image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSNNReduceRowMin"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnreducerowmin",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSNNReduceRowMin",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsnnreducerowmin"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnreducerowsum": {
+      "abstract": [
+        {
+          "text": "A reduction filter that returns the sum of all values for each row in an image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSNNReduceRowSum"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnreducerowsum",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSNNReduceRowSum",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsnnreducerowsum"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnreduceunary": {
+      "abstract": [
+        {
+          "text": "The base class for unary reduction filters.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSNNReduceUnary"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnreduceunary",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSNNReduceUnary",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsnnreduceunary"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnreshape": {
+      "abstract": [
+        {
+          "text": "The base class for reshape operations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSNNReshape"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnreshape",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSNNReshape",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsnnreshape"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnslice": {
+      "abstract": [
+        {
+          "text": "A kernel that extracts a slice from an image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSNNSlice"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnslice",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSNNSlice",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsnnslice"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpstemporaryimage": {
+      "abstract": [
+        {
+          "text": "A texture for use in convolutional neural networks that stores transient data to be used and discarded promptly.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MPSTemporaryImage"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpstemporaryimage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MPSTemporaryImage",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpstemporaryimage"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpstemporaryimage/2097546-readcount": {
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpstemporaryimage/2097546-readcount",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "readCount",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpstemporaryimage/2097546-readcount"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/objects_that_simplify_the_creation_of_neural_networks": {
+      "abstract": [
+        {
+          "text": "Simplify the creation of neural networks using networks of filter, image, and state nodes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/objects_that_simplify_the_creation_of_neural_networks",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Objects that Simplify the Creation of Neural Networks",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/objects_that_simplify_the_creation_of_neural_networks"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/recurrent_neural_networks": {
+      "abstract": [
+        {
+          "text": "Create recurrent neural networks.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/recurrent_neural_networks",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Recurrent Neural Networks",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/recurrent_neural_networks"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/training_a_neural_network_with_metal_performance_shaders": {
+      "abstract": [
+        {
+          "text": "Use an MPS neural network graph to train a simple neural network digit classifier.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/training_a_neural_network_with_metal_performance_shaders",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Training a Neural Network with Metal Performance Shaders",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/training_a_neural_network_with_metal_performance_shaders"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer": {
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLCommandBuffer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MTLCommandBuffer",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcommandbuffer"
+    },
+    "link-2528269": {
+      "identifier": "link-2528269",
+      "kind": "article",
+      "role": "link",
+      "title": "MPSCNNKernel",
+      "type": "topic",
+      "url": "https://developer.apple.com/reference/metalperformanceshaders/mpscnnkernel"
+    },
+    "link-2528271": {
+      "identifier": "link-2528271",
+      "kind": "article",
+      "role": "link",
+      "title": "MPSCNNConvolution",
+      "type": "topic",
+      "url": "https://developer.apple.com/reference/metalperformanceshaders/mpscnnconvolution"
+    },
+    "link-2528272": {
+      "identifier": "link-2528272",
+      "kind": "article",
+      "role": "link",
+      "title": "MPSCNNFullyConnected",
+      "type": "topic",
+      "url": "https://developer.apple.com/reference/metalperformanceshaders/mpscnnfullyconnected"
+    },
+    "link-2528275": {
+      "identifier": "link-2528275",
+      "kind": "article",
+      "role": "link",
+      "title": "MPSCNNNeuron",
+      "type": "topic",
+      "url": "https://developer.apple.com/reference/metalperformanceshaders/mpscnnneuron"
+    },
+    "link-2528276": {
+      "identifier": "link-2528276",
+      "kind": "article",
+      "role": "link",
+      "title": "MPSCNNConvolutionDescriptor",
+      "type": "topic",
+      "url": "https://developer.apple.com/reference/metalperformanceshaders/mpscnnconvolutiondescriptor"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/training_a_neural_network_with_metal_performance_shaders",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimage",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpstemporaryimage",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/objects_that_simplify_the_creation_of_neural_networks",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/recurrent_neural_networks"
+      ],
+      "title": "Neural Networks"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "2978373",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnadd",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnaddgradient",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnsubtract",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnsubtractgradient",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnmultiply",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnmultiplygradient",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnndivide",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnarithmetic",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnarithmeticgradient",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnarithmeticgradientstate"
+      ],
+      "kind": "taskGroup",
+      "title": "Arithmetic Layers"
+    },
+    {
+      "anchor": "2881269",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnbinaryconvolution",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnconvolution",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnndepthwiseconvolutiondescriptor",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnsubpixelconvolutiondescriptor",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnconvolutiontranspose",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnconvolutiongradient",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnconvolutiongradientstate",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsimagesizeencodingstate",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnconvolutionweightsandbiasesstate"
+      ],
+      "kind": "taskGroup",
+      "title": "Convolution Layers"
+    },
+    {
+      "anchor": "2881270",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnpoolingaverage",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnpoolingaveragegradient",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnpoolingl2norm",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnpoolingmax",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnndilatedpoolingmax",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnpooling",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnpoolinggradient",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnndilatedpoolingmaxgradient",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnpoolingl2normgradient",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnpoolingmaxgradient"
+      ],
+      "kind": "taskGroup",
+      "title": "Pooling Layers"
+    },
+    {
+      "anchor": "2881271",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnbinaryfullyconnected",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnfullyconnected",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnfullyconnectedgradient"
+      ],
+      "kind": "taskGroup",
+      "title": "Fully Connected Layers"
+    },
+    {
+      "anchor": "2881272",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnneuronabsolute",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnneuronelu",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnneuronhardsigmoid",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnneuronlinear",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnneuronprelu",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnneuronrelun",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnneuronrelu",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnneuronsigmoid",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnneuronsoftplus",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnneuronsoftsign",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnneurontanh",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnneuron",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnneuronexponential",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnneurongradient",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnneuronlogarithm",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnneuronpower",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnneurondescriptor"
+      ],
+      "kind": "taskGroup",
+      "title": "Neuron Layers"
+    },
+    {
+      "anchor": "2881273",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnsoftmax",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnlogsoftmax",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnlogsoftmaxgradient",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnsoftmaxgradient"
+      ],
+      "kind": "taskGroup",
+      "title": "Softmax Layers"
+    },
+    {
+      "anchor": "2881274",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnncrosschannelnormalization",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnncrosschannelnormalizationgradient",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnlocalcontrastnormalization",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnlocalcontrastnormalizationgradient",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnspatialnormalization",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnspatialnormalizationgradient",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnbatchnormalization",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnbatchnormalizationgradient",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnbatchnormalizationstate",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnnormalizationmeanandvariancestate",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnbatchnormalizationstatistics",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnbatchnormalizationstatisticsgradient",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnninstancenormalization",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnninstancenormalizationgradient",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnninstancenormalizationgradientstate",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnnormalizationgammaandbetastate"
+      ],
+      "kind": "taskGroup",
+      "title": "Normalization Layers"
+    },
+    {
+      "anchor": "2881276",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnupsampling",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnupsamplingbilinear",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnupsamplingnearest",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnupsamplingbilineargradient",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnupsamplinggradient",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnupsamplingnearestgradient"
+      ],
+      "kind": "taskGroup",
+      "title": "Upsampling Layers"
+    },
+    {
+      "anchor": "2978374",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnndropout",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnndropoutgradient",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnndropoutgradientstate"
+      ],
+      "kind": "taskGroup",
+      "title": "Dropout Layers"
+    },
+    {
+      "anchor": "2978377",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnloss",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnlossdatadescriptor",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnlossdescriptor",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnlosslabels",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnyololoss",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnyololossdescriptor"
+      ],
+      "kind": "taskGroup",
+      "title": "Loss Layers"
+    },
+    {
+      "anchor": "2978386",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnreducerowmax",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnreducerowmin",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnreducerowsum",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnreducerowmean",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnreducecolumnmax",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnreducecolumnmin",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnreducecolumnsum",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnreducecolumnmean",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnreducefeaturechannelsmax",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnreducefeaturechannelsmin",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnreducefeaturechannelssum",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnreducefeaturechannelsmean",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnreducefeaturechannelsargumentmax",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnreducefeaturechannelsargumentmin",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnreducefeaturechannelsandweightssum",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnreducefeaturechannelsandweightsmean",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnreduceunary",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnreducebinary"
+      ],
+      "kind": "taskGroup",
+      "title": "Reduction Layers"
+    },
+    {
+      "anchor": "2978389",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnreshape"
+      ],
+      "kind": "taskGroup",
+      "title": "Reshape Layer"
+    },
+    {
+      "anchor": "2978390",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnslice"
+      ],
+      "kind": "taskGroup",
+      "title": "Slice Layer"
+    },
+    {
+      "anchor": "2978391",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnoptimizeradam",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnoptimizerrmsprop",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnoptimizerstochasticgradientdescent",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnoptimizer",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnnoptimizerdescriptor"
+      ],
+      "kind": "taskGroup",
+      "title": "Optimization Layers"
+    },
+    {
+      "anchor": "2887445",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnkernel",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnnbinarykernel",
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpscnngradientkernel"
+      ],
+      "kind": "taskGroup",
+      "title": "Layer Base Classes"
+    },
+    {
+      "anchor": "2881278",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsnndefaultpadding"
+      ],
+      "kind": "taskGroup",
+      "title": "Predefined Padding Policies"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/metalperformanceshaders/convolutional_neural_network_kernels"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/metalperformanceshaders/convolutional_neural_network_kernels"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

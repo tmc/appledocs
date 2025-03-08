@@ -1,0 +1,652 @@
+{
+  "abstract": [
+    {
+      "text": "Keys used in a user notification’s description dictionary, which describes the contents of the notification dialog to display.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/corefoundation",
+        "doc://com.apple.documentation/documentation/corefoundation/cfusernotification-rd5"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/corefoundation/cfusernotification/dialog_description_keys"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1667041,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Core Foundation"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Dialog Description Keys"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When creating the user notification with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/corefoundation/1534528-cfusernotificationcreate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", the description dictionary must have a value for ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/corefoundation/kcfusernotificationalertheaderkey",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". All other keys are optional.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The button title keys must be given in right-to-left order—you therefore must use the ",
+              "type": "text"
+            },
+            {
+              "code": "kCFUserNotificationDefaultButtonTitleKey",
+              "type": "codeVoice"
+            },
+            {
+              "text": " constant for the rightmost button even if it is conceptually not a \"default\" button (for example, if you want a single \"Cancel\" button that should not have color, should not pulse, and should not have return for a key equivalent). If, however, you set the ",
+              "type": "text"
+            },
+            {
+              "code": "kCFUserNotificationNoDefaultButtonFlag",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", the rightmost button does not behave as a default button (although it will still be the \"default\" button in the sense of using ",
+              "type": "text"
+            },
+            {
+              "code": "kCFUserNotificationDefaultButtonTitleKey",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "kCFUserNotificationDefaultResponse",
+              "type": "codeVoice"
+            },
+            {
+              "text": "). The following code fragment shows how you can create a notification that contains a single \"Cancel\" button that does not behave as a default button.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "const void* keys[] = {kCFUserNotificationAlertHeaderKey,",
+            "                      kCFUserNotificationProgressIndicatorValueKey,",
+            "                      kCFUserNotificationDefaultButtonTitleKey};",
+            "const void* values[] = {CFSTR(\"Progress\"),",
+            "                        kCFBooleanTrue,",
+            "                        CFSTR(\"Cancel\")};",
+            "CFDictionaryRef parameters = CFDictionaryCreate(0, keys, values,",
+            "        sizeof(keys)/sizeof(*keys), &kCFTypeDictionaryKeyCallBacks,",
+            "        &kCFTypeDictionaryValueCallBacks);",
+            "SInt32 err = 0;",
+            "CFUserNotificationCreate(kCFAllocatorDefault, 0,",
+            "        kCFUserNotificationPlainAlertLevel | kCFUserNotificationNoDefaultButtonFlag,",
+            "        &err, parameters);"
+          ],
+          "metadata": {
+            "anchor": "2556095",
+            "title": "Listing 1"
+          },
+          "syntax": "occ",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you set the ",
+              "type": "text"
+            },
+            {
+              "code": "kCFUserNotificationNoDefaultButtonFlag",
+              "type": "codeVoice"
+            },
+            {
+              "text": " flag and do not specify a value for ",
+              "type": "text"
+            },
+            {
+              "code": "kCFUserNotificationDefaultButtonTitleKey",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", the notification will have no buttons.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/corefoundation": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Foundation",
+      "type": "topic",
+      "url": "/documentation/corefoundation"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1534528-cfusernotificationcreate": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1534528-cfusernotificationcreate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFUserNotificationCreate(_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1534528-cfusernotificationcreate"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfusernotification-rd5": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfusernotification-rd5",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFUserNotification",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfusernotification-rd5"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfusernotification/dialog_description_keys#2556095": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfusernotification/dialog_description_keys#2556095",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/corefoundation/cfusernotification/dialog_description_keys#2556095"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/kcfusernotificationalertheaderkey": {
+      "abstract": [
+        {
+          "text": "The title of the notification dialog.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "let "
+        },
+        {
+          "kind": "identifier",
+          "text": "kCFUserNotificationAlertHeaderKey"
+        },
+        {
+          "kind": "text",
+          "text": ": CFString!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/kcfusernotificationalertheaderkey",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kCFUserNotificationAlertHeaderKey",
+      "type": "topic",
+      "url": "/documentation/corefoundation/kcfusernotificationalertheaderkey"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/kcfusernotificationalertmessagekey": {
+      "abstract": [
+        {
+          "text": "The message string to display in the dialog.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "let "
+        },
+        {
+          "kind": "identifier",
+          "text": "kCFUserNotificationAlertMessageKey"
+        },
+        {
+          "kind": "text",
+          "text": ": CFString!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/kcfusernotificationalertmessagekey",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kCFUserNotificationAlertMessageKey",
+      "type": "topic",
+      "url": "/documentation/corefoundation/kcfusernotificationalertmessagekey"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/kcfusernotificationalternatebuttontitlekey": {
+      "abstract": [
+        {
+          "text": "The title of an optional alternate button.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "let "
+        },
+        {
+          "kind": "identifier",
+          "text": "kCFUserNotificationAlternateButtonTitleKey"
+        },
+        {
+          "kind": "text",
+          "text": ": CFString!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/kcfusernotificationalternatebuttontitlekey",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kCFUserNotificationAlternateButtonTitleKey",
+      "type": "topic",
+      "url": "/documentation/corefoundation/kcfusernotificationalternatebuttontitlekey"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/kcfusernotificationcheckboxtitleskey": {
+      "abstract": [
+        {
+          "text": "The list of titles for all the checkboxes or radio buttons to display.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "let "
+        },
+        {
+          "kind": "identifier",
+          "text": "kCFUserNotificationCheckBoxTitlesKey"
+        },
+        {
+          "kind": "text",
+          "text": ": CFString!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/kcfusernotificationcheckboxtitleskey",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kCFUserNotificationCheckBoxTitlesKey",
+      "type": "topic",
+      "url": "/documentation/corefoundation/kcfusernotificationcheckboxtitleskey"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/kcfusernotificationdefaultbuttontitlekey": {
+      "abstract": [
+        {
+          "text": "The title of the default button. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "let "
+        },
+        {
+          "kind": "identifier",
+          "text": "kCFUserNotificationDefaultButtonTitleKey"
+        },
+        {
+          "kind": "text",
+          "text": ": CFString!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/kcfusernotificationdefaultbuttontitlekey",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kCFUserNotificationDefaultButtonTitleKey",
+      "type": "topic",
+      "url": "/documentation/corefoundation/kcfusernotificationdefaultbuttontitlekey"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/kcfusernotificationiconurlkey": {
+      "abstract": [
+        {
+          "text": "A file URL pointing to the icon to display in the dialog. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "let "
+        },
+        {
+          "kind": "identifier",
+          "text": "kCFUserNotificationIconURLKey"
+        },
+        {
+          "kind": "text",
+          "text": ": CFString!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/kcfusernotificationiconurlkey",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kCFUserNotificationIconURLKey",
+      "type": "topic",
+      "url": "/documentation/corefoundation/kcfusernotificationiconurlkey"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/kcfusernotificationlocalizationurlkey": {
+      "abstract": [
+        {
+          "text": "A file URL pointing to a bundle that contains localized versions of the strings displayed in the dialog.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "let "
+        },
+        {
+          "kind": "identifier",
+          "text": "kCFUserNotificationLocalizationURLKey"
+        },
+        {
+          "kind": "text",
+          "text": ": CFString!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/kcfusernotificationlocalizationurlkey",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kCFUserNotificationLocalizationURLKey",
+      "type": "topic",
+      "url": "/documentation/corefoundation/kcfusernotificationlocalizationurlkey"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/kcfusernotificationotherbuttontitlekey": {
+      "abstract": [
+        {
+          "text": "The title of an optional third button.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "let "
+        },
+        {
+          "kind": "identifier",
+          "text": "kCFUserNotificationOtherButtonTitleKey"
+        },
+        {
+          "kind": "text",
+          "text": ": CFString!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/kcfusernotificationotherbuttontitlekey",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kCFUserNotificationOtherButtonTitleKey",
+      "type": "topic",
+      "url": "/documentation/corefoundation/kcfusernotificationotherbuttontitlekey"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/kcfusernotificationpopupselectionkey": {
+      "abstract": [
+        {
+          "text": "The item that was selected from a pop-up menu.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "let "
+        },
+        {
+          "kind": "identifier",
+          "text": "kCFUserNotificationPopUpSelectionKey"
+        },
+        {
+          "kind": "text",
+          "text": ": CFString!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/kcfusernotificationpopupselectionkey",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kCFUserNotificationPopUpSelectionKey",
+      "type": "topic",
+      "url": "/documentation/corefoundation/kcfusernotificationpopupselectionkey"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/kcfusernotificationpopuptitleskey": {
+      "abstract": [
+        {
+          "text": "The list of strings to display in a pop-up menu. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "let "
+        },
+        {
+          "kind": "identifier",
+          "text": "kCFUserNotificationPopUpTitlesKey"
+        },
+        {
+          "kind": "text",
+          "text": ": CFString!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/kcfusernotificationpopuptitleskey",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kCFUserNotificationPopUpTitlesKey",
+      "type": "topic",
+      "url": "/documentation/corefoundation/kcfusernotificationpopuptitleskey"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/kcfusernotificationprogressindicatorvaluekey": {
+      "abstract": [
+        {
+          "text": "A value to indicate the progress of an operation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "let "
+        },
+        {
+          "kind": "identifier",
+          "text": "kCFUserNotificationProgressIndicatorValueKey"
+        },
+        {
+          "kind": "text",
+          "text": ": CFString!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/kcfusernotificationprogressindicatorvaluekey",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kCFUserNotificationProgressIndicatorValueKey",
+      "type": "topic",
+      "url": "/documentation/corefoundation/kcfusernotificationprogressindicatorvaluekey"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/kcfusernotificationsoundurlkey": {
+      "abstract": [
+        {
+          "text": "A file URL pointing to a sound that will be played when the alert appears.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "let "
+        },
+        {
+          "kind": "identifier",
+          "text": "kCFUserNotificationSoundURLKey"
+        },
+        {
+          "kind": "text",
+          "text": ": CFString!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/kcfusernotificationsoundurlkey",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kCFUserNotificationSoundURLKey",
+      "type": "topic",
+      "url": "/documentation/corefoundation/kcfusernotificationsoundurlkey"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/kcfusernotificationtextfieldtitleskey": {
+      "abstract": [
+        {
+          "text": "The list of titles for all the text fields to display. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "let "
+        },
+        {
+          "kind": "identifier",
+          "text": "kCFUserNotificationTextFieldTitlesKey"
+        },
+        {
+          "kind": "text",
+          "text": ": CFString!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/kcfusernotificationtextfieldtitleskey",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kCFUserNotificationTextFieldTitlesKey",
+      "type": "topic",
+      "url": "/documentation/corefoundation/kcfusernotificationtextfieldtitleskey"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/kcfusernotificationtextfieldvalueskey": {
+      "abstract": [
+        {
+          "text": "The list of values to put into the text fields. If only one text field is to be displayed, you can pass its value string directly without putting it into an array first.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "let "
+        },
+        {
+          "kind": "identifier",
+          "text": "kCFUserNotificationTextFieldValuesKey"
+        },
+        {
+          "kind": "text",
+          "text": ": CFString!"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/kcfusernotificationtextfieldvalueskey",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kCFUserNotificationTextFieldValuesKey",
+      "type": "topic",
+      "url": "/documentation/corefoundation/kcfusernotificationtextfieldvalueskey"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "1677623",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/corefoundation/kcfusernotificationiconurlkey",
+        "doc://com.apple.documentation/documentation/corefoundation/kcfusernotificationsoundurlkey",
+        "doc://com.apple.documentation/documentation/corefoundation/kcfusernotificationlocalizationurlkey",
+        "doc://com.apple.documentation/documentation/corefoundation/kcfusernotificationalertheaderkey",
+        "doc://com.apple.documentation/documentation/corefoundation/kcfusernotificationalertmessagekey",
+        "doc://com.apple.documentation/documentation/corefoundation/kcfusernotificationdefaultbuttontitlekey",
+        "doc://com.apple.documentation/documentation/corefoundation/kcfusernotificationalternatebuttontitlekey",
+        "doc://com.apple.documentation/documentation/corefoundation/kcfusernotificationotherbuttontitlekey",
+        "doc://com.apple.documentation/documentation/corefoundation/kcfusernotificationprogressindicatorvaluekey",
+        "doc://com.apple.documentation/documentation/corefoundation/kcfusernotificationpopuptitleskey",
+        "doc://com.apple.documentation/documentation/corefoundation/kcfusernotificationtextfieldtitleskey",
+        "doc://com.apple.documentation/documentation/corefoundation/kcfusernotificationcheckboxtitleskey",
+        "doc://com.apple.documentation/documentation/corefoundation/kcfusernotificationtextfieldvalueskey",
+        "doc://com.apple.documentation/documentation/corefoundation/kcfusernotificationpopupselectionkey"
+      ],
+      "kind": "taskGroup",
+      "title": "Constants"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/corefoundation/cfusernotification/dialog_description_keys"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/corefoundation/cfusernotification/dialog_description_keys"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

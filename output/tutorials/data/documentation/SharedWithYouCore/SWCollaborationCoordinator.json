@@ -1,0 +1,1980 @@
+{
+  "abstract": [
+    {
+      "text": "An object that contains the shared collaboration coordinator.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.sharedwithyou/documentation/SharedWithYouCore"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.sharedwithyou/documentation/SharedWithYouCore/SWCollaborationCoordinator"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)SWCollaborationCoordinator",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "SWCollaborationCoordinator"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Shared With You Core"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "SWCollaborationCoordinator"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "SWCollaborationCoordinator"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "SWCollaborationCoordinator"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "SWCollaborationCoordinator",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is a singleton, meaning there’s a global shared instance. The singleton invokes its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.sharedwithyou/documentation/SharedWithYouCore/SWCollaborationCoordinator/actionHandler",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " delegate to coordinate new collaborations and updates to existing collaborations.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Register the delegate soon after launch and handle actions immediately to avoid timeouts. Here’s how to set up the collaboration coordinator after your app finishes launching:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Access the singleton coordinator instance through the shared property.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Then, in the app delegate’s ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIApplicationDelegate/application(_:didFinishLaunchingWithOptions:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method, set the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "actionHandler",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " property to an object that conforms to the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.sharedwithyou/documentation/SharedWithYouCore/SWCollaborationActionHandler",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " protocol.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Session 10093: ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/videos/play/wwdc2022/10093/",
+                  "isActive": true,
+                  "type": "reference"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Related Sessions from WWDC22",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/UIKit/UIApplicationDelegate/application(_:didFinishLaunchingWithOptions:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that the launch process is almost done and the app is almost ready to run.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "optional"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "application"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "application"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIApplication",
+          "text": "UIApplication"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didFinishLaunchingWithOptions"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "launchOptions"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIApplication",
+          "text": "UIApplication"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@UIApplicationLaunchOptionsKey",
+          "text": "LaunchOptionsKey"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]? = nil) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIApplicationDelegate/application(_:didFinishLaunchingWithOptions:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "application(_:didFinishLaunchingWithOptions:)",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIApplicationDelegate/application(_:didFinishLaunchingWithOptions:)"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.sharedwithyou/documentation/SharedWithYouCore": {
+      "abstract": [
+        {
+          "text": "Surface shared content and collaborate in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sharedwithyou/documentation/SharedWithYouCore",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Shared With You Core",
+      "type": "topic",
+      "url": "/documentation/sharedwithyoucore"
+    },
+    "doc://com.apple.sharedwithyou/documentation/SharedWithYouCore/SWAction": {
+      "abstract": [
+        {
+          "text": "An object that represents a collaboration action.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SWAction"
+        }
+      ],
+      "identifier": "doc://com.apple.sharedwithyou/documentation/SharedWithYouCore/SWAction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SWAction"
+        }
+      ],
+      "role": "symbol",
+      "title": "SWAction",
+      "type": "topic",
+      "url": "/documentation/sharedwithyoucore/swaction"
+    },
+    "doc://com.apple.sharedwithyou/documentation/SharedWithYouCore/SWCollaborationActionHandler": {
+      "abstract": [
+        {
+          "text": "A delegate to handle incoming collaboration actions from a collaboration coordinator.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SWCollaborationActionHandler"
+        }
+      ],
+      "identifier": "doc://com.apple.sharedwithyou/documentation/SharedWithYouCore/SWCollaborationActionHandler",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SWCollaborationActionHandler"
+        }
+      ],
+      "role": "symbol",
+      "title": "SWCollaborationActionHandler",
+      "type": "topic",
+      "url": "/documentation/sharedwithyoucore/swcollaborationactionhandler"
+    },
+    "doc://com.apple.sharedwithyou/documentation/SharedWithYouCore/SWCollaborationCoordinator": {
+      "abstract": [
+        {
+          "text": "An object that contains the shared collaboration coordinator.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SWCollaborationCoordinator"
+        }
+      ],
+      "identifier": "doc://com.apple.sharedwithyou/documentation/SharedWithYouCore/SWCollaborationCoordinator",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SWCollaborationCoordinator"
+        }
+      ],
+      "role": "symbol",
+      "title": "SWCollaborationCoordinator",
+      "type": "topic",
+      "url": "/documentation/sharedwithyoucore/swcollaborationcoordinator"
+    },
+    "doc://com.apple.sharedwithyou/documentation/SharedWithYouCore/SWCollaborationCoordinator/actionHandler": {
+      "abstract": [
+        {
+          "text": "The collaboration action handler.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "actionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)SWCollaborationActionHandler",
+          "text": "SWCollaborationActionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.sharedwithyou/documentation/SharedWithYouCore/SWCollaborationCoordinator/actionHandler",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "actionHandler"
+        }
+      ],
+      "role": "symbol",
+      "title": "actionHandler",
+      "type": "topic",
+      "url": "/documentation/sharedwithyoucore/swcollaborationcoordinator/actionhandler"
+    },
+    "doc://com.apple.sharedwithyou/documentation/SharedWithYouCore/SWCollaborationCoordinator/shared": {
+      "abstract": [
+        {
+          "text": "The shared collaboration coordinator.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "shared"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SWCollaborationCoordinator",
+          "text": "SWCollaborationCoordinator"
+        }
+      ],
+      "identifier": "doc://com.apple.sharedwithyou/documentation/SharedWithYouCore/SWCollaborationCoordinator/shared",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "sharedCoordinator"
+        }
+      ],
+      "role": "symbol",
+      "title": "shared",
+      "type": "topic",
+      "url": "/documentation/sharedwithyoucore/swcollaborationcoordinator/shared"
+    },
+    "doc://com.apple.sharedwithyou/documentation/SharedWithYouCore/SWCollaborationIdentifier": {
+      "abstract": [
+        {
+          "text": "A unique identifier for a collaboration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SWCollaborationIdentifier"
+        }
+      ],
+      "identifier": "doc://com.apple.sharedwithyou/documentation/SharedWithYouCore/SWCollaborationIdentifier",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SWCollaborationIdentifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "SWCollaborationIdentifier",
+      "type": "topic",
+      "url": "/documentation/sharedwithyoucore/swcollaborationidentifier"
+    },
+    "doc://com.apple.sharedwithyou/documentation/SharedWithYouCore/SWCollaborationMetadata": {
+      "abstract": [
+        {
+          "text": "A model object for conveying data during a collaboration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SWCollaborationMetadata"
+        }
+      ],
+      "identifier": "doc://com.apple.sharedwithyou/documentation/SharedWithYouCore/SWCollaborationMetadata",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SWCollaborationMetadata"
+        }
+      ],
+      "role": "symbol",
+      "title": "SWCollaborationMetadata",
+      "type": "topic",
+      "url": "/documentation/sharedwithyoucore/swcollaborationmetadata"
+    },
+    "doc://com.apple.sharedwithyou/documentation/SharedWithYouCore/SWCollaborationOption": {
+      "abstract": [
+        {
+          "text": "An object that determines how the system shares a document in a collaboration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SWCollaborationOption"
+        }
+      ],
+      "identifier": "doc://com.apple.sharedwithyou/documentation/SharedWithYouCore/SWCollaborationOption",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SWCollaborationOption"
+        }
+      ],
+      "role": "symbol",
+      "title": "SWCollaborationOption",
+      "type": "topic",
+      "url": "/documentation/sharedwithyoucore/swcollaborationoption"
+    },
+    "doc://com.apple.sharedwithyou/documentation/SharedWithYouCore/SWCollaborationOptionsGroup": {
+      "abstract": [
+        {
+          "text": "An object that represents a group of collaboration options that the system displays together.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SWCollaborationOptionsGroup"
+        }
+      ],
+      "identifier": "doc://com.apple.sharedwithyou/documentation/SharedWithYouCore/SWCollaborationOptionsGroup",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SWCollaborationOptionsGroup"
+        }
+      ],
+      "role": "symbol",
+      "title": "SWCollaborationOptionsGroup",
+      "type": "topic",
+      "url": "/documentation/sharedwithyoucore/swcollaborationoptionsgroup"
+    },
+    "doc://com.apple.sharedwithyou/documentation/SharedWithYouCore/SWCollaborationOptionsPickerGroup": {
+      "abstract": [
+        {
+          "text": "An object that represents a group of collaboration options that the system displays together with mutually exclusive options.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SWCollaborationOptionsPickerGroup"
+        }
+      ],
+      "identifier": "doc://com.apple.sharedwithyou/documentation/SharedWithYouCore/SWCollaborationOptionsPickerGroup",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SWCollaborationOptionsPickerGroup"
+        }
+      ],
+      "role": "symbol",
+      "title": "SWCollaborationOptionsPickerGroup",
+      "type": "topic",
+      "url": "/documentation/sharedwithyoucore/swcollaborationoptionspickergroup"
+    },
+    "doc://com.apple.sharedwithyou/documentation/SharedWithYouCore/SWCollaborationShareOptions": {
+      "abstract": [
+        {
+          "text": "An object that represents the state of the collaboration options for the document.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SWCollaborationShareOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.sharedwithyou/documentation/SharedWithYouCore/SWCollaborationShareOptions",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SWCollaborationShareOptions"
+        }
+      ],
+      "role": "symbol",
+      "title": "SWCollaborationShareOptions",
+      "type": "topic",
+      "url": "/documentation/sharedwithyoucore/swcollaborationshareoptions"
+    },
+    "doc://com.apple.sharedwithyou/documentation/SharedWithYouCore/SWLocalCollaborationIdentifier": {
+      "abstract": [
+        {
+          "text": "A local identifier for a collaboration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SWLocalCollaborationIdentifier"
+        }
+      ],
+      "identifier": "doc://com.apple.sharedwithyou/documentation/SharedWithYouCore/SWLocalCollaborationIdentifier",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SWLocalCollaborationIdentifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "SWLocalCollaborationIdentifier",
+      "type": "topic",
+      "url": "/documentation/sharedwithyoucore/swlocalcollaborationidentifier"
+    },
+    "doc://com.apple.sharedwithyou/documentation/SharedWithYouCore/SWPerson": {
+      "abstract": [
+        {
+          "text": "An object that tracks participants in a collaboration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SWPerson"
+        }
+      ],
+      "identifier": "doc://com.apple.sharedwithyou/documentation/SharedWithYouCore/SWPerson",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SWPerson"
+        }
+      ],
+      "role": "symbol",
+      "title": "SWPerson",
+      "type": "topic",
+      "url": "/documentation/sharedwithyoucore/swperson"
+    },
+    "doc://com.apple.sharedwithyou/documentation/SharedWithYouCore/SWStartCollaborationAction": {
+      "abstract": [
+        {
+          "text": "An object that represents the first action sent to an app when the user shares a collaboration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SWStartCollaborationAction"
+        }
+      ],
+      "identifier": "doc://com.apple.sharedwithyou/documentation/SharedWithYouCore/SWStartCollaborationAction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SWStartCollaborationAction"
+        }
+      ],
+      "role": "symbol",
+      "title": "SWStartCollaborationAction",
+      "type": "topic",
+      "url": "/documentation/sharedwithyoucore/swstartcollaborationaction"
+    },
+    "doc://com.apple.sharedwithyou/documentation/SharedWithYouCore/SWUpdateCollaborationParticipantsAction": {
+      "abstract": [
+        {
+          "text": "An action that contains the cryptographic identities the system uses to add to or remove from an existing collaboration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SWUpdateCollaborationParticipantsAction"
+        }
+      ],
+      "identifier": "doc://com.apple.sharedwithyou/documentation/SharedWithYouCore/SWUpdateCollaborationParticipantsAction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SWUpdateCollaborationParticipantsAction"
+        }
+      ],
+      "role": "symbol",
+      "title": "SWUpdateCollaborationParticipantsAction",
+      "type": "topic",
+      "url": "/documentation/sharedwithyoucore/swupdatecollaborationparticipantsaction"
+    },
+    "doc://com.apple.sharedwithyou/documentation/SharedWithYouCore/SharedWithYouCoreVersionNumber": {
+      "abstract": [
+        {
+          "text": "Project version number for Shared with You Core.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SharedWithYouCoreVersionNumber"
+        }
+      ],
+      "identifier": "doc://com.apple.sharedwithyou/documentation/SharedWithYouCore/SharedWithYouCoreVersionNumber",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SharedWithYouCoreVersionNumber",
+      "type": "topic",
+      "url": "/documentation/sharedwithyoucore/sharedwithyoucoreversionnumber"
+    },
+    "doc://com.apple.sharedwithyou/documentation/SharedWithYouCore/SharedWithYouCoreVersionString": {
+      "abstract": [
+        {
+          "text": "Project version string for Shared with You Core.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SharedWithYouCoreVersionString"
+        }
+      ],
+      "identifier": "doc://com.apple.sharedwithyou/documentation/SharedWithYouCore/SharedWithYouCoreVersionString",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SharedWithYouCoreVersionString",
+      "type": "topic",
+      "url": "/documentation/sharedwithyoucore/sharedwithyoucoreversionstring"
+    },
+    "doc://com.apple.sharedwithyou/documentation/SharedWithYouCore/UTCollaborationOptionsTypeIdentifier": {
+      "abstract": [
+        {
+          "text": "A string constant for the options type identifier.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UTCollaborationOptionsTypeIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.sharedwithyou/documentation/SharedWithYouCore/UTCollaborationOptionsTypeIdentifier",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UTCollaborationOptionsTypeIdentifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "UTCollaborationOptionsTypeIdentifier",
+      "type": "topic",
+      "url": "/documentation/sharedwithyoucore/utcollaborationoptionstypeidentifier"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    },
+    "https://developer.apple.com/videos/play/wwdc2022/10093/": {
+      "identifier": "https://developer.apple.com/videos/play/wwdc2022/10093/",
+      "title": "Integrate your custom collaboration app with Messages",
+      "titleInlineContent": [
+        {
+          "text": "Integrate your custom collaboration app with Messages",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/videos/play/wwdc2022/10093/"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Classes",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.sharedwithyou/documentation/SharedWithYouCore/SWAction",
+        "doc://com.apple.sharedwithyou/documentation/SharedWithYouCore/SWCollaborationActionHandler",
+        "doc://com.apple.sharedwithyou/documentation/SharedWithYouCore/SWCollaborationIdentifier",
+        "doc://com.apple.sharedwithyou/documentation/SharedWithYouCore/SWCollaborationMetadata",
+        "doc://com.apple.sharedwithyou/documentation/SharedWithYouCore/SWCollaborationOption",
+        "doc://com.apple.sharedwithyou/documentation/SharedWithYouCore/SWCollaborationOptionsGroup",
+        "doc://com.apple.sharedwithyou/documentation/SharedWithYouCore/SWCollaborationOptionsPickerGroup",
+        "doc://com.apple.sharedwithyou/documentation/SharedWithYouCore/SWCollaborationShareOptions",
+        "doc://com.apple.sharedwithyou/documentation/SharedWithYouCore/SWLocalCollaborationIdentifier",
+        "doc://com.apple.sharedwithyou/documentation/SharedWithYouCore/SWPerson",
+        "doc://com.apple.sharedwithyou/documentation/SharedWithYouCore/SWStartCollaborationAction",
+        "doc://com.apple.sharedwithyou/documentation/SharedWithYouCore/SWUpdateCollaborationParticipantsAction",
+        "doc://com.apple.sharedwithyou/documentation/SharedWithYouCore/UTCollaborationOptionsTypeIdentifier"
+      ],
+      "title": "Classes"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Accessing-coordinator-attributes",
+      "identifiers": [
+        "doc://com.apple.sharedwithyou/documentation/SharedWithYouCore/SWCollaborationCoordinator/shared",
+        "doc://com.apple.sharedwithyou/documentation/SharedWithYouCore/SWCollaborationCoordinator/actionHandler"
+      ],
+      "title": "Accessing coordinator attributes"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "16.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "16.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "16.0",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.0",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "SWCollaborationCoordinator"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SWCollaborationCoordinator"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SWCollaborationCoordinator"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.sharedwithyou/documentation/SharedWithYouCore"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Accessing-coordinator-attributes",
+              "identifiers": [
+                "doc://com.apple.sharedwithyou/documentation/SharedWithYouCore/SWCollaborationCoordinator/shared",
+                "doc://com.apple.sharedwithyou/documentation/SharedWithYouCore/SWCollaborationCoordinator/actionHandler"
+              ],
+              "title": "Accessing coordinator attributes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Classes",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.sharedwithyou/documentation/SharedWithYouCore/SWAction",
+                "doc://com.apple.sharedwithyou/documentation/SharedWithYouCore/SWCollaborationActionHandler",
+                "doc://com.apple.sharedwithyou/documentation/SharedWithYouCore/SWCollaborationIdentifier",
+                "doc://com.apple.sharedwithyou/documentation/SharedWithYouCore/SWCollaborationMetadata",
+                "doc://com.apple.sharedwithyou/documentation/SharedWithYouCore/SWCollaborationOption",
+                "doc://com.apple.sharedwithyou/documentation/SharedWithYouCore/SWCollaborationOptionsGroup",
+                "doc://com.apple.sharedwithyou/documentation/SharedWithYouCore/SWCollaborationOptionsPickerGroup",
+                "doc://com.apple.sharedwithyou/documentation/SharedWithYouCore/SWCollaborationShareOptions",
+                "doc://com.apple.sharedwithyou/documentation/SharedWithYouCore/SWLocalCollaborationIdentifier",
+                "doc://com.apple.sharedwithyou/documentation/SharedWithYouCore/SWPerson",
+                "doc://com.apple.sharedwithyou/documentation/SharedWithYouCore/SWStartCollaborationAction",
+                "doc://com.apple.sharedwithyou/documentation/SharedWithYouCore/SWUpdateCollaborationParticipantsAction",
+                "doc://com.apple.sharedwithyou/documentation/SharedWithYouCore/SharedWithYouCoreVersionNumber",
+                "doc://com.apple.sharedwithyou/documentation/SharedWithYouCore/SharedWithYouCoreVersionString",
+                "doc://com.apple.sharedwithyou/documentation/SharedWithYouCore/UTCollaborationOptionsTypeIdentifier"
+              ],
+              "title": "Classes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "visionOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "SWCollaborationCoordinator"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sharedwithyou~1documentation~1SharedWithYouCore~1SWLocalCollaborationIdentifier/title",
+          "value": "SWLocalCollaborationIdentifier"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sharedwithyou~1documentation~1SharedWithYouCore~1SWLocalCollaborationIdentifier/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SWLocalCollaborationIdentifier"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sharedwithyou~1documentation~1SharedWithYouCore~1SWLocalCollaborationIdentifier/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SWLocalCollaborationIdentifier"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sharedwithyou~1documentation~1SharedWithYouCore~1SWCollaborationCoordinator/title",
+          "value": "SWCollaborationCoordinator"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sharedwithyou~1documentation~1SharedWithYouCore~1SWCollaborationCoordinator/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SWCollaborationCoordinator"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sharedwithyou~1documentation~1SharedWithYouCore~1SWCollaborationCoordinator/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SWCollaborationCoordinator"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sharedwithyou~1documentation~1SharedWithYouCore~1SWCollaborationMetadata/title",
+          "value": "SWCollaborationMetadata"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sharedwithyou~1documentation~1SharedWithYouCore~1SWCollaborationMetadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SWCollaborationMetadata"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sharedwithyou~1documentation~1SharedWithYouCore~1SWCollaborationMetadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SWCollaborationMetadata"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sharedwithyou~1documentation~1SharedWithYouCore~1SWCollaborationShareOptions/title",
+          "value": "SWCollaborationShareOptions"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sharedwithyou~1documentation~1SharedWithYouCore~1SWCollaborationShareOptions/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SWCollaborationShareOptions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sharedwithyou~1documentation~1SharedWithYouCore~1SWCollaborationShareOptions/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SWCollaborationShareOptions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sharedwithyou~1documentation~1SharedWithYouCore~1SWUpdateCollaborationParticipantsAction/title",
+          "value": "SWUpdateCollaborationParticipantsAction"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sharedwithyou~1documentation~1SharedWithYouCore~1SWUpdateCollaborationParticipantsAction/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SWUpdateCollaborationParticipantsAction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sharedwithyou~1documentation~1SharedWithYouCore~1SWUpdateCollaborationParticipantsAction/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SWUpdateCollaborationParticipantsAction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sharedwithyou~1documentation~1SharedWithYouCore~1SWCollaborationOptionsPickerGroup/title",
+          "value": "SWCollaborationOptionsPickerGroup"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sharedwithyou~1documentation~1SharedWithYouCore~1SWCollaborationOptionsPickerGroup/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SWCollaborationOptionsPickerGroup"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sharedwithyou~1documentation~1SharedWithYouCore~1SWCollaborationOptionsPickerGroup/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SWCollaborationOptionsPickerGroup"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIApplicationDelegate~1application(_:didFinishLaunchingWithOptions:)/title",
+          "value": "application:didFinishLaunchingWithOptions:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIApplicationDelegate~1application(_:didFinishLaunchingWithOptions:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@BOOL",
+              "text": "BOOL"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "application:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIApplication",
+              "text": "UIApplication"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "application"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "didFinishLaunchingWithOptions:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:Q$objc(cs)NSDictionary",
+              "text": "NSDictionary<NSString *,id>"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "launchOptions"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sharedwithyou~1documentation~1SharedWithYouCore~1SWCollaborationOption/title",
+          "value": "SWCollaborationOption"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sharedwithyou~1documentation~1SharedWithYouCore~1SWCollaborationOption/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SWCollaborationOption"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sharedwithyou~1documentation~1SharedWithYouCore~1SWCollaborationOption/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SWCollaborationOption"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sharedwithyou~1documentation~1SharedWithYouCore~1SWCollaborationActionHandler/title",
+          "value": "SWCollaborationActionHandler"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sharedwithyou~1documentation~1SharedWithYouCore~1SWCollaborationActionHandler/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SWCollaborationActionHandler"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sharedwithyou~1documentation~1SharedWithYouCore~1SWCollaborationActionHandler/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SWCollaborationActionHandler"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sharedwithyou~1documentation~1SharedWithYouCore~1SWCollaborationCoordinator~1actionHandler/title",
+          "value": "actionHandler"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sharedwithyou~1documentation~1SharedWithYouCore~1SWCollaborationCoordinator~1actionHandler/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "actionHandler"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sharedwithyou~1documentation~1SharedWithYouCore~1SWPerson/title",
+          "value": "SWPerson"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sharedwithyou~1documentation~1SharedWithYouCore~1SWPerson/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SWPerson"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sharedwithyou~1documentation~1SharedWithYouCore~1SWPerson/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SWPerson"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sharedwithyou~1documentation~1SharedWithYouCore~1SWCollaborationCoordinator~1shared/title",
+          "value": "sharedCoordinator"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sharedwithyou~1documentation~1SharedWithYouCore~1SWCollaborationCoordinator~1shared/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "sharedCoordinator"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sharedwithyou~1documentation~1SharedWithYouCore~1SWAction/title",
+          "value": "SWAction"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sharedwithyou~1documentation~1SharedWithYouCore~1SWAction/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SWAction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sharedwithyou~1documentation~1SharedWithYouCore~1SWAction/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SWAction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sharedwithyou~1documentation~1SharedWithYouCore~1SWCollaborationOptionsGroup/title",
+          "value": "SWCollaborationOptionsGroup"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sharedwithyou~1documentation~1SharedWithYouCore~1SWCollaborationOptionsGroup/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SWCollaborationOptionsGroup"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sharedwithyou~1documentation~1SharedWithYouCore~1SWCollaborationOptionsGroup/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SWCollaborationOptionsGroup"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sharedwithyou~1documentation~1SharedWithYouCore~1UTCollaborationOptionsTypeIdentifier/title",
+          "value": "UTCollaborationOptionsTypeIdentifier"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sharedwithyou~1documentation~1SharedWithYouCore~1UTCollaborationOptionsTypeIdentifier/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UTCollaborationOptionsTypeIdentifier"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sharedwithyou~1documentation~1SharedWithYouCore~1SWCollaborationIdentifier/title",
+          "value": "SWCollaborationIdentifier"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sharedwithyou~1documentation~1SharedWithYouCore~1SWCollaborationIdentifier/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SWCollaborationIdentifier"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sharedwithyou~1documentation~1SharedWithYouCore~1SWCollaborationIdentifier/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SWCollaborationIdentifier"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sharedwithyou~1documentation~1SharedWithYouCore~1SWStartCollaborationAction/title",
+          "value": "SWStartCollaborationAction"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sharedwithyou~1documentation~1SharedWithYouCore~1SWStartCollaborationAction/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SWStartCollaborationAction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sharedwithyou~1documentation~1SharedWithYouCore~1SWStartCollaborationAction/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SWStartCollaborationAction"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/sharedwithyoucore/swcollaborationcoordinator"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/sharedwithyoucore/swcollaborationcoordinator"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

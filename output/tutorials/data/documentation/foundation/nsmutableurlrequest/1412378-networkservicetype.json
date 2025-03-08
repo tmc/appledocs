@@ -1,0 +1,417 @@
+{
+  "abstract": [
+    {
+      "text": "The network service type of the connection.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/url_loading_system",
+        "doc://com.apple.documentation/documentation/foundation/urlrequest",
+        "doc://com.apple.documentation/documentation/foundation/nsmutableurlrequest"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/nsmutableurlrequest/1412378-networkservicetype"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1412378,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSMutableURLRequest(py)networkServiceType",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "var "
+      },
+      {
+        "kind": "identifier",
+        "text": "networkServiceType"
+      },
+      {
+        "kind": "text",
+        "text": ": NSURLRequest.NetworkServiceType"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "parent": {
+      "title": "NSMutableURLRequest"
+    },
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "4.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "4.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.7",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Property",
+    "symbolKind": "instp",
+    "title": "networkServiceType"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "var"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "networkServiceType"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlrequest",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSURLRequest",
+              "text": "NSURLRequest"
+            },
+            {
+              "kind": "text",
+              "text": "."
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlrequest/networkservicetype",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@E@NSURLRequestNetworkServiceType",
+              "text": "NetworkServiceType"
+            },
+            {
+              "kind": "text",
+              "text": " { "
+            },
+            {
+              "kind": "keyword",
+              "text": "get"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "set"
+            },
+            {
+              "kind": "text",
+              "text": " }"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The network service type provides a hint to the operating system about what the underlying traffic is used for. This hint enhances the system's ability to prioritize traffic, determine how quickly it needs to wake up the cellular or Wi-Fi radio, and so on. By providing accurate information, you improve the ability of the system to optimally balance battery life, performance, and other considerations.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, specify the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlrequest/networkservicetype/background",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " type if your app is performing a download that was not requested by the user, like prefetching content so that it’s available when the user chooses to view it. By contrast, continually connected voice and video apps should use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlrequest/networkservicetype/voice",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ",  ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlrequest/networkservicetype/voip",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlrequest/networkservicetype/video",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " service types, as appropriate.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutableurlrequest": {
+      "abstract": [
+        {
+          "text": "A mutable URL load request that bridges to ",
+          "type": "text"
+        },
+        {
+          "text": " and you use when you need reference semantics or other Foundation-specific behavior.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutableurlrequest",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSMutableURLRequest",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutableurlrequest"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutableurlrequest/1412378-networkservicetype": {
+      "abstract": [
+        {
+          "text": "The network service type of the connection.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "networkServiceType"
+        },
+        {
+          "kind": "text",
+          "text": ": NSURLRequest.NetworkServiceType"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutableurlrequest/1412378-networkservicetype",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "networkServiceType",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutableurlrequest/1412378-networkservicetype"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlrequest": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlrequest",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSURLRequest",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlrequest"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlrequest/networkservicetype": {
+      "abstract": [
+        {
+          "text": "Constants that specify how a request uses network resources.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "enum "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSURLRequest.NetworkServiceType"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlrequest/networkservicetype",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSURLRequest.NetworkServiceType",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlrequest/networkservicetype"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlrequest/networkservicetype/background": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlrequest/networkservicetype/background",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSURLRequest.NetworkServiceType.background",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlrequest/networkservicetype/background"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlrequest/networkservicetype/video": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlrequest/networkservicetype/video",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSURLRequest.NetworkServiceType.video",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlrequest/networkservicetype/video"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlrequest/networkservicetype/voice": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlrequest/networkservicetype/voice",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSURLRequest.NetworkServiceType.voice",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlrequest/networkservicetype/voice"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlrequest/networkservicetype/voip": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlrequest/networkservicetype/voip",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSURLRequest.NetworkServiceType.voip",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlrequest/networkservicetype/voip"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url_loading_system": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "URL Loading System",
+      "type": "topic",
+      "url": "/documentation/foundation/url_loading_system"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlrequest": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlrequest",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLRequest",
+      "type": "topic",
+      "url": "/documentation/foundation/urlrequest"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsurlrequest/networkservicetype"
+      ],
+      "title": "Accessing the service type"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nsmutableurlrequest/1412378-networkservicetype"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/nsmutableurlrequest/1412378-networkservicetype"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

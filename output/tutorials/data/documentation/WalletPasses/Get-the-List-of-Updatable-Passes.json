@@ -1,0 +1,530 @@
+{
+  "abstract": [
+    {
+      "text": "Send the serial numbers for updated passes to a device.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.walletpasses/documentation/WalletPasses"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.walletpasses/documentation/WalletPasses/Get-the-List-of-Updatable-Passes"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "rest:WalletPasses:get:v1-devices-{}-registrations-{}?passesUpdatedSince={}",
+    "modules": [
+      {
+        "name": "Wallet Passes"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "Get the List of Updatable Passes"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "6.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "2.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Web Service Endpoint",
+    "symbolKind": "httpRequest",
+    "title": "Get the List of Updatable Passes"
+  },
+  "primaryContentSections": [
+    {
+      "kind": "restEndpoint",
+      "title": "URL",
+      "tokens": [
+        {
+          "kind": "method",
+          "text": "GET"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "baseURL",
+          "text": "https://yourpasshost.example.com/"
+        },
+        {
+          "kind": "path",
+          "text": "v1/devices/"
+        },
+        {
+          "kind": "parameter",
+          "text": "{deviceLibraryIdentifier}"
+        },
+        {
+          "kind": "path",
+          "text": "/registrations/"
+        },
+        {
+          "kind": "parameter",
+          "text": "{passTypeIdentifier}"
+        },
+        {
+          "kind": "path",
+          "text": "?passesUpdatedSince="
+        },
+        {
+          "kind": "parameter",
+          "text": "{previousLastUpdated}"
+        }
+      ]
+    },
+    {
+      "items": [
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The unique identifier for the device.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "deviceLibraryIdentifier",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The pass type identifier of the pass to check for updates. This value corresponds to the value of the ",
+                  "type": "text"
+                },
+                {
+                  "code": "passTypeIdentifier",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " key of the pass.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "passTypeIdentifier",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The value of the ",
+                  "type": "text"
+                },
+                {
+                  "code": "lastUpdated",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " key from the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.walletpasses/documentation/WalletPasses/SerialNumbers",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " object returned in a previous request. This value limits the results of the current request to the passes updated since that previous request.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "previousLastUpdated",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        }
+      ],
+      "kind": "restParameters",
+      "source": "path",
+      "title": "Path Parameters"
+    },
+    {
+      "items": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "On success, the call returns an object that contains the serial numbers for the matching passes.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Return Matching Passes",
+          "status": 200,
+          "type": [
+            {
+              "identifier": "doc://com.apple.walletpasses/documentation/WalletPasses/SerialNumbers",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:WalletPasses:SerialNumbers",
+              "text": "SerialNumbers"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "There are no matching passes.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "reason": "No Matching Passes",
+          "status": 204,
+          "type": []
+        }
+      ],
+      "kind": "restResponses",
+      "title": "Response Codes"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.walletpasses/documentation/WalletPasses/adding-a-web-service-to-update-passes"
+      ]
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.walletpasses/documentation/WalletPasses": {
+      "abstract": [
+        {
+          "text": "Create, distribute, and update passes for the Wallet app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.walletpasses/documentation/WalletPasses",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Wallet Passes",
+      "type": "topic",
+      "url": "/documentation/walletpasses"
+    },
+    "doc://com.apple.walletpasses/documentation/WalletPasses/Get-the-List-of-Updatable-Passes": {
+      "abstract": [
+        {
+          "text": "Send the serial numbers for updated passes to a device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.walletpasses/documentation/WalletPasses/Get-the-List-of-Updatable-Passes",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Get the List of Updatable Passes"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get the List of Updatable Passes",
+      "type": "topic",
+      "url": "/documentation/walletpasses/get-the-list-of-updatable-passes"
+    },
+    "doc://com.apple.walletpasses/documentation/WalletPasses/Log-a-Message": {
+      "abstract": [
+        {
+          "text": "Record a message on your server.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.walletpasses/documentation/WalletPasses/Log-a-Message",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Log a Message"
+        }
+      ],
+      "role": "symbol",
+      "title": "Log a Message",
+      "type": "topic",
+      "url": "/documentation/walletpasses/log-a-message"
+    },
+    "doc://com.apple.walletpasses/documentation/WalletPasses/LogEntries": {
+      "abstract": [
+        {
+          "text": "An object that contains an array of messages.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "LogEntries"
+        }
+      ],
+      "identifier": "doc://com.apple.walletpasses/documentation/WalletPasses/LogEntries",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LogEntries"
+        }
+      ],
+      "role": "symbol",
+      "title": "LogEntries",
+      "type": "topic",
+      "url": "/documentation/walletpasses/logentries"
+    },
+    "doc://com.apple.walletpasses/documentation/WalletPasses/PushToken": {
+      "abstract": [
+        {
+          "text": "An object that contains the push notification token for a registered pass on a device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "PushToken"
+        }
+      ],
+      "identifier": "doc://com.apple.walletpasses/documentation/WalletPasses/PushToken",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PushToken"
+        }
+      ],
+      "role": "symbol",
+      "title": "PushToken",
+      "type": "topic",
+      "url": "/documentation/walletpasses/pushtoken"
+    },
+    "doc://com.apple.walletpasses/documentation/WalletPasses/Register-a-Pass-for-Update-Notifications": {
+      "abstract": [
+        {
+          "text": "Set up change notifications for a pass on a device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.walletpasses/documentation/WalletPasses/Register-a-Pass-for-Update-Notifications",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Register a Pass for Update Notifications"
+        }
+      ],
+      "role": "symbol",
+      "title": "Register a Pass for Update Notifications",
+      "type": "topic",
+      "url": "/documentation/walletpasses/register-a-pass-for-update-notifications"
+    },
+    "doc://com.apple.walletpasses/documentation/WalletPasses/Send-an-Updated-Pass": {
+      "abstract": [
+        {
+          "text": "Create and sign an updated pass, and send it to the device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.walletpasses/documentation/WalletPasses/Send-an-Updated-Pass",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Send an Updated Pass"
+        }
+      ],
+      "role": "symbol",
+      "title": "Send an Updated Pass",
+      "type": "topic",
+      "url": "/documentation/walletpasses/send-an-updated-pass"
+    },
+    "doc://com.apple.walletpasses/documentation/WalletPasses/SerialNumbers": {
+      "abstract": [
+        {
+          "text": "An object that contains serial numbers for the updatable passes on a device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "SerialNumbers"
+        }
+      ],
+      "identifier": "doc://com.apple.walletpasses/documentation/WalletPasses/SerialNumbers",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SerialNumbers"
+        }
+      ],
+      "role": "symbol",
+      "title": "SerialNumbers",
+      "type": "topic",
+      "url": "/documentation/walletpasses/serialnumbers"
+    },
+    "doc://com.apple.walletpasses/documentation/WalletPasses/Unregister-a-Pass-for-Update-Notifications": {
+      "abstract": [
+        {
+          "text": "Stop sending update notifications for a pass on a device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.walletpasses/documentation/WalletPasses/Unregister-a-Pass-for-Update-Notifications",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Unregister a Pass for Update Notifications"
+        }
+      ],
+      "role": "symbol",
+      "title": "Unregister a Pass for Update Notifications",
+      "type": "topic",
+      "url": "/documentation/walletpasses/unregister-a-pass-for-update-notifications"
+    },
+    "doc://com.apple.walletpasses/documentation/WalletPasses/adding-a-web-service-to-update-passes": {
+      "abstract": [
+        {
+          "text": "Implement a web server to register, update, and unregister a pass on a device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.walletpasses/documentation/WalletPasses/adding-a-web-service-to-update-passes",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding a Web Service to Update Passes",
+      "type": "topic",
+      "url": "/documentation/walletpasses/adding-a-web-service-to-update-passes"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Pass-Updates",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.walletpasses/documentation/WalletPasses/adding-a-web-service-to-update-passes",
+        "doc://com.apple.walletpasses/documentation/WalletPasses/Register-a-Pass-for-Update-Notifications",
+        "doc://com.apple.walletpasses/documentation/WalletPasses/Send-an-Updated-Pass",
+        "doc://com.apple.walletpasses/documentation/WalletPasses/Unregister-a-Pass-for-Update-Notifications",
+        "doc://com.apple.walletpasses/documentation/WalletPasses/Log-a-Message",
+        "doc://com.apple.walletpasses/documentation/WalletPasses/PushToken",
+        "doc://com.apple.walletpasses/documentation/WalletPasses/SerialNumbers",
+        "doc://com.apple.walletpasses/documentation/WalletPasses/LogEntries"
+      ],
+      "title": "Pass Updates"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/walletpasses/get-the-list-of-updatable-passes"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

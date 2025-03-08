@@ -1,0 +1,577 @@
+{
+  "abstract": [
+    {
+      "text": "An object that restricts the messages that can be sent to another object (referred to as the checker’s delegate).",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/object_runtime",
+        "doc://com.apple.documentation/documentation/foundation/object_runtime/distributed_objects_support"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/nsprotocolchecker"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1411862,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSProtocolChecker",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "class "
+      },
+      {
+        "kind": "identifier",
+        "text": "NSProtocolChecker"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "15.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "NSProtocolChecker"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "Mac Catalyst",
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSProtocolChecker"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsproxy",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSProxy",
+              "text": "NSProxy"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsprotocolchecker",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " object can be particularly useful when an object with many methods, only a few of which ought to be remotely accessible, is made available using the distributed objects system.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A protocol checker acts as a kind of proxy; when it receives a message that is in its designated protocol, it forwards the message to its target and consequently appears to be the target object itself. However, when it receives a message not in its protocol, it raises an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsexceptionname/1415426-invalidargumentexception",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to indicate that the message isn’t allowed, whether or not the target object implements the method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Typically, an object that is to be distributed (yet must restrict messages) creates an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsprotocolchecker",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " for itself and returns the checker rather than returning itself in response to any messages. The object might also register the checker as the root object of an NSConnection.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The object should be careful about vending references to ",
+              "type": "text"
+            },
+            {
+              "code": "self",
+              "type": "codeVoice"
+            },
+            {
+              "text": "—the protocol checker will convert a return value of ",
+              "type": "text"
+            },
+            {
+              "code": "self",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to indicate the checker rather than the object for any messages forwarded by the checker, but direct references to the object (bypassing the checker) could be passed around by other objects.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/messageport": {
+      "abstract": [
+        {
+          "text": "A port that can be used as an endpoint for distributed object connections (or raw messaging).",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "MessagePort"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/messageport",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MessagePort",
+      "type": "topic",
+      "url": "/documentation/foundation/messageport"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsexceptionname/1415426-invalidargumentexception": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsexceptionname/1415426-invalidargumentexception",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "invalidArgumentException",
+      "type": "topic",
+      "url": "/documentation/foundation/nsexceptionname/1415426-invalidargumentexception"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmachport": {
+      "abstract": [
+        {
+          "text": "A port that can be used as an endpoint for distributed object connections (or raw messaging).",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSMachPort"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmachport",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSMachPort",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmachport"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmachportdelegate": {
+      "abstract": [
+        {
+          "text": "An interface for handling incoming Mach messages.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSMachPortDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmachportdelegate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSMachPortDelegate",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmachportdelegate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsprotocolchecker": {
+      "abstract": [
+        {
+          "text": "An object that restricts the messages that can be sent to another object (referred to as the checker’s delegate).",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSProtocolChecker"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsprotocolchecker",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSProtocolChecker",
+      "type": "topic",
+      "url": "/documentation/foundation/nsprotocolchecker"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsprotocolchecker/1413544-protocol": {
+      "abstract": [
+        {
+          "text": "Returns the protocol object the receiver uses.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "`protocol`"
+        },
+        {
+          "kind": "text",
+          "text": ": Protocol"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsprotocolchecker/1413544-protocol",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "protocol",
+      "type": "topic",
+      "url": "/documentation/foundation/nsprotocolchecker/1413544-protocol"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsprotocolchecker/1416619-target": {
+      "abstract": [
+        {
+          "text": "Returns the target of the receiver.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "target"
+        },
+        {
+          "kind": "text",
+          "text": ": NSObject?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsprotocolchecker/1416619-target",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "target",
+      "type": "topic",
+      "url": "/documentation/foundation/nsprotocolchecker/1416619-target"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsprotocolchecker/1417509-init": {
+      "abstract": [
+        {
+          "text": "Initializes a newly allocated ",
+          "type": "text"
+        },
+        {
+          "code": "NSProtocolChecker",
+          "type": "codeVoice"
+        },
+        {
+          "text": " instance that will forward any messages in ",
+          "type": "text"
+        },
+        {
+          "code": "aProtocol",
+          "type": "codeVoice"
+        },
+        {
+          "text": " to ",
+          "type": "text"
+        },
+        {
+          "code": "anObject",
+          "type": "codeVoice"
+        },
+        {
+          "text": ", the protocol checker’s target.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "target"
+        },
+        {
+          "kind": "text",
+          "text": ": NSObject, "
+        },
+        {
+          "kind": "identifier",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": ": Protocol)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsprotocolchecker/1417509-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(target:protocol:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsprotocolchecker/1417509-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsproxy": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsproxy",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSProxy",
+      "type": "topic",
+      "url": "/documentation/foundation/nsproxy"
+    },
+    "doc://com.apple.documentation/documentation/foundation/object_runtime": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/object_runtime",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Object Runtime",
+      "type": "topic",
+      "url": "/documentation/foundation/object_runtime"
+    },
+    "doc://com.apple.documentation/documentation/foundation/object_runtime/distributed_objects_support": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/object_runtime/distributed_objects_support",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Distributed Objects Support",
+      "type": "topic",
+      "url": "/documentation/foundation/object_runtime/distributed_objects_support"
+    },
+    "doc://com.apple.documentation/documentation/foundation/portdelegate": {
+      "abstract": [
+        {
+          "text": "An interface for handling incoming messages.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "PortDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/portdelegate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PortDelegate",
+      "type": "topic",
+      "url": "/documentation/foundation/portdelegate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/portmessage": {
+      "abstract": [
+        {
+          "text": "A low-level, operating system-independent type for inter-application (and inter-thread) messages.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "PortMessage"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/portmessage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PortMessage",
+      "type": "topic",
+      "url": "/documentation/foundation/portmessage"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsproxy"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsmachportdelegate",
+        "doc://com.apple.documentation/documentation/foundation/nsmachport",
+        "doc://com.apple.documentation/documentation/foundation/messageport",
+        "doc://com.apple.documentation/documentation/foundation/portdelegate",
+        "doc://com.apple.documentation/documentation/foundation/portmessage"
+      ],
+      "title": "Legacy"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "1679372",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsprotocolchecker/1417509-init"
+      ],
+      "kind": "taskGroup",
+      "title": "Creating a checker"
+    },
+    {
+      "anchor": "1679384",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsprotocolchecker/1413544-protocol",
+        "doc://com.apple.documentation/documentation/foundation/nsprotocolchecker/1416619-target"
+      ],
+      "kind": "taskGroup",
+      "title": "Getting information"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nsprotocolchecker"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/nsprotocolchecker"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

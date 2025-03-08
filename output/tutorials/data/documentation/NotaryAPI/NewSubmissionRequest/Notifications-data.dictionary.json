@@ -1,0 +1,449 @@
+{
+  "abstract": [
+    {
+      "text": "A notification that the notary service sends you when notarization finishes.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.notaryapi/documentation/NotaryAPI",
+        "doc://com.apple.notaryapi/documentation/NotaryAPI/NewSubmissionRequest"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.notaryapi/documentation/NotaryAPI/NewSubmissionRequest/Notifications-data.dictionary"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "data:notaryservice:NewSubmissionRequest.Notifications",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "object "
+      },
+      {
+        "kind": "identifier",
+        "text": "NewSubmissionRequest.Notifications"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Notary API"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "NewSubmissionRequest.Notifications"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "2.0.0",
+        "name": "Notary API"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Object",
+    "symbolKind": "dictionary",
+    "title": "NewSubmissionRequest.Notifications"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "data"
+          ],
+          "platforms": [
+            "Unsupported OS: notaryservice"
+          ],
+          "tokens": [
+            {
+              "kind": "text",
+              "text": "object "
+            },
+            {
+              "kind": "identifier",
+              "text": "NewSubmissionRequest.Notifications"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "items": [
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The channel that the service uses to notify you when notarization completes. The only supported value for this key is ",
+                  "type": "text"
+                },
+                {
+                  "code": "webhook",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "channel",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ],
+          "typeDetails": [
+            {
+              "baseType": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The URL that the notary service accesses when notarization completes.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "target",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ],
+          "typeDetails": [
+            {
+              "baseType": "string"
+            }
+          ]
+        }
+      ],
+      "kind": "properties",
+      "title": "Properties"
+    },
+    {
+      "attributes": [
+        {
+          "kind": "allowedTypes",
+          "values": []
+        }
+      ],
+      "kind": "attributes",
+      "title": "Attributes"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.notaryapi/documentation/NotaryAPI/submitting-software-for-notarization-over-the-web"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you want a notification when notarization completes, include a data structure of this type in the ",
+              "type": "text"
+            },
+            {
+              "code": "notifications",
+              "type": "codeVoice"
+            },
+            {
+              "text": " array that’s part of the body when you post to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.notaryapi/documentation/NotaryAPI/Submit-Software",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " endpoint. Set the value for the ",
+              "type": "text"
+            },
+            {
+              "code": "channel",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key to ",
+              "type": "text"
+            },
+            {
+              "code": "webhook",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and provide a URL as the value for the ",
+              "type": "text"
+            },
+            {
+              "code": "target",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key. The service indicates when notarization finishes by posting a body to the URL like this:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "  \"payload\": \"{\\\"completed_time\\\":\\\"2022-06-08T22:04:00.886Z\\\",\\\"event\\\":\\\"processing-complete\\\",\\\"start_time\\\":\\\"2022-06-08T22:03:42.801Z\\\",\\\"submission_id\\\":\\\"c00fe84b-95f2-4890-b7ea-019a7f546abd\\\",\\\"team_id\\\":\\\"JA62H4Q78D\\\"}\",",
+            "  \"signature\": \"MEUCIEqr...\",",
+            "  \"cert_chain\": \"LS0tLS1CR...\"",
+            "}",
+            ""
+          ],
+          "syntax": "javascript",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The value for the ",
+              "type": "text"
+            },
+            {
+              "code": "payload",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key indicates when the operation starts and completes, as well as the submission ID and your Team ID. The submission ID matches the value that you receive in response to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.notaryapi/documentation/NotaryAPI/Submit-Software",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " call. You can use the ",
+              "type": "text"
+            },
+            {
+              "code": "signature",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "cert_chain",
+              "type": "codeVoice"
+            },
+            {
+              "text": " fields to verify the authenticity of the message against the Apple Inc. Root certificate that you can download from the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://www.apple.com/certificateauthority/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " site. If you need the certificate repeatedly, store a copy of the certificate on your server rather than downloading it every time you need it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.notaryapi/documentation/NotaryAPI": {
+      "abstract": [
+        {
+          "text": "Submit your macOS software for notarization through a web interface.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.notaryapi/documentation/NotaryAPI",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Notary API",
+      "type": "topic",
+      "url": "/documentation/notaryapi"
+    },
+    "doc://com.apple.notaryapi/documentation/NotaryAPI/NewSubmissionRequest": {
+      "abstract": [
+        {
+          "text": "Data that you provide when starting a submission to the notary service.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "NewSubmissionRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.notaryapi/documentation/NotaryAPI/NewSubmissionRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NewSubmissionRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "NewSubmissionRequest",
+      "type": "topic",
+      "url": "/documentation/notaryapi/newsubmissionrequest"
+    },
+    "doc://com.apple.notaryapi/documentation/NotaryAPI/NewSubmissionRequest/Notifications-data.dictionary": {
+      "abstract": [
+        {
+          "text": "A notification that the notary service sends you when notarization finishes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "NewSubmissionRequest.Notifications"
+        }
+      ],
+      "identifier": "doc://com.apple.notaryapi/documentation/NotaryAPI/NewSubmissionRequest/Notifications-data.dictionary",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NewSubmissionRequest.Notifications"
+        }
+      ],
+      "role": "symbol",
+      "title": "NewSubmissionRequest.Notifications",
+      "type": "topic",
+      "url": "/documentation/notaryapi/newsubmissionrequest/notifications-data.dictionary"
+    },
+    "doc://com.apple.notaryapi/documentation/NotaryAPI/Submit-Software": {
+      "abstract": [
+        {
+          "text": "Start the process of uploading a new version of your software to the notary service.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.notaryapi/documentation/NotaryAPI/Submit-Software",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Submit Software"
+        }
+      ],
+      "role": "symbol",
+      "title": "Submit Software",
+      "type": "topic",
+      "url": "/documentation/notaryapi/submit-software"
+    },
+    "doc://com.apple.notaryapi/documentation/NotaryAPI/submitting-software-for-notarization-over-the-web": {
+      "abstract": [
+        {
+          "text": "Eliminate a dependency on macOS in your notarization workflow by interfacing directly with the notary service.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.notaryapi/documentation/NotaryAPI/submitting-software-for-notarization-over-the-web",
+      "kind": "article",
+      "role": "article",
+      "title": "Submitting software for notarization over the web",
+      "type": "topic",
+      "url": "/documentation/notaryapi/submitting-software-for-notarization-over-the-web"
+    },
+    "https://www.apple.com/certificateauthority/": {
+      "identifier": "https://www.apple.com/certificateauthority/",
+      "title": "Apple PKI",
+      "titleInlineContent": [
+        {
+          "text": "Apple PKI",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://www.apple.com/certificateauthority/"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/notaryapi/newsubmissionrequest/notifications-data.dictionary"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

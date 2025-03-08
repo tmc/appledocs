@@ -1,0 +1,554 @@
+{
+  "abstract": [
+    {
+      "text": "Specify elements of an external movie in your movie.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.qtff/documentation/quicktime-file-format",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Structuring_movie_data_and_features"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Authoring_movies_with_external_movie_targets"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "QuickTime File Format"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Authoring movies with external movie targets"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "QuickTime 4 enables you to author movies with external movie targets. To specify an action that targets an element of an external movie, you must identify the external movie by either its name or its ID. Two new target atom types have been introduced for this purpose; these atoms are used in addition to the existing target atoms, which you may use to specify that the element is a particular track or object within a track, such as a sprite.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A movie ID may be specified by an expression.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "These additional target atoms provided in QuickTime 4:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "[(ActionTargetAtoms)] =",
+            "    <kActionTarget>",
+            " ",
+            "        <kTargetMovieName>",
+            "            [Pstring MovieName]",
+            "        OR",
+            "        <kTargetMovieID>",
+            "            [long MovieID]",
+            "            OR",
+            "            [(kExpressionAtoms)]"
+          ],
+          "syntax": "c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To tag a movie with a name or ID, you add a user data item of type ",
+              "type": "text"
+            },
+            {
+              "code": "'plug'",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to the movie’s user data. The index of the user data does not matter. The data specifies the name or ID.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You add a user data item of type ",
+              "type": "text"
+            },
+            {
+              "code": "'plug'",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to the movie’s user data with its data set to",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "\"Movieid=MovieName\""
+          ],
+          "syntax": "c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "where ",
+              "type": "text"
+            },
+            {
+              "code": "MovieName",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is the name of the movie.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You add a user data item of type ",
+              "type": "text"
+            },
+            {
+              "code": "'plug'",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to the movie’s user data with its data set to",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "\"Movieid=MovieID\""
+          ],
+          "syntax": "c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "where the ID is a signed long integer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The QuickTime plug-in additionally supports ",
+              "type": "text"
+            },
+            {
+              "code": "EMBED",
+              "type": "codeVoice"
+            },
+            {
+              "text": " tag parameters, which allow you to override a movie’s name or ID within an HTML page.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Target-atoms-for-embedded-movies",
+          "level": 2,
+          "text": "Target atoms for embedded movies",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "QuickTime 4.1 introduced target atoms to accommodate the addition of embedded movies. These target atoms allow for paths to be specified in a hierarchical movie tree.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Target movies may be an external movie, the default movie, or any movie embedded within another movie. Targets are specified by using a movie path that may include parent and child movie relationships, and may additionally include track and track object target atoms as needed.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "By using embedded ",
+              "type": "text"
+            },
+            {
+              "code": "kActionTarget",
+              "type": "codeVoice"
+            },
+            {
+              "text": " atoms along with parent and child movie target atoms, you can build up paths for movie targets. Note that QuickTime looks for these embedded ",
+              "type": "text"
+            },
+            {
+              "code": "kActionTarget",
+              "type": "codeVoice"
+            },
+            {
+              "text": " atoms only when evaluating a movie target, and any movie target type may contain a sibling ",
+              "type": "text"
+            },
+            {
+              "code": "kActionTarget",
+              "type": "codeVoice"
+            },
+            {
+              "text": " atom.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Paths begin from the current movie, which is the movie containing the object that is handling an event. You may go up the tree using a ",
+              "type": "text"
+            },
+            {
+              "code": "kTargetParentMovie",
+              "type": "codeVoice"
+            },
+            {
+              "text": " atom, or down the tree using one of five new child movie atoms. You may use a ",
+              "type": "text"
+            },
+            {
+              "code": "kTargetRootMovie",
+              "type": "codeVoice"
+            },
+            {
+              "text": " atom as a shortcut to get to the top of the tree containing an embedded movie and may use the ",
+              "type": "text"
+            },
+            {
+              "code": "movieByName",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "movieByID",
+              "type": "codeVoice"
+            },
+            {
+              "text": " atoms to specify a root external movie.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The target atoms are:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "kTargetRootMovie",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " (leaf atom, no data). This is the root movie containing the action handler.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "kTargetParentMovie",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " (leaf atom, no data). This is the parent movie.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Note that there are five ways to specify an embedded child movie. Three of them specify movie track properties. Two specify properties of the currently loaded movie in a movie track.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "kTargetChildMovieTrackName",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". A child movie track specified by track name.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "kTargetChildMovieTrackID",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". A child movie track specified by track ID.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "kTargetChildMovieTrackIndex",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". A child movie track specified by track index.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "kTargetChildMovieMovieName",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". A child movie specified by the currently loaded movie’s movie name. The child movie must contain movieName user data with the specified name.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "kTargetChildMovieMovieID",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". A child movie specified by the currently loaded movie’s movie ID. The child movie must contain movieID user data with the specified ID.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Compressed_movie_resources": {
+      "abstract": [
+        {
+          "text": "Reduce file size and startup latency by compressing movie resources.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Compressed_movie_resources",
+      "kind": "article",
+      "role": "article",
+      "title": "Compressed movie resources",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/compressed_movie_resources"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Reference_movies": {
+      "abstract": [
+        {
+          "text": "A movie that contains references to alternate movies is called a reference movie.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Reference_movies",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Reference movies",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/reference_movies"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Structuring_movie_data_and_features": {
+      "abstract": [
+        {
+          "text": "Build movies with compressed or reference data, and add features like effect descriptions and alternate subtitle tracks.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Structuring_movie_data_and_features",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Structuring movie data and features",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/structuring_movie_data_and_features"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format": {
+      "abstract": [
+        {
+          "text": "An object-oriented file format for the storage and exchange of digital media between devices, applications, and operating systems.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "QuickTime File Format",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Movie-data",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Compressed_movie_resources",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Reference_movies"
+      ],
+      "title": "Movie data"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/quicktime-file-format/authoring_movies_with_external_movie_targets"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

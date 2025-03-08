@@ -1,0 +1,1073 @@
+{
+  "abstract": [
+    {
+      "text": "Describe the properties that compose an entity.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.coredata/documentation/CoreData",
+        "doc://com.apple.coredata/documentation/CoreData/modeling-data"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.coredata/documentation/CoreData/configuring-attributes"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Core Data"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Configuring Attributes"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you create an entity as described in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coredata/documentation/CoreData/configuring-entities",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", you can add attributes to that entity.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An attribute describes a property of an entity. At minimum, you need to specify the property’s name and data type, whether it must be saved in the store, and whether it’s required to have a value when it’s saved.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For some attribute types, you can also choose whether to use a scalar type to represent the attribute in generated classes, as well as configure the attribute to have a default value, or to apply data validation rules.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-Attributes",
+          "level": 3,
+          "text": "Add Attributes",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Add an attribute as indicated in the screenshot and the steps that follow:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3842668",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "With an entity selected, click Add Attribute at the bottom of the editor area. A new attribute with the placeholder name ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "attribute",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", of type ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Undefined",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", appears in the Attributes list.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the Attributes list, double-click the newly added attribute, and rename it.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the Attributes list, as shown in the second screenshot, click ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Undefined",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and choose the attribute’s data type from the Type pop-up menu.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3839159",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Configure-Attributes",
+          "level": 3,
+          "text": "Configure Attributes",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the data model inspector (choose View > Inspectors > Show Data Model Inspector) to configure attributes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3842666",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The attribute’s data type. This field reflects the selection made in the Attributes list’s Type pop-up menu.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Attribute Type",
+                    "type": "text"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For the full list of types, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coredata/documentation/CoreData/NSAttributeType",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Optional attributes aren’t required to have a value when saved to the persistent store. Attributes are optional by default.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Optional",
+                    "type": "text"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Core Data optionals aren’t the same as Swift optionals. You can use a Swift optional to represent a required attribute, for example, if you need flexibility to set its value during the time between the object’s initialization and its first save.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Transient attributes aren’t saved to the persistent store. By default, attributes are saved to the store. Transient attributes are a useful place to temporarily store calculated or derived values. Core Data does track changes to transient property values for undo purposes.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Transient",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "For persistent stores that write to a CloudKit database, this option instructs the system to encrypt the attribute’s value before it’s sent to iCloud. For more information, see ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.coredata/documentation/CoreData/NSAttributeDescription/allowsCloudEncryption",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Allows Cloud Encryption",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Most types allow you to supply a default value. New object instances set the attribute to this default value on initialization, unless you specify another value at that time.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Default Value",
+                    "type": "text"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Supplying a default value, in combination with making the type non-optional, can provide performance benefits.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Optionally, for some types, choose between scalar and nonscalar representations during code generation. For a ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "Double",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", selecting the Use Scalar checkbox produces a ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.documentation/documentation/Swift/Double",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": ", while leaving it unselected produces an ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.documentation/documentation/foundation/nsnumber",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Use Scalar Type",
+                    "type": "text"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For the full list of types, including scalar variants, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coredata/documentation/CoreData/NSAttributeType",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Optionally, set validation rules, such as the minimum and maximum values for a numeric type, or regular expressions requirements for strings. The data model inspector shows validation options specific to the selected attribute’s type.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Validation",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Adds the field to the Spotlight index for instances created from this entity.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Index in Spotlight",
+                    "type": "text"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreSpotlight",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Includes the attribute in this entity’s tombstone. When persistent history tracking is enabled and a context deletes a managed object, Core Data records an identifying marker, known as its tombstone, in the relevant transaction.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Preserve After Deletion",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A dictionary in which you can store any application-specific information related to the attribute.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "User Info",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Provide a hash modifier when maintaining multiple model versions if the structure of an attribute is the same, but the format or content of its data has changed.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Versioning Hash Modifier",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "If you rename an attribute between model versions, set the renaming identifier in the new model to the name of the corresponding attribute in the previous model.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Versioning Renaming ID",
+                    "type": "text"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coredata/documentation/CoreData/migrating-your-data-model-automatically",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.coredata/documentation/CoreData": {
+      "abstract": [
+        {
+          "text": "Persist or cache data on a single device, or sync data to multiple devices with CloudKit.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Data",
+      "type": "topic",
+      "url": "/documentation/coredata"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/NSAttributeDescription/allowsCloudEncryption": {
+      "abstract": [
+        {
+          "text": "A Boolean value that determines whether to encrypt the attribute’s value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "allowsCloudEncryption"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSAttributeDescription/allowsCloudEncryption",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "allowsCloudEncryption"
+        }
+      ],
+      "role": "symbol",
+      "title": "allowsCloudEncryption",
+      "type": "topic",
+      "url": "/documentation/coredata/nsattributedescription/allowscloudencryption"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/NSAttributeType": {
+      "abstract": [
+        {
+          "text": "The types of attribute that Core Data supports.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSAttributeType"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSAttributeType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSAttributeType"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSAttributeType",
+      "type": "topic",
+      "url": "/documentation/coredata/nsattributetype"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/configuring-entities": {
+      "abstract": [
+        {
+          "text": "Model your app’s objects.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/configuring-entities",
+      "kind": "article",
+      "role": "article",
+      "title": "Configuring Entities",
+      "type": "topic",
+      "url": "/documentation/coredata/configuring-entities"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/configuring-relationships": {
+      "abstract": [
+        {
+          "text": "Specify how entities relate and how change propagates between them.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/configuring-relationships",
+      "kind": "article",
+      "role": "article",
+      "title": "Configuring Relationships",
+      "type": "topic",
+      "url": "/documentation/coredata/configuring-relationships"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/generating-code": {
+      "abstract": [
+        {
+          "text": "Automatically or manually generate managed object subclasses from entities.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/generating-code",
+      "kind": "article",
+      "role": "article",
+      "title": "Generating code",
+      "type": "topic",
+      "url": "/documentation/coredata/generating-code"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/migrating-your-data-model-automatically": {
+      "abstract": [
+        {
+          "text": "Enable lightweight migrations to keep your data model and the underlying data in a consistent state.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/migrating-your-data-model-automatically",
+      "kind": "article",
+      "role": "article",
+      "title": "Migrating your data model automatically",
+      "type": "topic",
+      "url": "/documentation/coredata/migrating-your-data-model-automatically"
+    },
+    "doc://com.apple.coredata/documentation/CoreData/modeling-data": {
+      "abstract": [
+        {
+          "text": "Configure the data model file to contain your app’s object graph.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/modeling-data",
+      "kind": "article",
+      "role": "article",
+      "title": "Modeling data",
+      "type": "topic",
+      "url": "/documentation/coredata/modeling-data"
+    },
+    "doc://com.apple.documentation/documentation/CoreSpotlight": {
+      "abstract": [
+        {
+          "text": "Add search capabilities to your app, and index your content so people can find it from Spotlight and Safari.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreSpotlight",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Spotlight",
+      "type": "topic",
+      "url": "/documentation/CoreSpotlight"
+    },
+    "doc://com.apple.documentation/documentation/Swift/Double": {
+      "abstract": [
+        {
+          "text": "A double-precision, floating-point value type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@frozen"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Double"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Swift/Double",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Double",
+      "type": "topic",
+      "url": "/documentation/Swift/Double"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnumber": {
+      "abstract": [
+        {
+          "text": "An object wrapper for primitive scalar numeric values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSNumber"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnumber",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSNumber",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnumber"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "media-3839159": {
+      "alt": "A screenshot showing the available data types for an attribute.",
+      "identifier": "media-3839159",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4cef780cefbb4daf270e60cce1acbf78/media-3839159@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/19d449d00d9296329c4caf045a188038/media-3839159~dark@2x.png"
+        }
+      ]
+    },
+    "media-3842666": {
+      "alt": "Three screenshots of the Data Model inspector showing how the options vary depending on the attribute’s data type. The left screenshot displays the options for the Float data type, the middle screenshot displays the options for the Date data type, and the screenshot on the right displays the options for the String data type.",
+      "identifier": "media-3842666",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c04b3916473aadf8071c9ef469a804d5/media-3842666@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4941c5a9c81fd5aaf85dbd0e3e5cd0ae/media-3842666~dark@2x.png"
+        }
+      ]
+    },
+    "media-3842668": {
+      "alt": "A screenshot of Xcode’s Data Model editor, highlighting the Attributes list in the middle, the Data Model inspector on the right, and the Add Attribute button in the toolbar at the bottom.",
+      "identifier": "media-3842668",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/3d036ecc8efdd847459c86adbd950698/media-3842668@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/8d78b101736c629cc2eab85f48dbd397/media-3842668~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Configuring-a-Core-Data-Model",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.coredata/documentation/CoreData/configuring-entities",
+        "doc://com.apple.coredata/documentation/CoreData/configuring-relationships",
+        "doc://com.apple.coredata/documentation/CoreData/generating-code"
+      ],
+      "title": "Configuring a Core Data Model"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Configuring-a-Core-Data-Model",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.coredata/documentation/CoreData/configuring-entities",
+                "doc://com.apple.coredata/documentation/CoreData/configuring-relationships",
+                "doc://com.apple.coredata/documentation/CoreData/generating-code"
+              ],
+              "title": "Configuring a Core Data Model"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSAttributeDescription~1allowsCloudEncryption/title",
+          "value": "allowsCloudEncryption"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSAttributeDescription~1allowsCloudEncryption/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "allowsCloudEncryption"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSAttributeType/title",
+          "value": "NSAttributeType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSAttributeType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAttributeType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coredata~1documentation~1CoreData~1NSAttributeType/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAttributeType"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/coredata/configuring-attributes"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/coredata/configuring-attributes"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

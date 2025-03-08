@@ -1,0 +1,3549 @@
+{
+  "abstract": [
+    {
+      "text": "Information about linguistic, cultural, and technological conventions for use in formatting data for presentation.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/data_formatting"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/dates_and_times"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/strings_and_text"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/locale"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 2293000,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:10Foundation6LocaleV",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "struct "
+      },
+      {
+        "kind": "identifier",
+        "text": "Locale"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "8.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "8.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.10",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      },
+      {
+        "current": "16.3",
+        "introducedAt": "8.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "Locale"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "Locale"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/locale",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " encapsulates information about linguistic, cultural, and technological conventions and standards. Examples of information encapsulated by a locale include the symbol used for the decimal separator in numbers and the formatting conventions for dates and times.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Apps use locales to provide, format, and interpret information about and according to the user’s customs and preferences. Data formatting APIs commonly make use of locales to present data in a locale-appropriate way. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can create a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/locale",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " from a common identifier like ",
+              "type": "text"
+            },
+            {
+              "code": "en-US",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", or by specifying its components. More commonly, you access the current system locale with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/locale/2293654-current",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/locale/2293741-autoupdatingcurrent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " static variables.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "3978386",
+          "level": 3,
+          "text": "Working with locale components",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/locale",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " exposes its various traits — the appropriate measurement system, currency symbols, date and time conventions, and more — as strongly-typed properties like ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/locale/3952510-currency",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "numberingSystem",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "code": "firstDayOfWeek",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In addition, the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/locale/3952516-language",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property allows you examine traits of languages, through the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/locale/language",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " type, in contast with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nslocale",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", where ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nslocale/1643026-languagecode",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " is just a string identifier. You can use a locale’s language to compare whether two locales use the same language, or if one language is a parent of another.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following example creates a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/locale",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " from the identifier ",
+              "type": "text"
+            },
+            {
+              "code": "zh-CN",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", for Chinese. It then accesses this locale’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/locale/3952516-language",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to get the language’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/locale/language/3952370-script",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and uses a US English locale to get a localized string describing the script: “Simplified Han”. With the locale ",
+              "type": "text"
+            },
+            {
+              "code": "zh-Hant-CN",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", for Traditional Chinese, the script would be “Traditional Han” instead.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let zhCN = Locale(identifier: \"zh-CN\")",
+            "if let script = zhCN.language.script {",
+            "    let enUS = Locale(identifier: \"en-US\")",
+            "    let localizedScript = enUS.localizedString(forScript: script) // \"Simplified Han\"",
+            "}"
+          ],
+          "metadata": {
+            "anchor": "3979185",
+            "title": "Listing 1"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "3978382",
+          "level": 3,
+          "text": "Creating custom locales from components",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can create a custom locale by creating a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/locale",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " instance from a customized ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/locale/components",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Do this when you want to tweak specific aspects of a locale. The following example creates a locale that uses language conventions of British English (language region ",
+              "type": "text"
+            },
+            {
+              "code": "GB",
+              "type": "codeVoice"
+            },
+            {
+              "text": "), but otherwise uses US conventions for things like currency and measurement.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "var components = Locale.Components(languageCode: \"en\", languageRegion: \"GB\")",
+            "components.region = Locale.Region(\"US\")",
+            "let en_GB_US = Locale(components: components)"
+          ],
+          "metadata": {
+            "anchor": "3978557",
+            "title": "Listing 2"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Creating a custom locale like this isn’t necessarily common in apps, but can be useful in unit testing your app’s localizations.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.Swift/documentation/Swift/CustomDebugStringConvertible": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/CustomDebugStringConvertible",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/swift/customdebugstringconvertible"
+    },
+    "doc://com.apple.Swift/documentation/Swift/CustomReflectable": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/CustomReflectable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomReflectable",
+      "type": "topic",
+      "url": "/documentation/swift/customreflectable"
+    },
+    "doc://com.apple.Swift/documentation/Swift/CustomStringConvertible": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/CustomStringConvertible",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/swift/customstringconvertible"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Decodable": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Decodable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Decodable",
+      "type": "topic",
+      "url": "/documentation/swift/decodable"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Encodable": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Encodable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Encodable",
+      "type": "topic",
+      "url": "/documentation/swift/encodable"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Hashable": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Hashable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/swift/hashable"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Sendable": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Sendable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/swift/sendable"
+    },
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/data_formatting": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/data_formatting",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Data Formatting",
+      "type": "topic",
+      "url": "/documentation/foundation/data_formatting"
+    },
+    "doc://com.apple.documentation/documentation/foundation/dates_and_times": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/dates_and_times",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Dates and Times",
+      "type": "topic",
+      "url": "/documentation/foundation/dates_and_times"
+    },
+    "doc://com.apple.documentation/documentation/foundation/locale": {
+      "abstract": [
+        {
+          "text": "Information about linguistic, cultural, and technological conventions for use in formatting data for presentation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "Locale"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/locale",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Locale",
+      "type": "topic",
+      "url": "/documentation/foundation/locale"
+    },
+    "doc://com.apple.documentation/documentation/foundation/locale#3978557": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/locale#3978557",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 2",
+      "type": "section",
+      "url": "/documentation/foundation/locale#3978557"
+    },
+    "doc://com.apple.documentation/documentation/foundation/locale#3979185": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/locale#3979185",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/foundation/locale#3979185"
+    },
+    "doc://com.apple.documentation/documentation/foundation/locale/2292886-decimalseparator": {
+      "abstract": [
+        {
+          "text": "The decimal separator of the locale.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "decimalSeparator"
+        },
+        {
+          "kind": "text",
+          "text": ": String?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/locale/2292886-decimalseparator",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "decimalSeparator",
+      "type": "topic",
+      "url": "/documentation/foundation/locale/2292886-decimalseparator"
+    },
+    "doc://com.apple.documentation/documentation/foundation/locale/2292891-localizedstring": {
+      "abstract": [
+        {
+          "text": "Returns a localized string for a specified ICU collation identifier.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "localizedString"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forCollationIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> String?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/locale/2292891-localizedstring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "localizedString(forCollationIdentifier:)",
+      "type": "topic",
+      "url": "/documentation/foundation/locale/2292891-localizedstring"
+    },
+    "doc://com.apple.documentation/documentation/foundation/locale/2292939-currencycode": {
+      "abstract": [
+        {
+          "text": "The currency code of the locale.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "currencyCode"
+        },
+        {
+          "kind": "text",
+          "text": ": String?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/locale/2292939-currencycode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "currencyCode",
+      "type": "topic",
+      "url": "/documentation/foundation/locale/2292939-currencycode"
+    },
+    "doc://com.apple.documentation/documentation/foundation/locale/2292942-groupingseparator": {
+      "abstract": [
+        {
+          "text": "The grouping separator of the locale.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "groupingSeparator"
+        },
+        {
+          "kind": "text",
+          "text": ": String?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/locale/2292942-groupingseparator",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "groupingSeparator",
+      "type": "topic",
+      "url": "/documentation/foundation/locale/2292942-groupingseparator"
+    },
+    "doc://com.apple.documentation/documentation/foundation/locale/2292964-identifier": {
+      "abstract": [
+        {
+          "text": "Constructs an identifier from a dictionary of components.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static func "
+        },
+        {
+          "kind": "identifier",
+          "text": "identifier"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "fromComponents"
+        },
+        {
+          "kind": "text",
+          "text": ": [String : String]) -> String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/locale/2292964-identifier",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "identifier(fromComponents:)",
+      "type": "topic",
+      "url": "/documentation/foundation/locale/2292964-identifier"
+    },
+    "doc://com.apple.documentation/documentation/foundation/locale/2292992-usesmetricsystem": {
+      "abstract": [
+        {
+          "text": "A Boolean that is true if the locale uses the metric system.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "usesMetricSystem"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/locale/2292992-usesmetricsystem",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "usesMetricSystem",
+      "type": "topic",
+      "url": "/documentation/foundation/locale/2292992-usesmetricsystem"
+    },
+    "doc://com.apple.documentation/documentation/foundation/locale/2292995-description": {
+      "abstract": [
+        {
+          "text": "A textual description of the locale.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "description"
+        },
+        {
+          "kind": "text",
+          "text": ": String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/locale/2292995-description",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "description",
+      "type": "topic",
+      "url": "/documentation/foundation/locale/2292995-description"
+    },
+    "doc://com.apple.documentation/documentation/foundation/locale/2293037-windowslocalecode": {
+      "abstract": [
+        {
+          "text": "Returns the Windows locale code from a given identifier, or ",
+          "type": "text"
+        },
+        {
+          "code": "nil",
+          "type": "codeVoice"
+        },
+        {
+          "text": " if it could not be converted.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static func "
+        },
+        {
+          "kind": "identifier",
+          "text": "windowsLocaleCode"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "fromIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> Int?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/locale/2293037-windowslocalecode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "windowsLocaleCode(fromIdentifier:)",
+      "type": "topic",
+      "url": "/documentation/foundation/locale/2293037-windowslocalecode"
+    },
+    "doc://com.apple.documentation/documentation/foundation/locale/2293070-localizedstring": {
+      "abstract": [
+        {
+          "text": "Returns a localized string for a specified ICU collator identifier.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "localizedString"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forCollatorIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> String?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/locale/2293070-localizedstring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "localizedString(forCollatorIdentifier:)",
+      "type": "topic",
+      "url": "/documentation/foundation/locale/2293070-localizedstring"
+    },
+    "doc://com.apple.documentation/documentation/foundation/locale/2293073-commonisocurrencycodes": {
+      "abstract": [
+        {
+          "text": "A list of common currency codes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static var "
+        },
+        {
+          "kind": "identifier",
+          "text": "commonISOCurrencyCodes"
+        },
+        {
+          "kind": "text",
+          "text": ": [String]"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/locale/2293073-commonisocurrencycodes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "commonISOCurrencyCodes",
+      "type": "topic",
+      "url": "/documentation/foundation/locale/2293073-commonisocurrencycodes"
+    },
+    "doc://com.apple.documentation/documentation/foundation/locale/2293155-preferredlanguages": {
+      "abstract": [
+        {
+          "text": "A list of the user’s preferred languages.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static var "
+        },
+        {
+          "kind": "identifier",
+          "text": "preferredLanguages"
+        },
+        {
+          "kind": "text",
+          "text": ": [String]"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/locale/2293155-preferredlanguages",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "preferredLanguages",
+      "type": "topic",
+      "url": "/documentation/foundation/locale/2293155-preferredlanguages"
+    },
+    "doc://com.apple.documentation/documentation/foundation/locale/2293171-alternatequotationbegindelimiter": {
+      "abstract": [
+        {
+          "text": "The alternate quotation begin delimiter of the locale.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "alternateQuotationBeginDelimiter"
+        },
+        {
+          "kind": "text",
+          "text": ": String?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/locale/2293171-alternatequotationbegindelimiter",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "alternateQuotationBeginDelimiter",
+      "type": "topic",
+      "url": "/documentation/foundation/locale/2293171-alternatequotationbegindelimiter"
+    },
+    "doc://com.apple.documentation/documentation/foundation/locale/2293220-characterdirection": {
+      "abstract": [
+        {
+          "text": "Returns the character direction for a specified language code.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static func "
+        },
+        {
+          "kind": "identifier",
+          "text": "characterDirection"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forLanguage"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> Locale.LanguageDirection"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/locale/2293220-characterdirection",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "characterDirection(forLanguage:)",
+      "type": "topic",
+      "url": "/documentation/foundation/locale/2293220-characterdirection"
+    },
+    "doc://com.apple.documentation/documentation/foundation/locale/2293254-calendar": {
+      "abstract": [
+        {
+          "text": "The calendar for the locale, or the Gregorian calendar as a fallback.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "calendar"
+        },
+        {
+          "kind": "text",
+          "text": ": Calendar"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/locale/2293254-calendar",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "calendar",
+      "type": "topic",
+      "url": "/documentation/foundation/locale/2293254-calendar"
+    },
+    "doc://com.apple.documentation/documentation/foundation/locale/2293264": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value indicating whether two values are equal.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static func "
+        },
+        {
+          "kind": "identifier",
+          "text": "== "
+        },
+        {
+          "kind": "text",
+          "text": "(Locale, Locale) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/locale/2293264",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "==(_:_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/locale/2293264"
+    },
+    "doc://com.apple.documentation/documentation/foundation/locale/2293271-isoregioncodes": {
+      "abstract": [
+        {
+          "text": "A list of available region codes.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static var "
+        },
+        {
+          "kind": "identifier",
+          "text": "isoRegionCodes"
+        },
+        {
+          "kind": "text",
+          "text": ": [String]"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/locale/2293271-isoregioncodes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isoRegionCodes",
+      "type": "topic",
+      "url": "/documentation/foundation/locale/2293271-isoregioncodes"
+    },
+    "doc://com.apple.documentation/documentation/foundation/locale/2293297-components": {
+      "abstract": [
+        {
+          "text": "Returns a dictionary that splits an identifier into its component pieces.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static func "
+        },
+        {
+          "kind": "identifier",
+          "text": "components"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "fromIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> [String : String]"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/locale/2293297-components",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "components(fromIdentifier:)",
+      "type": "topic",
+      "url": "/documentation/foundation/locale/2293297-components"
+    },
+    "doc://com.apple.documentation/documentation/foundation/locale/2293331-hashvalue": {
+      "abstract": [
+        {
+          "text": "The computed hash value for the locale.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "hashValue"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/locale/2293331-hashvalue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hashValue",
+      "type": "topic",
+      "url": "/documentation/foundation/locale/2293331-hashvalue"
+    },
+    "doc://com.apple.documentation/documentation/foundation/locale/2293333-scriptcode": {
+      "abstract": [
+        {
+          "text": "The script code of the locale, or ",
+          "type": "text"
+        },
+        {
+          "code": "nil",
+          "type": "codeVoice"
+        },
+        {
+          "text": " if has none.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "scriptCode"
+        },
+        {
+          "kind": "text",
+          "text": ": String?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/locale/2293333-scriptcode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "scriptCode",
+      "type": "topic",
+      "url": "/documentation/foundation/locale/2293333-scriptcode"
+    },
+    "doc://com.apple.documentation/documentation/foundation/locale/2293346-languagecode": {
+      "abstract": [
+        {
+          "text": "The language code of the locale, or ",
+          "type": "text"
+        },
+        {
+          "code": "nil",
+          "type": "codeVoice"
+        },
+        {
+          "text": " if has none.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "languageCode"
+        },
+        {
+          "kind": "text",
+          "text": ": String?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/locale/2293346-languagecode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "languageCode",
+      "type": "topic",
+      "url": "/documentation/foundation/locale/2293346-languagecode"
+    },
+    "doc://com.apple.documentation/documentation/foundation/locale/2293371-regioncode": {
+      "abstract": [
+        {
+          "text": "The region code of the locale, or ",
+          "type": "text"
+        },
+        {
+          "code": "nil",
+          "type": "codeVoice"
+        },
+        {
+          "text": " if it has none.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "regionCode"
+        },
+        {
+          "kind": "text",
+          "text": ": String?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/locale/2293371-regioncode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "regionCode",
+      "type": "topic",
+      "url": "/documentation/foundation/locale/2293371-regioncode"
+    },
+    "doc://com.apple.documentation/documentation/foundation/locale/2293376-variantcode": {
+      "abstract": [
+        {
+          "text": "The variant code for the locale, or ",
+          "type": "text"
+        },
+        {
+          "code": "nil",
+          "type": "codeVoice"
+        },
+        {
+          "text": " if it has none.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "variantCode"
+        },
+        {
+          "kind": "text",
+          "text": ": String?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/locale/2293376-variantcode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "variantCode",
+      "type": "topic",
+      "url": "/documentation/foundation/locale/2293376-variantcode"
+    },
+    "doc://com.apple.documentation/documentation/foundation/locale/2293386-identifier": {
+      "abstract": [
+        {
+          "text": "Returns the locale identifier from a given Windows locale code, or ",
+          "type": "text"
+        },
+        {
+          "code": "nil",
+          "type": "codeVoice"
+        },
+        {
+          "text": " if it could not be converted.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static func "
+        },
+        {
+          "kind": "identifier",
+          "text": "identifier"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "fromWindowsLocaleCode"
+        },
+        {
+          "kind": "text",
+          "text": ": Int) -> String?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/locale/2293386-identifier",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "identifier(fromWindowsLocaleCode:)",
+      "type": "topic",
+      "url": "/documentation/foundation/locale/2293386-identifier"
+    },
+    "doc://com.apple.documentation/documentation/foundation/locale/2293393-localizedstring": {
+      "abstract": [
+        {
+          "text": "Returns a localized string for a specified variant code.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "localizedString"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forVariantCode"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> String?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/locale/2293393-localizedstring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "localizedString(forVariantCode:)",
+      "type": "topic",
+      "url": "/documentation/foundation/locale/2293393-localizedstring"
+    },
+    "doc://com.apple.documentation/documentation/foundation/locale/2293396-localizedstring": {
+      "abstract": [
+        {
+          "text": "Returns a localized string for a specified region code.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "localizedString"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forRegionCode"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> String?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/locale/2293396-localizedstring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "localizedString(forRegionCode:)",
+      "type": "topic",
+      "url": "/documentation/foundation/locale/2293396-localizedstring"
+    },
+    "doc://com.apple.documentation/documentation/foundation/locale/2293397-linedirection": {
+      "abstract": [
+        {
+          "text": "Returns the line direction for a specified language code.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static func "
+        },
+        {
+          "kind": "identifier",
+          "text": "lineDirection"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forLanguage"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> Locale.LanguageDirection"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/locale/2293397-linedirection",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "lineDirection(forLanguage:)",
+      "type": "topic",
+      "url": "/documentation/foundation/locale/2293397-linedirection"
+    },
+    "doc://com.apple.documentation/documentation/foundation/locale/2293408-currencysymbol": {
+      "abstract": [
+        {
+          "text": "The currency symbol of the locale.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "currencySymbol"
+        },
+        {
+          "kind": "text",
+          "text": ": String?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/locale/2293408-currencysymbol",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "currencySymbol",
+      "type": "topic",
+      "url": "/documentation/foundation/locale/2293408-currencysymbol"
+    },
+    "doc://com.apple.documentation/documentation/foundation/locale/2293427-exemplarcharacterset": {
+      "abstract": [
+        {
+          "text": "The exemplar character set for the locale, or ",
+          "type": "text"
+        },
+        {
+          "code": "nil",
+          "type": "codeVoice"
+        },
+        {
+          "text": " if has none.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "exemplarCharacterSet"
+        },
+        {
+          "kind": "text",
+          "text": ": CharacterSet?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/locale/2293427-exemplarcharacterset",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "exemplarCharacterSet",
+      "type": "topic",
+      "url": "/documentation/foundation/locale/2293427-exemplarcharacterset"
+    },
+    "doc://com.apple.documentation/documentation/foundation/locale/2293444-isocurrencycodes": {
+      "abstract": [
+        {
+          "text": "A list of available currency codes.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static var "
+        },
+        {
+          "kind": "identifier",
+          "text": "isoCurrencyCodes"
+        },
+        {
+          "kind": "text",
+          "text": ": [String]"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/locale/2293444-isocurrencycodes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isoCurrencyCodes",
+      "type": "topic",
+      "url": "/documentation/foundation/locale/2293444-isocurrencycodes"
+    },
+    "doc://com.apple.documentation/documentation/foundation/locale/2293445-collatoridentifier": {
+      "abstract": [
+        {
+          "text": "The collator identifier of the locale.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "collatorIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": String?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/locale/2293445-collatoridentifier",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "collatorIdentifier",
+      "type": "topic",
+      "url": "/documentation/foundation/locale/2293445-collatoridentifier"
+    },
+    "doc://com.apple.documentation/documentation/foundation/locale/2293476-canonicalidentifier": {
+      "abstract": [
+        {
+          "text": "Returns a canonical identifier from the given string.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static func "
+        },
+        {
+          "kind": "identifier",
+          "text": "canonicalIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/locale/2293476-canonicalidentifier",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "canonicalIdentifier(from:)",
+      "type": "topic",
+      "url": "/documentation/foundation/locale/2293476-canonicalidentifier"
+    },
+    "doc://com.apple.documentation/documentation/foundation/locale/2293486-localizedstring": {
+      "abstract": [
+        {
+          "text": "Returns a localized string for a specified calendar.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "localizedString"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": Calendar.Identifier) -> String?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/locale/2293486-localizedstring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "localizedString(for:)",
+      "type": "topic",
+      "url": "/documentation/foundation/locale/2293486-localizedstring"
+    },
+    "doc://com.apple.documentation/documentation/foundation/locale/2293533-debugdescription": {
+      "abstract": [
+        {
+          "text": "A textual description of the locale suitable for debugging.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "debugDescription"
+        },
+        {
+          "kind": "text",
+          "text": ": String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/locale/2293533-debugdescription",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "debugDescription",
+      "type": "topic",
+      "url": "/documentation/foundation/locale/2293533-debugdescription"
+    },
+    "doc://com.apple.documentation/documentation/foundation/locale/2293544-alternatequotationenddelimiter": {
+      "abstract": [
+        {
+          "text": "The alternate quotation end delimiter of the locale.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "alternateQuotationEndDelimiter"
+        },
+        {
+          "kind": "text",
+          "text": ": String?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/locale/2293544-alternatequotationenddelimiter",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "alternateQuotationEndDelimiter",
+      "type": "topic",
+      "url": "/documentation/foundation/locale/2293544-alternatequotationenddelimiter"
+    },
+    "doc://com.apple.documentation/documentation/foundation/locale/2293551-localizedstring": {
+      "abstract": [
+        {
+          "text": "Returns a localized string for a specified ISO 4217 currency code.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "localizedString"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forCurrencyCode"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> String?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/locale/2293551-localizedstring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "localizedString(forCurrencyCode:)",
+      "type": "topic",
+      "url": "/documentation/foundation/locale/2293551-localizedstring"
+    },
+    "doc://com.apple.documentation/documentation/foundation/locale/2293557-identifier": {
+      "abstract": [
+        {
+          "text": "The identifier of the locale.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "identifier"
+        },
+        {
+          "kind": "text",
+          "text": ": String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/locale/2293557-identifier",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "identifier",
+      "type": "topic",
+      "url": "/documentation/foundation/locale/2293557-identifier"
+    },
+    "doc://com.apple.documentation/documentation/foundation/locale/2293562-localizedstring": {
+      "abstract": [
+        {
+          "text": "Returns a localized string for a specified locale identifier.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "localizedString"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> String?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/locale/2293562-localizedstring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "localizedString(forIdentifier:)",
+      "type": "topic",
+      "url": "/documentation/foundation/locale/2293562-localizedstring"
+    },
+    "doc://com.apple.documentation/documentation/foundation/locale/2293563-init": {
+      "abstract": [
+        {
+          "text": "Creates a locale with the specified identifier.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "identifier"
+        },
+        {
+          "kind": "text",
+          "text": ": String)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/locale/2293563-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(identifier:)",
+      "type": "topic",
+      "url": "/documentation/foundation/locale/2293563-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/locale/2293596-collationidentifier": {
+      "abstract": [
+        {
+          "text": "The collation identifier for the locale, or ",
+          "type": "text"
+        },
+        {
+          "code": "nil",
+          "type": "codeVoice"
+        },
+        {
+          "text": " if it has none.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "collationIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": String?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/locale/2293596-collationidentifier",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "collationIdentifier",
+      "type": "topic",
+      "url": "/documentation/foundation/locale/2293596-collationidentifier"
+    },
+    "doc://com.apple.documentation/documentation/foundation/locale/2293654-current": {
+      "abstract": [
+        {
+          "text": "A locale representing the user's region settings at the time the property is read.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static var "
+        },
+        {
+          "kind": "identifier",
+          "text": "current"
+        },
+        {
+          "kind": "text",
+          "text": ": Locale"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/locale/2293654-current",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "current",
+      "type": "topic",
+      "url": "/documentation/foundation/locale/2293654-current"
+    },
+    "doc://com.apple.documentation/documentation/foundation/locale/2293668-quotationenddelimiter": {
+      "abstract": [
+        {
+          "text": "The quotation end delimiter of the locale.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "quotationEndDelimiter"
+        },
+        {
+          "kind": "text",
+          "text": ": String?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/locale/2293668-quotationenddelimiter",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "quotationEndDelimiter",
+      "type": "topic",
+      "url": "/documentation/foundation/locale/2293668-quotationenddelimiter"
+    },
+    "doc://com.apple.documentation/documentation/foundation/locale/2293671-canonicallanguageidentifier": {
+      "abstract": [
+        {
+          "text": "Returns a canonical language identifier from the given string.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static func "
+        },
+        {
+          "kind": "identifier",
+          "text": "canonicalLanguageIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/locale/2293671-canonicallanguageidentifier",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "canonicalLanguageIdentifier(from:)",
+      "type": "topic",
+      "url": "/documentation/foundation/locale/2293671-canonicallanguageidentifier"
+    },
+    "doc://com.apple.documentation/documentation/foundation/locale/2293697-availableidentifiers": {
+      "abstract": [
+        {
+          "text": "A list of available identifiers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static var "
+        },
+        {
+          "kind": "identifier",
+          "text": "availableIdentifiers"
+        },
+        {
+          "kind": "text",
+          "text": ": [String]"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/locale/2293697-availableidentifiers",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "availableIdentifiers",
+      "type": "topic",
+      "url": "/documentation/foundation/locale/2293697-availableidentifiers"
+    },
+    "doc://com.apple.documentation/documentation/foundation/locale/2293706-localizedstring": {
+      "abstract": [
+        {
+          "text": "Returns a localized string for a specified script code.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "localizedString"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forScriptCode"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> String?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/locale/2293706-localizedstring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "localizedString(forScriptCode:)",
+      "type": "topic",
+      "url": "/documentation/foundation/locale/2293706-localizedstring"
+    },
+    "doc://com.apple.documentation/documentation/foundation/locale/2293712-localizedstring": {
+      "abstract": [
+        {
+          "text": "Returns a localized string for a specified language code.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "localizedString"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forLanguageCode"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> String?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/locale/2293712-localizedstring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "localizedString(forLanguageCode:)",
+      "type": "topic",
+      "url": "/documentation/foundation/locale/2293712-localizedstring"
+    },
+    "doc://com.apple.documentation/documentation/foundation/locale/2293741-autoupdatingcurrent": {
+      "abstract": [
+        {
+          "text": "A locale which tracks the user’s current preferences.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static var "
+        },
+        {
+          "kind": "identifier",
+          "text": "autoupdatingCurrent"
+        },
+        {
+          "kind": "text",
+          "text": ": Locale"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/locale/2293741-autoupdatingcurrent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "autoupdatingCurrent",
+      "type": "topic",
+      "url": "/documentation/foundation/locale/2293741-autoupdatingcurrent"
+    },
+    "doc://com.apple.documentation/documentation/foundation/locale/2293744-isolanguagecodes": {
+      "abstract": [
+        {
+          "text": "A list of available language codes.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static var "
+        },
+        {
+          "kind": "identifier",
+          "text": "isoLanguageCodes"
+        },
+        {
+          "kind": "text",
+          "text": ": [String]"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/locale/2293744-isolanguagecodes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isoLanguageCodes",
+      "type": "topic",
+      "url": "/documentation/foundation/locale/2293744-isolanguagecodes"
+    },
+    "doc://com.apple.documentation/documentation/foundation/locale/2293745-quotationbegindelimiter": {
+      "abstract": [
+        {
+          "text": "The quotation begin delimiter of the locale.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "quotationBeginDelimiter"
+        },
+        {
+          "kind": "text",
+          "text": ": String?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/locale/2293745-quotationbegindelimiter",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "quotationBeginDelimiter",
+      "type": "topic",
+      "url": "/documentation/foundation/locale/2293745-quotationbegindelimiter"
+    },
+    "doc://com.apple.documentation/documentation/foundation/locale/2427167-custommirror": {
+      "abstract": [
+        {
+          "text": "A mirror that reflects the locale.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "customMirror"
+        },
+        {
+          "kind": "text",
+          "text": ": Mirror"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/locale/2427167-custommirror",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "customMirror",
+      "type": "topic",
+      "url": "/documentation/foundation/locale/2427167-custommirror"
+    },
+    "doc://com.apple.documentation/documentation/foundation/locale/2883026": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value indicating whether two values are not equal.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static func "
+        },
+        {
+          "kind": "identifier",
+          "text": "!= "
+        },
+        {
+          "kind": "text",
+          "text": "(Locale, Locale) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/locale/2883026",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "!=(_:_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/locale/2883026"
+    },
+    "doc://com.apple.documentation/documentation/foundation/locale/2908882-init": {
+      "abstract": [
+        {
+          "text": "Creates a new instance by decoding from the given decoder.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": any Decoder)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/locale/2908882-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(from:)",
+      "type": "topic",
+      "url": "/documentation/foundation/locale/2908882-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/locale/2908886-encode": {
+      "abstract": [
+        {
+          "text": "Encodes this value into the given encoder.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "encode"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": any Encoder)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/locale/2908886-encode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "encode(to:)",
+      "type": "topic",
+      "url": "/documentation/foundation/locale/2908886-encode"
+    },
+    "doc://com.apple.documentation/documentation/foundation/locale/3236757-hash": {
+      "abstract": [
+        {
+          "text": "Hashes the essential components of this value by feeding them into the given hasher.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "hash"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "into"
+        },
+        {
+          "kind": "text",
+          "text": ": inout Hasher)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/locale/3236757-hash",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hash(into:)",
+      "type": "topic",
+      "url": "/documentation/foundation/locale/3236757-hash"
+    },
+    "doc://com.apple.documentation/documentation/foundation/locale/3952507-availablenumberingsystems": {
+      "abstract": [
+        {
+          "text": "An array containing all the valid numbering systems for the locale.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "availableNumberingSystems"
+        },
+        {
+          "kind": "text",
+          "text": ": [Locale.NumberingSystem]"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/locale/3952507-availablenumberingsystems",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "availableNumberingSystems",
+      "type": "topic",
+      "url": "/documentation/foundation/locale/3952507-availablenumberingsystems"
+    },
+    "doc://com.apple.documentation/documentation/foundation/locale/3952508-collation": {
+      "abstract": [
+        {
+          "text": "The string sort order of the locale.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "collation"
+        },
+        {
+          "kind": "text",
+          "text": ": Locale.Collation"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/locale/3952508-collation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "collation",
+      "type": "topic",
+      "url": "/documentation/foundation/locale/3952508-collation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/locale/3952510-currency": {
+      "abstract": [
+        {
+          "text": "The currency used by the locale.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "currency"
+        },
+        {
+          "kind": "text",
+          "text": ": Locale.Currency?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/locale/3952510-currency",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "currency",
+      "type": "topic",
+      "url": "/documentation/foundation/locale/3952510-currency"
+    },
+    "doc://com.apple.documentation/documentation/foundation/locale/3952513-identifier": {
+      "abstract": [
+        {
+          "text": "Returns the locale identifier, in the specified standard format.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "identifier"
+        },
+        {
+          "kind": "text",
+          "text": "(Locale.IdentifierType) -> String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/locale/3952513-identifier",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "identifier(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/locale/3952513-identifier"
+    },
+    "doc://com.apple.documentation/documentation/foundation/locale/3952514-init": {
+      "abstract": [
+        {
+          "text": "Creates a locale from the given components.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "components"
+        },
+        {
+          "kind": "text",
+          "text": ": Locale.Components)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/locale/3952514-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(components:)",
+      "type": "topic",
+      "url": "/documentation/foundation/locale/3952514-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/locale/3952515-init": {
+      "abstract": [
+        {
+          "text": "Creates a locale with the specified language code, script, and region identifier.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "languageCode"
+        },
+        {
+          "kind": "text",
+          "text": ": Locale.LanguageCode?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "script"
+        },
+        {
+          "kind": "text",
+          "text": ": Locale.Script?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "languageRegion"
+        },
+        {
+          "kind": "text",
+          "text": ": Locale.Region?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/locale/3952515-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(languageCode:script:languageRegion:)",
+      "type": "topic",
+      "url": "/documentation/foundation/locale/3952515-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/locale/3952516-language": {
+      "abstract": [
+        {
+          "text": "The language of a locale.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "language"
+        },
+        {
+          "kind": "text",
+          "text": ": Locale.Language"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/locale/3952516-language",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "language",
+      "type": "topic",
+      "url": "/documentation/foundation/locale/3952516-language"
+    },
+    "doc://com.apple.documentation/documentation/foundation/locale/3952525-region": {
+      "abstract": [
+        {
+          "text": "The region used by the locale.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "region"
+        },
+        {
+          "kind": "text",
+          "text": ": Locale.Region?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/locale/3952525-region",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "region",
+      "type": "topic",
+      "url": "/documentation/foundation/locale/3952525-region"
+    },
+    "doc://com.apple.documentation/documentation/foundation/locale/3952526-subdivision": {
+      "abstract": [
+        {
+          "text": "The optional subdivision of the region used by this locale.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "subdivision"
+        },
+        {
+          "kind": "text",
+          "text": ": Locale.Subdivision?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/locale/3952526-subdivision",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "subdivision",
+      "type": "topic",
+      "url": "/documentation/foundation/locale/3952526-subdivision"
+    },
+    "doc://com.apple.documentation/documentation/foundation/locale/3952527-timezone": {
+      "abstract": [
+        {
+          "text": "The time zone associated with the locale, if any.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "timeZone"
+        },
+        {
+          "kind": "text",
+          "text": ": TimeZone?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/locale/3952527-timezone",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "timeZone",
+      "type": "topic",
+      "url": "/documentation/foundation/locale/3952527-timezone"
+    },
+    "doc://com.apple.documentation/documentation/foundation/locale/3952528-variant": {
+      "abstract": [
+        {
+          "text": "An optional variant used by the locale.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "variant"
+        },
+        {
+          "kind": "text",
+          "text": ": Locale.Variant?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/locale/3952528-variant",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "variant",
+      "type": "topic",
+      "url": "/documentation/foundation/locale/3952528-variant"
+    },
+    "doc://com.apple.documentation/documentation/foundation/locale/4020218-firstdayofweek": {
+      "abstract": [
+        {
+          "text": "The first day of the week as represented by this locale.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "firstDayOfWeek"
+        },
+        {
+          "kind": "text",
+          "text": ": Locale.Weekday"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/locale/4020218-firstdayofweek",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "firstDayOfWeek",
+      "type": "topic",
+      "url": "/documentation/foundation/locale/4020218-firstdayofweek"
+    },
+    "doc://com.apple.documentation/documentation/foundation/locale/4020219-hourcycle": {
+      "abstract": [
+        {
+          "text": "The hour cycle used by the locale, like one-to-twelve or zero-to-twenty-three.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "hourCycle"
+        },
+        {
+          "kind": "text",
+          "text": ": Locale.HourCycle"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/locale/4020219-hourcycle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hourCycle",
+      "type": "topic",
+      "url": "/documentation/foundation/locale/4020219-hourcycle"
+    },
+    "doc://com.apple.documentation/documentation/foundation/locale/4020220-identifier": {
+      "abstract": [
+        {
+          "text": "Returns the identifier conforming to the specified standard for the specified string.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static func "
+        },
+        {
+          "kind": "identifier",
+          "text": "identifier"
+        },
+        {
+          "kind": "text",
+          "text": "(Locale.IdentifierType, "
+        },
+        {
+          "kind": "identifier",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/locale/4020220-identifier",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "identifier(_:from:)",
+      "type": "topic",
+      "url": "/documentation/foundation/locale/4020220-identifier"
+    },
+    "doc://com.apple.documentation/documentation/foundation/locale/4020221-init": {
+      "abstract": [
+        {
+          "text": "Creates a locale from the given language components.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "languageComponents"
+        },
+        {
+          "kind": "text",
+          "text": ": Locale.Language.Components)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/locale/4020221-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(languageComponents:)",
+      "type": "topic",
+      "url": "/documentation/foundation/locale/4020221-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/locale/4020222-measurementsystem": {
+      "abstract": [
+        {
+          "text": "The measurement system used by the locale, like metric or the US system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "measurementSystem"
+        },
+        {
+          "kind": "text",
+          "text": ": Locale.MeasurementSystem"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/locale/4020222-measurementsystem",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "measurementSystem",
+      "type": "topic",
+      "url": "/documentation/foundation/locale/4020222-measurementsystem"
+    },
+    "doc://com.apple.documentation/documentation/foundation/locale/4020223-numberingsystem": {
+      "abstract": [
+        {
+          "text": "The numbering system used by the locale.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "numberingSystem"
+        },
+        {
+          "kind": "text",
+          "text": ": Locale.NumberingSystem"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/locale/4020223-numberingsystem",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "numberingSystem",
+      "type": "topic",
+      "url": "/documentation/foundation/locale/4020223-numberingsystem"
+    },
+    "doc://com.apple.documentation/documentation/foundation/locale/collation": {
+      "abstract": [
+        {
+          "text": "A type that represents the string sort order used by the locale.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "Locale.Collation"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/locale/collation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Locale.Collation",
+      "type": "topic",
+      "url": "/documentation/foundation/locale/collation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/locale/components": {
+      "abstract": [
+        {
+          "text": "A type that represents the components of a locale, for use when creating a locale with specific overrides.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "Locale.Components"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/locale/components",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Locale.Components",
+      "type": "topic",
+      "url": "/documentation/foundation/locale/components"
+    },
+    "doc://com.apple.documentation/documentation/foundation/locale/currency": {
+      "abstract": [
+        {
+          "text": "A type that represents the currency system used by a locale, like dollars or euros.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "Locale.Currency"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/locale/currency",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Locale.Currency",
+      "type": "topic",
+      "url": "/documentation/foundation/locale/currency"
+    },
+    "doc://com.apple.documentation/documentation/foundation/locale/hourcycle": {
+      "abstract": [
+        {
+          "text": "A type that represents the hour cycle used in a locale, like one-to-twelve or zero-to-twenty-three.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "enum "
+        },
+        {
+          "kind": "identifier",
+          "text": "Locale.HourCycle"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/locale/hourcycle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Locale.HourCycle",
+      "type": "topic",
+      "url": "/documentation/foundation/locale/hourcycle"
+    },
+    "doc://com.apple.documentation/documentation/foundation/locale/identifiertype": {
+      "abstract": [
+        {
+          "text": "A type that indicates the standard that defines a locale’s identifier.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "enum "
+        },
+        {
+          "kind": "identifier",
+          "text": "Locale.IdentifierType"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/locale/identifiertype",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Locale.IdentifierType",
+      "type": "topic",
+      "url": "/documentation/foundation/locale/identifiertype"
+    },
+    "doc://com.apple.documentation/documentation/foundation/locale/language": {
+      "abstract": [
+        {
+          "text": "A type that represents a language, as used in a locale.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "Locale.Language"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/locale/language",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Locale.Language",
+      "type": "topic",
+      "url": "/documentation/foundation/locale/language"
+    },
+    "doc://com.apple.documentation/documentation/foundation/locale/language/3952370-script": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/locale/language/3952370-script",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "script",
+      "type": "topic",
+      "url": "/documentation/foundation/locale/language/3952370-script"
+    },
+    "doc://com.apple.documentation/documentation/foundation/locale/language/components": {
+      "abstract": [
+        {
+          "text": "A type that identifies a language by its various components.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "Locale.Language.Components"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/locale/language/components",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Locale.Language.Components",
+      "type": "topic",
+      "url": "/documentation/foundation/locale/language/components"
+    },
+    "doc://com.apple.documentation/documentation/foundation/locale/languagedirection": {
+      "abstract": [
+        {
+          "text": "An alias for the standard set of language directions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "Locale.LanguageDirection"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/locale/languagedirection",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Locale.LanguageDirection",
+      "type": "topic",
+      "url": "/documentation/foundation/locale/languagedirection"
+    },
+    "doc://com.apple.documentation/documentation/foundation/locale/measurementsystem": {
+      "abstract": [
+        {
+          "text": "A type that represents the measurement system used by a locale, like metric or the US system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "Locale.MeasurementSystem"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/locale/measurementsystem",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Locale.MeasurementSystem",
+      "type": "topic",
+      "url": "/documentation/foundation/locale/measurementsystem"
+    },
+    "doc://com.apple.documentation/documentation/foundation/locale/numberingsystem": {
+      "abstract": [
+        {
+          "text": "A type that represents the numbering system used in a locale.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "Locale.NumberingSystem"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/locale/numberingsystem",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Locale.NumberingSystem",
+      "type": "topic",
+      "url": "/documentation/foundation/locale/numberingsystem"
+    },
+    "doc://com.apple.documentation/documentation/foundation/locale/referencetype": {
+      "abstract": [
+        {
+          "text": "An alias for this value type's equivalent reference type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "Locale.ReferenceType"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/locale/referencetype",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Locale.ReferenceType",
+      "type": "topic",
+      "url": "/documentation/foundation/locale/referencetype"
+    },
+    "doc://com.apple.documentation/documentation/foundation/locale/region": {
+      "abstract": [
+        {
+          "text": "A type that represents a geographic region, for use in specifying a locale or language.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "Locale.Region"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/locale/region",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Locale.Region",
+      "type": "topic",
+      "url": "/documentation/foundation/locale/region"
+    },
+    "doc://com.apple.documentation/documentation/foundation/locale/subdivision": {
+      "abstract": [
+        {
+          "text": "A type that represents a subdivision of a region, such as a state in the US or a province in Canada.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "Locale.Subdivision"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/locale/subdivision",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Locale.Subdivision",
+      "type": "topic",
+      "url": "/documentation/foundation/locale/subdivision"
+    },
+    "doc://com.apple.documentation/documentation/foundation/locale/variant": {
+      "abstract": [
+        {
+          "text": "A type that represents a locale’s languate variant.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "Locale.Variant"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/locale/variant",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Locale.Variant",
+      "type": "topic",
+      "url": "/documentation/foundation/locale/variant"
+    },
+    "doc://com.apple.documentation/documentation/foundation/locale/weekday": {
+      "abstract": [
+        {
+          "text": "A type that represents weekdays, used for indicating a locale’s first day of the week.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "enum "
+        },
+        {
+          "kind": "identifier",
+          "text": "Locale.Weekday"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/locale/weekday",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Locale.Weekday",
+      "type": "topic",
+      "url": "/documentation/foundation/locale/weekday"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nslocale": {
+      "abstract": [
+        {
+          "text": "An object representing information about linguistic, cultural, and technological conventions that bridges to ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/locale",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": "; use ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/nslocale",
+          "isActive": false,
+          "type": "reference"
+        },
+        {
+          "text": " when you need reference semantics or other Foundation-specific behavior.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSLocale"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nslocale",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSLocale",
+      "type": "topic",
+      "url": "/documentation/foundation/nslocale"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nslocale/1643026-languagecode": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nslocale/1643026-languagecode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "languageCode",
+      "type": "topic",
+      "url": "/documentation/foundation/nslocale/1643026-languagecode"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nslocale/languagedirection": {
+      "abstract": [
+        {
+          "text": "The directions that a language may take across a page of text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "enum "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSLocale.LanguageDirection"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nslocale/languagedirection",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSLocale.LanguageDirection",
+      "type": "topic",
+      "url": "/documentation/foundation/nslocale/languagedirection"
+    },
+    "doc://com.apple.documentation/documentation/foundation/referenceconvertible": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/referenceconvertible",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ReferenceConvertible",
+      "type": "topic",
+      "url": "/documentation/foundation/referenceconvertible"
+    },
+    "doc://com.apple.documentation/documentation/foundation/strings_and_text": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/strings_and_text",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Strings and Text",
+      "type": "topic",
+      "url": "/documentation/foundation/strings_and_text"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/CustomDebugStringConvertible",
+        "doc://com.apple.Swift/documentation/Swift/CustomReflectable",
+        "doc://com.apple.Swift/documentation/Swift/CustomStringConvertible",
+        "doc://com.apple.Swift/documentation/Swift/Decodable",
+        "doc://com.apple.Swift/documentation/Swift/Encodable",
+        "doc://com.apple.Swift/documentation/Swift/Hashable",
+        "doc://com.apple.documentation/documentation/foundation/referenceconvertible",
+        "doc://com.apple.Swift/documentation/Swift/Sendable"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "2851091",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/locale/2293563-init"
+      ],
+      "kind": "taskGroup",
+      "title": "Creating a locale by identifier"
+    },
+    {
+      "anchor": "3978393",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/locale/3952514-init",
+        "doc://com.apple.documentation/documentation/foundation/locale/components",
+        "doc://com.apple.documentation/documentation/foundation/locale/3952515-init",
+        "doc://com.apple.documentation/documentation/foundation/locale/4020221-init",
+        "doc://com.apple.documentation/documentation/foundation/locale/language/components"
+      ],
+      "kind": "taskGroup",
+      "title": "Creating a locale by components"
+    },
+    {
+      "anchor": "2897847",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/locale/2293741-autoupdatingcurrent",
+        "doc://com.apple.documentation/documentation/foundation/locale/2293654-current"
+      ],
+      "kind": "taskGroup",
+      "title": "Getting the user's locale"
+    },
+    {
+      "anchor": "2891955",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/locale/2293697-availableidentifiers",
+        "doc://com.apple.documentation/documentation/foundation/locale/2293271-isoregioncodes",
+        "doc://com.apple.documentation/documentation/foundation/locale/2293744-isolanguagecodes",
+        "doc://com.apple.documentation/documentation/foundation/locale/2293444-isocurrencycodes",
+        "doc://com.apple.documentation/documentation/foundation/locale/2293073-commonisocurrencycodes"
+      ],
+      "kind": "taskGroup",
+      "title": "Getting known identifiers and codes"
+    },
+    {
+      "anchor": "2851093",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/locale/2293476-canonicalidentifier",
+        "doc://com.apple.documentation/documentation/foundation/locale/2293297-components",
+        "doc://com.apple.documentation/documentation/foundation/locale/2292964-identifier",
+        "doc://com.apple.documentation/documentation/foundation/locale/4020220-identifier",
+        "doc://com.apple.documentation/documentation/foundation/locale/identifiertype",
+        "doc://com.apple.documentation/documentation/foundation/locale/2293671-canonicallanguageidentifier",
+        "doc://com.apple.documentation/documentation/foundation/locale/2293386-identifier",
+        "doc://com.apple.documentation/documentation/foundation/locale/2293037-windowslocalecode"
+      ],
+      "kind": "taskGroup",
+      "title": "Converting between identifiers"
+    },
+    {
+      "anchor": "3978475",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/locale/components"
+      ],
+      "kind": "taskGroup",
+      "title": "Getting locale components"
+    },
+    {
+      "anchor": "3978471",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/locale/3952516-language",
+        "doc://com.apple.documentation/documentation/foundation/locale/language"
+      ],
+      "kind": "taskGroup",
+      "title": "Getting language components"
+    },
+    {
+      "anchor": "3978472",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/locale/4020218-firstdayofweek",
+        "doc://com.apple.documentation/documentation/foundation/locale/weekday",
+        "doc://com.apple.documentation/documentation/foundation/locale/4020219-hourcycle",
+        "doc://com.apple.documentation/documentation/foundation/locale/hourcycle",
+        "doc://com.apple.documentation/documentation/foundation/locale/3952527-timezone"
+      ],
+      "kind": "taskGroup",
+      "title": "Getting date and time components"
+    },
+    {
+      "anchor": "3978473",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/locale/3952510-currency",
+        "doc://com.apple.documentation/documentation/foundation/locale/currency",
+        "doc://com.apple.documentation/documentation/foundation/locale/4020222-measurementsystem",
+        "doc://com.apple.documentation/documentation/foundation/locale/measurementsystem",
+        "doc://com.apple.documentation/documentation/foundation/locale/4020223-numberingsystem",
+        "doc://com.apple.documentation/documentation/foundation/locale/3952507-availablenumberingsystems",
+        "doc://com.apple.documentation/documentation/foundation/locale/numberingsystem"
+      ],
+      "kind": "taskGroup",
+      "title": "Getting measurement and counting components"
+    },
+    {
+      "anchor": "3978474",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/locale/3952525-region",
+        "doc://com.apple.documentation/documentation/foundation/locale/region",
+        "doc://com.apple.documentation/documentation/foundation/locale/3952526-subdivision",
+        "doc://com.apple.documentation/documentation/foundation/locale/subdivision",
+        "doc://com.apple.documentation/documentation/foundation/locale/3952528-variant",
+        "doc://com.apple.documentation/documentation/foundation/locale/variant"
+      ],
+      "kind": "taskGroup",
+      "title": "Getting region components"
+    },
+    {
+      "anchor": "3978470",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/locale/3952508-collation",
+        "doc://com.apple.documentation/documentation/foundation/locale/collation"
+      ],
+      "kind": "taskGroup",
+      "title": "Getting ordering components"
+    },
+    {
+      "anchor": "2891957",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/locale/2293557-identifier",
+        "doc://com.apple.documentation/documentation/foundation/locale/3952513-identifier",
+        "doc://com.apple.documentation/documentation/foundation/locale/identifiertype",
+        "doc://com.apple.documentation/documentation/foundation/locale/2293254-calendar",
+        "doc://com.apple.documentation/documentation/foundation/locale/2293371-regioncode",
+        "doc://com.apple.documentation/documentation/foundation/locale/2293346-languagecode",
+        "doc://com.apple.documentation/documentation/foundation/locale/2293333-scriptcode",
+        "doc://com.apple.documentation/documentation/foundation/locale/2293376-variantcode",
+        "doc://com.apple.documentation/documentation/foundation/locale/2293427-exemplarcharacterset",
+        "doc://com.apple.documentation/documentation/foundation/locale/2293596-collationidentifier",
+        "doc://com.apple.documentation/documentation/foundation/locale/2293445-collatoridentifier",
+        "doc://com.apple.documentation/documentation/foundation/locale/2292992-usesmetricsystem",
+        "doc://com.apple.documentation/documentation/foundation/locale/2292886-decimalseparator",
+        "doc://com.apple.documentation/documentation/foundation/locale/2292942-groupingseparator",
+        "doc://com.apple.documentation/documentation/foundation/locale/2292939-currencycode",
+        "doc://com.apple.documentation/documentation/foundation/locale/2293408-currencysymbol",
+        "doc://com.apple.documentation/documentation/foundation/locale/2293745-quotationbegindelimiter",
+        "doc://com.apple.documentation/documentation/foundation/locale/2293668-quotationenddelimiter",
+        "doc://com.apple.documentation/documentation/foundation/locale/2293171-alternatequotationbegindelimiter",
+        "doc://com.apple.documentation/documentation/foundation/locale/2293544-alternatequotationenddelimiter"
+      ],
+      "kind": "taskGroup",
+      "title": "Getting information about a locale"
+    },
+    {
+      "anchor": "2851092",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/locale/2293486-localizedstring",
+        "doc://com.apple.documentation/documentation/foundation/locale/2292891-localizedstring",
+        "doc://com.apple.documentation/documentation/foundation/locale/2293070-localizedstring",
+        "doc://com.apple.documentation/documentation/foundation/locale/2293551-localizedstring",
+        "doc://com.apple.documentation/documentation/foundation/locale/2293562-localizedstring",
+        "doc://com.apple.documentation/documentation/foundation/locale/2293712-localizedstring",
+        "doc://com.apple.documentation/documentation/foundation/locale/2293396-localizedstring",
+        "doc://com.apple.documentation/documentation/foundation/locale/2293706-localizedstring",
+        "doc://com.apple.documentation/documentation/foundation/locale/2293393-localizedstring"
+      ],
+      "kind": "taskGroup",
+      "title": "Getting display information about a locale"
+    },
+    {
+      "anchor": "2891954",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/locale/2293155-preferredlanguages"
+      ],
+      "kind": "taskGroup",
+      "title": "Getting the user's preferred languages"
+    },
+    {
+      "anchor": "2891953",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/locale/2293220-characterdirection",
+        "doc://com.apple.documentation/documentation/foundation/locale/2293397-linedirection",
+        "doc://com.apple.documentation/documentation/foundation/locale/languagedirection",
+        "doc://com.apple.documentation/documentation/foundation/nslocale/languagedirection"
+      ],
+      "kind": "taskGroup",
+      "title": "Getting line and character direction for a language"
+    },
+    {
+      "anchor": "2851094",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/locale/2293264",
+        "doc://com.apple.documentation/documentation/foundation/locale/2883026"
+      ],
+      "kind": "taskGroup",
+      "title": "Comparing locales"
+    },
+    {
+      "anchor": "2891956",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/locale/2292995-description",
+        "doc://com.apple.documentation/documentation/foundation/locale/2293533-debugdescription",
+        "doc://com.apple.documentation/documentation/foundation/locale/2427167-custommirror",
+        "doc://com.apple.documentation/documentation/foundation/locale/2293331-hashvalue"
+      ],
+      "kind": "taskGroup",
+      "title": "Describing a locale"
+    },
+    {
+      "anchor": "3978383",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/locale/2908882-init",
+        "doc://com.apple.documentation/documentation/foundation/locale/2908886-encode"
+      ],
+      "kind": "taskGroup",
+      "title": "Encoding and decoding"
+    },
+    {
+      "anchor": "3978389",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/locale/3236757-hash"
+      ],
+      "kind": "taskGroup",
+      "title": "Hashing"
+    },
+    {
+      "anchor": "2878905",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nslocale",
+        "doc://com.apple.documentation/documentation/foundation/locale/referencetype"
+      ],
+      "kind": "taskGroup",
+      "title": "Using reference types"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/locale"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

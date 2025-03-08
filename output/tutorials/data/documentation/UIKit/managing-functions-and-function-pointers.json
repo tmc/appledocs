@@ -1,0 +1,522 @@
+{
+  "abstract": [
+    {
+      "text": "Ensure that your code correctly handles functions, function pointers, and Objective-C messages.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit",
+        "doc://com.apple.uikit/documentation/UIKit/app-and-environment",
+        "doc://com.apple.uikit/documentation/UIKit/updating-your-app-from-32-bit-to-64-bit-architecture"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.uikit/documentation/UIKit/managing-functions-and-function-pointers"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "UIKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Managing functions and function pointers"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The 64-bit runtime brings a number of changes in the calling and handling of functions. These changes affect how functions that accept a variable number of arguments and Objective-C messages are called in your code. Ensure that your code complies with these changes by adopting the calling conventions prescribed below.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Always-define-function-prototypes",
+          "level": 3,
+          "text": "Always define function prototypes",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When compiling using the updated project settings, the compiler generates errors if you attempt to make a function call to a function that doesn’t have an explicit prototype. You must provide a function prototype so that the compiler can determine whether or not the function is variadic.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Ensure-that-function-pointers-use-the-correct-prototype",
+          "level": 3,
+          "text": "Ensure that function pointers use the correct prototype",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you pass a function pointer in your code, its calling conventions must take the same set of parameters everywhere in the code. Never cast a variadic function to a function that takes a fixed number of parameters (or vice versa).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code shows an example of a problematic function call:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "int MyFunction(int a, int b, ...);",
+            "",
+            "int (*action)(int, int, int) = (int (*)(int, int, int)) MyFunction;",
+            "action(1,2,3); // Incorrect."
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because the function pointer in this example is cast to use a different set of calling conventions, the calling function places the parameters in an order that the called function doesn’t expect. This behavior could cause your app to crash or to exhibit other unpredictable behaviors.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Call-variadic-functions-with-consistent-types",
+          "level": 3,
+          "text": "Call variadic functions with consistent types",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Variadic functions are functions that contain variable argument lists (",
+              "type": "text"
+            },
+            {
+              "code": "varargs",
+              "type": "codeVoice"
+            },
+            {
+              "text": "). Variable arguments don’t provide type information. Furthermore, the arguments of variadic functions aren’t automatically promoted to larger types. In the 64-bit runtime, it’s important to understand this behavior if you pass in types of different sizes to variadic functions.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you need to distinguish between different incoming data types, use a format string or other similar mechanism to provide that information to the ",
+              "type": "text"
+            },
+            {
+              "code": "varargs",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function. If the calling function doesn’t provide the right information (or if the ",
+              "type": "text"
+            },
+            {
+              "code": "varargs",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function doesn’t interpret it correctly), you get incorrect results.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, if your ",
+              "type": "text"
+            },
+            {
+              "code": "varargs",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function requires a ",
+              "type": "text"
+            },
+            {
+              "code": "long",
+              "type": "codeVoice"
+            },
+            {
+              "text": " integer and you pass in a 32-bit value, the function contains 32 bits of the data you passed and 32 bits of data from the next argument. Likewise, if your ",
+              "type": "text"
+            },
+            {
+              "code": "varargs",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function requires an ",
+              "type": "text"
+            },
+            {
+              "code": "int",
+              "type": "codeVoice"
+            },
+            {
+              "text": " type and you pass in a ",
+              "type": "text"
+            },
+            {
+              "code": "long",
+              "type": "codeVoice"
+            },
+            {
+              "text": " integer, you get only half of the data. The remaining 32 bits of the data you pass appears in the argument that follows.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Cast-Objective-C-messages-in-proper-form",
+          "level": 3,
+          "text": "Cast Objective-C messages in proper form",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your code calls the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/1456712-objc_msgsend",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function, or any other similar functions in the Objective-C runtime that send messages, you need to cast properly. Although the prototype for the message functions has a variadic form, the method function that’s called by the Objective-C runtime doesn’t share the same prototype.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Objective-C runtime directly calls the function that implements the method, so the calling conventions are mismatched. You must cast the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/1456712-objc_msgsend",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function to a prototype that matches the method function being called.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code shows proper form for dispatching a message to an object, using the low-level message functions:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "- (int) doSomething:(int) x {",
+            "   return x + 2;",
+            "}",
+            "",
+            "- (void) doSomethingElse {",
+            "    int (*action)(id, SEL, int) = (int (*)(id, SEL, int)) objc_msgSend;",
+            "    action(self, @selector(doSomething:), 0);",
+            "}"
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In this example, the ",
+              "type": "text"
+            },
+            {
+              "code": "doSomething:",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method takes a single parameter, ",
+              "type": "text"
+            },
+            {
+              "code": "x",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and doesn’t have a variadic form. In ",
+              "type": "text"
+            },
+            {
+              "code": "doSomethingElse",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", it casts the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/1456712-objc_msgsend",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function using the prototype of the method function. Note that a method function always takes an ",
+              "type": "text"
+            },
+            {
+              "code": "id",
+              "type": "codeVoice"
+            },
+            {
+              "text": " variable and a selector as its first two parameters. After the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/1456712-objc_msgsend",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function is cast to the function pointer named ",
+              "type": "text"
+            },
+            {
+              "code": "action",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", the call is dispatched through that same function pointer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/objectivec/1456712-objc_msgsend": {
+      "abstract": [
+        {
+          "text": "Sends a message with a simple return value to an instance of a class.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/1456712-objc_msgsend",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "objc_msgSend",
+      "type": "topic",
+      "url": "/documentation/objectivec/1456712-objc_msgsend"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.uikit/documentation/UIKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your iOS, iPadOS, or tvOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "UIKit",
+      "type": "topic",
+      "url": "/documentation/uikit"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/app-and-environment": {
+      "abstract": [
+        {
+          "text": "Manage life-cycle events and your app’s UI scenes, and get information about traits and the environment in which your app runs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/app-and-environment",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "App and environment",
+      "type": "topic",
+      "url": "/documentation/uikit/app-and-environment"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/auditing-pointer-usage": {
+      "abstract": [
+        {
+          "text": "Ensure that the pointers in your code are safe for the 64-bit runtime.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/auditing-pointer-usage",
+      "kind": "article",
+      "role": "article",
+      "title": "Auditing pointer usage",
+      "type": "topic",
+      "url": "/documentation/uikit/auditing-pointer-usage"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/updating-data-structures": {
+      "abstract": [
+        {
+          "text": "Review your app’s data design and update it to conform with 64-bit architecture.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/updating-data-structures",
+      "kind": "article",
+      "role": "article",
+      "title": "Updating data structures",
+      "type": "topic",
+      "url": "/documentation/uikit/updating-data-structures"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/updating-your-app-from-32-bit-to-64-bit-architecture": {
+      "abstract": [
+        {
+          "text": "Ensure that your app behaves as expected by adapting it to support later versions of the operating system.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/updating-your-app-from-32-bit-to-64-bit-architecture",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Updating your app from 32-bit to 64-bit architecture",
+      "type": "topic",
+      "url": "/documentation/uikit/updating-your-app-from-32-bit-to-64-bit-architecture"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Memory-and-pointer-access",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/updating-data-structures",
+        "doc://com.apple.uikit/documentation/UIKit/auditing-pointer-usage"
+      ],
+      "title": "Memory and pointer access"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Memory-and-pointer-access",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/updating-data-structures",
+                "doc://com.apple.uikit/documentation/UIKit/auditing-pointer-usage"
+              ],
+              "title": "Memory and pointer access"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/uikit/managing-functions-and-function-pointers"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/uikit/managing-functions-and-function-pointers"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

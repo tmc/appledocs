@@ -1,0 +1,865 @@
+{
+  "abstract": [
+    {
+      "text": "OSSymbol wraps a C string in a unique C++ object for use as keys in Libkern collections.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/kernel",
+        "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals",
+        "doc://com.apple.documentation/documentation/kernel/libkern/data_types"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/kernel",
+        "doc://com.apple.documentation/documentation/kernel/libkern",
+        "doc://com.apple.documentation/documentation/kernel/libkern/data_types"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/kernel/ossymbol"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1399362,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@S@OSSymbol",
+    "modules": [
+      {
+        "name": "Kernel"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "15.4",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "OSSymbol"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "OSSymbol"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/osstring",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@S@OSString",
+              "text": "OSString"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "OSSymbol is a container class for managing uniqued strings, for example, those used as dictionary keys. Its static instance-creation functions check for an existing instance of OSSymbol with the requested C string value before creating a new object. If an instance already exists in the pool of unique symbols, its reference count is incremented and the existing instance is returned.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "While OSSymbol provides for uniquing of a given string value, it makes no effort to enforce immutability of that value. Altering the contents of an OSSymbol should be avoided.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Use Restrictions",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "With very few exceptions in the I/O Kit, all Libkern-based C++ classes, functions, and macros are ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "unsafe",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            },
+            {
+              "text": " to use in a primary interrupt context. Consult the I/O Kit documentation related to primary interrupts for more information.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "OSSymbol provides no concurrency protection; it's up to the usage context to provide any protection necessary. Some portions of the I/O Kit, such as IORegistryEntry, handle synchronization via defined member functions for setting properties.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/kernel": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Kernel",
+      "type": "topic",
+      "url": "/documentation/kernel"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "IOKit Fundamentals",
+      "type": "topic",
+      "url": "/documentation/kernel/iokit_fundamentals"
+    },
+    "doc://com.apple.documentation/documentation/kernel/libkern": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/libkern",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "libkern",
+      "type": "topic",
+      "url": "/documentation/kernel/libkern"
+    },
+    "doc://com.apple.documentation/documentation/kernel/libkern/data_types": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/libkern/data_types",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Data Types",
+      "type": "topic",
+      "url": "/documentation/kernel/libkern/data_types"
+    },
+    "doc://com.apple.documentation/documentation/kernel/libkern/data_types/additional_types": {
+      "abstract": [
+        {
+          "text": "Find custom type definitions and pointer types for standard classes. ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/libkern/data_types/additional_types",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Additional Types",
+      "type": "topic",
+      "url": "/documentation/kernel/libkern/data_types/additional_types"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osmetaclass": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osmetaclass",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSMetaClass",
+      "type": "topic",
+      "url": "/documentation/kernel/osmetaclass"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osmetaclassbase": {
+      "abstract": [
+        {
+          "text": "OSMetaClassBase is the abstract bootstrap class for the Libkern and I/O Kit run-time type information system.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osmetaclassbase",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSMetaClassBase",
+      "type": "topic",
+      "url": "/documentation/kernel/osmetaclassbase"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osobject": {
+      "abstract": [
+        {
+          "text": "OSObject is the concrete root class of the Libkern and I/O Kit C++ class hierarchy.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSObject",
+      "type": "topic",
+      "url": "/documentation/kernel/osobject"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osobjectptr": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osobjectptr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSObjectPtr",
+      "type": "topic",
+      "url": "/documentation/kernel/osobjectptr"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osobjectref": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osobjectref",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSObjectRef",
+      "type": "topic",
+      "url": "/documentation/kernel/osobjectref"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osstring": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osstring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSString",
+      "type": "topic",
+      "url": "/documentation/kernel/osstring"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ossymbol": {
+      "abstract": [
+        {
+          "text": "OSSymbol wraps a C string in a unique C++ object for use as keys in Libkern collections.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ossymbol",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSSymbol",
+      "type": "topic",
+      "url": "/documentation/kernel/ossymbol"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ossymbol/1399364-isequalto": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "isEqualTo"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ossymbol/1399364-isequalto",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isEqualTo",
+      "type": "topic",
+      "url": "/documentation/kernel/ossymbol/1399364-isequalto"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ossymbol/1399366-getmetaclass": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getMetaClass"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ossymbol/1399366-getmetaclass",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getMetaClass",
+      "type": "topic",
+      "url": "/documentation/kernel/ossymbol/1399366-getmetaclass"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ossymbol/1399368-initwithstring": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "initWithString"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ossymbol/1399368-initwithstring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "initWithString",
+      "type": "topic",
+      "url": "/documentation/kernel/ossymbol/1399368-initwithstring"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ossymbol/1399370-withcstring": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "withCString"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ossymbol/1399370-withcstring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "withCString",
+      "type": "topic",
+      "url": "/documentation/kernel/ossymbol/1399370-withcstring"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ossymbol/1399372-withstring": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "withString"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ossymbol/1399372-withstring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "withString",
+      "type": "topic",
+      "url": "/documentation/kernel/ossymbol/1399372-withstring"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ossymbol/1399374-initwithcstring": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "initWithCString"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ossymbol/1399374-initwithcstring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "initWithCString",
+      "type": "topic",
+      "url": "/documentation/kernel/ossymbol/1399374-initwithcstring"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ossymbol/1399376-free": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "free"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ossymbol/1399376-free",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "free",
+      "type": "topic",
+      "url": "/documentation/kernel/ossymbol/1399376-free"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ossymbol/1399378-initialize": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "initialize"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ossymbol/1399378-initialize",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "initialize",
+      "type": "topic",
+      "url": "/documentation/kernel/ossymbol/1399378-initialize"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ossymbol/1399380-taggedrelease": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "taggedRelease"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ossymbol/1399380-taggedrelease",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "taggedRelease",
+      "type": "topic",
+      "url": "/documentation/kernel/ossymbol/1399380-taggedrelease"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ossymbol/1399383-initwithcstringnocopy": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "initWithCStringNoCopy"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ossymbol/1399383-initwithcstringnocopy",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "initWithCStringNoCopy",
+      "type": "topic",
+      "url": "/documentation/kernel/ossymbol/1399383-initwithcstringnocopy"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ossymbol/1399385-withcstringnocopy": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "withCStringNoCopy"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ossymbol/1399385-withcstringnocopy",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "withCStringNoCopy",
+      "type": "topic",
+      "url": "/documentation/kernel/ossymbol/1399385-withcstringnocopy"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ossymbol/1808021-free": {
+      "abstract": [
+        {
+          "text": "Overrides OSObject::free to synchronize with the symbol pool.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ossymbol/1808021-free",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "free",
+      "type": "topic",
+      "url": "/documentation/kernel/ossymbol/1808021-free"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ossymbol/1808026-initwithcstring": {
+      "abstract": [
+        {
+          "text": "Overridden to prevent creation of duplicate symbols.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ossymbol/1808026-initwithcstring",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "initWithCString",
+      "type": "topic",
+      "url": "/documentation/kernel/ossymbol/1808026-initwithcstring"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ossymbol/1808036-initwithcstringnocopy": {
+      "abstract": [
+        {
+          "text": "Overridden to prevent creation of duplicate symbols.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ossymbol/1808036-initwithcstringnocopy",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "initWithCStringNoCopy",
+      "type": "topic",
+      "url": "/documentation/kernel/ossymbol/1808036-initwithcstringnocopy"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ossymbol/1808054-initwithstring": {
+      "abstract": [
+        {
+          "text": "Overridden to prevent creation of duplicate symbols.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ossymbol/1808054-initwithstring",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "initWithString",
+      "type": "topic",
+      "url": "/documentation/kernel/ossymbol/1808054-initwithstring"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ossymbol/1808078-isequalto": {
+      "abstract": [
+        {
+          "text": "Tests the equality of an OSSymbol object to an arbitrary object.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ossymbol/1808078-isequalto",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "isEqualTo",
+      "type": "topic",
+      "url": "/documentation/kernel/ossymbol/1808078-isequalto"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ossymbol/1808093-isequalto": {
+      "abstract": [
+        {
+          "text": "Tests the equality of an OSSymbol object with a C string.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ossymbol/1808093-isequalto",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "isEqualTo(const char *)",
+      "type": "topic",
+      "url": "/documentation/kernel/ossymbol/1808093-isequalto"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ossymbol/1808114-isequalto": {
+      "abstract": [
+        {
+          "text": "Tests the equality of two OSSymbol objects.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ossymbol/1808114-isequalto",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "isEqualTo(const OSSymbol *)",
+      "type": "topic",
+      "url": "/documentation/kernel/ossymbol/1808114-isequalto"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ossymbol/1808137-taggedrelease": {
+      "abstract": [
+        {
+          "text": "Overrides OSObject::taggedRelease(const void *) to synchronize with the symbol pool.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ossymbol/1808137-taggedrelease",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "taggedRelease(const void *)",
+      "type": "topic",
+      "url": "/documentation/kernel/ossymbol/1808137-taggedrelease"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ossymbol/1808154-taggedrelease": {
+      "abstract": [
+        {
+          "text": "Overrides OSObject::taggedRelease(const void *, const int) to synchronize with the symbol pool.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ossymbol/1808154-taggedrelease",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "taggedRelease(const void *, const int)",
+      "type": "topic",
+      "url": "/documentation/kernel/ossymbol/1808154-taggedrelease"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ossymbol/1808171-withcstring": {
+      "abstract": [
+        {
+          "text": "Returns an OSSymbol created from a C string, or the existing unique instance of the same value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ossymbol/1808171-withcstring",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "withCString",
+      "type": "topic",
+      "url": "/documentation/kernel/ossymbol/1808171-withcstring"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ossymbol/1808179-withcstringnocopy": {
+      "abstract": [
+        {
+          "text": "Returns an OSSymbol created from a C string, without copying that string, or the existing unique instance of the same value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ossymbol/1808179-withcstringnocopy",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "withCStringNoCopy",
+      "type": "topic",
+      "url": "/documentation/kernel/ossymbol/1808179-withcstringnocopy"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ossymbol/1808192-withstring": {
+      "abstract": [
+        {
+          "text": "Returns an OSSymbol created from an OSString, or the existing unique instance of the same value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ossymbol/1808192-withstring",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "withString",
+      "type": "topic",
+      "url": "/documentation/kernel/ossymbol/1808192-withstring"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ossymbol/3143271-existingsymbolforcstring": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "existingSymbolForCString"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ossymbol/3143271-existingsymbolforcstring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "existingSymbolForCString",
+      "type": "topic",
+      "url": "/documentation/kernel/ossymbol/3143271-existingsymbolforcstring"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ossymbol/3143272-existingsymbolforstring": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "existingSymbolForString"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ossymbol/3143272-existingsymbolforstring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "existingSymbolForString",
+      "type": "topic",
+      "url": "/documentation/kernel/ossymbol/3143272-existingsymbolforstring"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ossymbol/3516844-isequalto": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "isEqualTo"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ossymbol/3516844-isequalto",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isEqualTo",
+      "type": "topic",
+      "url": "/documentation/kernel/ossymbol/3516844-isequalto"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ossymbol/3516845-isequalto": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "isEqualTo"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ossymbol/3516845-isequalto",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isEqualTo",
+      "type": "topic",
+      "url": "/documentation/kernel/ossymbol/3516845-isequalto"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ossymbol/3516846-taggedrelease": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "taggedRelease"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ossymbol/3516846-taggedrelease",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "taggedRelease",
+      "type": "topic",
+      "url": "/documentation/kernel/ossymbol/3516846-taggedrelease"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ossymbol/4143382-taggedretain": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "taggedRetain"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ossymbol/4143382-taggedretain",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "taggedRetain",
+      "type": "topic",
+      "url": "/documentation/kernel/ossymbol/4143382-taggedretain"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/osstring"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/osobject",
+        "doc://com.apple.documentation/documentation/kernel/osmetaclass",
+        "doc://com.apple.documentation/documentation/kernel/osmetaclassbase",
+        "doc://com.apple.documentation/documentation/kernel/osobjectptr",
+        "doc://com.apple.documentation/documentation/kernel/osobjectref",
+        "doc://com.apple.documentation/documentation/kernel/libkern/data_types/additional_types"
+      ],
+      "title": "Base Types"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "1673543",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/ossymbol/1808021-free",
+        "doc://com.apple.documentation/documentation/kernel/ossymbol/1808026-initwithcstring",
+        "doc://com.apple.documentation/documentation/kernel/ossymbol/1808036-initwithcstringnocopy",
+        "doc://com.apple.documentation/documentation/kernel/ossymbol/1808054-initwithstring",
+        "doc://com.apple.documentation/documentation/kernel/ossymbol/1808078-isequalto",
+        "doc://com.apple.documentation/documentation/kernel/ossymbol/1808093-isequalto",
+        "doc://com.apple.documentation/documentation/kernel/ossymbol/1808114-isequalto",
+        "doc://com.apple.documentation/documentation/kernel/ossymbol/1808137-taggedrelease",
+        "doc://com.apple.documentation/documentation/kernel/ossymbol/1808154-taggedrelease",
+        "doc://com.apple.documentation/documentation/kernel/ossymbol/1808171-withcstring",
+        "doc://com.apple.documentation/documentation/kernel/ossymbol/1808179-withcstringnocopy",
+        "doc://com.apple.documentation/documentation/kernel/ossymbol/1808192-withstring"
+      ],
+      "kind": "taskGroup",
+      "title": "Miscellaneous"
+    },
+    {
+      "anchor": "3516972",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/ossymbol/1399376-free",
+        "doc://com.apple.documentation/documentation/kernel/ossymbol/1399366-getmetaclass",
+        "doc://com.apple.documentation/documentation/kernel/ossymbol/1399374-initwithcstring",
+        "doc://com.apple.documentation/documentation/kernel/ossymbol/1399383-initwithcstringnocopy",
+        "doc://com.apple.documentation/documentation/kernel/ossymbol/1399368-initwithstring",
+        "doc://com.apple.documentation/documentation/kernel/ossymbol/1399364-isequalto",
+        "doc://com.apple.documentation/documentation/kernel/ossymbol/3516844-isequalto",
+        "doc://com.apple.documentation/documentation/kernel/ossymbol/3516845-isequalto",
+        "doc://com.apple.documentation/documentation/kernel/ossymbol/1399380-taggedrelease",
+        "doc://com.apple.documentation/documentation/kernel/ossymbol/3516846-taggedrelease",
+        "doc://com.apple.documentation/documentation/kernel/ossymbol/4143382-taggedretain"
+      ],
+      "kind": "taskGroup",
+      "title": "Instance Methods"
+    },
+    {
+      "anchor": "3516973",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/ossymbol/3143271-existingsymbolforcstring",
+        "doc://com.apple.documentation/documentation/kernel/ossymbol/3143272-existingsymbolforstring",
+        "doc://com.apple.documentation/documentation/kernel/ossymbol/1399378-initialize",
+        "doc://com.apple.documentation/documentation/kernel/ossymbol/1399370-withcstring",
+        "doc://com.apple.documentation/documentation/kernel/ossymbol/1399385-withcstringnocopy",
+        "doc://com.apple.documentation/documentation/kernel/ossymbol/1399372-withstring"
+      ],
+      "kind": "taskGroup",
+      "title": "Type Methods"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/kernel/ossymbol"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

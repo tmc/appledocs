@@ -1,0 +1,2182 @@
+{
+  "abstract": [
+    {
+      "text": "Offer discounted pricing for auto-renewable subscription products to eligible subscribers.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.storekit/documentation/StoreKit",
+        "doc://com.apple.storekit/documentation/StoreKit/in-app-purchase",
+        "doc://com.apple.storekit/documentation/StoreKit/original-api-for-in-app-purchase",
+        "doc://com.apple.storekit/documentation/StoreKit/subscriptions-and-offers"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.storekit/documentation/StoreKit/implementing-promotional-offers-in-your-app"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "StoreKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Implementing promotional offers in your app"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Promotional offers can be effective in winning back lapsed subscribers or retaining current subscribers. You can provide lapsed or current subscribers a limited-time offer of a discounted or free period of service for auto-renewable subscriptions on macOS, iOS, and tvOS. To implement the offers, first complete the setup on App Store Connect, including generating a private key. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/setting-up-promotional-offers",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for more details.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You decide the criteria for which subscribers qualify for an offer. In your app, the details of the offers you set up in App Store Connect appear in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKProduct/discounts",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " array in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKProduct",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". To indicate the offer you want to give to a user, include a signed ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKMutablePayment/paymentDiscount",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKMutablePayment",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For business guidance on using promotional offers, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/app-store/subscriptions/#providing-subscription-offers",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "If your goal is to attract new users, you can use introductory offers and promote the in-app purchase on the App Store. Users are eligible to receive only one introductory offer, but redeeming an introductory offer doesn’t affect their eligibility for a promotional offer. For more information on introductory offers, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.storekit/documentation/StoreKit/implementing-introductory-offers-in-your-app",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Prepare-Your-Offer",
+          "level": 3,
+          "text": "Prepare Your Offer",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To present a promotional offer, first determine the subscriber’s eligibility, get the product details from the App Store, and generate a signature on your server.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3162620",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Determine-Eligibility",
+          "level": 4,
+          "text": "Determine Eligibility",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "There are two aspects to determining a user’s eligibility for promotional offers:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The App Store deems all customers with an existing or expired subscription in the app eligible to redeem a promotional offer. You can check whether the receipt contains any existing or expired subscription purchases to identify these current or lapsed subscribers.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You determine any additional eligibility criteria for a specific promotional offer. Eligibility can be contingent on a wide range of business logic determined by your business needs.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Consider using the App Store server notification ",
+              "type": "text"
+            },
+            {
+              "code": "DID_CHANGE_RENEWAL_STATUS",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to determine eligibility. This notification is triggered by changes in a subscription’s auto-renew status. For example, you receive a notification when a subscriber disables auto-renew in Manage Subscriptions or contacts AppleCare to cancel their subscription. For more information on server notifications, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppStoreServerNotifications",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Your server can notify your app if the user is eligible for an offer so the app can present it to the customer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Customers can redeem promotional offers only on devices running iOS 12.2 and later, macOS 10.14.4 and later, and tvOS 12.2 and later. Consider providing messaging prompting your customer to update their OS if they try to redeem a promotional offer in your app on a device running an older OS version.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Consider also implementing ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/DeviceCheck",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to keep track of devices that have previously redeemed offers. ",
+              "type": "text"
+            },
+            {
+              "code": "TwoBitKit",
+              "type": "codeVoice"
+            },
+            {
+              "text": " allows you to maintain user privacy while defining parameters you use to determine eligibility.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Request-Product-Details",
+          "level": 4,
+          "text": "Request Product Details",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Once you determine that the subscriber is eligible for an offer, the next step is requesting the product details, including offers, from the App Store. To fetch the details, use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKProductsRequest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " with the subscription’s product identifier.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In response, the App Store returns the localized information in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKProduct",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKProduct/discounts",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " array of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKProduct",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " contains all promotional offers you configured in App Store Connect for that product. The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKProductDiscount",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object contains offer details including the localized price.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You determine which offer from the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKProduct/discounts",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " array to present to the user.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-a-Signature",
+          "level": 4,
+          "text": "Create a Signature",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A signature is a unique string that your server generates using specified parameters and your private key. You include it in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKPaymentDiscount/signature",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " parameter of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKPaymentDiscount",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and the App Store uses it to validate the promotional offer. The signature is time sensitive, unique per offer, and redeemable only once.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To generate the signature, send a secure request to your server. The server will need to know the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKMutablePayment/applicationUsername",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKProduct/productIdentifier",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKProductDiscount/identifier",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Your app should supply these parameters in the request if the server doesn’t already know them. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/generating-a-signature-for-promotional-offers",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for more information.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your server should respond with the signature string and the additional values it used to generate the signature: a ",
+              "type": "text"
+            },
+            {
+              "code": "nonce",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "timestamp",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and the ",
+              "type": "text"
+            },
+            {
+              "code": "keyIdentifier",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". Use these values to complete the parameters in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKPaymentDiscount",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object nested in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKMutablePayment",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object representing the offer. If the App Store determines that the signature isn’t a match for the parameters in the payment, the transaction fails.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "To minimize latency, consider generating the signature when you display the offer.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Tip",
+          "style": "tip",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code example shows how to request a signature from your server and prepare the discount offer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Fetch the signature from your server to be applied to the offer.",
+            "// At this point you know the user and the product the offer is for, and which offer you want to display.",
+            "public func prepareOffer(usernameHash: String, productIdentifier: String, offerIdentifier: String, completion: (SKPaymentDiscount) -> Void) {",
+            "",
+            "    // Make a secure request to your server, providing the username, product, and discount data",
+            "    // Your server will use these values to generate the signature and return it, along with the nonce, timestamp, and key identifier that it uses to generate the signature.",
+            "    YourServer.fetchOfferDetails(username: usernameHash, productIdentifier: productIdentifier, offerIdentifier: offerIdentifier, completion: { (nonce: UUID, timestamp: NSNumber, keyIdentifier: String, signature: String) in ",
+            "",
+            "        // Create an SKPaymentDiscount to be used later when the user initiates the purchase",
+            "        let discountOffer = SKPaymentDiscount(identifier: offerIdentifier, keyIdentifier: keyIdentifier, nonce: nonce, signature: discountsignature, timestamp: timestamp)",
+            "",
+            "        completion(discountOffer)",
+            "    })",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Present-Your-Offer",
+          "level": 4,
+          "text": "Present Your Offer",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can present offers to users through various channels, such as email, but they must interact with the offer inside your app’s UI. Display the offer in your app at the time you choose, using the pricing and terms from the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKProductDiscount",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object. By using the details from this object, you ensure that the offer displayed to the user accurately reflects the offer you intend to give. For design guidance, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/app-store/subscriptions/#clear-description",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Present offers to eligible subscribers only, to avoid misleading or confusing users.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Complete-the-Transaction",
+          "level": 3,
+          "text": "Complete the Transaction",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After a user chooses to buy the promotional offer, submit the payment request, verify the receipt, and unlock the offer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3162621",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-a-Payment-Request",
+          "level": 4,
+          "text": "Create a Payment Request",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the user initiates a buy of the offer in the app, send an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKMutablePayment",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to the App Store with the signed offer. Create an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKPaymentDiscount",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object that includes the signature you generated and its ",
+              "type": "text"
+            },
+            {
+              "code": "identifier",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "keyIdentifier",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "nonce",
+              "type": "codeVoice"
+            },
+            {
+              "text": " (one-time use), and ",
+              "type": "text"
+            },
+            {
+              "code": "timestamp",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameters. Add this object as the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKMutablePayment/paymentDiscount",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKMutablePayment",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Include in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKMutablePayment",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object the same ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKMutablePayment/applicationUsername",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", often a unique hash of the username, that the signature contains. Add the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKMutablePayment",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object to the queue.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// An example function that makes a buy request with a promotional offer attached.",
+            "public func buyProduct(productIdentifier: SKProduct, forUser usernameHash: String, withOffer discountOffer: SKPaymentDiscount) {",
+            "",
+            "    // The original product being purchased.",
+            "    let payment = SKMutablePayment(product: product)",
+            "",
+            "    // You must set applicationUsername to be the same as the one used to generate the signature.",
+            "    payment.applicationUsername = usernameHash",
+            "",
+            "    // Add the offer to the payment.",
+            "    payment.paymentDiscount = discountOffer",
+            "",
+            "    // Add the payment to the queue for purchase.",
+            "    SKPaymentQueue.default().add(payment)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Notify-the-User-of-the-Transaction-State",
+          "level": 4,
+          "text": "Notify the User of the Transaction State",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Once the App Store validates the offer, it processes your payment request and generates an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKPaymentTransaction",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Your app uses it to validate the transaction and unlock content accordingly.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Handle the transaction state of the payment request and notify the customer as needed. If the transaction is successful, the App Store automatically updates the app receipt with the transaction in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKPaymentTransactionState/purchased",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " state. Base64-encode the receipt on-device and securely send the receipt data to your server.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "If the transaction fails with a state of ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKPaymentTransactionState/failed",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ", you must generate a new signature and a new payment request for any further attempts to purchase the offer.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Verify-the-Receipt",
+          "level": 4,
+          "text": "Verify the Receipt",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As you do for all purchases, verify the receipt with the App Store by calling the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/appstorereceipts/verifyreceipt",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " endpoint from your server. The App Store sends a JSON response containing information about the user’s purchase. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/library/archive/releasenotes/General/ValidateAppStoreReceipt/Chapters/ValidateRemotely.html",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for more information.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When a subscriber redeems an offer, the receipt contains a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/appstorereceipts/promotional_offer_id",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in the purchase transaction. This receipt field is a string containing the offer ID that you configured in App Store Connect. You can look at past transactions in the receipt to identify the offers the customer redeemed.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Unlock-the-Service",
+          "level": 4,
+          "text": "Unlock the Service",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After validating that the user has purchased the subscription product, unlock the subscription service in the app for the user. Update the customer’s eligibility criteria for offers, as needed.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When a customer redeems a promotional offer, the offer period starts at the next billing event.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "For upgrades or crossgrades to a different subscription with the same duration, the promotional offer triggers a billing event and goes into effect immediately.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "For downgrades or crossgrades to a different subscription with different durations, the promotional offer period goes into effect at the next renewal date.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "For the same subscription in an introductory offer, this promotional offer period goes into effect at the next scheduled billing event.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Once the offer period concludes, a promotional offer auto-renews at the standard price.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A user can redeem and have active only one promotional offer at a time. If the user accepts another offer before a current offer ends, the current offer is canceled in the following billing event and the new offer takes effect.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/AppStoreServerNotifications": {
+      "abstract": [
+        {
+          "text": "Monitor In-App Purchase events in real time and learn of unreported external purchase tokens, with server notifications from the App Store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppStoreServerNotifications",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "App Store Server Notifications",
+      "type": "topic",
+      "url": "/documentation/AppStoreServerNotifications"
+    },
+    "doc://com.apple.documentation/documentation/DeviceCheck": {
+      "abstract": [
+        {
+          "text": "Reduce fraudulent use of your services by managing device state and asserting app integrity.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/DeviceCheck",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "DeviceCheck",
+      "type": "topic",
+      "url": "/documentation/DeviceCheck"
+    },
+    "doc://com.apple.documentation/documentation/appstorereceipts/promotional_offer_id": {
+      "abstract": [
+        {
+          "text": "The identifier of the promotional offer for an auto-renewable subscription that the user redeems.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "type "
+        },
+        {
+          "kind": "identifier",
+          "text": "promotional_offer_id"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/appstorereceipts/promotional_offer_id",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "promotional_offer_id",
+      "type": "topic",
+      "url": "/documentation/appstorereceipts/promotional_offer_id"
+    },
+    "doc://com.apple.documentation/documentation/appstorereceipts/verifyreceipt": {
+      "abstract": [
+        {
+          "text": "Send a receipt to the App Store for verification.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/appstorereceipts/verifyreceipt",
+      "kind": "article",
+      "role": "symbol",
+      "title": "verifyReceipt",
+      "type": "topic",
+      "url": "/documentation/appstorereceipts/verifyreceipt"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit": {
+      "abstract": [
+        {
+          "text": "Support In-App Purchases and interactions with the App Store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "StoreKit",
+      "type": "topic",
+      "url": "/documentation/storekit"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SKMutablePayment": {
+      "abstract": [
+        {
+          "text": "A mutable request to the App Store to process payment for additional functionality that your app offers.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKMutablePayment"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKMutablePayment",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKMutablePayment"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKMutablePayment",
+      "type": "topic",
+      "url": "/documentation/storekit/skmutablepayment"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SKMutablePayment/applicationUsername": {
+      "abstract": [
+        {
+          "text": "A string that associates the transaction with a user account on your service.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "applicationUsername"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKMutablePayment/applicationUsername",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "applicationUsername"
+        }
+      ],
+      "role": "symbol",
+      "title": "applicationUsername",
+      "type": "topic",
+      "url": "/documentation/storekit/skmutablepayment/applicationusername"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SKMutablePayment/paymentDiscount": {
+      "abstract": [
+        {
+          "text": "The details of the discount offer to apply to the payment.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "paymentDiscount"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SKPaymentDiscount",
+          "text": "SKPaymentDiscount"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKMutablePayment/paymentDiscount",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "paymentDiscount"
+        }
+      ],
+      "role": "symbol",
+      "title": "paymentDiscount",
+      "type": "topic",
+      "url": "/documentation/storekit/skmutablepayment/paymentdiscount"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SKPaymentDiscount": {
+      "abstract": [
+        {
+          "text": "The signed discount to apply to a payment.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKPaymentDiscount"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKPaymentDiscount",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKPaymentDiscount"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKPaymentDiscount",
+      "type": "topic",
+      "url": "/documentation/storekit/skpaymentdiscount"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SKPaymentDiscount/signature": {
+      "abstract": [
+        {
+          "text": "A string representing the properties of a specific promotional offer, cryptographically signed.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "signature"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKPaymentDiscount/signature",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "signature"
+        }
+      ],
+      "role": "symbol",
+      "title": "signature",
+      "type": "topic",
+      "url": "/documentation/storekit/skpaymentdiscount/signature"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SKPaymentTransaction": {
+      "abstract": [
+        {
+          "text": "An object in the payment queue.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKPaymentTransaction"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKPaymentTransaction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKPaymentTransaction"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKPaymentTransaction",
+      "type": "topic",
+      "url": "/documentation/storekit/skpaymenttransaction"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SKPaymentTransactionState/failed": {
+      "abstract": [
+        {
+          "text": "A failed transaction.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "failed"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKPaymentTransactionState/failed",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKPaymentTransactionStateFailed"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKPaymentTransactionState.failed",
+      "type": "topic",
+      "url": "/documentation/storekit/skpaymenttransactionstate/failed"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SKPaymentTransactionState/purchased": {
+      "abstract": [
+        {
+          "text": "A successfully processed transaction.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "purchased"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKPaymentTransactionState/purchased",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKPaymentTransactionStatePurchased"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKPaymentTransactionState.purchased",
+      "type": "topic",
+      "url": "/documentation/storekit/skpaymenttransactionstate/purchased"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SKProduct": {
+      "abstract": [
+        {
+          "text": "Information about a registered product in App Store Connect.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKProduct"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKProduct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKProduct"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKProduct",
+      "type": "topic",
+      "url": "/documentation/storekit/skproduct"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SKProduct/discounts": {
+      "abstract": [
+        {
+          "text": "An array of subscription offers available for the auto-renewable subscription.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "discounts"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SKProductDiscount",
+          "text": "SKProductDiscount"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKProduct/discounts",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "discounts"
+        }
+      ],
+      "role": "symbol",
+      "title": "discounts",
+      "type": "topic",
+      "url": "/documentation/storekit/skproduct/discounts"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SKProduct/productIdentifier": {
+      "abstract": [
+        {
+          "text": "The string that identifies the product to the Apple App Store.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "productIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKProduct/productIdentifier",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "productIdentifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "productIdentifier",
+      "type": "topic",
+      "url": "/documentation/storekit/skproduct/productidentifier"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SKProductDiscount": {
+      "abstract": [
+        {
+          "text": "The details of an introductory offer or a promotional offer for an auto-renewable subscription.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKProductDiscount"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKProductDiscount",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKProductDiscount"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKProductDiscount",
+      "type": "topic",
+      "url": "/documentation/storekit/skproductdiscount"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SKProductDiscount/identifier": {
+      "abstract": [
+        {
+          "text": "A string used to uniquely identify a discount offer for a product.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "identifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKProductDiscount/identifier",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "identifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "identifier",
+      "type": "topic",
+      "url": "/documentation/storekit/skproductdiscount/identifier"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/SKProductsRequest": {
+      "abstract": [
+        {
+          "text": "An object that can retrieve localized information from the App Store about a specified list of products.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKProductsRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/SKProductsRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKProductsRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKProductsRequest",
+      "type": "topic",
+      "url": "/documentation/storekit/skproductsrequest"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/generating-a-promotional-offer-signature-on-the-server": {
+      "abstract": [
+        {
+          "text": "Generate a signature using your private key and lightweight cryptography libraries.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/generating-a-promotional-offer-signature-on-the-server",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Generating a Promotional Offer Signature on the Server",
+      "type": "topic",
+      "url": "/documentation/storekit/generating-a-promotional-offer-signature-on-the-server"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/generating-a-signature-for-promotional-offers": {
+      "abstract": [
+        {
+          "text": "Create a signature to validate a promotional offer using your private key.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/generating-a-signature-for-promotional-offers",
+      "kind": "article",
+      "role": "article",
+      "title": "Generating a signature for promotional offers",
+      "type": "topic",
+      "url": "/documentation/storekit/generating-a-signature-for-promotional-offers"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/implementing-introductory-offers-in-your-app": {
+      "abstract": [
+        {
+          "text": "Offer introductory pricing for auto-renewable subscriptions to eligible users.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/implementing-introductory-offers-in-your-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Implementing introductory offers in your app",
+      "type": "topic",
+      "url": "/documentation/storekit/implementing-introductory-offers-in-your-app"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/in-app-purchase": {
+      "abstract": [
+        {
+          "text": "Offer content and services in your app across Apple platforms using a Swift-based interface.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/in-app-purchase",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "In-App Purchase",
+      "type": "topic",
+      "url": "/documentation/storekit/in-app-purchase"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/original-api-for-in-app-purchase": {
+      "abstract": [
+        {
+          "text": "Offer additional content and services in your app using the Original In-App Purchase API.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/original-api-for-in-app-purchase",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Original API for In-App Purchase",
+      "type": "topic",
+      "url": "/documentation/storekit/original-api-for-in-app-purchase"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/setting-up-promotional-offers": {
+      "abstract": [
+        {
+          "text": "Generate a key and configure offers for auto-renewable subscriptions in App Store Connect.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/setting-up-promotional-offers",
+      "kind": "article",
+      "role": "article",
+      "title": "Setting up promotional offers",
+      "type": "topic",
+      "url": "/documentation/storekit/setting-up-promotional-offers"
+    },
+    "doc://com.apple.storekit/documentation/StoreKit/subscriptions-and-offers": {
+      "abstract": [
+        {
+          "text": "Offer customers additional time-based content and services through purchases they make within your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekit/documentation/StoreKit/subscriptions-and-offers",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Subscriptions and offers",
+      "type": "topic",
+      "url": "/documentation/storekit/subscriptions-and-offers"
+    },
+    "https://developer.apple.com/app-store/subscriptions/#clear-description": {
+      "identifier": "https://developer.apple.com/app-store/subscriptions/#clear-description",
+      "title": "Auto-Renewable Subscriptions > Clearly Describing Subscriptions",
+      "titleInlineContent": [
+        {
+          "text": "Auto-Renewable Subscriptions > Clearly Describing Subscriptions",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/app-store/subscriptions/#clear-description"
+    },
+    "https://developer.apple.com/app-store/subscriptions/#providing-subscription-offers": {
+      "identifier": "https://developer.apple.com/app-store/subscriptions/#providing-subscription-offers",
+      "title": "Auto-renewable Subscriptions > Providing Subscription Offers",
+      "titleInlineContent": [
+        {
+          "text": "Auto-renewable Subscriptions > Providing Subscription Offers",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/app-store/subscriptions/#providing-subscription-offers"
+    },
+    "https://developer.apple.com/library/archive/releasenotes/General/ValidateAppStoreReceipt/Chapters/ValidateRemotely.html": {
+      "identifier": "https://developer.apple.com/library/archive/releasenotes/General/ValidateAppStoreReceipt/Chapters/ValidateRemotely.html",
+      "title": "Validating Receipts With the App Store",
+      "titleInlineContent": [
+        {
+          "text": "Validating Receipts With the App Store",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/releasenotes/General/ValidateAppStoreReceipt/Chapters/ValidateRemotely.html"
+    },
+    "media-3162620": {
+      "alt": "Steps for determining a user’s eligibility and preparing the offer.",
+      "identifier": "media-3162620",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a004b42af1d7ad1be16f91965d222dc4/media-3162620@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/df2a38d1add16893fe5076f431869ccd/media-3162620~dark@2x.png"
+        }
+      ]
+    },
+    "media-3162621": {
+      "alt": "Steps for creating a payment request through unlocking service.",
+      "identifier": "media-3162621",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/8ad058c2ab051727623df9ca5dfb34ed/media-3162621@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/566cd9ad8cbdb46bd8626f0651a2d4b6/media-3162621~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Promotional-offers",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.storekit/documentation/StoreKit/setting-up-promotional-offers",
+        "doc://com.apple.storekit/documentation/StoreKit/generating-a-signature-for-promotional-offers",
+        "doc://com.apple.storekit/documentation/StoreKit/generating-a-promotional-offer-signature-on-the-server",
+        "doc://com.apple.storekit/documentation/StoreKit/SKPaymentDiscount"
+      ],
+      "title": "Promotional offers"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Promotional-offers",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.storekit/documentation/StoreKit/setting-up-promotional-offers",
+                "doc://com.apple.storekit/documentation/StoreKit/generating-a-signature-for-promotional-offers",
+                "doc://com.apple.storekit/documentation/StoreKit/generating-a-promotional-offer-signature-on-the-server",
+                "doc://com.apple.storekit/documentation/StoreKit/SKPaymentDiscount"
+              ],
+              "title": "Promotional offers"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKProductsRequest/title",
+          "value": "SKProductsRequest"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKProductsRequest/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKProductsRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKProductsRequest/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKProductsRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKProductDiscount/title",
+          "value": "SKProductDiscount"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKProductDiscount/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKProductDiscount"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKProductDiscount/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKProductDiscount"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKMutablePayment/title",
+          "value": "SKMutablePayment"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKMutablePayment/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKMutablePayment"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKMutablePayment/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKMutablePayment"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKProduct~1productIdentifier/title",
+          "value": "productIdentifier"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKProduct~1productIdentifier/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "productIdentifier"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKMutablePayment~1applicationUsername/title",
+          "value": "applicationUsername"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKMutablePayment~1applicationUsername/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "applicationUsername"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKPaymentTransactionState~1failed/title",
+          "value": "SKPaymentTransactionStateFailed"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKPaymentTransactionState~1failed/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKPaymentTransactionStateFailed"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKProductDiscount~1identifier/title",
+          "value": "identifier"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKProductDiscount~1identifier/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "identifier"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKPaymentTransactionState~1purchased/title",
+          "value": "SKPaymentTransactionStatePurchased"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKPaymentTransactionState~1purchased/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKPaymentTransactionStatePurchased"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKMutablePayment~1paymentDiscount/title",
+          "value": "paymentDiscount"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKMutablePayment~1paymentDiscount/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "paymentDiscount"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKPaymentDiscount~1signature/title",
+          "value": "signature"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKPaymentDiscount~1signature/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "signature"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKProduct/title",
+          "value": "SKProduct"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKProduct/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKProduct"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKProduct/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKProduct"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKProduct~1discounts/title",
+          "value": "discounts"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKProduct~1discounts/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "discounts"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKPaymentDiscount/title",
+          "value": "SKPaymentDiscount"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKPaymentDiscount/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKPaymentDiscount"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKPaymentDiscount/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKPaymentDiscount"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKPaymentTransaction/title",
+          "value": "SKPaymentTransaction"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKPaymentTransaction/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKPaymentTransaction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekit~1documentation~1StoreKit~1SKPaymentTransaction/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKPaymentTransaction"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/storekit/implementing-promotional-offers-in-your-app"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/storekit/implementing-promotional-offers-in-your-app"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,916 @@
+{
+  "abstract": [
+    {
+      "text": "Send audio and video to iOS, tvOS, and macOS devices.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "collection",
+    "title": "HTTP Live Streaming"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "HTTP Live Streaming (HLS) sends audio and video over HTTP from an ordinary web server",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "for playback on iOS-based devices—including iPhone, iPad, iPod touch, and Apple TV—and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "on desktop computers (macOS). Using the same protocol that powers the web, HLS deploys",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "content using ordinary web servers and content delivery networks. HLS is designed",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "for reliability and dynamically adapts to network conditions by optimizing playback",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "for the available speed of wired and wireless connections.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "HLS supports the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Live broadcasts and prerecorded content (video on demand, or VOD)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Multiple alternate streams at different bit rates",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Intelligent switching of streams in response to network bandwidth changes",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Media encryption and user authentication",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Encode-and-deliver-streaming-media",
+          "level": 3,
+          "text": "Encode and deliver streaming media",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following figure shows the three components of an HTTP Live Stream: the server component,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the distribution component, and the client software.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "http-live-streaming-1",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In a typical configuration, a hardware encoder takes audio-video input, encodes it",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "as HEVC video and AC-3 audio, and outputs a fragmented MPEG-4 file or an MPEG-2 transport",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "stream. A software stream segmenter then breaks the stream into a series of short",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "media files, which are placed on a web server. The segmenter also creates and maintains",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "an index file containing a list of the media files. The URL of the index file is",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "published on the web server. Client software reads the index, then requests the listed",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "media files in order and displays them without any pauses or gaps between segments.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Prepare-media-with-the-server-component",
+          "level": 3,
+          "text": "Prepare media with the server component",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The server component is responsible for taking input streams of media and encoding",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "them digitally. It encapsulates them in a format suitable for delivery and prepares",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the encapsulated media for distribution.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For live events, the server requires a media encoder, which can be off-the-shelf",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "hardware, and a way to break the encoded media into segments and save them as files,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "which can either be software such as the media stream segmenter provided by Apple",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "or part of an integrated third-party solution.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Deliver-files-with-the-distribution-component",
+          "level": 3,
+          "text": "Deliver files with the distribution component",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The distribution system is a web server or a web-caching system that delivers the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "media files and index files to the client over HTTP. No custom server modules are",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "required to deliver the content, and typically very little configuration is needed",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "on the web server. To actually deploy HTTP Live Streaming, you need to create either",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "an HTML page for browsers or a client app to act as a receiver. You also need the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "use of a web server and a way to encode live streams as fragmented MPEG-4 media files",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "containing HEVC or H.264 video, and AAC or AC-3 audio.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Access-media-through-client-software",
+          "level": 3,
+          "text": "Access media through client software",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Client software is responsible for determining the appropriate media to request, downloading those resources, and then reassembling them so that the media can be presented to the user in a continuous stream. For the rules governing the interaction between an HLS player and its server, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://datatracker.ietf.org/doc/html/draft-pantos-hls-rfc8216bis",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Apple provides several frameworks that support HTTP Live Streaming, including ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVKit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFoundation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/WebKit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Support has been available since iOS 3.0 and Safari 4.0, so there’s no need to develop your own client software.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "However, if you do develop your own client software, begin by fetching the index file using a URL that identifies the stream. The index file, in turn, specifies the location of the available media files, decryption keys, and any alternate streams available. For the selected stream, download each available media file in sequence. Each file contains a consecutive segment of the stream. Once it has a sufficient amount of data downloaded, present the reassembled stream to the user.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Your client is responsible for fetching any decryption keys, authenticating or presenting",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "a user interface to allow authentication, and decrypting media files as needed.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Continue this process until your client encounters the ",
+              "type": "text"
+            },
+            {
+              "code": "EXT-X-ENDLIST",
+              "type": "codeVoice"
+            },
+            {
+              "text": " tag in the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "index file. If no ",
+              "type": "text"
+            },
+            {
+              "code": "EXT-X-ENDLIST",
+              "type": "codeVoice"
+            },
+            {
+              "text": " tag is present, the index file is part of an ongoing",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "broadcast. During ongoing broadcasts, load a new version of the index",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "file periodically. Look for new media files and encryption keys in the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "updated index and add these URLs to the playback queue.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/about-the-common-media-application-format-with-http-live-streaming-hls": {
+      "abstract": [
+        {
+          "text": "Learn the Common Media Application Format as it applies to HLS.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/about-the-common-media-application-format-with-http-live-streaming-hls",
+      "kind": "article",
+      "role": "article",
+      "title": "About the Common Media Application Format with HTTP Live Streaming (HLS)",
+      "type": "topic",
+      "url": "/documentation/http-live-streaming/about-the-common-media-application-format-with-http-live-streaming-hls"
+    },
+    "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/about-the-ext-x-version-tag": {
+      "abstract": [
+        {
+          "text": "Find the protocol version that corresponds with the HLS features your app supports.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/about-the-ext-x-version-tag",
+      "kind": "article",
+      "role": "article",
+      "title": "About the EXT-X-VERSION tag",
+      "type": "topic",
+      "url": "/documentation/http-live-streaming/about-the-ext-x-version-tag"
+    },
+    "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/adjusting-anchor-loudness": {
+      "abstract": [
+        {
+          "text": "Adjust anchor loudness when measurements of speech-gated loudness for a full mix",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "may be inaccurate, such as when speech activity is low.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/adjusting-anchor-loudness",
+      "kind": "article",
+      "role": "article",
+      "title": "Adjusting anchor loudness",
+      "type": "topic",
+      "url": "/documentation/http-live-streaming/adjusting-anchor-loudness"
+    },
+    "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/deploying-a-basic-http-live-streaming-hls-stream": {
+      "abstract": [
+        {
+          "text": "Create a basic webpage to deliver HLS.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/deploying-a-basic-http-live-streaming-hls-stream",
+      "kind": "article",
+      "role": "article",
+      "title": "Deploying a Basic HTTP Live Streaming (HLS) Stream",
+      "type": "topic",
+      "url": "/documentation/http-live-streaming/deploying-a-basic-http-live-streaming-hls-stream"
+    },
+    "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/enabling-low-latency-http-live-streaming-hls": {
+      "abstract": [
+        {
+          "text": "Add Low-Latency HLS to your content streams to maintain scalability.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/enabling-low-latency-http-live-streaming-hls",
+      "kind": "article",
+      "role": "article",
+      "title": "Enabling Low-Latency HTTP Live Streaming (HLS)",
+      "type": "topic",
+      "url": "/documentation/http-live-streaming/enabling-low-latency-http-live-streaming-hls"
+    },
+    "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/example-playlists-for-http-live-streaming": {
+      "abstract": [
+        {
+          "text": "View and compare playlists for different HLS applications.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/example-playlists-for-http-live-streaming",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Example playlists for HTTP Live Streaming",
+      "type": "topic",
+      "url": "/documentation/http-live-streaming/example-playlists-for-http-live-streaming"
+    },
+    "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/hls-authoring-specification-for-apple-devices": {
+      "abstract": [
+        {
+          "text": "Learn the requirements for live and on-demand audio and video content delivery using",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "HLS.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/hls-authoring-specification-for-apple-devices",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "HTTP Live Streaming (HLS) authoring specification for Apple devices",
+      "type": "topic",
+      "url": "/documentation/http-live-streaming/hls-authoring-specification-for-apple-devices"
+    },
+    "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/links-to-additional-specifications-and-videos": {
+      "abstract": [
+        {
+          "text": "Review additional specifications and documents.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/links-to-additional-specifications-and-videos",
+      "kind": "article",
+      "role": "article",
+      "title": "Links to additional specifications and videos",
+      "type": "topic",
+      "url": "/documentation/http-live-streaming/links-to-additional-specifications-and-videos"
+    },
+    "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/preparing-audio-for-http-live-streaming": {
+      "abstract": [
+        {
+          "text": "Encode your media properly to ensure synchronized audio and video playback.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/preparing-audio-for-http-live-streaming",
+      "kind": "article",
+      "role": "article",
+      "title": "Preparing Audio for HTTP Live Streaming",
+      "type": "topic",
+      "url": "/documentation/http-live-streaming/preparing-audio-for-http-live-streaming"
+    },
+    "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/providing-javascript-object-notation-json-chapters": {
+      "abstract": [
+        {
+          "text": "Prepare JSON chapters for HTTP Live Streaming.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/providing-javascript-object-notation-json-chapters",
+      "kind": "article",
+      "role": "article",
+      "title": "Providing JavaScript Object Notation (JSON) chapters",
+      "type": "topic",
+      "url": "/documentation/http-live-streaming/providing-javascript-object-notation-json-chapters"
+    },
+    "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/providing-metadata-for-xhe-aac-video-soundtracks": {
+      "abstract": [
+        {
+          "text": "Ensure volume normalization by including metadata for loudness and dynamic range",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "control.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/providing-metadata-for-xhe-aac-video-soundtracks",
+      "kind": "article",
+      "role": "article",
+      "title": "Providing metadata for xHE-AAC video soundtracks",
+      "type": "topic",
+      "url": "/documentation/http-live-streaming/providing-metadata-for-xhe-aac-video-soundtracks"
+    },
+    "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/using-apple-s-http-live-streaming-hls-tools": {
+      "abstract": [
+        {
+          "text": "Segment your video stream and create media playlists for successful transmission",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "with Apple’s provided tools.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/using-apple-s-http-live-streaming-hls-tools",
+      "kind": "article",
+      "role": "article",
+      "title": "Using Apple’s HTTP Live Streaming (HLS) Tools",
+      "type": "topic",
+      "url": "/documentation/http-live-streaming/using-apple-s-http-live-streaming-hls-tools"
+    },
+    "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/using-content-protection-systems-with-hls": {
+      "abstract": [
+        {
+          "text": "Adding encryption keys to media playlists",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/using-content-protection-systems-with-hls",
+      "kind": "article",
+      "role": "article",
+      "title": "Using content protection systems with HLS",
+      "type": "topic",
+      "url": "/documentation/http-live-streaming/using-content-protection-systems-with-hls"
+    },
+    "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/videos-about-hls": {
+      "abstract": [
+        {
+          "text": "Review informational videos about HTTP Live Streaming.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/videos-about-hls",
+      "kind": "article",
+      "role": "article",
+      "title": "Videos about HLS",
+      "type": "topic",
+      "url": "/documentation/http-live-streaming/videos-about-hls"
+    },
+    "doc://com.apple.documentation/documentation/AVFoundation": {
+      "abstract": [
+        {
+          "text": "Work with audiovisual assets, control device cameras, process audio, and configure system audio interactions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFoundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AVFoundation",
+      "type": "topic",
+      "url": "/documentation/AVFoundation"
+    },
+    "doc://com.apple.documentation/documentation/AVKit": {
+      "abstract": [
+        {
+          "text": "Create user interfaces for media playback, complete with transport controls, chapter navigation, picture-in-picture support, and display of subtitles and closed captions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AVKit",
+      "type": "topic",
+      "url": "/documentation/AVKit"
+    },
+    "doc://com.apple.documentation/documentation/WebKit": {
+      "abstract": [
+        {
+          "text": "Integrate web content seamlessly into your app, and customize content interactions to meet your app’s needs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/WebKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "WebKit",
+      "type": "topic",
+      "url": "/documentation/WebKit"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "http-live-streaming-1": {
+      "alt": "Flow diagram showing the four parts of an HTTP Live Stream. The media recording is sent to a server, distributed over the web, and sent to the client app.",
+      "identifier": "http-live-streaming-1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/80fd0d84ea04e487087af24c24190c5d/http-live-streaming-1@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f089b49e80af12371bab35ee7275c735/http-live-streaming-1~dark@2x.png"
+        }
+      ]
+    },
+    "https://datatracker.ietf.org/doc/html/draft-pantos-hls-rfc8216bis": {
+      "identifier": "https://datatracker.ietf.org/doc/html/draft-pantos-hls-rfc8216bis",
+      "title": "HTTP Live Streaming 2nd Edition",
+      "titleInlineContent": [
+        {
+          "text": "HTTP Live Streaming 2nd Edition",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://datatracker.ietf.org/doc/html/draft-pantos-hls-rfc8216bis"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Essentials",
+      "identifiers": [
+        "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/deploying-a-basic-http-live-streaming-hls-stream",
+        "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/preparing-audio-for-http-live-streaming"
+      ],
+      "title": "Essentials"
+    },
+    {
+      "abstract": [
+        {
+          "text": "Learn to create a stream for ingestion by apps enabled with HTTP Live Streaming.",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "Ensure correct playlist formatting and adherence to guidelines.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Stream-creation",
+      "identifiers": [
+        "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/example-playlists-for-http-live-streaming",
+        "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/about-the-ext-x-version-tag"
+      ],
+      "title": "Stream creation"
+    },
+    {
+      "abstract": [
+        {
+          "text": "Use the provided tools to segment your stream, create multivariant playlists, and",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "verify the output of your own tools.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Tool-usage-and-validation",
+      "identifiers": [
+        "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/using-apple-s-http-live-streaming-hls-tools"
+      ],
+      "title": "Tool usage and validation"
+    },
+    {
+      "anchor": "Specifications-and-other-documents",
+      "identifiers": [
+        "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/hls-authoring-specification-for-apple-devices",
+        "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/using-content-protection-systems-with-hls",
+        "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/about-the-common-media-application-format-with-http-live-streaming-hls",
+        "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/enabling-low-latency-http-live-streaming-hls",
+        "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/links-to-additional-specifications-and-videos",
+        "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/videos-about-hls",
+        "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/providing-metadata-for-xhe-aac-video-soundtracks",
+        "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/adjusting-anchor-loudness",
+        "doc://com.apple.HTTP-Live-Streaming/documentation/HTTP-Live-Streaming/providing-javascript-object-notation-json-chapters"
+      ],
+      "title": "Specifications and other documents"
+    }
+  ]
+}

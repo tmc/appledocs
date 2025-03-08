@@ -1,0 +1,2124 @@
+{
+  "abstract": [
+    {
+      "text": "Train a machine learning model to classify images, and add it to your Core ML app.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.CreateML/documentation/CreateML"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.CreateML/documentation/CreateML/creating-an-image-classifier-model"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Create ML"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Creating an Image Classifier Model"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "image classifier",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " is a machine learning model that recognizes images. When you",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "give it an image, it responds with a category label for that image.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "creating-an-image-classifier-model-1",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You train an image classifier by showing it many examples of images you’ve already",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "labeled. For example, you can train an image classifier to recognize animals by gathering",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "photos of elephants, giraffes, lions, and so on.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "creating-an-image-classifier-model-2",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After the image classifier finishes training, you assess its accuracy and, if it",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "performs well enough, save it as a Core ML model file. You then import the model",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "file into your Xcode project to use the image classifier in your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Gather-Your-Data",
+          "level": 3,
+          "text": "Gather Your Data",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use at least 10 images per category, but keep in mind that an image classifier performs",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "better with a more diverse set of images. Consider including images of each category",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "from multiple angles and in different lighting conditions.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Balance the number of images for each category. For example, don’t use 10 images",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "for one category and then 1000 images for another.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The images can be in any format you can open in the Quicktime Player, such as JPEG",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and PNG. They don’t have to be a particular size, nor do they need to be the same",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "size as each other. However, it’s best to use images that are at least 299 x 299",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "pixels.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If possible, gather images that best represent what you expect the model to see when",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "you use it in your app. For example, if your app classifies images from a device’s",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "camera in an outdoor setting, gather outdoor images from an identical or similar",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "camera.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "By default, the image classifier uses the scene print feature extractor to",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "accelerate the training process and works best with real-world objects. For more",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "information, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLImageClassifier/FeatureExtractorType/scenePrint(revision:)",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Organize-Your-Training-Data",
+          "level": 3,
+          "text": "Organize Your Training Data",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Prepare a training dataset by sorting the images into subfolders. Give each subfolder",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a name for the category of images contained within it. For example, you might use",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the label ",
+              "type": "text"
+            },
+            {
+              "code": "Cheetah",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for all the images of cheetahs.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "creating-an-image-classifier-model-3",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Organize-Your-Testing-Data",
+          "level": 3,
+          "text": "Organize Your Testing Data",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Testing your model with a testing dataset is a quick way to see how well your trained",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "model might perform in the real world.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your dataset has enough images, say 25 or more per category, create a testing",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "dataset by duplicating the folder structure of the training dataset. Then move about",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "20 percent of the images from each category into the equivalent category folder in",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the testing dataset.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-an-Image-Classifier-Project",
+          "level": 3,
+          "text": "Create an Image Classifier Project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use Create ML to create an image classifier project. With Xcode open, Control-click",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the Xcode icon in the Dock and choose Open Developer Tool > Create ML. Or, from",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the Xcode menu, choose Open Developer Tool > Create ML.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In Create ML, choose File > New Project to see the list of model templates. Select",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Image Classification and click Next.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "creating-an-image-classifier-model-4",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Change the project’s default name to a more meaningful one. If applicable, enter",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "additional information for the models that come from this project, such as one or",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "more authors and a short description.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "creating-an-image-classifier-model-5",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Configure-the-Training-Session",
+          "level": 3,
+          "text": "Configure the Training Session",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Drag the folder with your training dataset into the Training Data well in the project",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "window.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "creating-an-image-classifier-model-6",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If applicable, drag the folder with your testing dataset into the Testing Data well",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in the project window.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "creating-an-image-classifier-model-7",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can adjust the following parameters before training your image classifier:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A ",
+                        "type": "text"
+                      },
+                      {
+                        "inlineContent": [
+                          {
+                            "text": "Feature Extractor",
+                            "type": "text"
+                          }
+                        ],
+                        "type": "emphasis"
+                      },
+                      {
+                        "text": " is the underlying base model that extracts image features for image classifier training session. There are 2 options for feature extraction. ",
+                        "type": "text"
+                      },
+                      {
+                        "inlineContent": [
+                          {
+                            "text": "Image Feature Print V2",
+                            "type": "text"
+                          }
+                        ],
+                        "type": "emphasis"
+                      },
+                      {
+                        "text": " has a smaller output embedding size than ",
+                        "type": "text"
+                      },
+                      {
+                        "inlineContent": [
+                          {
+                            "text": "Image Feature Print V1",
+                            "type": "text"
+                          }
+                        ],
+                        "type": "emphasis"
+                      },
+                      {
+                        "text": ". This leads to faster training times, reduces the memory needed to store the extracted features, and can also increase accuracy. On the other hand, ",
+                        "type": "text"
+                      },
+                      {
+                        "inlineContent": [
+                          {
+                            "text": "Image Feature Print V1",
+                            "type": "text"
+                          }
+                        ],
+                        "type": "emphasis"
+                      },
+                      {
+                        "text": " is compatible with older operating systems, including macOS 10.14 or later and iOS 12 or later. ",
+                        "type": "text"
+                      },
+                      {
+                        "inlineContent": [
+                          {
+                            "text": "Image Feature Print V2",
+                            "type": "text"
+                          }
+                        ],
+                        "type": "emphasis"
+                      },
+                      {
+                        "text": " is compatible with macOS 14 or later and iOS 17 or later.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Feature Extractor",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "If you know how many training iterations you’d like use in your training session, change the default value. Include enough iterations for an accurate model; stopping too early may result in a model that’s less accurate.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Iterations",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "You can also turn on any or all of the image augmentations. Each augmentation copies the dataset’s images and applies a transform or filter that effectively gives the dataset more variety without gathering additional images. For more information on augmentation options, see doc://com.apple.documentation/documentation/createml/augmenting-images-to-expand-your-training-data",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Augmentations",
+                    "type": "text"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "creating-an-image-classifier-model-8",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Train-the-Image-Classifier",
+          "level": 3,
+          "text": "Train the Image Classifier",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Click the Train button to start the training session. Create ML begins the session",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "by quickly separating some of your training data into a validation dataset. Next,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Create ML extracts features, such as edges, corners, textures, and regions of color,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "from the remaining training images. Create ML uses the images’ features to iteratively",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "train the model and then checks its accuracy with the validation dataset.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "creating-an-image-classifier-model-9",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Create ML shows its progress in a graph, where the black and gray lines represent",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the model’s accuracy with the training and validation datasets, respectively.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Assess-the-Models-Accuracy",
+          "level": 3,
+          "text": "Assess the Model’s Accuracy",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When Create ML finishes training the model, it tests the model using the testing",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "dataset. When it’s finished testing the model, Create ML shows the training, validation,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and testing accuracy scores in the Evaluation tab. Models typically have higher accuracy",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "scores on the training dataset because it learned from those images. In this example,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the image classifier model correctly identified:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "100 percent of the training images",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "95 percent of the validation images",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "97 percent of the testing images",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "creating-an-image-classifier-model-10",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Precision",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " is the number of true positives divided by the sum of true positives",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and false positives. ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Recall",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " is the number of true positives divided by the sum",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of true positives and false negatives.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the evaluation performance isn’t good enough, you may need to train a new model",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "with a dataset that has more variety. For example, you can gather additional images",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "from new angles or in new environments, or add one or more image augmentation options.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For details about evaluating a model, as well as strategies for improving the model’s",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "performance, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.CreateML/documentation/CreateML/improving-your-model-s-accuracy",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Preview-the-Model",
+          "level": 3,
+          "text": "Preview the Model",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Click the Preview tab to try out the model with images it hasn’t seen before. To",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "see the model’s predictions, drag image files to the column below the Train button.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "creating-an-image-classifier-model-11",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Save-the-Model",
+          "level": 3,
+          "text": "Save the Model",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you’re satisfied with the model’s performance, save it to the file system (in",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a Core ML format). From the Output tab, save the model using any of these options:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click the Save button to save the model to the file system.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click the Export button to open the model in Xcode.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click the Share button to send the model to someone else, such as through Mail",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "or Messages.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Drag the model’s icon anywhere that accepts a file.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "creating-an-image-classifier-model-12",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-the-Model-to-Your-App",
+          "level": 3,
+          "text": "Add the Model to Your App",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The last step is to add your trained model to an Xcode project. For example, your",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "image classifier model can replace the model in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreml/model_integration_samples/classifying_images_with_vision_and_core_ml",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "sample.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Download the sample and open the project in Xcode. Drag your model file into the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "navigation pane. Xcode adds the model to your project and shows you the model’s metadata,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "operating system availability, class labels, and so on.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "creating-an-image-classifier-model-13",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To use your model in code, you only need to change one line. The project instantiates",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the MobileNet model in exactly one place in the ",
+              "type": "text"
+            },
+            {
+              "code": "ImagePredictor",
+              "type": "codeVoice"
+            },
+            {
+              "text": " class.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Create an instance of the image classifier's wrapper class.",
+            "let imageClassifierWrapper = try? MobileNet(configuration: defaultConfig)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Change this line to use your image classification model class instead:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Create an instance of the image classifier's wrapper class.",
+            "let imageClassifierWrapper = try? AnimalClassifier(configuration: defaultConfig)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "These models are interchangeable because both take an image as input, and both output",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a label string. With your model substitution, the sample app classifies images as",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "before, except now it uses your model and its associated labels.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Automate-Model-Training-and-Assessment",
+          "level": 3,
+          "text": "Automate Model Training and Assessment",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can use Create ML to train a useful image classifier with very little code or",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "machine learning expertise, as described in the sections above. However, you can",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "also use an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLImageClassifier",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance to script the model training",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "process. The general tasks are the same: prepare data, train a model, assess performance,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and save the Core ML model file. The difference is that you do everything programmatically.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, you can initialize two ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLImageClassifier/DataSource",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instances,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "one for the training dataset and another for the testing dataset. Use the training",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "data source to initialize an image classifier with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLImageClassifier/init(trainingData:parameters:)-4r6hr",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Then use the testing data source with its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLImageClassifier/evaluation(on:)-9p8mi",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "method, and assess the values in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLClassifierMetrics",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance it",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "returns.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "creating-an-image-classifier-model-1": {
+      "alt": "A flow diagram showing how an image classifier predicts the label, Giraffe, from an image of a giraffe.",
+      "identifier": "creating-an-image-classifier-model-1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/7c6d96174f8701c5d2402beed64563cc/creating-an-image-classifier-model-1@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e64a1b9d7c0c386d68fcd5daf547a0fa/creating-an-image-classifier-model-1~dark@2x.png"
+        }
+      ]
+    },
+    "creating-an-image-classifier-model-10": {
+      "alt": "A screenshot of the project window in the Evaluation tab showing a table of the testing dataset with columns named, Class, Item Count, Precision, and Recall. The table is sorted by Precision in descending order, and the first row has the values, Giraffe, 9, 100%, and 100%, respectively.",
+      "identifier": "creating-an-image-classifier-model-10",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/97c4586d7483e9b6020cfb1707ab575a/creating-an-image-classifier-model-10@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/84a29cf1c23c82b51ecf0015f534ff60/creating-an-image-classifier-model-10~dark@2x.png"
+        }
+      ]
+    },
+    "creating-an-image-classifier-model-11": {
+      "alt": "A screenshot of the project window in the Preview tab that predicts an image of an elephant as, elephant, with 100% confidence.",
+      "identifier": "creating-an-image-classifier-model-11",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ef1d1eea81eeb237b95a654d86f39f33/creating-an-image-classifier-model-11@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b1d09eefb965f18c2248605dd7eb736f/creating-an-image-classifier-model-11~dark@2x.png"
+        }
+      ]
+    },
+    "creating-an-image-classifier-model-12": {
+      "alt": "A screenshot of the project window in the Output tab showing a model save dialog after the user clicked the Get-button. The Get-button’s icon is a box with a down arrow leading into it.",
+      "identifier": "creating-an-image-classifier-model-12",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/7f83e09c032cbc1e776922609f55362a/creating-an-image-classifier-model-12@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/de94cc4c679c5cc8653f97e62eb575ac/creating-an-image-classifier-model-12~dark@2x.png"
+        }
+      ]
+    },
+    "creating-an-image-classifier-model-13": {
+      "alt": "A screenshot of the sample code project open in Xcode showing the Animal Classifier model in the editor view.",
+      "identifier": "creating-an-image-classifier-model-13",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ebaa8ae6231ff7c7187ac51fe51256c8/creating-an-image-classifier-model-13@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/d099b76a2d797c4a687df1532d354b5a/creating-an-image-classifier-model-13~dark@2x.png"
+        }
+      ]
+    },
+    "creating-an-image-classifier-model-2": {
+      "alt": "A flow diagram showing images of animals going into Create ML, which then produces an image classifier Core ML model file.",
+      "identifier": "creating-an-image-classifier-model-2",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/43b7b6573341efcb1184f5998a570435/creating-an-image-classifier-model-2@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/8ba467db22767e9b1a7bfc3482391900/creating-an-image-classifier-model-2~dark@2x.png"
+        }
+      ]
+    },
+    "creating-an-image-classifier-model-3": {
+      "alt": "A diagram showing a folder called Training Data with subfolders that are named using the label corresponding to the category of images they contain. For example, all the cheetah images go into a subfolder named, Cheetah.",
+      "identifier": "creating-an-image-classifier-model-3",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/0a419b23cc4238d4b0a2baee09d2f4ea/creating-an-image-classifier-model-3@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e75dcb446e8d8f61e4bbce9a1ed562bb/creating-an-image-classifier-model-3~dark@2x.png"
+        }
+      ]
+    },
+    "creating-an-image-classifier-model-4": {
+      "alt": "A screenshot of the Create ML project template window that has the Image Classification template selected. Other templates in the window include Style Transfer, Action Classification, Sound Classification, and Tabular Regression.",
+      "identifier": "creating-an-image-classifier-model-4",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/bcec307ffcea638a98721a2178b9ee77/creating-an-image-classifier-model-4@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/0d0c7b70dde286234ad283f302b33323/creating-an-image-classifier-model-4~dark@2x.png"
+        }
+      ]
+    },
+    "creating-an-image-classifier-model-5": {
+      "alt": "A screenshot of the new project options window with text fields for Project Name, Author, License, and Description. The first text fields have the values Animal Classifier, Maria Ruiz, and No license provided, respectively. The description text field reads, An image classification machine learning model that recognizes animals.",
+      "identifier": "creating-an-image-classifier-model-5",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/37e7674a1b5d8a07422cfdc99d6a9a33/creating-an-image-classifier-model-5@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cc5f88d4f1574b65693ab8a5dbd85ea2/creating-an-image-classifier-model-5~dark@2x.png"
+        }
+      ]
+    },
+    "creating-an-image-classifier-model-6": {
+      "alt": "A screenshot of the project window in the Settings tab that shows the user dragging a Finder folder named Training Data onto the Training Data area.",
+      "identifier": "creating-an-image-classifier-model-6",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1d0270e05db222c3bdcb256eaf8e3893/creating-an-image-classifier-model-6@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/d34f4b5e438106c1e5eb61a285528eaf/creating-an-image-classifier-model-6~dark@2x.png"
+        }
+      ]
+    },
+    "creating-an-image-classifier-model-7": {
+      "alt": "A screenshot of the project window in the Settings tab that shows the user dragging a Finder folder named Testing Data onto the Testing Data area. ",
+      "identifier": "creating-an-image-classifier-model-7",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/32ba5e3473a5edc9088be6314f99b79a/creating-an-image-classifier-model-7@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a543d2334a8f305560c1267d15942146/creating-an-image-classifier-model-7~dark@2x.png"
+        }
+      ]
+    },
+    "creating-an-image-classifier-model-8": {
+      "alt": "A screenshot of the project window in the Settings tab that highlights the Parameters section. The Feature Extractor is set to Image Feature Print V2. The Iterations parameter setting is set to 50 and the Augmentations setting has 6 checkboxes named, Add Noise, Blur, Crop, Expose, Flip, and Rotate.",
+      "identifier": "creating-an-image-classifier-model-8",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/7df3c337506bafe1f56fd2a6671f3e5d/creating-an-image-classifier-model-8@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/df74d91d8975b0e99f1728a6112aee49/creating-an-image-classifier-model-8~dark@2x.png"
+        }
+      ]
+    },
+    "creating-an-image-classifier-model-9": {
+      "alt": "A screenshot of the project window in the Training tab showing a line graph of the model’s accuracy vs. the number of training iterations. The line generally progresses upward toward 100% and after 25 iterations ending at 100% and 97.5% for training and validation accuracy, respectively.",
+      "identifier": "creating-an-image-classifier-model-9",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/01ed3f16d8fb987b51695b50c63371c4/creating-an-image-classifier-model-9@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/014f8e1e8525ee6020e35231d27056a3/creating-an-image-classifier-model-9~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.CreateML/documentation/CreateML": {
+      "abstract": [
+        {
+          "text": "Create machine learning models for use in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Create ML",
+      "type": "topic",
+      "url": "/documentation/createml"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLClassifierMetrics": {
+      "abstract": [
+        {
+          "text": "Metrics you use to evaluate a classifier’s performance.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MLClassifierMetrics"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLClassifierMetrics",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MLClassifierMetrics"
+        }
+      ],
+      "role": "symbol",
+      "title": "MLClassifierMetrics",
+      "type": "topic",
+      "url": "/documentation/createml/mlclassifiermetrics"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLHandPoseClassifier": {
+      "abstract": [
+        {
+          "text": "A task that creates a hand pose classification model by training with images",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "of people’s hands that you provide.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MLHandPoseClassifier"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLHandPoseClassifier",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MLHandPoseClassifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "MLHandPoseClassifier",
+      "type": "topic",
+      "url": "/documentation/createml/mlhandposeclassifier"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLImageClassifier": {
+      "abstract": [
+        {
+          "text": "A model you train to classify images.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MLImageClassifier"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLImageClassifier",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MLImageClassifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "MLImageClassifier",
+      "type": "topic",
+      "url": "/documentation/createml/mlimageclassifier"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLImageClassifier/DataSource": {
+      "abstract": [
+        {
+          "text": "A data source for an image classifier.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DataSource"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLImageClassifier/DataSource",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DataSource"
+        }
+      ],
+      "role": "symbol",
+      "title": "MLImageClassifier.DataSource",
+      "type": "topic",
+      "url": "/documentation/createml/mlimageclassifier/datasource"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLImageClassifier/FeatureExtractorType/scenePrint(revision:)": {
+      "abstract": [
+        {
+          "text": "A feature extractor trained on millions of images.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "scenePrint"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "revision"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLImageClassifier/FeatureExtractorType/scenePrint(revision:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MLImageClassifier.FeatureExtractorType.scenePrint(revision:)",
+      "type": "topic",
+      "url": "/documentation/createml/mlimageclassifier/featureextractortype/sceneprint(revision:)"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLImageClassifier/evaluation(on:)-9p8mi": {
+      "abstract": [
+        {
+          "text": "Generates metrics describing the image classifier’s performance on labeled images represented by a data source.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "evaluation"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "on"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML17MLImageClassifierV",
+          "text": "MLImageClassifier"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML17MLImageClassifierV10DataSourceO",
+          "text": "DataSource"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML19MLClassifierMetricsV",
+          "text": "MLClassifierMetrics"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLImageClassifier/evaluation(on:)-9p8mi",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "evaluation(on:)",
+      "type": "topic",
+      "url": "/documentation/createml/mlimageclassifier/evaluation(on:)-9p8mi"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLImageClassifier/init(trainingData:parameters:)-4r6hr": {
+      "abstract": [
+        {
+          "text": "Creates an image classifier with a training dataset represented by a data source.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "trainingData"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML17MLImageClassifierV",
+          "text": "MLImageClassifier"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML17MLImageClassifierV10DataSourceO",
+          "text": "DataSource"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "parameters"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML17MLImageClassifierV",
+          "text": "MLImageClassifier"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML17MLImageClassifierV15ModelParametersV",
+          "text": "ModelParameters"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLImageClassifier/init(trainingData:parameters:)-4r6hr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(trainingData:parameters:)",
+      "type": "topic",
+      "url": "/documentation/createml/mlimageclassifier/init(trainingdata:parameters:)-4r6hr"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLObjectDetector": {
+      "abstract": [
+        {
+          "text": "A model you train to classify one or more objects within an image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MLObjectDetector"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLObjectDetector",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MLObjectDetector"
+        }
+      ],
+      "role": "symbol",
+      "title": "MLObjectDetector",
+      "type": "topic",
+      "url": "/documentation/createml/mlobjectdetector"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/improving-your-model-s-accuracy": {
+      "abstract": [
+        {
+          "text": "Use metrics to tune the performance of your machine learning model.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/improving-your-model-s-accuracy",
+      "kind": "article",
+      "role": "article",
+      "title": "Improving Your Model’s Accuracy",
+      "type": "topic",
+      "url": "/documentation/createml/improving-your-model-s-accuracy"
+    },
+    "doc://com.apple.documentation/documentation/coreml/model_integration_samples/classifying_images_with_vision_and_core_ml": {
+      "abstract": [
+        {
+          "text": "Crop and scale photos using the Vision framework and classify them with a Core ML model.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreml/model_integration_samples/classifying_images_with_vision_and_core_ml",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Classifying Images with Vision and Core ML",
+      "type": "topic",
+      "url": "/documentation/coreml/model_integration_samples/classifying_images_with_vision_and_core_ml"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Image-Models",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.CreateML/documentation/CreateML/MLImageClassifier",
+        "doc://com.apple.CreateML/documentation/CreateML/MLObjectDetector",
+        "doc://com.apple.CreateML/documentation/CreateML/MLHandPoseClassifier"
+      ],
+      "title": "Image Models"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/createml/creating-an-image-classifier-model"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

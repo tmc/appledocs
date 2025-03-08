@@ -1,0 +1,1091 @@
+{
+  "abstract": [
+    {
+      "text": "Alert users of events and reminders with an alarm.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.eventkit/documentation/EventKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.eventkit/documentation/EventKit/setting-an-alarm"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "EventKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Setting an alarm"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An easy way to alert users of their upcoming events is to give them the option of setting alarms for their calendar items. Regardless of the app that’s currently running, alarms come to the foreground as a notification and remind users of the scheduled event. If an alarm is set to a calendar event, the notification comes from the Calendar app; if an alarm is set to a reminder, the notification comes from the Reminders app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Alarms can be time-based, firing at a specified time, or location-based, firing when crossing a geofence (for more information about geofences, see “",
+              "type": "text"
+            },
+            {
+              "code": "Configure Geofences",
+              "type": "codeVoice"
+            },
+            {
+              "text": "”). Alarms can be applied to both calendar events and reminders.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "An alarm is not intended to serve as a ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/UIKit/UILocalNotification",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ". An alarm requires you to create an event or reminder that is visible in the user’s Calendar or Reminders app. A ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/UIKit/UILocalNotification",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " is better suited for general purposes that don’t involve the Calendar database.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Add-and-Remove-Alarms",
+          "level": 3,
+          "text": "Add and Remove Alarms",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Add an alarm to an event with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.eventkit/documentation/EventKit/EKCalendarItem/addAlarm(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Alarms can be created with an absolute date or with an offset relative to the start date of the event. Alarms created with a relative offset must occur before or at the start date of the event.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In OS X, you can trigger an action alongside the alarm. For example, you can set properties such as:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.eventkit/documentation/EventKit/EKAlarm/emailAddress",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to send an email.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.eventkit/documentation/EventKit/EKAlarm/soundName",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to play a sound.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.eventkit/documentation/EventKit/EKAlarm/url",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to open a URL.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Remove an alarm from an event with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.eventkit/documentation/EventKit/EKCalendarItem/removeAlarm(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Configure-Geofences",
+          "level": 3,
+          "text": "Configure Geofences",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A geofence is a virtual border surrounding a geographic location that, when crossed, triggers an alarm for an event. You specify the latitude and longitude of the center and the radius of the geofence.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "While geofence-enabled alarms can be applied to events, they are more practical for reminders. Geofences are a useful way to remind users of tasks they need to do when entering or exiting a certain region. For example, when a user leaves their workplace, an alarm can remind them to stop by the grocery store.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Geofences are supported on both macOS and iOS, but they are more effective on mobile devices.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Configure a geofence for an event by creating an alarm and setting its structured location and proximity. Call the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.eventkit/documentation/EventKit/EKStructuredLocation/init(title:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to create a structured location. To set longitude and latitude coordinates, pass a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreLocation/CLLocation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.eventkit/documentation/EventKit/EKStructuredLocation/geoLocation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property of the structured location returned. A value of ",
+              "type": "text"
+            },
+            {
+              "code": "0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for the radius property will use the system’s default radius; to choose a radius of your own, specify a value in meters.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/CoreLocation/CLLocation": {
+      "abstract": [
+        {
+          "text": "The latitude, longitude, and course information reported by the system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CLLocation"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreLocation/CLLocation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CLLocation",
+      "type": "topic",
+      "url": "/documentation/CoreLocation/CLLocation"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UILocalNotification": {
+      "abstract": [
+        {
+          "text": "A notification that an app can schedule for presentation at a specific date and time.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UILocalNotification"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UILocalNotification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UILocalNotification",
+      "type": "topic",
+      "url": "/documentation/UIKit/UILocalNotification"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.eventkit/documentation/EventKit": {
+      "abstract": [
+        {
+          "text": "Create, view, and edit calendar and reminder events.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.eventkit/documentation/EventKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "EventKit",
+      "type": "topic",
+      "url": "/documentation/eventkit"
+    },
+    "doc://com.apple.eventkit/documentation/EventKit/EKAlarm": {
+      "abstract": [
+        {
+          "text": "A class that represents an alarm.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "EKAlarm"
+        }
+      ],
+      "identifier": "doc://com.apple.eventkit/documentation/EventKit/EKAlarm",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "EKAlarm"
+        }
+      ],
+      "role": "symbol",
+      "title": "EKAlarm",
+      "type": "topic",
+      "url": "/documentation/eventkit/ekalarm"
+    },
+    "doc://com.apple.eventkit/documentation/EventKit/EKAlarm/emailAddress": {
+      "abstract": [
+        {
+          "text": "The recipient of an email to send when the alarm triggers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "emailAddress"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.eventkit/documentation/EventKit/EKAlarm/emailAddress",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "emailAddress"
+        }
+      ],
+      "role": "symbol",
+      "title": "emailAddress",
+      "type": "topic",
+      "url": "/documentation/eventkit/ekalarm/emailaddress"
+    },
+    "doc://com.apple.eventkit/documentation/EventKit/EKAlarm/soundName": {
+      "abstract": [
+        {
+          "text": "The name of the sound to play when the alarm triggers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "soundName"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.eventkit/documentation/EventKit/EKAlarm/soundName",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "soundName"
+        }
+      ],
+      "role": "symbol",
+      "title": "soundName",
+      "type": "topic",
+      "url": "/documentation/eventkit/ekalarm/soundname"
+    },
+    "doc://com.apple.eventkit/documentation/EventKit/EKAlarm/url": {
+      "abstract": [
+        {
+          "text": "The URL to open when the alarm triggers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "url"
+        }
+      ],
+      "identifier": "doc://com.apple.eventkit/documentation/EventKit/EKAlarm/url",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "url",
+      "type": "topic",
+      "url": "/documentation/eventkit/ekalarm/url"
+    },
+    "doc://com.apple.eventkit/documentation/EventKit/EKCalendarItem/addAlarm(_:)": {
+      "abstract": [
+        {
+          "text": "Adds an alarm to the receiver.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "addAlarm"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)EKAlarm",
+          "text": "EKAlarm"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.eventkit/documentation/EventKit/EKCalendarItem/addAlarm(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "addAlarm:"
+        }
+      ],
+      "role": "symbol",
+      "title": "addAlarm(_:)",
+      "type": "topic",
+      "url": "/documentation/eventkit/ekcalendaritem/addalarm(_:)"
+    },
+    "doc://com.apple.eventkit/documentation/EventKit/EKCalendarItem/removeAlarm(_:)": {
+      "abstract": [
+        {
+          "text": "Removes an alarm from the calendar item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeAlarm"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)EKAlarm",
+          "text": "EKAlarm"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.eventkit/documentation/EventKit/EKCalendarItem/removeAlarm(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "removeAlarm:"
+        }
+      ],
+      "role": "symbol",
+      "title": "removeAlarm(_:)",
+      "type": "topic",
+      "url": "/documentation/eventkit/ekcalendaritem/removealarm(_:)"
+    },
+    "doc://com.apple.eventkit/documentation/EventKit/EKStructuredLocation": {
+      "abstract": [
+        {
+          "code": "A",
+          "type": "codeVoice"
+        },
+        {
+          "text": " class that specifies a geofence to activate the alarm of a calendar item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "EKStructuredLocation"
+        }
+      ],
+      "identifier": "doc://com.apple.eventkit/documentation/EventKit/EKStructuredLocation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "EKStructuredLocation"
+        }
+      ],
+      "role": "symbol",
+      "title": "EKStructuredLocation",
+      "type": "topic",
+      "url": "/documentation/eventkit/ekstructuredlocation"
+    },
+    "doc://com.apple.eventkit/documentation/EventKit/EKStructuredLocation/geoLocation": {
+      "abstract": [
+        {
+          "text": "The core location.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "geoLocation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CLLocation",
+          "text": "CLLocation"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.eventkit/documentation/EventKit/EKStructuredLocation/geoLocation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "geoLocation"
+        }
+      ],
+      "role": "symbol",
+      "title": "geoLocation",
+      "type": "topic",
+      "url": "/documentation/eventkit/ekstructuredlocation/geolocation"
+    },
+    "doc://com.apple.eventkit/documentation/EventKit/EKStructuredLocation/init(title:)": {
+      "abstract": [
+        {
+          "text": "Creates a new structured location with the specified title.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "convenience"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "title"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.eventkit/documentation/EventKit/EKStructuredLocation/init(title:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "locationWithTitle:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(title:)",
+      "type": "topic",
+      "url": "/documentation/eventkit/ekstructuredlocation/init(title:)"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Alarms",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.eventkit/documentation/EventKit/EKAlarm",
+        "doc://com.apple.eventkit/documentation/EventKit/EKStructuredLocation"
+      ],
+      "title": "Alarms"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Alarms",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.eventkit/documentation/EventKit/EKAlarm",
+                "doc://com.apple.eventkit/documentation/EventKit/EKStructuredLocation"
+              ],
+              "title": "Alarms"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.eventkit~1documentation~1EventKit~1EKAlarm/title",
+          "value": "EKAlarm"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.eventkit~1documentation~1EventKit~1EKAlarm/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "EKAlarm"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.eventkit~1documentation~1EventKit~1EKAlarm/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "EKAlarm"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.eventkit~1documentation~1EventKit~1EKCalendarItem~1removeAlarm(_:)/title",
+          "value": "removeAlarm:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.eventkit~1documentation~1EventKit~1EKCalendarItem~1removeAlarm(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "removeAlarm:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.eventkit~1documentation~1EventKit~1EKAlarm~1emailAddress/title",
+          "value": "emailAddress"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.eventkit~1documentation~1EventKit~1EKAlarm~1emailAddress/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "emailAddress"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreLocation~1CLLocation/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CLLocation"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.eventkit~1documentation~1EventKit~1EKStructuredLocation/title",
+          "value": "EKStructuredLocation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.eventkit~1documentation~1EventKit~1EKStructuredLocation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "EKStructuredLocation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.eventkit~1documentation~1EventKit~1EKStructuredLocation/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "EKStructuredLocation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.eventkit~1documentation~1EventKit~1EKAlarm~1soundName/title",
+          "value": "soundName"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.eventkit~1documentation~1EventKit~1EKAlarm~1soundName/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "soundName"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UILocalNotification/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UILocalNotification"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.eventkit~1documentation~1EventKit~1EKCalendarItem~1addAlarm(_:)/title",
+          "value": "addAlarm:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.eventkit~1documentation~1EventKit~1EKCalendarItem~1addAlarm(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "addAlarm:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.eventkit~1documentation~1EventKit~1EKStructuredLocation~1init(title:)/title",
+          "value": "locationWithTitle:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.eventkit~1documentation~1EventKit~1EKStructuredLocation~1init(title:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "locationWithTitle:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.eventkit~1documentation~1EventKit~1EKStructuredLocation~1geoLocation/title",
+          "value": "geoLocation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.eventkit~1documentation~1EventKit~1EKStructuredLocation~1geoLocation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "geoLocation"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/eventkit/setting-an-alarm"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/eventkit/setting-an-alarm"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

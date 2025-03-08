@@ -1,0 +1,1522 @@
+{
+  "abstract": [
+    {
+      "text": "Configure your app and website to enable people to install your app on their devices from your website.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.MarketplaceKit/documentation/MarketplaceKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.MarketplaceKit/documentation/marketplacekit/distributing-your-app-from-your-website"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "MarketplaceKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Distributing your app from your website"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In eligible regions, you can distribute approved, non-marketplace apps from your website. To distribute your app, fill out a webform that outlines the qualifications, and if approved, Apple enables you to download a framework that facilitates the secure installation of your app from your website.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "distributing-your-app-from-your-website-1",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Coordinate with App Store Connect by providing your web domain and a public key that the system uses to validate your app’s installations. When you submit your app and pass review, App Store Connect enables you to access your approved app’s alternative distribution package. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/help/app-store-connect/distributing-apps-in-the-european-union/submit-for-notarization",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Deploy a web server and modify your website to link to your app, which you host on your server. To prepare your app for installation, download and assemble a complete alternative distribution package using the ID that App Store Connect provides; see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.MarketplaceKit/documentation/marketplacekit/ingesting-an-alternative-distribution-package",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Add a Download button on your webpage that links to the alternative distribution package. The URL you assign the button uses a custom scheme that browsers handle differently, instructing them to provide the system with your app’s alternative distribution pacakge for installation on the device.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "distributing-your-app-from-your-website-2",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Alternative app marketplaces are available in Xcode 15.3, iOS 17.4 and later, and iPadOS 18.0 and later. To enable web distribution of other apps, use Xcode 15.4 or later, iOS 17.5 or later, and iPadOS 18.0 or later. For more information, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/support/xcode",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Availability",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Request-approval-to-distribute-your-app",
+          "level": 2,
+          "text": "Request approval to distribute your app",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each app follows the same process for alternative distribution over the web and is subject to Apple’s approval, however the approval process varies by app type.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For marketplace apps, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/support/alternative-app-marketplace-in-the-eu/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". For other apps, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/support/web-distribution-eu/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". In either case, you sign the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/contact/request/alternative-eu-terms-addendum/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/programs/apple-developer-program-license-agreement",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The signed addendum prompts App Store Connect to provide an ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "alternative distribution package",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " for your app in App Store Connect. You host this alternative distribution package on your website and use it to install your app on devices.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Set-up-your-app-for-alternative-distribution",
+          "level": 2,
+          "text": "Set up your app for alternative distribution",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Distributing your app on the web requires one-time setup with App Store Connect. First, define the domain where you distribute the app by calling the ",
+              "type": "text"
+            },
+            {
+              "code": "alternativeDistributionDomains",
+              "type": "codeVoice"
+            },
+            {
+              "text": " endpoint:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "POST https://api.appstoreconnect.apple.com/v1/alternativeDistributionDomains"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about the request’s parameters, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppStoreConnectAPI/POST-v1-alternativeDistributionDomains",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Then, supply a public key that App Store Connect uses to verify installation requests for your app by calling the ",
+              "type": "text"
+            },
+            {
+              "code": "alternativeDistributionKeys",
+              "type": "codeVoice"
+            },
+            {
+              "text": " endpoint:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "POST https://api.appstoreconnect.apple.com/v1/alternativeDistributionKeys"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For steps to create your distribution key, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppStoreConnectAPI/creating-keys-and-establishing-alternative-marketplace-connections",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you’re developing an alternative marketplace app, create one distribution key pair and reuse it across all your developer relationships and apps that install from your marketplace. Otherwise, create a distribution key pair for each app that you distribute from your website.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about setting up a marketplace app in App Store Connect, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/help/app-store-connect/distributing-apps-in-the-european-union/create-an-marketplace-app",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Submit-your-app-and-host-it-on-your-web-server",
+          "level": 2,
+          "text": "Submit your app and host it on your web server",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you’re ready to distribute your app, submit it to App Store Connect for review. Choose the review type:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A web-distributed binary that you also intend to release on marketplace apps, including the App Store.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "App Store",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A marketplace app or other app that won’t also reside on the App Store; see ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "https://developer.apple.com/help/app-store-connect/distributing-apps-in-the-european-union/submit-for-notarization",
+                        "isActive": true,
+                        "overridingTitle": "Submit for Notarization",
+                        "overridingTitleInlineContent": [
+                          {
+                            "text": "Submit for Notarization",
+                            "type": "text"
+                          }
+                        ],
+                        "type": "reference"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "identifier": "https://developer.apple.com/support/dma-and-apps-in-the-eu/#notarization-for-ios-apps",
+                    "isActive": true,
+                    "type": "reference"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If Apple approves your app for distribution, download your app’s ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "alternative distribution package",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " from App Store Connect, this package contains everything that the system needs to install your app. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/help/app-store-connect/distributing-apps-in-the-european-union/get-an-alternative-distribution-package-id",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Assemble and host the alternative distribution package on your web server in a location accessible to the device; see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.MarketplaceKit/documentation/marketplacekit/ingesting-an-alternative-distribution-package",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". When you want to update your app, submit it to App Store Connect and repeat the process.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-a-Download-button-on-your-webpage",
+          "level": 2,
+          "text": "Add a Download button on your webpage",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "People download your app by tapping a button on your webpage with a URL scheme reserved for app installations. The browser forwards the installation request to the system, which retrieves the right app variant or delta from the alternative distribution package for the app that you host on your server.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "distributing-your-app-from-your-website-3",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The button URL is of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.MarketplaceKit/documentation/MarketplaceKit/MarketplaceKitURIScheme",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " format, which provides the system with everything it needs to install the app:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "marketplace-kit://install",
+            "    ?alternativeDistributionPackage=<url>",
+            "    &installVerificationToken=<install verification token>    ",
+            "    &token=<authentication token>",
+            "    &account=<user id>",
+            "    &appShareURL=<URL>;"
+          ],
+          "syntax": "http",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The URL parameters are:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "URL parameter",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Description",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "alternativeDistributionPackage",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Your app’s alternative distribution package. This value has unique domain-matching requirements; for more information, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.MarketplaceKit/documentation/MarketplaceKit/MarketplaceKitURIScheme",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "installVerificationToken",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A required JSON web signature (JWS). For more information, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.MarketplaceKit/documentation/marketplacekit/supplying-an-install-verification-token",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "token",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "An optional authentication token to include if downloads require authorization. The device sends the token back to your token endpoint to reference this request. The value is free-form, and can contain any information at your discretion, such as a customer identifier.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "account",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "An optional user ID for the page visitor. The system groups apps in restore requests based on ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "account",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". The system also provides the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "account",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " as ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "login_hint",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " in the call to your authorization endpoint during re-authentication; for more information, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.MarketplaceKit/documentation/marketplacekit/reauthenticating-a-person-to-manage-apps",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "appShareURL",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "An optional URL to a product landing page for the app on your marketplace website. The operating system populates the value in the Share Sheet when a person touches and holds the app’s icon on the Home Screen.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system enforces the following criteria for a webpage that invokes an app download request:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Your webpage initiates app installation only on a person’s express invocation; in other words, no automatic or indirect app installation. Your webpage can only install an app when a person requests it by tapping a button.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The origin of the main frame on the webpage containing the installation link must match the domain passed to App Store Connect. The browser app records this information and sends it to MarketplaceKit as covered in ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.MarketplaceKit/documentation/marketplacekit/enabling-alternative-distribution-app-installation-in-a-browser",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Some apps that Apple approves for web distribution can also install from the App Store or an alternative app marketplace. You can customize the user experience depending on the source from which a person downloads your app. For more information, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.MarketplaceKit/documentation/marketplacekit/distributing-your-app-on-an-alternative-marketplace#Customize-your-app-depending-on-the-installation-source",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Tip",
+          "style": "tip",
+          "type": "aside"
+        },
+        {
+          "anchor": "Coordinate-with-the-device-from-your-web-server",
+          "level": 2,
+          "text": "Coordinate with the device from your web server",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When a page visitor taps the install button, the system communicates with your web server to validate the request and retrieve the data necessary to perform the installation. If you supply an authentication token in the installation request URL, the system checks if your authentication server authorizes the download. Then system then requests an app license from your server followed by the app itself. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.MarketplaceKit/documentation/marketplacekit/installing-your-app-from-your-website",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Test-your-app-during-development",
+          "level": 2,
+          "text": "Test your app during development",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your app can install over the web only after passing ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/support/dma-and-apps-in-the-eu/#notarization-for-ios-apps",
+              "isActive": true,
+              "overridingTitle": "Notarization",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "Notarization",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ". To test your app beforehand, set the installation source for development builds. Setting the installation source enables you to simulate a web distribution in production.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Set your target’s Alternative Distribution - Web build setting to ",
+              "type": "text"
+            },
+            {
+              "code": "Yes",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "distributing-your-app-from-your-website-4",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The build setting is ",
+                  "type": "text"
+                },
+                {
+                  "code": "ALTERNATIVE_DISTRIBUTION_WEB",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ". Open your Xcode project in Xcode 15.4 or later and add the setting manually if it isn’t present.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This build setting overrides the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.MarketplaceKit/documentation/MarketplaceKit/AppDistributor/current",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property for development builds to return ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.MarketplaceKit/documentation/MarketplaceKit/AppDistributor/web",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", which enables you to test any custom code branching your app might do, such as displaying a different image or offering different menu items depending on whether your app installs from the web or a marketplace.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In your scheme’s Run task Options tab, Distribution selection menu, choose Website to simulate installation over the web for runs on device through Xcode.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "distributing-your-app-from-your-website-5",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Similarly, to return ",
+              "type": "text"
+            },
+            {
+              "code": "web",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for the ",
+              "type": "text"
+            },
+            {
+              "code": "current",
+              "type": "codeVoice"
+            },
+            {
+              "text": " distributor in a test plan, choose Website in the Distribution selection menu of your test plan’s configuration.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "distributing-your-app-from-your-website-6",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "distributing-your-app-from-your-website-1": {
+      "alt": "Three screenshots of iPhone that show the stages of installing a fictional alternative app, Camping App from the developer’s website. The left screenshot has the caption App website and shows the app icon for Camping App, which is a representation of a location, below that is the app title Camping App, below that are lines that represent descriptive text, and below that is the button Install Camping App. The center screenshot has the caption Install sheet and shows a confirmation, the title of the sheet is taplandinc.com Would Like to Install an App, followed by lines that represent descriptive text, followed by the Camping App app info, which includes the developer name Tapland, Inc. as well as screenshots, below the app info is the Install Camping App button, followed by the Cancel button. The right screenshot has the caption Installed app and shows a representation of the homescreen with Camping App installed.",
+      "identifier": "distributing-your-app-from-your-website-1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/8f0a7a712030bddaf4a7f8ad30353675/distributing-your-app-from-your-website-1@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/383b8c9a7ff2df0c8e75970034b829f5/distributing-your-app-from-your-website-1~dark@2x.png"
+        }
+      ]
+    },
+    "distributing-your-app-from-your-website-2": {
+      "alt": "A diagram that illustrates building and deploying your app one time allows you to distribute from three different places, an alterative marketplace app, an app webpage, and an app web server.",
+      "identifier": "distributing-your-app-from-your-website-2",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/9b02dd7733efcf9b21af6d7dc0681e35/distributing-your-app-from-your-website-2@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/59df794089e0e2ea899e78c82f8bc890/distributing-your-app-from-your-website-2~dark@2x.png"
+        }
+      ]
+    },
+    "distributing-your-app-from-your-website-3": {
+      "alt": "A screenshot of and example download button, a button with the label Install Megabyte Mart.",
+      "identifier": "distributing-your-app-from-your-website-3",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b38fd2d3f4a9c46a5bcf72022f0772bf/distributing-your-app-from-your-website-3@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b4813f8ecf4dd6e55b88d4d5656b8d07/distributing-your-app-from-your-website-3~dark@2x.png"
+        }
+      ]
+    },
+    "distributing-your-app-from-your-website-4": {
+      "alt": "A screenshot of Xcode with the project AltDistTesting selected in the project navigation sidebar, and the build settings tab open. Under targets, AltDistTesting Tests is selected, under Deployment the setting Alternative Distribution - Web is set to Yes.",
+      "identifier": "distributing-your-app-from-your-website-4",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b8dd32218b5eb0e36fb1d30bd4873430/distributing-your-app-from-your-website-4@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/8bc4d3465b7a1292099b1d3e3a0904a4/distributing-your-app-from-your-website-4~dark@2x.png"
+        }
+      ]
+    },
+    "distributing-your-app-from-your-website-5": {
+      "alt": "A screenshot of Xcode Scheme settings window with Run selected in the sidebar and the options tab open. The Distribution pop-up menu shows the Website option selected.",
+      "identifier": "distributing-your-app-from-your-website-5",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a556a3fd8a8658b99037065151c288f6/distributing-your-app-from-your-website-5@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/d5d97f7af28b747f65faf2fa7d200024/distributing-your-app-from-your-website-5~dark@2x.png"
+        }
+      ]
+    },
+    "distributing-your-app-from-your-website-6": {
+      "alt": "A screenshot of Xcode with TestPlan selected in the project navigation sidebar and the Configurations tab open. The Distribution pop-up menu has Website selected.",
+      "identifier": "distributing-your-app-from-your-website-6",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/11323ebc7189f8d8af0a183c8e2d177b/distributing-your-app-from-your-website-6@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/d34ff10118c38ec0da5562cc9ae21b5e/distributing-your-app-from-your-website-6~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.MarketplaceKit/documentation/MarketplaceKit": {
+      "abstract": [
+        {
+          "text": "Create an alternative app marketplace, distribute your app on an alternative app marketplace, or distribute your app from your website.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.MarketplaceKit/documentation/MarketplaceKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "MarketplaceKit",
+      "type": "topic",
+      "url": "/documentation/marketplacekit"
+    },
+    "doc://com.apple.MarketplaceKit/documentation/MarketplaceKit/AppDistributor/current": {
+      "abstract": [
+        {
+          "text": "The source from which the app installs.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "current"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14MarketplaceKit14AppDistributorO",
+          "text": "AppDistributor"
+        }
+      ],
+      "identifier": "doc://com.apple.MarketplaceKit/documentation/MarketplaceKit/AppDistributor/current",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "current",
+      "type": "topic",
+      "url": "/documentation/marketplacekit/appdistributor/current"
+    },
+    "doc://com.apple.MarketplaceKit/documentation/MarketplaceKit/AppDistributor/web": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "web"
+        }
+      ],
+      "identifier": "doc://com.apple.MarketplaceKit/documentation/MarketplaceKit/AppDistributor/web",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AppDistributor.web",
+      "type": "topic",
+      "url": "/documentation/marketplacekit/appdistributor/web"
+    },
+    "doc://com.apple.MarketplaceKit/documentation/MarketplaceKit/MarketplaceKitURIScheme": {
+      "abstract": [
+        {
+          "text": "A URI scheme that defines an alternative distribution app installation link.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MarketplaceKitURIScheme"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.MarketplaceKit/documentation/MarketplaceKit/MarketplaceKitURIScheme",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MarketplaceKitURIScheme",
+      "type": "topic",
+      "url": "/documentation/marketplacekit/marketplacekiturischeme"
+    },
+    "doc://com.apple.MarketplaceKit/documentation/marketplacekit/creating-an-alternative-app-marketplace": {
+      "abstract": [
+        {
+          "text": "Enable the distribution of other third-party apps from within your marketplace app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.MarketplaceKit/documentation/marketplacekit/creating-an-alternative-app-marketplace",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating an alternative app marketplace",
+      "type": "topic",
+      "url": "/documentation/marketplacekit/creating-an-alternative-app-marketplace"
+    },
+    "doc://com.apple.MarketplaceKit/documentation/marketplacekit/distributing-your-app-on-an-alternative-marketplace": {
+      "abstract": [
+        {
+          "text": "Design your app for alternative distribution from an alternative app marketplace.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.MarketplaceKit/documentation/marketplacekit/distributing-your-app-on-an-alternative-marketplace",
+      "kind": "article",
+      "role": "article",
+      "title": "Distributing your app on an alternative app marketplace",
+      "type": "topic",
+      "url": "/documentation/marketplacekit/distributing-your-app-on-an-alternative-marketplace"
+    },
+    "doc://com.apple.MarketplaceKit/documentation/marketplacekit/distributing-your-app-on-an-alternative-marketplace#Customize-your-app-depending-on-the-installation-source": {
+      "abstract": [],
+      "identifier": "doc://com.apple.MarketplaceKit/documentation/marketplacekit/distributing-your-app-on-an-alternative-marketplace#Customize-your-app-depending-on-the-installation-source",
+      "kind": "section",
+      "title": "Customize your app depending on the installation source",
+      "type": "topic",
+      "url": "/documentation/marketplacekit/distributing-your-app-on-an-alternative-marketplace#Customize-your-app-depending-on-the-installation-source"
+    },
+    "doc://com.apple.MarketplaceKit/documentation/marketplacekit/enabling-alternative-distribution-app-installation-in-a-browser": {
+      "abstract": [
+        {
+          "text": "Add support for browser apps to install alternative distribution apps from websites.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.MarketplaceKit/documentation/marketplacekit/enabling-alternative-distribution-app-installation-in-a-browser",
+      "kind": "article",
+      "role": "article",
+      "title": "Enabling alternative distribution app installation in a browser",
+      "type": "topic",
+      "url": "/documentation/marketplacekit/enabling-alternative-distribution-app-installation-in-a-browser"
+    },
+    "doc://com.apple.MarketplaceKit/documentation/marketplacekit/ingesting-an-alternative-distribution-package": {
+      "abstract": [
+        {
+          "text": "Process an available app version from App Store Connect and store it for download from your server.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.MarketplaceKit/documentation/marketplacekit/ingesting-an-alternative-distribution-package",
+      "kind": "article",
+      "role": "article",
+      "title": "Ingesting an alternative distribution package",
+      "type": "topic",
+      "url": "/documentation/marketplacekit/ingesting-an-alternative-distribution-package"
+    },
+    "doc://com.apple.MarketplaceKit/documentation/marketplacekit/installing-your-app-from-your-website": {
+      "abstract": [
+        {
+          "text": "Manage the installation of an app that you develop and distribute through your website.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.MarketplaceKit/documentation/marketplacekit/installing-your-app-from-your-website",
+      "kind": "article",
+      "role": "article",
+      "title": "Installing your app from your website",
+      "type": "topic",
+      "url": "/documentation/marketplacekit/installing-your-app-from-your-website"
+    },
+    "doc://com.apple.MarketplaceKit/documentation/marketplacekit/reauthenticating-a-person-to-manage-apps": {
+      "abstract": [
+        {
+          "text": "Renew your app’s authorization when an app needs updating or when a device restores from backup.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.MarketplaceKit/documentation/marketplacekit/reauthenticating-a-person-to-manage-apps",
+      "kind": "article",
+      "role": "article",
+      "title": "Reauthenticating a person to manage apps",
+      "type": "topic",
+      "url": "/documentation/marketplacekit/reauthenticating-a-person-to-manage-apps"
+    },
+    "doc://com.apple.MarketplaceKit/documentation/marketplacekit/supplying-an-install-verification-token": {
+      "abstract": [
+        {
+          "text": "Support the installation of alternative distribution apps by creating signed JSON web tokens.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.MarketplaceKit/documentation/marketplacekit/supplying-an-install-verification-token",
+      "kind": "article",
+      "role": "article",
+      "title": "Supplying an install verification token",
+      "type": "topic",
+      "url": "/documentation/marketplacekit/supplying-an-install-verification-token"
+    },
+    "doc://com.apple.documentation/documentation/AppStoreConnectAPI/POST-v1-alternativeDistributionDomains": {
+      "abstract": [
+        {
+          "text": "Add an alternative distribution domain to your account.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppStoreConnectAPI/POST-v1-alternativeDistributionDomains",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Add an alternative distribution domain",
+      "type": "topic",
+      "url": "/documentation/AppStoreConnectAPI/POST-v1-alternativeDistributionDomains"
+    },
+    "doc://com.apple.documentation/documentation/AppStoreConnectAPI/creating-keys-and-establishing-alternative-marketplace-connections": {
+      "abstract": [
+        {
+          "text": "Manage keys you use to sign JSON web tokens and connect marketplaces with apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppStoreConnectAPI/creating-keys-and-establishing-alternative-marketplace-connections",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating keys and establishing alternative marketplace connections",
+      "type": "topic",
+      "url": "/documentation/AppStoreConnectAPI/creating-keys-and-establishing-alternative-marketplace-connections"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/contact/request/alternative-eu-terms-addendum/": {
+      "identifier": "https://developer.apple.com/contact/request/alternative-eu-terms-addendum/",
+      "title": "Alternative EU Terms Addendum",
+      "titleInlineContent": [
+        {
+          "text": "Alternative EU Terms Addendum",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/contact/request/alternative-eu-terms-addendum/"
+    },
+    "https://developer.apple.com/help/app-store-connect/distributing-apps-in-the-european-union/create-an-marketplace-app": {
+      "identifier": "https://developer.apple.com/help/app-store-connect/distributing-apps-in-the-european-union/create-an-marketplace-app",
+      "title": "Create a marketplace app",
+      "titleInlineContent": [
+        {
+          "text": "Create a marketplace app",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/help/app-store-connect/distributing-apps-in-the-european-union/create-an-marketplace-app"
+    },
+    "https://developer.apple.com/help/app-store-connect/distributing-apps-in-the-european-union/get-an-alternative-distribution-package-id": {
+      "identifier": "https://developer.apple.com/help/app-store-connect/distributing-apps-in-the-european-union/get-an-alternative-distribution-package-id",
+      "title": "Get an alternative distribution package ID",
+      "titleInlineContent": [
+        {
+          "text": "Get an alternative distribution package ID",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/help/app-store-connect/distributing-apps-in-the-european-union/get-an-alternative-distribution-package-id"
+    },
+    "https://developer.apple.com/help/app-store-connect/distributing-apps-in-the-european-union/submit-for-notarization": {
+      "identifier": "https://developer.apple.com/help/app-store-connect/distributing-apps-in-the-european-union/submit-for-notarization",
+      "title": "Submit for Notarization",
+      "titleInlineContent": [
+        {
+          "text": "Submit for Notarization",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/help/app-store-connect/distributing-apps-in-the-european-union/submit-for-notarization"
+    },
+    "https://developer.apple.com/programs/apple-developer-program-license-agreement": {
+      "identifier": "https://developer.apple.com/programs/apple-developer-program-license-agreement",
+      "title": "Developer Program License Agreement",
+      "titleInlineContent": [
+        {
+          "text": "Developer Program License Agreement",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/programs/apple-developer-program-license-agreement"
+    },
+    "https://developer.apple.com/support/alternative-app-marketplace-in-the-eu/": {
+      "identifier": "https://developer.apple.com/support/alternative-app-marketplace-in-the-eu/",
+      "title": "Getting started as an alternative app marketplace in the European Union",
+      "titleInlineContent": [
+        {
+          "text": "Getting started as an alternative app marketplace in the European Union",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/support/alternative-app-marketplace-in-the-eu/"
+    },
+    "https://developer.apple.com/support/dma-and-apps-in-the-eu/#notarization-for-ios-apps": {
+      "identifier": "https://developer.apple.com/support/dma-and-apps-in-the-eu/#notarization-for-ios-apps",
+      "title": "Notarization",
+      "titleInlineContent": [
+        {
+          "text": "Notarization",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/support/dma-and-apps-in-the-eu/#notarization-for-ios-apps"
+    },
+    "https://developer.apple.com/support/web-distribution-eu/": {
+      "identifier": "https://developer.apple.com/support/web-distribution-eu/",
+      "title": "Getting started with Web Distribution in the EU",
+      "titleInlineContent": [
+        {
+          "text": "Getting started with Web Distribution in the EU",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/support/web-distribution-eu/"
+    },
+    "https://developer.apple.com/support/xcode": {
+      "identifier": "https://developer.apple.com/support/xcode",
+      "title": "Xcode support",
+      "titleInlineContent": [
+        {
+          "text": "Xcode support",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/support/xcode"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.MarketplaceKit/documentation/marketplacekit/creating-an-alternative-app-marketplace",
+        "doc://com.apple.MarketplaceKit/documentation/marketplacekit/distributing-your-app-on-an-alternative-marketplace"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/marketplacekit/distributing-your-app-from-your-website"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

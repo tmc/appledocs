@@ -1,0 +1,959 @@
+{
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.dnssd/documentation/dnssd",
+        "doc://com.apple.dnssd/documentation/dnssd/dns-service-discovery-c"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.dnssd/documentation/dnssd/constants-for-specifying-an-interface-index"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "dnssd"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Constants for specifying an interface index"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This section describes the functions, callbacks, and data structures that make up the DNS Service Discovery API.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The DNS Service Discovery API is part of Bonjour, Apple’s implementation of zero-configuration networking (ZEROCONF).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Bonjour allows you to register a network service, such as a printer or file server, so that it can be found by name or browsed for by service type and domain. Using Bonjour, applications can discover what services are available on the network, along with all the information – such as name, IP address, and port – necessary to access a particular service.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In effect, Bonjour combines the functions of a local DNS server and AppleTalk. Bonjour allows applications to provide user-friendly printer and server browsing, among other things, over standard IP networks. This behavior is a result of combining protocols such as multicast and DNS to add new functionality to the network (such as multicast DNS).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Bonjour gives applications easy access to services over local IP networks without requiring the service or the application to support an AppleTalk or a Netbeui stack, and without requiring a DNS server for the local network.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Notes on DNS Name Escaping",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "– or –",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "“Why is ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.dnssd/documentation/dnssd/kDNSServiceMaxDomainName",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " 1009, when the maximum legal domain name is 256 bytes?”",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "All strings used in the DNS-SD APIs are UTF-8 strings. Apart from the exceptions noted below, the APIs expect the strings to be properly escaped, using the conventional DNS escaping rules:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "‘\\\\’ represents a single literal ‘\\’ in the name",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "‘\\.’ represents a single literal ‘.’ in the name",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "‘\\ddd’, where ddd is a three-digit decimal value from 000 to 255, represents a single literal byte with that value.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A bare unescaped ‘.’ is a label separator, marking a boundary between domain and subdomain.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The exceptions, that do not use escaping, are the routines where the full DNS name of a resource is broken, for convenience, into servicename/regtype/domain. In these routines, the “servicename” is NOT escaped. It does not need to be, since it is, by definition, just a single literal string. Any characters in that string represent exactly what they are. The “regtype” portion is, technically speaking, escaped, but since legal regtypes are only allowed to contain letters, digits, and hyphens, there is nothing to escape, so the issue is moot. The “domain” portion is also escaped, though most domains in use on the public Internet today, like regtypes, don’t contain any characters that need to be escaped. As DNS-SD becomes more popular, rich-text domains for service discovery will become common, so software should be written to cope with domains with escaping.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The servicename may be up to 63 bytes of UTF-8 text (not counting the C-String terminating NULL at the end). The regtype is of the form _service._tcp or _service._udp, where the “service” part is 1-15 characters, which may be letters, digits, or hyphens. The domain part of the three-part name may be any legal domain, providing that the resulting servicename+regtype+domain name does not exceed 256 bytes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For most software, these issues are transparent. When browsing, the discovered servicenames should simply be displayed as-is. When resolving, the discovered servicename/regtype/domain are simply passed unchanged to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.dnssd/documentation/dnssd/DNSServiceResolve(_:_:_:_:_:_:_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". When a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.dnssd/documentation/dnssd/DNSServiceResolve(_:_:_:_:_:_:_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " succeeds, the returned fullname is already in the correct format to pass to standard system DNS APIs such as res_query(). For converting from servicename/regtype/domain to a single properly-escaped full DNS name, the helper function ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.dnssd/documentation/dnssd/DNSServiceConstructFullName(_:_:_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " is provided.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following (highly contrived) example illustrates the escaping process. Suppose you have an service called “Dr. Smith\\Dr. Johnson”, of type “_ftp._tcp” in subdomain “4th. Floor” of subdomain “Building 2” of domain “apple.com.” The full (escaped) DNS name of this service’s SRV record would be: Dr\\.\\032Smith\\\\Dr\\.\\032Johnson._ftp._tcp.4th\\.\\032Floor.Building\\0322.apple.com.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.dnssd/documentation/dnssd": {
+      "abstract": [
+        {
+          "text": "Discover, publish, and resolve network services on a local area or wide area network.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.dnssd/documentation/dnssd",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "dnssd",
+      "type": "topic",
+      "url": "/documentation/dnssd"
+    },
+    "doc://com.apple.dnssd/documentation/dnssd/DNSServiceConstructFullName(_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Concatenates a three-part domain name (as returned by the above callbacks) into a properly-escaped full domain name.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DNSServiceConstructFullName"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5CChara",
+          "text": "CChar"
+        },
+        {
+          "kind": "text",
+          "text": ">!, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5CChara",
+          "text": "CChar"
+        },
+        {
+          "kind": "text",
+          "text": ">!, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5CChara",
+          "text": "CChar"
+        },
+        {
+          "kind": "text",
+          "text": ">!, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5CChara",
+          "text": "CChar"
+        },
+        {
+          "kind": "text",
+          "text": ">!) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@DNSServiceErrorType",
+          "text": "DNSServiceErrorType"
+        }
+      ],
+      "identifier": "doc://com.apple.dnssd/documentation/dnssd/DNSServiceConstructFullName(_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DNSServiceConstructFullName"
+        }
+      ],
+      "role": "symbol",
+      "title": "DNSServiceConstructFullName(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/dnssd/dnsserviceconstructfullname(_:_:_:_:)"
+    },
+    "doc://com.apple.dnssd/documentation/dnssd/DNSServiceResolve(_:_:_:_:_:_:_:_:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DNSServiceResolve"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@DNSServiceRef",
+          "text": "DNSServiceRef"
+        },
+        {
+          "kind": "text",
+          "text": "?>!, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@DNSServiceFlags",
+          "text": "DNSServiceFlags"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5CChara",
+          "text": "CChar"
+        },
+        {
+          "kind": "text",
+          "text": ">!, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5CChara",
+          "text": "CChar"
+        },
+        {
+          "kind": "text",
+          "text": ">!, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5CChara",
+          "text": "CChar"
+        },
+        {
+          "kind": "text",
+          "text": ">!, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@DNSServiceResolveReply",
+          "text": "DNSServiceResolveReply"
+        },
+        {
+          "kind": "text",
+          "text": "!, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sv",
+          "text": "UnsafeMutableRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": "!) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@DNSServiceErrorType",
+          "text": "DNSServiceErrorType"
+        }
+      ],
+      "identifier": "doc://com.apple.dnssd/documentation/dnssd/DNSServiceResolve(_:_:_:_:_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DNSServiceResolve"
+        }
+      ],
+      "role": "symbol",
+      "title": "DNSServiceResolve(_:_:_:_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/dnssd/dnsserviceresolve(_:_:_:_:_:_:_:_:)"
+    },
+    "doc://com.apple.dnssd/documentation/dnssd/dns-service-discovery-c": {
+      "abstract": [
+        {
+          "text": "See the Overview section above for header-level documentation.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.dnssd/documentation/dnssd/dns-service-discovery-c",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "DNS Service Discovery C",
+      "type": "topic",
+      "url": "/documentation/dnssd/dns-service-discovery-c"
+    },
+    "doc://com.apple.dnssd/documentation/dnssd/kDNSServiceInterfaceIndexAny": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kDNSServiceInterfaceIndexAny"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        }
+      ],
+      "identifier": "doc://com.apple.dnssd/documentation/dnssd/kDNSServiceInterfaceIndexAny",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kDNSServiceInterfaceIndexAny"
+        }
+      ],
+      "role": "symbol",
+      "title": "kDNSServiceInterfaceIndexAny",
+      "type": "topic",
+      "url": "/documentation/dnssd/kdnsserviceinterfaceindexany"
+    },
+    "doc://com.apple.dnssd/documentation/dnssd/kDNSServiceInterfaceIndexLocalOnly": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kDNSServiceInterfaceIndexLocalOnly"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        }
+      ],
+      "identifier": "doc://com.apple.dnssd/documentation/dnssd/kDNSServiceInterfaceIndexLocalOnly",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kDNSServiceInterfaceIndexLocalOnly"
+        }
+      ],
+      "role": "symbol",
+      "title": "kDNSServiceInterfaceIndexLocalOnly",
+      "type": "topic",
+      "url": "/documentation/dnssd/kdnsserviceinterfaceindexlocalonly"
+    },
+    "doc://com.apple.dnssd/documentation/dnssd/kDNSServiceInterfaceIndexP2P": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kDNSServiceInterfaceIndexP2P"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        }
+      ],
+      "identifier": "doc://com.apple.dnssd/documentation/dnssd/kDNSServiceInterfaceIndexP2P",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kDNSServiceInterfaceIndexP2P"
+        }
+      ],
+      "role": "symbol",
+      "title": "kDNSServiceInterfaceIndexP2P",
+      "type": "topic",
+      "url": "/documentation/dnssd/kdnsserviceinterfaceindexp2p"
+    },
+    "doc://com.apple.dnssd/documentation/dnssd/kDNSServiceInterfaceIndexUnicast": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kDNSServiceInterfaceIndexUnicast"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        }
+      ],
+      "identifier": "doc://com.apple.dnssd/documentation/dnssd/kDNSServiceInterfaceIndexUnicast",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kDNSServiceInterfaceIndexUnicast"
+        }
+      ],
+      "role": "symbol",
+      "title": "kDNSServiceInterfaceIndexUnicast",
+      "type": "topic",
+      "url": "/documentation/dnssd/kdnsserviceinterfaceindexunicast"
+    },
+    "doc://com.apple.dnssd/documentation/dnssd/kDNSServiceMaxDomainName": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kDNSServiceMaxDomainName"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        }
+      ],
+      "identifier": "doc://com.apple.dnssd/documentation/dnssd/kDNSServiceMaxDomainName",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kDNSServiceMaxDomainName"
+        }
+      ],
+      "role": "symbol",
+      "title": "kDNSServiceMaxDomainName",
+      "type": "topic",
+      "url": "/documentation/dnssd/kdnsservicemaxdomainname"
+    },
+    "doc://com.apple.dnssd/documentation/dnssd/miscellaneous-defines": {
+      "abstract": [],
+      "identifier": "doc://com.apple.dnssd/documentation/dnssd/miscellaneous-defines",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Miscellaneous Defines",
+      "type": "topic",
+      "url": "/documentation/dnssd/miscellaneous-defines"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Constants",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.dnssd/documentation/dnssd/miscellaneous-defines"
+      ],
+      "title": "Constants"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Constants",
+      "identifiers": [
+        "doc://com.apple.dnssd/documentation/dnssd/kDNSServiceInterfaceIndexAny",
+        "doc://com.apple.dnssd/documentation/dnssd/kDNSServiceInterfaceIndexLocalOnly",
+        "doc://com.apple.dnssd/documentation/dnssd/kDNSServiceInterfaceIndexP2P",
+        "doc://com.apple.dnssd/documentation/dnssd/kDNSServiceInterfaceIndexUnicast"
+      ],
+      "title": "Constants"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Constants",
+              "identifiers": [
+                "doc://com.apple.dnssd/documentation/dnssd/kDNSServiceInterfaceIndexAny",
+                "doc://com.apple.dnssd/documentation/dnssd/kDNSServiceInterfaceIndexLocalOnly",
+                "doc://com.apple.dnssd/documentation/dnssd/kDNSServiceInterfaceIndexP2P",
+                "doc://com.apple.dnssd/documentation/dnssd/kDNSServiceInterfaceIndexUnicast"
+              ],
+              "title": "Constants"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Constants",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.dnssd/documentation/dnssd/miscellaneous-defines"
+              ],
+              "title": "Constants"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.dnssd~1documentation~1dnssd~1DNSServiceConstructFullName(_:_:_:_:)/title",
+          "value": "DNSServiceConstructFullName"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.dnssd~1documentation~1dnssd~1DNSServiceConstructFullName(_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "DNSServiceConstructFullName"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.dnssd~1documentation~1dnssd~1kDNSServiceInterfaceIndexAny/title",
+          "value": "kDNSServiceInterfaceIndexAny"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.dnssd~1documentation~1dnssd~1kDNSServiceInterfaceIndexAny/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kDNSServiceInterfaceIndexAny"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.dnssd~1documentation~1dnssd~1kDNSServiceInterfaceIndexLocalOnly/title",
+          "value": "kDNSServiceInterfaceIndexLocalOnly"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.dnssd~1documentation~1dnssd~1kDNSServiceInterfaceIndexLocalOnly/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kDNSServiceInterfaceIndexLocalOnly"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.dnssd~1documentation~1dnssd~1kDNSServiceInterfaceIndexUnicast/title",
+          "value": "kDNSServiceInterfaceIndexUnicast"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.dnssd~1documentation~1dnssd~1kDNSServiceInterfaceIndexUnicast/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kDNSServiceInterfaceIndexUnicast"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.dnssd~1documentation~1dnssd~1kDNSServiceMaxDomainName/title",
+          "value": "kDNSServiceMaxDomainName"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.dnssd~1documentation~1dnssd~1kDNSServiceMaxDomainName/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kDNSServiceMaxDomainName"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.dnssd~1documentation~1dnssd~1DNSServiceResolve(_:_:_:_:_:_:_:_:)/title",
+          "value": "DNSServiceResolve"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.dnssd~1documentation~1dnssd~1DNSServiceResolve(_:_:_:_:_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "DNSServiceResolve"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.dnssd~1documentation~1dnssd~1kDNSServiceInterfaceIndexP2P/title",
+          "value": "kDNSServiceInterfaceIndexP2P"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.dnssd~1documentation~1dnssd~1kDNSServiceInterfaceIndexP2P/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kDNSServiceInterfaceIndexP2P"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/dnssd/constants-for-specifying-an-interface-index"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/dnssd/constants-for-specifying-an-interface-index"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

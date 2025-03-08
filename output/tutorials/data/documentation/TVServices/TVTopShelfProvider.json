@@ -1,0 +1,681 @@
+{
+  "abstract": [
+    {
+      "text": "The interface for providing items to display in the main menu’s Top Shelf user interface on an Apple TV.",
+      "type": "text"
+    }
+  ],
+  "deprecationSummary": [
+    {
+      "inlineContent": [
+        {
+          "text": "TVTopShelfProvider has been replaced by TVTopShelfContentProvider",
+          "type": "text"
+        }
+      ],
+      "type": "paragraph"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.tvservices/documentation/TVServices"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.tvservices/documentation/TVServices/TVTopShelfProvider"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(pl)TVTopShelfProvider",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "protocol"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "TVTopShelfProvider"
+      }
+    ],
+    "modules": [
+      {
+        "name": "TV Services"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "TVTopShelfProvider"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "deprecatedAt": "13.0",
+        "introducedAt": "9.0",
+        "message": "TVTopShelfProvider has been replaced by TVTopShelfContentProvider",
+        "name": "tvOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Protocol",
+    "symbolKind": "protocol",
+    "title": "TVTopShelfProvider"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "tvOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "TVTopShelfProvider"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You adopt this protocol in the principal class of your app’s TV Services extension. Apps that implement this extension can provide dynamic content to the Top Shelf element rather than having the system use the static image submitted with the app. The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.tvservices/documentation/TVServices/TVTopShelfProvider/topShelfStyle",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property specifies the interface style you want, and the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.tvservices/documentation/TVServices/TVTopShelfProvider/topShelfItems",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property specifies the content items to display. Whenever you change the content provided by the extension, post a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.tvservices/documentation/TVServices/TVTopShelfItemsDidChangeNotification",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " notification to prompt the system to reload your content.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1627592-tvtopshelfitemsdidchange": {
+      "abstract": [
+        {
+          "text": "A notification to post when your app’s Top Shelf content has changed.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static let "
+        },
+        {
+          "kind": "identifier",
+          "text": "TVTopShelfItemsDidChange"
+        },
+        {
+          "kind": "text",
+          "text": ": NSNotification.Name"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1627592-tvtopshelfitemsdidchange",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "TVTopShelfItemsDidChange",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnotification/name/1627592-tvtopshelfitemsdidchange"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.tvservices/documentation/TVServices": {
+      "abstract": [
+        {
+          "text": "Display content and descriptions, provide channel guides, and support multiple users on Apple TV.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.tvservices/documentation/TVServices",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "TV Services",
+      "type": "topic",
+      "url": "/documentation/tvservices"
+    },
+    "doc://com.apple.tvservices/documentation/TVServices/TVTopShelfContentStyle": {
+      "abstract": [
+        {
+          "text": "An enumerated type used to specify the style in which you want your content to be displayed.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TVTopShelfContentStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.tvservices/documentation/TVServices/TVTopShelfContentStyle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TVTopShelfContentStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "TVTopShelfContentStyle",
+      "type": "topic",
+      "url": "/documentation/tvservices/tvtopshelfcontentstyle"
+    },
+    "doc://com.apple.tvservices/documentation/TVServices/TVTopShelfItemsDidChangeNotification": {
+      "abstract": [
+        {
+          "text": "A notification to post when your app’s Top Shelf content has changed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "TVTopShelfItemsDidChangeNotification"
+        }
+      ],
+      "identifier": "doc://com.apple.tvservices/documentation/TVServices/TVTopShelfItemsDidChangeNotification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "TVTopShelfItemsDidChangeNotification",
+      "type": "topic",
+      "url": "/documentation/tvservices/tvtopshelfitemsdidchangenotification"
+    },
+    "doc://com.apple.tvservices/documentation/TVServices/TVTopShelfProvider": {
+      "abstract": [
+        {
+          "text": "The interface for providing items to display in the main menu’s Top Shelf user interface on an Apple TV.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TVTopShelfProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.tvservices/documentation/TVServices/TVTopShelfProvider",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TVTopShelfProvider"
+        }
+      ],
+      "role": "symbol",
+      "title": "TVTopShelfProvider",
+      "type": "topic",
+      "url": "/documentation/tvservices/tvtopshelfprovider"
+    },
+    "doc://com.apple.tvservices/documentation/TVServices/TVTopShelfProvider/topShelfItems": {
+      "abstract": [
+        {
+          "text": "Returns an array of content items to be displayed.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "topShelfItems"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)TVContentItem",
+          "text": "TVContentItem"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.tvservices/documentation/TVServices/TVTopShelfProvider/topShelfItems",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "topShelfItems"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "topShelfItems",
+      "type": "topic",
+      "url": "/documentation/tvservices/tvtopshelfprovider/topshelfitems"
+    },
+    "doc://com.apple.tvservices/documentation/TVServices/TVTopShelfProvider/topShelfStyle": {
+      "abstract": [
+        {
+          "text": "The user interface style that should be used to display the content items.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "topShelfStyle"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@TVTopShelfContentStyle",
+          "text": "TVTopShelfContentStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.tvservices/documentation/TVServices/TVTopShelfProvider/topShelfStyle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "topShelfStyle"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "topShelfStyle",
+      "type": "topic",
+      "url": "/documentation/tvservices/tvtopshelfprovider/topshelfstyle"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Implementing-TV-Services-Extension-Properties",
+      "identifiers": [
+        "doc://com.apple.tvservices/documentation/TVServices/TVTopShelfProvider/topShelfItems",
+        "doc://com.apple.tvservices/documentation/TVServices/TVTopShelfProvider/topShelfStyle",
+        "doc://com.apple.tvservices/documentation/TVServices/TVTopShelfContentStyle"
+      ],
+      "title": "Implementing TV Services Extension Properties"
+    },
+    {
+      "anchor": "Notifying-the-System-of-Changes",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1627592-tvtopshelfitemsdidchange"
+      ],
+      "title": "Notifying the System of Changes"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "deprecatedAt": "13.0",
+              "introducedAt": "9.0",
+              "name": "tvOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Protocol"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "TVTopShelfProvider"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "protocol"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "TVTopShelfProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "TVTopShelfProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.tvservices/documentation/TVServices"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Implementing-TV-Services-Extension-Properties",
+              "identifiers": [
+                "doc://com.apple.tvservices/documentation/TVServices/TVTopShelfProvider/topShelfItems",
+                "doc://com.apple.tvservices/documentation/TVServices/TVTopShelfProvider/topShelfStyle",
+                "doc://com.apple.tvservices/documentation/TVServices/TVTopShelfContentStyle"
+              ],
+              "title": "Implementing TV Services Extension Properties"
+            },
+            {
+              "anchor": "Notifying-the-System-of-Changes",
+              "identifiers": [
+                "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1627592-tvtopshelfitemsdidchange",
+                "doc://com.apple.tvservices/documentation/TVServices/TVTopShelfItemsDidChangeNotification"
+              ],
+              "title": "Notifying the System of Changes"
+            }
+          ]
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "tvOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@protocol"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "TVTopShelfProvider"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/deprecationSummary",
+          "value": [
+            {
+              "inlineContent": [
+                {
+                  "text": "TVTopShelfProvider has been replaced by TVTopShelfContentProvider",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.tvservices~1documentation~1TVServices~1TVTopShelfProvider~1topShelfStyle/title",
+          "value": "topShelfStyle"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.tvservices~1documentation~1TVServices~1TVTopShelfProvider~1topShelfStyle/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "topShelfStyle"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.tvservices~1documentation~1TVServices~1TVTopShelfProvider/title",
+          "value": "TVTopShelfProvider"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.tvservices~1documentation~1TVServices~1TVTopShelfProvider/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "TVTopShelfProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.tvservices~1documentation~1TVServices~1TVTopShelfProvider/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "TVTopShelfProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.tvservices~1documentation~1TVServices~1TVTopShelfContentStyle/title",
+          "value": "TVTopShelfContentStyle"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.tvservices~1documentation~1TVServices~1TVTopShelfContentStyle/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "TVTopShelfContentStyle"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.tvservices~1documentation~1TVServices~1TVTopShelfContentStyle/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "TVTopShelfContentStyle"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.tvservices~1documentation~1TVServices~1TVTopShelfProvider~1topShelfItems/title",
+          "value": "topShelfItems"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.tvservices~1documentation~1TVServices~1TVTopShelfProvider~1topShelfItems/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "topShelfItems"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/tvservices/tvtopshelfprovider"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/tvservices/tvtopshelfprovider"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

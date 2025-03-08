@@ -1,0 +1,503 @@
+{
+  "abstract": [
+    {
+      "text": "Generate an API token to access CloudKit web services or use CloudKit JS.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.cloudkit/documentation/CloudKit",
+        "doc://com.apple.cloudkit/documentation/CloudKit/managing-icloud-containers-with-cloudkit-database-app"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.cloudkit/documentation/CloudKit/obtaining-an-api-token-for-an-icloud-container"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "CloudKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Obtaining an API Token for an iCloud Container"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "With CloudKit, you can store data in iCloud and sync it across Apple devices. To access iCloud data from the web or other platforms, you can use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/cloudkitjs",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/library/archive/documentation/DataManagement/Conceptual/CloudKitWebServicesReference/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " after obtaining a token.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Select-API-access-for-your-container",
+          "level": 3,
+          "text": "Select API access for your container",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use your web browser to access the CloudKit Database app:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Sign in to the CloudKit Console at ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://icloud.developer.apple.com/",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select the CloudKit Database app.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the top section, choose your app’s container from the list.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the Settings section on the left, select Tokens & Keys.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3699104",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-the-API-token",
+          "level": 3,
+          "text": "Create the API token",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To obtain your container’s API token:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "From the Tokens & Keys section for your container, click the New API Token button. The detail area in the right panel shows an entry form for the new token.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Enter the name for the API token.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To specify a custom URL to load after the user signs in using their Apple ID, choose URL Redirect and http:// from the Sign in Callback field and enter a custom URL.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To restrict the domains that can access your app’s container using CloudKit web services, choose “Only the following domain(s) from the Allowed Origins field”, and enter a domain.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To add a description, type it in the Notes field.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click the Save Changes button.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3699263",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.cloudkit/documentation/CloudKit": {
+      "abstract": [
+        {
+          "text": "Store structured app and user data in iCloud containers that all users of your app can share.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "CloudKit",
+      "type": "topic",
+      "url": "/documentation/cloudkit"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/deploying-an-icloud-container-s-schema": {
+      "abstract": [
+        {
+          "text": "Reset your container’s state during development and deploy your container’s schema to production.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/deploying-an-icloud-container-s-schema",
+      "kind": "article",
+      "role": "article",
+      "title": "Deploying an iCloud Container’s Schema",
+      "type": "topic",
+      "url": "/documentation/cloudkit/deploying-an-icloud-container-s-schema"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/handling-an-icloud-container-s-data": {
+      "abstract": [
+        {
+          "text": "Inspect and manage your app’s iCloud container data using the CloudKit Database app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/handling-an-icloud-container-s-data",
+      "kind": "article",
+      "role": "article",
+      "title": "Handling an iCloud Container’s Data",
+      "type": "topic",
+      "url": "/documentation/cloudkit/handling-an-icloud-container-s-data"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/inspecting-and-editing-an-icloud-container-s-schema": {
+      "abstract": [
+        {
+          "text": "Review and edit the schema for your app’s container using the CloudKit Database app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/inspecting-and-editing-an-icloud-container-s-schema",
+      "kind": "article",
+      "role": "article",
+      "title": "Inspecting and Editing an iCloud Container’s Schema",
+      "type": "topic",
+      "url": "/documentation/cloudkit/inspecting-and-editing-an-icloud-container-s-schema"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/managing-icloud-containers-with-cloudkit-database-app": {
+      "abstract": [
+        {
+          "text": "Inspect and modify the schema and data for your app’s iCloud container.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/managing-icloud-containers-with-cloudkit-database-app",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Managing iCloud Containers with CloudKit Database App",
+      "type": "topic",
+      "url": "/documentation/cloudkit/managing-icloud-containers-with-cloudkit-database-app"
+    },
+    "doc://com.apple.documentation/documentation/cloudkitjs": {
+      "abstract": [
+        {
+          "text": "Provide access from your web app to your CloudKit app’s containers and databases.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/cloudkitjs",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "CloudKit JS",
+      "type": "topic",
+      "url": "/documentation/cloudkitjs"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/library/archive/documentation/DataManagement/Conceptual/CloudKitWebServicesReference/": {
+      "identifier": "https://developer.apple.com/library/archive/documentation/DataManagement/Conceptual/CloudKitWebServicesReference/",
+      "title": "CloudKit Web Services",
+      "titleInlineContent": [
+        {
+          "text": "CloudKit Web Services",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/DataManagement/Conceptual/CloudKitWebServicesReference/"
+    },
+    "https://icloud.developer.apple.com/": {
+      "identifier": "https://icloud.developer.apple.com/",
+      "title": "https://icloud.developer.apple.com/",
+      "titleInlineContent": [
+        {
+          "text": "https://icloud.developer.apple.com/",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://icloud.developer.apple.com/"
+    },
+    "media-3699104": {
+      "alt": "A screenshot showing a selected container in the CloudKit Database app. The screenshot highlights the Tokens & Keys menu item in the Settings section on the left.",
+      "identifier": "media-3699104",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/be18961ab64d83fa1141ebc118170536/media-3699104@2x.png"
+        }
+      ]
+    },
+    "media-3699263": {
+      "alt": "A screenshot showing the CloudKit Database app API access management page the for selected container.",
+      "identifier": "media-3699263",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/bcac804a98038eb7889671279fe61b2f/media-3699263@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Container-Management",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.cloudkit/documentation/CloudKit/inspecting-and-editing-an-icloud-container-s-schema",
+        "doc://com.apple.cloudkit/documentation/CloudKit/handling-an-icloud-container-s-data",
+        "doc://com.apple.cloudkit/documentation/CloudKit/deploying-an-icloud-container-s-schema"
+      ],
+      "title": "Container Management"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Container-Management",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.cloudkit/documentation/CloudKit/inspecting-and-editing-an-icloud-container-s-schema",
+                "doc://com.apple.cloudkit/documentation/CloudKit/handling-an-icloud-container-s-data",
+                "doc://com.apple.cloudkit/documentation/CloudKit/deploying-an-icloud-container-s-schema"
+              ],
+              "title": "Container Management"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/cloudkit/obtaining-an-api-token-for-an-icloud-container"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/cloudkit/obtaining-an-api-token-for-an-icloud-container"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

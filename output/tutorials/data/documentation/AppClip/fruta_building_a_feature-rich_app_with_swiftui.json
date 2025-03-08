@@ -1,0 +1,942 @@
+{
+  "abstract": [
+    {
+      "text": "Create a shared codebase to build a multiplatform app that offers widgets and an App Clip.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/swiftui"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/appclip"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/appclip/fruta_building_a_feature-rich_app_with_swiftui"
+  },
+  "kind": "article",
+  "legacy_identifier": 3597584,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "SwiftUI"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "15.4",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "15.4",
+        "name": "iPadOS"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "12.3",
+        "name": "macOS"
+      },
+      {
+        "current": "16.3",
+        "introducedAt": "13.3",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Fruta: Building a Feature-Rich App with SwiftUI"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "This sample project is associated with WWDC21 sessions ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "link-3813694",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ", ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "link-3813695",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ", ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "link-3820247",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ", ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "link-3813697",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "It’s also associated with WWDC20 sessions ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "link-3638706",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ", ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "link-3638707",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ", ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "link-3638891",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ", ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "link-3638709",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ", ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "link-3638710",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ", and ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "link-3641660",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Fruta sample project builds an app for macOS, iOS, and iPadOS that implements ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " platform features like widgets, App Clips, and localization. Users can order smoothies, save favorite drinks, collect rewards, and browse recipes. It contains two flavors of app targets:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Simple iOS and macOS app targets that you build using ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "link-3949310",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " signing. This iOS app runs in Simulator, and only requires a standard Apple ID to install on a device. The simple app implements a rich, localized ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " interface. Users can browse and order smoothies, and save favorite drinks.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Full featured iOS All and macOS All app targets. The full iOS app runs in Simulator, and on devices with an Apple Developer membership. This app includes widget extensions that enable users to add a widget to their iOS Home Screen or the macOS Notification Center, and to view their rewards or a favorite smoothie. This app also embeds an App Clip. With the App Clip, users can discover and instantly launch some of the app’s functionality on their iPhone or iPad without installing the app.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Fruta sample app leverages ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.signinwithapple/documentation/SigninwithApple",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.passkit/documentation/PassKit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to provide a streamlined user experience.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "3950189",
+          "level": 3,
+          "text": "Configure the Sample Code Project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To build this project for iOS 15.4, use Xcode 13.3. The runtime requirement is iOS 15.4. To build this project for macOS 12.3, use Xcode 13.3.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To configure the iOS and macOS app targets without an Apple Developer account, follow these steps:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the targets’ Signing & Capabilities panes click Add Account, and log in with your Apple ID.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Chose the Your Name (Personal Team) from the team drop down menu.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click build-and-run.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "On iOS and iPadOS devices you need to navigate to Settings > General > VPN & Device Management and trust your developer certificate.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To configure the iOS All and macOS All apps, follow these steps:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To run on your devices, including on macOS, set your team in the targets’ Signing & Capabilities panes. Xcode manages the provisioning profiles for you.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To run on an iOS or iPadOS device, open the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "iOSClip.entitlements",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " file and update the value of the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.parent-application-identifiers",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to match the iOS app’s bundle identifier.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Make a note of the App Group name on the iOS target’s Signing & Capabilities tab in Project Settings. Substitute this value for group.example.fruta in the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Model.swift",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " file.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To enable the in-app-purchase flow, edit the Fruta iOS “Run” scheme, and select ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Configuration.storekit",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " for StoreKit Configuration.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "anchor": "3950190",
+          "level": 3,
+          "text": "Create a Shared Codebase in SwiftUI",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create a single app definition that works for multiple platforms, the project defines a structure that conforms to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/App",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol. Because the ",
+              "type": "text"
+            },
+            {
+              "code": "@main",
+              "type": "codeVoice"
+            },
+            {
+              "text": " attribute precedes the structure definition, the system recognizes the structure as the entry point into the app. Its computed body property returns a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/WindowGroup",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " scene that contains the view hierarchy displayed by the app to the user. SwiftUI manages the presentation of the scene and its contents in a platform-appropriate manner.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@main",
+            "struct FrutaApp: App {",
+            "    @StateObject private var model = Model()",
+            "    ",
+            "    var body: some Scene {",
+            "        WindowGroup {",
+            "            ContentView()",
+            "                .environmentObject(model)",
+            "        }",
+            "        .commands {",
+            "            SidebarCommands()",
+            "            SmoothieCommands(model: model)",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "metadata": {
+            "anchor": "3950183",
+            "title": "Listing 1"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information, see ",
+              "type": "text"
+            },
+            {
+              "code": "App structure and behavior",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "3950191",
+          "level": 3,
+          "text": "Offer an App Clip",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "On iOS and iPadOS, the Fruta app offers some of its functionality to users who don’t have the full app installed as an App Clip. The app’s Xcode project contains an App Clip target, and, instead of duplicating code, reuses code that’s shared across all platforms to build the App Clip. In shared code, the project makes use of the Active Compilation Condition build setting to exclude code for targets that don’t define the ",
+              "type": "text"
+            },
+            {
+              "code": "APPCLIP",
+              "type": "codeVoice"
+            },
+            {
+              "text": " value. For example, only the App Clip target presents an App Store overlay to prompt the user to get the full app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "",
+            "VStack(spacing: 0) {",
+            "    Spacer()",
+            "    ",
+            "    orderStatusCard",
+            "    ",
+            "    Spacer()",
+            "    ",
+            "    #if EXTENDED_ALL",
+            "    if presentingBottomBanner {",
+            "        bottomBanner",
+            "    }",
+            "    #endif",
+            "    ",
+            "    #if APPCLIP",
+            "    Text(verbatim: \"App Store Overlay\")",
+            "        .hidden()",
+            "        .appStoreOverlay(isPresented: $presentingAppStoreOverlay) {",
+            "            SKOverlay.AppClipConfiguration(position: .bottom)",
+            "        }",
+            "    #endif",
+            "}",
+            ".onChange(of: model.hasAccount) { _ in",
+            "    #if APPCLIP",
+            "    if model.hasAccount {",
+            "        presentingAppStoreOverlay = true",
+            "    }",
+            "    #endif",
+            "}"
+          ],
+          "metadata": {
+            "anchor": "3950185",
+            "title": "Listing 2"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appclip/documentation/AppClip/creating-an-app-clip-with-xcode",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appclip/documentation/AppClip/choosing-the-right-functionality-for-your-app-clip",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "3950192",
+          "level": 3,
+          "text": "Create a Widget",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To allow users to see some of the app’s content as a widget on their iOS Home screen or in the macOS Notification Center, the Xcode project contains targets for widget extensions. Both use code that’s shared across all targets.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.SwiftUI/documentation/SwiftUI": {
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI",
+      "kind": "article",
+      "role": "collection",
+      "title": "SwiftUI",
+      "type": "topic",
+      "url": "/documentation/swiftui"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/App": {
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/App",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "App",
+      "type": "topic",
+      "url": "/documentation/swiftui/app"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/WindowGroup": {
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/WindowGroup",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "WindowGroup",
+      "type": "topic",
+      "url": "/documentation/swiftui/windowgroup"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit": {
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit",
+      "kind": "article",
+      "role": "collection",
+      "title": "WidgetKit",
+      "type": "topic",
+      "url": "/documentation/widgetkit"
+    },
+    "doc://com.apple.appclip/documentation/AppClip/choosing-the-right-functionality-for-your-app-clip": {
+      "identifier": "doc://com.apple.appclip/documentation/AppClip/choosing-the-right-functionality-for-your-app-clip",
+      "kind": "article",
+      "role": "article",
+      "title": "Choosing the right functionality for your App Clip",
+      "type": "topic",
+      "url": "/documentation/appclip/choosing-the-right-functionality-for-your-app-clip"
+    },
+    "doc://com.apple.appclip/documentation/AppClip/creating-an-app-clip-with-xcode": {
+      "abstract": [
+        {
+          "text": "Add an App Clip target to your Xcode project and share code between the App Clip and its corresponding full app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appclip/documentation/AppClip/creating-an-app-clip-with-xcode",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating an App Clip with Xcode",
+      "type": "topic",
+      "url": "/documentation/appclip/creating-an-app-clip-with-xcode"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.parent-application-identifiers": {
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.parent-application-identifiers",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Parent Application Identifiers Entitlement",
+      "type": "topic",
+      "url": "/documentation/bundleresources/entitlements/com.apple.developer.parent-application-identifiers"
+    },
+    "doc://com.apple.documentation/documentation/appclip": {
+      "identifier": "doc://com.apple.documentation/documentation/appclip",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "App Clips",
+      "type": "topic",
+      "url": "/documentation/appclip"
+    },
+    "doc://com.apple.documentation/documentation/appclip/fruta_building_a_feature-rich_app_with_swiftui": {
+      "abstract": [
+        {
+          "text": "Create a shared codebase to build a multiplatform app that offers widgets and an App Clip.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/appclip/fruta_building_a_feature-rich_app_with_swiftui",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Fruta: Building a Feature-Rich App with SwiftUI",
+      "type": "topic",
+      "url": "/documentation/appclip/fruta_building_a_feature-rich_app_with_swiftui"
+    },
+    "doc://com.apple.documentation/documentation/appclip/fruta_building_a_feature-rich_app_with_swiftui#3950183": {
+      "identifier": "doc://com.apple.documentation/documentation/appclip/fruta_building_a_feature-rich_app_with_swiftui#3950183",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/appclip/fruta_building_a_feature-rich_app_with_swiftui#3950183"
+    },
+    "doc://com.apple.documentation/documentation/appclip/fruta_building_a_feature-rich_app_with_swiftui#3950185": {
+      "identifier": "doc://com.apple.documentation/documentation/appclip/fruta_building_a_feature-rich_app_with_swiftui#3950185",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 2",
+      "type": "section",
+      "url": "/documentation/appclip/fruta_building_a_feature-rich_app_with_swiftui#3950185"
+    },
+    "doc://com.apple.documentation/documentation/swiftui": {
+      "identifier": "doc://com.apple.documentation/documentation/swiftui",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SwiftUI",
+      "type": "topic",
+      "url": "/documentation/swiftui"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.passkit/documentation/PassKit": {
+      "identifier": "doc://com.apple.passkit/documentation/PassKit",
+      "kind": "article",
+      "role": "collection",
+      "title": "PassKit (Apple Pay and Wallet)",
+      "type": "topic",
+      "url": "/documentation/passkit"
+    },
+    "doc://com.apple.signinwithapple/documentation/SigninwithApple": {
+      "identifier": "doc://com.apple.signinwithapple/documentation/SigninwithApple",
+      "kind": "article",
+      "role": "collection",
+      "title": "Sign in with Apple",
+      "type": "topic",
+      "url": "/documentation/signinwithapple"
+    },
+    "https://docs-assets.developer.apple.com/published/38a4344721/FrutaBuildingAFeatureRichAppWithSwiftUI.zip": {
+      "checksum": "8762a241516538dff35fe2542ce97e7896d11819b7271b0b1d2b2790fffb2b4fd6153b15b787ca7b4f658e2d594f07c117322e634013320e3664d97ea4670caf",
+      "identifier": "https://docs-assets.developer.apple.com/published/38a4344721/FrutaBuildingAFeatureRichAppWithSwiftUI.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/38a4344721/FrutaBuildingAFeatureRichAppWithSwiftUI.zip"
+    },
+    "link-3638706": {
+      "identifier": "link-3638706",
+      "kind": "article",
+      "role": "link",
+      "title": "10637: Platforms State of the Union",
+      "type": "topic",
+      "url": "https://developer.apple.com/wwdc20/10637/"
+    },
+    "link-3638707": {
+      "identifier": "link-3638707",
+      "kind": "article",
+      "role": "link",
+      "title": "10146: Configure and Link Your App Clips",
+      "type": "topic",
+      "url": "https://developer.apple.com/wwdc20/10146/"
+    },
+    "link-3638709": {
+      "identifier": "link-3638709",
+      "kind": "article",
+      "role": "link",
+      "title": "10118: Create App Clips for Other Businesses",
+      "type": "topic",
+      "url": "https://developer.apple.com/wwdc20/10118/"
+    },
+    "link-3638710": {
+      "identifier": "link-3638710",
+      "kind": "article",
+      "role": "link",
+      "title": "10096: Explore Packages and Projects with Xcode Playgrounds",
+      "type": "topic",
+      "url": "https://developer.apple.com/wwdc20/10096/"
+    },
+    "link-3638891": {
+      "identifier": "link-3638891",
+      "kind": "article",
+      "role": "link",
+      "title": "10120: Streamline Your App Clip",
+      "type": "topic",
+      "url": "https://developer.apple.com/wwdc20/10120/"
+    },
+    "link-3641660": {
+      "identifier": "link-3641660",
+      "kind": "article",
+      "role": "link",
+      "title": "10028: Meet WidgetKit",
+      "type": "topic",
+      "url": "https://developer.apple.com/wwdc20/10028/"
+    },
+    "link-3813694": {
+      "identifier": "link-3813694",
+      "kind": "article",
+      "role": "link",
+      "title": "10107: Platforms State of the Union",
+      "type": "topic",
+      "url": "https://developer.apple.com/wwdc21/10107/"
+    },
+    "link-3813695": {
+      "identifier": "link-3813695",
+      "kind": "article",
+      "role": "link",
+      "title": "10012: What’s New in App Clips",
+      "type": "topic",
+      "url": "https://developer.apple.com/wwdc21/10012/"
+    },
+    "link-3813697": {
+      "identifier": "link-3813697",
+      "kind": "article",
+      "role": "link",
+      "title": "10220: Localize your SwiftUI App",
+      "type": "topic",
+      "url": "https://developer.apple.com/wwdc21/10220/"
+    },
+    "link-3820247": {
+      "identifier": "link-3820247",
+      "kind": "article",
+      "role": "link",
+      "title": "10013: Build Light and Fast App Clips",
+      "type": "topic",
+      "url": "https://developer.apple.com/wwdc21/10013/"
+    },
+    "link-3949310": {
+      "identifier": "link-3949310",
+      "kind": "article",
+      "role": "link",
+      "title": "Personal Team",
+      "type": "section",
+      "url": "https://help.apple.com/xcode/mac/11.4/#/dev17411c009"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "https://docs-assets.developer.apple.com/published/38a4344721/FrutaBuildingAFeatureRichAppWithSwiftUI.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.appclip/documentation/AppClip/creating-an-app-clip-with-xcode"
+      ],
+      "title": "Creation"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/appclip/fruta_building_a_feature-rich_app_with_swiftui",
+        "documentation/swiftui/fruta_building_a_feature-rich_app_with_swiftui"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

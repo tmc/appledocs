@@ -1,0 +1,2195 @@
+{
+  "abstract": [
+    {
+      "text": "The object that fetches and saves contacts, groups, and containers from the user’s Contacts database.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.contacts/documentation/Contacts"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.contacts/documentation/Contacts/CNContactStore"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)CNContactStore",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "CNContactStore"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Contacts"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "CNContactStore"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.11",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "2.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "CNContactStore"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CNContactStore"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.contacts/documentation/Contacts/accessing-the-contact-store"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "CNContactStore",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object represents the user’s contacts store database, and you use it to fetch information from that database and save changes back to it. There are a few recommended ways you can implement fetch and save requests in your app:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fetch only the properties that you need for contacts.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "When fetching all contacts and caching the results, first fetch all contacts identifiers, then fetch batches of detailed contacts by identifiers as required.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To aggregate several contacts fetches, first collect a set of unique identifiers from the fetches. Then fetch batches of detailed contacts by those unique identifiers.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If you cache the fetched contacts, groups, or containers, you need to refetch these objects (and release the old cached objects) when ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1403253-cncontactstoredidchange",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " is posted.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because ",
+              "type": "text"
+            },
+            {
+              "code": "CNContactStore",
+              "type": "codeVoice"
+            },
+            {
+              "text": " fetch methods perform I/O, it’s recommended that you avoid using the main thread to execute fetches.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.contacts/documentation/Contacts": {
+      "abstract": [
+        {
+          "text": "Access the user’s contacts, and format and localize contact information.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.contacts/documentation/Contacts",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Contacts",
+      "type": "topic",
+      "url": "/documentation/contacts"
+    },
+    "doc://com.apple.contacts/documentation/Contacts/CNAuthorizationStatus": {
+      "abstract": [
+        {
+          "text": "An authorization status the user can grant for an app to access the specified entity type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CNAuthorizationStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.contacts/documentation/Contacts/CNAuthorizationStatus",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CNAuthorizationStatus"
+        }
+      ],
+      "role": "symbol",
+      "title": "CNAuthorizationStatus",
+      "type": "topic",
+      "url": "/documentation/contacts/cnauthorizationstatus"
+    },
+    "doc://com.apple.contacts/documentation/Contacts/CNContactStore": {
+      "abstract": [
+        {
+          "text": "The object that fetches and saves contacts, groups, and containers from the user’s Contacts database.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CNContactStore"
+        }
+      ],
+      "identifier": "doc://com.apple.contacts/documentation/Contacts/CNContactStore",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CNContactStore"
+        }
+      ],
+      "role": "symbol",
+      "title": "CNContactStore",
+      "type": "topic",
+      "url": "/documentation/contacts/cncontactstore"
+    },
+    "doc://com.apple.contacts/documentation/Contacts/CNContactStore/authorizationStatus(for:)": {
+      "abstract": [
+        {
+          "text": "Returns the current authorization status to access the contact data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "authorizationStatus"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@CNEntityType",
+          "text": "CNEntityType"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@CNAuthorizationStatus",
+          "text": "CNAuthorizationStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.contacts/documentation/Contacts/CNContactStore/authorizationStatus(for:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "authorizationStatusForEntityType:"
+        }
+      ],
+      "role": "symbol",
+      "title": "authorizationStatus(for:)",
+      "type": "topic",
+      "url": "/documentation/contacts/cncontactstore/authorizationstatus(for:)"
+    },
+    "doc://com.apple.contacts/documentation/Contacts/CNContactStore/containers(matching:)": {
+      "abstract": [
+        {
+          "text": "Fetches all containers matching the specified predicate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "containers"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "matching"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPredicate",
+          "text": "NSPredicate"
+        },
+        {
+          "kind": "text",
+          "text": "?) "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CNContainer",
+          "text": "CNContainer"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.contacts/documentation/Contacts/CNContactStore/containers(matching:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "containersMatchingPredicate:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "containers(matching:)",
+      "type": "topic",
+      "url": "/documentation/contacts/cncontactstore/containers(matching:)"
+    },
+    "doc://com.apple.contacts/documentation/Contacts/CNContactStore/currentHistoryToken": {
+      "abstract": [
+        {
+          "text": "The current history token.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "currentHistoryToken"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.contacts/documentation/Contacts/CNContactStore/currentHistoryToken",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "currentHistoryToken"
+        }
+      ],
+      "role": "symbol",
+      "title": "currentHistoryToken",
+      "type": "topic",
+      "url": "/documentation/contacts/cncontactstore/currenthistorytoken"
+    },
+    "doc://com.apple.contacts/documentation/Contacts/CNContactStore/defaultContainerIdentifier()": {
+      "abstract": [
+        {
+          "text": "Returns the identifier of the default container.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "defaultContainerIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.contacts/documentation/Contacts/CNContactStore/defaultContainerIdentifier()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "defaultContainerIdentifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "defaultContainerIdentifier()",
+      "type": "topic",
+      "url": "/documentation/contacts/cncontactstore/defaultcontaineridentifier()"
+    },
+    "doc://com.apple.contacts/documentation/Contacts/CNContactStore/enumerateContacts(with:usingBlock:)": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether the enumeration of all contacts matching a contact fetch request executes successfully.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "enumerateContacts"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CNContactFetchRequest",
+          "text": "CNContactFetchRequest"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "usingBlock"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CNContact",
+          "text": "CNContact"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10ObjectiveC8ObjCBoolV",
+          "text": "ObjCBool"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.contacts/documentation/Contacts/CNContactStore/enumerateContacts(with:usingBlock:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "enumerateContactsWithFetchRequest:error:usingBlock:"
+        }
+      ],
+      "role": "symbol",
+      "title": "enumerateContacts(with:usingBlock:)",
+      "type": "topic",
+      "url": "/documentation/contacts/cncontactstore/enumeratecontacts(with:usingblock:)"
+    },
+    "doc://com.apple.contacts/documentation/Contacts/CNContactStore/enumeratorForChangeHistoryFetchRequest:error:": {
+      "abstract": [
+        {
+          "text": "Enumerates a change history fetch request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "enumeratorForChangeHistoryFetchRequest:error:"
+        }
+      ],
+      "identifier": "doc://com.apple.contacts/documentation/Contacts/CNContactStore/enumeratorForChangeHistoryFetchRequest:error:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "enumeratorForChangeHistoryFetchRequest:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "enumeratorForChangeHistoryFetchRequest:error:",
+      "type": "topic",
+      "url": "/documentation/contacts/cncontactstore/enumeratorforchangehistoryfetchrequest:error:"
+    },
+    "doc://com.apple.contacts/documentation/Contacts/CNContactStore/enumeratorForContactFetchRequest:error:": {
+      "abstract": [
+        {
+          "text": "Enumerates a contact fetch request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "enumeratorForContactFetchRequest:error:"
+        }
+      ],
+      "identifier": "doc://com.apple.contacts/documentation/Contacts/CNContactStore/enumeratorForContactFetchRequest:error:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "enumeratorForContactFetchRequest:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "enumeratorForContactFetchRequest:error:",
+      "type": "topic",
+      "url": "/documentation/contacts/cncontactstore/enumeratorforcontactfetchrequest:error:"
+    },
+    "doc://com.apple.contacts/documentation/Contacts/CNContactStore/execute(_:)": {
+      "abstract": [
+        {
+          "text": "Executes a save request and returns success or failure.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "execute"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CNSaveRequest",
+          "text": "CNSaveRequest"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.contacts/documentation/Contacts/CNContactStore/execute(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "executeSaveRequest:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "execute(_:)",
+      "type": "topic",
+      "url": "/documentation/contacts/cncontactstore/execute(_:)"
+    },
+    "doc://com.apple.contacts/documentation/Contacts/CNContactStore/groups(matching:)": {
+      "abstract": [
+        {
+          "text": "Fetches all groups matching the specified predicate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "groups"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "matching"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPredicate",
+          "text": "NSPredicate"
+        },
+        {
+          "kind": "text",
+          "text": "?) "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CNGroup",
+          "text": "CNGroup"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.contacts/documentation/Contacts/CNContactStore/groups(matching:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "groupsMatchingPredicate:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "groups(matching:)",
+      "type": "topic",
+      "url": "/documentation/contacts/cncontactstore/groups(matching:)"
+    },
+    "doc://com.apple.contacts/documentation/Contacts/CNContactStore/requestAccess(for:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Requests access to the user’s contacts.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "requestAccess"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@CNEntityType",
+          "text": "CNEntityType"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.contacts/documentation/Contacts/CNContactStore/requestAccess(for:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "requestAccessForEntityType:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "requestAccess(for:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/contacts/cncontactstore/requestaccess(for:completionhandler:)"
+    },
+    "doc://com.apple.contacts/documentation/Contacts/CNContactStore/unifiedContact(withIdentifier:keysToFetch:)": {
+      "abstract": [
+        {
+          "text": "Fetches a unified contact for the specified contact identifier.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "unifiedContact"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "keysToFetch"
+        },
+        {
+          "kind": "text",
+          "text": ": [any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)CNKeyDescriptor",
+          "text": "CNKeyDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": "]) "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CNContact",
+          "text": "CNContact"
+        }
+      ],
+      "identifier": "doc://com.apple.contacts/documentation/Contacts/CNContactStore/unifiedContact(withIdentifier:keysToFetch:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "unifiedContactWithIdentifier:keysToFetch:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "unifiedContact(withIdentifier:keysToFetch:)",
+      "type": "topic",
+      "url": "/documentation/contacts/cncontactstore/unifiedcontact(withidentifier:keystofetch:)"
+    },
+    "doc://com.apple.contacts/documentation/Contacts/CNContactStore/unifiedContacts(matching:keysToFetch:)": {
+      "abstract": [
+        {
+          "text": "Fetches all unified contacts matching the specified predicate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "unifiedContacts"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "matching"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPredicate",
+          "text": "NSPredicate"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "keysToFetch"
+        },
+        {
+          "kind": "text",
+          "text": ": [any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)CNKeyDescriptor",
+          "text": "CNKeyDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": "]) "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CNContact",
+          "text": "CNContact"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.contacts/documentation/Contacts/CNContactStore/unifiedContacts(matching:keysToFetch:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "unifiedContactsMatchingPredicate:keysToFetch:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "unifiedContacts(matching:keysToFetch:)",
+      "type": "topic",
+      "url": "/documentation/contacts/cncontactstore/unifiedcontacts(matching:keystofetch:)"
+    },
+    "doc://com.apple.contacts/documentation/Contacts/CNContactStore/unifiedMeContactWithKeys(toFetch:)": {
+      "abstract": [
+        {
+          "text": "Fetches the unified contact that’s the ",
+          "type": "text"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "me",
+              "type": "text"
+            }
+          ],
+          "type": "emphasis"
+        },
+        {
+          "text": " card.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "unifiedMeContactWithKeys"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "toFetch"
+        },
+        {
+          "kind": "text",
+          "text": ": [any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)CNKeyDescriptor",
+          "text": "CNKeyDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": "]) "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CNContact",
+          "text": "CNContact"
+        }
+      ],
+      "identifier": "doc://com.apple.contacts/documentation/Contacts/CNContactStore/unifiedMeContactWithKeys(toFetch:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "unifiedMeContactWithKeysToFetch:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "unifiedMeContactWithKeys(toFetch:)",
+      "type": "topic",
+      "url": "/documentation/contacts/cncontactstore/unifiedmecontactwithkeys(tofetch:)"
+    },
+    "doc://com.apple.contacts/documentation/Contacts/CNContactStoreDidChangeNotification": {
+      "abstract": [
+        {
+          "text": "Posted when changes occur to the contact store.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "CNContactStoreDidChangeNotification"
+        }
+      ],
+      "identifier": "doc://com.apple.contacts/documentation/Contacts/CNContactStoreDidChangeNotification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CNContactStoreDidChangeNotification",
+      "type": "topic",
+      "url": "/documentation/contacts/cncontactstoredidchangenotification"
+    },
+    "doc://com.apple.contacts/documentation/Contacts/CNEntityType": {
+      "abstract": [
+        {
+          "text": "The entities the user can grant access to.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CNEntityType"
+        }
+      ],
+      "identifier": "doc://com.apple.contacts/documentation/Contacts/CNEntityType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CNEntityType"
+        }
+      ],
+      "role": "symbol",
+      "title": "CNEntityType",
+      "type": "topic",
+      "url": "/documentation/contacts/cnentitytype"
+    },
+    "doc://com.apple.contacts/documentation/Contacts/accessing-a-person-s-contact-data-using-contacts-and-contactsui": {
+      "abstract": [
+        {
+          "text": "Allow people to grant your app access to contact data by adding the Contact access button and Contact access picker to your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.contacts/documentation/Contacts/accessing-a-person-s-contact-data-using-contacts-and-contactsui",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Accessing a person’s contact data using Contacts and ContactsUI",
+      "type": "topic",
+      "url": "/documentation/contacts/accessing-a-person-s-contact-data-using-contacts-and-contactsui"
+    },
+    "doc://com.apple.contacts/documentation/Contacts/accessing-the-contact-store": {
+      "abstract": [
+        {
+          "text": "Request permission from the person to read and write their contact data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.contacts/documentation/Contacts/accessing-the-contact-store",
+      "kind": "article",
+      "role": "article",
+      "title": "Accessing the contact store",
+      "type": "topic",
+      "url": "/documentation/contacts/accessing-the-contact-store"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.contacts.notes": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the app may access the notes in contact entries.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.contacts.notes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "com.apple.developer.contacts.notes",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Entitlements/com.apple.developer.contacts.notes"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSContactsUsageDescription": {
+      "abstract": [
+        {
+          "text": "A message that tells the user why the app is requesting access to the user’s contacts.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSContactsUsageDescription",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSContactsUsageDescription",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/NSContactsUsageDescription"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1403253-cncontactstoredidchange": {
+      "abstract": [
+        {
+          "text": "Posted when changes occur to the contact store.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static let "
+        },
+        {
+          "kind": "identifier",
+          "text": "CNContactStoreDidChange"
+        },
+        {
+          "kind": "text",
+          "text": ": NSNotification.Name"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1403253-cncontactstoredidchange",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CNContactStoreDidChange",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnotification/name/1403253-cncontactstoredidchange"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.contacts/documentation/Contacts/accessing-the-contact-store",
+        "doc://com.apple.contacts/documentation/Contacts/accessing-a-person-s-contact-data-using-contacts-and-contactsui",
+        "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSContactsUsageDescription",
+        "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.contacts.notes"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Requesting-access-to-the-users-contacts",
+      "identifiers": [
+        "doc://com.apple.contacts/documentation/Contacts/CNContactStore/requestAccess(for:completionHandler:)",
+        "doc://com.apple.contacts/documentation/Contacts/CNContactStore/authorizationStatus(for:)",
+        "doc://com.apple.contacts/documentation/Contacts/CNAuthorizationStatus",
+        "doc://com.apple.contacts/documentation/Contacts/CNEntityType"
+      ],
+      "title": "Requesting access to the user’s contacts"
+    },
+    {
+      "anchor": "Fetching-contacts",
+      "identifiers": [
+        "doc://com.apple.contacts/documentation/Contacts/CNContactStore/enumerateContacts(with:usingBlock:)",
+        "doc://com.apple.contacts/documentation/Contacts/CNContactStore/unifiedMeContactWithKeys(toFetch:)",
+        "doc://com.apple.contacts/documentation/Contacts/CNContactStore/unifiedContact(withIdentifier:keysToFetch:)",
+        "doc://com.apple.contacts/documentation/Contacts/CNContactStore/unifiedContacts(matching:keysToFetch:)"
+      ],
+      "title": "Fetching contacts"
+    },
+    {
+      "anchor": "Fetching-groups-and-containers",
+      "identifiers": [
+        "doc://com.apple.contacts/documentation/Contacts/CNContactStore/defaultContainerIdentifier()",
+        "doc://com.apple.contacts/documentation/Contacts/CNContactStore/groups(matching:)",
+        "doc://com.apple.contacts/documentation/Contacts/CNContactStore/containers(matching:)"
+      ],
+      "title": "Fetching groups and containers"
+    },
+    {
+      "anchor": "Fetching-change-history-info",
+      "identifiers": [
+        "doc://com.apple.contacts/documentation/Contacts/CNContactStore/currentHistoryToken"
+      ],
+      "title": "Fetching change history info"
+    },
+    {
+      "anchor": "Saving-changes",
+      "identifiers": [
+        "doc://com.apple.contacts/documentation/Contacts/CNContactStore/execute(_:)"
+      ],
+      "title": "Saving changes"
+    },
+    {
+      "anchor": "Responding-to-contact-store-changes",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1403253-cncontactstoredidchange"
+      ],
+      "title": "Responding to contact store changes"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "9.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "9.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.11",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "2.0",
+              "name": "watchOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "CNContactStore"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CNContactStore"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CNContactStore"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.contacts/documentation/Contacts"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Requesting-access-to-the-users-contacts",
+              "identifiers": [
+                "doc://com.apple.contacts/documentation/Contacts/CNContactStore/requestAccess(for:completionHandler:)",
+                "doc://com.apple.contacts/documentation/Contacts/CNContactStore/authorizationStatus(for:)",
+                "doc://com.apple.contacts/documentation/Contacts/CNAuthorizationStatus",
+                "doc://com.apple.contacts/documentation/Contacts/CNEntityType"
+              ],
+              "title": "Requesting access to the user’s contacts"
+            },
+            {
+              "anchor": "Fetching-contacts",
+              "identifiers": [
+                "doc://com.apple.contacts/documentation/Contacts/CNContactStore/enumerateContacts(with:usingBlock:)",
+                "doc://com.apple.contacts/documentation/Contacts/CNContactStore/unifiedMeContactWithKeys(toFetch:)",
+                "doc://com.apple.contacts/documentation/Contacts/CNContactStore/unifiedContact(withIdentifier:keysToFetch:)",
+                "doc://com.apple.contacts/documentation/Contacts/CNContactStore/unifiedContacts(matching:keysToFetch:)",
+                "doc://com.apple.contacts/documentation/Contacts/CNContactStore/enumeratorForContactFetchRequest:error:"
+              ],
+              "title": "Fetching contacts"
+            },
+            {
+              "anchor": "Fetching-groups-and-containers",
+              "identifiers": [
+                "doc://com.apple.contacts/documentation/Contacts/CNContactStore/defaultContainerIdentifier()",
+                "doc://com.apple.contacts/documentation/Contacts/CNContactStore/groups(matching:)",
+                "doc://com.apple.contacts/documentation/Contacts/CNContactStore/containers(matching:)"
+              ],
+              "title": "Fetching groups and containers"
+            },
+            {
+              "anchor": "Fetching-change-history-info",
+              "identifiers": [
+                "doc://com.apple.contacts/documentation/Contacts/CNContactStore/enumeratorForChangeHistoryFetchRequest:error:",
+                "doc://com.apple.contacts/documentation/Contacts/CNContactStore/currentHistoryToken"
+              ],
+              "title": "Fetching change history info"
+            },
+            {
+              "anchor": "Saving-changes",
+              "identifiers": [
+                "doc://com.apple.contacts/documentation/Contacts/CNContactStore/execute(_:)"
+              ],
+              "title": "Saving changes"
+            },
+            {
+              "anchor": "Responding-to-contact-store-changes",
+              "identifiers": [
+                "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1403253-cncontactstoredidchange",
+                "doc://com.apple.contacts/documentation/Contacts/CNContactStoreDidChangeNotification"
+              ],
+              "title": "Responding to contact store changes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Essentials",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.contacts/documentation/Contacts/accessing-the-contact-store",
+                "doc://com.apple.contacts/documentation/Contacts/accessing-a-person-s-contact-data-using-contacts-and-contactsui",
+                "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSContactsUsageDescription",
+                "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.contacts.notes"
+              ],
+              "title": "Essentials"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "CNContactStore"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.contacts~1documentation~1Contacts~1CNEntityType/title",
+          "value": "CNEntityType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.contacts~1documentation~1Contacts~1CNEntityType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CNEntityType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.contacts~1documentation~1Contacts~1CNEntityType/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CNEntityType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.contacts~1documentation~1Contacts~1CNContactStore~1authorizationStatus(for:)/title",
+          "value": "authorizationStatusForEntityType:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.contacts~1documentation~1Contacts~1CNContactStore~1authorizationStatus(for:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "authorizationStatusForEntityType:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.contacts~1documentation~1Contacts~1CNContactStore~1execute(_:)/title",
+          "value": "executeSaveRequest:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.contacts~1documentation~1Contacts~1CNContactStore~1execute(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "executeSaveRequest:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.contacts~1documentation~1Contacts~1CNAuthorizationStatus/title",
+          "value": "CNAuthorizationStatus"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.contacts~1documentation~1Contacts~1CNAuthorizationStatus/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CNAuthorizationStatus"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.contacts~1documentation~1Contacts~1CNAuthorizationStatus/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CNAuthorizationStatus"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.contacts~1documentation~1Contacts~1CNContactStore~1containers(matching:)/title",
+          "value": "containersMatchingPredicate:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.contacts~1documentation~1Contacts~1CNContactStore~1containers(matching:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "containersMatchingPredicate:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.contacts~1documentation~1Contacts~1CNContactStore~1defaultContainerIdentifier()/title",
+          "value": "defaultContainerIdentifier"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.contacts~1documentation~1Contacts~1CNContactStore~1defaultContainerIdentifier()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "defaultContainerIdentifier"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.contacts~1documentation~1Contacts~1CNContactStore~1groups(matching:)/title",
+          "value": "groupsMatchingPredicate:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.contacts~1documentation~1Contacts~1CNContactStore~1groups(matching:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "groupsMatchingPredicate:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.contacts~1documentation~1Contacts~1CNContactStore~1unifiedMeContactWithKeys(toFetch:)/title",
+          "value": "unifiedMeContactWithKeysToFetch:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.contacts~1documentation~1Contacts~1CNContactStore~1unifiedMeContactWithKeys(toFetch:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "unifiedMeContactWithKeysToFetch:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.contacts~1documentation~1Contacts~1CNContactStore~1requestAccess(for:completionHandler:)/title",
+          "value": "requestAccessForEntityType:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.contacts~1documentation~1Contacts~1CNContactStore~1requestAccess(for:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "requestAccessForEntityType:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.contacts~1documentation~1Contacts~1CNContactStore~1enumerateContacts(with:usingBlock:)/title",
+          "value": "enumerateContactsWithFetchRequest:error:usingBlock:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.contacts~1documentation~1Contacts~1CNContactStore~1enumerateContacts(with:usingBlock:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "enumerateContactsWithFetchRequest:error:usingBlock:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.contacts~1documentation~1Contacts~1CNContactStore~1unifiedContacts(matching:keysToFetch:)/title",
+          "value": "unifiedContactsMatchingPredicate:keysToFetch:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.contacts~1documentation~1Contacts~1CNContactStore~1unifiedContacts(matching:keysToFetch:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "unifiedContactsMatchingPredicate:keysToFetch:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.contacts~1documentation~1Contacts~1CNContactStore/title",
+          "value": "CNContactStore"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.contacts~1documentation~1Contacts~1CNContactStore/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CNContactStore"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.contacts~1documentation~1Contacts~1CNContactStore/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CNContactStore"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.contacts~1documentation~1Contacts~1CNContactStore~1unifiedContact(withIdentifier:keysToFetch:)/title",
+          "value": "unifiedContactWithIdentifier:keysToFetch:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.contacts~1documentation~1Contacts~1CNContactStore~1unifiedContact(withIdentifier:keysToFetch:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "unifiedContactWithIdentifier:keysToFetch:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.contacts~1documentation~1Contacts~1CNContactStore~1currentHistoryToken/title",
+          "value": "currentHistoryToken"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.contacts~1documentation~1Contacts~1CNContactStore~1currentHistoryToken/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "currentHistoryToken"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/contacts/cncontactstore"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/contacts/cncontactstore"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

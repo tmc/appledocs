@@ -1,0 +1,3661 @@
+{
+  "abstract": [
+    {
+      "text": "Enable people to use your app’s features quickly through Siri, Spotlight, and Shortcuts.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.AppIntents/documentation/AppIntents"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.AppIntents/documentation/AppIntents/AcceleratingAppInteractionsWithAppIntents"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "App Intents"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "18.1",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "18.1",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "15.1",
+        "name": "macOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "2.1",
+        "name": "visionOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "11.0",
+        "name": "watchOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "16.1",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Accelerating app interactions with App Intents"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app in this sample code project provides information on trails, allowing people to check on conditions, search for trails that allow activities like skiing, and record which trails they visit. Expressing these features as intents allows people to use them through Siri, Spotlight search, and Shortcuts.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Additionally, the project integrates workout tracking on Apple Watch, and shows how to implement Action button support on Apple Watch Ultra.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The intents also appear as actions in the Shortcuts app.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "People can combine these actions to build entirely new features in Shortcuts because the intents provide custom data types that match each other’s inputs.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Identify-common-actions",
+          "level": 3,
+          "text": "Identify common actions",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample app includes two key features that people are likely to use frequently: looking up information on a trail, and recording activity on a trail.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "To make it easy for people to use these features without even opening the app, the sample code creates intents for them to use with Siri, Spotlight search, and Shortcuts.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For example, if someone saves their favorite trails in the app and wants to get the current conditions for those trails, the app implements the ",
+              "type": "text"
+            },
+            {
+              "code": "OpenFavorites",
+              "type": "codeVoice"
+            },
+            {
+              "text": " structure, which conforms to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppIntents/AppIntent",
+              "isActive": true,
+              "overridingTitle": "AppIntent",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "AppIntent",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ". When someone runs this intent, the app opens and navigates to the Favorites view.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "/// Each intent needs to include metadata, such as a localized title. The title of the intent displays throughout the system.",
+            "static let title: LocalizedStringResource = \"Open Favorite Trails\"",
+            "",
+            "/// An intent can optionally provide a localized description that the Shortcuts app displays.",
+            "static let description = IntentDescription(\"Opens the app and goes to your favorite trails.\")",
+            "",
+            "/// Tell the system to bring the app to the foreground when the intent runs.",
+            "static let openAppWhenRun: Bool = true",
+            "",
+            "/**",
+            " When the system runs the intent, it calls `perform()`.",
+            " ",
+            " Intents run on an arbitrary queue. Intents that manipulate UI need to annotate `perform()` with `@MainActor`",
+            " so that the UI operations run on the main actor.",
+            " */",
+            "@MainActor",
+            "func perform() async throws -> some IntentResult {",
+            "    navigationModel.selectedCollection = trailManager.favoritesCollection",
+            "    ",
+            "    /// Return an empty result, indicating that the intent is complete.",
+            "    return .result()",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Create-App-Shortcuts",
+          "level": 3,
+          "text": "Create App Shortcuts",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "People may ask Siri to show their favorite trails, or they may find this suggested action through a Spotlight search.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "To support both of these options, the app implements an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppIntents/AppShortcut",
+              "isActive": true,
+              "overridingTitle": "AppShortcut",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "AppShortcut",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " using ",
+              "type": "text"
+            },
+            {
+              "code": "OpenFavorites",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "An App Shortcut combines an intent with phrases people may use with Siri to perform the action, and additional metadata, such as an icon, and then uses this information in a Spotlight search.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "People can invoke the App Shortcut with a suggested phrase, or other similiar words, because the system uses a semantic similarity index to help identify people’s requests — automatically matching phrases that are similar, but not identical.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "AppShortcut(intent: OpenFavorites(), phrases: [",
+            "    \"Open Favorites in \\(.applicationName)\",",
+            "    \"Show my favorite \\(.applicationName)\"",
+            "],",
+            "shortTitle: \"Open Favorites\",",
+            "systemImageName: \"star.circle\")"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To register the App Shortcut with the system, the app calls ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppIntents/AppShortcutsProvider/updateAppShortcutParameters()",
+              "isActive": true,
+              "overridingTitle": "updateAppShortcutParameters",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "updateAppShortcutParameters",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": "  on its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppIntents/AppShortcutsProvider",
+              "isActive": true,
+              "overridingTitle": "AppShortcutsProvider",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "AppShortcutsProvider",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " during the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/App/init()",
+              "isActive": true,
+              "overridingTitle": "init",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "init",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/App",
+              "isActive": true,
+              "overridingTitle": "App",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "App",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " structure.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To aid the system’s presentation of the App Shortcut, the sample app includes a short title and an SF Symbols name that represent the App Shortcut.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Further, the sample app’s ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file declares ",
+              "type": "text"
+            },
+            {
+              "code": "NSAppIconActionTintColorName",
+              "type": "codeVoice"
+            },
+            {
+              "text": " with the app’s primary color and two contrasting colors in an array for the ",
+              "type": "text"
+            },
+            {
+              "code": "NSAppIconComplementingColorNames",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The system uses these colors when displaying the App Shortcuts, such as in Spotlight or the Shortcuts app.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The specified values of the color names for these keys come from the app’s asset catalog.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After registering an App Shortcut with the system, people can begin using the intent through Siri without any further configuration.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "To teach people a phrase to use the intent, the app provides a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppIntents/SiriTipView",
+              "isActive": true,
+              "overridingTitle": "SiriTipView",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "SiriTipView",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " in the associated view.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "SiriTipView(intent: OpenFavorites(), isVisible: $displaySiriTip)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "SiriTipView",
+              "type": "codeVoice"
+            },
+            {
+              "text": " takes a binding to a visibility Boolean so that the app hides the view if an individual chooses to dismiss it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Aside from intents for people to quickly view their favorite trails and track their workouts, the sample app provides extensive search capabilities through intents.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The app doesn’t provide App Shortcuts for intents that people use less commonly.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Best practice is to provide App Shortcuts for only the most common actions in an app — usually between two and five intents, and not more than ten.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Design-custom-responses",
+          "level": 3,
+          "text": "Design custom responses",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Even though the app doesn’t provide ",
+              "type": "text"
+            },
+            {
+              "code": "GetTrailInfo",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as an App Shortcut, people may still interact with it through Siri, such as including the intent in a shortcut they create in the Shortcuts app.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For a good user experience, this intent provides its result with a visual response using a custom UI snippet, and as a dialog for Siri to communicate the same information.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "It does so by conforming the return type of the intent’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppIntents/AppIntent/perform()",
+              "isActive": true,
+              "overridingTitle": "perform",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "perform",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " function to both ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppIntents/ProvidesDialog",
+              "isActive": true,
+              "overridingTitle": "ProvidesDialog",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "ProvidesDialog",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppIntents/ShowsSnippetView",
+              "isActive": true,
+              "overridingTitle": "ShowsSnippetView",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "ShowsSnippetView",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func perform() async throws -> some IntentResult & ReturnsValue<TrailEntity> & ProvidesDialog & ShowsSnippetView {"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app provides both visual experiences and voice-only experiences because people may be in a context where they can’t see information in a custom UI (such as when the intent runs on HomePod), or when displaying the custom UI may be inappropriate (such as when the intent runs through CarPlay).",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This implementation provides a custom UI with a shorter supporting dialog to use when the custom UI is visible, and a different dialog containing additional information if the system can’t show the snippet.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The sample uses a transparent background for the custom UI because the system displays it over a translucent background material.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Avoiding opaque backgrounds provides the best results.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let snippet = TrailInfoView(trail: trailData, includeConditions: true)",
+            "",
+            "/**",
+            " This intent displays a custom view that includes the trail conditions as part of the view. The dialog includes the trail conditions when",
+            " the system can only read the response, but not display it. When the system can display the response, the dialog omits the trail",
+            " conditions.",
+            " */",
+            "let dialog = IntentDialog(full: \"The latest reported conditions for \\(trail.name) indicate: \\(trail.currentConditions).\",",
+            "                          supporting: \"Here's the latest information on trail conditions.\")",
+            "",
+            "return .result(value: trail, dialog: dialog, view: snippet)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample app provides custom dialog throughout its intents.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "SuggestTrails",
+              "type": "codeVoice"
+            },
+            {
+              "text": " validates the parameters that people provide and uses the custom dialog to prompt them for additional information.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For example, if the provided location parameter isn’t specific enough, the intent prompts the individual to choose from a list of locations related to their input.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The app does this by throwing ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppIntents/IntentParameter/needsDisambiguationError(among:dialog:)",
+              "isActive": true,
+              "overridingTitle": "needsDisambiguationError",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "needsDisambiguationError",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " with a value for the dialog parameter.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let dialog = IntentDialog(\"Multiple locations match \\(location). Did you mean one of these locations?\")",
+            "let disambiguationList = suggestedMatches.sorted(using: KeyPathComparator(\\.self, comparator: .localizedStandard))",
+            "throw $location.needsDisambiguationError(among: disambiguationList, dialog: dialog)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Add-parameters-to-an-intent",
+          "level": 3,
+          "text": "Add parameters to an intent",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An app intent can optionally require certain parameters to complete its action.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For example, the ",
+              "type": "text"
+            },
+            {
+              "code": "GetTrailInfo",
+              "type": "codeVoice"
+            },
+            {
+              "text": " intent declares a ",
+              "type": "text"
+            },
+            {
+              "code": "trail",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter by decorating the property with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppIntents/IntentParameter",
+              "isActive": true,
+              "overridingTitle": "IntentParameter",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "IntentParameter",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " property wrapper.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@Parameter(title: \"Trail\", description: \"The trail to get information for.\")",
+            "var trail: TrailEntity"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system supports parameters using common Foundation types, such as ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Swift/String",
+              "isActive": true,
+              "overridingTitle": "String",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "String",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ", and those for custom data types in an app.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The app makes its trail data available in an app intent through the ",
+              "type": "text"
+            },
+            {
+              "code": "TrailEntity",
+              "type": "codeVoice"
+            },
+            {
+              "text": " type, which is a structure conforming to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppIntents/AppEntity",
+              "isActive": true,
+              "overridingTitle": "AppEntity",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "AppEntity",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " protocol.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To allow the system to query the app for ",
+              "type": "text"
+            },
+            {
+              "code": "TrailEntity",
+              "type": "codeVoice"
+            },
+            {
+              "text": " data, the entity implements the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Swift/Identifiable",
+              "isActive": true,
+              "overridingTitle": "Identifiable",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "Identifiable",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " protocol with values that are stable and persistent.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "TrailEntity",
+              "type": "codeVoice"
+            },
+            {
+              "text": " declares ",
+              "type": "text"
+            },
+            {
+              "text": "`defaultQuery`",
+              "type": "text"
+            },
+            {
+              "text": ", which the system uses to perform queries to receive ",
+              "type": "text"
+            },
+            {
+              "code": "TrailEntity",
+              "type": "codeVoice"
+            },
+            {
+              "text": " structures.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "static let defaultQuery = TrailEntityQuery()"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An ",
+              "type": "text"
+            },
+            {
+              "code": "AppEntity",
+              "type": "codeVoice"
+            },
+            {
+              "text": " makes its properties available to the system by decorating it with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppIntents/EntityProperty",
+              "isActive": true,
+              "overridingTitle": "EntityProperty",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "EntityProperty",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " property wrapper.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "/**",
+            " The trail's name. The `EntityProperty` property wrapper makes this property's data available to the system as part of the intent,",
+            " such as when an intent returns a trail in a shortcut.",
+            " ",
+            " The system automatically generates the title for this property from the variable name when it displays it in a system UI, like Shortcuts.",
+            " Generated titles are available for both `EntityProperty` and `IntentIntentParameter` property wrappers.",
+            " */",
+            "@Property var name: String",
+            "",
+            "/**",
+            " A description of the trail's location, such as a nearby city name, or the national park encompassing it.",
+            " ",
+            " If you want the displayed title for the property to be different from the variable name, use a `title` parameter with the",
+            " `EntityProperty` property wrapper.",
+            " */",
+            "@Property(title: \"Region\")",
+            "var regionDescription: String",
+            ""
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Provide-the-apps-data-through-queries",
+          "level": 3,
+          "text": "Provide the app’s data through queries",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system queries the app for its trail data through ",
+              "type": "text"
+            },
+            {
+              "code": "TrailEntityQuery",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", a type conforming to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppIntents/EntityQuery",
+              "isActive": true,
+              "overridingTitle": "EntityQuery",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "EntityQuery",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For example, if someone saves a specific value as the ",
+              "type": "text"
+            },
+            {
+              "code": "trail",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter for ",
+              "type": "text"
+            },
+            {
+              "code": "GetTrailInfo",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", the system locates the ",
+              "type": "text"
+            },
+            {
+              "code": "TrailEntity",
+              "type": "codeVoice"
+            },
+            {
+              "text": " by using the ",
+              "type": "text"
+            },
+            {
+              "code": "defaultQuery",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and requesting the entity by its ID from the ",
+              "type": "text"
+            },
+            {
+              "code": "Identifable",
+              "type": "codeVoice"
+            },
+            {
+              "text": " protocol.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "All types conforming to ",
+              "type": "text"
+            },
+            {
+              "code": "EntityQuery",
+              "type": "codeVoice"
+            },
+            {
+              "text": " need to implement this method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func entities(for identifiers: [TrailEntity.ID]) async throws -> [TrailEntity] {",
+            "    Logger.entityQueryLogging.debug(\"[TrailEntityQuery] Query for IDs \\(identifiers)\")",
+            "    ",
+            "    return trailManager.trails(with: identifiers)",
+            "            .map { TrailEntity(trail: $0) }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app also provides a list of common trail suggestions by implementing the optional ",
+              "type": "text"
+            },
+            {
+              "text": "`suggestedEntities`",
+              "type": "text"
+            },
+            {
+              "text": " function.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func suggestedEntities() async throws -> [TrailEntity] {",
+            "    Logger.entityQueryLogging.debug(\"[TrailEntityQuery] Request for suggested entities\")",
+            "    ",
+            "    return trailManager.trails(with: trailManager.favoritesCollection.members)",
+            "            .map { TrailEntity(trail: $0) }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "There are several subprotocols to ",
+              "type": "text"
+            },
+            {
+              "code": "EntityQuery",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", each of which enables different types of functionality.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The sample app implements all of them for demonstration purposes, but a real app can use only the ones that meet its needs.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app implements ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppIntents/EntityStringQuery",
+              "isActive": true,
+              "overridingTitle": "EntityStringQuery",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "EntityStringQuery",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " to help people configure ",
+              "type": "text"
+            },
+            {
+              "code": "GetTrailInfo",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "When people configure this intent in the Shortcuts app, they first see the list of trails from ",
+              "type": "text"
+            },
+            {
+              "code": "suggestedEntities",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The Shortcuts app provides a search field, enabling people to search for results that appear in the list of suggested trails.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The app provides results for the search term by implementing ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppIntents/EntityStringQuery/entities(matching:)",
+              "isActive": true,
+              "overridingTitle": "entities(matching:)",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "entities(matching:)",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func entities(matching string: String) async throws -> [TrailEntity] {",
+            "    Logger.entityQueryLogging.debug(\"[TrailEntityQuery] String query for term \\(string)\")",
+            "    ",
+            "    return trailManager.trails { trail in",
+            "        trail.name.localizedCaseInsensitiveContains(string)",
+            "    }.map { TrailEntity(trail: $0) }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Enable-Find-intents",
+          "level": 3,
+          "text": "Enable Find intents",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Apps implementing either the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppIntents/EnumerableEntityQuery",
+              "isActive": true,
+              "overridingTitle": "EnumerableEntityQuery",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "EnumerableEntityQuery",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " or the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppIntents/EntityPropertyQuery",
+              "isActive": true,
+              "overridingTitle": "EntityPropertyQuery",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "EntityPropertyQuery",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " protocol automatically add a Find intent in the Shortcuts app.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "These intents enable people to build powerful new features for themselves in Shortcuts, powered by the app’s data — without requiring the app to implement that feature itself.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For example, the sample app focuses its UI on providing trail information, but people can also use its data to plan activities for a vacation. The app doesn’t need to build vacation-planning features because it implements these entity query protocols to provide an interface to the data through a Shortcut.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample app groups trails into collections based on geographic region, and implements the collections as a type called ",
+              "type": "text"
+            },
+            {
+              "code": "TrailCollection",
+              "type": "codeVoice"
+            },
+            {
+              "text": " that conforms to ",
+              "type": "text"
+            },
+            {
+              "code": "AppEntity",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The list of geographic regions is small, and a ",
+              "type": "text"
+            },
+            {
+              "code": "TrailCollection",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is a simple structure with the collection name and a list of trail IDs that require little memory.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "To make this information available through a Find intent, the app implements ",
+              "type": "text"
+            },
+            {
+              "code": "FeaturedCollectionEntityQuery",
+              "type": "codeVoice"
+            },
+            {
+              "text": " with conformance to ",
+              "type": "text"
+            },
+            {
+              "code": "EnumerableEntityQuery",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The app uses ",
+              "type": "text"
+            },
+            {
+              "code": "EnumerableEntityQuery",
+              "type": "codeVoice"
+            },
+            {
+              "text": " here because the data for the featured trail collections is a small and fixed set of values, and doesn’t require a large amount of memory.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The app implements ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppIntents/EnumerableEntityQuery/allEntities()",
+              "isActive": true,
+              "overridingTitle": "allEntities",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "allEntities",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " to return all of the values, which people can filter by name in the Shortcuts app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func allEntities() async throws -> [TrailCollection] {",
+            "    Logger.entityQueryLogging.debug(\"[FeaturedCollectionEntityQuery] Request for all entities\")",
+            "    return trailManager.featuredTrailCollections",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app also implements ",
+              "type": "text"
+            },
+            {
+              "code": "EntityPropertyQuery",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for ",
+              "type": "text"
+            },
+            {
+              "code": "TrailEntity",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This query type is ideal for large data sets that may have large numbers of entities, or entities that have higher memory consumption.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Implementing this query adds a Find intent to the Shortcuts app, enabling people to run predicate searches on entity properties.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For example, someone planning a vacation around seeing waterfalls that are easily accessible can configure the Find intent with criteria for trails containing ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "fall",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " in the trail name, and a trail distance of less than 1 kilometer. An implementation",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of ",
+              "type": "text"
+            },
+            {
+              "code": "EntityPropertyQuery",
+              "type": "codeVoice"
+            },
+            {
+              "text": " includes several required functions and properties.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "TrailEntityQuery+PropertyQuery.swift",
+              "type": "codeVoice"
+            },
+            {
+              "text": " contains the complete implementation.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Designing great intents for integration with the system means that the intents work as standalone intents with their parameters, and also work with other intents the app provides, or with other apps that may be installed.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "People can create shortcuts that use the output of one intent the app provides and use it as input to another intent the app provides, like the following examples:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "SuggestTrails",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " can use the output of the Find intent for trail collections as input.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The Find intent for trails can use the output of ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "SuggestTrails",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to further refine the results.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The Find intent for trails can also work alone, searching for matching trail properties from all of the trail data the app provides.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Contribute-entities-to-Spotlight",
+          "level": 3,
+          "text": "Contribute entities to Spotlight",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample app provides its trail data to Spotlight when the app first runs.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The app declares a ",
+              "type": "text"
+            },
+            {
+              "code": "Trail",
+              "type": "codeVoice"
+            },
+            {
+              "text": " structure for this data, containing the app’s internal representation of that data.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The app maps its data from the structure to searchable attributes in a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreSpotlight/CSSearchableItemAttributeSet",
+              "isActive": true,
+              "overridingTitle": "CSSearchableItemAttributeSet",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "CSSearchableItemAttributeSet",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "var searchableAttributes: CSSearchableItemAttributeSet {",
+            "    let attributes = CSSearchableItemAttributeSet()",
+            "    ",
+            "    attributes.title = name",
+            "    attributes.namedLocation = regionDescription",
+            "    attributes.keywords = activities.localizedElements",
+            "    ",
+            "    attributes.latitude = NSNumber(value: coordinate.latitude)",
+            "    attributes.longitude = NSNumber(value: coordinate.longitude)",
+            "    attributes.supportsNavigation = true",
+            "    ",
+            "    return attributes",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app also declares a ",
+              "type": "text"
+            },
+            {
+              "code": "TrailEntity",
+              "type": "codeVoice"
+            },
+            {
+              "text": " structure to make the trail data available to the rest of the system as part of its App Intents integration.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "To integrate ",
+              "type": "text"
+            },
+            {
+              "code": "TrailEntity",
+              "type": "codeVoice"
+            },
+            {
+              "text": " with Spotlight, ",
+              "type": "text"
+            },
+            {
+              "code": "TrailEntity",
+              "type": "codeVoice"
+            },
+            {
+              "text": " conforms to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppIntents/IndexedEntity",
+              "isActive": true,
+              "overridingTitle": "IndexedEntity",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "IndexedEntity",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The app associates the searchable attributes from the ",
+              "type": "text"
+            },
+            {
+              "code": "Trail",
+              "type": "codeVoice"
+            },
+            {
+              "text": " structure with the ",
+              "type": "text"
+            },
+            {
+              "code": "TrailEntity",
+              "type": "codeVoice"
+            },
+            {
+              "text": " by calling ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreSpotlight/CSSearchableItem/associateAppEntity(_:priority:)",
+              "isActive": true,
+              "overridingTitle": "associateAppEntity(_:priority:)",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "associateAppEntity(_:priority:)",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " before contributing the data to the Spotlight index.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Create an array of the searchable information for each `Trail`.",
+            "let searchableItems = trails.map { trail in",
+            "    let item = CSSearchableItem(uniqueIdentifier: String(trail.id),",
+            "                                domainIdentifier: nil,",
+            "                                attributeSet: trail.searchableAttributes)",
+            "    ",
+            "    let isFavorite = favoritesCollection.members.contains(trail.id)",
+            "    let weight = isFavorite ? 10 : 1",
+            "    let intent = TrailEntity(trail: trail)",
+            "    ",
+            "    /**",
+            "     Associate `TrailEntity` with the data that the `Trail` structure provides so the system recognizes that",
+            "     both types represent the same data. You need to create this association before adding the `CSSearchableItem`",
+            "     to a `CSSearchableIndex`.",
+            "     */",
+            "    item.associateAppEntity(intent, priority: weight)",
+            "    return item",
+            "}",
+            "",
+            "do {",
+            "    // Add the trails to the search index so people can find them through Spotlight.",
+            "    // You need to do this as part of the app's initial setup on launch.",
+            "    let index = CSSearchableIndex.default()",
+            "    try await index.indexSearchableItems(searchableItems)",
+            "    Logger.spotlightLogging.info(\"[Spotlight] Trails indexed by Spotlight\")",
+            "} catch let error {",
+            "    Logger.spotlightLogging.error(\"[Spotlight] Trails were not indexed by Spotlight. Reason: \\(error.localizedDescription)\")",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Integrate-universal-links",
+          "level": 3,
+          "text": "Integrate universal links",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample app offers an ",
+              "type": "text"
+            },
+            {
+              "code": "OpenTrail",
+              "type": "codeVoice"
+            },
+            {
+              "text": " intent so that people can open the app to a specific trail’s information from a shortcut.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Rather than adding code to configure the app’s UI for displaying a trail’s information just for this intent,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the app uses the same URL scheme it uses to implement universal links.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The app declares the URL for a trail’s details through conformance to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppIntents/URLRepresentableEntity",
+              "isActive": true,
+              "overridingTitle": "URLRepresentableEntity",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "URLRepresentableEntity",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "extension TrailEntity: URLRepresentableEntity {",
+            "    static var urlRepresentation: URLRepresentation {",
+            "        // Use string interpolation to fill values from your entity necessary for constructing the universal link URL.",
+            "        // This example URL uses the unique and persistant identifier for the `TrailEntity` in the URL.",
+            "        \"https://example.com/trail/\\(.id)/details\"",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To leverage the app’s existing code for handling a universal link, the app conforms the ",
+              "type": "text"
+            },
+            {
+              "code": "OpenTrail",
+              "type": "codeVoice"
+            },
+            {
+              "text": " intent to both ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppIntents/OpenIntent",
+              "isActive": true,
+              "overridingTitle": "OpenIntent",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "OpenIntent",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppIntents/URLRepresentableIntent",
+              "isActive": true,
+              "overridingTitle": "URLRepresentableIntent",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "URLRepresentableIntent",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "These conformances allow the app to skip implementing a ",
+              "type": "text"
+            },
+            {
+              "code": "perform()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method on ",
+              "type": "text"
+            },
+            {
+              "code": "OpenTrail",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "When the intent runs, the system automatically passes the URL to the app using the standard mechanisms required for handling universal links.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "b1abbaa3495e/AcceleratingAppInteractionsWithAppIntents.zip": {
+      "checksum": "b1abbaa3495e186773f6a423135e48fc434417c527f65c869e8367ad8eb0d837a1e54959342855234f64c975a74a31adc9d3551198c34214b66d9b855133c236",
+      "identifier": "b1abbaa3495e/AcceleratingAppInteractionsWithAppIntents.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/b1abbaa3495e/AcceleratingAppInteractionsWithAppIntents.zip"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents": {
+      "abstract": [
+        {
+          "text": "Make your app’s content and actions discoverable with system experiences like Spotlight, widgets, and enhanced action capabilities of Siri, powered by Apple Intelligence.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "App Intents",
+      "type": "topic",
+      "url": "/documentation/appintents"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/Creating-your-first-app-intent": {
+      "abstract": [
+        {
+          "text": "Create your first app intent that makes your app available in system experiences like Spotlight or the Shortcuts app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/Creating-your-first-app-intent",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating your first app intent",
+      "type": "topic",
+      "url": "/documentation/appintents/creating-your-first-app-intent"
+    },
+    "doc://com.apple.AppIntents/documentation/AppIntents/Making-actions-and-content-discoverable-and-widely-available": {
+      "abstract": [
+        {
+          "text": "Adopt App Intents to make your app discoverable with Siri and Apple Intelligence, Spotlight, controls, widgets, and the Action button.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.AppIntents/documentation/AppIntents/Making-actions-and-content-discoverable-and-widely-available",
+      "kind": "article",
+      "role": "article",
+      "title": "Making actions and content discoverable and widely available",
+      "type": "topic",
+      "url": "/documentation/appintents/making-actions-and-content-discoverable-and-widely-available"
+    },
+    "doc://com.apple.documentation/documentation/AppIntents/AppEntity": {
+      "abstract": [
+        {
+          "text": "An interface for exposing a custom type or app-specific concept to system experiences like Siri and the Shortcuts app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AppEntity"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents0A5ValueP",
+          "text": "AppValue"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents20DisplayRepresentableP",
+          "text": "DisplayRepresentable"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s12IdentifiableP",
+          "text": "Identifiable"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": " == "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents12_IntentValueP0D4TypeQa",
+          "text": "ValueType"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s12IdentifiableP2IDQa",
+          "text": "ID"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents27EntityIdentifierConvertibleP",
+          "text": "EntityIdentifierConvertible"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s12IdentifiableP2IDQa",
+          "text": "ID"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8SendableP",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppIntents/AppEntity",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AppEntity",
+      "type": "topic",
+      "url": "/documentation/AppIntents/AppEntity"
+    },
+    "doc://com.apple.documentation/documentation/AppIntents/AppIntent": {
+      "abstract": [
+        {
+          "text": "An interface for providing an app-specific capability that people invoke from system experiences like Siri and the Shortcuts app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AppIntent"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents24PersistentlyIdentifiableP",
+          "text": "PersistentlyIdentifiable"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "_SupportsAppDependencies"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8SendableP",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppIntents/AppIntent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AppIntent",
+      "type": "topic",
+      "url": "/documentation/AppIntents/AppIntent"
+    },
+    "doc://com.apple.documentation/documentation/AppIntents/AppIntent/perform()": {
+      "abstract": [
+        {
+          "text": "Performs the intent after resolving the provided parameters.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "perform"
+        },
+        {
+          "kind": "text",
+          "text": "() "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents0A6IntentP13PerformResultQa",
+          "text": "PerformResult"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppIntents/AppIntent/perform()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "perform()",
+      "type": "topic",
+      "url": "/documentation/AppIntents/AppIntent/perform()"
+    },
+    "doc://com.apple.documentation/documentation/AppIntents/AppShortcut": {
+      "abstract": [
+        {
+          "text": "A type that defines a preconfigured shortcut for a specific app intent.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AppShortcut"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppIntents/AppShortcut",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AppShortcut",
+      "type": "topic",
+      "url": "/documentation/AppIntents/AppShortcut"
+    },
+    "doc://com.apple.documentation/documentation/AppIntents/AppShortcutsProvider": {
+      "abstract": [
+        {
+          "text": "A type alias for the type that provides an app’s preconfigured shortcuts.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AppShortcutsProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppIntents/AppShortcutsProvider",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AppShortcutsProvider",
+      "type": "topic",
+      "url": "/documentation/AppIntents/AppShortcutsProvider"
+    },
+    "doc://com.apple.documentation/documentation/AppIntents/AppShortcutsProvider/updateAppShortcutParameters()": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "updateAppShortcutParameters"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppIntents/AppShortcutsProvider/updateAppShortcutParameters()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "updateAppShortcutParameters()",
+      "type": "topic",
+      "url": "/documentation/AppIntents/AppShortcutsProvider/updateAppShortcutParameters()"
+    },
+    "doc://com.apple.documentation/documentation/AppIntents/EntityProperty": {
+      "abstract": [
+        {
+          "text": "A property wrapper that exposes the associated property to the system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@propertyWrapper"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "final"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "EntityProperty"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Value"
+        },
+        {
+          "kind": "text",
+          "text": "> "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Value"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "_IntentValue"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Value"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8SendableP",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppIntents/EntityProperty",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "EntityProperty",
+      "type": "topic",
+      "url": "/documentation/AppIntents/EntityProperty"
+    },
+    "doc://com.apple.documentation/documentation/AppIntents/EntityPropertyQuery": {
+      "abstract": [
+        {
+          "text": "An interface for locating entities by matching values against one or more of their properties.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "EntityPropertyQuery"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents11EntityQueryP",
+          "text": "EntityQuery"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppIntents/EntityPropertyQuery",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "EntityPropertyQuery",
+      "type": "topic",
+      "url": "/documentation/AppIntents/EntityPropertyQuery"
+    },
+    "doc://com.apple.documentation/documentation/AppIntents/EntityQuery": {
+      "abstract": [
+        {
+          "text": "An interface for locating entities using their identifiers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "EntityQuery"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents22DynamicOptionsProviderP",
+          "text": "DynamicOptionsProvider"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents24PersistentlyIdentifiableP",
+          "text": "PersistentlyIdentifiable"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8SendableP",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppIntents/EntityQuery",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "EntityQuery",
+      "type": "topic",
+      "url": "/documentation/AppIntents/EntityQuery"
+    },
+    "doc://com.apple.documentation/documentation/AppIntents/EntityStringQuery": {
+      "abstract": [
+        {
+          "text": "An interface that locates entities using arbitrary string input.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "EntityStringQuery"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents11EntityQueryP",
+          "text": "EntityQuery"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppIntents/EntityStringQuery",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "EntityStringQuery",
+      "type": "topic",
+      "url": "/documentation/AppIntents/EntityStringQuery"
+    },
+    "doc://com.apple.documentation/documentation/AppIntents/EntityStringQuery/entities(matching:)": {
+      "abstract": [
+        {
+          "text": "Retrieves instances by string.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "entities"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "matching"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "string"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents22DynamicOptionsProviderP6ResultQa",
+          "text": "Result"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppIntents/EntityStringQuery/entities(matching:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "entities(matching:)",
+      "type": "topic",
+      "url": "/documentation/AppIntents/EntityStringQuery/entities(matching:)"
+    },
+    "doc://com.apple.documentation/documentation/AppIntents/EnumerableEntityQuery": {
+      "abstract": [
+        {
+          "text": "An interface you use to provide a short list of entities that are relatively small in size.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "EnumerableEntityQuery"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents11EntityQueryP",
+          "text": "EntityQuery"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppIntents/EnumerableEntityQuery",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "EnumerableEntityQuery",
+      "type": "topic",
+      "url": "/documentation/AppIntents/EnumerableEntityQuery"
+    },
+    "doc://com.apple.documentation/documentation/AppIntents/EnumerableEntityQuery/allEntities()": {
+      "abstract": [
+        {
+          "text": "Returns all available results.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "allEntities"
+        },
+        {
+          "kind": "text",
+          "text": "() "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents22DynamicOptionsProviderP6ResultQa",
+          "text": "Result"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppIntents/EnumerableEntityQuery/allEntities()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "allEntities()",
+      "type": "topic",
+      "url": "/documentation/AppIntents/EnumerableEntityQuery/allEntities()"
+    },
+    "doc://com.apple.documentation/documentation/AppIntents/IndexedEntity": {
+      "abstract": [
+        {
+          "text": "`IndexedEntity` represents an App Entity decorated with an attribute set. A set of attributes that enable the system to perform structured indexing  and queries of entities.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "IndexedEntity"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents0A6EntityP",
+          "text": "AppEntity"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppIntents/IndexedEntity",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IndexedEntity",
+      "type": "topic",
+      "url": "/documentation/AppIntents/IndexedEntity"
+    },
+    "doc://com.apple.documentation/documentation/AppIntents/IntentParameter": {
+      "abstract": [
+        {
+          "text": "A property wrapper that indicates the associated property is an input argument of the app intent.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@propertyWrapper"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "final"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "IntentParameter"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Value"
+        },
+        {
+          "kind": "text",
+          "text": "> "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Value"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "_IntentValue"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Value"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8SendableP",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppIntents/IntentParameter",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IntentParameter",
+      "type": "topic",
+      "url": "/documentation/AppIntents/IntentParameter"
+    },
+    "doc://com.apple.documentation/documentation/AppIntents/IntentParameter/needsDisambiguationError(among:dialog:)": {
+      "abstract": [
+        {
+          "text": "Returns a `restartPerform` error with context for the user to disambiguate amongst an array of values from for this parameter and re-perform the intent with the new value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "final"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "needsDisambiguationError"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "among"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "itemsToDisambiguate"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Value"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents12_IntentValueP0D4TypeQa",
+          "text": "ValueType"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "dialog"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents12IntentDialogV",
+          "text": "IntentDialog"
+        },
+        {
+          "kind": "text",
+          "text": "? = nil) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents0A11IntentErrorV",
+          "text": "AppIntentError"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppIntents/IntentParameter/needsDisambiguationError(among:dialog:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "needsDisambiguationError(among:dialog:)",
+      "type": "topic",
+      "url": "/documentation/AppIntents/IntentParameter/needsDisambiguationError(among:dialog:)"
+    },
+    "doc://com.apple.documentation/documentation/AppIntents/OpenIntent": {
+      "abstract": [
+        {
+          "text": "Open the associated item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "OpenIntent"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents12SystemIntentP",
+          "text": "SystemIntent"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppIntents/OpenIntent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OpenIntent",
+      "type": "topic",
+      "url": "/documentation/AppIntents/OpenIntent"
+    },
+    "doc://com.apple.documentation/documentation/AppIntents/ProvidesDialog": {
+      "abstract": [
+        {
+          "text": "The result of performing an action that delivers a dialog back to the initiator of the action.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ProvidesDialog"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents12IntentResultP",
+          "text": "IntentResult"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents12IntentResultP6DialogQa",
+          "text": "Dialog"
+        },
+        {
+          "kind": "text",
+          "text": " == "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents12IntentDialogV",
+          "text": "IntentDialog"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppIntents/ProvidesDialog",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ProvidesDialog",
+      "type": "topic",
+      "url": "/documentation/AppIntents/ProvidesDialog"
+    },
+    "doc://com.apple.documentation/documentation/AppIntents/ShowsSnippetView": {
+      "abstract": [
+        {
+          "text": "The result of performing an action that delivers a view back to the initiator of the action.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ShowsSnippetView"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents12IntentResultP",
+          "text": "IntentResult"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents12IntentResultP7SnippetQa",
+          "text": "Snippet"
+        },
+        {
+          "kind": "text",
+          "text": " == "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "_SnippetViewContainer"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppIntents/ShowsSnippetView",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ShowsSnippetView",
+      "type": "topic",
+      "url": "/documentation/AppIntents/ShowsSnippetView"
+    },
+    "doc://com.apple.documentation/documentation/AppIntents/SiriTipView": {
+      "abstract": [
+        {
+          "text": "A SwiftUI view that displays the phrase someone uses to invoke an App Shortcut.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SiriTipView"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppIntents/SiriTipView",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SiriTipView",
+      "type": "topic",
+      "url": "/documentation/AppIntents/SiriTipView"
+    },
+    "doc://com.apple.documentation/documentation/AppIntents/URLRepresentableEntity": {
+      "abstract": [
+        {
+          "text": "An app entity with a URL representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "URLRepresentableEntity"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents0A6EntityP",
+          "text": "AppEntity"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents43CustomURLRepresentationParameterConvertibleP",
+          "text": "CustomURLRepresentationParameterConvertible"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppIntents/URLRepresentableEntity",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLRepresentableEntity",
+      "type": "topic",
+      "url": "/documentation/AppIntents/URLRepresentableEntity"
+    },
+    "doc://com.apple.documentation/documentation/AppIntents/URLRepresentableIntent": {
+      "abstract": [
+        {
+          "text": "An app intent with a URL representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "URLRepresentableIntent"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents0A6IntentP",
+          "text": "AppIntent"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppIntents/URLRepresentableIntent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLRepresentableIntent",
+      "type": "topic",
+      "url": "/documentation/AppIntents/URLRepresentableIntent"
+    },
+    "doc://com.apple.documentation/documentation/CoreSpotlight/CSSearchableItem/associateAppEntity(_:priority:)": {
+      "abstract": [
+        {
+          "text": "Associates an app entity with this searchable item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "associateAppEntity"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "appEntity"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents13IndexedEntityP",
+          "text": "IndexedEntity"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "priority"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": " = 0)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreSpotlight/CSSearchableItem/associateAppEntity(_:priority:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "associateAppEntity(_:priority:)",
+      "type": "topic",
+      "url": "/documentation/CoreSpotlight/CSSearchableItem/associateAppEntity(_:priority:)"
+    },
+    "doc://com.apple.documentation/documentation/CoreSpotlight/CSSearchableItemAttributeSet": {
+      "abstract": [
+        {
+          "text": "The detailed metadata for a searchable item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CSSearchableItemAttributeSet"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreSpotlight/CSSearchableItemAttributeSet",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CSSearchableItemAttributeSet",
+      "type": "topic",
+      "url": "/documentation/CoreSpotlight/CSSearchableItemAttributeSet"
+    },
+    "doc://com.apple.documentation/documentation/Swift/Identifiable": {
+      "abstract": [
+        {
+          "text": "A class of types whose instances hold the value of an entity with stable identity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Identifiable"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s12IdentifiableP2IDQa",
+          "text": "ID"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Swift/Identifiable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Identifiable",
+      "type": "topic",
+      "url": "/documentation/Swift/Identifiable"
+    },
+    "doc://com.apple.documentation/documentation/Swift/String": {
+      "abstract": [
+        {
+          "text": "A Unicode string value that is a collection of characters.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@frozen"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Swift/String",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "String",
+      "type": "topic",
+      "url": "/documentation/Swift/String"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/App": {
+      "abstract": [
+        {
+          "text": "A type that represents the structure and behavior of an app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "App"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/App",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "App",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/App"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/App/init()": {
+      "abstract": [
+        {
+          "text": "Creates an instance of the app using the body that you define for its content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/App/init()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init()",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/App/init()"
+    },
+    "doc://com.apple.documentation/documentation/Updates/AppIntents": {
+      "abstract": [
+        {
+          "text": "Learn about important changes in App Intents.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Updates/AppIntents",
+      "kind": "article",
+      "role": "article",
+      "title": "App Intents updates",
+      "type": "topic",
+      "url": "/documentation/Updates/AppIntents"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "b1abbaa3495e/AcceleratingAppInteractionsWithAppIntents.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/Updates/AppIntents",
+        "doc://com.apple.AppIntents/documentation/AppIntents/Making-actions-and-content-discoverable-and-widely-available",
+        "doc://com.apple.AppIntents/documentation/AppIntents/Creating-your-first-app-intent"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Essentials",
+              "generated": true,
+              "identifiers": [],
+              "title": "Essentials"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreSpotlight~1CSSearchableItemAttributeSet/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CSSearchableItemAttributeSet"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/appintents/acceleratingappinteractionswithappintents"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/appintents/acceleratingappinteractionswithappintents"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

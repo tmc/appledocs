@@ -1,0 +1,1967 @@
+{
+  "abstract": [
+    {
+      "text": "Add support for racing wheel devices in macOS.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.gamecontroller/documentation/GameController"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.gamecontroller/documentation/GameController/racing-wheel-device-support"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Game Controller"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Racing wheel device support"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For macOS apps that support racing wheel devices, follow these steps for your app:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If you distribute your app through the Mac App Store, add the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.security.device.usb",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " entitlement to your Xcode project.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To get a racing wheel controller object, register for the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification/name/3930188-gcracingwheeldidconnect",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " (Swift) or  ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCRacingWheelDidConnectNotification",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " (Objective-C) and ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification/name/3930189-gcracingwheeldiddisconnect",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " (Swift) or ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCRacingWheelDidDisconnectNotification",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " (Objective-C) notifications. Alternatively, check the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "GCRacingWheel",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCRacingWheel/connectedRacingWheels",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " class property for the currently connected controllers.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To start receiving input from a racing wheel controller, invoke the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "GCRacingWheel",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCRacingWheel/acquireDevice()",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method. Then use the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCRacingWheel/relinquishDevice()",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method when you finish processing input.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To process the input, set callbacks for the specific racing wheel elements that you want to receive input from. For example, set the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCPhysicalInputProfile/valueDidChangeHandler",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " property of the steering wheel and accelerator pedal elements. Get these elements using the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCRacingWheelInputState/wheel",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCRacingWheelInputState/acceleratorPedal",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " properties of the racing wheel’s ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCRacingWheel/wheelInput",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " property, as in: ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "racingWheel.wheelInput.wheel",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If you just want the latest value of the steering wheel, use the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "GCSteeringWheelElement",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCAxisElement/absoluteInput",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " property.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "For games that poll for input, set the input buffer size using the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCDevicePhysicalInput/inputStateQueueDepth",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " property. In each iteration of your game loop, repeatedly invoke the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCRacingWheelInput/nextInputState()",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method until the queue is empty and it returns ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "nil",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.security.device.usb": {
+      "abstract": [
+        {
+          "text": "A Boolean value indicating whether your app may interact with USB devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.security.device.usb",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "com.apple.security.device.usb",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Entitlements/com.apple.security.device.usb"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnotification/name/3930188-gcracingwheeldidconnect": {
+      "abstract": [
+        {
+          "text": "A notification that posts after a racing wheel controller connects to the device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static let "
+        },
+        {
+          "kind": "identifier",
+          "text": "GCRacingWheelDidConnect"
+        },
+        {
+          "kind": "text",
+          "text": ": NSNotification.Name"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification/name/3930188-gcracingwheeldidconnect",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GCRacingWheelDidConnect",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnotification/name/3930188-gcracingwheeldidconnect"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnotification/name/3930189-gcracingwheeldiddisconnect": {
+      "abstract": [
+        {
+          "text": "A notification that posts after a racing wheel controller disconnects from the device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static let "
+        },
+        {
+          "kind": "identifier",
+          "text": "GCRacingWheelDidDisconnect"
+        },
+        {
+          "kind": "text",
+          "text": ": NSNotification.Name"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification/name/3930189-gcracingwheeldiddisconnect",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GCRacingWheelDidDisconnect",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnotification/name/3930189-gcracingwheeldiddisconnect"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.gamecontroller/documentation/GameController": {
+      "abstract": [
+        {
+          "text": "Support hardware game controllers in your game.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.gamecontroller/documentation/GameController",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Game Controller",
+      "type": "topic",
+      "url": "/documentation/gamecontroller"
+    },
+    "doc://com.apple.gamecontroller/documentation/GameController/GCAxisElement/absoluteInput": {
+      "abstract": [
+        {
+          "text": "An input object that provides absolute axis values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "absoluteInput"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)GCAxisInput",
+          "text": "GCAxisInput"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCAxisElement/absoluteInput",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "absoluteInput"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "absoluteInput",
+      "type": "topic",
+      "url": "/documentation/gamecontroller/gcaxiselement/absoluteinput"
+    },
+    "doc://com.apple.gamecontroller/documentation/GameController/GCAxisInput": {
+      "abstract": [
+        {
+          "text": "The common properties of inputs that provide absolute values along an axis with a fixed origin.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GCAxisInput"
+        }
+      ],
+      "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCAxisInput",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GCAxisInput"
+        }
+      ],
+      "role": "symbol",
+      "title": "GCAxisInput",
+      "type": "topic",
+      "url": "/documentation/gamecontroller/gcaxisinput"
+    },
+    "doc://com.apple.gamecontroller/documentation/GameController/GCDevicePhysicalInput/inputStateQueueDepth": {
+      "abstract": [
+        {
+          "text": "The maximum number of input values that the queue stores.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "inputStateQueueDepth"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCDevicePhysicalInput/inputStateQueueDepth",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "inputStateQueueDepth"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "inputStateQueueDepth",
+      "type": "topic",
+      "url": "/documentation/gamecontroller/gcdevicephysicalinput/inputstatequeuedepth"
+    },
+    "doc://com.apple.gamecontroller/documentation/GameController/GCGearShifterElement": {
+      "abstract": [
+        {
+          "text": "An element that represents either a pattern or a sequential gear shift.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GCGearShifterElement"
+        }
+      ],
+      "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCGearShifterElement",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GCGearShifterElement"
+        }
+      ],
+      "role": "symbol",
+      "title": "GCGearShifterElement",
+      "type": "topic",
+      "url": "/documentation/gamecontroller/gcgearshifterelement"
+    },
+    "doc://com.apple.gamecontroller/documentation/GameController/GCInputAxisName": {
+      "abstract": [
+        {
+          "text": "The Objective-C type for an input axis name.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "GCInputAxisName"
+        }
+      ],
+      "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCInputAxisName",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GCInputAxisName",
+      "type": "topic",
+      "url": "/documentation/gamecontroller/gcinputaxisname"
+    },
+    "doc://com.apple.gamecontroller/documentation/GameController/GCInputDirectionPadName": {
+      "abstract": [
+        {
+          "text": "The Objective-C type for the name of a directional pad.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "GCInputDirectionPadName"
+        }
+      ],
+      "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCInputDirectionPadName",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GCInputDirectionPadName",
+      "type": "topic",
+      "url": "/documentation/gamecontroller/gcinputdirectionpadname"
+    },
+    "doc://com.apple.gamecontroller/documentation/GameController/GCInputLeftPaddle-77y86": {
+      "abstract": [
+        {
+          "text": "The name for the left paddle input.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GCInputLeftPaddle"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCInputLeftPaddle-77y86",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GCInputLeftPaddle",
+      "type": "topic",
+      "url": "/documentation/gamecontroller/gcinputleftpaddle-77y86"
+    },
+    "doc://com.apple.gamecontroller/documentation/GameController/GCInputLeftPaddle-818ad": {
+      "abstract": [
+        {
+          "text": "The name for the left paddle input.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "GCInputLeftPaddle"
+        }
+      ],
+      "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCInputLeftPaddle-818ad",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GCInputLeftPaddle",
+      "type": "topic",
+      "url": "/documentation/gamecontroller/gcinputleftpaddle-818ad"
+    },
+    "doc://com.apple.gamecontroller/documentation/GameController/GCInputRightPaddle-1p8hd": {
+      "abstract": [
+        {
+          "text": "The name for the right paddle input.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "GCInputRightPaddle"
+        }
+      ],
+      "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCInputRightPaddle-1p8hd",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GCInputRightPaddle",
+      "type": "topic",
+      "url": "/documentation/gamecontroller/gcinputrightpaddle-1p8hd"
+    },
+    "doc://com.apple.gamecontroller/documentation/GameController/GCInputRightPaddle-5klic": {
+      "abstract": [
+        {
+          "text": "The name for the right paddle input.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GCInputRightPaddle"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCInputRightPaddle-5klic",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GCInputRightPaddle",
+      "type": "topic",
+      "url": "/documentation/gamecontroller/gcinputrightpaddle-5klic"
+    },
+    "doc://com.apple.gamecontroller/documentation/GameController/GCInputSwitchName": {
+      "abstract": [
+        {
+          "text": "The Objective-C type for an input switch name.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "GCInputSwitchName"
+        }
+      ],
+      "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCInputSwitchName",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GCInputSwitchName",
+      "type": "topic",
+      "url": "/documentation/gamecontroller/gcinputswitchname"
+    },
+    "doc://com.apple.gamecontroller/documentation/GameController/GCLinearInput": {
+      "abstract": [
+        {
+          "text": "The common properties of inputs that provide values in unit coordinates.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GCLinearInput"
+        }
+      ],
+      "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCLinearInput",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GCLinearInput"
+        }
+      ],
+      "role": "symbol",
+      "title": "GCLinearInput",
+      "type": "topic",
+      "url": "/documentation/gamecontroller/gclinearinput"
+    },
+    "doc://com.apple.gamecontroller/documentation/GameController/GCPhysicalInputProfile/valueDidChangeHandler": {
+      "abstract": [
+        {
+          "text": "The block that the profile calls when an element’s value changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "valueDidChangeHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": (("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)GCPhysicalInputProfile",
+          "text": "GCPhysicalInputProfile"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)GCControllerElement",
+          "text": "GCControllerElement"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCPhysicalInputProfile/valueDidChangeHandler",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "valueDidChangeHandler"
+        }
+      ],
+      "role": "symbol",
+      "title": "valueDidChangeHandler",
+      "type": "topic",
+      "url": "/documentation/gamecontroller/gcphysicalinputprofile/valuedidchangehandler"
+    },
+    "doc://com.apple.gamecontroller/documentation/GameController/GCRacingWheel": {
+      "abstract": [
+        {
+          "text": "An object that represents a physical racing wheel controller connected to a device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GCRacingWheel"
+        }
+      ],
+      "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCRacingWheel",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GCRacingWheel"
+        }
+      ],
+      "role": "symbol",
+      "title": "GCRacingWheel",
+      "type": "topic",
+      "url": "/documentation/gamecontroller/gcracingwheel"
+    },
+    "doc://com.apple.gamecontroller/documentation/GameController/GCRacingWheel/acquireDevice()": {
+      "abstract": [
+        {
+          "text": "Starts receiving events from the racing wheel.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "acquireDevice"
+        },
+        {
+          "kind": "text",
+          "text": "() "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCRacingWheel/acquireDevice()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "acquireDeviceWithError:"
+        }
+      ],
+      "role": "symbol",
+      "title": "acquireDevice()",
+      "type": "topic",
+      "url": "/documentation/gamecontroller/gcracingwheel/acquiredevice()"
+    },
+    "doc://com.apple.gamecontroller/documentation/GameController/GCRacingWheel/connectedRacingWheels": {
+      "abstract": [
+        {
+          "text": "The racing wheels connected to the device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "connectedRacingWheels"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sh",
+          "text": "Set"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)GCRacingWheel",
+          "text": "GCRacingWheel"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCRacingWheel/connectedRacingWheels",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "connectedRacingWheels"
+        }
+      ],
+      "role": "symbol",
+      "title": "connectedRacingWheels",
+      "type": "topic",
+      "url": "/documentation/gamecontroller/gcracingwheel/connectedracingwheels"
+    },
+    "doc://com.apple.gamecontroller/documentation/GameController/GCRacingWheel/relinquishDevice()": {
+      "abstract": [
+        {
+          "text": "Stops receiving events from the racing wheel.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "relinquishDevice"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCRacingWheel/relinquishDevice()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "relinquishDevice"
+        }
+      ],
+      "role": "symbol",
+      "title": "relinquishDevice()",
+      "type": "topic",
+      "url": "/documentation/gamecontroller/gcracingwheel/relinquishdevice()"
+    },
+    "doc://com.apple.gamecontroller/documentation/GameController/GCRacingWheel/wheelInput": {
+      "abstract": [
+        {
+          "text": "The physical input profile for the racing wheel.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "wheelInput"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)GCRacingWheelInput",
+          "text": "GCRacingWheelInput"
+        }
+      ],
+      "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCRacingWheel/wheelInput",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "wheelInput"
+        }
+      ],
+      "role": "symbol",
+      "title": "wheelInput",
+      "type": "topic",
+      "url": "/documentation/gamecontroller/gcracingwheel/wheelinput"
+    },
+    "doc://com.apple.gamecontroller/documentation/GameController/GCRacingWheelDidConnectNotification": {
+      "abstract": [
+        {
+          "text": "A notification that posts after a racing wheel controller connects to the device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "GCRacingWheelDidConnectNotification"
+        }
+      ],
+      "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCRacingWheelDidConnectNotification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GCRacingWheelDidConnectNotification",
+      "type": "topic",
+      "url": "/documentation/gamecontroller/gcracingwheeldidconnectnotification"
+    },
+    "doc://com.apple.gamecontroller/documentation/GameController/GCRacingWheelDidDisconnectNotification": {
+      "abstract": [
+        {
+          "text": "A notification that posts after a racing wheel controller disconnects from the device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "GCRacingWheelDidDisconnectNotification"
+        }
+      ],
+      "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCRacingWheelDidDisconnectNotification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GCRacingWheelDidDisconnectNotification",
+      "type": "topic",
+      "url": "/documentation/gamecontroller/gcracingwheeldiddisconnectnotification"
+    },
+    "doc://com.apple.gamecontroller/documentation/GameController/GCRacingWheelInput": {
+      "abstract": [
+        {
+          "text": "A controller profile that supports a racing wheel.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GCRacingWheelInput"
+        }
+      ],
+      "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCRacingWheelInput",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GCRacingWheelInput"
+        }
+      ],
+      "role": "symbol",
+      "title": "GCRacingWheelInput",
+      "type": "topic",
+      "url": "/documentation/gamecontroller/gcracingwheelinput"
+    },
+    "doc://com.apple.gamecontroller/documentation/GameController/GCRacingWheelInput/nextInputState()": {
+      "abstract": [
+        {
+          "text": "Returns the next input state of the racing wheel from the queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "nextInputState"
+        },
+        {
+          "kind": "text",
+          "text": "() -> (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)GCRacingWheelInputState",
+          "text": "GCRacingWheelInputState"
+        },
+        {
+          "kind": "text",
+          "text": " & "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)GCDevicePhysicalInputStateDiff",
+          "text": "GCDevicePhysicalInputStateDiff"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCRacingWheelInput/nextInputState()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "nextInputState"
+        }
+      ],
+      "role": "symbol",
+      "title": "nextInputState()",
+      "type": "topic",
+      "url": "/documentation/gamecontroller/gcracingwheelinput/nextinputstate()"
+    },
+    "doc://com.apple.gamecontroller/documentation/GameController/GCRacingWheelInputState": {
+      "abstract": [
+        {
+          "text": "The input for the wheel of a racing wheel controller.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GCRacingWheelInputState"
+        }
+      ],
+      "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCRacingWheelInputState",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GCRacingWheelInputState"
+        }
+      ],
+      "role": "symbol",
+      "title": "GCRacingWheelInputState",
+      "type": "topic",
+      "url": "/documentation/gamecontroller/gcracingwheelinputstate"
+    },
+    "doc://com.apple.gamecontroller/documentation/GameController/GCRacingWheelInputState/acceleratorPedal": {
+      "abstract": [
+        {
+          "text": "The controller’s accelerator pedal element.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "acceleratorPedal"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)GCButtonElement",
+          "text": "GCButtonElement"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCRacingWheelInputState/acceleratorPedal",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "acceleratorPedal"
+        }
+      ],
+      "role": "symbol",
+      "title": "acceleratorPedal",
+      "type": "topic",
+      "url": "/documentation/gamecontroller/gcracingwheelinputstate/acceleratorpedal"
+    },
+    "doc://com.apple.gamecontroller/documentation/GameController/GCRacingWheelInputState/wheel": {
+      "abstract": [
+        {
+          "text": "The controller’s wheel element.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "wheel"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)GCSteeringWheelElement",
+          "text": "GCSteeringWheelElement"
+        }
+      ],
+      "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCRacingWheelInputState/wheel",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "wheel"
+        }
+      ],
+      "role": "symbol",
+      "title": "wheel",
+      "type": "topic",
+      "url": "/documentation/gamecontroller/gcracingwheelinputstate/wheel"
+    },
+    "doc://com.apple.gamecontroller/documentation/GameController/GCRelativeInput": {
+      "abstract": [
+        {
+          "text": "The common properties of inputs that provide positions along an axis that are relative to the previous position.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GCRelativeInput"
+        }
+      ],
+      "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCRelativeInput",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GCRelativeInput"
+        }
+      ],
+      "role": "symbol",
+      "title": "GCRelativeInput",
+      "type": "topic",
+      "url": "/documentation/gamecontroller/gcrelativeinput"
+    },
+    "doc://com.apple.gamecontroller/documentation/GameController/GCSteeringWheelElement": {
+      "abstract": [
+        {
+          "text": "The element that represents the wheel of a racing wheel controller.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GCSteeringWheelElement"
+        }
+      ],
+      "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCSteeringWheelElement",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GCSteeringWheelElement"
+        }
+      ],
+      "role": "symbol",
+      "title": "GCSteeringWheelElement",
+      "type": "topic",
+      "url": "/documentation/gamecontroller/gcsteeringwheelelement"
+    },
+    "doc://com.apple.gamecontroller/documentation/GameController/GCSwitchPositionInput": {
+      "abstract": [
+        {
+          "text": "The common properties of inputs that switch between two or more positions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GCSwitchPositionInput"
+        }
+      ],
+      "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCSwitchPositionInput",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GCSwitchPositionInput"
+        }
+      ],
+      "role": "symbol",
+      "title": "GCSwitchPositionInput",
+      "type": "topic",
+      "url": "/documentation/gamecontroller/gcswitchpositioninput"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Racing-wheel-controller",
+      "identifiers": [
+        "doc://com.apple.gamecontroller/documentation/GameController/GCRacingWheel"
+      ],
+      "title": "Racing wheel controller"
+    },
+    {
+      "anchor": "Racing-wheel-input",
+      "identifiers": [
+        "doc://com.apple.gamecontroller/documentation/GameController/GCRacingWheelInput",
+        "doc://com.apple.gamecontroller/documentation/GameController/GCRacingWheelInputState"
+      ],
+      "title": "Racing wheel input"
+    },
+    {
+      "anchor": "Left-and-right-paddles",
+      "identifiers": [
+        "doc://com.apple.gamecontroller/documentation/GameController/GCInputLeftPaddle-77y86",
+        "doc://com.apple.gamecontroller/documentation/GameController/GCInputRightPaddle-5klic"
+      ],
+      "title": "Left and right paddles"
+    },
+    {
+      "anchor": "Gear-shifter-elements",
+      "identifiers": [
+        "doc://com.apple.gamecontroller/documentation/GameController/GCAxisInput",
+        "doc://com.apple.gamecontroller/documentation/GameController/GCGearShifterElement",
+        "doc://com.apple.gamecontroller/documentation/GameController/GCRelativeInput"
+      ],
+      "title": "Gear shifter elements"
+    },
+    {
+      "anchor": "Steering-and-switch-elements",
+      "identifiers": [
+        "doc://com.apple.gamecontroller/documentation/GameController/GCSteeringWheelElement",
+        "doc://com.apple.gamecontroller/documentation/GameController/GCSwitchPositionInput"
+      ],
+      "title": "Steering and switch elements"
+    },
+    {
+      "anchor": "Directional-pad-elements",
+      "identifiers": [
+        "doc://com.apple.gamecontroller/documentation/GameController/GCLinearInput"
+      ],
+      "title": "Directional pad elements"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Racing-wheel-controller",
+              "identifiers": [
+                "doc://com.apple.gamecontroller/documentation/GameController/GCRacingWheel"
+              ],
+              "title": "Racing wheel controller"
+            },
+            {
+              "anchor": "Racing-wheel-input",
+              "identifiers": [
+                "doc://com.apple.gamecontroller/documentation/GameController/GCRacingWheelInput",
+                "doc://com.apple.gamecontroller/documentation/GameController/GCRacingWheelInputState"
+              ],
+              "title": "Racing wheel input"
+            },
+            {
+              "anchor": "Left-and-right-paddles",
+              "identifiers": [
+                "doc://com.apple.gamecontroller/documentation/GameController/GCInputLeftPaddle-818ad",
+                "doc://com.apple.gamecontroller/documentation/GameController/GCInputRightPaddle-1p8hd"
+              ],
+              "title": "Left and right paddles"
+            },
+            {
+              "anchor": "Gear-shifter-elements",
+              "identifiers": [
+                "doc://com.apple.gamecontroller/documentation/GameController/GCAxisInput",
+                "doc://com.apple.gamecontroller/documentation/GameController/GCInputAxisName",
+                "doc://com.apple.gamecontroller/documentation/GameController/GCGearShifterElement",
+                "doc://com.apple.gamecontroller/documentation/GameController/GCRelativeInput"
+              ],
+              "title": "Gear shifter elements"
+            },
+            {
+              "anchor": "Steering-and-switch-elements",
+              "identifiers": [
+                "doc://com.apple.gamecontroller/documentation/GameController/GCSteeringWheelElement",
+                "doc://com.apple.gamecontroller/documentation/GameController/GCSwitchPositionInput",
+                "doc://com.apple.gamecontroller/documentation/GameController/GCInputSwitchName"
+              ],
+              "title": "Steering and switch elements"
+            },
+            {
+              "anchor": "Directional-pad-elements",
+              "identifiers": [
+                "doc://com.apple.gamecontroller/documentation/GameController/GCInputDirectionPadName",
+                "doc://com.apple.gamecontroller/documentation/GameController/GCLinearInput"
+              ],
+              "title": "Directional pad elements"
+            }
+          ]
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCDevicePhysicalInput~1inputStateQueueDepth/title",
+          "value": "inputStateQueueDepth"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCDevicePhysicalInput~1inputStateQueueDepth/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "inputStateQueueDepth"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCRacingWheel/title",
+          "value": "GCRacingWheel"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCRacingWheel/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GCRacingWheel"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCRacingWheel/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GCRacingWheel"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCRacingWheelInputState/title",
+          "value": "GCRacingWheelInputState"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCRacingWheelInputState/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GCRacingWheelInputState"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCRacingWheelInputState/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GCRacingWheelInputState"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCPhysicalInputProfile~1valueDidChangeHandler/title",
+          "value": "valueDidChangeHandler"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCPhysicalInputProfile~1valueDidChangeHandler/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "valueDidChangeHandler"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCRacingWheel~1acquireDevice()/title",
+          "value": "acquireDeviceWithError:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCRacingWheel~1acquireDevice()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "acquireDeviceWithError:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCSwitchPositionInput/title",
+          "value": "GCSwitchPositionInput"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCSwitchPositionInput/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GCSwitchPositionInput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCSwitchPositionInput/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GCSwitchPositionInput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCRacingWheelInputState~1wheel/title",
+          "value": "wheel"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCRacingWheelInputState~1wheel/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "wheel"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCRacingWheelInput~1nextInputState()/title",
+          "value": "nextInputState"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCRacingWheelInput~1nextInputState()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "nextInputState"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCLinearInput/title",
+          "value": "GCLinearInput"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCLinearInput/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GCLinearInput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCLinearInput/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GCLinearInput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCSteeringWheelElement/title",
+          "value": "GCSteeringWheelElement"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCSteeringWheelElement/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GCSteeringWheelElement"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCSteeringWheelElement/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GCSteeringWheelElement"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCRacingWheel~1connectedRacingWheels/title",
+          "value": "connectedRacingWheels"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCRacingWheel~1connectedRacingWheels/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "connectedRacingWheels"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCRacingWheelInputState~1acceleratorPedal/title",
+          "value": "acceleratorPedal"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCRacingWheelInputState~1acceleratorPedal/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "acceleratorPedal"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCGearShifterElement/title",
+          "value": "GCGearShifterElement"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCGearShifterElement/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GCGearShifterElement"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCGearShifterElement/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GCGearShifterElement"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCRacingWheel~1relinquishDevice()/title",
+          "value": "relinquishDevice"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCRacingWheel~1relinquishDevice()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "relinquishDevice"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCRelativeInput/title",
+          "value": "GCRelativeInput"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCRelativeInput/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GCRelativeInput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCRelativeInput/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GCRelativeInput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCRacingWheelInput/title",
+          "value": "GCRacingWheelInput"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCRacingWheelInput/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GCRacingWheelInput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCRacingWheelInput/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GCRacingWheelInput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCAxisElement~1absoluteInput/title",
+          "value": "absoluteInput"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCAxisElement~1absoluteInput/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "absoluteInput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCRacingWheel~1wheelInput/title",
+          "value": "wheelInput"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCRacingWheel~1wheelInput/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "wheelInput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCAxisInput/title",
+          "value": "GCAxisInput"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCAxisInput/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GCAxisInput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCAxisInput/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GCAxisInput"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/gamecontroller/racing-wheel-device-support"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/gamecontroller/racing-wheel-device-support"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

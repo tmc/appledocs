@@ -1,0 +1,2051 @@
+{
+  "abstract": [
+    {
+      "text": "Catch common shader runtime issues using Shader Validation while your app is running.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Xcode/documentation/Xcode",
+        "doc://com.apple.Xcode/documentation/Xcode/debugging",
+        "doc://com.apple.Xcode/documentation/Xcode/Metal-developer-workflows"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Xcode/documentation/Xcode/Validating-your-apps-Metal-shader-usage"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Validating your app’s Metal shader usage"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Shader Validation layer detects errors only discoverable during shader execution, like out-of-bounds memory accesses, attempts to access ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": " textures, and others.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "It’s similar to Address Sanitizer for general runtime issues (see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Xcode/diagnosing-memory-thread-and-crash-issues-early",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ").",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You can enable Shader Validation using the runtime diagnostics options in Xcode, or by using environment variables.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To ensure you see the most up-to-date debug information, set your app’s deployment target to the matching OS version, even if temporarily.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You can change the deployment target in the Xcode project settings. If you change the deployment target temporarily, remember to change it back before deploying your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The Shader Validation layer has a corresponding impact on GPU performance, and shaders might take longer to compile in runtime. This layer adds instrumentation code to all your GPU functions, which increases the number of times they access memory.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information, see the WWDC20 video ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/videos/play/wwdc2020/10616/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and the WWDC21 video ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/videos/play/wwdc2021/10157?time=770",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Enable-Shader-Validation-in-Xcode",
+          "level": 3,
+          "text": "Enable Shader Validation in Xcode",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Follow these steps to enable Shader Validation using the runtime diagnostics options in the Scheme settings:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the Xcode toolbar, choose Edit Scheme from the Scheme menu.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "Alternatively, choose Product > Scheme > Edit Scheme.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the Edit Scheme panel, select Run.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the setting tab, click Diagnostics.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select Shader Validation to enable it, and click Close.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Now the system enables Shader Validation each time you run your scheme.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In addition, you can create breakpoints for shader errors by clicking the arrow next to the Shader Validation checkbox.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gputools-runtime-shader-jump.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Selectively-enable-Shader-Validation",
+          "level": 3,
+          "text": "Selectively enable Shader Validation",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When enabling Shader Validation, you can also choose to only enable (or disable) Shader Validation for specific pipelines.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This advanced control can be particularly useful when you want to focus your debugging on a range of pipelines you preliminarily identified.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "It can also greatly improve the performance of the apps you debug, thanks to the reduced amount of instrumented pipelines.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Shader Validation instruments all pipelines by default (",
+              "type": "text"
+            },
+            {
+              "code": "MTL_SHADER_VALIDATION_DEFAULT_STATE=all",
+              "type": "codeVoice"
+            },
+            {
+              "text": ").",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "To change this behavior, you can set ",
+              "type": "text"
+            },
+            {
+              "code": "MTL_SHADER_VALIDATION_DEFAULT_STATE=none",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Next, you can set ",
+              "type": "text"
+            },
+            {
+              "code": "MTL_SHADER_VALIDATION_ENABLE_PIPELINES",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "MTL_SHADER_VALIDATION_DISABLE_PIPELINES",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to selectively enable and disable instrumentation for given pipelines.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You can use the pipeline labels and Shader Validation unique identifiers (UIDs) as entries (see ",
+              "type": "text"
+            },
+            {
+              "identifier": "#Print-pipeline-UIDs",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ").",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Multiple entries need to be comma-separated, without spaces (see ",
+              "type": "text"
+            },
+            {
+              "code": "man MetalValidation",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for more information).",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "In the following example, the pipelines with the label ",
+              "type": "text"
+            },
+            {
+              "code": "foo",
+              "type": "codeVoice"
+            },
+            {
+              "text": " are the only pipelines not instrumented by Shader Validation.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "let descriptor = MTLRenderPipelineDescriptor()",
+                    "descriptor.label = \"foo\"",
+                    "",
+                    "let pipelineState = try? device.makeRenderPipelineState(descriptor: descriptor)"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "MTLRenderPipelineDescriptor* descriptor = [[MTLRenderPipelineDescriptor alloc] init];",
+                    "descriptor.label = @\"foo\";",
+                    "",
+                    "id<MTLRenderPipelineState> pipelineState = [device newRenderPipelineStateWithDescriptor:descriptor error:nil];"
+                  ],
+                  "syntax": "obj-c",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "code": [
+            "> export MTL_SHADER_VALIDATION=1",
+            "> export MTL_SHADER_VALIDATION_DEFAULT_STATE=all",
+            "> export MTL_SHADER_VALIDATION_DISABLE_PIPELINES=\"foo\"",
+            "...",
+            "",
+            "> ./<application>"
+          ],
+          "syntax": "zsh",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Alternatively, you can programmatically set your pipeline descriptor property ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Metal/MTLRenderPipelineDescriptor/shaderValidation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to either ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Metal/MTLShaderValidation/enabled",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Metal/MTLShaderValidation/disabled",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the following example, ",
+              "type": "text"
+            },
+            {
+              "code": "pipelineState",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is the only pipeline instrumented by Shader Validation.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "let descriptor = MTLRenderPipelineDescriptor()",
+                    "descriptor.shaderValidation = MTLShaderValidation.enabled",
+                    "",
+                    "let pipelineState = try? device.makeRenderPipelineState(descriptor: descriptor)"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "MTLRenderPipelineDescriptor* descriptor = [[MTLRenderPipelineDescriptor alloc] init];",
+                    "descriptor.shaderValidation = MTLShaderValidationEnabled;",
+                    "",
+                    "id<MTLRenderPipelineState> pipelineState = [device newRenderPipelineStateWithDescriptor:descriptor error:nil];"
+                  ],
+                  "syntax": "obj-c",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "code": [
+            "> export MTL_SHADER_VALIDATION=1",
+            "> export MTL_SHADER_VALIDATION_DEFAULT_STATE=none",
+            "> ...",
+            "",
+            "> ./<application>"
+          ],
+          "syntax": "zsh",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Finally, you can query the Shader Validation state of a pipeline through the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Metal/MTLRenderPipelineState/shaderValidation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property of pipeline state objects.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Print-pipeline-UIDs",
+          "level": 3,
+          "text": "Print pipeline UIDs",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Shader Validation generates UIDs for all pipelines you process, which you can use as an entry to ",
+              "type": "text"
+            },
+            {
+              "code": "MTL_SHADER_VALIDATION_ENABLE_PIPELINES",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "MTL_SHADER_VALIDATION_DISABLE_PIPELINES",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". This is useful in the absence of pipeline labels in the application you want to debug.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To print the UIDs to Console or a ",
+              "type": "text"
+            },
+            {
+              "code": "log stream",
+              "type": "codeVoice"
+            },
+            {
+              "text": " instance, set ",
+              "type": "text"
+            },
+            {
+              "code": "MTL_SHADER_VALIDATION_DUMP_PIPELINES=1",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in your terminal or Xcode Environment Variables Scheme settings.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "To see the logs, go to Action > Include Debug Messages in Console.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gputools-runtime-shader-validation-uid-in-console.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "View-Shader-Validation-errors",
+          "level": 3,
+          "text": "View Shader Validation errors",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After enabling Shader Validation, if Metal encounters errors while executing the commands in a command buffer, the details shown here appear in Xcode:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gputools-runtime-shader-trap.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can find the breakpoint in the Breakpoint navigator if you want to modify or remove it in the future.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Xcode/setting-breakpoints-to-pause-your-running-app",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gputools-runtime-shader-breakpoint.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you discover an error in your shader, consider taking a capture and investigating with the shader debugger (see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/Investigating-visual-artifacts",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ").",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Enable-Shader-Validation-with-environment-variables",
+          "level": 3,
+          "text": "Enable Shader Validation with environment variables",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can also enable Shader Validation by setting the following environment variables on your Metal app:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Enables all Shader Validation tests.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "MTL_SHADER_VALIDATION=1",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Enables Shader Validation error reporting.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "MTL_SHADER_VALIDATION_ENABLE_ERROR_REPORTING=1",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Determines the amount of code inlining that occurs. Possible values are ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "default",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " and ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "full",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ". Setting the value to ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "full",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " forces inlining. Increasing inlining can result in improved runtime performance at the cost of compile time performance. Decreasing inlining can result in improved compile time performance at the cost of runtime performance.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "MTL_SHADER_VALIDATION_COMPILER_INLINING",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Sets the behavior for handling invalid accesses. Possible values are ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "zerofill",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " (default) and ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "allow",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ". ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "zerofill",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " causes invalid reads to return ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "0",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", and drops any invalid writes. ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "allow",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " allows an invalid read or write, but can result in command buffer failure, depending on the platform. It also reduces compile and runtime performance impact.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "MTL_SHADER_VALIDATION_FAIL_MODE",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Checks all global memory accesses. Accessing invalid memory follows the behavior that ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "MTL_SHADER_VALIDATION_FAIL_MODE",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " specifies.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "MTL_SHADER_VALIDATION_GLOBAL_MEMORY=1",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Checks all threadgroup memory accesses. Accessing invalid memory follows the behavior that ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "MTL_SHADER_VALIDATION_FAIL_MODE",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " specifies.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "MTL_SHADER_VALIDATION_THREADGROUP_MEMORY=1",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Checks all texture member functions, such as ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "read",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "write",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "get_width",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", and so on. Metal honors your setting for ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "MTL_SHADER_VALIDATION_FAIL_MODE",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " when an app triggers an invalid texture operation, including accessing a ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "nil",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " texture instance, a valid but nonresident texture instance, a resident texture instance that’s a type that doesn’t match the shader’s signature, or a resident texture instance that doesn’t have an appropriate ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.documentation/documentation/Metal/MTLResourceUsage",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": " configuration from one of the resource usage methods of an ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.documentation/documentation/Metal/MTLComputeCommandEncoder",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": " or ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.documentation/documentation/Metal/MTLRenderCommandEncoder",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": " instance (see ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.documentation/documentation/Metal/argument-buffer-resource-preparation-commands",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": ").",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "MTL_SHADER_VALIDATION_TEXTURE_USAGE=1",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Checks all indirect calls (calls by function pointer, visible functions, intersection functions, and dynamic libraries), as well as recursive calls. If the call stack depth for such functions exceeds the value in ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "maxCallStackDepth",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " for that stage, an error occurs and the system skips the function call.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "MTL_SHADER_VALIDATION_STACK_OVERFLOW=1",
+                    "type": "text"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For a complete list of settings, run ",
+              "type": "text"
+            },
+            {
+              "code": "man MetalValidation",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in Terminal.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you discover an error in your shader, consider taking a capture (see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/Capturing-a-Metal-workload-programmatically",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ") and investigating with the Metal debugger (see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/Debugging-the-shaders-within-a-draw-command-or-compute-dispatch",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ").",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "#Print-pipeline-UIDs": {
+      "identifier": "#Print-pipeline-UIDs",
+      "title": "Print pipeline UIDs",
+      "titleInlineContent": [
+        {
+          "text": "Print pipeline UIDs",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "#Print-pipeline-UIDs"
+    },
+    "Metal-Developer-Workflow-PageImage-card.png": {
+      "alt": "Metal logo",
+      "identifier": "Metal-Developer-Workflow-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/713b476e42e48070365a2abf70bc49b0/Metal-Developer-Workflow-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e226f618b21dde7899eba5de3bd4641a/Metal-Developer-Workflow-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "Xcode-PageImage-card.png": {
+      "alt": "The Xcode logo on a blue gradient background.",
+      "identifier": "Xcode-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cc63eacd8f7f660388b46204d1d9bbcb/Xcode-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/62dba87d5f60ec96eb48882c9dff86d8/Xcode-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Xcode/documentation/Xcode": {
+      "abstract": [
+        {
+          "text": "Build, test, and submit your app with Apple’s integrated development environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode",
+      "images": [
+        {
+          "identifier": "Xcode-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Capturing-a-Metal-workload-programmatically": {
+      "abstract": [
+        {
+          "text": "Analyze your app’s performance by invoking Metal’s frame capture.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Capturing-a-Metal-workload-programmatically",
+      "kind": "article",
+      "role": "article",
+      "title": "Capturing a Metal workload programmatically",
+      "type": "topic",
+      "url": "/documentation/xcode/capturing-a-metal-workload-programmatically"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Debugging-the-shaders-within-a-draw-command-or-compute-dispatch": {
+      "abstract": [
+        {
+          "text": "Identify and fix problematic shaders in your app using the shader debugger.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Debugging-the-shaders-within-a-draw-command-or-compute-dispatch",
+      "kind": "article",
+      "role": "article",
+      "title": "Debugging the shaders within a draw command or compute dispatch",
+      "type": "topic",
+      "url": "/documentation/xcode/debugging-the-shaders-within-a-draw-command-or-compute-dispatch"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Inspecting-live-resources-at-runtime": {
+      "abstract": [
+        {
+          "text": "Validate your resources by viewing the contents of your textures and buffers while debugging your Metal app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Inspecting-live-resources-at-runtime",
+      "kind": "article",
+      "role": "article",
+      "title": "Inspecting live resources at runtime",
+      "type": "topic",
+      "url": "/documentation/xcode/inspecting-live-resources-at-runtime"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Investigating-visual-artifacts": {
+      "abstract": [
+        {
+          "text": "Discover, diagnose, and fix visual artifacts in your app with the Metal debugger.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Investigating-visual-artifacts",
+      "kind": "article",
+      "role": "article",
+      "title": "Investigating visual artifacts",
+      "type": "topic",
+      "url": "/documentation/xcode/investigating-visual-artifacts"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Metal-developer-workflows": {
+      "abstract": [
+        {
+          "text": "Locate and fix issues related to your app’s use of the Metal API and GPU functions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Metal-developer-workflows",
+      "images": [
+        {
+          "identifier": "Metal-Developer-Workflow-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Metal developer workflows",
+      "type": "topic",
+      "url": "/documentation/xcode/metal-developer-workflows"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Monitoring-your-Metal-apps-graphics-performance": {
+      "abstract": [
+        {
+          "text": "Catch performance issues using the Metal Performance HUD while your app is running.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Monitoring-your-Metal-apps-graphics-performance",
+      "kind": "article",
+      "role": "article",
+      "title": "Monitoring your Metal app’s graphics performance",
+      "type": "topic",
+      "url": "/documentation/xcode/monitoring-your-metal-apps-graphics-performance"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Validating-your-apps-Metal-API-usage": {
+      "abstract": [
+        {
+          "text": "Catch runtime issues in your Metal app using API Validation.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Validating-your-apps-Metal-API-usage",
+      "kind": "article",
+      "role": "article",
+      "title": "Validating your app’s Metal API usage",
+      "type": "topic",
+      "url": "/documentation/xcode/validating-your-apps-metal-api-usage"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/debugging": {
+      "abstract": [
+        {
+          "text": "Identify and address issues in your app using the Xcode debugger, Xcode Organizer, Metal debugger, and Instruments.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/debugging",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Debugging",
+      "type": "topic",
+      "url": "/documentation/xcode/debugging"
+    },
+    "doc://com.apple.documentation/documentation/Metal/MTLComputeCommandEncoder": {
+      "abstract": [
+        {
+          "text": "An interface for dispatching commands to encode in a compute pass.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLComputeCommandEncoder"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLCommandEncoder",
+          "text": "MTLCommandEncoder"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Metal/MTLComputeCommandEncoder",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MTLComputeCommandEncoder",
+      "type": "topic",
+      "url": "/documentation/Metal/MTLComputeCommandEncoder"
+    },
+    "doc://com.apple.documentation/documentation/Metal/MTLRenderCommandEncoder": {
+      "abstract": [
+        {
+          "text": "An interface that encodes a render pass into a command buffer, including all its draw calls and configuration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLRenderCommandEncoder"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLCommandEncoder",
+          "text": "MTLCommandEncoder"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Metal/MTLRenderCommandEncoder",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MTLRenderCommandEncoder",
+      "type": "topic",
+      "url": "/documentation/Metal/MTLRenderCommandEncoder"
+    },
+    "doc://com.apple.documentation/documentation/Metal/MTLRenderPipelineDescriptor/shaderValidation": {
+      "abstract": [
+        {
+          "text": "A value that enables or disables shader validation for the pipeline.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "shaderValidation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MTLShaderValidation",
+          "text": "MTLShaderValidation"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "set"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Metal/MTLRenderPipelineDescriptor/shaderValidation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "shaderValidation",
+      "type": "topic",
+      "url": "/documentation/Metal/MTLRenderPipelineDescriptor/shaderValidation"
+    },
+    "doc://com.apple.documentation/documentation/Metal/MTLRenderPipelineState/shaderValidation": {
+      "abstract": [
+        {
+          "text": "The current state of shader validation for the pipeline.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "shaderValidation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MTLShaderValidation",
+          "text": "MTLShaderValidation"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Metal/MTLRenderPipelineState/shaderValidation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "shaderValidation",
+      "type": "topic",
+      "url": "/documentation/Metal/MTLRenderPipelineState/shaderValidation"
+    },
+    "doc://com.apple.documentation/documentation/Metal/MTLResourceUsage": {
+      "abstract": [
+        {
+          "text": "Options that describe how a graphics or compute function uses an argument buffer’s resource.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLResourceUsage"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Metal/MTLResourceUsage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MTLResourceUsage",
+      "type": "topic",
+      "url": "/documentation/Metal/MTLResourceUsage"
+    },
+    "doc://com.apple.documentation/documentation/Metal/MTLShaderValidation/disabled": {
+      "abstract": [
+        {
+          "text": "Disables shader validation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "disabled"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Metal/MTLShaderValidation/disabled",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MTLShaderValidation.disabled",
+      "type": "topic",
+      "url": "/documentation/Metal/MTLShaderValidation/disabled"
+    },
+    "doc://com.apple.documentation/documentation/Metal/MTLShaderValidation/enabled": {
+      "abstract": [
+        {
+          "text": "Enables shader validation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "enabled"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Metal/MTLShaderValidation/enabled",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MTLShaderValidation.enabled",
+      "type": "topic",
+      "url": "/documentation/Metal/MTLShaderValidation/enabled"
+    },
+    "doc://com.apple.documentation/documentation/Metal/argument-buffer-resource-preparation-commands": {
+      "abstract": [
+        {
+          "text": "Load individual resources and multiple resources within a heap into GPU memory so that they’re available to shaders through argument buffers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Metal/argument-buffer-resource-preparation-commands",
+      "kind": "article",
+      "role": "article",
+      "title": "Argument Buffer Resource Preparation Commands",
+      "type": "topic",
+      "url": "/documentation/Metal/argument-buffer-resource-preparation-commands"
+    },
+    "doc://com.apple.documentation/documentation/Xcode/diagnosing-memory-thread-and-crash-issues-early": {
+      "abstract": [
+        {
+          "text": "Identify runtime crashes and undefined behaviors in your app during testing using Xcode’s sanitizer tools.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Xcode/diagnosing-memory-thread-and-crash-issues-early",
+      "kind": "article",
+      "role": "article",
+      "title": "Diagnosing memory, thread, and crash issues early",
+      "type": "topic",
+      "url": "/documentation/Xcode/diagnosing-memory-thread-and-crash-issues-early"
+    },
+    "doc://com.apple.documentation/documentation/Xcode/setting-breakpoints-to-pause-your-running-app": {
+      "abstract": [
+        {
+          "text": "Specify where your app pauses when running the debugger to investigate bugs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Xcode/setting-breakpoints-to-pause-your-running-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Setting breakpoints to pause your running app",
+      "type": "topic",
+      "url": "/documentation/Xcode/setting-breakpoints-to-pause-your-running-app"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "gputools-runtime-shader-breakpoint.png": {
+      "alt": "A screenshot of the Xcode Breakpoint navigator with a Shader Validation breakpoint enabled.",
+      "identifier": "gputools-runtime-shader-breakpoint.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5f2c08ca98e616ef0f657f8f989d8f38/gputools-runtime-shader-breakpoint.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e340aa8ab8ccc8e2b6450e709c2afdf9/gputools-runtime-shader-breakpoint@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/fcab6ab094af40302dec3812793afb97/gputools-runtime-shader-breakpoint~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/3bbd6a277e8153af95636807e8cab85e/gputools-runtime-shader-breakpoint~dark@2x.png"
+        }
+      ]
+    },
+    "gputools-runtime-shader-jump.png": {
+      "alt": "A screenshot of Metal validation options with the Shader Validation option enabled and the quick jump button highlighted.",
+      "identifier": "gputools-runtime-shader-jump.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/577a8fd6f3d5942074350bfdd3d806c0/gputools-runtime-shader-jump.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4d17df9957ccbf01875452c2dfa6d1f0/gputools-runtime-shader-jump@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/39b974f6db04c6a5475435190f6cdb97/gputools-runtime-shader-jump~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ee38c2a29eccb76aa56e3adbf1cc206f/gputools-runtime-shader-jump~dark@2x.png"
+        }
+      ]
+    },
+    "gputools-runtime-shader-trap.png": {
+      "alt": "A screenshot of the Xcode source editor with a triggered Shader Validation error.",
+      "identifier": "gputools-runtime-shader-trap.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/64458da6382cde79e17cb401032ff9c7/gputools-runtime-shader-trap.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/078c74d9ef447399b4936e42d7ba93a1/gputools-runtime-shader-trap@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cbcbd6feeffcfa53a8c380504af36366/gputools-runtime-shader-trap~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/65a8d2d034a7625145ca8ed4102670e2/gputools-runtime-shader-trap~dark@2x.png"
+        }
+      ]
+    },
+    "gputools-runtime-shader-validation-uid-in-console.png": {
+      "alt": "A screenshot of the Console.App window displaying dumped Shader Validation UIDs.",
+      "identifier": "gputools-runtime-shader-validation-uid-in-console.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cc91193b8e702a5accd4b61b02071d23/gputools-runtime-shader-validation-uid-in-console.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1b67f69cc82a8010b711b747ed1a96d0/gputools-runtime-shader-validation-uid-in-console@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1fc5c552507ffad5c1d4c3167a663220/gputools-runtime-shader-validation-uid-in-console~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/310fc878ae8f19dca09bcd6470c57087/gputools-runtime-shader-validation-uid-in-console~dark@2x.png"
+        }
+      ]
+    },
+    "https://developer.apple.com/videos/play/wwdc2020/10616/": {
+      "identifier": "https://developer.apple.com/videos/play/wwdc2020/10616/",
+      "title": "Debug GPU-side errors in Metal",
+      "titleInlineContent": [
+        {
+          "text": "Debug GPU-side errors in Metal",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/videos/play/wwdc2020/10616/"
+    },
+    "https://developer.apple.com/videos/play/wwdc2021/10157?time=770": {
+      "identifier": "https://developer.apple.com/videos/play/wwdc2021/10157?time=770",
+      "title": "Discover Metal debugging, profiling, and asset creation tools",
+      "titleInlineContent": [
+        {
+          "text": "Discover Metal debugging, profiling, and asset creation tools",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/videos/play/wwdc2021/10157?time=770"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Runtime-diagnostics",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Xcode/documentation/Xcode/Inspecting-live-resources-at-runtime",
+        "doc://com.apple.Xcode/documentation/Xcode/Validating-your-apps-Metal-API-usage",
+        "doc://com.apple.Xcode/documentation/Xcode/Monitoring-your-Metal-apps-graphics-performance"
+      ],
+      "title": "Runtime diagnostics"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Metal~1MTLShaderValidation~1disabled/title",
+          "value": "MTLShaderValidationDisabled"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Metal~1MTLShaderValidation~1disabled/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLShaderValidationDisabled"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Metal~1MTLRenderPipelineState~1shaderValidation/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "nonatomic"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "readonly"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@E@MTLShaderValidation",
+              "text": "MTLShaderValidation"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "shaderValidation"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Metal~1MTLRenderPipelineDescriptor~1shaderValidation/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "nonatomic"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "readwrite"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@E@MTLShaderValidation",
+              "text": "MTLShaderValidation"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "shaderValidation"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Metal~1MTLComputeCommandEncoder/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MTLComputeCommandEncoder"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)MTLCommandEncoder",
+              "text": "MTLCommandEncoder"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Metal~1MTLShaderValidation~1enabled/title",
+          "value": "MTLShaderValidationEnabled"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Metal~1MTLShaderValidation~1enabled/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLShaderValidationEnabled"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Metal~1MTLResourceUsage/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "enum"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MTLResourceUsage"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@NSUInteger",
+              "text": "NSUInteger"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Metal~1MTLRenderCommandEncoder/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MTLRenderCommandEncoder"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)MTLCommandEncoder",
+              "text": "MTLCommandEncoder"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1720 @@
+{
+  "abstract": [
+    {
+      "text": "A utility object that computes directions and travel-time information based on the route information you provide.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.mapkit/documentation/MapKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.mapkit/documentation/MapKit/MKDirections"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)MKDirections",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "MKDirections"
+      }
+    ],
+    "modules": [
+      {
+        "name": "MapKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "MKDirections"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "7.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "7.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.9",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.2",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "MKDirections"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MKDirections"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.mapkit/documentation/MapKit/enabling-maps-capability-in-xcode"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You use an ",
+              "type": "text"
+            },
+            {
+              "code": "MKDirections",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object to ask the Apple servers to provide walking or driving directions for a route, which you specify using an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKDirections/Request",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object. After making a request, MapKit delivers the results asynchronously to the completion handler that you provide. You can also get the estimated travel time for the route.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each ",
+              "type": "text"
+            },
+            {
+              "code": "MKDirections",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object handles a single request for directions, although you can cancel and restart that request as needed. You can create multiple instances of this class and process different route requests at the same time, but make requests only when you plan to present the corresponding route information to the user. Apps may receive an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKError/Code/loadingThrottled",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " error if the device makes too many requests in too short a time period.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit": {
+      "abstract": [
+        {
+          "text": "Display map or satellite imagery within your app, call out points of interest, and determine placemark information for map coordinates.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "MapKit",
+      "type": "topic",
+      "url": "/documentation/mapkit"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit/MKDirections": {
+      "abstract": [
+        {
+          "text": "A utility object that computes directions and travel-time information based on the route information you provide.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MKDirections"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKDirections",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MKDirections"
+        }
+      ],
+      "role": "symbol",
+      "title": "MKDirections",
+      "type": "topic",
+      "url": "/documentation/mapkit/mkdirections"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit/MKDirections/DirectionsHandler": {
+      "abstract": [
+        {
+          "text": "The block to use for processing the requested route information.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DirectionsHandler"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKDirections/DirectionsHandler",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DirectionsHandler"
+        }
+      ],
+      "role": "symbol",
+      "title": "MKDirections.DirectionsHandler",
+      "type": "topic",
+      "url": "/documentation/mapkit/mkdirections/directionshandler"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit/MKDirections/ETAHandler": {
+      "abstract": [
+        {
+          "text": "The block to use for processing travel-time information.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ETAHandler"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKDirections/ETAHandler",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ETAHandler"
+        }
+      ],
+      "role": "symbol",
+      "title": "MKDirections.ETAHandler",
+      "type": "topic",
+      "url": "/documentation/mapkit/mkdirections/etahandler"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit/MKDirections/ETAResponse": {
+      "abstract": [
+        {
+          "text": "The travel-time information that Apple servers return.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ETAResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKDirections/ETAResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ETAResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "MKDirections.ETAResponse",
+      "type": "topic",
+      "url": "/documentation/mapkit/mkdirections/etaresponse"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit/MKDirections/Request": {
+      "abstract": [
+        {
+          "text": "The start and end points of a route, along with the planned mode of transportation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Request"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKDirections/Request",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Request"
+        }
+      ],
+      "role": "symbol",
+      "title": "MKDirections.Request",
+      "type": "topic",
+      "url": "/documentation/mapkit/mkdirections/request"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit/MKDirections/Response": {
+      "abstract": [
+        {
+          "text": "The route information that Apple servers return in response to your request for directions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Response"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKDirections/Response",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Response"
+        }
+      ],
+      "role": "symbol",
+      "title": "MKDirections.Response",
+      "type": "topic",
+      "url": "/documentation/mapkit/mkdirections/response"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit/MKDirections/RoutePreference": {
+      "abstract": [
+        {
+          "text": "Options that modify how the framework selects routes when calculating directions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RoutePreference"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKDirections/RoutePreference",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RoutePreference"
+        }
+      ],
+      "role": "symbol",
+      "title": "MKDirections.RoutePreference",
+      "type": "topic",
+      "url": "/documentation/mapkit/mkdirections/routepreference"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit/MKDirections/calculate(completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Begins calculating the requested route information asynchronously.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "calculate"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MKDirections",
+          "text": "MKDirections"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@MKDirectionsHandler",
+          "text": "DirectionsHandler"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKDirections/calculate(completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "calculateDirectionsWithCompletionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "calculate(completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/mapkit/mkdirections/calculate(completionhandler:)"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit/MKDirections/calculateETA(completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Begins calculating the requested travel-time information asynchronously.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "calculateETA"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MKDirections",
+          "text": "MKDirections"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@MKETAHandler",
+          "text": "ETAHandler"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKDirections/calculateETA(completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "calculateETAWithCompletionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "calculateETA(completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/mapkit/mkdirections/calculateeta(completionhandler:)"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit/MKDirections/cancel()": {
+      "abstract": [
+        {
+          "text": "Cancels a pending request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "cancel"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKDirections/cancel()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "cancel"
+        }
+      ],
+      "role": "symbol",
+      "title": "cancel()",
+      "type": "topic",
+      "url": "/documentation/mapkit/mkdirections/cancel()"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit/MKDirections/init(request:)": {
+      "abstract": [
+        {
+          "text": "Creates and returns a directions object using the specified request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "request"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MKDirections",
+          "text": "MKDirections"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MKDirectionsRequest",
+          "text": "Request"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKDirections/init(request:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithRequest:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(request:)",
+      "type": "topic",
+      "url": "/documentation/mapkit/mkdirections/init(request:)"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit/MKDirections/isCalculating": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether a request is in process.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isCalculating"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKDirections/isCalculating",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "calculating"
+        }
+      ],
+      "role": "symbol",
+      "title": "isCalculating",
+      "type": "topic",
+      "url": "/documentation/mapkit/mkdirections/iscalculating"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit/MKError/Code/loadingThrottled": {
+      "abstract": [
+        {
+          "text": "The data didn’t load because data throttling is in effect.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "loadingThrottled"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKError/Code/loadingThrottled",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MKErrorLoadingThrottled"
+        }
+      ],
+      "role": "symbol",
+      "title": "MKError.Code.loadingThrottled",
+      "type": "topic",
+      "url": "/documentation/mapkit/mkerror/code/loadingthrottled"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit/MKRoute": {
+      "abstract": [
+        {
+          "text": "A single route between a requested start and end point.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MKRoute"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKRoute",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MKRoute"
+        }
+      ],
+      "role": "symbol",
+      "title": "MKRoute",
+      "type": "topic",
+      "url": "/documentation/mapkit/mkroute"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit/MKRoute/Step": {
+      "abstract": [
+        {
+          "text": "One portion of an overall route.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Step"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKRoute/Step",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Step"
+        }
+      ],
+      "role": "symbol",
+      "title": "MKRoute.Step",
+      "type": "topic",
+      "url": "/documentation/mapkit/mkroute/step"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit/enabling-maps-capability-in-xcode": {
+      "abstract": [
+        {
+          "text": "Configure your routing app to support providing directions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit/enabling-maps-capability-in-xcode",
+      "kind": "article",
+      "role": "article",
+      "title": "Enabling Maps capability in Xcode",
+      "type": "topic",
+      "url": "/documentation/mapkit/enabling-maps-capability-in-xcode"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Directions",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.mapkit/documentation/MapKit/MKDirections/Request",
+        "doc://com.apple.mapkit/documentation/MapKit/MKDirections/Response",
+        "doc://com.apple.mapkit/documentation/MapKit/MKDirections/ETAResponse",
+        "doc://com.apple.mapkit/documentation/MapKit/MKRoute",
+        "doc://com.apple.mapkit/documentation/MapKit/MKRoute/Step"
+      ],
+      "title": "Directions"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-directions-object",
+      "identifiers": [
+        "doc://com.apple.mapkit/documentation/MapKit/MKDirections/init(request:)",
+        "doc://com.apple.mapkit/documentation/MapKit/MKDirections/Request",
+        "doc://com.apple.mapkit/documentation/MapKit/MKDirections/RoutePreference"
+      ],
+      "title": "Creating a directions object"
+    },
+    {
+      "anchor": "Getting-the-directions",
+      "identifiers": [
+        "doc://com.apple.mapkit/documentation/MapKit/MKDirections/calculate(completionHandler:)",
+        "doc://com.apple.mapkit/documentation/MapKit/MKDirections/DirectionsHandler",
+        "doc://com.apple.mapkit/documentation/MapKit/MKDirections/Response"
+      ],
+      "title": "Getting the directions"
+    },
+    {
+      "anchor": "Getting-the-ETA",
+      "identifiers": [
+        "doc://com.apple.mapkit/documentation/MapKit/MKDirections/calculateETA(completionHandler:)",
+        "doc://com.apple.mapkit/documentation/MapKit/MKDirections/ETAHandler",
+        "doc://com.apple.mapkit/documentation/MapKit/MKDirections/ETAResponse"
+      ],
+      "title": "Getting the ETA"
+    },
+    {
+      "anchor": "Managing-the-request",
+      "identifiers": [
+        "doc://com.apple.mapkit/documentation/MapKit/MKDirections/cancel()",
+        "doc://com.apple.mapkit/documentation/MapKit/MKDirections/isCalculating"
+      ],
+      "title": "Managing the request"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "7.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "7.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.9",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "9.2",
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "MKDirections"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MKDirections"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MKDirections"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.mapkit/documentation/MapKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Creating-a-directions-object",
+              "identifiers": [
+                "doc://com.apple.mapkit/documentation/MapKit/MKDirections/init(request:)",
+                "doc://com.apple.mapkit/documentation/MapKit/MKDirections/Request",
+                "doc://com.apple.mapkit/documentation/MapKit/MKDirections/RoutePreference"
+              ],
+              "title": "Creating a directions object"
+            },
+            {
+              "anchor": "Getting-the-directions",
+              "identifiers": [
+                "doc://com.apple.mapkit/documentation/MapKit/MKDirections/calculate(completionHandler:)",
+                "doc://com.apple.mapkit/documentation/MapKit/MKDirections/DirectionsHandler",
+                "doc://com.apple.mapkit/documentation/MapKit/MKDirections/Response"
+              ],
+              "title": "Getting the directions"
+            },
+            {
+              "anchor": "Getting-the-ETA",
+              "identifiers": [
+                "doc://com.apple.mapkit/documentation/MapKit/MKDirections/calculateETA(completionHandler:)",
+                "doc://com.apple.mapkit/documentation/MapKit/MKDirections/ETAHandler",
+                "doc://com.apple.mapkit/documentation/MapKit/MKDirections/ETAResponse"
+              ],
+              "title": "Getting the ETA"
+            },
+            {
+              "anchor": "Managing-the-request",
+              "identifiers": [
+                "doc://com.apple.mapkit/documentation/MapKit/MKDirections/cancel()",
+                "doc://com.apple.mapkit/documentation/MapKit/MKDirections/isCalculating"
+              ],
+              "title": "Managing the request"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Directions",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.mapkit/documentation/MapKit/MKDirections/Request",
+                "doc://com.apple.mapkit/documentation/MapKit/MKDirections/Response",
+                "doc://com.apple.mapkit/documentation/MapKit/MKDirections/ETAResponse",
+                "doc://com.apple.mapkit/documentation/MapKit/MKRoute",
+                "doc://com.apple.mapkit/documentation/MapKit/MKRoute/Step"
+              ],
+              "title": "Directions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "MKDirections"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKDirections~1DirectionsHandler/title",
+          "value": "MKDirectionsHandler"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKDirections~1DirectionsHandler/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MKDirectionsHandler"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKDirections~1DirectionsHandler/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MKDirectionsHandler"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKDirections~1Request/title",
+          "value": "MKDirectionsRequest"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKDirections~1Request/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MKDirectionsRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKDirections~1Request/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MKDirectionsRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKDirections~1calculate(completionHandler:)/title",
+          "value": "calculateDirectionsWithCompletionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKDirections~1calculate(completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "calculateDirectionsWithCompletionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKRoute~1Step/title",
+          "value": "MKRouteStep"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKRoute~1Step/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MKRouteStep"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKRoute~1Step/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MKRouteStep"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKDirections~1Response/title",
+          "value": "MKDirectionsResponse"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKDirections~1Response/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MKDirectionsResponse"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKDirections~1Response/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MKDirectionsResponse"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKDirections~1RoutePreference/title",
+          "value": "MKDirectionsRoutePreference"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKDirections~1RoutePreference/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MKDirectionsRoutePreference"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKDirections~1RoutePreference/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MKDirectionsRoutePreference"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKRoute/title",
+          "value": "MKRoute"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKRoute/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MKRoute"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKRoute/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MKRoute"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKDirections~1init(request:)/title",
+          "value": "initWithRequest:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKDirections~1init(request:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithRequest:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKDirections~1calculateETA(completionHandler:)/title",
+          "value": "calculateETAWithCompletionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKDirections~1calculateETA(completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "calculateETAWithCompletionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKDirections~1ETAResponse/title",
+          "value": "MKETAResponse"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKDirections~1ETAResponse/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MKETAResponse"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKDirections~1ETAResponse/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MKETAResponse"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKError~1Code~1loadingThrottled/title",
+          "value": "MKErrorLoadingThrottled"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKError~1Code~1loadingThrottled/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MKErrorLoadingThrottled"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKDirections~1ETAHandler/title",
+          "value": "MKETAHandler"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKDirections~1ETAHandler/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MKETAHandler"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKDirections~1ETAHandler/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MKETAHandler"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKDirections~1cancel()/title",
+          "value": "cancel"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKDirections~1cancel()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "cancel"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKDirections/title",
+          "value": "MKDirections"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKDirections/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MKDirections"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKDirections/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MKDirections"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKDirections~1isCalculating/title",
+          "value": "calculating"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mapkit~1documentation~1MapKit~1MKDirections~1isCalculating/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "calculating"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/mapkit/mkdirections"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/mapkit/mkdirections"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

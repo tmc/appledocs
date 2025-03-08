@@ -1,0 +1,1699 @@
+{
+  "abstract": [
+    {
+      "text": "An object that processes buffer objects as received from ReplayKit.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.replaykit/documentation/ReplayKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.replaykit/documentation/ReplayKit/RPBroadcastSampleHandler"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)RPBroadcastSampleHandler",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "RPBroadcastSampleHandler"
+      }
+    ],
+    "modules": [
+      {
+        "name": "ReplayKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "RPBroadcastSampleHandler"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "11.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "RPBroadcastSampleHandler"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "RPBroadcastSampleHandler"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To handle ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreMedia/CMSampleBuffer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects as captured by ReplayKit, you subclass ",
+              "type": "text"
+            },
+            {
+              "code": "RPBroadcastSampleHandler",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". You enable this mode of handling by setting ",
+              "type": "text"
+            },
+            {
+              "code": "RPBroadcastProcessMode",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in the extension’s ",
+              "type": "text"
+            },
+            {
+              "code": "I``nfo.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file to ",
+              "type": "text"
+            },
+            {
+              "code": "RPBroadcastProcessModeSampleBuffer",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In your subclass, implement the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.replaykit/documentation/ReplayKit/RPBroadcastSampleHandler/processSampleBuffer(_:with:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to handle video and audio buffers, as well as the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.replaykit/documentation/ReplayKit/RPBroadcastSampleHandler/broadcastStarted(withSetupInfo:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.replaykit/documentation/ReplayKit/RPBroadcastSampleHandler/broadcastFinished()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.replaykit/documentation/ReplayKit/RPBroadcastSampleHandler/broadcastPaused()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.replaykit/documentation/ReplayKit/RPBroadcastSampleHandler/broadcastResumed()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " methods to handle starting and stopping the broadcast.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "ReplayKit invokes methods in your ",
+              "type": "text"
+            },
+            {
+              "code": "RPBroadcastSampleHandler",
+              "type": "codeVoice"
+            },
+            {
+              "text": " subclass in a serial fashion. After invoking one method, ReplayKit won’t invoke another method until the first method returns. That means it’s safe for your implementations to update their stored state without the use of locks or synchronization to provide thread safety.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/CoreMedia/CMSampleBuffer": {
+      "abstract": [
+        {
+          "text": "A reference to a buffer of media data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMSampleBuffer"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreMedia/CMSampleBuffer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CMSampleBuffer",
+      "type": "topic",
+      "url": "/documentation/CoreMedia/CMSampleBuffer"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.replaykit/documentation/ReplayKit": {
+      "abstract": [
+        {
+          "text": "Record or stream video from the screen, and audio from the app and microphone.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.replaykit/documentation/ReplayKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "ReplayKit",
+      "type": "topic",
+      "url": "/documentation/replaykit"
+    },
+    "doc://com.apple.replaykit/documentation/ReplayKit/RPApplicationInfoBundleIdentifierKey": {
+      "abstract": [
+        {
+          "text": "The key to retrieve the app’s bundle identifier from the user-information dictionary.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RPApplicationInfoBundleIdentifierKey"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.replaykit/documentation/ReplayKit/RPApplicationInfoBundleIdentifierKey",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RPApplicationInfoBundleIdentifierKey"
+        }
+      ],
+      "role": "symbol",
+      "title": "RPApplicationInfoBundleIdentifierKey",
+      "type": "topic",
+      "url": "/documentation/replaykit/rpapplicationinfobundleidentifierkey"
+    },
+    "doc://com.apple.replaykit/documentation/ReplayKit/RPBroadcastController": {
+      "abstract": [
+        {
+          "text": "An object containing methods for starting and controlling a broadcast.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RPBroadcastController"
+        }
+      ],
+      "identifier": "doc://com.apple.replaykit/documentation/ReplayKit/RPBroadcastController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RPBroadcastController"
+        }
+      ],
+      "role": "symbol",
+      "title": "RPBroadcastController",
+      "type": "topic",
+      "url": "/documentation/replaykit/rpbroadcastcontroller"
+    },
+    "doc://com.apple.replaykit/documentation/ReplayKit/RPBroadcastHandler": {
+      "abstract": [
+        {
+          "text": "An object that sends messages to the broadcasting app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RPBroadcastHandler"
+        }
+      ],
+      "identifier": "doc://com.apple.replaykit/documentation/ReplayKit/RPBroadcastHandler",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RPBroadcastHandler"
+        }
+      ],
+      "role": "symbol",
+      "title": "RPBroadcastHandler",
+      "type": "topic",
+      "url": "/documentation/replaykit/rpbroadcasthandler"
+    },
+    "doc://com.apple.replaykit/documentation/ReplayKit/RPBroadcastMP4ClipHandler": {
+      "abstract": [
+        {
+          "text": "An object that processes MP4 movie clips from ReplayKit.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RPBroadcastMP4ClipHandler"
+        }
+      ],
+      "identifier": "doc://com.apple.replaykit/documentation/ReplayKit/RPBroadcastMP4ClipHandler",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RPBroadcastMP4ClipHandler"
+        }
+      ],
+      "role": "symbol",
+      "title": "RPBroadcastMP4ClipHandler",
+      "type": "topic",
+      "url": "/documentation/replaykit/rpbroadcastmp4cliphandler"
+    },
+    "doc://com.apple.replaykit/documentation/ReplayKit/RPBroadcastSampleHandler": {
+      "abstract": [
+        {
+          "text": "An object that processes buffer objects as received from ReplayKit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RPBroadcastSampleHandler"
+        }
+      ],
+      "identifier": "doc://com.apple.replaykit/documentation/ReplayKit/RPBroadcastSampleHandler",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RPBroadcastSampleHandler"
+        }
+      ],
+      "role": "symbol",
+      "title": "RPBroadcastSampleHandler",
+      "type": "topic",
+      "url": "/documentation/replaykit/rpbroadcastsamplehandler"
+    },
+    "doc://com.apple.replaykit/documentation/ReplayKit/RPBroadcastSampleHandler/broadcastAnnotated(withApplicationInfo:)": {
+      "abstract": [
+        {
+          "text": "Perform any required actions after starting a live broadcast.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "broadcastAnnotated"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withApplicationInfo"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s11AnyHashableV",
+          "text": "AnyHashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "])"
+        }
+      ],
+      "identifier": "doc://com.apple.replaykit/documentation/ReplayKit/RPBroadcastSampleHandler/broadcastAnnotated(withApplicationInfo:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "broadcastAnnotatedWithApplicationInfo:"
+        }
+      ],
+      "role": "symbol",
+      "title": "broadcastAnnotated(withApplicationInfo:)",
+      "type": "topic",
+      "url": "/documentation/replaykit/rpbroadcastsamplehandler/broadcastannotated(withapplicationinfo:)"
+    },
+    "doc://com.apple.replaykit/documentation/ReplayKit/RPBroadcastSampleHandler/broadcastFinished()": {
+      "abstract": [
+        {
+          "text": "Perform any required actions after a live broadcast is finished.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "broadcastFinished"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.replaykit/documentation/ReplayKit/RPBroadcastSampleHandler/broadcastFinished()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "broadcastFinished"
+        }
+      ],
+      "role": "symbol",
+      "title": "broadcastFinished()",
+      "type": "topic",
+      "url": "/documentation/replaykit/rpbroadcastsamplehandler/broadcastfinished()"
+    },
+    "doc://com.apple.replaykit/documentation/ReplayKit/RPBroadcastSampleHandler/broadcastPaused()": {
+      "abstract": [
+        {
+          "text": "Perform any required actions after a live broadcast is paused.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "broadcastPaused"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.replaykit/documentation/ReplayKit/RPBroadcastSampleHandler/broadcastPaused()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "broadcastPaused"
+        }
+      ],
+      "role": "symbol",
+      "title": "broadcastPaused()",
+      "type": "topic",
+      "url": "/documentation/replaykit/rpbroadcastsamplehandler/broadcastpaused()"
+    },
+    "doc://com.apple.replaykit/documentation/ReplayKit/RPBroadcastSampleHandler/broadcastResumed()": {
+      "abstract": [
+        {
+          "text": "Perform any required actions after a live broadcast is resumed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "broadcastResumed"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.replaykit/documentation/ReplayKit/RPBroadcastSampleHandler/broadcastResumed()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "broadcastResumed"
+        }
+      ],
+      "role": "symbol",
+      "title": "broadcastResumed()",
+      "type": "topic",
+      "url": "/documentation/replaykit/rpbroadcastsamplehandler/broadcastresumed()"
+    },
+    "doc://com.apple.replaykit/documentation/ReplayKit/RPBroadcastSampleHandler/broadcastStarted(withSetupInfo:)": {
+      "abstract": [
+        {
+          "text": "Perform any required actions after starting a live broadcast.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "broadcastStarted"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withSetupInfo"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSObject",
+          "text": "NSObject"
+        },
+        {
+          "kind": "text",
+          "text": "]?)"
+        }
+      ],
+      "identifier": "doc://com.apple.replaykit/documentation/ReplayKit/RPBroadcastSampleHandler/broadcastStarted(withSetupInfo:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "broadcastStartedWithSetupInfo:"
+        }
+      ],
+      "role": "symbol",
+      "title": "broadcastStarted(withSetupInfo:)",
+      "type": "topic",
+      "url": "/documentation/replaykit/rpbroadcastsamplehandler/broadcaststarted(withsetupinfo:)"
+    },
+    "doc://com.apple.replaykit/documentation/ReplayKit/RPBroadcastSampleHandler/finishBroadcastWithError(_:)": {
+      "abstract": [
+        {
+          "text": "Stops the broadcast and passes an error back to the broadcasting app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "finishBroadcastWithError"
+        },
+        {
+          "kind": "text",
+          "text": "(any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.replaykit/documentation/ReplayKit/RPBroadcastSampleHandler/finishBroadcastWithError(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "finishBroadcastWithError:"
+        }
+      ],
+      "role": "symbol",
+      "title": "finishBroadcastWithError(_:)",
+      "type": "topic",
+      "url": "/documentation/replaykit/rpbroadcastsamplehandler/finishbroadcastwitherror(_:)"
+    },
+    "doc://com.apple.replaykit/documentation/ReplayKit/RPBroadcastSampleHandler/processSampleBuffer(_:with:)": {
+      "abstract": [
+        {
+          "text": "Processes video and audio data as it becomes available during a live broadcast.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "processSampleBuffer"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMSampleBufferRef",
+          "text": "CMSampleBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@RPSampleBufferType",
+          "text": "RPSampleBufferType"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.replaykit/documentation/ReplayKit/RPBroadcastSampleHandler/processSampleBuffer(_:with:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "processSampleBuffer:withType:"
+        }
+      ],
+      "role": "symbol",
+      "title": "processSampleBuffer(_:with:)",
+      "type": "topic",
+      "url": "/documentation/replaykit/rpbroadcastsamplehandler/processsamplebuffer(_:with:)"
+    },
+    "doc://com.apple.replaykit/documentation/ReplayKit/RPVideoSampleOrientationKey": {
+      "abstract": [
+        {
+          "text": "The sample attachment key that describes the video orientation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RPVideoSampleOrientationKey"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.replaykit/documentation/ReplayKit/RPVideoSampleOrientationKey",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RPVideoSampleOrientationKey"
+        }
+      ],
+      "role": "symbol",
+      "title": "RPVideoSampleOrientationKey",
+      "type": "topic",
+      "url": "/documentation/replaykit/rpvideosampleorientationkey"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSExtensionRequestHandling": {
+      "abstract": [
+        {
+          "text": "The interface an app extension uses to respond to a request from a host app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSExtensionRequestHandling"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSExtensionRequestHandling",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSExtensionRequestHandling",
+      "type": "topic",
+      "url": "/documentation/foundation/nsextensionrequesthandling"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.replaykit/documentation/ReplayKit/RPBroadcastHandler"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSExtensionRequestHandling",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Media-Clip-Processing",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.replaykit/documentation/ReplayKit/RPBroadcastController",
+        "doc://com.apple.replaykit/documentation/ReplayKit/RPBroadcastHandler",
+        "doc://com.apple.replaykit/documentation/ReplayKit/RPBroadcastMP4ClipHandler"
+      ],
+      "title": "Media Clip Processing"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Handling-Sample-Buffer-Clips",
+      "identifiers": [
+        "doc://com.apple.replaykit/documentation/ReplayKit/RPBroadcastSampleHandler/broadcastStarted(withSetupInfo:)",
+        "doc://com.apple.replaykit/documentation/ReplayKit/RPBroadcastSampleHandler/broadcastPaused()",
+        "doc://com.apple.replaykit/documentation/ReplayKit/RPBroadcastSampleHandler/broadcastResumed()",
+        "doc://com.apple.replaykit/documentation/ReplayKit/RPBroadcastSampleHandler/broadcastFinished()",
+        "doc://com.apple.replaykit/documentation/ReplayKit/RPBroadcastSampleHandler/broadcastAnnotated(withApplicationInfo:)",
+        "doc://com.apple.replaykit/documentation/ReplayKit/RPApplicationInfoBundleIdentifierKey",
+        "doc://com.apple.replaykit/documentation/ReplayKit/RPBroadcastSampleHandler/processSampleBuffer(_:with:)",
+        "doc://com.apple.replaykit/documentation/ReplayKit/RPVideoSampleOrientationKey",
+        "doc://com.apple.replaykit/documentation/ReplayKit/RPBroadcastSampleHandler/finishBroadcastWithError(_:)"
+      ],
+      "title": "Handling Sample Buffer Clips"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "11.0",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.0",
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "RPBroadcastSampleHandler"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "RPBroadcastSampleHandler"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "RPBroadcastSampleHandler"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.replaykit/documentation/ReplayKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Handling-Sample-Buffer-Clips",
+              "identifiers": [
+                "doc://com.apple.replaykit/documentation/ReplayKit/RPBroadcastSampleHandler/broadcastStarted(withSetupInfo:)",
+                "doc://com.apple.replaykit/documentation/ReplayKit/RPBroadcastSampleHandler/broadcastPaused()",
+                "doc://com.apple.replaykit/documentation/ReplayKit/RPBroadcastSampleHandler/broadcastResumed()",
+                "doc://com.apple.replaykit/documentation/ReplayKit/RPBroadcastSampleHandler/broadcastFinished()",
+                "doc://com.apple.replaykit/documentation/ReplayKit/RPBroadcastSampleHandler/broadcastAnnotated(withApplicationInfo:)",
+                "doc://com.apple.replaykit/documentation/ReplayKit/RPApplicationInfoBundleIdentifierKey",
+                "doc://com.apple.replaykit/documentation/ReplayKit/RPBroadcastSampleHandler/processSampleBuffer(_:with:)",
+                "doc://com.apple.replaykit/documentation/ReplayKit/RPVideoSampleOrientationKey",
+                "doc://com.apple.replaykit/documentation/ReplayKit/RPBroadcastSampleHandler/finishBroadcastWithError(_:)"
+              ],
+              "title": "Handling Sample Buffer Clips"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.apple.replaykit/documentation/ReplayKit/RPBroadcastHandler"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Media-Clip-Processing",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.replaykit/documentation/ReplayKit/RPBroadcastController",
+                "doc://com.apple.replaykit/documentation/ReplayKit/RPBroadcastHandler",
+                "doc://com.apple.replaykit/documentation/ReplayKit/RPBroadcastMP4ClipHandler"
+              ],
+              "title": "Media Clip Processing"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "RPBroadcastSampleHandler"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.apple.replaykit/documentation/ReplayKit/RPBroadcastHandler",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)RPBroadcastHandler",
+                    "text": "RPBroadcastHandler"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.replaykit~1documentation~1ReplayKit~1RPBroadcastSampleHandler~1broadcastAnnotated(withApplicationInfo:)/title",
+          "value": "broadcastAnnotatedWithApplicationInfo:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.replaykit~1documentation~1ReplayKit~1RPBroadcastSampleHandler~1broadcastAnnotated(withApplicationInfo:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "broadcastAnnotatedWithApplicationInfo:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.replaykit~1documentation~1ReplayKit~1RPApplicationInfoBundleIdentifierKey/title",
+          "value": "RPApplicationInfoBundleIdentifierKey"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.replaykit~1documentation~1ReplayKit~1RPApplicationInfoBundleIdentifierKey/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "RPApplicationInfoBundleIdentifierKey"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.replaykit~1documentation~1ReplayKit~1RPBroadcastMP4ClipHandler/title",
+          "value": "RPBroadcastMP4ClipHandler"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.replaykit~1documentation~1ReplayKit~1RPBroadcastMP4ClipHandler/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "RPBroadcastMP4ClipHandler"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.replaykit~1documentation~1ReplayKit~1RPBroadcastMP4ClipHandler/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "RPBroadcastMP4ClipHandler"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.replaykit~1documentation~1ReplayKit~1RPBroadcastSampleHandler~1broadcastResumed()/title",
+          "value": "broadcastResumed"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.replaykit~1documentation~1ReplayKit~1RPBroadcastSampleHandler~1broadcastResumed()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "broadcastResumed"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.replaykit~1documentation~1ReplayKit~1RPBroadcastSampleHandler~1broadcastPaused()/title",
+          "value": "broadcastPaused"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.replaykit~1documentation~1ReplayKit~1RPBroadcastSampleHandler~1broadcastPaused()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "broadcastPaused"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.replaykit~1documentation~1ReplayKit~1RPBroadcastHandler/title",
+          "value": "RPBroadcastHandler"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.replaykit~1documentation~1ReplayKit~1RPBroadcastHandler/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "RPBroadcastHandler"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.replaykit~1documentation~1ReplayKit~1RPBroadcastHandler/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "RPBroadcastHandler"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.replaykit~1documentation~1ReplayKit~1RPBroadcastSampleHandler~1finishBroadcastWithError(_:)/title",
+          "value": "finishBroadcastWithError:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.replaykit~1documentation~1ReplayKit~1RPBroadcastSampleHandler~1finishBroadcastWithError(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "finishBroadcastWithError:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.replaykit~1documentation~1ReplayKit~1RPBroadcastSampleHandler~1processSampleBuffer(_:with:)/title",
+          "value": "processSampleBuffer:withType:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.replaykit~1documentation~1ReplayKit~1RPBroadcastSampleHandler~1processSampleBuffer(_:with:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "processSampleBuffer:withType:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.replaykit~1documentation~1ReplayKit~1RPBroadcastController/title",
+          "value": "RPBroadcastController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.replaykit~1documentation~1ReplayKit~1RPBroadcastController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "RPBroadcastController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.replaykit~1documentation~1ReplayKit~1RPBroadcastController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "RPBroadcastController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.replaykit~1documentation~1ReplayKit~1RPVideoSampleOrientationKey/title",
+          "value": "RPVideoSampleOrientationKey"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.replaykit~1documentation~1ReplayKit~1RPVideoSampleOrientationKey/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "RPVideoSampleOrientationKey"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreMedia~1CMSampleBuffer/title",
+          "value": "CMSampleBufferRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreMedia~1CMSampleBuffer/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "typedef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@S@opaqueCMSampleBuffer",
+              "text": "opaqueCMSampleBuffer"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "identifier",
+              "text": "CMSampleBufferRef"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.replaykit~1documentation~1ReplayKit~1RPBroadcastSampleHandler~1broadcastStarted(withSetupInfo:)/title",
+          "value": "broadcastStartedWithSetupInfo:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.replaykit~1documentation~1ReplayKit~1RPBroadcastSampleHandler~1broadcastStarted(withSetupInfo:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "broadcastStartedWithSetupInfo:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.replaykit~1documentation~1ReplayKit~1RPBroadcastSampleHandler~1broadcastFinished()/title",
+          "value": "broadcastFinished"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.replaykit~1documentation~1ReplayKit~1RPBroadcastSampleHandler~1broadcastFinished()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "broadcastFinished"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.replaykit~1documentation~1ReplayKit~1RPBroadcastSampleHandler/title",
+          "value": "RPBroadcastSampleHandler"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.replaykit~1documentation~1ReplayKit~1RPBroadcastSampleHandler/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "RPBroadcastSampleHandler"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.replaykit~1documentation~1ReplayKit~1RPBroadcastSampleHandler/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "RPBroadcastSampleHandler"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/replaykit/rpbroadcastsamplehandler"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/replaykit/rpbroadcastsamplehandler"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

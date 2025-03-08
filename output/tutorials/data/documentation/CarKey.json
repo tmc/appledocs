@@ -1,0 +1,791 @@
+{
+  "abstract": [
+    {
+      "text": "Access the remote keyless features of configured vehicles in the Wallet app.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.CarKey/documentation/CarKey"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "CarKey",
+    "modules": [
+      {
+        "name": "CarKey"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "16.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "16.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "16.0",
+        "name": "Mac Catalyst"
+      }
+    ],
+    "role": "collection",
+    "roleHeading": "Framework",
+    "symbolKind": "module",
+    "title": "CarKey"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The CarKey framework offers a way to communicate with vehicles already provisioned",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to someone’s Apple Wallet. Car manufacturers adopt this framework in the apps they",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "use to support and control their vehicles. For example, your app might use it to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "lock or unlock the vehicle, or open a power sunroof. To control a vehicle",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "remotely, you need the following information for that vehicle:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The function identifiers for each of your vehicle’s features.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The action identifiers for each action you can perform on a feature.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The execution status the vehicle can return in response to an action.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Wallet app maintains a list of vehicles that match your company’s",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "make, and that the user previously configured for remote access. Create a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "session object to get information about those vehicles and to establish a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "connection to ones that are in range. Use the session to retrieve the list",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of commands available to the current person, and to initiate actions from your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Your app must have the ",
+                  "type": "text"
+                },
+                {
+                  "code": "com.apple.developer.carkey.session",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " entitlement",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "to use this framework. To request the entitlement, you must be an automaker",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "enrolled in the MFi Program. For details, see",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/mfi/",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.CarKey/documentation/CarKey": {
+      "abstract": [
+        {
+          "text": "Access the remote keyless features of configured vehicles in the Wallet app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.CarKey/documentation/CarKey",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "CarKey",
+      "type": "topic",
+      "url": "/documentation/carkey"
+    },
+    "doc://com.apple.CarKey/documentation/CarKey/ActionIdentifier": {
+      "abstract": [
+        {
+          "text": "A type that stores the designation code for one of",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "the actions that a vehicle feature supports.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ActionIdentifier"
+        }
+      ],
+      "identifier": "doc://com.apple.CarKey/documentation/CarKey/ActionIdentifier",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ActionIdentifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "ActionIdentifier",
+      "type": "topic",
+      "url": "/documentation/carkey/actionidentifier"
+    },
+    "doc://com.apple.CarKey/documentation/CarKey/CarKeyErrorCode": {
+      "abstract": [
+        {
+          "text": "The errors that can occur when you perform remote-keyless entry operations on a vehicle.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CarKeyErrorCode"
+        }
+      ],
+      "identifier": "doc://com.apple.CarKey/documentation/CarKey/CarKeyErrorCode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CarKeyErrorCode"
+        }
+      ],
+      "role": "symbol",
+      "title": "CarKeyErrorCode",
+      "type": "topic",
+      "url": "/documentation/carkey/carkeyerrorcode"
+    },
+    "doc://com.apple.CarKey/documentation/CarKey/CarKeyRemoteControl": {
+      "abstract": [
+        {
+          "text": "The object you use to start a new vehicle-related session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CarKeyRemoteControl"
+        }
+      ],
+      "identifier": "doc://com.apple.CarKey/documentation/CarKey/CarKeyRemoteControl",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CarKeyRemoteControl"
+        }
+      ],
+      "role": "symbol",
+      "title": "CarKeyRemoteControl",
+      "type": "topic",
+      "url": "/documentation/carkey/carkeyremotecontrol"
+    },
+    "doc://com.apple.CarKey/documentation/CarKey/CarKeyRemoteControlSession": {
+      "abstract": [
+        {
+          "text": "The object that manages communication with the vehicles",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "you manufacture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CarKeyRemoteControlSession"
+        }
+      ],
+      "identifier": "doc://com.apple.CarKey/documentation/CarKey/CarKeyRemoteControlSession",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CarKeyRemoteControlSession"
+        }
+      ],
+      "role": "symbol",
+      "title": "CarKeyRemoteControlSession",
+      "type": "topic",
+      "url": "/documentation/carkey/carkeyremotecontrolsession"
+    },
+    "doc://com.apple.CarKey/documentation/CarKey/CarKeyRemoteControlSessionDelegate": {
+      "abstract": [
+        {
+          "text": "An interface you use to receive session- and vehicle-related",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "information from the system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CarKeyRemoteControlSessionDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.CarKey/documentation/CarKey/CarKeyRemoteControlSessionDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CarKeyRemoteControlSessionDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "CarKeyRemoteControlSessionDelegate",
+      "type": "topic",
+      "url": "/documentation/carkey/carkeyremotecontrolsessiondelegate"
+    },
+    "doc://com.apple.CarKey/documentation/CarKey/ExecutionStatus": {
+      "abstract": [
+        {
+          "text": "A type that contains the status code a vehicle returns",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "after executing an action.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ExecutionStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.CarKey/documentation/CarKey/ExecutionStatus",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ExecutionStatus"
+        }
+      ],
+      "role": "symbol",
+      "title": "ExecutionStatus",
+      "type": "topic",
+      "url": "/documentation/carkey/executionstatus"
+    },
+    "doc://com.apple.CarKey/documentation/CarKey/FunctionIdentifier": {
+      "abstract": [
+        {
+          "text": "A type that stores the designation code for one of your",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "vehicle’s features.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FunctionIdentifier"
+        }
+      ],
+      "identifier": "doc://com.apple.CarKey/documentation/CarKey/FunctionIdentifier",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FunctionIdentifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "FunctionIdentifier",
+      "type": "topic",
+      "url": "/documentation/carkey/functionidentifier"
+    },
+    "doc://com.apple.CarKey/documentation/CarKey/RemoteKeylessEntryAction": {
+      "abstract": [
+        {
+          "text": "An automatically ending action that you want to perform on",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "a vehicle.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RemoteKeylessEntryAction"
+        }
+      ],
+      "identifier": "doc://com.apple.CarKey/documentation/CarKey/RemoteKeylessEntryAction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RemoteKeylessEntryAction"
+        }
+      ],
+      "role": "symbol",
+      "title": "RemoteKeylessEntryAction",
+      "type": "topic",
+      "url": "/documentation/carkey/remotekeylessentryaction"
+    },
+    "doc://com.apple.CarKey/documentation/CarKey/RemoteKeylessEntryConfigurableEnduringAction": {
+      "abstract": [
+        {
+          "text": "An action with an optional stopping point that you want to perform",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "on a vehicle.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RemoteKeylessEntryConfigurableEnduringAction"
+        }
+      ],
+      "identifier": "doc://com.apple.CarKey/documentation/CarKey/RemoteKeylessEntryConfigurableEnduringAction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RemoteKeylessEntryConfigurableEnduringAction"
+        }
+      ],
+      "role": "symbol",
+      "title": "RemoteKeylessEntryConfigurableEnduringAction",
+      "type": "topic",
+      "url": "/documentation/carkey/remotekeylessentryconfigurableenduringaction"
+    },
+    "doc://com.apple.CarKey/documentation/CarKey/RemoteKeylessEntryEnduringAction": {
+      "abstract": [
+        {
+          "text": "An action with an optional stopping point that you want to perform",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "on a vehicle.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RemoteKeylessEntryEnduringAction"
+        }
+      ],
+      "identifier": "doc://com.apple.CarKey/documentation/CarKey/RemoteKeylessEntryEnduringAction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RemoteKeylessEntryEnduringAction"
+        }
+      ],
+      "role": "symbol",
+      "title": "RemoteKeylessEntryEnduringAction",
+      "type": "topic",
+      "url": "/documentation/carkey/remotekeylessentryenduringaction"
+    },
+    "doc://com.apple.CarKey/documentation/CarKey/VehicleReport": {
+      "abstract": [
+        {
+          "text": "A type that contains information about a vehicle configured for",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "remote keyless entry in the user’s Apple Wallet.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VehicleReport"
+        }
+      ],
+      "identifier": "doc://com.apple.CarKey/documentation/CarKey/VehicleReport",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VehicleReport"
+        }
+      ],
+      "role": "symbol",
+      "title": "VehicleReport",
+      "type": "topic",
+      "url": "/documentation/carkey/vehiclereport"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/mfi/": {
+      "identifier": "https://developer.apple.com/mfi/",
+      "title": "https://developer.apple.com/mfi/",
+      "titleInlineContent": [
+        {
+          "text": "https://developer.apple.com/mfi/",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/mfi/"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Setup",
+      "identifiers": [
+        "doc://com.apple.CarKey/documentation/CarKey/CarKeyRemoteControl",
+        "doc://com.apple.CarKey/documentation/CarKey/CarKeyRemoteControlSession",
+        "doc://com.apple.CarKey/documentation/CarKey/CarKeyRemoteControlSessionDelegate",
+        "doc://com.apple.CarKey/documentation/CarKey/VehicleReport"
+      ],
+      "title": "Setup"
+    },
+    {
+      "anchor": "Vehicle-Actions",
+      "identifiers": [
+        "doc://com.apple.CarKey/documentation/CarKey/RemoteKeylessEntryAction",
+        "doc://com.apple.CarKey/documentation/CarKey/RemoteKeylessEntryEnduringAction",
+        "doc://com.apple.CarKey/documentation/CarKey/FunctionIdentifier",
+        "doc://com.apple.CarKey/documentation/CarKey/ActionIdentifier"
+      ],
+      "title": "Vehicle Actions"
+    },
+    {
+      "anchor": "Error-Codes",
+      "identifiers": [
+        "doc://com.apple.CarKey/documentation/CarKey/CarKeyErrorCode"
+      ],
+      "title": "Error Codes"
+    },
+    {
+      "anchor": "Structures",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.CarKey/documentation/CarKey/ExecutionStatus",
+        "doc://com.apple.CarKey/documentation/CarKey/RemoteKeylessEntryConfigurableEnduringAction"
+      ],
+      "title": "Structures"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/carkey"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

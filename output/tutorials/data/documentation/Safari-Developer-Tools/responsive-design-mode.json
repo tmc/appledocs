@@ -1,0 +1,438 @@
+{
+  "abstract": [
+    {
+      "text": "Use Responsive Design Mode to test your ",
+      "type": "text"
+    },
+    {
+      "code": "media",
+      "type": "codeVoice"
+    },
+    {
+      "text": " queries and other dynamic styles to ensure your webpages look great on any screen.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.safari.developer-tools/documentation/safari-developer-tools"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.safari.developer-tools/documentation/Safari-Developer-Tools/responsive-design-mode"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Safari Developer Features"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Responsive Design Mode"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "ResponsiveDesignMode",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Responsive Design Mode lets you quickly preview how your webpage responds to changes in width and height, as well as differences in the pixel ratio of displays. Use Responsive Design Mode to ensure all visitors to your webpage get a great experience, no matter the size of their screen.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Opening-Responsive-Design-Mode",
+          "level": 2,
+          "text": "Opening Responsive Design Mode",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "While focused on the webpage you want to test in Responsive Design Mode, choose ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Enter Responsive Design Mode",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            },
+            {
+              "text": " (⌃⌘R) from the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.safari.developer-tools/documentation/Safari-Developer-Tools/develop-menu",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "You can use Responsive Design Mode with ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.safari.developer-tools/documentation/Safari-Developer-Tools/web-inspector",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " to debug your page’s layout while resizing the page in Responsive Design Mode.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Tip",
+          "style": "tip",
+          "type": "aside"
+        },
+        {
+          "anchor": "Using-Responsive-Design-Mode",
+          "level": 2,
+          "text": "Using Responsive Design Mode",
+          "type": "heading"
+        },
+        {
+          "anchor": "Size",
+          "level": 3,
+          "text": "Size",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The current effective size of the viewport, in screen points. You can click on the width or height to begin editing the specific dimension. You can also grab the handles on the left, bottom, and right sides of the viewport to quickly resize to any dimension, or grab one of the bottom corners to resize in both dimensions simultaneously.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Zoom",
+          "level": 3,
+          "text": "Zoom",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The current percentage of actual size of the viewport. Normally, this will be 100% which means each pixel of the web content is visible on screen. When you enlarge the viewport to be larger than the window you are currently using, the zoom decreases, indicating that some pixels of web content are now being lost. The zoom is not directly editable, it changes based on the viewport size and the window size.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Pixel-Ratio",
+          "level": 3,
+          "text": "Pixel Ratio",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The current pixel ratio at which to render content. Some devices and monitors may have different pixel densities, and different images can be loaded and different styles applied to pages. For example, a page may define multiple image resources at different pixel ratios in order to deliver the highest quality necessary without delivering a file that is larger than necessary",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "<img",
+            "  src=\"astronaut_1x.jpg\"",
+            "  srcset=\"astronaut_2x.jpg 2x astronaut_3x.jpg 3x\"",
+            "/>"
+          ],
+          "syntax": "html",
+          "type": "codeListing"
+        },
+        {
+          "code": [
+            ".starfield {",
+            "  background-image: image-set(\"stars_1x.jpg\" 1x, \"stars_2x.jpg\" 2x);",
+            "}"
+          ],
+          "syntax": "css",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You may also want to provide alternative styles for displays with different pixel ratios, like thinner lines on a 2× display. You can use a CSS media query for these kinds of adaptive style changes:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@media (min-resolution: 2dppx) {",
+            "  .dividerLine {",
+            "    border: 0.5px solid grey;",
+            "  }",
+            "}"
+          ],
+          "syntax": "css",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Open-with-Simulator",
+          "level": 3,
+          "text": "Open with Simulator",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "iOS, iPadOS, and visionOS have different rendering behaviors than macOS, as they are optimized for different form-factor devices and interaction models. It is important to test your webpages in such an environment, and simulators provide an accurate way to do so without additional devices. If you don’t have Xcode installed, or want to add more simulators, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.safari.developer-tools/documentation/Safari-Developer-Tools/installing-xcode-and-simulators",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.safari.developer-tools/documentation/Safari-Developer-Tools/adding-additional-simulators",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "ResponsiveDesignMode": {
+      "alt": "Screenshot of Responsive Design Mode, opened to developer.apple.com, with a viewport size of 800 by 600 pixels with a 2x pixel ratio.",
+      "identifier": "ResponsiveDesignMode",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/bbae38163cf1bda28d9ebcc97663e2b3/ResponsiveDesignMode@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/babe317c37d32f5c45b2756552d56915/ResponsiveDesignMode~dark@2x.png"
+        }
+      ]
+    },
+    "Safari-Developer-Tools-PageImage-card.png": {
+      "alt": "A blue tools logo on a gradient background.",
+      "identifier": "Safari-Developer-Tools-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/77bad5e1be417d2e9f3bb2ff2698c1f9/Safari-Developer-Tools-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ae177e98052f40b765cec73979b779b7/Safari-Developer-Tools-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.safari.developer-tools/documentation/Safari-Developer-Tools/adding-additional-simulators": {
+      "abstract": [
+        {
+          "text": "Add simulators for different devices and iOS versions to use for web development.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safari.developer-tools/documentation/Safari-Developer-Tools/adding-additional-simulators",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding additional simulators",
+      "type": "topic",
+      "url": "/documentation/safari-developer-tools/adding-additional-simulators"
+    },
+    "doc://com.apple.safari.developer-tools/documentation/Safari-Developer-Tools/develop-menu": {
+      "abstract": [
+        {
+          "text": "Access tools for debugging webpages in Safari, as well as tools for debugging web content in other apps and on other devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safari.developer-tools/documentation/Safari-Developer-Tools/develop-menu",
+      "kind": "article",
+      "role": "article",
+      "title": "Develop menu",
+      "type": "topic",
+      "url": "/documentation/safari-developer-tools/develop-menu"
+    },
+    "doc://com.apple.safari.developer-tools/documentation/Safari-Developer-Tools/installing-xcode-and-simulators": {
+      "abstract": [
+        {
+          "text": "Install simulators to use for web development.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safari.developer-tools/documentation/Safari-Developer-Tools/installing-xcode-and-simulators",
+      "kind": "article",
+      "role": "article",
+      "title": "Installing Xcode and Simulators",
+      "type": "topic",
+      "url": "/documentation/safari-developer-tools/installing-xcode-and-simulators"
+    },
+    "doc://com.apple.safari.developer-tools/documentation/Safari-Developer-Tools/web-inspector": {
+      "abstract": [
+        {
+          "text": "Use Web Inspector to inspect and debug your HTML, CSS, and JavaScript.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safari.developer-tools/documentation/Safari-Developer-Tools/web-inspector",
+      "kind": "article",
+      "role": "article",
+      "title": "Web Inspector",
+      "type": "topic",
+      "url": "/documentation/safari-developer-tools/web-inspector"
+    },
+    "doc://com.apple.safari.developer-tools/documentation/Safari-Developer-Tools/webdriver": {
+      "abstract": [
+        {
+          "text": "Use WebDriver to write robust, comprehensive tests and run them against any browser that has a WebDriver-compliant driver, including Safari.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safari.developer-tools/documentation/Safari-Developer-Tools/webdriver",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "WebDriver",
+      "type": "topic",
+      "url": "/documentation/safari-developer-tools/webdriver"
+    },
+    "doc://com.apple.safari.developer-tools/documentation/safari-developer-tools": {
+      "abstract": [
+        {
+          "text": "Inspect, debug, and test web content in Safari, in other apps, and on other devices including iPhone and iPad.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.safari.developer-tools/documentation/safari-developer-tools",
+      "images": [
+        {
+          "identifier": "Safari-Developer-Tools-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Safari Developer Features",
+      "type": "topic",
+      "url": "/documentation/safari-developer-tools"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Tools",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.safari.developer-tools/documentation/Safari-Developer-Tools/develop-menu",
+        "doc://com.apple.safari.developer-tools/documentation/Safari-Developer-Tools/web-inspector",
+        "doc://com.apple.safari.developer-tools/documentation/Safari-Developer-Tools/webdriver"
+      ],
+      "title": "Tools"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/safari-developer-tools/responsive-design-mode"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

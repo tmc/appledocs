@@ -1,0 +1,1534 @@
+{
+  "abstract": [
+    {
+      "text": "A component that represents a collection of animations that an entity can play.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.RealityKit/documentation/RealityKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.RealityKit/documentation/RealityKit/AnimationLibraryComponent"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:17RealityFoundation25AnimationLibraryComponentV",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "struct"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "AnimationLibraryComponent"
+      }
+    ],
+    "modules": [
+      {
+        "name": "RealityKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "AnimationLibraryComponent"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "18.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "18.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "18.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "2.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "AnimationLibraryComponent"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AnimationLibraryComponent"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You use an ",
+              "type": "text"
+            },
+            {
+              "code": "AnimationLibraryComponent",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to access an entity’s animation resources.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You can store animations with an entity by packaging them together into a ",
+              "type": "text"
+            },
+            {
+              "code": ".reality",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You can do this with Reality Composer Pro or by building a custom tool.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-an-animation-library-with-Reality-Composer-Pro",
+          "level": 3,
+          "text": "Create an animation library with Reality Composer Pro",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Follow these steps to create an animation library for an entity:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the hierarchy view, select the entity you want to add animations to.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the inspector, click Add Component and select Animation Library from the list of components.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click the Add button (+) and select the USD files with animations.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "realitycomposerpro-animationlibrary",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "See ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/visionOS/designing-realitykit-content-with-reality-composer-pro",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": "  for more details on working with components in Reality Composer Pro.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Tip",
+          "style": "tip",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "At runtime, your app can access and play the animations that the entity stores.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Load the entity you want to animate.",
+            "let robot = try await Entity(named: \"robot\")",
+            "",
+            "// Access the animation library associated with the entity.",
+            "let animationLibrary = robot.components[AnimationLibraryComponent.self]",
+            "",
+            "// Play the walk animation.",
+            "if let walkAnimation = animationLibrary.animations[\"walk\"] {",
+            "    robot.playAnimation(walkAnimation)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Create-an-animation-library-by-building-your-own-tool",
+          "level": 3,
+          "text": "Create an animation library by building your own tool",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you need to build a custom tool to create ",
+              "type": "text"
+            },
+            {
+              "code": ".reality",
+              "type": "codeVoice"
+            },
+            {
+              "text": " files, you can use RealityKit to programmatically",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "create an animation library by following these steps:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Load an animation entity with ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity/init(named:in:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Retrieve the entity’s animation resources from its ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity/availableAnimations",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " property.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Add the animations to an animation library.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following example shows how you can set up an animation library:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Create an empty animation library component.",
+            "var animationLibrary = AnimationLibraryComponent()",
+            "",
+            "// Load the entities containing the animations.",
+            "let entityIdleAnimation = try await Entity(named: \"idle\")",
+            "let entityWalkAnimation = try await Entity(named: \"walk\")",
+            "",
+            "// Assign the animations to the library by name.",
+            "animationLibrary.animations[\"idle\"] = entityIdleAnimation.availableAnimations.first",
+            "animationLibrary.animations[\"walk\"] = entityWalkAnimation.availableAnimations.first"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you configure the animation library, you can assign it to an entity and serialize the entity to a file.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "RealityKit packages the animations for that entity when you save it to a ",
+              "type": "text"
+            },
+            {
+              "code": ".reality",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Load the entity you want to animate.",
+            "let robot = try! await Entity(named: \"robot\")",
+            "",
+            "// Assign the animation library to the entity.",
+            "robot.components.set(animationLibrary)",
+            "",
+            "// Write the entity with its animations to a file.",
+            "robot.write(to: fileURL)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To play one of the animations in your app, create an entity",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "from the ",
+              "type": "text"
+            },
+            {
+              "code": ".reality",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file and then call its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity/playAnimation(_:transitionDuration:startsPaused:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.RealityKit/documentation/RealityKit": {
+      "abstract": [
+        {
+          "text": "Simulate and render 3D content for use in your augmented reality apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "RealityKit",
+      "type": "topic",
+      "url": "/documentation/realitykit"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/AnimationEvents": {
+      "abstract": [
+        {
+          "text": "Notable milestones that the framework signals during animation playback.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AnimationEvents"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/AnimationEvents",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AnimationEvents"
+        }
+      ],
+      "role": "symbol",
+      "title": "AnimationEvents",
+      "type": "topic",
+      "url": "/documentation/realitykit/animationevents"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/AnimationLibraryComponent": {
+      "abstract": [
+        {
+          "text": "A component that represents a collection of animations that an entity can play.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AnimationLibraryComponent"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/AnimationLibraryComponent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AnimationLibraryComponent"
+        }
+      ],
+      "role": "symbol",
+      "title": "AnimationLibraryComponent",
+      "type": "topic",
+      "url": "/documentation/realitykit/animationlibrarycomponent"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/AnimationLibraryComponent/AnimationCollection": {
+      "abstract": [
+        {
+          "text": "A collection of animations an entity can play.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AnimationCollection"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/AnimationLibraryComponent/AnimationCollection",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AnimationCollection"
+        }
+      ],
+      "role": "symbol",
+      "title": "AnimationLibraryComponent.AnimationCollection",
+      "type": "topic",
+      "url": "/documentation/realitykit/animationlibrarycomponent/animationcollection"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/AnimationLibraryComponent/Component-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/AnimationLibraryComponent/Component-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Component Implementations",
+      "type": "topic",
+      "url": "/documentation/realitykit/animationlibrarycomponent/component-implementations"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/AnimationLibraryComponent/Key": {
+      "abstract": [
+        {
+          "text": "The key type of a dictionary literal.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Key"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/AnimationLibraryComponent/Key",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Key"
+        }
+      ],
+      "role": "symbol",
+      "title": "AnimationLibraryComponent.Key",
+      "type": "topic",
+      "url": "/documentation/realitykit/animationlibrarycomponent/key"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/AnimationLibraryComponent/Value": {
+      "abstract": [
+        {
+          "text": "The value type of a dictionary literal.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Value"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/AnimationLibraryComponent/Value",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Value"
+        }
+      ],
+      "role": "symbol",
+      "title": "AnimationLibraryComponent.Value",
+      "type": "topic",
+      "url": "/documentation/realitykit/animationlibrarycomponent/value"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/AnimationLibraryComponent/animations": {
+      "abstract": [
+        {
+          "text": "The collection of animations an entity can play.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "animations"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation25AnimationLibraryComponentV",
+          "text": "AnimationLibraryComponent"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation25AnimationLibraryComponentV0C10CollectionV",
+          "text": "AnimationCollection"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/AnimationLibraryComponent/animations",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "animations",
+      "type": "topic",
+      "url": "/documentation/realitykit/animationlibrarycomponent/animations"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/AnimationLibraryComponent/defaultAnimation": {
+      "abstract": [
+        {
+          "text": "The default animation resource.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "defaultAnimation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation17AnimationResourceC",
+          "text": "AnimationResource"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/AnimationLibraryComponent/defaultAnimation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "defaultAnimation",
+      "type": "topic",
+      "url": "/documentation/realitykit/animationlibrarycomponent/defaultanimation"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/AnimationLibraryComponent/defaultKey": {
+      "abstract": [
+        {
+          "text": "The name of the default animation resource.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "defaultKey"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/AnimationLibraryComponent/defaultKey",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "defaultKey",
+      "type": "topic",
+      "url": "/documentation/realitykit/animationlibrarycomponent/defaultkey"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/AnimationLibraryComponent/init()": {
+      "abstract": [
+        {
+          "text": "Creates an empty animation library.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/AnimationLibraryComponent/init()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init()",
+      "type": "topic",
+      "url": "/documentation/realitykit/animationlibrarycomponent/init()"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/AnimationLibraryComponent/init(animations:)": {
+      "abstract": [
+        {
+          "text": "Creates an animation library from a dictionary that associates an animation’s data with its name.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "animations"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation17AnimationResourceC",
+          "text": "AnimationResource"
+        },
+        {
+          "kind": "text",
+          "text": "])"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/AnimationLibraryComponent/init(animations:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(animations:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/animationlibrarycomponent/init(animations:)"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/AnimationLibraryComponent/init(dictionaryLiteral:)": {
+      "abstract": [
+        {
+          "text": "Creates an animation library from a variadic list of key-value pairs.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "dictionaryLiteral"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation17AnimationResourceC",
+          "text": "AnimationResource"
+        },
+        {
+          "kind": "text",
+          "text": ")...)"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/AnimationLibraryComponent/init(dictionaryLiteral:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(dictionaryLiteral:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/animationlibrarycomponent/init(dictionaryliteral:)"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/AnimationLibraryComponent/removeAll(resource:)": {
+      "abstract": [
+        {
+          "text": "Removes all the component’s references to an animation resource.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeAll"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "resource"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation17AnimationResourceC",
+          "text": "AnimationResource"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/AnimationLibraryComponent/removeAll(resource:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "removeAll(resource:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/animationlibrarycomponent/removeall(resource:)"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/AnimationLibraryComponent/unkeyedResources": {
+      "abstract": [
+        {
+          "text": "The library’s animation resources that don’t have a queryable name.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "unkeyedResources"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation17AnimationResourceC",
+          "text": "AnimationResource"
+        },
+        {
+          "kind": "text",
+          "text": "]?"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/AnimationLibraryComponent/unkeyedResources",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "unkeyedResources",
+      "type": "topic",
+      "url": "/documentation/realitykit/animationlibrarycomponent/unkeyedresources"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/AnimationPlaybackController": {
+      "abstract": [
+        {
+          "text": "A controller that manages animation playback.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AnimationPlaybackController"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/AnimationPlaybackController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AnimationPlaybackController"
+        }
+      ],
+      "role": "symbol",
+      "title": "AnimationPlaybackController",
+      "type": "topic",
+      "url": "/documentation/realitykit/animationplaybackcontroller"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/AnimationRepeatMode": {
+      "abstract": [
+        {
+          "text": "Options that determine whether an animation replays after completion.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AnimationRepeatMode"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/AnimationRepeatMode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AnimationRepeatMode"
+        }
+      ],
+      "role": "symbol",
+      "title": "AnimationRepeatMode",
+      "type": "topic",
+      "url": "/documentation/realitykit/animationrepeatmode"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/AnimationResource": {
+      "abstract": [
+        {
+          "text": "An animation for the properties of scenes or entities.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AnimationResource"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/AnimationResource",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AnimationResource"
+        }
+      ],
+      "role": "symbol",
+      "title": "AnimationResource",
+      "type": "topic",
+      "url": "/documentation/realitykit/animationresource"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Component": {
+      "abstract": [
+        {
+          "text": "A representation of a geometry or a behavior that you apply to an entity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Component"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Component",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Component"
+        }
+      ],
+      "role": "symbol",
+      "title": "Component",
+      "type": "topic",
+      "url": "/documentation/realitykit/component"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Entity/availableAnimations": {
+      "abstract": [
+        {
+          "text": "The list of animations associated with the entity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "availableAnimations"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation17AnimationResourceC",
+          "text": "AnimationResource"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity/availableAnimations",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "availableAnimations",
+      "type": "topic",
+      "url": "/documentation/realitykit/entity/availableanimations"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Entity/init(named:in:)": {
+      "abstract": [
+        {
+          "text": "Creates a new entity by asynchronously loading it from a bundle.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "convenience"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "named"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSBundle",
+          "text": "Bundle"
+        },
+        {
+          "kind": "text",
+          "text": "?) "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity/init(named:in:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(named:in:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/entity/init(named:in:)"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Entity/playAnimation(_:transitionDuration:startsPaused:)": {
+      "abstract": [
+        {
+          "text": "Plays the given animation on the entity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "playAnimation"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation17AnimationResourceC",
+          "text": "AnimationResource"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "transitionDuration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "startsPaused"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation27AnimationPlaybackControllerC",
+          "text": "AnimationPlaybackController"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity/playAnimation(_:transitionDuration:startsPaused:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "playAnimation(_:transitionDuration:startsPaused:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/entity/playanimation(_:transitionduration:startspaused:)"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.documentation/documentation/visionOS/designing-realitykit-content-with-reality-composer-pro": {
+      "abstract": [
+        {
+          "text": "Design RealityKit scenes for your visionOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/visionOS/designing-realitykit-content-with-reality-composer-pro",
+      "kind": "article",
+      "role": "article",
+      "title": "Designing RealityKit content with Reality Composer Pro",
+      "type": "topic",
+      "url": "/documentation/visionOS/designing-realitykit-content-with-reality-composer-pro"
+    },
+    "doc://com.externally.resolved.symbol/s:s30ExpressibleByDictionaryLiteralP": {
+      "abstract": [
+        {
+          "text": "A type that can be initialized using a dictionary literal.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ExpressibleByDictionaryLiteral"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s30ExpressibleByDictionaryLiteralP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ExpressibleByDictionaryLiteral",
+      "type": "topic",
+      "url": "/documentation/Swift/ExpressibleByDictionaryLiteral"
+    },
+    "realitycomposerpro-animationlibrary": {
+      "alt": "A screenshot of Reality Composer Pro showing the Animation Library in the Inspector. It contains two elements representing animations that have been added to the animation library. The animations are named walk and idle.",
+      "identifier": "realitycomposerpro-animationlibrary",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/8615e96e7de1b7b88efee5c00ce42b04/realitycomposerpro-animationlibrary.jpg"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/804ee7a3c404b5de38af656084a7a165/realitycomposerpro-animationlibrary~dark.jpg"
+        }
+      ]
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/Component",
+        "doc://com.externally.resolved.symbol/s:s30ExpressibleByDictionaryLiteralP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Animation-playback",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/AnimationResource",
+        "doc://com.apple.RealityKit/documentation/RealityKit/AnimationLibraryComponent/AnimationCollection",
+        "doc://com.apple.RealityKit/documentation/RealityKit/AnimationEvents",
+        "doc://com.apple.RealityKit/documentation/RealityKit/AnimationPlaybackController",
+        "doc://com.apple.RealityKit/documentation/RealityKit/AnimationRepeatMode"
+      ],
+      "title": "Animation playback"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-an-animation-library-component",
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/AnimationLibraryComponent/init()",
+        "doc://com.apple.RealityKit/documentation/RealityKit/AnimationLibraryComponent/init(animations:)",
+        "doc://com.apple.RealityKit/documentation/RealityKit/AnimationLibraryComponent/init(dictionaryLiteral:)"
+      ],
+      "title": "Creating an animation library component"
+    },
+    {
+      "anchor": "Accessing-animations",
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/AnimationLibraryComponent/animations",
+        "doc://com.apple.RealityKit/documentation/RealityKit/AnimationLibraryComponent/unkeyedResources",
+        "doc://com.apple.RealityKit/documentation/RealityKit/AnimationLibraryComponent/defaultAnimation",
+        "doc://com.apple.RealityKit/documentation/RealityKit/AnimationLibraryComponent/defaultKey"
+      ],
+      "title": "Accessing animations"
+    },
+    {
+      "anchor": "Managing-references-to-animations",
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/AnimationLibraryComponent/removeAll(resource:)"
+      ],
+      "title": "Managing references to animations"
+    },
+    {
+      "anchor": "Structures",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/AnimationLibraryComponent/AnimationCollection"
+      ],
+      "title": "Structures"
+    },
+    {
+      "anchor": "Type-Aliases",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/AnimationLibraryComponent/Key",
+        "doc://com.apple.RealityKit/documentation/RealityKit/AnimationLibraryComponent/Value"
+      ],
+      "title": "Type Aliases"
+    },
+    {
+      "anchor": "Default-Implementations",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/AnimationLibraryComponent/Component-Implementations"
+      ],
+      "title": "Default Implementations"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/realitykit/animationlibrarycomponent"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

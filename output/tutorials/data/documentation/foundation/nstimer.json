@@ -1,0 +1,1016 @@
+{
+  "abstract": [
+    {
+      "text": "A timer that fires after a certain time interval has elapsed, sending a specified message to a target object.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/task_management"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/processes_and_threads"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/foundation/nstimer"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1412393,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSTimer",
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "NSTimer"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSTimer"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/1418956-nsobject",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Timers work in conjunction with run loops. Run loops maintain strong references to their timers, so you don’t have to maintain your own strong reference to a timer after you have added it to a run loop. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To use a timer effectively, you should be aware of how run loops operate. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "devLink-1695500",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for more information.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A timer is not a real-time mechanism. If a timer’s firing time occurs during a long run loop callout or while the run loop is in a mode that isn't monitoring the timer, the timer doesn't fire until the next time the run loop checks the timer. Therefore, the actual time at which a timer fires can be significantly later. See also ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nstimer#1667624",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nstimer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " is toll-free bridged with its Core Foundation counterpart, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfrunlooptimerref",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".  See ",
+              "type": "text"
+            },
+            {
+              "identifier": "devLink-1745091",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for more information.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "1667611",
+          "level": 3,
+          "text": "Comparing Repeating and Nonrepeating Timers",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You specify whether a timer is repeating or nonrepeating at creation time. A nonrepeating timer fires once and then invalidates itself automatically, thereby preventing the timer from firing again. By contrast, a repeating timer fires and then reschedules itself on the same run loop.  A repeating timer always schedules itself based on the scheduled firing time, as opposed to the actual firing time. For example, if a timer is scheduled to fire at a particular time and every 5 seconds after that, the scheduled firing time will always fall on the original 5-second time intervals, even if the actual firing time gets delayed. If the firing time is delayed so far that it passes one or more of the scheduled firing times, the timer is fired only once for that time period; the timer is then rescheduled, after firing, for the next scheduled firing time in the future.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "1667624",
+          "level": 3,
+          "text": "Timer Tolerance",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In iOS 7 and later and macOS 10.9 and later, you can specify a tolerance for a timer (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nstimer/1415085-tolerance",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "). This flexibility in when a timer fires improves the system's ability to optimize for increased power savings and responsiveness. The timer may fire at any time between its scheduled fire date and the scheduled fire date plus the tolerance. The timer doesn't fire before the scheduled fire date. For repeating timers, the next fire date is calculated from the original fire date regardless of tolerance applied at individual fire times, to avoid drift. The default value is zero, which means no additional tolerance is applied. The system reserves the right to apply a small amount of tolerance to certain timers regardless of the value of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nstimer/1415085-tolerance",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As the user of the timer, you can determine the appropriate tolerance for a timer. A general rule, set the tolerance to at least 10% of the interval, for a repeating timer. Even a small amount of tolerance has significant positive impact on the power usage of your application. The system may enforce a maximum value for the tolerance.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "1667642",
+          "level": 3,
+          "text": "Scheduling Timers in Run Loops",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can register a timer in only one run loop at a time, although it can be added to multiple run loop modes within that run loop. There are three ways to create a timer:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nstimer/1415941-scheduledtimerwithtimeinterval",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nstimer/1412416-scheduledtimerwithtimeinterval",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " class method to create the timer and schedule it on the current run loop in the default mode.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nstimer/1407170-timerwithtimeinterval",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nstimer/1408356-timerwithtimeinterval",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " class method to create the timer object without scheduling it on a run loop. (After creating it, you must add the timer to a run loop manually by calling the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsrunloop/1418468-addtimer",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method of the corresponding ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsrunloop",
+                      "isActive": false,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " object.)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Allocate the timer and initialize it using the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nstimer/1415700-initwithfiredate",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method. (After creating it, you must add the timer to a run loop manually by calling the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsrunloop/1418468-addtimer",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method of the corresponding ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsrunloop",
+                      "isActive": false,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " object.)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Once scheduled on a run loop, the timer fires at the specified interval until it is invalidated. A nonrepeating timer invalidates itself immediately after it fires. However, for a repeating timer, you must invalidate the timer object yourself by calling its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nstimer/1415405-invalidate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. Calling this method requests the removal of the timer from the current run loop; as a result, you should always call the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nstimer/1415405-invalidate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method from the same thread on which the timer was installed. Invalidating the timer immediately disables it so that it no longer affects the run loop. The run loop then removes the timer (and the strong reference it had to the timer), either just before the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nstimer/1415405-invalidate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method returns or at some later point. Once invalidated, timer objects cannot be reused.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After a repeating timer fires, it schedules the next firing for the nearest future date that is an integer multiple of the timer interval after the last scheduled fire date, within the specified ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nstimer/1415085-tolerance",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". If the time taken to call out to perform a selector or invocation is longer than the specified interval, the timer schedules only the next firing; that is, the timer doesn't attempt to compensate for any missed firings that would have occurred while calling the specified selector or invocation.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "1770465",
+          "level": 3,
+          "text": "Subclassing Notes",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Do not subclass ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nstimer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "devLink-1695500": {
+      "identifier": "devLink-1695500",
+      "title": "Threading Programming Guide",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/Multithreading/Introduction/Introduction.html#//apple_ref/doc/uid/10000057i"
+    },
+    "devLink-1745091": {
+      "identifier": "devLink-1745091",
+      "title": "Toll-Free Bridging",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/General/Conceptual/CocoaEncyclopedia/Toll-FreeBridgin/Toll-FreeBridgin.html#//apple_ref/doc/uid/TP40010810-CH2"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfrunlooptimerref": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfrunlooptimerref",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFRunLoopTimerRef",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfrunlooptimerref"
+    },
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsrunloop": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsrunloop",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSRunLoop",
+      "type": "topic",
+      "url": "/documentation/foundation/nsrunloop"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsrunloop/1418468-addtimer": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "addTimer:forMode:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsrunloop/1418468-addtimer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "addTimer:forMode:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsrunloop/1418468-addtimer"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nstimer": {
+      "abstract": [
+        {
+          "text": "A timer that fires after a certain time interval has elapsed, sending a specified message to a target object.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nstimer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSTimer",
+      "type": "topic",
+      "url": "/documentation/foundation/nstimer"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nstimer#1667624": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nstimer#1667624",
+      "kind": "article",
+      "role": "subsection",
+      "title": "Timer Tolerance",
+      "type": "section",
+      "url": "/documentation/foundation/nstimer#1667624"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nstimer/1407170-timerwithtimeinterval": {
+      "abstract": [
+        {
+          "text": "Initializes a timer object with the specified invocation object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "timerWithTimeInterval:invocation:repeats:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nstimer/1407170-timerwithtimeinterval",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "timerWithTimeInterval:invocation:repeats:",
+      "type": "topic",
+      "url": "/documentation/foundation/nstimer/1407170-timerwithtimeinterval"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nstimer/1407353-firedate": {
+      "abstract": [
+        {
+          "text": "The date at which the timer will fire.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nstimer/1407353-firedate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "fireDate",
+      "type": "topic",
+      "url": "/documentation/foundation/nstimer/1407353-firedate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nstimer/1408249-valid": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the timer is currently valid.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nstimer/1408249-valid",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "valid",
+      "type": "topic",
+      "url": "/documentation/foundation/nstimer/1408249-valid"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nstimer/1408356-timerwithtimeinterval": {
+      "abstract": [
+        {
+          "text": "Initializes a timer object with the specified object and selector.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "timerWithTimeInterval:target:selector:userInfo:repeats:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nstimer/1408356-timerwithtimeinterval",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "timerWithTimeInterval:target:selector:userInfo:repeats:",
+      "type": "topic",
+      "url": "/documentation/foundation/nstimer/1408356-timerwithtimeinterval"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nstimer/1408911-userinfo": {
+      "abstract": [
+        {
+          "text": "The receiver's ",
+          "type": "text"
+        },
+        {
+          "code": "userInfo",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nstimer/1408911-userinfo",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "userInfo",
+      "type": "topic",
+      "url": "/documentation/foundation/nstimer/1408911-userinfo"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nstimer/1409024-timeinterval": {
+      "abstract": [
+        {
+          "text": "The timer’s time interval, in seconds.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nstimer/1409024-timeinterval",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "timeInterval",
+      "type": "topic",
+      "url": "/documentation/foundation/nstimer/1409024-timeinterval"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nstimer/1412416-scheduledtimerwithtimeinterval": {
+      "abstract": [
+        {
+          "text": "Creates a timer and schedules it on the current run loop in the default mode.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "scheduledTimerWithTimeInterval:target:selector:userInfo:repeats:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nstimer/1412416-scheduledtimerwithtimeinterval",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "scheduledTimerWithTimeInterval:target:selector:userInfo:repeats:",
+      "type": "topic",
+      "url": "/documentation/foundation/nstimer/1412416-scheduledtimerwithtimeinterval"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nstimer/1414035-fire": {
+      "abstract": [
+        {
+          "text": "Causes the timer's message to be sent to its target.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "fire"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nstimer/1414035-fire",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "fire",
+      "type": "topic",
+      "url": "/documentation/foundation/nstimer/1414035-fire"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nstimer/1415085-tolerance": {
+      "abstract": [
+        {
+          "text": "The amount of time after the scheduled fire date that the timer may fire.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nstimer/1415085-tolerance",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "tolerance",
+      "type": "topic",
+      "url": "/documentation/foundation/nstimer/1415085-tolerance"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nstimer/1415405-invalidate": {
+      "abstract": [
+        {
+          "text": "Stops the timer from ever firing again and requests its removal from its run loop.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "invalidate"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nstimer/1415405-invalidate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "invalidate",
+      "type": "topic",
+      "url": "/documentation/foundation/nstimer/1415405-invalidate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nstimer/1415700-initwithfiredate": {
+      "abstract": [
+        {
+          "text": "Initializes a timer using the specified object and selector. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "initWithFireDate:interval:target:selector:userInfo:repeats:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nstimer/1415700-initwithfiredate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "initWithFireDate:interval:target:selector:userInfo:repeats:",
+      "type": "topic",
+      "url": "/documentation/foundation/nstimer/1415700-initwithfiredate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nstimer/1415941-scheduledtimerwithtimeinterval": {
+      "abstract": [
+        {
+          "text": "Creates a new timer and schedules it on the current run loop in the default mode.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "scheduledTimerWithTimeInterval:invocation:repeats:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nstimer/1415941-scheduledtimerwithtimeinterval",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "scheduledTimerWithTimeInterval:invocation:repeats:",
+      "type": "topic",
+      "url": "/documentation/foundation/nstimer/1415941-scheduledtimerwithtimeinterval"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nstimer/2091887-initwithfiredate": {
+      "abstract": [
+        {
+          "text": "Initializes a timer for the specified date and time interval with the specified block.  ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "initWithFireDate:interval:repeats:block:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nstimer/2091887-initwithfiredate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "initWithFireDate:interval:repeats:block:",
+      "type": "topic",
+      "url": "/documentation/foundation/nstimer/2091887-initwithfiredate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nstimer/2091888-timerwithtimeinterval": {
+      "abstract": [
+        {
+          "text": "Initializes a timer object with the specified time interval and block. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "timerWithTimeInterval:repeats:block:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nstimer/2091888-timerwithtimeinterval",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "timerWithTimeInterval:repeats:block:",
+      "type": "topic",
+      "url": "/documentation/foundation/nstimer/2091888-timerwithtimeinterval"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nstimer/2091889-scheduledtimerwithtimeinterval": {
+      "abstract": [
+        {
+          "text": "Creates a timer and schedules it on the current run loop in the default mode.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "scheduledTimerWithTimeInterval:repeats:block:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nstimer/2091889-scheduledtimerwithtimeinterval",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "scheduledTimerWithTimeInterval:repeats:block:",
+      "type": "topic",
+      "url": "/documentation/foundation/nstimer/2091889-scheduledtimerwithtimeinterval"
+    },
+    "doc://com.apple.documentation/documentation/foundation/processes_and_threads": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/processes_and_threads",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Processes and Threads",
+      "type": "topic",
+      "url": "/documentation/foundation/processes_and_threads"
+    },
+    "doc://com.apple.documentation/documentation/foundation/task_management": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/task_management",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Task Management",
+      "type": "topic",
+      "url": "/documentation/foundation/task_management"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/1418956-nsobject": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/1418956-nsobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/1418956-nsobject"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/objectivec/nsobject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "1667655",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nstimer/2091889-scheduledtimerwithtimeinterval",
+        "doc://com.apple.documentation/documentation/foundation/nstimer/1412416-scheduledtimerwithtimeinterval",
+        "doc://com.apple.documentation/documentation/foundation/nstimer/1415941-scheduledtimerwithtimeinterval",
+        "doc://com.apple.documentation/documentation/foundation/nstimer/2091888-timerwithtimeinterval",
+        "doc://com.apple.documentation/documentation/foundation/nstimer/1408356-timerwithtimeinterval",
+        "doc://com.apple.documentation/documentation/foundation/nstimer/1407170-timerwithtimeinterval",
+        "doc://com.apple.documentation/documentation/foundation/nstimer/2091887-initwithfiredate",
+        "doc://com.apple.documentation/documentation/foundation/nstimer/1415700-initwithfiredate"
+      ],
+      "kind": "taskGroup",
+      "title": "Creating a Timer"
+    },
+    {
+      "anchor": "1667721",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nstimer/1414035-fire"
+      ],
+      "kind": "taskGroup",
+      "title": "Firing a Timer"
+    },
+    {
+      "anchor": "1667738",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nstimer/1415405-invalidate"
+      ],
+      "kind": "taskGroup",
+      "title": "Stopping a Timer"
+    },
+    {
+      "anchor": "1667763",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nstimer/1408249-valid",
+        "doc://com.apple.documentation/documentation/foundation/nstimer/1407353-firedate",
+        "doc://com.apple.documentation/documentation/foundation/nstimer/1409024-timeinterval",
+        "doc://com.apple.documentation/documentation/foundation/nstimer/1408911-userinfo"
+      ],
+      "kind": "taskGroup",
+      "title": "Retrieving Timer Information"
+    },
+    {
+      "anchor": "1667826",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nstimer/1415085-tolerance"
+      ],
+      "kind": "taskGroup",
+      "title": "Configuring Firing Tolerance"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nstimer"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/timer"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

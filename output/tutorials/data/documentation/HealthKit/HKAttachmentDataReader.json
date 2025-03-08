@@ -1,0 +1,610 @@
+{
+  "abstract": [
+    {
+      "text": "A reader that provides access to an attachment’s data.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.healthkit/documentation/HealthKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.healthkit/documentation/HealthKit/HKAttachmentDataReader"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:9HealthKit22HKAttachmentDataReaderC",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "HKAttachmentDataReader"
+      }
+    ],
+    "modules": [
+      {
+        "name": "HealthKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "HKAttachmentDataReader"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "HKAttachmentDataReader"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "HKAttachmentDataReader"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To access the attachment’s data, get a data reader from the attachment store.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let attachmentStore = HKAttachmentStore(healthStore: store)",
+            "",
+            "// Get a data reader for the attachment.",
+            "let dataReader = attachmentStore.dataReader(for: myAttachment)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can then asynchronously access the whole data object.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let data: Data",
+            "do {",
+            "    data = try await dataReader.data",
+            "} catch {",
+            "    // Handle the error here.",
+            "    fatalError(\"*** An error occurred while accessing the attachment's data. \\(error.localizedDescription) ***\")",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Alternatively, you can access the file’s contents as an asynchronous sequence of bytes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Asynchronously access the attachment's bytes.",
+            "var data = Data()",
+            "do {",
+            "    for try await byte in dataReader.bytes {",
+            "        // Use the bytes here.",
+            "        data.append(byte)",
+            "    }",
+            "} catch {",
+            "    // Handle the error here.",
+            "    fatalError(\"*** An error occurred while reading the attachment's data: \\(error.localizedDescription) ***\")",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit": {
+      "abstract": [
+        {
+          "text": "Access and share health and fitness data while maintaining the user’s privacy and control.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "HealthKit",
+      "type": "topic",
+      "url": "/documentation/healthkit"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKAttachment": {
+      "abstract": [
+        {
+          "text": "A file that is attached to a sample in the HealthKit store.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKAttachment"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKAttachment",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKAttachment"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKAttachment",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkattachment"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKAttachmentDataReader": {
+      "abstract": [
+        {
+          "text": "A reader that provides access to an attachment’s data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKAttachmentDataReader"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKAttachmentDataReader",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKAttachmentDataReader"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKAttachmentDataReader",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkattachmentdatareader"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKAttachmentDataReader/attachment": {
+      "abstract": [
+        {
+          "text": "An attachment object that represents the file from which the reader is reading.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "attachment"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HKAttachment",
+          "text": "HKAttachment"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKAttachmentDataReader/attachment",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "attachment",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkattachmentdatareader/attachment"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKAttachmentDataReader/bytes": {
+      "abstract": [
+        {
+          "text": "An asynchronous sequence that provides the attachment’s data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "bytes"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)HKAttachment",
+          "text": "HKAttachment"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:So12HKAttachmentC9HealthKitE10AsyncBytesV",
+          "text": "AsyncBytes"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKAttachmentDataReader/bytes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "bytes",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkattachmentdatareader/bytes"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKAttachmentDataReader/data": {
+      "abstract": [
+        {
+          "text": "The abstract’s data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "data"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKAttachmentDataReader/data",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "data",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkattachmentdatareader/data"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKAttachmentDataReader/progress": {
+      "abstract": [
+        {
+          "text": "An object you can use to track the progress while reading an attachment’s data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "progress"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSProgress",
+          "text": "Progress"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKAttachmentDataReader/progress",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "progress",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkattachmentdatareader/progress"
+    },
+    "doc://com.apple.healthkit/documentation/HealthKit/HKAttachmentStore": {
+      "abstract": [
+        {
+          "text": "The access point for attachments associated with samples in the HealthKit store.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HKAttachmentStore"
+        }
+      ],
+      "identifier": "doc://com.apple.healthkit/documentation/HealthKit/HKAttachmentStore",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HKAttachmentStore"
+        }
+      ],
+      "role": "symbol",
+      "title": "HKAttachmentStore",
+      "type": "topic",
+      "url": "/documentation/healthkit/hkattachmentstore"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Attachments",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.healthkit/documentation/HealthKit/HKAttachment",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKAttachmentStore"
+      ],
+      "title": "Attachments"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Reading-attachment-data",
+      "identifiers": [
+        "doc://com.apple.healthkit/documentation/HealthKit/HKAttachmentDataReader/data",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKAttachmentDataReader/bytes",
+        "doc://com.apple.healthkit/documentation/HealthKit/HKAttachmentDataReader/progress"
+      ],
+      "title": "Reading attachment data"
+    },
+    {
+      "anchor": "Accessing-the-attachment-object",
+      "identifiers": [
+        "doc://com.apple.healthkit/documentation/HealthKit/HKAttachmentDataReader/attachment"
+      ],
+      "title": "Accessing the attachment object"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKAttachment/title",
+          "value": "HKAttachment"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKAttachment/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKAttachment"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKAttachment/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKAttachment"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKAttachmentStore/title",
+          "value": "HKAttachmentStore"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKAttachmentStore/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKAttachmentStore"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.healthkit~1documentation~1HealthKit~1HKAttachmentStore/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "HKAttachmentStore"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/healthkit/hkattachmentdatareader"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

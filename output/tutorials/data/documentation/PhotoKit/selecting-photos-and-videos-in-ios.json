@@ -1,0 +1,995 @@
+{
+  "abstract": [
+    {
+      "text": "Improve the user experience of finding and selecting assets by using the Photos picker.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.photokit/documentation/PhotoKit"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.photokit/documentation/PhotoKit",
+        "doc://com.apple.photokit/documentation/PhotosUI"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.photokit/documentation/PhotoKit/selecting-photos-and-videos-in-ios"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "PhotosUI"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "15.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "15.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "13.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Selecting Photos and Videos in iOS"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample shows how to use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.photokit/documentation/PhotoKit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " Photos picker, and illustrates how to filter assets according to the user’s selection. After you have a selection, you use an item provider to load the asset to display in the app. The sample also explores the new configuration options in iOS 15.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "This sample code project is associated with WWDC21 session ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/videos/play/wwdc2021/10046/",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Understand-the-Photos-Picker-Benefits",
+          "level": 3,
+          "text": "Understand the Photos Picker Benefits",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Both ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.photokit/documentation/PhotosUI/PHPickerViewController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIImagePickerController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " use the out-of-process Photos picker user interface. The ",
+              "type": "text"
+            },
+            {
+              "code": "PHPickerViewController",
+              "type": "codeVoice"
+            },
+            {
+              "text": " contains a powerful set of APIs that make it a great alternative to ",
+              "type": "text"
+            },
+            {
+              "code": "UIImagePickerController",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". ",
+              "type": "text"
+            },
+            {
+              "code": "PHPickerViewController",
+              "type": "codeVoice"
+            },
+            {
+              "text": " improves stability and reliability, and includes several benefits to developers and users, such as the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Deferred image loading and recovery UI",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Reliable handling of large and complex assets, like RAW and panoramic images",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "User-selectable assets that aren’t available for ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "UIImagePickerController",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Configuration of the picker to only display Live Photos",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Availability of ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.photokit/documentation/Photos/PHLivePhoto",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " objects without library access",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Stricter validations against invalid inputs",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Apps don’t need to request photo library permission when using either class, so the sample app avoids requesting permission until it’s necessary. A camera app, photo editing app, or library browsing app needs to use much more of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.photokit/documentation/PhotoKit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "‘s functionality, but an app that’s only setting a basic profile photo doesn’t need photo library permission. An app that only saves photos to the photo library can use the Add Photos Only permission level when requesting authorization.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Configure-the-Photos-Picker",
+          "level": 3,
+          "text": "Configure the Photos Picker",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before displaying the photo library, the sample creates a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.photokit/documentation/PhotosUI/PHPickerConfiguration-swift.struct",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object using the shared photo library. Creating a configuration without a photo library provides only asset data, and doesn’t include asset identifiers.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "var configuration = PHPickerConfiguration(photoLibrary: .shared())"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The picker displays all asset types by default. A filter configures the picker to display videos, images with live photos, or live photos only. The sample contains three buttons that reflect the available filter types.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An app creates custom filters by combining filter options. For example, the following code displays live photos and videos:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "var newFilter = PHPickerFilter.any(of: [.livePhotos, .videos])"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A new feature in iOS 15 is the capability to change the selection behavior. The sample sets the selection property to ",
+              "type": "text"
+            },
+            {
+              "code": "ordered",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", which places a numbered checkmark when selecting items, and disables swipe to select.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The preselection API allows for presenting the picker with selected photos. This gives the user the opportunity to select more photos, or to deselect preselected photos.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Set the filter type according to the user’s selection.",
+            "configuration.filter = filter",
+            "// Set the mode to avoid transcoding, if possible, if your app supports arbitrary image/video encodings.",
+            "configuration.preferredAssetRepresentationMode = .current",
+            "// Set the selection behavior to respect the user’s selection order.",
+            "configuration.selection = .ordered",
+            "// Set the selection limit to enable multiselection.",
+            "configuration.selectionLimit = 0",
+            "// Set the preselected asset identifiers with the identifiers that the app tracks.",
+            "configuration.preselectedAssetIdentifiers = selectedAssetIdentifiers"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Display-a-Picker-with-the-Configuration",
+          "level": 3,
+          "text": "Display a Picker with the Configuration",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample creates and displays the picker using the configuration object. Displaying the photo library doesn’t need user permission because it’s running in a separate process. An app can’t take screenshots of content and can only read the assets that the user selects.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let picker = PHPickerViewController(configuration: configuration)",
+            "picker.delegate = self",
+            "present(picker, animated: true)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Apps are responsible for presenting and dismissing the photo library. The sample adopts to the photo library delegate that notifies the app when the user cancels the flow.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.photokit/documentation/PhotoKit/delivering-an-enhanced-privacy-experience-in-your-photos-app",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to learn more about requesting authorization and limited library capabilities.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Retrieve-the-Selected-Results",
+          "level": 3,
+          "text": "Retrieve the Selected Results",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When completing a picker session, the delegate provides a list of result objects that contain an item provider that allows for loading data asynchronously. The results contain local identifiers because of initializing the configuration with a photo library.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample stores the selected asset identifiers to preload them when displaying the photo library again.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let existingSelection = self.selection",
+            "var newSelection = [String: PHPickerResult]()",
+            "for result in results {",
+            "    let identifier = result.assetIdentifier!",
+            "    newSelection[identifier] = existingSelection[identifier] ?? result",
+            "}",
+            "",
+            "// Track the selection in case the user deselects it later.",
+            "selection = newSelection",
+            "selectedAssetIdentifiers = results.map(\\.assetIdentifier!)",
+            "selectedAssetIdentifierIterator = selectedAssetIdentifiers.makeIterator()",
+            "",
+            "if selection.isEmpty {",
+            "    displayEmptyImage()",
+            "} else {",
+            "    displayNext()",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Fetch-Selected-Asset-Data-for-Display",
+          "level": 3,
+          "text": "Fetch Selected Asset Data for Display",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An item provider gives an app the ability to load assets asynchronously and on demand. Before loading an object, the sample verifies that the object is available.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An item provider also allows for progress reporting. An asset may not be available on-device if iCloud Photos and Optimize Storage aren’t active. In this case, it can take some time to download a large asset. An item provider returns a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/progress",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object that conveys ongoing progress to an app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "guard let assetIdentifier = selectedAssetIdentifierIterator?.next() else { return }",
+            "currentAssetIdentifier = assetIdentifier",
+            "",
+            "let progress: Progress?",
+            "let itemProvider = selection[assetIdentifier]!.itemProvider",
+            "if itemProvider.canLoadObject(ofClass: PHLivePhoto.self) {",
+            "    progress = itemProvider.loadObject(ofClass: PHLivePhoto.self) { [weak self] livePhoto, error in",
+            "        DispatchQueue.main.async {",
+            "            self?.handleCompletion(assetIdentifier: assetIdentifier, object: livePhoto, error: error)",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Load-Asset-Metadata",
+          "level": 3,
+          "text": "Load Asset Metadata",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Retrieving metadata for an asset doesn’t require special permission. An app can get the properties after loading an object from an item provider. However, it may not include all properties because of the transcoding process.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code retrieves the property list by checking that the item provider conforms to an image type identifier. After confirming, it loads the data representation of an asset, which avoids losing information from transcoding, and allows for better metadata retrieval.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "if itemProvider.hasItemConformingToTypeIdentifier(UTType.image.identifier) {",
+            "    itemProvider.loadDataRepresentation(forTypeIdentifier: UTType.image.identifier) { data, error in",
+            "        guard let data = data,",
+            "              let cgImageSource = CGImageSourceCreateWithData(data as CFData, nil),",
+            "              let properties = CGImageSourceCopyPropertiesAtIndex(cgImageSource, 0, nil) else { return }",
+            "        print(properties)",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "97b1531925cf/SelectingPhotosAndVideosInIOS.zip": {
+      "checksum": "97b1531925cfbfd6d343698044b843249681a8b43be99f0f26a5ac6b1123ec3df30f0de28d8414ec714589c7b5547f55c048e25e4fa319c4c9218ea24d06d848",
+      "identifier": "97b1531925cf/SelectingPhotosAndVideosInIOS.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/97b1531925cf/SelectingPhotosAndVideosInIOS.zip"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIImagePickerController": {
+      "abstract": [
+        {
+          "text": "A view controller that manages the system interfaces for taking pictures, recording movies, and choosing items from the user’s media library.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIImagePickerController"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIImagePickerController",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIImagePickerController",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIImagePickerController"
+    },
+    "doc://com.apple.documentation/documentation/foundation/progress": {
+      "abstract": [
+        {
+          "text": "An object that conveys ongoing progress to the user for a specified task.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "Progress"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/progress",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Progress",
+      "type": "topic",
+      "url": "/documentation/foundation/progress"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.photokit/documentation/PhotoKit": {
+      "abstract": [
+        {
+          "text": "Work with image and video assets that the Photos app manages, including those from iCloud Photos and Live Photos.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/PhotoKit",
+      "kind": "article",
+      "role": "collection",
+      "title": "PhotoKit",
+      "type": "topic",
+      "url": "/documentation/photokit"
+    },
+    "doc://com.apple.photokit/documentation/PhotoKit/bringing-photos-picker-to-your-swiftui-app": {
+      "abstract": [
+        {
+          "text": "Select media assets by using a Photos picker view that SwiftUI provides.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/PhotoKit/bringing-photos-picker-to-your-swiftui-app",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Bringing Photos picker to your SwiftUI app",
+      "type": "topic",
+      "url": "/documentation/photokit/bringing-photos-picker-to-your-swiftui-app"
+    },
+    "doc://com.apple.photokit/documentation/PhotoKit/browsing-and-modifying-photo-albums": {
+      "abstract": [
+        {
+          "text": "Help users organize their photos into albums and browse photo collections in a grid-based layout using PhotoKit.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/PhotoKit/browsing-and-modifying-photo-albums",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Browsing and Modifying Photo Albums",
+      "type": "topic",
+      "url": "/documentation/photokit/browsing-and-modifying-photo-albums"
+    },
+    "doc://com.apple.photokit/documentation/PhotoKit/creating-a-slideshow-project-extension-for-photos": {
+      "abstract": [
+        {
+          "text": "Augment the macOS Photos app with extensions that support project creation.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/PhotoKit/creating-a-slideshow-project-extension-for-photos",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Creating a Slideshow Project Extension for Photos",
+      "type": "topic",
+      "url": "/documentation/photokit/creating-a-slideshow-project-extension-for-photos"
+    },
+    "doc://com.apple.photokit/documentation/PhotoKit/delivering-an-enhanced-privacy-experience-in-your-photos-app": {
+      "abstract": [
+        {
+          "text": "Adopt the latest privacy enhancements to deliver advanced user-privacy controls.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/PhotoKit/delivering-an-enhanced-privacy-experience-in-your-photos-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Delivering an Enhanced Privacy Experience in Your Photos App",
+      "type": "topic",
+      "url": "/documentation/photokit/delivering-an-enhanced-privacy-experience-in-your-photos-app"
+    },
+    "doc://com.apple.photokit/documentation/PhotoKit/implementing-an-inline-photos-picker": {
+      "abstract": [
+        {
+          "text": "Embed a system-provided, half-height Photos picker into your app’s view.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/PhotoKit/implementing-an-inline-photos-picker",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Implementing an inline Photos picker",
+      "type": "topic",
+      "url": "/documentation/photokit/implementing-an-inline-photos-picker"
+    },
+    "doc://com.apple.photokit/documentation/Photos/PHLivePhoto": {
+      "abstract": [
+        {
+          "text": "A displayable representation of a Live Photo—a picture that includes motion and sound from the moments just before and after its capture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PHLivePhoto"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/Photos/PHLivePhoto",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PHLivePhoto"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHLivePhoto",
+      "type": "topic",
+      "url": "/documentation/photos/phlivephoto"
+    },
+    "doc://com.apple.photokit/documentation/PhotosUI": {
+      "abstract": [
+        {
+          "text": "Present a person’s photo library using a picker interface, display Live Photos, or extend the Photos app with custom functionality.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/PhotosUI",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "PhotosUI",
+      "type": "topic",
+      "url": "/documentation/photosui"
+    },
+    "doc://com.apple.photokit/documentation/PhotosUI/PHPickerConfiguration-swift.struct": {
+      "abstract": [
+        {
+          "text": "An object that contains information about how to configure a picker view controller.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PHPickerConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/PhotosUI/PHPickerConfiguration-swift.struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PHPickerConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHPickerConfiguration",
+      "type": "topic",
+      "url": "/documentation/photosui/phpickerconfiguration-swift.struct"
+    },
+    "doc://com.apple.photokit/documentation/PhotosUI/PHPickerViewController": {
+      "abstract": [
+        {
+          "text": "A view controller that provides the user interface for choosing assets from the photo library.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PHPickerViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/PhotosUI/PHPickerViewController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PHPickerViewController"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHPickerViewController",
+      "type": "topic",
+      "url": "/documentation/photosui/phpickerviewcontroller"
+    },
+    "https://developer.apple.com/videos/play/wwdc2021/10046/": {
+      "identifier": "https://developer.apple.com/videos/play/wwdc2021/10046/",
+      "title": "10046: Improve access to Photos in your app",
+      "titleInlineContent": [
+        {
+          "text": "10046: Improve access to Photos in your app",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/videos/play/wwdc2021/10046/"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "97b1531925cf/SelectingPhotosAndVideosInIOS.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Sample-code",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.photokit/documentation/PhotoKit/browsing-and-modifying-photo-albums",
+        "doc://com.apple.photokit/documentation/PhotoKit/bringing-photos-picker-to-your-swiftui-app",
+        "doc://com.apple.photokit/documentation/PhotoKit/implementing-an-inline-photos-picker",
+        "doc://com.apple.photokit/documentation/PhotoKit/creating-a-slideshow-project-extension-for-photos"
+      ],
+      "title": "Sample code"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1progress/title",
+          "value": "NSProgress"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIImagePickerController/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIImagePickerController"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UINavigationController",
+              "text": "UINavigationController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1PhotosUI~1PHPickerViewController/title",
+          "value": "PHPickerViewController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1PhotosUI~1PHPickerViewController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHPickerViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1PhotosUI~1PHPickerViewController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHPickerViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHLivePhoto/title",
+          "value": "PHLivePhoto"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHLivePhoto/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHLivePhoto"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHLivePhoto/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHLivePhoto"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

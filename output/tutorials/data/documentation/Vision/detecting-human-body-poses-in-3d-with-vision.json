@@ -1,0 +1,772 @@
+{
+  "abstract": [
+    {
+      "text": "Render skeletons of 3D body pose points in a scene overlaying the input image.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.vision/documentation/Vision",
+        "doc://com.apple.vision/documentation/Vision/original-objective-c-and-swift-api"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.vision/documentation/Vision/detecting-human-body-poses-in-3d-with-vision"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Vision"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "17.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "17.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "15.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Detecting human body poses in 3D with Vision"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "This sample code project is associated with WWDC23 session 111241: ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/wwdc23/111241/",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Configure-the-sample-code-project",
+          "level": 3,
+          "text": "Configure the sample code project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before you run the sample code project in Xcode, ensure you’re using an iOS device with an A12 chip or later. The input image should have all limbs of the subject visible.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Due to a behavior change with ",
+                  "type": "text"
+                },
+                {
+                  "code": "cameraOriginMatrix",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " API, if this sample project is run on a device on a build earlier than beta 3, camera position will be rotated 180 degrees.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "cb0e196fda04/DetectingHumanBodyPosesIn3DWithVision.zip": {
+      "checksum": "cb0e196fda043e6230793ea46e4424d7586a899fae89f7c2ee156fc76429103485b66095af683dade48fcd8ba0cf7c19b28f8b384b6386e68894490a6e0ffaf9",
+      "identifier": "cb0e196fda04/DetectingHumanBodyPosesIn3DWithVision.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/cb0e196fda04/DetectingHumanBodyPosesIn3DWithVision.zip"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.vision/documentation/Vision": {
+      "abstract": [
+        {
+          "text": "Apply computer vision algorithms to perform a variety of tasks on input images and videos.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Vision",
+      "type": "topic",
+      "url": "/documentation/vision"
+    },
+    "doc://com.apple.vision/documentation/Vision/VNDetectHumanBodyPose3DRequest": {
+      "abstract": [
+        {
+          "text": "A request that detects points on human bodies in 3D space, relative to the camera.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VNDetectHumanBodyPose3DRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/VNDetectHumanBodyPose3DRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VNDetectHumanBodyPose3DRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "VNDetectHumanBodyPose3DRequest",
+      "type": "topic",
+      "url": "/documentation/vision/vndetecthumanbodypose3drequest"
+    },
+    "doc://com.apple.vision/documentation/Vision/VNHumanBodyPose3DObservation": {
+      "abstract": [
+        {
+          "text": "An observation that provides the 3D body points the request recognizes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VNHumanBodyPose3DObservation"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/VNHumanBodyPose3DObservation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VNHumanBodyPose3DObservation"
+        }
+      ],
+      "role": "symbol",
+      "title": "VNHumanBodyPose3DObservation",
+      "type": "topic",
+      "url": "/documentation/vision/vnhumanbodypose3dobservation"
+    },
+    "doc://com.apple.vision/documentation/Vision/VNHumanBodyPose3DObservation/JointName": {
+      "abstract": [
+        {
+          "text": "The joint names for a 3D body pose.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "JointName"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/VNHumanBodyPose3DObservation/JointName",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "JointName"
+        }
+      ],
+      "role": "symbol",
+      "title": "VNHumanBodyPose3DObservation.JointName",
+      "type": "topic",
+      "url": "/documentation/vision/vnhumanbodypose3dobservation/jointname"
+    },
+    "doc://com.apple.vision/documentation/Vision/VNHumanBodyPose3DObservation/JointsGroupName": {
+      "abstract": [
+        {
+          "text": "The joint group names for a 3D body pose.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "JointsGroupName"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/VNHumanBodyPose3DObservation/JointsGroupName",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "JointsGroupName"
+        }
+      ],
+      "role": "symbol",
+      "title": "VNHumanBodyPose3DObservation.JointsGroupName",
+      "type": "topic",
+      "url": "/documentation/vision/vnhumanbodypose3dobservation/jointsgroupname"
+    },
+    "doc://com.apple.vision/documentation/Vision/VNHumanBodyRecognizedPoint3D": {
+      "abstract": [
+        {
+          "text": "A recognized 3D point that includes a parent joint.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VNHumanBodyRecognizedPoint3D"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/VNHumanBodyRecognizedPoint3D",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VNHumanBodyRecognizedPoint3D"
+        }
+      ],
+      "role": "symbol",
+      "title": "VNHumanBodyRecognizedPoint3D",
+      "type": "topic",
+      "url": "/documentation/vision/vnhumanbodyrecognizedpoint3d"
+    },
+    "doc://com.apple.vision/documentation/Vision/VNPoint3D": {
+      "abstract": [
+        {
+          "text": "An object that represents a 3D point in an image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VNPoint3D"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/VNPoint3D",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VNPoint3D"
+        }
+      ],
+      "role": "symbol",
+      "title": "VNPoint3D",
+      "type": "topic",
+      "url": "/documentation/vision/vnpoint3d"
+    },
+    "doc://com.apple.vision/documentation/Vision/VNRecognizedPoint3D": {
+      "abstract": [
+        {
+          "text": "A 3D point that includes an identifier to the point.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VNRecognizedPoint3D"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/VNRecognizedPoint3D",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VNRecognizedPoint3D"
+        }
+      ],
+      "role": "symbol",
+      "title": "VNRecognizedPoint3D",
+      "type": "topic",
+      "url": "/documentation/vision/vnrecognizedpoint3d"
+    },
+    "doc://com.apple.vision/documentation/Vision/VNRecognizedPoints3DObservation": {
+      "abstract": [
+        {
+          "text": "An observation that provides the 3D points for a request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VNRecognizedPoints3DObservation"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/VNRecognizedPoints3DObservation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VNRecognizedPoints3DObservation"
+        }
+      ],
+      "role": "symbol",
+      "title": "VNRecognizedPoints3DObservation",
+      "type": "topic",
+      "url": "/documentation/vision/vnrecognizedpoints3dobservation"
+    },
+    "doc://com.apple.vision/documentation/Vision/identifying-3d-human-body-poses-in-images": {
+      "abstract": [
+        {
+          "text": "Detect three-dimensional human body poses using the Vision framework.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/identifying-3d-human-body-poses-in-images",
+      "kind": "article",
+      "role": "article",
+      "title": "Identifying 3D human body poses in images",
+      "type": "topic",
+      "url": "/documentation/vision/identifying-3d-human-body-poses-in-images"
+    },
+    "doc://com.apple.vision/documentation/Vision/original-objective-c-and-swift-api": {
+      "abstract": [],
+      "identifier": "doc://com.apple.vision/documentation/Vision/original-objective-c-and-swift-api",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Original Objective-C and Swift API",
+      "type": "topic",
+      "url": "/documentation/vision/original-objective-c-and-swift-api"
+    },
+    "https://developer.apple.com/wwdc23/111241/": {
+      "identifier": "https://developer.apple.com/wwdc23/111241/",
+      "title": "Explore 3D body pose and person segmentation in Vision",
+      "titleInlineContent": [
+        {
+          "text": "Explore 3D body pose and person segmentation in Vision",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/wwdc23/111241/"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "cb0e196fda04/DetectingHumanBodyPosesIn3DWithVision.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "3D-body-pose-detection",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.vision/documentation/Vision/identifying-3d-human-body-poses-in-images",
+        "doc://com.apple.vision/documentation/Vision/VNDetectHumanBodyPose3DRequest",
+        "doc://com.apple.vision/documentation/Vision/VNHumanBodyPose3DObservation",
+        "doc://com.apple.vision/documentation/Vision/VNRecognizedPoints3DObservation",
+        "doc://com.apple.vision/documentation/Vision/VNHumanBodyRecognizedPoint3D",
+        "doc://com.apple.vision/documentation/Vision/VNPoint3D",
+        "doc://com.apple.vision/documentation/Vision/VNRecognizedPoint3D",
+        "doc://com.apple.vision/documentation/Vision/VNHumanBodyPose3DObservation/JointName",
+        "doc://com.apple.vision/documentation/Vision/VNHumanBodyPose3DObservation/JointsGroupName"
+      ],
+      "title": "3D body pose detection"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "3D-body-pose-detection",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.vision/documentation/Vision/identifying-3d-human-body-poses-in-images",
+                "doc://com.apple.vision/documentation/Vision/VNDetectHumanBodyPose3DRequest",
+                "doc://com.apple.vision/documentation/Vision/VNHumanBodyPose3DObservation",
+                "doc://com.apple.vision/documentation/Vision/VNRecognizedPoints3DObservation",
+                "doc://com.apple.vision/documentation/Vision/VNHumanBodyRecognizedPoint3D",
+                "doc://com.apple.vision/documentation/Vision/VNPoint3D",
+                "doc://com.apple.vision/documentation/Vision/VNRecognizedPoint3D",
+                "doc://com.apple.vision/documentation/Vision/VNHumanBodyPose3DObservation/JointName",
+                "doc://com.apple.vision/documentation/Vision/VNHumanBodyPose3DObservation/JointsGroupName"
+              ],
+              "title": "3D body pose detection"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNPoint3D/title",
+          "value": "VNPoint3D"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNPoint3D/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VNPoint3D"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNPoint3D/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VNPoint3D"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNHumanBodyRecognizedPoint3D/title",
+          "value": "VNHumanBodyRecognizedPoint3D"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNHumanBodyRecognizedPoint3D/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VNHumanBodyRecognizedPoint3D"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNHumanBodyRecognizedPoint3D/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VNHumanBodyRecognizedPoint3D"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNRecognizedPoint3D/title",
+          "value": "VNRecognizedPoint3D"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNRecognizedPoint3D/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VNRecognizedPoint3D"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNRecognizedPoint3D/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VNRecognizedPoint3D"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNHumanBodyPose3DObservation~1JointName/title",
+          "value": "VNHumanBodyPose3DObservationJointName"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNHumanBodyPose3DObservation~1JointName/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VNHumanBodyPose3DObservationJointName"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNHumanBodyPose3DObservation~1JointName/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VNHumanBodyPose3DObservationJointName"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNHumanBodyPose3DObservation~1JointsGroupName/title",
+          "value": "VNHumanBodyPose3DObservationJointsGroupName"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNHumanBodyPose3DObservation~1JointsGroupName/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VNHumanBodyPose3DObservationJointsGroupName"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNHumanBodyPose3DObservation~1JointsGroupName/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VNHumanBodyPose3DObservationJointsGroupName"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNHumanBodyPose3DObservation/title",
+          "value": "VNHumanBodyPose3DObservation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNHumanBodyPose3DObservation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VNHumanBodyPose3DObservation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNHumanBodyPose3DObservation/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VNHumanBodyPose3DObservation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNDetectHumanBodyPose3DRequest/title",
+          "value": "VNDetectHumanBodyPose3DRequest"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNDetectHumanBodyPose3DRequest/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VNDetectHumanBodyPose3DRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNDetectHumanBodyPose3DRequest/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VNDetectHumanBodyPose3DRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNRecognizedPoints3DObservation/title",
+          "value": "VNRecognizedPoints3DObservation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNRecognizedPoints3DObservation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VNRecognizedPoints3DObservation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNRecognizedPoints3DObservation/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VNRecognizedPoints3DObservation"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/vision/detecting-human-body-poses-in-3d-with-vision"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/vision/detecting-human-body-poses-in-3d-with-vision"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,632 @@
+{
+  "abstract": [
+    {
+      "text": "Associate and disassociate licenses with users and devices.",
+      "type": "text"
+    }
+  ],
+  "deprecationSummary": [
+    {
+      "inlineContent": [
+        {
+          "text": "This legacy API is currently in maintenance mode. Apple won’t add any new functionality to it.",
+          "type": "text"
+        }
+      ],
+      "type": "paragraph"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Manage-Licenses"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "rest:vpp:post:manageVPPLicensesByAdamIdSrv",
+    "modules": [
+      {
+        "name": "Device Management"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "Manage Licenses"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "name": "Device Assignment Services"
+      },
+      {
+        "beta": false,
+        "name": "VPP License Management"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Web Service Endpoint",
+    "symbolKind": "httpRequest",
+    "title": "Manage Licenses"
+  },
+  "primaryContentSections": [
+    {
+      "kind": "restEndpoint",
+      "title": "URL",
+      "tokens": [
+        {
+          "kind": "method",
+          "text": "POST"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "baseURL",
+          "text": "https://vpp.itunes.apple.com/mdm/"
+        },
+        {
+          "kind": "path",
+          "text": "manageVPPLicensesByAdamIdSrv"
+        }
+      ]
+    },
+    {
+      "bodyContentType": [
+        {
+          "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/ManageVppLicensesByAdamIdRequest",
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "mdm-apps:vpp:ManageVppLicensesByAdamIdRequest",
+          "text": "ManageVppLicensesByAdamIdRequest"
+        }
+      ],
+      "content": [
+        {
+          "inlineContent": [
+            {
+              "text": "missing",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "restBody",
+      "mimeType": "application/json",
+      "parameters": [],
+      "title": "HTTP Body"
+    },
+    {
+      "items": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "OK",
+          "status": 200,
+          "type": [
+            {
+              "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/ManageVppLicensesByAdamIdResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "mdm-apps:vpp:ManageVppLicensesByAdamIdResponse",
+              "text": "ManageVppLicensesByAdamIdResponse"
+            }
+          ]
+        }
+      ],
+      "kind": "restResponses",
+      "title": "Response Codes"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This endpoint operates on a single asset (specified by the ",
+              "type": "text"
+            },
+            {
+              "code": "{adamIdStr, pricingParam}",
+              "type": "codeVoice"
+            },
+            {
+              "text": " tuple) for multiple associations and disassociations in a single request.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Licenses are disassociated from all users specified by the ",
+              "type": "text"
+            },
+            {
+              "code": "disassociateClientUserIdStrs",
+              "type": "codeVoice"
+            },
+            {
+              "text": " array, the devices specified by the ",
+              "type": "text"
+            },
+            {
+              "code": "disassociateSerialNumbers",
+              "type": "codeVoice"
+            },
+            {
+              "text": " array, or the licenses specified by the ",
+              "type": "text"
+            },
+            {
+              "code": "disassociateLicenseIdStrs",
+              "type": "codeVoice"
+            },
+            {
+              "text": " array (which must only specify licenses assigned to the specified asset). At most one of these ",
+              "type": "text"
+            },
+            {
+              "code": "disassociate*",
+              "type": "codeVoice"
+            },
+            {
+              "text": " arrays may be specified per request.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Then licenses are associated either with the users specified by the ",
+              "type": "text"
+            },
+            {
+              "code": "associateClientUserIdStrs",
+              "type": "codeVoice"
+            },
+            {
+              "text": " array or the devices specified by the ",
+              "type": "text"
+            },
+            {
+              "code": "associateSerialNumbers",
+              "type": "codeVoice"
+            },
+            {
+              "text": " array. Device assignment doesn’t trigger notifcation.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "At most, one ",
+              "type": "text"
+            },
+            {
+              "code": "associate*",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and one ",
+              "type": "text"
+            },
+            {
+              "code": "disassociate*",
+              "type": "codeVoice"
+            },
+            {
+              "text": " array is allowed per request. Specifying more than one of either ",
+              "type": "text"
+            },
+            {
+              "code": "associate*",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "code": "disassociate*",
+              "type": "codeVoice"
+            },
+            {
+              "text": " arrays result in undefined behavior.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Example-Request-and-Response-with-a-Serial-Number",
+          "level": 3,
+          "text": "Example Request and Response with a Serial Number",
+          "type": "heading"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "{",
+                    "  \"disassociateClientUserIdStrs\": null,",
+                    "  \"disassociateSerialNumbers\": null,",
+                    "  \"disassociateLicenseIdStrs\": null,",
+                    "  \"associateClientUserIdStrs\": null,",
+                    "  \"associateSerialNumbers\": [",
+                    "    \"MERD1\",",
+                    "    \"MERD2\"",
+                    "  ],",
+                    "  \"adamIdStr\": \"869183446\",",
+                    "  \"pricingParam\": null,",
+                    "  \"notifyDisassociation\": true,",
+                    "  \"sToken\": \"h40Gte9aQnZFDNM39IUkRPCsQDxBxbZB4Wy34pxefOuQkeeb3h2 a5Rlopo4KDn3MrFKf4CM3OY+WGAoZ1cD6iZ6yzsMk1+5PVBNc66YS6ZQ=\"",
+                    "}"
+                  ],
+                  "syntax": null,
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Request"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "{",
+                    "  \"adamIdStr\": \"869183446\",",
+                    "  \"associations\": [",
+                    "    {",
+                    "      \"licenseIdStr\": \"840999\",",
+                    "      \"serialNumber\": \"device1\"",
+                    "    },",
+                    "    {",
+                    "      \"licenseIdStr\": \"841000\",",
+                    "      \"serialNumber\": \"device1\"",
+                    "    }",
+                    "  ],",
+                    "  \"clientContext\": \"{\\\"guid\\\":\\\"b92\\\",\\\"hostname\\\":\\\"test.test.org\\\",\\\"ac2\\\":1}\",",
+                    "  \"expirationMillis\": 1898103480266,",
+                    "  \"isIrrevocable\": false,",
+                    "  \"location\": {",
+                    "    \"locationId\": 22222222222,",
+                    "    \"locationName\": \"LocationName\"",
+                    "  },",
+                    "  \"pricingParam\": \"STDQ\",",
+                    "  \"productTypeId\": 8,",
+                    "  \"productTypeName\": \"Application\",",
+                    "  \"status\": 0,",
+                    "  \"uId\": \"103614\"",
+                    "}"
+                  ],
+                  "syntax": "json",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Response"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "anchor": "Example-Request-and-Response-with-a-Client-User-ID-String",
+          "level": 3,
+          "text": "Example Request and Response with a Client User ID String",
+          "type": "heading"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "{",
+                    "  \"disassociateClientUserIdStrs\": null,",
+                    "  \"disassociateSerialNumbers\": null,",
+                    "  \"disassociateLicenseIdStrs\": null,",
+                    "  \"associateClientUserIdStrs\": [",
+                    "    \"9a17b450-9820-471e-b232-13a479ddede0\"",
+                    "  ],",
+                    "  \"associateSerialNumbers\": null,",
+                    "  \"adamIdStr\": \"869183446\",",
+                    "  \"pricingParam\": null,",
+                    "  \"notifyDisassociation\": null,",
+                    "  \"sToken\": \"h40Gte9aQnZFDNM39IUkRPCsQDxBxbZB4Wy34pxefOuQkeeb3h2 a5Rlopo4KDn3MrFKf4CM3OY+WGAoZ1cD6iZ6yzsMk1+5PVBNc66YS6ZQ=\"",
+                    "}"
+                  ],
+                  "syntax": null,
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Request"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "{",
+                    "  \"adamIdStr\": \"869183446\",",
+                    "  \"associations\": [",
+                    "    {",
+                    "      \"licenseIdStr\": \"840998\",",
+                    "      \"clientUserIdStr\": \"9a17b450-9820-471e-b232-13a479ddede0\"",
+                    "    }",
+                    "  ],",
+                    "  \"clientContext\": \"{\\\"guid\\\":\\\"b92\\\",\\\"hostname\\\":\\\"test.test.org\\\",\\\"ac2\\\":1}\",",
+                    "  \"expirationMillis\": 1898103480266,",
+                    "  \"isIrrevocable\": false,",
+                    "  \"location\": {",
+                    "    \"locationId\": 22222222222,",
+                    "    \"locationName\": \"LocationName\"",
+                    "  },",
+                    "  \"pricingParam\": \"STDQ\",",
+                    "  \"productTypeId\": 8,",
+                    "  \"productTypeName\": \"Application\",",
+                    "  \"status\": 0,",
+                    "  \"uId\": \"103614\"",
+                    "}"
+                  ],
+                  "syntax": "json",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Response"
+            }
+          ],
+          "type": "tabNavigator"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement": {
+      "abstract": [
+        {
+          "text": "Manage your organization’s devices remotely.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Device Management",
+      "type": "topic",
+      "url": "/documentation/devicemanagement"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Get-Assets-44p83": {
+      "abstract": [
+        {
+          "text": "Get the set of assets managed by your organization.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Get-Assets-44p83",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Get Assets"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get Assets",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/get-assets-44p83"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Get-Assignments-158kc": {
+      "abstract": [
+        {
+          "text": "Get a list of assignments currently assigned to a user or device.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Get-Assignments-158kc",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Get Assignments"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get Assignments",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/get-assignments-158kc"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Get-Licenses": {
+      "abstract": [
+        {
+          "text": "Get the set of licenses managed by your organization.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Get-Licenses",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Get Licenses"
+        }
+      ],
+      "role": "symbol",
+      "title": "Get Licenses",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/get-licenses"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/Manage-Licenses": {
+      "abstract": [
+        {
+          "text": "Associate and disassociate licenses with users and devices.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/Manage-Licenses",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Manage Licenses"
+        }
+      ],
+      "role": "symbol",
+      "title": "Manage Licenses",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/manage-licenses"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/ManageVppLicensesByAdamIdRequest": {
+      "abstract": [
+        {
+          "text": "The request to manage licenses.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ManageVppLicensesByAdamIdRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/ManageVppLicensesByAdamIdRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ManageVppLicensesByAdamIdRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "ManageVppLicensesByAdamIdRequest",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/managevpplicensesbyadamidrequest"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/ManageVppLicensesByAdamIdResponse": {
+      "abstract": [
+        {
+          "text": "The response from managing licenses.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ManageVppLicensesByAdamIdResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/ManageVppLicensesByAdamIdResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ManageVppLicensesByAdamIdResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "ManageVppLicensesByAdamIdResponse",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/managevpplicensesbyadamidresponse"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Asset-and-License-Management",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/Get-Assets-44p83",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/Get-Assignments-158kc",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/Get-Licenses"
+      ],
+      "title": "Asset and License Management"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Request-and-Response",
+      "identifiers": [
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/ManageVppLicensesByAdamIdRequest",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/ManageVppLicensesByAdamIdResponse"
+      ],
+      "title": "Request and Response"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/devicemanagement/manage-licenses"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

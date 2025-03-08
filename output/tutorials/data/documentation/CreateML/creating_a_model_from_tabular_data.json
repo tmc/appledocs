@@ -1,0 +1,1580 @@
+{
+  "abstract": [
+    {
+      "text": "Train a machine learning model by using Core ML to import and manage tabular data.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/createml"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/createml/creating_a_model_from_tabular_data"
+  },
+  "kind": "article",
+  "legacy_identifier": 3087228,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "platforms": [
+      {
+        "current": "16.3",
+        "introducedAt": "10.1",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Creating a Model from Tabular Data"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample playground uses the ",
+              "type": "text"
+            },
+            {
+              "text": " framework to train two ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coreml/documentation/CoreML",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " models, a regressor and a classifier.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3130337",
+              "metadata": {
+                "anchor": "3130337",
+                "title": "Figure 1"
+              },
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The playground imports a CSV file, which contains Martian housing data, into a data table. The data table contains the following columns of information about a habitat on Mars:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Price",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Size (area in acres)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Number of greenhouses",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Number of solar panels",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Primary purpose",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The playground trains the regressor and classifier models, each with a group of columns relevant to that model. Once trained, the regressor is ready to predict the price of a habitat, and the classifier is ready to predict the purpose of a habitat.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The playground concludes by saving each model to a file, ready for integration into an app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "3130363",
+          "level": 3,
+          "text": "Import the Data",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use any ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLDataTable",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " initializer to import your data in to a data table. In this sample, the playground initializes its first data table with the contents of the CSV file embedded within the playground.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "/// Create a data table from a CSV file in the playground’s `Resources` folder.",
+            "let csvFile = Bundle.main.url(forResource: \"MarsHabitats\", withExtension: \"csv\")!",
+            "let dataTable = try MLDataTable(contentsOf: csvFile)"
+          ],
+          "metadata": {
+            "anchor": "3130339",
+            "title": "Listing 1"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Pass your data table to ",
+              "type": "text"
+            },
+            {
+              "code": "print()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to see a pretty-printed sample of its contents in the console.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "print(dataTable)"
+          ],
+          "metadata": {
+            "anchor": "3130340",
+            "title": "Listing 2"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "code": [
+            "// Prints...",
+            "/*",
+            " Columns:",
+            "     solar_panels    float",
+            "     greenhouses     float",
+            "     size            integer",
+            "     price           integer",
+            "     purpose         string",
+            " Rows: 400",
+            " Data:",
+            " +-------------+-------------+-------------+-------------+-------------+",
+            " | solarPanels | greenhouses | size        | price       | purpose     |",
+            " +-------------+-------------+-------------+-------------+-------------+",
+            " | 5           | 2.5         | 430         | 1500        | farm        |",
+            " | 12          | 3           | 470         | 2990        | general     |",
+            " | 20          | 2           | 460         | 2950        | power       |",
+            " | 8           | 3           | 315         | 1990        | farm        |",
+            " | 7.5         | 1.5         | 245         | 1500        | general     |",
+            " +-------------+-------------+-------------+-------------+-------------+",
+            " [400 rows x 5 columns]",
+            " */"
+          ],
+          "metadata": {
+            "anchor": "3130341",
+            "title": "Listing 3"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "3130364",
+          "level": 3,
+          "text": "Isolate the Relevant Model Data",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If necessary, generate a new data table that includes only relevant columns for your model.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, to predict price, the playground’s regressor needs only four columns of the five original columns:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "price",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "solarPanels",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "greenhouses",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "size",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The playground generates a new data table, specifically tailored for the regressor, by passing an array of column names to the first data table’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLDataTable/subscript(_:)-2wkan",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let regressorColumns = [\"price\", \"solarPanels\", \"greenhouses\", \"size\"]",
+            "let regressorTable = dataTable[regressorColumns]"
+          ],
+          "metadata": {
+            "anchor": "3130343",
+            "title": "Listing 4"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To predict the purpose of a habitat, the classifier needs a similar group of columns:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "purpose",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "solarPanels",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "greenhouses",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "size",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "code": [
+            "let classifierColumns = [\"purpose\", \"solarPanels\", \"greenhouses\", \"size\"]",
+            "let classifierTable = dataTable[classifierColumns]"
+          ],
+          "metadata": {
+            "anchor": "3130344",
+            "title": "Listing 5"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "3130365",
+          "level": 3,
+          "text": "Divide the Data for Training and Evaluation",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you intend to evaluate your model after training, reserve some of your data table’s rows for evaluation by separating them from the training data. By evaluating your model with data not present for training, your model’s evaluation better represents its real-world performance.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The playground creates two data tables per model, one for evaluation and the other for training, by using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLDataTable/randomSplit(by:seed:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLDataTable",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". The method returns a tuple of two new data tables, each generated by randomly dividing the rows of the original data table. The size of the first data table in the tuple is determined by the ",
+              "type": "text"
+            },
+            {
+              "code": "proportion",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter, a floating point value between ",
+              "type": "text"
+            },
+            {
+              "code": "0.0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "1.0",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". The second data table in the tuple contains the remaining data rows.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In this example, the playground sets aside 20% of each model’s data rows for evaluation, leaving the remaining 80% for training.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let (regressorEvaluationTable, regressorTrainingTable) = regressorTable.randomSplit(by: 0.20, seed: 5)",
+            "let (classifierEvaluationTable, classifierTrainingTable) = classifierTable.randomSplit(by: 0.20, seed: 5)"
+          ],
+          "metadata": {
+            "anchor": "3130346",
+            "title": "Listing 6"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The amount of data your model needs for evaluation versus training will vary with each app. Generally, training your model with more examples leads to better performance.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "3130366",
+          "level": 3,
+          "text": "Train the Regressor",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The playground trains the regressor by providing its initializer with the training data table and the name of the target column. The ",
+              "type": "text"
+            },
+            {
+              "code": "targetColumn",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter determines what information you want the model to provide in its predictions. The playground tells the regressor to predict the price of a habitat by specifying ",
+              "type": "text"
+            },
+            {
+              "code": "price",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as the model’s target column.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let regressor = try MLLinearRegressor(trainingData: regressorTrainingTable,",
+            "                                      targetColumn: \"price\")"
+          ],
+          "metadata": {
+            "anchor": "3130348",
+            "title": "Listing 7"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "During training, ",
+              "type": "text"
+            },
+            {
+              "text": " automatically sets aside a small percentage of the training data to use for validating the model’s progress during the training phase. The training process gauges the model’s performance based on the validation data. Depending on the validation accuracy, the training algorithm can adjust values within the model or even stop the training process, if the accuracy is high enough. Because the split is done randomly, you might get a different result each time you train a model.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "3130367",
+          "level": 3,
+          "text": "Evaluate the Regressor",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To see how accurately the regressor performed during training and validation, the playground gets the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLRegressorMetrics/maximumError",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property of its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLRegressor/trainingMetrics",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLRegressor/validationMetrics",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " properties.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "/// The largest distances between predictions and the expected values",
+            "let worstTrainingError = regressor.trainingMetrics.maximumError",
+            "let worstValidationError = regressor.validationMetrics.maximumError"
+          ],
+          "metadata": {
+            "anchor": "3130350",
+            "title": "Listing 8"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLRegressorMetrics",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " also has a ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLRegressorMetrics/rootMeanSquaredError",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " property.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The playground evaluates the regressor’s performance by passing its evaluation data table.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "/// Evaluate the regressor",
+            "let regressorEvalutation = regressor.evaluation(on: regressorEvaluationTable)",
+            "",
+            "/// The largest distance between predictions and the expected values",
+            "let worstEvaluationError = regressorEvalutation.maximumError"
+          ],
+          "metadata": {
+            "anchor": "3130351",
+            "title": "Listing 9"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your regressor’s evaluation performance isn’t good enough, you may need to:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Retrain with more rows of data.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Choose a different, specific regressor type (see “Supporting Types” under ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLRegressor",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ").",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Make other adjustments (see ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Improving Your Model’s Accuracy",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ").",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "3130368",
+          "level": 3,
+          "text": "Train the Classifier",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The playground trains the classifier to predict the purpose of a habitat. It does so by targeting a classifier on the ",
+              "type": "text"
+            },
+            {
+              "code": "purpose",
+              "type": "codeVoice"
+            },
+            {
+              "text": " column of its training data table.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let classifier = try MLClassifier(trainingData: classifierTrainingTable,",
+            "                                  targetColumn: \"purpose\")"
+          ],
+          "metadata": {
+            "anchor": "3130353",
+            "title": "Listing 10"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A classifier can only predict values provided in its training data, unlike a regressor, which can predict numeric values beyond those in its training data. For example, the playground’s classifier can only predict a value of ",
+              "type": "text"
+            },
+            {
+              "code": "\"power\"",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "\"farm\"",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", or ",
+              "type": "text"
+            },
+            {
+              "code": "\"general\"",
+              "type": "codeVoice"
+            },
+            {
+              "text": " because those are the only values in the ",
+              "type": "text"
+            },
+            {
+              "code": "purpose",
+              "type": "codeVoice"
+            },
+            {
+              "text": " column.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "As an alternative, you may also train a classifier with numerical values instead of textual labels (strings) demonstrated here. As with textual labels, classifiers can only return specific numerical values from its training data, and will not interpolate or extrapolate new values, unlike a regressor.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "3130369",
+          "level": 3,
+          "text": "Evaluate the Classifier",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To see how accurately the classifier performed during training and validation, the playground gets the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLClassifierMetrics/classificationError",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property of its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLClassifier/trainingMetrics",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLClassifier/validationMetrics",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " properties.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "/// Classifier training accuracy as a percentage",
+            "let trainingError = classifier.trainingMetrics.classificationError",
+            "let trainingAccuracy = (1.0 - trainingError) * 100",
+            "",
+            "/// Classifier validation accuracy as a percentage",
+            "let validationError = classifier.validationMetrics.classificationError",
+            "let validationAccuracy = (1.0 - validationError) * 100"
+          ],
+          "metadata": {
+            "anchor": "3130355",
+            "title": "Listing 11"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Just as with the regressor, the playground evaluates the classifier’s performance by passing its evaluation data table.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "/// Evaluate the classifier",
+            "let classifierEvaluation = classifier.evaluation(on: classifierEvaluationTable)",
+            "",
+            "/// Classifier evaluation accuracy as a percentage",
+            "let evaluationError = classifierEvaluation.classificationError",
+            "let evaluationAccuracy = (1.0 - evaluationError) * 100"
+          ],
+          "metadata": {
+            "anchor": "3130356",
+            "title": "Listing 12"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your classifier’s evaluation performance isn’t good enough, you may need to:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Retrain with more rows of data.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Choose a different, specific classifier type (see “Supporting Types” under ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLClassifier",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ").",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Make other adjustments (see ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Improving Your Model’s Accuracy",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ").",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "3130370",
+          "level": 3,
+          "text": "Save the Model",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you are satisfied with your modelʼs performance, save it to a file for later use in your app. The playground saves the price regressor, along with metadata, to the user’s desktop with its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLRegressor/write(to:metadata:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let regressorMetadata = MLModelMetadata(author: \"John Appleseed\",",
+            "                                        shortDescription: \"Predicts the price of a habitat on Mars.\",",
+            "                                        version: \"1.0\")",
+            "/// Save the trained regressor model to the Desktop.",
+            "try regressor.write(to: desktopPath.appendingPathComponent(\"MarsHabitatPricer.mlmodel\"),",
+            "                    metadata: regressorMetadata)"
+          ],
+          "metadata": {
+            "anchor": "3130358",
+            "title": "Listing 13"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The playground similarly saves the purpose classifier to the user’s desktop.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let classifierMetadata = MLModelMetadata(author: \"John Appleseed\",",
+            "                                         shortDescription: \"Predicts the purpose of a habitat on Mars.\",",
+            "                                         version: \"1.0\")",
+            "",
+            "/// Save the trained classifier model to the Desktop.",
+            "try classifier.write(to: desktopPath.appendingPathComponent(\"MarsHabitatPurposeClassifier.mlmodel\"),",
+            "                     metadata: classifierMetadata)"
+          ],
+          "metadata": {
+            "anchor": "3130359",
+            "title": "Listing 14"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "To see the author, version, and description of a model’s ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLModelMetadata",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ", select the model in Xcode’s project navigator after you add it to an app.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "3130371",
+          "level": 3,
+          "text": "Add the Model to an App",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To add your model to an app, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coreml/documentation/CoreML/integrating-a-core-ml-model-into-your-app",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.CreateML/documentation/CreateML/MLClassifier": {
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLClassifier",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MLClassifier",
+      "type": "topic",
+      "url": "/documentation/createml/mlclassifier"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLClassifier/trainingMetrics": {
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLClassifier/trainingMetrics",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "trainingMetrics",
+      "type": "topic",
+      "url": "/documentation/createml/mlclassifier/trainingmetrics"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLClassifier/validationMetrics": {
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLClassifier/validationMetrics",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "validationMetrics",
+      "type": "topic",
+      "url": "/documentation/createml/mlclassifier/validationmetrics"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLClassifierMetrics/classificationError": {
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLClassifierMetrics/classificationError",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "classificationError",
+      "type": "topic",
+      "url": "/documentation/createml/mlclassifiermetrics/classificationerror"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLDataTable": {
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLDataTable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MLDataTable",
+      "type": "topic",
+      "url": "/documentation/createml/mldatatable"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLDataTable/randomSplit(by:seed:)": {
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLDataTable/randomSplit(by:seed:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "randomSplit(by:seed:)",
+      "type": "topic",
+      "url": "/documentation/createml/mldatatable/randomsplit(by:seed:)"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLDataTable/subscript(_:)-2wkan": {
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLDataTable/subscript(_:)-2wkan",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "subscript(_:)",
+      "type": "topic",
+      "url": "/documentation/createml/mldatatable/subscript(_:)-2wkan"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLModelMetadata": {
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLModelMetadata",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MLModelMetadata",
+      "type": "topic",
+      "url": "/documentation/createml/mlmodelmetadata"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLRegressor": {
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLRegressor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MLRegressor",
+      "type": "topic",
+      "url": "/documentation/createml/mlregressor"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLRegressor/trainingMetrics": {
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLRegressor/trainingMetrics",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "trainingMetrics",
+      "type": "topic",
+      "url": "/documentation/createml/mlregressor/trainingmetrics"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLRegressor/validationMetrics": {
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLRegressor/validationMetrics",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "validationMetrics",
+      "type": "topic",
+      "url": "/documentation/createml/mlregressor/validationmetrics"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLRegressor/write(to:metadata:)": {
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLRegressor/write(to:metadata:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "write(to:metadata:)",
+      "type": "topic",
+      "url": "/documentation/createml/mlregressor/write(to:metadata:)"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLRegressorMetrics": {
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLRegressorMetrics",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MLRegressorMetrics",
+      "type": "topic",
+      "url": "/documentation/createml/mlregressormetrics"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLRegressorMetrics/maximumError": {
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLRegressorMetrics/maximumError",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "maximumError",
+      "type": "topic",
+      "url": "/documentation/createml/mlregressormetrics/maximumerror"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLRegressorMetrics/rootMeanSquaredError": {
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLRegressorMetrics/rootMeanSquaredError",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "rootMeanSquaredError",
+      "type": "topic",
+      "url": "/documentation/createml/mlregressormetrics/rootmeansquarederror"
+    },
+    "doc://com.apple.coreml/documentation/CoreML": {
+      "identifier": "doc://com.apple.coreml/documentation/CoreML",
+      "kind": "article",
+      "role": "collection",
+      "title": "Core ML",
+      "type": "topic",
+      "url": "/documentation/coreml"
+    },
+    "doc://com.apple.coreml/documentation/CoreML/integrating-a-core-ml-model-into-your-app": {
+      "identifier": "doc://com.apple.coreml/documentation/CoreML/integrating-a-core-ml-model-into-your-app",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Integrating a Core ML Model into Your App",
+      "type": "topic",
+      "url": "/documentation/coreml/integrating-a-core-ml-model-into-your-app"
+    },
+    "doc://com.apple.documentation/documentation/createml": {
+      "identifier": "doc://com.apple.documentation/documentation/createml",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Create ML",
+      "type": "topic",
+      "url": "/documentation/createml"
+    },
+    "doc://com.apple.documentation/documentation/createml/creating_a_model_from_tabular_data": {
+      "abstract": [
+        {
+          "text": "Train a machine learning model by using Core ML to import and manage tabular data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/createml/creating_a_model_from_tabular_data",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Creating a Model from Tabular Data",
+      "type": "topic",
+      "url": "/documentation/createml/creating_a_model_from_tabular_data"
+    },
+    "doc://com.apple.documentation/documentation/createml/creating_a_model_from_tabular_data#3130339": {
+      "identifier": "doc://com.apple.documentation/documentation/createml/creating_a_model_from_tabular_data#3130339",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/createml/creating_a_model_from_tabular_data#3130339"
+    },
+    "doc://com.apple.documentation/documentation/createml/creating_a_model_from_tabular_data#3130340": {
+      "identifier": "doc://com.apple.documentation/documentation/createml/creating_a_model_from_tabular_data#3130340",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 2",
+      "type": "section",
+      "url": "/documentation/createml/creating_a_model_from_tabular_data#3130340"
+    },
+    "doc://com.apple.documentation/documentation/createml/creating_a_model_from_tabular_data#3130341": {
+      "identifier": "doc://com.apple.documentation/documentation/createml/creating_a_model_from_tabular_data#3130341",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 3",
+      "type": "section",
+      "url": "/documentation/createml/creating_a_model_from_tabular_data#3130341"
+    },
+    "doc://com.apple.documentation/documentation/createml/creating_a_model_from_tabular_data#3130343": {
+      "identifier": "doc://com.apple.documentation/documentation/createml/creating_a_model_from_tabular_data#3130343",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 4",
+      "type": "section",
+      "url": "/documentation/createml/creating_a_model_from_tabular_data#3130343"
+    },
+    "doc://com.apple.documentation/documentation/createml/creating_a_model_from_tabular_data#3130344": {
+      "identifier": "doc://com.apple.documentation/documentation/createml/creating_a_model_from_tabular_data#3130344",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 5",
+      "type": "section",
+      "url": "/documentation/createml/creating_a_model_from_tabular_data#3130344"
+    },
+    "doc://com.apple.documentation/documentation/createml/creating_a_model_from_tabular_data#3130346": {
+      "identifier": "doc://com.apple.documentation/documentation/createml/creating_a_model_from_tabular_data#3130346",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 6",
+      "type": "section",
+      "url": "/documentation/createml/creating_a_model_from_tabular_data#3130346"
+    },
+    "doc://com.apple.documentation/documentation/createml/creating_a_model_from_tabular_data#3130348": {
+      "identifier": "doc://com.apple.documentation/documentation/createml/creating_a_model_from_tabular_data#3130348",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 7",
+      "type": "section",
+      "url": "/documentation/createml/creating_a_model_from_tabular_data#3130348"
+    },
+    "doc://com.apple.documentation/documentation/createml/creating_a_model_from_tabular_data#3130350": {
+      "identifier": "doc://com.apple.documentation/documentation/createml/creating_a_model_from_tabular_data#3130350",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 8",
+      "type": "section",
+      "url": "/documentation/createml/creating_a_model_from_tabular_data#3130350"
+    },
+    "doc://com.apple.documentation/documentation/createml/creating_a_model_from_tabular_data#3130351": {
+      "identifier": "doc://com.apple.documentation/documentation/createml/creating_a_model_from_tabular_data#3130351",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 9",
+      "type": "section",
+      "url": "/documentation/createml/creating_a_model_from_tabular_data#3130351"
+    },
+    "doc://com.apple.documentation/documentation/createml/creating_a_model_from_tabular_data#3130353": {
+      "identifier": "doc://com.apple.documentation/documentation/createml/creating_a_model_from_tabular_data#3130353",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 10",
+      "type": "section",
+      "url": "/documentation/createml/creating_a_model_from_tabular_data#3130353"
+    },
+    "doc://com.apple.documentation/documentation/createml/creating_a_model_from_tabular_data#3130355": {
+      "identifier": "doc://com.apple.documentation/documentation/createml/creating_a_model_from_tabular_data#3130355",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 11",
+      "type": "section",
+      "url": "/documentation/createml/creating_a_model_from_tabular_data#3130355"
+    },
+    "doc://com.apple.documentation/documentation/createml/creating_a_model_from_tabular_data#3130356": {
+      "identifier": "doc://com.apple.documentation/documentation/createml/creating_a_model_from_tabular_data#3130356",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 12",
+      "type": "section",
+      "url": "/documentation/createml/creating_a_model_from_tabular_data#3130356"
+    },
+    "doc://com.apple.documentation/documentation/createml/creating_a_model_from_tabular_data#3130358": {
+      "identifier": "doc://com.apple.documentation/documentation/createml/creating_a_model_from_tabular_data#3130358",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 13",
+      "type": "section",
+      "url": "/documentation/createml/creating_a_model_from_tabular_data#3130358"
+    },
+    "doc://com.apple.documentation/documentation/createml/creating_a_model_from_tabular_data#3130359": {
+      "identifier": "doc://com.apple.documentation/documentation/createml/creating_a_model_from_tabular_data#3130359",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 14",
+      "type": "section",
+      "url": "/documentation/createml/creating_a_model_from_tabular_data#3130359"
+    },
+    "doc://com.apple.documentation/documentation/createml/mlclassifier": {
+      "abstract": [
+        {
+          "text": "A model you train to classify data into discrete categories.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "enum "
+        },
+        {
+          "kind": "identifier",
+          "text": "MLClassifier"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/createml/mlclassifier",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MLClassifier",
+      "type": "topic",
+      "url": "/documentation/createml/mlclassifier"
+    },
+    "doc://com.apple.documentation/documentation/createml/mlrecommender": {
+      "abstract": [
+        {
+          "text": "A model you train to make recommendations based on item similarity, grouping, and, optionally, item ratings.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "MLRecommender"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/createml/mlrecommender",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MLRecommender",
+      "type": "topic",
+      "url": "/documentation/createml/mlrecommender"
+    },
+    "doc://com.apple.documentation/documentation/createml/mlregressor": {
+      "abstract": [
+        {
+          "text": "A model you train to estimate continuous values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "enum "
+        },
+        {
+          "kind": "identifier",
+          "text": "MLRegressor"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/createml/mlregressor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MLRegressor",
+      "type": "topic",
+      "url": "/documentation/createml/mlregressor"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://docs-assets.developer.apple.com/published/96d0bd196b/CreatingAModelFromTabularData.zip": {
+      "checksum": "45009d82ed5dcdb502d3dbd3f659462823628eca1361785a648d7b28c1020b7e0cb5a55309def1c1cd0cede0a8dbf7d0251139fdfd611473307d708f7ec69023",
+      "identifier": "https://docs-assets.developer.apple.com/published/96d0bd196b/CreatingAModelFromTabularData.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/96d0bd196b/CreatingAModelFromTabularData.zip"
+    },
+    "link-media-3130337": {
+      "identifier": "link-media-3130337",
+      "title": "Figure 1",
+      "type": "link",
+      "url": "/documentation/createml/creating_a_model_from_tabular_data#3130337"
+    },
+    "media-3130337": {
+      "alt": "Diagram",
+      "identifier": "media-3130337",
+      "title": "Figure 1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/aee7d30eac/b3d08991-9b93-4139-88cc-b7032eb0d51c.png"
+        }
+      ]
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "https://docs-assets.developer.apple.com/published/96d0bd196b/CreatingAModelFromTabularData.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/createml/mlclassifier",
+        "doc://com.apple.documentation/documentation/createml/mlregressor",
+        "doc://com.apple.documentation/documentation/createml/mlrecommender"
+      ],
+      "title": "Tabular Models"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/createml/creating_a_model_from_tabular_data"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

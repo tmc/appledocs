@@ -1,0 +1,430 @@
+{
+  "abstract": [
+    {
+      "code": "WebKitAnimationEvent",
+      "type": "codeVoice"
+    },
+    {
+      "text": " objects encapsulate information about running animations.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/webkitjs"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.documentation/documentation/webkitjs/webkitanimationevent"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1630440,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "cl/WebKitAnimationEvent",
+    "modules": [
+      {
+        "name": "WebKit JS"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.0",
+        "introducedAt": "10.0",
+        "name": "Safari Desktop"
+      },
+      {
+        "current": "18.0",
+        "introducedAt": "2.0",
+        "name": "Safari Mobile"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "WebKitAnimationEvent"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "data"
+          ],
+          "platforms": [
+            "Safari Desktop",
+            "Safari Mobile"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "WebKitAnimationEvent"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Several animation related events are available through the DOM Event system. The start and end of an animation, and the end of each iteration of an animation all generate DOM events. An element can have multiple properties that are animated simultaneously. This simultaneous animation can occur either by setting a single -webkit-animation-name value with keyframes containing multiple properties, or by setting multiple ",
+              "type": "text"
+            },
+            {
+              "code": "-webkit-animation-name",
+              "type": "codeVoice"
+            },
+            {
+              "text": " values. For the purposes of event dispatching, each CSS ",
+              "type": "text"
+            },
+            {
+              "code": "-webkit-animation-name",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property specifies a single animation. Therefore, an event is sent for each ",
+              "type": "text"
+            },
+            {
+              "code": "-webkit-animation-name",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property, not necessarily for each CSS property that is animated.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each event contains the duration of the animation. This allows the event handler to determine the current iteration of a looping animation or the current position of an alternating animation. This duration does not include time the animation was in the paused play state.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "1652505",
+          "level": 3,
+          "text": "Types of Animation Events",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "type",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property of an animation event can have the following string values:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Occurs at the start of an animation. It can bubble and be canceled. Its ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "animationName",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " property is set.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "webkitAnimationStart",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Occurs when the animation finishes. It can bubble and be canceled. Its ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "animationName",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " and ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "elapsedTime",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " properties are set.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "webkitAnimationEnd",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Occurs at the end of each iteration of an animation when the -webkit-animation-iteration-count is greater than ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "1",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ". It does not occur for animations with an iteration count of ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "1",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ". It can bubble and be canceled. Its ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "animationName",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " and ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "elapsedTime",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " properties are set.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "webkitAnimationIteration",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.documentation/documentation/tvmljs/event": {
+      "identifier": "doc://com.apple.documentation/documentation/tvmljs/event",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Event",
+      "type": "topic",
+      "url": "/documentation/tvmljs/event"
+    },
+    "doc://com.apple.documentation/documentation/webkitjs": {
+      "identifier": "doc://com.apple.documentation/documentation/webkitjs",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "WebKit JS",
+      "type": "topic",
+      "url": "/documentation/webkitjs"
+    },
+    "doc://com.apple.documentation/documentation/webkitjs/webkitanimationevent/1633014-elapsedtime": {
+      "abstract": [
+        {
+          "text": "The duration of the animation, in seconds, since this event was sent, excluding any time the animation is paused. This value is not affected by the value of the CSS -webkit-animation-delay property. If the type of the event is ",
+          "type": "text"
+        },
+        {
+          "code": "webkitAnimationStart",
+          "type": "codeVoice"
+        },
+        {
+          "text": ", ",
+          "type": "text"
+        },
+        {
+          "code": "elapsedTime",
+          "type": "codeVoice"
+        },
+        {
+          "text": " is ",
+          "type": "text"
+        },
+        {
+          "code": "0",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/webkitjs/webkitanimationevent/1633014-elapsedtime",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "elapsedTime",
+      "type": "topic",
+      "url": "/documentation/webkitjs/webkitanimationevent/1633014-elapsedtime"
+    },
+    "doc://com.apple.documentation/documentation/webkitjs/webkitanimationevent/1634262-animationname": {
+      "abstract": [
+        {
+          "text": "The name of the animation. The value of the CSS -webkit-animation-name property of the animation that caused the event.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/webkitjs/webkitanimationevent/1634262-animationname",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "animationName",
+      "type": "topic",
+      "url": "/documentation/webkitjs/webkitanimationevent/1634262-animationname"
+    },
+    "doc://com.apple.documentation/documentation/webkitjs/webkitanimationevent/1807040-initwebkitanimationevent": {
+      "abstract": [
+        {
+          "text": "Initializes a new animation event object.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/webkitjs/webkitanimationevent/1807040-initwebkitanimationevent",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "initWebKitAnimationEvent",
+      "type": "topic",
+      "url": "/documentation/webkitjs/webkitanimationevent/1807040-initwebkitanimationevent"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/tvmljs/event"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "1652525",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/webkitjs/webkitanimationevent/1634262-animationname",
+        "doc://com.apple.documentation/documentation/webkitjs/webkitanimationevent/1633014-elapsedtime"
+      ],
+      "kind": "taskGroup",
+      "title": "Accessing Properties"
+    },
+    {
+      "anchor": "1652576",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/webkitjs/webkitanimationevent/1807040-initwebkitanimationevent"
+      ],
+      "kind": "taskGroup",
+      "title": "Initializing Objects"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/webkitjs/webkitanimationevent"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

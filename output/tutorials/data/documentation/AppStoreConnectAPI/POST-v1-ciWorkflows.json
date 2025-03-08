@@ -1,0 +1,659 @@
+{
+  "abstract": [
+    {
+      "text": "Create a new Xcode Cloud workflow for an Xcode Cloud product.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "App Store Connect API",
+      "versions": [
+        "3.0",
+        "3.6"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/POST-v1-ciWorkflows"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "rest:app_store_connect_api:post:v1-ciWorkflows",
+    "modules": [
+      {
+        "name": "App Store Connect API"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "POST /v1/ciWorkflows"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "1.5",
+        "name": "App Store Connect API"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Web Service Endpoint",
+    "symbolKind": "httpRequest",
+    "title": "Create a Workflow"
+  },
+  "primaryContentSections": [
+    {
+      "kind": "restEndpoint",
+      "title": "URL",
+      "tokens": [
+        {
+          "kind": "method",
+          "text": "POST"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "baseURL",
+          "text": "https://api.appstoreconnect.apple.com/"
+        },
+        {
+          "kind": "path",
+          "text": "v1/ciWorkflows"
+        }
+      ]
+    },
+    {
+      "bodyContentType": [
+        {
+          "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/CiWorkflowCreateRequest",
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "data:app_store_connect_api:CiWorkflowCreateRequest",
+          "text": "CiWorkflowCreateRequest"
+        }
+      ],
+      "content": [
+        {
+          "inlineContent": [
+            {
+              "text": "The request body you use to create a new Xcode Cloud workflow.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "restBody",
+      "mimeType": "application/json",
+      "parameters": [],
+      "title": "HTTP Body"
+    },
+    {
+      "items": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The request completed successfully and a new Workflows resource has been created.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Created",
+          "status": 201,
+          "type": [
+            {
+              "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/CiWorkflowResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:app_store_connect_api:CiWorkflowResponse",
+              "text": "CiWorkflowResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An error occurred with your request.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Bad Request",
+          "status": 400,
+          "type": [
+            {
+              "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/ErrorResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:app_store_connect_api:ErrorResponse",
+              "text": "ErrorResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Unauthorized",
+          "status": 401,
+          "type": [
+            {
+              "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/ErrorResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:app_store_connect_api:ErrorResponse",
+              "text": "ErrorResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Request not authorized.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Forbidden",
+          "status": 403,
+          "type": [
+            {
+              "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/ErrorResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:app_store_connect_api:ErrorResponse",
+              "text": "ErrorResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The provided resource data is not valid.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "reason": "Conflict",
+          "status": 409,
+          "type": [
+            {
+              "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/ErrorResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:app_store_connect_api:ErrorResponse",
+              "text": "ErrorResponse"
+            }
+          ]
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "mimeType": "application/json",
+          "status": 422,
+          "type": [
+            {
+              "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/ErrorResponse",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:app_store_connect_api:ErrorResponse",
+              "text": "ErrorResponse"
+            }
+          ]
+        }
+      ],
+      "kind": "restResponses",
+      "title": "Response Codes"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The example request below creates a new workflow that performs the archive action. App Store Connect returns the ",
+              "type": "text"
+            },
+            {
+              "code": "201",
+              "type": "codeVoice"
+            },
+            {
+              "text": " HTTP status code to indicate the successful creation of the workflow and returns information about the workflow. Use the data to access additional information or to start a new build.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Example-Request-and-Response",
+          "level": 3,
+          "text": "Example Request and Response",
+          "type": "heading"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "{    ",
+                    "“data”: {",
+                    "        “type”: “ciWorkflows”,",
+                    "        “attributes”: {",
+                    "            “name”: “A new workflow”,",
+                    "            “description”: “A new workflow that verifies my changes.”,",
+                    "            “branchStartCondition”: {",
+                    "                “source”: {",
+                    "                    “isAllMatch”: false,",
+                    "                    “patterns”: [",
+                    "                        {",
+                    "                            “pattern”: “main”,",
+                    "                            “isPrefix”: false",
+                    "                        }",
+                    "                    ]",
+                    "                },",
+                    "                “filesAndFoldersRule”: {",
+                    "                    “mode”: “START_IF_ANY_FILE_MATCHES”,",
+                    "                    “matchers”: []",
+                    "                },",
+                    "                “autoCancel”: true",
+                    "            },",
+                    "            “actions”: [",
+                    "                {",
+                    "                    “name”: “Archive iOS”,",
+                    "                    “actionType”: “ARCHIVE”,",
+                    "                    “scheme”: “MyApp”,",
+                    "                    “platform”: “IOS”,",
+                    "                    “isRequiredToPass”: true",
+                    "                }",
+                    "            ],",
+                    "            “isEnabled”: true,",
+                    "            “isLockedForEditing”: false,",
+                    "            “clean”: false,",
+                    "            “containerFilePath”: “MyXcodeProject.xcodeproj”",
+                    "        },",
+                    "        “relationships”: {",
+                    "            “xcodeVersion”: {",
+                    "                “data”: {",
+                    "                    “type”: “ciXcodeVersions”,",
+                    "                    “id”: “Xcode12E507:stable”",
+                    "                }",
+                    "            },",
+                    "            “macOsVersion”: {",
+                    "                “data”: {",
+                    "                    “type”: “ciMacOsVersions”,",
+                    "                    “id”: “20G95”",
+                    "                }",
+                    "            },",
+                    "            “product”: {",
+                    "                “data”: {",
+                    "                    “type”: “ciProducts”,",
+                    "                    “id”: “8ca28eb1-2948-4848-813b-07c500665157”",
+                    "                }",
+                    "            },",
+                    "            “repository”: {",
+                    "                “data”: {",
+                    "                    “type”: “scmRepositories”,",
+                    "                    “id”: “195430ae-7262-4b24-abd2-cbb6891feab8”",
+                    "                }",
+                    "            }",
+                    "        }",
+                    "    }",
+                    "}"
+                  ],
+                  "syntax": null,
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Request"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "{",
+                    "    \"data\": {",
+                    "        \"type\": \"ciWorkflows\",",
+                    "        \"id\": \"f445a31a-b0c6-4a83-b295-25496f50a69e\",",
+                    "        \"attributes\": {",
+                    "            \"name\": \"A new workflow\",",
+                    "            \"description\": \"A new workflow that verifies my changes.\",",
+                    "            \"branchStartCondition\": {",
+                    "                \"source\": {",
+                    "                    \"isAllMatch\": false,",
+                    "                    \"patterns\": [",
+                    "                        {",
+                    "                            \"pattern\": \"main\",",
+                    "                            \"isPrefix\": false",
+                    "                        }",
+                    "                    ]",
+                    "                },",
+                    "                \"filesAndFoldersRule\": {",
+                    "                    \"mode\": \"START_IF_ANY_FILE_MATCHES\",",
+                    "                    \"matchers\": []",
+                    "                },",
+                    "                \"autoCancel\": true",
+                    "            },",
+                    "            \"tagStartCondition\": null,",
+                    "            \"pullRequestStartCondition\": null,",
+                    "            \"scheduledStartCondition\": null,",
+                    "            \"actions\": [",
+                    "                {",
+                    "                    \"name\": \"Archive iOS\",",
+                    "                    \"actionType\": \"ARCHIVE\",",
+                    "                    \"destination\": null,",
+                    "                    \"buildDistributionAudience\": null,",
+                    "                    \"testConfiguration\": null,",
+                    "                    \"scheme\": \"MyApp\",",
+                    "                    \"platform\": \"IOS\",",
+                    "                    \"isRequiredToPass\": true",
+                    "                }",
+                    "            ],",
+                    "            \"isEnabled\": true,",
+                    "            \"isLockedForEditing\": false,",
+                    "            \"clean\": false,",
+                    "            \"containerFilePath\": \"MyXcodeProject.xcodeproj\",",
+                    "            \"lastModifiedDate\": null",
+                    "        },",
+                    "        \"relationships\": {",
+                    "            \"repository\": {",
+                    "                \"links\": {",
+                    "                    \"self\": \"https://api.appstoreconnect.apple.com/v1/ciWorkflows/f445a31a-b0c6-4a83-b295-25496f50a69e/relationships/repository\",",
+                    "                    \"related\": \"https://api.appstoreconnect.apple.com/v1/ciWorkflows/f445a31a-b0c6-4a83-b295-25496f50a69e/repository\"",
+                    "                }",
+                    "            },",
+                    "            \"buildRuns\": {",
+                    "                \"links\": {",
+                    "                    \"self\": \"https://api.appstoreconnect.apple.com/v1/ciWorkflows/f445a31a-b0c6-4a83-b295-25496f50a69e/relationships/buildRuns\",",
+                    "                    \"related\": \"https://api.appstoreconnect.apple.com/v1/ciWorkflows/f445a31a-b0c6-4a83-b295-25496f50a69e/buildRuns\"",
+                    "                }",
+                    "            }",
+                    "        },",
+                    "        \"links\": {",
+                    "            \"self\": \"https://api.appstoreconnect.apple.com/v1/ciWorkflows/f445a31a-b0c6-4a83-b295-25496f50a69e\"",
+                    "        }",
+                    "    },",
+                    "    \"links\": {",
+                    "        \"self\": \"https://api.appstoreconnect.apple.com/v1/ciWorkflows\"",
+                    "    }",
+                    "}"
+                  ],
+                  "syntax": "json",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Response"
+            }
+          ],
+          "type": "tabNavigator"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI": {
+      "abstract": [
+        {
+          "text": "Automate the tasks you perform on the Apple Developer website and in App Store Connect.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "App Store Connect API",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/CiWorkflowCreateRequest": {
+      "abstract": [
+        {
+          "text": "The request body you use to create a new Xcode Cloud workflow.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "CiWorkflowCreateRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/CiWorkflowCreateRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CiWorkflowCreateRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "CiWorkflowCreateRequest",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/ciworkflowcreaterequest"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/CiWorkflowResponse": {
+      "abstract": [
+        {
+          "text": "A response that contains a single Workflows resource.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "CiWorkflowResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/CiWorkflowResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CiWorkflowResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "CiWorkflowResponse",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/ciworkflowresponse"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/DELETE-v1-ciWorkflows-_id_": {
+      "abstract": [
+        {
+          "text": "Delete an Xcode Cloud workflow and all of its associated data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/DELETE-v1-ciWorkflows-_id_",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DELETE /v1/ciWorkflows/{id}"
+        }
+      ],
+      "role": "symbol",
+      "title": "Delete a Workflow",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/delete-v1-ciworkflows-_id_"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/ErrorResponse": {
+      "abstract": [
+        {
+          "text": "The error details that an API returns in the response body whenever the API request isn’t successful.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ErrorResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/ErrorResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ErrorResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "ErrorResponse",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/errorresponse"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/PATCH-v1-ciWorkflows-_id_": {
+      "abstract": [
+        {
+          "text": "Make changes to an Xcode Cloud workflow.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/PATCH-v1-ciWorkflows-_id_",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PATCH /v1/ciWorkflows/{id}"
+        }
+      ],
+      "role": "symbol",
+      "title": "Update an Xcode Cloud Workflow",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/patch-v1-ciworkflows-_id_"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/POST-v1-ciWorkflows": {
+      "abstract": [
+        {
+          "text": "Create a new Xcode Cloud workflow for an Xcode Cloud product.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/POST-v1-ciWorkflows",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "POST /v1/ciWorkflows"
+        }
+      ],
+      "role": "symbol",
+      "title": "Create a Workflow",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/post-v1-ciworkflows"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Managing-Xcode-Cloud-Workflows",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/PATCH-v1-ciWorkflows-_id_",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/DELETE-v1-ciWorkflows-_id_"
+      ],
+      "title": "Managing Xcode Cloud Workflows"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/appstoreconnectapi/post-v1-ciworkflows"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

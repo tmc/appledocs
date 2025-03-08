@@ -1,0 +1,2226 @@
+{
+  "abstract": [
+    {
+      "text": "A list of app development reports, their field descriptions, and glossaries.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.devpubs.analytics-reports/documentation/analytics-reports"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "collection",
+    "title": "Analytics Reports"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the Analytics Report API to analyze data about your apps on Apple platforms. This page provides details on downloading reports, report changes, and a list of available reports. You can look at specific reports to read descriptions of report fields, glossaries of values, definitions of key terms, and coverage across platforms.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can review these reports if you have any of these API key roles:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "ADMIN",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "SALES_AND_REPORTS",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "FINANCE",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If you share an API key for your developer account with a third party for analyzing or processing your reports, select the SALES_AND_REPORTS role when generating a new key. This role can access to ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/AppStoreConnectAPI/GET-v1-salesReports",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " but can’t access ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/AppStoreConnectAPI/GET-v1-financeReports",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " endpoint.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Download-and-process-reports",
+          "level": 3,
+          "text": "Download and process reports",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To start receiving reports, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppStoreConnectAPI/POST-v1-analyticsReportRequests",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " endpoint in the App Store Connect API. To learn more, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppStoreConnectAPI/downloading-analytics-reports",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". After you create your request, use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppStoreConnectAPI/GET-v1-analyticsReportRequests-_id_",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to poll the list of report instances to check whether new instances are downloadable. Apple does not generate reports until you create a valid Analytics Report Request.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each report ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "instance",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " represents a new set of data. Each instance can consist of multiple ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "segments",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", which are physical partitions of one instance, so you need to download all segments for a given instance to get the complete set of data.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each report instance has a specific granularity: daily, weekly, or monthly. ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Daily",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " instances may contain data for one day or more days. The Date column in the report content shows the day to which the events relate. ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Weekly",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " instances contain data from Monday to Sunday. ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Monthly",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " instances contain data for a full month. To learn more, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/data-completeness-corrections",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "For weekly and monthly instances, the ",
+                  "type": "text"
+                },
+                {
+                  "code": "Date",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " column in reports represent the first day of the week and month, respectively.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Monitor-future-report-changes",
+          "level": 3,
+          "text": "Monitor future report changes",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Report column position might change over time. Rely on column names instead of column positions in the report files to ensure smoother schema upgrades. Report values are not case sensitive.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/accessorysetupkit-accessory-picker-sessions": {
+      "abstract": [
+        {
+          "text": "Analyze how many people use your app to set up accessories by using AccessorySetupKit.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/accessorysetupkit-accessory-picker-sessions",
+      "kind": "article",
+      "role": "article",
+      "title": "AccessorySetupKit Accessory Picker Sessions",
+      "type": "topic",
+      "url": "/documentation/analytics-reports/accessorysetupkit-accessory-picker-sessions"
+    },
+    "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/accessorysetupkit-usage": {
+      "abstract": [
+        {
+          "text": "Analyze how often your app uses AccessorySetupKit.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/accessorysetupkit-usage",
+      "kind": "article",
+      "role": "article",
+      "title": "AccessorySetupKit Usage",
+      "type": "topic",
+      "url": "/documentation/analytics-reports/accessorysetupkit-usage"
+    },
+    "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/airplay-discovery-sessions": {
+      "abstract": [
+        {
+          "text": "Review information about AirPlay discovery sessions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/airplay-discovery-sessions",
+      "kind": "article",
+      "role": "article",
+      "title": "AirPlay Discovery Sessions",
+      "type": "topic",
+      "url": "/documentation/analytics-reports/airplay-discovery-sessions"
+    },
+    "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/airplay-errors": {
+      "abstract": [
+        {
+          "text": "Analyze AirPlay errors in your apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/airplay-errors",
+      "kind": "article",
+      "role": "article",
+      "title": "AirPlay Errors",
+      "type": "topic",
+      "url": "/documentation/analytics-reports/airplay-errors"
+    },
+    "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/airplay-performance": {
+      "abstract": [
+        {
+          "text": "Review AirPlay performance in your apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/airplay-performance",
+      "kind": "article",
+      "role": "article",
+      "title": "AirPlay Performance",
+      "type": "topic",
+      "url": "/documentation/analytics-reports/airplay-performance"
+    },
+    "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/animoji-stickers-sent": {
+      "abstract": [
+        {
+          "text": "Analyze how many times people use Memoji stickers in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/animoji-stickers-sent",
+      "kind": "article",
+      "role": "article",
+      "title": "Animoji Stickers Sent",
+      "type": "topic",
+      "url": "/documentation/analytics-reports/animoji-stickers-sent"
+    },
+    "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/app-added-to-focus": {
+      "abstract": [
+        {
+          "text": "Review information about your app’s relationship to Focus modes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/app-added-to-focus",
+      "kind": "article",
+      "role": "article",
+      "title": "App Added to Focus",
+      "type": "topic",
+      "url": "/documentation/analytics-reports/app-added-to-focus"
+    },
+    "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/app-clip-usage": {
+      "abstract": [
+        {
+          "text": "Analyze how users engage with your App Clips.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/app-clip-usage",
+      "kind": "article",
+      "role": "article",
+      "title": "App Clip Usage",
+      "type": "topic",
+      "url": "/documentation/analytics-reports/app-clip-usage"
+    },
+    "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/app-crashes": {
+      "abstract": [
+        {
+          "text": "Review crashes for your App Store apps based on app version and device type.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/app-crashes",
+      "kind": "article",
+      "role": "article",
+      "title": "App Crashes",
+      "type": "topic",
+      "url": "/documentation/analytics-reports/app-crashes"
+    },
+    "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/app-crashes-expanded": {
+      "abstract": [
+        {
+          "text": "Analyze the rate at which your app crashes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/app-crashes-expanded",
+      "kind": "article",
+      "role": "article",
+      "title": "App Crashes Expanded",
+      "type": "topic",
+      "url": "/documentation/analytics-reports/app-crashes-expanded"
+    },
+    "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/app-disk-space-usage": {
+      "abstract": [
+        {
+          "text": "Analyze your app’s disk space use.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/app-disk-space-usage",
+      "kind": "article",
+      "role": "article",
+      "title": "App Disk Space Usage",
+      "type": "topic",
+      "url": "/documentation/analytics-reports/app-disk-space-usage"
+    },
+    "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/app-download": {
+      "abstract": [
+        {
+          "text": "Analyze how many times people download your app on the App Store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/app-download",
+      "kind": "article",
+      "role": "article",
+      "title": "App Store Downloads",
+      "type": "topic",
+      "url": "/documentation/analytics-reports/app-download"
+    },
+    "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/app-installs": {
+      "abstract": [
+        {
+          "text": "Analyze details on the number of times users install and delete your apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/app-installs",
+      "kind": "article",
+      "role": "article",
+      "title": "App Store Installations and Deletions",
+      "type": "topic",
+      "url": "/documentation/analytics-reports/app-installs"
+    },
+    "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/app-installs-performance": {
+      "abstract": [
+        {
+          "text": "Analyze details about installation success and failure rates for your apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/app-installs-performance",
+      "kind": "article",
+      "role": "article",
+      "title": "App Installs Performance",
+      "type": "topic",
+      "url": "/documentation/analytics-reports/app-installs-performance"
+    },
+    "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/app-runtime-usage": {
+      "abstract": [
+        {
+          "text": "Analyze how often your app executes specific symbols of different dynamic libraries.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/app-runtime-usage",
+      "kind": "article",
+      "role": "article",
+      "title": "App Runtime Usage",
+      "type": "topic",
+      "url": "/documentation/analytics-reports/app-runtime-usage"
+    },
+    "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/app-sessions": {
+      "abstract": [
+        {
+          "text": "Analyze how often people open your App Store apps, and the average session duration.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/app-sessions",
+      "kind": "article",
+      "role": "article",
+      "title": "App Sessions",
+      "type": "topic",
+      "url": "/documentation/analytics-reports/app-sessions"
+    },
+    "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/app-sessions-context": {
+      "abstract": [
+        {
+          "text": "Analyze how many people use your app and for how long.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/app-sessions-context",
+      "kind": "article",
+      "role": "article",
+      "title": "App Sessions Context",
+      "type": "topic",
+      "url": "/documentation/analytics-reports/app-sessions-context"
+    },
+    "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/app-storage-reads-and-writes": {
+      "abstract": [
+        {
+          "text": "Analyze how often your app uses disk reads and writes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/app-storage-reads-and-writes",
+      "kind": "article",
+      "role": "article",
+      "title": "App Storage Reads and Writes",
+      "type": "topic",
+      "url": "/documentation/analytics-reports/app-storage-reads-and-writes"
+    },
+    "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/app-store-discovery-and-engagement": {
+      "abstract": [
+        {
+          "text": "Analyze how users interact with your app on the App Store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/app-store-discovery-and-engagement",
+      "kind": "article",
+      "role": "article",
+      "title": "App Store Discovery and Engagement",
+      "type": "topic",
+      "url": "/documentation/analytics-reports/app-store-discovery-and-engagement"
+    },
+    "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/app-store-pre-order": {
+      "abstract": [
+        {
+          "text": "Analyze details on the number of pre-orders that people place and cancel for your app on the App Store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/app-store-pre-order",
+      "kind": "article",
+      "role": "article",
+      "title": "App Store Pre-orders",
+      "type": "topic",
+      "url": "/documentation/analytics-reports/app-store-pre-order"
+    },
+    "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/app-store-purchase": {
+      "abstract": [
+        {
+          "text": "Analyze total revenue generated by your apps on the App Store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/app-store-purchase",
+      "kind": "article",
+      "role": "article",
+      "title": "App Store Purchases",
+      "type": "topic",
+      "url": "/documentation/analytics-reports/app-store-purchase"
+    },
+    "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/application-preferred-language-settings": {
+      "abstract": [
+        {
+          "text": "Review how people use language preference settings in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/application-preferred-language-settings",
+      "kind": "article",
+      "role": "article",
+      "title": "Application Preferred Language Settings",
+      "type": "topic",
+      "url": "/documentation/analytics-reports/application-preferred-language-settings"
+    },
+    "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/arkit-arsession-duration": {
+      "abstract": [
+        {
+          "text": "Review information  about ARKit ARSession duration.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/arkit-arsession-duration",
+      "kind": "article",
+      "role": "article",
+      "title": "ARKit ARSession Duration",
+      "type": "topic",
+      "url": "/documentation/analytics-reports/arkit-arsession-duration"
+    },
+    "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/arkit-arsession-failures": {
+      "abstract": [
+        {
+          "text": "Analyze details about ARKit ARSession failures.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/arkit-arsession-failures",
+      "kind": "article",
+      "role": "article",
+      "title": "ARKit ARSession Failures",
+      "type": "topic",
+      "url": "/documentation/analytics-reports/arkit-arsession-failures"
+    },
+    "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/arkit-capture-frame-rate-throttling": {
+      "abstract": [
+        {
+          "text": "Analyze how long it takes for ARKit to throttle the camera frame rate.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/arkit-capture-frame-rate-throttling",
+      "kind": "article",
+      "role": "article",
+      "title": "ARKit Capture Frame Rate Throttling",
+      "type": "topic",
+      "url": "/documentation/analytics-reports/arkit-capture-frame-rate-throttling"
+    },
+    "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/arkit-collaborative-session-features": {
+      "abstract": [
+        {
+          "text": "Review how your app uses ARKit collaborative session features.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/arkit-collaborative-session-features",
+      "kind": "article",
+      "role": "article",
+      "title": "ARKit Collaborative Session Features",
+      "type": "topic",
+      "url": "/documentation/analytics-reports/arkit-collaborative-session-features"
+    },
+    "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/arkit-face-tracking": {
+      "abstract": [
+        {
+          "text": "Analyze how often your app uses ARKit face tracking.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/arkit-face-tracking",
+      "kind": "article",
+      "role": "article",
+      "title": "ARKit Face Tracking",
+      "type": "topic",
+      "url": "/documentation/analytics-reports/arkit-face-tracking"
+    },
+    "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/arkit-video-formats": {
+      "abstract": [
+        {
+          "text": "Review information  about ARKit video formats and high-resolution frames.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/arkit-video-formats",
+      "kind": "article",
+      "role": "article",
+      "title": "ARKit Video Formats",
+      "type": "topic",
+      "url": "/documentation/analytics-reports/arkit-video-formats"
+    },
+    "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/arkit-world-tracking": {
+      "abstract": [
+        {
+          "text": "Review the configured settings for world tracking in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/arkit-world-tracking",
+      "kind": "article",
+      "role": "article",
+      "title": "ARKit World Tracking",
+      "type": "topic",
+      "url": "/documentation/analytics-reports/arkit-world-tracking"
+    },
+    "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/arkit-world-tracking-image-detection": {
+      "abstract": [
+        {
+          "text": "Analyze the number of images detected in ARKit world tracking.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/arkit-world-tracking-image-detection",
+      "kind": "article",
+      "role": "article",
+      "title": "ARKit World Tracking Image Detection",
+      "type": "topic",
+      "url": "/documentation/analytics-reports/arkit-world-tracking-image-detection"
+    },
+    "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/audio-input-muting": {
+      "abstract": [
+        {
+          "text": "Analyze details about audio-input muting and unmuting gestures during a call with conferencing apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/audio-input-muting",
+      "kind": "article",
+      "role": "article",
+      "title": "Audio Input Muting",
+      "type": "topic",
+      "url": "/documentation/analytics-reports/audio-input-muting"
+    },
+    "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/audio-input-route-and-duration-and-call-mode": {
+      "abstract": [
+        {
+          "text": "Review how your app uses audio session inputs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/audio-input-route-and-duration-and-call-mode",
+      "kind": "article",
+      "role": "article",
+      "title": "Audio Input Route and Duration and Call Mode",
+      "type": "topic",
+      "url": "/documentation/analytics-reports/audio-input-route-and-duration-and-call-mode"
+    },
+    "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/audio-overloads": {
+      "abstract": [
+        {
+          "text": "Analyze how many audio glitches people experience in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/audio-overloads",
+      "kind": "article",
+      "role": "article",
+      "title": "Audio Overloads",
+      "type": "topic",
+      "url": "/documentation/analytics-reports/audio-overloads"
+    },
+    "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/audio-session-audio-unit-usage": {
+      "abstract": [
+        {
+          "text": "Analyze your app’s audio unit use.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/audio-session-audio-unit-usage",
+      "kind": "article",
+      "role": "article",
+      "title": "Audio Session Audio Unit Usage",
+      "type": "topic",
+      "url": "/documentation/analytics-reports/audio-session-audio-unit-usage"
+    },
+    "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/audio-volume-levels-and-duration": {
+      "abstract": [
+        {
+          "text": "Review how your app uses volume and duration for output audio.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/audio-volume-levels-and-duration",
+      "kind": "article",
+      "role": "article",
+      "title": "Audio Volume Levels and Duration",
+      "type": "topic",
+      "url": "/documentation/analytics-reports/audio-volume-levels-and-duration"
+    },
+    "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/automatic-speech-recognition-usage": {
+      "abstract": [
+        {
+          "text": "Analyze how often people use dictation or Siri in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/automatic-speech-recognition-usage",
+      "kind": "article",
+      "role": "article",
+      "title": "Automatic Speech Recognition Usage",
+      "type": "topic",
+      "url": "/documentation/analytics-reports/automatic-speech-recognition-usage"
+    },
+    "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/bluetooth-le-advertising": {
+      "abstract": [
+        {
+          "text": "Review how your app uses Bluetooth Low Energy (LE) advertising.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/bluetooth-le-advertising",
+      "kind": "article",
+      "role": "article",
+      "title": "Bluetooth LE Advertising",
+      "type": "topic",
+      "url": "/documentation/analytics-reports/bluetooth-le-advertising"
+    },
+    "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/bluetooth-le-connection-results": {
+      "abstract": [
+        {
+          "text": "Analyze how often your app uses Low Energy (LE) connections and the connection results.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/bluetooth-le-connection-results",
+      "kind": "article",
+      "role": "article",
+      "title": "Bluetooth LE Connection Results",
+      "type": "topic",
+      "url": "/documentation/analytics-reports/bluetooth-le-connection-results"
+    },
+    "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/bluetooth-le-connections-per-app": {
+      "abstract": [
+        {
+          "text": "Analyze the number of completed Bluetooth Low Energy (LE) connections for your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/bluetooth-le-connections-per-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Bluetooth LE Connections Per App",
+      "type": "topic",
+      "url": "/documentation/analytics-reports/bluetooth-le-connections-per-app"
+    },
+    "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/bluetooth-le-disconnection-results": {
+      "abstract": [
+        {
+          "text": "Review Low Energy (LE) disconnections for your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/bluetooth-le-disconnection-results",
+      "kind": "article",
+      "role": "article",
+      "title": "Bluetooth LE Disconnection Results",
+      "type": "topic",
+      "url": "/documentation/analytics-reports/bluetooth-le-disconnection-results"
+    },
+    "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/bluetooth-le-scans": {
+      "abstract": [
+        {
+          "text": "Review how your app uses Bluetooth Low Energy (LE) scans.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/bluetooth-le-scans",
+      "kind": "article",
+      "role": "article",
+      "title": "Bluetooth LE Scans",
+      "type": "topic",
+      "url": "/documentation/analytics-reports/bluetooth-le-scans"
+    },
+    "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/bluetooth-le-session-duration": {
+      "abstract": [
+        {
+          "text": "Analyze how long your app uses Bluetooth Low Energy (LE) connections.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/bluetooth-le-session-duration",
+      "kind": "article",
+      "role": "article",
+      "title": "Bluetooth LE Session Duration",
+      "type": "topic",
+      "url": "/documentation/analytics-reports/bluetooth-le-session-duration"
+    },
+    "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/bluetooth-le-sessions": {
+      "abstract": [
+        {
+          "text": "Analyze how often your app uses Bluetooth Low Energy (LE) connections.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/bluetooth-le-sessions",
+      "kind": "article",
+      "role": "article",
+      "title": "Bluetooth LE Sessions",
+      "type": "topic",
+      "url": "/documentation/analytics-reports/bluetooth-le-sessions"
+    },
+    "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/bluetooth-system-wakes": {
+      "abstract": [
+        {
+          "text": "Analyze details about bluetooth system wakes that your app causes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/bluetooth-system-wakes",
+      "kind": "article",
+      "role": "article",
+      "title": "Bluetooth System Wakes",
+      "type": "topic",
+      "url": "/documentation/analytics-reports/bluetooth-system-wakes"
+    },
+    "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/browser-choice-screen-engagement": {
+      "abstract": [
+        {
+          "text": "Measure how often your web browser app is being selected as the default from the browser choice screen  on iOS.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/browser-choice-screen-engagement",
+      "kind": "article",
+      "role": "article",
+      "title": "Browser Choice Screen Engagement (iOS versions before 18.2)",
+      "type": "topic",
+      "url": "/documentation/analytics-reports/browser-choice-screen-engagement"
+    },
+    "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/browser-choice-screen-selection": {
+      "abstract": [
+        {
+          "text": "This report details percentage of devices that had your web browser application selected as default from the Browser Choice screen.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/browser-choice-screen-selection",
+      "kind": "article",
+      "role": "article",
+      "title": "Browser Choice Screen Selection",
+      "type": "topic",
+      "url": "/documentation/analytics-reports/browser-choice-screen-selection"
+    },
+    "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/call-services-and-call-performance": {
+      "abstract": [
+        {
+          "text": "Review your app’s use of call services and call performance.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/call-services-and-call-performance",
+      "kind": "article",
+      "role": "article",
+      "title": "Call Services and Call Performance",
+      "type": "topic",
+      "url": "/documentation/analytics-reports/call-services-and-call-performance"
+    },
+    "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/cametallayer-performance": {
+      "abstract": [
+        {
+          "text": "Review CAMetalLayer metadata and performance in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/cametallayer-performance",
+      "kind": "article",
+      "role": "article",
+      "title": "CAMetalLayer Performance",
+      "type": "topic",
+      "url": "/documentation/analytics-reports/cametallayer-performance"
+    },
+    "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/carplay-app-usage": {
+      "abstract": [
+        {
+          "text": "Review how people use CarPlay in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/carplay-app-usage",
+      "kind": "article",
+      "role": "article",
+      "title": "CarPlay App Usage",
+      "type": "topic",
+      "url": "/documentation/analytics-reports/carplay-app-usage"
+    },
+    "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/carplay-navigation": {
+      "abstract": [
+        {
+          "text": "Analyze how often people start route-guidance sessions in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/carplay-navigation",
+      "kind": "article",
+      "role": "article",
+      "title": "CarPlay Navigation",
+      "type": "topic",
+      "url": "/documentation/analytics-reports/carplay-navigation"
+    },
+    "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/collaboration-message-usage": {
+      "abstract": [
+        {
+          "text": "Analyze how often people use collaboration messages in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/collaboration-message-usage",
+      "kind": "article",
+      "role": "article",
+      "title": "Collaboration Message Usage",
+      "type": "topic",
+      "url": "/documentation/analytics-reports/collaboration-message-usage"
+    },
+    "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/core-location-authorization-results": {
+      "abstract": [
+        {
+          "text": "Review authorizations that people grant as a result of requests from your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/core-location-authorization-results",
+      "kind": "article",
+      "role": "article",
+      "title": "Core Location Authorization Results",
+      "type": "topic",
+      "url": "/documentation/analytics-reports/core-location-authorization-results"
+    },
+    "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/core-location-geofencing": {
+      "abstract": [
+        {
+          "text": "Review how your app uses geo fences.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/core-location-geofencing",
+      "kind": "article",
+      "role": "article",
+      "title": "Core Location Geofencing",
+      "type": "topic",
+      "url": "/documentation/analytics-reports/core-location-geofencing"
+    },
+    "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/crabs-based-video-playback-usage": {
+      "abstract": [
+        {
+          "text": "Analyze how often your app uses CRABS video playback or video playback that uses the CRABS protocol.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/crabs-based-video-playback-usage",
+      "kind": "article",
+      "role": "article",
+      "title": "CRABS-Based Video Playback Usage",
+      "type": "topic",
+      "url": "/documentation/analytics-reports/crabs-based-video-playback-usage"
+    },
+    "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/custom-language-model-builds-failed": {
+      "abstract": [
+        {
+          "text": "Analyze how often your app-triggered rebuild of a custom language model failed.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/custom-language-model-builds-failed",
+      "kind": "article",
+      "role": "article",
+      "title": "Custom Language Model Builds Failed",
+      "type": "topic",
+      "url": "/documentation/analytics-reports/custom-language-model-builds-failed"
+    },
+    "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/custom-language-model-builds-started": {
+      "abstract": [
+        {
+          "text": "Analyze how often your app triggers a rebuild of custom language models.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/custom-language-model-builds-started",
+      "kind": "article",
+      "role": "article",
+      "title": "Custom Language Model Builds Started",
+      "type": "topic",
+      "url": "/documentation/analytics-reports/custom-language-model-builds-started"
+    },
+    "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/customized-transcription-requests": {
+      "abstract": [
+        {
+          "text": "Analyze transcription request use of custom language models.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/customized-transcription-requests",
+      "kind": "article",
+      "role": "article",
+      "title": "Customized Transcription Requests",
+      "type": "topic",
+      "url": "/documentation/analytics-reports/customized-transcription-requests"
+    },
+    "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/data-completeness-corrections": {
+      "abstract": [
+        {
+          "text": "Understand how the Analytics Reports API provides complete data sets.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/data-completeness-corrections",
+      "kind": "article",
+      "role": "article",
+      "title": "Data Completeness and Corrections",
+      "type": "topic",
+      "url": "/documentation/analytics-reports/data-completeness-corrections"
+    },
+    "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/default-browser-usage-rate": {
+      "abstract": [
+        {
+          "text": "Review percentage of devices where your browser app is set as the default web browser.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/default-browser-usage-rate",
+      "kind": "article",
+      "role": "article",
+      "title": "Default Browser Usage Rate",
+      "type": "topic",
+      "url": "/documentation/analytics-reports/default-browser-usage-rate"
+    },
+    "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/display-power-information": {
+      "abstract": [
+        {
+          "text": "Review your app’s impact on display pixel attributes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/display-power-information",
+      "kind": "article",
+      "role": "article",
+      "title": "Display Power Information",
+      "type": "topic",
+      "url": "/documentation/analytics-reports/display-power-information"
+    },
+    "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/dockkit-app-usage": {
+      "abstract": [
+        {
+          "text": "Review how your application uses DockKit accessories.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/dockkit-app-usage",
+      "kind": "article",
+      "role": "article",
+      "title": "DockKit App Usage",
+      "type": "topic",
+      "url": "/documentation/analytics-reports/dockkit-app-usage"
+    },
+    "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/dynamic-island-layout-changes": {
+      "abstract": [
+        {
+          "text": "Analyze changes in Dynamic Island layout state.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/dynamic-island-layout-changes",
+      "kind": "article",
+      "role": "article",
+      "title": "Dynamic Island Layout Changes",
+      "type": "topic",
+      "url": "/documentation/analytics-reports/dynamic-island-layout-changes"
+    },
+    "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/file-based-video-playback-usage": {
+      "abstract": [
+        {
+          "text": "Analyze how often your app uses file playback or playback that occurs on the local file system.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/file-based-video-playback-usage",
+      "kind": "article",
+      "role": "article",
+      "title": "File-Based Video Playback Usage",
+      "type": "topic",
+      "url": "/documentation/analytics-reports/file-based-video-playback-usage"
+    },
+    "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/flashlight-usage": {
+      "abstract": [
+        {
+          "text": "Review information about flashlight state.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/flashlight-usage",
+      "kind": "article",
+      "role": "article",
+      "title": "Flashlight Usage",
+      "type": "topic",
+      "url": "/documentation/analytics-reports/flashlight-usage"
+    },
+    "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/game-controller-haptics-engine-creation": {
+      "abstract": [
+        {
+          "text": "Analyze how your app uses haptic localities and which controllers it uses.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/game-controller-haptics-engine-creation",
+      "kind": "article",
+      "role": "article",
+      "title": "Game Controller Haptics Engine Creation",
+      "type": "topic",
+      "url": "/documentation/analytics-reports/game-controller-haptics-engine-creation"
+    },
+    "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/game-controller-sessions": {
+      "abstract": [
+        {
+          "text": "Analyze how often and how long people are in game-controller sessions in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/game-controller-sessions",
+      "kind": "article",
+      "role": "article",
+      "title": "Game Controller Sessions",
+      "type": "topic",
+      "url": "/documentation/analytics-reports/game-controller-sessions"
+    },
+    "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/haptics-engine-usage": {
+      "abstract": [
+        {
+          "text": "Review how often your app plays haptics.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/haptics-engine-usage",
+      "kind": "article",
+      "role": "article",
+      "title": "Haptics Engine Usage",
+      "type": "topic",
+      "url": "/documentation/analytics-reports/haptics-engine-usage"
+    },
+    "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/home-screen-widget-installs": {
+      "abstract": [
+        {
+          "text": "Analyze how often people add your widget to their Home Screens.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/home-screen-widget-installs",
+      "kind": "article",
+      "role": "article",
+      "title": "Home Screen Widget Installs",
+      "type": "topic",
+      "url": "/documentation/analytics-reports/home-screen-widget-installs"
+    },
+    "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/home-screen-widget-rotations": {
+      "abstract": [
+        {
+          "text": "Analyze how often your app’s widget rotates to the front of a Smart Stack.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/home-screen-widget-rotations",
+      "kind": "article",
+      "role": "article",
+      "title": "Home Screen Widget Rotations",
+      "type": "topic",
+      "url": "/documentation/analytics-reports/home-screen-widget-rotations"
+    },
+    "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/home-screen-widget-usage": {
+      "abstract": [
+        {
+          "text": "Analyze how many people are interacting with your Widget.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/home-screen-widget-usage",
+      "kind": "article",
+      "role": "article",
+      "title": "Home Screen Widget Usage",
+      "type": "topic",
+      "url": "/documentation/analytics-reports/home-screen-widget-usage"
+    },
+    "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/home-screen-widgets": {
+      "abstract": [
+        {
+          "text": "Analyze when the system adds your app widget to a default Smart Stack on the Home Screen.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/home-screen-widgets",
+      "kind": "article",
+      "role": "article",
+      "title": "Home Screen Widgets",
+      "type": "topic",
+      "url": "/documentation/analytics-reports/home-screen-widgets"
+    },
+    "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/http-live-streaming-playback-count": {
+      "abstract": [
+        {
+          "text": "Review your app’s use of HTTP Live Streaming (HLS) assets in AVFoundation APIs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/http-live-streaming-playback-count",
+      "kind": "article",
+      "role": "article",
+      "title": "HTTP Live Streaming Playback Count",
+      "type": "topic",
+      "url": "/documentation/analytics-reports/http-live-streaming-playback-count"
+    },
+    "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/http-live-streaming-playback-errors": {
+      "abstract": [
+        {
+          "text": "Analyze playback errors that your app receives.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/http-live-streaming-playback-errors",
+      "kind": "article",
+      "role": "article",
+      "title": "HTTP Live Streaming Playback Errors",
+      "type": "topic",
+      "url": "/documentation/analytics-reports/http-live-streaming-playback-errors"
+    },
+    "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/http-live-streaming-video-playback-usage": {
+      "abstract": [
+        {
+          "text": "Review information about how your app uses HTTP live streaming (HLS) video playback or video playback that uses the HLS protocol.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/http-live-streaming-video-playback-usage",
+      "kind": "article",
+      "role": "article",
+      "title": "HTTP Live Streaming Video Playback Usage",
+      "type": "topic",
+      "url": "/documentation/analytics-reports/http-live-streaming-video-playback-usage"
+    },
+    "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/keyboard-dictation-usage": {
+      "abstract": [
+        {
+          "text": "Analyze how people use keyboard dictation in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/keyboard-dictation-usage",
+      "kind": "article",
+      "role": "article",
+      "title": "Keyboard Dictation Usage",
+      "type": "topic",
+      "url": "/documentation/analytics-reports/keyboard-dictation-usage"
+    },
+    "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/launch-image-over-memory-limit": {
+      "abstract": [
+        {
+          "text": "Analyze how often your app fails to load because it’s over the memory limit.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/launch-image-over-memory-limit",
+      "kind": "article",
+      "role": "article",
+      "title": "Launch Image Over Memory Limit",
+      "type": "topic",
+      "url": "/documentation/analytics-reports/launch-image-over-memory-limit"
+    },
+    "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/live-activity-use": {
+      "abstract": [
+        {
+          "text": "Review how your app uses Live Activity.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/live-activity-use",
+      "kind": "article",
+      "role": "article",
+      "title": "Live Activity Use",
+      "type": "topic",
+      "url": "/documentation/analytics-reports/live-activity-use"
+    },
+    "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/load-coreml-models-metrics": {
+      "abstract": [
+        {
+          "text": "Review your app’s use of Core ML models.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/load-coreml-models-metrics",
+      "kind": "article",
+      "role": "article",
+      "title": "Load CoreML Models Metrics",
+      "type": "topic",
+      "url": "/documentation/analytics-reports/load-coreml-models-metrics"
+    },
+    "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/local-network-privacy": {
+      "abstract": [
+        {
+          "text": "Analyze results of the Local Network Privacy prompt.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/local-network-privacy",
+      "kind": "article",
+      "role": "article",
+      "title": "Local Network Privacy",
+      "type": "topic",
+      "url": "/documentation/analytics-reports/local-network-privacy"
+    },
+    "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/location-sessions": {
+      "abstract": [
+        {
+          "text": "Review how your app uses Core Location APIs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/location-sessions",
+      "kind": "article",
+      "role": "article",
+      "title": "Location Sessions",
+      "type": "topic",
+      "url": "/documentation/analytics-reports/location-sessions"
+    },
+    "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/lock-screen-widget-configuration": {
+      "abstract": [
+        {
+          "text": "Analyze how often people configure your widgets on the Lock Screen.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/lock-screen-widget-configuration",
+      "kind": "article",
+      "role": "article",
+      "title": "Lock Screen Widget Configuration",
+      "type": "topic",
+      "url": "/documentation/analytics-reports/lock-screen-widget-configuration"
+    },
+    "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/metal-command-queues": {
+      "abstract": [
+        {
+          "text": "Review your app’s use of Metal Command Queues.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/metal-command-queues",
+      "kind": "article",
+      "role": "article",
+      "title": "Metal Command Queues",
+      "type": "topic",
+      "url": "/documentation/analytics-reports/metal-command-queues"
+    },
+    "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/mode-activity-notifications": {
+      "abstract": [
+        {
+          "text": "Review information about how users resolve notifications in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/mode-activity-notifications",
+      "kind": "article",
+      "role": "article",
+      "title": "Mode Activity Notifications",
+      "type": "topic",
+      "url": "/documentation/analytics-reports/mode-activity-notifications"
+    },
+    "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/multiple-game-controllers-usage": {
+      "abstract": [
+        {
+          "text": "Review how people using your app use multiple game controllers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/multiple-game-controllers-usage",
+      "kind": "article",
+      "role": "article",
+      "title": "Multiple Game Controllers Usage",
+      "type": "topic",
+      "url": "/documentation/analytics-reports/multiple-game-controllers-usage"
+    },
+    "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/networking-connection-activity": {
+      "abstract": [
+        {
+          "text": "Review how your app uses network connections.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/networking-connection-activity",
+      "kind": "article",
+      "role": "article",
+      "title": "Networking Connection Activity",
+      "type": "topic",
+      "url": "/documentation/analytics-reports/networking-connection-activity"
+    },
+    "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/notification-summary-engagement": {
+      "abstract": [
+        {
+          "text": "Analyze how often people engage with notification summaries in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/notification-summary-engagement",
+      "kind": "article",
+      "role": "article",
+      "title": "Notification Summary Engagement",
+      "type": "topic",
+      "url": "/documentation/analytics-reports/notification-summary-engagement"
+    },
+    "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/photogrammetry-objectcapturesession-api-usage": {
+      "abstract": [
+        {
+          "text": "Review how often your app uses object capture for photogrammetry.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/photogrammetry-objectcapturesession-api-usage",
+      "kind": "article",
+      "role": "article",
+      "title": "Photogrammetry ObjectCaptureSession API Usage",
+      "type": "topic",
+      "url": "/documentation/analytics-reports/photogrammetry-objectcapturesession-api-usage"
+    },
+    "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/photogrammetrysession-api-usage": {
+      "abstract": [
+        {
+          "text": "Review how often your app uses object modeling for photogrammetry.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/photogrammetrysession-api-usage",
+      "kind": "article",
+      "role": "article",
+      "title": "PhotogrammetrySession API Usage",
+      "type": "topic",
+      "url": "/documentation/analytics-reports/photogrammetrysession-api-usage"
+    },
+    "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/photokit-imports": {
+      "abstract": [
+        {
+          "text": "Review how your app imports PhotoKit assets.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/photokit-imports",
+      "kind": "article",
+      "role": "article",
+      "title": "PhotoKit Imports",
+      "type": "topic",
+      "url": "/documentation/analytics-reports/photokit-imports"
+    },
+    "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/photos-library-access": {
+      "abstract": [
+        {
+          "text": "Review what type of Photos Library Access people grant in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/photos-library-access",
+      "kind": "article",
+      "role": "article",
+      "title": "Photos Library Access",
+      "type": "topic",
+      "url": "/documentation/analytics-reports/photos-library-access"
+    },
+    "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/photos-picker": {
+      "abstract": [
+        {
+          "text": "Analyze how people use Photos in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/photos-picker",
+      "kind": "article",
+      "role": "article",
+      "title": "Photos Picker",
+      "type": "topic",
+      "url": "/documentation/analytics-reports/photos-picker"
+    },
+    "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/photos-sharing": {
+      "abstract": [
+        {
+          "text": "Analyze how often people share Photos in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/photos-sharing",
+      "kind": "article",
+      "role": "article",
+      "title": "Photos Sharing",
+      "type": "topic",
+      "url": "/documentation/analytics-reports/photos-sharing"
+    },
+    "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/privacy": {
+      "abstract": [
+        {
+          "text": "Understand measures that help protect user privacy.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/privacy",
+      "kind": "article",
+      "role": "article",
+      "title": "Protecting user privacy in report data",
+      "type": "topic",
+      "url": "/documentation/analytics-reports/privacy"
+    },
+    "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/reminders-usage": {
+      "abstract": [
+        {
+          "text": "Analyze how often your app interacts with system reminders.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/reminders-usage",
+      "kind": "article",
+      "role": "article",
+      "title": "Reminders Usage",
+      "type": "topic",
+      "url": "/documentation/analytics-reports/reminders-usage"
+    },
+    "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/roomplan-usage": {
+      "abstract": [
+        {
+          "text": "Review how people use RoomPlan in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/roomplan-usage",
+      "kind": "article",
+      "role": "article",
+      "title": "RoomPlan Usage",
+      "type": "topic",
+      "url": "/documentation/analytics-reports/roomplan-usage"
+    },
+    "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/safari-extensions-enablement": {
+      "abstract": [
+        {
+          "text": "Analyze how often people enable your Safari extension.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/safari-extensions-enablement",
+      "kind": "article",
+      "role": "article",
+      "title": "Safari Extensions Enablement",
+      "type": "topic",
+      "url": "/documentation/analytics-reports/safari-extensions-enablement"
+    },
+    "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/safari-extensions-usage": {
+      "abstract": [
+        {
+          "text": "Review how people use your Safari extension.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/safari-extensions-usage",
+      "kind": "article",
+      "role": "article",
+      "title": "Safari Extensions Usage",
+      "type": "topic",
+      "url": "/documentation/analytics-reports/safari-extensions-usage"
+    },
+    "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/shared-with-you-content-engagement": {
+      "abstract": [
+        {
+          "text": "Review information about people engaging with Shared with You content in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/shared-with-you-content-engagement",
+      "kind": "article",
+      "role": "article",
+      "title": "Shared With You Content Engagement",
+      "type": "topic",
+      "url": "/documentation/analytics-reports/shared-with-you-content-engagement"
+    },
+    "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/shareplay-usage-by-activity-type": {
+      "abstract": [
+        {
+          "text": "Review how people use SharePlay in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/shareplay-usage-by-activity-type",
+      "kind": "article",
+      "role": "article",
+      "title": "SharePlay Usage by Activity Type",
+      "type": "topic",
+      "url": "/documentation/analytics-reports/shareplay-usage-by-activity-type"
+    },
+    "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/shazamkit-usage": {
+      "abstract": [
+        {
+          "text": "Analyze how your app utilizes ShazamKit.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/shazamkit-usage",
+      "kind": "article",
+      "role": "article",
+      "title": "ShazamKit Usage",
+      "type": "topic",
+      "url": "/documentation/analytics-reports/shazamkit-usage"
+    },
+    "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/spatial-audio-usage": {
+      "abstract": [
+        {
+          "text": "Analyze changes in spatial audio modes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/spatial-audio-usage",
+      "kind": "article",
+      "role": "article",
+      "title": "Spatial Audio Usage",
+      "type": "topic",
+      "url": "/documentation/analytics-reports/spatial-audio-usage"
+    },
+    "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/speech-framework-transcription-request-audio-duration": {
+      "abstract": [
+        {
+          "text": "Analyze the distribution of audio duration for transcription requests in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/speech-framework-transcription-request-audio-duration",
+      "kind": "article",
+      "role": "article",
+      "title": "Speech Framework Transcription Request Audio Duration",
+      "type": "topic",
+      "url": "/documentation/analytics-reports/speech-framework-transcription-request-audio-duration"
+    },
+    "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/speech-framework-transcription-requests": {
+      "abstract": [
+        {
+          "text": "Review transcription requests in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/speech-framework-transcription-requests",
+      "kind": "article",
+      "role": "article",
+      "title": "Speech Framework Transcription Requests",
+      "type": "topic",
+      "url": "/documentation/analytics-reports/speech-framework-transcription-requests"
+    },
+    "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/spotlight-query-performance": {
+      "abstract": [
+        {
+          "text": "Review how your app uses Spotlight queries.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/spotlight-query-performance",
+      "kind": "article",
+      "role": "article",
+      "title": "Spotlight Query Performance",
+      "type": "topic",
+      "url": "/documentation/analytics-reports/spotlight-query-performance"
+    },
+    "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/streaming-downloads-performance": {
+      "abstract": [
+        {
+          "text": "Review download performance when using the AVAssetDownloadTask APIs in your apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/streaming-downloads-performance",
+      "kind": "article",
+      "role": "article",
+      "title": "Streaming Downloads Performance",
+      "type": "topic",
+      "url": "/documentation/analytics-reports/streaming-downloads-performance"
+    },
+    "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/streaming-playback-performance": {
+      "abstract": [
+        {
+          "text": "Review playback performance when using the AVPlayerItem APIs in your apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/streaming-playback-performance",
+      "kind": "article",
+      "role": "article",
+      "title": "Streaming Playback Performance",
+      "type": "topic",
+      "url": "/documentation/analytics-reports/streaming-playback-performance"
+    },
+    "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/text-input-actions": {
+      "abstract": [
+        {
+          "text": "Review information on text-input actions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/text-input-actions",
+      "kind": "article",
+      "role": "article",
+      "title": "Text-Input Actions",
+      "type": "topic",
+      "url": "/documentation/analytics-reports/text-input-actions"
+    },
+    "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/translation-request-usage": {
+      "abstract": [
+        {
+          "text": "Review information about how people use speech-to-text translation in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/translation-request-usage",
+      "kind": "article",
+      "role": "article",
+      "title": "Translation Request Usage",
+      "type": "topic",
+      "url": "/documentation/analytics-reports/translation-request-usage"
+    },
+    "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/verify-with-wallet-document-request-availability": {
+      "abstract": [
+        {
+          "text": "Review how your app uses identity and authorization APIs to check document request availability",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/verify-with-wallet-document-request-availability",
+      "kind": "article",
+      "role": "article",
+      "title": "Verify With Wallet Document Request Availability",
+      "type": "topic",
+      "url": "/documentation/analytics-reports/verify-with-wallet-document-request-availability"
+    },
+    "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/verify-with-wallet-document-requests": {
+      "abstract": [
+        {
+          "text": "Review how your app uses identity and authorization APIs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/verify-with-wallet-document-requests",
+      "kind": "article",
+      "role": "article",
+      "title": "Verify with Wallet Document Requests",
+      "type": "topic",
+      "url": "/documentation/analytics-reports/verify-with-wallet-document-requests"
+    },
+    "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/video-duration-information": {
+      "abstract": [
+        {
+          "text": "Review information about video duration.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/video-duration-information",
+      "kind": "article",
+      "role": "article",
+      "title": "Video Duration Information",
+      "type": "topic",
+      "url": "/documentation/analytics-reports/video-duration-information"
+    },
+    "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/video-pip-duration": {
+      "abstract": [
+        {
+          "text": "Review the duration of time your app uses Picture in Picture (PiP).",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/video-pip-duration",
+      "kind": "article",
+      "role": "article",
+      "title": "Video PiP Duration",
+      "type": "topic",
+      "url": "/documentation/analytics-reports/video-pip-duration"
+    },
+    "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/visionkit-data-detectors": {
+      "abstract": [
+        {
+          "text": "Review your app’s use of data detector invocation for VisionKit.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/visionkit-data-detectors",
+      "kind": "article",
+      "role": "article",
+      "title": "VisionKit Data Detectors",
+      "type": "topic",
+      "url": "/documentation/analytics-reports/visionkit-data-detectors"
+    },
+    "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/visionkit-image-analysis": {
+      "abstract": [
+        {
+          "text": "Analyze VisionKit analysis requests on images.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/visionkit-image-analysis",
+      "kind": "article",
+      "role": "article",
+      "title": "VisionKit Image Analysis",
+      "type": "topic",
+      "url": "/documentation/analytics-reports/visionkit-image-analysis"
+    },
+    "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/visionkit-live-text-usage": {
+      "abstract": [
+        {
+          "text": "Review information about how people interact with Live Text.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/visionkit-live-text-usage",
+      "kind": "article",
+      "role": "article",
+      "title": "VisionKit Live Text Usage",
+      "type": "topic",
+      "url": "/documentation/analytics-reports/visionkit-live-text-usage"
+    },
+    "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/visionkit-sessions": {
+      "abstract": [
+        {
+          "text": "Review VisionKit sessions in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/visionkit-sessions",
+      "kind": "article",
+      "role": "article",
+      "title": "VisionKit Sessions",
+      "type": "topic",
+      "url": "/documentation/analytics-reports/visionkit-sessions"
+    },
+    "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/wi-fi-known-network-modifications": {
+      "abstract": [
+        {
+          "text": "Analyze details about people adding and removing known networks by using Wi-Fi manager in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/wi-fi-known-network-modifications",
+      "kind": "article",
+      "role": "article",
+      "title": "Wi-Fi Known Network Modifications",
+      "type": "topic",
+      "url": "/documentation/analytics-reports/wi-fi-known-network-modifications"
+    },
+    "doc://com.apple.documentation/documentation/AppStoreConnectAPI/GET-v1-analyticsReportRequests-_id_": {
+      "abstract": [
+        {
+          "text": "Get details for and the state of a specific analytics report request.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppStoreConnectAPI/GET-v1-analyticsReportRequests-_id_",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Read report request information",
+      "type": "topic",
+      "url": "/documentation/AppStoreConnectAPI/GET-v1-analyticsReportRequests-_id_"
+    },
+    "doc://com.apple.documentation/documentation/AppStoreConnectAPI/GET-v1-financeReports": {
+      "abstract": [
+        {
+          "text": "Download finance reports filtered by your specified criteria.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppStoreConnectAPI/GET-v1-financeReports",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Download Finance Reports",
+      "type": "topic",
+      "url": "/documentation/AppStoreConnectAPI/GET-v1-financeReports"
+    },
+    "doc://com.apple.documentation/documentation/AppStoreConnectAPI/GET-v1-salesReports": {
+      "abstract": [
+        {
+          "text": "Download sales and trends reports filtered by your specified criteria.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppStoreConnectAPI/GET-v1-salesReports",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Download Sales and Trends Reports",
+      "type": "topic",
+      "url": "/documentation/AppStoreConnectAPI/GET-v1-salesReports"
+    },
+    "doc://com.apple.documentation/documentation/AppStoreConnectAPI/POST-v1-analyticsReportRequests": {
+      "abstract": [
+        {
+          "text": "Request analytics reports for your apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppStoreConnectAPI/POST-v1-analyticsReportRequests",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Request reports",
+      "type": "topic",
+      "url": "/documentation/AppStoreConnectAPI/POST-v1-analyticsReportRequests"
+    },
+    "doc://com.apple.documentation/documentation/AppStoreConnectAPI/downloading-analytics-reports": {
+      "abstract": [
+        {
+          "text": "Learn how to request and review data about your apps, their usage, engagement, and performance.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppStoreConnectAPI/downloading-analytics-reports",
+      "kind": "article",
+      "role": "article",
+      "title": "Downloading Analytics Reports",
+      "type": "topic",
+      "url": "/documentation/AppStoreConnectAPI/downloading-analytics-reports"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Essentials",
+      "identifiers": [
+        "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/data-completeness-corrections",
+        "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/privacy"
+      ],
+      "title": "Essentials"
+    },
+    {
+      "abstract": [
+        {
+          "text": "Engagement information shows how people find, discover, and share your app on the App Store.",
+          "type": "text"
+        }
+      ],
+      "anchor": "App-Store-Engagement",
+      "identifiers": [
+        "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/app-store-discovery-and-engagement"
+      ],
+      "title": "App Store Engagement"
+    },
+    {
+      "abstract": [
+        {
+          "text": "Information about App Store downloads, pre-orders, and purchases.",
+          "type": "text"
+        }
+      ],
+      "anchor": "App-Store-Commerce",
+      "identifiers": [
+        "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/app-download",
+        "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/app-store-pre-order",
+        "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/app-store-purchase"
+      ],
+      "title": "App Store Commerce"
+    },
+    {
+      "abstract": [
+        {
+          "text": "Usage information helps you understand how people interact with your apps, and includes details about app sessions, installations, and crashes.",
+          "type": "text"
+        }
+      ],
+      "anchor": "App-Usage",
+      "identifiers": [
+        "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/app-clip-usage",
+        "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/app-crashes",
+        "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/app-installs",
+        "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/app-sessions",
+        "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/carplay-app-usage"
+      ],
+      "title": "App Usage"
+    },
+    {
+      "abstract": [
+        {
+          "text": "Framework usage details help you analyze how people interact with your app and how your app uses APIs.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Framework-Usage",
+      "identifiers": [
+        "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/accessorysetupkit-accessory-picker-sessions",
+        "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/accessorysetupkit-usage",
+        "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/airplay-discovery-sessions",
+        "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/animoji-stickers-sent",
+        "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/app-added-to-focus",
+        "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/app-disk-space-usage",
+        "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/app-runtime-usage",
+        "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/app-sessions-context",
+        "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/application-preferred-language-settings",
+        "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/arkit-arsession-duration",
+        "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/arkit-arsession-failures",
+        "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/arkit-capture-frame-rate-throttling",
+        "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/arkit-collaborative-session-features",
+        "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/arkit-face-tracking",
+        "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/arkit-video-formats",
+        "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/arkit-world-tracking",
+        "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/arkit-world-tracking-image-detection",
+        "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/audio-input-muting",
+        "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/audio-input-route-and-duration-and-call-mode",
+        "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/audio-session-audio-unit-usage",
+        "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/audio-volume-levels-and-duration",
+        "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/automatic-speech-recognition-usage",
+        "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/bluetooth-le-advertising",
+        "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/bluetooth-le-connection-results",
+        "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/bluetooth-le-connections-per-app",
+        "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/bluetooth-le-disconnection-results",
+        "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/bluetooth-le-scans",
+        "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/bluetooth-le-sessions",
+        "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/browser-choice-screen-engagement",
+        "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/call-services-and-call-performance",
+        "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/carplay-navigation",
+        "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/collaboration-message-usage",
+        "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/core-location-authorization-results",
+        "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/core-location-geofencing",
+        "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/crabs-based-video-playback-usage",
+        "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/custom-language-model-builds-started",
+        "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/customized-transcription-requests",
+        "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/dockkit-app-usage",
+        "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/dynamic-island-layout-changes",
+        "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/file-based-video-playback-usage",
+        "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/flashlight-usage",
+        "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/game-controller-haptics-engine-creation",
+        "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/game-controller-sessions",
+        "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/haptics-engine-usage",
+        "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/home-screen-widget-installs",
+        "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/home-screen-widget-rotations",
+        "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/home-screen-widget-usage",
+        "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/home-screen-widgets",
+        "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/http-live-streaming-playback-count",
+        "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/http-live-streaming-video-playback-usage",
+        "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/keyboard-dictation-usage",
+        "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/live-activity-use",
+        "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/load-coreml-models-metrics",
+        "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/local-network-privacy",
+        "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/location-sessions",
+        "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/lock-screen-widget-configuration",
+        "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/metal-command-queues",
+        "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/mode-activity-notifications",
+        "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/multiple-game-controllers-usage",
+        "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/notification-summary-engagement",
+        "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/photogrammetry-objectcapturesession-api-usage",
+        "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/photogrammetrysession-api-usage",
+        "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/photokit-imports",
+        "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/photos-library-access",
+        "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/photos-picker",
+        "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/photos-sharing",
+        "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/reminders-usage",
+        "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/roomplan-usage",
+        "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/safari-extensions-enablement",
+        "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/safari-extensions-usage",
+        "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/shared-with-you-content-engagement",
+        "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/shareplay-usage-by-activity-type",
+        "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/shazamkit-usage",
+        "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/spatial-audio-usage",
+        "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/speech-framework-transcription-request-audio-duration",
+        "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/speech-framework-transcription-requests",
+        "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/text-input-actions",
+        "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/translation-request-usage",
+        "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/verify-with-wallet-document-request-availability",
+        "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/verify-with-wallet-document-requests",
+        "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/video-duration-information",
+        "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/video-pip-duration",
+        "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/visionkit-data-detectors",
+        "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/visionkit-image-analysis",
+        "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/visionkit-live-text-usage",
+        "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/visionkit-sessions",
+        "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/browser-choice-screen-selection",
+        "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/default-browser-usage-rate",
+        "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/wi-fi-known-network-modifications"
+      ],
+      "title": "Framework Usage"
+    },
+    {
+      "abstract": [
+        {
+          "text": "Performance metrics show how your app performs and how users interact with specific features.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Performance",
+      "identifiers": [
+        "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/airplay-errors",
+        "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/airplay-performance",
+        "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/app-crashes-expanded",
+        "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/app-installs-performance",
+        "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/app-storage-reads-and-writes",
+        "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/audio-overloads",
+        "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/bluetooth-le-session-duration",
+        "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/bluetooth-system-wakes",
+        "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/cametallayer-performance",
+        "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/custom-language-model-builds-failed",
+        "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/display-power-information",
+        "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/http-live-streaming-playback-errors",
+        "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/launch-image-over-memory-limit",
+        "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/networking-connection-activity",
+        "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/spotlight-query-performance",
+        "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/streaming-downloads-performance",
+        "doc://com.apple.devpubs.analytics-reports/documentation/Analytics-Reports/streaming-playback-performance"
+      ],
+      "title": "Performance"
+    }
+  ]
+}

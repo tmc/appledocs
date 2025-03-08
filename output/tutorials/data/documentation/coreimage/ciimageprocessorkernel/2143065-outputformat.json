@@ -1,0 +1,404 @@
+{
+  "abstract": [
+    {
+      "text": "The processor's output pixel format.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/coreimage",
+        "doc://com.apple.documentation/documentation/coreimage/ciimageprocessorkernel"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/coreimage/ciimageprocessorkernel/2143065-outputformat"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 2143065,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)CIImageProcessorKernel(cpy)outputFormat",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "class var "
+      },
+      {
+        "kind": "identifier",
+        "text": "outputFormat"
+      },
+      {
+        "kind": "text",
+        "text": ": CIFormat"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Core Image"
+      }
+    ],
+    "parent": {
+      "title": "CIImageProcessorKernel"
+    },
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "10.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "10.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.12",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "10.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Type Property",
+    "symbolKind": "cldata",
+    "title": "outputFormat"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "var"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "outputFormat"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreimage/ciformat",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CIFormat",
+              "text": "CIFormat"
+            },
+            {
+              "kind": "text",
+              "text": " { "
+            },
+            {
+              "kind": "keyword",
+              "text": "get"
+            },
+            {
+              "kind": "text",
+              "text": " }"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Override this class property if you want your processor's output to be in a specific ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreimage/ciformat",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ": ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreimage/ciformat/1438064-bgra8",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreimage/ciformat/1437998-rgbah",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreimage/ciformat/1437756-rgbaf",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreimage/ciformat/1437695-r8",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".  If the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimageprocessorkernel/2143065-outputformat",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " is 0, then the output will be a supported format that best matches the rendering context's ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreimage/cicontext/1642215-workingformat",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If a processor returns data in a colorspace other than the context working space, then call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage/1645896-matchedtoworkingspace",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " on the processor output. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If a processor returns data as alpha-unpremultiplied RGBA data, then call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage/1645894-premultiplyingalpha",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " on the processor output.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/coreimage": {
+      "identifier": "doc://com.apple.documentation/documentation/coreimage",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Image",
+      "type": "topic",
+      "url": "/documentation/coreimage"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cicontext/1642215-workingformat": {
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cicontext/1642215-workingformat",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "workingFormat",
+      "type": "topic",
+      "url": "/documentation/coreimage/cicontext/1642215-workingformat"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciformat": {
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciformat",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CIFormat",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciformat"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciformat/1437695-r8": {
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciformat/1437695-r8",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "R8",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciformat/1437695-r8"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciformat/1437756-rgbaf": {
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciformat/1437756-rgbaf",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "RGBAf",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciformat/1437756-rgbaf"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciformat/1437998-rgbah": {
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciformat/1437998-rgbah",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "RGBAh",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciformat/1437998-rgbah"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciformat/1438064-bgra8": {
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciformat/1438064-bgra8",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "BGRA8",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciformat/1438064-bgra8"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciimage/1645894-premultiplyingalpha": {
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage/1645894-premultiplyingalpha",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "premultiplyingAlpha()",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciimage/1645894-premultiplyingalpha"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciimage/1645896-matchedtoworkingspace": {
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage/1645896-matchedtoworkingspace",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "matchedToWorkingSpace(from:)",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciimage/1645896-matchedtoworkingspace"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciimageprocessorkernel": {
+      "abstract": [
+        {
+          "text": "The abstract class you extend to create custom image processors that can integrate with Core Image workflows.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimageprocessorkernel",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CIImageProcessorKernel",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciimageprocessorkernel"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciimageprocessorkernel/2143065-outputformat": {
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimageprocessorkernel/2143065-outputformat",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "outputFormat",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciimageprocessorkernel/2143065-outputformat"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variants": [
+    {
+      "paths": [
+        "documentation/coreimage/ciimageprocessorkernel/2143065-outputformat"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/coreimage/ciimageprocessorkernel/2143065-outputformat"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

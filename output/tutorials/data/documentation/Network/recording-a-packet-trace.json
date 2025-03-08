@@ -1,0 +1,1010 @@
+{
+  "abstract": [
+    {
+      "text": "Learn how to record a low-level trace of network traffic.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.network/documentation/Network"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.network/documentation/Network/recording-a-packet-trace"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Network"
+      }
+    ],
+    "role": "collectionGroup",
+    "title": "Recording a Packet Trace"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A packet trace is a record of traffic traveling across the network. It’s useful for investigating complex network problems related to both correctness and performance.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Once you start a packet trace on a network interface, it records all traffic passing through that interface until you stop the trace. Packet traces are usually quite short — perhaps recording the traffic associated with one specific connection — but there are situations where you might want to run the trace for hours or even days.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Both macOS and iOS have built-in support for packet traces. This article explains how to record a packet trace on both platforms. Even if your primary focus is iOS, you should start by running some tests on macOS to familiarize yourself with the tools before you attempt to debug your actual problem.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Packet traces are a low-level feature and, if you’re just getting started, you may be better off using one of the higher-level tools referenced in ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.network/documentation/Network/choosing-a-network-debugging-tool",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ". Additionally, while the focus of this article is the built-in packet trace tools, there are a variety of third-party packet trace tools that you might want to investigate; see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.network/documentation/Network/taking-advantage-of-third-party-network-debugging-tools",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " for details.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Choose-the-Correct-Interface",
+          "level": 3,
+          "text": "Choose the Correct Interface",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The first step in recording a packet trace on the Mac is to choose the correct interface. If you choose the wrong interface, you may end up recording an empty packet trace. For example, if you use the ",
+              "type": "text"
+            },
+            {
+              "code": "en0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " interface on a Mac that has built-in Ethernet but is connected to the Internet over Wi-Fi, your packet trace will include all the traffic over the built-in Ethernet, that is, nothing.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Determine the correct interface name by running the ",
+              "type": "text"
+            },
+            {
+              "code": "networksetup",
+              "type": "codeVoice"
+            },
+            {
+              "text": " command-line tool with the ",
+              "type": "text"
+            },
+            {
+              "code": "-listallhardwareports",
+              "type": "codeVoice"
+            },
+            {
+              "text": " argument. This prints a list of network interfaces, including both the user-visible name and the short interface name needed by packet trace tools. For example:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "$ networksetup -listallhardwareports",
+            "",
+            "Hardware Port: Ethernet",
+            "Device: en0",
+            "Ethernet Address: 54:45:5b:01:ca:89",
+            "",
+            "Hardware Port: Wi-Fi",
+            "Device: en1",
+            "Ethernet Address: 78:a1:3c:02:2b:da",
+            "",
+            "… and so on …"
+          ],
+          "syntax": "shell",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In this example, the built-in Ethernet is ",
+              "type": "text"
+            },
+            {
+              "code": "en0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and the built-in Wi-Fi is ",
+              "type": "text"
+            },
+            {
+              "code": "en1",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", but this will change from machine to machine. Look through this list for the user-visible name of the interface you want to trace (these match the names shown in Network preferences), then use the associated short interface name.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Record-and-Analyze-a-Packet-Trace-on-a-Mac",
+          "level": 3,
+          "text": "Record and Analyze a Packet Trace on a Mac",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Working with packet traces usually involves recording a packet trace to a file and analyzing that file. It’s possible to do both steps at once, and it’s a good idea to do that when you’re just getting started. The following Terminal command starts a packet trace and prints information about each packet as it’s transferred.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "sudo tcpdump -i en0 -n"
+          ],
+          "syntax": "shell",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In this example:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "tcpdump",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " is the name of macOS’s built-in packet trace tool.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "sudo",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " command causes ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "tcpdump",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to run with privileges, which is necessary in order to record packets.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "-i en0",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " option tells ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "tcpdump",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to record packets on the default Ethernet-like interface. Replace ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "en0",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " with the short interface name you determined in ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.network/documentation/Network/recording-a-packet-trace#Choose-the-Correct-Interface",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "-n",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " option tells tcpdump not to attempt to use reverse DNS to map IP addresses to names; such mapping is rarely useful on the modern Internet and it radically slows things down.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you run ",
+              "type": "text"
+            },
+            {
+              "code": "tcpdump",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in this way, you see something like this:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "17:49:26.500970 IP 192.168.1.187.64917 > 192.168.1.39.22: Flags [S], seq 3769365868, win 65535, options [mss 1460,nop,wscale 5,nop,nop,TS val 1478872373 ecr 0,sackOK,eol], length 0",
+            "17:49:26.503325 IP 192.168.1.39.22 > 192.168.1.187.64917: Flags [S.], seq 405178393, ack 3769365869, win 65535, options [mss 1460,nop,wscale 5,nop,nop,TS val 72353448 ecr 1478872373,sackOK,eol], length 0",
+            "17:49:26.503413 IP 192.168.1.187.64917 > 192.168.1.39.22: Flags [.], ack 1, win 4117, options [nop,nop,TS val 1478872375 ecr 72353448], length 0",
+            "17:49:26.504887 IP 192.168.1.39.22 > 192.168.1.187.64917: Flags [.], ack 1, win 4117, options [nop,nop,TS val 72353449 ecr 1478872375], length 0",
+            "17:49:26.526134 IP 192.168.1.39.22 > 192.168.1.187.64917: Flags [P.], seq 1:22, ack 1, win 4117, options [nop,nop,TS val 72353470 ecr 1478872375], length 21",
+            "17:49:26.526228 IP 192.168.1.187.64917 > 192.168.1.39.22: Flags [.], ack 22, win 4117, options [nop,nop,TS val 1478872396 ecr 72353470], length 0"
+          ],
+          "syntax": "shell",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "There’s a line of output for each packet seen on the network. On each line there’s a timestamp and a lot of information about that packet. This specific example shows the start of a connection from an SSH client at 192.168.1.187 to an SSH server listening on port 22 of 192.168.1.39.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Packet traces can be quite overwhelming. Rather than trying to interpret the packet trace in real time, use the ",
+              "type": "text"
+            },
+            {
+              "code": "-w",
+              "type": "codeVoice"
+            },
+            {
+              "text": " option to write the trace to a file and then do your analysis later on.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "sudo tcpdump -i en0 -w trace.pcap"
+          ],
+          "syntax": "shell",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This example records a packet trace and writes the results to a file call ",
+              "type": "text"
+            },
+            {
+              "code": "trace.pcap",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". You can save that file to analyze later on using ",
+              "type": "text"
+            },
+            {
+              "code": "tcpdump",
+              "type": "codeVoice"
+            },
+            {
+              "text": " itself, or one of the tools listed in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.network/documentation/Network/taking-advantage-of-third-party-network-debugging-tools",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". You can also submit it to Apple for analysis (see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.network/documentation/Network/submitting-a-packet-trace-to-apple",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ").",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Even if your ultimate goal is to save a packet trace file, it’s often a good idea to start out by looking at real-time results from ",
+                  "type": "text"
+                },
+                {
+                  "code": "tcpdump",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", just to make sure that you’re capturing the right thing.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you’re having problems recording a packet trace, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.network/documentation/Network/troubleshooting-packet-traces",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Set-Up-iOS-Packet-Tracing",
+          "level": 3,
+          "text": "Set Up iOS Packet Tracing",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "iOS doesn’t let you record a packet trace directly. However, you can use your Mac to record a packet trace on an attached iOS device using the Remote Virtual Interface (RVI) mechanism. To get started, first connect your iOS device to your Mac via USB. Next run the ",
+              "type": "text"
+            },
+            {
+              "code": "rvictl",
+              "type": "codeVoice"
+            },
+            {
+              "text": " command in Terminal.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "rvictl -s b0e8fe73db17d4993bd549418bfbdba70a4af2b1"
+          ],
+          "syntax": "shell",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In this example:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "rvictl",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " is the name of the command that manipulates RVIs.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "-s",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " tells ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "rvictl",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to set up a new RVI.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "b0e8fe73db17d4993bd549418bfbdba70a4af2b1",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " is the UDID of the iOS device to target. This UDID is just an example; you can find your device’s UDID in the Devices and Simulators window in Xcode.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This command prints the following output.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "$ rvictl -s b0e8fe73db17d4993bd549418bfbdba70a4af2b1",
+            "",
+            "Starting device b0e8fe73db17d4993bd549418bfbdba70a4af2b1 [SUCCEEDED] with interface rvi0"
+          ],
+          "syntax": "shell",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This output includes the interface name of the newly-created RVI, ",
+              "type": "text"
+            },
+            {
+              "code": "rvi0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in this example. Supply this interface name to your favorite packet trace tool to record a trace of the traffic on your iOS device. For example, use the following command to record a packet trace on ",
+              "type": "text"
+            },
+            {
+              "code": "rvi0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and write it to ",
+              "type": "text"
+            },
+            {
+              "code": "trace.pcap",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "sudo tcpdump -i rvi0 -w trace.pcap"
+          ],
+          "syntax": "shell",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you’re having problems working with RVIs, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.network/documentation/Network/troubleshooting-packet-traces",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for some troubleshooting tips.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Display-and-Filter-iOS-Interface-Information",
+          "level": 3,
+          "text": "Display and Filter iOS Interface Information",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An RVI represents the entire networking stack of the iOS device; you cannot target a specific interface on the device as you would on the Mac. However, information about the interface is recorded in the packet metadata. You can use your packet trace tool to display the interface for each packet and filter the trace based on that interface. For the ",
+              "type": "text"
+            },
+            {
+              "code": "tcpdump",
+              "type": "codeVoice"
+            },
+            {
+              "text": " tool, use the -k option to display packet metadata and tcpdump -Q to filter on it. The ",
+              "type": "text"
+            },
+            {
+              "code": "tcpdump",
+              "type": "codeVoice"
+            },
+            {
+              "text": " man page has the details; see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/os/reading-unix-manual-pages",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/os/reading-unix-manual-pages": {
+      "abstract": [
+        {
+          "text": "Use the Terminal app to read the documentation for low-level UNIX tools and APIs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/os/reading-unix-manual-pages",
+      "kind": "article",
+      "role": "article",
+      "title": "Reading UNIX Manual Pages",
+      "type": "topic",
+      "url": "/documentation/os/reading-unix-manual-pages"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.network/documentation/Network": {
+      "abstract": [
+        {
+          "text": "Create network connections to send and receive data using transport and security protocols.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Network",
+      "type": "topic",
+      "url": "/documentation/network"
+    },
+    "doc://com.apple.network/documentation/Network/choosing-a-network-debugging-tool": {
+      "abstract": [
+        {
+          "text": "Decide which tool works best for your network debugging problem.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/choosing-a-network-debugging-tool",
+      "kind": "article",
+      "role": "article",
+      "title": "Choosing a Network Debugging Tool",
+      "type": "topic",
+      "url": "/documentation/network/choosing-a-network-debugging-tool"
+    },
+    "doc://com.apple.network/documentation/Network/debugging-http-server-side-errors": {
+      "abstract": [
+        {
+          "text": "Understand HTTP server-side errors and how to debug them.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/debugging-http-server-side-errors",
+      "kind": "article",
+      "role": "article",
+      "title": "Debugging HTTP Server-Side Errors",
+      "type": "topic",
+      "url": "/documentation/network/debugging-http-server-side-errors"
+    },
+    "doc://com.apple.network/documentation/Network/debugging-https-problems-with-cfnetwork-diagnostic-logging": {
+      "abstract": [
+        {
+          "text": "Use CFNetwork diagnostic logging to investigate HTTP and HTTPS problems.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/debugging-https-problems-with-cfnetwork-diagnostic-logging",
+      "kind": "article",
+      "role": "article",
+      "title": "Debugging HTTPS Problems with CFNetwork Diagnostic Logging",
+      "type": "topic",
+      "url": "/documentation/network/debugging-https-problems-with-cfnetwork-diagnostic-logging"
+    },
+    "doc://com.apple.network/documentation/Network/recording-a-packet-trace#Choose-the-Correct-Interface": {
+      "abstract": [],
+      "identifier": "doc://com.apple.network/documentation/Network/recording-a-packet-trace#Choose-the-Correct-Interface",
+      "kind": "section",
+      "title": "Choose the Correct Interface",
+      "type": "topic",
+      "url": "/documentation/network/recording-a-packet-trace#Choose-the-Correct-Interface"
+    },
+    "doc://com.apple.network/documentation/Network/recording-a-wi-fi-packet-trace": {
+      "abstract": [
+        {
+          "text": "Record traces of Wi-Fi traffic and traffic management.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/recording-a-wi-fi-packet-trace",
+      "kind": "article",
+      "role": "article",
+      "title": "Recording a Wi-Fi Packet Trace",
+      "type": "topic",
+      "url": "/documentation/network/recording-a-wi-fi-packet-trace"
+    },
+    "doc://com.apple.network/documentation/Network/submitting-a-packet-trace-to-apple": {
+      "abstract": [
+        {
+          "text": "Learn the best way to record a packet trace when communicating with Apple.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/submitting-a-packet-trace-to-apple",
+      "kind": "article",
+      "role": "article",
+      "title": "Submitting a Packet Trace to Apple",
+      "type": "topic",
+      "url": "/documentation/network/submitting-a-packet-trace-to-apple"
+    },
+    "doc://com.apple.network/documentation/Network/taking-advantage-of-third-party-network-debugging-tools": {
+      "abstract": [
+        {
+          "text": "Learn about the available third-party network debugging tools.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/taking-advantage-of-third-party-network-debugging-tools",
+      "kind": "article",
+      "role": "article",
+      "title": "Taking Advantage of Third-Party Network Debugging Tools",
+      "type": "topic",
+      "url": "/documentation/network/taking-advantage-of-third-party-network-debugging-tools"
+    },
+    "doc://com.apple.network/documentation/Network/testing-and-debugging-l4s-in-your-app": {
+      "abstract": [
+        {
+          "text": "Learn how to verify your app on an L4S-capable host and network to improve your app’s responsiveness.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/testing-and-debugging-l4s-in-your-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Testing and Debugging L4S in Your App",
+      "type": "topic",
+      "url": "/documentation/network/testing-and-debugging-l4s-in-your-app"
+    },
+    "doc://com.apple.network/documentation/Network/troubleshooting-packet-traces": {
+      "abstract": [
+        {
+          "text": "Take action to address packet tracing problems.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/troubleshooting-packet-traces",
+      "kind": "article",
+      "role": "article",
+      "title": "Troubleshooting Packet Traces",
+      "type": "topic",
+      "url": "/documentation/network/troubleshooting-packet-traces"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Related-Documentation",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/os/reading-unix-manual-pages"
+      ],
+      "title": "Related Documentation"
+    },
+    {
+      "anchor": "Network-Debugging",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.network/documentation/Network/choosing-a-network-debugging-tool",
+        "doc://com.apple.network/documentation/Network/debugging-http-server-side-errors",
+        "doc://com.apple.network/documentation/Network/debugging-https-problems-with-cfnetwork-diagnostic-logging",
+        "doc://com.apple.network/documentation/Network/taking-advantage-of-third-party-network-debugging-tools",
+        "doc://com.apple.network/documentation/Network/testing-and-debugging-l4s-in-your-app"
+      ],
+      "title": "Network Debugging"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Working-with-Packet-Traces",
+      "identifiers": [
+        "doc://com.apple.network/documentation/Network/troubleshooting-packet-traces",
+        "doc://com.apple.network/documentation/Network/recording-a-wi-fi-packet-trace",
+        "doc://com.apple.network/documentation/Network/submitting-a-packet-trace-to-apple"
+      ],
+      "title": "Working with Packet Traces"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Working-with-Packet-Traces",
+              "identifiers": [
+                "doc://com.apple.network/documentation/Network/troubleshooting-packet-traces",
+                "doc://com.apple.network/documentation/Network/recording-a-wi-fi-packet-trace",
+                "doc://com.apple.network/documentation/Network/submitting-a-packet-trace-to-apple"
+              ],
+              "title": "Working with Packet Traces"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Related-Documentation",
+              "identifiers": [
+                "doc://com.apple.documentation/documentation/os/reading-unix-manual-pages"
+              ],
+              "title": "Related Documentation"
+            },
+            {
+              "anchor": "Network-Debugging",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.network/documentation/Network/choosing-a-network-debugging-tool",
+                "doc://com.apple.network/documentation/Network/debugging-http-server-side-errors",
+                "doc://com.apple.network/documentation/Network/debugging-https-problems-with-cfnetwork-diagnostic-logging",
+                "doc://com.apple.network/documentation/Network/taking-advantage-of-third-party-network-debugging-tools",
+                "doc://com.apple.network/documentation/Network/testing-and-debugging-l4s-in-your-app"
+              ],
+              "title": "Network Debugging"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/network/recording-a-packet-trace"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/network/recording-a-packet-trace"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

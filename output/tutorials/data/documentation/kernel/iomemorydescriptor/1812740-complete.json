@@ -1,0 +1,317 @@
+{
+  "abstract": [
+    {
+      "text": "Complete processing of the memory after an I/O transfer finishes.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/kernel",
+        "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals",
+        "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals/memory",
+        "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1812740-complete"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1812740,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Kernel"
+      }
+    ],
+    "parent": {
+      "title": "IOMemoryDescriptor"
+    },
+    "role": "pseudoSymbol",
+    "symbolKind": "instm",
+    "title": "complete"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [],
+          "tokens": [
+            {
+              "kind": "text",
+              "text": "virtual IOReturn complete("
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": " IODirection forDirection = forDirection) = 0; "
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "languages": [
+        "occ"
+      ],
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "DEPRECATED The direction of the I/O just completed, or kIODirectionNone for the direction specified by the memory descriptor.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "forDirection"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return_value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An IOReturn code.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This method should not be called unless a prepare was previously issued; the prepare() and complete() must occur in pairs, before and after an I/O transfer involving pageable memory. In 10.3 or greater systems the direction argument to complete is not longer respected. The direction is totally determined at prepare() time.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/kernel": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Kernel",
+      "type": "topic",
+      "url": "/documentation/kernel"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "IOKit Fundamentals",
+      "type": "topic",
+      "url": "/documentation/kernel/iokit_fundamentals"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals/memory": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals/memory",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Memory",
+      "type": "topic",
+      "url": "/documentation/kernel/iokit_fundamentals/memory"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOMemoryDescriptor",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorydescriptor"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1441964-getpreparationid": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getPreparationID"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1441964-getpreparationid",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getPreparationID",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorydescriptor/1441964-getpreparationid"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1442011-setpreparationid": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setPreparationID"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1442011-setpreparationid",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setPreparationID",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorydescriptor/1442011-setpreparationid"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1442024-prepare": {
+      "abstract": [
+        {
+          "text": "Prepare the memory for an I/O transfer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "prepare"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1442024-prepare",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "prepare",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorydescriptor/1442024-prepare"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1442043-complete": {
+      "abstract": [
+        {
+          "text": "Complete processing of the memory after an I/O transfer finishes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "complete"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1442043-complete",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "complete",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorydescriptor/1442043-complete"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1812740-complete": {
+      "abstract": [
+        {
+          "text": "Complete processing of the memory after an I/O transfer finishes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1812740-complete",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "complete",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorydescriptor/1812740-complete"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1812845-prepare": {
+      "abstract": [
+        {
+          "text": "Prepare the memory for an I/O transfer.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1812845-prepare",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "prepare",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorydescriptor/1812845-prepare"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1812845-prepare",
+        "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1442024-prepare",
+        "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1442043-complete",
+        "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1441964-getpreparationid",
+        "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1442011-setpreparationid"
+      ],
+      "title": "Preparing the Buffer"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/kernel/iomemorydescriptor/1812740-complete"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

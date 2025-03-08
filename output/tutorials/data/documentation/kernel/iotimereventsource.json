@@ -1,0 +1,1159 @@
+{
+  "abstract": [
+    {
+      "text": "Time based event source mechanism.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/kernel",
+        "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals",
+        "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals/workflow_and_control"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/kernel/iotimereventsource"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1456939,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@S@IOTimerEventSource",
+    "modules": [
+      {
+        "name": "Kernel"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "15.4",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "IOTimerEventSource"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "IOTimerEventSource"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/ioeventsource",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@S@IOEventSource",
+              "text": "IOEventSource"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An event source that implements a simple timer. A timeout handler is called once the timeout period expires. This timeout handler will be called by the work-loop that this event source is attached to.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Usually a timer event source will be used to implement a timeout. In general when a driver makes a request it will need to setup a call to keep track of when the I/O doesn't complete. This class is designed to make that somewhat easier.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Remember the system doesn't guarantee the accuracy of the callout. It is possible that a higher priority thread is running which will delay the execution of the action routine. In fact the thread will be made runable at the exact requested time, within the accuracy of the CPU's decrementer based interrupt, but the scheduler will then control execution.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/kernel": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Kernel",
+      "type": "topic",
+      "url": "/documentation/kernel"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1535203-iotimestampconstant": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1535203-iotimestampconstant",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOTimeStampConstant",
+      "type": "topic",
+      "url": "/documentation/kernel/1535203-iotimestampconstant"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1535232-iotimestampendconstant": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1535232-iotimestampendconstant",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOTimeStampEndConstant",
+      "type": "topic",
+      "url": "/documentation/kernel/1535232-iotimestampendconstant"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1535234-iotimestampstartconstant": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1535234-iotimestampstartconstant",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOTimeStampStartConstant",
+      "type": "topic",
+      "url": "/documentation/kernel/1535234-iotimestampstartconstant"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1575332-iogettime": {
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1575332-iogettime",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOGetTime",
+      "type": "topic",
+      "url": "/documentation/kernel/1575332-iogettime"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioeventsource": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioeventsource",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOEventSource",
+      "type": "topic",
+      "url": "/documentation/kernel/ioeventsource"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "IOKit Fundamentals",
+      "type": "topic",
+      "url": "/documentation/kernel/iokit_fundamentals"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals/workflow_and_control": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals/workflow_and_control",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Workflow and Control",
+      "type": "topic",
+      "url": "/documentation/kernel/iokit_fundamentals/workflow_and_control"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice/expansiondata": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/expansiondata",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "ExpansionData",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/expansiondata"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iotimereventsource": {
+      "abstract": [
+        {
+          "text": "Time based event source mechanism.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iotimereventsource",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOTimerEventSource",
+      "type": "topic",
+      "url": "/documentation/kernel/iotimereventsource"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iotimereventsource/1576136-settimeoutfunc": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setTimeoutFunc"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iotimereventsource/1576136-settimeoutfunc",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setTimeoutFunc",
+      "type": "topic",
+      "url": "/documentation/kernel/iotimereventsource/1576136-settimeoutfunc"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iotimereventsource/1576137-settimeoutms": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setTimeoutMS"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iotimereventsource/1576137-settimeoutms",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setTimeoutMS",
+      "type": "topic",
+      "url": "/documentation/kernel/iotimereventsource/1576137-settimeoutms"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iotimereventsource/1576138-setworkloop": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setWorkLoop"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iotimereventsource/1576138-setworkloop",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setWorkLoop",
+      "type": "topic",
+      "url": "/documentation/kernel/iotimereventsource/1576138-setworkloop"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iotimereventsource/1576139-free": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "free"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iotimereventsource/1576139-free",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "free",
+      "type": "topic",
+      "url": "/documentation/kernel/iotimereventsource/1576139-free"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iotimereventsource/1576140-settimeoutticks": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setTimeoutTicks"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iotimereventsource/1576140-settimeoutticks",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setTimeoutTicks",
+      "type": "topic",
+      "url": "/documentation/kernel/iotimereventsource/1576140-settimeoutticks"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iotimereventsource/1576141-wakeattimems": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "wakeAtTimeMS"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iotimereventsource/1576141-wakeattimems",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "wakeAtTimeMS",
+      "type": "topic",
+      "url": "/documentation/kernel/iotimereventsource/1576141-wakeattimems"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iotimereventsource/1576142-timeout": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "timeout"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iotimereventsource/1576142-timeout",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "timeout",
+      "type": "topic",
+      "url": "/documentation/kernel/iotimereventsource/1576142-timeout"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iotimereventsource/1576143-getmetaclass": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getMetaClass"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iotimereventsource/1576143-getmetaclass",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getMetaClass",
+      "type": "topic",
+      "url": "/documentation/kernel/iotimereventsource/1576143-getmetaclass"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iotimereventsource/1576144-canceltimeout": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "cancelTimeout"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iotimereventsource/1576144-canceltimeout",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cancelTimeout",
+      "type": "topic",
+      "url": "/documentation/kernel/iotimereventsource/1576144-canceltimeout"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iotimereventsource/1576145-wakeattimeus": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "wakeAtTimeUS"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iotimereventsource/1576145-wakeattimeus",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "wakeAtTimeUS",
+      "type": "topic",
+      "url": "/documentation/kernel/iotimereventsource/1576145-wakeattimeus"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iotimereventsource/1576146-timeoutandrelease": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "timeoutAndRelease"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iotimereventsource/1576146-timeoutandrelease",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "timeoutAndRelease",
+      "type": "topic",
+      "url": "/documentation/kernel/iotimereventsource/1576146-timeoutandrelease"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iotimereventsource/1576147-wakeattime": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "wakeAtTime"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iotimereventsource/1576147-wakeattime",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "wakeAtTime",
+      "type": "topic",
+      "url": "/documentation/kernel/iotimereventsource/1576147-wakeattime"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iotimereventsource/1576148-timereventsource": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "timerEventSource"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iotimereventsource/1576148-timereventsource",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "timerEventSource",
+      "type": "topic",
+      "url": "/documentation/kernel/iotimereventsource/1576148-timereventsource"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iotimereventsource/1576149-settimeout": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setTimeout"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iotimereventsource/1576149-settimeout",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setTimeout",
+      "type": "topic",
+      "url": "/documentation/kernel/iotimereventsource/1576149-settimeout"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iotimereventsource/1576150-disable": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "disable"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iotimereventsource/1576150-disable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "disable",
+      "type": "topic",
+      "url": "/documentation/kernel/iotimereventsource/1576150-disable"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iotimereventsource/1576151-enable": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "enable"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iotimereventsource/1576151-enable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "enable",
+      "type": "topic",
+      "url": "/documentation/kernel/iotimereventsource/1576151-enable"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iotimereventsource/1576152-settimeoutus": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setTimeoutUS"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iotimereventsource/1576152-settimeoutus",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setTimeoutUS",
+      "type": "topic",
+      "url": "/documentation/kernel/iotimereventsource/1576152-settimeoutus"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iotimereventsource/1576153-init": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iotimereventsource/1576153-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init",
+      "type": "topic",
+      "url": "/documentation/kernel/iotimereventsource/1576153-init"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iotimereventsource/1576154-wakeattimeticks": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "wakeAtTimeTicks"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iotimereventsource/1576154-wakeattimeticks",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "wakeAtTimeTicks",
+      "type": "topic",
+      "url": "/documentation/kernel/iotimereventsource/1576154-wakeattimeticks"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iotimereventsource/1809565-canceltimeout": {
+      "abstract": [
+        {
+          "text": "Disable any outstanding calls to this event source.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iotimereventsource/1809565-canceltimeout",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "cancelTimeout",
+      "type": "topic",
+      "url": "/documentation/kernel/iotimereventsource/1809565-canceltimeout"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iotimereventsource/1809571-disable": {
+      "abstract": [
+        {
+          "text": "Disable a timed callout.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iotimereventsource/1809571-disable",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "disable",
+      "type": "topic",
+      "url": "/documentation/kernel/iotimereventsource/1809571-disable"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iotimereventsource/1809577-enable": {
+      "abstract": [
+        {
+          "text": "Enables a call to the action.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iotimereventsource/1809577-enable",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "enable",
+      "type": "topic",
+      "url": "/documentation/kernel/iotimereventsource/1809577-enable"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iotimereventsource/1809588-free": {
+      "abstract": [
+        {
+          "text": "Sub-class implementation of free method, frees calloutEntry",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iotimereventsource/1809588-free",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "free",
+      "type": "topic",
+      "url": "/documentation/kernel/iotimereventsource/1809588-free"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iotimereventsource/1809597-init": {
+      "abstract": [
+        {
+          "text": "Initializes the timer with an owner, and a handler to call when the timeout expires.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iotimereventsource/1809597-init",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "init",
+      "type": "topic",
+      "url": "/documentation/kernel/iotimereventsource/1809597-init"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iotimereventsource/1809607-settimeout": {
+      "abstract": [
+        {
+          "text": "Setup a callback at after the delay in decrementer ticks. See wakeAtTime(AbsoluteTime).",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iotimereventsource/1809607-settimeout",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setTimeout(AbsoluteTime)",
+      "type": "topic",
+      "url": "/documentation/kernel/iotimereventsource/1809607-settimeout"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iotimereventsource/1809617-settimeout": {
+      "abstract": [
+        {
+          "text": "Setup a callback at after the delay in some unit. See wakeAtTime(AbsoluteTime).",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iotimereventsource/1809617-settimeout",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setTimeout(UInt32, UInt32)",
+      "type": "topic",
+      "url": "/documentation/kernel/iotimereventsource/1809617-settimeout"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iotimereventsource/1809624-settimeoutfunc": {
+      "abstract": [
+        {
+          "text": "Set's timeout as the function of calloutEntry.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iotimereventsource/1809624-settimeoutfunc",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setTimeoutFunc",
+      "type": "topic",
+      "url": "/documentation/kernel/iotimereventsource/1809624-settimeoutfunc"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iotimereventsource/1809629-settimeoutms": {
+      "abstract": [
+        {
+          "text": "Setup a callback at after the delay in milliseconds. See wakeAtTime(AbsoluteTime).",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iotimereventsource/1809629-settimeoutms",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setTimeoutMS",
+      "type": "topic",
+      "url": "/documentation/kernel/iotimereventsource/1809629-settimeoutms"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iotimereventsource/1809639-settimeoutticks": {
+      "abstract": [
+        {
+          "text": "Setup a callback at after the delay in scheduler ticks. See wakeAtTime(AbsoluteTime).",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iotimereventsource/1809639-settimeoutticks",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setTimeoutTicks",
+      "type": "topic",
+      "url": "/documentation/kernel/iotimereventsource/1809639-settimeoutticks"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iotimereventsource/1809649-settimeoutus": {
+      "abstract": [
+        {
+          "text": "Setup a callback at after the delay in microseconds. See wakeAtTime(AbsoluteTime).",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iotimereventsource/1809649-settimeoutus",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setTimeoutUS",
+      "type": "topic",
+      "url": "/documentation/kernel/iotimereventsource/1809649-settimeoutus"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iotimereventsource/1809663-timeout": {
+      "abstract": [
+        {
+          "text": "Function that routes the call from the OS' timeout mechanism into a work-loop context.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iotimereventsource/1809663-timeout",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "timeout",
+      "type": "topic",
+      "url": "/documentation/kernel/iotimereventsource/1809663-timeout"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iotimereventsource/1809672-timereventsource": {
+      "abstract": [
+        {
+          "text": "Allocates and returns an initialized timer instance.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iotimereventsource/1809672-timereventsource",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "timerEventSource",
+      "type": "topic",
+      "url": "/documentation/kernel/iotimereventsource/1809672-timereventsource"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iotimereventsource/1809684-wakeattime": {
+      "abstract": [
+        {
+          "text": "Setup a callback at this absolute time.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iotimereventsource/1809684-wakeattime",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "wakeAtTime(AbsoluteTime)",
+      "type": "topic",
+      "url": "/documentation/kernel/iotimereventsource/1809684-wakeattime"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iotimereventsource/1809694-wakeattime": {
+      "abstract": [
+        {
+          "text": "Setup a callback at this absolute time. See wakeAtTime(AbsoluteTime).",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iotimereventsource/1809694-wakeattime",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "wakeAtTime(UInt32, UInt32)",
+      "type": "topic",
+      "url": "/documentation/kernel/iotimereventsource/1809694-wakeattime"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iotimereventsource/1809708-wakeattimems": {
+      "abstract": [
+        {
+          "text": "Setup a callback at this absolute time. See wakeAtTime(AbsoluteTime).",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iotimereventsource/1809708-wakeattimems",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "wakeAtTimeMS",
+      "type": "topic",
+      "url": "/documentation/kernel/iotimereventsource/1809708-wakeattimems"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iotimereventsource/1809720-wakeattimeticks": {
+      "abstract": [
+        {
+          "text": "Setup a callback at this absolute time. See wakeAtTime(AbsoluteTime).",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iotimereventsource/1809720-wakeattimeticks",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "wakeAtTimeTicks",
+      "type": "topic",
+      "url": "/documentation/kernel/iotimereventsource/1809720-wakeattimeticks"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iotimereventsource/1809737-wakeattimeus": {
+      "abstract": [
+        {
+          "text": "Setup a callback at this absolute time. See wakeAtTime(AbsoluteTime).",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iotimereventsource/1809737-wakeattimeus",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "wakeAtTimeUS",
+      "type": "topic",
+      "url": "/documentation/kernel/iotimereventsource/1809737-wakeattimeus"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iotimereventsource/2870317-checkforwork": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "checkForWork"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iotimereventsource/2870317-checkforwork",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "checkForWork",
+      "type": "topic",
+      "url": "/documentation/kernel/iotimereventsource/2870317-checkforwork"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iotimereventsource/2870321-timeoutsignaled": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "timeoutSignaled"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iotimereventsource/2870321-timeoutsignaled",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "timeoutSignaled",
+      "type": "topic",
+      "url": "/documentation/kernel/iotimereventsource/2870321-timeoutsignaled"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iotimereventsource/3516494-init": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iotimereventsource/3516494-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init",
+      "type": "topic",
+      "url": "/documentation/kernel/iotimereventsource/3516494-init"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iotimereventsource/3516495-settimeout": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setTimeout"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iotimereventsource/3516495-settimeout",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setTimeout",
+      "type": "topic",
+      "url": "/documentation/kernel/iotimereventsource/3516495-settimeout"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iotimereventsource/3516496-settimeout": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setTimeout"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iotimereventsource/3516496-settimeout",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setTimeout",
+      "type": "topic",
+      "url": "/documentation/kernel/iotimereventsource/3516496-settimeout"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iotimereventsource/3516497-timereventsource": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "timerEventSource"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iotimereventsource/3516497-timereventsource",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "timerEventSource",
+      "type": "topic",
+      "url": "/documentation/kernel/iotimereventsource/3516497-timereventsource"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iotimereventsource/3516498-timereventsource": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "timerEventSource"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iotimereventsource/3516498-timereventsource",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "timerEventSource",
+      "type": "topic",
+      "url": "/documentation/kernel/iotimereventsource/3516498-timereventsource"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iotimereventsource/3516499-wakeattime": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "wakeAtTime"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iotimereventsource/3516499-wakeattime",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "wakeAtTime",
+      "type": "topic",
+      "url": "/documentation/kernel/iotimereventsource/3516499-wakeattime"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iotimereventsource/3516500-wakeattime": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "wakeAtTime"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iotimereventsource/3516500-wakeattime",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "wakeAtTime",
+      "type": "topic",
+      "url": "/documentation/kernel/iotimereventsource/3516500-wakeattime"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iotimereventsource/abstime": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iotimereventsource/abstime",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "abstime",
+      "type": "topic",
+      "url": "/documentation/kernel/iotimereventsource/abstime"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iotimereventsource/calloutentry": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iotimereventsource/calloutentry",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "calloutEntry",
+      "type": "topic",
+      "url": "/documentation/kernel/iotimereventsource/calloutentry"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iotimereventsource/reserved": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iotimereventsource/reserved",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "reserved",
+      "type": "topic",
+      "url": "/documentation/kernel/iotimereventsource/reserved"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iowatchdogtimer": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iowatchdogtimer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOWatchDogTimer",
+      "type": "topic",
+      "url": "/documentation/kernel/iowatchdogtimer"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioworkloop/action": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioworkloop/action",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "Action",
+      "type": "topic",
+      "url": "/documentation/kernel/ioworkloop/action"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/ioeventsource"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/iowatchdogtimer",
+        "doc://com.apple.documentation/documentation/kernel/1575332-iogettime",
+        "doc://com.apple.documentation/documentation/kernel/1535203-iotimestampconstant",
+        "doc://com.apple.documentation/documentation/kernel/1535232-iotimestampendconstant",
+        "doc://com.apple.documentation/documentation/kernel/1535234-iotimestampstartconstant"
+      ],
+      "title": "Timers"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "1818627",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/iotimereventsource/1809565-canceltimeout",
+        "doc://com.apple.documentation/documentation/kernel/iotimereventsource/1809571-disable",
+        "doc://com.apple.documentation/documentation/kernel/iotimereventsource/1809577-enable",
+        "doc://com.apple.documentation/documentation/kernel/iotimereventsource/1809588-free",
+        "doc://com.apple.documentation/documentation/kernel/iotimereventsource/1809597-init",
+        "doc://com.apple.documentation/documentation/kernel/iotimereventsource/1809607-settimeout",
+        "doc://com.apple.documentation/documentation/kernel/iotimereventsource/1809617-settimeout",
+        "doc://com.apple.documentation/documentation/kernel/iotimereventsource/1809624-settimeoutfunc",
+        "doc://com.apple.documentation/documentation/kernel/iotimereventsource/1809629-settimeoutms",
+        "doc://com.apple.documentation/documentation/kernel/iotimereventsource/1809639-settimeoutticks",
+        "doc://com.apple.documentation/documentation/kernel/iotimereventsource/1809649-settimeoutus",
+        "doc://com.apple.documentation/documentation/kernel/iotimereventsource/1809663-timeout",
+        "doc://com.apple.documentation/documentation/kernel/iotimereventsource/1809672-timereventsource",
+        "doc://com.apple.documentation/documentation/kernel/iotimereventsource/1809684-wakeattime",
+        "doc://com.apple.documentation/documentation/kernel/iotimereventsource/1809694-wakeattime",
+        "doc://com.apple.documentation/documentation/kernel/iotimereventsource/1809708-wakeattimems",
+        "doc://com.apple.documentation/documentation/kernel/iotimereventsource/1809720-wakeattimeticks",
+        "doc://com.apple.documentation/documentation/kernel/iotimereventsource/1809737-wakeattimeus"
+      ],
+      "kind": "taskGroup",
+      "title": "Miscellaneous"
+    },
+    {
+      "anchor": "1818651",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/ioworkloop/action"
+      ],
+      "kind": "taskGroup",
+      "title": "Callbacks"
+    },
+    {
+      "anchor": "1818656",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/ioservice/expansiondata"
+      ],
+      "kind": "taskGroup",
+      "title": "DataTypes"
+    },
+    {
+      "anchor": "1818658",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/iotimereventsource/reserved",
+        "doc://com.apple.documentation/documentation/kernel/iotimereventsource/calloutentry",
+        "doc://com.apple.documentation/documentation/kernel/iotimereventsource/abstime"
+      ],
+      "kind": "taskGroup",
+      "title": "Instance Variables"
+    },
+    {
+      "anchor": "3516992",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/iotimereventsource/1576144-canceltimeout",
+        "doc://com.apple.documentation/documentation/kernel/iotimereventsource/2870317-checkforwork",
+        "doc://com.apple.documentation/documentation/kernel/iotimereventsource/1576150-disable",
+        "doc://com.apple.documentation/documentation/kernel/iotimereventsource/1576151-enable",
+        "doc://com.apple.documentation/documentation/kernel/iotimereventsource/1576139-free",
+        "doc://com.apple.documentation/documentation/kernel/iotimereventsource/1576143-getmetaclass",
+        "doc://com.apple.documentation/documentation/kernel/iotimereventsource/1576153-init",
+        "doc://com.apple.documentation/documentation/kernel/iotimereventsource/3516494-init",
+        "doc://com.apple.documentation/documentation/kernel/iotimereventsource/1576149-settimeout",
+        "doc://com.apple.documentation/documentation/kernel/iotimereventsource/3516495-settimeout",
+        "doc://com.apple.documentation/documentation/kernel/iotimereventsource/3516496-settimeout",
+        "doc://com.apple.documentation/documentation/kernel/iotimereventsource/1576136-settimeoutfunc",
+        "doc://com.apple.documentation/documentation/kernel/iotimereventsource/1576137-settimeoutms",
+        "doc://com.apple.documentation/documentation/kernel/iotimereventsource/1576140-settimeoutticks",
+        "doc://com.apple.documentation/documentation/kernel/iotimereventsource/1576152-settimeoutus",
+        "doc://com.apple.documentation/documentation/kernel/iotimereventsource/1576138-setworkloop",
+        "doc://com.apple.documentation/documentation/kernel/iotimereventsource/1576147-wakeattime",
+        "doc://com.apple.documentation/documentation/kernel/iotimereventsource/3516499-wakeattime",
+        "doc://com.apple.documentation/documentation/kernel/iotimereventsource/3516500-wakeattime",
+        "doc://com.apple.documentation/documentation/kernel/iotimereventsource/1576141-wakeattimems",
+        "doc://com.apple.documentation/documentation/kernel/iotimereventsource/1576154-wakeattimeticks",
+        "doc://com.apple.documentation/documentation/kernel/iotimereventsource/1576145-wakeattimeus"
+      ],
+      "kind": "taskGroup",
+      "title": "Instance Methods"
+    },
+    {
+      "anchor": "3516993",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/iotimereventsource/1576142-timeout",
+        "doc://com.apple.documentation/documentation/kernel/iotimereventsource/1576146-timeoutandrelease",
+        "doc://com.apple.documentation/documentation/kernel/iotimereventsource/2870321-timeoutsignaled",
+        "doc://com.apple.documentation/documentation/kernel/iotimereventsource/1576148-timereventsource",
+        "doc://com.apple.documentation/documentation/kernel/iotimereventsource/3516497-timereventsource",
+        "doc://com.apple.documentation/documentation/kernel/iotimereventsource/3516498-timereventsource"
+      ],
+      "kind": "taskGroup",
+      "title": "Type Methods"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/kernel/iotimereventsource"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

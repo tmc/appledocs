@@ -1,0 +1,1237 @@
+{
+  "abstract": [
+    {
+      "text": "Manage keys you use to sign JSON web tokens and connect marketplaces with apps.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/alternative-marketplaces-and-web-distribution",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/alternative-distribution-keys"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/creating-keys-and-establishing-alternative-marketplace-connections"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "App Store Connect API"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Creating keys and establishing alternative marketplace connections"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use alternative distribution keys to establish an alternative marketplace. To create an alternative distribution key, you must have an existing alternative marketplace app in App Store Connect. If a marketplace app doesn’t already exist, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/help/app-store-connect/distributing-apps-in-the-european-union/create-an-marketplace-app",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " before continuing.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you create these keys, generate JSON web tokens (JWTs) to connect your marketplace to the apps it distributes. Unlike the auth tokens referenced in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/generating-tokens-for-api-requests",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", this JWT — the marketplace token — is specifically created by your marketplace and shared with the app developer to upload to App Store Connect.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Generate-your-private-key",
+          "level": 3,
+          "text": "Generate your private key",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "App Store Connect uses a private cryptographic key to generate a signature for each app that your alternative marketplace distributes. During registration, marketplace apps create a public-private key pair, and send the public key to App Store Connect. The private key you create uses an Elliptic Curve Digital Signature Algorithm (ECDSA) with the P-256 curve and the SHA-256 hash algorithm.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create your private key, open Terminal and enter the following command:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "openssl ecparam -name prime256v1 -genkey -noout -out private_key.pem"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This command creates the file ",
+              "type": "text"
+            },
+            {
+              "code": "private_key.pem",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", which contains your private key.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Secure your private keys as you do other credentials, such as passwords. Don’t share your private keys, store keys in a code repository, or include keys in client-side code. Share only your public key.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Generate-your-public-key",
+          "level": 3,
+          "text": "Generate your public key",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Next, you create a public key from the private key you created in the previous section. The public key is a PEM-encoded PKCS#8 EC key that uses the P-256 curve. In Terminal, enter the following command:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "openssl ec -in private_key.pem -pubout > public_key.pem"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This command creates the file ",
+              "type": "text"
+            },
+            {
+              "code": "public_key.pem",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", which contains your public key. Run this command any time to generate a copy of your public key file. To request your existing public key from App Store Connect, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-apps-_id_-alternativeDistributionKey",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-an-alternative-distribution-key",
+          "level": 3,
+          "text": "Create an alternative distribution key",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Next, upload your public key to App Store Connect using the endpoint described in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/POST-v1-alternativeDistributionKeys",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An alternative distribution key applies to all apps in your account. You can optionally make an application-specific alternative distirbution key by adding the app Apple ID for your marketplace app in the ",
+              "type": "text"
+            },
+            {
+              "code": "relationships",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object in the JSON payload when calling ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/POST-v1-alternativeDistributionKeys",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". You can find this app Apple ID by calling ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-apps",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and filtering for your app name or by going to App Store Connect. This relationship is optional. If you don’t include a relationship to an app Apple ID, the alternative distribution key is associated with all alternative distubution apps on your account.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To access your marketplace app’s app Apple ID, log in to ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://appstoreconnect.apple.com/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select Apps.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select your marketplace app from the list.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Under General, select App Information.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Scroll down to General Information, and locate your app Apple ID below your SKU.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following request uploads the public key to App Store Connect:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "POST https://api.appstoreconnect.apple.com/v1/alternativeDistributionKeys",
+            "{",
+            "  \"data\": {",
+            "    \"type\": \"alternativeDistributionKeys\",",
+            "    \"id\": null,",
+            "    \"attributes\": {",
+            "      \"publicKey\": \"-----BEGIN PUBLIC KEY-----\\nMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAE7rsxeCw+hrwRgStk0J2vYmnGQZha\\ngSt0fm511aTjpDVsaIy9z7jmUKjJ1jgb8P5UKmQfmw0ovD+fNTSefjrw5A==\\n-----END PUBLIC KEY-----\\n\"",
+            "    }",
+            "  }",
+            "}"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Obtain-Developer-ID",
+          "level": 3,
+          "text": "Obtain Developer ID",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When developers request to distribute their app on your marketplace, you give them a JWT that’s signed with the private key you created earlier. They upload the JWT to App Store Connect, which uses your public key to verify that the token signature is authentic and creates the relationship to your app marketplace.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Ask the app developer for their Developer ID, to learn more, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/help/app-store-connect/distributing-apps-in-the-european-union/manage-distribution-on-an-alternative-app-marketplace",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-the-JSON-web-token",
+          "level": 3,
+          "text": "Create the JSON web token",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Generate the marketplace token after creating the alternative distribution key and receiving the Developer ID from the app developer. To generate a signed JWT:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create the JWT header.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create the JWT payload.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Sign the JWT.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create a JWT for the app developer to upload to App Store Connect, use the information in the following table to fill in the header details:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Header Field",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Description",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "alg",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The algorithm used to sign the token. For marketplace tokens, use ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "ES256",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " as a ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "String",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "typ",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The type of the JWT. For marketplace tokens, use ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "JWT",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " as a ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "String",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The JWT payload contains information specific to the App Store Connect APIs, such as the issuer, issued at, expiration time, audience, principal developer identifier, and nonce. Use the information in the following table to fill in the payload claims:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Payload Claim",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Description",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "iss",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "issuer",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": " registered claim identifies the principal (or “Verifier”) that issued the token. Because the token belongs to your marketplace, use the marketplace’s app Apple ID, as a ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "String",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "iat",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "issued",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "at",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": " registered claim indicates the time at which you generated the token, in terms of the number of seconds following the epoch (January 1 1970 00:00:00), in UTC, as an ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Int",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "exp",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "expiration time",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": " registered claim identifies the time on or after which the token expires, in terms of the number of seconds following the epoch (January 1 1970 00:00:00), in UTC, as an ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Int",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "spacer",
+                      "type": "image"
+                    },
+                    {
+                      "text": " Use an expiration time less than 7 days into the future.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "aud",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "audience",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": " registered claim identifies the intended recipient of the token. Because the token is for App Store Connect APIs, use ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "appstoreconnect-v1",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " as the audience.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "pid",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "principal developer identifier",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": " registered claim identifies the user (or “Holder”) of the token. Because the user of the token is the alternative distribution app developer, use the app’s Developer ID, as a ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "String",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "anchor": "Sign-the-token-and-share-it-with-the-app-developer",
+          "level": 3,
+          "text": "Sign the token and share it with the app developer",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After creating the JWT, sign it with the private key you created earlier using ECDSA with the P-256 curve and the SHA-256 hash algorithm. A decoded token has the following format:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "  \"alg\": \"ES256\",",
+            "  \"typ\": \"JWT\"",
+            "}",
+            "{",
+            "  \"iss\": \"512345679\",",
+            "  \"iat\": 1623085200,",
+            "  \"exp\": 1623086400,",
+            "  \"aud\": \"appstoreconnect-v1\",",
+            "  \"pid\": \"57246542-96fe-1a63-e053-0824d011072a\"",
+            "}"
+          ],
+          "syntax": "javascript",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "There are a variety of open-source libraries in various programming language for creating and signing JWTs. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://JWT.io",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you sign the JWT, provide the token to the app developer so they can upload it to App Store Connect, which uses your public key to verify that the token signature is authentic and creates the relationship to your app marketplace. While uploading the JWT, the app developer selects the apps they want to associate with your marketplace. To learn how an app developer can associate their apps with your marketplace and upload your JWT, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/help/app-store-connect/distributing-apps-in-the-european-union/manage-distribution-on-an-alternative-app-marketplace",
+              "isActive": true,
+              "overridingTitle": "Manage distribution on an alternative app marketplace",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "Manage distribution on an alternative app marketplace",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI": {
+      "abstract": [
+        {
+          "text": "Automate the tasks you perform on the Apple Developer website and in App Store Connect.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "App Store Connect API",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/DELETE-v1-alternativeDistributionKeys-_id_": {
+      "abstract": [
+        {
+          "text": "Remove an alternative distribution key from your account.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/DELETE-v1-alternativeDistributionKeys-_id_",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DELETE /v1/alternativeDistributionKeys/{id}"
+        }
+      ],
+      "role": "symbol",
+      "title": "Remove an alternative distribution key",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/delete-v1-alternativedistributionkeys-_id_"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-alternativeDistributionKeys": {
+      "abstract": [
+        {
+          "text": "List the alternative distribution key for your account.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-alternativeDistributionKeys",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GET /v1/alternativeDistributionKeys"
+        }
+      ],
+      "role": "symbol",
+      "title": "List alternative distribution keys",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/get-v1-alternativedistributionkeys"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-alternativeDistributionKeys-_id_": {
+      "abstract": [
+        {
+          "text": "Read the public key information for a specific alternative distribution key.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-alternativeDistributionKeys-_id_",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GET /v1/alternativeDistributionKeys/{id}"
+        }
+      ],
+      "role": "symbol",
+      "title": "Read alternative distribution key information",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/get-v1-alternativedistributionkeys-_id_"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-apps": {
+      "abstract": [
+        {
+          "text": "Find and list apps in App Store Connect.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-apps",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GET /v1/apps"
+        }
+      ],
+      "role": "symbol",
+      "title": "List Apps",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/get-v1-apps"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-apps-_id_-alternativeDistributionKey": {
+      "abstract": [
+        {
+          "text": "Get the alternative distribution keys for a specific app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-apps-_id_-alternativeDistributionKey",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GET /v1/apps/{id}/alternativeDistributionKey"
+        }
+      ],
+      "role": "symbol",
+      "title": "Read an app’s alternative distribution key",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/get-v1-apps-_id_-alternativedistributionkey"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/POST-v1-alternativeDistributionKeys": {
+      "abstract": [
+        {
+          "text": "Add an alternative distribution key for your alternative marketplace app or web distribution.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/POST-v1-alternativeDistributionKeys",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "POST /v1/alternativeDistributionKeys"
+        }
+      ],
+      "role": "symbol",
+      "title": "Add an alternative distribution key",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/post-v1-alternativedistributionkeys"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/alternative-distribution-keys": {
+      "abstract": [
+        {
+          "text": "Create and manage keys for an alternative app distribution.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/alternative-distribution-keys",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Alternative Distribution Keys",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/alternative-distribution-keys"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/alternative-marketplaces-and-web-distribution": {
+      "abstract": [
+        {
+          "text": "Manage keys, packages, and search for alternative app distribution.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/alternative-marketplaces-and-web-distribution",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Alternative Marketplaces and Web Distribution",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/alternative-marketplaces-and-web-distribution"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/creating-and-configuring-keys-for-web-distribution": {
+      "abstract": [
+        {
+          "text": "Manage keys you use to sign JSON web tokens (JWTs).",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/creating-and-configuring-keys-for-web-distribution",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating and configuring keys for web distribution",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/creating-and-configuring-keys-for-web-distribution"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/generating-tokens-for-api-requests": {
+      "abstract": [
+        {
+          "text": "Create JSON Web Tokens (JWTs) signed with your private key to authorize API requests.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/generating-tokens-for-api-requests",
+      "kind": "article",
+      "role": "article",
+      "title": "Generating Tokens for API Requests",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/generating-tokens-for-api-requests"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://JWT.io": {
+      "identifier": "https://JWT.io",
+      "title": "JWT.io",
+      "titleInlineContent": [
+        {
+          "text": "JWT.io",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://JWT.io"
+    },
+    "https://appstoreconnect.apple.com/": {
+      "identifier": "https://appstoreconnect.apple.com/",
+      "title": "App Store Connect",
+      "titleInlineContent": [
+        {
+          "text": "App Store Connect",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://appstoreconnect.apple.com/"
+    },
+    "https://developer.apple.com/help/app-store-connect/distributing-apps-in-the-european-union/create-an-marketplace-app": {
+      "identifier": "https://developer.apple.com/help/app-store-connect/distributing-apps-in-the-european-union/create-an-marketplace-app",
+      "title": "Create a marketplace app",
+      "titleInlineContent": [
+        {
+          "text": "Create a marketplace app",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/help/app-store-connect/distributing-apps-in-the-european-union/create-an-marketplace-app"
+    },
+    "https://developer.apple.com/help/app-store-connect/distributing-apps-in-the-european-union/manage-distribution-on-an-alternative-app-marketplace": {
+      "identifier": "https://developer.apple.com/help/app-store-connect/distributing-apps-in-the-european-union/manage-distribution-on-an-alternative-app-marketplace",
+      "title": "Manage distribution on an alternative app marketplace",
+      "titleInlineContent": [
+        {
+          "text": "Manage distribution on an alternative app marketplace",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/help/app-store-connect/distributing-apps-in-the-european-union/manage-distribution-on-an-alternative-app-marketplace"
+    },
+    "spacer": {
+      "alt": null,
+      "identifier": "spacer",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/67dc4b07a8d84366d4cc0e812eb40b4a/spacer.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Creating-and-reading-keys",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/creating-and-configuring-keys-for-web-distribution",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/POST-v1-alternativeDistributionKeys",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-alternativeDistributionKeys",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-alternativeDistributionKeys-_id_",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/DELETE-v1-alternativeDistributionKeys-_id_"
+      ],
+      "title": "Creating and reading keys"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/appstoreconnectapi/creating-keys-and-establishing-alternative-marketplace-connections"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

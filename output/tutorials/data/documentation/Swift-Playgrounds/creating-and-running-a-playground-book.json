@@ -1,0 +1,473 @@
+{
+  "abstract": [
+    {
+      "text": "Build a playground book from a template, and run it in Swift Playgrounds.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Swift-Playgrounds/documentation/swift-playgrounds",
+        "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/playground-books"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/creating-and-running-a-playground-book"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Creating and Running a Playground Book"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You use both a Mac running Xcode and an iPad to create a playground book. You download",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/download/more/?=Swift%20Playgrounds%20Author%20Template",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and open it in Xcode on a Mac. You then write pages for the book and package its resources into a ",
+              "type": "text"
+            },
+            {
+              "code": ".playgroundbook",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file that you share with an iPad.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The Swift Playgrounds Author Template is deprecated and may not be compatible with future versions of Xcode.",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "You can continue working with Playground Books by editing their contents directly in Xcode and other tools.",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "In Finder, select and control-click on your Playground Book, and choose “Show Package Contents”.",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "For details on working with the structure and format, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/playground-books",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "For information on working with the Swift Playgrounds App and Swift Package formats, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.Swift-Playgrounds/documentation/swift-playgrounds",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " and ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://www.swift.org/package-manager/",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".”",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Extract-and-Open-the-Template",
+          "level": 3,
+          "text": "Extract and Open the Template",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Swift Playgrounds Author Template is packaged as a ",
+              "type": "text"
+            },
+            {
+              "code": ".xip",
+              "type": "codeVoice"
+            },
+            {
+              "text": " archive. To open the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "template, navigate to it in Finder and double-click it to extract it into a folder",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "called Swift_Playgrounds_Author_Template_for_Xcode. Navigate within that folder to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the Template subfolder and open the Xcode project named PlaygroundBook.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Build-the-Playground-Book",
+          "level": 3,
+          "text": "Build the Playground Book",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The template contains all the initial files and resources you need to start writing",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "content for Swift Playgrounds. Choose ",
+              "type": "text"
+            },
+            {
+              "code": "Product > Build",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to compile these resources",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "into a ",
+              "type": "text"
+            },
+            {
+              "code": ".playgroundbook",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file that you can share with an iPad.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Run-the-Playground-Book-on-Your-iPad",
+          "level": 3,
+          "text": "Run the Playground Book on Your iPad",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To run the built playground book, transfer it to Swift Playgrounds:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Open Finder and select AirDrop.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the project navigator for the template in Xcode, open the Products folder.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Drag the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": ".playgroundbook",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " file over Finder and drop it on the icon representing",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "your iPad.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Swift Playgrounds automatically opens when you share a playground book.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following image shows the content from the template running in Swift Playgrounds.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "creating-and-running-a-playground-book-1",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "creating-and-running-a-playground-book-1": {
+      "alt": "Screenshot showing a playground page with a variable declaration in the code editor, and text field in the live view with the text, Live View.",
+      "identifier": "creating-and-running-a-playground-book-1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/febc8fb08af0cd6c8f31b4f87813b5cc/creating-and-running-a-playground-book-1@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/6c295fde710c74f2c4e2b2ac2019c774/creating-and-running-a-playground-book-1~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/playground-books": {
+      "abstract": [
+        {
+          "text": "Create interactive Playground Book based learning experiences for the Swift Playgrounds app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/playground-books",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Playground Books",
+      "type": "topic",
+      "url": "/documentation/swift-playgrounds/playground-books"
+    },
+    "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/structuring-content-for-swift-playgrounds": {
+      "abstract": [
+        {
+          "text": "Add content to a playground book by creating new folders and property lists.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/structuring-content-for-swift-playgrounds",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Structuring Content for Swift Playgrounds",
+      "type": "topic",
+      "url": "/documentation/swift-playgrounds/structuring-content-for-swift-playgrounds"
+    },
+    "doc://com.apple.Swift-Playgrounds/documentation/swift-playgrounds": {
+      "abstract": [
+        {
+          "text": "Learn to write apps, repurpose sample code, create, and share learning experiences in Swift Playgrounds.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift-Playgrounds/documentation/swift-playgrounds",
+      "kind": "article",
+      "role": "collection",
+      "title": "Swift Playgrounds",
+      "type": "topic",
+      "url": "/documentation/swift-playgrounds"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/download/more/?=Swift%20Playgrounds%20Author%20Template": {
+      "identifier": "https://developer.apple.com/download/more/?=Swift%20Playgrounds%20Author%20Template",
+      "title": "Swift Playgrounds Author Template",
+      "titleInlineContent": [
+        {
+          "text": "Swift Playgrounds Author Template",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/download/more/?=Swift%20Playgrounds%20Author%20Template"
+    },
+    "https://www.swift.org/package-manager/": {
+      "identifier": "https://www.swift.org/package-manager/",
+      "title": "Swift.org",
+      "titleInlineContent": [
+        {
+          "text": "Swift.org",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://www.swift.org/package-manager/"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Playground-Setup",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/structuring-content-for-swift-playgrounds"
+      ],
+      "title": "Playground Setup"
+    }
+  ]
+}

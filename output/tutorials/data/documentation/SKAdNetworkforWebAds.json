@@ -1,0 +1,694 @@
+{
+  "abstract": [
+    {
+      "text": "Attribute app-install campaigns that originate on the web.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.skadnetworkforwebads/documentation/SKAdNetworkforWebAds"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "SKAdNetworkforWebAds",
+    "modules": [
+      {
+        "name": "SKAdNetwork for Web Ads"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "1.0",
+        "name": "SKAdNetwork for Web Ads"
+      }
+    ],
+    "role": "collection",
+    "roleHeading": "Web Service",
+    "symbolKind": "module",
+    "title": "SKAdNetwork for Web Ads"
+  },
+  "primaryContentSections": [
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.skadnetworkforwebads/documentation/SKAdNetworkforWebAds/creating-an-attributable-ad-link"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.skadnetworkforwebads/documentation/SKAdNetworkforWebAds",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " API enables advertisers to measure the success of ad campaigns that initiate on the web, while maintaining user privacy. In iOS 16.1 and later, ad networks can use this API to get ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/StoreKit/SKAdNetwork",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " attributions for web ad clicks in Safari that lead to app installations from the App Store.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To use the API, follow these steps:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Register your ad network; see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/StoreKit/registering-an-ad-network",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Configure and display your web ad link; see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.skadnetworkforwebads/documentation/SKAdNetworkforWebAds/creating-an-attributable-ad-link",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Implement an endpoint to provide a signed web ad payload that the advertised app uses to attribute app installations to your ad campaign; see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.skadnetworkforwebads/documentation/SKAdNetworkforWebAds/generating-a-signature-for-attributable-web-ads",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Validate any attributions you receive; see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/StoreKit/verifying-an-install-validation-postback",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about the ad network API, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/StoreKit/SKAdNetwork",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Ad networks can only use this API to get attributions for web ad clicks in Safari; the API doesn’t get attributions for web ad clicks in ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/SafariServices/SFSafariViewController",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " or ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/WebKit/WKWebView",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/SafariServices/SFSafariViewController": {
+      "abstract": [
+        {
+          "text": "An object that provides a visible standard interface for browsing the web.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SFSafariViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SafariServices/SFSafariViewController",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SFSafariViewController",
+      "type": "topic",
+      "url": "/documentation/SafariServices/SFSafariViewController"
+    },
+    "doc://com.apple.documentation/documentation/StoreKit/SKAdNetwork": {
+      "abstract": [
+        {
+          "text": "A class that validates advertisement-driven app installations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKAdNetwork"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/StoreKit/SKAdNetwork",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SKAdNetwork",
+      "type": "topic",
+      "url": "/documentation/StoreKit/SKAdNetwork"
+    },
+    "doc://com.apple.documentation/documentation/StoreKit/registering-an-ad-network": {
+      "abstract": [
+        {
+          "text": "Use the install-validation APIs for your ad campaigns after registering your ad network with Apple.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/StoreKit/registering-an-ad-network",
+      "kind": "article",
+      "role": "article",
+      "title": "Registering an ad network",
+      "type": "topic",
+      "url": "/documentation/StoreKit/registering-an-ad-network"
+    },
+    "doc://com.apple.documentation/documentation/StoreKit/verifying-an-install-validation-postback": {
+      "abstract": [
+        {
+          "text": "Ensure the validity of a postback you receive after an ad conversion by verifying its cryptographic signature.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/StoreKit/verifying-an-install-validation-postback",
+      "kind": "article",
+      "role": "article",
+      "title": "Verifying an install-validation postback",
+      "type": "topic",
+      "url": "/documentation/StoreKit/verifying-an-install-validation-postback"
+    },
+    "doc://com.apple.documentation/documentation/WebKit/WKWebView": {
+      "abstract": [
+        {
+          "text": "An object that displays interactive web content, such as for an in-app browser.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WKWebView"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/WebKit/WKWebView",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "WKWebView",
+      "type": "topic",
+      "url": "/documentation/WebKit/WKWebView"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.skadnetworkforwebads/documentation/SKAdNetworkforWebAds": {
+      "abstract": [
+        {
+          "text": "Attribute app-install campaigns that originate on the web.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.skadnetworkforwebads/documentation/SKAdNetworkforWebAds",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SKAdNetwork for Web Ads",
+      "type": "topic",
+      "url": "/documentation/skadnetworkforwebads"
+    },
+    "doc://com.apple.skadnetworkforwebads/documentation/SKAdNetworkforWebAds/AdImpressionRequest": {
+      "abstract": [
+        {
+          "text": "The request body that devices send to fetch the web ad impression from the ad network’s server.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "AdImpressionRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.skadnetworkforwebads/documentation/SKAdNetworkforWebAds/AdImpressionRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AdImpressionRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "AdImpressionRequest",
+      "type": "topic",
+      "url": "/documentation/skadnetworkforwebads/adimpressionrequest"
+    },
+    "doc://com.apple.skadnetworkforwebads/documentation/SKAdNetworkforWebAds/AdImpressionResponse": {
+      "abstract": [
+        {
+          "text": "The response you provide that contains a signed payload for a clicked web ad.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "AdImpressionResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.skadnetworkforwebads/documentation/SKAdNetworkforWebAds/AdImpressionResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AdImpressionResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "AdImpressionResponse",
+      "type": "topic",
+      "url": "/documentation/skadnetworkforwebads/adimpressionresponse"
+    },
+    "doc://com.apple.skadnetworkforwebads/documentation/SKAdNetworkforWebAds/Get-a-signed-SKAdNetwork-ad-payload-for-a-web-ad.": {
+      "abstract": [
+        {
+          "text": "An endpoint you provide to receive requests from devices to serve signed ad interactions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.skadnetworkforwebads/documentation/SKAdNetworkforWebAds/Get-a-signed-SKAdNetwork-ad-payload-for-a-web-ad.",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Get a signed SKAdNetwork ad payload for a web ad."
+        }
+      ],
+      "role": "symbol",
+      "title": "Get a Signed Web Ad Impression Payload",
+      "type": "topic",
+      "url": "/documentation/skadnetworkforwebads/get-a-signed-skadnetwork-ad-payload-for-a-web-ad."
+    },
+    "doc://com.apple.skadnetworkforwebads/documentation/SKAdNetworkforWebAds/creating-an-attributable-ad-link": {
+      "abstract": [
+        {
+          "text": "Create click-through web ads that attribute App Store app installations to your ad network.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.skadnetworkforwebads/documentation/SKAdNetworkforWebAds/creating-an-attributable-ad-link",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating an attributable ad link",
+      "type": "topic",
+      "url": "/documentation/skadnetworkforwebads/creating-an-attributable-ad-link"
+    },
+    "doc://com.apple.skadnetworkforwebads/documentation/SKAdNetworkforWebAds/generating-a-signature-for-attributable-web-ads": {
+      "abstract": [
+        {
+          "text": "Initiate install-validation by providing the signed parameters for an attributable web ad.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.skadnetworkforwebads/documentation/SKAdNetworkforWebAds/generating-a-signature-for-attributable-web-ads",
+      "kind": "article",
+      "role": "article",
+      "title": "Generating a signature for attributable web ads",
+      "type": "topic",
+      "url": "/documentation/skadnetworkforwebads/generating-a-signature-for-attributable-web-ads"
+    },
+    "doc://com.apple.skadnetworkforwebads/documentation/SKAdNetworkforWebAds/signature": {
+      "abstract": [
+        {
+          "text": "The key-value pairs that ad networks use to cryptographically sign a web ad.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "signature"
+        }
+      ],
+      "identifier": "doc://com.apple.skadnetworkforwebads/documentation/SKAdNetworkforWebAds/signature",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "signature"
+        }
+      ],
+      "role": "symbol",
+      "title": "signature",
+      "type": "topic",
+      "url": "/documentation/skadnetworkforwebads/signature"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Essentials",
+      "identifiers": [
+        "doc://com.apple.skadnetworkforwebads/documentation/SKAdNetworkforWebAds/creating-an-attributable-ad-link"
+      ],
+      "title": "Essentials"
+    },
+    {
+      "anchor": "Receiving-a-request-for-a-web-ad-payload",
+      "identifiers": [
+        "doc://com.apple.skadnetworkforwebads/documentation/SKAdNetworkforWebAds/Get-a-signed-SKAdNetwork-ad-payload-for-a-web-ad.",
+        "doc://com.apple.skadnetworkforwebads/documentation/SKAdNetworkforWebAds/AdImpressionRequest"
+      ],
+      "title": "Receiving a request for a web ad  payload"
+    },
+    {
+      "anchor": "Providing-the-web-ad-signature-and-response",
+      "identifiers": [
+        "doc://com.apple.skadnetworkforwebads/documentation/SKAdNetworkforWebAds/generating-a-signature-for-attributable-web-ads",
+        "doc://com.apple.skadnetworkforwebads/documentation/SKAdNetworkforWebAds/AdImpressionResponse",
+        "doc://com.apple.skadnetworkforwebads/documentation/SKAdNetworkforWebAds/signature"
+      ],
+      "title": "Providing the web ad signature and response"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1StoreKit~1SKAdNetwork/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "SKAdNetwork"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1SafariServices~1SFSafariViewController/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "SFSafariViewController"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIViewController",
+              "text": "UIViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1WebKit~1WKWebView/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "WKWebView"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSView",
+              "text": "NSView"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/skadnetworkforwebads"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

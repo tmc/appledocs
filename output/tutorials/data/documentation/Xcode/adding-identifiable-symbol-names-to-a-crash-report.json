@@ -1,0 +1,2007 @@
+{
+  "abstract": [
+    {
+      "text": "Replace hexadecimal addresses in a crash report with function names and line numbers",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "that correspond to your app’s code.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Xcode/documentation/Xcode",
+        "doc://com.apple.Xcode/documentation/Xcode/debugging",
+        "doc://com.apple.Xcode/documentation/Xcode/diagnosing-issues-using-crash-reports-and-device-logs"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Xcode/documentation/Xcode/adding-identifiable-symbol-names-to-a-crash-report"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Adding identifiable symbol names to a crash report"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When an app crashes, the operating system collects diagnostic information about what",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the app was doing at the time of crash. One of the most important parts of the crash",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "report are the thread backtraces, reported as hexadecimal addresses. You translate",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "these thread backtraces into readable function names and line numbers in source code,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a process called ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "symbolication",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", then use that information to understand why your",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "app crashed. In many cases, the Crashes organizer in Xcode ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://help.apple.com/xcode/mac/current/#/dev709125d2e",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for you.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Determine-if-a-crash-report-is-symbolicated",
+          "level": 3,
+          "text": "Determine if a crash report is symbolicated",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To diagnose an app issue using a crash report, you need a fully symbolicated or partially",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "symbolicated crash report. An unsymbolicated crash report is rarely useful.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A fully symbolicated crash report has function names on every frame of the backtrace,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "instead of hexadecimal memory addresses. Each frame represents a single function",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "call that’s currently running on a specific thread, and provides a view of the functions",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "from your app and the operating system frameworks that were executing at the time",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "your app crashed. Fully symbolicated crash reports give you the most insight about",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the crash. Once you have a fully symbolicated crash report, consult ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/analyzing-a-crash-report",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "for details about determing the source of the crash.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An example of a fully symbolicated crash report:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "Thread 0 name:  Dispatch queue: com.apple.main-thread",
+            "Thread 0 Crashed:",
+            "0   libswiftCore.dylib                0x00000001bd38da70 specialized _fatalErrorMessage+ 2378352 (_:_:file:line:flags:) + 384",
+            "1   libswiftCore.dylib                0x00000001bd38da70 specialized _fatalErrorMessage+ 2378352 (_:_:file:line:flags:) + 384",
+            "2   libswiftCore.dylib                0x00000001bd15958c _ArrayBuffer._checkInoutAndNativeTypeCheckedBounds+ 66956 (_:wasNativeTypeChecked:) + 200",
+            "3   libswiftCore.dylib                0x00000001bd15c814 Array.subscript.getter + 88",
+            "4   TouchCanvas                       0x00000001022cbfa8 Line.updateRectForExistingPoint(_:) (in TouchCanvas) + 656",
+            "5   TouchCanvas                       0x00000001022c90b0 Line.updateWithTouch(_:) (in TouchCanvas) + 464",
+            "6   TouchCanvas                       0x00000001022e7374 CanvasView.updateEstimatedPropertiesForTouches(_:) (in TouchCanvas) + 708",
+            "7   TouchCanvas                       0x00000001022df754 ViewController.touchesEstimatedPropertiesUpdated(_:) (in TouchCanvas) + 304",
+            "8   TouchCanvas                       0x00000001022df7e8 @objc ViewController.touchesEstimatedPropertiesUpdated(_:) (in TouchCanvas) + 120",
+            "9   UIKitCore                         0x00000001b3da6230 forwardMethod1 + 136",
+            "10  UIKitCore                         0x00000001b3da6230 forwardMethod1 + 136",
+            "11  UIKitCore                         0x00000001b3e01e24 -[_UIEstimatedTouchRecord dispatchUpdateWithPressure:stillEstimated:] + 340"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A partially symbolicated crash report has function names for some of the backtrace",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "frames, and hexadecimal addresses for other frames of the backtrace. A partially",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "symbolicated crash report may contain enough information to understand the crash,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "depending upon the type of crash and which frames in the backtraces are symbolicated.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "However, you should still ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/adding-identifiable-symbol-names-to-a-crash-report#Symbolicate-the-crash-report-in-Xcode",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to make the report fully symbolicated, which will give you a complete understanding",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of the crash.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An example of a partially symbolicated crash report:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "Thread 0 name:  Dispatch queue: com.apple.main-thread",
+            "Thread 0 Crashed:",
+            "0   libswiftCore.dylib                0x00000001bd38da70 specialized _fatalErrorMessage+ 2378352 (_:_:file:line:flags:) + 384",
+            "1   libswiftCore.dylib                0x00000001bd38da70 specialized _fatalErrorMessage+ 2378352 (_:_:file:line:flags:) + 384",
+            "2   libswiftCore.dylib                0x00000001bd15958c _ArrayBuffer._checkInoutAndNativeTypeCheckedBounds+ 66956 (_:wasNativeTypeChecked:) + 200",
+            "3   libswiftCore.dylib                0x00000001bd15c814 Array.subscript.getter + 88",
+            "4   TouchCanvas                       0x00000001022cbfa8 0x1022c0000 + 49064",
+            "5   TouchCanvas                       0x00000001022c90b0 0x1022c0000 + 37040",
+            "6   TouchCanvas                       0x00000001022e7374 0x1022c0000 + 160628",
+            "7   TouchCanvas                       0x00000001022df754 0x1022c0000 + 128852",
+            "8   TouchCanvas                       0x00000001022df7e8 0x1022c0000 + 129000",
+            "9   UIKitCore                         0x00000001b3da6230 forwardMethod1 + 136",
+            "10  UIKitCore                         0x00000001b3da6230 forwardMethod1 + 136",
+            "11  UIKitCore                         0x00000001b3e01e24 -[_UIEstimatedTouchRecord dispatchUpdateWithPressure:stillEstimated:] + 340"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Unsymbolicated crash reports contain hexadecimal addresses of executable code within",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the loaded binary images. These reports don’t contain any function names in the backtraces.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Because an unsymbolicated crash report is rarely useful, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/adding-identifiable-symbol-names-to-a-crash-report#Symbolicate-the-crash-report-in-Xcode",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An example of an unsymbolicated symbolicated crash report:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "Thread 0 name:  Dispatch queue: com.apple.main-thread",
+            "Thread 0 Crashed:",
+            "0   libswiftCore.dylib                0x00000001bd38da70 0x1bd149000 + 2378352",
+            "1   libswiftCore.dylib                0x00000001bd38da70 0x1bd149000 + 2378352",
+            "2   libswiftCore.dylib                0x00000001bd15958c 0x1bd149000 + 66956",
+            "3   libswiftCore.dylib                0x00000001bd15c814 0x1bd149000 + 79892",
+            "4   TouchCanvas                       0x00000001022cbfa8 0x1022c0000 + 49064",
+            "5   TouchCanvas                       0x00000001022c90b0 0x1022c0000 + 37040",
+            "6   TouchCanvas                       0x00000001022e7374 0x1022c0000 + 160628",
+            "7   TouchCanvas                       0x00000001022df754 0x1022c0000 + 128852",
+            "8   TouchCanvas                       0x00000001022df7e8 0x1022c0000 + 129000",
+            "9   UIKitCore                         0x00000001b3da6230 0x1b3348000 + 10871344",
+            "10  UIKitCore                         0x00000001b3da6230 0x1b3348000 + 10871344",
+            "11  UIKitCore                         0x00000001b3e01e24 0x1b3348000 + 11247140"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Symbolicate-the-crash-report-in-Xcode",
+          "level": 3,
+          "text": "Symbolicate the crash report in Xcode",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Xcode is the preferred way to symbolicate crash reports because it uses all available",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "dSYM",
+              "type": "codeVoice"
+            },
+            {
+              "text": " files on your Mac at once. For specialized debugging situations, such as when",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "you have an unsymbolicated stack trace in the Xcode debugger without a full crash",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "report, you can ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/adding-identifiable-symbol-names-to-a-crash-report#Symbolicate-the-crash-report-with-the-command-line",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to symbolicate each frame.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To symbolicate in Xcode, click the Device Logs button in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://help.apple.com/xcode/mac/current/#/dev85c64ec79",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", then drag and drop",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the crash report file into the list of device logs.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Crash reports must have the ",
+                  "type": "text"
+                },
+                {
+                  "code": ".crash",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " file extension. If a crash report",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "doesn’t have a file extension, or has a different file extension like ",
+                  "type": "text"
+                },
+                {
+                  "code": ".txt",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " , rename",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "it with the ",
+                  "type": "text"
+                },
+                {
+                  "code": ".crash",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " extension before symbolicating it.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the crash report does not symbolicate, or only partly symbolicates, Xcode can’t",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "locate matching symbol information, and you’ll need to acquire symbol information",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in these ways:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If the operating system’s frameworks aren’t symbolicated, you need device symbol",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "information matching the operating system version recorded in the crash report. To",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "address this, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.Xcode/documentation/Xcode/adding-identifiable-symbol-names-to-a-crash-report#Acquire-device-symbol-information",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If the frames for your app, app extension, or frameworks aren’t symbolicated, you",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "need to locate the existing ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "dSYM",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " files using Spotlight. To address this, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.Xcode/documentation/Xcode/adding-identifiable-symbol-names-to-a-crash-report#Locate-a-dSYM-using-Spotlight",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "If your app uses frameworks built by a third-party, you may need to ask the framework",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "vendor for the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "dSYM",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " file.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Once you have a fully symbolicated crash report, consult ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/analyzing-a-crash-report",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to determine the source of the crash.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Acquire-device-symbol-information",
+          "level": 3,
+          "text": "Acquire device symbol information",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To make symbols from the operating system frameworks identifiable in a crash report,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "you need to collect the symbols for the system frameworks from a device. For iOS, iPadOS, tvOS, visionOS, and watchOS apps, Xcode automatically copies operating system symbols",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "from each device you connect to your Mac. For macOS and Mac Catalyst apps, symbolicate",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the crash log by using Xcode on a version of macOS that matches the macOS version",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "named in the crash report.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The symbols for system frameworks are specific to the operating system release and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the CPU architecture of the device. For example, the symbols for an iPhone running",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "iOS 13.1.0 aren’t the same as the symbols for the same iPhone running iOS 13.1.2.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "If your app runs on operating system versions that support multiple CPU architectures,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "such as ",
+              "type": "text"
+            },
+            {
+              "code": "arm64",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "arm64e",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", a device with an ",
+              "type": "text"
+            },
+            {
+              "code": "arm64",
+              "type": "codeVoice"
+            },
+            {
+              "text": " architecture will only contain",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the symbols for the ",
+              "type": "text"
+            },
+            {
+              "code": "arm64",
+              "type": "codeVoice"
+            },
+            {
+              "text": " version of the operating system frameworks; it won’t",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "have symbols for the operating system frameworks on ",
+              "type": "text"
+            },
+            {
+              "code": "arm64e",
+              "type": "codeVoice"
+            },
+            {
+              "text": " devices.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Locate-a-dSYM-using-Spotlight",
+          "level": 3,
+          "text": "Locate a dSYM using Spotlight",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To determine whether the ",
+              "type": "text"
+            },
+            {
+              "code": "dSYM",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file you need to symbolicate a hexadecimal addresses",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "for one of your binaries is present on your Mac:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Find a frame in the backtrace that isn’t symbolicated. Note the name of the binary",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "image in the second column.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Look for a binary image with that name in the list of binary images at the bottom",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "of the crash report. This list contains the build UUID of each binary image that",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "was loaded into the process at the time of the crash. Use the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "grep",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " command line",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "tool to find the entry in the list of binary images:",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "code": [
+                    "% grep --after-context=1000 \"Binary Images:\" <Path to Crash Report> | grep <Binary Name>"
+                  ],
+                  "syntax": "other",
+                  "type": "codeListing"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After getting the build UUID from the binary image section:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Convert the build UUID of the binary image to a 32-character string, that’s separated",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "into groups of 8-4-4-4-12 (",
+                      "type": "text"
+                    },
+                    {
+                      "code": "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": "). All letters must",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "be uppercase.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Search for the build UUID using the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "mdfind",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " command line tool query (including",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "quotation marks):",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "code": [
+                    "% mdfind \"com_apple_xcode_dsym_uuids == <UUID>\""
+                  ],
+                  "syntax": "other",
+                  "type": "codeListing"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If Spotlight finds a ",
+              "type": "text"
+            },
+            {
+              "code": "dSYM",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file for the build UUID, ",
+              "type": "text"
+            },
+            {
+              "code": "mdfind",
+              "type": "codeVoice"
+            },
+            {
+              "text": " prints the path to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the ",
+              "type": "text"
+            },
+            {
+              "code": "dSYM",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "adding-identifiable-symbol-names-to-a-crash-report-1",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Using the information in this example, the commands to find the ",
+              "type": "text"
+            },
+            {
+              "code": "dSYM",
+              "type": "codeVoice"
+            },
+            {
+              "text": " are:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "% grep --after-context=1000 \"Binary Images:\" <Path to Crash Report> | grep TouchCanvas",
+            "0x1022c0000 - 0x1022effff TouchCanvas arm64  <9cc89c5e55163f4ab40c5821e99f05c6>",
+            "",
+            "% mdfind \"com_apple_xcode_dsym_uuids == 9CC89C5E-5516-3F4A-B40C-5821E99F05C6\""
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Once you find the ",
+              "type": "text"
+            },
+            {
+              "code": "dSYM",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/adding-identifiable-symbol-names-to-a-crash-report#Match-build-UUIDs",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to confirm that its build UUID matches the binary image’s build UUID. Once you verify",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that build UUIDs match, either ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/adding-identifiable-symbol-names-to-a-crash-report#Symbolicate-the-crash-report-in-Xcode",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/adding-identifiable-symbol-names-to-a-crash-report#Symbolicate-the-crash-report-with-the-command-line",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If Spotlight doesn’t find a matching ",
+              "type": "text"
+            },
+            {
+              "code": "dSYM",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "mdfind",
+              "type": "codeVoice"
+            },
+            {
+              "text": " won’t print anything and you’ll",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "need to:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Verify that you still have the Xcode archive for the version of your app that crashed.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "If you no longer have this archive, you can’t symbolicate your app’s stack frames",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "for that version of your app. To avoid this in the future, release a new version",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "of your app, and retain the Xcode archive for that version. You’ll then be able to",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "symbolicate crash reports for the new version of your app.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Ensure the Xcode archive is located somewhere Spotlight can find it, such as your",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "macOS home directory.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Verify that your build produces debugging information. See ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.Xcode/documentation/Xcode/building-your-app-to-include-debugging-information",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Match-build-UUIDs",
+          "level": 3,
+          "text": "Match build UUIDs",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you have a binary or a ",
+              "type": "text"
+            },
+            {
+              "code": "dSYM",
+              "type": "codeVoice"
+            },
+            {
+              "text": " that you think can be used to symbolicate a crash",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "report, verify that the build UUIDs match, using the ",
+              "type": "text"
+            },
+            {
+              "code": "dwarfdump",
+              "type": "codeVoice"
+            },
+            {
+              "text": " command. If the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "build UUIDs don’t match each other or don’t match the build UUID listed in the Binary",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Images section of the crash report, you can’t use the files to symbolicate that crash",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "report.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "% dwarfdump --uuid <PathToDSYMFile>/Contents/Resources/DWARF/<BinaryName>",
+            "% dwarfdump --uuid <PathToBinary>"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Symbolicate-the-crash-report-with-the-command-line",
+          "level": 3,
+          "text": "Symbolicate the crash report with the command line",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For specialized debugging situations, such as symbolicating parts of a backtrace",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "provided by the LLDB command line, you can symbolicate a crash report using the ",
+              "type": "text"
+            },
+            {
+              "code": "atos",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "command. The ",
+              "type": "text"
+            },
+            {
+              "code": "atos",
+              "type": "codeVoice"
+            },
+            {
+              "text": " command converts hexadecimal addresses to the identifiable function",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "name and line number from your source code, if symbol information is available. To",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "symbolicate using ",
+              "type": "text"
+            },
+            {
+              "code": "atos",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Find a frame in the backtrace that you want to symbolicate. Note the name of the",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "binary image in the second column, and the address in the third column.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Look for a binary image with that name in the list of binary images at the bottom",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "of the crash report. Note the architecture and load address of the binary image.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Locate the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "dSYM",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " file for the binary. If you don’t know where the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "dSYM",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " file",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "is located, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.Xcode/documentation/Xcode/adding-identifiable-symbol-names-to-a-crash-report#Locate-a-dSYM-using-Spotlight",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "to find the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "dSYM",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " file that matches the build UUID of the binary image.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Symbolicate the addresses in the backtrace using ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "atos",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " with the formula, substituting",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "the information you gathered in previous steps:",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "code": [
+            "% atos -arch <BinaryArchitecture> -o <PathToDSYMFile>/Contents/Resources/DWARF/<BinaryName>  -l <LoadAddress> <AddressesToSymbolicate>"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "code": "dSYM",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " files are macOS bundles that contain a file with the debug symbols.",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "When invoking ",
+                  "type": "text"
+                },
+                {
+                  "code": "atos",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", you must provide the path to this file inside the bundle, not",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "just to the outer ",
+                  "type": "text"
+                },
+                {
+                  "code": "dSYM",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " bundle.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As an example, look at the highlighted sections of this crash report:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "adding-identifiable-symbol-names-to-a-crash-report-2",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Using the information in this example, the complete ",
+              "type": "text"
+            },
+            {
+              "code": "atos",
+              "type": "codeVoice"
+            },
+            {
+              "text": " command and its output",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "are:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "% atos -arch arm64 -o TouchCanvas.app.dSYM/Contents/Resources/DWARF/TouchCanvas -l 0x1022c0000 0x00000001022df754",
+            "ViewController.touchesEstimatedPropertiesUpdated(_:) (in TouchCanvas) + 304"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Once you have at least a partially symbolicated crash report by using ",
+              "type": "text"
+            },
+            {
+              "code": "atos",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", consult",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/analyzing-a-crash-report",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for information to determine the source of the crash.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Xcode-PageImage-card.png": {
+      "alt": "The Xcode logo on a blue gradient background.",
+      "identifier": "Xcode-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cc63eacd8f7f660388b46204d1d9bbcb/Xcode-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/62dba87d5f60ec96eb48882c9dff86d8/Xcode-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "adding-identifiable-symbol-names-to-a-crash-report-1": {
+      "alt": "A crash report with information required to locate a dSYM file using the mdfind command highlighted.",
+      "identifier": "adding-identifiable-symbol-names-to-a-crash-report-1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/d6a714a368a5151118ff291b7c3ab963/adding-identifiable-symbol-names-to-a-crash-report-1@2x.png"
+        }
+      ]
+    },
+    "adding-identifiable-symbol-names-to-a-crash-report-2": {
+      "alt": "A crash report with information required to symbolicate a frame with atos highlighted.",
+      "identifier": "adding-identifiable-symbol-names-to-a-crash-report-2",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/8bfc0ce425495f4fad7e0e498094b48c/adding-identifiable-symbol-names-to-a-crash-report-2@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Xcode/documentation/Xcode": {
+      "abstract": [
+        {
+          "text": "Build, test, and submit your app with Apple’s integrated development environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode",
+      "images": [
+        {
+          "identifier": "Xcode-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/adding-identifiable-symbol-names-to-a-crash-report#Acquire-device-symbol-information": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/adding-identifiable-symbol-names-to-a-crash-report#Acquire-device-symbol-information",
+      "kind": "section",
+      "title": "Acquire device symbol information",
+      "type": "topic",
+      "url": "/documentation/xcode/adding-identifiable-symbol-names-to-a-crash-report#Acquire-device-symbol-information"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/adding-identifiable-symbol-names-to-a-crash-report#Locate-a-dSYM-using-Spotlight": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/adding-identifiable-symbol-names-to-a-crash-report#Locate-a-dSYM-using-Spotlight",
+      "kind": "section",
+      "title": "Locate a dSYM using Spotlight",
+      "type": "topic",
+      "url": "/documentation/xcode/adding-identifiable-symbol-names-to-a-crash-report#Locate-a-dSYM-using-Spotlight"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/adding-identifiable-symbol-names-to-a-crash-report#Match-build-UUIDs": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/adding-identifiable-symbol-names-to-a-crash-report#Match-build-UUIDs",
+      "kind": "section",
+      "title": "Match build UUIDs",
+      "type": "topic",
+      "url": "/documentation/xcode/adding-identifiable-symbol-names-to-a-crash-report#Match-build-UUIDs"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/adding-identifiable-symbol-names-to-a-crash-report#Symbolicate-the-crash-report-in-Xcode": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/adding-identifiable-symbol-names-to-a-crash-report#Symbolicate-the-crash-report-in-Xcode",
+      "kind": "section",
+      "title": "Symbolicate the crash report in Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode/adding-identifiable-symbol-names-to-a-crash-report#Symbolicate-the-crash-report-in-Xcode"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/adding-identifiable-symbol-names-to-a-crash-report#Symbolicate-the-crash-report-with-the-command-line": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/adding-identifiable-symbol-names-to-a-crash-report#Symbolicate-the-crash-report-with-the-command-line",
+      "kind": "section",
+      "title": "Symbolicate the crash report with the command line",
+      "type": "topic",
+      "url": "/documentation/xcode/adding-identifiable-symbol-names-to-a-crash-report#Symbolicate-the-crash-report-with-the-command-line"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/analyzing-a-crash-report": {
+      "abstract": [
+        {
+          "text": "Identify clues in a crash report that help you diagnose problems.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/analyzing-a-crash-report",
+      "kind": "article",
+      "role": "article",
+      "title": "Analyzing a crash report",
+      "type": "topic",
+      "url": "/documentation/xcode/analyzing-a-crash-report"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/building-your-app-to-include-debugging-information": {
+      "abstract": [
+        {
+          "text": "Configure Xcode to produce the symbol information for debugging and crash reports.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/building-your-app-to-include-debugging-information",
+      "kind": "article",
+      "role": "article",
+      "title": "Building your app to include debugging information",
+      "type": "topic",
+      "url": "/documentation/xcode/building-your-app-to-include-debugging-information"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/debugging": {
+      "abstract": [
+        {
+          "text": "Identify and address issues in your app using the Xcode debugger, Xcode Organizer, Metal debugger, and Instruments.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/debugging",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Debugging",
+      "type": "topic",
+      "url": "/documentation/xcode/debugging"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/diagnosing-issues-using-crash-reports-and-device-logs": {
+      "abstract": [
+        {
+          "text": "Use crash reports and device logs to debug app issues.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/diagnosing-issues-using-crash-reports-and-device-logs",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Diagnosing issues using crash reports and device logs",
+      "type": "topic",
+      "url": "/documentation/xcode/diagnosing-issues-using-crash-reports-and-device-logs"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/examining-the-fields-in-a-crash-report": {
+      "abstract": [
+        {
+          "text": "Understand the structure of a crash report and the information each field contains.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/examining-the-fields-in-a-crash-report",
+      "kind": "article",
+      "role": "article",
+      "title": "Examining the fields in a crash report",
+      "type": "topic",
+      "url": "/documentation/xcode/examining-the-fields-in-a-crash-report"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/identifying-the-cause-of-common-crashes": {
+      "abstract": [
+        {
+          "text": "Find patterns in crash reports that identify common problems, and investigate the",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "issue based on the pattern.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/identifying-the-cause-of-common-crashes",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Identifying the cause of common crashes",
+      "type": "topic",
+      "url": "/documentation/xcode/identifying-the-cause-of-common-crashes"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/interpreting-the-JSON-format-of-a-crash-report": {
+      "abstract": [
+        {
+          "text": "Understand the structure and properties of the objects the system includes in the JSON of a crash report.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/interpreting-the-JSON-format-of-a-crash-report",
+      "kind": "article",
+      "role": "article",
+      "title": "Interpreting the JSON format of a crash report",
+      "type": "topic",
+      "url": "/documentation/xcode/interpreting-the-json-format-of-a-crash-report"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/understanding-the-exception-types-in-a-crash-report": {
+      "abstract": [
+        {
+          "text": "Learn what the exception type tells you about why your app crashed.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/understanding-the-exception-types-in-a-crash-report",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Understanding the exception types in a crash report",
+      "type": "topic",
+      "url": "/documentation/xcode/understanding-the-exception-types-in-a-crash-report"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://help.apple.com/xcode/mac/current/#/dev709125d2e": {
+      "identifier": "https://help.apple.com/xcode/mac/current/#/dev709125d2e",
+      "title": "automatically symbolicate the crash reports",
+      "titleInlineContent": [
+        {
+          "text": "automatically symbolicate",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "the crash reports",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://help.apple.com/xcode/mac/current/#/dev709125d2e"
+    },
+    "https://help.apple.com/xcode/mac/current/#/dev85c64ec79": {
+      "identifier": "https://help.apple.com/xcode/mac/current/#/dev85c64ec79",
+      "title": "Devices and Simulators window",
+      "titleInlineContent": [
+        {
+          "text": "Devices and Simulators",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "window",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://help.apple.com/xcode/mac/current/#/dev85c64ec79"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Crash-reports",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Xcode/documentation/Xcode/identifying-the-cause-of-common-crashes",
+        "doc://com.apple.Xcode/documentation/Xcode/analyzing-a-crash-report",
+        "doc://com.apple.Xcode/documentation/Xcode/examining-the-fields-in-a-crash-report",
+        "doc://com.apple.Xcode/documentation/Xcode/interpreting-the-JSON-format-of-a-crash-report",
+        "doc://com.apple.Xcode/documentation/Xcode/understanding-the-exception-types-in-a-crash-report"
+      ],
+      "title": "Crash reports"
+    }
+  ]
+}

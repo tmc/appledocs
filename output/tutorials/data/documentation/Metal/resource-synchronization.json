@@ -1,0 +1,1397 @@
+{
+  "abstract": [
+    {
+      "text": "Coordinate the contents of data buffers, textures, and other resources that CPUs and GPUs share access to.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.metal/documentation/Metal"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.metal/documentation/Metal/resource-synchronization"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Metal"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Resource Synchronization"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "By default, Metal tracks the write hazards and synchronizes the resources (see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/resource-fundamentals",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ") you create from an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLDevice",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and directly bind to a pipeline. However, Metal doesn’t, by default, track resources you allocate from an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLHeap",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " (see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/memory-heaps",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ").",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "You can also create a resource from a Metal device and set it to ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.metal/documentation/Metal/MTLHazardTrackingMode/untracked",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ", or create a resource from a Metal heap and set it to ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.metal/documentation/Metal/MTLHazardTrackingMode/tracked",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your app is responsible for manually synchronizing the resources that Metal doesn’t track. You can synchronize resources with these mechanisms, which are in ascending scope order:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Memory barriers",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Memory fences",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Metal events",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Metal shared events",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A memory barrier forces any subsequent commands to wait until the previous commands in a pass (such as a render or compute pass) finishes using memory. You can limit the scope of a memory barrier to a buffer, texture, render attachment, or a combination.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLFence",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " synchronizes access to one or more resources across different passes within a command buffer. Use fences to specify any inter-pass resource dependencies within the same command buffer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLEvent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " synchronizes access to one or more resources on a single ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLDevice",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". You can tell the GPU to pause work until another command signals an event. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/synchronizing-events-within-a-single-device",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for more information.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLSharedEvent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " synchronizes access to one or more resources with other Metal device instances or with the CPU. Shared events are similar to a regular event, but with a larger scope that goes beyond a single GPU to include the CPU and other GPUs. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/synchronizing-events-between-a-gpu-and-the-cpu",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/synchronizing-events-across-multiple-devices-or-processes",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for more information.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "For better performance, use the synchronization mechanism with the smallest scope possible.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Tip",
+          "style": "tip",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.metal/documentation/Metal": {
+      "abstract": [
+        {
+          "text": "Render advanced 3D graphics and compute data in parallel with graphics processors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Metal",
+      "type": "topic",
+      "url": "/documentation/metal"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLBarrierScope": {
+      "abstract": [
+        {
+          "text": "Describes the types of resources that a barrier operates on.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLBarrierScope"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLBarrierScope",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLBarrierScope"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLBarrierScope",
+      "type": "topic",
+      "url": "/documentation/metal/mtlbarrierscope"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLDevice": {
+      "abstract": [
+        {
+          "text": "The main Metal interface to a GPU that apps use to draw graphics and run computations in parallel.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLDevice"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLDevice",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLDevice"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLDevice",
+      "type": "topic",
+      "url": "/documentation/metal/mtldevice"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLEvent": {
+      "abstract": [
+        {
+          "text": "A simple semaphore to synchronize access to Metal resources.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLEvent"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLEvent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLEvent"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLEvent",
+      "type": "topic",
+      "url": "/documentation/metal/mtlevent"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLFence": {
+      "abstract": [
+        {
+          "text": "A memory fence to capture, track, and manage resource dependencies across command encoders.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLFence"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLFence",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLFence"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLFence",
+      "type": "topic",
+      "url": "/documentation/metal/mtlfence"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLHazardTrackingMode/tracked": {
+      "abstract": [
+        {
+          "text": "An option specifying that Metal prevents hazards when modifying this object’s contents.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "tracked"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLHazardTrackingMode/tracked",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLHazardTrackingModeTracked"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLHazardTrackingMode.tracked",
+      "type": "topic",
+      "url": "/documentation/metal/mtlhazardtrackingmode/tracked"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLHazardTrackingMode/untracked": {
+      "abstract": [
+        {
+          "text": "An option specifying that the app must prevent hazards when modifying this object’s contents.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "untracked"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLHazardTrackingMode/untracked",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLHazardTrackingModeUntracked"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLHazardTrackingMode.untracked",
+      "type": "topic",
+      "url": "/documentation/metal/mtlhazardtrackingmode/untracked"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLHeap": {
+      "abstract": [
+        {
+          "text": "A memory pool from which you can suballocate resources.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLHeap"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLHeap",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLHeap"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLHeap",
+      "type": "topic",
+      "url": "/documentation/metal/mtlheap"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRenderStages": {
+      "abstract": [
+        {
+          "text": "The stages in a render pass that triggers a synchronization command.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLRenderStages"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderStages",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLRenderStages"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLRenderStages",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrenderstages"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLSharedEvent": {
+      "abstract": [
+        {
+          "text": "An object you use to synchronize access to Metal resources across multiple CPUs, GPUs, and processes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLSharedEvent"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLSharedEvent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLSharedEvent"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLSharedEvent",
+      "type": "topic",
+      "url": "/documentation/metal/mtlsharedevent"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLSharedEventHandle": {
+      "abstract": [
+        {
+          "text": "An object you use to recreate a shareable event.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLSharedEventHandle"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLSharedEventHandle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLSharedEventHandle"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLSharedEventHandle",
+      "type": "topic",
+      "url": "/documentation/metal/mtlsharedeventhandle"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLSharedEventListener": {
+      "abstract": [
+        {
+          "text": "A listener for shareable event notifications.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLSharedEventListener"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLSharedEventListener",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLSharedEventListener"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLSharedEventListener",
+      "type": "topic",
+      "url": "/documentation/metal/mtlsharedeventlistener"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLSharedEventNotificationBlock": {
+      "abstract": [
+        {
+          "text": "A block of code invoked after a shareable event’s signal value equals or exceeds a given value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLSharedEventNotificationBlock"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLSharedEventNotificationBlock",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLSharedEventNotificationBlock"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLSharedEventNotificationBlock",
+      "type": "topic",
+      "url": "/documentation/metal/mtlsharedeventnotificationblock"
+    },
+    "doc://com.apple.metal/documentation/Metal/about-synchronization-events": {
+      "abstract": [
+        {
+          "text": "Synchronize access to resources in your app by signaling events.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/about-synchronization-events",
+      "kind": "article",
+      "role": "article",
+      "title": "About Synchronization Events",
+      "type": "topic",
+      "url": "/documentation/metal/about-synchronization-events"
+    },
+    "doc://com.apple.metal/documentation/Metal/buffers": {
+      "abstract": [
+        {
+          "text": "Create and manage untyped data your app uses to exchange information with its shader functions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/buffers",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Buffers",
+      "type": "topic",
+      "url": "/documentation/metal/buffers"
+    },
+    "doc://com.apple.metal/documentation/Metal/implementing-a-multistage-image-filter-using-heaps-and-events": {
+      "abstract": [
+        {
+          "text": "Use events to synchronize access to resources allocated on a heap.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/implementing-a-multistage-image-filter-using-heaps-and-events",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Implementing a Multistage Image Filter Using Heaps and Events",
+      "type": "topic",
+      "url": "/documentation/metal/implementing-a-multistage-image-filter-using-heaps-and-events"
+    },
+    "doc://com.apple.metal/documentation/Metal/implementing-a-multistage-image-filter-using-heaps-and-fences": {
+      "abstract": [
+        {
+          "text": "Use fences to synchronize access to resources allocated on a heap.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/implementing-a-multistage-image-filter-using-heaps-and-fences",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Implementing a Multistage Image Filter Using Heaps and Fences",
+      "type": "topic",
+      "url": "/documentation/metal/implementing-a-multistage-image-filter-using-heaps-and-fences"
+    },
+    "doc://com.apple.metal/documentation/Metal/memory-heaps": {
+      "abstract": [
+        {
+          "text": "Take control of your app’s GPU memory management by creating a large memory allocation for various buffers, textures, and other resources.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/memory-heaps",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Memory Heaps",
+      "type": "topic",
+      "url": "/documentation/metal/memory-heaps"
+    },
+    "doc://com.apple.metal/documentation/Metal/resource-fundamentals": {
+      "abstract": [
+        {
+          "text": "Learn the common attributes of all Metal memory resources, including buffers and textures, and how to manage the underlying memory.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/resource-fundamentals",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Resource Fundamentals",
+      "type": "topic",
+      "url": "/documentation/metal/resource-fundamentals"
+    },
+    "doc://com.apple.metal/documentation/Metal/resource-loading": {
+      "abstract": [
+        {
+          "text": "Load assets in your games and apps quickly by running a dedicated input/output queue alongside your GPU tasks.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/resource-loading",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Resource Loading",
+      "type": "topic",
+      "url": "/documentation/metal/resource-loading"
+    },
+    "doc://com.apple.metal/documentation/Metal/synchronizing-cpu-and-gpu-work": {
+      "abstract": [
+        {
+          "text": "Avoid stalls between CPU and GPU work by using multiple instances of a resource.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/synchronizing-cpu-and-gpu-work",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Synchronizing CPU and GPU Work",
+      "type": "topic",
+      "url": "/documentation/metal/synchronizing-cpu-and-gpu-work"
+    },
+    "doc://com.apple.metal/documentation/Metal/synchronizing-events-across-multiple-devices-or-processes": {
+      "abstract": [
+        {
+          "text": "Use shareable events to synchronize your app’s work across multiple devices or processes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/synchronizing-events-across-multiple-devices-or-processes",
+      "kind": "article",
+      "role": "article",
+      "title": "Synchronizing Events Across Multiple Devices or Processes",
+      "type": "topic",
+      "url": "/documentation/metal/synchronizing-events-across-multiple-devices-or-processes"
+    },
+    "doc://com.apple.metal/documentation/Metal/synchronizing-events-between-a-gpu-and-the-cpu": {
+      "abstract": [
+        {
+          "text": "Use shareable events to synchronize your app’s work between a GPU and the CPU.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/synchronizing-events-between-a-gpu-and-the-cpu",
+      "kind": "article",
+      "role": "article",
+      "title": "Synchronizing Events Between a GPU and the CPU",
+      "type": "topic",
+      "url": "/documentation/metal/synchronizing-events-between-a-gpu-and-the-cpu"
+    },
+    "doc://com.apple.metal/documentation/Metal/synchronizing-events-within-a-single-device": {
+      "abstract": [
+        {
+          "text": "Use nonshareable events to synchronize your app’s work within a single device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/synchronizing-events-within-a-single-device",
+      "kind": "article",
+      "role": "article",
+      "title": "Synchronizing Events Within a Single Device",
+      "type": "topic",
+      "url": "/documentation/metal/synchronizing-events-within-a-single-device"
+    },
+    "doc://com.apple.metal/documentation/Metal/textures": {
+      "abstract": [
+        {
+          "text": "Create and manage typed data your app uses to exchange information with its shader functions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/textures",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Textures",
+      "type": "topic",
+      "url": "/documentation/metal/textures"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Resources",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/resource-fundamentals",
+        "doc://com.apple.metal/documentation/Metal/buffers",
+        "doc://com.apple.metal/documentation/Metal/textures",
+        "doc://com.apple.metal/documentation/Metal/memory-heaps",
+        "doc://com.apple.metal/documentation/Metal/resource-loading"
+      ],
+      "title": "Resources"
+    }
+  ],
+  "topicSections": [
+    {
+      "abstract": [
+        {
+          "text": "Use semaphores or events to coordinate actions across threads to avoid multi-threaded resource contention by copying shared data to multiple buffers.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Synchronization",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/synchronizing-cpu-and-gpu-work",
+        "doc://com.apple.metal/documentation/Metal/MTLRenderStages"
+      ],
+      "title": "Synchronization"
+    },
+    {
+      "abstract": [
+        {
+          "text": "Memory barriers and fences synchronize resource data within a command buffer.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Memory-Barriers-and-Fences",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/implementing-a-multistage-image-filter-using-heaps-and-fences",
+        "doc://com.apple.metal/documentation/Metal/MTLBarrierScope",
+        "doc://com.apple.metal/documentation/Metal/MTLFence"
+      ],
+      "title": "Memory Barriers and Fences"
+    },
+    {
+      "abstract": [
+        {
+          "text": "Events synchronize resource data across multiple command buffers, GPU devices, or processes.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Signal-Events",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/implementing-a-multistage-image-filter-using-heaps-and-events",
+        "doc://com.apple.metal/documentation/Metal/about-synchronization-events",
+        "doc://com.apple.metal/documentation/Metal/synchronizing-events-within-a-single-device",
+        "doc://com.apple.metal/documentation/Metal/synchronizing-events-across-multiple-devices-or-processes",
+        "doc://com.apple.metal/documentation/Metal/synchronizing-events-between-a-gpu-and-the-cpu",
+        "doc://com.apple.metal/documentation/Metal/MTLEvent",
+        "doc://com.apple.metal/documentation/Metal/MTLSharedEvent",
+        "doc://com.apple.metal/documentation/Metal/MTLSharedEventHandle",
+        "doc://com.apple.metal/documentation/Metal/MTLSharedEventListener",
+        "doc://com.apple.metal/documentation/Metal/MTLSharedEventNotificationBlock"
+      ],
+      "title": "Signal Events"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "abstract": [
+                {
+                  "text": "Use semaphores or events to coordinate actions across threads to avoid multi-threaded resource contention by copying shared data to multiple buffers.",
+                  "type": "text"
+                }
+              ],
+              "anchor": "Synchronization",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/synchronizing-cpu-and-gpu-work",
+                "doc://com.apple.metal/documentation/Metal/MTLRenderStages"
+              ],
+              "title": "Synchronization"
+            },
+            {
+              "abstract": [
+                {
+                  "text": "Memory barriers and fences synchronize resource data within a command buffer.",
+                  "type": "text"
+                }
+              ],
+              "anchor": "Memory-Barriers-and-Fences",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/implementing-a-multistage-image-filter-using-heaps-and-fences",
+                "doc://com.apple.metal/documentation/Metal/MTLBarrierScope",
+                "doc://com.apple.metal/documentation/Metal/MTLFence"
+              ],
+              "title": "Memory Barriers and Fences"
+            },
+            {
+              "abstract": [
+                {
+                  "text": "Events synchronize resource data across multiple command buffers, GPU devices, or processes.",
+                  "type": "text"
+                }
+              ],
+              "anchor": "Signal-Events",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/implementing-a-multistage-image-filter-using-heaps-and-events",
+                "doc://com.apple.metal/documentation/Metal/about-synchronization-events",
+                "doc://com.apple.metal/documentation/Metal/synchronizing-events-within-a-single-device",
+                "doc://com.apple.metal/documentation/Metal/synchronizing-events-across-multiple-devices-or-processes",
+                "doc://com.apple.metal/documentation/Metal/synchronizing-events-between-a-gpu-and-the-cpu",
+                "doc://com.apple.metal/documentation/Metal/MTLEvent",
+                "doc://com.apple.metal/documentation/Metal/MTLSharedEvent",
+                "doc://com.apple.metal/documentation/Metal/MTLSharedEventHandle",
+                "doc://com.apple.metal/documentation/Metal/MTLSharedEventListener",
+                "doc://com.apple.metal/documentation/Metal/MTLSharedEventNotificationBlock"
+              ],
+              "title": "Signal Events"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Resources",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/resource-fundamentals",
+                "doc://com.apple.metal/documentation/Metal/buffers",
+                "doc://com.apple.metal/documentation/Metal/textures",
+                "doc://com.apple.metal/documentation/Metal/memory-heaps",
+                "doc://com.apple.metal/documentation/Metal/resource-loading"
+              ],
+              "title": "Resources"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLBarrierScope/title",
+          "value": "MTLBarrierScope"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLBarrierScope/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLBarrierScope"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLBarrierScope/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLBarrierScope"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLSharedEvent/title",
+          "value": "MTLSharedEvent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLSharedEvent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLSharedEvent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLSharedEvent/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLSharedEvent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLEvent/title",
+          "value": "MTLEvent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLEvent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLEvent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLEvent/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLEvent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLFence/title",
+          "value": "MTLFence"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLFence/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLFence"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLFence/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLFence"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderStages/title",
+          "value": "MTLRenderStages"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderStages/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLRenderStages"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderStages/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLRenderStages"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLSharedEventListener/title",
+          "value": "MTLSharedEventListener"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLSharedEventListener/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLSharedEventListener"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLSharedEventListener/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLSharedEventListener"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLHazardTrackingMode~1untracked/title",
+          "value": "MTLHazardTrackingModeUntracked"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLHazardTrackingMode~1untracked/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLHazardTrackingModeUntracked"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLHazardTrackingMode~1tracked/title",
+          "value": "MTLHazardTrackingModeTracked"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLHazardTrackingMode~1tracked/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLHazardTrackingModeTracked"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLHeap/title",
+          "value": "MTLHeap"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLHeap/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLHeap"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLHeap/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLHeap"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLSharedEventHandle/title",
+          "value": "MTLSharedEventHandle"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLSharedEventHandle/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLSharedEventHandle"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLSharedEventHandle/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLSharedEventHandle"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLSharedEventNotificationBlock/title",
+          "value": "MTLSharedEventNotificationBlock"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLSharedEventNotificationBlock/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLSharedEventNotificationBlock"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLSharedEventNotificationBlock/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLSharedEventNotificationBlock"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice/title",
+          "value": "MTLDevice"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLDevice"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLDevice"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/metal/resource-synchronization"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/metal/resource-synchronization"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

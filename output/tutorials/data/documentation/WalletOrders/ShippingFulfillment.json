@@ -1,0 +1,1163 @@
+{
+  "abstract": [
+    {
+      "text": "The details of a shipped order.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.walletorders/documentation/WalletOrders"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.walletorders/documentation/WalletOrders/ShippingFulfillment"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "data:WalletOrders:ShippingFulfillment",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "object "
+      },
+      {
+        "kind": "identifier",
+        "text": "ShippingFulfillment"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Wallet Orders"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "ShippingFulfillment"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "16.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "16.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "13.0",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Object",
+    "symbolKind": "dictionary",
+    "title": "ShippingFulfillment"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "data"
+          ],
+          "platforms": [
+            "Unsupported OS: iOS",
+            "Unsupported OS: macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "text",
+              "text": "object "
+            },
+            {
+              "kind": "identifier",
+              "text": "ShippingFulfillment"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "items": [
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An opaque value that uniquely identifies this fulfillment in the order. This isn’t displayed to the user, and is only used for determining changes and user notifications.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "fulfillmentIdentifier",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ],
+          "typeDetails": [
+            {
+              "baseType": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "allowedValues",
+              "values": [
+                "shipping"
+              ]
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The type of fulfillment, which is ",
+                  "type": "text"
+                },
+                {
+                  "code": "shipping",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "fulfillmentType",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ],
+          "typeDetails": [
+            {
+              "baseType": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "allowedValues",
+              "values": [
+                "open",
+                "processing",
+                "onTheWay",
+                "outForDelivery",
+                "delivered",
+                "shipped",
+                "issue",
+                "cancelled"
+              ]
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The status of the fulfillment.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "status",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ],
+          "typeDetails": [
+            {
+              "baseType": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The shipping carrier used to complete this fulfillment.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "carrier",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ],
+          "typeDetails": [
+            {
+              "baseType": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The date and time when the carrier delivered the shipment, in RFC 3339 format.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "deliveredAt",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "date-time"
+            }
+          ],
+          "typeDetails": [
+            {
+              "baseType": "date-time"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The estimated delivery date and time from the carrier, in RFC 3339 format. The system ignores the time components unless the carrier provides a window duration.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "estimatedDeliveryAt",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "date-time"
+            }
+          ],
+          "typeDetails": [
+            {
+              "baseType": "date-time"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The duration for the estimated delivery window, in ISO 8601-1 duration format.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "estimatedDeliveryWindowDuration",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "duration"
+            }
+          ],
+          "typeDetails": [
+            {
+              "baseType": "duration"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The items the carrier will ship, displayed in the order provided.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "lineItems",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "["
+            },
+            {
+              "identifier": "doc://com.apple.walletorders/documentation/WalletOrders/LineItem",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:WalletOrders:LineItem",
+              "text": "LineItem"
+            },
+            {
+              "kind": "text",
+              "text": "]"
+            }
+          ],
+          "typeDetails": []
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Additional localized information about the shipment. For example, whether it requires a signature.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "notes",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ],
+          "typeDetails": [
+            {
+              "baseType": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The recipient of the shipment.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "recipient",
+          "required": false,
+          "type": [
+            {
+              "identifier": "doc://com.apple.walletorders/documentation/WalletOrders/ShippingFulfillment/Recipient-data.dictionary",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "data:WalletOrders:ShippingFulfillment.Recipient",
+              "text": "ShippingFulfillment.Recipient"
+            }
+          ],
+          "typeDetails": [
+            {
+              "baseType": "dictionary"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The date and time when the carrier shipped the order, in RFC 3339 format.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "shippedAt",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "date-time"
+            }
+          ],
+          "typeDetails": [
+            {
+              "baseType": "date-time"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "allowedValues",
+              "values": [
+                "shipping",
+                "delivery"
+              ]
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The type used for display.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Default: shipping",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "shippingType",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ],
+          "typeDetails": [
+            {
+              "baseType": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A localized message describing the fulfillment status.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "statusDescription",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ],
+          "typeDetails": [
+            {
+              "baseType": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The tracking number provided by the shipping carrier.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "trackingNumber",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ],
+          "typeDetails": [
+            {
+              "baseType": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A URL where the customer can track the shipment.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "trackingURL",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "uri"
+            }
+          ],
+          "typeDetails": [
+            {
+              "baseType": "uri"
+            }
+          ]
+        }
+      ],
+      "kind": "properties",
+      "title": "Properties"
+    },
+    {
+      "attributes": [
+        {
+          "kind": "allowedTypes",
+          "values": []
+        }
+      ],
+      "kind": "attributes",
+      "title": "Attributes"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.walletorders/documentation/WalletOrders": {
+      "abstract": [
+        {
+          "text": "Create, distribute, and update orders in Wallet.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.walletorders/documentation/WalletOrders",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Wallet Orders",
+      "type": "topic",
+      "url": "/documentation/walletorders"
+    },
+    "doc://com.apple.walletorders/documentation/WalletOrders/Address": {
+      "abstract": [
+        {
+          "text": "The physical address for an order.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Address"
+        }
+      ],
+      "identifier": "doc://com.apple.walletorders/documentation/WalletOrders/Address",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Address"
+        }
+      ],
+      "role": "symbol",
+      "title": "Address",
+      "type": "topic",
+      "url": "/documentation/walletorders/address"
+    },
+    "doc://com.apple.walletorders/documentation/WalletOrders/Application": {
+      "abstract": [
+        {
+          "text": "The details of an app in the App Store.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Application"
+        }
+      ],
+      "identifier": "doc://com.apple.walletorders/documentation/WalletOrders/Application",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Application"
+        }
+      ],
+      "role": "symbol",
+      "title": "Application",
+      "type": "topic",
+      "url": "/documentation/walletorders/application"
+    },
+    "doc://com.apple.walletorders/documentation/WalletOrders/Barcode": {
+      "abstract": [
+        {
+          "text": "The details of a barcode for an order.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Barcode"
+        }
+      ],
+      "identifier": "doc://com.apple.walletorders/documentation/WalletOrders/Barcode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Barcode"
+        }
+      ],
+      "role": "symbol",
+      "title": "Barcode",
+      "type": "topic",
+      "url": "/documentation/walletorders/barcode"
+    },
+    "doc://com.apple.walletorders/documentation/WalletOrders/CurrencyAmount": {
+      "abstract": [
+        {
+          "text": "An amount of money.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "CurrencyAmount"
+        }
+      ],
+      "identifier": "doc://com.apple.walletorders/documentation/WalletOrders/CurrencyAmount",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CurrencyAmount"
+        }
+      ],
+      "role": "symbol",
+      "title": "CurrencyAmount",
+      "type": "topic",
+      "url": "/documentation/walletorders/currencyamount"
+    },
+    "doc://com.apple.walletorders/documentation/WalletOrders/Customer": {
+      "abstract": [
+        {
+          "text": "The details of the order’s customer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Customer"
+        }
+      ],
+      "identifier": "doc://com.apple.walletorders/documentation/WalletOrders/Customer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Customer"
+        }
+      ],
+      "role": "symbol",
+      "title": "Customer",
+      "type": "topic",
+      "url": "/documentation/walletorders/customer"
+    },
+    "doc://com.apple.walletorders/documentation/WalletOrders/LineItem": {
+      "abstract": [
+        {
+          "text": "An item associated with the order.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "LineItem"
+        }
+      ],
+      "identifier": "doc://com.apple.walletorders/documentation/WalletOrders/LineItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LineItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "LineItem",
+      "type": "topic",
+      "url": "/documentation/walletorders/lineitem"
+    },
+    "doc://com.apple.walletorders/documentation/WalletOrders/Location": {
+      "abstract": [
+        {
+          "text": "A geographic location.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Location"
+        }
+      ],
+      "identifier": "doc://com.apple.walletorders/documentation/WalletOrders/Location",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Location"
+        }
+      ],
+      "role": "symbol",
+      "title": "Location",
+      "type": "topic",
+      "url": "/documentation/walletorders/location"
+    },
+    "doc://com.apple.walletorders/documentation/WalletOrders/Merchant": {
+      "abstract": [
+        {
+          "text": "The merchant associated with the order.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Merchant"
+        }
+      ],
+      "identifier": "doc://com.apple.walletorders/documentation/WalletOrders/Merchant",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Merchant"
+        }
+      ],
+      "role": "symbol",
+      "title": "Merchant",
+      "type": "topic",
+      "url": "/documentation/walletorders/merchant"
+    },
+    "doc://com.apple.walletorders/documentation/WalletOrders/OrderIdentifiers": {
+      "abstract": [
+        {
+          "text": "The unique identifiers associated with orders.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "OrderIdentifiers"
+        }
+      ],
+      "identifier": "doc://com.apple.walletorders/documentation/WalletOrders/OrderIdentifiers",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "OrderIdentifiers"
+        }
+      ],
+      "role": "symbol",
+      "title": "OrderIdentifiers",
+      "type": "topic",
+      "url": "/documentation/walletorders/orderidentifiers"
+    },
+    "doc://com.apple.walletorders/documentation/WalletOrders/OrderProvider": {
+      "abstract": [
+        {
+          "text": "Information about the platform providing the order data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "OrderProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.walletorders/documentation/WalletOrders/OrderProvider",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "OrderProvider"
+        }
+      ],
+      "role": "symbol",
+      "title": "OrderProvider",
+      "type": "topic",
+      "url": "/documentation/walletorders/orderprovider"
+    },
+    "doc://com.apple.walletorders/documentation/WalletOrders/Payment": {
+      "abstract": [
+        {
+          "text": "The payment information associated with the order.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Payment"
+        }
+      ],
+      "identifier": "doc://com.apple.walletorders/documentation/WalletOrders/Payment",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Payment"
+        }
+      ],
+      "role": "symbol",
+      "title": "Payment",
+      "type": "topic",
+      "url": "/documentation/walletorders/payment"
+    },
+    "doc://com.apple.walletorders/documentation/WalletOrders/Payment/SummaryItems-data.dictionary": {
+      "abstract": [
+        {
+          "text": "A breakdown of the total payment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Payment.SummaryItems"
+        }
+      ],
+      "identifier": "doc://com.apple.walletorders/documentation/WalletOrders/Payment/SummaryItems-data.dictionary",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Payment.SummaryItems"
+        }
+      ],
+      "role": "symbol",
+      "title": "Payment.SummaryItems",
+      "type": "topic",
+      "url": "/documentation/walletorders/payment/summaryitems-data.dictionary"
+    },
+    "doc://com.apple.walletorders/documentation/WalletOrders/PaymentMethod": {
+      "abstract": [
+        {
+          "text": "The payment method for the transaction.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "PaymentMethod"
+        }
+      ],
+      "identifier": "doc://com.apple.walletorders/documentation/WalletOrders/PaymentMethod",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PaymentMethod"
+        }
+      ],
+      "role": "symbol",
+      "title": "PaymentMethod",
+      "type": "topic",
+      "url": "/documentation/walletorders/paymentmethod"
+    },
+    "doc://com.apple.walletorders/documentation/WalletOrders/PaymentTransaction": {
+      "abstract": [
+        {
+          "text": "The details about a payment transaction.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "PaymentTransaction"
+        }
+      ],
+      "identifier": "doc://com.apple.walletorders/documentation/WalletOrders/PaymentTransaction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PaymentTransaction"
+        }
+      ],
+      "role": "symbol",
+      "title": "PaymentTransaction",
+      "type": "topic",
+      "url": "/documentation/walletorders/paymenttransaction"
+    },
+    "doc://com.apple.walletorders/documentation/WalletOrders/PickupFulfillment": {
+      "abstract": [
+        {
+          "text": "The details of a pickup order.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "PickupFulfillment"
+        }
+      ],
+      "identifier": "doc://com.apple.walletorders/documentation/WalletOrders/PickupFulfillment",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PickupFulfillment"
+        }
+      ],
+      "role": "symbol",
+      "title": "PickupFulfillment",
+      "type": "topic",
+      "url": "/documentation/walletorders/pickupfulfillment"
+    },
+    "doc://com.apple.walletorders/documentation/WalletOrders/ShippingFulfillment": {
+      "abstract": [
+        {
+          "text": "The details of a shipped order.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ShippingFulfillment"
+        }
+      ],
+      "identifier": "doc://com.apple.walletorders/documentation/WalletOrders/ShippingFulfillment",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ShippingFulfillment"
+        }
+      ],
+      "role": "symbol",
+      "title": "ShippingFulfillment",
+      "type": "topic",
+      "url": "/documentation/walletorders/shippingfulfillment"
+    },
+    "doc://com.apple.walletorders/documentation/WalletOrders/ShippingFulfillment/Recipient-data.dictionary": {
+      "abstract": [
+        {
+          "text": "The recipient of the shipment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ShippingFulfillment.Recipient"
+        }
+      ],
+      "identifier": "doc://com.apple.walletorders/documentation/WalletOrders/ShippingFulfillment/Recipient-data.dictionary",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ShippingFulfillment.Recipient"
+        }
+      ],
+      "role": "symbol",
+      "title": "ShippingFulfillment.Recipient",
+      "type": "topic",
+      "url": "/documentation/walletorders/shippingfulfillment/recipient-data.dictionary"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Supporting-objects",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.walletorders/documentation/WalletOrders/Customer",
+        "doc://com.apple.walletorders/documentation/WalletOrders/Merchant",
+        "doc://com.apple.walletorders/documentation/WalletOrders/Address",
+        "doc://com.apple.walletorders/documentation/WalletOrders/Application",
+        "doc://com.apple.walletorders/documentation/WalletOrders/Barcode",
+        "doc://com.apple.walletorders/documentation/WalletOrders/CurrencyAmount",
+        "doc://com.apple.walletorders/documentation/WalletOrders/LineItem",
+        "doc://com.apple.walletorders/documentation/WalletOrders/Location",
+        "doc://com.apple.walletorders/documentation/WalletOrders/OrderIdentifiers",
+        "doc://com.apple.walletorders/documentation/WalletOrders/OrderProvider",
+        "doc://com.apple.walletorders/documentation/WalletOrders/Payment",
+        "doc://com.apple.walletorders/documentation/WalletOrders/Payment/SummaryItems-data.dictionary",
+        "doc://com.apple.walletorders/documentation/WalletOrders/PaymentMethod",
+        "doc://com.apple.walletorders/documentation/WalletOrders/PaymentTransaction",
+        "doc://com.apple.walletorders/documentation/WalletOrders/PickupFulfillment"
+      ],
+      "title": "Supporting objects"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Objects",
+      "identifiers": [
+        "doc://com.apple.walletorders/documentation/WalletOrders/ShippingFulfillment/Recipient-data.dictionary"
+      ],
+      "title": "Objects"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/walletorders/shippingfulfillment"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

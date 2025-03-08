@@ -1,0 +1,2813 @@
+{
+  "abstract": [
+    {
+      "text": "Include buttons or toggles in a widget or Live Activity to offer app functionality without launching the app.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.WidgetKit/documentation/WidgetKit"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.WidgetKit/documentation/WidgetKit",
+        "doc://com.apple.WidgetKit/documentation/WidgetKit/SwiftUI-Views"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.WidgetKit/documentation/WidgetKit/Adding-interactivity-to-widgets-and-Live-Activities"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "WidgetKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Adding interactivity to widgets and Live Activities"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Starting with iOS 17, iPadOS 17, or macOS 14, widgets and Live Activities can include buttons and toggles to offer specific app functionality without launching the app. For example, a Reminders widget allows people to mark a task as completed with a toggle. On a locked device, buttons and toggles are inactive and the system doesn’t perform actions unless a person authenticates and unlocks their device.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you create a widget or Live Activity, think about how people interact with it. Then, make your app’s most important actions available directly in a widget or Live Activity by adding buttons or toggles.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An interaction with a button or toggle should do more than open the app. If you want to offer an interaction that opens the app, use ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Link",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " and ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/widgetURL(_:)",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " as described in ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/Linking-to-specific-app-scenes-from-your-widget-or-Live-Activity",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Widgets of the following sizes can include buttons and toggles:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetFamily/systemSmall",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetFamily/systemMedium",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetFamily/systemLarge",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetFamily/systemExtraLarge",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetFamily/accessoryCircular",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " on iPhone and iPad",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetFamily/accessoryRectangular",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " on iPhone and iPad",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Live Activities can include buttons or toggles in the expanded and the Lock Screen presentation.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For design guidance, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/design/human-interface-guidelines/components/system-experiences/widgets",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/videos/play/wwdc2023/10027",
+                  "isActive": true,
+                  "type": "reference"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Related session from WWDC23",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Understand-the-role-of-app-intents",
+          "level": 3,
+          "text": "Understand the role of app intents",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Widgets offer direct interaction with your app using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppIntents",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " framework and SwiftUI. For example, the large widget of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/emoji-rangers-supporting-live-activities-interactivity-and-animations",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " sample code project includes a button to boost the hero’s healing power.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create widgets and watch complications, you add a widget extension to your project. As a result, any code for widgets and watch complications runs in an independent process that’s separate from your app. Based on your timeline entries, the system archives a view representation and only renders the views using these representations when applicable.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As a result of the timeline mechanism and of rendering in a separate process, the system can’t run your code or update data bindings at the time it renders your widget. This is where the App Intents framework comes into play. App intents allow you to expose actions of your app to the system and enable it to perform the actions when needed — for example, when a person interacts with a button or a toggle in a widget.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Live Activities don’t use a timeline mechanism to update their content. However, they use WidgetKit and a widget extension with a similar cycle of view archiving and decoding. As a result, you add buttons and toggles to a Live Activity in the same way as do for your widgets, as described below.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Add-an-app-intent-that-performs-the-action",
+          "level": 3,
+          "text": "Add an app intent that performs the action",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Buttons and toggles you add to your widgets and Live Activities use functionality that you expose to the system by adopting the App Intents framework. Before you add a button or toggle, make the app functionality available to the system using an app intent:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "For a widget, create a new structure that adopts the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/AppIntents/AppIntent",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " protocol and add it to your app target. For a Live Activity interactive, adopt the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/AppIntents/LiveActivityIntent",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " protocol. If the interaction starts or pauses media playback, adopt the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/AppIntents/AudioPlaybackIntent",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " protocol.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Implement the protocol’s requirements.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Define input parameters that your action needs using the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "@Parameter",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " property wrapper and make sure their type conforms to the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/AppIntents/AppEntity",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " protocol. Make sure input parameters have assigned values because, unlike app intents you define for system functionality like Siri, widgets don’t resolve parameters for app intents.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the protocol’s required ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/AppIntents/AppIntent/perform()",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " function, add code for the action you want to make available to the widget.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/emoji-rangers-supporting-live-activities-interactivity-and-animations",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " sample code project includes a button in its large widget that people click or touch to give the hero a healing boost. The following code snippet shows its app intent implementation:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@available(iOS 16.0, macOS 13.0, watchOS 9.0, tvOS 16.0, *)",
+            "struct SuperCharge: AppIntent {",
+            "    ",
+            "    static var title: LocalizedStringResource = \"Emoji Ranger SuperCharger\"",
+            "    static var description = IntentDescription(\"All heroes get instant 100% health.\")",
+            "    ",
+            "    func perform() async throws -> some IntentResult {",
+            "        EmojiRanger.superchargeHeros()",
+            "        return .result()",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you adopt the ",
+              "type": "text"
+            },
+            {
+              "code": "LiveActivityIntent",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "code": "AudioPlaybackIntent",
+              "type": "codeVoice"
+            },
+            {
+              "text": " protocol, the system runs the app intent in the app’s process. Make sure to add your custom app intent to your app target.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you adopt the ",
+              "type": "text"
+            },
+            {
+              "code": "AppIntent",
+              "type": "codeVoice"
+            },
+            {
+              "text": " protocol, add your custom app intent to your widget extension target and your app target. Adding it to the app target in addition to the widget extension target allows you to reuse the button or toggle you add to the widget in your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Implement-the-perform-function",
+          "level": 3,
+          "text": "Implement the perform function",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When a person interacts with a button or toggle in your widget, the system runs the underlying app intent’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppIntents/AppIntent/perform()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function. The ",
+              "type": "text"
+            },
+            {
+              "code": "perform()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function is asynchronous, and you can take full advantage of Swift concurrency. To learn more about concurrency, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://docs.swift.org/swift-book/documentation/the-swift-programming-language/concurrency/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Swift/concurrency",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Per default, the system runs the app intent in the same process as the widget extension. However, if the app intent’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppIntents/AppIntent/openAppWhenRun",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property is ",
+              "type": "text"
+            },
+            {
+              "code": "true",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", or if the intent conforms to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppIntents/AudioPlaybackIntent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppIntents/ForegroundContinuableIntent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppIntents/LiveActivityIntent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppIntents/PushToTalkTransmissionIntent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", the system performs the app intent in the app’s process.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you return from the ",
+              "type": "text"
+            },
+            {
+              "code": "perform()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function, the system reloads the widget’s timeline using its timeline provider. Use this as an opportunity to update your widget with the result of the interaction. Make sure any code that’s necessary for the timeline update runs before you return from ",
+              "type": "text"
+            },
+            {
+              "code": "perform()",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". For example, use the ",
+              "type": "text"
+            },
+            {
+              "code": "await",
+              "type": "codeVoice"
+            },
+            {
+              "text": " keyword while you store updated information in your database, and upon completion, ",
+              "type": "text"
+            },
+            {
+              "code": "return",
+              "type": "codeVoice"
+            },
+            {
+              "text": " from ",
+              "type": "text"
+            },
+            {
+              "code": "perform()",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". Then, the system reloads the widget’s timeline and your timeline provider loads the updated data from your database.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Interactions with a toggle or button always guarantee a timeline reload.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Additionally, note that the ",
+              "type": "text"
+            },
+            {
+              "code": "perform()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function is marked as ",
+              "type": "text"
+            },
+            {
+              "code": "throws",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". Be sure to handle errors instead of rethrowing them, and update your app, widget, and Live Activity as needed. For example, update a widget’s interface to tell a person that it displays outdated information if it can’t load new data.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "With the App Intents framework, you can extend your app’s custom functionality to support system-level services like Siri and the Shortcuts app. Additionally, you use app intents to make your widget configurable. By making your widget interactive, you automatically support system services for that interaction. To learn more about the App Intents framework, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/AppIntents",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " and ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/AppIntents/Making-actions-and-content-discoverable-and-widely-available",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ". To learn more about configurable widgets, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/Making-a-Configurable-Widget",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Tip",
+          "style": "tip",
+          "type": "aside"
+        },
+        {
+          "anchor": "Add-a-button",
+          "level": 3,
+          "text": "Add a button",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you’ve implemented the app intent, add a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Button",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to your widget using one of the initializers that take an app intent, for example, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Button/init(_:intent:)-7urde",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "You don’t have to create a ",
+                  "type": "text"
+                },
+                {
+                  "code": "Button",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " implementation solely for use in a widget or Live Activity. Reuse the code that adds a button to a widget — including the app intent implementation — in your app.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Tip",
+          "style": "tip",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following example shows how the large ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/emoji-rangers-supporting-live-activities-interactivity-and-animations",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " widget includes a button to give the heroes a healing boost. Note how the sample checks for the presence of iOS 17 before adding the button.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "",
+            "struct EmojiRangerWidgetEntryView: View {",
+            "    var entry: SimpleEntry",
+            "    ",
+            "    @Environment(\\.widgetFamily) var family",
+            "    ",
+            "    @ViewBuilder",
+            "    var body: some View {",
+            "        switch family {",
+            "",
+            "        case .systemLarge:",
+            "            VStack {",
+            "                HStack(alignment: .top) {",
+            "                    AvatarView(entry.hero)",
+            "                        .foregroundStyle(.white)",
+            "                    Text(entry.hero.bio)",
+            "                        .foregroundStyle(.white)",
+            "                }",
+            "                .padding()",
+            "                if #available(iOS 17.0, *) {",
+            "                    HStack(alignment: .top) {",
+            "                        Button(intent: SuperCharge()) {",
+            "                            Image(systemName: \"bolt.fill\")",
+            "                        }",
+            "                    }",
+            "                    .tint(.white)",
+            "                    .padding()",
+            "                }",
+            "            }",
+            "            .containerBackground(for: .widget) {",
+            "                Color.gameBackgroundColor",
+            "            }",
+            "            .widgetURL(entry.hero.url)",
+            "            ",
+            "        // Code for other widget sizes.",
+            "    }",
+            "}   "
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you’ve added a button, review views in your widget or Live Activity that change their data when a person interacts with the button. For example, a button press could cause several texts in the widget to reload. This reload may take some time, for example for interactions with an iPhone widget on Mac. To let a person know that the widget is waiting to update its content, add the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/invalidatableContent(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " view modifier to views that receive updated data. Use this modifier judiciously; don’t annotate every single view that might change, and use it on views that are important to a person.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A button indicates that a person interacted with it but it doesn’t remain in a pressed state. As a result, use ",
+                  "type": "text"
+                },
+                {
+                  "code": "Toggle",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " to indicate on/off functionality.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Add-a-toggle",
+          "level": 3,
+          "text": "Add a toggle",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Add a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Toggle",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to your view using one of the initializers that take an app intent, for example, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Toggle/init(isOn:intent:label:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following example shows how a view of a task manager widget could add a toggle. Note that the initializer’s ",
+              "type": "text"
+            },
+            {
+              "code": "isOn",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter receives a Boolean value instead of a ",
+              "type": "text"
+            },
+            {
+              "code": "Binding<Bool>",
+              "type": "codeVoice"
+            },
+            {
+              "text": " value.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct TodoItemView: View {",
+            "    var todo: Todo",
+            "",
+            "    var body: some View {",
+            "        Toggle(isOn: todo.complete, intent: ToggleTodoIntent(todo.id)) {",
+            "            Text(todo.body)",
+            "        }",
+            "        .toggleStyle(TodoToggleStyle())",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If you define your own ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/SwiftUI/ToggleStyle",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ", check the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/SwiftUI/ToggleStyleConfiguration/isOn",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " property and add the correct appearance for on and off states.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppIntents/AppIntent/perform()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function runs code asynchronously and may take time to complete, for example, when a person performs an interaction on an iPhone widget on Mac. ",
+              "type": "text"
+            },
+            {
+              "code": "Toggle",
+              "type": "codeVoice"
+            },
+            {
+              "text": " updates its appearance optimistically and indicates its new state immediately — without waiting for the result of the performed action.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To accurately reflect changed state for a person’s action with a ",
+              "type": "text"
+            },
+            {
+              "code": "Toggle",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", update the widget with the result of the code you run in the app intent’s ",
+              "type": "text"
+            },
+            {
+              "code": "perform()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function. For example, if a person taps a toggle in a task manager widget to complete a task, the toggle immediately shows the task as complete — even though the logic in ",
+              "type": "text"
+            },
+            {
+              "code": "perform()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " still runs. To make sure the widget only shows a task that was actually completed, the ",
+              "type": "text"
+            },
+            {
+              "code": "perform()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " implementation can start the following sequence of actions:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Mark the task as completed in a database the widget shares with the app.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Run code to synchronize the database with your server.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Refresh the widget’s timeline to show the correct state for the task when your server acknowledges the successful synchronization. The ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Toggle",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " should show the correct state and not its earlier optimistic prediction.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In case of an error or server timeout, update the widget to reflect that the task isn’t completed. For example, set the toggle’s ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "isOn",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " property to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "false",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and show text in the widget that there’s a synchronization error.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "anchor": "Review-interactions-in-iPhone-widgets-on-Mac",
+          "level": 3,
+          "text": "Review interactions in iPhone widgets on Mac",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the context of iPhone widgets on Mac, it’s important to use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/invalidatableContent(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " view modifier on views if you add a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Button",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to a widget and also understand the optimistic behavior of a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Toggle",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Starting with iOS 17 and macOS 14, users can put iPhone widgets on their Mac desktop and in Notification Center. When a person interacts with the iPhone widget on Mac, the system sends the interaction to iPhone. On iPhone, the system performs the intent, generates a new timeline, and then sends the updated timeline to the iPhone widget on Mac. This process may take extra time. As a result, marking views that await updated data and making sure a toggle reflects synchronized data are especially important.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.WidgetKit/documentation/WidgetKit": {
+      "abstract": [
+        {
+          "text": "Extend the reach of your app by creating widgets, watch complications, Live Activities, and controls.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "WidgetKit",
+      "type": "topic",
+      "url": "/documentation/widgetkit"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/Animating-data-updates-in-widgets-and-live-activities": {
+      "abstract": [
+        {
+          "text": "Use SwiftUI animations to indicate data updates in your widgets and Live Activities.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/Animating-data-updates-in-widgets-and-live-activities",
+      "kind": "article",
+      "role": "article",
+      "title": "Animating data updates in widgets and Live Activities",
+      "type": "topic",
+      "url": "/documentation/widgetkit/animating-data-updates-in-widgets-and-live-activities"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/Linking-to-specific-app-scenes-from-your-widget-or-Live-Activity": {
+      "abstract": [
+        {
+          "text": "Add deep links to your widgets and Live Activities that enable people to open a specific scene in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/Linking-to-specific-app-scenes-from-your-widget-or-Live-Activity",
+      "kind": "article",
+      "role": "article",
+      "title": "Linking to specific app scenes from your widget or Live Activity",
+      "type": "topic",
+      "url": "/documentation/widgetkit/linking-to-specific-app-scenes-from-your-widget-or-live-activity"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/Making-a-Configurable-Widget": {
+      "abstract": [
+        {
+          "text": "Give people the option to customize their widgets by adding a custom app intent",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "to your project.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/Making-a-Configurable-Widget",
+      "kind": "article",
+      "role": "article",
+      "title": "Making a configurable widget",
+      "type": "topic",
+      "url": "/documentation/widgetkit/making-a-configurable-widget"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/SwiftUI-Views": {
+      "abstract": [
+        {
+          "text": "Present your app’s content in widgets with SwiftUI views.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/SwiftUI-Views",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "SwiftUI views for widgets",
+      "type": "topic",
+      "url": "/documentation/widgetkit/swiftui-views"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetFamily/accessoryCircular": {
+      "abstract": [
+        {
+          "text": "A circular widget.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "accessoryCircular"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetFamily/accessoryCircular",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "WidgetFamily.accessoryCircular",
+      "type": "topic",
+      "url": "/documentation/widgetkit/widgetfamily/accessorycircular"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetFamily/accessoryRectangular": {
+      "abstract": [
+        {
+          "text": "A rectangular widget.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "accessoryRectangular"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetFamily/accessoryRectangular",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "WidgetFamily.accessoryRectangular",
+      "type": "topic",
+      "url": "/documentation/widgetkit/widgetfamily/accessoryrectangular"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetFamily/systemExtraLarge": {
+      "abstract": [
+        {
+          "text": "An extra-large widget.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "systemExtraLarge"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetFamily/systemExtraLarge",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "WidgetFamily.systemExtraLarge",
+      "type": "topic",
+      "url": "/documentation/widgetkit/widgetfamily/systemextralarge"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetFamily/systemLarge": {
+      "abstract": [
+        {
+          "text": "A large widget.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "systemLarge"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetFamily/systemLarge",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "WidgetFamily.systemLarge",
+      "type": "topic",
+      "url": "/documentation/widgetkit/widgetfamily/systemlarge"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetFamily/systemMedium": {
+      "abstract": [
+        {
+          "text": "A medium-sized widget.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "systemMedium"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetFamily/systemMedium",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "WidgetFamily.systemMedium",
+      "type": "topic",
+      "url": "/documentation/widgetkit/widgetfamily/systemmedium"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetFamily/systemSmall": {
+      "abstract": [
+        {
+          "text": "A small widget.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "systemSmall"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/WidgetFamily/systemSmall",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "WidgetFamily.systemSmall",
+      "type": "topic",
+      "url": "/documentation/widgetkit/widgetfamily/systemsmall"
+    },
+    "doc://com.apple.WidgetKit/documentation/WidgetKit/emoji-rangers-supporting-live-activities-interactivity-and-animations": {
+      "abstract": [
+        {
+          "text": "Offer Live Activities, controls, animate data updates, and add interactivity to widgets.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.WidgetKit/documentation/WidgetKit/emoji-rangers-supporting-live-activities-interactivity-and-animations",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Emoji Rangers: Supporting Live Activities, interactivity, and animations",
+      "type": "topic",
+      "url": "/documentation/widgetkit/emoji-rangers-supporting-live-activities-interactivity-and-animations"
+    },
+    "doc://com.apple.documentation/documentation/AppIntents": {
+      "abstract": [
+        {
+          "text": "Make your app’s content and actions discoverable with system experiences like Spotlight, widgets, and enhanced action capabilities of Siri, powered by Apple Intelligence.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppIntents",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "App Intents",
+      "type": "topic",
+      "url": "/documentation/AppIntents"
+    },
+    "doc://com.apple.documentation/documentation/AppIntents/AppEntity": {
+      "abstract": [
+        {
+          "text": "An interface for exposing a custom type or app-specific concept to system experiences like Siri and the Shortcuts app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AppEntity"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents0A5ValueP",
+          "text": "AppValue"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents20DisplayRepresentableP",
+          "text": "DisplayRepresentable"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s12IdentifiableP",
+          "text": "Identifiable"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": " == "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents12_IntentValueP0D4TypeQa",
+          "text": "ValueType"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s12IdentifiableP2IDQa",
+          "text": "ID"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents27EntityIdentifierConvertibleP",
+          "text": "EntityIdentifierConvertible"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s12IdentifiableP2IDQa",
+          "text": "ID"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8SendableP",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppIntents/AppEntity",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AppEntity",
+      "type": "topic",
+      "url": "/documentation/AppIntents/AppEntity"
+    },
+    "doc://com.apple.documentation/documentation/AppIntents/AppIntent": {
+      "abstract": [
+        {
+          "text": "An interface for providing an app-specific capability that people invoke from system experiences like Siri and the Shortcuts app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AppIntent"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents24PersistentlyIdentifiableP",
+          "text": "PersistentlyIdentifiable"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "_SupportsAppDependencies"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8SendableP",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppIntents/AppIntent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AppIntent",
+      "type": "topic",
+      "url": "/documentation/AppIntents/AppIntent"
+    },
+    "doc://com.apple.documentation/documentation/AppIntents/AppIntent/openAppWhenRun": {
+      "abstract": [
+        {
+          "text": "A boolean property that tells the system to consider the app intent even if its app is not in the foreground.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "openAppWhenRun"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppIntents/AppIntent/openAppWhenRun",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "openAppWhenRun",
+      "type": "topic",
+      "url": "/documentation/AppIntents/AppIntent/openAppWhenRun"
+    },
+    "doc://com.apple.documentation/documentation/AppIntents/AppIntent/perform()": {
+      "abstract": [
+        {
+          "text": "Performs the intent after resolving the provided parameters.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "perform"
+        },
+        {
+          "kind": "text",
+          "text": "() "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents0A6IntentP13PerformResultQa",
+          "text": "PerformResult"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppIntents/AppIntent/perform()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "perform()",
+      "type": "topic",
+      "url": "/documentation/AppIntents/AppIntent/perform()"
+    },
+    "doc://com.apple.documentation/documentation/AppIntents/AudioPlaybackIntent": {
+      "abstract": [
+        {
+          "text": "An App Intent that plays, pauses, or otherwise modifies audio playback state when it executes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioPlaybackIntent"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents12SystemIntentP",
+          "text": "SystemIntent"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppIntents/AudioPlaybackIntent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AudioPlaybackIntent",
+      "type": "topic",
+      "url": "/documentation/AppIntents/AudioPlaybackIntent"
+    },
+    "doc://com.apple.documentation/documentation/AppIntents/ForegroundContinuableIntent": {
+      "abstract": [
+        {
+          "text": "A protocol you use for app intents which begin their work with the app in the background but may request to continue in the foreground.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ForegroundContinuableIntent"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents0A6IntentP",
+          "text": "AppIntent"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppIntents/ForegroundContinuableIntent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ForegroundContinuableIntent",
+      "type": "topic",
+      "url": "/documentation/AppIntents/ForegroundContinuableIntent"
+    },
+    "doc://com.apple.documentation/documentation/AppIntents/LiveActivityIntent": {
+      "abstract": [
+        {
+          "text": "An intent that starts, pauses, or otherwise modifies a Live Activity when it runs.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LiveActivityIntent"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents12SystemIntentP",
+          "text": "SystemIntent"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppIntents/LiveActivityIntent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LiveActivityIntent",
+      "type": "topic",
+      "url": "/documentation/AppIntents/LiveActivityIntent"
+    },
+    "doc://com.apple.documentation/documentation/AppIntents/Making-actions-and-content-discoverable-and-widely-available": {
+      "abstract": [
+        {
+          "text": "Adopt App Intents to make your app discoverable with Siri and Apple Intelligence, Spotlight, controls, widgets, and the Action button.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppIntents/Making-actions-and-content-discoverable-and-widely-available",
+      "kind": "article",
+      "role": "article",
+      "title": "Making actions and content discoverable and widely available",
+      "type": "topic",
+      "url": "/documentation/AppIntents/Making-actions-and-content-discoverable-and-widely-available"
+    },
+    "doc://com.apple.documentation/documentation/AppIntents/PushToTalkTransmissionIntent": {
+      "abstract": [
+        {
+          "text": "An intent that begins or ends an audio transmission with the Push to Talk framework.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PushToTalkTransmissionIntent"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents12SystemIntentP",
+          "text": "SystemIntent"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppIntents/PushToTalkTransmissionIntent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PushToTalkTransmissionIntent",
+      "type": "topic",
+      "url": "/documentation/AppIntents/PushToTalkTransmissionIntent"
+    },
+    "doc://com.apple.documentation/documentation/Swift/concurrency": {
+      "abstract": [
+        {
+          "text": "Perform asynchronous and parallel operations.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Swift/concurrency",
+      "kind": "article",
+      "role": "article",
+      "title": "Concurrency",
+      "type": "topic",
+      "url": "/documentation/Swift/concurrency"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/Button": {
+      "abstract": [
+        {
+          "text": "A control that initiates an action.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Button"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Label"
+        },
+        {
+          "kind": "text",
+          "text": "> "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Label"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Button",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Button",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/Button"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/Button/init(_:intent:)-7urde": {
+      "abstract": [
+        {
+          "text": "Creates a button that performs an `AppIntent` and generates its label from a localized string key.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "titleKey"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI18LocalizedStringKeyV",
+          "text": "LocalizedStringKey"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "intent"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents0A6IntentP",
+          "text": "AppIntent"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Button/init(_:intent:)-7urde",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(_:intent:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/Button/init(_:intent:)-7urde"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/Link": {
+      "abstract": [
+        {
+          "text": "A control for navigating to a URL.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Link"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Label"
+        },
+        {
+          "kind": "text",
+          "text": "> "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Label"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Link",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Link",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/Link"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/Toggle": {
+      "abstract": [
+        {
+          "text": "A control that toggles between on and off states.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Toggle"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Label"
+        },
+        {
+          "kind": "text",
+          "text": "> "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Label"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Toggle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Toggle",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/Toggle"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/Toggle/init(isOn:intent:label:)": {
+      "abstract": [
+        {
+          "text": "Creates a toggle performing an `AppIntent`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "I"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "isOn"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "intent"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "I"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:7SwiftUI11ViewBuilderV",
+          "text": "ViewBuilder"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "externalParam",
+          "text": "label"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Label"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "I"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents0A6IntentP",
+          "text": "AppIntent"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Toggle/init(isOn:intent:label:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(isOn:intent:label:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/Toggle/init(isOn:intent:label:)"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/ToggleStyle": {
+      "abstract": [
+        {
+          "text": "The appearance and behavior of a toggle.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ToggleStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/ToggleStyle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ToggleStyle",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/ToggleStyle"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/ToggleStyleConfiguration/isOn": {
+      "abstract": [
+        {
+          "text": "A binding to a state property that indicates whether the toggle is on.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:7SwiftUI7BindingV",
+          "text": "Binding"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isOn"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "nonmutating"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "set"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/ToggleStyleConfiguration/isOn",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isOn",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/ToggleStyleConfiguration/isOn"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/View/invalidatableContent(_:)": {
+      "abstract": [
+        {
+          "text": "Mark the receiver as their content might be invalidated.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "invalidatableContent"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "invalidatable"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": " = true) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/invalidatableContent(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "invalidatableContent(_:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View/invalidatableContent(_:)"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/View/widgetURL(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the URL to open in the containing app when the user clicks the widget.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "widgetURL"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "url"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/widgetURL(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "widgetURL(_:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View/widgetURL(_:)"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/design/human-interface-guidelines/components/system-experiences/widgets": {
+      "identifier": "https://developer.apple.com/design/human-interface-guidelines/components/system-experiences/widgets",
+      "title": "Human Interface Guidelines > Widgets",
+      "titleInlineContent": [
+        {
+          "text": "Human Interface Guidelines > Widgets",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/design/human-interface-guidelines/components/system-experiences/widgets"
+    },
+    "https://developer.apple.com/videos/play/wwdc2023/10027": {
+      "identifier": "https://developer.apple.com/videos/play/wwdc2023/10027",
+      "title": "Session 10027: Bring widgets to new places",
+      "titleInlineContent": [
+        {
+          "text": "Session 10027: Bring widgets to new places",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/videos/play/wwdc2023/10027"
+    },
+    "https://docs.swift.org/swift-book/documentation/the-swift-programming-language/concurrency/": {
+      "identifier": "https://docs.swift.org/swift-book/documentation/the-swift-programming-language/concurrency/",
+      "title": "The Swift Programming Language > Concurrency",
+      "titleInlineContent": [
+        {
+          "text": "The Swift Programming Language > Concurrency",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://docs.swift.org/swift-book/documentation/the-swift-programming-language/concurrency/"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Interactivity",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.WidgetKit/documentation/WidgetKit/Animating-data-updates-in-widgets-and-live-activities",
+        "doc://com.apple.WidgetKit/documentation/WidgetKit/Linking-to-specific-app-scenes-from-your-widget-or-Live-Activity"
+      ],
+      "title": "Interactivity"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Interactivity",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.WidgetKit/documentation/WidgetKit/Animating-data-updates-in-widgets-and-live-activities",
+                "doc://com.apple.WidgetKit/documentation/WidgetKit/Linking-to-specific-app-scenes-from-your-widget-or-Live-Activity"
+              ],
+              "title": "Interactivity"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/widgetkit/adding-interactivity-to-widgets-and-live-activities"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/widgetkit/adding-interactivity-to-widgets-and-live-activities"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

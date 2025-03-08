@@ -1,0 +1,997 @@
+{
+  "abstract": [
+    {
+      "text": "Implement a variety of postprocessing techniques to alter RealityKit rendering.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/realitykit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/realitykit/implementing_special_rendering_effects_with_realitykit_postprocessing"
+  },
+  "kind": "article",
+  "legacy_identifier": 3905678,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "15.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "15.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "16.3",
+        "introducedAt": "13.3",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Implementing Special Rendering Effects with RealityKit Postprocessing"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In iOS 15 and later, and macOS 12 and later, you can modify RealityKit’s rendered frame buffer before your app displays it by registering a callback function. This sample demonstrates how to create a variety of different postprocess effects for a Realitykit scene using four different technologies:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Metal kernel functions",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Metal Performance Shaders",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Core Image",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "SpriteKit rendering",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "It also demonstrates how to combine multiple postprocess technologies by using both Metal kernel functions and Core Image filters at the same time. The generated app displays a Reality Composer scene in AR and lets you select different postprocessing effects from a list.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "3971981",
+          "level": 3,
+          "text": "Configure the Sample Code Project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because this sample app uses RealityKit, you can’t run it in Simulator — you need to run it on a device. To run this sample, you need the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A Mac running macOS 12 or later",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Xcode 13 or later",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "An iOS device running iOS or iPadOS 15 or later",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "3971982",
+          "level": 3,
+          "text": "Create a Postprocess Callback Function",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before the app can register a callback function, it has to have one. A postprocess callback takes a single ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ARView/PostProcessContext",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " parameter and no return value. When the app registers the function, RealityKit calls it every frame before displaying the rendered scene. Any changes made to the scene are shown to the user.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "PostProcessContext",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter it passes to your callback function includes ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLTexture",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " containing the rendered scene, the scene’s depth map, and an output texture that the callback function uses to encode the modified framebuffer into. Once registered, the callback function must encode the modified frame buffer to ",
+              "type": "text"
+            },
+            {
+              "code": "context.targetColorTexture",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", or RealityKit draws nothing.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Callback functions can implement postprocessing effects using any drawing APIs as long as the app can encode the output of the API into a Metal texture. However, because RealityKit calls the function every frame, callbacks should only use APIs like Core Image and Metal kernel functions that do their work on the GPU. Modifying the frame buffer on the CPU can have a severe impact on performance and can prevent your app from rendering at a full 60 fps.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func postProcess(context: ARView.PostProcessContext) {",
+            "    // Do postprocessing here.",
+            "}"
+          ],
+          "metadata": {
+            "anchor": "3971960",
+            "title": "Listing 1"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "3971983",
+          "level": 3,
+          "text": "Load Textures and Create State Properties",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In order to avoid hitches and other performance problems, this project performs several tasks during startup that can’t be completed in 1/60th of a second or less. For example, the glass distortion effect uses a texture, so the project loads that texture and stores it in a property before registering its callback function, like this:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "guard let imageURL = Bundle.main.url(forResource: \"noise\",",
+            "                                     withExtension: \"png\") else {",
+            "    fatalError(\"Unable to create URL to noise texture.\")",
+            "}",
+            "guard let texture = CIImage(contentsOf: imageURL) else {",
+            "    fatalError(\"Unable to load Musgrave.png.\")",
+            "}",
+            "noiseTexture = texture"
+          ],
+          "metadata": {
+            "anchor": "3971962",
+            "title": "Listing 2"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For each of the project’s Metal postprocessing effects, it loads the Metal kernel function and uses it to create a pipeline state property. Here’s how it loads the kernel function called ",
+              "type": "text"
+            },
+            {
+              "code": "postProcessPixelate",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", used to implement the pixelate effect:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "guard let library = device.makeDefaultLibrary() else {",
+            "    fatalError()",
+            "}",
+            "",
+            "if let pixelateKernel = library.makeFunction(name: \"postProcessPixelate\") {",
+            "    pixelatePipeline = try? device.makeComputePipelineState(function: pixelateKernel)",
+            "}"
+          ],
+          "metadata": {
+            "anchor": "3971963",
+            "title": "Listing 3"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because the project also uses Core Image effects, it creates a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreimage/cicontext",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " before registering the callback function. Unlike pipeline state properties, the project only needs one ",
+              "type": "text"
+            },
+            {
+              "code": "CIContext",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", even though it uses several Core Image filters.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "if let device = MTLCreateSystemDefaultDevice() {",
+            "    ciContext = CIContext(mtlDevice: device)",
+            "}"
+          ],
+          "metadata": {
+            "anchor": "3971964",
+            "title": "Listing 4"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The app also demonstrates rendering a SpriteKit scene on top of RealityKit’s frame buffer, so it loads the SpriteKit scene and creates a renderer during setup.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "/// The SpriteKit scene to render.",
+            "var spriteKitScene = SKScene(fileNamed: \"GameScene\")",
+            "",
+            "/// A renderer for doing postprocessing with SpriteKit.",
+            "var skRenderer: SKRenderer!"
+          ],
+          "metadata": {
+            "anchor": "3971965",
+            "title": "Listing 5"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In addition to creating the SpriteKit renderer, it also configures the renderer so that it animates and renders over a clear background.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func loadSpriteKit(device: MTLDevice) {",
+            "    self.spriteKitScene?.isPaused = false",
+            "    self.skRenderer = SKRenderer(device: device)",
+            "    self.skRenderer.scene = spriteKitScene",
+            "    self.skRenderer.scene?.scaleMode = .aspectFill",
+            "    self.skRenderer.scene?.backgroundColor = .clear",
+            "    self.skRenderer.showsNodeCount = true",
+            "}"
+          ],
+          "metadata": {
+            "anchor": "3971966",
+            "title": "Listing 6"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "3971984",
+          "level": 3,
+          "text": "Register for the Postprocess Render Callback",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After completing its setup tasks, the project registers its callback function with RealityKit:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "arView.renderCallbacks.postProcess = self.postProcess"
+          ],
+          "metadata": {
+            "anchor": "3971968",
+            "title": "Listing 7"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Once that code runs, RealityKit executes the callback function every frame. To disable the postprocess effect, the project could set the postprocess render callback to ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", like this:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "arView.renderCallbacks.postProcess = self.nil"
+          ],
+          "metadata": {
+            "anchor": "3971969",
+            "title": "Listing 8"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Rather than constantly register and unregister the callback as the user selects different options, this project takes a slightly different approach. When no postprocessing effect is active, the callback uses a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLBlitCommandEncoder",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to copy the rendered scene contained in ",
+              "type": "text"
+            },
+            {
+              "code": "context.sourceColorTexture",
+              "type": "codeVoice"
+            },
+            {
+              "text": " directly to the output texture ",
+              "type": "text"
+            },
+            {
+              "code": "context.targetColorTexture",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", like this:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func postEffectNone(context: ARView.PostProcessContext) {",
+            "    let blitEncoder = context.commandBuffer.makeBlitCommandEncoder()",
+            "    blitEncoder?.copy(from: context.sourceColorTexture, to: context.targetColorTexture)",
+            "    blitEncoder?.endEncoding()",
+            "}"
+          ],
+          "metadata": {
+            "anchor": "3971970",
+            "title": "Listing 9"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "3971985",
+          "level": 3,
+          "text": "Encode Metal Kernel Function Output",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To encode the output of its Metal kernel functions, this project uses a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " with the appropriate pipeline state property, like this:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "guard let encoder = context.commandBuffer.makeComputeCommandEncoder() else {",
+            "    return",
+            "}",
+            "",
+            "encoder.setComputePipelineState(pipeline)",
+            "parameterHandler?(encoder)",
+            "",
+            "let threadsPerGrid = MTLSize(width: context.sourceColorTexture.width,",
+            "                             height: context.sourceColorTexture.height,",
+            "                             depth: 1)",
+            "",
+            "let w = pixelatePipeline.threadExecutionWidth",
+            "let h = pixelatePipeline.maxTotalThreadsPerThreadgroup / w",
+            "let threadsPerThreadgroup = MTLSizeMake(w, h, 1)",
+            "",
+            "encoder.dispatchThreads(threadsPerGrid,",
+            "                        threadsPerThreadgroup: threadsPerThreadgroup)",
+            "encoder.endEncoding()"
+          ],
+          "metadata": {
+            "anchor": "3971972",
+            "title": "Listing 10"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "3971986",
+          "level": 3,
+          "text": "Encode Core Image Output",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the app is displaying a Core Image effect, it instead creates a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreimage/cirenderdestination",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " using ",
+              "type": "text"
+            },
+            {
+              "code": "context.compatibleTargetTexture",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as its destination. The ",
+              "type": "text"
+            },
+            {
+              "code": "CIRenderDestination",
+              "type": "codeVoice"
+            },
+            {
+              "text": " encodes the result of the Core Image filter to the output texture.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func postProcessCoreImage(context: ARView.PostProcessContext,",
+            "                          filter: CIFilter) {",
+            "    ",
+            "    guard let input = CIImage(mtlTexture: context.sourceColorTexture) else {",
+            "        fatalError(\"Unable to create CIImage from Metal texture.\")",
+            "    }",
+            "    filter.setValue(input, forKey: kCIInputImageKey)",
+            "    guard let output = filter.outputImage else {",
+            "        fatalError(\"Error applying filter to frame buffer.\")",
+            "    }",
+            "    ",
+            "    let destination = CIRenderDestination(mtlTexture: context.compatibleTargetTexture,",
+            "                                          commandBuffer: context.commandBuffer)",
+            "    destination.isFlipped = false",
+            "    _ = try? self.ciContext.startTask(toRender: output, to: destination)",
+            "}"
+          ],
+          "metadata": {
+            "anchor": "3971974",
+            "title": "Listing 11"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "3971987",
+          "level": 3,
+          "text": "Encode Metal Performance Shader Output",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When a Metal Performance Shader (MPS) effect is active, the project calls the filter’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsunaryimagekernel/1618741-encode",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method, passing the command buffer, source texture, and target texture from the context:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func postEffectLaPlacian(context: ARView.PostProcessContext) {",
+            "    let filter = MPSImageLaplacian()",
+            "    filter.encode(commandBuffer: context.commandBuffer,",
+            "                  sourceTexture: context.sourceColorTexture,",
+            "                  destinationTexture: context.compatibleTargetTexture)",
+            "}"
+          ],
+          "metadata": {
+            "anchor": "3971976",
+            "title": "Listing 12"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "3971988",
+          "level": 3,
+          "text": "Encode SpriteKit Render Output",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In addition to using kernel functions, MPS, and Core Image to process the framebuffer, this project also demonstrates how to render a SpriteKit scene on top of RealityKit’s rendered scene. In the callback function, SpriteKit renders the frame, then uses an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLBlitCommandEncoder",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to overlay the SpriteKit scene, which renders over a transparent background, on top of the frame buffer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func postEffectSpriteKit(context: ARView.PostProcessContext) {",
+            "    let blitEncoder = context.commandBuffer.makeBlitCommandEncoder()",
+            "    blitEncoder?.copy(from: context.sourceColorTexture, to: context.targetColorTexture)",
+            "    blitEncoder?.endEncoding()",
+            "    ",
+            "    let desc = MTLRenderPassDescriptor()",
+            "    desc.colorAttachments[0].loadAction = .load",
+            "    desc.colorAttachments[0].storeAction = .store",
+            "    desc.colorAttachments[0].texture = context.targetColorTexture",
+            "    ",
+            "    skRenderer.update(atTime: context.time)",
+            "    skRenderer.render(withViewport: CGRect(x: 0, y: 0, width: context.targetColorTexture.width, height: context.targetColorTexture.height),",
+            "                      commandBuffer: context.commandBuffer,",
+            "                      renderPassDescriptor: desc)",
+            "}"
+          ],
+          "metadata": {
+            "anchor": "3971978",
+            "title": "Listing 13"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.RealityKit/documentation/RealityKit/ARView/PostProcessContext": {
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ARView/PostProcessContext",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ARView.PostProcessContext",
+      "type": "topic",
+      "url": "/documentation/realitykit/arview/postprocesscontext"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cicontext": {
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cicontext",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CIContext",
+      "type": "topic",
+      "url": "/documentation/coreimage/cicontext"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cirenderdestination": {
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cirenderdestination",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CIRenderDestination",
+      "type": "topic",
+      "url": "/documentation/coreimage/cirenderdestination"
+    },
+    "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsunaryimagekernel/1618741-encode": {
+      "identifier": "doc://com.apple.documentation/documentation/metalperformanceshaders/mpsunaryimagekernel/1618741-encode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "encode(commandBuffer:sourceTexture:destinationTexture:)",
+      "type": "topic",
+      "url": "/documentation/metalperformanceshaders/mpsunaryimagekernel/1618741-encode"
+    },
+    "doc://com.apple.documentation/documentation/realitykit": {
+      "identifier": "doc://com.apple.documentation/documentation/realitykit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "RealityKit",
+      "type": "topic",
+      "url": "/documentation/realitykit"
+    },
+    "doc://com.apple.documentation/documentation/realitykit/implementing_special_rendering_effects_with_realitykit_postprocessing#3971960": {
+      "identifier": "doc://com.apple.documentation/documentation/realitykit/implementing_special_rendering_effects_with_realitykit_postprocessing#3971960",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/realitykit/implementing_special_rendering_effects_with_realitykit_postprocessing#3971960"
+    },
+    "doc://com.apple.documentation/documentation/realitykit/implementing_special_rendering_effects_with_realitykit_postprocessing#3971962": {
+      "identifier": "doc://com.apple.documentation/documentation/realitykit/implementing_special_rendering_effects_with_realitykit_postprocessing#3971962",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 2",
+      "type": "section",
+      "url": "/documentation/realitykit/implementing_special_rendering_effects_with_realitykit_postprocessing#3971962"
+    },
+    "doc://com.apple.documentation/documentation/realitykit/implementing_special_rendering_effects_with_realitykit_postprocessing#3971963": {
+      "identifier": "doc://com.apple.documentation/documentation/realitykit/implementing_special_rendering_effects_with_realitykit_postprocessing#3971963",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 3",
+      "type": "section",
+      "url": "/documentation/realitykit/implementing_special_rendering_effects_with_realitykit_postprocessing#3971963"
+    },
+    "doc://com.apple.documentation/documentation/realitykit/implementing_special_rendering_effects_with_realitykit_postprocessing#3971964": {
+      "identifier": "doc://com.apple.documentation/documentation/realitykit/implementing_special_rendering_effects_with_realitykit_postprocessing#3971964",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 4",
+      "type": "section",
+      "url": "/documentation/realitykit/implementing_special_rendering_effects_with_realitykit_postprocessing#3971964"
+    },
+    "doc://com.apple.documentation/documentation/realitykit/implementing_special_rendering_effects_with_realitykit_postprocessing#3971965": {
+      "identifier": "doc://com.apple.documentation/documentation/realitykit/implementing_special_rendering_effects_with_realitykit_postprocessing#3971965",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 5",
+      "type": "section",
+      "url": "/documentation/realitykit/implementing_special_rendering_effects_with_realitykit_postprocessing#3971965"
+    },
+    "doc://com.apple.documentation/documentation/realitykit/implementing_special_rendering_effects_with_realitykit_postprocessing#3971966": {
+      "identifier": "doc://com.apple.documentation/documentation/realitykit/implementing_special_rendering_effects_with_realitykit_postprocessing#3971966",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 6",
+      "type": "section",
+      "url": "/documentation/realitykit/implementing_special_rendering_effects_with_realitykit_postprocessing#3971966"
+    },
+    "doc://com.apple.documentation/documentation/realitykit/implementing_special_rendering_effects_with_realitykit_postprocessing#3971968": {
+      "identifier": "doc://com.apple.documentation/documentation/realitykit/implementing_special_rendering_effects_with_realitykit_postprocessing#3971968",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 7",
+      "type": "section",
+      "url": "/documentation/realitykit/implementing_special_rendering_effects_with_realitykit_postprocessing#3971968"
+    },
+    "doc://com.apple.documentation/documentation/realitykit/implementing_special_rendering_effects_with_realitykit_postprocessing#3971969": {
+      "identifier": "doc://com.apple.documentation/documentation/realitykit/implementing_special_rendering_effects_with_realitykit_postprocessing#3971969",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 8",
+      "type": "section",
+      "url": "/documentation/realitykit/implementing_special_rendering_effects_with_realitykit_postprocessing#3971969"
+    },
+    "doc://com.apple.documentation/documentation/realitykit/implementing_special_rendering_effects_with_realitykit_postprocessing#3971970": {
+      "identifier": "doc://com.apple.documentation/documentation/realitykit/implementing_special_rendering_effects_with_realitykit_postprocessing#3971970",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 9",
+      "type": "section",
+      "url": "/documentation/realitykit/implementing_special_rendering_effects_with_realitykit_postprocessing#3971970"
+    },
+    "doc://com.apple.documentation/documentation/realitykit/implementing_special_rendering_effects_with_realitykit_postprocessing#3971972": {
+      "identifier": "doc://com.apple.documentation/documentation/realitykit/implementing_special_rendering_effects_with_realitykit_postprocessing#3971972",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 10",
+      "type": "section",
+      "url": "/documentation/realitykit/implementing_special_rendering_effects_with_realitykit_postprocessing#3971972"
+    },
+    "doc://com.apple.documentation/documentation/realitykit/implementing_special_rendering_effects_with_realitykit_postprocessing#3971974": {
+      "identifier": "doc://com.apple.documentation/documentation/realitykit/implementing_special_rendering_effects_with_realitykit_postprocessing#3971974",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 11",
+      "type": "section",
+      "url": "/documentation/realitykit/implementing_special_rendering_effects_with_realitykit_postprocessing#3971974"
+    },
+    "doc://com.apple.documentation/documentation/realitykit/implementing_special_rendering_effects_with_realitykit_postprocessing#3971976": {
+      "identifier": "doc://com.apple.documentation/documentation/realitykit/implementing_special_rendering_effects_with_realitykit_postprocessing#3971976",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 12",
+      "type": "section",
+      "url": "/documentation/realitykit/implementing_special_rendering_effects_with_realitykit_postprocessing#3971976"
+    },
+    "doc://com.apple.documentation/documentation/realitykit/implementing_special_rendering_effects_with_realitykit_postprocessing#3971978": {
+      "identifier": "doc://com.apple.documentation/documentation/realitykit/implementing_special_rendering_effects_with_realitykit_postprocessing#3971978",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 13",
+      "type": "section",
+      "url": "/documentation/realitykit/implementing_special_rendering_effects_with_realitykit_postprocessing#3971978"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLBlitCommandEncoder": {
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLBlitCommandEncoder",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MTLBlitCommandEncoder",
+      "type": "topic",
+      "url": "/documentation/metal/mtlblitcommandencoder"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder": {
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLComputeCommandEncoder",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MTLComputeCommandEncoder",
+      "type": "topic",
+      "url": "/documentation/metal/mtlcomputecommandencoder"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLTexture": {
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLTexture",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MTLTexture",
+      "type": "topic",
+      "url": "/documentation/metal/mtltexture"
+    },
+    "https://docs-assets.developer.apple.com/published/27a46fb481/ImplementingSpecialRenderingEffectsWithRealityKitPostprocessing.zip": {
+      "checksum": "863a3c69537be879b55983e0438add30e8ee5de430d116616c15c6a9e488b86f2fdff2a058958aa681724115c6f2c868c37edf9a759abc6a89087c26298645ad",
+      "identifier": "https://docs-assets.developer.apple.com/published/27a46fb481/ImplementingSpecialRenderingEffectsWithRealityKitPostprocessing.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/27a46fb481/ImplementingSpecialRenderingEffectsWithRealityKitPostprocessing.zip"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "https://docs-assets.developer.apple.com/published/27a46fb481/ImplementingSpecialRenderingEffectsWithRealityKitPostprocessing.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variants": [
+    {
+      "paths": [
+        "documentation/realitykit/implementing_special_rendering_effects_with_realitykit_postprocessing"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

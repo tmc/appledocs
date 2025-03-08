@@ -1,0 +1,1115 @@
+{
+  "abstract": [
+    {
+      "text": "A version according to the semantic versioning specification.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Version"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:18PackageDescription7VersionV",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "struct"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "Version"
+      }
+    ],
+    "modules": [
+      {
+        "name": "PackageDescription"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "Version"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "Version"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "Version"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A package version consists of three integers separated by periods, for example ",
+              "type": "text"
+            },
+            {
+              "code": "1.0.0",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". It must conform to the semantic versioning standard in order to ensure",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that your package behaves in a predictable manner once developers update their",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "package dependency to a newer version. To achieve predictability, the semantic versioning specification proposes a set of rules and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "requirements that dictate how version numbers are assigned and incremented. To learn more about the semantic versioning specification, visit",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://semver.org",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The first digit of a version, or ",
+                        "type": "text"
+                      },
+                      {
+                        "inlineContent": [
+                          {
+                            "text": "major version",
+                            "type": "text"
+                          }
+                        ],
+                        "type": "emphasis"
+                      },
+                      {
+                        "text": ", signifies breaking changes to the API that require updates to existing clients. For example, the semantic versioning specification considers renaming an existing type, removing a method, or changing a method’s signature breaking changes. This also includes any backward-incompatible bug fixes or behavioral changes of the existing API.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "The major version",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Update the second digit of a version, or ",
+                        "type": "text"
+                      },
+                      {
+                        "inlineContent": [
+                          {
+                            "text": "minor version",
+                            "type": "text"
+                          }
+                        ],
+                        "type": "emphasis"
+                      },
+                      {
+                        "text": ", if you add functionality in a backward-compatible manner. For example, the semantic versioning specification considers adding a new method or type without changing any other API to be backward-compatible.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "The minor version",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Increase the third digit of a version, or ",
+                        "type": "text"
+                      },
+                      {
+                        "inlineContent": [
+                          {
+                            "text": "patch version",
+                            "type": "text"
+                          }
+                        ],
+                        "type": "emphasis"
+                      },
+                      {
+                        "text": ", if you’re making a backward-compatible bug fix. This allows clients to benefit from bugfixes to your package without incurring any maintenance burden.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "The patch version",
+                    "type": "text"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/s:SL": {
+      "abstract": [
+        {
+          "text": "A type that can be compared using the relational operators `<`, `<=`, `>=`, and `>`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Comparable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SL",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Comparable",
+      "type": "topic",
+      "url": "/documentation/Swift/Comparable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s25LosslessStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type that can be represented as a string in a lossless, unambiguous way.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LosslessStringConvertible"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s23CustomStringConvertibleP",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s25LosslessStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "LosslessStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/LosslessStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s26ExpressibleByStringLiteralP": {
+      "abstract": [
+        {
+          "text": "A type that can be initialized with a string literal.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ExpressibleByStringLiteral"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s43ExpressibleByExtendedGraphemeClusterLiteralP",
+          "text": "ExpressibleByExtendedGraphemeClusterLiteral"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s26ExpressibleByStringLiteralP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ExpressibleByStringLiteral",
+      "type": "topic",
+      "url": "/documentation/Swift/ExpressibleByStringLiteral"
+    },
+    "doc://com.externally.resolved.symbol/s:s33ExpressibleByUnicodeScalarLiteralP": {
+      "abstract": [
+        {
+          "text": "A type that can be initialized with a string literal containing a single Unicode scalar value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ExpressibleByUnicodeScalarLiteral"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s33ExpressibleByUnicodeScalarLiteralP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ExpressibleByUnicodeScalarLiteral",
+      "type": "topic",
+      "url": "/documentation/Swift/ExpressibleByUnicodeScalarLiteral"
+    },
+    "doc://com.externally.resolved.symbol/s:s43ExpressibleByExtendedGraphemeClusterLiteralP": {
+      "abstract": [
+        {
+          "text": "A type that can be initialized with a string literal containing a single extended grapheme cluster.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ExpressibleByExtendedGraphemeClusterLiteral"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s33ExpressibleByUnicodeScalarLiteralP",
+          "text": "ExpressibleByUnicodeScalarLiteral"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s43ExpressibleByExtendedGraphemeClusterLiteralP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ExpressibleByExtendedGraphemeClusterLiteral",
+      "type": "topic",
+      "url": "/documentation/Swift/ExpressibleByExtendedGraphemeClusterLiteral"
+    },
+    "doc://com.externally.resolved.symbol/s:s8CopyableP": {
+      "abstract": [
+        {
+          "text": "A type whose values can be implicitly or explicitly copied.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Copyable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8CopyableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Copyable",
+      "type": "topic",
+      "url": "/documentation/Swift/Copyable"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    },
+    "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription": {
+      "abstract": [
+        {
+          "text": "Create reusable code, organize it in a lightweight way, and share it across your projects and with other developers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "PackageDescription",
+      "type": "topic",
+      "url": "/documentation/packagedescription"
+    },
+    "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Package/Dependency/kind-swift.property": {
+      "abstract": [
+        {
+          "text": "A description of the package dependency.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kind"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:18PackageDescription0A0C",
+          "text": "Package"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:18PackageDescription0A0C10DependencyC",
+          "text": "Dependency"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:18PackageDescription0A0C10DependencyC4KindO",
+          "text": "Kind"
+        }
+      ],
+      "identifier": "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Package/Dependency/kind-swift.property",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kind",
+      "type": "topic",
+      "url": "/documentation/packagedescription/package/dependency/kind-swift.property"
+    },
+    "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Version": {
+      "abstract": [
+        {
+          "text": "A version according to the semantic versioning specification.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Version"
+        }
+      ],
+      "identifier": "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Version",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Version"
+        }
+      ],
+      "role": "symbol",
+      "title": "Version",
+      "type": "topic",
+      "url": "/documentation/packagedescription/version"
+    },
+    "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Version/Comparable-Implementations": {
+      "abstract": [],
+      "identifier": "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Version/Comparable-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Comparable Implementations",
+      "type": "topic",
+      "url": "/documentation/packagedescription/version/comparable-implementations"
+    },
+    "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Version/CustomStringConvertible-Implementations": {
+      "abstract": [],
+      "identifier": "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Version/CustomStringConvertible-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CustomStringConvertible Implementations",
+      "type": "topic",
+      "url": "/documentation/packagedescription/version/customstringconvertible-implementations"
+    },
+    "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Version/Equatable-Implementations": {
+      "abstract": [],
+      "identifier": "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Version/Equatable-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Equatable Implementations",
+      "type": "topic",
+      "url": "/documentation/packagedescription/version/equatable-implementations"
+    },
+    "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Version/ExpressibleByExtendedGraphemeClusterLiteral-Implementations": {
+      "abstract": [],
+      "identifier": "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Version/ExpressibleByExtendedGraphemeClusterLiteral-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "ExpressibleByExtendedGraphemeClusterLiteral Implementations",
+      "type": "topic",
+      "url": "/documentation/packagedescription/version/expressiblebyextendedgraphemeclusterliteral-implementations"
+    },
+    "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Version/ExpressibleByStringLiteral-Implementations": {
+      "abstract": [],
+      "identifier": "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Version/ExpressibleByStringLiteral-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "ExpressibleByStringLiteral Implementations",
+      "type": "topic",
+      "url": "/documentation/packagedescription/version/expressiblebystringliteral-implementations"
+    },
+    "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Version/ExpressibleByUnicodeScalarLiteral-Implementations": {
+      "abstract": [],
+      "identifier": "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Version/ExpressibleByUnicodeScalarLiteral-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "ExpressibleByUnicodeScalarLiteral Implementations",
+      "type": "topic",
+      "url": "/documentation/packagedescription/version/expressiblebyunicodescalarliteral-implementations"
+    },
+    "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Version/LosslessStringConvertible-Implementations": {
+      "abstract": [],
+      "identifier": "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Version/LosslessStringConvertible-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "LosslessStringConvertible Implementations",
+      "type": "topic",
+      "url": "/documentation/packagedescription/version/losslessstringconvertible-implementations"
+    },
+    "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Version/buildMetadataIdentifiers": {
+      "abstract": [
+        {
+          "text": "The build metadata of this version according to the semantic versioning standard, such as a commit hash.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "buildMetadataIdentifiers"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Version/buildMetadataIdentifiers",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "buildMetadataIdentifiers",
+      "type": "topic",
+      "url": "/documentation/packagedescription/version/buildmetadataidentifiers"
+    },
+    "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Version/init(_:_:_:prereleaseIdentifiers:buildMetadataIdentifiers:)": {
+      "abstract": [
+        {
+          "text": "Initializes a version struct with the provided components of a semantic version.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "prereleaseIdentifiers"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "buildMetadataIdentifiers"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "])"
+        }
+      ],
+      "identifier": "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Version/init(_:_:_:prereleaseIdentifiers:buildMetadataIdentifiers:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(_:_:_:prereleaseIdentifiers:buildMetadataIdentifiers:)",
+      "type": "topic",
+      "url": "/documentation/packagedescription/version/init(_:_:_:prereleaseidentifiers:buildmetadataidentifiers:)"
+    },
+    "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Version/major": {
+      "abstract": [
+        {
+          "text": "The major version according to the semantic versioning standard.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "major"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Version/major",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "major",
+      "type": "topic",
+      "url": "/documentation/packagedescription/version/major"
+    },
+    "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Version/minor": {
+      "abstract": [
+        {
+          "text": "The minor version according to the semantic versioning standard.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "minor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Version/minor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "minor",
+      "type": "topic",
+      "url": "/documentation/packagedescription/version/minor"
+    },
+    "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Version/patch": {
+      "abstract": [
+        {
+          "text": "The patch version according to the semantic versioning standard.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "patch"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Version/patch",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "patch",
+      "type": "topic",
+      "url": "/documentation/packagedescription/version/patch"
+    },
+    "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Version/prereleaseIdentifiers": {
+      "abstract": [
+        {
+          "text": "The pre-release identifier according to the semantic versioning standard, such as ",
+          "type": "text"
+        },
+        {
+          "code": "-beta.1",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "prereleaseIdentifiers"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Version/prereleaseIdentifiers",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "prereleaseIdentifiers",
+      "type": "topic",
+      "url": "/documentation/packagedescription/version/prereleaseidentifiers"
+    },
+    "https://semver.org": {
+      "identifier": "https://semver.org",
+      "title": "Semantic Versioning 2.0.0",
+      "titleInlineContent": [
+        {
+          "text": "Semantic Versioning 2.0.0",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://semver.org"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:SL",
+        "doc://com.externally.resolved.symbol/s:s8CopyableP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:s43ExpressibleByExtendedGraphemeClusterLiteralP",
+        "doc://com.externally.resolved.symbol/s:s26ExpressibleByStringLiteralP",
+        "doc://com.externally.resolved.symbol/s:s33ExpressibleByUnicodeScalarLiteralP",
+        "doc://com.externally.resolved.symbol/s:s25LosslessStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s8SendableP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Describing-a-Package-Dependency",
+      "generated": true,
+      "identifiers": [
+        "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Package/Dependency/kind-swift.property"
+      ],
+      "title": "Describing a Package Dependency"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Initializers",
+      "generated": true,
+      "identifiers": [
+        "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Version/init(_:_:_:prereleaseIdentifiers:buildMetadataIdentifiers:)"
+      ],
+      "title": "Initializers"
+    },
+    {
+      "anchor": "Instance-Properties",
+      "generated": true,
+      "identifiers": [
+        "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Version/buildMetadataIdentifiers",
+        "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Version/major",
+        "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Version/minor",
+        "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Version/patch",
+        "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Version/prereleaseIdentifiers"
+      ],
+      "title": "Instance Properties"
+    },
+    {
+      "anchor": "Default-Implementations",
+      "generated": true,
+      "identifiers": [
+        "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Version/Comparable-Implementations",
+        "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Version/CustomStringConvertible-Implementations",
+        "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Version/Equatable-Implementations",
+        "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Version/ExpressibleByExtendedGraphemeClusterLiteral-Implementations",
+        "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Version/ExpressibleByStringLiteral-Implementations",
+        "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Version/ExpressibleByUnicodeScalarLiteral-Implementations",
+        "doc://org.swift.swiftpm.packagedescription/documentation/PackageDescription/Version/LosslessStringConvertible-Implementations"
+      ],
+      "title": "Default Implementations"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/packagedescription/version"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

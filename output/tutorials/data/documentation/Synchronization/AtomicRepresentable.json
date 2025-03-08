@@ -1,0 +1,3056 @@
+{
+  "abstract": [
+    {
+      "text": "A type that supports atomic operations through a separate atomic storage",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "representation.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Swift/documentation/Synchronization"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Swift/documentation/Synchronization/AtomicRepresentable"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:15Synchronization19AtomicRepresentableP",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "protocol"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "AtomicRepresentable"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Synchronization"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "AtomicRepresentable"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "18.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "18.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "18.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "18.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "2.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "11.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Protocol",
+    "symbolKind": "protocol",
+    "title": "AtomicRepresentable"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AtomicRepresentable"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Types that conform to the ",
+              "type": "text"
+            },
+            {
+              "code": "AtomicRepresentable",
+              "type": "codeVoice"
+            },
+            {
+              "text": " protocol can be used as the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "Value",
+              "type": "codeVoice"
+            },
+            {
+              "text": " type parameter with the ",
+              "type": "text"
+            },
+            {
+              "code": "Atomic",
+              "type": "codeVoice"
+            },
+            {
+              "text": " type. Conformances that utilize",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "existing atomic storage representations as their own representation will get",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the primitive atomic operations available on ",
+              "type": "text"
+            },
+            {
+              "code": "Atomic",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for free. Such",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "operations include ",
+              "type": "text"
+            },
+            {
+              "code": "load",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "store",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "exchange",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "compareExchange",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "weakCompareExchange",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Conforming-to-the-AtomicRepresentable-protocol",
+          "level": 2,
+          "text": "Conforming to the AtomicRepresentable protocol",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Conforming your own custom types allow them to be used in the ",
+              "type": "text"
+            },
+            {
+              "code": "Atomic",
+              "type": "codeVoice"
+            },
+            {
+              "text": " type",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and get access to all of the primitive atomic operations explained above.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "There are two main ways to conform your type to ",
+              "type": "text"
+            },
+            {
+              "code": "AtomicRepresentable",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Using a predefined ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "RawRepresentable",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " conformance",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Manually conforming to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "AtomicRepresentable",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you custom type already conforms to ",
+              "type": "text"
+            },
+            {
+              "code": "RawRepresentable",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", then adding the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "AtomicRepresentable",
+              "type": "codeVoice"
+            },
+            {
+              "text": " conformance may be really simple! If the ",
+              "type": "text"
+            },
+            {
+              "code": "RawValue",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "associated type of your type is already itself an ",
+              "type": "text"
+            },
+            {
+              "code": "AtomicRepresentable",
+              "type": "codeVoice"
+            },
+            {
+              "text": ",",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "then all you need to do is add the conformance and you’re done!",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "enum TrafficLight: UInt8 {",
+            "  case red",
+            "  case yellow",
+            "  case green",
+            "}",
+            "",
+            "extension TrafficLight: AtomicRepresentable {}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "And that’s it! Here, we’re utilizing Swift’s automatic ",
+              "type": "text"
+            },
+            {
+              "code": "RawRepresentable",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "conformance synthesis for enums by declaring our “raw value” to be a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "UInt8",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". By adding the ",
+              "type": "text"
+            },
+            {
+              "code": "AtomicRepresentable",
+              "type": "codeVoice"
+            },
+            {
+              "text": " conformance, we automatically",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "figure out how to do the conformance from the ",
+              "type": "text"
+            },
+            {
+              "code": "RawRepresentable",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "implementation and do all of th necessary work for you. However, it is still",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "possible to customize this behavior using the manual method explained below.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Defining your own ",
+              "type": "text"
+            },
+            {
+              "code": "AtomicRepresentable",
+              "type": "codeVoice"
+            },
+            {
+              "text": " conformance is pretty simple. All",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "you have to do is decide what atomic storage representation fits best for",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "your type, and create the bidirectional relationship between the two.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// A point in an x-y coordinate system.",
+            "struct GridPoint {",
+            "  var x: Int",
+            "  var y: Int",
+            "}",
+            "",
+            "extension GridPoint: AtomicRepresentable {",
+            "  typealias AtomicRepresentation = WordPair.AtomicRepresentation",
+            "",
+            "  static func encodeAtomicRepresentation(",
+            "    _ value: consuming GridPoint",
+            "  ) -> AtomicRepresentation {",
+            "    let wordPair = WordPair(",
+            "      first: UInt(bitPattern: value.x),",
+            "      second: UInt(bitPattern: value.y)",
+            "    )",
+            "",
+            "    return WordPair.encodeAtomicRepresentation(wordPair)",
+            "  }",
+            "",
+            "  static func decodeAtomicRepresentation(",
+            "    _ representation: consuming AtomicRepresentation",
+            "  ) -> GridPoint {",
+            "    let wordPair = WordPair.decodeAtomicRepresentation(representation)",
+            "",
+            "    return GridPoint(",
+            "      x: Int(bitPattern: wordPair.first),",
+            "      y: Int(bitPattern: wordPair.second)",
+            "    )",
+            "  }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Here, we’re going to select ",
+              "type": "text"
+            },
+            {
+              "code": "WordPair",
+              "type": "codeVoice"
+            },
+            {
+              "text": "’s atomic storage representation as",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "our own. This is very important because we only get the atomic operations",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "like ",
+              "type": "text"
+            },
+            {
+              "code": "load",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "store",
+              "type": "codeVoice"
+            },
+            {
+              "text": " if our representation is one of the ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "fundamental",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "storage representations. Luckily for us, ",
+              "type": "text"
+            },
+            {
+              "code": "WordPair",
+              "type": "codeVoice"
+            },
+            {
+              "text": " does use one of these",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "types as its storage type.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In addition to selecting what storage representation our type will use, we",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "define two static functions that go from both our custom type to its",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "representation and the representation back to our own type. Because our",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "representation is the same as ",
+              "type": "text"
+            },
+            {
+              "code": "WordPair.AtomicRepresentation",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", we will",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "actually go through ",
+              "type": "text"
+            },
+            {
+              "code": "WordPair",
+              "type": "codeVoice"
+            },
+            {
+              "text": "’s ",
+              "type": "text"
+            },
+            {
+              "code": "AtomicRepresentable",
+              "type": "codeVoice"
+            },
+            {
+              "text": " conformance to help",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "define our own.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This is all you need to do to conform your custom type to the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "AtomicRepresentable",
+              "type": "codeVoice"
+            },
+            {
+              "text": " protocol. From here, you can use this type in all of",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the primitive atomic operations like shown below:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func atomicGridPoint(_ gridPoint: Atomic<GridPoint>) {",
+            "  let newGridPoint = GridPoint(x: 123, y: -456)",
+            "",
+            "  let oldGridPoint1 = gridPoint.load(ordering: .relaxed)",
+            "",
+            "  gridPoint.store(newGridPoint, ordering: .releasing)",
+            "",
+            "  let oldGridPoint2 = gridPoint.exchange(",
+            "    desired: oldGridPoint1,",
+            "    ordering: .acquiringAndReleasing",
+            "  )",
+            "",
+            "  let (exchanged1, oldGridPoint2) = gridPoint.compareExchange(",
+            "    expected: oldGridPoint1,",
+            "    desired: newGridPoint,",
+            "    ordering: .sequentiallyConsistent",
+            "  )",
+            "",
+            "  let (exchanged2, oldGridPoint3) = gridPoint.weakCompareExchange(",
+            "    expected: newGridPoint,",
+            "    desired: oldGridPoint2,",
+            "    ordering: .relaxed",
+            "  )",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "List-of-Fundamental-Atomic-Representations",
+          "level": 2,
+          "text": "List of Fundamental Atomic Representations",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When defining your own ",
+              "type": "text"
+            },
+            {
+              "code": "AtomicRepresentable",
+              "type": "codeVoice"
+            },
+            {
+              "text": " conformance, it is critical",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that your custom type should choose from the following list of types as its",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "own ",
+              "type": "text"
+            },
+            {
+              "code": "AtomicRepresentation",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "UInt8.AtomicRepresentation",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "UInt16.AtomicRepresentation",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "UInt32.AtomicRepresentation",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "UInt64.AtomicRepresentation",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "UInt.AtomicRepresentation",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "Int8.AtomicRepresentation",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "Int16.AtomicRepresentation",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "Int32.AtomicRepresentation",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "Int64.AtomicRepresentation",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "Int.AtomicRepresentation",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "WordPair.AtomicRepresentation",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "code": "Int8.AtomicRepresentation",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " is the same type as",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "code": "UInt8.AtomicRepresentation",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " and the same is true for all of the same",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "sized integer types. If your type wraps an unsigned integer, you should",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "prefer to use an unsigned integer’s atomic representation instead of a",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "signed ones and vice versa. ",
+                  "type": "text"
+                },
+                {
+                  "code": "Int",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " and ",
+                  "type": "text"
+                },
+                {
+                  "code": "UInt",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": "’s representation will be",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "64 bits wide on 64 bit systems and 32 bit wide on 32 bit systems. ",
+                  "type": "text"
+                },
+                {
+                  "code": "Int64",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "and ",
+                  "type": "text"
+                },
+                {
+                  "code": "UInt64",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " always conform to ",
+                  "type": "text"
+                },
+                {
+                  "code": "AtomicRepresentable",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " on 64 bit systems,",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "but on 32 bit systems they will only conform if the platform supports",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "double wide atomics. ",
+                  "type": "text"
+                },
+                {
+                  "code": "WordPair",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " will only conform to ",
+                  "type": "text"
+                },
+                {
+                  "code": "AtomicRepresentable",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "on platforms that support double wide atomics, but if they do it will be",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "128 bits wide on 64 bit systems and 64 bits wide on 32 bit systems.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.Swift/documentation/Swift/Bool": {
+      "abstract": [
+        {
+          "text": "A value type whose instances are either ",
+          "type": "text"
+        },
+        {
+          "code": "true",
+          "type": "codeVoice"
+        },
+        {
+          "text": " or ",
+          "type": "text"
+        },
+        {
+          "code": "false",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Bool",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Bool"
+        }
+      ],
+      "role": "symbol",
+      "title": "Bool",
+      "type": "topic",
+      "url": "/documentation/swift/bool"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Double": {
+      "abstract": [
+        {
+          "text": "A double-precision, floating-point value type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Double"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Double",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Double"
+        }
+      ],
+      "role": "symbol",
+      "title": "Double",
+      "type": "topic",
+      "url": "/documentation/swift/double"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Duration": {
+      "abstract": [
+        {
+          "text": "A representation of high precision time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Duration"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Duration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Duration"
+        }
+      ],
+      "role": "symbol",
+      "title": "Duration",
+      "type": "topic",
+      "url": "/documentation/swift/duration"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Float": {
+      "abstract": [
+        {
+          "text": "A single-precision, floating-point value type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Float"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Float",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Float"
+        }
+      ],
+      "role": "symbol",
+      "title": "Float",
+      "type": "topic",
+      "url": "/documentation/swift/float"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Float16": {
+      "abstract": [
+        {
+          "text": "A half-precision (16b), floating-point value type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Float16"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Float16",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Float16"
+        }
+      ],
+      "role": "symbol",
+      "title": "Float16",
+      "type": "topic",
+      "url": "/documentation/swift/float16"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Int": {
+      "abstract": [
+        {
+          "text": "A signed integer value type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Int",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Int"
+        }
+      ],
+      "role": "symbol",
+      "title": "Int",
+      "type": "topic",
+      "url": "/documentation/swift/int"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Int128": {
+      "abstract": [
+        {
+          "text": "A 128-bit signed integer value type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Int128"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Int128",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Int128"
+        }
+      ],
+      "role": "symbol",
+      "title": "Int128",
+      "type": "topic",
+      "url": "/documentation/swift/int128"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Int16": {
+      "abstract": [
+        {
+          "text": "A 16-bit signed integer value",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Int16"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Int16",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Int16"
+        }
+      ],
+      "role": "symbol",
+      "title": "Int16",
+      "type": "topic",
+      "url": "/documentation/swift/int16"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Int32": {
+      "abstract": [
+        {
+          "text": "A 32-bit signed integer value",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Int32"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Int32",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Int32"
+        }
+      ],
+      "role": "symbol",
+      "title": "Int32",
+      "type": "topic",
+      "url": "/documentation/swift/int32"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Int64": {
+      "abstract": [
+        {
+          "text": "A 64-bit signed integer value",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Int64"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Int64",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Int64"
+        }
+      ],
+      "role": "symbol",
+      "title": "Int64",
+      "type": "topic",
+      "url": "/documentation/swift/int64"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Int8": {
+      "abstract": [
+        {
+          "text": "An 8-bit signed integer value",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Int8"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Int8",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Int8"
+        }
+      ],
+      "role": "symbol",
+      "title": "Int8",
+      "type": "topic",
+      "url": "/documentation/swift/int8"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Never": {
+      "abstract": [
+        {
+          "text": "A type that has no values and can’t be constructed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Never"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Never",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Never"
+        }
+      ],
+      "role": "symbol",
+      "title": "Never",
+      "type": "topic",
+      "url": "/documentation/swift/never"
+    },
+    "doc://com.apple.Swift/documentation/Swift/ObjectIdentifier": {
+      "abstract": [
+        {
+          "text": "A unique identifier for a class instance or metatype.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ObjectIdentifier"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/ObjectIdentifier",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ObjectIdentifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "ObjectIdentifier",
+      "type": "topic",
+      "url": "/documentation/swift/objectidentifier"
+    },
+    "doc://com.apple.Swift/documentation/Swift/OpaquePointer": {
+      "abstract": [
+        {
+          "text": "A wrapper around an opaque C pointer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "OpaquePointer"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/OpaquePointer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "OpaquePointer"
+        }
+      ],
+      "role": "symbol",
+      "title": "OpaquePointer",
+      "type": "topic",
+      "url": "/documentation/swift/opaquepointer"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Optional": {
+      "abstract": [
+        {
+          "text": "A type that represents either a wrapped value or the absence of a value.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Wrapped",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "AtomicOptionalRepresentable",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Optional"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Optional",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Optional"
+        }
+      ],
+      "role": "symbol",
+      "title": "Optional",
+      "type": "topic",
+      "url": "/documentation/swift/optional"
+    },
+    "doc://com.apple.Swift/documentation/Swift/UInt": {
+      "abstract": [
+        {
+          "text": "An unsigned integer value type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UInt"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/UInt",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UInt"
+        }
+      ],
+      "role": "symbol",
+      "title": "UInt",
+      "type": "topic",
+      "url": "/documentation/swift/uint"
+    },
+    "doc://com.apple.Swift/documentation/Swift/UInt128": {
+      "abstract": [
+        {
+          "text": "A 128-bit unsigned integer value type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UInt128"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/UInt128",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UInt128"
+        }
+      ],
+      "role": "symbol",
+      "title": "UInt128",
+      "type": "topic",
+      "url": "/documentation/swift/uint128"
+    },
+    "doc://com.apple.Swift/documentation/Swift/UInt16": {
+      "abstract": [
+        {
+          "text": "A 16-bit unsigned integer value",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UInt16"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/UInt16",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UInt16"
+        }
+      ],
+      "role": "symbol",
+      "title": "UInt16",
+      "type": "topic",
+      "url": "/documentation/swift/uint16"
+    },
+    "doc://com.apple.Swift/documentation/Swift/UInt32": {
+      "abstract": [
+        {
+          "text": "A 32-bit unsigned integer value",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UInt32"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/UInt32",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UInt32"
+        }
+      ],
+      "role": "symbol",
+      "title": "UInt32",
+      "type": "topic",
+      "url": "/documentation/swift/uint32"
+    },
+    "doc://com.apple.Swift/documentation/Swift/UInt64": {
+      "abstract": [
+        {
+          "text": "A 64-bit unsigned integer value",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UInt64"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/UInt64",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UInt64"
+        }
+      ],
+      "role": "symbol",
+      "title": "UInt64",
+      "type": "topic",
+      "url": "/documentation/swift/uint64"
+    },
+    "doc://com.apple.Swift/documentation/Swift/UInt8": {
+      "abstract": [
+        {
+          "text": "An 8-bit unsigned integer value",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UInt8"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/UInt8",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UInt8"
+        }
+      ],
+      "role": "symbol",
+      "title": "UInt8",
+      "type": "topic",
+      "url": "/documentation/swift/uint8"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Unmanaged": {
+      "abstract": [
+        {
+          "text": "A type for propagating an unmanaged object reference.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Instance",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "Copyable",
+            "type": "codeVoice"
+          },
+          {
+            "text": " and ",
+            "type": "text"
+          },
+          {
+            "code": "Escapable",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Unmanaged"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Unmanaged",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Unmanaged"
+        }
+      ],
+      "role": "symbol",
+      "title": "Unmanaged",
+      "type": "topic",
+      "url": "/documentation/swift/unmanaged"
+    },
+    "doc://com.apple.Swift/documentation/Swift/UnsafeBufferPointer": {
+      "abstract": [
+        {
+          "text": "A nonowning collection interface to a buffer of",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "elements stored contiguously in memory.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Element",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "Escapable",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UnsafeBufferPointer"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/UnsafeBufferPointer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UnsafeBufferPointer"
+        }
+      ],
+      "role": "symbol",
+      "title": "UnsafeBufferPointer",
+      "type": "topic",
+      "url": "/documentation/swift/unsafebufferpointer"
+    },
+    "doc://com.apple.Swift/documentation/Swift/UnsafeMutableBufferPointer": {
+      "abstract": [
+        {
+          "text": "A nonowning collection interface to a buffer of mutable",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "elements stored contiguously in memory.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Element",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "Escapable",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UnsafeMutableBufferPointer"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/UnsafeMutableBufferPointer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UnsafeMutableBufferPointer"
+        }
+      ],
+      "role": "symbol",
+      "title": "UnsafeMutableBufferPointer",
+      "type": "topic",
+      "url": "/documentation/swift/unsafemutablebufferpointer"
+    },
+    "doc://com.apple.Swift/documentation/Swift/UnsafeMutablePointer": {
+      "abstract": [
+        {
+          "text": "A pointer for accessing and manipulating data of a",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "specific type.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Pointee",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "Escapable",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UnsafeMutablePointer"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/UnsafeMutablePointer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UnsafeMutablePointer"
+        }
+      ],
+      "role": "symbol",
+      "title": "UnsafeMutablePointer",
+      "type": "topic",
+      "url": "/documentation/swift/unsafemutablepointer"
+    },
+    "doc://com.apple.Swift/documentation/Swift/UnsafeMutableRawBufferPointer": {
+      "abstract": [
+        {
+          "text": "A mutable nonowning collection interface to the bytes in a",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "region of memory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UnsafeMutableRawBufferPointer"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/UnsafeMutableRawBufferPointer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UnsafeMutableRawBufferPointer"
+        }
+      ],
+      "role": "symbol",
+      "title": "UnsafeMutableRawBufferPointer",
+      "type": "topic",
+      "url": "/documentation/swift/unsafemutablerawbufferpointer"
+    },
+    "doc://com.apple.Swift/documentation/Swift/UnsafeMutableRawPointer": {
+      "abstract": [
+        {
+          "text": "A raw pointer for accessing and manipulating untyped data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UnsafeMutableRawPointer"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/UnsafeMutableRawPointer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UnsafeMutableRawPointer"
+        }
+      ],
+      "role": "symbol",
+      "title": "UnsafeMutableRawPointer",
+      "type": "topic",
+      "url": "/documentation/swift/unsafemutablerawpointer"
+    },
+    "doc://com.apple.Swift/documentation/Swift/UnsafePointer": {
+      "abstract": [
+        {
+          "text": "A pointer for accessing data of a specific type.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Pointee",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "Escapable",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UnsafePointer"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/UnsafePointer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UnsafePointer"
+        }
+      ],
+      "role": "symbol",
+      "title": "UnsafePointer",
+      "type": "topic",
+      "url": "/documentation/swift/unsafepointer"
+    },
+    "doc://com.apple.Swift/documentation/Swift/UnsafeRawBufferPointer": {
+      "abstract": [
+        {
+          "text": "A  nonowning collection interface to the bytes in a",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "region of memory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UnsafeRawBufferPointer"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/UnsafeRawBufferPointer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UnsafeRawBufferPointer"
+        }
+      ],
+      "role": "symbol",
+      "title": "UnsafeRawBufferPointer",
+      "type": "topic",
+      "url": "/documentation/swift/unsaferawbufferpointer"
+    },
+    "doc://com.apple.Swift/documentation/Swift/UnsafeRawPointer": {
+      "abstract": [
+        {
+          "text": "A raw pointer for accessing untyped data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UnsafeRawPointer"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/UnsafeRawPointer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UnsafeRawPointer"
+        }
+      ],
+      "role": "symbol",
+      "title": "UnsafeRawPointer",
+      "type": "topic",
+      "url": "/documentation/swift/unsaferawpointer"
+    },
+    "doc://com.apple.Swift/documentation/Synchronization": {
+      "abstract": [
+        {
+          "text": "Build synchronization constructs using low-level, primitive operations.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Synchronization",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Synchronization",
+      "type": "topic",
+      "url": "/documentation/synchronization"
+    },
+    "doc://com.apple.Swift/documentation/Synchronization/Atomic": {
+      "abstract": [
+        {
+          "text": "An atomic value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Atomic"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Synchronization/Atomic",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Atomic"
+        }
+      ],
+      "role": "symbol",
+      "title": "Atomic",
+      "type": "topic",
+      "url": "/documentation/synchronization/atomic"
+    },
+    "doc://com.apple.Swift/documentation/Synchronization/AtomicLazyReference": {
+      "abstract": [
+        {
+          "text": "A lazily initializable atomic strong reference.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AtomicLazyReference"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Synchronization/AtomicLazyReference",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AtomicLazyReference"
+        }
+      ],
+      "role": "symbol",
+      "title": "AtomicLazyReference",
+      "type": "topic",
+      "url": "/documentation/synchronization/atomiclazyreference"
+    },
+    "doc://com.apple.Swift/documentation/Synchronization/AtomicOptionalRepresentable": {
+      "abstract": [
+        {
+          "text": "An atomic value that also supports atomic operations when wrapped",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "in an ",
+          "type": "text"
+        },
+        {
+          "code": "Optional",
+          "type": "codeVoice"
+        },
+        {
+          "text": ". Atomic optional representable types come with a standalone",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "atomic representation for their optional-wrapped variants.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AtomicOptionalRepresentable"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Synchronization/AtomicOptionalRepresentable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AtomicOptionalRepresentable"
+        }
+      ],
+      "role": "symbol",
+      "title": "AtomicOptionalRepresentable",
+      "type": "topic",
+      "url": "/documentation/synchronization/atomicoptionalrepresentable"
+    },
+    "doc://com.apple.Swift/documentation/Synchronization/AtomicRepresentable": {
+      "abstract": [
+        {
+          "text": "A type that supports atomic operations through a separate atomic storage",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AtomicRepresentable"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Synchronization/AtomicRepresentable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AtomicRepresentable"
+        }
+      ],
+      "role": "symbol",
+      "title": "AtomicRepresentable",
+      "type": "topic",
+      "url": "/documentation/synchronization/atomicrepresentable"
+    },
+    "doc://com.apple.Swift/documentation/Synchronization/AtomicRepresentable/AtomicRepresentation": {
+      "abstract": [
+        {
+          "text": "The storage representation type that ",
+          "type": "text"
+        },
+        {
+          "code": "Self",
+          "type": "codeVoice"
+        },
+        {
+          "text": " encodes to and decodes from",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "which is a suitable type when used in atomic operations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "associatedtype"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AtomicRepresentation"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s15BitwiseCopyableP",
+          "text": "BitwiseCopyable"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Synchronization/AtomicRepresentable/AtomicRepresentation",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "AtomicRepresentation",
+      "type": "topic",
+      "url": "/documentation/synchronization/atomicrepresentable/atomicrepresentation"
+    },
+    "doc://com.apple.Swift/documentation/Synchronization/AtomicRepresentable/decodeAtomicRepresentation(_:)": {
+      "abstract": [
+        {
+          "text": "Recovers the logical atomic type ",
+          "type": "text"
+        },
+        {
+          "code": "Self",
+          "type": "codeVoice"
+        },
+        {
+          "text": " by destroying some",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "code": "AtomicRepresentation",
+          "type": "codeVoice"
+        },
+        {
+          "text": " storage instance returned from an atomic operation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "decodeAtomicRepresentation"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "keyword",
+          "text": "consuming"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:15Synchronization19AtomicRepresentableP0B14RepresentationQa",
+          "text": "AtomicRepresentation"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Synchronization/AtomicRepresentable/decodeAtomicRepresentation(_:)",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "decodeAtomicRepresentation(_:)",
+      "type": "topic",
+      "url": "/documentation/synchronization/atomicrepresentable/decodeatomicrepresentation(_:)"
+    },
+    "doc://com.apple.Swift/documentation/Synchronization/AtomicRepresentable/encodeAtomicRepresentation(_:)": {
+      "abstract": [
+        {
+          "text": "Destroys a value of ",
+          "type": "text"
+        },
+        {
+          "code": "Self",
+          "type": "codeVoice"
+        },
+        {
+          "text": " and prepares an ",
+          "type": "text"
+        },
+        {
+          "code": "AtomicRepresentation",
+          "type": "codeVoice"
+        },
+        {
+          "text": " storage",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "type to be used for atomic operations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "encodeAtomicRepresentation"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "keyword",
+          "text": "consuming"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:15Synchronization19AtomicRepresentableP0B14RepresentationQa",
+          "text": "AtomicRepresentation"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Synchronization/AtomicRepresentable/encodeAtomicRepresentation(_:)",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "encodeAtomicRepresentation(_:)",
+      "type": "topic",
+      "url": "/documentation/synchronization/atomicrepresentable/encodeatomicrepresentation(_:)"
+    },
+    "doc://com.apple.Swift/documentation/Synchronization/WordPair": {
+      "abstract": [
+        {
+          "text": "A pair of two word sized ",
+          "type": "text"
+        },
+        {
+          "code": "UInt",
+          "type": "codeVoice"
+        },
+        {
+          "text": "s.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WordPair"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Synchronization/WordPair",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WordPair"
+        }
+      ],
+      "role": "symbol",
+      "title": "WordPair",
+      "type": "topic",
+      "url": "/documentation/synchronization/wordpair"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Synchronization/AtomicOptionalRepresentable"
+      ],
+      "kind": "relationships",
+      "title": "Inherited By",
+      "type": "inheritedBy"
+    },
+    {
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/Bool",
+        "doc://com.apple.Swift/documentation/Swift/Double",
+        "doc://com.apple.Swift/documentation/Swift/Duration",
+        "doc://com.apple.Swift/documentation/Swift/Float",
+        "doc://com.apple.Swift/documentation/Swift/Float16",
+        "doc://com.apple.Swift/documentation/Swift/Int",
+        "doc://com.apple.Swift/documentation/Swift/Int128",
+        "doc://com.apple.Swift/documentation/Swift/Int16",
+        "doc://com.apple.Swift/documentation/Swift/Int32",
+        "doc://com.apple.Swift/documentation/Swift/Int64",
+        "doc://com.apple.Swift/documentation/Swift/Int8",
+        "doc://com.apple.Swift/documentation/Swift/Never",
+        "doc://com.apple.Swift/documentation/Swift/ObjectIdentifier",
+        "doc://com.apple.Swift/documentation/Swift/OpaquePointer",
+        "doc://com.apple.Swift/documentation/Swift/Optional",
+        "doc://com.apple.Swift/documentation/Swift/UInt",
+        "doc://com.apple.Swift/documentation/Swift/UInt128",
+        "doc://com.apple.Swift/documentation/Swift/UInt16",
+        "doc://com.apple.Swift/documentation/Swift/UInt32",
+        "doc://com.apple.Swift/documentation/Swift/UInt64",
+        "doc://com.apple.Swift/documentation/Swift/UInt8",
+        "doc://com.apple.Swift/documentation/Swift/Unmanaged",
+        "doc://com.apple.Swift/documentation/Swift/UnsafeBufferPointer",
+        "doc://com.apple.Swift/documentation/Swift/UnsafeMutableBufferPointer",
+        "doc://com.apple.Swift/documentation/Swift/UnsafeMutablePointer",
+        "doc://com.apple.Swift/documentation/Swift/UnsafeMutableRawBufferPointer",
+        "doc://com.apple.Swift/documentation/Swift/UnsafeMutableRawPointer",
+        "doc://com.apple.Swift/documentation/Swift/UnsafePointer",
+        "doc://com.apple.Swift/documentation/Swift/UnsafeRawBufferPointer",
+        "doc://com.apple.Swift/documentation/Swift/UnsafeRawPointer",
+        "doc://com.apple.Swift/documentation/Synchronization/WordPair"
+      ],
+      "kind": "relationships",
+      "title": "Conforming Types",
+      "type": "conformingTypes"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Atomic-Values",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Synchronization/Atomic",
+        "doc://com.apple.Swift/documentation/Synchronization/AtomicLazyReference",
+        "doc://com.apple.Swift/documentation/Synchronization/WordPair",
+        "doc://com.apple.Swift/documentation/Synchronization/AtomicOptionalRepresentable"
+      ],
+      "title": "Atomic Values"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Associated-Types",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Synchronization/AtomicRepresentable/AtomicRepresentation"
+      ],
+      "title": "Associated Types"
+    },
+    {
+      "anchor": "Type-Methods",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Synchronization/AtomicRepresentable/decodeAtomicRepresentation(_:)",
+        "doc://com.apple.Swift/documentation/Synchronization/AtomicRepresentable/encodeAtomicRepresentation(_:)"
+      ],
+      "title": "Type Methods"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/synchronization/atomicrepresentable"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

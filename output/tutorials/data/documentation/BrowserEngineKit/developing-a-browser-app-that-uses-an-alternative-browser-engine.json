@@ -1,0 +1,1078 @@
+{
+  "abstract": [
+    {
+      "text": "Create a web browser app and associated extensions.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/developing-a-browser-app-that-uses-an-alternative-browser-engine"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "BrowserEngineKit"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "17.4",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "15.3",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Developing a browser app that uses an alternative browser engine"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample code project demonstrates how a web browser app uses ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BrowserEngineKit",
+              "isActive": true,
+              "overridingTitle": "BrowserEngineKit",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "BrowserEngineKit",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/XPC",
+              "isActive": true,
+              "overridingTitle": "XPC",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "XPC",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " to communicate with its alternative browser engine over XPC, and implement a browser UI.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The workspace contains four targets that define components of the browser app:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "BrowserExample",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " contains the main app that presents the UI.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "RenderingExtension",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " contains the rendering extension that the app uses to play media and render complex views.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "NetworkingExtension",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " contains the networking extension that the app uses to fetch data from remote websites.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "WebContentExtension",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " contains the web content extension that the app uses to parse HTML content and compile code just-in-time.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information on how these targets work together to support a custom web browser engine, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BrowserEngineKit/designing-your-browser-architecture",
+              "isActive": true,
+              "overridingTitle": "Designing your browser architecture",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "Designing your browser architecture",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Configure-the-sample-code-project",
+          "level": 3,
+          "text": "Configure the sample code project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To build a web browser that uses an alternative browser engine, including the one in this sample project, you need to apply for certain entitlements from WWDR.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For more information on how to use these entitlements, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BrowserEngineKit/creating-browser-extensions-in-xcode",
+              "isActive": true,
+              "overridingTitle": "Creating browser extensions in Xcode",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "Creating browser extensions in Xcode",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For information on applying for the entitlements, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/support/alternative-browser-engines",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To build the sample code project for a device, you must target an iPhone that supports the ",
+              "type": "text"
+            },
+            {
+              "code": "arm64e",
+              "type": "codeVoice"
+            },
+            {
+              "text": " instruction set.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "BrowserEngineKit",
+              "type": "codeVoice"
+            },
+            {
+              "text": " doesn’t support iPadOS, so this project won’t build for iPad.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Open-a-new-tab",
+          "level": 3,
+          "text": "Open a new tab",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When someone using the browser app opens a new tab, the browser app’s ",
+              "type": "text"
+            },
+            {
+              "code": "BrowserPage",
+              "type": "codeVoice"
+            },
+            {
+              "text": " creates a ",
+              "type": "text"
+            },
+            {
+              "code": "TabContentView",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to display the tab’s contents, which gets its data from the tab’s ",
+              "type": "text"
+            },
+            {
+              "code": "TabViewModel",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct TabContentView: View {",
+            "  ",
+            "  @ObservedObject var tab: TabViewModel",
+            "  ",
+            "  var body: some View {",
+            "    if let error = tab.error {",
+            "      VStack {",
+            "        Image(systemName: \"exclamationmark.triangle\")",
+            "        Text(error.localizedDescription)",
+            "      }",
+            "    } else {",
+            "      WebViewRepresentable(webView: tab.webView)",
+            "    }",
+            "  }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "TabViewModel",
+              "type": "codeVoice"
+            },
+            {
+              "text": "‘s ",
+              "type": "text"
+            },
+            {
+              "code": "webView",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property is a ",
+              "type": "text"
+            },
+            {
+              "code": "WebView",
+              "type": "codeVoice"
+            },
+            {
+              "text": " that displays the tab’s contents, which the ",
+              "type": "text"
+            },
+            {
+              "code": "TabContentView",
+              "type": "codeVoice"
+            },
+            {
+              "text": " wraps in a ",
+              "type": "text"
+            },
+            {
+              "code": "WebViewRepresentable",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to display using SwiftUI.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "WebView",
+              "type": "codeVoice"
+            },
+            {
+              "text": "’s initializer creates a ",
+              "type": "text"
+            },
+            {
+              "code": "WebContentView",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", which is the view that renders the HTML document in the tab.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "WebContentView",
+              "type": "codeVoice"
+            },
+            {
+              "text": " calls ",
+              "type": "text"
+            },
+            {
+              "code": "launchProcesses(id: PageID)",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", which does the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Creates a new web content extension process to render the web content, and set up an XPC connection between the browser app and the web content process.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "code": [
+            "    let contentProcess = try await getOrLaunchContentProcess(pageID: id)",
+            "    let contentConnection = try contentProcess.makeLibXPCConnection()",
+            "    let contentProxy = WebContentExtensionProxy(connection: contentConnection)",
+            "    try contentProxy.lockdown(version: lockdownVersion)"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Gets a connection to the single rendering-extension process, launching it if necessary.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "code": [
+            "    let renderingProcess = try await getOrLaunchRenderingProcess()",
+            "    let renderingConnection = try renderingProcess.makeLibXPCConnection()",
+            "    let renderingProxy = RenderingExtensionProxy(connection: renderingConnection)"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Asks the rendering process to create an anonymous XPC connection and sends an endpoint for the connection to the browser app.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "code": [
+            "    let renderingEndpoint = try await renderingProxy.getEndpoint()"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Repeats steps 2-3 for the single networking extension process, so that the browser app has an anonymous XPC connection endpoint for the networking process.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "code": [
+            "    let networkProcess = try await getOrLaunchNetworkProcess()",
+            "    let networkConnection = try networkProcess.makeLibXPCConnection()",
+            "    let networkProxy = NetworkingExtensionProxy(connection: networkConnection)",
+            "    let networkEndpoint = try await networkProxy.getEndpoint()"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Sends a bootstrap message to the web-content process, handing it the endpoints to the other two extension processes, so that they can communicate directly.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "code": [
+            "    try await contentProxy.bootstrap(renderingExtension: renderingEndpoint, networkExtension: networkEndpoint)"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The web content process responds to the bootstrap message by retrieving the anonymous XPC connections for the other extensions from the endpoints it was sent by the host app, and sends them each “ping” messages to ensure the connections are valid.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "  private func perform(bootstrap cmd: WebContentExtensionBootstrapCommand) async throws {",
+            "    log.log(\"performing bootstrap\")",
+            "    ",
+            "    if let renderingProxy = self.renderingProxy { // Connect to the Rendering extension if needed",
+            "      log.log(\"already connected to rendering extension: \\(String(describing: renderingProxy.connection))\")",
+            "    } else {",
+            "      let endpoint = cmd.renderingEndpoint",
+            "      log.log(\"connecting to rendering extension at: \\(String(describing: endpoint))\")",
+            "      let connection = xpc_connection_create_from_endpoint(endpoint)",
+            "      self.renderingProxy = .init(connection: connection)",
+            "      try await connection.ping()",
+            "      log.log(\"connected to rendering extension: \\(String(describing: connection))\")",
+            "    }",
+            "    ",
+            "    if let networkProxy = self.networkProxy {  // Connect to the Networking extension if needed",
+            "      log.log(\"already connected to network extension: \\(String(describing: networkProxy.connection))\")",
+            "    } else {",
+            "      let endpoint = cmd.networkEndpoint",
+            "      log.log(\"connecting to network extension at: \\(String(describing: endpoint))\")",
+            "      let connection = xpc_connection_create_from_endpoint(endpoint)",
+            "      self.networkProxy = .init(connection: connection)",
+            "      try await connection.ping()",
+            "      log.log(\"connected to network extension: \\(String(describing: connection))\")",
+            "    }",
+            "  }"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information on this process, see the section “Pass anonymous connection endpoints between extensions” in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BrowserEngineKit/using-xpc-to-communicate-with-browser-extensions",
+              "isActive": true,
+              "overridingTitle": "Using XPC to communicate with browser extensions",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "Using XPC to communicate with browser extensions",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Load-web-content",
+          "level": 3,
+          "text": "Load web content",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When someone using the browser app navigates to a new location, the ",
+              "type": "text"
+            },
+            {
+              "code": "WebContentView",
+              "type": "codeVoice"
+            },
+            {
+              "text": " asks the proxy object that represents the web-content process to load the data at the location’s URL:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "    let result = try await webContentProxy.load(destination: destination)"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This method sends a network load message to the web-content process:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "    let task: WebContentExtensionTask = .load(destination: destination)",
+            "    return try await connection.sendWithReply(task, decodingReplyAs: NetworkTaskResult.self)"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The web-content process checks what kind of data it’s trying to load.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "If it’s a URL, it asks the networking extension to load the content.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Otherwise, it prepares the data itself, either by decoding a string, or loading the contents of a file.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "    switch destination {",
+            "    case .url(let url):",
+            "      guard let networkProxy else {",
+            "        throw CustomBrowserError(\"not connected to the network extension\")",
+            "      }",
+            "      return try await networkProxy.fetchData(from: url)",
+            "    case .htmlString(let string):",
+            "      guard let data = string.data(using: .utf8) else {",
+            "        throw CustomBrowserError(\"failed to get utf8 data from string\")",
+            "      }",
+            "      return .init(response: nil, data: data, error: nil)",
+            "    case .localFile(let file):",
+            "      let data = try Data(contentsOf: file)",
+            "      return .init(response: nil, data: data, error: nil)",
+            "    }"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "To open a file in your browser, send a bookmark with implicit security scope to the web-content process, so that it can extend its sandbox to access the file.",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "For more information, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/BrowserEngineKit/accessing-files-in-browser-extensions",
+                  "isActive": true,
+                  "overridingTitle": "Accessing files in browser extensions",
+                  "overridingTitleInlineContent": [
+                    {
+                      "text": "Accessing files in browser extensions",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In your browser app, you need to handle any networking errors at this point.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "If the networking extension loads the content, parse it using your alternative browser engine to create rendering commands, that you send to the rendering process.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "In the rendering process, update the layer that the browser app is hosting.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Finally, the web-content process replies to the browser app, telling the ",
+              "type": "text"
+            },
+            {
+              "code": "WebContentView",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to update its view.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "    render(result)"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "cd71db6f4a40/DevelopingABrowserAppThatUsesAnAlternativeBrowserEngine.zip": {
+      "checksum": "cd71db6f4a40c930f90ceb03167e629991ae39ffc4e7fa919222d9d39f7ddca69c6d2d7f604f27c7d498d97e69a978382e96b510d8f2995b6bfb0865bcc4cc29",
+      "identifier": "cd71db6f4a40/DevelopingABrowserAppThatUsesAnAlternativeBrowserEngine.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/cd71db6f4a40/DevelopingABrowserAppThatUsesAnAlternativeBrowserEngine.zip"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit": {
+      "abstract": [
+        {
+          "text": "Create a browser that renders content using an alternative browser engine.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "BrowserEngineKit",
+      "type": "topic",
+      "url": "/documentation/browserenginekit"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/designing-your-browser-architecture": {
+      "abstract": [
+        {
+          "text": "Isolate privileged access to operating system resources and private data from untrusted code.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/designing-your-browser-architecture",
+      "kind": "article",
+      "role": "article",
+      "title": "Designing your browser architecture",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/designing-your-browser-architecture"
+    },
+    "doc://com.apple.documentation/documentation/BrowserEngineKit": {
+      "abstract": [
+        {
+          "text": "Create a browser that renders content using an alternative browser engine.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BrowserEngineKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "BrowserEngineKit",
+      "type": "topic",
+      "url": "/documentation/BrowserEngineKit"
+    },
+    "doc://com.apple.documentation/documentation/BrowserEngineKit/accessing-files-in-browser-extensions": {
+      "abstract": [
+        {
+          "text": "Grant extensions access to files from within your browser app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BrowserEngineKit/accessing-files-in-browser-extensions",
+      "kind": "article",
+      "role": "article",
+      "title": "Accessing files in browser extensions",
+      "type": "topic",
+      "url": "/documentation/BrowserEngineKit/accessing-files-in-browser-extensions"
+    },
+    "doc://com.apple.documentation/documentation/BrowserEngineKit/creating-browser-extensions-in-xcode": {
+      "abstract": [
+        {
+          "text": "Configure your Xcode project to support your alternative browser engine.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BrowserEngineKit/creating-browser-extensions-in-xcode",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating browser extensions in Xcode",
+      "type": "topic",
+      "url": "/documentation/BrowserEngineKit/creating-browser-extensions-in-xcode"
+    },
+    "doc://com.apple.documentation/documentation/BrowserEngineKit/designing-your-browser-architecture": {
+      "abstract": [
+        {
+          "text": "Isolate privileged access to operating system resources and private data from untrusted code.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BrowserEngineKit/designing-your-browser-architecture",
+      "kind": "article",
+      "role": "article",
+      "title": "Designing your browser architecture",
+      "type": "topic",
+      "url": "/documentation/BrowserEngineKit/designing-your-browser-architecture"
+    },
+    "doc://com.apple.documentation/documentation/BrowserEngineKit/using-xpc-to-communicate-with-browser-extensions": {
+      "abstract": [
+        {
+          "text": "Build interprocess communication between your host app and extensions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BrowserEngineKit/using-xpc-to-communicate-with-browser-extensions",
+      "kind": "article",
+      "role": "article",
+      "title": "Using XPC to communicate with browser extensions",
+      "type": "topic",
+      "url": "/documentation/BrowserEngineKit/using-xpc-to-communicate-with-browser-extensions"
+    },
+    "doc://com.apple.documentation/documentation/XPC": {
+      "abstract": [
+        {
+          "text": "Access a low-level interprocess communication mechanism.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/XPC",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "XPC",
+      "type": "topic",
+      "url": "/documentation/XPC"
+    },
+    "doc://com.apple.documentation/documentation/Xcode/preparing-your-app-to-be-the-default-browser": {
+      "abstract": [
+        {
+          "text": "Configure your browser app so users can set it as the default on their device instead of Safari.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Xcode/preparing-your-app-to-be-the-default-browser",
+      "kind": "article",
+      "role": "article",
+      "title": "Preparing your app to be the default web browser",
+      "type": "topic",
+      "url": "/documentation/Xcode/preparing-your-app-to-be-the-default-browser"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/support/alternative-browser-engines": {
+      "identifier": "https://developer.apple.com/support/alternative-browser-engines",
+      "title": "Using alternative browser engines in the European Union",
+      "titleInlineContent": [
+        {
+          "text": "Using alternative browser engines in the European Union",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/support/alternative-browser-engines"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "cd71db6f4a40/DevelopingABrowserAppThatUsesAnAlternativeBrowserEngine.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/designing-your-browser-architecture",
+        "doc://com.apple.documentation/documentation/Xcode/preparing-your-app-to-be-the-default-browser"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Essentials",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/designing-your-browser-architecture"
+              ],
+              "title": "Essentials"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/browserenginekit/developing-a-browser-app-that-uses-an-alternative-browser-engine"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/browserenginekit/developing-a-browser-app-that-uses-an-alternative-browser-engine"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,747 @@
+{
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/corefoundation"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/corefoundation/preferences_utilities"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1666648,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Core Foundation"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Preferences Utilities"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Several functions return a preference value as a Core Foundation property list object. You can use the function ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/corefoundation/1521218-cfgettypeid",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to determine the value’s type. For more information about property lists, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "devLink-1696123",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "1770699",
+          "level": 3,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Core Foundation provides a simple, standard way to manage user (and application) preferences. Core Foundation stores preferences as key-value pairs that are assigned a scope using a combination of user name, application ID, and host (computer) names. This makes it possible to save and retrieve preferences that apply to different classes of users. Core Foundation preferences is useful to all applications that support user preferences. Note that modification of some preferences domains (those not belonging to the “Current User”) requires root privileges (or Admin privileges prior to OS X v10.6)—see ",
+              "type": "text"
+            },
+            {
+              "identifier": "devLink-1719378",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for information on how to gain suitable privileges.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Unlike some other Core Foundation types, CFPreferences is not toll-free bridged to its corresponding Cocoa Foundation framework class (",
+              "type": "text"
+            },
+            {
+              "code": "NSUserDefaults",
+              "type": "codeVoice"
+            },
+            {
+              "text": "). CFPreferences is thread-safe.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "devLink-1696121": {
+      "identifier": "devLink-1696121",
+      "title": "Preferences Programming Topics for Core Foundation",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFPreferences/CFPreferences.html#//apple_ref/doc/uid/10000129i"
+    },
+    "devLink-1696123": {
+      "identifier": "devLink-1696123",
+      "title": "Property List Programming Topics for Core Foundation",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFPropertyLists/CFPropertyLists.html#//apple_ref/doc/uid/10000130i"
+    },
+    "devLink-1719378": {
+      "identifier": "devLink-1719378",
+      "title": "Authorization Services Programming Guide",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/Security/Conceptual/authorization_concepts/01introduction/introduction.html#//apple_ref/doc/uid/TP30000995"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Foundation",
+      "type": "topic",
+      "url": "/documentation/corefoundation"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1515497-cfpreferencescopyappvalue": {
+      "abstract": [
+        {
+          "text": "Obtains a preference value for the specified key and application.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFPreferencesCopyAppValue"
+        },
+        {
+          "kind": "text",
+          "text": "(CFString, CFString) -> CFPropertyList?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1515497-cfpreferencescopyappvalue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFPreferencesCopyAppValue(_:_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1515497-cfpreferencescopyappvalue"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1515498-cfpreferencescopymultiple": {
+      "abstract": [
+        {
+          "text": "Returns a dictionary containing preference values for multiple keys.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFPreferencesCopyMultiple"
+        },
+        {
+          "kind": "text",
+          "text": "(CFArray?, CFString, CFString, CFString) -> CFDictionary"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1515498-cfpreferencescopymultiple",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFPreferencesCopyMultiple(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1515498-cfpreferencescopymultiple"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1515500-cfpreferencescopyvalue": {
+      "abstract": [
+        {
+          "text": "Returns a preference value for a given domain.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFPreferencesCopyValue"
+        },
+        {
+          "kind": "text",
+          "text": "(CFString, CFString, CFString, CFString) -> CFPropertyList?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1515500-cfpreferencescopyvalue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFPreferencesCopyValue(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1515500-cfpreferencescopyvalue"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1515501-cfpreferencesremovesuitepreferen": {
+      "abstract": [
+        {
+          "text": "Removes suite preferences from an application’s search chain.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFPreferencesRemoveSuitePreferencesFromApp"
+        },
+        {
+          "kind": "text",
+          "text": "(CFString, CFString)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1515501-cfpreferencesremovesuitepreferen",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFPreferencesRemoveSuitePreferencesFromApp(_:_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1515501-cfpreferencesremovesuitepreferen"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1515504-cfpreferencessynchronize": {
+      "abstract": [
+        {
+          "text": "For the specified domain, writes all pending changes to preference data to permanent storage, and reads latest preference data from permanent storage.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFPreferencesSynchronize"
+        },
+        {
+          "kind": "text",
+          "text": "(CFString, CFString, CFString) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1515504-cfpreferencessynchronize",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFPreferencesSynchronize(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1515504-cfpreferencessynchronize"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1515510-cfpreferencesappsynchronize": {
+      "abstract": [
+        {
+          "text": "Writes to permanent storage all pending changes to the preference data for the application, and reads the latest preference data from permanent storage.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFPreferencesAppSynchronize"
+        },
+        {
+          "kind": "text",
+          "text": "(CFString) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1515510-cfpreferencesappsynchronize",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFPreferencesAppSynchronize(_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1515510-cfpreferencesappsynchronize"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1515512-cfpreferencescopykeylist": {
+      "abstract": [
+        {
+          "text": "Constructs and returns the list of all keys set in the specified domain.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFPreferencesCopyKeyList"
+        },
+        {
+          "kind": "text",
+          "text": "(CFString, CFString, CFString) -> CFArray?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1515512-cfpreferencescopykeylist",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFPreferencesCopyKeyList(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1515512-cfpreferencescopykeylist"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1515513-cfpreferencessetmultiple": {
+      "abstract": [
+        {
+          "text": "Convenience function that allows you to set and remove multiple preference values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFPreferencesSetMultiple"
+        },
+        {
+          "kind": "text",
+          "text": "(CFDictionary?, CFArray?, CFString, CFString, CFString)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1515513-cfpreferencessetmultiple",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFPreferencesSetMultiple(_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1515513-cfpreferencessetmultiple"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1515514-cfpreferencesgetappbooleanvalue": {
+      "abstract": [
+        {
+          "text": "Convenience function that directly obtains a Boolean preference value for the specified key.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFPreferencesGetAppBooleanValue"
+        },
+        {
+          "kind": "text",
+          "text": "(CFString, CFString, UnsafeMutablePointer<DarwinBoolean>?) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1515514-cfpreferencesgetappbooleanvalue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFPreferencesGetAppBooleanValue(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1515514-cfpreferencesgetappbooleanvalue"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1515518-cfpreferencesaddsuitepreferences": {
+      "abstract": [
+        {
+          "text": "Adds suite preferences to an application’s preference search chain.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFPreferencesAddSuitePreferencesToApp"
+        },
+        {
+          "kind": "text",
+          "text": "(CFString, CFString)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1515518-cfpreferencesaddsuitepreferences",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFPreferencesAddSuitePreferencesToApp(_:_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1515518-cfpreferencesaddsuitepreferences"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1515521-cfpreferencesappvalueisforced": {
+      "abstract": [
+        {
+          "text": "Determines whether or not a given key has been imposed on the user.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFPreferencesAppValueIsForced"
+        },
+        {
+          "kind": "text",
+          "text": "(CFString, CFString) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1515521-cfpreferencesappvalueisforced",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFPreferencesAppValueIsForced(_:_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1515521-cfpreferencesappvalueisforced"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1515523-cfpreferencescopyapplicationlist": {
+      "abstract": [
+        {
+          "text": "Constructs and returns the list of all applications that have preferences in the scope of the specified user and host.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFPreferencesCopyApplicationList"
+        },
+        {
+          "kind": "text",
+          "text": "(CFString, CFString) -> CFArray?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1515523-cfpreferencescopyapplicationlist",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFPreferencesCopyApplicationList(_:_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1515523-cfpreferencescopyapplicationlist"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1515525-cfpreferencessetvalue": {
+      "abstract": [
+        {
+          "text": "Adds, modifies, or removes a preference value for the specified domain.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFPreferencesSetValue"
+        },
+        {
+          "kind": "text",
+          "text": "(CFString, CFPropertyList?, CFString, CFString, CFString)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1515525-cfpreferencessetvalue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFPreferencesSetValue(_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1515525-cfpreferencessetvalue"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1515526-cfpreferencesgetappintegervalue": {
+      "abstract": [
+        {
+          "text": "Convenience function that directly obtains an integer preference value for the specified key.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFPreferencesGetAppIntegerValue"
+        },
+        {
+          "kind": "text",
+          "text": "(CFString, CFString, UnsafeMutablePointer<DarwinBoolean>?) -> CFIndex"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1515526-cfpreferencesgetappintegervalue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFPreferencesGetAppIntegerValue(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1515526-cfpreferencesgetappintegervalue"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1515528-cfpreferencessetappvalue": {
+      "abstract": [
+        {
+          "text": "Adds, modifies, or removes a preference.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFPreferencesSetAppValue"
+        },
+        {
+          "kind": "text",
+          "text": "(CFString, CFPropertyList?, CFString)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1515528-cfpreferencessetappvalue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFPreferencesSetAppValue(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1515528-cfpreferencessetappvalue"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1521218-cfgettypeid": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1521218-cfgettypeid",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFGetTypeID(_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1521218-cfgettypeid"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/base_utilities": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/base_utilities",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Base Utilities",
+      "type": "topic",
+      "url": "/documentation/corefoundation/base_utilities"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/byte-order_utilities": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/byte-order_utilities",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Byte-Order Utilities",
+      "type": "topic",
+      "url": "/documentation/corefoundation/byte-order_utilities"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/core_foundation_url_access_utilities": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/core_foundation_url_access_utilities",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Core Foundation URL Access Utilities",
+      "type": "topic",
+      "url": "/documentation/corefoundation/core_foundation_url_access_utilities"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/preferences_utilities": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/preferences_utilities",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Preferences Utilities",
+      "type": "topic",
+      "url": "/documentation/corefoundation/preferences_utilities"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/preferences_utilities/application_host_and_user_keys": {
+      "abstract": [
+        {
+          "text": "Keys used to specify the common preference domains.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/preferences_utilities/application_host_and_user_keys",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Application, Host, and User Keys",
+      "type": "topic",
+      "url": "/documentation/corefoundation/preferences_utilities/application_host_and_user_keys"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/socket_name_server_utilities": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/socket_name_server_utilities",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Socket Name Server Utilities",
+      "type": "topic",
+      "url": "/documentation/corefoundation/socket_name_server_utilities"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/time_utilities": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/time_utilities",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Time Utilities",
+      "type": "topic",
+      "url": "/documentation/corefoundation/time_utilities"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/corefoundation/base_utilities",
+        "doc://com.apple.documentation/documentation/corefoundation/byte-order_utilities",
+        "doc://com.apple.documentation/documentation/corefoundation/core_foundation_url_access_utilities",
+        "doc://com.apple.documentation/documentation/corefoundation/socket_name_server_utilities",
+        "doc://com.apple.documentation/documentation/corefoundation/time_utilities"
+      ],
+      "title": "Utilities"
+    },
+    {
+      "generated": false,
+      "identifiers": [
+        "devLink-1696121"
+      ],
+      "title": "Related Documentation"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "1666680",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/corefoundation/1515497-cfpreferencescopyappvalue",
+        "doc://com.apple.documentation/documentation/corefoundation/1515512-cfpreferencescopykeylist",
+        "doc://com.apple.documentation/documentation/corefoundation/1515498-cfpreferencescopymultiple",
+        "doc://com.apple.documentation/documentation/corefoundation/1515500-cfpreferencescopyvalue",
+        "doc://com.apple.documentation/documentation/corefoundation/1515514-cfpreferencesgetappbooleanvalue",
+        "doc://com.apple.documentation/documentation/corefoundation/1515526-cfpreferencesgetappintegervalue"
+      ],
+      "kind": "taskGroup",
+      "title": "Getting Preference Values"
+    },
+    {
+      "anchor": "1666803",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/corefoundation/1515528-cfpreferencessetappvalue",
+        "doc://com.apple.documentation/documentation/corefoundation/1515513-cfpreferencessetmultiple",
+        "doc://com.apple.documentation/documentation/corefoundation/1515525-cfpreferencessetvalue"
+      ],
+      "kind": "taskGroup",
+      "title": "Setting Preference Values"
+    },
+    {
+      "anchor": "1666868",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/corefoundation/1515510-cfpreferencesappsynchronize",
+        "doc://com.apple.documentation/documentation/corefoundation/1515504-cfpreferencessynchronize"
+      ],
+      "kind": "taskGroup",
+      "title": "Synchronizing Preferences"
+    },
+    {
+      "anchor": "1666916",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/corefoundation/1515518-cfpreferencesaddsuitepreferences",
+        "doc://com.apple.documentation/documentation/corefoundation/1515501-cfpreferencesremovesuitepreferen"
+      ],
+      "kind": "taskGroup",
+      "title": "Adding and Removing Suite Preferences"
+    },
+    {
+      "anchor": "1666961",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/corefoundation/1515521-cfpreferencesappvalueisforced",
+        "doc://com.apple.documentation/documentation/corefoundation/1515523-cfpreferencescopyapplicationlist"
+      ],
+      "kind": "taskGroup",
+      "title": "Miscellaneous Functions"
+    },
+    {
+      "anchor": "1667010",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/corefoundation/preferences_utilities/application_host_and_user_keys"
+      ],
+      "kind": "taskGroup",
+      "title": "Constants"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/corefoundation/preferences_utilities"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/corefoundation/preferences_utilities"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

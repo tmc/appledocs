@@ -1,0 +1,1417 @@
+{
+  "abstract": [
+    {
+      "text": "Update your apps to use new features, and test your apps against API changes.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.ios-ipados-release-notes/documentation/ios-ipados-release-notes"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.ios-ipados-release-notes/documentation/iOS-iPadOS-Release-Notes/ios-ipados-17_4-release-notes"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "iOS & iPadOS 17.4 Release Notes"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The iOS & iPadOS 17.4 SDK provides support to develop apps for iPhone and iPad running iOS & iPadOS 17.4. The SDK comes bundled with Xcode 15.3, available from the Mac App Store. For information on the compatibility requirements for Xcode 15.3, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "/documentation/Xcode-Release-Notes/xcode-15_3-release-notes",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "General",
+          "level": 3,
+          "text": "General",
+          "type": "heading"
+        },
+        {
+          "anchor": "Known-Issues",
+          "level": 4,
+          "text": "Known Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Default browser choice screen might not show up when intended and apps requiring certain managed entitlements might not install or show an error.  (121566625)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Workaround:",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " Open Settings and navigate to Privacy & Security > Location Services. Toggle location services off for 10 seconds, and then turn it back on.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Alternative-app-marketplaces",
+          "level": 3,
+          "text": "Alternative app marketplaces",
+          "type": "heading"
+        },
+        {
+          "anchor": "Known-Issues",
+          "level": 4,
+          "text": "Known Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "For apps on an alternative marketplace that use ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/documentation/backgroundassets",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", assets download after first launch instead of after installation.  (118965723)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Large license IDs that a marketplace sets for an app that it distributes may cause app installation to fail.    (123357711) (FB13639300)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Workaround:",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " Choose a ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "licenseID",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " for the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "ALDLicenseAttribute",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " initializer ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/documentation/applicensedeliverysdk/aldlicenseattribute/init(licenseid:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " that’s less than ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Int64.max",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "App-Store",
+          "level": 3,
+          "text": "App Store",
+          "type": "heading"
+        },
+        {
+          "anchor": "Resolved-Issues",
+          "level": 4,
+          "text": "Resolved Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed: Certain App Store product sheets will show a “Cannot Connect to iTunes Store” error.  (121523272)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Apple-Maps-and-CarPlay-in-vehicle-instrument-clusters",
+          "level": 3,
+          "text": "Apple Maps and CarPlay in vehicle instrument clusters",
+          "type": "heading"
+        },
+        {
+          "anchor": "New-Features",
+          "level": 4,
+          "text": "New Features",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In iOS 17.4, with supported CarPlay vehicles, Apple Maps will present a new instrument cluster experience with information about upcoming maneuvers. Users will be able to swap the desired display type between the main and instrument cluster screen by tapping the map configuration button on the upper right of the Maps main screen.  (122833170)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "BrowserEngineKit",
+          "level": 3,
+          "text": "BrowserEngineKit",
+          "type": "heading"
+        },
+        {
+          "anchor": "Resolved-Issues",
+          "level": 4,
+          "text": "Resolved Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed: The symbol ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/documentation/browserenginekit/propagating-view-visibility-information-to-browser-extensions",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " is missing in the SDK.  (119845855)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Gestures--Reactions",
+          "level": 3,
+          "text": "Gestures & Reactions",
+          "type": "heading"
+        },
+        {
+          "anchor": "New-Features",
+          "level": 4,
+          "text": "New Features",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Developers can control the default behavior of Reactions with the key ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NSCameraReactionEffectGesturesEnabledDefault",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". This is controlled per application and user choice will override application declared defaults  (113811074)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "HomeKit",
+          "level": 3,
+          "text": "HomeKit",
+          "type": "heading"
+        },
+        {
+          "anchor": "Resolved-Issues",
+          "level": 4,
+          "text": "Resolved Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed: Viewing HomeKit camera live video might not work when away from home.  (121166796)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Maps",
+          "level": 3,
+          "text": "Maps",
+          "type": "heading"
+        },
+        {
+          "anchor": "Resolved-Issues",
+          "level": 4,
+          "text": "Resolved Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed: MapKit SwiftUI apps might show incorrect map mode for walking and cycling routes.  (121085728)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Messages",
+          "level": 3,
+          "text": "Messages",
+          "type": "heading"
+        },
+        {
+          "anchor": "Resolved-Issues",
+          "level": 4,
+          "text": "Resolved Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed: Stickers (Memoji and 3rd party) might appear blank.  (120994483)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Object-Capture",
+          "level": 3,
+          "text": "Object Capture",
+          "type": "heading"
+        },
+        {
+          "anchor": "New-Features",
+          "level": 4,
+          "text": "New Features",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A new manual bounding box flow is now initiated if automatic object detection fails to find an object, particularly in cases where there is no salient ground plane.  In this flow, the user is expected to utilize the standard manual bounding box controls to indicate the bounding box of the object to capture by adjusting the provided starting box placed in the world in front of the user.  You can determine if this mode has been activated by observing for the new element ",
+                      "type": "text"
+                    },
+                    {
+                      "code": ".objectNotDetected",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", which will be added to the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "ObjectCaptureSession",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": "’s ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Feedback",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " set when the manual flow has been activated.  You can use this to provide notification and/or instructions to the user about this manual box flow as desired.  (113474123)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Resolved-Issues",
+          "level": 4,
+          "text": "Resolved Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed an issue where an ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "ObjectCaptureView",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " was incorrectly rotating the point cloud view in landscape UI orientations.  (114248688) (FB13030239)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed: PhotogrammetrySession creation on iOS is now significantly faster.  (114458164)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed a memory leak when ObjectCaptureSession was used in a SwiftUI Environment or was torn down without waiting for cleanup to finish.  (114481678) (FB13057864)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Passkeys",
+          "level": 3,
+          "text": "Passkeys",
+          "type": "heading"
+        },
+        {
+          "anchor": "Resolved-Issues",
+          "level": 4,
+          "text": "Resolved Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed: Registering passkeys might not work on certain websites.  (122217903)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Podcasts",
+          "level": 3,
+          "text": "Podcasts",
+          "type": "heading"
+        },
+        {
+          "anchor": "Resolved-Issues",
+          "level": 4,
+          "text": "Resolved Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed: Tapping on a podcast show from Recently Searched occasionally returns you to the Recently Searched view instead of the podcast show product page.  (120915925)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Setup-Assistant",
+          "level": 3,
+          "text": "Setup Assistant",
+          "type": "heading"
+        },
+        {
+          "anchor": "Resolved-Issues",
+          "level": 4,
+          "text": "Resolved Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed: Pairing might fail when using Quick Start to set up a new device.  (120982013)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Shared-iPad",
+          "level": 3,
+          "text": "Shared iPad",
+          "type": "heading"
+        },
+        {
+          "anchor": "Resolved-Issues",
+          "level": 4,
+          "text": "Resolved Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed: Users might be greeted with a “Loading” screen in the Files app immediately after log in on a Shared iPad.  (122092017)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Siri",
+          "level": 3,
+          "text": "Siri",
+          "type": "heading"
+        },
+        {
+          "anchor": "New-Features",
+          "level": 4,
+          "text": "New Features",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Siri can respond in a combination of English and Hindi, depending on the primary language you use to interact with Siri. In the Settings app, go to Siri & Search > Language > English (India) and choose English & Hindi as the Preferred Response Language. Then ask Siri something in Hindi.  (114742290)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "StoreKit",
+          "level": 3,
+          "text": "StoreKit",
+          "type": "heading"
+        },
+        {
+          "anchor": "New-Features",
+          "level": 4,
+          "text": "New Features",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In StoreKit testing in Xcode, a billing error StoreKit ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/documentation/storekit/message",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " will be sent when a subscription tries to renew while the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Enable Billing Retry on Renewal",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " setting is enabled in the StoreKit configuration file. Use the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/documentation/storekit/message/3954510-messages",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " API to control when StoreKit messages are displayed in your app.  (101869442)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "productDescriptionHidden(_:)",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " API can be used to configure the visibility of product descriptions in ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "ProductView",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "StoreView",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "SubscriptionStoreView",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " instances within a view hierarchy. When building with Xcode 15.3, the view modifier can be used even if your app is running on iOS 17.0, iPadOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, visionOS 1.0, or later.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "When implementing a product view style, it can support this new view modifier by checking the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "descriptionVisibility",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " property on the configuration value.  (110414819) (FB12261973)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You can use ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/documentation/storekit/subscriptionstoreview",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to present promotional offers by adding the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "subscriptionPromotionalOffer(offer:signature:)",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " modifier.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If you’re already using ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/documentation/swiftui/view/inapppurchaseoptions(_:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " modifier to support promotional offers for StoreKit views, you should adopt the new API instead when your app is running on iOS 17.4, iPadOS 17.4, macOS 14.4, tvOS 17.4, watchOS 10.4, visionOS 1.1 or later. Do not use both APIs to apply a promotional offer for the same view.  (115358806)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Resolved-Issues",
+          "level": 4,
+          "text": "Resolved Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed: The ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/documentation/storekit/product/subscriptioninfo/3803203-iseligibleforintrooffer",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " property and ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/documentation/storekit/product/subscriptioninfo/3791958-iseligibleforintrooffer",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method now reflect ineligibility in cases where a customer would otherwise be eligible for the offer if they weren’t actively subscribed. This means a customer which is not currently eligible for an introductory offer may become eligible in the future.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Customers who redeem an introductory offer for a given subscription group will continue to never be eligible for another introductory offer in that subscription group. You can detect this case this by checking if any one transaction with a matching ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/documentation/storekit/transaction/3749718-subscriptiongroupid",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " has the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/documentation/storekit/transaction/offer/4307073-type",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " property on ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/documentation/storekit/transaction/4307076-offer",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " set to ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/documentation/storekit/transaction/offertype/3822309-introductory",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".  (103604770) (FB11889732)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed an issue causing SKAdNetwork versions 2.2 and 3.0 to not accept impressions or send postbacks.  (121223565)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed an issue causing some approved Ask to Buy purchases to fail.  (121249405)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "SwiftUI",
+          "level": 3,
+          "text": "SwiftUI",
+          "type": "heading"
+        },
+        {
+          "anchor": "New-Features",
+          "level": 4,
+          "text": "New Features",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "Table",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " now supports dynamic numbers of columns with the new ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "TableColumnForEach",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".  (79492167) (FB9189673)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Popover presentations now automatically dismiss if they go outside the safe area.  (100811375)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Resolved-Issues",
+          "level": 4,
+          "text": "Resolved Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed: Resolved an issue with programmatically present an alert or sheet simultaneously with dismissing another sheet. The new alert or sheet would not show but now it will. If you have code that presents the same sheet programmatically from multiple places in your view hierarchy at the same time, that sheet might no longer appear. Make sure that any ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "sheet",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " modifiers that are in the view hierarchy at the same time use distinct ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "isPresented",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "item",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " bindings.  (117475214)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "WebKit",
+          "level": 3,
+          "text": "WebKit",
+          "type": "heading"
+        },
+        {
+          "anchor": "Resolved-Issues",
+          "level": 4,
+          "text": "Resolved Issues",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fixed HTML content not displaying in a Simulator, affecting projects using the web extension project template.  (121338366)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "/documentation/Xcode-Release-Notes/xcode-15_3-release-notes": {
+      "identifier": "/documentation/Xcode-Release-Notes/xcode-15_3-release-notes",
+      "title": "Xcode 15.3 Release Notes",
+      "titleInlineContent": [
+        {
+          "text": "Xcode 15.3 Release Notes",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "/documentation/Xcode-Release-Notes/xcode-15_3-release-notes"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.ios-ipados-release-notes/documentation/iOS-iPadOS-Release-Notes/ios-ipados-17-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.ios-ipados-release-notes/documentation/iOS-iPadOS-Release-Notes/ios-ipados-17-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "iOS & iPadOS 17 Release Notes",
+      "type": "topic",
+      "url": "/documentation/ios-ipados-release-notes/ios-ipados-17-release-notes"
+    },
+    "doc://com.apple.ios-ipados-release-notes/documentation/iOS-iPadOS-Release-Notes/ios-ipados-17_1-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.ios-ipados-release-notes/documentation/iOS-iPadOS-Release-Notes/ios-ipados-17_1-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "iOS & iPadOS 17.1 Release Notes",
+      "type": "topic",
+      "url": "/documentation/ios-ipados-release-notes/ios-ipados-17_1-release-notes"
+    },
+    "doc://com.apple.ios-ipados-release-notes/documentation/iOS-iPadOS-Release-Notes/ios-ipados-17_2-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.ios-ipados-release-notes/documentation/iOS-iPadOS-Release-Notes/ios-ipados-17_2-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "iOS & iPadOS 17.2 Release Notes",
+      "type": "topic",
+      "url": "/documentation/ios-ipados-release-notes/ios-ipados-17_2-release-notes"
+    },
+    "doc://com.apple.ios-ipados-release-notes/documentation/iOS-iPadOS-Release-Notes/ios-ipados-17_3-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.ios-ipados-release-notes/documentation/iOS-iPadOS-Release-Notes/ios-ipados-17_3-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "iOS & iPadOS 17.3 Release Notes",
+      "type": "topic",
+      "url": "/documentation/ios-ipados-release-notes/ios-ipados-17_3-release-notes"
+    },
+    "doc://com.apple.ios-ipados-release-notes/documentation/iOS-iPadOS-Release-Notes/ios-ipados-17_5-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.ios-ipados-release-notes/documentation/iOS-iPadOS-Release-Notes/ios-ipados-17_5-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "iOS & iPadOS 17.5 Release Notes",
+      "type": "topic",
+      "url": "/documentation/ios-ipados-release-notes/ios-ipados-17_5-release-notes"
+    },
+    "doc://com.apple.ios-ipados-release-notes/documentation/iOS-iPadOS-Release-Notes/ios-ipados-17_6-release-notes": {
+      "abstract": [
+        {
+          "text": "Update your apps to use new features, and test your apps against API changes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.ios-ipados-release-notes/documentation/iOS-iPadOS-Release-Notes/ios-ipados-17_6-release-notes",
+      "kind": "article",
+      "role": "article",
+      "title": "iOS & iPadOS 17.6 Release Notes",
+      "type": "topic",
+      "url": "/documentation/ios-ipados-release-notes/ios-ipados-17_6-release-notes"
+    },
+    "doc://com.apple.ios-ipados-release-notes/documentation/ios-ipados-release-notes": {
+      "abstract": [
+        {
+          "text": "Learn about changes to the iOS & iPadOS SDK.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.ios-ipados-release-notes/documentation/ios-ipados-release-notes",
+      "kind": "article",
+      "role": "collection",
+      "title": "iOS & iPadOS Release Notes",
+      "type": "topic",
+      "url": "/documentation/ios-ipados-release-notes"
+    },
+    "https://developer.apple.com/documentation/applicensedeliverysdk/aldlicenseattribute/init(licenseid:)": {
+      "identifier": "https://developer.apple.com/documentation/applicensedeliverysdk/aldlicenseattribute/init(licenseid:)",
+      "title": "init(licenseID:)",
+      "titleInlineContent": [
+        {
+          "code": "init(licenseID:",
+          "type": "codeVoice"
+        },
+        {
+          "text": ")",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/applicensedeliverysdk/aldlicenseattribute/init(licenseid:)"
+    },
+    "https://developer.apple.com/documentation/backgroundassets": {
+      "identifier": "https://developer.apple.com/documentation/backgroundassets",
+      "title": "Background Assets",
+      "titleInlineContent": [
+        {
+          "text": "Background Assets",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/backgroundassets"
+    },
+    "https://developer.apple.com/documentation/browserenginekit/propagating-view-visibility-information-to-browser-extensions": {
+      "identifier": "https://developer.apple.com/documentation/browserenginekit/propagating-view-visibility-information-to-browser-extensions",
+      "title": "createVisibilityPropagationInteraction",
+      "titleInlineContent": [
+        {
+          "code": "createVisibilityPropagationInteraction",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/browserenginekit/propagating-view-visibility-information-to-browser-extensions"
+    },
+    "https://developer.apple.com/documentation/storekit/message": {
+      "identifier": "https://developer.apple.com/documentation/storekit/message",
+      "title": "message",
+      "titleInlineContent": [
+        {
+          "text": "message",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/storekit/message"
+    },
+    "https://developer.apple.com/documentation/storekit/message/3954510-messages": {
+      "identifier": "https://developer.apple.com/documentation/storekit/message/3954510-messages",
+      "title": "messages listener",
+      "titleInlineContent": [
+        {
+          "text": "messages listener",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/storekit/message/3954510-messages"
+    },
+    "https://developer.apple.com/documentation/storekit/product/subscriptioninfo/3791958-iseligibleforintrooffer": {
+      "identifier": "https://developer.apple.com/documentation/storekit/product/subscriptioninfo/3791958-iseligibleforintrooffer",
+      "title": "isEligibleForIntroOffer(for:)",
+      "titleInlineContent": [
+        {
+          "code": "isEligibleForIntroOffer(for:)",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/storekit/product/subscriptioninfo/3791958-iseligibleforintrooffer"
+    },
+    "https://developer.apple.com/documentation/storekit/product/subscriptioninfo/3803203-iseligibleforintrooffer": {
+      "identifier": "https://developer.apple.com/documentation/storekit/product/subscriptioninfo/3803203-iseligibleforintrooffer",
+      "title": "isEligibleForIntroOffer",
+      "titleInlineContent": [
+        {
+          "code": "isEligibleForIntroOffer",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/storekit/product/subscriptioninfo/3803203-iseligibleforintrooffer"
+    },
+    "https://developer.apple.com/documentation/storekit/subscriptionstoreview": {
+      "identifier": "https://developer.apple.com/documentation/storekit/subscriptionstoreview",
+      "title": "SubscriptionStoreView",
+      "titleInlineContent": [
+        {
+          "code": "SubscriptionStoreView",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/storekit/subscriptionstoreview"
+    },
+    "https://developer.apple.com/documentation/storekit/transaction/3749718-subscriptiongroupid": {
+      "identifier": "https://developer.apple.com/documentation/storekit/transaction/3749718-subscriptiongroupid",
+      "title": "subscriptionGroupID",
+      "titleInlineContent": [
+        {
+          "code": "subscriptionGroupID",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/storekit/transaction/3749718-subscriptiongroupid"
+    },
+    "https://developer.apple.com/documentation/storekit/transaction/4307076-offer": {
+      "identifier": "https://developer.apple.com/documentation/storekit/transaction/4307076-offer",
+      "title": "offer",
+      "titleInlineContent": [
+        {
+          "code": "offer",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/storekit/transaction/4307076-offer"
+    },
+    "https://developer.apple.com/documentation/storekit/transaction/offer/4307073-type": {
+      "identifier": "https://developer.apple.com/documentation/storekit/transaction/offer/4307073-type",
+      "title": "type",
+      "titleInlineContent": [
+        {
+          "code": "type",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/storekit/transaction/offer/4307073-type"
+    },
+    "https://developer.apple.com/documentation/storekit/transaction/offertype/3822309-introductory": {
+      "identifier": "https://developer.apple.com/documentation/storekit/transaction/offertype/3822309-introductory",
+      "title": "introductory",
+      "titleInlineContent": [
+        {
+          "code": "introductory",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/storekit/transaction/offertype/3822309-introductory"
+    },
+    "https://developer.apple.com/documentation/swiftui/view/inapppurchaseoptions(_:)": {
+      "identifier": "https://developer.apple.com/documentation/swiftui/view/inapppurchaseoptions(_:)",
+      "title": "inAppPurchaseOptions(_:)",
+      "titleInlineContent": [
+        {
+          "code": "inAppPurchaseOptions(_:)",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/swiftui/view/inapppurchaseoptions(_:)"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "iOS--iPadOS-17",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.ios-ipados-release-notes/documentation/iOS-iPadOS-Release-Notes/ios-ipados-17_6-release-notes",
+        "doc://com.apple.ios-ipados-release-notes/documentation/iOS-iPadOS-Release-Notes/ios-ipados-17_5-release-notes",
+        "doc://com.apple.ios-ipados-release-notes/documentation/iOS-iPadOS-Release-Notes/ios-ipados-17_3-release-notes",
+        "doc://com.apple.ios-ipados-release-notes/documentation/iOS-iPadOS-Release-Notes/ios-ipados-17_2-release-notes",
+        "doc://com.apple.ios-ipados-release-notes/documentation/iOS-iPadOS-Release-Notes/ios-ipados-17_1-release-notes",
+        "doc://com.apple.ios-ipados-release-notes/documentation/iOS-iPadOS-Release-Notes/ios-ipados-17-release-notes"
+      ],
+      "title": "iOS & iPadOS 17"
+    }
+  ]
+}

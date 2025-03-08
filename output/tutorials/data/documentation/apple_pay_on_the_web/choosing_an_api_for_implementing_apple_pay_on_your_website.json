@@ -1,0 +1,667 @@
+{
+  "abstract": [
+    {
+      "text": "Compare Apple Pay JS and Payment Request API to choose the right implementation for your website.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/apple_pay_on_the_web"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/choosing_an_api_for_implementing_apple_pay_on_your_website"
+  },
+  "kind": "article",
+  "legacy_identifier": 2956705,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Apple Pay JS"
+      },
+      {
+        "name": "Payment Request API"
+      },
+      {
+        "name": "Apple Pay JS Button"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Choosing an API for Implementing Apple Pay on Your Website"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Safari supports two APIs for implementing payment requests: ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/apple_pay_js_api",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and the W3C ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/payment_request_api",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Both APIs present the same Apple Pay payment sheet on Safari, and offer nearly the same user experience. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To help you decide which API to implement, or whether to implement both, first determine which features your solution requires, and choose the API that matches your needs.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "2957528",
+          "level": 3,
+          "text": "Features of Apple Pay JS API",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/apple_pay_js_api",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " if you depend on any of its unique features:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Granular error handling.",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            },
+            {
+              "text": " You can provide robust error handling: ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Customizable error messages and field indications create a better user experience. See ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepayerror",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " for more information.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You can report errors the user can correct, even after the user authorizes payment.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You can retry if an error occurs after the user authorizes payment. With ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/payment_request_api",
+                      "isActive": false,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", the user must restart their transaction.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Integration for store cards and cobranded debit/credit cards. ",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            },
+            {
+              "text": "When customers with affiliated cards visit your website, you can provide these additional benefits:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Apple Pay can automatically select the affiliated card instead of the customer's default card.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You can adjust prices or other terms of a sale for customers using your affiliated card. For example, you might provide free shipping when customers use your cobranded VISA credit card.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Phonetic names.",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            },
+            {
+              "text": " You can request a phonetic name in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/apple_pay_js_api",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " only.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "2957526",
+          "level": 3,
+          "text": "Features of Payment Request API",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/payment_request_api",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for these benefits:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Cross-browser solution. ",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": "Payment Request API-based code can support a variety platforms and browsers. Apple Pay is available on Safari; other payment methods are available on other browsers and platforms. ",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "W3C standard candidate API.  ",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": "The Payment Request API is defined by the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "link-2961200",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". ",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "2957527",
+          "level": 3,
+          "text": "Choose an API to Support Your Customers",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To better reach your customers, choose an API that works on their devices, as follows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Apple Pay JS API:",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " Supported in iOS 10 and later, and macOS 10.12 and later.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Payment Request API:",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " Supported in iOS 11.3 and later, and Safari 11.1 on macOS 10.12 and later.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When implementing ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/payment_request_api",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": ", consider also implementing ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/apple_pay_js_api",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " as a fallback for customers whose devices run an older operating system version.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "2957529",
+          "level": 3,
+          "text": "Requirements for Both APIs",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The same first steps, configurations, and guidelines for using Apple Pay on the web apply regardless of which API you choose to implement.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web#2930228",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ",  ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web#2930449",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and for design guidance see ",
+              "type": "text"
+            },
+            {
+              "identifier": "link-2957564",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web": {
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web",
+      "kind": "article",
+      "role": "collection",
+      "title": "Apple Pay on the Web",
+      "type": "topic",
+      "url": "/documentation/apple_pay_on_the_web"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web#2930228": {
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web#2930228",
+      "kind": "article",
+      "role": "task",
+      "title": "Apple Pay setup",
+      "type": "section",
+      "url": "/documentation/apple_pay_on_the_web#2930228"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web#2930449": {
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web#2930449",
+      "kind": "article",
+      "role": "task",
+      "title": "Apple Pay buttons",
+      "type": "section",
+      "url": "/documentation/apple_pay_on_the_web#2930449"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web/apple_pay_js_api": {
+      "abstract": [
+        {
+          "text": "Implement Apple Pay on the web using Apple's JavaScript API.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/apple_pay_js_api",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Apple Pay JS API",
+      "type": "topic",
+      "url": "/documentation/apple_pay_on_the_web/apple_pay_js_api"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web/apple_pay_on_the_web_version_history": {
+      "abstract": [
+        {
+          "text": "Learn about features in each version of Apple Pay on the Web.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/apple_pay_on_the_web_version_history",
+      "kind": "article",
+      "role": "article",
+      "title": "Apple Pay on the web version history",
+      "type": "topic",
+      "url": "/documentation/apple_pay_on_the_web/apple_pay_on_the_web_version_history"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepayerror": {
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepayerror",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ApplePayError",
+      "type": "topic",
+      "url": "/documentation/apple_pay_on_the_web/applepayerror"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web/choosing_an_api_for_implementing_apple_pay_on_your_website": {
+      "abstract": [
+        {
+          "text": "Compare Apple Pay JS and Payment Request API to choose the right implementation for your website.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/choosing_an_api_for_implementing_apple_pay_on_your_website",
+      "kind": "article",
+      "role": "article",
+      "title": "Choosing an API for Implementing Apple Pay on Your Website",
+      "type": "topic",
+      "url": "/documentation/apple_pay_on_the_web/choosing_an_api_for_implementing_apple_pay_on_your_website"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web/payment_request_api": {
+      "abstract": [
+        {
+          "text": "Accept payments on your website with Apple Pay using the Payment Request API.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/payment_request_api",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Payment Request API",
+      "type": "topic",
+      "url": "/documentation/apple_pay_on_the_web/payment_request_api"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "link-2957564": {
+      "identifier": "link-2957564",
+      "kind": "article",
+      "role": "link",
+      "title": "Human Interface Guidelines > Apple Pay on the Web",
+      "type": "topic",
+      "url": "https://developer.apple.com/apple-pay/web-human-interface-guidelines/"
+    },
+    "link-2961200": {
+      "identifier": "link-2961200",
+      "kind": "article",
+      "role": "link",
+      "title": "World Wide Web Consortium (W3C)",
+      "type": "topic",
+      "url": "https://www.w3.org/TR/payment-request/"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/apple_pay_on_the_web/apple_pay_on_the_web_version_history",
+        "doc://com.apple.documentation/documentation/apple_pay_on_the_web/apple_pay_js_api",
+        "doc://com.apple.documentation/documentation/apple_pay_on_the_web/payment_request_api"
+      ],
+      "title": "Apple Pay JavaScript APIs"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/apple_pay_on_the_web/choosing_an_api_for_implementing_apple_pay_on_your_website"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

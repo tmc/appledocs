@@ -1,0 +1,1256 @@
+{
+  "abstract": [
+    {
+      "text": "A provider object for USB devices that support HID interactions.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserUSBHostHIDDevice"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@S@IOUserUSBHostHIDDevice",
+    "fragments": [
+      {
+        "kind": "identifier",
+        "text": "IOUserUSBHostHIDDevice"
+      }
+    ],
+    "modules": [
+      {
+        "name": "HIDDriverKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "IOUserUSBHostHIDDevice"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "name": "DriverKit"
+      },
+      {
+        "beta": false,
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "IOUserUSBHostHIDDevice"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "Unsupported OS: driverkit"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "IOUserUSBHostHIDDevice"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An ",
+              "type": "text"
+            },
+            {
+              "code": "IOUserUSBHostHIDDevice",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object is a fully functional provider object that represents a USB-based HID device. Typically, you don’t create ",
+              "type": "text"
+            },
+            {
+              "code": "IOUserUSBHostHIDDevice",
+              "type": "codeVoice"
+            },
+            {
+              "text": " objects directly. Instead, you specify that your driver relies on an ",
+              "type": "text"
+            },
+            {
+              "code": "IOUserUSBHostHIDDevice",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as its provider, and the system creates the interface object for you during the matching process.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When implementing a custom driver, use this provider object to manage the connection to the underlying device. Specifically, use it to get reports from the device and to manage the device’s configuration. For example, use the object to configure the USB device’s idle policy.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Subclass ",
+              "type": "text"
+            },
+            {
+              "code": "IOUserUSBHostHIDDevice",
+              "type": "codeVoice"
+            },
+            {
+              "text": " only when you want to customize the interactions with the USB device. For example, you might use a custom subclass to initialize the USB device in a particular way or support a custom transport mechanism. You can also use a custom subclass to perform additional processing on the report data.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Specify-the-Drivers-Personality-Information",
+          "level": 3,
+          "text": "Specify the Driver’s Personality Information",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you subclass ",
+              "type": "text"
+            },
+            {
+              "code": "IOUserUSBHostHIDDevice",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", update the ",
+              "type": "text"
+            },
+            {
+              "code": "IOKitPersonalities",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key of your driver extension’s ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file with information to match your driver to appropriate hardware. For this class, always include the keys and values in the following table.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Key",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Discussion",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "IOClass",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The value ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "AppleUserHIDDevice",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "IOProviderClass",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The provider class information. For a USB-based HID device, specify ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/USBDriverKit/IOUSBHostInterface",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "IOUserClass",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The name of your custom subclass.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/CFBundleIdentifier",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The bundle identifier of your driver.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You may add other keys to assist with the matching process. For example, you might include the ",
+              "type": "text"
+            },
+            {
+              "code": "VendorID",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "ProductID",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "PrimaryUsagePage",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "code": "PrimaryUsage",
+              "type": "codeVoice"
+            },
+            {
+              "text": " keys to match against specific USB devices and HID usage types. The USB specification defines which keys to include when matching your driver to a USB device. For information about the specific key combinations, see ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Universal Serial Bus Common Class Specification",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " at ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://www.usb.org",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.family.hid.device": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the driver provides a HID-related service to the system.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.family.hid.device",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "com.apple.developer.driverkit.family.hid.device",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.family.hid.device"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/CFBundleIdentifier": {
+      "abstract": [
+        {
+          "text": "A unique identifier for a bundle.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/CFBundleIdentifier",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFBundleIdentifier",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/CFBundleIdentifier"
+    },
+    "doc://com.apple.documentation/documentation/USBDriverKit/IOUSBHostInterface": {
+      "abstract": [
+        {
+          "text": "A provider object that manages interactions with an interface of the USB device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "IOUSBHostInterface"
+        },
+        {
+          "kind": "text",
+          "text": ";"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/USBDriverKit/IOUSBHostInterface",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOUSBHostInterface",
+      "type": "topic",
+      "url": "/documentation/USBDriverKit/IOUSBHostInterface"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit": {
+      "abstract": [
+        {
+          "text": "Develop drivers for human-interface devices, such as keyboards, pointing devices, and digitizers like pens and touch pads.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "HIDDriverKit",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDDevice": {
+      "abstract": [
+        {
+          "text": "An object containing the low-level behavior for all HID device providers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "IOHIDDevice"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDDevice",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOHIDDevice",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iohiddevice"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDInterface": {
+      "abstract": [
+        {
+          "text": "A provider object for a HID device’s interface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "IOHIDInterface"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDInterface",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOHIDInterface",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iohidinterface"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDDevice": {
+      "abstract": [
+        {
+          "text": "A provider object for devices that support interactions with users.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "IOUserHIDDevice"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDDevice",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOUserHIDDevice",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iouserhiddevice"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserUSBHostHIDDevice": {
+      "abstract": [
+        {
+          "text": "A provider object for USB devices that support HID interactions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "IOUserUSBHostHIDDevice"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserUSBHostHIDDevice",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOUserUSBHostHIDDevice",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iouserusbhosthiddevice"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserUSBHostHIDDevice/CompleteInputReport": {
+      "abstract": [
+        {
+          "text": "Processes the results of an asynchronous request for an input report.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "CompleteInputReport"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserUSBHostHIDDevice/CompleteInputReport",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CompleteInputReport",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iouserusbhosthiddevice/completeinputreport"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserUSBHostHIDDevice/CompleteOutputReport": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "CompleteOutputReport"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserUSBHostHIDDevice/CompleteOutputReport",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CompleteOutputReport",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iouserusbhosthiddevice/completeoutputreport"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserUSBHostHIDDevice/CompleteOutputRequest": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "CompleteOutputRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserUSBHostHIDDevice/CompleteOutputRequest",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CompleteOutputRequest",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iouserusbhosthiddevice/completeoutputrequest"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserUSBHostHIDDevice/CompleteZLP": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "CompleteZLP"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserUSBHostHIDDevice/CompleteZLP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CompleteZLP",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iouserusbhosthiddevice/completezlp"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserUSBHostHIDDevice/Start": {
+      "abstract": [
+        {
+          "text": "Starts the current device service and associates it with the specified provider object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "Start"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserUSBHostHIDDevice/Start",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Start",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iouserusbhosthiddevice/start"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserUSBHostHIDDevice/Stop": {
+      "abstract": [
+        {
+          "text": "Stops the device service associated with the specified provider.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "Stop"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserUSBHostHIDDevice/Stop",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Stop",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iouserusbhosthiddevice/stop"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserUSBHostHIDDevice/TimerOccurred": {
+      "abstract": [
+        {
+          "text": "Handles timeout-related actions when retrying input report requests.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "TimerOccurred"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserUSBHostHIDDevice/TimerOccurred",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "TimerOccurred",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iouserusbhosthiddevice/timeroccurred"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserUSBHostHIDDevice/cancelInputReportRetry": {
+      "abstract": [
+        {
+          "text": "Cancels a retry attempt for an input report request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "cancelInputReportRetry"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserUSBHostHIDDevice/cancelInputReportRetry",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cancelInputReportRetry",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iouserusbhosthiddevice/cancelinputreportretry"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserUSBHostHIDDevice/copyStringAtIndex": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "copyStringAtIndex"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserUSBHostHIDDevice/copyStringAtIndex",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "copyStringAtIndex",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iouserusbhosthiddevice/copystringatindex"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserUSBHostHIDDevice/free": {
+      "abstract": [
+        {
+          "text": "Performs any final cleanup for the service.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "free"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserUSBHostHIDDevice/free",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "free",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iouserusbhosthiddevice/free"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserUSBHostHIDDevice/getAction": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "getAction"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserUSBHostHIDDevice/getAction",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getAction",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iouserusbhosthiddevice/getaction"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserUSBHostHIDDevice/getHIDDescriptorInfo": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "getHIDDescriptorInfo"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserUSBHostHIDDevice/getHIDDescriptorInfo",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getHIDDescriptorInfo",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iouserusbhosthiddevice/gethiddescriptorinfo"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserUSBHostHIDDevice/getReport-2v8zk": {
+      "abstract": [
+        {
+          "text": "Gets a report from the HID device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "getReport"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserUSBHostHIDDevice/getReport-2v8zk",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getReport",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iouserusbhosthiddevice/getreport-2v8zk"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserUSBHostHIDDevice/getReport-6stqs": {
+      "abstract": [
+        {
+          "text": "Gets a report from the HID device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "getReport"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserUSBHostHIDDevice/getReport-6stqs",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getReport",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iouserusbhosthiddevice/getreport-6stqs"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserUSBHostHIDDevice/handleStart": {
+      "abstract": [
+        {
+          "text": "Performs any custom initialization associated with starting the device service.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "handleStart"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserUSBHostHIDDevice/handleStart",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "handleStart",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iouserusbhosthiddevice/handlestart"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserUSBHostHIDDevice/init": {
+      "abstract": [
+        {
+          "text": "Handles the basic initialization of the event service.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserUSBHostHIDDevice/init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iouserusbhosthiddevice/init"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserUSBHostHIDDevice/initInputReport": {
+      "abstract": [
+        {
+          "text": "Starts reading the input report from the device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "initInputReport"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserUSBHostHIDDevice/initInputReport",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "initInputReport",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iouserusbhosthiddevice/initinputreport"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserUSBHostHIDDevice/initPipes": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "initPipes"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserUSBHostHIDDevice/initPipes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "initPipes",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iouserusbhosthiddevice/initpipes"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserUSBHostHIDDevice/isBulkPipeSupported": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "isBulkPipeSupported"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserUSBHostHIDDevice/isBulkPipeSupported",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isBulkPipeSupported",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iouserusbhosthiddevice/isbulkpipesupported"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserUSBHostHIDDevice/newDeviceDescription": {
+      "abstract": [
+        {
+          "text": "Creates and returns a new dictionary that describes the HID device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "newDeviceDescription"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserUSBHostHIDDevice/newDeviceDescription",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "newDeviceDescription",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iouserusbhosthiddevice/newdevicedescription"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserUSBHostHIDDevice/newReportDescriptor": {
+      "abstract": [
+        {
+          "text": "Returns the data in the HID device’s report descriptor.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "newReportDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserUSBHostHIDDevice/newReportDescriptor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "newReportDescriptor",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iouserusbhosthiddevice/newreportdescriptor"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserUSBHostHIDDevice/reset": {
+      "abstract": [
+        {
+          "text": "Resets the USB device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "reset"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserUSBHostHIDDevice/reset",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "reset",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iouserusbhosthiddevice/reset"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserUSBHostHIDDevice/returnAction": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "returnAction"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserUSBHostHIDDevice/returnAction",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "returnAction",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iouserusbhosthiddevice/returnaction"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserUSBHostHIDDevice/scheduleInputReportRetry": {
+      "abstract": [
+        {
+          "text": "Retries a previous request for an input report.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "scheduleInputReportRetry"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserUSBHostHIDDevice/scheduleInputReportRetry",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "scheduleInputReportRetry",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iouserusbhosthiddevice/scheduleinputreportretry"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserUSBHostHIDDevice/setIdle": {
+      "abstract": [
+        {
+          "text": "Sets the device’s idle time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "setIdle"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserUSBHostHIDDevice/setIdle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setIdle",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iouserusbhosthiddevice/setidle"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserUSBHostHIDDevice/setIdlePolicy": {
+      "abstract": [
+        {
+          "text": "Sets the amount of idle time that must pass before suspending the device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "setIdlePolicy"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserUSBHostHIDDevice/setIdlePolicy",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setIdlePolicy",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iouserusbhosthiddevice/setidlepolicy"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserUSBHostHIDDevice/setProperty": {
+      "abstract": [
+        {
+          "text": "Updates the specified property on the corresponding kernel object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "setProperty"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserUSBHostHIDDevice/setProperty",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setProperty",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iouserusbhosthiddevice/setproperty"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserUSBHostHIDDevice/setProtocol": {
+      "abstract": [
+        {
+          "text": "Sets the active protocol to use for communicating with the USB device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "setProtocol"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserUSBHostHIDDevice/setProtocol",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setProtocol",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iouserusbhosthiddevice/setprotocol"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserUSBHostHIDDevice/setReport": {
+      "abstract": [
+        {
+          "text": "Sends a report to the HID device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "setReport"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserUSBHostHIDDevice/setReport",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setReport",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/iouserusbhosthiddevice/setreport"
+    },
+    "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/USBIdlePolicyType": {
+      "abstract": [
+        {
+          "text": "Constants that specify whether to apply the idle policy to an interface or pipe.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "USBIdlePolicyType"
+        }
+      ],
+      "identifier": "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/USBIdlePolicyType",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "USBIdlePolicyType",
+      "type": "topic",
+      "url": "/documentation/hiddriverkit/usbidlepolicytype"
+    },
+    "https://www.usb.org": {
+      "identifier": "https://www.usb.org",
+      "title": "https://www.usb.org",
+      "titleInlineContent": [
+        {
+          "text": "https://www.usb.org",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://www.usb.org"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDDevice"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Providers",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.driverkit.family.hid.device",
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDInterface",
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserHIDDevice",
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOHIDDevice"
+      ],
+      "title": "Providers"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Running-the-Service",
+      "identifiers": [
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserUSBHostHIDDevice/init",
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserUSBHostHIDDevice/Start",
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserUSBHostHIDDevice/handleStart",
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserUSBHostHIDDevice/Stop",
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserUSBHostHIDDevice/free"
+      ],
+      "title": "Running the Service"
+    },
+    {
+      "anchor": "Getting-the-Device-Description",
+      "identifiers": [
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserUSBHostHIDDevice/newDeviceDescription"
+      ],
+      "title": "Getting the Device Description"
+    },
+    {
+      "anchor": "Managing-Device-Reports",
+      "identifiers": [
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserUSBHostHIDDevice/newReportDescriptor",
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserUSBHostHIDDevice/getReport-6stqs",
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserUSBHostHIDDevice/getReport-2v8zk",
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserUSBHostHIDDevice/setReport",
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserUSBHostHIDDevice/initInputReport",
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserUSBHostHIDDevice/CompleteInputReport",
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserUSBHostHIDDevice/scheduleInputReportRetry",
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserUSBHostHIDDevice/cancelInputReportRetry",
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserUSBHostHIDDevice/TimerOccurred"
+      ],
+      "title": "Managing Device Reports"
+    },
+    {
+      "anchor": "Configuring-the-Device",
+      "identifiers": [
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserUSBHostHIDDevice/setProtocol",
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserUSBHostHIDDevice/setIdle",
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserUSBHostHIDDevice/setIdlePolicy",
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserUSBHostHIDDevice/setProperty",
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserUSBHostHIDDevice/reset",
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/USBIdlePolicyType"
+      ],
+      "title": "Configuring the Device"
+    },
+    {
+      "anchor": "Configuring-Private-Settings",
+      "identifiers": [
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserUSBHostHIDDevice/initPipes",
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserUSBHostHIDDevice/getHIDDescriptorInfo",
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserUSBHostHIDDevice/CompleteZLP",
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserUSBHostHIDDevice/copyStringAtIndex"
+      ],
+      "title": "Configuring Private Settings"
+    },
+    {
+      "anchor": "Instance-Methods",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserUSBHostHIDDevice/CompleteOutputReport",
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserUSBHostHIDDevice/CompleteOutputRequest",
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserUSBHostHIDDevice/getAction",
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserUSBHostHIDDevice/isBulkPipeSupported",
+        "doc://com.apple.hiddriverkit/documentation/HIDDriverKit/IOUserUSBHostHIDDevice/returnAction"
+      ],
+      "title": "Instance Methods"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/hiddriverkit/iouserusbhosthiddevice"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

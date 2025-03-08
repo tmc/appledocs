@@ -1,0 +1,1280 @@
+{
+  "abstract": [
+    {
+      "text": "Configure a payment request to display a read-only pickup address on the payment sheet.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.passkit/documentation/PassKit",
+        "doc://com.apple.passkit/documentation/PassKit/apple-pay",
+        "doc://com.apple.passkit/documentation/PassKit/PKPaymentRequest"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.passkit/documentation/PassKit/displaying-a-read-only-pickup-address"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "PassKit (Apple Pay and Wallet)"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Displaying a Read-Only Pickup Address"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The payment sheet displays the shipping address in the same place whether the shipping method is delivery or pickup. You can prevent the user from editing the address of a pickup and still require other information about the person making the pickup.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "This feature is available in apps built for iOS 15, iPadOS 15, watchOS 8, macOS 12, and apps built with Mac Catalyst 15 and later.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Add-a-Read-Only-Pickup-Address",
+          "level": 3,
+          "text": "Add a Read-Only Pickup Address",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Set the following four properties of your payment request to display a read-only pickup address:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Set ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPaymentRequest/shippingType",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKShippingType/storePickup",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Add the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKContactField/postalAddress",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPaymentRequest/requiredShippingContactFields",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to show the pickup address. To request additional information about the person picking up the item, such as a name or phone number, add other required fields.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Set ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPaymentRequest/shippingContact",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to the pickup address. Optionally set the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKContact/name",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " of the pickup address to a store or location name.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Set ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPaymentRequest/shippingContactEditingMode",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKShippingContactEditingMode/storePickup",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The code below configures an in-store pickup at Example Company and requires an email for the pickup person:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let paymentRequest = PKPaymentRequest",
+            "",
+            "// Set the shipping type.",
+            "paymentRequest.shippingType  = .storePickup",
+            "",
+            "// Set the required shipping contact fields to display the pickup address and",
+            "// require an email for the person picking up the package.",
+            "paymentRequest.requiredShippingContactFields = [.postalAddress, .email]",
+            "",
+            "// Create the shipping contact information.",
+            "let addr = CNMutablePostalAddress()",
+            "addr.street = \"123 Any Street\"",
+            "addr.city = \"Any Town\"",
+            "addr.state = \"CA\"",
+            "addr.postalCode = \"95014\"",
+            "addr.isoCountryCode = \"US\"",
+            "",
+            "// Add a store or location name.",
+            "let pickupAddress = PKContact()",
+            "pickupAddress.postalAddress = addr",
+            "// Optionally, add a name to the contact.",
+            "pickupAddress.name = PersonNameComponents()",
+            "pickupAddress.name?.familyName = \"Example Company\"",
+            "",
+            "// Set the shipping contact.",
+            "paymentRequest.shippingContact = pickupAddress",
+            "",
+            "// Set the shipping contact information to read-only.",
+            "paymentRequest.shippingContactEditingMode = .storePickup"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Determine whether to disable editing of the shipping contact field before displaying the payment sheet. Switching from a noneditable to an editable shipping contact field requires the user to start the payment process over again.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.passkit/documentation/PassKit": {
+      "abstract": [
+        {
+          "text": "Process Apple Pay payments in your app, and create and distribute passes for the Wallet app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "PassKit (Apple Pay and Wallet)",
+      "type": "topic",
+      "url": "/documentation/passkit"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKContact/name": {
+      "abstract": [
+        {
+          "text": "The contact’s first and last name, or ",
+          "type": "text"
+        },
+        {
+          "code": "nil",
+          "type": "codeVoice"
+        },
+        {
+          "text": " if the contact’s name is not needed for the transaction.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "name"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation20PersonNameComponentsV",
+          "text": "PersonNameComponents"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKContact/name",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "name"
+        }
+      ],
+      "role": "symbol",
+      "title": "name",
+      "type": "topic",
+      "url": "/documentation/passkit/pkcontact/name"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKContactField/postalAddress": {
+      "abstract": [
+        {
+          "text": "A constant that indicates a contact’s postal address.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "postalAddress"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@PKContactField",
+          "text": "PKContactField"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKContactField/postalAddress",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKContactFieldPostalAddress"
+        }
+      ],
+      "role": "symbol",
+      "title": "postalAddress",
+      "type": "topic",
+      "url": "/documentation/passkit/pkcontactfield/postaladdress"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKPaymentRequest": {
+      "abstract": [
+        {
+          "text": "An object that represents a request for payment, including details about payment-processing capabilities, the payment amount, and shipping information.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKPaymentRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPaymentRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKPaymentRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKPaymentRequest",
+      "type": "topic",
+      "url": "/documentation/passkit/pkpaymentrequest"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKPaymentRequest/requiredShippingContactFields": {
+      "abstract": [
+        {
+          "text": "A list of fields that you need for a shipping contact to process the transaction.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "requiredShippingContactFields"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sh",
+          "text": "Set"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@PKContactField",
+          "text": "PKContactField"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPaymentRequest/requiredShippingContactFields",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "requiredShippingContactFields"
+        }
+      ],
+      "role": "symbol",
+      "title": "requiredShippingContactFields",
+      "type": "topic",
+      "url": "/documentation/passkit/pkpaymentrequest/requiredshippingcontactfields"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKPaymentRequest/shippingContact": {
+      "abstract": [
+        {
+          "text": "A prepopulated shipping address.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "shippingContact"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PKContact",
+          "text": "PKContact"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPaymentRequest/shippingContact",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "shippingContact"
+        }
+      ],
+      "role": "symbol",
+      "title": "shippingContact",
+      "type": "topic",
+      "url": "/documentation/passkit/pkpaymentrequest/shippingcontact"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKPaymentRequest/shippingContactEditingMode": {
+      "abstract": [
+        {
+          "text": "A value that indicates whether the shipping mode prevents the user from editing the shipping address.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "shippingContactEditingMode"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@PKShippingContactEditingMode",
+          "text": "PKShippingContactEditingMode"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPaymentRequest/shippingContactEditingMode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "shippingContactEditingMode"
+        }
+      ],
+      "role": "symbol",
+      "title": "shippingContactEditingMode",
+      "type": "topic",
+      "url": "/documentation/passkit/pkpaymentrequest/shippingcontacteditingmode"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKPaymentRequest/shippingMethods": {
+      "abstract": [
+        {
+          "text": "An array of shipping method objects that describe the supported shipping methods.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "shippingMethods"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PKShippingMethod",
+          "text": "PKShippingMethod"
+        },
+        {
+          "kind": "text",
+          "text": "]?"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPaymentRequest/shippingMethods",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "shippingMethods"
+        }
+      ],
+      "role": "symbol",
+      "title": "shippingMethods",
+      "type": "topic",
+      "url": "/documentation/passkit/pkpaymentrequest/shippingmethods"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKPaymentRequest/shippingType": {
+      "abstract": [
+        {
+          "text": "The type of shipping the request uses.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "shippingType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@PKShippingType",
+          "text": "PKShippingType"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPaymentRequest/shippingType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "shippingType"
+        }
+      ],
+      "role": "symbol",
+      "title": "shippingType",
+      "type": "topic",
+      "url": "/documentation/passkit/pkpaymentrequest/shippingtype"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKShippingContactEditingMode": {
+      "abstract": [
+        {
+          "text": "Constants that indicate whether the shipping mode prevents the user from editing fields of the shipping address.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKShippingContactEditingMode"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKShippingContactEditingMode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKShippingContactEditingMode"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKShippingContactEditingMode",
+      "type": "topic",
+      "url": "/documentation/passkit/pkshippingcontacteditingmode"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKShippingContactEditingMode/storePickup": {
+      "abstract": [
+        {
+          "text": "The shipping contact on the payment sheet represents a pickup address and isn’t editable by the user.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "storePickup"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKShippingContactEditingMode/storePickup",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKShippingContactEditingModeStorePickup"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKShippingContactEditingMode.storePickup",
+      "type": "topic",
+      "url": "/documentation/passkit/pkshippingcontacteditingmode/storepickup"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKShippingMethod": {
+      "abstract": [
+        {
+          "text": "An object that defines a shipping method for delivering physical goods.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKShippingMethod"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKShippingMethod",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKShippingMethod"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKShippingMethod",
+      "type": "topic",
+      "url": "/documentation/passkit/pkshippingmethod"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKShippingMethod/dateComponentsRange": {
+      "abstract": [
+        {
+          "text": "An expected range of delivery or shipping dates for a package, or the time range when an item is available for pickup.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "dateComponentsRange"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PKDateComponentsRange",
+          "text": "PKDateComponentsRange"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKShippingMethod/dateComponentsRange",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "dateComponentsRange"
+        }
+      ],
+      "role": "symbol",
+      "title": "dateComponentsRange",
+      "type": "topic",
+      "url": "/documentation/passkit/pkshippingmethod/datecomponentsrange"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKShippingType": {
+      "abstract": [
+        {
+          "text": "A complete list of valid shipping types.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKShippingType"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKShippingType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKShippingType"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKShippingType",
+      "type": "topic",
+      "url": "/documentation/passkit/pkshippingtype"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKShippingType/storePickup": {
+      "abstract": [
+        {
+          "text": "Store pickup of the purchase from the seller’s store.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "storePickup"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKShippingType/storePickup",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKShippingTypeStorePickup"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKShippingType.storePickup",
+      "type": "topic",
+      "url": "/documentation/passkit/pkshippingtype/storepickup"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/apple-pay": {
+      "abstract": [
+        {
+          "text": "Request and process Apple Pay payments in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/apple-pay",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Apple Pay",
+      "type": "topic",
+      "url": "/documentation/passkit/apple-pay"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Related-Documentation",
+      "identifiers": [
+        "doc://com.apple.passkit/documentation/PassKit/PKShippingMethod/dateComponentsRange"
+      ],
+      "title": "Related Documentation"
+    },
+    {
+      "anchor": "Setting-the-shipping-methods-and-types",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.passkit/documentation/PassKit/PKPaymentRequest/shippingMethods",
+        "doc://com.apple.passkit/documentation/PassKit/PKShippingMethod",
+        "doc://com.apple.passkit/documentation/PassKit/PKPaymentRequest/shippingType",
+        "doc://com.apple.passkit/documentation/PassKit/PKPaymentRequest/shippingContactEditingMode",
+        "doc://com.apple.passkit/documentation/PassKit/PKShippingType",
+        "doc://com.apple.passkit/documentation/PassKit/PKShippingContactEditingMode"
+      ],
+      "title": "Setting the shipping methods and types"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Related-Documentation",
+              "identifiers": [
+                "doc://com.apple.passkit/documentation/PassKit/PKShippingMethod/dateComponentsRange"
+              ],
+              "title": "Related Documentation"
+            },
+            {
+              "anchor": "Setting-the-shipping-methods-and-types",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.passkit/documentation/PassKit/PKPaymentRequest/shippingMethods",
+                "doc://com.apple.passkit/documentation/PassKit/PKShippingMethod",
+                "doc://com.apple.passkit/documentation/PassKit/PKPaymentRequest/shippingType",
+                "doc://com.apple.passkit/documentation/PassKit/PKPaymentRequest/shippingContactEditingMode",
+                "doc://com.apple.passkit/documentation/PassKit/PKShippingType",
+                "doc://com.apple.passkit/documentation/PassKit/PKShippingContactEditingMode"
+              ],
+              "title": "Setting the shipping methods and types"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKShippingMethod/title",
+          "value": "PKShippingMethod"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKShippingMethod/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKShippingMethod"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKShippingMethod/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKShippingMethod"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentRequest~1shippingContact/title",
+          "value": "shippingContact"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentRequest~1shippingContact/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "shippingContact"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentRequest~1shippingMethods/title",
+          "value": "shippingMethods"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentRequest~1shippingMethods/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "shippingMethods"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentRequest~1shippingContactEditingMode/title",
+          "value": "shippingContactEditingMode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentRequest~1shippingContactEditingMode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "shippingContactEditingMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKShippingContactEditingMode~1storePickup/title",
+          "value": "PKShippingContactEditingModeStorePickup"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKShippingContactEditingMode~1storePickup/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKShippingContactEditingModeStorePickup"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKShippingType/title",
+          "value": "PKShippingType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKShippingType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKShippingType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKShippingType/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKShippingType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKShippingType~1storePickup/title",
+          "value": "PKShippingTypeStorePickup"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKShippingType~1storePickup/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKShippingTypeStorePickup"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentRequest/title",
+          "value": "PKPaymentRequest"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentRequest/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKPaymentRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentRequest/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKPaymentRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentRequest~1requiredShippingContactFields/title",
+          "value": "requiredShippingContactFields"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentRequest~1requiredShippingContactFields/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "requiredShippingContactFields"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKShippingMethod~1dateComponentsRange/title",
+          "value": "dateComponentsRange"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKShippingMethod~1dateComponentsRange/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "dateComponentsRange"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKShippingContactEditingMode/title",
+          "value": "PKShippingContactEditingMode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKShippingContactEditingMode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKShippingContactEditingMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKShippingContactEditingMode/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKShippingContactEditingMode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKContact~1name/title",
+          "value": "name"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKContact~1name/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "name"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKContactField~1postalAddress/title",
+          "value": "PKContactFieldPostalAddress"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKContactField~1postalAddress/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKContactFieldPostalAddress"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentRequest~1shippingType/title",
+          "value": "shippingType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentRequest~1shippingType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "shippingType"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/passkit/displaying-a-read-only-pickup-address"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/passkit/displaying-a-read-only-pickup-address"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

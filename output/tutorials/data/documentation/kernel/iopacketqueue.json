@@ -1,0 +1,1034 @@
+{
+  "abstract": [
+    {
+      "text": "Implements a bounded FIFO queue of mbuf packets.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/kernel",
+        "doc://com.apple.documentation/documentation/kernel/hardware_families",
+        "doc://com.apple.documentation/documentation/kernel/hardware_families/network"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/kernel/iopacketqueue"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1526756,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@S@IOPacketQueue",
+    "modules": [
+      {
+        "name": "Kernel"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "15.4",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "IOPacketQueue"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "IOPacketQueue"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/osobject",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@S@OSObject",
+              "text": "OSObject"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Packets are removed from the head of the queue (dequeue), and new packets are added to the tail of the queue (enqueue). A spinlock is used to synchronize access to the queue between methods that have a \"lock\" prefix.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/kernel": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Kernel",
+      "type": "topic",
+      "url": "/documentation/kernel"
+    },
+    "doc://com.apple.documentation/documentation/kernel/hardware_families": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/hardware_families",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Hardware Families",
+      "type": "topic",
+      "url": "/documentation/kernel/hardware_families"
+    },
+    "doc://com.apple.documentation/documentation/kernel/hardware_families/network": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/hardware_families/network",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Network",
+      "type": "topic",
+      "url": "/documentation/kernel/hardware_families/network"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkdata": {
+      "abstract": [
+        {
+          "text": "An object that manages a fixed-size named buffer.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkdata",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IONetworkData",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkdata"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ionetworkmedium": {
+      "abstract": [
+        {
+          "text": "An object that encapsulates information about a network medium (i.e. 10Base-T, or 100Base-T Full Duplex).",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ionetworkmedium",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IONetworkMedium",
+      "type": "topic",
+      "url": "/documentation/kernel/ionetworkmedium"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopacketbufferconstraints": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopacketbufferconstraints",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOPacketBufferConstraints",
+      "type": "topic",
+      "url": "/documentation/kernel/iopacketbufferconstraints"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopacketqueue": {
+      "abstract": [
+        {
+          "text": "Implements a bounded FIFO queue of mbuf packets.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopacketqueue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOPacketQueue",
+      "type": "topic",
+      "url": "/documentation/kernel/iopacketqueue"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopacketqueue/1526755-lockprepend": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "lockPrepend"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopacketqueue/1526755-lockprepend",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "lockPrepend",
+      "type": "topic",
+      "url": "/documentation/kernel/iopacketqueue/1526755-lockprepend"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopacketqueue/1526757-lockdequeueall": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "lockDequeueAll"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopacketqueue/1526757-lockdequeueall",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "lockDequeueAll",
+      "type": "topic",
+      "url": "/documentation/kernel/iopacketqueue/1526757-lockdequeueall"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopacketqueue/1526759-enqueuewithdrop": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "enqueueWithDrop"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopacketqueue/1526759-enqueuewithdrop",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "enqueueWithDrop",
+      "type": "topic",
+      "url": "/documentation/kernel/iopacketqueue/1526759-enqueuewithdrop"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopacketqueue/1526760-getsize": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getSize"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopacketqueue/1526760-getsize",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getSize",
+      "type": "topic",
+      "url": "/documentation/kernel/iopacketqueue/1526760-getsize"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopacketqueue/1526762-lockenqueue": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "lockEnqueue"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopacketqueue/1526762-lockenqueue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "lockEnqueue",
+      "type": "topic",
+      "url": "/documentation/kernel/iopacketqueue/1526762-lockenqueue"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopacketqueue/1526764-lockdequeue": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "lockDequeue"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopacketqueue/1526764-lockdequeue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "lockDequeue",
+      "type": "topic",
+      "url": "/documentation/kernel/iopacketqueue/1526764-lockdequeue"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopacketqueue/1526765-lockenqueuewithdrop": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "lockEnqueueWithDrop"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopacketqueue/1526765-lockenqueuewithdrop",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "lockEnqueueWithDrop",
+      "type": "topic",
+      "url": "/documentation/kernel/iopacketqueue/1526765-lockenqueuewithdrop"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopacketqueue/1526767-getcapacity": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getCapacity"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopacketqueue/1526767-getcapacity",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getCapacity",
+      "type": "topic",
+      "url": "/documentation/kernel/iopacketqueue/1526767-getcapacity"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopacketqueue/1526770-prepend": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "prepend"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopacketqueue/1526770-prepend",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "prepend",
+      "type": "topic",
+      "url": "/documentation/kernel/iopacketqueue/1526770-prepend"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopacketqueue/1526771-peek": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "peek"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopacketqueue/1526771-peek",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "peek",
+      "type": "topic",
+      "url": "/documentation/kernel/iopacketqueue/1526771-peek"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopacketqueue/1526772-flush": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "flush"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopacketqueue/1526772-flush",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "flush",
+      "type": "topic",
+      "url": "/documentation/kernel/iopacketqueue/1526772-flush"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopacketqueue/1526773-free": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "free"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopacketqueue/1526773-free",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "free",
+      "type": "topic",
+      "url": "/documentation/kernel/iopacketqueue/1526773-free"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopacketqueue/1526775-enqueue": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "enqueue"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopacketqueue/1526775-enqueue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "enqueue",
+      "type": "topic",
+      "url": "/documentation/kernel/iopacketqueue/1526775-enqueue"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopacketqueue/1526776-lockflush": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "lockFlush"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopacketqueue/1526776-lockflush",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "lockFlush",
+      "type": "topic",
+      "url": "/documentation/kernel/iopacketqueue/1526776-lockflush"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopacketqueue/1526777-dequeueall": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "dequeueAll"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopacketqueue/1526777-dequeueall",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dequeueAll",
+      "type": "topic",
+      "url": "/documentation/kernel/iopacketqueue/1526777-dequeueall"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopacketqueue/1526779-dequeue": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "dequeue"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopacketqueue/1526779-dequeue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dequeue",
+      "type": "topic",
+      "url": "/documentation/kernel/iopacketqueue/1526779-dequeue"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopacketqueue/1526781-initwithcapacity": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "initWithCapacity"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopacketqueue/1526781-initwithcapacity",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "initWithCapacity",
+      "type": "topic",
+      "url": "/documentation/kernel/iopacketqueue/1526781-initwithcapacity"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopacketqueue/1526783-withcapacity": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "withCapacity"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopacketqueue/1526783-withcapacity",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "withCapacity",
+      "type": "topic",
+      "url": "/documentation/kernel/iopacketqueue/1526783-withcapacity"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopacketqueue/1526784-getmetaclass": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getMetaClass"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopacketqueue/1526784-getmetaclass",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getMetaClass",
+      "type": "topic",
+      "url": "/documentation/kernel/iopacketqueue/1526784-getmetaclass"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopacketqueue/1526786-setcapacity": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setCapacity"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopacketqueue/1526786-setcapacity",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setCapacity",
+      "type": "topic",
+      "url": "/documentation/kernel/iopacketqueue/1526786-setcapacity"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopacketqueue/1810464-dequeue": {
+      "abstract": [
+        {
+          "text": "Removes a single packet from the head of the queue.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopacketqueue/1810464-dequeue",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "dequeue",
+      "type": "topic",
+      "url": "/documentation/kernel/iopacketqueue/1810464-dequeue"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopacketqueue/1810493-dequeueall": {
+      "abstract": [
+        {
+          "text": "Removes all packets from the queue and returns the head of the packet chain.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopacketqueue/1810493-dequeueall",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "dequeueAll",
+      "type": "topic",
+      "url": "/documentation/kernel/iopacketqueue/1810493-dequeueall"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopacketqueue/1810512-enqueue": {
+      "abstract": [
+        {
+          "text": "Removes all packets from the specified queue, and adds them to the tail of this queue.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopacketqueue/1810512-enqueue",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "enqueue(IOPacketQueue *)",
+      "type": "topic",
+      "url": "/documentation/kernel/iopacketqueue/1810512-enqueue"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopacketqueue/1810538-enqueue": {
+      "abstract": [
+        {
+          "text": "Adds a chain of packets to the tail of the queue.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopacketqueue/1810538-enqueue",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "enqueue(mbuf_t)",
+      "type": "topic",
+      "url": "/documentation/kernel/iopacketqueue/1810538-enqueue"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopacketqueue/1810567-enqueuewithdrop": {
+      "abstract": [
+        {
+          "text": "Adds a chain of packets to the tail of the queue.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopacketqueue/1810567-enqueuewithdrop",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "enqueueWithDrop",
+      "type": "topic",
+      "url": "/documentation/kernel/iopacketqueue/1810567-enqueuewithdrop"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopacketqueue/1810584-flush": {
+      "abstract": [
+        {
+          "text": "Frees all packets currently held in the queue and releases them back to the free mbuf pool.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopacketqueue/1810584-flush",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "flush",
+      "type": "topic",
+      "url": "/documentation/kernel/iopacketqueue/1810584-flush"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopacketqueue/1810608-free": {
+      "abstract": [
+        {
+          "text": "Frees the IOPacketQueue object.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopacketqueue/1810608-free",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "free",
+      "type": "topic",
+      "url": "/documentation/kernel/iopacketqueue/1810608-free"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopacketqueue/1810646-getcapacity": {
+      "abstract": [
+        {
+          "text": "Gets the current capacity of the queue.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopacketqueue/1810646-getcapacity",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getCapacity",
+      "type": "topic",
+      "url": "/documentation/kernel/iopacketqueue/1810646-getcapacity"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopacketqueue/1810665-getsize": {
+      "abstract": [
+        {
+          "text": "Gets the size of the queue.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopacketqueue/1810665-getsize",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getSize",
+      "type": "topic",
+      "url": "/documentation/kernel/iopacketqueue/1810665-getsize"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopacketqueue/1810679-initwithcapacity": {
+      "abstract": [
+        {
+          "text": "Initializes an IOPacketQueue object.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopacketqueue/1810679-initwithcapacity",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "initWithCapacity",
+      "type": "topic",
+      "url": "/documentation/kernel/iopacketqueue/1810679-initwithcapacity"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopacketqueue/1810698-lockdequeue": {
+      "abstract": [
+        {
+          "text": "Removes a single packet from the head of a synchronized queue.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopacketqueue/1810698-lockdequeue",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "lockDequeue",
+      "type": "topic",
+      "url": "/documentation/kernel/iopacketqueue/1810698-lockdequeue"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopacketqueue/1810717-lockdequeueall": {
+      "abstract": [
+        {
+          "text": "Removes all packets from a synchronized queue and returns the head of the packet chain.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopacketqueue/1810717-lockdequeueall",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "lockDequeueAll",
+      "type": "topic",
+      "url": "/documentation/kernel/iopacketqueue/1810717-lockdequeueall"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopacketqueue/1810734-lockenqueue": {
+      "abstract": [
+        {
+          "text": "Adds a chain of packets to the tail of a synchronized queue.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopacketqueue/1810734-lockenqueue",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "lockEnqueue",
+      "type": "topic",
+      "url": "/documentation/kernel/iopacketqueue/1810734-lockenqueue"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopacketqueue/1810758-lockenqueuewithdrop": {
+      "abstract": [
+        {
+          "text": "Adds a chain of packets to the tail of a synchronized queue.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopacketqueue/1810758-lockenqueuewithdrop",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "lockEnqueueWithDrop",
+      "type": "topic",
+      "url": "/documentation/kernel/iopacketqueue/1810758-lockenqueuewithdrop"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopacketqueue/1810785-lockflush": {
+      "abstract": [
+        {
+          "text": "Frees all packets currently held in a synchronized queue and releases them back to the free mbuf pool.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopacketqueue/1810785-lockflush",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "lockFlush",
+      "type": "topic",
+      "url": "/documentation/kernel/iopacketqueue/1810785-lockflush"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopacketqueue/1810813-lockprepend": {
+      "abstract": [
+        {
+          "text": "Adds a chain of packets to the head of a synchronized queue.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopacketqueue/1810813-lockprepend",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "lockPrepend",
+      "type": "topic",
+      "url": "/documentation/kernel/iopacketqueue/1810813-lockprepend"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopacketqueue/1810837-peek": {
+      "abstract": [
+        {
+          "text": "Examines the packet at the head of the queue without removing it from the queue.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopacketqueue/1810837-peek",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "peek",
+      "type": "topic",
+      "url": "/documentation/kernel/iopacketqueue/1810837-peek"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopacketqueue/1810853-prepend": {
+      "abstract": [
+        {
+          "text": "Removes all packets from the specified queue, and adds them to the head of this queue.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopacketqueue/1810853-prepend",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "prepend(IOPacketQueue *)",
+      "type": "topic",
+      "url": "/documentation/kernel/iopacketqueue/1810853-prepend"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopacketqueue/1810881-prepend": {
+      "abstract": [
+        {
+          "text": "Adds a chain of packets to the head of the queue.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopacketqueue/1810881-prepend",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "prepend(mbuf_t)",
+      "type": "topic",
+      "url": "/documentation/kernel/iopacketqueue/1810881-prepend"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopacketqueue/1810899-setcapacity": {
+      "abstract": [
+        {
+          "text": "Changes the capacity of the queue.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopacketqueue/1810899-setcapacity",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setCapacity",
+      "type": "topic",
+      "url": "/documentation/kernel/iopacketqueue/1810899-setcapacity"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopacketqueue/1810920-withcapacity": {
+      "abstract": [
+        {
+          "text": "Factory method that constructs and initializes an IOPacketQueue object.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopacketqueue/1810920-withcapacity",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "withCapacity",
+      "type": "topic",
+      "url": "/documentation/kernel/iopacketqueue/1810920-withcapacity"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopacketqueue/3516617-enqueue": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "enqueue"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopacketqueue/3516617-enqueue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "enqueue",
+      "type": "topic",
+      "url": "/documentation/kernel/iopacketqueue/3516617-enqueue"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopacketqueue/3516618-prepend": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "prepend"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopacketqueue/3516618-prepend",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "prepend",
+      "type": "topic",
+      "url": "/documentation/kernel/iopacketqueue/3516618-prepend"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopacketqueue/iopacketqueuedefaultcapacity": {
+      "abstract": [
+        {
+          "text": "Describes the default capacity of the queue object.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopacketqueue/iopacketqueuedefaultcapacity",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "IOPacketQueueDefaultCapacity",
+      "type": "topic",
+      "url": "/documentation/kernel/iopacketqueue/iopacketqueuedefaultcapacity"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iopacketqueue/reserved": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iopacketqueue/reserved",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "_reserved",
+      "type": "topic",
+      "url": "/documentation/kernel/iopacketqueue/reserved"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osobject": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSObject",
+      "type": "topic",
+      "url": "/documentation/kernel/osobject"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/osobject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/ionetworkdata",
+        "doc://com.apple.documentation/documentation/kernel/ionetworkmedium",
+        "doc://com.apple.documentation/documentation/kernel/iopacketbufferconstraints"
+      ],
+      "title": "Network Data"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "1818670",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/iopacketqueue/1810464-dequeue",
+        "doc://com.apple.documentation/documentation/kernel/iopacketqueue/1810493-dequeueall",
+        "doc://com.apple.documentation/documentation/kernel/iopacketqueue/1810512-enqueue",
+        "doc://com.apple.documentation/documentation/kernel/iopacketqueue/1810538-enqueue",
+        "doc://com.apple.documentation/documentation/kernel/iopacketqueue/1810567-enqueuewithdrop",
+        "doc://com.apple.documentation/documentation/kernel/iopacketqueue/1810584-flush",
+        "doc://com.apple.documentation/documentation/kernel/iopacketqueue/1810608-free",
+        "doc://com.apple.documentation/documentation/kernel/iopacketqueue/1810646-getcapacity",
+        "doc://com.apple.documentation/documentation/kernel/iopacketqueue/1810665-getsize",
+        "doc://com.apple.documentation/documentation/kernel/iopacketqueue/1810679-initwithcapacity",
+        "doc://com.apple.documentation/documentation/kernel/iopacketqueue/1810698-lockdequeue",
+        "doc://com.apple.documentation/documentation/kernel/iopacketqueue/1810717-lockdequeueall",
+        "doc://com.apple.documentation/documentation/kernel/iopacketqueue/1810734-lockenqueue",
+        "doc://com.apple.documentation/documentation/kernel/iopacketqueue/1810758-lockenqueuewithdrop",
+        "doc://com.apple.documentation/documentation/kernel/iopacketqueue/1810785-lockflush",
+        "doc://com.apple.documentation/documentation/kernel/iopacketqueue/1810813-lockprepend",
+        "doc://com.apple.documentation/documentation/kernel/iopacketqueue/1810837-peek",
+        "doc://com.apple.documentation/documentation/kernel/iopacketqueue/1810853-prepend",
+        "doc://com.apple.documentation/documentation/kernel/iopacketqueue/1810881-prepend",
+        "doc://com.apple.documentation/documentation/kernel/iopacketqueue/1810899-setcapacity",
+        "doc://com.apple.documentation/documentation/kernel/iopacketqueue/1810920-withcapacity"
+      ],
+      "kind": "taskGroup",
+      "title": "Miscellaneous"
+    },
+    {
+      "anchor": "1818705",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/iopacketqueue/iopacketqueuedefaultcapacity"
+      ],
+      "kind": "taskGroup",
+      "title": "Constants"
+    },
+    {
+      "anchor": "1818713",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/iopacketqueue/reserved"
+      ],
+      "kind": "taskGroup",
+      "title": "Instance Variables"
+    },
+    {
+      "anchor": "2862957",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/iopacketqueue/1526779-dequeue",
+        "doc://com.apple.documentation/documentation/kernel/iopacketqueue/1526777-dequeueall",
+        "doc://com.apple.documentation/documentation/kernel/iopacketqueue/1526775-enqueue",
+        "doc://com.apple.documentation/documentation/kernel/iopacketqueue/3516617-enqueue",
+        "doc://com.apple.documentation/documentation/kernel/iopacketqueue/1526759-enqueuewithdrop",
+        "doc://com.apple.documentation/documentation/kernel/iopacketqueue/1526772-flush",
+        "doc://com.apple.documentation/documentation/kernel/iopacketqueue/1526773-free",
+        "doc://com.apple.documentation/documentation/kernel/iopacketqueue/1526767-getcapacity",
+        "doc://com.apple.documentation/documentation/kernel/iopacketqueue/1526784-getmetaclass",
+        "doc://com.apple.documentation/documentation/kernel/iopacketqueue/1526760-getsize",
+        "doc://com.apple.documentation/documentation/kernel/iopacketqueue/1526781-initwithcapacity",
+        "doc://com.apple.documentation/documentation/kernel/iopacketqueue/1526764-lockdequeue",
+        "doc://com.apple.documentation/documentation/kernel/iopacketqueue/1526757-lockdequeueall",
+        "doc://com.apple.documentation/documentation/kernel/iopacketqueue/1526762-lockenqueue",
+        "doc://com.apple.documentation/documentation/kernel/iopacketqueue/1526765-lockenqueuewithdrop",
+        "doc://com.apple.documentation/documentation/kernel/iopacketqueue/1526776-lockflush",
+        "doc://com.apple.documentation/documentation/kernel/iopacketqueue/1526755-lockprepend",
+        "doc://com.apple.documentation/documentation/kernel/iopacketqueue/1526771-peek",
+        "doc://com.apple.documentation/documentation/kernel/iopacketqueue/1526770-prepend",
+        "doc://com.apple.documentation/documentation/kernel/iopacketqueue/3516618-prepend",
+        "doc://com.apple.documentation/documentation/kernel/iopacketqueue/1526786-setcapacity"
+      ],
+      "kind": "taskGroup",
+      "title": "Instance Methods"
+    },
+    {
+      "anchor": "2862958",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/iopacketqueue/1526783-withcapacity"
+      ],
+      "kind": "taskGroup",
+      "title": "Type Methods"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/kernel/iopacketqueue"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

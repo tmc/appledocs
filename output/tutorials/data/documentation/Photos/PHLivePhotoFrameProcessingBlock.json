@@ -1,0 +1,1152 @@
+{
+  "abstract": [
+    {
+      "text": "The signature for a block Photos calls to process Live Photo frames.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.photokit/documentation/Photos"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.photokit/documentation/Photos/PHLivePhotoFrameProcessingBlock"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@T@PHLivePhotoFrameProcessingBlock",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "typealias"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "PHLivePhotoFrameProcessingBlock"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Photos"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "PHLivePhotoFrameProcessingBlock"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.12",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Type Alias",
+    "symbolKind": "typealias",
+    "title": "PHLivePhotoFrameProcessingBlock"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "typealias"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "PHLivePhotoFrameProcessingBlock"
+            },
+            {
+              "kind": "text",
+              "text": " = (any "
+            },
+            {
+              "identifier": "doc://com.apple.photokit/documentation/Photos/PHLivePhotoFrame",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)PHLivePhotoFrame",
+              "text": "PHLivePhotoFrame"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:10Foundation14NSErrorPointera",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:10Foundation14NSErrorPointera",
+              "text": "NSErrorPointer"
+            },
+            {
+              "kind": "text",
+              "text": ") -> "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)CIImage",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)CIImage",
+              "text": "CIImage"
+            },
+            {
+              "kind": "text",
+              "text": "?"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To apply edits to a Live Photo, define a block with this signature and assign it to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.photokit/documentation/Photos/PHLivePhotoEditingContext/frameProcessor",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property of a Live Photo editing context. Then call the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.photokit/documentation/Photos/PHLivePhotoEditingContext/init(livePhotoEditingInput:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to prepare a preview-quality version of your edits for display, or the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.photokit/documentation/Photos/PHLivePhotoEditingContext/saveLivePhoto(to:options:completionHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to produce full-quality final output. When you call one of those methods, Photos calls your frame processor block repeatedly—processing each frame of the Live Photo’s video content as well as its still photo content—to render the output.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This block takes the following parameters:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "A ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.photokit/documentation/Photos/PHLivePhotoFrame",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": " object describing the frame image to be processed.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "frame",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "If your block cannot successfully process the frame, set this pointer to an error object describing the failure.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "error",
+                    "type": "text"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your block should return a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object representing the result of your edits, or ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to indicate that your image processing has failed and the Live Photo edit should be aborted. Use the ",
+              "type": "text"
+            },
+            {
+              "code": "frame",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.photokit/documentation/Photos/PHLivePhotoFrame/image",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property to access the image to be edited.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/coreimage/ciimage": {
+      "abstract": [
+        {
+          "text": "A representation of an image to be processed or produced by Core Image filters.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "CIImage"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciimage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CIImage",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciimage"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.photokit/documentation/Photos": {
+      "abstract": [
+        {
+          "text": "Work with image and video assets that the Photos app manages, including those from iCloud Photos and Live Photos.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/Photos",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Photos",
+      "type": "topic",
+      "url": "/documentation/photos"
+    },
+    "doc://com.apple.photokit/documentation/Photos/PHLivePhotoEditingContext/audioVolume": {
+      "abstract": [
+        {
+          "text": "The audio gain to apply to the processed Live Photo.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "audioVolume"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/Photos/PHLivePhotoEditingContext/audioVolume",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "audioVolume"
+        }
+      ],
+      "role": "symbol",
+      "title": "audioVolume",
+      "type": "topic",
+      "url": "/documentation/photos/phlivephotoeditingcontext/audiovolume"
+    },
+    "doc://com.apple.photokit/documentation/Photos/PHLivePhotoEditingContext/frameProcessor": {
+      "abstract": [
+        {
+          "text": "A block to be called by Photos for processing each frame of the Live Photo’s visual content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "frameProcessor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@PHLivePhotoFrameProcessingBlock",
+          "text": "PHLivePhotoFrameProcessingBlock"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/Photos/PHLivePhotoEditingContext/frameProcessor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "frameProcessor"
+        }
+      ],
+      "role": "symbol",
+      "title": "frameProcessor",
+      "type": "topic",
+      "url": "/documentation/photos/phlivephotoeditingcontext/frameprocessor"
+    },
+    "doc://com.apple.photokit/documentation/Photos/PHLivePhotoEditingContext/init(livePhotoEditingInput:)": {
+      "abstract": [
+        {
+          "text": "Creates a Live Photo editing context for the specified editing input.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "externalParam",
+          "text": "livePhotoEditingInput"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PHContentEditingInput",
+          "text": "PHContentEditingInput"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/Photos/PHLivePhotoEditingContext/init(livePhotoEditingInput:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithLivePhotoEditingInput:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(livePhotoEditingInput:)",
+      "type": "topic",
+      "url": "/documentation/photos/phlivephotoeditingcontext/init(livephotoeditinginput:)"
+    },
+    "doc://com.apple.photokit/documentation/Photos/PHLivePhotoEditingContext/saveLivePhoto(to:options:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Processes and saves a full-quality Live Photo as the output of your editing session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "saveLivePhoto"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PHContentEditingOutput",
+          "text": "PHContentEditingOutput"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/Photos/PHLivePhotoEditingContext/saveLivePhoto(to:options:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "saveLivePhotoToOutput:options:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "saveLivePhoto(to:options:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/photos/phlivephotoeditingcontext/savelivephoto(to:options:completionhandler:)"
+    },
+    "doc://com.apple.photokit/documentation/Photos/PHLivePhotoFrame": {
+      "abstract": [
+        {
+          "text": "A container that provides image content for a single frame of a Live Photo in an editing context.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PHLivePhotoFrame"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/Photos/PHLivePhotoFrame",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PHLivePhotoFrame"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHLivePhotoFrame",
+      "type": "topic",
+      "url": "/documentation/photos/phlivephotoframe"
+    },
+    "doc://com.apple.photokit/documentation/Photos/PHLivePhotoFrame/image": {
+      "abstract": [
+        {
+          "text": "The image content of the frame to be processed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "image"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CIImage",
+          "text": "CIImage"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/Photos/PHLivePhotoFrame/image",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "image"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "image",
+      "type": "topic",
+      "url": "/documentation/photos/phlivephotoframe/image"
+    },
+    "doc://com.apple.photokit/documentation/Photos/PHLivePhotoFrameProcessingBlock": {
+      "abstract": [
+        {
+          "text": "The signature for a block Photos calls to process Live Photo frames.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PHLivePhotoFrameProcessingBlock"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/Photos/PHLivePhotoFrameProcessingBlock",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PHLivePhotoFrameProcessingBlock"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHLivePhotoFrameProcessingBlock",
+      "type": "topic",
+      "url": "/documentation/photos/phlivephotoframeprocessingblock"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)CIImage": {
+      "abstract": [
+        {
+          "text": "A representation of an image to be processed or produced by Core Image filters.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "CIImage"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)CIImage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CIImage",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciimage"
+    },
+    "doc://com.externally.resolved.symbol/s:10Foundation14NSErrorPointera": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSErrorPointer"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:10Foundation14NSErrorPointera",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSErrorPointer",
+      "type": "topic",
+      "url": "/documentation/foundation/nserrorpointer"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Preparing-an-Editing-Context-for-Processing",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.photokit/documentation/Photos/PHLivePhotoEditingContext/frameProcessor",
+        "doc://com.apple.photokit/documentation/Photos/PHLivePhotoEditingContext/audioVolume"
+      ],
+      "title": "Preparing an Editing Context for Processing"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.12",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.0",
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Type Alias"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "PHLivePhotoFrameProcessingBlock"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "typealias"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHLivePhotoFrameProcessingBlock"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHLivePhotoFrameProcessingBlock"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.photokit/documentation/Photos"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Preparing-an-Editing-Context-for-Processing",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.photokit/documentation/Photos/PHLivePhotoEditingContext/frameProcessor",
+                "doc://com.apple.photokit/documentation/Photos/PHLivePhotoEditingContext/audioVolume"
+              ],
+              "title": "Preparing an Editing Context for Processing"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "typedef"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:BF*$objc(cs)CIImage(#*Qoobjc(pl)PHLivePhotoFrame#**$objc(cs)NSError)",
+                    "text": "CIImage *(^)(id<PHLivePhotoFrame>, NSError **)"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "PHLivePhotoFrameProcessingBlock"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ";"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHLivePhotoFrame/title",
+          "value": "PHLivePhotoFrame"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHLivePhotoFrame/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHLivePhotoFrame"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHLivePhotoFrame/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHLivePhotoFrame"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHLivePhotoEditingContext~1saveLivePhoto(to:options:completionHandler:)/title",
+          "value": "saveLivePhotoToOutput:options:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHLivePhotoEditingContext~1saveLivePhoto(to:options:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "saveLivePhotoToOutput:options:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHLivePhotoFrameProcessingBlock/title",
+          "value": "PHLivePhotoFrameProcessingBlock"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHLivePhotoFrameProcessingBlock/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHLivePhotoFrameProcessingBlock"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHLivePhotoFrameProcessingBlock/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHLivePhotoFrameProcessingBlock"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHLivePhotoFrame~1image/title",
+          "value": "image"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHLivePhotoFrame~1image/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "image"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHLivePhotoEditingContext~1init(livePhotoEditingInput:)/title",
+          "value": "initWithLivePhotoEditingInput:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHLivePhotoEditingContext~1init(livePhotoEditingInput:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithLivePhotoEditingInput:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHLivePhotoEditingContext~1frameProcessor/title",
+          "value": "frameProcessor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHLivePhotoEditingContext~1frameProcessor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "frameProcessor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHLivePhotoEditingContext~1audioVolume/title",
+          "value": "audioVolume"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHLivePhotoEditingContext~1audioVolume/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "audioVolume"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/photos/phlivephotoframeprocessingblock"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/photos/phlivephotoframeprocessingblock"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

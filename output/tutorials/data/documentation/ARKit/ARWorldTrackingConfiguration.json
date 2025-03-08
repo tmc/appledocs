@@ -1,0 +1,2781 @@
+{
+  "abstract": [
+    {
+      "text": "A configuration that tracks the position of a device in relation to objects in the environment.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.arkit/documentation/ARKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)ARWorldTrackingConfiguration",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "ARWorldTrackingConfiguration"
+      }
+    ],
+    "modules": [
+      {
+        "name": "ARKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "ARWorldTrackingConfiguration"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "11.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "11.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "ARWorldTrackingConfiguration"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "ARWorldTrackingConfiguration"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.arkit/documentation/ARKit/choosing-which-camera-feed-to-augment"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class tracks the device’s movement with six degrees of freedom (6DOF): the three rotation axes (roll, pitch, and yaw), and three translation axes (movement in x, y, and z).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This kind of tracking can create immersive AR experiences: A virtual object can appear to stay in the same place relative to the real world, even as the user tilts the device to look above or below the object, or moves the device around to see the object’s sides and back.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-2923906",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "World-tracking sessions also provide several ways for your app to recognize or interact with elements of the real-world scene visible to the camera:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Find real-world horizontal or vertical surfaces with ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration/planeDetection-swift.property",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". Add the surfaces to the session as ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARPlaneAnchor",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " objects.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Recognize and track the movement of 2D images with ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration/detectionImages",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". Add 2D images to the scene as ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARImageAnchor",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " objects.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Recognize 3D objects with ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration/detectionObjects",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". Add 3D objects to the scene as ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARObjectAnchor",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " objects.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Find the 3D positions of real-world features that correspond to a touch point on the device’s screen with ray casting.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.arkit/documentation/ARKit": {
+      "abstract": [
+        {
+          "text": "Integrate hardware sensing features to produce augmented reality apps and games.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "ARKit",
+      "type": "topic",
+      "url": "/documentation/arkit"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARAppClipCodeAnchor": {
+      "abstract": [
+        {
+          "text": "An anchor that tracks the position and orientation of an App Clip Code in the physical environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARAppClipCodeAnchor"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARAppClipCodeAnchor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARAppClipCodeAnchor"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARAppClipCodeAnchor",
+      "type": "topic",
+      "url": "/documentation/arkit/arappclipcodeanchor"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARConfiguration": {
+      "abstract": [
+        {
+          "text": "The base object that contains information about how to configure an augmented reality session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARConfiguration",
+      "type": "topic",
+      "url": "/documentation/arkit/arconfiguration"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/AREnvironmentProbeAnchor": {
+      "abstract": [
+        {
+          "text": "An object that provides environmental lighting information for a specific area of space in a world-tracking AR session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AREnvironmentProbeAnchor"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/AREnvironmentProbeAnchor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AREnvironmentProbeAnchor"
+        }
+      ],
+      "role": "symbol",
+      "title": "AREnvironmentProbeAnchor",
+      "type": "topic",
+      "url": "/documentation/arkit/arenvironmentprobeanchor"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARGeoTrackingConfiguration": {
+      "abstract": [
+        {
+          "text": "A configuration that tracks locations with GPS, map data, and a device’s compass.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARGeoTrackingConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARGeoTrackingConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARGeoTrackingConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARGeoTrackingConfiguration",
+      "type": "topic",
+      "url": "/documentation/arkit/argeotrackingconfiguration"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARImageAnchor": {
+      "abstract": [
+        {
+          "text": "An anchor for a known image that ARKit detects in the physical environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARImageAnchor"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARImageAnchor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARImageAnchor"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARImageAnchor",
+      "type": "topic",
+      "url": "/documentation/arkit/arimageanchor"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARObjectAnchor": {
+      "abstract": [
+        {
+          "text": "An anchor for a real-world 3D object that ARKit detects in the physical environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARObjectAnchor"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARObjectAnchor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARObjectAnchor"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARObjectAnchor",
+      "type": "topic",
+      "url": "/documentation/arkit/arobjectanchor"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/AROrientationTrackingConfiguration": {
+      "abstract": [
+        {
+          "text": "A configuration that tracks only the device’s orientation using the rear-facing camera.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AROrientationTrackingConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/AROrientationTrackingConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AROrientationTrackingConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "AROrientationTrackingConfiguration",
+      "type": "topic",
+      "url": "/documentation/arkit/arorientationtrackingconfiguration"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARPlaneAnchor": {
+      "abstract": [
+        {
+          "text": "An anchor for a 2D planar surface that ARKit detects in the physical environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARPlaneAnchor"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARPlaneAnchor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARPlaneAnchor"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARPlaneAnchor",
+      "type": "topic",
+      "url": "/documentation/arkit/arplaneanchor"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARPositionalTrackingConfiguration": {
+      "abstract": [
+        {
+          "text": "A configuration that tracks only the device’s position in 3D space.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARPositionalTrackingConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARPositionalTrackingConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARPositionalTrackingConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARPositionalTrackingConfiguration",
+      "type": "topic",
+      "url": "/documentation/arkit/arpositionaltrackingconfiguration"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration": {
+      "abstract": [
+        {
+          "text": "A configuration that tracks the position of a device in relation to objects in the environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARWorldTrackingConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARWorldTrackingConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARWorldTrackingConfiguration",
+      "type": "topic",
+      "url": "/documentation/arkit/arworldtrackingconfiguration"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration/EnvironmentTexturing-swift.enum": {
+      "abstract": [
+        {
+          "text": "The available environment texturing options for world tracking.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "EnvironmentTexturing"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration/EnvironmentTexturing-swift.enum",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "EnvironmentTexturing"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARWorldTrackingConfiguration.EnvironmentTexturing",
+      "type": "topic",
+      "url": "/documentation/arkit/arworldtrackingconfiguration/environmenttexturing-swift.enum"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration/PlaneDetection-swift.struct": {
+      "abstract": [
+        {
+          "text": "Options for whether and how the framework detects flat surfaces in captured images.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PlaneDetection"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration/PlaneDetection-swift.struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PlaneDetection"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARWorldTrackingConfiguration.PlaneDetection",
+      "type": "topic",
+      "url": "/documentation/arkit/arworldtrackingconfiguration/planedetection-swift.struct"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration/appClipCodeTrackingEnabled": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates if the framework searches the physical environment for App Clip Codes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "appClipCodeTrackingEnabled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration/appClipCodeTrackingEnabled",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "appClipCodeTrackingEnabled"
+        }
+      ],
+      "role": "symbol",
+      "title": "appClipCodeTrackingEnabled",
+      "type": "topic",
+      "url": "/documentation/arkit/arworldtrackingconfiguration/appclipcodetrackingenabled"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration/automaticImageScaleEstimationEnabled": {
+      "abstract": [
+        {
+          "text": "A flag that instructs the framework to estimate and set the scale of a detected or tracked image on your behalf.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "automaticImageScaleEstimationEnabled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration/automaticImageScaleEstimationEnabled",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "automaticImageScaleEstimationEnabled"
+        }
+      ],
+      "role": "symbol",
+      "title": "automaticImageScaleEstimationEnabled",
+      "type": "topic",
+      "url": "/documentation/arkit/arworldtrackingconfiguration/automaticimagescaleestimationenabled"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration/detectionImages": {
+      "abstract": [
+        {
+          "text": "A set of images that ARKit searches for in the user’s environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "detectionImages"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sh",
+          "text": "Set"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARReferenceImage",
+          "text": "ARReferenceImage"
+        },
+        {
+          "kind": "text",
+          "text": ">!"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration/detectionImages",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "detectionImages"
+        }
+      ],
+      "role": "symbol",
+      "title": "detectionImages",
+      "type": "topic",
+      "url": "/documentation/arkit/arworldtrackingconfiguration/detectionimages"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration/detectionObjects": {
+      "abstract": [
+        {
+          "text": "A set of 3D objects that the framework attempts to detect in the user’s environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "detectionObjects"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sh",
+          "text": "Set"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARReferenceObject",
+          "text": "ARReferenceObject"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration/detectionObjects",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "detectionObjects"
+        }
+      ],
+      "role": "symbol",
+      "title": "detectionObjects",
+      "type": "topic",
+      "url": "/documentation/arkit/arworldtrackingconfiguration/detectionobjects"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration/environmentTexturing-swift.property": {
+      "abstract": [
+        {
+          "text": "An option that determines how the framework generates environment textures.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "environmentTexturing"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARWorldTrackingConfiguration",
+          "text": "ARWorldTrackingConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@AREnvironmentTexturing",
+          "text": "EnvironmentTexturing"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration/environmentTexturing-swift.property",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "environmentTexturing"
+        }
+      ],
+      "role": "symbol",
+      "title": "environmentTexturing",
+      "type": "topic",
+      "url": "/documentation/arkit/arworldtrackingconfiguration/environmenttexturing-swift.property"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration/init()": {
+      "abstract": [
+        {
+          "text": "Initializes a new world-tracking configuration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration/init()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        }
+      ],
+      "role": "symbol",
+      "title": "init()",
+      "type": "topic",
+      "url": "/documentation/arkit/arworldtrackingconfiguration/init()"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration/initialWorldMap": {
+      "abstract": [
+        {
+          "text": "The state from a previous AR session to attempt to resume with this session configuration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "initialWorldMap"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARWorldMap",
+          "text": "ARWorldMap"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration/initialWorldMap",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initialWorldMap"
+        }
+      ],
+      "role": "symbol",
+      "title": "initialWorldMap",
+      "type": "topic",
+      "url": "/documentation/arkit/arworldtrackingconfiguration/initialworldmap"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration/isAutoFocusEnabled": {
+      "abstract": [
+        {
+          "text": "A Boolean value that determines whether the device camera uses fixed focus or autofocus behavior.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isAutoFocusEnabled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration/isAutoFocusEnabled",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "autoFocusEnabled"
+        }
+      ],
+      "role": "symbol",
+      "title": "isAutoFocusEnabled",
+      "type": "topic",
+      "url": "/documentation/arkit/arworldtrackingconfiguration/isautofocusenabled"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration/isCollaborationEnabled": {
+      "abstract": [
+        {
+          "text": "A flag that opts you in to a peer-to-peer multiuser AR experience.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isCollaborationEnabled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration/isCollaborationEnabled",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "collaborationEnabled"
+        }
+      ],
+      "role": "symbol",
+      "title": "isCollaborationEnabled",
+      "type": "topic",
+      "url": "/documentation/arkit/arworldtrackingconfiguration/iscollaborationenabled"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration/maximumNumberOfTrackedImages": {
+      "abstract": [
+        {
+          "text": "The number of image anchors to monitor closely for position and orientation updates.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "maximumNumberOfTrackedImages"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration/maximumNumberOfTrackedImages",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "maximumNumberOfTrackedImages"
+        }
+      ],
+      "role": "symbol",
+      "title": "maximumNumberOfTrackedImages",
+      "type": "topic",
+      "url": "/documentation/arkit/arworldtrackingconfiguration/maximumnumberoftrackedimages"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration/new": {
+      "abstract": [
+        {
+          "text": "Creates a new world-tracking configuration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "new"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration/new",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "new"
+        }
+      ],
+      "role": "symbol",
+      "title": "new",
+      "type": "topic",
+      "url": "/documentation/arkit/arworldtrackingconfiguration/new"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration/planeDetection-swift.property": {
+      "abstract": [
+        {
+          "text": "The configuration’s plane detection options.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "planeDetection"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARWorldTrackingConfiguration",
+          "text": "ARWorldTrackingConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@ARPlaneDetection",
+          "text": "PlaneDetection"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration/planeDetection-swift.property",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "planeDetection"
+        }
+      ],
+      "role": "symbol",
+      "title": "planeDetection",
+      "type": "topic",
+      "url": "/documentation/arkit/arworldtrackingconfiguration/planedetection-swift.property"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration/sceneReconstruction": {
+      "abstract": [
+        {
+          "text": "A flag that enables scene reconstruction.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sceneReconstruction"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARConfiguration",
+          "text": "ARConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@ARSceneReconstruction",
+          "text": "SceneReconstruction"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration/sceneReconstruction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "sceneReconstruction"
+        }
+      ],
+      "role": "symbol",
+      "title": "sceneReconstruction",
+      "type": "topic",
+      "url": "/documentation/arkit/arworldtrackingconfiguration/scenereconstruction"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration/supportsAppClipCodeTracking": {
+      "abstract": [
+        {
+          "text": "A flag that indicates if the device tracks App Clip Codes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "supportsAppClipCodeTracking"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration/supportsAppClipCodeTracking",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "supportsAppClipCodeTracking"
+        }
+      ],
+      "role": "symbol",
+      "title": "supportsAppClipCodeTracking",
+      "type": "topic",
+      "url": "/documentation/arkit/arworldtrackingconfiguration/supportsappclipcodetracking"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration/supportsSceneReconstruction(_:)": {
+      "abstract": [
+        {
+          "text": "Checks if the device supports scene reconstruction.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "supportsSceneReconstruction"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARConfiguration",
+          "text": "ARConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@ARSceneReconstruction",
+          "text": "SceneReconstruction"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration/supportsSceneReconstruction(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "supportsSceneReconstruction:"
+        }
+      ],
+      "role": "symbol",
+      "title": "supportsSceneReconstruction(_:)",
+      "type": "topic",
+      "url": "/documentation/arkit/arworldtrackingconfiguration/supportsscenereconstruction(_:)"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration/supportsUserFaceTracking": {
+      "abstract": [
+        {
+          "text": "A Boolean value that tells you whether the iOS device supports tracking the user’s face during a world-tracking session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "supportsUserFaceTracking"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration/supportsUserFaceTracking",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "supportsUserFaceTracking"
+        }
+      ],
+      "role": "symbol",
+      "title": "supportsUserFaceTracking",
+      "type": "topic",
+      "url": "/documentation/arkit/arworldtrackingconfiguration/supportsuserfacetracking"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration/userFaceTrackingEnabled": {
+      "abstract": [
+        {
+          "text": "A flag that determines whether ARKit tracks the user’s face in a world-tracking session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "userFaceTrackingEnabled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration/userFaceTrackingEnabled",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "userFaceTrackingEnabled"
+        }
+      ],
+      "role": "symbol",
+      "title": "userFaceTrackingEnabled",
+      "type": "topic",
+      "url": "/documentation/arkit/arworldtrackingconfiguration/userfacetrackingenabled"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration/wantsHDREnvironmentTextures": {
+      "abstract": [
+        {
+          "text": "A flag that instructs the framework to create environment textures in HDR format.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "wantsHDREnvironmentTextures"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration/wantsHDREnvironmentTextures",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "wantsHDREnvironmentTextures"
+        }
+      ],
+      "role": "symbol",
+      "title": "wantsHDREnvironmentTextures",
+      "type": "topic",
+      "url": "/documentation/arkit/arworldtrackingconfiguration/wantshdrenvironmenttextures"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/choosing-which-camera-feed-to-augment": {
+      "abstract": [
+        {
+          "text": "Add visual effects to the user’s environment in an AR experience through the front or rear camera.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/choosing-which-camera-feed-to-augment",
+      "kind": "article",
+      "role": "article",
+      "title": "Choosing Which Camera Feed to Augment",
+      "type": "topic",
+      "url": "/documentation/arkit/choosing-which-camera-feed-to-augment"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/understanding-world-tracking": {
+      "abstract": [
+        {
+          "text": "Discover features and best practices for building rear-camera AR experiences.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/understanding-world-tracking",
+      "kind": "article",
+      "role": "article",
+      "title": "Understanding World Tracking",
+      "type": "topic",
+      "url": "/documentation/arkit/understanding-world-tracking"
+    },
+    "doc://com.apple.documentation/documentation/AppClip/interacting-with-app-clip-codes-in-ar": {
+      "abstract": [
+        {
+          "text": "Display content and provide services in an AR experience with App Clip Codes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppClip/interacting-with-app-clip-codes-in-ar",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Interacting with App Clip Codes in AR",
+      "type": "topic",
+      "url": "/documentation/AppClip/interacting-with-app-clip-codes-in-ar"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying": {
+      "abstract": [
+        {
+          "text": "A protocol that objects adopt to provide functional copies of themselves.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCopying"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCopying",
+      "type": "topic",
+      "url": "/documentation/foundation/nscopying"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    },
+    "media-2923906": {
+      "alt": "Three illustrated variations of an iPhone running an app that displays an AR experience using the rear camera. The physical environment is depicted with a couch, in front of which, the app displays a virtual character. In the left picture, the iPhone views the couch straight on with the virtual character centered onscreen. In the middle picture, the device is rotated 30 degrees about the y-axis to the right, and the right-most portion of the couch and virtual character are visible onscreen only. In the right picture, the device is translated slightly to the left, and the left-most portions of the couch and virtual character are visible onscreen only.",
+      "identifier": "media-2923906",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/8f5d9e55ef212af5eaf82adb0731cc5c/media-2923906@2x.png"
+        }
+      ]
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.arkit/documentation/ARKit/ARConfiguration"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Spatial-Tracking",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.arkit/documentation/ARKit/understanding-world-tracking",
+        "doc://com.apple.arkit/documentation/ARKit/ARGeoTrackingConfiguration",
+        "doc://com.apple.arkit/documentation/ARKit/AROrientationTrackingConfiguration",
+        "doc://com.apple.arkit/documentation/ARKit/ARPositionalTrackingConfiguration"
+      ],
+      "title": "Spatial Tracking"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-Configuration",
+      "identifiers": [
+        "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration/init()",
+        "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration/initialWorldMap"
+      ],
+      "title": "Creating a Configuration"
+    },
+    {
+      "anchor": "Tracking-Surfaces",
+      "identifiers": [
+        "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration/planeDetection-swift.property",
+        "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration/PlaneDetection-swift.struct",
+        "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration/sceneReconstruction",
+        "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration/supportsSceneReconstruction(_:)"
+      ],
+      "title": "Tracking Surfaces"
+    },
+    {
+      "anchor": "Detecting-or-Tracking-Images",
+      "identifiers": [
+        "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration/detectionImages",
+        "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration/maximumNumberOfTrackedImages",
+        "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration/automaticImageScaleEstimationEnabled"
+      ],
+      "title": "Detecting or Tracking Images"
+    },
+    {
+      "anchor": "Detecting-3D-Objects",
+      "identifiers": [
+        "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration/detectionObjects"
+      ],
+      "title": "Detecting 3D Objects"
+    },
+    {
+      "anchor": "Tracking-the-Users-Face",
+      "identifiers": [
+        "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration/userFaceTrackingEnabled",
+        "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration/supportsUserFaceTracking"
+      ],
+      "title": "Tracking the User’s Face"
+    },
+    {
+      "anchor": "Creating-Realistic-Reflections",
+      "identifiers": [
+        "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration/environmentTexturing-swift.property",
+        "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration/EnvironmentTexturing-swift.enum",
+        "doc://com.apple.arkit/documentation/ARKit/AREnvironmentProbeAnchor",
+        "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration/wantsHDREnvironmentTextures"
+      ],
+      "title": "Creating Realistic Reflections"
+    },
+    {
+      "anchor": "Managing-Device-Camera-Behavior",
+      "identifiers": [
+        "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration/isAutoFocusEnabled"
+      ],
+      "title": "Managing Device Camera Behavior"
+    },
+    {
+      "anchor": "Enabling-Collaboration",
+      "identifiers": [
+        "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration/isCollaborationEnabled"
+      ],
+      "title": "Enabling Collaboration"
+    },
+    {
+      "anchor": "Accessing-App-Clip-Codes",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/AppClip/interacting-with-app-clip-codes-in-ar",
+        "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration/supportsAppClipCodeTracking",
+        "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration/appClipCodeTrackingEnabled",
+        "doc://com.apple.arkit/documentation/ARKit/ARAppClipCodeAnchor"
+      ],
+      "title": "Accessing App Clip Codes"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "11.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "11.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "ARWorldTrackingConfiguration"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARWorldTrackingConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARWorldTrackingConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.arkit/documentation/ARKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Creating-a-Configuration",
+              "identifiers": [
+                "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration/init()",
+                "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration/new",
+                "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration/initialWorldMap"
+              ],
+              "title": "Creating a Configuration"
+            },
+            {
+              "anchor": "Tracking-Surfaces",
+              "identifiers": [
+                "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration/planeDetection-swift.property",
+                "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration/PlaneDetection-swift.struct",
+                "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration/sceneReconstruction",
+                "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration/supportsSceneReconstruction(_:)"
+              ],
+              "title": "Tracking Surfaces"
+            },
+            {
+              "anchor": "Detecting-or-Tracking-Images",
+              "identifiers": [
+                "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration/detectionImages",
+                "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration/maximumNumberOfTrackedImages",
+                "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration/automaticImageScaleEstimationEnabled"
+              ],
+              "title": "Detecting or Tracking Images"
+            },
+            {
+              "anchor": "Detecting-3D-Objects",
+              "identifiers": [
+                "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration/detectionObjects"
+              ],
+              "title": "Detecting 3D Objects"
+            },
+            {
+              "anchor": "Tracking-the-Users-Face",
+              "identifiers": [
+                "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration/userFaceTrackingEnabled",
+                "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration/supportsUserFaceTracking"
+              ],
+              "title": "Tracking the User’s Face"
+            },
+            {
+              "anchor": "Creating-Realistic-Reflections",
+              "identifiers": [
+                "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration/environmentTexturing-swift.property",
+                "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration/EnvironmentTexturing-swift.enum",
+                "doc://com.apple.arkit/documentation/ARKit/AREnvironmentProbeAnchor",
+                "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration/wantsHDREnvironmentTextures"
+              ],
+              "title": "Creating Realistic Reflections"
+            },
+            {
+              "anchor": "Managing-Device-Camera-Behavior",
+              "identifiers": [
+                "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration/isAutoFocusEnabled"
+              ],
+              "title": "Managing Device Camera Behavior"
+            },
+            {
+              "anchor": "Enabling-Collaboration",
+              "identifiers": [
+                "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration/isCollaborationEnabled"
+              ],
+              "title": "Enabling Collaboration"
+            },
+            {
+              "anchor": "Accessing-App-Clip-Codes",
+              "identifiers": [
+                "doc://com.apple.documentation/documentation/AppClip/interacting-with-app-clip-codes-in-ar",
+                "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration/supportsAppClipCodeTracking",
+                "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration/appClipCodeTrackingEnabled",
+                "doc://com.apple.arkit/documentation/ARKit/ARAppClipCodeAnchor"
+              ],
+              "title": "Accessing App Clip Codes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.apple.arkit/documentation/ARKit/ARConfiguration"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Spatial-Tracking",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.arkit/documentation/ARKit/understanding-world-tracking",
+                "doc://com.apple.arkit/documentation/ARKit/ARGeoTrackingConfiguration",
+                "doc://com.apple.arkit/documentation/ARKit/AROrientationTrackingConfiguration",
+                "doc://com.apple.arkit/documentation/ARKit/ARPositionalTrackingConfiguration"
+              ],
+              "title": "Spatial Tracking"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "ARWorldTrackingConfiguration"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.apple.arkit/documentation/ARKit/ARConfiguration",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)ARConfiguration",
+                    "text": "ARConfiguration"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARWorldTrackingConfiguration~1init()/title",
+          "value": "init"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARWorldTrackingConfiguration~1init()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "init"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARWorldTrackingConfiguration~1supportsUserFaceTracking/title",
+          "value": "supportsUserFaceTracking"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARWorldTrackingConfiguration~1supportsUserFaceTracking/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "supportsUserFaceTracking"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARConfiguration/title",
+          "value": "ARConfiguration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARConfiguration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARConfiguration/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARWorldTrackingConfiguration~1isCollaborationEnabled/title",
+          "value": "collaborationEnabled"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARWorldTrackingConfiguration~1isCollaborationEnabled/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "collaborationEnabled"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARWorldTrackingConfiguration~1environmentTexturing-swift.property/title",
+          "value": "environmentTexturing"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARWorldTrackingConfiguration~1environmentTexturing-swift.property/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "environmentTexturing"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARGeoTrackingConfiguration/title",
+          "value": "ARGeoTrackingConfiguration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARGeoTrackingConfiguration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARGeoTrackingConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARGeoTrackingConfiguration/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARGeoTrackingConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARWorldTrackingConfiguration~1detectionObjects/title",
+          "value": "detectionObjects"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARWorldTrackingConfiguration~1detectionObjects/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "detectionObjects"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARWorldTrackingConfiguration~1detectionImages/title",
+          "value": "detectionImages"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARWorldTrackingConfiguration~1detectionImages/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "detectionImages"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1AROrientationTrackingConfiguration/title",
+          "value": "AROrientationTrackingConfiguration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1AROrientationTrackingConfiguration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AROrientationTrackingConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1AROrientationTrackingConfiguration/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AROrientationTrackingConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARWorldTrackingConfiguration~1wantsHDREnvironmentTextures/title",
+          "value": "wantsHDREnvironmentTextures"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARWorldTrackingConfiguration~1wantsHDREnvironmentTextures/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "wantsHDREnvironmentTextures"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARWorldTrackingConfiguration~1supportsAppClipCodeTracking/title",
+          "value": "supportsAppClipCodeTracking"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARWorldTrackingConfiguration~1supportsAppClipCodeTracking/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "supportsAppClipCodeTracking"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARWorldTrackingConfiguration~1userFaceTrackingEnabled/title",
+          "value": "userFaceTrackingEnabled"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARWorldTrackingConfiguration~1userFaceTrackingEnabled/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "userFaceTrackingEnabled"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARWorldTrackingConfiguration~1supportsSceneReconstruction(_:)/title",
+          "value": "supportsSceneReconstruction:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARWorldTrackingConfiguration~1supportsSceneReconstruction(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "supportsSceneReconstruction:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARWorldTrackingConfiguration~1automaticImageScaleEstimationEnabled/title",
+          "value": "automaticImageScaleEstimationEnabled"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARWorldTrackingConfiguration~1automaticImageScaleEstimationEnabled/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "automaticImageScaleEstimationEnabled"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARPositionalTrackingConfiguration/title",
+          "value": "ARPositionalTrackingConfiguration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARPositionalTrackingConfiguration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARPositionalTrackingConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARPositionalTrackingConfiguration/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARPositionalTrackingConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARWorldTrackingConfiguration~1maximumNumberOfTrackedImages/title",
+          "value": "maximumNumberOfTrackedImages"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARWorldTrackingConfiguration~1maximumNumberOfTrackedImages/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "maximumNumberOfTrackedImages"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARWorldTrackingConfiguration/title",
+          "value": "ARWorldTrackingConfiguration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARWorldTrackingConfiguration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARWorldTrackingConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARWorldTrackingConfiguration/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARWorldTrackingConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARWorldTrackingConfiguration~1planeDetection-swift.property/title",
+          "value": "planeDetection"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARWorldTrackingConfiguration~1planeDetection-swift.property/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "planeDetection"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARWorldTrackingConfiguration~1isAutoFocusEnabled/title",
+          "value": "autoFocusEnabled"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARWorldTrackingConfiguration~1isAutoFocusEnabled/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "autoFocusEnabled"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARAppClipCodeAnchor/title",
+          "value": "ARAppClipCodeAnchor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARAppClipCodeAnchor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARAppClipCodeAnchor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARAppClipCodeAnchor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARAppClipCodeAnchor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARWorldTrackingConfiguration~1sceneReconstruction/title",
+          "value": "sceneReconstruction"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARWorldTrackingConfiguration~1sceneReconstruction/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "sceneReconstruction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARObjectAnchor/title",
+          "value": "ARObjectAnchor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARObjectAnchor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARObjectAnchor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARObjectAnchor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARObjectAnchor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARWorldTrackingConfiguration~1initialWorldMap/title",
+          "value": "initialWorldMap"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARWorldTrackingConfiguration~1initialWorldMap/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "initialWorldMap"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARWorldTrackingConfiguration~1EnvironmentTexturing-swift.enum/title",
+          "value": "AREnvironmentTexturing"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARWorldTrackingConfiguration~1EnvironmentTexturing-swift.enum/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AREnvironmentTexturing"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARWorldTrackingConfiguration~1EnvironmentTexturing-swift.enum/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AREnvironmentTexturing"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARWorldTrackingConfiguration~1appClipCodeTrackingEnabled/title",
+          "value": "appClipCodeTrackingEnabled"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARWorldTrackingConfiguration~1appClipCodeTrackingEnabled/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "appClipCodeTrackingEnabled"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1AREnvironmentProbeAnchor/title",
+          "value": "AREnvironmentProbeAnchor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1AREnvironmentProbeAnchor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AREnvironmentProbeAnchor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1AREnvironmentProbeAnchor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AREnvironmentProbeAnchor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARPlaneAnchor/title",
+          "value": "ARPlaneAnchor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARPlaneAnchor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARPlaneAnchor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARPlaneAnchor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARPlaneAnchor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARImageAnchor/title",
+          "value": "ARImageAnchor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARImageAnchor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARImageAnchor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARImageAnchor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARImageAnchor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARWorldTrackingConfiguration~1PlaneDetection-swift.struct/title",
+          "value": "ARPlaneDetection"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARWorldTrackingConfiguration~1PlaneDetection-swift.struct/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARPlaneDetection"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARWorldTrackingConfiguration~1PlaneDetection-swift.struct/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARPlaneDetection"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/arkit/arworldtrackingconfiguration"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/arkit/arworldtrackingconfiguration"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

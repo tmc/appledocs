@@ -1,0 +1,1155 @@
+{
+  "abstract": [
+    {
+      "text": "A point on a real-world planar surface detected during the search, whose orientation is parallel to gravity.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.arkit/documentation/ARKit",
+        "doc://com.apple.arkit/documentation/ARKit/ARHitTestResult",
+        "doc://com.apple.arkit/documentation/ARKit/ARHitTestResult/ResultType"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.arkit/documentation/ARKit/ARHitTestResult/ResultType/estimatedVerticalPlane"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@E@ARHitTestResultType@ARHitTestResultTypeEstimatedVerticalPlane",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "static"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "keyword",
+        "text": "var"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "estimatedVerticalPlane"
+      },
+      {
+        "kind": "text",
+        "text": ": "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "c:objc(cs)ARHitTestResult",
+        "text": "ARHitTestResult"
+      },
+      {
+        "kind": "text",
+        "text": "."
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "c:@E@ARHitTestResultType",
+        "text": "ResultType"
+      }
+    ],
+    "modules": [
+      {
+        "name": "ARKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "ARHitTestResultTypeEstimatedVerticalPlane"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "deprecatedAt": "14.0",
+        "introducedAt": "11.3",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "deprecatedAt": "14.0",
+        "introducedAt": "11.3",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "deprecatedAt": "14.0",
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Type Property",
+    "symbolKind": "property",
+    "title": "estimatedVerticalPlane"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "static"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "var"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "estimatedVerticalPlane"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARHitTestResult",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)ARHitTestResult",
+              "text": "ARHitTestResult"
+            },
+            {
+              "kind": "text",
+              "text": "."
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARHitTestResult/ResultType",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@E@ARHitTestResultType",
+              "text": "ResultType"
+            },
+            {
+              "kind": "text",
+              "text": " { "
+            },
+            {
+              "kind": "keyword",
+              "text": "get"
+            },
+            {
+              "kind": "text",
+              "text": " }"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "ARKit provides two ways to locate real-world flat surfaces in a scene. ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Plane detection",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " (enabled with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration/planeDetection-swift.property",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " on your session configuration) is an ongoing process, continuously analyzing the scene to accurately map the position and extent of any planes in view. Because plane detection takes time, you can fall back to ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "plane estimation",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " to get an instant, but less accurate, indication of whether a 2D point in the camera image corresponds to a real-world flat surface.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because plane detection results are more accurate than plane estimation results, ARKit prefers the former when searching for both. If your hit-test search includes both ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARHitTestResult/ResultType/estimatedVerticalPlane",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and one or more ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.arkit/documentation/ARKit/ARHitTestResult/ResultType/existingPlane",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " types, and the search finds any already detected plane anchors, the search returns only the existing plane(s) and no estimated plane.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An estimated plane search returns at most one result—the best estimate for a vertical plane intersecting the hit-test ray.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.arkit/documentation/ARKit": {
+      "abstract": [
+        {
+          "text": "Integrate hardware sensing features to produce augmented reality apps and games.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "ARKit",
+      "type": "topic",
+      "url": "/documentation/arkit"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARHitTestResult": {
+      "abstract": [
+        {
+          "text": "Information about a real-world surface found by examining a point on the screen.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARHitTestResult"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARHitTestResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARHitTestResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARHitTestResult",
+      "type": "topic",
+      "url": "/documentation/arkit/arhittestresult"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARHitTestResult/ResultType": {
+      "abstract": [
+        {
+          "text": "Possible types for specifying a hit-test search, or for the result of a hit-test search.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ResultType"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARHitTestResult/ResultType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ResultType"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARHitTestResult.ResultType",
+      "type": "topic",
+      "url": "/documentation/arkit/arhittestresult/resulttype"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARHitTestResult/ResultType/estimatedHorizontalPlane": {
+      "abstract": [
+        {
+          "text": "A point on a real-world planar surface detected during the search, whose orientation is perpendicular to gravity.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "estimatedHorizontalPlane"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARHitTestResult",
+          "text": "ARHitTestResult"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@ARHitTestResultType",
+          "text": "ResultType"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARHitTestResult/ResultType/estimatedHorizontalPlane",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARHitTestResultTypeEstimatedHorizontalPlane"
+        }
+      ],
+      "role": "symbol",
+      "title": "estimatedHorizontalPlane",
+      "type": "topic",
+      "url": "/documentation/arkit/arhittestresult/resulttype/estimatedhorizontalplane"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARHitTestResult/ResultType/estimatedVerticalPlane": {
+      "abstract": [
+        {
+          "text": "A point on a real-world planar surface detected during the search, whose orientation is parallel to gravity.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "estimatedVerticalPlane"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARHitTestResult",
+          "text": "ARHitTestResult"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@ARHitTestResultType",
+          "text": "ResultType"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARHitTestResult/ResultType/estimatedVerticalPlane",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARHitTestResultTypeEstimatedVerticalPlane"
+        }
+      ],
+      "role": "symbol",
+      "title": "estimatedVerticalPlane",
+      "type": "topic",
+      "url": "/documentation/arkit/arhittestresult/resulttype/estimatedverticalplane"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARHitTestResult/ResultType/existingPlane": {
+      "abstract": [
+        {
+          "text": "A point on a real-world plane (already detected with the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration/planeDetection-swift.property",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " option), without considering the plane’s size.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "existingPlane"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARHitTestResult",
+          "text": "ARHitTestResult"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@ARHitTestResultType",
+          "text": "ResultType"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARHitTestResult/ResultType/existingPlane",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARHitTestResultTypeExistingPlane"
+        }
+      ],
+      "role": "symbol",
+      "title": "existingPlane",
+      "type": "topic",
+      "url": "/documentation/arkit/arhittestresult/resulttype/existingplane"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARHitTestResult/ResultType/existingPlaneUsingExtent": {
+      "abstract": [
+        {
+          "text": "A point on a real-world plane (already detected with the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration/planeDetection-swift.property",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " option), respecting the plane’s estimated size.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "existingPlaneUsingExtent"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARHitTestResult",
+          "text": "ARHitTestResult"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@ARHitTestResultType",
+          "text": "ResultType"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARHitTestResult/ResultType/existingPlaneUsingExtent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARHitTestResultTypeExistingPlaneUsingExtent"
+        }
+      ],
+      "role": "symbol",
+      "title": "existingPlaneUsingExtent",
+      "type": "topic",
+      "url": "/documentation/arkit/arhittestresult/resulttype/existingplaneusingextent"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARHitTestResult/ResultType/existingPlaneUsingGeometry": {
+      "abstract": [
+        {
+          "text": "A point on a real-world plane (already detected with the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration/planeDetection-swift.property",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " option), respecting the plane’s estimated size and shape.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "existingPlaneUsingGeometry"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARHitTestResult",
+          "text": "ARHitTestResult"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@ARHitTestResultType",
+          "text": "ResultType"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARHitTestResult/ResultType/existingPlaneUsingGeometry",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARHitTestResultTypeExistingPlaneUsingGeometry"
+        }
+      ],
+      "role": "symbol",
+      "title": "existingPlaneUsingGeometry",
+      "type": "topic",
+      "url": "/documentation/arkit/arhittestresult/resulttype/existingplaneusinggeometry"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARHitTestResult/ResultType/featurePoint": {
+      "abstract": [
+        {
+          "text": "A point on a surface detected by ARKit, but not part of any detected planes.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "featurePoint"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARHitTestResult",
+          "text": "ARHitTestResult"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@ARHitTestResultType",
+          "text": "ResultType"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARHitTestResult/ResultType/featurePoint",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARHitTestResultTypeFeaturePoint"
+        }
+      ],
+      "role": "symbol",
+      "title": "featurePoint",
+      "type": "topic",
+      "url": "/documentation/arkit/arhittestresult/resulttype/featurepoint"
+    },
+    "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration/planeDetection-swift.property": {
+      "abstract": [
+        {
+          "text": "The configuration’s plane detection options.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "planeDetection"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ARWorldTrackingConfiguration",
+          "text": "ARWorldTrackingConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@ARPlaneDetection",
+          "text": "PlaneDetection"
+        }
+      ],
+      "identifier": "doc://com.apple.arkit/documentation/ARKit/ARWorldTrackingConfiguration/planeDetection-swift.property",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "planeDetection"
+        }
+      ],
+      "role": "symbol",
+      "title": "planeDetection",
+      "type": "topic",
+      "url": "/documentation/arkit/arworldtrackingconfiguration/planedetection-swift.property"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Result-Types",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.arkit/documentation/ARKit/ARHitTestResult/ResultType/featurePoint",
+        "doc://com.apple.arkit/documentation/ARKit/ARHitTestResult/ResultType/estimatedHorizontalPlane",
+        "doc://com.apple.arkit/documentation/ARKit/ARHitTestResult/ResultType/existingPlane",
+        "doc://com.apple.arkit/documentation/ARKit/ARHitTestResult/ResultType/existingPlaneUsingExtent",
+        "doc://com.apple.arkit/documentation/ARKit/ARHitTestResult/ResultType/existingPlaneUsingGeometry"
+      ],
+      "title": "Result Types"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "11.3",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "11.3",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Enumeration Case"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "ARHitTestResultTypeEstimatedVerticalPlane"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "case"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARHitTestResultTypeEstimatedVerticalPlane"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.arkit/documentation/ARKit",
+                "doc://com.apple.arkit/documentation/ARKit/ARHitTestResult/ResultType"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Result-Types",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.arkit/documentation/ARKit/ARHitTestResult/ResultType/featurePoint",
+                "doc://com.apple.arkit/documentation/ARKit/ARHitTestResult/ResultType/estimatedHorizontalPlane",
+                "doc://com.apple.arkit/documentation/ARKit/ARHitTestResult/ResultType/existingPlane",
+                "doc://com.apple.arkit/documentation/ARKit/ARHitTestResult/ResultType/existingPlaneUsingExtent",
+                "doc://com.apple.arkit/documentation/ARKit/ARHitTestResult/ResultType/existingPlaneUsingGeometry"
+              ],
+              "title": "Result Types"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst"
+                ],
+                "tokens": [
+                  {
+                    "kind": "identifier",
+                    "text": "ARHitTestResultTypeEstimatedVerticalPlane"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "add",
+          "path": "/deprecationSummary",
+          "value": []
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARHitTestResult/title",
+          "value": "ARHitTestResult"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARHitTestResult/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARHitTestResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARHitTestResult/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARHitTestResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARHitTestResult~1ResultType~1featurePoint/title",
+          "value": "ARHitTestResultTypeFeaturePoint"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARHitTestResult~1ResultType~1featurePoint/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARHitTestResultTypeFeaturePoint"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARHitTestResult~1ResultType~1existingPlane/title",
+          "value": "ARHitTestResultTypeExistingPlane"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARHitTestResult~1ResultType~1existingPlane/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARHitTestResultTypeExistingPlane"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARHitTestResult~1ResultType~1existingPlaneUsingGeometry/title",
+          "value": "ARHitTestResultTypeExistingPlaneUsingGeometry"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARHitTestResult~1ResultType~1existingPlaneUsingGeometry/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARHitTestResultTypeExistingPlaneUsingGeometry"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARWorldTrackingConfiguration~1planeDetection-swift.property/title",
+          "value": "planeDetection"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARWorldTrackingConfiguration~1planeDetection-swift.property/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "planeDetection"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARHitTestResult~1ResultType~1existingPlaneUsingExtent/title",
+          "value": "ARHitTestResultTypeExistingPlaneUsingExtent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARHitTestResult~1ResultType~1existingPlaneUsingExtent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARHitTestResultTypeExistingPlaneUsingExtent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARHitTestResult~1ResultType~1estimatedVerticalPlane/title",
+          "value": "ARHitTestResultTypeEstimatedVerticalPlane"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARHitTestResult~1ResultType~1estimatedVerticalPlane/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARHitTestResultTypeEstimatedVerticalPlane"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARHitTestResult~1ResultType/title",
+          "value": "ARHitTestResultType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARHitTestResult~1ResultType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARHitTestResultType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARHitTestResult~1ResultType/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARHitTestResultType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARHitTestResult~1ResultType~1estimatedHorizontalPlane/title",
+          "value": "ARHitTestResultTypeEstimatedHorizontalPlane"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.arkit~1documentation~1ARKit~1ARHitTestResult~1ResultType~1estimatedHorizontalPlane/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ARHitTestResultTypeEstimatedHorizontalPlane"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/arkit/arhittestresult/resulttype/estimatedverticalplane"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/arkit/arhittestresult/resulttype/estimatedverticalplane"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

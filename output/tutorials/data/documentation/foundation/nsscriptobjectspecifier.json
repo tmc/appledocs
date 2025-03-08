@@ -1,0 +1,1322 @@
+{
+  "abstract": [
+    {
+      "text": "An abstract class used to represent natural language expressions.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/scripting_support"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/nsscriptobjectspecifier"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1409588,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSScriptObjectSpecifier",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "class "
+      },
+      {
+        "kind": "identifier",
+        "text": "NSScriptObjectSpecifier"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "15.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "NSScriptObjectSpecifier"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "Mac Catalyst",
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSScriptObjectSpecifier"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "NSScriptObjectSpecifier",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is the abstract superclass for classes that instantiate objects called “object specifiers.” An object specifier represents an AppleScript reference form, which is a natural-language expression such as ",
+              "type": "text"
+            },
+            {
+              "code": "words 10 through 20",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "code": "front document",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "code": "words whose color is red",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The scripting system maps these words or phrases to attributes and relationships of scriptable objects. A reference form rarely occurs in isolation; usually a script statement consists of a series of reference forms preceded by a command and typically connected to each other by ",
+              "type": "text"
+            },
+            {
+              "code": "of",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", such as:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "get words whose color is blue of paragraph 10 of front document"
+          ],
+          "metadata": {
+            "anchor": "2555801",
+            "title": "Listing 1"
+          },
+          "syntax": "occ",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The expression ",
+              "type": "text"
+            },
+            {
+              "code": "words whose color is blue of paragraph 10 of front document",
+              "type": "codeVoice"
+            },
+            {
+              "text": " specifies a location in the application's AppleScript object model—the objects the application makes available to scripters. The classes of objects in the object model often closely match the classes of actual objects in the application, but they are not required to. An object specifier locates objects in the running application that correspond to the specified object model objects.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your application typically creates object specifiers when it implements the ",
+              "type": "text"
+            },
+            {
+              "code": "objectSpecifier",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method for its scriptable classes. That method is defined by the NSScriptObjectSpecifiers protocol.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "It is unlikely that you would ever need to create your own subclass of ",
+              "type": "text"
+            },
+            {
+              "code": "NSScriptObjectSpecifier",
+              "type": "codeVoice"
+            },
+            {
+              "text": "; the set of valid AppleScript reference forms is determined by Apple Computer and object specifier classes are already implemented for this set. If for some reason you do need to create a subclass, you must override the primitive method ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsscriptobjectspecifier/1415107-indicesofobjectsbyevaluating",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to return indices to the elements within the container whose values are matched with the child specifier’s key. In addition, you probably need to declare any special instance variables and implement an initializer that invokes super’s designated initializer, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsscriptobjectspecifier/1410480-init",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and initializes these variables.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For a comprehensive treatment of object specifiers, including sample code, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "devLink-1727353",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in ",
+              "type": "text"
+            },
+            {
+              "identifier": "devLink-1727275",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "devLink-1727275": {
+      "identifier": "devLink-1727275",
+      "title": "Cocoa Scripting Guide",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/ScriptableCocoaApplications/SApps_intro/SAppsIntro.html#//apple_ref/doc/uid/TP40002164"
+    },
+    "devLink-1727353": {
+      "identifier": "devLink-1727353",
+      "title": "Object Specifiers",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/ScriptableCocoaApplications/SApps_object_specifiers/SAppsObjectSpecifiers.html#//apple_ref/doc/uid/TP40002164-CH3"
+    },
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscoding": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoding"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsindexspecifier": {
+      "abstract": [
+        {
+          "text": "A specifier representing an object in a collection (or container) with an index number.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSIndexSpecifier"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsindexspecifier",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSIndexSpecifier",
+      "type": "topic",
+      "url": "/documentation/foundation/nsindexspecifier"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmiddlespecifier": {
+      "abstract": [
+        {
+          "text": "A specifier indicating the middle object in a collection or, if not a one-to-many relationship, the sole object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSMiddleSpecifier"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmiddlespecifier",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSMiddleSpecifier",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmiddlespecifier"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnamespecifier": {
+      "abstract": [
+        {
+          "text": "A specifier for an object in a collection (or container) by name.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSNameSpecifier"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnamespecifier",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSNameSpecifier",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnamespecifier"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nspositionalspecifier": {
+      "abstract": [
+        {
+          "text": "A specifier for an insertion point in a container relative to another object in the container.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSPositionalSpecifier"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nspositionalspecifier",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSPositionalSpecifier",
+      "type": "topic",
+      "url": "/documentation/foundation/nspositionalspecifier"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nspropertyspecifier": {
+      "abstract": [
+        {
+          "text": "A specifier for a simple attribute value, a one-to-one relationship, or all elements of a to-many relationship.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSPropertySpecifier"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nspropertyspecifier",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSPropertySpecifier",
+      "type": "topic",
+      "url": "/documentation/foundation/nspropertyspecifier"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsrandomspecifier": {
+      "abstract": [
+        {
+          "text": "A specifier for an arbitrary object in a collection or, if not a one-to-many relationship, the sole object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSRandomSpecifier"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsrandomspecifier",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSRandomSpecifier",
+      "type": "topic",
+      "url": "/documentation/foundation/nsrandomspecifier"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsrangespecifier": {
+      "abstract": [
+        {
+          "text": "A specifier for a range of objects in a container.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSRangeSpecifier"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsrangespecifier",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSRangeSpecifier",
+      "type": "topic",
+      "url": "/documentation/foundation/nsrangespecifier"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsrelativespecifier": {
+      "abstract": [
+        {
+          "text": "A specifier that indicates an object in a collection by its position relative to another object. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSRelativeSpecifier"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsrelativespecifier",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSRelativeSpecifier",
+      "type": "topic",
+      "url": "/documentation/foundation/nsrelativespecifier"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsscriptobjectspecifier": {
+      "abstract": [
+        {
+          "text": "An abstract class used to represent natural language expressions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSScriptObjectSpecifier"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsscriptobjectspecifier",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSScriptObjectSpecifier",
+      "type": "topic",
+      "url": "/documentation/foundation/nsscriptobjectspecifier"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsscriptobjectspecifier#2555801": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsscriptobjectspecifier#2555801",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/foundation/nsscriptobjectspecifier#2555801"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsscriptobjectspecifier/1408941-init": {
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "identifier",
+          "text": "coder"
+        },
+        {
+          "kind": "text",
+          "text": ": NSCoder)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsscriptobjectspecifier/1408941-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(coder:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsscriptobjectspecifier/1408941-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsscriptobjectspecifier/1409384-init": {
+      "abstract": [
+        {
+          "text": "Returns an ",
+          "type": "text"
+        },
+        {
+          "code": "NSScriptObjectSpecifier",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object initialized with a given container specifier  and key.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "containerSpecifier"
+        },
+        {
+          "kind": "text",
+          "text": ": NSScriptObjectSpecifier, "
+        },
+        {
+          "kind": "identifier",
+          "text": "key"
+        },
+        {
+          "kind": "text",
+          "text": ": String)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsscriptobjectspecifier/1409384-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(containerSpecifier:key:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsscriptobjectspecifier/1409384-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsscriptobjectspecifier/1409779-init": {
+      "abstract": [
+        {
+          "text": "Returns a new object specifier for an Apple event descriptor.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "identifier",
+          "text": "descriptor"
+        },
+        {
+          "kind": "text",
+          "text": ": NSAppleEventDescriptor)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsscriptobjectspecifier/1409779-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(descriptor:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsscriptobjectspecifier/1409779-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsscriptobjectspecifier/1409842-objectsbyevaluating": {
+      "abstract": [
+        {
+          "text": "Returns the actual object or objects specified by the receiver as evaluated in the context of given container object. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "objectsByEvaluating"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "withContainers"
+        },
+        {
+          "kind": "text",
+          "text": ": Any) -> Any?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsscriptobjectspecifier/1409842-objectsbyevaluating",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "objectsByEvaluating(withContainers:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsscriptobjectspecifier/1409842-objectsbyevaluating"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsscriptobjectspecifier/1409882-child": {
+      "abstract": [
+        {
+          "text": "Sets the receiver’s child reference.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "child"
+        },
+        {
+          "kind": "text",
+          "text": ": NSScriptObjectSpecifier?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsscriptobjectspecifier/1409882-child",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "child",
+      "type": "topic",
+      "url": "/documentation/foundation/nsscriptobjectspecifier/1409882-child"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsscriptobjectspecifier/1410018-descriptor": {
+      "abstract": [
+        {
+          "text": "Returns an Apple event descriptor that represents the receiver.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "descriptor"
+        },
+        {
+          "kind": "text",
+          "text": ": NSAppleEventDescriptor?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsscriptobjectspecifier/1410018-descriptor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "descriptor",
+      "type": "topic",
+      "url": "/documentation/foundation/nsscriptobjectspecifier/1410018-descriptor"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsscriptobjectspecifier/1410480-init": {
+      "abstract": [
+        {
+          "text": "Returns an ",
+          "type": "text"
+        },
+        {
+          "code": "NSScriptObjectSpecifier",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object initialized with the given attributes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "containerClassDescription"
+        },
+        {
+          "kind": "text",
+          "text": ": NSScriptClassDescription, "
+        },
+        {
+          "kind": "identifier",
+          "text": "containerSpecifier"
+        },
+        {
+          "kind": "text",
+          "text": ": NSScriptObjectSpecifier?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "key"
+        },
+        {
+          "kind": "text",
+          "text": ": String)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsscriptobjectspecifier/1410480-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(containerClassDescription:containerSpecifier:key:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsscriptobjectspecifier/1410480-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsscriptobjectspecifier/1410887-containerisobjectbeingtested": {
+      "abstract": [
+        {
+          "text": "Sets whether the receiver’s container should be an object involved in a filter reference or the top-level object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "containerIsObjectBeingTested"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsscriptobjectspecifier/1410887-containerisobjectbeingtested",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "containerIsObjectBeingTested",
+      "type": "topic",
+      "url": "/documentation/foundation/nsscriptobjectspecifier/1410887-containerisobjectbeingtested"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsscriptobjectspecifier/1412986-key": {
+      "abstract": [
+        {
+          "text": "Sets the key of the receiver.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "key"
+        },
+        {
+          "kind": "text",
+          "text": ": String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsscriptobjectspecifier/1412986-key",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "key",
+      "type": "topic",
+      "url": "/documentation/foundation/nsscriptobjectspecifier/1412986-key"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsscriptobjectspecifier/1413179-containerclassdescription": {
+      "abstract": [
+        {
+          "text": "Sets the class description of the receiver’s container specifier to a given specifier.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "containerClassDescription"
+        },
+        {
+          "kind": "text",
+          "text": ": NSScriptClassDescription?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsscriptobjectspecifier/1413179-containerclassdescription",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "containerClassDescription",
+      "type": "topic",
+      "url": "/documentation/foundation/nsscriptobjectspecifier/1413179-containerclassdescription"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsscriptobjectspecifier/1413391-objectsbyevaluatingspecifier": {
+      "abstract": [
+        {
+          "text": "Returns the actual object represented by the nested series of object specifiers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "objectsByEvaluatingSpecifier"
+        },
+        {
+          "kind": "text",
+          "text": ": Any?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsscriptobjectspecifier/1413391-objectsbyevaluatingspecifier",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "objectsByEvaluatingSpecifier",
+      "type": "topic",
+      "url": "/documentation/foundation/nsscriptobjectspecifier/1413391-objectsbyevaluatingspecifier"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsscriptobjectspecifier/1414424-container": {
+      "abstract": [
+        {
+          "text": "Sets the container specifier of the receiver.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "container"
+        },
+        {
+          "kind": "text",
+          "text": ": NSScriptObjectSpecifier?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsscriptobjectspecifier/1414424-container",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "container",
+      "type": "topic",
+      "url": "/documentation/foundation/nsscriptobjectspecifier/1414424-container"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsscriptobjectspecifier/1415107-indicesofobjectsbyevaluating": {
+      "abstract": [
+        {
+          "text": "This primitive method must be overridden by subclasses to return a pointer to an array of indices identifying objects in the key of a given container that are identified by the receiver of the message. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "indicesOfObjectsByEvaluating"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "withContainer"
+        },
+        {
+          "kind": "text",
+          "text": ": Any, "
+        },
+        {
+          "kind": "identifier",
+          "text": "count"
+        },
+        {
+          "kind": "text",
+          "text": ": UnsafeMutablePointer<Int>) -> UnsafeMutablePointer<Int>?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsscriptobjectspecifier/1415107-indicesofobjectsbyevaluating",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "indicesOfObjectsByEvaluating(withContainer:count:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsscriptobjectspecifier/1415107-indicesofobjectsbyevaluating"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsscriptobjectspecifier/1416385-evaluationerror": {
+      "abstract": [
+        {
+          "text": "Returns the object specifier in which an evaluation error occurred.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "evaluationError"
+        },
+        {
+          "kind": "text",
+          "text": ": NSScriptObjectSpecifier?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsscriptobjectspecifier/1416385-evaluationerror",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "evaluationError",
+      "type": "topic",
+      "url": "/documentation/foundation/nsscriptobjectspecifier/1416385-evaluationerror"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsscriptobjectspecifier/1416507-containerisrangecontainerobject": {
+      "abstract": [
+        {
+          "text": "Sets whether the receiver’s container is to be the container for a range specifier or a top-level object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "containerIsRangeContainerObject"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsscriptobjectspecifier/1416507-containerisrangecontainerobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "containerIsRangeContainerObject",
+      "type": "topic",
+      "url": "/documentation/foundation/nsscriptobjectspecifier/1416507-containerisrangecontainerobject"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsscriptobjectspecifier/1416938-evaluationerrornumber": {
+      "abstract": [
+        {
+          "text": "Sets the value of the evaluation error.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "evaluationErrorNumber"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsscriptobjectspecifier/1416938-evaluationerrornumber",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "evaluationErrorNumber",
+      "type": "topic",
+      "url": "/documentation/foundation/nsscriptobjectspecifier/1416938-evaluationerrornumber"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsscriptobjectspecifier/1417974-keyclassdescription": {
+      "abstract": [
+        {
+          "text": "Returns the class description of the objects specified by the receiver.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "keyClassDescription"
+        },
+        {
+          "kind": "text",
+          "text": ": NSScriptClassDescription?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsscriptobjectspecifier/1417974-keyclassdescription",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "keyClassDescription",
+      "type": "topic",
+      "url": "/documentation/foundation/nsscriptobjectspecifier/1417974-keyclassdescription"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsscriptobjectspecifier/1502290-nsscriptobjectspecifier_specifie": {
+      "abstract": [
+        {
+          "code": "NSScriptObjectSpecifier",
+          "type": "codeVoice"
+        },
+        {
+          "text": " provides the following constants for error codes for specific problems evaluating specifiers:",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsscriptobjectspecifier/1502290-nsscriptobjectspecifier_specifie",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "NSScriptObjectSpecifier—Specifier Evaluation Errors",
+      "type": "topic",
+      "url": "/documentation/foundation/nsscriptobjectspecifier/1502290-nsscriptobjectspecifier_specifie"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsuniqueidspecifier": {
+      "abstract": [
+        {
+          "text": "A specifier for an object in a collection (or container) by unique ID.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSUniqueIDSpecifier"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsuniqueidspecifier",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSUniqueIDSpecifier",
+      "type": "topic",
+      "url": "/documentation/foundation/nsuniqueidspecifier"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nswhosespecifier": {
+      "abstract": [
+        {
+          "text": "A specifier that indicates every object in a collection matching a condition.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSWhoseSpecifier"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nswhosespecifier",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSWhoseSpecifier",
+      "type": "topic",
+      "url": "/documentation/foundation/nswhosespecifier"
+    },
+    "doc://com.apple.documentation/documentation/foundation/scripting_support": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/scripting_support",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Scripting Support",
+      "type": "topic",
+      "url": "/documentation/foundation/scripting_support"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/objectivec/nsobject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nscoding"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nspropertyspecifier",
+        "doc://com.apple.documentation/documentation/foundation/nspositionalspecifier",
+        "doc://com.apple.documentation/documentation/foundation/nsrandomspecifier",
+        "doc://com.apple.documentation/documentation/foundation/nsrangespecifier",
+        "doc://com.apple.documentation/documentation/foundation/nsuniqueidspecifier",
+        "doc://com.apple.documentation/documentation/foundation/nswhosespecifier",
+        "doc://com.apple.documentation/documentation/foundation/nsnamespecifier",
+        "doc://com.apple.documentation/documentation/foundation/nsmiddlespecifier",
+        "doc://com.apple.documentation/documentation/foundation/nsindexspecifier",
+        "doc://com.apple.documentation/documentation/foundation/nsrelativespecifier"
+      ],
+      "title": "Object Specifiers"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "1770510",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsscriptobjectspecifier/1409779-init"
+      ],
+      "kind": "taskGroup",
+      "title": "Obtaining an object specifier for a descriptor"
+    },
+    {
+      "anchor": "1770511",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsscriptobjectspecifier/1410480-init",
+        "doc://com.apple.documentation/documentation/foundation/nsscriptobjectspecifier/1409384-init"
+      ],
+      "kind": "taskGroup",
+      "title": "Initializing an object specifier"
+    },
+    {
+      "anchor": "1770513",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsscriptobjectspecifier/1415107-indicesofobjectsbyevaluating",
+        "doc://com.apple.documentation/documentation/foundation/nsscriptobjectspecifier/1413391-objectsbyevaluatingspecifier",
+        "doc://com.apple.documentation/documentation/foundation/nsscriptobjectspecifier/1409842-objectsbyevaluating"
+      ],
+      "kind": "taskGroup",
+      "title": "Evaluating an object specifier"
+    },
+    {
+      "anchor": "1770515",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsscriptobjectspecifier/1413179-containerclassdescription",
+        "doc://com.apple.documentation/documentation/foundation/nsscriptobjectspecifier/1410887-containerisobjectbeingtested",
+        "doc://com.apple.documentation/documentation/foundation/nsscriptobjectspecifier/1416507-containerisrangecontainerobject",
+        "doc://com.apple.documentation/documentation/foundation/nsscriptobjectspecifier/1414424-container"
+      ],
+      "kind": "taskGroup",
+      "title": "Getting, testing, and setting containers"
+    },
+    {
+      "anchor": "1770519",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsscriptobjectspecifier/1409882-child"
+      ],
+      "kind": "taskGroup",
+      "title": "Getting and setting child references"
+    },
+    {
+      "anchor": "1770522",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsscriptobjectspecifier/1412986-key",
+        "doc://com.apple.documentation/documentation/foundation/nsscriptobjectspecifier/1417974-keyclassdescription"
+      ],
+      "kind": "taskGroup",
+      "title": "Getting and setting object keys"
+    },
+    {
+      "anchor": "1770524",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsscriptobjectspecifier/1416385-evaluationerror",
+        "doc://com.apple.documentation/documentation/foundation/nsscriptobjectspecifier/1416938-evaluationerrornumber"
+      ],
+      "kind": "taskGroup",
+      "title": "Getting evaluation errors"
+    },
+    {
+      "anchor": "1770526",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsscriptobjectspecifier/1410018-descriptor"
+      ],
+      "kind": "taskGroup",
+      "title": "Getting a descriptor for the object specifier"
+    },
+    {
+      "anchor": "1661727",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsscriptobjectspecifier/1502290-nsscriptobjectspecifier_specifie"
+      ],
+      "kind": "taskGroup",
+      "title": "Constants"
+    },
+    {
+      "anchor": "2855558",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsscriptobjectspecifier/1408941-init"
+      ],
+      "kind": "taskGroup",
+      "title": "Initializers"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nsscriptobjectspecifier"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/nsscriptobjectspecifier"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

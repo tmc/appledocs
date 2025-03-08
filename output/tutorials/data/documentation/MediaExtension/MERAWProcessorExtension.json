@@ -1,0 +1,992 @@
+{
+  "abstract": [
+    {
+      "text": "A protocol that defines a factory to create RAW processors for a codec type that the extension implements.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.mediaextension/documentation/MediaExtension"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.mediaextension/documentation/MediaExtension/MERAWProcessorExtension"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(pl)MERAWProcessorExtension",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "protocol"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "MERAWProcessorExtension"
+      }
+    ],
+    "modules": [
+      {
+        "name": "MediaExtension"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "MERAWProcessorExtension"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Protocol",
+    "symbolKind": "protocol",
+    "title": "MERAWProcessorExtension"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MERAWProcessorExtension"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSObject",
+              "text": "NSObjectProtocol"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This protocol provides a factory method to create a new ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.mediaextension/documentation/MediaExtension/MERAWProcessor",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance for a codecType implemented by the extension. The Video Toolbox instantiates a single ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.mediaextension/documentation/MediaExtension/MERAWProcessorExtension",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and creates individual ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.mediaextension/documentation/MediaExtension/MERAWProcessor",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instances as needed. If the ",
+              "type": "text"
+            },
+            {
+              "code": "CMVideoFormatDescription",
+              "type": "codeVoice"
+            },
+            {
+              "text": " passed to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.mediaextension/documentation/MediaExtension/MERAWProcessorExtension/makeProcessor(formatDescription:pixelBufferManager:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " is not compatible with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.mediaextension/documentation/MediaExtension/MERAWProcessor",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " implementation, the factory call should fail and return ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.mediaextension/documentation/MediaExtension/MEError-swift.struct/Code/unsupportedFeature",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.mediaextension/documentation/MediaExtension": {
+      "abstract": [
+        {
+          "text": "This framework provides a means for developers to create format readers, video decoders, and RAW processors for media that the system doesn’t natively support.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaextension/documentation/MediaExtension",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "MediaExtension",
+      "type": "topic",
+      "url": "/documentation/mediaextension"
+    },
+    "doc://com.apple.mediaextension/documentation/MediaExtension/MEError-swift.struct/Code/unsupportedFeature": {
+      "abstract": [
+        {
+          "text": "An error code that indicates the extension doesn’t support an aspect of the media.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "unsupportedFeature"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaextension/documentation/MediaExtension/MEError-swift.struct/Code/unsupportedFeature",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MEErrorUnsupportedFeature"
+        }
+      ],
+      "role": "symbol",
+      "title": "MEError.Code.unsupportedFeature",
+      "type": "topic",
+      "url": "/documentation/mediaextension/meerror-swift.struct/code/unsupportedfeature"
+    },
+    "doc://com.apple.mediaextension/documentation/MediaExtension/MERAWProcessingParameter": {
+      "abstract": [
+        {
+          "text": "An object for the RAW processor to describe each processing parameter the processor exposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MERAWProcessingParameter"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaextension/documentation/MediaExtension/MERAWProcessingParameter",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MERAWProcessingParameter"
+        }
+      ],
+      "role": "symbol",
+      "title": "MERAWProcessingParameter",
+      "type": "topic",
+      "url": "/documentation/mediaextension/merawprocessingparameter"
+    },
+    "doc://com.apple.mediaextension/documentation/MediaExtension/MERAWProcessor": {
+      "abstract": [
+        {
+          "text": "A protocol that defines the requirements for a RAW processor.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MERAWProcessor"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaextension/documentation/MediaExtension/MERAWProcessor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MERAWProcessor"
+        }
+      ],
+      "role": "symbol",
+      "title": "MERAWProcessor",
+      "type": "topic",
+      "url": "/documentation/mediaextension/merawprocessor"
+    },
+    "doc://com.apple.mediaextension/documentation/MediaExtension/MERAWProcessorExtension": {
+      "abstract": [
+        {
+          "text": "A protocol that defines a factory to create RAW processors for a codec type that the extension implements.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MERAWProcessorExtension"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaextension/documentation/MediaExtension/MERAWProcessorExtension",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MERAWProcessorExtension"
+        }
+      ],
+      "role": "symbol",
+      "title": "MERAWProcessorExtension",
+      "type": "topic",
+      "url": "/documentation/mediaextension/merawprocessorextension"
+    },
+    "doc://com.apple.mediaextension/documentation/MediaExtension/MERAWProcessorExtension/init()": {
+      "abstract": [
+        {
+          "text": "Creates a video RAW processor factory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaextension/documentation/MediaExtension/MERAWProcessorExtension/init()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "init()",
+      "type": "topic",
+      "url": "/documentation/mediaextension/merawprocessorextension/init()"
+    },
+    "doc://com.apple.mediaextension/documentation/MediaExtension/MERAWProcessorExtension/makeProcessor(formatDescription:pixelBufferManager:)": {
+      "abstract": [
+        {
+          "text": "A factory method to create a video RAW processor.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "makeProcessor"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "formatDescription"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMVideoFormatDescriptionRef",
+          "text": "CMVideoFormatDescription"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "pixelBufferManager"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MERAWProcessorPixelBufferManager",
+          "text": "MERAWProcessorPixelBufferManager"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MERAWProcessor",
+          "text": "MERAWProcessor"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaextension/documentation/MediaExtension/MERAWProcessorExtension/makeProcessor(formatDescription:pixelBufferManager:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "processorWithFormatDescription:extensionPixelBufferManager:error:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "makeProcessor(formatDescription:pixelBufferManager:)",
+      "type": "topic",
+      "url": "/documentation/mediaextension/merawprocessorextension/makeprocessor(formatdescription:pixelbuffermanager:)"
+    },
+    "doc://com.apple.mediaextension/documentation/MediaExtension/MERAWProcessorNotification": {
+      "abstract": [
+        {
+          "text": "Notifications that indicate a RAW processor state change.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MERAWProcessorNotification"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaextension/documentation/MediaExtension/MERAWProcessorNotification",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MERAWProcessorNotification"
+        }
+      ],
+      "role": "symbol",
+      "title": "MERAWProcessorNotification",
+      "type": "topic",
+      "url": "/documentation/mediaextension/merawprocessornotification"
+    },
+    "doc://com.apple.mediaextension/documentation/MediaExtension/MERAWProcessorPixelBufferManager": {
+      "abstract": [
+        {
+          "text": "Describes pixel buffer requirements and creates new pixel buffers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MERAWProcessorPixelBufferManager"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaextension/documentation/MediaExtension/MERAWProcessorPixelBufferManager",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MERAWProcessorPixelBufferManager"
+        }
+      ],
+      "role": "symbol",
+      "title": "MERAWProcessorPixelBufferManager",
+      "type": "topic",
+      "url": "/documentation/mediaextension/merawprocessorpixelbuffermanager"
+    },
+    "doc://com.apple.mediaextension/documentation/MediaExtension/raw-processor-entitlement": {
+      "abstract": [
+        {
+          "text": "Include an entitlement to indicate your extension is a MediaExtension RAW processor.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaextension/documentation/MediaExtension/raw-processor-entitlement",
+      "kind": "article",
+      "role": "article",
+      "title": "RAW processor entitlement",
+      "type": "topic",
+      "url": "/documentation/mediaextension/raw-processor-entitlement"
+    },
+    "doc://com.apple.mediaextension/documentation/MediaExtension/raw-processor-property-list-dictionary": {
+      "abstract": [
+        {
+          "text": "Include a property list dictionary to describe a RAW processor.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mediaextension/documentation/MediaExtension/raw-processor-property-list-dictionary",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "RAW processor property list dictionary",
+      "type": "topic",
+      "url": "/documentation/mediaextension/raw-processor-property-list-dictionary"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "RAW-processors",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.mediaextension/documentation/MediaExtension/MERAWProcessor",
+        "doc://com.apple.mediaextension/documentation/MediaExtension/MERAWProcessorPixelBufferManager",
+        "doc://com.apple.mediaextension/documentation/MediaExtension/MERAWProcessingParameter",
+        "doc://com.apple.mediaextension/documentation/MediaExtension/MERAWProcessorNotification",
+        "doc://com.apple.mediaextension/documentation/MediaExtension/raw-processor-property-list-dictionary",
+        "doc://com.apple.mediaextension/documentation/MediaExtension/raw-processor-entitlement"
+      ],
+      "title": "RAW processors"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-an-extension",
+      "identifiers": [
+        "doc://com.apple.mediaextension/documentation/MediaExtension/MERAWProcessorExtension/init()"
+      ],
+      "title": "Creating an extension"
+    },
+    {
+      "anchor": "Creating-a-RAW-processor",
+      "identifiers": [
+        "doc://com.apple.mediaextension/documentation/MediaExtension/MERAWProcessorExtension/makeProcessor(formatDescription:pixelBufferManager:)"
+      ],
+      "title": "Creating a RAW processor"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "15.0",
+              "name": "macOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Protocol"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "MERAWProcessorExtension"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "protocol"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MERAWProcessorExtension"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MERAWProcessorExtension"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.mediaextension/documentation/MediaExtension"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Creating-an-extension",
+              "identifiers": [
+                "doc://com.apple.mediaextension/documentation/MediaExtension/MERAWProcessorExtension/init()"
+              ],
+              "title": "Creating an extension"
+            },
+            {
+              "anchor": "Creating-a-RAW-processor",
+              "identifiers": [
+                "doc://com.apple.mediaextension/documentation/MediaExtension/MERAWProcessorExtension/makeProcessor(formatDescription:pixelBufferManager:)"
+              ],
+              "title": "Creating a RAW processor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "RAW-processors",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.mediaextension/documentation/MediaExtension/MERAWProcessor",
+                "doc://com.apple.mediaextension/documentation/MediaExtension/MERAWProcessorPixelBufferManager",
+                "doc://com.apple.mediaextension/documentation/MediaExtension/MERAWProcessingParameter",
+                "doc://com.apple.mediaextension/documentation/MediaExtension/raw-processor-property-list-dictionary",
+                "doc://com.apple.mediaextension/documentation/MediaExtension/raw-processor-entitlement"
+              ],
+              "title": "RAW processors"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "Mac Catalyst",
+                  "macOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@protocol"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "MERAWProcessorExtension"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " <"
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(pl)NSObject",
+                    "text": "NSObject"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ">"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaextension~1documentation~1MediaExtension~1MERAWProcessingParameter/title",
+          "value": "MERAWProcessingParameter"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaextension~1documentation~1MediaExtension~1MERAWProcessingParameter/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MERAWProcessingParameter"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaextension~1documentation~1MediaExtension~1MERAWProcessingParameter/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MERAWProcessingParameter"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaextension~1documentation~1MediaExtension~1MEError-swift.struct~1Code~1unsupportedFeature/title",
+          "value": "MEErrorUnsupportedFeature"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaextension~1documentation~1MediaExtension~1MEError-swift.struct~1Code~1unsupportedFeature/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MEErrorUnsupportedFeature"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaextension~1documentation~1MediaExtension~1MERAWProcessorExtension/title",
+          "value": "MERAWProcessorExtension"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaextension~1documentation~1MediaExtension~1MERAWProcessorExtension/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MERAWProcessorExtension"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaextension~1documentation~1MediaExtension~1MERAWProcessorExtension/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MERAWProcessorExtension"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaextension~1documentation~1MediaExtension~1MERAWProcessorPixelBufferManager/title",
+          "value": "MERAWProcessorPixelBufferManager"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaextension~1documentation~1MediaExtension~1MERAWProcessorPixelBufferManager/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MERAWProcessorPixelBufferManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaextension~1documentation~1MediaExtension~1MERAWProcessorPixelBufferManager/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MERAWProcessorPixelBufferManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaextension~1documentation~1MediaExtension~1MERAWProcessorExtension~1init()/title",
+          "value": "init"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaextension~1documentation~1MediaExtension~1MERAWProcessorExtension~1init()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "init"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaextension~1documentation~1MediaExtension~1MERAWProcessorExtension~1makeProcessor(formatDescription:pixelBufferManager:)/title",
+          "value": "processorWithFormatDescription:extensionPixelBufferManager:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaextension~1documentation~1MediaExtension~1MERAWProcessorExtension~1makeProcessor(formatDescription:pixelBufferManager:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "processorWithFormatDescription:extensionPixelBufferManager:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaextension~1documentation~1MediaExtension~1MERAWProcessor/title",
+          "value": "MERAWProcessor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaextension~1documentation~1MediaExtension~1MERAWProcessor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MERAWProcessor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.mediaextension~1documentation~1MediaExtension~1MERAWProcessor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MERAWProcessor"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/mediaextension/merawprocessorextension"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/mediaextension/merawprocessorextension"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

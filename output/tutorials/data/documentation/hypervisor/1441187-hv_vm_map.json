@@ -1,0 +1,672 @@
+{
+  "abstract": [
+    {
+      "text": "Maps a region in the virtual address space of the current process into the guest physical address space of the VM.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/hypervisor",
+        "doc://com.apple.documentation/documentation/hypervisor/apple_silicon",
+        "doc://com.apple.documentation/documentation/hypervisor/apple_silicon/memory_management"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/hypervisor",
+        "doc://com.apple.documentation/documentation/hypervisor/intel-based_mac",
+        "doc://com.apple.documentation/documentation/hypervisor/intel-based_mac/memory_management"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/hypervisor/1441187-hv_vm_map"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1441187,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@F@hv_vm_map",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "func "
+      },
+      {
+        "kind": "identifier",
+        "text": "hv_vm_map"
+      },
+      {
+        "kind": "text",
+        "text": "(UnsafeMutableRawPointer, hv_ipa_t, Int, hv_memory_flags_t) -> hv_return_t"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Hypervisor"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "15.4",
+        "introducedAt": "11.0",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Function",
+    "symbolKind": "func",
+    "title": "hv_vm_map(_:_:_:_:)"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "func"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "hv_vm_map"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "externalParam",
+              "text": "_"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "addr"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Swift/UnsafeMutableRawPointer",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:Sv",
+              "text": "UnsafeMutableRawPointer"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "externalParam",
+              "text": "_"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "ipa"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/hypervisor/hv_ipa_t",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@hv_ipa_t",
+              "text": "hv_ipa_t"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "externalParam",
+              "text": "_"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "size"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Swift/Int",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:Si",
+              "text": "Int"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "externalParam",
+              "text": "_"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "flags"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/hypervisor/hv_memory_flags_t",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@hv_memory_flags_t",
+              "text": "hv_memory_flags_t"
+            },
+            {
+              "kind": "text",
+              "text": ") -> "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/hypervisor/hv_return_t",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@hv_return_t",
+              "text": "hv_return_t"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "languages": [
+        "swift"
+      ],
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The address in the current process. It must be page-aligned.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Apple silicon only.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "addr"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The address in the intermediate physical address space. It must be page-aligned.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Apple silicon only.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "ipa"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The address in the current process. It must be page-aligned.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Intel-based Mac only.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "uva"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The address in the guest physical address space. It must be page-aligned.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Intel-based Mac only.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "gpa"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The size of the mapped region in bytes. It must be a multiple of the page size.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "size"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The permissions for the mapped region. For a list of valid options, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/hypervisor/hv_memory_flags_t",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "flags"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return_value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.documentation/documentation/hypervisor/hv_success",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " if the operation was successful, otherwise an error code specified in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/hypervisor/hv_return_t",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The host memory must encompass a single VM region, typically allocated with ",
+              "type": "text"
+            },
+            {
+              "code": "mmap",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/1402376-mach_vm_allocate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instead of ",
+              "type": "text"
+            },
+            {
+              "code": "malloc",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.Swift/documentation/Swift/Int": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Int",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Int",
+      "type": "topic",
+      "url": "/documentation/swift/int"
+    },
+    "doc://com.apple.Swift/documentation/Swift/UnsafeMutableRawPointer": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/UnsafeMutableRawPointer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UnsafeMutableRawPointer",
+      "type": "topic",
+      "url": "/documentation/swift/unsafemutablerawpointer"
+    },
+    "doc://com.apple.documentation/documentation/hypervisor": {
+      "identifier": "doc://com.apple.documentation/documentation/hypervisor",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Hypervisor",
+      "type": "topic",
+      "url": "/documentation/hypervisor"
+    },
+    "doc://com.apple.documentation/documentation/hypervisor/1441187-hv_vm_map": {
+      "abstract": [
+        {
+          "text": "Maps a region in the virtual address space of the current process into the guest physical address space of the VM.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "hv_vm_map"
+        },
+        {
+          "kind": "text",
+          "text": "(UnsafeMutableRawPointer, hv_ipa_t, Int, hv_memory_flags_t) -> hv_return_t"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/hypervisor/1441187-hv_vm_map",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hv_vm_map(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/hypervisor/1441187-hv_vm_map"
+    },
+    "doc://com.apple.documentation/documentation/hypervisor/1441378-hv_vm_unmap": {
+      "abstract": [
+        {
+          "text": "Unmaps a region in the guest physical address space of the VM.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "hv_vm_unmap"
+        },
+        {
+          "kind": "text",
+          "text": "(hv_ipa_t, Int) -> hv_return_t"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/hypervisor/1441378-hv_vm_unmap",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hv_vm_unmap(_:_:)",
+      "type": "topic",
+      "url": "/documentation/hypervisor/1441378-hv_vm_unmap"
+    },
+    "doc://com.apple.documentation/documentation/hypervisor/1441400-hv_vm_protect": {
+      "abstract": [
+        {
+          "text": "Modifies the permissions of a region in the guest physical address space of the VM.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "hv_vm_protect"
+        },
+        {
+          "kind": "text",
+          "text": "(hv_ipa_t, Int, hv_memory_flags_t) -> hv_return_t"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/hypervisor/1441400-hv_vm_protect",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hv_vm_protect(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/hypervisor/1441400-hv_vm_protect"
+    },
+    "doc://com.apple.documentation/documentation/hypervisor/apple_silicon": {
+      "identifier": "doc://com.apple.documentation/documentation/hypervisor/apple_silicon",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Apple Silicon",
+      "type": "topic",
+      "url": "/documentation/hypervisor/apple_silicon"
+    },
+    "doc://com.apple.documentation/documentation/hypervisor/apple_silicon/memory_management": {
+      "identifier": "doc://com.apple.documentation/documentation/hypervisor/apple_silicon/memory_management",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Memory management",
+      "type": "topic",
+      "url": "/documentation/hypervisor/apple_silicon/memory_management"
+    },
+    "doc://com.apple.documentation/documentation/hypervisor/hv_ipa_t": {
+      "abstract": [
+        {
+          "text": "The type of an intermediate physical address, which is a guest physical address space of the VM.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "hv_ipa_t"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/hypervisor/hv_ipa_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hv_ipa_t",
+      "type": "topic",
+      "url": "/documentation/hypervisor/hv_ipa_t"
+    },
+    "doc://com.apple.documentation/documentation/hypervisor/hv_memory_flags_t": {
+      "identifier": "doc://com.apple.documentation/documentation/hypervisor/hv_memory_flags_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hv_memory_flags_t",
+      "type": "topic",
+      "url": "/documentation/hypervisor/hv_memory_flags_t"
+    },
+    "doc://com.apple.documentation/documentation/hypervisor/hv_return_t": {
+      "identifier": "doc://com.apple.documentation/documentation/hypervisor/hv_return_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hv_return_t",
+      "type": "topic",
+      "url": "/documentation/hypervisor/hv_return_t"
+    },
+    "doc://com.apple.documentation/documentation/hypervisor/hv_success": {
+      "identifier": "doc://com.apple.documentation/documentation/hypervisor/hv_success",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "HV_SUCCESS",
+      "type": "topic",
+      "url": "/documentation/hypervisor/hv_success"
+    },
+    "doc://com.apple.documentation/documentation/hypervisor/intel-based_mac": {
+      "identifier": "doc://com.apple.documentation/documentation/hypervisor/intel-based_mac",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Intel-based Mac",
+      "type": "topic",
+      "url": "/documentation/hypervisor/intel-based_mac"
+    },
+    "doc://com.apple.documentation/documentation/hypervisor/intel-based_mac/memory_management": {
+      "identifier": "doc://com.apple.documentation/documentation/hypervisor/intel-based_mac/memory_management",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Memory Management",
+      "type": "topic",
+      "url": "/documentation/hypervisor/intel-based_mac/memory_management"
+    },
+    "doc://com.apple.documentation/documentation/kernel/1402376-mach_vm_allocate": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/1402376-mach_vm_allocate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "mach_vm_allocate",
+      "type": "topic",
+      "url": "/documentation/kernel/1402376-mach_vm_allocate"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/hypervisor/1441378-hv_vm_unmap",
+        "doc://com.apple.documentation/documentation/hypervisor/1441400-hv_vm_protect",
+        "doc://com.apple.documentation/documentation/hypervisor/hv_ipa_t"
+      ],
+      "title": "Intermediate physical memory"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/hypervisor/1441187-hv_vm_map"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/hypervisor/1441187-hv_vm_map"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

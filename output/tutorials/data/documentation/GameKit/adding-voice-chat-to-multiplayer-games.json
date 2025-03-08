@@ -1,0 +1,1604 @@
+{
+  "abstract": [
+    {
+      "text": "Enable players to voice chat with all, or groups of, players in a multiplayer game.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.gamekit/documentation/GameKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.gamekit/documentation/GameKit/adding-voice-chat-to-multiplayer-games"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "GameKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Adding voice chat to multiplayer games"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "The ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKVoiceChat",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " class is deprecated. Use SharePlay instead. See ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.gamekit/documentation/GameKit/finding-multiple-players-for-a-game#Enable-the-local-player-to-choose-other-players",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " and ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKMatchmaker/startGroupActivity(playerHandler:)",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKVoiceChat",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class to implement voice communication among players in a multiplayer game. Enable the player to communicate with all players in a group chat or a subset of players using separate audio channels. GameKit handles the low-level voice encoding and transmission for you; you add the controls to choose players, start and stop chats, mute players, and change the volume.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To learn about audio channels, see the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFAudio",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " framework.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "A player can only participate in voice chat when their device has a microphone and it’s connected to a Wi-Fi network. But, your game can configure and start voice chat when the device isn’t currently capable of using voice chat. If conditions change to allow voice chat — for example, the device connects to Wi-Fi — the voice chat object automatically connects to the associated channel.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Configure-voice-chat",
+          "level": 3,
+          "text": "Configure voice chat",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To configure voice chat, add the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSMicrophoneUsageDescription",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " key to the Information Property List in your project. Set it to a string that GameKit presents to the player when your game attempts to access the microphone. The string needs to state the reason your game needs access to the microphone. If the user doesn’t allow access, when you attempt to start voice chat, it fails with an error.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Next, activate the system audio so that GameKit can use the default audio session for voice chat.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Activate the shared audio session.",
+            "do {",
+            "    let audioSession = AVAudioSession.sharedInstance()",
+            "",
+            "    try audioSession.setActive(true, options: [])",
+            "}",
+            "catch {",
+            "    return",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Create-separate-voice-channels",
+          "level": 3,
+          "text": "Create separate voice channels",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can use one or more separate audio channels for voice chat. For example, use one channel for communicating with all the players and another channel for communicating between team members.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Create a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKVoiceChat",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object that specifies a unique name for the channel. To communicate on the same channel, players need to use the same channel name. A GameKit match can have multiple channels, and a player can join as many channels as they want. If the player joins multiple channels, GameKit mixes the audio it receives from each channel into one audio output.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "voiceChat = singlesMatch?.voiceChat(withName: \"PickupTennisChannel\")"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Start-voice-chat",
+          "level": 3,
+          "text": "Start voice chat",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To start voice chat on a channel, set the voice chat properties, such as the volume level, and invoke the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKVoiceChat/start()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "voiceChat?.volume = 0.5",
+            "voiceChat?.start()"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The first time your game accesses the microphone on the player’s device, the system presents a dialog to the user that displays the reason your app wants permission to use the microphone. If you don’t provide a reason that the system presents to the player or the player doesn’t grant permission, GameKit won’t start the channel. To provide a reason, add the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSMicrophoneUsageDescription",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " key to the Information Property List.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the player grants permission, the voice chat object connects to the channel and GameKit notifies other players connected to the channel that the player joined the chat. When the player is connected, GameKit automatically plays voice data from other players.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Activate-and-switch-the-microphone-between-channels",
+          "level": 3,
+          "text": "Activate and switch the microphone between channels",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you start voice chat on a channel, the player can hear the other players speak but you need to activate the microphone so GameKit can begin transmitting the player’s voice to the channel.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For a single channel, you can enable the microphone immediately after you start the chat, so that the player can begin speaking. Alternatively, you can provide a control for the player to activate the microphone when speaking, like a push-to-talk style interface. Use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKVoiceChat/isActive",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property to enable the microphone:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "voiceChat?.isActive = true"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the match has multiple channels, only one channel can use the microphone at a time. When you activate a channel, GameKit deactivates the other channels in the match. So, you need to provide a control in the interface for the player to choose the channel before speaking.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-controls-and-feedback-to-your-interface",
+          "level": 3,
+          "text": "Add controls and feedback to your interface",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You need to implement an interface that displays the status of players, shows when players connect and speak, mutes other players, and changes the volume of individual channels.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "First, update your interface when the state of a player changes. Set the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKVoiceChat/playerVoiceChatStateDidChangeHandler",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property to perform an action when a player connects, speaks, or disconnects from the chat. For example, highlight the avatar for the player who is speaking.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "voiceChat?.playerVoiceChatStateDidChangeHandler = { player, state in",
+            "    switch state {",
+            "    case GKVoiceChat.PlayerState.connected:",
+            "        // The player connected to chat.",
+            "    case GKVoiceChat.PlayerState.disconnected:",
+            "        // The player disconnected from chat.",
+            "    case GKVoiceChat.PlayerState.speaking:",
+            "        // The player is speaking.",
+            "    case GKVoiceChat.PlayerState.silent:",
+            "        // The player is silent.",
+            "    case GKVoiceChat.PlayerState.connecting:",
+            "        // The player is connecting.",
+            "    @unknown default:",
+            "        // The player state is unknown.",
+            "    }",
+            "    return",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Then, you can add a control that allows the player to mute other players including themselves using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKVoiceChat/setPlayer(_:muted:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. Finally, add another control for the player to adjust the volume of individual channels using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKVoiceChat/volume",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Stop-voice-chat",
+          "level": 3,
+          "text": "Stop voice chat",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To stop transmitting data over the channel, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKVoiceChat/stop()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method, and deactivate the audio session. If you mute all the players, GameKit still sends the data to the local player, so instead use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKVoiceChat/stop()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "voiceChat?.stop()",
+            "voiceChat = nil",
+            "",
+            "// Deactivate the shared audio session.",
+            "do {",
+            "    let audioSession = AVAudioSession.sharedInstance()",
+            "",
+            "    try audioSession.setActive(false, options: [])",
+            "}",
+            "catch {",
+            "    return",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/AVFAudio": {
+      "abstract": [
+        {
+          "text": "Play, record, and process audio; configure your app’s system audio behavior.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFAudio",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AVFAudio",
+      "type": "topic",
+      "url": "/documentation/AVFAudio"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSMicrophoneUsageDescription": {
+      "abstract": [
+        {
+          "text": "A message that tells the user why the app is requesting access to the device’s microphone.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSMicrophoneUsageDescription",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSMicrophoneUsageDescription",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/NSMicrophoneUsageDescription"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit": {
+      "abstract": [
+        {
+          "text": "Enable players to interact with friends, compare leaderboard ranks, earn achievements, and participate in multiplayer games.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "GameKit",
+      "type": "topic",
+      "url": "/documentation/gamekit"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKInvite": {
+      "abstract": [
+        {
+          "text": "An invitation to join a match sent to the local player from another player.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GKInvite"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKInvite",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GKInvite"
+        }
+      ],
+      "role": "symbol",
+      "title": "GKInvite",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkinvite"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKInviteEventListener": {
+      "abstract": [
+        {
+          "text": "A protocol that handles invite events from Game Center.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GKInviteEventListener"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKInviteEventListener",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GKInviteEventListener"
+        }
+      ],
+      "role": "symbol",
+      "title": "GKInviteEventListener",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkinviteeventlistener"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKMatch": {
+      "abstract": [
+        {
+          "text": "A peer-to-peer network between a group of players that sign into Game Center.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GKMatch"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKMatch",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GKMatch"
+        }
+      ],
+      "role": "symbol",
+      "title": "GKMatch",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkmatch"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKMatchRequest": {
+      "abstract": [
+        {
+          "text": "An object that encapsulates the parameters to create a real-time or turn-based match.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GKMatchRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKMatchRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GKMatchRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "GKMatchRequest",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkmatchrequest"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKMatchmaker": {
+      "abstract": [
+        {
+          "text": "An object that creates matches with other players without presenting an interface to the players.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GKMatchmaker"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKMatchmaker",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GKMatchmaker"
+        }
+      ],
+      "role": "symbol",
+      "title": "GKMatchmaker",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkmatchmaker"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKMatchmaker/startGroupActivity(playerHandler:)": {
+      "abstract": [
+        {
+          "text": "Begins a SharePlay activity for your game when a FaceTime call is active.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "startGroupActivity"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "playerHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)GKPlayer",
+          "text": "GKPlayer"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKMatchmaker/startGroupActivity(playerHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "startGroupActivityWithPlayerHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "startGroupActivity(playerHandler:)",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkmatchmaker/startgroupactivity(playerhandler:)"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKMatchmakerViewController": {
+      "abstract": [
+        {
+          "text": "An interface that allows a player to invite other players to a real-time game and automatch to fill any empty slots.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GKMatchmakerViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKMatchmakerViewController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GKMatchmakerViewController"
+        }
+      ],
+      "role": "symbol",
+      "title": "GKMatchmakerViewController",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkmatchmakerviewcontroller"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKVoiceChat": {
+      "abstract": [
+        {
+          "text": "A voice channel that allows players to speak with each other in a multiplayer game.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GKVoiceChat"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKVoiceChat",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GKVoiceChat"
+        }
+      ],
+      "role": "symbol",
+      "title": "GKVoiceChat",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkvoicechat"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKVoiceChat/isActive": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the channel is sampling the microphone.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isActive"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKVoiceChat/isActive",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "active"
+        }
+      ],
+      "role": "symbol",
+      "title": "isActive",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkvoicechat/isactive"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKVoiceChat/playerVoiceChatStateDidChangeHandler": {
+      "abstract": [
+        {
+          "text": "A method that handles when a player’s voice chat changes state.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "playerVoiceChatStateDidChangeHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)GKPlayer",
+          "text": "GKPlayer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)GKVoiceChat",
+          "text": "GKVoiceChat"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@GKVoiceChatPlayerState",
+          "text": "PlayerState"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKVoiceChat/playerVoiceChatStateDidChangeHandler",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "playerVoiceChatStateDidChangeHandler"
+        }
+      ],
+      "role": "symbol",
+      "title": "playerVoiceChatStateDidChangeHandler",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkvoicechat/playervoicechatstatedidchangehandler"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKVoiceChat/setPlayer(_:muted:)": {
+      "abstract": [
+        {
+          "text": "Mutes a player in the chat, including the local player.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setPlayer"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)GKPlayer",
+          "text": "GKPlayer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "muted"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKVoiceChat/setPlayer(_:muted:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setPlayer:muted:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setPlayer(_:muted:)",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkvoicechat/setplayer(_:muted:)"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKVoiceChat/start()": {
+      "abstract": [
+        {
+          "text": "Starts communication with other players in a channel.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "start"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKVoiceChat/start()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "start"
+        }
+      ],
+      "role": "symbol",
+      "title": "start()",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkvoicechat/start()"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKVoiceChat/stop()": {
+      "abstract": [
+        {
+          "text": "Ends communication with other players in a channel.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "stop"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKVoiceChat/stop()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "stop"
+        }
+      ],
+      "role": "symbol",
+      "title": "stop()",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkvoicechat/stop()"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKVoiceChat/volume": {
+      "abstract": [
+        {
+          "text": "The volume level for the channel.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "volume"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKVoiceChat/volume",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "volume"
+        }
+      ],
+      "role": "symbol",
+      "title": "volume",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkvoicechat/volume"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/creating-real-time-games": {
+      "abstract": [
+        {
+          "text": "Develop games where multiple players interact in real time.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/creating-real-time-games",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Creating real-time games",
+      "type": "topic",
+      "url": "/documentation/gamekit/creating-real-time-games"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/exchanging-data-between-players-in-real-time-games": {
+      "abstract": [
+        {
+          "text": "Send data between players in a real-time multiplayer game.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/exchanging-data-between-players-in-real-time-games",
+      "kind": "article",
+      "role": "article",
+      "title": "Exchanging data between players in real-time games",
+      "type": "topic",
+      "url": "/documentation/gamekit/exchanging-data-between-players-in-real-time-games"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/finding-multiple-players-for-a-game": {
+      "abstract": [
+        {
+          "text": "Discover and invite other players to participate in a real-time game.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/finding-multiple-players-for-a-game",
+      "kind": "article",
+      "role": "article",
+      "title": "Finding multiple players for a game",
+      "type": "topic",
+      "url": "/documentation/gamekit/finding-multiple-players-for-a-game"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/finding-multiple-players-for-a-game#Enable-the-local-player-to-choose-other-players": {
+      "abstract": [],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/finding-multiple-players-for-a-game#Enable-the-local-player-to-choose-other-players",
+      "kind": "section",
+      "title": "Enable the local player to choose other players",
+      "type": "topic",
+      "url": "/documentation/gamekit/finding-multiple-players-for-a-game#Enable-the-local-player-to-choose-other-players"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/matchmaking-rules": {
+      "abstract": [
+        {
+          "text": "Game Center applies different type of rules you create in a particular order to find the best matches.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/matchmaking-rules",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Matchmaking rules",
+      "type": "topic",
+      "url": "/documentation/gamekit/matchmaking-rules"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Real-time-games",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.gamekit/documentation/GameKit/creating-real-time-games",
+        "doc://com.apple.gamekit/documentation/GameKit/finding-multiple-players-for-a-game",
+        "doc://com.apple.gamekit/documentation/GameKit/exchanging-data-between-players-in-real-time-games",
+        "doc://com.apple.gamekit/documentation/GameKit/matchmaking-rules",
+        "doc://com.apple.gamekit/documentation/GameKit/GKMatchRequest",
+        "doc://com.apple.gamekit/documentation/GameKit/GKMatchmaker",
+        "doc://com.apple.gamekit/documentation/GameKit/GKMatchmakerViewController",
+        "doc://com.apple.gamekit/documentation/GameKit/GKInviteEventListener",
+        "doc://com.apple.gamekit/documentation/GameKit/GKInvite",
+        "doc://com.apple.gamekit/documentation/GameKit/GKMatch"
+      ],
+      "title": "Real-time games"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Real-time-games",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.gamekit/documentation/GameKit/creating-real-time-games",
+                "doc://com.apple.gamekit/documentation/GameKit/finding-multiple-players-for-a-game",
+                "doc://com.apple.gamekit/documentation/GameKit/exchanging-data-between-players-in-real-time-games",
+                "doc://com.apple.gamekit/documentation/GameKit/matchmaking-rules",
+                "doc://com.apple.gamekit/documentation/GameKit/GKMatchRequest",
+                "doc://com.apple.gamekit/documentation/GameKit/GKMatchmaker",
+                "doc://com.apple.gamekit/documentation/GameKit/GKMatchmakerViewController",
+                "doc://com.apple.gamekit/documentation/GameKit/GKInviteEventListener",
+                "doc://com.apple.gamekit/documentation/GameKit/GKInvite",
+                "doc://com.apple.gamekit/documentation/GameKit/GKMatch"
+              ],
+              "title": "Real-time games"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKVoiceChat~1setPlayer(_:muted:)/title",
+          "value": "setPlayer:muted:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKVoiceChat~1setPlayer(_:muted:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setPlayer:muted:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKMatchRequest/title",
+          "value": "GKMatchRequest"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKMatchRequest/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKMatchRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKMatchRequest/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKMatchRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKInviteEventListener/title",
+          "value": "GKInviteEventListener"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKInviteEventListener/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKInviteEventListener"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKInviteEventListener/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKInviteEventListener"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKVoiceChat~1stop()/title",
+          "value": "stop"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKVoiceChat~1stop()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "stop"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKVoiceChat~1isActive/title",
+          "value": "active"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKVoiceChat~1isActive/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "active"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKVoiceChat~1playerVoiceChatStateDidChangeHandler/title",
+          "value": "playerVoiceChatStateDidChangeHandler"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKVoiceChat~1playerVoiceChatStateDidChangeHandler/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "playerVoiceChatStateDidChangeHandler"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKVoiceChat~1start()/title",
+          "value": "start"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKVoiceChat~1start()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "start"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKVoiceChat/title",
+          "value": "GKVoiceChat"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKVoiceChat/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKVoiceChat"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKVoiceChat/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKVoiceChat"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKVoiceChat~1volume/title",
+          "value": "volume"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKVoiceChat~1volume/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "volume"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKInvite/title",
+          "value": "GKInvite"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKInvite/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKInvite"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKInvite/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKInvite"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKMatchmaker/title",
+          "value": "GKMatchmaker"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKMatchmaker/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKMatchmaker"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKMatchmaker/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKMatchmaker"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKMatchmakerViewController/title",
+          "value": "GKMatchmakerViewController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKMatchmakerViewController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKMatchmakerViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKMatchmakerViewController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKMatchmakerViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKMatch/title",
+          "value": "GKMatch"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKMatch/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKMatch"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKMatch/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKMatch"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKMatchmaker~1startGroupActivity(playerHandler:)/title",
+          "value": "startGroupActivityWithPlayerHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKMatchmaker~1startGroupActivity(playerHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "startGroupActivityWithPlayerHandler:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/gamekit/adding-voice-chat-to-multiplayer-games"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/gamekit/adding-voice-chat-to-multiplayer-games"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

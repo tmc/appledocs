@@ -1,0 +1,454 @@
+{
+  "abstract": [
+    {
+      "text": "The action to take on a delayed URL session task.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/url_loading_system",
+        "doc://com.apple.documentation/documentation/foundation/nsurlsession",
+        "doc://com.apple.documentation/documentation/foundation/nsurlsessiontaskdelegate"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/url_loading_system",
+        "doc://com.apple.documentation/documentation/foundation/nsurlsessiontask",
+        "doc://com.apple.documentation/documentation/foundation/nsurlsessiontaskdelegate"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/foundation/nsurlsessiondelayedrequestdisposition"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 2873411,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@T@NSURLSessionDelayedRequestDisposition",
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "11.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "11.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.13",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "11.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "4.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Enumeration",
+    "symbolKind": "enum",
+    "title": "NSURLSessionDelayedRequestDisposition"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "typedef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "enum"
+            },
+            {
+              "kind": "text",
+              "text": " NSURLSessionDelayedRequestDisposition : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/nsinteger",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@NSInteger",
+              "text": "NSInteger"
+            },
+            {
+              "kind": "text",
+              "text": " {"
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": "    ..."
+            },
+            {
+              "kind": "text",
+              "text": "\n"
+            },
+            {
+              "kind": "text",
+              "text": "} "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSURLSessionDelayedRequestDisposition"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The values of this enumeration indicate how to handle a task with a delayed start time (as set with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsessiontask/2873413-earliestbegindate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property). When the task is ready to start, it calls the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsessiontaskdelegate/2873415-urlsession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsessiontaskdelegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". The implementation of this method must call the provided completion handler, passing in one case of this enumeration as the first argument. If the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsessiondelayedrequestdisposition/nsurlsessiondelayedrequestusenewrequest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " disposition is used for the first argument, the caller must also provide a new ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlrequest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " as the second argument.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlrequest": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlrequest",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSURLRequest",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlrequest"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlsession": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSURLSession",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlsession"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlsessiondelayedrequestdisposition": {
+      "abstract": [
+        {
+          "text": "The action to take on a delayed URL session task.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsessiondelayedrequestdisposition",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSURLSessionDelayedRequestDisposition",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlsessiondelayedrequestdisposition"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlsessiondelayedrequestdisposition/nsurlsessiondelayedrequestcancel": {
+      "abstract": [
+        {
+          "text": "A disposition indicating that the task should be canceled.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsessiondelayedrequestdisposition/nsurlsessiondelayedrequestcancel",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSURLSessionDelayedRequestCancel",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlsessiondelayedrequestdisposition/nsurlsessiondelayedrequestcancel"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlsessiondelayedrequestdisposition/nsurlsessiondelayedrequestcontinueloading": {
+      "abstract": [
+        {
+          "text": "A disposition indicating that the task should proceed with the original request.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsessiondelayedrequestdisposition/nsurlsessiondelayedrequestcontinueloading",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSURLSessionDelayedRequestContinueLoading",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlsessiondelayedrequestdisposition/nsurlsessiondelayedrequestcontinueloading"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlsessiondelayedrequestdisposition/nsurlsessiondelayedrequestusenewrequest": {
+      "abstract": [
+        {
+          "text": "A disposition indicating that the task should use a new request to perform the network load. ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsessiondelayedrequestdisposition/nsurlsessiondelayedrequestusenewrequest",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSURLSessionDelayedRequestUseNewRequest",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlsessiondelayedrequestdisposition/nsurlsessiondelayedrequestusenewrequest"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlsessiontask": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsessiontask",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSURLSessionTask",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlsessiontask"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlsessiontask/2873413-earliestbegindate": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsessiontask/2873413-earliestbegindate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "earliestBeginDate",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlsessiontask/2873413-earliestbegindate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlsessiontaskdelegate": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsessiontaskdelegate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSURLSessionTaskDelegate",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlsessiontaskdelegate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlsessiontaskdelegate/2873415-urlsession": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that a delayed URL session task will now begin loading.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "URLSession:task:willBeginDelayedRequest:completionHandler:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsessiontaskdelegate/2873415-urlsession",
+      "kind": "symbol",
+      "required": false,
+      "role": "symbol",
+      "title": "URLSession:task:willBeginDelayedRequest:completionHandler:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlsessiontaskdelegate/2873415-urlsession"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlsessiontaskdelegate/2908819-urlsession": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that the task is waiting until suitable connectivity is available before beginning the network load. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "URLSession:taskIsWaitingForConnectivity:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsessiontaskdelegate/2908819-urlsession",
+      "kind": "symbol",
+      "required": false,
+      "role": "symbol",
+      "title": "URLSession:taskIsWaitingForConnectivity:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlsessiontaskdelegate/2908819-urlsession"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url_loading_system": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "URL Loading System",
+      "type": "topic",
+      "url": "/documentation/foundation/url_loading_system"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsinteger": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsinteger",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSInteger",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsinteger"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsurlsessiontaskdelegate/2873415-urlsession",
+        "doc://com.apple.documentation/documentation/foundation/nsurlsessiontaskdelegate/2908819-urlsession"
+      ],
+      "title": "Handling delayed and waiting tasks"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "2891223",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsurlsessiondelayedrequestdisposition/nsurlsessiondelayedrequestcancel",
+        "doc://com.apple.documentation/documentation/foundation/nsurlsessiondelayedrequestdisposition/nsurlsessiondelayedrequestcontinueloading",
+        "doc://com.apple.documentation/documentation/foundation/nsurlsessiondelayedrequestdisposition/nsurlsessiondelayedrequestusenewrequest"
+      ],
+      "kind": "taskGroup",
+      "title": "Dispositions"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nsurlsessiondelayedrequestdisposition"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/urlsession/delayedrequestdisposition"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,449 @@
+{
+  "abstract": [
+    {
+      "text": "Stores token information used by the AEResolve functionwhile locating a range of objects.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/coreservices",
+        "doc://com.apple.documentation/documentation/coreservices/carbon_core",
+        "doc://com.apple.documentation/documentation/coreservices/carbon_core/carbon_core_structures"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/applicationservices",
+        "doc://com.apple.documentation/documentation/applicationservices/apple_event_manager"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/coreservices/ccnttokenrecord"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1447422,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@S@ccntTokenRecord",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "struct "
+      },
+      {
+        "kind": "identifier",
+        "text": "ccntTokenRecord"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Core Services"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "ccntTokenRecord"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "Mac Catalyst",
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "ccntTokenRecord"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreservices/1449720-aeresolve",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " functioncalls an object accessor function to locate a range of objects, theApple Event Manager replaces the descriptor of type ",
+              "type": "text"
+            },
+            {
+              "code": "typeCurrentContainer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " witha token for the container of each boundary object. When using ",
+              "type": "text"
+            },
+            {
+              "code": "AEResolve",
+              "type": "codeVoice"
+            },
+            {
+              "text": " toresolve the object specifier, your application doesn’t need toexamine the contents of this token, because the Apple Event Managerkeeps track of it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your application attempts to resolve some or all of theobject specifier without calling ",
+              "type": "text"
+            },
+            {
+              "code": "AEResolve",
+              "type": "codeVoice"
+            },
+            {
+              "text": ",the application may need to examine the token before it can locatethe boundary objects. The token provided by the Apple Event Managerfor a boundary object’s container is a descriptor of type ",
+              "type": "text"
+            },
+            {
+              "code": "typeToken",
+              "type": "codeVoice"
+            },
+            {
+              "text": " whosedata storage pointer refers to a structure of type ",
+              "type": "text"
+            },
+            {
+              "code": "ccntTokenRecord",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/applicationservices": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Application Services",
+      "type": "topic",
+      "url": "/documentation/applicationservices"
+    },
+    "doc://com.apple.documentation/documentation/applicationservices/apple_event_manager": {
+      "identifier": "doc://com.apple.documentation/documentation/applicationservices/apple_event_manager",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Apple Event Manager",
+      "type": "topic",
+      "url": "/documentation/applicationservices/apple_event_manager"
+    },
+    "doc://com.apple.documentation/documentation/coreservices": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Services",
+      "type": "topic",
+      "url": "/documentation/coreservices"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1446783-aedisposetoken": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1446783-aedisposetoken",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AEDisposeToken(_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1446783-aedisposetoken"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1449720-aeresolve": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1449720-aeresolve",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AEResolve(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/1449720-aeresolve"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/aedesc": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/aedesc",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AEDesc",
+      "type": "topic",
+      "url": "/documentation/coreservices/aedesc"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/carbon_core": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/carbon_core",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Carbon Core",
+      "type": "topic",
+      "url": "/documentation/coreservices/carbon_core"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/carbon_core/carbon_core_structures": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/carbon_core/carbon_core_structures",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Carbon Core Structures",
+      "type": "topic",
+      "url": "/documentation/coreservices/carbon_core/carbon_core_structures"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/ccnttokenrecord/1442803-init": {
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/ccnttokenrecord/1442803-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init()",
+      "type": "topic",
+      "url": "/documentation/coreservices/ccnttokenrecord/1442803-init"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/ccnttokenrecord/1443203-init": {
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "tokenClass"
+        },
+        {
+          "kind": "text",
+          "text": ": DescType, "
+        },
+        {
+          "kind": "identifier",
+          "text": "token"
+        },
+        {
+          "kind": "text",
+          "text": ": AEDesc)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/ccnttokenrecord/1443203-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(tokenClass:token:)",
+      "type": "topic",
+      "url": "/documentation/coreservices/ccnttokenrecord/1443203-init"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/ccnttokenrecord/1444917-tokenclass": {
+      "abstract": [
+        {
+          "text": "The class ID of the container represented by the ",
+          "type": "text"
+        },
+        {
+          "code": "token",
+          "type": "codeVoice"
+        },
+        {
+          "text": " parameter.See ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/coreservices/desctype",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "tokenClass"
+        },
+        {
+          "kind": "text",
+          "text": ": DescType"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/ccnttokenrecord/1444917-tokenclass",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "tokenClass",
+      "type": "topic",
+      "url": "/documentation/coreservices/ccnttokenrecord/1444917-tokenclass"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/ccnttokenrecord/1445534-token": {
+      "abstract": [
+        {
+          "text": "A token for the current container. (Token is definedin ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/coreservices/1446783-aedisposetoken",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ". See ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/coreservices/aedesc",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "token"
+        },
+        {
+          "kind": "text",
+          "text": ": AEDesc"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/ccnttokenrecord/1445534-token",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "token",
+      "type": "topic",
+      "url": "/documentation/coreservices/ccnttokenrecord/1445534-token"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/desctype": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/desctype",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "DescType",
+      "type": "topic",
+      "url": "/documentation/coreservices/desctype"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "2974294",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreservices/ccnttokenrecord/1442803-init",
+        "doc://com.apple.documentation/documentation/coreservices/ccnttokenrecord/1443203-init"
+      ],
+      "kind": "taskGroup",
+      "title": "Initializers"
+    },
+    {
+      "anchor": "2974295",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreservices/ccnttokenrecord/1445534-token",
+        "doc://com.apple.documentation/documentation/coreservices/ccnttokenrecord/1444917-tokenclass"
+      ],
+      "kind": "taskGroup",
+      "title": "Instance Properties"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/coreservices/ccnttokenrecord"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/coreservices/ccnttokenrecord"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

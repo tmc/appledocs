@@ -1,0 +1,1553 @@
+{
+  "abstract": [
+    {
+      "text": "Implement custom linear interpolation to prevent the ringing effects associated with scaling an image with the default Lanczos algorithm.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.accelerate/documentation/Accelerate"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.accelerate/documentation/Accelerate",
+        "doc://com.apple.accelerate/documentation/Accelerate/vimage-library"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.accelerate/documentation/Accelerate/reducing-artifacts-with-custom-resampling-filters"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Accelerate"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "13.0",
+        "name": "macOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "14.3",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Reducing artifacts with custom resampling filters"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Most vImage geometry operations, such as scale and rotate, use a process known as ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "resampling",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " to prevent image artifacts. vImage resamples with kernels that combine data from a target pixel and other nearby pixels to calculate a value for the destination pixel.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because resampling involves evaluating the kernel at fractional pixel locations, the process relies on a family of kernel matrices for use at different fractional distances through a given pixel. This sample code app provides a function that generates this family of kernels – unlike operations such as convolution and morphology, which apply a single kernel matrix at the center of each pixel.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For most vImage geometric operations, vImage supplies a default resampling filter that is an implementation of the Lanczos resampling method. However, the Lanczos method can produce ringing effects near regions of high-frequency signals (that is, regions that contain a lot of pixel variation, such as the hard edges typical of line art). To correct this, this sample code app implements a linear interpolation as a custom resampling filter.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Declare-the-resampling-filter",
+          "level": 3,
+          "text": "Declare the resampling filter",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This app allows the user to toggle between the default resampling filter (Lanczos) and the custom resampling filter. The code declares the filter independently of initialization to support that functionality:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let resamplingFilter: ResamplingFilter",
+            "",
+            "let scale: Float = 30"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code initializes a default Lanczos resampling filter:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "resamplingFilter = vImageNewResamplingFilter(scale,",
+            "                                             vImage_Flags(kvImageHighQualityResampling))"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "On return, ",
+              "type": "text"
+            },
+            {
+              "code": "resamplingFilter",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is an initialized Lanczos resampling filter with the specified scale factor.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Use-shear-operations-to-scale-an-image",
+          "level": 3,
+          "text": "Use shear operations to scale an image",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The vImage shear functions accept the resampling filter and perform the scaling. The shear functions operate in one dimension at a time, so to scale an image in both dimensions, the sample code calls ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/shear(direction:translate:slope:resamplingFilter:backgroundColor:destination:)-5busu",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " twice. The first call passes ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/ShearDirection/vertical",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and the second call passes ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/ShearDirection/horizontal",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because these functions don’t work in place – that is, they require separate input and output buffers – the code uses an intermediate buffer to pass data from the vertical shear to the horizontal shear.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let height = Float(sourceBuffer.height)",
+            "let yTranslate = (height - height * scale) * 0.5",
+            "",
+            "sourceBuffer.shear(direction: .vertical,",
+            "                   translate: yTranslate,",
+            "                   slope: 0,",
+            "                   resamplingFilter: resamplingFilter,",
+            "                   destination: intermediateBuffer)",
+            "",
+            "let width = Float(sourceBuffer.width)",
+            "let xTranslate = (width - width * scale) * 0.5",
+            "",
+            "intermediateBuffer.shear(direction: .horizontal,",
+            "                         translate: xTranslate,",
+            "                         slope: 0,",
+            "                         resamplingFilter: resamplingFilter,",
+            "                         destination: destinationBuffer)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "On return of the horizontal shear function, ",
+              "type": "text"
+            },
+            {
+              "code": "destinationBuffer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " contains the source image, scaled about its center. The following shows an image of several small dots, magnified 30 times using the Lanczos resampling filter:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "lanczos_2x.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ringing artifacts appear as faint lines between the magnified dots.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Write-a-linear-resampling-filter-function",
+          "level": 3,
+          "text": "Write a linear resampling filter function",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The shear functions that scale an image are both 1D, and therefore the resampling filter function the sample code project creates is also 1D. The code applies the same filter function for both the vertical and horizontal passes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The function generates a set of kernel values based on a set of distances that the pixel being transformed supplies –- read from ",
+              "type": "text"
+            },
+            {
+              "code": "inPointer",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". The system assigns the generated kernel values to ",
+              "type": "text"
+            },
+            {
+              "code": "outPointer",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the following example, the kernel values are inversely proportional to the distance; the further a pixel is from the transformed pixel, the smaller the corresponding kernel value. After calculating the kernel values, the values ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "scale",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " (normalize) so that their sum is ",
+              "type": "text"
+            },
+            {
+              "code": "1.0",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". This normalization step ensures the final image is the same brightness as the original.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func kernelFunc(inPointer: UnsafePointer<Float>?,",
+            "                outPointer: UnsafeMutablePointer<Float>?,",
+            "                count: UInt,",
+            "                userData: UnsafeMutableRawPointer?) {",
+            "    if let inPointer = inPointer, let outPointer = outPointer {",
+            "        let absolutePixelPositions =",
+            "        Array(UnsafeBufferPointer(start: inPointer,",
+            "                                  count: Int(count))).map {",
+            "            abs($0)",
+            "        }",
+            "        ",
+            "        let kernelValues = absolutePixelPositions.map {",
+            "            (absolutePixelPositions.max()! - $0)",
+            "        }",
+            "        ",
+            "        let divisor = vDSP.sum(kernelValues)",
+            "        let normalizedKernelValues = vDSP.multiply(1 / divisor, kernelValues)",
+            "        ",
+            "        outPointer.update(from: normalizedKernelValues,",
+            "                          count: Int(count))",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, if the system passes the following pixel positions to ",
+              "type": "text"
+            },
+            {
+              "code": "inPointer",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "[-3.0, -2.0, -1.0, 0.0, 1.0, 2.0, 3.0, 4.0]"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The values in the ",
+              "type": "text"
+            },
+            {
+              "code": "kernelValues",
+              "type": "codeVoice"
+            },
+            {
+              "text": " array are:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "[1.0, 2.0, 3.0, 4.0, 3.0, 2.0, 1.0, 0.0]"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Dividing each of the values in ",
+              "type": "text"
+            },
+            {
+              "code": "kernelValues",
+              "type": "codeVoice"
+            },
+            {
+              "text": " by its sum returns the normalized kernel values that the code assigns to the resampling function’s ",
+              "type": "text"
+            },
+            {
+              "code": "outPointer",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "[0.0625, 0.125, 0.1875, 0.25, 0.1875, 0.125, 0.0625, 0.0] // sum = 1"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The values that the resampling function generates form a 1D convolution kernel that the shear functions use in a similar way to the 1D convolution described in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/blurring-an-image",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". However, unlike the kernels used for convolution, the resampling kernel is suitable for use with fractional pixel positions.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Allocate-the-resampling-filter-function-memory",
+          "level": 3,
+          "text": "Allocate the resampling filter function memory",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The resampling function, the scale factor, and the kernel width combine to determine the memory that the resampling function requires. The sample code uses the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImageGetResamplingFilterSize(_:_:_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function to calculate the size in bytes, and the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Swift/UnsafeMutableRawPointer/allocate(byteCount:alignment:)",
+              "isActive": true,
+              "overridingTitle": "allocate(byteCount:alignment:)",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "allocate(byteCount:alignment:)",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " function to allocate the necessary memory.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let kernelWidth: Float = 1.5",
+            "",
+            "let size = vImageGetResamplingFilterSize(scale,",
+            "                                         kernelFunc,",
+            "                                         kernelWidth,",
+            "                                         vImage_Flags(kvImageNoFlags))",
+            "",
+            "resamplingFilter = ResamplingFilter.allocate(byteCount: size,",
+            "                                             alignment: 1)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "On return, ",
+              "type": "text"
+            },
+            {
+              "code": "resamplingFilter",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/ResamplingFilter",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " structure, allocated with the correct amount of uninitialized memory.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-a-linear-resampling-filter",
+          "level": 3,
+          "text": "Create a linear resampling filter",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample code calls ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImageNewResamplingFilterForFunctionUsingBuffer(_:_:_:_:_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to create the resampling filter and populate ",
+              "type": "text"
+            },
+            {
+              "code": "resamplingFilter",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "vImageNewResamplingFilterForFunctionUsingBuffer(resamplingFilter,",
+            "                                                scale,",
+            "                                                kernelFunc,",
+            "                                                kernelWidth,",
+            "                                                nil,",
+            "                                                vImage_Flags(kvImageNoFlags))"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Scaling using a custom resampling filter is the same process as using the default Lanczos resampling:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let height = Float(sourceBuffer.height)",
+            "let yTranslate = (height - height * scale) * 0.5",
+            "",
+            "sourceBuffer.shear(direction: .vertical,",
+            "                   translate: yTranslate,",
+            "                   slope: 0,",
+            "                   resamplingFilter: resamplingFilter,",
+            "                   destination: intermediateBuffer)",
+            "",
+            "let width = Float(sourceBuffer.width)",
+            "let xTranslate = (width - width * scale) * 0.5",
+            "",
+            "intermediateBuffer.shear(direction: .horizontal,",
+            "                         translate: xTranslate,",
+            "                         slope: 0,",
+            "                         resamplingFilter: resamplingFilter,",
+            "                         destination: destinationBuffer)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following shows the same image that the Lanczos example uses, also maginifed 30 times.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "linear_2x.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Linear resampling eliminates the ringing artifacts.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Free-the-resampling-filter-memory",
+          "level": 3,
+          "text": "Free the resampling filter memory",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After the sample app is finished working with the resampling filter, it’s important that it frees the allocated memory. This process will vary depending on whether the code has used the default or a custom filter. The following code frees the memory for the default:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "vImageDestroyResamplingFilter(resamplingFilter)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code frees the memory for custom resampling filters:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "resamplingFilter.deallocate()"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "4b432d0f53fa/ReducingArtifactsWithCustomResamplingFilters.zip": {
+      "checksum": "4b432d0f53fa5b668d403ac0559efe51bf7561897723a0d28efbfc567f4885d1611f83364a29a3730d552617c5d2b73de62b9e0f0577f286cd30c0932b0549fe",
+      "identifier": "4b432d0f53fa/ReducingArtifactsWithCustomResamplingFilters.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/4b432d0f53fa/ReducingArtifactsWithCustomResamplingFilters.zip"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate": {
+      "abstract": [
+        {
+          "text": "Make large-scale mathematical computations and image calculations, optimized for high performance and low energy consumption.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Accelerate",
+      "type": "topic",
+      "url": "/documentation/accelerate"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/ResamplingFilter": {
+      "abstract": [
+        {
+          "text": "A pointer to a resampling filter callback function.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ResamplingFilter"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/ResamplingFilter",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ResamplingFilter"
+        }
+      ],
+      "role": "symbol",
+      "title": "ResamplingFilter",
+      "type": "topic",
+      "url": "/documentation/accelerate/resamplingfilter"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/blurring-an-image": {
+      "abstract": [
+        {
+          "text": "Filter an image by convolving it with custom and high-speed kernels.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/blurring-an-image",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Blurring an image",
+      "type": "topic",
+      "url": "/documentation/accelerate/blurring-an-image"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/image-shearing": {
+      "abstract": [
+        {
+          "text": "Shear images horizontally and vertically.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/image-shearing",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Image shearing",
+      "type": "topic",
+      "url": "/documentation/accelerate/image-shearing"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/resampling-in-vimage": {
+      "abstract": [
+        {
+          "text": "Learn how vImage resamples image data during geometric operations.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/resampling-in-vimage",
+      "kind": "article",
+      "role": "article",
+      "title": "Resampling in vImage",
+      "type": "topic",
+      "url": "/documentation/accelerate/resampling-in-vimage"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/shear(direction:translate:slope:resamplingFilter:backgroundColor:destination:)-5busu": {
+      "abstract": [
+        {
+          "text": "Performs a horizontal or vertical shear operation on an unsigned 16-bit planar pixel buffer.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Format",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "vImage.Planar16U",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "shear"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "direction"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO",
+          "text": "vImage"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO14ShearDirectionO",
+          "text": "ShearDirection"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "translate"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "slope"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "resamplingFilter"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@ResamplingFilter",
+          "text": "ResamplingFilter"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "backgroundColor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@Pixel_16U",
+          "text": "Pixel_16U"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "destination"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO",
+          "text": "vImage"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Accelerate6vImageO11PixelBufferV",
+          "text": "PixelBuffer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Format"
+        },
+        {
+          "kind": "text",
+          "text": ">)"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/PixelBuffer/shear(direction:translate:slope:resamplingFilter:backgroundColor:destination:)-5busu",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "shear(direction:translate:slope:resamplingFilter:backgroundColor:destination:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage/pixelbuffer/shear(direction:translate:slope:resamplingfilter:backgroundcolor:destination:)-5busu"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage/ShearDirection/horizontal": {
+      "abstract": [
+        {
+          "text": "Perform a horizontal shear.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "horizontal"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/ShearDirection/horizontal",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vImage.ShearDirection.horizontal",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage/sheardirection/horizontal"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImage/ShearDirection/vertical": {
+      "abstract": [
+        {
+          "text": "Perform a vertical shear.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vertical"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImage/ShearDirection/vertical",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vImage.ShearDirection.vertical",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage/sheardirection/vertical"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImageGetResamplingFilterSize(_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Returns the minimum size, in bytes, for the buffer needed by the new resampling filter function.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vImageGetResamplingFilterSize"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ", (("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ">?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ">?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Su",
+          "text": "UInt"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sv",
+          "text": "UnsafeMutableRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")!, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vImage_Flags",
+          "text": "vImage_Flags"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImageGetResamplingFilterSize(_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vImageGetResamplingFilterSize"
+        }
+      ],
+      "role": "symbol",
+      "title": "vImageGetResamplingFilterSize(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimagegetresamplingfiltersize(_:_:_:_:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vImageNewResamplingFilterForFunctionUsingBuffer(_:_:_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Creates a resampling filter object that encapsulates a resampling kernel function that you provide.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "vImageNewResamplingFilterForFunctionUsingBuffer"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@ResamplingFilter",
+          "text": "ResamplingFilter"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ", (("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ">?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ">?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Su",
+          "text": "UInt"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sv",
+          "text": "UnsafeMutableRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")!, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sv",
+          "text": "UnsafeMutableRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": "!, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vImage_Flags",
+          "text": "vImage_Flags"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@vImage_Error",
+          "text": "vImage_Error"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vImageNewResamplingFilterForFunctionUsingBuffer(_:_:_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "vImageNewResamplingFilterForFunctionUsingBuffer"
+        }
+      ],
+      "role": "symbol",
+      "title": "vImageNewResamplingFilterForFunctionUsingBuffer(_:_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimagenewresamplingfilterforfunctionusingbuffer(_:_:_:_:_:_:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vimage-library": {
+      "abstract": [
+        {
+          "text": "Manipulate large images using the CPU’s vector processor.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vimage-library",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "vImage",
+      "type": "topic",
+      "url": "/documentation/accelerate/vimage-library"
+    },
+    "doc://com.apple.documentation/documentation/Swift/UnsafeMutableRawPointer/allocate(byteCount:alignment:)": {
+      "abstract": [
+        {
+          "text": "Allocates uninitialized memory with the specified size and alignment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "allocate"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "byteCount"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "alignment"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sv",
+          "text": "UnsafeMutableRawPointer"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Swift/UnsafeMutableRawPointer/allocate(byteCount:alignment:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "allocate(byteCount:alignment:)",
+      "type": "topic",
+      "url": "/documentation/Swift/UnsafeMutableRawPointer/allocate(byteCount:alignment:)"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "lanczos_2x.png": {
+      "alt": "A scaled version of an image of a field of small dots, with ringing artifacts between the dots.",
+      "identifier": "lanczos_2x.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/36a18f1e4e1bb3d25f14398d3b31c7ad/lanczos_2x.png"
+        }
+      ]
+    },
+    "linear_2x.png": {
+      "alt": "A scaled version of an image consisting of a field of small dots without ringing artifacts.",
+      "identifier": "linear_2x.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/35424fd7a65b68ecc48ac63623b5e0f1/linear_2x.png"
+        }
+      ]
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "4b432d0f53fa/ReducingArtifactsWithCustomResamplingFilters.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Image-Resampling",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/resampling-in-vimage",
+        "doc://com.apple.accelerate/documentation/Accelerate/image-shearing"
+      ],
+      "title": "Image Resampling"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1ResamplingFilter/title",
+          "value": "ResamplingFilter"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1ResamplingFilter/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ResamplingFilter"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1ResamplingFilter/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ResamplingFilter"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImageNewResamplingFilterForFunctionUsingBuffer(_:_:_:_:_:_:)/title",
+          "value": "vImageNewResamplingFilterForFunctionUsingBuffer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImageNewResamplingFilterForFunctionUsingBuffer(_:_:_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vImageNewResamplingFilterForFunctionUsingBuffer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImageGetResamplingFilterSize(_:_:_:_:)/title",
+          "value": "vImageGetResamplingFilterSize"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1vImageGetResamplingFilterSize(_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "vImageGetResamplingFilterSize"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,2192 @@
+{
+  "abstract": [
+    {
+      "text": "An object for fetching the system-generated live walking data.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.coremotion/documentation/CoreMotion"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.coremotion/documentation/CoreMotion/CMPedometer"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)CMPedometer",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "CMPedometer"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Core Motion"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "CMPedometer"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.15",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "2.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "CMPedometer"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CMPedometer"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You use a pedometer object to retrieve step counts and other information about the distance traveled and the number of floors ascended or descended. The pedometer object manages a cache of historic data that you can query or you can ask for live updates as the data is processed.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To use a pedometer object, create an instance of this class and call the appropriate methods. Use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMPedometer/queryPedometerData(from:to:withHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to retrieve data that has already been gathered. To get live updates, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMPedometer/startUpdates(from:withHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to start the delivery of events to the handler you provide.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "To use this API, you must include the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSMotionUsageDescription",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " key in your app’s ",
+                  "type": "text"
+                },
+                {
+                  "code": "Info.plist",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " file and provide a usage description string for this key. The usage description appears in the prompt that the user must accept the first time the system asks the user to access motion data for your app. If you don’t include a usage description string, your app crashes when you call this API.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.coremotion/documentation/CoreMotion": {
+      "abstract": [
+        {
+          "text": "Process accelerometer, gyroscope, pedometer, and environment-related events.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Motion",
+      "type": "topic",
+      "url": "/documentation/coremotion"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMAuthorizationStatus": {
+      "abstract": [
+        {
+          "text": "The authorization status for motion-related features.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMAuthorizationStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMAuthorizationStatus",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMAuthorizationStatus"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMAuthorizationStatus",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmauthorizationstatus"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMHighFrequencyHeartRateData": {
+      "abstract": [
+        {
+          "text": "A class that represents heart rate data collected at 1 Hz.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMHighFrequencyHeartRateData"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMHighFrequencyHeartRateData",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMHighFrequencyHeartRateData"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMHighFrequencyHeartRateData",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmhighfrequencyheartratedata"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMOdometerData": {
+      "abstract": [
+        {
+          "text": "A class that represents odometer data for workouts.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMOdometerData"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMOdometerData",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMOdometerData"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMOdometerData",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmodometerdata"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMPedometer": {
+      "abstract": [
+        {
+          "text": "An object for fetching the system-generated live walking data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMPedometer"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMPedometer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMPedometer"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMPedometer",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmpedometer"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMPedometer/authorizationStatus()": {
+      "abstract": [
+        {
+          "text": "Returns a value indicating whether the app is authorized to gather pedometer data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "authorizationStatus"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@CMAuthorizationStatus",
+          "text": "CMAuthorizationStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMPedometer/authorizationStatus()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "authorizationStatus"
+        }
+      ],
+      "role": "symbol",
+      "title": "authorizationStatus()",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmpedometer/authorizationstatus()"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMPedometer/isCadenceAvailable()": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value indicating whether cadence information is available on the current device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isCadenceAvailable"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMPedometer/isCadenceAvailable()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "isCadenceAvailable"
+        }
+      ],
+      "role": "symbol",
+      "title": "isCadenceAvailable()",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmpedometer/iscadenceavailable()"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMPedometer/isDistanceAvailable()": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value indicating whether distance estimation is available on the current device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isDistanceAvailable"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMPedometer/isDistanceAvailable()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "isDistanceAvailable"
+        }
+      ],
+      "role": "symbol",
+      "title": "isDistanceAvailable()",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmpedometer/isdistanceavailable()"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMPedometer/isFloorCountingAvailable()": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value indicating whether floor counting is available on the current device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isFloorCountingAvailable"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMPedometer/isFloorCountingAvailable()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "isFloorCountingAvailable"
+        }
+      ],
+      "role": "symbol",
+      "title": "isFloorCountingAvailable()",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmpedometer/isfloorcountingavailable()"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMPedometer/isPaceAvailable()": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value indicating whether pace information is available on the current device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isPaceAvailable"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMPedometer/isPaceAvailable()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "isPaceAvailable"
+        }
+      ],
+      "role": "symbol",
+      "title": "isPaceAvailable()",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmpedometer/ispaceavailable()"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMPedometer/isPedometerEventTrackingAvailable()": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value indicating whether pedometer events are available on the current device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isPedometerEventTrackingAvailable"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMPedometer/isPedometerEventTrackingAvailable()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "isPedometerEventTrackingAvailable"
+        }
+      ],
+      "role": "symbol",
+      "title": "isPedometerEventTrackingAvailable()",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmpedometer/ispedometereventtrackingavailable()"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMPedometer/isStepCountingAvailable()": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value indicating whether step counting is available on the current device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isStepCountingAvailable"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMPedometer/isStepCountingAvailable()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "isStepCountingAvailable"
+        }
+      ],
+      "role": "symbol",
+      "title": "isStepCountingAvailable()",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmpedometer/isstepcountingavailable()"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMPedometer/queryPedometerData(from:to:withHandler:)": {
+      "abstract": [
+        {
+          "text": "Retrieves the data between the specified start and end dates.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "queryPedometerData"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DateV",
+          "text": "Date"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DateV",
+          "text": "Date"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "withHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMPedometerHandler",
+          "text": "CMPedometerHandler"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMPedometer/queryPedometerData(from:to:withHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "queryPedometerDataFromDate:toDate:withHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "queryPedometerData(from:to:withHandler:)",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmpedometer/querypedometerdata(from:to:withhandler:)"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMPedometer/startEventUpdates(handler:)": {
+      "abstract": [
+        {
+          "text": "Starts the delivery of pedometer events to your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "startEventUpdates"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "handler"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMPedometerEventHandler",
+          "text": "CMPedometerEventHandler"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMPedometer/startEventUpdates(handler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "startPedometerEventUpdatesWithHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "startEventUpdates(handler:)",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmpedometer/starteventupdates(handler:)"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMPedometer/startUpdates(from:withHandler:)": {
+      "abstract": [
+        {
+          "text": "Starts the delivery of recent pedestrian-related data to your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "startUpdates"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DateV",
+          "text": "Date"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "withHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CMPedometerHandler",
+          "text": "CMPedometerHandler"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMPedometer/startUpdates(from:withHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "startPedometerUpdatesFromDate:withHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "startUpdates(from:withHandler:)",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmpedometer/startupdates(from:withhandler:)"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMPedometer/stopEventUpdates()": {
+      "abstract": [
+        {
+          "text": "Stops the delivery of pedometer events to your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "stopEventUpdates"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMPedometer/stopEventUpdates()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "stopPedometerEventUpdates"
+        }
+      ],
+      "role": "symbol",
+      "title": "stopEventUpdates()",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmpedometer/stopeventupdates()"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMPedometer/stopUpdates()": {
+      "abstract": [
+        {
+          "text": "Stops the delivery of recent pedestrian data updates to your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "stopUpdates"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMPedometer/stopUpdates()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "stopPedometerUpdates"
+        }
+      ],
+      "role": "symbol",
+      "title": "stopUpdates()",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmpedometer/stopupdates()"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMPedometerData": {
+      "abstract": [
+        {
+          "text": "Information about the distance traveled by a user on foot.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMPedometerData"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMPedometerData",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMPedometerData"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMPedometerData",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmpedometerdata"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMPedometerEvent": {
+      "abstract": [
+        {
+          "text": "A change in the user’s pedestrian activity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMPedometerEvent"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMPedometerEvent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMPedometerEvent"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMPedometerEvent",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmpedometerevent"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMPedometerEventHandler": {
+      "abstract": [
+        {
+          "text": "A block for processing pedometer events.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMPedometerEventHandler"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMPedometerEventHandler",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMPedometerEventHandler"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMPedometerEventHandler",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmpedometereventhandler"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMPedometerHandler": {
+      "abstract": [
+        {
+          "text": "A block for processing pedometer-related data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMPedometerHandler"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMPedometerHandler",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMPedometerHandler"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMPedometerHandler",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmpedometerhandler"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMStepCounter": {
+      "abstract": [
+        {
+          "text": "The number of steps the user has taken with the device.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMStepCounter"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMStepCounter",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMStepCounter"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMStepCounter",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmstepcounter"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSMotionUsageDescription": {
+      "abstract": [
+        {
+          "text": "A message that tells the user why the app is requesting access to the device’s motion data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSMotionUsageDescription",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSMotionUsageDescription",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/NSMotionUsageDescription"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Pedometer-and-fitness",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.coremotion/documentation/CoreMotion/CMPedometerData",
+        "doc://com.apple.coremotion/documentation/CoreMotion/CMPedometerEvent",
+        "doc://com.apple.coremotion/documentation/CoreMotion/CMStepCounter",
+        "doc://com.apple.coremotion/documentation/CoreMotion/CMOdometerData",
+        "doc://com.apple.coremotion/documentation/CoreMotion/CMHighFrequencyHeartRateData"
+      ],
+      "title": "Pedometer and fitness"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Determining-Pedometer-Availability",
+      "identifiers": [
+        "doc://com.apple.coremotion/documentation/CoreMotion/CMPedometer/isStepCountingAvailable()",
+        "doc://com.apple.coremotion/documentation/CoreMotion/CMPedometer/isDistanceAvailable()",
+        "doc://com.apple.coremotion/documentation/CoreMotion/CMPedometer/isFloorCountingAvailable()",
+        "doc://com.apple.coremotion/documentation/CoreMotion/CMPedometer/isPaceAvailable()",
+        "doc://com.apple.coremotion/documentation/CoreMotion/CMPedometer/isCadenceAvailable()",
+        "doc://com.apple.coremotion/documentation/CoreMotion/CMPedometer/isPedometerEventTrackingAvailable()",
+        "doc://com.apple.coremotion/documentation/CoreMotion/CMPedometer/authorizationStatus()",
+        "doc://com.apple.coremotion/documentation/CoreMotion/CMAuthorizationStatus"
+      ],
+      "title": "Determining Pedometer Availability"
+    },
+    {
+      "anchor": "Gathering-Live-Pedometer-Data",
+      "identifiers": [
+        "doc://com.apple.coremotion/documentation/CoreMotion/CMPedometer/startUpdates(from:withHandler:)",
+        "doc://com.apple.coremotion/documentation/CoreMotion/CMPedometer/stopUpdates()",
+        "doc://com.apple.coremotion/documentation/CoreMotion/CMPedometer/startEventUpdates(handler:)",
+        "doc://com.apple.coremotion/documentation/CoreMotion/CMPedometer/stopEventUpdates()",
+        "doc://com.apple.coremotion/documentation/CoreMotion/CMPedometerHandler",
+        "doc://com.apple.coremotion/documentation/CoreMotion/CMPedometerEventHandler"
+      ],
+      "title": "Gathering Live Pedometer Data"
+    },
+    {
+      "anchor": "Fetching-Historical-Pedometer-Data",
+      "identifiers": [
+        "doc://com.apple.coremotion/documentation/CoreMotion/CMPedometer/queryPedometerData(from:to:withHandler:)"
+      ],
+      "title": "Fetching Historical Pedometer Data"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "8.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "8.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.15",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "2.0",
+              "name": "watchOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "CMPedometer"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMPedometer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMPedometer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.coremotion/documentation/CoreMotion"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Determining-Pedometer-Availability",
+              "identifiers": [
+                "doc://com.apple.coremotion/documentation/CoreMotion/CMPedometer/isStepCountingAvailable()",
+                "doc://com.apple.coremotion/documentation/CoreMotion/CMPedometer/isDistanceAvailable()",
+                "doc://com.apple.coremotion/documentation/CoreMotion/CMPedometer/isFloorCountingAvailable()",
+                "doc://com.apple.coremotion/documentation/CoreMotion/CMPedometer/isPaceAvailable()",
+                "doc://com.apple.coremotion/documentation/CoreMotion/CMPedometer/isCadenceAvailable()",
+                "doc://com.apple.coremotion/documentation/CoreMotion/CMPedometer/isPedometerEventTrackingAvailable()",
+                "doc://com.apple.coremotion/documentation/CoreMotion/CMPedometer/authorizationStatus()",
+                "doc://com.apple.coremotion/documentation/CoreMotion/CMAuthorizationStatus"
+              ],
+              "title": "Determining Pedometer Availability"
+            },
+            {
+              "anchor": "Gathering-Live-Pedometer-Data",
+              "identifiers": [
+                "doc://com.apple.coremotion/documentation/CoreMotion/CMPedometer/startUpdates(from:withHandler:)",
+                "doc://com.apple.coremotion/documentation/CoreMotion/CMPedometer/stopUpdates()",
+                "doc://com.apple.coremotion/documentation/CoreMotion/CMPedometer/startEventUpdates(handler:)",
+                "doc://com.apple.coremotion/documentation/CoreMotion/CMPedometer/stopEventUpdates()",
+                "doc://com.apple.coremotion/documentation/CoreMotion/CMPedometerHandler",
+                "doc://com.apple.coremotion/documentation/CoreMotion/CMPedometerEventHandler"
+              ],
+              "title": "Gathering Live Pedometer Data"
+            },
+            {
+              "anchor": "Fetching-Historical-Pedometer-Data",
+              "identifiers": [
+                "doc://com.apple.coremotion/documentation/CoreMotion/CMPedometer/queryPedometerData(from:to:withHandler:)"
+              ],
+              "title": "Fetching Historical Pedometer Data"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Pedometer-and-fitness",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.coremotion/documentation/CoreMotion/CMPedometerData",
+                "doc://com.apple.coremotion/documentation/CoreMotion/CMPedometerEvent",
+                "doc://com.apple.coremotion/documentation/CoreMotion/CMStepCounter",
+                "doc://com.apple.coremotion/documentation/CoreMotion/CMOdometerData",
+                "doc://com.apple.coremotion/documentation/CoreMotion/CMHighFrequencyHeartRateData"
+              ],
+              "title": "Pedometer and fitness"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "CMPedometer"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMPedometer~1stopEventUpdates()/title",
+          "value": "stopPedometerEventUpdates"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMPedometer~1stopEventUpdates()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "stopPedometerEventUpdates"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMPedometer~1startUpdates(from:withHandler:)/title",
+          "value": "startPedometerUpdatesFromDate:withHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMPedometer~1startUpdates(from:withHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "startPedometerUpdatesFromDate:withHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMHighFrequencyHeartRateData/title",
+          "value": "CMHighFrequencyHeartRateData"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMHighFrequencyHeartRateData/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMHighFrequencyHeartRateData"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMHighFrequencyHeartRateData/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMHighFrequencyHeartRateData"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMPedometer~1isFloorCountingAvailable()/title",
+          "value": "isFloorCountingAvailable"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMPedometer~1isFloorCountingAvailable()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "isFloorCountingAvailable"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMPedometer~1isPaceAvailable()/title",
+          "value": "isPaceAvailable"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMPedometer~1isPaceAvailable()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "isPaceAvailable"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMPedometer~1authorizationStatus()/title",
+          "value": "authorizationStatus"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMPedometer~1authorizationStatus()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "authorizationStatus"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMPedometer/title",
+          "value": "CMPedometer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMPedometer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMPedometer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMPedometer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMPedometer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMPedometer~1queryPedometerData(from:to:withHandler:)/title",
+          "value": "queryPedometerDataFromDate:toDate:withHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMPedometer~1queryPedometerData(from:to:withHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "queryPedometerDataFromDate:toDate:withHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMPedometerData/title",
+          "value": "CMPedometerData"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMPedometerData/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMPedometerData"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMPedometerData/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMPedometerData"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMPedometer~1isStepCountingAvailable()/title",
+          "value": "isStepCountingAvailable"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMPedometer~1isStepCountingAvailable()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "isStepCountingAvailable"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMPedometer~1isPedometerEventTrackingAvailable()/title",
+          "value": "isPedometerEventTrackingAvailable"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMPedometer~1isPedometerEventTrackingAvailable()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "isPedometerEventTrackingAvailable"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMStepCounter/title",
+          "value": "CMStepCounter"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMStepCounter/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMStepCounter"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMStepCounter/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMStepCounter"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMPedometer~1isCadenceAvailable()/title",
+          "value": "isCadenceAvailable"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMPedometer~1isCadenceAvailable()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "isCadenceAvailable"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMOdometerData/title",
+          "value": "CMOdometerData"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMOdometerData/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMOdometerData"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMOdometerData/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMOdometerData"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMPedometerHandler/title",
+          "value": "CMPedometerHandler"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMPedometerHandler/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMPedometerHandler"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMPedometerHandler/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMPedometerHandler"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMAuthorizationStatus/title",
+          "value": "CMAuthorizationStatus"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMAuthorizationStatus/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMAuthorizationStatus"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMAuthorizationStatus/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMAuthorizationStatus"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMPedometer~1startEventUpdates(handler:)/title",
+          "value": "startPedometerEventUpdatesWithHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMPedometer~1startEventUpdates(handler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "startPedometerEventUpdatesWithHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMPedometer~1stopUpdates()/title",
+          "value": "stopPedometerUpdates"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMPedometer~1stopUpdates()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "stopPedometerUpdates"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMPedometer~1isDistanceAvailable()/title",
+          "value": "isDistanceAvailable"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMPedometer~1isDistanceAvailable()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "isDistanceAvailable"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMPedometerEventHandler/title",
+          "value": "CMPedometerEventHandler"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMPedometerEventHandler/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMPedometerEventHandler"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMPedometerEventHandler/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMPedometerEventHandler"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMPedometerEvent/title",
+          "value": "CMPedometerEvent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMPedometerEvent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMPedometerEvent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMPedometerEvent/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMPedometerEvent"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/coremotion/cmpedometer"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/coremotion/cmpedometer"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,938 @@
+{
+  "abstract": [
+    {
+      "text": "Obtain the internal state of Core Audio objects during the development and debugging of your code.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-toolbox-debugging"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Audio Toolbox"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Audio Toolbox Debugging"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "AudioToolbox.h",
+              "type": "codeVoice"
+            },
+            {
+              "text": " header file provides auxiliary functions for obtaining the internal state of a Core Audio object. Use these functions during development and debugging.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox": {
+      "abstract": [
+        {
+          "text": "Record or play audio, convert formats, parse audio streams, and configure your audio session.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Audio Toolbox",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUDIO_TOOLBOX_VERSION": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AUDIO_TOOLBOX_VERSION"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int32V",
+          "text": "Int32"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUDIO_TOOLBOX_VERSION",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AUDIO_TOOLBOX_VERSION"
+        }
+      ],
+      "role": "symbol",
+      "title": "AUDIO_TOOLBOX_VERSION",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audio_toolbox_version"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/CAShow(_:)": {
+      "abstract": [
+        {
+          "text": "Prints the internal state of an object to ",
+          "type": "text"
+        },
+        {
+          "code": "stdio",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CAShow"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sv",
+          "text": "UnsafeMutableRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/CAShow(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CAShow"
+        }
+      ],
+      "role": "symbol",
+      "title": "CAShow(_:)",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/cashow(_:)"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/CAShowFile(_:_:)": {
+      "abstract": [
+        {
+          "text": "Prints the internal state of an object to a file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CAShowFile"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sv",
+          "text": "UnsafeMutableRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "FILE"
+        },
+        {
+          "kind": "text",
+          "text": ">)"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/CAShowFile(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CAShowFile"
+        }
+      ],
+      "role": "symbol",
+      "title": "CAShowFile(_:_:)",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/cashowfile(_:_:)"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/CopyInstrumentInfoFromSoundBank(_:_:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CopyInstrumentInfoFromSoundBank"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFURLRef",
+          "text": "CFURL"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s9UnmanagedV",
+          "text": "Unmanaged"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFArrayRef",
+          "text": "CFArray"
+        },
+        {
+          "kind": "text",
+          "text": ">?>) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/CopyInstrumentInfoFromSoundBank(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CopyInstrumentInfoFromSoundBank"
+        }
+      ],
+      "role": "symbol",
+      "title": "CopyInstrumentInfoFromSoundBank(_:_:)",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/copyinstrumentinfofromsoundbank(_:_:)"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/CopyNameFromSoundBank(_:_:)": {
+      "abstract": [
+        {
+          "text": "Copies the name of a sound bank from a sound bank file at a specified URL.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CopyNameFromSoundBank"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFURLRef",
+          "text": "CFURL"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s9UnmanagedV",
+          "text": "Unmanaged"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        },
+        {
+          "kind": "text",
+          "text": ">?>) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/CopyNameFromSoundBank(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CopyNameFromSoundBank"
+        }
+      ],
+      "role": "symbol",
+      "title": "CopyNameFromSoundBank(_:_:)",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/copynamefromsoundbank(_:_:)"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/GetNameFromSoundBank": {
+      "abstract": [
+        {
+          "text": "Gets the name of a sound bank from a sound bank file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "GetNameFromSoundBank"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/GetNameFromSoundBank",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GetNameFromSoundBank",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/getnamefromsoundbank"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/analyzing-audio-performance-with-instruments": {
+      "abstract": [
+        {
+          "text": "Ensure a smooth and immersive audio experience in your apps using Audio System Trace.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/analyzing-audio-performance-with-instruments",
+      "kind": "article",
+      "role": "article",
+      "title": "Analyzing audio performance with Instruments",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/analyzing-audio-performance-with-instruments"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-codec": {
+      "abstract": [
+        {
+          "text": "Translate audio data from one format to another.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-codec",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Audio Codec",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audio-codec"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-converter-services": {
+      "abstract": [
+        {
+          "text": "Convert between linear PCM audio formats, and between linear PCM and compressed formats.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-converter-services",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Audio Converter Services",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audio-converter-services"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-session-support": {
+      "abstract": [
+        {
+          "text": "Describe the properties that you associate with audio sessions and audio routes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-session-support",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Audio Session Support",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audio-session-support"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/clock-utilities": {
+      "abstract": [
+        {
+          "text": "Manage time-related information associated with audio playback.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/clock-utilities",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Clock Utilities",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/clock-utilities"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kInstrumentInfoKey_LSB": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kInstrumentInfoKey_LSB"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kInstrumentInfoKey_LSB",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kInstrumentInfoKey_LSB"
+        }
+      ],
+      "role": "symbol",
+      "title": "kInstrumentInfoKey_LSB",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kinstrumentinfokey_lsb"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kInstrumentInfoKey_MSB": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kInstrumentInfoKey_MSB"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kInstrumentInfoKey_MSB",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kInstrumentInfoKey_MSB"
+        }
+      ],
+      "role": "symbol",
+      "title": "kInstrumentInfoKey_MSB",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kinstrumentinfokey_msb"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kInstrumentInfoKey_Name": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kInstrumentInfoKey_Name"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kInstrumentInfoKey_Name",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kInstrumentInfoKey_Name"
+        }
+      ],
+      "role": "symbol",
+      "title": "kInstrumentInfoKey_Name",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kinstrumentinfokey_name"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kInstrumentInfoKey_Program": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kInstrumentInfoKey_Program"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kInstrumentInfoKey_Program",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kInstrumentInfoKey_Program"
+        }
+      ],
+      "role": "symbol",
+      "title": "kInstrumentInfoKey_Program",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kinstrumentinfokey_program"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/workgroup-management": {
+      "abstract": [
+        {
+          "text": "Coordinate the activity of custom real-time audio threads with those of the system and other processes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/workgroup-management",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Workgroup Management",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/workgroup-management"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Utilities",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/analyzing-audio-performance-with-instruments",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-converter-services",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-session-support",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/workgroup-management",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-codec",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/clock-utilities"
+      ],
+      "title": "Utilities"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Audio-Toolbox-Debugging-Functions",
+      "identifiers": [
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/CAShow(_:)",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/CAShowFile(_:_:)"
+      ],
+      "title": "Audio Toolbox Debugging Functions"
+    },
+    {
+      "anchor": "Instrument-Functions",
+      "identifiers": [
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/CopyNameFromSoundBank(_:_:)",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/CopyInstrumentInfoFromSoundBank(_:_:)",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kInstrumentInfoKey_LSB",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kInstrumentInfoKey_MSB",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kInstrumentInfoKey_Name",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kInstrumentInfoKey_Program"
+      ],
+      "title": "Instrument Functions"
+    },
+    {
+      "anchor": "Constants",
+      "identifiers": [
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUDIO_TOOLBOX_VERSION"
+      ],
+      "title": "Constants"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Audio-Toolbox-Debugging-Functions",
+              "identifiers": [
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/CAShow(_:)",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/CAShowFile(_:_:)"
+              ],
+              "title": "Audio Toolbox Debugging Functions"
+            },
+            {
+              "anchor": "Instrument-Functions",
+              "identifiers": [
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/CopyNameFromSoundBank(_:_:)",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/CopyInstrumentInfoFromSoundBank(_:_:)",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/GetNameFromSoundBank",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kInstrumentInfoKey_LSB",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kInstrumentInfoKey_MSB",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kInstrumentInfoKey_Name",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kInstrumentInfoKey_Program"
+              ],
+              "title": "Instrument Functions"
+            },
+            {
+              "anchor": "Constants",
+              "identifiers": [
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AUDIO_TOOLBOX_VERSION"
+              ],
+              "title": "Constants"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Utilities",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/analyzing-audio-performance-with-instruments",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-converter-services",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-session-support",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/workgroup-management",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-codec",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/clock-utilities"
+              ],
+              "title": "Utilities"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kInstrumentInfoKey_Program/title",
+          "value": "kInstrumentInfoKey_Program"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kInstrumentInfoKey_Program/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kInstrumentInfoKey_Program"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kInstrumentInfoKey_LSB/title",
+          "value": "kInstrumentInfoKey_LSB"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kInstrumentInfoKey_LSB/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kInstrumentInfoKey_LSB"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1CAShow(_:)/title",
+          "value": "CAShow"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1CAShow(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CAShow"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1CAShowFile(_:_:)/title",
+          "value": "CAShowFile"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1CAShowFile(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CAShowFile"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kInstrumentInfoKey_Name/title",
+          "value": "kInstrumentInfoKey_Name"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kInstrumentInfoKey_Name/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kInstrumentInfoKey_Name"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1CopyInstrumentInfoFromSoundBank(_:_:)/title",
+          "value": "CopyInstrumentInfoFromSoundBank"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1CopyInstrumentInfoFromSoundBank(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CopyInstrumentInfoFromSoundBank"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AUDIO_TOOLBOX_VERSION/title",
+          "value": "AUDIO_TOOLBOX_VERSION"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AUDIO_TOOLBOX_VERSION/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AUDIO_TOOLBOX_VERSION"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kInstrumentInfoKey_MSB/title",
+          "value": "kInstrumentInfoKey_MSB"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kInstrumentInfoKey_MSB/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kInstrumentInfoKey_MSB"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1CopyNameFromSoundBank(_:_:)/title",
+          "value": "CopyNameFromSoundBank"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1CopyNameFromSoundBank(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CopyNameFromSoundBank"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/audiotoolbox/audio-toolbox-debugging"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/audiotoolbox/audio-toolbox-debugging"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

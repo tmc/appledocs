@@ -1,0 +1,2947 @@
+{
+  "abstract": [
+    {
+      "text": "Enable people to move between different parts of your app’s view hierarchy",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "within a scene.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.SwiftUI/documentation/SwiftUI/Navigation"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "SwiftUI"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Navigation"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use navigation containers to provide structure to your app’s user interface,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "enabling people to easily move among the parts of your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "navigation-hero",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, people can move forward and backward through a stack of views",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "using a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/NavigationStack",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", or choose which view to display from a tab bar",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "using a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/TabView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Configure navigation containers by adding view modifiers like",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/navigationSplitViewStyle(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to the container. Use other modifiers on",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the views inside the container to affect the container’s behavior when showing",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that view. For example, you can use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/navigationTitle(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " on a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "view to provide a toolbar title to display when showing that view.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Enhancing-your-app-content-with-tab-navigation-PageImage-card.png": {
+      "alt": "An image with multiple tab bars on a green background.",
+      "identifier": "Enhancing-your-app-content-with-tab-navigation-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ae58e7f18887cfb2b1f8384de4a18017/Enhancing-your-app-content-with-tab-navigation-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2b5b06d3a9b048573a534e28a585160e/Enhancing-your-app-content-with-tab-navigation-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "SwiftUI-PageImage-card.png": {
+      "alt": "A black Swift logo on a swirly blue and purple background.",
+      "identifier": "SwiftUI-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b1de0de086f81a5d0eac3839a0af6e6f/SwiftUI-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1450d0b30a6b024e10c148e3f31dafe9/SwiftUI-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI": {
+      "abstract": [
+        {
+          "text": "Declare the user interface and behavior for your app on every platform.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI",
+      "images": [
+        {
+          "identifier": "SwiftUI-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SwiftUI",
+      "type": "topic",
+      "url": "/documentation/swiftui"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/AdaptableTabBarPlacement": {
+      "abstract": [
+        {
+          "text": "A placement for tabs in a tab view using the adaptable sidebar style.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AdaptableTabBarPlacement"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/AdaptableTabBarPlacement",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AdaptableTabBarPlacement"
+        }
+      ],
+      "role": "symbol",
+      "title": "AdaptableTabBarPlacement",
+      "type": "topic",
+      "url": "/documentation/swiftui/adaptabletabbarplacement"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/AnyTabContent": {
+      "abstract": [
+        {
+          "text": "Type erased tab content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AnyTabContent"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/AnyTabContent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AnyTabContent"
+        }
+      ],
+      "role": "symbol",
+      "title": "AnyTabContent",
+      "type": "topic",
+      "url": "/documentation/swiftui/anytabcontent"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/App-extensions": {
+      "abstract": [
+        {
+          "text": "Extend your app’s basic functionality to other parts of the system, like",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "by adding a Widget.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/App-extensions",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "App extensions",
+      "type": "topic",
+      "url": "/documentation/swiftui/app-extensions"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/App-organization": {
+      "abstract": [
+        {
+          "text": "Define the entry point and top-level structure of your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/App-organization",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "App organization",
+      "type": "topic",
+      "url": "/documentation/swiftui/app-organization"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Bringing-robust-navigation-structure-to-your-swiftui-app": {
+      "abstract": [
+        {
+          "text": "Use navigation links, stacks, destinations, and paths to provide a streamlined experience for all platforms, as well as behaviors such as deep linking and state restoration.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Bringing-robust-navigation-structure-to-your-swiftui-app",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Bringing robust navigation structure to your SwiftUI app",
+      "type": "topic",
+      "url": "/documentation/swiftui/bringing-robust-navigation-structure-to-your-swiftui-app"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Documents": {
+      "abstract": [
+        {
+          "text": "Enable people to open and manage documents.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Documents",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Documents",
+      "type": "topic",
+      "url": "/documentation/swiftui/documents"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Enhancing-your-app-content-with-tab-navigation": {
+      "abstract": [
+        {
+          "text": "Keep your app content front and center while providing quick access to navigation using the tab bar.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Enhancing-your-app-content-with-tab-navigation",
+      "images": [
+        {
+          "identifier": "Enhancing-your-app-content-with-tab-navigation-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Enhancing your app’s content with tab navigation",
+      "type": "topic",
+      "url": "/documentation/swiftui/enhancing-your-app-content-with-tab-navigation"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/isTabBarShowingSections": {
+      "abstract": [
+        {
+          "text": "A Boolean value that determines whether a tab view shows the",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "expanded contents of a tab section.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isTabBarShowingSections"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/isTabBarShowingSections",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isTabBarShowingSections",
+      "type": "topic",
+      "url": "/documentation/swiftui/environmentvalues/istabbarshowingsections"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/sidebarRowSize": {
+      "abstract": [
+        {
+          "text": "The current size of sidebar rows.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sidebarRowSize"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI14SidebarRowSizeO",
+          "text": "SidebarRowSize"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/sidebarRowSize",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sidebarRowSize",
+      "type": "topic",
+      "url": "/documentation/swiftui/environmentvalues/sidebarrowsize"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/tabBarPlacement": {
+      "abstract": [
+        {
+          "text": "The current placement of the tab bar.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "tabBarPlacement"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI15TabBarPlacementV",
+          "text": "TabBarPlacement"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/tabBarPlacement",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "tabBarPlacement",
+      "type": "topic",
+      "url": "/documentation/swiftui/environmentvalues/tabbarplacement"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/HSplitView": {
+      "abstract": [
+        {
+          "text": "A layout container that arranges its children in a horizontal line and",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "allows the user to resize them using dividers placed between them.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HSplitView"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/HSplitView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HSplitView"
+        }
+      ],
+      "role": "symbol",
+      "title": "HSplitView",
+      "type": "topic",
+      "url": "/documentation/swiftui/hsplitview"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Immersive-spaces": {
+      "abstract": [
+        {
+          "text": "Display unbounded content in a person’s surroundings.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Immersive-spaces",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Immersive spaces",
+      "type": "topic",
+      "url": "/documentation/swiftui/immersive-spaces"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Migrating-to-New-Navigation-Types": {
+      "abstract": [
+        {
+          "text": "Improve navigation behavior in your app by replacing navigation views",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "with navigation stacks and navigation split views.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Migrating-to-New-Navigation-Types",
+      "kind": "article",
+      "role": "article",
+      "title": "Migrating to new navigation types",
+      "type": "topic",
+      "url": "/documentation/swiftui/migrating-to-new-navigation-types"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Modal-presentations": {
+      "abstract": [
+        {
+          "text": "Present content in a separate view that offers focused interaction.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Modal-presentations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Modal presentations",
+      "type": "topic",
+      "url": "/documentation/swiftui/modal-presentations"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/NavigationBarItem": {
+      "abstract": [
+        {
+          "text": "A configuration for a navigation bar that represents a view at the top of a",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "navigation stack.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NavigationBarItem"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/NavigationBarItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NavigationBarItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "NavigationBarItem",
+      "type": "topic",
+      "url": "/documentation/swiftui/navigationbaritem"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/NavigationLink": {
+      "abstract": [
+        {
+          "text": "A view that controls a navigation presentation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NavigationLink"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/NavigationLink",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NavigationLink"
+        }
+      ],
+      "role": "symbol",
+      "title": "NavigationLink",
+      "type": "topic",
+      "url": "/documentation/swiftui/navigationlink"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/NavigationPath": {
+      "abstract": [
+        {
+          "text": "A type-erased list of data representing the content of a navigation stack.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NavigationPath"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/NavigationPath",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NavigationPath"
+        }
+      ],
+      "role": "symbol",
+      "title": "NavigationPath",
+      "type": "topic",
+      "url": "/documentation/swiftui/navigationpath"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/NavigationSplitView": {
+      "abstract": [
+        {
+          "text": "A view that presents views in two or three columns, where selections in",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "leading columns control presentations in subsequent columns.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NavigationSplitView"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/NavigationSplitView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NavigationSplitView"
+        }
+      ],
+      "role": "symbol",
+      "title": "NavigationSplitView",
+      "type": "topic",
+      "url": "/documentation/swiftui/navigationsplitview"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/NavigationSplitViewColumn": {
+      "abstract": [
+        {
+          "text": "A view that represents a column in a navigation split view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NavigationSplitViewColumn"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/NavigationSplitViewColumn",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NavigationSplitViewColumn"
+        }
+      ],
+      "role": "symbol",
+      "title": "NavigationSplitViewColumn",
+      "type": "topic",
+      "url": "/documentation/swiftui/navigationsplitviewcolumn"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/NavigationSplitViewVisibility": {
+      "abstract": [
+        {
+          "text": "The visibility of the leading columns in a navigation split view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NavigationSplitViewVisibility"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/NavigationSplitViewVisibility",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NavigationSplitViewVisibility"
+        }
+      ],
+      "role": "symbol",
+      "title": "NavigationSplitViewVisibility",
+      "type": "topic",
+      "url": "/documentation/swiftui/navigationsplitviewvisibility"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/NavigationStack": {
+      "abstract": [
+        {
+          "text": "A view that displays a root view and enables you to present additional",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "views over the root view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NavigationStack"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/NavigationStack",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NavigationStack"
+        }
+      ],
+      "role": "symbol",
+      "title": "NavigationStack",
+      "type": "topic",
+      "url": "/documentation/swiftui/navigationstack"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/NavigationView": {
+      "abstract": [
+        {
+          "text": "A view for presenting a stack of views that represents a visible path in a",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "navigation hierarchy.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NavigationView"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/NavigationView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NavigationView"
+        }
+      ],
+      "role": "symbol",
+      "title": "NavigationView",
+      "type": "topic",
+      "url": "/documentation/swiftui/navigationview"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Scenes": {
+      "abstract": [
+        {
+          "text": "Declare the user interface groupings that make up the parts of your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Scenes",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Scenes",
+      "type": "topic",
+      "url": "/documentation/swiftui/scenes"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Search": {
+      "abstract": [
+        {
+          "text": "Enable people to search for text or other content within your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Search",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Search",
+      "type": "topic",
+      "url": "/documentation/swiftui/search"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/SidebarRowSize": {
+      "abstract": [
+        {
+          "text": "The standard sizes of sidebar rows.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SidebarRowSize"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/SidebarRowSize",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SidebarRowSize"
+        }
+      ],
+      "role": "symbol",
+      "title": "SidebarRowSize",
+      "type": "topic",
+      "url": "/documentation/swiftui/sidebarrowsize"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Tab": {
+      "abstract": [
+        {
+          "text": "The content for a tab and the tab’s associated tab item in a tab view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Tab"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Tab",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Tab"
+        }
+      ],
+      "role": "symbol",
+      "title": "Tab",
+      "type": "topic",
+      "url": "/documentation/swiftui/tab"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/TabBarPlacement": {
+      "abstract": [
+        {
+          "text": "A placement for tabs in a tab view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TabBarPlacement"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/TabBarPlacement",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TabBarPlacement"
+        }
+      ],
+      "role": "symbol",
+      "title": "TabBarPlacement",
+      "type": "topic",
+      "url": "/documentation/swiftui/tabbarplacement"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/TabContent": {
+      "abstract": [
+        {
+          "text": "A type that provides content for programmatically selectable tabs in a",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "tab view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TabContent"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/TabContent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TabContent"
+        }
+      ],
+      "role": "symbol",
+      "title": "TabContent",
+      "type": "topic",
+      "url": "/documentation/swiftui/tabcontent"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/TabContentBuilder": {
+      "abstract": [
+        {
+          "text": "A result builder that constructs tabs for a tab view that supports",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "programmatic selection. This builder requires that all tabs in the",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "tab view have the same selection type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TabContentBuilder"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/TabContentBuilder",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TabContentBuilder"
+        }
+      ],
+      "role": "symbol",
+      "title": "TabContentBuilder",
+      "type": "topic",
+      "url": "/documentation/swiftui/tabcontentbuilder"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/TabCustomizationBehavior": {
+      "abstract": [
+        {
+          "text": "The customization behavior of customizable tab view content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TabCustomizationBehavior"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/TabCustomizationBehavior",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TabCustomizationBehavior"
+        }
+      ],
+      "role": "symbol",
+      "title": "TabCustomizationBehavior",
+      "type": "topic",
+      "url": "/documentation/swiftui/tabcustomizationbehavior"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/TabPlacement": {
+      "abstract": [
+        {
+          "text": "A place that a tab can appear.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TabPlacement"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/TabPlacement",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TabPlacement"
+        }
+      ],
+      "role": "symbol",
+      "title": "TabPlacement",
+      "type": "topic",
+      "url": "/documentation/swiftui/tabplacement"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/TabRole": {
+      "abstract": [
+        {
+          "text": "A value that defines the purpose of the tab.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TabRole"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/TabRole",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TabRole"
+        }
+      ],
+      "role": "symbol",
+      "title": "TabRole",
+      "type": "topic",
+      "url": "/documentation/swiftui/tabrole"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/TabSection": {
+      "abstract": [
+        {
+          "text": "A container that you can use to add hierarchy within a tab view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TabSection"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/TabSection",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TabSection"
+        }
+      ],
+      "role": "symbol",
+      "title": "TabSection",
+      "type": "topic",
+      "url": "/documentation/swiftui/tabsection"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/TabView": {
+      "abstract": [
+        {
+          "text": "A view that switches between multiple child views using interactive user",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "interface elements.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TabView"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/TabView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TabView"
+        }
+      ],
+      "role": "symbol",
+      "title": "TabView",
+      "type": "topic",
+      "url": "/documentation/swiftui/tabview"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/TabViewCustomization": {
+      "abstract": [
+        {
+          "text": "The customizations a person makes to an adaptable sidebar tab view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TabViewCustomization"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/TabViewCustomization",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TabViewCustomization"
+        }
+      ],
+      "role": "symbol",
+      "title": "TabViewCustomization",
+      "type": "topic",
+      "url": "/documentation/swiftui/tabviewcustomization"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Toolbars": {
+      "abstract": [
+        {
+          "text": "Provide immediate access to frequently used commands and controls.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Toolbars",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Toolbars",
+      "type": "topic",
+      "url": "/documentation/swiftui/toolbars"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/VSplitView": {
+      "abstract": [
+        {
+          "text": "A layout container that arranges its children in a vertical line and allows",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "the user to resize them using dividers placed between them.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VSplitView"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/VSplitView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VSplitView"
+        }
+      ],
+      "role": "symbol",
+      "title": "VSplitView",
+      "type": "topic",
+      "url": "/documentation/swiftui/vsplitview"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/navigationBarBackButtonHidden(_:)": {
+      "abstract": [
+        {
+          "text": "Hides the navigation bar back button for the view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "navigationBarBackButtonHidden"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/navigationBarBackButtonHidden(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "navigationBarBackButtonHidden(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/navigationbarbackbuttonhidden(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/navigationBarTitleDisplayMode(_:)": {
+      "abstract": [
+        {
+          "text": "Configures the title display mode for this view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "navigationBarTitleDisplayMode"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI17NavigationBarItemV",
+          "text": "NavigationBarItem"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI17NavigationBarItemV16TitleDisplayModeO",
+          "text": "TitleDisplayMode"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/navigationBarTitleDisplayMode(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "navigationBarTitleDisplayMode(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/navigationbartitledisplaymode(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/navigationDestination(for:destination:)": {
+      "abstract": [
+        {
+          "text": "Associates a destination view with a presented data type for use within",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "a navigation stack.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "navigationDestination"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "D"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "C"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "D"
+        },
+        {
+          "kind": "text",
+          "text": ".Type, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "destination"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "D"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/navigationDestination(for:destination:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "navigationDestination(for:destination:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/navigationdestination(for:destination:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/navigationDestination(isPresented:destination:)": {
+      "abstract": [
+        {
+          "text": "Associates a destination view with a binding that can be used to push",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "the view onto a ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/NavigationStack",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "navigationDestination"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "V"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "isPresented"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI7BindingV",
+          "text": "Binding"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "destination"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "V"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/navigationDestination(isPresented:destination:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "navigationDestination(isPresented:destination:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/navigationdestination(ispresented:destination:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/navigationDestination(item:destination:)": {
+      "abstract": [
+        {
+          "text": "Associates a destination view with a bound value for use within a",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "navigation stack or navigation split view",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "navigationDestination"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "D"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "C"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "item"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI7BindingV",
+          "text": "Binding"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sq",
+          "text": "Optional"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "D"
+        },
+        {
+          "kind": "text",
+          "text": ">>, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "destination"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "D"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/navigationDestination(item:destination:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "navigationDestination(item:destination:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/navigationdestination(item:destination:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/navigationDocument(_:)": {
+      "abstract": [
+        {
+          "text": "Configures the view’s document for purposes of navigation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "navigationDocument"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": ":)"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/navigationDocument(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "navigationDocument(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/navigationdocument(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/navigationDocument(_:preview:)": {
+      "abstract": [
+        {
+          "text": "Configures the view’s document for purposes of navigation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "navigationDocument"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": ":"
+        },
+        {
+          "kind": "externalParam",
+          "text": "preview"
+        },
+        {
+          "kind": "text",
+          "text": ":)"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/navigationDocument(_:preview:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "navigationDocument(_:preview:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/navigationdocument(_:preview:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/navigationSplitViewColumnWidth(_:)": {
+      "abstract": [
+        {
+          "text": "Sets a fixed, preferred width for the column containing this view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "navigationSplitViewColumnWidth"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/navigationSplitViewColumnWidth(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "navigationSplitViewColumnWidth(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/navigationsplitviewcolumnwidth(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/navigationSplitViewColumnWidth(min:ideal:max:)": {
+      "abstract": [
+        {
+          "text": "Sets a flexible, preferred width for the column containing this view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "navigationSplitViewColumnWidth"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "min"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "ideal"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "max"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/navigationSplitViewColumnWidth(min:ideal:max:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "navigationSplitViewColumnWidth(min:ideal:max:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/navigationsplitviewcolumnwidth(min:ideal:max:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/navigationSplitViewStyle(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the style for navigation split views within this view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "navigationSplitViewStyle"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/navigationSplitViewStyle(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "navigationSplitViewStyle(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/navigationsplitviewstyle(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/navigationSubtitle(_:)": {
+      "abstract": [
+        {
+          "text": "Configures the view’s subtitle for purposes of navigation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "navigationSubtitle"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": ":)"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/navigationSubtitle(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "navigationSubtitle(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/navigationsubtitle(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/navigationTitle(_:)": {
+      "abstract": [
+        {
+          "text": "Configures the view’s title for purposes of navigation, using a string",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "binding.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "navigationTitle"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": ":)"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/navigationTitle(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "navigationTitle(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/navigationtitle(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/sectionActions(content:)": {
+      "abstract": [
+        {
+          "text": "Adds custom actions to a section.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sectionActions"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "content"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/sectionActions(content:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sectionActions(content:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/sectionactions(content:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/tabItem(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the tab bar item associated with this view.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "tabItem"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "V"
+        },
+        {
+          "kind": "text",
+          "text": ">(() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "V"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/tabItem(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "tabItem(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/tabitem(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/tabViewCustomization(_:)": {
+      "abstract": [
+        {
+          "text": "Specifies the customizations to apply to the sidebar representation",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "of the tab view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "tabViewCustomization"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI7BindingV",
+          "text": "Binding"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI20TabViewCustomizationV",
+          "text": "TabViewCustomization"
+        },
+        {
+          "kind": "text",
+          "text": ">?) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/tabViewCustomization(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "tabViewCustomization(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/tabviewcustomization(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/tabViewSidebarBottomBar(content:)": {
+      "abstract": [
+        {
+          "text": "Adds a custom bottom bar to the sidebar of a tab view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "tabViewSidebarBottomBar"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "content"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/tabViewSidebarBottomBar(content:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "tabViewSidebarBottomBar(content:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/tabviewsidebarbottombar(content:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/tabViewSidebarFooter(content:)": {
+      "abstract": [
+        {
+          "text": "Adds a custom footer to the sidebar of a tab view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "tabViewSidebarFooter"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "content"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/tabViewSidebarFooter(content:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "tabViewSidebarFooter(content:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/tabviewsidebarfooter(content:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/tabViewSidebarHeader(content:)": {
+      "abstract": [
+        {
+          "text": "Adds a custom header to the sidebar of a tab view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "tabViewSidebarHeader"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "content"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/tabViewSidebarHeader(content:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "tabViewSidebarHeader(content:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/tabviewsidebarheader(content:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/tabViewStyle(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the style for the tab view within the current environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "tabViewStyle"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/tabViewStyle(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "tabViewStyle(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/tabviewstyle(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Windows": {
+      "abstract": [
+        {
+          "text": "Display user interface content in a window or a collection of windows.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Windows",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Windows",
+      "type": "topic",
+      "url": "/documentation/swiftui/windows"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "navigation-hero": {
+      "alt": null,
+      "identifier": "navigation-hero",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f89769a3e08273224563454dc8f3ce0d/navigation-hero@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "App-structure",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/App-organization",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Scenes",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Windows",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Immersive-spaces",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Documents",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Modal-presentations",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Toolbars",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Search",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/App-extensions"
+      ],
+      "title": "App structure"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Presenting-views-in-columns",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Bringing-robust-navigation-structure-to-your-swiftui-app",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Migrating-to-New-Navigation-Types",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/NavigationSplitView",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/navigationSplitViewStyle(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/navigationSplitViewColumnWidth(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/navigationSplitViewColumnWidth(min:ideal:max:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/NavigationSplitViewVisibility",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/NavigationLink"
+      ],
+      "title": "Presenting views in columns"
+    },
+    {
+      "anchor": "Stacking-views-in-one-column",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/NavigationStack",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/NavigationPath",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/navigationDestination(for:destination:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/navigationDestination(isPresented:destination:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/navigationDestination(item:destination:)"
+      ],
+      "title": "Stacking views in one column"
+    },
+    {
+      "anchor": "Managing-column-collapse",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/NavigationSplitViewColumn"
+      ],
+      "title": "Managing column collapse"
+    },
+    {
+      "anchor": "Setting-titles-for-navigation-content",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/navigationTitle(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/navigationSubtitle(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/navigationDocument(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/navigationDocument(_:preview:)"
+      ],
+      "title": "Setting titles for navigation content"
+    },
+    {
+      "anchor": "Configuring-the-navigation-bar",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/navigationBarBackButtonHidden(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/navigationBarTitleDisplayMode(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/NavigationBarItem"
+      ],
+      "title": "Configuring the navigation bar"
+    },
+    {
+      "anchor": "Configuring-the-sidebar",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/sidebarRowSize",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/SidebarRowSize"
+      ],
+      "title": "Configuring the sidebar"
+    },
+    {
+      "anchor": "Presenting-views-in-tabs",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Enhancing-your-app-content-with-tab-navigation",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/TabView",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Tab",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/TabRole",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/TabSection",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/tabViewStyle(_:)"
+      ],
+      "title": "Presenting views in tabs"
+    },
+    {
+      "anchor": "Configuring-a-tab-bar",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/tabViewSidebarHeader(content:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/tabViewSidebarFooter(content:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/tabViewSidebarBottomBar(content:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/AdaptableTabBarPlacement",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/tabBarPlacement",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/TabBarPlacement",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/isTabBarShowingSections"
+      ],
+      "title": "Configuring a tab bar"
+    },
+    {
+      "anchor": "Configuring-a-tab",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/sectionActions(content:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/TabPlacement",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/TabContentBuilder",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/TabContent",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/AnyTabContent"
+      ],
+      "title": "Configuring a tab"
+    },
+    {
+      "anchor": "Enabling-tab-customization",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/tabViewCustomization(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/TabViewCustomization",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/TabCustomizationBehavior"
+      ],
+      "title": "Enabling tab customization"
+    },
+    {
+      "anchor": "Displaying-views-in-multiple-panes",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/HSplitView",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/VSplitView"
+      ],
+      "title": "Displaying views in multiple panes"
+    },
+    {
+      "anchor": "Deprecated-Types",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/NavigationView",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/tabItem(_:)"
+      ],
+      "title": "Deprecated Types"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/swiftui/navigation"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

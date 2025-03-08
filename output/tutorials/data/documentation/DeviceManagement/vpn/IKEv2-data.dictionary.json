@@ -1,0 +1,2665 @@
+{
+  "abstract": [
+    {
+      "text": "The dictionary to use for an IKEv2 VPN type.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/VPN"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.devicemanagement/documentation/DeviceManagement/VPN/IKEv2-data.dictionary"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "mdm-profiles:VPN.IKEv2",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "object "
+      },
+      {
+        "kind": "identifier",
+        "text": "VPN.IKEv2"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Device Management"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "VPN.IKEv2"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "4.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "4.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.7",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "Device Assignment Services",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "VPP License Management",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Device Management Profile",
+    "symbolKind": "dictionary",
+    "title": "VPN.IKEv2"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "data"
+          ],
+          "platforms": [
+            "Unsupported OS: iOS",
+            "Unsupported OS: macOS",
+            "Unsupported OS: tvOS",
+            "Unsupported OS: visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "text",
+              "text": "object "
+            },
+            {
+              "kind": "identifier",
+              "text": "VPN.IKEv2"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "items": [
+        {
+          "attributes": [
+            {
+              "kind": "allowedValues",
+              "values": [
+                "None",
+                "SharedSecret",
+                "Certificate"
+              ]
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The type of authentication method for the VPN.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "To enable EAP-only authentication, set this to ",
+                  "type": "text"
+                },
+                {
+                  "code": "None",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " and ",
+                  "type": "text"
+                },
+                {
+                  "code": "ExtendedAuthEnabled",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " to ",
+                  "type": "text"
+                },
+                {
+                  "code": "1",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ". If this is ",
+                  "type": "text"
+                },
+                {
+                  "code": "None",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " and the ",
+                  "type": "text"
+                },
+                {
+                  "code": "ExtendedAuthEnabled",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " key isn’t set, the authentication configuration defaults to ",
+                  "type": "text"
+                },
+                {
+                  "code": "SharedSecret",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "4.0.0",
+          "name": "AuthenticationMethod",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The user name to use for authentication.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "4.0.0",
+          "name": "AuthName",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The password to use for authentication.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "4.0.0",
+          "name": "AuthPassword",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "default",
+              "value": "RSA"
+            },
+            {
+              "kind": "allowedValues",
+              "values": [
+                "RSA",
+                "ECDSA256",
+                "ECDSA384",
+                "ECDSA521",
+                "RSA-PSS"
+              ]
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The type of ",
+                  "type": "text"
+                },
+                {
+                  "code": "PayloadCertificateUUID",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " to use for IKEv2 machine authentication. If this key is included, the system requires a value for ",
+                  "type": "text"
+                },
+                {
+                  "code": "ServerCertificateIssuerCommonName",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "4.0.0",
+          "name": "CertificateType",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The ",
+                  "type": "text"
+                },
+                {
+                  "code": "ChildSecurityAssociationParameters",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " dictionaries.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "4.0.0",
+          "name": "ChildSecurityAssociationParameters",
+          "required": false,
+          "type": [
+            {
+              "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/VPN/IKEv2-data.dictionary/ChildSecurityAssociationParameters-data.dictionary",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "mdm-profiles:VPN.IKEv2.ChildSecurityAssociationParameters",
+              "text": "VPN.IKEv2.ChildSecurityAssociationParameters"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "default",
+              "value": "Medium"
+            },
+            {
+              "kind": "allowedValues",
+              "values": [
+                "None",
+                "Low",
+                "Medium",
+                "High"
+              ]
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "One of the following:",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "items": [
+                {
+                  "content": [
+                    {
+                      "inlineContent": [
+                        {
+                          "code": "None",
+                          "type": "codeVoice"
+                        },
+                        {
+                          "text": ": No keepalive.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "paragraph"
+                    }
+                  ]
+                },
+                {
+                  "content": [
+                    {
+                      "inlineContent": [
+                        {
+                          "code": "Low",
+                          "type": "codeVoice"
+                        },
+                        {
+                          "text": ": Send keepalive every 30 minutes.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "paragraph"
+                    }
+                  ]
+                },
+                {
+                  "content": [
+                    {
+                      "inlineContent": [
+                        {
+                          "code": "Medium",
+                          "type": "codeVoice"
+                        },
+                        {
+                          "text": ": Send keepalive every 10 minutes.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "paragraph"
+                    }
+                  ]
+                },
+                {
+                  "content": [
+                    {
+                      "inlineContent": [
+                        {
+                          "code": "High",
+                          "type": "codeVoice"
+                        },
+                        {
+                          "text": ": Send keepalive every 1 minute.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "paragraph"
+                    }
+                  ]
+                }
+              ],
+              "type": "unorderedList"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Not available in watchOS.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "4.0.0",
+          "name": "DeadPeerDetectionRate",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "default",
+              "value": "0"
+            },
+            {
+              "kind": "allowedValues",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If ",
+                  "type": "text"
+                },
+                {
+                  "code": "1",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", the system disables MOBIKE.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "4.0.0",
+          "name": "DisableMOBIKE",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "integer"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "default",
+              "value": "0"
+            },
+            {
+              "kind": "allowedValues",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If ",
+                  "type": "text"
+                },
+                {
+                  "code": "1",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", the system disables IKEv2 redirect. If not set, the system redirects an IKEv2 connection when it receives a redirect request from the server.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "4.0.0",
+          "name": "DisableRedirect",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "integer"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "default",
+              "value": "0"
+            },
+            {
+              "kind": "allowedValues",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If ",
+                  "type": "text"
+                },
+                {
+                  "code": "1",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", the VPN disconnects automatically after a period defined by ",
+                  "type": "text"
+                },
+                {
+                  "code": "DisconnectOnIdleTimer",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "4.0.0",
+          "name": "DisconnectOnIdle",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "integer"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Only used if ",
+                  "type": "text"
+                },
+                {
+                  "code": "DisconnectOnIdle",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " is ",
+                  "type": "text"
+                },
+                {
+                  "code": "1",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ". The number of seconds before the VPN disconnects. On watchOS, maximum allowed value is 15 seconds",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "4.0.0",
+          "name": "DisconnectOnIdleTimer",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "integer"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "default",
+              "value": "0"
+            },
+            {
+              "kind": "allowedValues",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If ",
+                  "type": "text"
+                },
+                {
+                  "code": "1",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", the system performs a certificate revocation check for IKEv2 connections. This is a best-effort revocation check and server response timeouts won’t cause it to fail.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "4.0.0",
+          "name": "EnableCertificateRevocationCheck",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "integer"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "default",
+              "value": "0"
+            },
+            {
+              "kind": "allowedValues",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If ",
+                  "type": "text"
+                },
+                {
+                  "code": "1",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", the system enables a tunnel over cellular data to carry traffic that’s eligible for WiFi Assist and also requires VPN.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Enabling fallback requires that the server support multiple tunnels for a single user.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "This field is available in iOS 13 and later, and tvOS 17 and later. Not available in watchOS.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "4.0.0",
+          "name": "EnableFallback",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "integer"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "default",
+              "value": "0"
+            },
+            {
+              "kind": "allowedValues",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If ",
+                  "type": "text"
+                },
+                {
+                  "code": "1",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ",  enables Perfect Forward Secrecy (PFS) for IKEv2 Connections.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "4.0.0",
+          "name": "EnablePFS",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "integer"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "default",
+              "value": "0"
+            },
+            {
+              "kind": "allowedValues",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If ",
+                  "type": "text"
+                },
+                {
+                  "code": "1",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", all the VPN’s non-default routes take precedence over any locally-defined routes. If ",
+                  "type": "text"
+                },
+                {
+                  "code": "IncludeAllNetworks",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " is ",
+                  "type": "text"
+                },
+                {
+                  "code": "1",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", the system ignores ",
+                  "type": "text"
+                },
+                {
+                  "code": "EnforceRoutes",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "4.0.0",
+          "name": "EnforceRoutes",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "integer"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "default",
+              "value": "1"
+            },
+            {
+              "kind": "allowedValues",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If ",
+                  "type": "text"
+                },
+                {
+                  "code": "1",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " and ",
+                  "type": "text"
+                },
+                {
+                  "code": "IncludeAllNetworks",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " is ",
+                  "type": "text"
+                },
+                {
+                  "code": "1",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", the system excludes network traffic for the Apple Push Notification service (APNs) from the tunnel.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "4.0.0",
+          "name": "ExcludeAPNs",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "integer"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "default",
+              "value": "1"
+            },
+            {
+              "kind": "allowedValues",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If ",
+                  "type": "text"
+                },
+                {
+                  "code": "1",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " and ",
+                  "type": "text"
+                },
+                {
+                  "code": "IncludeAllNetworks",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " is ",
+                  "type": "text"
+                },
+                {
+                  "code": "1",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", the system excludes internet-routable network traffic for cellular services (VoLTE, Wi-Fi Calling, IMS, MMS, Visual Voicemail, etc.) from the tunnel. Note that some cellular carriers route cellular services traffic directly to the carrier network, bypassing the internet. Such cellular services traffic is always excluded from the tunnel.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "4.0.0",
+          "name": "ExcludeCellularServices",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "integer"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "default",
+              "value": "1"
+            },
+            {
+              "kind": "allowedValues",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "4.0.0",
+          "name": "ExcludeDeviceCommunication",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "integer"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "allowedValues",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If ",
+                  "type": "text"
+                },
+                {
+                  "code": "1",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " and either ",
+                  "type": "text"
+                },
+                {
+                  "code": "IncludeAllNetworks",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " or ",
+                  "type": "text"
+                },
+                {
+                  "code": "EnforceRoutes",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " are ",
+                  "type": "text"
+                },
+                {
+                  "code": "1",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", then the system routes local network traffic outside of the VPN. The default for this value is ",
+                  "type": "text"
+                },
+                {
+                  "code": "0",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " on macOS and ",
+                  "type": "text"
+                },
+                {
+                  "code": "1",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " on iOS.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "4.0.0",
+          "name": "ExcludeLocalNetworks",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "integer"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "default",
+              "value": "0"
+            },
+            {
+              "kind": "allowedValues",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If ",
+                  "type": "text"
+                },
+                {
+                  "code": "1",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", enables EAP-only authentication.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "4.0.0",
+          "name": "ExtendedAuthEnabled",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "integer"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "These parameters apply to Child Security Association unless ",
+                  "type": "text"
+                },
+                {
+                  "code": "ChildSecurityAssociationParameters",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " is specified.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "4.0.0",
+          "name": "IKESecurityAssociationParameters",
+          "required": false,
+          "type": [
+            {
+              "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/VPN/IKEv2-data.dictionary/IKESecurityAssociationParameters-data.dictionary",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "mdm-profiles:VPN.IKEv2.IKESecurityAssociationParameters",
+              "text": "VPN.IKEv2.IKESecurityAssociationParameters"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "default",
+              "value": "0"
+            },
+            {
+              "kind": "allowedValues",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If ",
+                  "type": "text"
+                },
+                {
+                  "code": "1",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", then the system routes all network traffic through the VPN, with some controllable exclusions, such as ",
+                  "type": "text"
+                },
+                {
+                  "code": "ExcludeLocalNetworks",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", ",
+                  "type": "text"
+                },
+                {
+                  "code": "ExcludeCellularServices",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", and ",
+                  "type": "text"
+                },
+                {
+                  "code": "ExcludeAPNs",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " properties. The system always excludes the following traffic from the tunnel:",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "items": [
+                {
+                  "content": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Traffic necessary for connecting and maintaining the device’s network connection, such as DHCP.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "paragraph"
+                    }
+                  ]
+                },
+                {
+                  "content": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Traffic necessary for connecting to captive networks.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "paragraph"
+                    }
+                  ]
+                },
+                {
+                  "content": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Certain cellular services traffic that’s not routable over the internet and is instead directly routed to the cellular network. See the ",
+                          "type": "text"
+                        },
+                        {
+                          "code": "ExcludeCellularServices",
+                          "type": "codeVoice"
+                        },
+                        {
+                          "text": " field for more information.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "paragraph"
+                    }
+                  ]
+                },
+                {
+                  "content": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "Network communication with a companion device such as a watchOS device.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "paragraph"
+                    }
+                  ]
+                }
+              ],
+              "type": "unorderedList"
+            }
+          ],
+          "introducedVersion": "4.0.0",
+          "name": "IncludeAllNetworks",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "integer"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Identifier of the IKEv2 client.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "4.0.0",
+          "name": "LocalIdentifier",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "default",
+              "value": "1280"
+            },
+            {
+              "kind": "minimum",
+              "value": "1280"
+            },
+            {
+              "kind": "maximum",
+              "value": "1400"
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The Maximum Transmission Unit (MTU) specifies the maximum size in bytes of each packet that the system sends over the IKEv2 VPN interface. Available in iOS 14 and later, and macOS 11 and later.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "4.0.0",
+          "name": "MTU",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "integer"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "default",
+              "value": "20"
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The NAT Keepalive interval for Always On VPN IKEv2 connections. This value controls the interval that the device sends keepalive offload packets. The minimum value is 20 seconds. If no key is specified, the default is 20 seconds over Wi-Fi and 110 seconds over a cellular interface.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "4.0.0",
+          "name": "NATKeepAliveInterval",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "integer"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "default",
+              "value": "1"
+            },
+            {
+              "kind": "allowedValues",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If ",
+                  "type": "text"
+                },
+                {
+                  "code": "1",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", enables NAT keepalive offload for Always On VPN IKEv2 connections. The device sends keepalive packets to maintain NAT mappings for IKEv2 connections that have a NAT on the path. It sends keepalive packets at regular intervals when the device is awake. If ",
+                  "type": "text"
+                },
+                {
+                  "code": "NATKeepAliveOffloadEnable",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " is ",
+                  "type": "text"
+                },
+                {
+                  "code": "1",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", the system offloads keepalive packets to hardware while the device is asleep.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "NAT keepalive offload has an impact on the battery life due to the extra workload during sleep. The default interval for the keepalive offload packets is 20 seconds over WiFi and 110 seconds over Cellular interface. The default NAT keepalive works well on networks with small NAT mapping timeouts but imposes a potential battery impact. If a network has larger NAT mapping timeouts, larger keepalive intervals may be safely used to minimize battery impact. Modify the keepalive interval through the ",
+                  "type": "text"
+                },
+                {
+                  "code": "NATKeepAliveInterval",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " key.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "4.0.0",
+          "name": "NATKeepAliveOffloadEnable",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "integer"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "default",
+              "value": "0"
+            },
+            {
+              "kind": "allowedValues",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If ",
+                  "type": "text"
+                },
+                {
+                  "code": "1",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", enables VPN up on demand.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "4.0.0",
+          "name": "OnDemandEnabled",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "integer"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A list of rules that determine when and how to use an OnDemand VPN.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "4.0.0",
+          "name": "OnDemandRules",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "["
+            },
+            {
+              "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/VPN/VPN-data.dictionary/OnDemandRulesElement",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "mdm-profiles:VPN.VPN.OnDemandRulesElement",
+              "text": "VPN.VPN.OnDemandRulesElement"
+            },
+            {
+              "kind": "text",
+              "text": "]"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "default",
+              "value": "0"
+            },
+            {
+              "kind": "allowedValues",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If ",
+                  "type": "text"
+                },
+                {
+                  "code": "1",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", the system disables the Connect On Demand toggle in Settings for this configuration.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "4.0.0",
+          "name": "OnDemandUserOverrideDisabled",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "integer"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The password to use for the account credentials. Only used if ",
+                  "type": "text"
+                },
+                {
+                  "code": "AuthenticationMethod",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " is ",
+                  "type": "text"
+                },
+                {
+                  "code": "Password",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "4.0.0",
+          "name": "Password",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The UUID of the certificate payload within the same profile to use as the account credential. If the value of ",
+                  "type": "text"
+                },
+                {
+                  "code": "AuthenticationMethod",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " is ",
+                  "type": "text"
+                },
+                {
+                  "code": "Certificate",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", the system sends this certificate out for IKEv2 machine authentication. If extended authentication (EAP) is used, the system sends this certificate out for EAP-TLS authentication.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "4.0.0",
+          "name": "PayloadCertificateUUID",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "4.0.0",
+          "name": "PPK",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "data"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "4.0.0",
+          "name": "PPKIdentifier",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "default",
+              "value": "1"
+            },
+            {
+              "kind": "allowedValues",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "4.0.0",
+          "name": "PPKMandatory",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "integer"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If the VPNSubType field contains the bundle identifier of an app that contains multiple VPN providers of the same type (app-proxy or packet-tunnel), then the system uses this field to choose which provider to use for this configuration. If the VPN provider is implemented as a System Extension, then this field is required.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "4.0.0",
+          "name": "ProviderBundleIdentifier",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If the VPN provider is implemented as a System Extension, then this field is required. Available in macOS 10.15 and later, tvOS 17 and later, and watchOS 10 and later.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "4.0.0",
+          "name": "ProviderDesignatedRequirement",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "default",
+              "value": "packet-tunnel"
+            },
+            {
+              "kind": "allowedValues",
+              "values": [
+                "packet-tunnel",
+                "app-proxy"
+              ]
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If the value of this key is ",
+                  "type": "text"
+                },
+                {
+                  "code": "app-proxy",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", the VPN service tunnels traffic at the application layer. If the value of this key is ",
+                  "type": "text"
+                },
+                {
+                  "code": "packet-tunnel",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", the VPN service tunnels traffic at the IP layer.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "4.0.0",
+          "name": "ProviderType",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The IP address or host name of the VPN server.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "4.0.0",
+          "name": "RemoteAddress",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The remote identifier.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "4.0.0",
+          "name": "RemoteIdentifier",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The common name of the server certificate. The system uses this name to validate the certificate sent by the IKE server. If not set, the system uses the remote identifier to validate the certificate.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "4.0.0",
+          "name": "ServerCertificateCommonName",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Common Name of the server certificate issuer. If set, this field causes IKE to send a certificate request based on this certificate issuer to the server. This key is required if the ",
+                  "type": "text"
+                },
+                {
+                  "code": "CertificateType",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " key is included and the ",
+                  "type": "text"
+                },
+                {
+                  "code": "ExtendedAuthEnabled",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " key is ",
+                  "type": "text"
+                },
+                {
+                  "code": "1",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "4.0.0",
+          "name": "ServerCertificateIssuerCommonName",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If ",
+                  "type": "text"
+                },
+                {
+                  "code": "AuthenticationMethod",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " is ",
+                  "type": "text"
+                },
+                {
+                  "code": "SharedSecret",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", this value is used for IKE authentication.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "4.0.0",
+          "name": "SharedSecret",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "default",
+              "value": "1.2"
+            },
+            {
+              "kind": "allowedValues",
+              "values": [
+                "1.0",
+                "1.1",
+                "1.2"
+              ]
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The maximum TLS version to use with EAP-TLS authentication.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "4.0.0",
+          "name": "TLSMaximumVersion",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "default",
+              "value": "1.0"
+            },
+            {
+              "kind": "allowedValues",
+              "values": [
+                "1.0",
+                "1.1",
+                "1.2"
+              ]
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The minimum TLS version to use with EAP-TLS authentication.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "4.0.0",
+          "name": "TLSMinimumVersion",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "string"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "default",
+              "value": "0"
+            },
+            {
+              "kind": "allowedValues",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If ",
+                  "type": "text"
+                },
+                {
+                  "code": "1",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", negotiations should use IKEv2 Configuration Attribute ",
+                  "type": "text"
+                },
+                {
+                  "code": "INTERNAL_IP4_SUBNET",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " and ",
+                  "type": "text"
+                },
+                {
+                  "code": "INTERNAL_IP6_SUBNET",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "4.0.0",
+          "name": "UseConfigurationAttributeInternalIPSubnet",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "integer"
+            }
+          ]
+        }
+      ],
+      "kind": "properties",
+      "title": "Properties"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system uses this dictionary when the ",
+              "type": "text"
+            },
+            {
+              "code": "VPNType",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is ",
+              "type": "text"
+            },
+            {
+              "code": "IKEv2",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement": {
+      "abstract": [
+        {
+          "text": "Manage your organization’s devices remotely.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Device Management",
+      "type": "topic",
+      "url": "/documentation/devicemanagement"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/VPN": {
+      "abstract": [
+        {
+          "text": "The payload you use to configure a VPN.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "VPN"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/VPN",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VPN"
+        }
+      ],
+      "role": "symbol",
+      "title": "VPN",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/vpn"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/VPN/AlwaysOn-data.dictionary": {
+      "abstract": [
+        {
+          "text": "The dictionary that contains IPSec settings.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "VPN.AlwaysOn"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/VPN/AlwaysOn-data.dictionary",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VPN.AlwaysOn"
+        }
+      ],
+      "role": "symbol",
+      "title": "VPN.AlwaysOn",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/vpn/alwayson-data.dictionary"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/VPN/DNS-data.dictionary": {
+      "abstract": [
+        {
+          "text": "The dictionary to configure DNS settings for the VPN.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "VPN.DNS"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/VPN/DNS-data.dictionary",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VPN.DNS"
+        }
+      ],
+      "role": "symbol",
+      "title": "VPN.DNS",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/vpn/dns-data.dictionary"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/VPN/IKEv2-data.dictionary": {
+      "abstract": [
+        {
+          "text": "The dictionary to use for an IKEv2 VPN type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "VPN.IKEv2"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/VPN/IKEv2-data.dictionary",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VPN.IKEv2"
+        }
+      ],
+      "role": "symbol",
+      "title": "VPN.IKEv2",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/vpn/ikev2-data.dictionary"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/VPN/IKEv2-data.dictionary/ChildSecurityAssociationParameters-data.dictionary": {
+      "abstract": [
+        {
+          "text": "The dictionary that contains child security association parameters.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "VPN.IKEv2.ChildSecurityAssociationParameters"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/VPN/IKEv2-data.dictionary/ChildSecurityAssociationParameters-data.dictionary",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VPN.IKEv2.ChildSecurityAssociationParameters"
+        }
+      ],
+      "role": "symbol",
+      "title": "VPN.IKEv2.ChildSecurityAssociationParameters",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/vpn/ikev2-data.dictionary/childsecurityassociationparameters-data.dictionary"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/VPN/IKEv2-data.dictionary/IKESecurityAssociationParameters-data.dictionary": {
+      "abstract": [
+        {
+          "text": "The dictionary that contains security association parameters.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "VPN.IKEv2.IKESecurityAssociationParameters"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/VPN/IKEv2-data.dictionary/IKESecurityAssociationParameters-data.dictionary",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VPN.IKEv2.IKESecurityAssociationParameters"
+        }
+      ],
+      "role": "symbol",
+      "title": "VPN.IKEv2.IKESecurityAssociationParameters",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/vpn/ikev2-data.dictionary/ikesecurityassociationparameters-data.dictionary"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/VPN/IPSec-data.dictionary": {
+      "abstract": [
+        {
+          "text": "The dictionary to use for an IPSec VPN type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "VPN.IPSec"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/VPN/IPSec-data.dictionary",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VPN.IPSec"
+        }
+      ],
+      "role": "symbol",
+      "title": "VPN.IPSec",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/vpn/ipsec-data.dictionary"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/VPN/IPv4-data.dictionary": {
+      "abstract": [
+        {
+          "text": "The dictionary that contains IPV4 settings.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "VPN.IPv4"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/VPN/IPv4-data.dictionary",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VPN.IPv4"
+        }
+      ],
+      "role": "symbol",
+      "title": "VPN.IPv4",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/vpn/ipv4-data.dictionary"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/VPN/PPP-data.dictionary": {
+      "abstract": [
+        {
+          "text": "The dictionary that contains PPP settings.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "VPN.PPP"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/VPN/PPP-data.dictionary",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VPN.PPP"
+        }
+      ],
+      "role": "symbol",
+      "title": "VPN.PPP",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/vpn/ppp-data.dictionary"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/VPN/Proxies-data.dictionary": {
+      "abstract": [
+        {
+          "text": "The dictionary that contains the Proxies settings.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "VPN.Proxies"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/VPN/Proxies-data.dictionary",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VPN.Proxies"
+        }
+      ],
+      "role": "symbol",
+      "title": "VPN.Proxies",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/vpn/proxies-data.dictionary"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/VPN/TransparentProxy-data.dictionary": {
+      "abstract": [
+        {
+          "text": "The dictionary to use for a transparent proxy VPN type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "VPN.TransparentProxy"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/VPN/TransparentProxy-data.dictionary",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VPN.TransparentProxy"
+        }
+      ],
+      "role": "symbol",
+      "title": "VPN.TransparentProxy",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/vpn/transparentproxy-data.dictionary"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/VPN/VPN-data.dictionary": {
+      "abstract": [
+        {
+          "text": "The dictionary that contains VPN, IPSec, and IKEv2 settings.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "VPN.VPN"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/VPN/VPN-data.dictionary",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VPN.VPN"
+        }
+      ],
+      "role": "symbol",
+      "title": "VPN.VPN",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/vpn/vpn-data.dictionary"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/VPN/VPN-data.dictionary/OnDemandRulesElement": {
+      "abstract": [
+        {
+          "text": "The dictionary that contains settings for On Demand connections.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "VPN.VPN.OnDemandRulesElement"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/VPN/VPN-data.dictionary/OnDemandRulesElement",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VPN.VPN.OnDemandRulesElement"
+        }
+      ],
+      "role": "symbol",
+      "title": "VPN.VPN.OnDemandRulesElement",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/vpn/vpn-data.dictionary/ondemandruleselement"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/VPN/VendorConfig-data.dictionary": {
+      "abstract": [
+        {
+          "text": "The vendor-specific configuration dictionary.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "VPN.VendorConfig"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/VPN/VendorConfig-data.dictionary",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VPN.VendorConfig"
+        }
+      ],
+      "role": "symbol",
+      "title": "VPN.VendorConfig",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/vpn/vendorconfig-data.dictionary"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Profiles",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/VPN/AlwaysOn-data.dictionary",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/VPN/DNS-data.dictionary",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/VPN/IPSec-data.dictionary",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/VPN/IPv4-data.dictionary",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/VPN/PPP-data.dictionary",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/VPN/Proxies-data.dictionary",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/VPN/VPN-data.dictionary",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/VPN/TransparentProxy-data.dictionary",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/VPN/VendorConfig-data.dictionary"
+      ],
+      "title": "Profiles"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Objects",
+      "identifiers": [
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/VPN/IKEv2-data.dictionary/ChildSecurityAssociationParameters-data.dictionary",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/VPN/IKEv2-data.dictionary/IKESecurityAssociationParameters-data.dictionary"
+      ],
+      "title": "Objects"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/devicemanagement/vpn/ikev2-data.dictionary"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

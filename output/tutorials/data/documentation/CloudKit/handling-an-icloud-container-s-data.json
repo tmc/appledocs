@@ -1,0 +1,744 @@
+{
+  "abstract": [
+    {
+      "text": "Inspect and manage your app’s iCloud container data using the CloudKit Database app.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.cloudkit/documentation/CloudKit",
+        "doc://com.apple.cloudkit/documentation/CloudKit/managing-icloud-containers-with-cloudkit-database-app"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.cloudkit/documentation/CloudKit/handling-an-icloud-container-s-data"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "CloudKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Handling an iCloud Container’s Data"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can use the CloudKit Database app to inspect data within a public iCloud container. If you develop using the same iCloud account to store private data, you can also use the CloudKit Database app to inspect and edit private data.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Don’t use the CloudKit Database app as a general data editor. Although you can create, modify, and delete records using the CloudKit Dashboard app, the intent of this functionality is to help you debug your schema during the design phase.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Find-and-inspect-records",
+          "level": 3,
+          "text": "Find and inspect records",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the CloudKit Database app to search for records of a particular record type within a zone of the chosen database. To  search for records in this way, you must first add a queryable index for that record type’s ",
+              "type": "text"
+            },
+            {
+              "code": "recordName",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". For more information, see the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/inspecting-and-editing-an-icloud-container-s-schema#Enable-querying-for-your-record-type",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " section of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/inspecting-and-editing-an-icloud-container-s-schema",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To search for records of a record type:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "From the CloudKit Database app, select your app’s container.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select Records from the Data section on the left.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the pane on the right, select the database, zone, and record type to view records for.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Optionally, select fields to reduce the amount of data that returns in the results.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use the query input bar to add further filters to the request.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click the Query Records button, and view the results.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Expand a record’s disclosure triangle to view its details.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3699103",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "If you get the error, ",
+                  "type": "text"
+                },
+                {
+                  "code": "“Field recordName is not marked queryable,”",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " see the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/inspecting-and-editing-an-icloud-container-s-schema#Enable-querying-for-your-record-type",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " section of ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/inspecting-and-editing-an-icloud-container-s-schema",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Create-a-record",
+          "level": 3,
+          "text": "Create a record",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can create records in public databases in either the development or production environment. If your developer account is also an iCloud account, you can do the same for your private database.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create a new record:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "From the CloudKit Database app, select your app’s container.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select Records from the Data section on the left.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click the Add button (+) at the top of the page, and choose Create New Record. The New Record dialog appears on the right. The new record has a random UUID that CloudKit assigns as the record name.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select the database, type, and zone you’re creating a record for.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Enter values in the Fields area, and click Save.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3699105",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Modify-or-delete-a-record",
+          "level": 3,
+          "text": "Modify or delete a record",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the development and production environment, you can modify and delete records in public databases. If your developer account is also an iCloud account, you can do the same for your private or shared databases.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To modify or delete an existing record:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "From the CloudKit Database app, select your app’s container.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select Records from the Data section on the left.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the pane on the right, select the database, zone, and record type to view records for.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Optionally, select fields to reduce the amount of data that returns in the results.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use the query input bar to add further filters to the request.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click the Query Records button to search for records that match your criteria.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the results list, select the record you want to edit or delete. Its fields appear in the Custom Fields area in the Record Details dialog at the right.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To edit a record, enter new values in the text fields and click Save.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To delete a record, click the Delete button. Then, in the dialog that appears, click Delete to confirm the deletion.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3699098",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.cloudkit/documentation/CloudKit": {
+      "abstract": [
+        {
+          "text": "Store structured app and user data in iCloud containers that all users of your app can share.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "CloudKit",
+      "type": "topic",
+      "url": "/documentation/cloudkit"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/deploying-an-icloud-container-s-schema": {
+      "abstract": [
+        {
+          "text": "Reset your container’s state during development and deploy your container’s schema to production.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/deploying-an-icloud-container-s-schema",
+      "kind": "article",
+      "role": "article",
+      "title": "Deploying an iCloud Container’s Schema",
+      "type": "topic",
+      "url": "/documentation/cloudkit/deploying-an-icloud-container-s-schema"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/inspecting-and-editing-an-icloud-container-s-schema": {
+      "abstract": [
+        {
+          "text": "Review and edit the schema for your app’s container using the CloudKit Database app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/inspecting-and-editing-an-icloud-container-s-schema",
+      "kind": "article",
+      "role": "article",
+      "title": "Inspecting and Editing an iCloud Container’s Schema",
+      "type": "topic",
+      "url": "/documentation/cloudkit/inspecting-and-editing-an-icloud-container-s-schema"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/inspecting-and-editing-an-icloud-container-s-schema#Enable-querying-for-your-record-type": {
+      "abstract": [],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/inspecting-and-editing-an-icloud-container-s-schema#Enable-querying-for-your-record-type",
+      "kind": "section",
+      "title": "Enable querying for your record type",
+      "type": "topic",
+      "url": "/documentation/cloudkit/inspecting-and-editing-an-icloud-container-s-schema#Enable-querying-for-your-record-type"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/managing-icloud-containers-with-cloudkit-database-app": {
+      "abstract": [
+        {
+          "text": "Inspect and modify the schema and data for your app’s iCloud container.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/managing-icloud-containers-with-cloudkit-database-app",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Managing iCloud Containers with CloudKit Database App",
+      "type": "topic",
+      "url": "/documentation/cloudkit/managing-icloud-containers-with-cloudkit-database-app"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/obtaining-an-api-token-for-an-icloud-container": {
+      "abstract": [
+        {
+          "text": "Generate an API token to access CloudKit web services or use CloudKit JS.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/obtaining-an-api-token-for-an-icloud-container",
+      "kind": "article",
+      "role": "article",
+      "title": "Obtaining an API Token for an iCloud Container",
+      "type": "topic",
+      "url": "/documentation/cloudkit/obtaining-an-api-token-for-an-icloud-container"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "media-3699098": {
+      "alt": "A screenshot showing a container’s data management page in the CloudKit Dashboard app. The screenshot highlights the Records menu item in the Data section on the left, as well as the Record Details dialog on the right.",
+      "identifier": "media-3699098",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/7365e8400ffaea22b9db498d50e302e8/media-3699098@2x.png"
+        }
+      ]
+    },
+    "media-3699103": {
+      "alt": "A screenshot showing a container’s records on the data management page of the CloudKit Database app.",
+      "identifier": "media-3699103",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/3f11d7dc8b0410179939c7dd119ca714/media-3699103@2x.png"
+        }
+      ]
+    },
+    "media-3699105": {
+      "alt": "A screenshot showing a container’s data management page in the CloudKit Database app. The screenshot highlights the Add options and the New Record dialog.",
+      "identifier": "media-3699105",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/9187af3774f0dccfff699842894206c7/media-3699105@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Container-Management",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.cloudkit/documentation/CloudKit/inspecting-and-editing-an-icloud-container-s-schema",
+        "doc://com.apple.cloudkit/documentation/CloudKit/deploying-an-icloud-container-s-schema",
+        "doc://com.apple.cloudkit/documentation/CloudKit/obtaining-an-api-token-for-an-icloud-container"
+      ],
+      "title": "Container Management"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Container-Management",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.cloudkit/documentation/CloudKit/inspecting-and-editing-an-icloud-container-s-schema",
+                "doc://com.apple.cloudkit/documentation/CloudKit/deploying-an-icloud-container-s-schema",
+                "doc://com.apple.cloudkit/documentation/CloudKit/obtaining-an-api-token-for-an-icloud-container"
+              ],
+              "title": "Container Management"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/cloudkit/handling-an-icloud-container-s-data"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/cloudkit/handling-an-icloud-container-s-data"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

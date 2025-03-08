@@ -1,0 +1,2801 @@
+{
+  "abstract": [
+    {
+      "text": "Apply computer vision algorithms to perform a variety of tasks on input images and videos.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.vision/documentation/Vision"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "Vision",
+    "modules": [
+      {
+        "name": "Vision"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "11.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "11.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "beta": false,
+        "introducedAt": "10.13",
+        "name": "macOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "11.0",
+        "name": "tvOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      }
+    ],
+    "role": "collection",
+    "roleHeading": "Framework",
+    "symbolKind": "module",
+    "title": "Vision"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Vision framework combines machine learning technologies and Swift’s concurrency features to perform computer vision tasks in your app. Use the Vision framework to analyze images for a variety of purposes:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Tracking human and animal body poses or the trajectory of an object",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Recognizing text in 18 different languages",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Detecting faces and face landmarks, such as eyes, nose, and mouth",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Performing hand tracking to enable new device interactions",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Calculating an aesthetics score to determine how memorable a photo is",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "vision-framework",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To begin using the framework, you create a request for the type of analysis you want to do. Each request conforms to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.vision/documentation/Vision/VisionRequest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol. You then perform the request to get an observation object — or an array of observations — with the analysis details for the request. There are more than 25 requests available to choose from. Vision also allows the use of custom Core ML models for tasks like classification or object detection.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Starting in iOS 18.0, the Vision framework provides a new Swift-only API. See ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.vision/documentation/Vision/original-objective-c-and-swift-api",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " to view the original API.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "classifying-images-for-categorization-and-search-PageImage-card.png": {
+      "alt": "[An illustration depicting the selection of one image out of multiple images.]",
+      "identifier": "classifying-images-for-categorization-and-search-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4eabbb99abb5c902d499f93f57a9cf22/classifying-images-for-categorization-and-search-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/477f01072bf9eb417cbb5cf846e38226/classifying-images-for-categorization-and-search-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.vision/documentation/Vision": {
+      "abstract": [
+        {
+          "text": "Apply computer vision algorithms to perform a variety of tasks on input images and videos.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Vision",
+      "type": "topic",
+      "url": "/documentation/vision"
+    },
+    "doc://com.apple.vision/documentation/Vision/CalculateImageAestheticsScoresRequest": {
+      "abstract": [
+        {
+          "text": "A request that analyzes an image for aesthetically pleasing attributes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CalculateImageAestheticsScoresRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/CalculateImageAestheticsScoresRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CalculateImageAestheticsScoresRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "CalculateImageAestheticsScoresRequest",
+      "type": "topic",
+      "url": "/documentation/vision/calculateimageaestheticsscoresrequest"
+    },
+    "doc://com.apple.vision/documentation/Vision/Chirality": {
+      "abstract": [
+        {
+          "text": "The hand sidedness of a pose.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Chirality"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/Chirality",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Chirality"
+        }
+      ],
+      "role": "symbol",
+      "title": "Chirality",
+      "type": "topic",
+      "url": "/documentation/vision/chirality"
+    },
+    "doc://com.apple.vision/documentation/Vision/ClassificationObservation": {
+      "abstract": [
+        {
+          "text": "An object that represents classification information that an image-analysis request produces.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ClassificationObservation"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/ClassificationObservation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ClassificationObservation"
+        }
+      ],
+      "role": "symbol",
+      "title": "ClassificationObservation",
+      "type": "topic",
+      "url": "/documentation/vision/classificationobservation"
+    },
+    "doc://com.apple.vision/documentation/Vision/ClassifyImageRequest": {
+      "abstract": [
+        {
+          "text": "A request to classify an image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ClassifyImageRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/ClassifyImageRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ClassifyImageRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "ClassifyImageRequest",
+      "type": "topic",
+      "url": "/documentation/vision/classifyimagerequest"
+    },
+    "doc://com.apple.vision/documentation/Vision/ComputeStage": {
+      "abstract": [
+        {
+          "text": "Types that represent the compute stage.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ComputeStage"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/ComputeStage",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ComputeStage"
+        }
+      ],
+      "role": "symbol",
+      "title": "ComputeStage",
+      "type": "topic",
+      "url": "/documentation/vision/computestage"
+    },
+    "doc://com.apple.vision/documentation/Vision/CoordinateOrigin": {
+      "abstract": [
+        {
+          "text": "The origin of a coordinate system relative to an image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CoordinateOrigin"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/CoordinateOrigin",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CoordinateOrigin"
+        }
+      ],
+      "role": "symbol",
+      "title": "CoordinateOrigin",
+      "type": "topic",
+      "url": "/documentation/vision/coordinateorigin"
+    },
+    "doc://com.apple.vision/documentation/Vision/CoreMLFeatureValueObservation": {
+      "abstract": [
+        {
+          "text": "An object that represents a collection of key-value information that a Core ML image-analysis request produces.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CoreMLFeatureValueObservation"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/CoreMLFeatureValueObservation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CoreMLFeatureValueObservation"
+        }
+      ],
+      "role": "symbol",
+      "title": "CoreMLFeatureValueObservation",
+      "type": "topic",
+      "url": "/documentation/vision/coremlfeaturevalueobservation"
+    },
+    "doc://com.apple.vision/documentation/Vision/CoreMLRequest": {
+      "abstract": [
+        {
+          "text": "An image-analysis request that uses a Core ML model to process images.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CoreMLRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/CoreMLRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CoreMLRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "CoreMLRequest",
+      "type": "topic",
+      "url": "/documentation/vision/coremlrequest"
+    },
+    "doc://com.apple.vision/documentation/Vision/DetectAnimalBodyPoseRequest": {
+      "abstract": [
+        {
+          "text": "A request that detects an animal body pose.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DetectAnimalBodyPoseRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/DetectAnimalBodyPoseRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DetectAnimalBodyPoseRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "DetectAnimalBodyPoseRequest",
+      "type": "topic",
+      "url": "/documentation/vision/detectanimalbodyposerequest"
+    },
+    "doc://com.apple.vision/documentation/Vision/DetectBarcodesRequest": {
+      "abstract": [
+        {
+          "text": "A request that detects barcodes in an image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DetectBarcodesRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/DetectBarcodesRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DetectBarcodesRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "DetectBarcodesRequest",
+      "type": "topic",
+      "url": "/documentation/vision/detectbarcodesrequest"
+    },
+    "doc://com.apple.vision/documentation/Vision/DetectContoursRequest": {
+      "abstract": [
+        {
+          "text": "A request that detects the contours of the edges of an image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DetectContoursRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/DetectContoursRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DetectContoursRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "DetectContoursRequest",
+      "type": "topic",
+      "url": "/documentation/vision/detectcontoursrequest"
+    },
+    "doc://com.apple.vision/documentation/Vision/DetectDocumentSegmentationRequest": {
+      "abstract": [
+        {
+          "text": "A request that detects rectangular regions that contain text in the input image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DetectDocumentSegmentationRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/DetectDocumentSegmentationRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DetectDocumentSegmentationRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "DetectDocumentSegmentationRequest",
+      "type": "topic",
+      "url": "/documentation/vision/detectdocumentsegmentationrequest"
+    },
+    "doc://com.apple.vision/documentation/Vision/DetectFaceCaptureQualityRequest": {
+      "abstract": [
+        {
+          "text": "A request that produces a floating-point number that represents the capture quality of a face in a photo.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DetectFaceCaptureQualityRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/DetectFaceCaptureQualityRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DetectFaceCaptureQualityRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "DetectFaceCaptureQualityRequest",
+      "type": "topic",
+      "url": "/documentation/vision/detectfacecapturequalityrequest"
+    },
+    "doc://com.apple.vision/documentation/Vision/DetectFaceLandmarksRequest": {
+      "abstract": [
+        {
+          "text": "An image-analysis request that finds facial features like eyes and mouth in an image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DetectFaceLandmarksRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/DetectFaceLandmarksRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DetectFaceLandmarksRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "DetectFaceLandmarksRequest",
+      "type": "topic",
+      "url": "/documentation/vision/detectfacelandmarksrequest"
+    },
+    "doc://com.apple.vision/documentation/Vision/DetectFaceRectanglesRequest": {
+      "abstract": [
+        {
+          "text": "A request that finds faces within an image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DetectFaceRectanglesRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/DetectFaceRectanglesRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DetectFaceRectanglesRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "DetectFaceRectanglesRequest",
+      "type": "topic",
+      "url": "/documentation/vision/detectfacerectanglesrequest"
+    },
+    "doc://com.apple.vision/documentation/Vision/DetectHorizonRequest": {
+      "abstract": [
+        {
+          "text": "An image-analysis request that determines the horizon angle in an image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DetectHorizonRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/DetectHorizonRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DetectHorizonRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "DetectHorizonRequest",
+      "type": "topic",
+      "url": "/documentation/vision/detecthorizonrequest"
+    },
+    "doc://com.apple.vision/documentation/Vision/DetectHumanBodyPose3DRequest": {
+      "abstract": [
+        {
+          "text": "A request that detects points on human bodies in 3D space, relative to the camera.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DetectHumanBodyPose3DRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/DetectHumanBodyPose3DRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DetectHumanBodyPose3DRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "DetectHumanBodyPose3DRequest",
+      "type": "topic",
+      "url": "/documentation/vision/detecthumanbodypose3drequest"
+    },
+    "doc://com.apple.vision/documentation/Vision/DetectHumanBodyPoseRequest": {
+      "abstract": [
+        {
+          "text": "A request that detects a human body pose.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DetectHumanBodyPoseRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/DetectHumanBodyPoseRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DetectHumanBodyPoseRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "DetectHumanBodyPoseRequest",
+      "type": "topic",
+      "url": "/documentation/vision/detecthumanbodyposerequest"
+    },
+    "doc://com.apple.vision/documentation/Vision/DetectHumanHandPoseRequest": {
+      "abstract": [
+        {
+          "text": "A request that detects a human hand pose.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DetectHumanHandPoseRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/DetectHumanHandPoseRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DetectHumanHandPoseRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "DetectHumanHandPoseRequest",
+      "type": "topic",
+      "url": "/documentation/vision/detecthumanhandposerequest"
+    },
+    "doc://com.apple.vision/documentation/Vision/DetectHumanRectanglesRequest": {
+      "abstract": [
+        {
+          "text": "A request that finds rectangular regions that contain people in an image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DetectHumanRectanglesRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/DetectHumanRectanglesRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DetectHumanRectanglesRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "DetectHumanRectanglesRequest",
+      "type": "topic",
+      "url": "/documentation/vision/detecthumanrectanglesrequest"
+    },
+    "doc://com.apple.vision/documentation/Vision/DetectRectanglesRequest": {
+      "abstract": [
+        {
+          "text": "An image-analysis request that finds projected rectangular regions in an image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DetectRectanglesRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/DetectRectanglesRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DetectRectanglesRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "DetectRectanglesRequest",
+      "type": "topic",
+      "url": "/documentation/vision/detectrectanglesrequest"
+    },
+    "doc://com.apple.vision/documentation/Vision/DetectTextRectanglesRequest": {
+      "abstract": [
+        {
+          "text": "An image-analysis request that finds regions of visible text in an image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DetectTextRectanglesRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/DetectTextRectanglesRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DetectTextRectanglesRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "DetectTextRectanglesRequest",
+      "type": "topic",
+      "url": "/documentation/vision/detecttextrectanglesrequest"
+    },
+    "doc://com.apple.vision/documentation/Vision/DetectTrajectoriesRequest": {
+      "abstract": [
+        {
+          "text": "A request that detects the trajectories of shapes moving along a parabolic path.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DetectTrajectoriesRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/DetectTrajectoriesRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DetectTrajectoriesRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "DetectTrajectoriesRequest",
+      "type": "topic",
+      "url": "/documentation/vision/detecttrajectoriesrequest"
+    },
+    "doc://com.apple.vision/documentation/Vision/DetectorKey": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DetectorKey"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/DetectorKey",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DetectorKey"
+        }
+      ],
+      "role": "symbol",
+      "title": "DetectorKey",
+      "type": "topic",
+      "url": "/documentation/vision/detectorkey"
+    },
+    "doc://com.apple.vision/documentation/Vision/GenerateAttentionBasedSaliencyImageRequest": {
+      "abstract": [
+        {
+          "text": "An object that produces a heat map that identifies the parts of an image most likely to draw attention.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GenerateAttentionBasedSaliencyImageRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/GenerateAttentionBasedSaliencyImageRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GenerateAttentionBasedSaliencyImageRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "GenerateAttentionBasedSaliencyImageRequest",
+      "type": "topic",
+      "url": "/documentation/vision/generateattentionbasedsaliencyimagerequest"
+    },
+    "doc://com.apple.vision/documentation/Vision/GenerateForegroundInstanceMaskRequest": {
+      "abstract": [
+        {
+          "text": "A request that generates an instance mask of noticeable objects to separate from the background.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GenerateForegroundInstanceMaskRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/GenerateForegroundInstanceMaskRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GenerateForegroundInstanceMaskRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "GenerateForegroundInstanceMaskRequest",
+      "type": "topic",
+      "url": "/documentation/vision/generateforegroundinstancemaskrequest"
+    },
+    "doc://com.apple.vision/documentation/Vision/GenerateImageFeaturePrintRequest": {
+      "abstract": [
+        {
+          "text": "An image-based request to generate feature prints from an image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GenerateImageFeaturePrintRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/GenerateImageFeaturePrintRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GenerateImageFeaturePrintRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "GenerateImageFeaturePrintRequest",
+      "type": "topic",
+      "url": "/documentation/vision/generateimagefeatureprintrequest"
+    },
+    "doc://com.apple.vision/documentation/Vision/GenerateObjectnessBasedSaliencyImageRequest": {
+      "abstract": [
+        {
+          "text": "A request that generates a heat map that identifies the parts of an image most likely to represent objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GenerateObjectnessBasedSaliencyImageRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/GenerateObjectnessBasedSaliencyImageRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GenerateObjectnessBasedSaliencyImageRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "GenerateObjectnessBasedSaliencyImageRequest",
+      "type": "topic",
+      "url": "/documentation/vision/generateobjectnessbasedsaliencyimagerequest"
+    },
+    "doc://com.apple.vision/documentation/Vision/GeneratePersonInstanceMaskRequest": {
+      "abstract": [
+        {
+          "text": "A request that produces a mask of individual people it finds in the input image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GeneratePersonInstanceMaskRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/GeneratePersonInstanceMaskRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GeneratePersonInstanceMaskRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "GeneratePersonInstanceMaskRequest",
+      "type": "topic",
+      "url": "/documentation/vision/generatepersoninstancemaskrequest"
+    },
+    "doc://com.apple.vision/documentation/Vision/GeneratePersonSegmentationRequest": {
+      "abstract": [
+        {
+          "text": "A request that produces a matte image for a person it finds in the input image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GeneratePersonSegmentationRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/GeneratePersonSegmentationRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GeneratePersonSegmentationRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "GeneratePersonSegmentationRequest",
+      "type": "topic",
+      "url": "/documentation/vision/generatepersonsegmentationrequest"
+    },
+    "doc://com.apple.vision/documentation/Vision/ImageCoordinateConversionHelpers": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ImageCoordinateConversionHelpers"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/ImageCoordinateConversionHelpers",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ImageCoordinateConversionHelpers"
+        }
+      ],
+      "role": "symbol",
+      "title": "ImageCoordinateConversionHelpers",
+      "type": "topic",
+      "url": "/documentation/vision/imagecoordinateconversionhelpers"
+    },
+    "doc://com.apple.vision/documentation/Vision/ImagePixelDimensions": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ImagePixelDimensions"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/ImagePixelDimensions",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ImagePixelDimensions"
+        }
+      ],
+      "role": "symbol",
+      "title": "ImagePixelDimensions",
+      "type": "topic",
+      "url": "/documentation/vision/imagepixeldimensions"
+    },
+    "doc://com.apple.vision/documentation/Vision/ImageProcessingRequest": {
+      "abstract": [
+        {
+          "text": "A type for image-analysis requests that focus on a specific part of an image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ImageProcessingRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/ImageProcessingRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ImageProcessingRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "ImageProcessingRequest",
+      "type": "topic",
+      "url": "/documentation/vision/imageprocessingrequest"
+    },
+    "doc://com.apple.vision/documentation/Vision/ImageRequestHandler": {
+      "abstract": [
+        {
+          "text": "An object that processes one or more image-analysis requests pertaining to a single image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ImageRequestHandler"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/ImageRequestHandler",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ImageRequestHandler"
+        }
+      ],
+      "role": "symbol",
+      "title": "ImageRequestHandler",
+      "type": "topic",
+      "url": "/documentation/vision/imagerequesthandler"
+    },
+    "doc://com.apple.vision/documentation/Vision/Joint": {
+      "abstract": [
+        {
+          "text": "A pose joint represented as a normalized point in an image, along with a label and a confidence value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Joint"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/Joint",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Joint"
+        }
+      ],
+      "role": "symbol",
+      "title": "Joint",
+      "type": "topic",
+      "url": "/documentation/vision/joint"
+    },
+    "doc://com.apple.vision/documentation/Vision/Joint3D": {
+      "abstract": [
+        {
+          "text": "An object that represents a body pose joint in 3D space.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Joint3D"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/Joint3D",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Joint3D"
+        }
+      ],
+      "role": "symbol",
+      "title": "Joint3D",
+      "type": "topic",
+      "url": "/documentation/vision/joint3d"
+    },
+    "doc://com.apple.vision/documentation/Vision/NamedMultipleObjectDataAccessBlock": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NamedMultipleObjectDataAccessBlock"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/NamedMultipleObjectDataAccessBlock",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NamedMultipleObjectDataAccessBlock"
+        }
+      ],
+      "role": "symbol",
+      "title": "NamedMultipleObjectDataAccessBlock",
+      "type": "topic",
+      "url": "/documentation/vision/namedmultipleobjectdataaccessblock"
+    },
+    "doc://com.apple.vision/documentation/Vision/NamedObjectDataAccessBlock": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NamedObjectDataAccessBlock"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/NamedObjectDataAccessBlock",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NamedObjectDataAccessBlock"
+        }
+      ],
+      "role": "symbol",
+      "title": "NamedObjectDataAccessBlock",
+      "type": "topic",
+      "url": "/documentation/vision/namedobjectdataaccessblock"
+    },
+    "doc://com.apple.vision/documentation/Vision/NamedObjectsDictionary": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NamedObjectsDictionary"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/NamedObjectsDictionary",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NamedObjectsDictionary"
+        }
+      ],
+      "role": "symbol",
+      "title": "NamedObjectsDictionary",
+      "type": "topic",
+      "url": "/documentation/vision/namedobjectsdictionary"
+    },
+    "doc://com.apple.vision/documentation/Vision/NormalizedCircle": {
+      "abstract": [
+        {
+          "text": "The center point and radius of a 2D circle.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NormalizedCircle"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/NormalizedCircle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NormalizedCircle"
+        }
+      ],
+      "role": "symbol",
+      "title": "NormalizedCircle",
+      "type": "topic",
+      "url": "/documentation/vision/normalizedcircle"
+    },
+    "doc://com.apple.vision/documentation/Vision/NormalizedPoint": {
+      "abstract": [
+        {
+          "text": "A point in a 2D coordinate system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NormalizedPoint"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/NormalizedPoint",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NormalizedPoint"
+        }
+      ],
+      "role": "symbol",
+      "title": "NormalizedPoint",
+      "type": "topic",
+      "url": "/documentation/vision/normalizedpoint"
+    },
+    "doc://com.apple.vision/documentation/Vision/NormalizedRect": {
+      "abstract": [
+        {
+          "text": "The location and dimensions of a rectangle.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NormalizedRect"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/NormalizedRect",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NormalizedRect"
+        }
+      ],
+      "role": "symbol",
+      "title": "NormalizedRect",
+      "type": "topic",
+      "url": "/documentation/vision/normalizedrect"
+    },
+    "doc://com.apple.vision/documentation/Vision/PixelBufferObservation": {
+      "abstract": [
+        {
+          "text": "An object that represents an image that an image-analysis request produces.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PixelBufferObservation"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/PixelBufferObservation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PixelBufferObservation"
+        }
+      ],
+      "role": "symbol",
+      "title": "PixelBufferObservation",
+      "type": "topic",
+      "url": "/documentation/vision/pixelbufferobservation"
+    },
+    "doc://com.apple.vision/documentation/Vision/PoseProviding": {
+      "abstract": [
+        {
+          "text": "An observation that provides a collection of joints that make up a pose.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PoseProviding"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/PoseProviding",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PoseProviding"
+        }
+      ],
+      "role": "symbol",
+      "title": "PoseProviding",
+      "type": "topic",
+      "url": "/documentation/vision/poseproviding"
+    },
+    "doc://com.apple.vision/documentation/Vision/RecognizeAnimalsRequest": {
+      "abstract": [
+        {
+          "text": "A request that recognizes animals in an image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RecognizeAnimalsRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/RecognizeAnimalsRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RecognizeAnimalsRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "RecognizeAnimalsRequest",
+      "type": "topic",
+      "url": "/documentation/vision/recognizeanimalsrequest"
+    },
+    "doc://com.apple.vision/documentation/Vision/RecognizeTextRequest": {
+      "abstract": [
+        {
+          "text": "An image-analysis request that recognizes text in an image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RecognizeTextRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/RecognizeTextRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RecognizeTextRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "RecognizeTextRequest",
+      "type": "topic",
+      "url": "/documentation/vision/recognizetextrequest"
+    },
+    "doc://com.apple.vision/documentation/Vision/ResourceVersion": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ResourceVersion"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/ResourceVersion",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ResourceVersion"
+        }
+      ],
+      "role": "symbol",
+      "title": "ResourceVersion",
+      "type": "topic",
+      "url": "/documentation/vision/resourceversion"
+    },
+    "doc://com.apple.vision/documentation/Vision/StatefulRequest": {
+      "abstract": [
+        {
+          "text": "The protocol for a type that builds evidence of a condition over time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "StatefulRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/StatefulRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "StatefulRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "StatefulRequest",
+      "type": "topic",
+      "url": "/documentation/vision/statefulrequest"
+    },
+    "doc://com.apple.vision/documentation/Vision/TargetedImageRequestHandler": {
+      "abstract": [
+        {
+          "text": "An object that performs image-analysis requests on two images.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TargetedImageRequestHandler"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/TargetedImageRequestHandler",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TargetedImageRequestHandler"
+        }
+      ],
+      "role": "symbol",
+      "title": "TargetedImageRequestHandler",
+      "type": "topic",
+      "url": "/documentation/vision/targetedimagerequesthandler"
+    },
+    "doc://com.apple.vision/documentation/Vision/TargetedRequest": {
+      "abstract": [
+        {
+          "text": "A type for analyzing two images together.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TargetedRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/TargetedRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TargetedRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "TargetedRequest",
+      "type": "topic",
+      "url": "/documentation/vision/targetedrequest"
+    },
+    "doc://com.apple.vision/documentation/Vision/TrackHomographicImageRegistrationRequest": {
+      "abstract": [
+        {
+          "text": "An image-analysis request that you track over time to determine the perspective warp matrix necessary to align the content of two images.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TrackHomographicImageRegistrationRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/TrackHomographicImageRegistrationRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TrackHomographicImageRegistrationRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "TrackHomographicImageRegistrationRequest",
+      "type": "topic",
+      "url": "/documentation/vision/trackhomographicimageregistrationrequest"
+    },
+    "doc://com.apple.vision/documentation/Vision/TrackObjectRequest": {
+      "abstract": [
+        {
+          "text": "An image-analysis request that tracks the movement of a previously identified object across multiple images or video frames.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TrackObjectRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/TrackObjectRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TrackObjectRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "TrackObjectRequest",
+      "type": "topic",
+      "url": "/documentation/vision/trackobjectrequest"
+    },
+    "doc://com.apple.vision/documentation/Vision/TrackOpticalFlowRequest": {
+      "abstract": [
+        {
+          "text": "A request that determines the direction change of vectors for each pixel from a previous to current image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TrackOpticalFlowRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/TrackOpticalFlowRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TrackOpticalFlowRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "TrackOpticalFlowRequest",
+      "type": "topic",
+      "url": "/documentation/vision/trackopticalflowrequest"
+    },
+    "doc://com.apple.vision/documentation/Vision/TrackRectangleRequest": {
+      "abstract": [
+        {
+          "text": "An image-analysis request that tracks movement of a previously identified rectangular object across multiple images or video frames.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TrackRectangleRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/TrackRectangleRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TrackRectangleRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "TrackRectangleRequest",
+      "type": "topic",
+      "url": "/documentation/vision/trackrectanglerequest"
+    },
+    "doc://com.apple.vision/documentation/Vision/TrackTranslationalImageRegistrationRequest": {
+      "abstract": [
+        {
+          "text": "An image-analysis request that you track over time to determine the affine transform necessary to align the content of two images.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TrackTranslationalImageRegistrationRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/TrackTranslationalImageRegistrationRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TrackTranslationalImageRegistrationRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "TrackTranslationalImageRegistrationRequest",
+      "type": "topic",
+      "url": "/documentation/vision/tracktranslationalimageregistrationrequest"
+    },
+    "doc://com.apple.vision/documentation/Vision/VNVideoProcessingOption": {
+      "abstract": [
+        {
+          "text": "Options to pass to the video processor when adding requests.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VNVideoProcessingOption"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/VNVideoProcessingOption",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VNVideoProcessingOption"
+        }
+      ],
+      "role": "symbol",
+      "title": "VNVideoProcessingOption",
+      "type": "topic",
+      "url": "/documentation/vision/vnvideoprocessingoption"
+    },
+    "doc://com.apple.vision/documentation/Vision/VN_EXTERN_C_BEGIN": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "VN_EXTERN_C_BEGIN"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/VN_EXTERN_C_BEGIN",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "VN_EXTERN_C_BEGIN",
+      "type": "topic",
+      "url": "/documentation/vision/vn_extern_c_begin"
+    },
+    "doc://com.apple.vision/documentation/Vision/VN_EXTERN_C_END": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "VN_EXTERN_C_END"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/VN_EXTERN_C_END",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "VN_EXTERN_C_END",
+      "type": "topic",
+      "url": "/documentation/vision/vn_extern_c_end"
+    },
+    "doc://com.apple.vision/documentation/Vision/VideoProcessor": {
+      "abstract": [
+        {
+          "text": "An object that performs offline analysis of video content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VideoProcessor"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/VideoProcessor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VideoProcessor"
+        }
+      ],
+      "role": "symbol",
+      "title": "VideoProcessor",
+      "type": "topic",
+      "url": "/documentation/vision/videoprocessor"
+    },
+    "doc://com.apple.vision/documentation/Vision/VisionError": {
+      "abstract": [
+        {
+          "text": "The errors that the framework produces.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VisionError"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/VisionError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VisionError"
+        }
+      ],
+      "role": "symbol",
+      "title": "VisionError",
+      "type": "topic",
+      "url": "/documentation/vision/visionerror"
+    },
+    "doc://com.apple.vision/documentation/Vision/VisionObservation": {
+      "abstract": [
+        {
+          "text": "A type for objects produced by image-analysis requests.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VisionObservation"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/VisionObservation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VisionObservation"
+        }
+      ],
+      "role": "symbol",
+      "title": "VisionObservation",
+      "type": "topic",
+      "url": "/documentation/vision/visionobservation"
+    },
+    "doc://com.apple.vision/documentation/Vision/VisionRequest": {
+      "abstract": [
+        {
+          "text": "A type for image-analysis requests.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VisionRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/VisionRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VisionRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "VisionRequest",
+      "type": "topic",
+      "url": "/documentation/vision/visionrequest"
+    },
+    "doc://com.apple.vision/documentation/Vision/analyzing-a-selfie-and-visualizing-its-content": {
+      "abstract": [
+        {
+          "text": "Calculate face-capture quality and visualize facial features for a collection of images using the Vision framework.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/analyzing-a-selfie-and-visualizing-its-content",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Analyzing a selfie and visualizing its content",
+      "type": "topic",
+      "url": "/documentation/vision/analyzing-a-selfie-and-visualizing-its-content"
+    },
+    "doc://com.apple.vision/documentation/Vision/classifying-images-for-categorization-and-search": {
+      "abstract": [
+        {
+          "text": "Analyze and label images using a Vision classification request.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/classifying-images-for-categorization-and-search",
+      "images": [
+        {
+          "identifier": "classifying-images-for-categorization-and-search-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Classifying images for categorization and search",
+      "type": "topic",
+      "url": "/documentation/vision/classifying-images-for-categorization-and-search"
+    },
+    "doc://com.apple.vision/documentation/Vision/generating-thumbnails-from-videos": {
+      "abstract": [
+        {
+          "text": "Identify the most visually pleasing frames in a video by using the image-aesthetics scores request.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/generating-thumbnails-from-videos",
+      "images": [
+        {
+          "identifier": "generating-high-quality-thumbnails-from-videos.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Generating high-quality thumbnails from videos",
+      "type": "topic",
+      "url": "/documentation/vision/generating-thumbnails-from-videos"
+    },
+    "doc://com.apple.vision/documentation/Vision/locating-and-displaying-recognized-text": {
+      "abstract": [
+        {
+          "text": "Perform text recognition on a photo using the Vision framework’s text-recognition request.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.vision/documentation/Vision/locating-and-displaying-recognized-text",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Locating and displaying recognized text",
+      "type": "topic",
+      "url": "/documentation/vision/locating-and-displaying-recognized-text"
+    },
+    "doc://com.apple.vision/documentation/Vision/original-objective-c-and-swift-api": {
+      "abstract": [],
+      "identifier": "doc://com.apple.vision/documentation/Vision/original-objective-c-and-swift-api",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Original Objective-C and Swift API",
+      "type": "topic",
+      "url": "/documentation/vision/original-objective-c-and-swift-api"
+    },
+    "generating-high-quality-thumbnails-from-videos.png": {
+      "alt": "[An illustration that shows the selection of three frames from a sequence of video frames.]",
+      "identifier": "generating-high-quality-thumbnails-from-videos.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2d83290e817f816074bd3c1fd3c71587/generating-high-quality-thumbnails-from-videos@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/7e7bf40054d0a653d2884c14c95ac4b6/generating-high-quality-thumbnails-from-videos~dark@2x.png"
+        }
+      ]
+    },
+    "vision-framework": {
+      "alt": "An illustration showing a dog, and a magnifying glass depicting the dog being analyzed.",
+      "identifier": "vision-framework",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c745ff2988bec9749a8ba2313d77598e/vision-framework@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a5cbddccb93692dbacfefaa755a97b1a/vision-framework~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Still-image-analysis",
+      "identifiers": [
+        "doc://com.apple.vision/documentation/Vision/classifying-images-for-categorization-and-search",
+        "doc://com.apple.vision/documentation/Vision/ClassifyImageRequest",
+        "doc://com.apple.vision/documentation/Vision/ImageProcessingRequest",
+        "doc://com.apple.vision/documentation/Vision/ImageRequestHandler",
+        "doc://com.apple.vision/documentation/Vision/VisionRequest",
+        "doc://com.apple.vision/documentation/Vision/VisionObservation"
+      ],
+      "title": "Still-image analysis"
+    },
+    {
+      "anchor": "Image-sequence-analysis",
+      "identifiers": [
+        "doc://com.apple.vision/documentation/Vision/GeneratePersonSegmentationRequest",
+        "doc://com.apple.vision/documentation/Vision/GeneratePersonInstanceMaskRequest",
+        "doc://com.apple.vision/documentation/Vision/DetectDocumentSegmentationRequest",
+        "doc://com.apple.vision/documentation/Vision/StatefulRequest"
+      ],
+      "title": "Image sequence analysis"
+    },
+    {
+      "anchor": "Image-aesthetics-analysis",
+      "identifiers": [
+        "doc://com.apple.vision/documentation/Vision/generating-thumbnails-from-videos",
+        "doc://com.apple.vision/documentation/Vision/CalculateImageAestheticsScoresRequest"
+      ],
+      "title": "Image aesthetics analysis"
+    },
+    {
+      "anchor": "Saliency-analysis",
+      "identifiers": [
+        "doc://com.apple.vision/documentation/Vision/GenerateAttentionBasedSaliencyImageRequest",
+        "doc://com.apple.vision/documentation/Vision/GenerateObjectnessBasedSaliencyImageRequest"
+      ],
+      "title": "Saliency analysis"
+    },
+    {
+      "anchor": "Object-tracking",
+      "identifiers": [
+        "doc://com.apple.vision/documentation/Vision/TrackObjectRequest",
+        "doc://com.apple.vision/documentation/Vision/TrackRectangleRequest"
+      ],
+      "title": "Object tracking"
+    },
+    {
+      "anchor": "Face-and-body-detection",
+      "identifiers": [
+        "doc://com.apple.vision/documentation/Vision/analyzing-a-selfie-and-visualizing-its-content",
+        "doc://com.apple.vision/documentation/Vision/DetectFaceRectanglesRequest",
+        "doc://com.apple.vision/documentation/Vision/DetectFaceLandmarksRequest",
+        "doc://com.apple.vision/documentation/Vision/DetectFaceCaptureQualityRequest",
+        "doc://com.apple.vision/documentation/Vision/DetectHumanRectanglesRequest"
+      ],
+      "title": "Face and body detection"
+    },
+    {
+      "anchor": "Body-and-hand-pose-detection",
+      "identifiers": [
+        "doc://com.apple.vision/documentation/Vision/DetectHumanBodyPoseRequest",
+        "doc://com.apple.vision/documentation/Vision/DetectHumanHandPoseRequest",
+        "doc://com.apple.vision/documentation/Vision/PoseProviding",
+        "doc://com.apple.vision/documentation/Vision/Chirality",
+        "doc://com.apple.vision/documentation/Vision/Joint"
+      ],
+      "title": "Body and hand pose detection"
+    },
+    {
+      "anchor": "3D-body-pose-detection",
+      "identifiers": [
+        "doc://com.apple.vision/documentation/Vision/DetectHumanBodyPose3DRequest",
+        "doc://com.apple.vision/documentation/Vision/Joint3D"
+      ],
+      "title": "3D body pose detection"
+    },
+    {
+      "anchor": "Text-detection",
+      "identifiers": [
+        "doc://com.apple.vision/documentation/Vision/locating-and-displaying-recognized-text",
+        "doc://com.apple.vision/documentation/Vision/DetectTextRectanglesRequest",
+        "doc://com.apple.vision/documentation/Vision/RecognizeTextRequest"
+      ],
+      "title": "Text detection"
+    },
+    {
+      "anchor": "Barcode-detection",
+      "identifiers": [
+        "doc://com.apple.vision/documentation/Vision/DetectBarcodesRequest"
+      ],
+      "title": "Barcode detection"
+    },
+    {
+      "anchor": "Trajectory-contour-and-horizon-detection",
+      "identifiers": [
+        "doc://com.apple.vision/documentation/Vision/DetectTrajectoriesRequest",
+        "doc://com.apple.vision/documentation/Vision/DetectContoursRequest",
+        "doc://com.apple.vision/documentation/Vision/DetectHorizonRequest"
+      ],
+      "title": "Trajectory, contour, and horizon detection"
+    },
+    {
+      "anchor": "Animal-detection",
+      "identifiers": [
+        "doc://com.apple.vision/documentation/Vision/DetectAnimalBodyPoseRequest",
+        "doc://com.apple.vision/documentation/Vision/RecognizeAnimalsRequest"
+      ],
+      "title": "Animal detection"
+    },
+    {
+      "anchor": "Optical-flow-and-rectangle-detection",
+      "identifiers": [
+        "doc://com.apple.vision/documentation/Vision/TrackOpticalFlowRequest",
+        "doc://com.apple.vision/documentation/Vision/DetectRectanglesRequest"
+      ],
+      "title": "Optical flow and rectangle detection"
+    },
+    {
+      "anchor": "Image-alignment",
+      "identifiers": [
+        "doc://com.apple.vision/documentation/Vision/TrackTranslationalImageRegistrationRequest",
+        "doc://com.apple.vision/documentation/Vision/TrackHomographicImageRegistrationRequest",
+        "doc://com.apple.vision/documentation/Vision/TargetedRequest"
+      ],
+      "title": "Image alignment"
+    },
+    {
+      "anchor": "Image-feature-print-and-background-removal",
+      "identifiers": [
+        "doc://com.apple.vision/documentation/Vision/GenerateImageFeaturePrintRequest",
+        "doc://com.apple.vision/documentation/Vision/GenerateForegroundInstanceMaskRequest"
+      ],
+      "title": "Image feature print and background removal"
+    },
+    {
+      "anchor": "Machine-learning-image-analysis",
+      "identifiers": [
+        "doc://com.apple.vision/documentation/Vision/CoreMLRequest",
+        "doc://com.apple.vision/documentation/Vision/CoreMLFeatureValueObservation",
+        "doc://com.apple.vision/documentation/Vision/ClassificationObservation",
+        "doc://com.apple.vision/documentation/Vision/PixelBufferObservation"
+      ],
+      "title": "Machine learning image analysis"
+    },
+    {
+      "anchor": "Coordinate-conversion",
+      "identifiers": [
+        "doc://com.apple.vision/documentation/Vision/NormalizedPoint",
+        "doc://com.apple.vision/documentation/Vision/NormalizedRect",
+        "doc://com.apple.vision/documentation/Vision/NormalizedCircle",
+        "doc://com.apple.vision/documentation/Vision/CoordinateOrigin"
+      ],
+      "title": "Coordinate conversion"
+    },
+    {
+      "anchor": "Request-Handlers",
+      "identifiers": [
+        "doc://com.apple.vision/documentation/Vision/ImageRequestHandler",
+        "doc://com.apple.vision/documentation/Vision/TargetedImageRequestHandler"
+      ],
+      "title": "Request Handlers"
+    },
+    {
+      "anchor": "Utilities",
+      "identifiers": [
+        "doc://com.apple.vision/documentation/Vision/ComputeStage",
+        "doc://com.apple.vision/documentation/Vision/VideoProcessor"
+      ],
+      "title": "Utilities"
+    },
+    {
+      "anchor": "Errors",
+      "identifiers": [
+        "doc://com.apple.vision/documentation/Vision/VisionError"
+      ],
+      "title": "Errors"
+    },
+    {
+      "anchor": "Legacy-API",
+      "identifiers": [
+        "doc://com.apple.vision/documentation/Vision/original-objective-c-and-swift-api"
+      ],
+      "title": "Legacy API"
+    },
+    {
+      "anchor": "Structures",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.vision/documentation/Vision/ImageCoordinateConversionHelpers",
+        "doc://com.apple.vision/documentation/Vision/ImagePixelDimensions",
+        "doc://com.apple.vision/documentation/Vision/ResourceVersion",
+        "doc://com.apple.vision/documentation/Vision/VNVideoProcessingOption"
+      ],
+      "title": "Structures"
+    },
+    {
+      "anchor": "Type-Aliases",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.vision/documentation/Vision/DetectorKey",
+        "doc://com.apple.vision/documentation/Vision/NamedMultipleObjectDataAccessBlock",
+        "doc://com.apple.vision/documentation/Vision/NamedObjectDataAccessBlock",
+        "doc://com.apple.vision/documentation/Vision/NamedObjectsDictionary"
+      ],
+      "title": "Type Aliases"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Still-image-analysis",
+              "identifiers": [
+                "doc://com.apple.vision/documentation/Vision/classifying-images-for-categorization-and-search"
+              ],
+              "title": "Still-image analysis"
+            },
+            {
+              "anchor": "Image-aesthetics-analysis",
+              "identifiers": [
+                "doc://com.apple.vision/documentation/Vision/generating-thumbnails-from-videos"
+              ],
+              "title": "Image aesthetics analysis"
+            },
+            {
+              "anchor": "Face-and-body-detection",
+              "identifiers": [
+                "doc://com.apple.vision/documentation/Vision/analyzing-a-selfie-and-visualizing-its-content"
+              ],
+              "title": "Face and body detection"
+            },
+            {
+              "anchor": "Text-detection",
+              "identifiers": [
+                "doc://com.apple.vision/documentation/Vision/locating-and-displaying-recognized-text"
+              ],
+              "title": "Text detection"
+            },
+            {
+              "anchor": "Legacy-API",
+              "identifiers": [
+                "doc://com.apple.vision/documentation/Vision/original-objective-c-and-swift-api"
+              ],
+              "title": "Legacy API"
+            },
+            {
+              "anchor": "Macros",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.vision/documentation/Vision/VN_EXTERN_C_BEGIN",
+                "doc://com.apple.vision/documentation/Vision/VN_EXTERN_C_END"
+              ],
+              "title": "Macros"
+            },
+            {
+              "anchor": "Type-Aliases",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.vision/documentation/Vision/VNVideoProcessingOption"
+              ],
+              "title": "Type Aliases"
+            }
+          ]
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNVideoProcessingOption/title",
+          "value": "VNVideoProcessingOption"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNVideoProcessingOption/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VNVideoProcessingOption"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.vision~1documentation~1Vision~1VNVideoProcessingOption/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VNVideoProcessingOption"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/vision"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/vision"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,690 @@
+{
+  "abstract": [
+    {
+      "text": "Create drivers and system extensions to communicate with hardware and provide low-level services, and only use kernel extensions for a few tasks.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.systemextensions/documentation/SystemExtensions"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.systemextensions/documentation/SystemExtensions/implementing-drivers-system-extensions-and-kexts"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "System Extensions"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Implementing drivers, system extensions, and kexts"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Create drivers, system extensions, and kernel extensions for specific low-level system services.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A DriverKit extension (dext) manages the communication between your company’s hardware device and the rest of the system.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A system extension implements features that require kernel-level cooperation, such as custom security and network behaviors.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A kernel extension (kext) supports any low-level services that cannot be implemented using a dext or system extension.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3618408",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the DriverKit SDK and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.systemextensions/documentation/SystemExtensions",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " framework to implement low-level services whenever possible. Drivers and system extensions run in user space, instead of inside the kernel’s process space. Running in user space improves system stability and makes it easier to develop, debug, and install your code.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Implement-low-level-services-using-system-extensions",
+          "level": 3,
+          "text": "Implement low-level services using system extensions",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The System Extensions framework supports a class of kernel-level features that previously required kexts. System extensions run in user space and interact with the kernel to perform specific tasks. For example, an endpoint-security system extension monitors system events for potential security threats.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "In macOS 11 and later, the kernel doesn’t load a kext if an equivalent System Extension solution exists. You may continue to use kexts in macOS 10.15 and earlier.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about the types of system extensions you can create, and how to install them, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.systemextensions/documentation/SystemExtensions",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Communicate-with-custom-hardware-using-a-DriverKit-extension",
+          "level": 3,
+          "text": "Communicate with custom hardware using a DriverKit extension",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A dext contains the drivers you need to communicate with your company’s custom hardware. A driver provides a layer of services for accessing the hardware. For example, a driver might configure the device, or it might implement a specific interface for communicating with the device. Because dexts are system extensions, they run in user space and you ship them inside your app bundle.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the user attaches a new hardware device to the computer, the kernel searches for any dexts that handle the device. From those dexts, the kernel assembles a series of drivers to communicate with the device. Each new driver builds upon the capabilities of the previous driver, offering new services or configuration options.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Apple provides drivers for all standards-based hardware protocols that Mac computers support. Create custom drivers only for the protocols and features unique to your hardware. You can also use a codeless dext to map your hardware to one of Apple’s built-in drivers.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "In macOS 11 and later, the kernel doesn’t load a kext if an equivalent DriverKit solution exists. You may continue to use kexts in macOS 10.15 and earlier.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For information about how to create and install custom drivers, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/driverkit/creating_a_driver_using_the_driverkit_sdk",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Support-custom-hardware-without-writing-driver-code",
+          "level": 3,
+          "text": "Support custom hardware without writing driver code",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Not all drivers require actual code. If your hardware communicates entirely using standards-based protocols, you can ship a driver that matches your hardware to one of the built-in system drivers. Shipping a codeless driver requires less effort, and lets you select which driver the system uses for your hardware.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Ship a codeless driver in one of the following packages:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A codeless dext, in which your driver class has no implementation.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A codeless kext, which has no executable file.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Create a codeless dext when the system provides DriverKit support for your hardware. A codeless dext isn’t entirely codeless. It contains a minimal executable file with an empty subclass—that is, a subclass of an existing DriverKit class, where you don’t implement any methods. In the ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file of your dext, set the value of the ",
+              "type": "text"
+            },
+            {
+              "code": "IOUserClass",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key to the name of your custom subclass. At runtime, the system instantiates your class, but all method calls fall through to the implementation of the parent class.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the few cases where your driver requires a kernel extension, use a codeless kext to match your hardware to the existing system driver. Unlike a DriverKit extension, a codeless kext doesn’t have an executable file. Instead, its ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file provides all the information that the system needs to match your hardware to a system driver.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For information about how to create and install a dext, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/driverkit/creating_a_driver_using_the_driverkit_sdk",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Build-kernel-extensions-with-well-known-restrictions",
+          "level": 3,
+          "text": "Build kernel extensions with well-known restrictions",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Kexts run inside the kernel and must support the same architecture and restrictions as other kernel code.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Kexts on Apple silicon must support the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "arm64e",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " architecture. The ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "arm64e",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " architecture includes pointer authentication codes (PACs) to detect and guard against malicious or accidental modifications to pointers in memory. The compiler transparently adds and removes PACs to your code at compile time, but the addition of PACs may require you to adjust how you handle pointers in your kexts. For information about supporting PACs, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Security/preparing-your-app-to-work-with-pointer-authentication",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Kexts run under Kernel Integrity Protection (KIP). After the system initializes the kernel and kexts, KIP locks down the kernel memory pages to prevent modifications to kernel and driver code. For more information about KIP, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://support.apple.com/guide/security/kernel-integrity-protection-secb1caeb4bc/1/web/1",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Install-kernel-extensions-as-the-final-step-in-an-installer-package",
+          "level": 3,
+          "text": "Install kernel extensions as the final step in an installer package",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your custom installer package includes kexts, install them as the final installation step. The system manages kexts differently in macOS 11 and later, requiring a reboot to finish the installation process. As part of the reboot process, users must also explicitly change the security settings of their computer to allow the kext installation.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For information about the kext installation process, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Apple-Silicon/installing-a-custom-kernel-extension",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/Apple-Silicon/installing-a-custom-kernel-extension": {
+      "abstract": [
+        {
+          "text": "Install kernel extensions using a custom installer package, and help users understand the installation process.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Apple-Silicon/installing-a-custom-kernel-extension",
+      "kind": "article",
+      "role": "article",
+      "title": "Installing a Custom Kernel Extension",
+      "type": "topic",
+      "url": "/documentation/Apple-Silicon/installing-a-custom-kernel-extension"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.system-extension.install": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether your app has permission to activate or deactivate system extensions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.system-extension.install",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "System Extension Entitlement",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Entitlements/com.apple.developer.system-extension.install"
+    },
+    "doc://com.apple.documentation/documentation/Security/preparing-your-app-to-work-with-pointer-authentication": {
+      "abstract": [
+        {
+          "text": "Test your app against the arm64e architecture to ensure that it works seamlessly with enhanced security features.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Security/preparing-your-app-to-work-with-pointer-authentication",
+      "kind": "article",
+      "role": "article",
+      "title": "Preparing your app to work with pointer authentication",
+      "type": "topic",
+      "url": "/documentation/Security/preparing-your-app-to-work-with-pointer-authentication"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/creating_a_driver_using_the_driverkit_sdk": {
+      "abstract": [
+        {
+          "text": "Create a driver that supports proprietary features of your company’s hardware devices. ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/creating_a_driver_using_the_driverkit_sdk",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating a Driver Using the DriverKit SDK",
+      "type": "topic",
+      "url": "/documentation/driverkit/creating_a_driver_using_the_driverkit_sdk"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/debugging_and_testing_system_extensions": {
+      "abstract": [
+        {
+          "text": "Debug your system extensions by temporarily disabling the security checks that macOS performs during the installation process.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/debugging_and_testing_system_extensions",
+      "kind": "article",
+      "role": "article",
+      "title": "Debugging and testing system extensions",
+      "type": "topic",
+      "url": "/documentation/driverkit/debugging_and_testing_system_extensions"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.systemextensions/documentation/SystemExtensions": {
+      "abstract": [
+        {
+          "text": "Install and manage user space code that extends the capabilities of macOS.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.systemextensions/documentation/SystemExtensions",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "System Extensions",
+      "type": "topic",
+      "url": "/documentation/systemextensions"
+    },
+    "https://support.apple.com/guide/security/kernel-integrity-protection-secb1caeb4bc/1/web/1": {
+      "identifier": "https://support.apple.com/guide/security/kernel-integrity-protection-secb1caeb4bc/1/web/1",
+      "title": "Kernel Integrity Protection",
+      "titleInlineContent": [
+        {
+          "text": "Kernel Integrity Protection",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://support.apple.com/guide/security/kernel-integrity-protection-secb1caeb4bc/1/web/1"
+    },
+    "media-3618408": {
+      "alt": "An illustration of the relationship between drivers, system extensions, kernel extensions, and the kernel. Kernel extensions run inside the kernel. Drivers and system extensions run in user space and communicate with the kernel for critical needs.",
+      "identifier": "media-3618408",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ece66b36e6607d450f5b40fcc883f3f3/media-3618408@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/driverkit/debugging_and_testing_system_extensions",
+        "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.system-extension.install"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Essentials",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.documentation/documentation/driverkit/debugging_and_testing_system_extensions",
+                "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.system-extension.install"
+              ],
+              "title": "Essentials"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/systemextensions/implementing-drivers-system-extensions-and-kexts"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/systemextensions/implementing-drivers-system-extensions-and-kexts"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

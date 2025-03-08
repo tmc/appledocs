@@ -1,0 +1,839 @@
+{
+  "abstract": [
+    {
+      "text": "Discover how to create a layered and customized sheet experience in UIKit.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit",
+        "doc://com.apple.uikit/documentation/UIKit/view-controllers",
+        "doc://com.apple.uikit/documentation/UIKit/UIViewController"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.uikit/documentation/UIKit/customizing-and-resizing-sheets-in-uikit"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "UIKit"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "16.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "16.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "14.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Customizing and resizing sheets in UIKit"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "This sample code project is associated with WWDC22 session ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/wwdc22/10068/",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "9f8e34adc2d3/CustomizingAndResizingSheetsInUIKit.zip": {
+      "checksum": "9f8e34adc2d32470932c04d6b0a4ede1d83c2538d5a46063a3eaef580fdd2c64d74edd0f2a1c79afce7b74b8f025be36a112928934b647c14a7e116a6f07bff7",
+      "identifier": "9f8e34adc2d3/CustomizingAndResizingSheetsInUIKit.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/9f8e34adc2d3/CustomizingAndResizingSheetsInUIKit.zip"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.uikit/documentation/UIKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your iOS, iPadOS, or tvOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "UIKit",
+      "type": "topic",
+      "url": "/documentation/uikit"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIViewController": {
+      "abstract": [
+        {
+          "text": "An object that manages a view hierarchy for your UIKit app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIViewController"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIViewController",
+      "type": "topic",
+      "url": "/documentation/uikit/uiviewcontroller"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIViewController/activePresentationController": {
+      "abstract": [
+        {
+          "text": "The presentation controller that’s managing the view controller.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "activePresentationController"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIPresentationController",
+          "text": "UIPresentationController"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/activePresentationController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "activePresentationController"
+        }
+      ],
+      "role": "symbol",
+      "title": "activePresentationController",
+      "type": "topic",
+      "url": "/documentation/uikit/uiviewcontroller/activepresentationcontroller"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIViewController/popoverPresentationController": {
+      "abstract": [
+        {
+          "text": "The nearest popover presentation controller that is managing the current view controller.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "popoverPresentationController"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIPopoverPresentationController",
+          "text": "UIPopoverPresentationController"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/popoverPresentationController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "popoverPresentationController"
+        }
+      ],
+      "role": "symbol",
+      "title": "popoverPresentationController",
+      "type": "topic",
+      "url": "/documentation/uikit/uiviewcontroller/popoverpresentationcontroller"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIViewController/presentationController": {
+      "abstract": [
+        {
+          "text": "The presentation controller that’s managing the current view controller.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "presentationController"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIPresentationController",
+          "text": "UIPresentationController"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/presentationController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "presentationController"
+        }
+      ],
+      "role": "symbol",
+      "title": "presentationController",
+      "type": "topic",
+      "url": "/documentation/uikit/uiviewcontroller/presentationcontroller"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIViewController/restoresFocusAfterTransition": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether an item that previously was focused should again become focused when the item’s view controller becomes visible and focusable.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "restoresFocusAfterTransition"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/restoresFocusAfterTransition",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "restoresFocusAfterTransition"
+        }
+      ],
+      "role": "symbol",
+      "title": "restoresFocusAfterTransition",
+      "type": "topic",
+      "url": "/documentation/uikit/uiviewcontroller/restoresfocusaftertransition"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIViewController/sheetPresentationController": {
+      "abstract": [
+        {
+          "text": "The sheet presentation controller for the view controller.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sheetPresentationController"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UISheetPresentationController",
+          "text": "UISheetPresentationController"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/sheetPresentationController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "sheetPresentationController"
+        }
+      ],
+      "role": "symbol",
+      "title": "sheetPresentationController",
+      "type": "topic",
+      "url": "/documentation/uikit/uiviewcontroller/sheetpresentationcontroller"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIViewController/targetViewController(forAction:sender:)": {
+      "abstract": [
+        {
+          "text": "Returns the view controller that responds to the action.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "targetViewController"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "forAction"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10ObjectiveC8SelectorV",
+          "text": "Selector"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "sender"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIViewController",
+          "text": "UIViewController"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/targetViewController(forAction:sender:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "targetViewControllerForAction:sender:"
+        }
+      ],
+      "role": "symbol",
+      "title": "targetViewController(forAction:sender:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiviewcontroller/targetviewcontroller(foraction:sender:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIViewController/transitionCoordinator": {
+      "abstract": [
+        {
+          "text": "Returns the active transition coordinator object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "transitionCoordinator"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)UIViewControllerTransitionCoordinator",
+          "text": "UIViewControllerTransitionCoordinator"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/transitionCoordinator",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "transitionCoordinator"
+        }
+      ],
+      "role": "symbol",
+      "title": "transitionCoordinator",
+      "type": "topic",
+      "url": "/documentation/uikit/uiviewcontroller/transitioncoordinator"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIViewController/transitioningDelegate": {
+      "abstract": [
+        {
+          "text": "The delegate object that provides transition animator, interactive controller, and custom presentation controller objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "transitioningDelegate"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)UIViewControllerTransitioningDelegate",
+          "text": "UIViewControllerTransitioningDelegate"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIViewController/transitioningDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "transitioningDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "transitioningDelegate",
+      "type": "topic",
+      "url": "/documentation/uikit/uiviewcontroller/transitioningdelegate"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/view-controllers": {
+      "abstract": [
+        {
+          "text": "Manage your interface using view controllers and facilitate navigation around your app’s content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/view-controllers",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "View controllers",
+      "type": "topic",
+      "url": "/documentation/uikit/view-controllers"
+    },
+    "https://developer.apple.com/wwdc22/10068/": {
+      "identifier": "https://developer.apple.com/wwdc22/10068/",
+      "title": "10068: What’s new in UIKit",
+      "titleInlineContent": [
+        {
+          "text": "10068: What’s new in UIKit",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/wwdc22/10068/"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "9f8e34adc2d3/CustomizingAndResizingSheetsInUIKit.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Adding-a-custom-transition-or-presentation",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIViewController/transitioningDelegate",
+        "doc://com.apple.uikit/documentation/UIKit/UIViewController/transitionCoordinator",
+        "doc://com.apple.uikit/documentation/UIKit/UIViewController/targetViewController(forAction:sender:)",
+        "doc://com.apple.uikit/documentation/UIKit/UIViewController/presentationController",
+        "doc://com.apple.uikit/documentation/UIKit/UIViewController/popoverPresentationController",
+        "doc://com.apple.uikit/documentation/UIKit/UIViewController/sheetPresentationController",
+        "doc://com.apple.uikit/documentation/UIKit/UIViewController/activePresentationController",
+        "doc://com.apple.uikit/documentation/UIKit/UIViewController/restoresFocusAfterTransition"
+      ],
+      "title": "Adding a custom transition or presentation"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Adding-a-custom-transition-or-presentation",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIViewController/transitioningDelegate",
+                "doc://com.apple.uikit/documentation/UIKit/UIViewController/transitionCoordinator",
+                "doc://com.apple.uikit/documentation/UIKit/UIViewController/targetViewController(forAction:sender:)",
+                "doc://com.apple.uikit/documentation/UIKit/UIViewController/presentationController",
+                "doc://com.apple.uikit/documentation/UIKit/UIViewController/popoverPresentationController",
+                "doc://com.apple.uikit/documentation/UIKit/UIViewController/sheetPresentationController",
+                "doc://com.apple.uikit/documentation/UIKit/UIViewController/activePresentationController",
+                "doc://com.apple.uikit/documentation/UIKit/UIViewController/restoresFocusAfterTransition"
+              ],
+              "title": "Adding a custom transition or presentation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController~1transitionCoordinator/title",
+          "value": "transitionCoordinator"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController~1transitionCoordinator/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "transitionCoordinator"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController~1activePresentationController/title",
+          "value": "activePresentationController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController~1activePresentationController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "activePresentationController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController~1transitioningDelegate/title",
+          "value": "transitioningDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController~1transitioningDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "transitioningDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController~1restoresFocusAfterTransition/title",
+          "value": "restoresFocusAfterTransition"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController~1restoresFocusAfterTransition/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "restoresFocusAfterTransition"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController~1sheetPresentationController/title",
+          "value": "sheetPresentationController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController~1sheetPresentationController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "sheetPresentationController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController~1presentationController/title",
+          "value": "presentationController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController~1presentationController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "presentationController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController/title",
+          "value": "UIViewController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController~1popoverPresentationController/title",
+          "value": "popoverPresentationController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController~1popoverPresentationController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "popoverPresentationController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController~1targetViewController(forAction:sender:)/title",
+          "value": "targetViewControllerForAction:sender:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIViewController~1targetViewController(forAction:sender:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "targetViewControllerForAction:sender:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/uikit/customizing-and-resizing-sheets-in-uikit"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/uikit/customizing-and-resizing-sheets-in-uikit"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,2826 @@
+{
+  "abstract": [
+    {
+      "text": "Build an interface that plays multiple videos simultaneously and handles transitions to different experience types gracefully.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.avkit/documentation/AVKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.avkit/documentation/AVKit/creating-a-multiview-video-playback-experience-in-visionos"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "AVKit"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "2.0",
+        "name": "visionOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "16.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Creating a multiview video playback experience in visionOS"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample code project demonstrates how to use the multiview video playback APIs using SwiftUI.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "It illustrates how an app might display video when showing a video in the embedded experience, and how apps might immediately display a video in the expanded experience.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "From these experiences, someone can enter the multiview video playback experience to display multiple videos simultaneously.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The multiview experience lets your app display multiple videos simultaneously.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Use this type of experience in apps where watching multiple videos makes sense, such as in a sports app or a security camera app.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "In a multiview experience, a person starts with one video as their main focus, and adds more videos that interest them.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "In visionOS, your app can display up to five simultaneous videos.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "multivideo-playback-visionos-overview",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Multiview experiences work with the existing ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avkit/documentation/AVKit/AVPlayerViewController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class to manage your content.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Each instance of the player view controller exposes an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avkit/documentation/AVKit/AVPlayerViewController/experienceController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property that manages the available experiences for your content and the transitions between embedded, expanded, and multiview experiences.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Use this experience controller to configure the experiences you support, and to initiate transitions between different experience types.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To facilitate the addition of new videos to your app’s multiview experience, create a custom browsing user interface and provide it to the shared ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avkit/documentation/AVKit/AVMultiviewManager",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "AVMultiviewManager",
+              "type": "codeVoice"
+            },
+            {
+              "text": " instance coordinates the arrangement of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avkit/documentation/AVKit/AVPlayerViewController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instances in the multiview experience.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "As your app adds new view controllers, the ",
+              "type": "text"
+            },
+            {
+              "code": "AVMultiviewManager",
+              "type": "codeVoice"
+            },
+            {
+              "text": " updates the layout to maintain a comfortable and engaging user experience.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Display-the-system-video-player",
+          "level": 3,
+          "text": "Display the system video player",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Adding support for the multiview experience starts with displaying the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avkit/documentation/AVKit/AVPlayerViewController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "AVPlayerViewController",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is a UIKit view controller that AVKit provides.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/UIViewControllerRepresentable",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to adapt this for SwiftUI.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The following code example creates a ",
+              "type": "text"
+            },
+            {
+              "code": "SystemVideoPlayer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " view with an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVPlayer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This property allows the SwiftUI view that contains the ",
+              "type": "text"
+            },
+            {
+              "code": "SystemVideoPlayer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " view to initialize the player with an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVPlayerItem",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and change the video using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVPlayer/replaceCurrentItem(with:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct SystemVideoPlayer: UIViewControllerRepresentable {",
+            "    let player: AVPlayer",
+            "",
+            "    func makeUIViewController(context: Context) -> AVPlayerViewController {",
+            "        let playerController = AVPlayerViewController()",
+            "        playerController.player = player",
+            "",
+            "        return playerController",
+            "    }",
+            "",
+            "    func updateUIViewController(_ uiViewController: AVPlayerViewController, context: Context) {}",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Enable-the-multiview-experience-on-your-video-players",
+          "level": 3,
+          "text": "Enable the multiview experience on your video players",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The multiview experience is disabled by default, so your app needs to allow it by",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "setting ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avkit/documentation/AVKit/AVExperienceController/allowedExperiences",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " on ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avkit/documentation/AVKit/AVExperienceController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to include ",
+              "type": "text"
+            },
+            {
+              "code": ".multiview",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "In the multiview experience, you can present video from multiple ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avkit/documentation/AVKit/AVPlayerViewController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instances together in an interface that an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avkit/documentation/AVKit/AVMultiviewManager",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " manages.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let playerController = AVPlayerViewController()",
+            "// Enable the multiview experience, along with the default recommended set.",
+            "playerController.experienceController.allowedExperiences = .recommended(",
+            "    including: [.multiview]",
+            ")"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After allowing the multiview experience, the system player includes a Multiview button in the top left corner of the expanded and embedded video player.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "People can close the multiview experience to return to the embedded video player at any time.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "multiview-video-button",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-a-content-browser-for-adding-and-removing-videos",
+          "level": 3,
+          "text": "Create a content browser for adding and removing videos",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avkit/documentation/AVKit/AVPlayerViewController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " displays a single video.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "When someone enters the multiview experience, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avkit/documentation/AVKit/AVMultiviewManager",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " manages the layout of the system video players and displays your content browser beneath the videos.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The content browser allows people to select additional videos to play within the experience.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Anyone can remove a video from the multiview experience by clicking the close button in the corner of a video, or by using your content browser.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "After selecting multiple videos, a person can close the content browser to navigate to the playback controls for each video.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "To provide the view for the content browser, set the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avkit/documentation/AVKit/AVMultiviewManager/contentSelectionViewController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property on the shared ",
+              "type": "text"
+            },
+            {
+              "code": "AVMultiviewManager",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "multiview-video-content-selection-view",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When designing your content selection view, follow the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/design/human-interface-guidelines/designing-for-visionos",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to create an intuitive experience.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This sample code project uses a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/UIHostingController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class to provide a SwiftUI view as the content selection view controller.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let hostingController = UIHostingController(rootView: rootView)",
+            "let contentSelectionViewController = AVContentSelectionViewController()",
+            "contentSelectionViewController.preferredContentSize = .init(width: 1200, height: 340.0)",
+            "",
+            "// Add the `hostingController` and its view to the empty `contentSelectionViewController`.",
+            "contentSelectionViewController.addChild(hostingController)",
+            "contentSelectionViewController.view.addSubview(hostingController.view)",
+            "",
+            "// Notify the `hostingController` that the move is complete.",
+            "hostingController.didMove(toParent: contentSelectionViewController)",
+            "",
+            "// Set the constraints so that the `hostingController` matches the size of the `contentSelectionViewController`.",
+            "hostingController.view.translatesAutoresizingMaskIntoConstraints = false",
+            "NSLayoutConstraint.activate([",
+            "    contentSelectionViewController.view.leadingAnchor.constraint(equalTo: hostingController.view.leadingAnchor),",
+            "    contentSelectionViewController.view.trailingAnchor.constraint(equalTo: hostingController.view.trailingAnchor),",
+            "    contentSelectionViewController.view.topAnchor.constraint(equalTo: hostingController.view.topAnchor),",
+            "    contentSelectionViewController.view.bottomAnchor.constraint(equalTo: hostingController.view.bottomAnchor)",
+            "])",
+            "",
+            "AVMultiviewManager.default.contentSelectionViewController = contentSelectionViewController"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To provide visual context, it’s important to show an image that represents each video.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Depending on your app, this may be a generated thumbnail or a graphic unique to each video.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For information about creating an image from a video asset, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFoundation/creating-images-from-a-video-asset",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Observe-changes-in-the-multiview-experience",
+          "level": 3,
+          "text": "Observe changes in the multiview experience",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avkit/documentation/AVKit/AVExperienceController/Delegate-swift.protocol",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " methods, your app can react to changes in the multiview experience.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This protocol informs your app about the transitions you programmatically initiate and the transitions that trigger within the multiview experience.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Update your class to conform to this protocol and set it as the delegate.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample code project uses this protocol to start videos that someone adds to the multiview experience, swap which video is showing in the embedded video player, and update the state that shows which videos are part of the multiview experience.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The sample app creates a ",
+              "type": "text"
+            },
+            {
+              "code": "MultiviewStateModel",
+              "type": "codeVoice"
+            },
+            {
+              "text": " class to conform to this protocol, retains the videos and their player view controllers, and sets this delegate on each of the ",
+              "type": "text"
+            },
+            {
+              "code": "VideoModel",
+              "type": "codeVoice"
+            },
+            {
+              "text": " objects in the initialization of the ",
+              "type": "text"
+            },
+            {
+              "code": "MultiviewStateModel",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "self.videoModels.forEach { videoModel in",
+            "    videoModel.viewController.experienceController.delegate = self",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Change-the-embedded-video",
+          "level": 3,
+          "text": "Change the embedded video",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your app displays the video player in the embedded state, your view needs to handle changing the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avkit/documentation/AVKit/AVPlayerViewController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " that’s displaying when someone changes the video within the multiview experience.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "SystemVideoPlayer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " view in the “Display the system video player” section above is responsible for displaying a single video.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "To switch which video is playing in the embedded experience and retain the current playback state of the video, create a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/UIViewControllerRepresentable",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " that has an ",
+              "type": "text"
+            },
+            {
+              "code": "AVPlayerViewController",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "To insure that SwiftUI provides the updated view controller in ",
+              "type": "text"
+            },
+            {
+              "code": "makeUIViewController",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", identify the view using the video’s ID.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "if let embeddedVideo = multiviewStateModel.embeddedVideo {",
+            "    // When displaying an embedded video, identify it based on the item",
+            "    // so that `UIViewControllerRepresentable` can provide the new",
+            "    // view controller in `makeUIViewController`.",
+            "    ItemVideoPlayer(videoModel: embeddedVideo)",
+            "        .id(embeddedVideo.video.id)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To support changing the embedded video set the ",
+              "type": "text"
+            },
+            {
+              "code": "embeddedVideo",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property to the video item that you want to play.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "If the video is already selected, consider pausing the video and removing it from the view hierarchy.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Pause the current embedded video, if there is one.",
+            "await embeddedVideo?.pauseVideoAndResetPlaybackCursor()",
+            "",
+            "// If the selected video isn't in the view hierarchy,",
+            "// add and play it; otherwise, pause and remove it.",
+            "if videoModel.viewController.parent == nil {",
+            "    embeddedVideo = videoModel",
+            "    await videoModel.resetPlaybackCursorAndPlayVideo()",
+            "} else {",
+            "    embeddedVideo = nil",
+            "    await videoModel.pauseVideoAndResetPlaybackCursor()",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Show-and-hide-videos-from-your-content-browser",
+          "level": 3,
+          "text": "Show and hide videos from your content browser",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your content selection view is responsible for adding and removing videos from the multiview experience.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "To determine whether to add or remove a video when a person selects an item, keep track of which videos are present in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avkit/documentation/AVKit/AVMultiviewManager",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Depending on the needs of your app, you can either create all ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avkit/documentation/AVKit/AVPlayerViewController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instances on initialization, or create them on demand as you display additional videos.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When a person selects a video in the content browser, your app adds or removes the video from the multiview experience by calling ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avkit/documentation/AVKit/AVExperienceController/transition(to:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " on the associated ",
+              "type": "text"
+            },
+            {
+              "code": "AVPlayerViewController",
+              "type": "codeVoice"
+            },
+            {
+              "text": " instance.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Deselecting a video from the content selection view transitions it",
+            "// to the embedded experience even when there's one video playing.",
+            "// Deselecting the last video removes the user from the multiview",
+            "// experience, and returns them to the embedded playback experience.",
+            "await videoModel.viewController.experienceController.transition(",
+            "    to: videoModel.isAddedToMultiview ? .embedded : .multiview",
+            ")"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "transition(to:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function performs a request to transition the video to the provided state, but this doesn’t always succeed.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This transition fails if you already presented the maximum number of videos.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Transitioning to the ",
+              "type": "text"
+            },
+            {
+              "code": ".embedded",
+              "type": "codeVoice"
+            },
+            {
+              "text": " state fails for the last video in the ",
+              "type": "text"
+            },
+            {
+              "code": "AVMultiviewManager",
+              "type": "codeVoice"
+            },
+            {
+              "text": " if the view controller isn’t in the view hierarchy.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Only update the state and view hierarchy when the transition completes successfully.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avkit/documentation/AVKit/AVExperienceController/Delegate-swift.protocol/experienceController(_:didChangeTransitionContext:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "  delegate method to update your state and view hierarchy for completed transitions.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The system calls these delegate methods for changes that your content selection view and the ",
+              "type": "text"
+            },
+            {
+              "code": "AVMultiviewManager",
+              "type": "codeVoice"
+            },
+            {
+              "text": " trigger.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func experienceController(",
+            "    _ controller: AVExperienceController,",
+            "    didChangeTransitionContext context: AVExperienceController.TransitionContext",
+            ") {",
+            "    guard let videoModel = videoModel(for: controller) else {",
+            "        assertionFailure(\"Failed to get item for experience controller\")",
+            "        return",
+            "    }",
+            "",
+            "    if case .transitioning = context.status, videosInMultiview == 0 {",
+            "        // If there aren't any videos in the multiview experience,",
+            "        // update the selection state so that while the transition",
+            "        // is occurring, the UI reflects the added video.",
+            "        videoModel.isAddedToMultiview = context.toExperience != .embedded",
+            "    }",
+            "",
+            "    guard",
+            "        case .finished(let result) = context.status,",
+            "        .completed == result",
+            "    else { return }",
+            "",
+            "    videoModel.isAddedToMultiview = context.toExperience == .multiview",
+            "",
+            "    // Play new videos that someone successfully adds to the multiview experience.",
+            "    if videoModel.isAddedToMultiview, videosInMultiview > 1 {",
+            "        Task { await videoModel.resetPlaybackCursorAndPlayVideo() }",
+            "    }",
+            "",
+            "    // If the initial playback experience isn't embedded, remove the embedded video",
+            "    // from the view hierarchy when transitioning back to the embedded experience.",
+            "    if !supportsEmbeddedPlaybackExperience, context.toExperience == .embedded {",
+            "        embeddedVideo = nil",
+            "        Task { await videoModel.pauseVideoAndResetPlaybackCursor() }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Set-the-newly-selected-embedded-video",
+          "level": 3,
+          "text": "Set the newly selected embedded video",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "People can add and remove videos from the multiview experience through the user interface that your content selection view or the ",
+              "type": "text"
+            },
+            {
+              "code": "AVMultiviewManager",
+              "type": "codeVoice"
+            },
+            {
+              "text": " provides.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "If your app supports displaying embedded videos, the video playing when someone first enters the multiview experience may be different than the one playing when they return to the embedded experience.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Continue to show the currently playing video when a person returns to the embedded experience.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, a person may start the multiview experience viewing video A, and then add video B and others.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "They may then remove video A prior to closing the experience and returning to your view with the embedded experience.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "In this case, update the view they return to so it displays video B rather than the initial video A.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You can perform view hierarchy and state changes to prepare for a transition in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avkit/documentation/AVKit/AVExperienceController/Delegate-swift.protocol/experienceController(_:prepareForTransitionUsing:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func experienceController(",
+            "    _ controller: AVExperienceController,",
+            "    prepareForTransitionUsing context: AVExperienceController.TransitionContext",
+            ") async {",
+            "    guard let videoModel = videoModel(for: controller) else {",
+            "        assertionFailure(\"Failed to get item for experience controller\")",
+            "        return",
+            "    }",
+            "",
+            "    if context.toExperience == .embedded, videosInMultiview == 1 {",
+            "        embeddedVideo = videoModel",
+            "    }",
+            "",
+            "    setFallbackScene(for: controller, using: context)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Show-expanded-videos-outside-the-view-hierarchy",
+          "level": 3,
+          "text": "Show expanded videos outside the view hierarchy",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To display a video in the expanded or embedded states, the original container needs to be in the view hierarchy.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This transition fails to complete when the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avkit/documentation/AVKit/AVPlayerViewController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " isn’t in the view hierarchy because the system requires a scene to transition to these states.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you aren’t embedding the video in the view hierarchy, specify a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avkit/documentation/AVKit/AVExperienceController/ExpandedConfiguration/fallbackPlacement",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to display the video over the provided scene.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You can specify this just before presenting the video in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.avkit/documentation/AVKit/AVExperienceController/Delegate-swift.protocol/experienceController(_:prepareForTransitionUsing:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", or set it earlier in the app life cycle.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Retrieve this ",
+              "type": "text"
+            },
+            {
+              "code": "UIScene",
+              "type": "codeVoice"
+            },
+            {
+              "text": " argument from the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIWindowSceneDelegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For more information about how to provide this delegate in your SwiftUI app, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/UIApplicationDelegateAdaptor",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// The fallback placement is required for cases where the video doesn't start from the embedded state,",
+            "// or the video needs to present on top of another scene.",
+            "// If the video starts in the embedded state, you don't need to set the fallback placement.",
+            "if !supportsEmbeddedPlaybackExperience, context.toExperience == .expanded {",
+            "    if let scene {",
+            "        controller.configuration.expanded.fallbackPlacement = .over(scene: scene)",
+            "    } else {",
+            "        controller.configuration.expanded.fallbackPlacement = .unspecified",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "25a7bf691a8e/CreatingAMultiviewVideoPlaybackExperienceInVisionOS.zip": {
+      "checksum": "25a7bf691a8e121a7811c84f99bf5f227c43250830fc0f02ac50a1fc6521a6f6cd7a9cb50993f2ffe23287b92751ec08a14f21387863395f3ae575db82969f69",
+      "identifier": "25a7bf691a8e/CreatingAMultiviewVideoPlaybackExperienceInVisionOS.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/25a7bf691a8e/CreatingAMultiviewVideoPlaybackExperienceInVisionOS.zip"
+    },
+    "doc://com.apple.avkit/documentation/AVKit": {
+      "abstract": [
+        {
+          "text": "Create user interfaces for media playback, complete with transport controls, chapter navigation, picture-in-picture support, and display of subtitles and closed captions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avkit/documentation/AVKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AVKit",
+      "type": "topic",
+      "url": "/documentation/avkit"
+    },
+    "doc://com.apple.avkit/documentation/AVKit/AVExperienceController": {
+      "abstract": [
+        {
+          "text": "An object that controls video experiences.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVExperienceController"
+        }
+      ],
+      "identifier": "doc://com.apple.avkit/documentation/AVKit/AVExperienceController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVExperienceController"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVExperienceController",
+      "type": "topic",
+      "url": "/documentation/avkit/avexperiencecontroller"
+    },
+    "doc://com.apple.avkit/documentation/AVKit/AVExperienceController/Delegate-swift.protocol": {
+      "abstract": [
+        {
+          "text": "A protocol that defines the methods to implement to respond to experience changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Delegate"
+        }
+      ],
+      "identifier": "doc://com.apple.avkit/documentation/AVKit/AVExperienceController/Delegate-swift.protocol",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Delegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVExperienceController.Delegate",
+      "type": "topic",
+      "url": "/documentation/avkit/avexperiencecontroller/delegate-swift.protocol"
+    },
+    "doc://com.apple.avkit/documentation/AVKit/AVExperienceController/Delegate-swift.protocol/experienceController(_:didChangeTransitionContext:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate when the transition context changes during a transition.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "experienceController"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:5AVKit22AVExperienceControllerC",
+          "text": "AVExperienceController"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didChangeTransitionContext"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:5AVKit22AVExperienceControllerC",
+          "text": "AVExperienceController"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:5AVKit22AVExperienceControllerC17TransitionContextV",
+          "text": "TransitionContext"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.avkit/documentation/AVKit/AVExperienceController/Delegate-swift.protocol/experienceController(_:didChangeTransitionContext:)",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "experienceController(_:didChangeTransitionContext:)",
+      "type": "topic",
+      "url": "/documentation/avkit/avexperiencecontroller/delegate-swift.protocol/experiencecontroller(_:didchangetransitioncontext:)"
+    },
+    "doc://com.apple.avkit/documentation/AVKit/AVExperienceController/Delegate-swift.protocol/experienceController(_:prepareForTransitionUsing:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that the system is preparing for a transition.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "experienceController"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:5AVKit22AVExperienceControllerC",
+          "text": "AVExperienceController"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "prepareForTransitionUsing"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:5AVKit22AVExperienceControllerC",
+          "text": "AVExperienceController"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:5AVKit22AVExperienceControllerC17TransitionContextV",
+          "text": "TransitionContext"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        }
+      ],
+      "identifier": "doc://com.apple.avkit/documentation/AVKit/AVExperienceController/Delegate-swift.protocol/experienceController(_:prepareForTransitionUsing:)",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "experienceController(_:prepareForTransitionUsing:)",
+      "type": "topic",
+      "url": "/documentation/avkit/avexperiencecontroller/delegate-swift.protocol/experiencecontroller(_:preparefortransitionusing:)"
+    },
+    "doc://com.apple.avkit/documentation/AVKit/AVExperienceController/ExpandedConfiguration/fallbackPlacement": {
+      "abstract": [
+        {
+          "text": "A fallback placement to use when the original container isn’t in the view controller hierarchy.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "fallbackPlacement"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:5AVKit22AVExperienceControllerC",
+          "text": "AVExperienceController"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:5AVKit22AVExperienceControllerC21ExpandedConfigurationV",
+          "text": "ExpandedConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:5AVKit22AVExperienceControllerC21ExpandedConfigurationV9PlacementV",
+          "text": "Placement"
+        }
+      ],
+      "identifier": "doc://com.apple.avkit/documentation/AVKit/AVExperienceController/ExpandedConfiguration/fallbackPlacement",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "fallbackPlacement",
+      "type": "topic",
+      "url": "/documentation/avkit/avexperiencecontroller/expandedconfiguration/fallbackplacement"
+    },
+    "doc://com.apple.avkit/documentation/AVKit/AVExperienceController/allowedExperiences": {
+      "abstract": [
+        {
+          "text": "The set of experiences the application supports.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "allowedExperiences"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:5AVKit22AVExperienceControllerC",
+          "text": "AVExperienceController"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:5AVKit22AVExperienceControllerC11ExperiencesV",
+          "text": "Experiences"
+        }
+      ],
+      "identifier": "doc://com.apple.avkit/documentation/AVKit/AVExperienceController/allowedExperiences",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "allowedExperiences",
+      "type": "topic",
+      "url": "/documentation/avkit/avexperiencecontroller/allowedexperiences"
+    },
+    "doc://com.apple.avkit/documentation/AVKit/AVExperienceController/transition(to:)": {
+      "abstract": [
+        {
+          "text": "Transitions the video to a different experience.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "transition"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:5AVKit22AVExperienceControllerC",
+          "text": "AVExperienceController"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:5AVKit22AVExperienceControllerC10ExperienceO",
+          "text": "Experience"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:5AVKit22AVExperienceControllerC",
+          "text": "AVExperienceController"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:5AVKit22AVExperienceControllerC17TransitionContextV",
+          "text": "TransitionContext"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:5AVKit22AVExperienceControllerC17TransitionContextV0D6ResultO",
+          "text": "TransitionResult"
+        }
+      ],
+      "identifier": "doc://com.apple.avkit/documentation/AVKit/AVExperienceController/transition(to:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "transition(to:)",
+      "type": "topic",
+      "url": "/documentation/avkit/avexperiencecontroller/transition(to:)"
+    },
+    "doc://com.apple.avkit/documentation/AVKit/AVGroupExperienceCoordinator": {
+      "abstract": [
+        {
+          "text": "An object that synchronizes viewing environment state across participants in a SharePlay session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVGroupExperienceCoordinator"
+        }
+      ],
+      "identifier": "doc://com.apple.avkit/documentation/AVKit/AVGroupExperienceCoordinator",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVGroupExperienceCoordinator"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVGroupExperienceCoordinator",
+      "type": "topic",
+      "url": "/documentation/avkit/avgroupexperiencecoordinator"
+    },
+    "doc://com.apple.avkit/documentation/AVKit/AVMultiviewManager": {
+      "abstract": [
+        {
+          "text": "An object that manages viewing multiple videos at once.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVMultiviewManager"
+        }
+      ],
+      "identifier": "doc://com.apple.avkit/documentation/AVKit/AVMultiviewManager",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVMultiviewManager"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVMultiviewManager",
+      "type": "topic",
+      "url": "/documentation/avkit/avmultiviewmanager"
+    },
+    "doc://com.apple.avkit/documentation/AVKit/AVMultiviewManager/contentSelectionViewController": {
+      "abstract": [
+        {
+          "text": "A view controller that presents a user interface to select additional video content to display.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "contentSelectionViewController"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@M@AVKit@objc(cs)AVContentSelectionViewController",
+          "text": "AVContentSelectionViewController"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.avkit/documentation/AVKit/AVMultiviewManager/contentSelectionViewController",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "contentSelectionViewController",
+      "type": "topic",
+      "url": "/documentation/avkit/avmultiviewmanager/contentselectionviewcontroller"
+    },
+    "doc://com.apple.avkit/documentation/AVKit/AVPlayerViewController": {
+      "abstract": [
+        {
+          "text": "A view controller that displays content from a player and presents a native user interface to control playback.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVPlayerViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.avkit/documentation/AVKit/AVPlayerViewController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVPlayerViewController"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVPlayerViewController",
+      "type": "topic",
+      "url": "/documentation/avkit/avplayerviewcontroller"
+    },
+    "doc://com.apple.avkit/documentation/AVKit/AVPlayerViewController/experienceController": {
+      "abstract": [
+        {
+          "text": "The experience controller for this view controller.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "experienceController"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:5AVKit22AVExperienceControllerC",
+          "text": "AVExperienceController"
+        }
+      ],
+      "identifier": "doc://com.apple.avkit/documentation/AVKit/AVPlayerViewController/experienceController",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "experienceController",
+      "type": "topic",
+      "url": "/documentation/avkit/avplayerviewcontroller/experiencecontroller"
+    },
+    "doc://com.apple.avkit/documentation/AVKit/AVPlayerViewControllerDelegate": {
+      "abstract": [
+        {
+          "text": "A protocol that defines the methods to implement to respond to player view controller events.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVPlayerViewControllerDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.avkit/documentation/AVKit/AVPlayerViewControllerDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AVPlayerViewControllerDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "AVPlayerViewControllerDelegate",
+      "type": "topic",
+      "url": "/documentation/avkit/avplayerviewcontrollerdelegate"
+    },
+    "doc://com.apple.avkit/documentation/AVKit/adopting-the-system-player-interface-in-visionos": {
+      "abstract": [
+        {
+          "text": "Provide an optimized viewing experience for watching 3D video content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avkit/documentation/AVKit/adopting-the-system-player-interface-in-visionos",
+      "kind": "article",
+      "role": "article",
+      "title": "Adopting the system player interface in visionOS",
+      "type": "topic",
+      "url": "/documentation/avkit/adopting-the-system-player-interface-in-visionos"
+    },
+    "doc://com.apple.avkit/documentation/AVKit/trimming-and-exporting-media-in-visionos": {
+      "abstract": [
+        {
+          "text": "Display standard controls in your app to edit the timeline of the currently playing media.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.avkit/documentation/AVKit/trimming-and-exporting-media-in-visionos",
+      "kind": "article",
+      "role": "article",
+      "title": "Trimming and exporting media in visionOS",
+      "type": "topic",
+      "url": "/documentation/avkit/trimming-and-exporting-media-in-visionos"
+    },
+    "doc://com.apple.documentation/documentation/AVFoundation/AVPlayer": {
+      "abstract": [
+        {
+          "text": "An object that provides the interface to control the player’s transport behavior.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVPlayer"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVPlayer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AVPlayer",
+      "type": "topic",
+      "url": "/documentation/AVFoundation/AVPlayer"
+    },
+    "doc://com.apple.documentation/documentation/AVFoundation/AVPlayer/replaceCurrentItem(with:)": {
+      "abstract": [
+        {
+          "text": "Replaces the current item with a new item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "replaceCurrentItem"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "item"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVPlayerItem",
+          "text": "AVPlayerItem"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVPlayer/replaceCurrentItem(with:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "replaceCurrentItem(with:)",
+      "type": "topic",
+      "url": "/documentation/AVFoundation/AVPlayer/replaceCurrentItem(with:)"
+    },
+    "doc://com.apple.documentation/documentation/AVFoundation/AVPlayerItem": {
+      "abstract": [
+        {
+          "text": "An object that models the timing and presentation state of an asset during playback.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVPlayerItem"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVPlayerItem",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AVPlayerItem",
+      "type": "topic",
+      "url": "/documentation/AVFoundation/AVPlayerItem"
+    },
+    "doc://com.apple.documentation/documentation/AVFoundation/creating-images-from-a-video-asset": {
+      "abstract": [
+        {
+          "text": "Display images for specific times within the media timeline by generating images from a video’s frames.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFoundation/creating-images-from-a-video-asset",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating images from a video asset",
+      "type": "topic",
+      "url": "/documentation/AVFoundation/creating-images-from-a-video-asset"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/UIApplicationDelegateAdaptor": {
+      "abstract": [
+        {
+          "text": "A property wrapper type that you use to create a UIKit app delegate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@propertyWrapper"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIApplicationDelegateAdaptor"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "DelegateType"
+        },
+        {
+          "kind": "text",
+          "text": "> "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "DelegateType"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSObject",
+          "text": "NSObject"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "DelegateType"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)UIApplicationDelegate",
+          "text": "UIApplicationDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/UIApplicationDelegateAdaptor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIApplicationDelegateAdaptor",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/UIApplicationDelegateAdaptor"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/UIHostingController": {
+      "abstract": [
+        {
+          "text": "A UIKit view controller that manages a SwiftUI view hierarchy.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIHostingController"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": "> "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/UIHostingController",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIHostingController",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/UIHostingController"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/UIViewControllerRepresentable": {
+      "abstract": [
+        {
+          "text": "A view that represents a UIKit view controller.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIViewControllerRepresentable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP4BodyQa",
+          "text": "Body"
+        },
+        {
+          "kind": "text",
+          "text": " == "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5NeverO",
+          "text": "Never"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/UIViewControllerRepresentable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIViewControllerRepresentable",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/UIViewControllerRepresentable"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIWindowSceneDelegate": {
+      "abstract": [
+        {
+          "text": "Additional methods that you use to manage app-specific tasks occurring in a scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIWindowSceneDelegate"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)UISceneDelegate",
+          "text": "UISceneDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIWindowSceneDelegate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIWindowSceneDelegate",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIWindowSceneDelegate"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/design/human-interface-guidelines/designing-for-visionos": {
+      "identifier": "https://developer.apple.com/design/human-interface-guidelines/designing-for-visionos",
+      "title": "Human Interface Guidelines",
+      "titleInlineContent": [
+        {
+          "text": "Human Interface Guidelines",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/design/human-interface-guidelines/designing-for-visionos"
+    },
+    "multivideo-playback-visionos-overview": {
+      "alt": "A hero image of the multiview experience in a mock UI style.",
+      "identifier": "multivideo-playback-visionos-overview",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b76f906daa1bc5d62bd7efa28c78425e/multivideo-playback-visionos-overview@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/efbbf6a8f4d198258d14a58d5e457eed/multivideo-playback-visionos-overview~dark@2x.png"
+        }
+      ]
+    },
+    "multiview-video-button": {
+      "alt": "A visonOS screenshot of a video playing in the system player with a Back button, Environments button, and Multiview button at the top-left.",
+      "identifier": "multiview-video-button",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5cc8c4269b837f2842c275a5dfe3d4ad/multiview-video-button@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e5cb77ba8c99da49bfec02c8de5ee862/multiview-video-button~dark@2x.png"
+        }
+      ]
+    },
+    "multiview-video-content-selection-view": {
+      "alt": "A visionOS screenshot showing multiple videos playing in the system player with the content browser beneath them.",
+      "identifier": "multiview-video-content-selection-view",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/947a5c67182515af315c3b9f0b10482a/multiview-video-content-selection-view@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/7a3ffa1128e06f9837689cb58aac8a77/multiview-video-content-selection-view~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "25a7bf691a8e/CreatingAMultiviewVideoPlaybackExperienceInVisionOS.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "visionOS-Playback",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.avkit/documentation/AVKit/adopting-the-system-player-interface-in-visionos",
+        "doc://com.apple.avkit/documentation/AVKit/trimming-and-exporting-media-in-visionos",
+        "doc://com.apple.avkit/documentation/AVKit/AVPlayerViewController",
+        "doc://com.apple.avkit/documentation/AVKit/AVPlayerViewControllerDelegate",
+        "doc://com.apple.avkit/documentation/AVKit/AVExperienceController",
+        "doc://com.apple.avkit/documentation/AVKit/AVMultiviewManager",
+        "doc://com.apple.avkit/documentation/AVKit/AVGroupExperienceCoordinator"
+      ],
+      "title": "visionOS Playback"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFoundation~1AVPlayerItem/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AVPlayerItem"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFoundation~1AVPlayer/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AVPlayer"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVPlayerViewControllerDelegate/title",
+          "value": "AVPlayerViewControllerDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVPlayerViewControllerDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVPlayerViewControllerDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVPlayerViewControllerDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVPlayerViewControllerDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFoundation~1AVPlayer~1replaceCurrentItem(with:)/title",
+          "value": "replaceCurrentItemWithPlayerItem:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFoundation~1AVPlayer~1replaceCurrentItem(with:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "replaceCurrentItemWithPlayerItem:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)AVPlayerItem",
+              "text": "AVPlayerItem"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "item"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVPlayerViewController/title",
+          "value": "AVPlayerViewController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVPlayerViewController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVPlayerViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.avkit~1documentation~1AVKit~1AVPlayerViewController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AVPlayerViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIWindowSceneDelegate/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIWindowSceneDelegate"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)UISceneDelegate",
+              "text": "UISceneDelegate"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/avkit/creating-a-multiview-video-playback-experience-in-visionos"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

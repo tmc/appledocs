@@ -1,0 +1,383 @@
+{
+  "abstract": [
+    {
+      "text": "Create a custom control that adds AirPlay to your Safari media player. ",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/webkitjs"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.documentation/documentation/webkitjs/adding_an_airplay_button_to_your_safari_media_controls"
+  },
+  "kind": "article",
+  "legacy_identifier": 2940016,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "WebKit JS"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Adding an AirPlay button to your Safari media controls"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Although default controls are available for audio and video elements in your Safari webpage, you can also create your own custom media controls. One of the custom controls you should add is an AirPlay button.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "2940017",
+          "level": 3,
+          "text": "Write markup for a custom control ",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In this example, the custom controls for a video have only a Play button and a hidden Pause button: ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "<video id=\"video\" src=\"my-video.mp4\"></video>",
+            "<div id=\"controls\">",
+            "    <button id=\"playButton\">Play</button>",
+            "    <button id=\"pauseButton\" hidden>Pause</button>",
+            "</div>"
+          ],
+          "metadata": {
+            "abstract": [],
+            "anchor": "2940018",
+            "title": "Listing 1"
+          },
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "2940019",
+          "level": 3,
+          "text": "Add an AirPlay element to your markup ",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Add markup for the AirPlay button, setting it to hidden by default to mimic the behavior of the AirPlay button in default controls. The default button appears only when AirPlay is available.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "<video id=\"video\" src=\"my-video.mp4\"></video>",
+            "<div id=\"controls\">",
+            "    <button id=\"playButton\">Play</button>",
+            "    <button id=\"pauseButton\" hidden>Pause</button>",
+            "    <button id=\"airPlayButton\" hidden disabled>AirPlay</button>",
+            "</div> "
+          ],
+          "metadata": {
+            "abstract": [],
+            "anchor": "2940020",
+            "title": "Listing 2"
+          },
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "2940021",
+          "level": 3,
+          "text": "Add an event listener ",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To show the AirPlay button when AirPlay is available, you add an event listener for the ",
+              "type": "text"
+            },
+            {
+              "code": "webkitplaybacktargetavailabilitychanged",
+              "type": "codeVoice"
+            },
+            {
+              "text": " event. This event detects when AirPlay availability changes, and it changes the visibility of the AirPlay button from the above default markup. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "To conserve battery power, listen for this event only for as long as needed, and then stop listening. If the button is not visible, controls are hidden, or the user is in fullscreen mode, stop listening. ",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "code": [
+            "if (window.WebKitPlaybackTargetAvailabilityEvent) {",
+            "    video.addEventListener('webkitplaybacktargetavailabilitychanged',",
+            "        function(event) {",
+            "            switch (event.availability) {",
+            "            case \"available\":",
+            "                airPlayButton.hidden = false;",
+            "                airPlayButton.disabled = false;",
+            "                break;",
+            "            case \"not-available\":",
+            "                airPlayButton.hidden = true;",
+            "                airPlayButton.disabled = true;",
+            "                break;",
+            "        } }); ",
+            "} "
+          ],
+          "metadata": {
+            "abstract": [],
+            "anchor": "2940024",
+            "title": "Listing 3"
+          },
+          "syntax": "javascript",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "2940025",
+          "level": 3,
+          "text": "Select the AirPlay device ",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Add this block of code to use the native AirPlay route picker in your controls. With this route picker, you can add and select an available AirPlay device:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "if (!window.WebKitPlaybackTargetAvailabilityEvent)",
+            "    return;",
+            "var airPlayButton = document.getElementById(\"airPlayButton\");",
+            "var video = document.getElementById(\"video\");",
+            "airPlayButton.addEventListener('click', function(event) {",
+            "    video.webkitShowPlaybackTargetPicker();",
+            "});"
+          ],
+          "metadata": {
+            "abstract": [],
+            "anchor": "2940026",
+            "title": "Listing 4"
+          },
+          "syntax": "javascript",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "2940027",
+          "level": 3,
+          "text": "Ensure that styles persist when playing over AirPlay ",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the code below to listen for the event ",
+              "type": "text"
+            },
+            {
+              "code": "webkitcurrentplaybacktargetiswirelesschanged",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". This event fires when a media element starts or stops AirPlay playback. Use this event to update styles.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            " if (!window.WebKitPlaybackTargetAvailabilityEvent)",
+            "     return;",
+            " var video = document.getElementById(\"video\");",
+            " video.addEventListener('webkitcurrentplaybacktargetiswirelesschanged', ",
+            "     function(event) {",
+            "         updateAirPlayButtonWirelessStyle();",
+            "         updatePageDimmerForWirelessPlayback();",
+            "     });"
+          ],
+          "metadata": {
+            "abstract": [],
+            "anchor": "2940028",
+            "title": "Listing 5"
+          },
+          "syntax": "javascript",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.documentation/documentation/webkitjs": {
+      "identifier": "doc://com.apple.documentation/documentation/webkitjs",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "WebKit JS",
+      "type": "topic",
+      "url": "/documentation/webkitjs"
+    },
+    "doc://com.apple.documentation/documentation/webkitjs/adding_an_airplay_button_to_your_safari_media_controls": {
+      "abstract": [
+        {
+          "text": "Create a custom control that adds AirPlay to your Safari media player. ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/webkitjs/adding_an_airplay_button_to_your_safari_media_controls",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding an AirPlay button to your Safari media controls",
+      "type": "topic",
+      "url": "/documentation/webkitjs/adding_an_airplay_button_to_your_safari_media_controls"
+    },
+    "doc://com.apple.documentation/documentation/webkitjs/adding_an_airplay_button_to_your_safari_media_controls#2940018": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/webkitjs/adding_an_airplay_button_to_your_safari_media_controls#2940018",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/webkitjs/adding_an_airplay_button_to_your_safari_media_controls#2940018"
+    },
+    "doc://com.apple.documentation/documentation/webkitjs/adding_an_airplay_button_to_your_safari_media_controls#2940020": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/webkitjs/adding_an_airplay_button_to_your_safari_media_controls#2940020",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 2",
+      "type": "section",
+      "url": "/documentation/webkitjs/adding_an_airplay_button_to_your_safari_media_controls#2940020"
+    },
+    "doc://com.apple.documentation/documentation/webkitjs/adding_an_airplay_button_to_your_safari_media_controls#2940024": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/webkitjs/adding_an_airplay_button_to_your_safari_media_controls#2940024",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 3",
+      "type": "section",
+      "url": "/documentation/webkitjs/adding_an_airplay_button_to_your_safari_media_controls#2940024"
+    },
+    "doc://com.apple.documentation/documentation/webkitjs/adding_an_airplay_button_to_your_safari_media_controls#2940026": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/webkitjs/adding_an_airplay_button_to_your_safari_media_controls#2940026",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 4",
+      "type": "section",
+      "url": "/documentation/webkitjs/adding_an_airplay_button_to_your_safari_media_controls#2940026"
+    },
+    "doc://com.apple.documentation/documentation/webkitjs/adding_an_airplay_button_to_your_safari_media_controls#2940028": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/webkitjs/adding_an_airplay_button_to_your_safari_media_controls#2940028",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 5",
+      "type": "section",
+      "url": "/documentation/webkitjs/adding_an_airplay_button_to_your_safari_media_controls#2940028"
+    },
+    "doc://com.apple.documentation/documentation/webkitjs/adding_picture_in_picture_to_your_safari_media_controls": {
+      "abstract": [
+        {
+          "text": "Create a custom control that adds Picture in Picture to your Safari media player. ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/webkitjs/adding_picture_in_picture_to_your_safari_media_controls",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding Picture in Picture to your Safari media controls",
+      "type": "topic",
+      "url": "/documentation/webkitjs/adding_picture_in_picture_to_your_safari_media_controls"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/webkitjs/adding_picture_in_picture_to_your_safari_media_controls"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/webkitjs/adding_an_airplay_button_to_your_safari_media_controls"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,2820 @@
+{
+  "abstract": [
+    {
+      "text": "Use a water-submersion manager to receive water pressure, temperature, and depth data on Apple Watch Ultra.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.coremotion/documentation/CoreMotion"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.coremotion/documentation/CoreMotion/accessing-submersion-data"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Core Motion"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Accessing submersion data"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Apple Watch Ultra can collect water pressure, depth, and temperature data while submerged; however, before your app can access this data, you need to perform the following setup steps:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Include an Apple-supplied entitlement that grants access to the submersion data.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Provide an information property list key that describes why the app needs access to submersion data.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Add the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "underwater-depth",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " Background Mode capability to the app.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Verify that the submersion manager is available on the current device.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To start monitoring submersion data, instantiate a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMWaterSubmersionManager",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and assign a delegate to the submersion manager. The system begins sending updates to your delegate. You can then start an extended runtime session when the watch first submerges, and transition your app to a touchless user interface for the duration of the dive.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-the-required-entitlement",
+          "level": 3,
+          "text": "Add the required entitlement",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before you can instantiate the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMWaterSubmersionManager",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class, your app needs to include a Submerged Depth and Pressure entitlement to access submersion data.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To access data for dives with a maximum depth of 6 meters, add the Shallow Depth and Pressure capability to your app. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Xcode/adding-capabilities-to-your-app",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To enable a maximum depth of 40 meters, you need to apply for the full Submersion Depth and Pressure entitlement. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/contact/request/submerged-depth-pressure-api-development/",
+              "isActive": true,
+              "type": "reference"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you instantiate the manager without an entitlement, the system calls your delegate’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMWaterSubmersionManagerDelegate/manager(_:errorOccurred:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method, passing a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMErrorNotEntitled",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " error, and your delegate doesn’t receive any additional data.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Authorize-access-to-motion-data",
+          "level": 3,
+          "text": "Authorize access to motion data",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system automatically asks the wearer for authorization to access motion data when you first instantiate a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMWaterSubmersionManager",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "; however, before you can instantiate the manager, you need to include the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSMotionUsageDescription",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " key in your app target’s information property list and provide a usage description string.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-4110816",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system displays this usage description when it prompts the wearer for authorization to access motion data. If you don’t include a usage description string, your app crashes when you try to instantiate a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMWaterSubmersionManager",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-support-for-the-underwater-depth-extended-runtime-session",
+          "level": 3,
+          "text": "Add support for the underwater depth extended runtime session",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To make sure your app continues to run, and remains visible, you need to add the ",
+              "type": "text"
+            },
+            {
+              "code": "underwater-depth",
+              "type": "codeVoice"
+            },
+            {
+              "text": " Background Mode to your app’s ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file. This background mode lets your app run as the frontmost app during a dive session.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Open the ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file as XML by Control-clicking it in the Project navigator and selecting Open As > Source Code. Next, edit the string value for the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/WKBackgroundModes",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " key so that it contains the ",
+              "type": "text"
+            },
+            {
+              "code": "underwater-depth",
+              "type": "codeVoice"
+            },
+            {
+              "text": " value.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "<?xml version=\"1.0\" encoding=\"UTF-8\"?>",
+            "<!DOCTYPE plist PUBLIC \"-//Apple//DTD PLIST 1.0//EN\" \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">",
+            "<plist version=\"1.0\">",
+            "<dict>",
+            "    <key>WKBackgroundModes</key>",
+            "    <array>",
+            "        <string>underwater-depth</string>",
+            "    </array>",
+            "</dict>",
+            "</plist>",
+            ""
+          ],
+          "syntax": "xml",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your app doesn’t already have an ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file, you can add a placeholder, and then edit it using the following steps:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select your app’s WatchKit Extension target and click the Signing & Capabilities tab.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Choose Editor > Add Capability and double-click the Background Modes capability to add it to the Signing & Capabilities pane.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Choose an option to use as a placeholder from the Session Type pop-up menu. The ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Info.plist",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " file appears in the Project navigator.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Open the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Info.plist",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " file as XML source code and replace the placeholder string value for the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/WKBackgroundModes",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " key with the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "underwater-depth",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " value.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Adding the ",
+              "type": "text"
+            },
+            {
+              "code": "underwater-depth",
+              "type": "codeVoice"
+            },
+            {
+              "text": " Background Mode capability to your ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file lets your app run an extended runtime session so that it can remain the frontmost app for the duration of the dive session. It also adds your app to the list of apps that the system can autolaunch when the wearer submerges the watch.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Unlike most extended runtime sessions, your app doesn’t need to start an extended runtime session to gain additional time as the frontmost app. Just by adding this key, the system automatically keeps your app as the frontmost app for 30 minutes after the wearer launches it. This gives the wearer time to prepare for the dive before submerging. Then, after you start an extended runtime session, your app remains the frontmost app for the duration of the dive. The session doesn’t time out until the watch spends more than 10 minutes unsubmerged or the wearer turns off Water Lock.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you don’t explicitly start an extended runtime session, the system automatically starts a runtime session when the wearer dives below 1 meter, and your app transitions to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMWaterSubmersionMeasurement/DepthState/submergedDeep",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " state.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Verify-that-the-submersion-data-is-available-on-the-current-device",
+          "level": 3,
+          "text": "Verify that the submersion data is available on the current device.",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before creating a submersion manager, verify that the data is available on the current device.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "guard CMWaterSubmersionManager.waterSubmersionAvailable else {",
+            "    return false",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "On Apple Watch Ultra, the system sets ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMWaterSubmersionManager/waterSubmersionAvailable",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/swift/true",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". On all other devices and in Simulator, the system sets it to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/swift/false",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Start-monitoring-submersion-data",
+          "level": 3,
+          "text": "Start monitoring submersion data",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To begin receiving submersion data, instantiate a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMWaterSubmersionManager",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object and assign a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMWaterSubmersionManagerDelegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Instantiate the submersion manager.",
+            "submersionManager = CMWaterSubmersionManager()",
+            "",
+            "// Assign the submersion manager delegate.",
+            "submersionManager.delegate = self"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your delegate begins to receive data as soon as you assign it. For example, your delegate receives both event notifications and errors.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Respond to events.",
+            "nonisolated func manager(_ manager: CMWaterSubmersionManager, didUpdate event: CMWaterSubmersionEvent) {",
+            "",
+            "    let submerged: Bool?",
+            "    switch event.state {",
+            "    case .unknown:",
+            "        logger.info(\"*** Received an unknown event. ***\")",
+            "        submerged = nil",
+            "",
+            "    case .notSubmerged:",
+            "        logger.info(\"*** Not Submerged Event ***\")",
+            "        submerged = false",
+            "",
+            "    case .submerged:",
+            "        logger.info(\"*** Submerged Event ***\")",
+            "        submerged = true",
+            "",
+            "    @unknown default:",
+            "        fatalError(\"*** Unknown event received: \\(event.state) ***\")",
+            "    }",
+            "",
+            "    Task {",
+            "        await myAdd(event: event)",
+            "        if let submerged {",
+            "            await mySet(submerged: submerged)",
+            "        }",
+            "    }",
+            "}",
+            "",
+            "// Respond to errors.",
+            "nonisolated func manager(_ manager: CMWaterSubmersionManager, errorOccurred error: Error) {",
+            "    logger.error(\"*** An error occurred: \\(error.localizedDescription) ***\")",
+            "}",
+            ""
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your delegate also begins receiving measurement updates. If the watch isn’t submerged, the updates only include surface pressure and submersion state data. After submersion, it also receives water pressure and depth data. The system sends measurement updates three times a second while the watch is submerged. When the watch is on the surface, the system provides updates at a slower rate, and may stop providing updates if the watch isn’t moving.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "nonisolated func manager(_ manager: CMWaterSubmersionManager, didUpdate measurement: CMWaterSubmersionMeasurement) {",
+            "",
+            "    logger.info(\"*** Received a depth measurement. ***\")",
+            "",
+            "    let currentDepth: String",
+            "    if let depth = measurement.depth {",
+            "        currentDepth = \"\\(depth.value) \\(depth.unit)\"",
+            "    } else {",
+            "        currentDepth = \"None\"",
+            "    }",
+            "",
+            "    let currentSurfacePressure: String",
+            "    let surfacePressure = measurement.surfacePressure",
+            "    currentSurfacePressure = \"\\(surfacePressure.value) \\(surfacePressure.unit)\"",
+            "",
+            "    let currentPressure: String",
+            "    if let pressure = measurement.pressure {",
+            "        currentPressure = \"\\(pressure.value) \\(pressure.unit)\"",
+            "    } else {",
+            "        currentPressure = \"None\"",
+            "    }",
+            "",
+            "    logger.info(\"*** Depth: \\(currentDepth) ***\")",
+            "    logger.info(\"*** Surface Pressure: \\(currentSurfacePressure) ***\")",
+            "    logger.info(\"*** Pressure: \\(currentPressure) ***\")",
+            "",
+            "    let submerged: Bool?",
+            "    switch measurement.submersionState {",
+            "    case .unknown:",
+            "        logger.info(\"*** Unknown Depth ***\")",
+            "        submerged = nil",
+            "    case .notSubmerged:",
+            "        logger.info(\"*** Not Submerged ***\")",
+            "        submerged = false",
+            "    case .submergedShallow:",
+            "        logger.info(\"*** Shallow Depth ***\")",
+            "        submerged = true",
+            "    case .submergedDeep:",
+            "        logger.info(\"*** Deep Depth ***\")",
+            "        submerged = true",
+            "    case .approachingMaxDepth:",
+            "        logger.info(\"*** Approaching Max Depth ***\")",
+            "        submerged = true",
+            "    case .pastMaxDepth:",
+            "        logger.info(\"*** Past Max Depth ***\")",
+            "        submerged = true",
+            "    case .sensorDepthError:",
+            "        logger.info(\"*** A depth error has occurred. ***\")",
+            "        submerged = nil",
+            "    @unknown default:",
+            "        fatalError(\"*** An unknown measurement depth state: \\(measurement.submersionState)\")",
+            "    }",
+            "",
+            "    Task {",
+            "        await myAdd(measurement: measurement)",
+            "        if let submerged {",
+            "            await mySet(submerged: submerged)",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The watch also receives water temperature data when it’s submerged.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "nonisolated func manager(_ manager: CMWaterSubmersionManager, didUpdate measurement: CMWaterTemperature) {",
+            "    let temp = measurement.temperature",
+            "    let uncertainty = measurement.temperatureUncertainty",
+            "    let currentTemperature = \"\\(temp.value) +/- \\(uncertainty.value) \\(temp.unit)\"",
+            "",
+            "    logger.info((\"*** \\(currentTemperature) ***\"))",
+            "",
+            "    Task {",
+            "        await myAdd(temperature:measurement)",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The water temperature readings can take some time to converge on the correct value. The system estimates how long it takes to converge to the correct results, and calculates an uncertainty value based on the expected convergence.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Start-a-dive-session",
+          "level": 3,
+          "text": "Start a dive session",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can start an extended runtime session as the wearer begins their dive.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func myStartDiveSession() {",
+            "    logger.info(\"*** Starting a dive session. ***\")",
+            "",
+            "    // Create the extended runtime session.",
+            "    let session = WKExtendedRuntimeSession()",
+            "",
+            "    // Assign a delegate to the session.",
+            "    session.delegate = self",
+            "",
+            "    // Start the session.",
+            "    session.start()",
+            "",
+            "    self.extendedRuntimeSession = session",
+            "    diveSessionRunning = true",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This session continues to run until:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You explicitly cancel the session by calling ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/WatchKit/WKExtendedRuntimeSession/invalidate()",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " on it.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The wearer turns off Water Lock.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Your app remains in the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMWaterSubmersionEvent/State-swift.enum/notSubmerged",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " state for at least 10 minutes.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/WatchKit/using-extended-runtime-sessions",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Transition-to-a-touchless-user-interface",
+          "level": 3,
+          "text": "Transition to a touchless user interface",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Starting an extended runtime session automatically enables Water Lock on the watch. As a result, the system disables the watch’s touchscreen for the duration of the dive. If you want the wearer to interact with your app during the dive, you need to enable interaction using either the Digital Crown or the Action button.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Many views, like ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/List",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/ScrollView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Picker",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", automatically respond to the Digital Crown. The wearer can interact with these elements without needing any changes to the user interface.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct MyPickerView: View {",
+            "",
+            "    enum Action: String, CaseIterable, Identifiable {",
+            "        case none, action1, action2, action3",
+            "        var id: Self { self }",
+            "    }",
+            "",
+            "    @State var selection: Action = .none",
+            "",
+            "    var body: some View {",
+            "        Text(selection.rawValue)",
+            "        Picker(\"Action\", selection: $selection) {",
+            "            ForEach(Action.allCases) { action in",
+            "                Text(action.rawValue.capitalized)",
+            "            }",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can also use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/digitalCrownRotation(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " view modifier to respond directly when the wearer rotates the Digital Crown.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct DigitalCrown: View {",
+            "    @State private var crownValue = 0.0",
+            "",
+            "    var body: some View {",
+            "        Text(\"\\(crownValue)\")",
+            "            .focusable()",
+            "            .digitalCrownRotation($crownValue,",
+            "                                  from: 1,",
+            "                                  through: 10,",
+            "                                  by: 1.0,",
+            "                                  sensitivity: .low,",
+            "                                  isHapticFeedbackEnabled: true)",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For the Action button, implement a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppIntents/StartDiveIntent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to launch your app and prepare for a new dive when the wearer first presses the Action button. You can then donate an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppIntents/AppIntent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for the Action button’s next action. If the wearer presses the Action button any other time during the session, it triggers the next action. Your app can have only one next action at a time, and donating a new intent changes the next action — letting you customize the next action based on your app’s current state.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Create an intent to launch your app and set up the dive manager.",
+            "struct MyStartDiveSessionIntent: StartDiveIntent {",
+            "",
+            "    static var title: LocalizedStringResource = \"Starting a dive session.\"",
+            "",
+            "    func perform() async throws -> some IntentResult {",
+            "        logger.debug(\"*** Starting a dive session. ***\")",
+            "",
+            "        await MyDiveManager.shared.start()",
+            "        return .result(actionButtonIntent: MyBeginDescent())",
+            "    }",
+            "}",
+            "",
+            "// Create an intent that defines the Action button's next action.",
+            "struct MyBeginDescent: AppIntent {",
+            "",
+            "    static var title: LocalizedStringResource = \"Start Your Descent\"",
+            "",
+            "    func perform() async throws -> some IntentResult {",
+            "        logger.debug(\"*** Starting the descent. ***\")",
+            "        await MyDiveManager.shared.beginDescent()",
+            "        return .result()",
+            "    }",
+            "}",
+            ""
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppIntents/ActionButtonArticle",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Handle-automatic-dive-sessions",
+          "level": 3,
+          "text": "Handle automatic dive sessions",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you don’t explicitly start an extended runtime session, the system automatically starts a session when the wearer descends below 1 meter. It then passes the session to your app delegate’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/WatchKit/WKApplicationDelegate/handle(_:)-7kiwx",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. To use this session, add a delegate and save it to a variable that remains in scope for the entire dive’s duration.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func handle(_ extendedRuntimeSession: WKExtendedRuntimeSession) {",
+            "    // The system starts a session because the wearer is more than",
+            "    // 1 meter underwater without an active extended runtime session.",
+            "",
+            "    let submersionSession = MySubmersionSession.shared",
+            "",
+            "    // Assign a delegate to the session.",
+            "    extendedRuntimeSession.delegate = submersionSession",
+            "",
+            "    submersionSession.extendedRuntimeSession = extendedRuntimeSession",
+            "    submersionSession.diveSessionRunning = true",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Respond-to-autolaunch",
+          "level": 3,
+          "text": "Respond to autolaunch",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "On Apple Watch Ultra, the wearer can tell the system to launch an app when the watch becomes submerged. To enable this feature, they choose Settings > General > Auto-Launch and select the Auto-Launch App setting from the When Submerged group. They can also select which app the system launches.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system adds your app to the list of autolaunchable apps as soon as you add the ",
+              "type": "text"
+            },
+            {
+              "code": "underwater-depth",
+              "type": "codeVoice"
+            },
+            {
+              "text": " Background Mode capability to your app’s ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file. This means your app needs to respond appropriately if the wearer sets it as the autolaunch app, and jumps into the water without otherwise interacting with your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, you can set up your app’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMWaterSubmersionManager",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " when your app launches. This ensures that your app is always ready to receive submersion data. Then, when the wearer descends below 1 meter, you can use your ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/WatchKit/WKApplicationDelegate/handle(_:)-7kiwx",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to grab the automatically generated extended runtime session. Alternatively, if you prefer to explicitly start your own extended runtime session, you can start the session when your app receives a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMWaterSubmersionEvent/State-swift.enum/submerged",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " event.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Test-submersion-data",
+          "level": 3,
+          "text": "Test submersion data",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Always test submersion data on Apple Watch Ultra. You can’t instantiate the submersion manager in Simulator. To trigger a submersion event, you need to submerge Apple Watch Ultra in a tank of water at least 1 foot deep. When testing in a pressurized container, make sure the watch is completely submerged in water.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the water isn’t deep enough to trigger a submersion event, you can enable Easy Submersion mode using a paired iPhone. Connect the phone to your Mac and in Xcode 14.2 or later, select Debug > Induce Device Conditions > Easy Submersion > Enable Easy Submersion.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.coremotion/documentation/CoreMotion": {
+      "abstract": [
+        {
+          "text": "Process accelerometer, gyroscope, pedometer, and environment-related events.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Motion",
+      "type": "topic",
+      "url": "/documentation/coremotion"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMErrorNotEntitled": {
+      "abstract": [
+        {
+          "text": "The app is missing a required entitlement.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMErrorNotEntitled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@EA@CMError",
+          "text": "CMError"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMErrorNotEntitled",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMErrorNotEntitled"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMErrorNotEntitled",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmerrornotentitled"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMWaterSubmersionEvent": {
+      "abstract": [
+        {
+          "text": "An event indicating that the device’s submersion state has changed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMWaterSubmersionEvent"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMWaterSubmersionEvent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMWaterSubmersionEvent"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMWaterSubmersionEvent",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmwatersubmersionevent"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMWaterSubmersionEvent/State-swift.enum/notSubmerged": {
+      "abstract": [
+        {
+          "text": "The device isn’t submerged in water.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "notSubmerged"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMWaterSubmersionEvent/State-swift.enum/notSubmerged",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMWaterSubmersionStateNotSubmerged"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMWaterSubmersionEvent.State.notSubmerged",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmwatersubmersionevent/state-swift.enum/notsubmerged"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMWaterSubmersionEvent/State-swift.enum/submerged": {
+      "abstract": [
+        {
+          "text": "The device is submerged in water.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "submerged"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMWaterSubmersionEvent/State-swift.enum/submerged",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMWaterSubmersionStateSubmerged"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMWaterSubmersionEvent.State.submerged",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmwatersubmersionevent/state-swift.enum/submerged"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMWaterSubmersionManager": {
+      "abstract": [
+        {
+          "text": "An object for managing the collection of pressure and temperature data during submersion.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMWaterSubmersionManager"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMWaterSubmersionManager",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMWaterSubmersionManager"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMWaterSubmersionManager",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmwatersubmersionmanager"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMWaterSubmersionManager/waterSubmersionAvailable": {
+      "abstract": [
+        {
+          "text": "A Boolean value indicating whether the current device supports the submersion manager.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "waterSubmersionAvailable"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMWaterSubmersionManager/waterSubmersionAvailable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "waterSubmersionAvailable"
+        }
+      ],
+      "role": "symbol",
+      "title": "waterSubmersionAvailable",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmwatersubmersionmanager/watersubmersionavailable"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMWaterSubmersionManagerDelegate": {
+      "abstract": [
+        {
+          "text": "A delegate that receives updates about ambient pressure, water pressure, water temperature, and submersion events.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMWaterSubmersionManagerDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMWaterSubmersionManagerDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMWaterSubmersionManagerDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMWaterSubmersionManagerDelegate",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmwatersubmersionmanagerdelegate"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMWaterSubmersionManagerDelegate/manager(_:errorOccurred:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate when an error occurs.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "manager"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CMWaterSubmersionManager",
+          "text": "CMWaterSubmersionManager"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "errorOccurred"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMWaterSubmersionManagerDelegate/manager(_:errorOccurred:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "manager:errorOccurred:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "manager(_:errorOccurred:)",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmwatersubmersionmanagerdelegate/manager(_:erroroccurred:)"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMWaterSubmersionMeasurement": {
+      "abstract": [
+        {
+          "text": "An update that contains data about the pressure and depth.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMWaterSubmersionMeasurement"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMWaterSubmersionMeasurement",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMWaterSubmersionMeasurement"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMWaterSubmersionMeasurement",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmwatersubmersionmeasurement"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMWaterSubmersionMeasurement/DepthState/submergedDeep": {
+      "abstract": [
+        {
+          "text": "The device is submerged at least 1 meter under water.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "submergedDeep"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMWaterSubmersionMeasurement/DepthState/submergedDeep",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMWaterSubmersionDepthStateSubmergedDeep"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMWaterSubmersionMeasurement.DepthState.submergedDeep",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmwatersubmersionmeasurement/depthstate/submergeddeep"
+    },
+    "doc://com.apple.coremotion/documentation/CoreMotion/CMWaterTemperature": {
+      "abstract": [
+        {
+          "text": "An update that contains data about the water temperature.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMWaterTemperature"
+        }
+      ],
+      "identifier": "doc://com.apple.coremotion/documentation/CoreMotion/CMWaterTemperature",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMWaterTemperature"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMWaterTemperature",
+      "type": "topic",
+      "url": "/documentation/coremotion/cmwatertemperature"
+    },
+    "doc://com.apple.documentation/documentation/AppIntents/ActionButtonArticle": {
+      "abstract": [
+        {
+          "text": "Use App Intents to register actions for your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppIntents/ActionButtonArticle",
+      "kind": "article",
+      "role": "article",
+      "title": "Responding to the Action button on Apple Watch Ultra",
+      "type": "topic",
+      "url": "/documentation/AppIntents/ActionButtonArticle"
+    },
+    "doc://com.apple.documentation/documentation/AppIntents/AppIntent": {
+      "abstract": [
+        {
+          "text": "An interface for providing an app-specific capability that people invoke from system experiences like Siri and the Shortcuts app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AppIntent"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents24PersistentlyIdentifiableP",
+          "text": "PersistentlyIdentifiable"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "_SupportsAppDependencies"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8SendableP",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppIntents/AppIntent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AppIntent",
+      "type": "topic",
+      "url": "/documentation/AppIntents/AppIntent"
+    },
+    "doc://com.apple.documentation/documentation/AppIntents/StartDiveIntent": {
+      "abstract": [
+        {
+          "text": "An App Intent that lets people start a dive session when they press the Action button on Apple Watch Ultra.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "StartDiveIntent"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10AppIntents12SystemIntentP",
+          "text": "SystemIntent"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppIntents/StartDiveIntent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "StartDiveIntent",
+      "type": "topic",
+      "url": "/documentation/AppIntents/StartDiveIntent"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSMotionUsageDescription": {
+      "abstract": [
+        {
+          "text": "A message that tells the user why the app is requesting access to the device’s motion data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSMotionUsageDescription",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSMotionUsageDescription",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/NSMotionUsageDescription"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/WKBackgroundModes": {
+      "abstract": [
+        {
+          "text": "The services a watchOS app provides that require it to continue running in the background.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/WKBackgroundModes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "WKBackgroundModes",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/WKBackgroundModes"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/List": {
+      "abstract": [
+        {
+          "text": "A container that presents rows of data arranged in a single column, optionally providing the ability to select one or more members.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "attribute",
+          "text": "@preconcurrency"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "List"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "SelectionValue"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": "> "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "SelectionValue"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SH",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/List",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "List",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/List"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/Picker": {
+      "abstract": [
+        {
+          "text": "A control for selecting from a set of mutually exclusive values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Picker"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Label"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "SelectionValue"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": "> "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Label"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "SelectionValue"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SH",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/Picker",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Picker",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/Picker"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/ScrollView": {
+      "abstract": [
+        {
+          "text": "A scrollable view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ScrollView"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": "> "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Content"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/ScrollView",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ScrollView",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/ScrollView"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/View/digitalCrownRotation(_:)": {
+      "abstract": [
+        {
+          "text": "Tracks Digital Crown rotations by updating the specified binding.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "nonisolated"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "digitalCrownRotation"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "V"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "binding"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI7BindingV",
+          "text": "Binding"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "V"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI4ViewP",
+          "text": "View"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "V"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SB",
+          "text": "BinaryFloatingPoint"
+        },
+        {
+          "kind": "text",
+          "text": "\n"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/View/digitalCrownRotation(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "digitalCrownRotation(_:)",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/View/digitalCrownRotation(_:)"
+    },
+    "doc://com.apple.documentation/documentation/WatchKit/WKApplicationDelegate/handle(_:)-7kiwx": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that the system launched your app to resume an extended runtime session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "optional"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "handle"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "extendedRuntimeSession"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)WKExtendedRuntimeSession",
+          "text": "WKExtendedRuntimeSession"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/WatchKit/WKApplicationDelegate/handle(_:)-7kiwx",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "handle(_:)",
+      "type": "topic",
+      "url": "/documentation/WatchKit/WKApplicationDelegate/handle(_:)-7kiwx"
+    },
+    "doc://com.apple.documentation/documentation/WatchKit/WKExtendedRuntimeSession/invalidate()": {
+      "abstract": [
+        {
+          "text": "Stops the session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "invalidate"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/WatchKit/WKExtendedRuntimeSession/invalidate()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "invalidate()",
+      "type": "topic",
+      "url": "/documentation/WatchKit/WKExtendedRuntimeSession/invalidate()"
+    },
+    "doc://com.apple.documentation/documentation/WatchKit/using-extended-runtime-sessions": {
+      "abstract": [
+        {
+          "text": "Create an extended runtime session that continues running your app after the user stops interacting with it.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/WatchKit/using-extended-runtime-sessions",
+      "kind": "article",
+      "role": "article",
+      "title": "Using extended runtime sessions",
+      "type": "topic",
+      "url": "/documentation/WatchKit/using-extended-runtime-sessions"
+    },
+    "doc://com.apple.documentation/documentation/Xcode/adding-capabilities-to-your-app": {
+      "abstract": [
+        {
+          "text": "Configure your target to include and customize capabilities that provide access to Apple’s app services.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Xcode/adding-capabilities-to-your-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding capabilities to your app",
+      "type": "topic",
+      "url": "/documentation/Xcode/adding-capabilities-to-your-app"
+    },
+    "doc://com.apple.documentation/documentation/swift/false": {
+      "abstract": [
+        {
+          "text": "A false value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/swift/false",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "false",
+      "type": "topic",
+      "url": "/documentation/swift/false"
+    },
+    "doc://com.apple.documentation/documentation/swift/true": {
+      "abstract": [
+        {
+          "text": "A true value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/swift/true",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "true",
+      "type": "topic",
+      "url": "/documentation/swift/true"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/contact/request/submerged-depth-pressure-api-development/": {
+      "identifier": "https://developer.apple.com/contact/request/submerged-depth-pressure-api-development/",
+      "title": "the Submerged Depth and Pressure entitlement request form.",
+      "titleInlineContent": [
+        {
+          "text": "the Submerged Depth and Pressure entitlement request form.",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/contact/request/submerged-depth-pressure-api-development/"
+    },
+    "media-4110816": {
+      "alt": "An Xcode screenshot of an app target’s information property list, with the Motion Usage Description key highlighted.",
+      "identifier": "media-4110816",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/abf9523bc09713905a9cee676772037e/media-4110816@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1e8f9b8d36501816b1cedf6abf120b8b/media-4110816~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Water-submersion",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.coremotion/documentation/CoreMotion/CMWaterSubmersionManager",
+        "doc://com.apple.coremotion/documentation/CoreMotion/CMWaterSubmersionManagerDelegate",
+        "doc://com.apple.coremotion/documentation/CoreMotion/CMWaterSubmersionEvent",
+        "doc://com.apple.coremotion/documentation/CoreMotion/CMWaterSubmersionMeasurement",
+        "doc://com.apple.coremotion/documentation/CoreMotion/CMWaterTemperature"
+      ],
+      "title": "Water submersion"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Water-submersion",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.coremotion/documentation/CoreMotion/CMWaterSubmersionManager",
+                "doc://com.apple.coremotion/documentation/CoreMotion/CMWaterSubmersionManagerDelegate",
+                "doc://com.apple.coremotion/documentation/CoreMotion/CMWaterSubmersionEvent",
+                "doc://com.apple.coremotion/documentation/CoreMotion/CMWaterSubmersionMeasurement",
+                "doc://com.apple.coremotion/documentation/CoreMotion/CMWaterTemperature"
+              ],
+              "title": "Water submersion"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMWaterSubmersionManagerDelegate/title",
+          "value": "CMWaterSubmersionManagerDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMWaterSubmersionManagerDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMWaterSubmersionManagerDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMWaterSubmersionManagerDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMWaterSubmersionManagerDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMWaterTemperature/title",
+          "value": "CMWaterTemperature"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMWaterTemperature/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMWaterTemperature"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMWaterTemperature/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMWaterTemperature"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMWaterSubmersionMeasurement~1DepthState~1submergedDeep/title",
+          "value": "CMWaterSubmersionDepthStateSubmergedDeep"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMWaterSubmersionMeasurement~1DepthState~1submergedDeep/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMWaterSubmersionDepthStateSubmergedDeep"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMWaterSubmersionManagerDelegate~1manager(_:errorOccurred:)/title",
+          "value": "manager:errorOccurred:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMWaterSubmersionManagerDelegate~1manager(_:errorOccurred:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "manager:errorOccurred:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMErrorNotEntitled/title",
+          "value": "CMErrorNotEntitled"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMErrorNotEntitled/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMErrorNotEntitled"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1WatchKit~1WKExtendedRuntimeSession~1invalidate()/title",
+          "value": "invalidate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1WatchKit~1WKExtendedRuntimeSession~1invalidate()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "invalidate"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMWaterSubmersionMeasurement/title",
+          "value": "CMWaterSubmersionMeasurement"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMWaterSubmersionMeasurement/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMWaterSubmersionMeasurement"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMWaterSubmersionMeasurement/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMWaterSubmersionMeasurement"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMWaterSubmersionEvent/title",
+          "value": "CMWaterSubmersionEvent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMWaterSubmersionEvent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMWaterSubmersionEvent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMWaterSubmersionEvent/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMWaterSubmersionEvent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1WatchKit~1WKApplicationDelegate~1handle(_:)-7kiwx/title",
+          "value": "handleExtendedRuntimeSession:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1WatchKit~1WKApplicationDelegate~1handle(_:)-7kiwx/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "handleExtendedRuntimeSession:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)WKExtendedRuntimeSession",
+              "text": "WKExtendedRuntimeSession"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "extendedRuntimeSession"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMWaterSubmersionEvent~1State-swift.enum~1submerged/title",
+          "value": "CMWaterSubmersionStateSubmerged"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMWaterSubmersionEvent~1State-swift.enum~1submerged/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMWaterSubmersionStateSubmerged"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMWaterSubmersionEvent~1State-swift.enum~1notSubmerged/title",
+          "value": "CMWaterSubmersionStateNotSubmerged"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMWaterSubmersionEvent~1State-swift.enum~1notSubmerged/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMWaterSubmersionStateNotSubmerged"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMWaterSubmersionManager/title",
+          "value": "CMWaterSubmersionManager"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMWaterSubmersionManager/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMWaterSubmersionManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMWaterSubmersionManager/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMWaterSubmersionManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMWaterSubmersionManager~1waterSubmersionAvailable/title",
+          "value": "waterSubmersionAvailable"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremotion~1documentation~1CoreMotion~1CMWaterSubmersionManager~1waterSubmersionAvailable/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "waterSubmersionAvailable"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/coremotion/accessing-submersion-data"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/coremotion/accessing-submersion-data"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

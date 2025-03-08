@@ -1,0 +1,663 @@
+{
+  "abstract": [
+    {
+      "text": "The panel is created as a transparent panel (sometimes called a “heads-up display”).",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.appkit/documentation/AppKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.appkit/documentation/AppKit/NSHUDWindowMask"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@NSHUDWindowMask",
+    "fragments": [
+      {
+        "kind": "identifier",
+        "text": "NSHUDWindowMask"
+      }
+    ],
+    "modules": [
+      {
+        "name": "AppKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "NSHUDWindowMask"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "deprecatedAt": "10.12",
+        "introducedAt": "10.0",
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Global Variable",
+    "symbolKind": "var",
+    "title": "NSHUDWindowMask"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "Mac Catalyst",
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "static"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "const"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSWindow/StyleMask-swift.struct",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@E@NSWindowStyleMask",
+              "text": "NSWindowStyleMask"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSHUDWindowMask"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Valid only for an instance of ",
+              "type": "text"
+            },
+            {
+              "code": "NSPanel",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or its subclasses; not valid for a window.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Using the C bitwise OR operator, ",
+              "type": "text"
+            },
+            {
+              "code": "NSHUDWindowMask",
+              "type": "codeVoice"
+            },
+            {
+              "text": " can be combined with other style masks (some of which are documented in Window Style Masks) with the following results:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Borderless window with transparent panel transparency and window level. A panel that uses ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "NSBorderlessWindowMask",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " can’t become key unless you implement ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.appkit/documentation/AppKit/NSWindow/canBecomeKey",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": " to return ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.documentation/documentation/swift/true",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": ". Note that you can also set a panel’s style mask to ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "NSBorderlessWindowMask",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " in Interface Builder by deselecting Title Bar in the Appearance section of the Attributes inspector.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "NSBorderlessWindowMask",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Titled window with transparent panel transparency and window level. This combination can be additionally combined with any of the following:",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  },
+                  {
+                    "items": [
+                      {
+                        "definition": {
+                          "content": [
+                            {
+                              "inlineContent": [
+                                {
+                                  "text": "Titled window with transparent panel close box, transparency, and window level.",
+                                  "type": "text"
+                                }
+                              ],
+                              "type": "paragraph"
+                            }
+                          ]
+                        },
+                        "term": {
+                          "inlineContent": [
+                            {
+                              "code": "NSClosableWindowMask",
+                              "type": "codeVoice"
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "definition": {
+                          "content": [
+                            {
+                              "inlineContent": [
+                                {
+                                  "text": "Titled window with transparent panel resize corner, transparency, and window level.",
+                                  "type": "text"
+                                }
+                              ],
+                              "type": "paragraph"
+                            }
+                          ]
+                        },
+                        "term": {
+                          "inlineContent": [
+                            {
+                              "code": "NSResizableWindowMask",
+                              "type": "codeVoice"
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "definition": {
+                          "content": [
+                            {
+                              "inlineContent": [
+                                {
+                                  "text": "No effect on appearance, but owning app is not necessarily active when this window is the key window.",
+                                  "type": "text"
+                                }
+                              ],
+                              "type": "paragraph"
+                            }
+                          ]
+                        },
+                        "term": {
+                          "inlineContent": [
+                            {
+                              "code": "NSNonactivatingPanelMask",
+                              "type": "codeVoice"
+                            }
+                          ]
+                        }
+                      }
+                    ],
+                    "type": "termList"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "NSTitledWindowMask",
+                    "type": "codeVoice"
+                  },
+                  {
+                    "text": " ",
+                    "type": "text"
+                  },
+                  {
+                    "code": "|",
+                    "type": "codeVoice"
+                  },
+                  {
+                    "text": " ",
+                    "type": "text"
+                  },
+                  {
+                    "code": "NSUtilityWindowMask",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following constants cannot be combined with ",
+              "type": "text"
+            },
+            {
+              "code": "NSHUDWindowMask",
+              "type": "codeVoice"
+            },
+            {
+              "text": ": ",
+              "type": "text"
+            },
+            {
+              "code": "NSMiniaturizableWindowMask",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "NSTexturedBackgroundWindowMask",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "NSDocModalWindowMask",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "code": "NSUnifiedTitleAndToolbarWindowMask",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.appkit/documentation/AppKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your macOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AppKit",
+      "type": "topic",
+      "url": "/documentation/appkit"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSDocModalWindowMask": {
+      "abstract": [
+        {
+          "text": "The panel is created as a modal sheet.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "NSDocModalWindowMask"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSDocModalWindowMask",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSDocModalWindowMask",
+      "type": "topic",
+      "url": "/documentation/appkit/nsdocmodalwindowmask"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSHUDWindowMask": {
+      "abstract": [
+        {
+          "text": "The panel is created as a transparent panel (sometimes called a “heads-up display”).",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "NSHUDWindowMask"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSHUDWindowMask",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSHUDWindowMask",
+      "type": "topic",
+      "url": "/documentation/appkit/nshudwindowmask"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSNonactivatingPanelMask": {
+      "abstract": [
+        {
+          "text": "The panel can receive keyboard input without activating the owning app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "NSNonactivatingPanelMask"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSNonactivatingPanelMask",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSNonactivatingPanelMask",
+      "type": "topic",
+      "url": "/documentation/appkit/nsnonactivatingpanelmask"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSUtilityWindowMask": {
+      "abstract": [
+        {
+          "text": "The panel is created as a floating window.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "NSUtilityWindowMask"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSUtilityWindowMask",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSUtilityWindowMask",
+      "type": "topic",
+      "url": "/documentation/appkit/nsutilitywindowmask"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSWindow/StyleMask-swift.struct": {
+      "abstract": [
+        {
+          "text": "Constants that specify the style of a window, and that you can combine with the C bitwise OR operator.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "StyleMask"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSWindow/StyleMask-swift.struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "StyleMask"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSWindow.StyleMask",
+      "type": "topic",
+      "url": "/documentation/appkit/nswindow/stylemask-swift.struct"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSWindow/canBecomeKey": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the window can become the key window.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "canBecomeKey"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSWindow/canBecomeKey",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "canBecomeKeyWindow"
+        }
+      ],
+      "role": "symbol",
+      "title": "canBecomeKey",
+      "type": "topic",
+      "url": "/documentation/appkit/nswindow/canbecomekey"
+    },
+    "doc://com.apple.documentation/documentation/swift/true": {
+      "abstract": [
+        {
+          "text": "A true value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/swift/true",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "true",
+      "type": "topic",
+      "url": "/documentation/swift/true"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Constants",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSDocModalWindowMask",
+        "doc://com.apple.appkit/documentation/AppKit/NSUtilityWindowMask",
+        "doc://com.apple.appkit/documentation/AppKit/NSNonactivatingPanelMask"
+      ],
+      "title": "Constants"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindow~1StyleMask-swift.struct/title",
+          "value": "NSWindowStyleMask"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindow~1StyleMask-swift.struct/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSWindowStyleMask"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindow~1StyleMask-swift.struct/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSWindowStyleMask"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindow~1canBecomeKey/title",
+          "value": "canBecomeKeyWindow"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSWindow~1canBecomeKey/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "canBecomeKeyWindow"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/appkit/nshudwindowmask"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

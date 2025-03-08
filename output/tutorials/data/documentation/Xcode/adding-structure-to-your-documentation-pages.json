@@ -1,0 +1,1332 @@
+{
+  "abstract": [
+    {
+      "text": "Make symbols easier to find by arranging them into groups and collections.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Xcode/documentation/Xcode",
+        "doc://com.apple.Xcode/documentation/Xcode/writing-documentation"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Xcode/documentation/Xcode/adding-structure-to-your-documentation-pages"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Adding structure to your documentation pages"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "By default, when DocC generates documentation for a project, it creates a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "top-level page that groups the symbols by their kind. For frameworks and packages,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "DocC includes the public symbols, and for app targets, it includes both",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the internal and public symbols. You can then provide additional context to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "explain how your app or framework works and how different symbols relate to each",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "other.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For a more tailored learning experience, use one or more of the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "following approaches:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Customize the main landing page for your documentation catalog to introduce",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "your technology and organize its top-level symbols.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Add symbol-specific extension files that organize nested symbols, such as",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "methods and properties.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use collections to group multiple symbols and introduce hierarchy to",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "the navigation of your documentation pages.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about how to use DocC for adding structure to the documentation, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://www.swift.org/documentation/docc/adding-structure-to-your-documentation-pages",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Customize-your-documentations-landing-page",
+          "level": 3,
+          "text": "Customize your documentation’s landing page",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "landing page",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " provides an overview of your technology, introduces important",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "terms, and organizes the resources within your ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "documentation catalog",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " — the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "files that enrich your source documentation comments. The landing page is an",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "opportunity for you to ease the reader’s learning path, discuss key features of",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "your technology, and offer motivation for the reader to return to when they need",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "landing-page",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you add a documentation catalog to your project, Xcode automatically",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "includes an empty landing page. For more information, see",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/documenting-apps-frameworks-and-packages",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you need to manually add a landing page to your documentation catalog,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "follow these steps:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In Xcode, select your documentation catalog in the Project navigator.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Choose File > New > File to open the file template chooser.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select the Empty template in the Documentation section and click Next.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Enter a filename and click Create. Xcode creates",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "a Markdown file that contains only a placeholder for the page title.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "empty-markdown-file",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use a filename that matches the target’s product module name. For example, for the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "SlothCreator",
+              "type": "codeVoice"
+            },
+            {
+              "text": " framework, the filename is ",
+              "type": "text"
+            },
+            {
+              "code": "SlothCreator.md",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "For targets with spaces in the product name, Xcode replaces the spaces with underscores",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "in the product module name. To find the product module name in an Xcode project,",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "select the target in the",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "project editor, click the Build Settings tab, and enter Product Module Name in the",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "search field.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Arrange-top-level-symbols-using-topic-groups",
+          "level": 3,
+          "text": "Arrange top-level symbols using topic groups",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "By default, DocC arranges the symbols in your project according to their",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "kind. For example, the compiler generates topic groups for classes, structures,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "protocols, and so forth. You then add information to explain the relationships",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "between those symbols.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To help readers more easily navigate your framework, arrange symbols into",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "groups with meaningful names. Place important symbols higher on the page, and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "nest supporting symbols inside other symbols. Use group names that are unique,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "mutually exclusive, and clear. Experiment with different",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "arrangements to find what works best for you.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "top-level-curation",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To override the default organization and manually arrange the top-level symbols in your technology,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "add a Topics section to your technology’s landing page.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Below any content already in the Markdown file, add a double hash (",
+              "type": "text"
+            },
+            {
+              "code": "##",
+              "type": "codeVoice"
+            },
+            {
+              "text": "), a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "space, and the ",
+              "type": "text"
+            },
+            {
+              "code": "Topics",
+              "type": "codeVoice"
+            },
+            {
+              "text": " keyword.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "## Topics"
+          ],
+          "syntax": "markdown",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After the Topics header, create a named section for each group using a triple",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "hash (",
+              "type": "text"
+            },
+            {
+              "code": "###",
+              "type": "codeVoice"
+            },
+            {
+              "text": "), and add one or more top-level symbols to each section.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Precede each symbol with a dash (",
+              "type": "text"
+            },
+            {
+              "code": "-",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") and encapsulate it in a pair of double",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "backticks (``) .",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "## Topics",
+            "",
+            "### Creating sloths",
+            "",
+            "- ``SlothGenerator``",
+            "- ``NameGenerator``",
+            "- ``Habitat``",
+            "",
+            "### Caring for sloths",
+            "",
+            "- ``Activity``",
+            "- ``CareSchedule``",
+            "- ``FoodGenerator``",
+            "- ``Sloth/Food``"
+          ],
+          "syntax": "markdown",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "DocC uses the double backtick format to create symbol links, and to add the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "symbol’s type information and summary. For more information, see",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://www.swift.org/documentation/docc/formatting-your-documentation-content",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you rebuild your documentation, the documentation viewer reflects these",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "organizational changes in the navigation pane and on the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "landing page, as the image above shows.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Arrange-nested-symbols-in-extension-files",
+          "level": 3,
+          "text": "Arrange nested symbols in extension files",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Not all symbols appear on the top-level landing page. For example,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "classes and structures define methods and properties, and in some cases, nested",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "classes or structures introduce additional levels of hierarchy.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As with the top-level landing page, DocC generates default topic groups for",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "nested symbols according to their type. Use extension files to override this",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "default organization and provide a more appropriate structure for your symbols.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "child-curation",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To add an extension file to your documentation catalog for a specific symbol,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "do the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In Xcode, select your documentation catalog in the Project navigator.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Choose File > New > File to open the file template chooser.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select the Extension File template in the Documentation section and click",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "Next.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Enter the symbol name as the filename and click Create.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "template-chooser",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the extension file, replace the ",
+              "type": "text"
+            },
+            {
+              "code": "Symbol",
+              "type": "codeVoice"
+            },
+            {
+              "text": " placeholder",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "with the absolute path to the symbol.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The absolute path is the target’s product module name followed by the symbol name.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "# ``SlothCreator/Sloth``"
+          ],
+          "syntax": "markdown",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Extension File template includes a ",
+              "type": "text"
+            },
+            {
+              "code": "Topics",
+              "type": "codeVoice"
+            },
+            {
+              "text": " section with a single named",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "group, ready for you to fill out. Alternatively, if your documentation catalog",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "already contains an extension file for a specific symbol, add a ",
+              "type": "text"
+            },
+            {
+              "code": "Topics",
+              "type": "codeVoice"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "section to it by following the steps in the previous section.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As with the landing page, create named sections for each topic group",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "using a triple hash (",
+              "type": "text"
+            },
+            {
+              "code": "###",
+              "type": "codeVoice"
+            },
+            {
+              "text": "), and add the necessary symbols to each section",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "using the double backtick (``) syntax.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "# ``SlothCreator/Sloth``",
+            "",
+            "## Topics",
+            "",
+            "### Creating a sloth",
+            "",
+            "- ``init(name:color:power:)``",
+            "- ``SlothGenerator``",
+            "",
+            "### Activities",
+            "",
+            "- ``eat(_:quantity:)``",
+            "- ``sleep(in:for:)``",
+            "",
+            "### Schedule",
+            "",
+            "- ``schedule``"
+          ],
+          "syntax": "markdown",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Use a symbol’s full path to include it from elsewhere in the",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "documentation hierarchy.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Tip",
+          "style": "tip",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you arrange nested symbols in an extension file, choose Product > Build",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Documentation to compile your changes and review them in Xcode’s documentation",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "viewer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Xcode-PageImage-card.png": {
+      "alt": "The Xcode logo on a blue gradient background.",
+      "identifier": "Xcode-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cc63eacd8f7f660388b46204d1d9bbcb/Xcode-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/62dba87d5f60ec96eb48882c9dff86d8/Xcode-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "child-curation": {
+      "alt": "Two side-by-side images that show different arrangements of a symbol’s methods and properties. The image on the left shows the basic arrangement that DocC generates by default. The image on the right shows a custom arrangement that includes more descriptive headers and content.",
+      "identifier": "child-curation",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/d6830d5a3171e99c56198bd5508a3281/child-curation@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/fa5bddad8cef427ce581af9566670e87/child-curation~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Xcode/documentation/Xcode": {
+      "abstract": [
+        {
+          "text": "Build, test, and submit your app with Apple’s integrated development environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode",
+      "images": [
+        {
+          "identifier": "Xcode-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/documenting-apps-frameworks-and-packages": {
+      "abstract": [
+        {
+          "text": "Create developer documentation from in-source comments, add articles with code snippets,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "and add tutorials for a guided learning experience.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/documenting-apps-frameworks-and-packages",
+      "kind": "article",
+      "role": "article",
+      "title": "Documenting apps, frameworks, and packages",
+      "type": "topic",
+      "url": "/documentation/xcode/documenting-apps-frameworks-and-packages"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/writing-documentation": {
+      "abstract": [
+        {
+          "text": "Produce rich and engaging developer documentation for your apps, frameworks, and packages.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/writing-documentation",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Writing documentation",
+      "type": "topic",
+      "url": "/documentation/xcode/writing-documentation"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "empty-markdown-file": {
+      "alt": "A screenshot of Xcode’s file template chooser with the Empty template in a selected state in the Documentation section.",
+      "identifier": "empty-markdown-file",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/923c839b16190ba2c307c941acaf21cb/empty-markdown-file@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5a94ea7750e22bea21801a1fc6de1c32/empty-markdown-file~dark@2x.png"
+        }
+      ]
+    },
+    "https://www.swift.org/documentation/docc/adding-structure-to-your-documentation-pages": {
+      "identifier": "https://www.swift.org/documentation/docc/adding-structure-to-your-documentation-pages",
+      "title": "Adding Structure to Your Documentation Pages at Swift.org",
+      "titleInlineContent": [
+        {
+          "text": "Adding Structure to Your Documentation Pages at Swift.org",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://www.swift.org/documentation/docc/adding-structure-to-your-documentation-pages"
+    },
+    "https://www.swift.org/documentation/docc/formatting-your-documentation-content": {
+      "identifier": "https://www.swift.org/documentation/docc/formatting-your-documentation-content",
+      "title": "Formatting Your Documentation Content Swift.org",
+      "titleInlineContent": [
+        {
+          "text": "Formatting Your Documentation Content Swift.org",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://www.swift.org/documentation/docc/formatting-your-documentation-content"
+    },
+    "landing-page": {
+      "alt": "Two side-by-side images of a framework’s top-level page. The image on the left shows the basic empty page that DocC generates by default. The image on the right shows a customized landing page that includes additional content and a color graphic.",
+      "identifier": "landing-page",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a50a02fc4acb28bad8a02a49b9995d77/landing-page@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a74f79f916b266a904dae3cc899517ae/landing-page~dark@2x.png"
+        }
+      ]
+    },
+    "template-chooser": {
+      "alt": "A screenshot of Xcode’s file template chooser with the Extension File template in a selected state in the Documentation section.",
+      "identifier": "template-chooser",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/0f0de2bc8921361b053edd373c693422/template-chooser@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e0701be50a19b5114ee914c9cc2fd951/template-chooser~dark@2x.png"
+        }
+      ]
+    },
+    "top-level-curation": {
+      "alt": "Two side-by-side images that show different arrangements of a framework’s top-level symbols. The image on the left shows the basic arrangement that DocC generates by default. The image on the right shows a custom arrangement that includes more descriptive headers and content.",
+      "identifier": "top-level-curation",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/434c99a6e12b1d2313011c2612cefc75/top-level-curation@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/04fe6ba30aa217c97707b8729257d128/top-level-curation~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": []
+}

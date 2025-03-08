@@ -1,0 +1,1064 @@
+{
+  "abstract": [
+    {
+      "text": "Guide learners toward a solution by hiding some symbols and showing others.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Swift-Playgrounds/documentation/swift-playgrounds",
+        "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/playground-books"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/customizing-the-completions-in-the-shortcut-bar"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Customizing the Completions in the Shortcut Bar"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can customize the code completions shown in the shortcut bar by hiding and showing",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "different symbols or sets of symbols. You can change the completions shown while",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "editing any part of the playground page.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following image shows customized code completion in the Learn to Code 1 playground",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "book. The shortcut bar has been customized to show only four methods instead of all",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "possible completions, such as public symbols from the Swift standard library or the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "current module.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "customizing-the-completions-in-the-shortcut-bar-1",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-Code-Completion-Comments",
+          "level": 3,
+          "text": "Add Code Completion Comments",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Specify the completions you want to show or hide by using the ",
+              "type": "text"
+            },
+            {
+              "code": "code-completion",
+              "type": "codeVoice"
+            },
+            {
+              "text": " delimiter",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "on a line by itself without any preceding whitespace.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "customizing-the-completions-in-the-shortcut-bar-2",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use this delimiter to add or remove a symbol or group of symbols from the list of",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "possible completions. In the first argument, ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "namespace",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", specify the space of possible",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "symbols. In the next argument, specify the action to take: add symbols (",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "show",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ") or",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "remove symbols (",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "hide",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ") from the list of possible code completions. Some combinations",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of namespace and action include an optional comma-separated list of completions,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "such as function names or module names.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can include many ",
+              "type": "text"
+            },
+            {
+              "code": "code-completion",
+              "type": "codeVoice"
+            },
+            {
+              "text": " delimiters on a playground page. The list",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of possible completions that a learner sees in the shortcut bar consists of all of",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the symbols visible at the current insertion point. The ",
+              "type": "text"
+            },
+            {
+              "code": "code-completion",
+              "type": "codeVoice"
+            },
+            {
+              "text": " delimiters",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "after the current insertion point don’t take effect until the insertion point is",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "moved to a line below those delimeters in the source editor.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Select-the-Symbol-Namespace",
+          "level": 3,
+          "text": "Select the Symbol Namespace",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "namespace",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " argument of the ",
+              "type": "text"
+            },
+            {
+              "code": "code-completion",
+              "type": "codeVoice"
+            },
+            {
+              "text": " delimiter to select the scope",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of the symbols that you’re showing or hiding. You can use any of the following values",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to select the symbol namespace:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Any public symbol from the Swift source files in the ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "Sources",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " directory for the book.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "bookauxiliarymodule",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Any public symbol from the Swift source files in the ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "Sources",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " directory for the current chapter.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "chapterauxiliarymodule",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Any public symbol from the current playground page.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "currentmodule",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Any public symbol in the comma-separated list of strings.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  },
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Completions: A list of string literals to match against symbol completions based",
+                        "type": "text"
+                      },
+                      {
+                        "text": " ",
+                        "type": "text"
+                      },
+                      {
+                        "text": "on the name displayed in the shortcut bar.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "description",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Any public symbol from any module.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "everything",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Any public identifier in the comma-separated list of arguments.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  },
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Completions: A list of identifiers, including function names, punctuation, variables,",
+                        "type": "text"
+                      },
+                      {
+                        "text": " ",
+                        "type": "text"
+                      },
+                      {
+                        "text": "and any other symbols.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "identifier",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Any keyword in the comma-separated list of arguments.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  },
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Completions: ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "for",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "func",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "if",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "let",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "var",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", and ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "while",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "keyword",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Any literal in the comma-separated list of arguments.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  },
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Completions: ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "array",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "boolean",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "color",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "dictionary",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "image",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "integer",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "nil",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ",",
+                        "type": "text"
+                      },
+                      {
+                        "text": " ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "string",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ", and ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "tuple",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "literal",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Any public symbol in the specified modules.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  },
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Completions: A list of modules.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "module",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Any public symbol from the Swift source files in the ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "Sources",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": " directory for the current page.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "pageauxiliarymodule",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Any code snippet in the comma-separated list of arguments.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  },
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Completions: A list of snippet names.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "snippet",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use a combination of namespaces to select the symbols you want to appear. The example",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "below shows a sequence of code-completion delimiters that hide and show certain symbols.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "//#-code-completion(everything, hide)",
+            "//#-code-completion(identifier, show, moveForward(), turnLeft(), collectGem(), toggleSwitch())",
+            "//#-code-completion(identifier, hide, turnLeft())",
+            "//#-code-completion(identifier, show, turnRight())",
+            "//#-code-completion(keyword, for)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you need to disambiguate among overloaded symbols, use the ",
+              "type": "text"
+            },
+            {
+              "code": "description",
+              "type": "codeVoice"
+            },
+            {
+              "text": " namespace",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "selector instead of the ",
+              "type": "text"
+            },
+            {
+              "code": "identifier",
+              "type": "codeVoice"
+            },
+            {
+              "text": " namespace selector. The ",
+              "type": "text"
+            },
+            {
+              "code": "description",
+              "type": "codeVoice"
+            },
+            {
+              "text": " namespace",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "includes type information you can use to select specific overloads.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "//#-code-completion(identifier, show, randomInt(from:to:), turnLock(up:numberOfTimes:)",
+            "//#-code-completion(description, show, \"randomInt(from: Int, to: Int)\", \"turnLock(up: Book, numberOfTimes: Int)\")"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "customizing-the-completions-in-the-shortcut-bar-1": {
+      "alt": "Screenshot showing a playground page. The shortcut bar is highlighted; it only shows 4 available completions because other candidates have been hidden.",
+      "identifier": "customizing-the-completions-in-the-shortcut-bar-1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/8db8887eba191c0cc76125546bcdb4f3/customizing-the-completions-in-the-shortcut-bar-1@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/978e8771c0055670da52ad6d6d211c22/customizing-the-completions-in-the-shortcut-bar-1~dark@2x.png"
+        }
+      ]
+    },
+    "customizing-the-completions-in-the-shortcut-bar-2": {
+      "alt": "Diagram that shows the syntax of a code completion delimiter. The first line starts with “//#-code-completion(”, followed by a namespace placeholder, followed by the text “, hide”, followed by a completions placeholder, terminated with “)”. The second line includes the same text, except that “hide” is replaced by “show”. ",
+      "identifier": "customizing-the-completions-in-the-shortcut-bar-2",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/edfab22682532d7fc9cd533af138242a/customizing-the-completions-in-the-shortcut-bar-2@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/hiding-code-from-a-playground-page": {
+      "abstract": [
+        {
+          "text": "Use special Swift comments to hide code from display but continue to run it.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/hiding-code-from-a-playground-page",
+      "kind": "article",
+      "role": "article",
+      "title": "Hiding Code from a Playground Page",
+      "type": "topic",
+      "url": "/documentation/swift-playgrounds/hiding-code-from-a-playground-page"
+    },
+    "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/localizing-code-comments-and-string-literals": {
+      "abstract": [
+        {
+          "text": "In Swift Playgrounds 3.0 and later, mark up code zones to replace them with code that’s localized for the current user.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/localizing-code-comments-and-string-literals",
+      "kind": "article",
+      "role": "article",
+      "title": "Localizing Code Comments and String Literals",
+      "type": "topic",
+      "url": "/documentation/swift-playgrounds/localizing-code-comments-and-string-literals"
+    },
+    "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/playground-books": {
+      "abstract": [
+        {
+          "text": "Create interactive Playground Book based learning experiences for the Swift Playgrounds app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/playground-books",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Playground Books",
+      "type": "topic",
+      "url": "/documentation/swift-playgrounds/playground-books"
+    },
+    "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/specifying-editable-regions-in-a-playground-page": {
+      "abstract": [
+        {
+          "text": "Guide learning by marking code that learners can change or copy forward.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/specifying-editable-regions-in-a-playground-page",
+      "kind": "article",
+      "role": "article",
+      "title": "Specifying Editable Regions in a Playground Page",
+      "type": "topic",
+      "url": "/documentation/swift-playgrounds/specifying-editable-regions-in-a-playground-page"
+    },
+    "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/writing-prose-for-a-playground-page": {
+      "abstract": [
+        {
+          "text": "Add comment markers in your Swift code to mark text as prose.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/writing-prose-for-a-playground-page",
+      "kind": "article",
+      "role": "article",
+      "title": "Writing Prose for a Playground Page",
+      "type": "topic",
+      "url": "/documentation/swift-playgrounds/writing-prose-for-a-playground-page"
+    },
+    "doc://com.apple.Swift-Playgrounds/documentation/swift-playgrounds": {
+      "abstract": [
+        {
+          "text": "Learn to write apps, repurpose sample code, create, and share learning experiences in Swift Playgrounds.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift-Playgrounds/documentation/swift-playgrounds",
+      "kind": "article",
+      "role": "collection",
+      "title": "Swift Playgrounds",
+      "type": "topic",
+      "url": "/documentation/swift-playgrounds"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Annotations",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/writing-prose-for-a-playground-page",
+        "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/specifying-editable-regions-in-a-playground-page",
+        "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/hiding-code-from-a-playground-page",
+        "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/localizing-code-comments-and-string-literals"
+      ],
+      "title": "Annotations"
+    }
+  ]
+}

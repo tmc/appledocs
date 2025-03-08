@@ -1,0 +1,610 @@
+{
+  "abstract": [
+    {
+      "text": "Grant extensions access to files from within your browser app.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit",
+        "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/extension-resources"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/accessing-files-in-browser-extensions"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "BrowserEngineKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Accessing files in browser extensions"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To share access to a file with one of your browser’s extensions, your browser app creates a file bookmark with implicit security scope. It sends the bookmark to the extension process, which resolves the bookmark to get a URL that the extension can use to access the file.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The bookmark your browser app sends is valid for the lifetime of the receiving extension process.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "If you invalidate the extension process or restart it because of a problem, your browser app needs to send the bookmark again for the extension to regain access to the file.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-a-file-bookmark",
+          "level": 3,
+          "text": "Create a file bookmark",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In your browser app, call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/url/2143023-bookmarkdata",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " on a URL for the file to which you want to share access.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsurl/bookmarkcreationoptions/1409050-minimalbookmark",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " option to get a minimal bookmark that uses fewer resources when you send it to your extension.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let url = URL(fileURLWithFileSystemRepresentation: thePath,",
+            "  isDirectory: false,",
+            "  relativeTo: nil);",
+            "let bookmark = url.bookmarkData(options: .minimalBookmark)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To give access to a directory, use the value ",
+              "type": "text"
+            },
+            {
+              "code": "true",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for the ",
+              "type": "text"
+            },
+            {
+              "code": "isDirectory",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter when you create the URL.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Send-the-bookmark-to-the-extension",
+          "level": 3,
+          "text": "Send the bookmark to the extension",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use your browser’s interprocess communication (IPC) protocol to send the bookmark to your extension process.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For information on using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/XPC",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " as the IPC mechanism, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/using-xpc-to-communicate-with-browser-extensions",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Resolve-the-bookmark",
+          "level": 3,
+          "text": "Resolve the bookmark",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In your extension, create a URL for the file by resolving the bookmark data you receive from the browser app.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Resolving the bookmark causes the operating system to automatically start your extension’s access to the resource, which extends your extension process’s sandbox to include the bookmarked file.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "When you finish accessing the file, you must call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/url/1780153-stopaccessingsecurityscopedresou",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to avoid leaking kernel resources.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let url = try URL(resolvingBookmarkData: bookmark,",
+            "  options: .withoutUI)",
+            "// Use the file.",
+            "url.stopAccessingSecurityScopedResource()"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the resolved URL identifies a directory, your extension process receives access to that directory and all of its contents, including contents located recursively in subdirectories.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit": {
+      "abstract": [
+        {
+          "text": "Create a browser that renders content using an alternative browser engine.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "BrowserEngineKit",
+      "type": "topic",
+      "url": "/documentation/browserenginekit"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/RestrictedSandboxAppliable": {
+      "abstract": [
+        {
+          "text": "A protocol that browser extensions implement to opt into a more restricted sandbox.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RestrictedSandboxAppliable"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/RestrictedSandboxAppliable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RestrictedSandboxAppliable"
+        }
+      ],
+      "role": "symbol",
+      "title": "RestrictedSandboxAppliable",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/restrictedsandboxappliable"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/RestrictedSandboxRevision": {
+      "abstract": [
+        {
+          "text": "Revisions to the restricted sandbox rules.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RestrictedSandboxRevision"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/RestrictedSandboxRevision",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RestrictedSandboxRevision"
+        }
+      ],
+      "role": "symbol",
+      "title": "RestrictedSandboxRevision",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/restrictedsandboxrevision"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/attributing-memory-to-a-content-extension": {
+      "abstract": [
+        {
+          "text": "Adhere to operating-system limits on GPU memory use.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/attributing-memory-to-a-content-extension",
+      "kind": "article",
+      "role": "article",
+      "title": "Attributing memory to a content extension",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/attributing-memory-to-a-content-extension"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/extension-resources": {
+      "abstract": [
+        {
+          "text": "Control access to files and memory in browser extensions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/extension-resources",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Extension resources",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/extension-resources"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/limiting-resource-access-in-content-extensions": {
+      "abstract": [
+        {
+          "text": "Reduce the impact of vulnerabilities in web content extensions by limiting privileges.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/limiting-resource-access-in-content-extensions",
+      "kind": "article",
+      "role": "article",
+      "title": "Limiting resource access in web content extensions",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/limiting-resource-access-in-content-extensions"
+    },
+    "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/using-xpc-to-communicate-with-browser-extensions": {
+      "abstract": [
+        {
+          "text": "Build interprocess communication between your host app and extensions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/using-xpc-to-communicate-with-browser-extensions",
+      "kind": "article",
+      "role": "article",
+      "title": "Using XPC to communicate with browser extensions",
+      "type": "topic",
+      "url": "/documentation/browserenginekit/using-xpc-to-communicate-with-browser-extensions"
+    },
+    "doc://com.apple.documentation/documentation/XPC": {
+      "abstract": [
+        {
+          "text": "Access a low-level interprocess communication mechanism.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/XPC",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "XPC",
+      "type": "topic",
+      "url": "/documentation/XPC"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurl/bookmarkcreationoptions/1409050-minimalbookmark": {
+      "abstract": [
+        {
+          "text": "Specifies that when creating a bookmark, it includes minimal information.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static var "
+        },
+        {
+          "kind": "identifier",
+          "text": "minimalBookmark"
+        },
+        {
+          "kind": "text",
+          "text": ": NSURL.BookmarkCreationOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurl/bookmarkcreationoptions/1409050-minimalbookmark",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "minimalBookmark",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurl/bookmarkcreationoptions/1409050-minimalbookmark"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/1780153-stopaccessingsecurityscopedresou": {
+      "abstract": [
+        {
+          "text": "Revokes the access granted to the url by a prior successful call to the complementary start function.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "stopAccessingSecurityScopedResource"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/1780153-stopaccessingsecurityscopedresou",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "stopAccessingSecurityScopedResource()",
+      "type": "topic",
+      "url": "/documentation/foundation/url/1780153-stopaccessingsecurityscopedresou"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/2143023-bookmarkdata": {
+      "abstract": [
+        {
+          "text": "Returns bookmark data for the URL, created with specified options and resource values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "bookmarkData"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": URL.BookmarkCreationOptions, "
+        },
+        {
+          "kind": "identifier",
+          "text": "includingResourceValuesForKeys"
+        },
+        {
+          "kind": "text",
+          "text": ": Set<URLResourceKey>?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "relativeTo"
+        },
+        {
+          "kind": "text",
+          "text": ": URL?) -> Data"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/2143023-bookmarkdata",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "bookmarkData(options:includingResourceValuesForKeys:relativeTo:)",
+      "type": "topic",
+      "url": "/documentation/foundation/url/2143023-bookmarkdata"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Access-control",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/limiting-resource-access-in-content-extensions",
+        "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/attributing-memory-to-a-content-extension",
+        "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/RestrictedSandboxAppliable",
+        "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/RestrictedSandboxRevision"
+      ],
+      "title": "Access control"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Access-control",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/limiting-resource-access-in-content-extensions",
+                "doc://com.apple.BrowserEngineKit/documentation/BrowserEngineKit/attributing-memory-to-a-content-extension"
+              ],
+              "title": "Access control"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1nsurl~1bookmarkcreationoptions~11409050-minimalbookmark/title",
+          "value": "NSURLBookmarkCreationMinimalBookmark"
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/browserenginekit/accessing-files-in-browser-extensions"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/browserenginekit/accessing-files-in-browser-extensions"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

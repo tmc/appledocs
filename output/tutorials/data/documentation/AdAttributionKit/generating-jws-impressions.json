@@ -1,0 +1,868 @@
+{
+  "abstract": [
+    {
+      "text": "Create a JSON Web Signature (JWS) for use with app impressions in AdAttributionKit.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/generating-jws-impressions"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "AdAttributionKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Generating JWS impressions"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A JSON Web Signature (JWS) is an open standard (",
+              "type": "text"
+            },
+            {
+              "identifier": "https://datatracker.ietf.org/doc/html/rfc7515",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ") that defines a way to securely transmit information. AdAttributionKit requires a JWS to create an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/AppImpression",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". You create the JWS and sign it with your private key. For more information about creating keys, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/registering-an-ad-network",
+              "isActive": true,
+              "type": "reference"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To generate a signed compact JWS:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create the JOSE (JSON Object Signing and Encryption) header.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create the JWS payload.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Sign the JWS.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "anchor": "Create-the-JOSE-header",
+          "level": 2,
+          "text": "Create the JOSE header",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create a JWS impression to use with AdAttributionKit, use the following fields and values in the header:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "alignments": [
+            "left",
+            "left"
+          ],
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Header field",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Value",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "alg - encryption algorithm",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "ES256 — All JWSs for AdAttributionKit require signing with ES256 encryption.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "kid - your ad network ID",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ad network ID you receive during ad network registration (for example, a string similar to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "example.adattributionkit",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": "). You can also use your existing SKAdNetwork ad network ID, which ends with ",
+                      "type": "text"
+                    },
+                    {
+                      "code": ".skadnetwork",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Here’s an example of a JOSE header:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "    {",
+            "        \"alg\": \"ES256\",",
+            "        \"kid\": \"example.adattributionkit\"",
+            "    }"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Create-the-JWS-payload",
+          "level": 2,
+          "text": "Create the JWS payload",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The JWS payload contains information about the advertisement, such as the advertised app item ID, publisher app item ID, source identifier, and type of impression. Use the following fields to include these values in the JWS payload:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "alignments": [
+            "left",
+            "left"
+          ],
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Payload field",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Value",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "impression-identifier",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/AppImpression/id-swift.property",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "publisher-item-identifier",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/AppImpression/publisherItemID",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "impression-type",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The impression type, ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "\"app-impression\"",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "ad-network-identifier",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A string that defines the ad network, such as ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "example.adattributionkit",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "source-identifier",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The hierarchical source identifier, which may include two, three, or four digits",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "timestamp",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The time the ad network created the impression, in milliseconds since 1970",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "advertised-item-identifier",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/AppImpression/advertisedItemID",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "eligible-for-re-engagement",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A Boolean value that indicates whether the impression is eligible for reengagement. (optional)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Here’s an example of a JWS payload:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            " \"impression-identifier\": \"7aa9f8cc-5689-4c02-b963-22ca22136015\",",
+            " \"publisher-item-identifier\": 0,",
+            " \"impression-type\": \"app-impression\",",
+            " \"ad-network-identifier\": \"example.adattributionkit\",",
+            " \"source-identifier\": 5239,",
+            " \"timestamp\": 1679790422446,",
+            " \"advertised-item-identifier\": 1108187390",
+            "}"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create impressions eligible for reengagement conversions, add the following field and value to the JWS payload:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "    // Other payload properties.",
+            "    \"eligible-for-re-engagement\": true",
+            "}"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Sign-the-JWS",
+          "level": 2,
+          "text": "Sign the JWS",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the private key you generated during ad network registration to sign the JWS using ES256 encryption.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You need to sign the JWS in the compact format outlined in ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://datatracker.ietf.org/doc/html/rfc7515#section-5.1?",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " that describes the JWS signature process and format, and conforms to the following format as a UTF-8 string:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "ASCII(BASE64URL(UTF8(JWS Protected Header)) || '.' || BASE64URL(JWS Payload))"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This renders a compact JWS impression like the example below that you can pass into the API:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "eyJraWQiOiJleGFtcGxlLmFkYXR0cmlidXRpb25raXQiLCJhbGciOiJFUzI1NiJ9.eyJhZHZlcnRpc2VkLWl0ZW0taWRlbnRpZmllciI6MTEwODE4NzM5MCwiYWQtbmV0d29yay1pZGVudGlmaWVyIjoiZXhhbXBsZS5hZGF0dHJpYnV0aW9ua2l0IiwiaW1wcmVzc2lvbi10eXBlIjoiYXBwLWltcHJlc3Npb24iLCJlbGlnaWJsZS1mb3ItcmUtZW5nYWdlbWVudCI6dHJ1ZSwidGltZXN0YW1wIjoxNzE5NTk5OTU3MjM5LCJwdWJsaXNoZXItaXRlbS1pZGVudGlmaWVyIjo1ODM4NDkyLCJpbXByZXNzaW9uLWlkZW50aWZpZXIiOiI1NDRCOEZBRC0wQUQ1LTQ0MzQtOThCMi0zMjcxMTNBRjg0REIiLCJzb3VyY2UtaWRlbnRpZmllciI6NTIzOX0.zxQ_HcpB7pK6lWOms4LZ8uK3sZu_0S-bPR0My7UY4QlEAYFP-wp5eN1WuHOmNwoPD5cgazpwA3o5xq-fhfpOEQ"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit": {
+      "abstract": [
+        {
+          "text": "Present, process, and register postbacks for in-app ads in the App Store and alternative app marketplaces.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AdAttributionKit",
+      "type": "topic",
+      "url": "/documentation/adattributionkit"
+    },
+    "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/AppImpression": {
+      "abstract": [
+        {
+          "text": "A structure that represents an attributable impression the developer generates in response to a",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "person’s interaction with an ad in an app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AppImpression"
+        }
+      ],
+      "identifier": "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/AppImpression",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AppImpression"
+        }
+      ],
+      "role": "symbol",
+      "title": "AppImpression",
+      "type": "topic",
+      "url": "/documentation/adattributionkit/appimpression"
+    },
+    "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/AppImpression/advertisedItemID": {
+      "abstract": [
+        {
+          "text": "The advertised item’s ID.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "advertisedItemID"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt64V",
+          "text": "UInt64"
+        }
+      ],
+      "identifier": "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/AppImpression/advertisedItemID",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "advertisedItemID",
+      "type": "topic",
+      "url": "/documentation/adattributionkit/appimpression/advertiseditemid"
+    },
+    "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/AppImpression/id-swift.property": {
+      "abstract": [
+        {
+          "text": "The impression’s unique ID.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "id"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4UUIDV",
+          "text": "UUID"
+        }
+      ],
+      "identifier": "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/AppImpression/id-swift.property",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "id",
+      "type": "topic",
+      "url": "/documentation/adattributionkit/appimpression/id-swift.property"
+    },
+    "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/AppImpression/publisherItemID": {
+      "abstract": [
+        {
+          "text": "The publisher app’s item ID.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "publisherItemID"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt64V",
+          "text": "UInt64"
+        }
+      ],
+      "identifier": "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/AppImpression/publisherItemID",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "publisherItemID",
+      "type": "topic",
+      "url": "/documentation/adattributionkit/appimpression/publisheritemid"
+    },
+    "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/registering-an-ad-network": {
+      "abstract": [
+        {
+          "text": "Use the AdAttributionKit APIs for your ad campaigns after registering your ad network with Apple.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.AdAttributionKit/documentation/AdAttributionKit/registering-an-ad-network",
+      "kind": "article",
+      "role": "article",
+      "title": "Registering an ad network",
+      "type": "topic",
+      "url": "/documentation/adattributionkit/registering-an-ad-network"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://datatracker.ietf.org/doc/html/rfc7515": {
+      "identifier": "https://datatracker.ietf.org/doc/html/rfc7515",
+      "title": "RFC 7515",
+      "titleInlineContent": [
+        {
+          "text": "RFC 7515",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://datatracker.ietf.org/doc/html/rfc7515"
+    },
+    "https://datatracker.ietf.org/doc/html/rfc7515#section-5.1?": {
+      "identifier": "https://datatracker.ietf.org/doc/html/rfc7515#section-5.1?",
+      "title": "section 5.1 of RFC 7515",
+      "titleInlineContent": [
+        {
+          "text": "section 5.1 of RFC 7515",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://datatracker.ietf.org/doc/html/rfc7515#section-5.1?"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/adattributionkit/generating-jws-impressions"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

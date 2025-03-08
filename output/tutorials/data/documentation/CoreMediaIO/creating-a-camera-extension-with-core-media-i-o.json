@@ -1,0 +1,1550 @@
+{
+  "abstract": [
+    {
+      "text": "Build high-performance camera drivers that are secure and simple to deploy.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.coremediaio/documentation/CoreMediaIO"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.coremediaio/documentation/CoreMediaIO/creating-a-camera-extension-with-core-media-i-o"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Core Media I/O"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Creating a camera extension with Core Media I/O"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Camera extensions are a new type of system extension available in macOS 12.3 and later. They provide a simple, secure model for building high-performance camera drivers for macOS. You package and install them with your app, which makes them simple to deploy, including through the App Store.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Session 10022: ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/wwdc22/10022",
+                  "isActive": true,
+                  "type": "reference"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Related Sessions from WWDC22",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following illustration shows a high-level view of a camera extension.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-4033023",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A camera extension consists of three primary components:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.coremediaio/documentation/CoreMediaIO/CMIOExtensionProvider",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " represents the primary interface to the extension. The provider and its source manage the extension’s device and client connections, and also define properties common to the extension such as its name and manufacturer.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.coremediaio/documentation/CoreMediaIO/CMIOExtensionDevice",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " represents a hardware or software device that the extension publishes as a selectable camera in apps like FaceTime. A device and its source configure supporting resources like buffer pools that it uses when streaming data. A device also defines properties for values such as its model name and transport type.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.coremediaio/documentation/CoreMediaIO/CMIOExtensionStream",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " represents a stream of data to send to clients. A stream and its source specify the stream’s format, minimum and maximum frame rates, and direction. A stream’s source object is responsible for starting and stopping the stream’s flow of data.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To simplify creating your own extensions, Xcode provides a Camera Extension template that provides a fully functional extension implementation. It creates a virtual camera device that renders a horizontal white line that moves up and down the display. This article shows how to configure the template’s output to build your own camera extension.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "See the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/SystemExtensions",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " framework for additional information on building, installing, and debugging system extensions.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Add-entitlements-to-your-host-app",
+          "level": 3,
+          "text": "Add entitlements to your host app",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You package your camera extension as part of your app bundle. To allow your app to install and communicate with the extension, your app target requires two additional capabilities. Select the target in Xcode, and click the Signing & Capabilities pane. Add the following capabilities to the target:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "System Extension. This capability enables the app to install system extensions.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "App Groups. This capability enables the app to define a common group container for the app and the extension to share, which allows them to communicate.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Adding the capabilities to the target writes the values to an entitlements file. For example, an app with a bundle identifier of ",
+              "type": "text"
+            },
+            {
+              "code": "com.example.CustomCamera",
+              "type": "codeVoice"
+            },
+            {
+              "text": " would have an entitlements file similar to the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "<plist version=\"1.0\">",
+            "    <dict>",
+            "        <key>com.apple.security.app-sandbox</key>",
+            "        <true/>",
+            "        <key>com.apple.developer.system-extension.install</key>",
+            "        <true/>",
+            "        <key>com.apple.security.application-groups</key>",
+            "        <array>",
+            "            <string>$(TeamIdentifierPrefix)com.example.CustomCamera</string>",
+            "        </array>",
+            "    </dict>",
+            "</plist>"
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Create-a-camera-extension-target",
+          "level": 3,
+          "text": "Create a camera extension target",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Add a new target to your app using the Camera Extension template. In Xcode, go to the File menu and choose File > New and select the Target menu item. In the dialog that appears, select the macOS pane and find the Camera Extension template as shown below.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-4029968",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Click the Next button. On the screen that follows, give the extension an appropriate name and leave the other values set to their defaults, and then click the Finish button.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The template creates a new target and folder with the name you specified. The folder contains the following files:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "[CameraExtensionName]Provider.swift",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " file that provides the complete extension implementation.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "main.swift",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " file that provides the minimal code for the system to initialize the extension.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "An ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Info.plist",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " that defines the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "CMIOExtensionMachServiceName",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " for the extension and a ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/SystemExtensions/NSSystemExtensionUsageDescriptionKey",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " that describes the extension’s purpose to the user.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "[CameraExtensionName].entitlements",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " file that defines a default app group.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Configure-the-extension",
+          "level": 3,
+          "text": "Configure the extension",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "So that your app and extension can communicate, open the ",
+              "type": "text"
+            },
+            {
+              "code": "[CameraExtensionName].entitlements",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file and update it to use the same app group name that you defined in your app, as in the example below.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "<plist version=\"1.0\">",
+            "    <dict>",
+            "        <key>com.apple.security.app-sandbox</key>",
+            "        <true/>",
+            "        <key>com.apple.security.application-groups</key>",
+            "        <array>",
+            "            <string>(TeamIdentifierPrefix)com.example.CustomCamera</string>",
+            "        </array>",
+            "    </dict>",
+            "</plist>"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Next, open the ",
+              "type": "text"
+            },
+            {
+              "code": "[CameraExtensionName]Provider.swift",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file. This file provides a complete implementation for all components of a camera extension. Look through the file and familiarize yourself with the code.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can quickly find essential user-customizable strings by searching the file for the string, ",
+              "type": "text"
+            },
+            {
+              "code": "SampleCapture",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and replacing the values as appropriate. A particularly important string to customize is the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coremediaio/documentation/CoreMediaIO/CMIOExtensionDevice/localizedName",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " that you specify for the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coremediaio/documentation/CoreMediaIO/CMIOExtensionDevice",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", because it’s the string that apps display in their camera selection UI.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Activate-the-extension",
+          "level": 3,
+          "text": "Activate the extension",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system automatically installs a camera extension when a user installs your app. However, before your extension is available for the system to use, your app needs to activate it by performing an activation request like shown below.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// The bundle identifier of your extension.",
+            "let identifier = \"com.example.apple-samplecode.CustomCamera.CameraExtension\"",
+            "",
+            "// Submit an activation request.",
+            "let activationRequest = OSSystemExtensionRequest.activationRequest(forExtensionWithIdentifier: identifier, queue: .main)",
+            "activationRequest.delegate = self",
+            "OSSystemExtensionManager.shared.submitRequest(activationRequest)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Only apps that reside in the ",
+              "type": "text"
+            },
+            {
+              "code": "/Applications",
+              "type": "codeVoice"
+            },
+            {
+              "text": " directory can activate an extension. To test your extension, move your app from Xcode’s build results to the ",
+              "type": "text"
+            },
+            {
+              "code": "/Applications",
+              "type": "codeVoice"
+            },
+            {
+              "text": " folder. Launch your app from its new location to test its activation request. When it attempts to activate the extension, the system prompts the user with a dialog like shown below.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-4029976",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before the extension is available to the system, a person with Admin privileges for the Mac must explicitly allow access to it in the Systems & Privacy screen of System Settings.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-4030026",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "During development of your extension, it’s often useful to temporarily disable some security restrictions imposed by the system. See ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/driverkit/debugging_and_testing_system_extensions",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " for more information.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Tip",
+          "style": "tip",
+          "type": "aside"
+        },
+        {
+          "anchor": "Access-the-custom-camera",
+          "level": 3,
+          "text": "Access the custom camera",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you’ve allowed the system to use your custom extension, it’s automatically available as a selectable camera in system apps like FaceTime and PhotoBooth. Camera extensions are also fully compatible with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFoundation",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " capture APIs, which means you can access your extension as an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureDevice",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object and use it like any other device. For example, to retrieve your custom camera extension (as well as any others on the system), retrieve it as an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureDevice/DeviceType-swift.struct/externalUnknown",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " device type as shown below.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Discover devices with a device type of `externalUnknown`.",
+            "let discoverySession = AVCaptureDevice.DiscoverySession(deviceTypes: [.externalUnknown],",
+            "                                                        mediaType: .video,",
+            "                                                        position: .unspecified)",
+            "// Access the external devices.",
+            "let externalDevices = discoverySession.devices"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.coremediaio/documentation/CoreMediaIO": {
+      "abstract": [
+        {
+          "text": "Securely support custom camera devices in macOS.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coremediaio/documentation/CoreMediaIO",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Media I/O",
+      "type": "topic",
+      "url": "/documentation/coremediaio"
+    },
+    "doc://com.apple.coremediaio/documentation/CoreMediaIO/CMIOExtensionDevice": {
+      "abstract": [
+        {
+          "text": "An object that represents a physical or virtual device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMIOExtensionDevice"
+        }
+      ],
+      "identifier": "doc://com.apple.coremediaio/documentation/CoreMediaIO/CMIOExtensionDevice",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMIOExtensionDevice"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMIOExtensionDevice",
+      "type": "topic",
+      "url": "/documentation/coremediaio/cmioextensiondevice"
+    },
+    "doc://com.apple.coremediaio/documentation/CoreMediaIO/CMIOExtensionDevice/localizedName": {
+      "abstract": [
+        {
+          "text": "A localized name for a device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "localizedName"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.coremediaio/documentation/CoreMediaIO/CMIOExtensionDevice/localizedName",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "localizedName"
+        }
+      ],
+      "role": "symbol",
+      "title": "localizedName",
+      "type": "topic",
+      "url": "/documentation/coremediaio/cmioextensiondevice/localizedname"
+    },
+    "doc://com.apple.coremediaio/documentation/CoreMediaIO/CMIOExtensionProvider": {
+      "abstract": [
+        {
+          "text": "An object that manages device connections for a provider.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMIOExtensionProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.coremediaio/documentation/CoreMediaIO/CMIOExtensionProvider",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMIOExtensionProvider"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMIOExtensionProvider",
+      "type": "topic",
+      "url": "/documentation/coremediaio/cmioextensionprovider"
+    },
+    "doc://com.apple.coremediaio/documentation/CoreMediaIO/CMIOExtensionProviderProperties": {
+      "abstract": [
+        {
+          "text": "An object that manages the properties of an extension provider.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMIOExtensionProviderProperties"
+        }
+      ],
+      "identifier": "doc://com.apple.coremediaio/documentation/CoreMediaIO/CMIOExtensionProviderProperties",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMIOExtensionProviderProperties"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMIOExtensionProviderProperties",
+      "type": "topic",
+      "url": "/documentation/coremediaio/cmioextensionproviderproperties"
+    },
+    "doc://com.apple.coremediaio/documentation/CoreMediaIO/CMIOExtensionProviderSource": {
+      "abstract": [
+        {
+          "text": "A protocol for objects that act as provider sources.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMIOExtensionProviderSource"
+        }
+      ],
+      "identifier": "doc://com.apple.coremediaio/documentation/CoreMediaIO/CMIOExtensionProviderSource",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMIOExtensionProviderSource"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMIOExtensionProviderSource",
+      "type": "topic",
+      "url": "/documentation/coremediaio/cmioextensionprovidersource"
+    },
+    "doc://com.apple.coremediaio/documentation/CoreMediaIO/CMIOExtensionStream": {
+      "abstract": [
+        {
+          "text": "An object that represents a stream of media data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMIOExtensionStream"
+        }
+      ],
+      "identifier": "doc://com.apple.coremediaio/documentation/CoreMediaIO/CMIOExtensionStream",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CMIOExtensionStream"
+        }
+      ],
+      "role": "symbol",
+      "title": "CMIOExtensionStream",
+      "type": "topic",
+      "url": "/documentation/coremediaio/cmioextensionstream"
+    },
+    "doc://com.apple.coremediaio/documentation/CoreMediaIO/overriding-the-default-usb-video-class-extension": {
+      "abstract": [
+        {
+          "text": "Create a simple DriverKit extension to override the default driver-matching behavior for USB devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coremediaio/documentation/CoreMediaIO/overriding-the-default-usb-video-class-extension",
+      "kind": "article",
+      "role": "article",
+      "title": "Overriding the default USB video class extension",
+      "type": "topic",
+      "url": "/documentation/coremediaio/overriding-the-default-usb-video-class-extension"
+    },
+    "doc://com.apple.documentation/documentation/AVFoundation": {
+      "abstract": [
+        {
+          "text": "Work with audiovisual assets, control device cameras, process audio, and configure system audio interactions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFoundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AVFoundation",
+      "type": "topic",
+      "url": "/documentation/AVFoundation"
+    },
+    "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureDevice": {
+      "abstract": [
+        {
+          "text": "An object that represents a hardware or virtual capture device like a camera or microphone.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVCaptureDevice"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureDevice",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AVCaptureDevice",
+      "type": "topic",
+      "url": "/documentation/AVFoundation/AVCaptureDevice"
+    },
+    "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureDevice/DeviceType-swift.struct/externalUnknown": {
+      "abstract": [
+        {
+          "text": "An unknown external device type.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "externalUnknown"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVCaptureDevice",
+          "text": "AVCaptureDevice"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AVCaptureDeviceType",
+          "text": "DeviceType"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVFoundation/AVCaptureDevice/DeviceType-swift.struct/externalUnknown",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "externalUnknown",
+      "type": "topic",
+      "url": "/documentation/AVFoundation/AVCaptureDevice/DeviceType-swift.struct/externalUnknown"
+    },
+    "doc://com.apple.documentation/documentation/SystemExtensions": {
+      "abstract": [
+        {
+          "text": "Install and manage user space code that extends the capabilities of macOS.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SystemExtensions",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "System Extensions",
+      "type": "topic",
+      "url": "/documentation/SystemExtensions"
+    },
+    "doc://com.apple.documentation/documentation/SystemExtensions/NSSystemExtensionUsageDescriptionKey": {
+      "abstract": [
+        {
+          "text": "A message that tells the user why the app is trying to install a system extension bundle.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSSystemExtensionUsageDescriptionKey"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SystemExtensions/NSSystemExtensionUsageDescriptionKey",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSystemExtensionUsageDescriptionKey",
+      "type": "topic",
+      "url": "/documentation/SystemExtensions/NSSystemExtensionUsageDescriptionKey"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/debugging_and_testing_system_extensions": {
+      "abstract": [
+        {
+          "text": "Debug your system extensions by temporarily disabling the security checks that macOS performs during the installation process.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/debugging_and_testing_system_extensions",
+      "kind": "article",
+      "role": "article",
+      "title": "Debugging and testing system extensions",
+      "type": "topic",
+      "url": "/documentation/driverkit/debugging_and_testing_system_extensions"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/wwdc22/10022": {
+      "identifier": "https://developer.apple.com/wwdc22/10022",
+      "title": "Create camera extensions with Core Media I/O",
+      "titleInlineContent": [
+        {
+          "text": "Create camera extensions with Core Media I/O",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/wwdc22/10022"
+    },
+    "media-4029968": {
+      "alt": "An Xcode New Target dialog. At the top-left of the dialog is a label with the value Choose a template for your new target. Below the label shows a row of tabs, with the macOS tab selected. To the right of the tab bar is a search field that displays the word, Camera. Below that shows the Camera Extension template selected. Along the bottom of the dialog are three buttons. The left-most button has the title Cancel. The two right-most buttons have the titles Previous and Next, respectively. The Previous button is in a disabled state, and the Next button is in a highlighted state.",
+      "identifier": "media-4029968",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/728afc0caf9589a934ba62c43edc561e/media-4029968@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/62b91757f6568a878a77ccedddc544b0/media-4029968~dark@2x.png"
+        }
+      ]
+    },
+    "media-4029976": {
+      "alt": "A dialog requesting user approval to activate a Camera Extension. The dialog title is System Extension Blocked. Its message indicates the app attempted to load a new system extension, and it includes directions to open the Security & Privacy System Preferences. The dialog has an OK button to dismiss the notice and an Open Security Preferences button below it. Pressing Open Security Preferences opens System Settings to the appropriate location.",
+      "identifier": "media-4029976",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b7b1c7751cbeecea8846fdee75240738/media-4029976@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/fd6e40f585966bd1fe2a4841cea31589/media-4029976~dark@2x.png"
+        }
+      ]
+    },
+    "media-4030026": {
+      "alt": "An image that shows a label on the left, with the value System software from application CustomCamera was blocked from loading. On the right side of the image is a button with the label, Allow.",
+      "identifier": "media-4030026",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/3d5c9efded2fa2afe74385c0628ccddb/media-4030026@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2e3bc137ebe05100da37c97029ad16b1/media-4030026~dark@2x.png"
+        }
+      ]
+    },
+    "media-4033023": {
+      "alt": "An illustration that shows a box with the title Camera extension aligned to its top edge. The box contains three smaller boxes arranged horizontally. From left-to-right they are labeled Provider, Device, and Stream respectively. Each box itself contains three smaller boxes arranged vertically. Each box shows the provider, source, and properties object for each component.",
+      "identifier": "media-4033023",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/6d550d01dc82fc867b3d1851c3383403/media-4033023@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/173657244c4e0ee214718283135e04d1/media-4033023~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Providers",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.coremediaio/documentation/CoreMediaIO/overriding-the-default-usb-video-class-extension",
+        "doc://com.apple.coremediaio/documentation/CoreMediaIO/CMIOExtensionProvider",
+        "doc://com.apple.coremediaio/documentation/CoreMediaIO/CMIOExtensionProviderSource",
+        "doc://com.apple.coremediaio/documentation/CoreMediaIO/CMIOExtensionProviderProperties"
+      ],
+      "title": "Providers"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Providers",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.coremediaio/documentation/CoreMediaIO/overriding-the-default-usb-video-class-extension",
+                "doc://com.apple.coremediaio/documentation/CoreMediaIO/CMIOExtensionProvider",
+                "doc://com.apple.coremediaio/documentation/CoreMediaIO/CMIOExtensionProviderSource",
+                "doc://com.apple.coremediaio/documentation/CoreMediaIO/CMIOExtensionProviderProperties"
+              ],
+              "title": "Providers"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremediaio~1documentation~1CoreMediaIO~1CMIOExtensionDevice/title",
+          "value": "CMIOExtensionDevice"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremediaio~1documentation~1CoreMediaIO~1CMIOExtensionDevice/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMIOExtensionDevice"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremediaio~1documentation~1CoreMediaIO~1CMIOExtensionDevice/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMIOExtensionDevice"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremediaio~1documentation~1CoreMediaIO~1CMIOExtensionProvider/title",
+          "value": "CMIOExtensionProvider"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremediaio~1documentation~1CoreMediaIO~1CMIOExtensionProvider/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMIOExtensionProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremediaio~1documentation~1CoreMediaIO~1CMIOExtensionProvider/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMIOExtensionProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFoundation~1AVCaptureDevice/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AVCaptureDevice"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremediaio~1documentation~1CoreMediaIO~1CMIOExtensionDevice~1localizedName/title",
+          "value": "localizedName"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremediaio~1documentation~1CoreMediaIO~1CMIOExtensionDevice~1localizedName/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "localizedName"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremediaio~1documentation~1CoreMediaIO~1CMIOExtensionStream/title",
+          "value": "CMIOExtensionStream"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremediaio~1documentation~1CoreMediaIO~1CMIOExtensionStream/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMIOExtensionStream"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremediaio~1documentation~1CoreMediaIO~1CMIOExtensionStream/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMIOExtensionStream"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1SystemExtensions~1NSSystemExtensionUsageDescriptionKey/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSString",
+              "text": "NSString"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "keyword",
+              "text": "const"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSSystemExtensionUsageDescriptionKey"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremediaio~1documentation~1CoreMediaIO~1CMIOExtensionProviderProperties/title",
+          "value": "CMIOExtensionProviderProperties"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremediaio~1documentation~1CoreMediaIO~1CMIOExtensionProviderProperties/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMIOExtensionProviderProperties"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremediaio~1documentation~1CoreMediaIO~1CMIOExtensionProviderProperties/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMIOExtensionProviderProperties"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFoundation~1AVCaptureDevice~1DeviceType-swift.struct~1externalUnknown/title",
+          "value": "AVCaptureDeviceTypeExternalUnknown"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVFoundation~1AVCaptureDevice~1DeviceType-swift.struct~1externalUnknown/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@AVCaptureDeviceType",
+              "text": "AVCaptureDeviceType"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "const"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AVCaptureDeviceTypeExternalUnknown"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremediaio~1documentation~1CoreMediaIO~1CMIOExtensionProviderSource/title",
+          "value": "CMIOExtensionProviderSource"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremediaio~1documentation~1CoreMediaIO~1CMIOExtensionProviderSource/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMIOExtensionProviderSource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremediaio~1documentation~1CoreMediaIO~1CMIOExtensionProviderSource/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CMIOExtensionProviderSource"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/coremediaio/creating-a-camera-extension-with-core-media-i-o"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/coremediaio/creating-a-camera-extension-with-core-media-i-o"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

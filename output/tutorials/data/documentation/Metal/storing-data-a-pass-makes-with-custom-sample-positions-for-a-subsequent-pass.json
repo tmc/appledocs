@@ -1,0 +1,785 @@
+{
+  "abstract": [
+    {
+      "text": "Inform Metal when your app uses programmable sample positions for its depth render targets or copies MSAA depth data.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.metal/documentation/Metal",
+        "doc://com.apple.metal/documentation/Metal/render-passes"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.metal/documentation/Metal/storing-data-a-pass-makes-with-custom-sample-positions-for-a-subsequent-pass"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Metal"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Storing Data a Pass Makes with Custom Sample Positions for a Subsequent Pass"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A render or compute pass usually stores its target’s depth data in a compressed format. Any subsequent pass has to use the correct sample positions to decompress the data before reading it. You can store depth data in a representation that uses arbitrary sample positions (see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/positioning-samples-programmatically",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ").",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "You can sample depth positions programmatically only on devices that support programmable sample positions (see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.metal/documentation/Metal/MTLDevice/areProgrammableSamplePositionsSupported",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ").",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When your app uses custom sampling positions, inform Metal by setting the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderPassColorAttachmentDescriptor",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderPassDepthAttachmentDescriptor",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderPassAttachmentDescriptor/storeActionOptions",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLStoreActionOptions/customSamplePositions",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". This setting tells Metal that any subsequent pass that reads the attachment may not know the sample positions the current pass uses to generate the data. Examples of a pass that can use custom sample positions include the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A fragment shader that uses unique, programmable sample positions",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A blit pass that copies MSAA depth data to another resource",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In this scenario, Metal may decompress the depth render target and store the uncompressed data.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Improve the performance of a pass if its programmable sample positions are the same for the next pass by setting the descriptor’s ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderPassAttachmentDescriptor/storeAction",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " property to ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.metal/documentation/Metal/MTLStoreAction/store",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " and clearing the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.metal/documentation/Metal/MTLStoreActionOptions/customSamplePositions",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " option from the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderPassAttachmentDescriptor/storeActionOptions",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " property.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Tip",
+          "style": "tip",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.metal/documentation/Metal": {
+      "abstract": [
+        {
+          "text": "Render advanced 3D graphics and compute data in parallel with graphics processors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Metal",
+      "type": "topic",
+      "url": "/documentation/metal"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLDevice/areProgrammableSamplePositionsSupported": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the GPU supports programmable sample positions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "areProgrammableSamplePositionsSupported"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLDevice/areProgrammableSamplePositionsSupported",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "programmableSamplePositionsSupported"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "areProgrammableSamplePositionsSupported",
+      "type": "topic",
+      "url": "/documentation/metal/mtldevice/areprogrammablesamplepositionssupported"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRenderPassAttachmentDescriptor/storeAction": {
+      "abstract": [
+        {
+          "text": "The action performed by this attachment at the end of a rendering pass for a render command encoder.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "storeAction"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MTLStoreAction",
+          "text": "MTLStoreAction"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderPassAttachmentDescriptor/storeAction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "storeAction"
+        }
+      ],
+      "role": "symbol",
+      "title": "storeAction",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrenderpassattachmentdescriptor/storeaction"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRenderPassAttachmentDescriptor/storeActionOptions": {
+      "abstract": [
+        {
+          "text": "The options that modify the store action performed by this attachment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "storeActionOptions"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MTLStoreActionOptions",
+          "text": "MTLStoreActionOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderPassAttachmentDescriptor/storeActionOptions",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "storeActionOptions"
+        }
+      ],
+      "role": "symbol",
+      "title": "storeActionOptions",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrenderpassattachmentdescriptor/storeactionoptions"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRenderPassColorAttachmentDescriptor": {
+      "abstract": [
+        {
+          "text": "A color render target that serves as the output destination for color pixels generated by a render pass.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLRenderPassColorAttachmentDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderPassColorAttachmentDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLRenderPassColorAttachmentDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLRenderPassColorAttachmentDescriptor",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrenderpasscolorattachmentdescriptor"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRenderPassDepthAttachmentDescriptor": {
+      "abstract": [
+        {
+          "text": "A depth render target that serves as the output destination for depth pixels generated by a render pass.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLRenderPassDepthAttachmentDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderPassDepthAttachmentDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLRenderPassDepthAttachmentDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLRenderPassDepthAttachmentDescriptor",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrenderpassdepthattachmentdescriptor"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLStoreAction/store": {
+      "abstract": [
+        {
+          "text": "The GPU stores the rendered contents to the texture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "store"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLStoreAction/store",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLStoreActionStore"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLStoreAction.store",
+      "type": "topic",
+      "url": "/documentation/metal/mtlstoreaction/store"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLStoreActionOptions/customSamplePositions": {
+      "abstract": [
+        {
+          "text": "An option that stores data in a sample-position–agnostic representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "customSamplePositions"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MTLStoreActionOptions",
+          "text": "MTLStoreActionOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLStoreActionOptions/customSamplePositions",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLStoreActionOptionCustomSamplePositions"
+        }
+      ],
+      "role": "symbol",
+      "title": "customSamplePositions",
+      "type": "topic",
+      "url": "/documentation/metal/mtlstoreactionoptions/customsamplepositions"
+    },
+    "doc://com.apple.metal/documentation/Metal/positioning-samples-programmatically": {
+      "abstract": [
+        {
+          "text": "Configure the position of samples when rendering to a multisampled render target.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/positioning-samples-programmatically",
+      "kind": "article",
+      "role": "article",
+      "title": "Positioning Samples Programmatically",
+      "type": "topic",
+      "url": "/documentation/metal/positioning-samples-programmatically"
+    },
+    "doc://com.apple.metal/documentation/Metal/render-passes": {
+      "abstract": [
+        {
+          "text": "Encode a render pass to draw graphics into an image.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/render-passes",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Render Passes",
+      "type": "topic",
+      "url": "/documentation/metal/render-passes"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Advanced-Multisampling",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/positioning-samples-programmatically"
+      ],
+      "title": "Advanced Multisampling"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Advanced-Multisampling",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/positioning-samples-programmatically"
+              ],
+              "title": "Advanced Multisampling"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderPassAttachmentDescriptor~1storeAction/title",
+          "value": "storeAction"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderPassAttachmentDescriptor~1storeAction/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "storeAction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderPassAttachmentDescriptor~1storeActionOptions/title",
+          "value": "storeActionOptions"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderPassAttachmentDescriptor~1storeActionOptions/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "storeActionOptions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderPassColorAttachmentDescriptor/title",
+          "value": "MTLRenderPassColorAttachmentDescriptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderPassColorAttachmentDescriptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLRenderPassColorAttachmentDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderPassColorAttachmentDescriptor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLRenderPassColorAttachmentDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLStoreActionOptions~1customSamplePositions/title",
+          "value": "MTLStoreActionOptionCustomSamplePositions"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLStoreActionOptions~1customSamplePositions/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLStoreActionOptionCustomSamplePositions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice~1areProgrammableSamplePositionsSupported/title",
+          "value": "programmableSamplePositionsSupported"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice~1areProgrammableSamplePositionsSupported/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "programmableSamplePositionsSupported"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderPassDepthAttachmentDescriptor/title",
+          "value": "MTLRenderPassDepthAttachmentDescriptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderPassDepthAttachmentDescriptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLRenderPassDepthAttachmentDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderPassDepthAttachmentDescriptor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLRenderPassDepthAttachmentDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLStoreAction~1store/title",
+          "value": "MTLStoreActionStore"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLStoreAction~1store/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLStoreActionStore"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/metal/storing-data-a-pass-makes-with-custom-sample-positions-for-a-subsequent-pass"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/metal/storing-data-a-pass-makes-with-custom-sample-positions-for-a-subsequent-pass"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

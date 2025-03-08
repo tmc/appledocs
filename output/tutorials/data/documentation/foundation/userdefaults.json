@@ -1,0 +1,2678 @@
+{
+  "abstract": [
+    {
+      "text": "An interface to the user’s defaults database, where you store key-value pairs persistently across launches of your app.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/preferences"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/userdefaults"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1413799,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSUserDefaults",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "class "
+      },
+      {
+        "kind": "identifier",
+        "text": "UserDefaults"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "UserDefaults"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UserDefaults"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/userdefaults",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " class provides a programmatic interface for interacting with the defaults system. The defaults system allows an app to customize its behavior to match a user’s preferences. For example, you can allow users to specify their preferred units of measurement or media playback speed. Apps store these preferences by assigning values to a set of parameters in a user’s defaults database. The parameters are referred to as ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "defaults",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " because they’re commonly used to determine an app’s default state at startup or the way it acts by default.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "At runtime, you use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/userdefaults",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " objects to read the defaults that your app uses from a user’s defaults database. ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/userdefaults",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " caches the information to avoid having to open the user’s defaults database each time you need a default value. When you set a default value, it’s changed synchronously within your process, and asynchronously to persistent storage and other processes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Don’t try to access the preferences subsystem directly. Modifying preference property list files may result in loss of changes, delay of reflecting changes, and app crashes. To configure preferences, use the ",
+                  "type": "text"
+                },
+                {
+                  "code": "defaults",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " command-line utility in macOS instead.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "With the exception of managed devices in educational institutions, a user’s defaults are stored locally on a single device, and persisted for backup and restore. To synchronize preferences and other data across a user’s connected devices, use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsubiquitouskeyvaluestore",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instead.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "This API has the potential of being misused to access device signals to try to identify the device or user, also known as fingerprinting. Regardless of whether a user gives your app permission to track, fingerprinting is not allowed. When you use this API in your app or third-party SDK (an SDK not provided by Apple), declare your usage and the reason for using the API in your app or third-party SDK’s ",
+                  "type": "text"
+                },
+                {
+                  "code": "PrivacyInfo.xcprivacy",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " file. For more information, including the list of valid reasons for using the API, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/describing-use-of-required-reason-api",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "2926904",
+          "level": 3,
+          "text": "Storing Default Objects",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/userdefaults",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " class provides convenience methods for accessing common types such as floats, doubles, integers, Boolean values, and URLs. These methods are described in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/userdefaults#1664798",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A default object must be a property list—that is, an instance of (or for collections, a combination of instances of) ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsdata",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsstring",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsnumber",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsdate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsdictionary",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". If you want to store any other type of object, you should typically archive it to create an instance of ",
+              "type": "text"
+            },
+            {
+              "identifier": "devLink-1697737",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": ". ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Values returned from ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/userdefaults",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " are immutable, even if you set a mutable object as the value. For example, if you set a mutable string as the value for “MyStringDefault”, the string you later retrieve using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/userdefaults/1416700-string",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method will be immutable. If you set a mutable string as a default value and later mutate the string, the default value won’t reflect the mutated string value unless you call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/userdefaults/1414067-set",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " again.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more details, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "devLink-1695689",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "1664598",
+          "level": 3,
+          "text": "Persisting File References",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A file URL specifies a location in the file system. If you use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/userdefaults/1414194-set",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to store the location for a particular file and the user moves that file, your app may not be able to locate that file on next launch. To store a reference to a file by its file system identity, you can instead create ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsurl",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " bookmark data using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsurl/1417795-bookmarkdata",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method and persist it using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/userdefaults/1414067-set",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. You can then use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsurl/1572035-urlbyresolvingbookmarkdata",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to resolve the bookmark data stored in user defaults to a file URL.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "2926902",
+          "level": 3,
+          "text": "Responding to Defaults Changes",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can use key-value observing to be notified of any updates to a particular default value. You can also register as an observer for ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/userdefaults/1408206-didchangenotification",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " on the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/notificationcenter/1414169-default",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " notification center in order to be notified of all updates to a local defaults database.   ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more details, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "devLink-1696481",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "devLink-1695368",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "2926901",
+          "level": 3,
+          "text": "Using Defaults in Managed Environments",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your app supports managed environments, you can use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/userdefaults",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " to determine which preferences are managed by an administrator for the benefit of the user. In a managed environment, such as a computer lab or classroom, an administrator or teacher can configure the systems by establishing a set of default preferences for users. If a preference is managed in this manner (as determined by the methods described in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/userdefaults#1664949",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "), your app should prevent users from editing that preference by disabling or hiding controls.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more details, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "devLink-2587851",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An app running on a device managed by an educational institution can use the iCloud key-value store to share small amounts of data with other instances of itself on the user’s other devices. For example, a textbook app might store the current page number being read by the user so that other instances of the app can open to the same page when launched.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "devLink-1695745",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in ",
+              "type": "text"
+            },
+            {
+              "identifier": "devLink-1695689",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "1664611",
+          "level": 3,
+          "text": "Sandbox Considerations",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A sandboxed app cannot access or modify the preferences for any other app, with the following exceptions:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "App extensions on macOS and iOS",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Other apps in your application group on macOS",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Adding a third-party app’s domain using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/userdefaults/1410294-addsuite",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method doesn’t allow your app to access to that app’s preferences. Attempting to access or modify  another app’s preferences doesn’t result in an error; instead, macOS reads and writes files located within your app’s container, rather than the actual preference files for the other application.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "2926903",
+          "level": 3,
+          "text": "Thread Safety",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "devLink-1705886",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " class is thread-safe.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "devLink-1695368": {
+      "identifier": "devLink-1695368",
+      "title": "Notification Programming Topics",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/Notifications/Introduction/introNotifications.html#//apple_ref/doc/uid/10000043i"
+    },
+    "devLink-1695689": {
+      "identifier": "devLink-1695689",
+      "title": "Preferences and Settings Programming Guide",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/UserDefaults/Introduction/Introduction.html#//apple_ref/doc/uid/10000059i"
+    },
+    "devLink-1695745": {
+      "identifier": "devLink-1695745",
+      "title": "Storing Preferences in iCloud",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/UserDefaults/StoringPreferenceDatainiCloud/StoringPreferenceDatainiCloud.html#//apple_ref/doc/uid/10000059i-CH7"
+    },
+    "devLink-1696481": {
+      "identifier": "devLink-1696481",
+      "title": "Key-Value Observing Programming Guide",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/KeyValueObserving/KeyValueObserving.html#//apple_ref/doc/uid/10000177i"
+    },
+    "devLink-1697737": {
+      "identifier": "devLink-1697737",
+      "title": "NSData",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/PropertyLists/OldStylePlists/OldStylePLists.html#//apple_ref/doc/uid/20001012-47169"
+    },
+    "devLink-1705886": {
+      "identifier": "devLink-1705886",
+      "title": "UserDefaults",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/samplecode/UserDefaults/Introduction/Intro.html#//apple_ref/doc/uid/DTS40008874-Intro"
+    },
+    "devLink-2587851": {
+      "identifier": "devLink-2587851",
+      "title": "Mobile Device Management Protocol Reference",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/Miscellaneous/Reference/MobileDeviceManagementProtocolRef/1-Introduction/Introduction.html#//apple_ref/doc/uid/TP40017387"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/describing-use-of-required-reason-api": {
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/describing-use-of-required-reason-api",
+      "kind": "article",
+      "role": "article",
+      "title": "Describing use of required reason API",
+      "type": "topic",
+      "url": "/documentation/bundleresources/describing-use-of-required-reason-api"
+    },
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/notificationcenter/1414169-default": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/notificationcenter/1414169-default",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "default",
+      "type": "topic",
+      "url": "/documentation/foundation/notificationcenter/1414169-default"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsarray": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSArray",
+      "type": "topic",
+      "url": "/documentation/foundation/nsarray"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdata": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdata",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSData",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdata"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdate": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSDate",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdictionary": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdictionary",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSDictionary",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdictionary"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnumber": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnumber",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSNumber",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnumber"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsstring": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsstring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSString",
+      "type": "topic",
+      "url": "/documentation/foundation/nsstring"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsubiquitouskeyvaluestore": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsubiquitouskeyvaluestore",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSUbiquitousKeyValueStore",
+      "type": "topic",
+      "url": "/documentation/foundation/nsubiquitouskeyvaluestore"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurl": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSURL",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurl"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurl/1417795-bookmarkdata": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurl/1417795-bookmarkdata",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "bookmarkData(options:includingResourceValuesForKeys:relativeTo:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurl/1417795-bookmarkdata"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurl/1572035-urlbyresolvingbookmarkdata": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "URLByResolvingBookmarkData:options:relativeToURL:bookmarkDataIsStale:error:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurl/1572035-urlbyresolvingbookmarkdata",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLByResolvingBookmarkData:options:relativeToURL:bookmarkDataIsStale:error:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurl/1572035-urlbyresolvingbookmarkdata"
+    },
+    "doc://com.apple.documentation/documentation/foundation/preferences": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/preferences",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Preferences",
+      "type": "topic",
+      "url": "/documentation/foundation/preferences"
+    },
+    "doc://com.apple.documentation/documentation/foundation/userdefaults": {
+      "abstract": [
+        {
+          "text": "An interface to the user’s defaults database, where you store key-value pairs persistently across launches of your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "UserDefaults"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/userdefaults",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UserDefaults",
+      "type": "topic",
+      "url": "/documentation/foundation/userdefaults"
+    },
+    "doc://com.apple.documentation/documentation/foundation/userdefaults#1664798": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/userdefaults#1664798",
+      "kind": "article",
+      "role": "task",
+      "title": "Setting Default Values",
+      "type": "section",
+      "url": "/documentation/foundation/userdefaults#1664798"
+    },
+    "doc://com.apple.documentation/documentation/foundation/userdefaults#1664949": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/userdefaults#1664949",
+      "kind": "article",
+      "role": "task",
+      "title": "Accessing Managed Environment Keys",
+      "type": "section",
+      "url": "/documentation/foundation/userdefaults#1664949"
+    },
+    "doc://com.apple.documentation/documentation/foundation/userdefaults/1407355-globaldomain": {
+      "abstract": [
+        {
+          "text": "The domain consisting of defaults meant to be seen by all applications.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class let "
+        },
+        {
+          "kind": "identifier",
+          "text": "globalDomain"
+        },
+        {
+          "kind": "text",
+          "text": ": String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/userdefaults/1407355-globaldomain",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "globalDomain",
+      "type": "topic",
+      "url": "/documentation/foundation/userdefaults/1407355-globaldomain"
+    },
+    "doc://com.apple.documentation/documentation/foundation/userdefaults/1407405-integer": {
+      "abstract": [
+        {
+          "text": "Returns the integer value associated with the specified key.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "integer"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forKey"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/userdefaults/1407405-integer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "integer(forKey:)",
+      "type": "topic",
+      "url": "/documentation/foundation/userdefaults/1407405-integer"
+    },
+    "doc://com.apple.documentation/documentation/foundation/userdefaults/1407708-resetstandarduserdefaults": {
+      "abstract": [
+        {
+          "text": "This method has no effect and shouldn't be used.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "resetStandardUserDefaults"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/userdefaults/1407708-resetstandarduserdefaults",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "resetStandardUserDefaults()",
+      "type": "topic",
+      "url": "/documentation/foundation/userdefaults/1407708-resetstandarduserdefaults"
+    },
+    "doc://com.apple.documentation/documentation/foundation/userdefaults/1408047-removesuite": {
+      "abstract": [
+        {
+          "text": "Removes the specified domain name from the receiver’s search list.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeSuite"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "named"
+        },
+        {
+          "kind": "text",
+          "text": ": String)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/userdefaults/1408047-removesuite",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "removeSuite(named:)",
+      "type": "topic",
+      "url": "/documentation/foundation/userdefaults/1408047-removesuite"
+    },
+    "doc://com.apple.documentation/documentation/foundation/userdefaults/1408187-setpersistentdomain": {
+      "abstract": [
+        {
+          "text": "Sets a dictionary for the specified persistent domain.  ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "setPersistentDomain"
+        },
+        {
+          "kind": "text",
+          "text": "([String : Any], "
+        },
+        {
+          "kind": "identifier",
+          "text": "forName"
+        },
+        {
+          "kind": "text",
+          "text": ": String)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/userdefaults/1408187-setpersistentdomain",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setPersistentDomain(_:forName:)",
+      "type": "topic",
+      "url": "/documentation/foundation/userdefaults/1408187-setpersistentdomain"
+    },
+    "doc://com.apple.documentation/documentation/foundation/userdefaults/1408206-didchangenotification": {
+      "abstract": [
+        {
+          "text": "Posted when user defaults are changed within the current process.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class let "
+        },
+        {
+          "kind": "identifier",
+          "text": "didChangeNotification"
+        },
+        {
+          "kind": "text",
+          "text": ": NSNotification.Name"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/userdefaults/1408206-didchangenotification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "didChangeNotification",
+      "type": "topic",
+      "url": "/documentation/foundation/userdefaults/1408206-didchangenotification"
+    },
+    "doc://com.apple.documentation/documentation/foundation/userdefaults/1408563-dictionary": {
+      "abstract": [
+        {
+          "text": "Returns the dictionary object associated with the specified key.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "dictionary"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forKey"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> [String : Any]?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/userdefaults/1408563-dictionary",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dictionary(forKey:)",
+      "type": "topic",
+      "url": "/documentation/foundation/userdefaults/1408563-dictionary"
+    },
+    "doc://com.apple.documentation/documentation/foundation/userdefaults/1408635-objectisforced": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value indicating whether the specified key is managed by an administrator.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "objectIsForced"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forKey"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/userdefaults/1408635-objectisforced",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "objectIsForced(forKey:)",
+      "type": "topic",
+      "url": "/documentation/foundation/userdefaults/1408635-objectisforced"
+    },
+    "doc://com.apple.documentation/documentation/foundation/userdefaults/1408646-set": {
+      "abstract": [
+        {
+          "text": "Sets the value of the specified default key to the double value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "set"
+        },
+        {
+          "kind": "text",
+          "text": "(Double, "
+        },
+        {
+          "kind": "identifier",
+          "text": "forKey"
+        },
+        {
+          "kind": "text",
+          "text": ": String)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/userdefaults/1408646-set",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "set(_:forKey:)",
+      "type": "topic",
+      "url": "/documentation/foundation/userdefaults/1408646-set"
+    },
+    "doc://com.apple.documentation/documentation/foundation/userdefaults/1408648-url": {
+      "abstract": [
+        {
+          "text": "Returns the URL associated with the specified key.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "url"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forKey"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> URL?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/userdefaults/1408648-url",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "url(forKey:)",
+      "type": "topic",
+      "url": "/documentation/foundation/userdefaults/1408648-url"
+    },
+    "doc://com.apple.documentation/documentation/foundation/userdefaults/1408905-set": {
+      "abstract": [
+        {
+          "text": "Sets the value of the specified default key to the specified Boolean value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "set"
+        },
+        {
+          "kind": "text",
+          "text": "(Bool, "
+        },
+        {
+          "kind": "identifier",
+          "text": "forKey"
+        },
+        {
+          "kind": "text",
+          "text": ": String)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/userdefaults/1408905-set",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "set(_:forKey:)",
+      "type": "topic",
+      "url": "/documentation/foundation/userdefaults/1408905-set"
+    },
+    "doc://com.apple.documentation/documentation/foundation/userdefaults/1409590-data": {
+      "abstract": [
+        {
+          "text": "Returns the data object associated with the specified key.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "data"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forKey"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> Data?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/userdefaults/1409590-data",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "data(forKey:)",
+      "type": "topic",
+      "url": "/documentation/foundation/userdefaults/1409590-data"
+    },
+    "doc://com.apple.documentation/documentation/foundation/userdefaults/1409592-volatiledomain": {
+      "abstract": [
+        {
+          "text": "Returns the dictionary for the specified volatile domain.  ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "volatileDomain"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forName"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> [String : Any]"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/userdefaults/1409592-volatiledomain",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "volatileDomain(forName:)",
+      "type": "topic",
+      "url": "/documentation/foundation/userdefaults/1409592-volatiledomain"
+    },
+    "doc://com.apple.documentation/documentation/foundation/userdefaults/1409957-init": {
+      "abstract": [
+        {
+          "text": "Creates a user defaults object initialized with the defaults for the specified database name.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "identifier",
+          "text": "suiteName"
+        },
+        {
+          "kind": "text",
+          "text": ": String?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/userdefaults/1409957-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(suiteName:)",
+      "type": "topic",
+      "url": "/documentation/foundation/userdefaults/1409957-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/userdefaults/1410095-object": {
+      "abstract": [
+        {
+          "text": "Returns the object associated with the specified key.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "object"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forKey"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> Any?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/userdefaults/1410095-object",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "object(forKey:)",
+      "type": "topic",
+      "url": "/documentation/foundation/userdefaults/1410095-object"
+    },
+    "doc://com.apple.documentation/documentation/foundation/userdefaults/1410294-addsuite": {
+      "abstract": [
+        {
+          "text": "Inserts the specified domain name into the receiver’s search list.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "addSuite"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "named"
+        },
+        {
+          "kind": "text",
+          "text": ": String)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/userdefaults/1410294-addsuite",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "addSuite(named:)",
+      "type": "topic",
+      "url": "/documentation/foundation/userdefaults/1410294-addsuite"
+    },
+    "doc://com.apple.documentation/documentation/foundation/userdefaults/1410665-argumentdomain": {
+      "abstract": [
+        {
+          "text": "The domain consisting of defaults parsed from the application’s arguments. These are one or more pairs of the form",
+          "type": "text"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": " -default value",
+              "type": "text"
+            }
+          ],
+          "type": "emphasis"
+        },
+        {
+          "text": " included in the command-line invocation of the application. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class let "
+        },
+        {
+          "kind": "identifier",
+          "text": "argumentDomain"
+        },
+        {
+          "kind": "text",
+          "text": ": String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/userdefaults/1410665-argumentdomain",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "argumentDomain",
+      "type": "topic",
+      "url": "/documentation/foundation/userdefaults/1410665-argumentdomain"
+    },
+    "doc://com.apple.documentation/documentation/foundation/userdefaults/1411182-removeobject": {
+      "abstract": [
+        {
+          "text": "Removes the value of the specified default key.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeObject"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forKey"
+        },
+        {
+          "kind": "text",
+          "text": ": String)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/userdefaults/1411182-removeobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "removeObject(forKey:)",
+      "type": "topic",
+      "url": "/documentation/foundation/userdefaults/1411182-removeobject"
+    },
+    "doc://com.apple.documentation/documentation/foundation/userdefaults/1412197-persistentdomain": {
+      "abstract": [
+        {
+          "text": "Returns a dictionary representation of the defaults for the specified domain.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "persistentDomain"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forName"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> [String : Any]?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/userdefaults/1412197-persistentdomain",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "persistentDomain(forName:)",
+      "type": "topic",
+      "url": "/documentation/foundation/userdefaults/1412197-persistentdomain"
+    },
+    "doc://com.apple.documentation/documentation/foundation/userdefaults/1413320-set": {
+      "abstract": [
+        {
+          "text": "Sets the value of the specified default key to the specified float value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "set"
+        },
+        {
+          "kind": "text",
+          "text": "(Float, "
+        },
+        {
+          "kind": "identifier",
+          "text": "forKey"
+        },
+        {
+          "kind": "text",
+          "text": ": String)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/userdefaults/1413320-set",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "set(_:forKey:)",
+      "type": "topic",
+      "url": "/documentation/foundation/userdefaults/1413320-set"
+    },
+    "doc://com.apple.documentation/documentation/foundation/userdefaults/1413614-set": {
+      "abstract": [
+        {
+          "text": "Sets the value of the specified default key to the specified integer value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "set"
+        },
+        {
+          "kind": "text",
+          "text": "(Int, "
+        },
+        {
+          "kind": "identifier",
+          "text": "forKey"
+        },
+        {
+          "kind": "text",
+          "text": ": String)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/userdefaults/1413614-set",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "set(_:forKey:)",
+      "type": "topic",
+      "url": "/documentation/foundation/userdefaults/1413614-set"
+    },
+    "doc://com.apple.documentation/documentation/foundation/userdefaults/1413720-setvolatiledomain": {
+      "abstract": [
+        {
+          "text": "Sets the dictionary for the specified volatile domain.  ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "setVolatileDomain"
+        },
+        {
+          "kind": "text",
+          "text": "([String : Any], "
+        },
+        {
+          "kind": "identifier",
+          "text": "forName"
+        },
+        {
+          "kind": "text",
+          "text": ": String)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/userdefaults/1413720-setvolatiledomain",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setVolatileDomain(_:forName:)",
+      "type": "topic",
+      "url": "/documentation/foundation/userdefaults/1413720-setvolatiledomain"
+    },
+    "doc://com.apple.documentation/documentation/foundation/userdefaults/1414005-synchronize": {
+      "abstract": [
+        {
+          "text": "Waits for any pending asynchronous updates to the defaults database and returns; this method is unnecessary and shouldn't be used.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "synchronize"
+        },
+        {
+          "kind": "text",
+          "text": "() -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/userdefaults/1414005-synchronize",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "synchronize()",
+      "type": "topic",
+      "url": "/documentation/foundation/userdefaults/1414005-synchronize"
+    },
+    "doc://com.apple.documentation/documentation/foundation/userdefaults/1414027-float": {
+      "abstract": [
+        {
+          "text": "Returns the float value associated with the specified key.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "float"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forKey"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> Float"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/userdefaults/1414027-float",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "float(forKey:)",
+      "type": "topic",
+      "url": "/documentation/foundation/userdefaults/1414027-float"
+    },
+    "doc://com.apple.documentation/documentation/foundation/userdefaults/1414067-set": {
+      "abstract": [
+        {
+          "text": "Sets the value of the specified default key.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "set"
+        },
+        {
+          "kind": "text",
+          "text": "(Any?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "forKey"
+        },
+        {
+          "kind": "text",
+          "text": ": String)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/userdefaults/1414067-set",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "set(_:forKey:)",
+      "type": "topic",
+      "url": "/documentation/foundation/userdefaults/1414067-set"
+    },
+    "doc://com.apple.documentation/documentation/foundation/userdefaults/1414194-set": {
+      "abstract": [
+        {
+          "text": "Sets the value of the specified default key to the specified URL.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "set"
+        },
+        {
+          "kind": "text",
+          "text": "(URL?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "forKey"
+        },
+        {
+          "kind": "text",
+          "text": ": String)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/userdefaults/1414194-set",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "set(_:forKey:)",
+      "type": "topic",
+      "url": "/documentation/foundation/userdefaults/1414194-set"
+    },
+    "doc://com.apple.documentation/documentation/foundation/userdefaults/1414231-volatiledomainnames": {
+      "abstract": [
+        {
+          "text": "The current volatile domain names.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "volatileDomainNames"
+        },
+        {
+          "kind": "text",
+          "text": ": [String]"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/userdefaults/1414231-volatiledomainnames",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "volatileDomainNames",
+      "type": "topic",
+      "url": "/documentation/foundation/userdefaults/1414231-volatiledomainnames"
+    },
+    "doc://com.apple.documentation/documentation/foundation/userdefaults/1414356-init": {
+      "abstract": [
+        {
+          "text": "Creates a user defaults object initialized with the defaults for the app and current user.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/userdefaults/1414356-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init()",
+      "type": "topic",
+      "url": "/documentation/foundation/userdefaults/1414356-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/userdefaults/1414792-array": {
+      "abstract": [
+        {
+          "text": "Returns the array associated with the specified key.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "array"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forKey"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> [Any]?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/userdefaults/1414792-array",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "array(forKey:)",
+      "type": "topic",
+      "url": "/documentation/foundation/userdefaults/1414792-array"
+    },
+    "doc://com.apple.documentation/documentation/foundation/userdefaults/1415919-dictionaryrepresentation": {
+      "abstract": [
+        {
+          "text": "Returns a dictionary that contains a union of all key-value pairs in the domains in the search list.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "dictionaryRepresentation"
+        },
+        {
+          "kind": "text",
+          "text": "() -> [String : Any]"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/userdefaults/1415919-dictionaryrepresentation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dictionaryRepresentation()",
+      "type": "topic",
+      "url": "/documentation/foundation/userdefaults/1415919-dictionaryrepresentation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/userdefaults/1415953-registrationdomain": {
+      "abstract": [
+        {
+          "text": "The domain consisting of a set of temporary defaults whose values can be set by the application to ensure that searches will always be successful.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class let "
+        },
+        {
+          "kind": "identifier",
+          "text": "registrationDomain"
+        },
+        {
+          "kind": "text",
+          "text": ": String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/userdefaults/1415953-registrationdomain",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "registrationDomain",
+      "type": "topic",
+      "url": "/documentation/foundation/userdefaults/1415953-registrationdomain"
+    },
+    "doc://com.apple.documentation/documentation/foundation/userdefaults/1415955-removevolatiledomain": {
+      "abstract": [
+        {
+          "text": "Removes the specified volatile domain from the user’s defaults.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeVolatileDomain"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forName"
+        },
+        {
+          "kind": "text",
+          "text": ": String)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/userdefaults/1415955-removevolatiledomain",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "removeVolatileDomain(forName:)",
+      "type": "topic",
+      "url": "/documentation/foundation/userdefaults/1415955-removevolatiledomain"
+    },
+    "doc://com.apple.documentation/documentation/foundation/userdefaults/1416306-objectisforced": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value indicating whether the key in the specified domain is managed by an administrator.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "objectIsForced"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forKey"
+        },
+        {
+          "kind": "text",
+          "text": ": String, "
+        },
+        {
+          "kind": "identifier",
+          "text": "inDomain"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/userdefaults/1416306-objectisforced",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "objectIsForced(forKey:inDomain:)",
+      "type": "topic",
+      "url": "/documentation/foundation/userdefaults/1416306-objectisforced"
+    },
+    "doc://com.apple.documentation/documentation/foundation/userdefaults/1416388-bool": {
+      "abstract": [
+        {
+          "text": "Returns the Boolean value associated with the specified key.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "bool"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forKey"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/userdefaults/1416388-bool",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "bool(forKey:)",
+      "type": "topic",
+      "url": "/documentation/foundation/userdefaults/1416388-bool"
+    },
+    "doc://com.apple.documentation/documentation/foundation/userdefaults/1416414-stringarray": {
+      "abstract": [
+        {
+          "text": "Returns the array of strings associated with the specified key.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "stringArray"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forKey"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> [String]?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/userdefaults/1416414-stringarray",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "stringArray(forKey:)",
+      "type": "topic",
+      "url": "/documentation/foundation/userdefaults/1416414-stringarray"
+    },
+    "doc://com.apple.documentation/documentation/foundation/userdefaults/1416581-double": {
+      "abstract": [
+        {
+          "text": "Returns the double value associated with the specified key.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "double"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forKey"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> Double"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/userdefaults/1416581-double",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "double(forKey:)",
+      "type": "topic",
+      "url": "/documentation/foundation/userdefaults/1416581-double"
+    },
+    "doc://com.apple.documentation/documentation/foundation/userdefaults/1416603-standard": {
+      "abstract": [
+        {
+          "text": "Returns the shared defaults object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class var "
+        },
+        {
+          "kind": "identifier",
+          "text": "standard"
+        },
+        {
+          "kind": "text",
+          "text": ": UserDefaults"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/userdefaults/1416603-standard",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "standard",
+      "type": "topic",
+      "url": "/documentation/foundation/userdefaults/1416603-standard"
+    },
+    "doc://com.apple.documentation/documentation/foundation/userdefaults/1416700-string": {
+      "abstract": [
+        {
+          "text": "Returns the string associated with the specified key.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "string"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forKey"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> String?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/userdefaults/1416700-string",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "string(forKey:)",
+      "type": "topic",
+      "url": "/documentation/foundation/userdefaults/1416700-string"
+    },
+    "doc://com.apple.documentation/documentation/foundation/userdefaults/1417065-register": {
+      "abstract": [
+        {
+          "text": "Adds the contents of the specified dictionary to the registration domain.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "register"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "defaults"
+        },
+        {
+          "kind": "text",
+          "text": ": [String : Any])"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/userdefaults/1417065-register",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "register(defaults:)",
+      "type": "topic",
+      "url": "/documentation/foundation/userdefaults/1417065-register"
+    },
+    "doc://com.apple.documentation/documentation/foundation/userdefaults/1417339-removepersistentdomain": {
+      "abstract": [
+        {
+          "text": "Removes the contents of the specified persistent domain from the user’s defaults.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "removePersistentDomain"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forName"
+        },
+        {
+          "kind": "text",
+          "text": ": String)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/userdefaults/1417339-removepersistentdomain",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "removePersistentDomain(forName:)",
+      "type": "topic",
+      "url": "/documentation/foundation/userdefaults/1417339-removepersistentdomain"
+    },
+    "doc://com.apple.documentation/documentation/foundation/userdefaults/1589066-init": {
+      "abstract": [
+        {
+          "text": "Creates a user defaults object initialized with the defaults for the specified user account.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "identifier",
+          "text": "user"
+        },
+        {
+          "kind": "text",
+          "text": ": String)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/userdefaults/1589066-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(user:)",
+      "type": "topic",
+      "url": "/documentation/foundation/userdefaults/1589066-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/userdefaults/1589081-persistentdomainnames": {
+      "abstract": [
+        {
+          "text": "Returns an array of the current persistent domain names.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "persistentDomainNames"
+        },
+        {
+          "kind": "text",
+          "text": "() -> [Any]"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/userdefaults/1589081-persistentdomainnames",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "persistentDomainNames()",
+      "type": "topic",
+      "url": "/documentation/foundation/userdefaults/1589081-persistentdomainnames"
+    },
+    "doc://com.apple.documentation/documentation/foundation/userdefaults/1617169-completedinitialcloudsyncnotific": {
+      "abstract": [
+        {
+          "text": "Posted when ubiquitous defaults finish downloading data, either the first time a device is connected to an iCloud account or when a user switches their primary iCloud account.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class let "
+        },
+        {
+          "kind": "identifier",
+          "text": "completedInitialCloudSyncNotification"
+        },
+        {
+          "kind": "text",
+          "text": ": NSNotification.Name"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/userdefaults/1617169-completedinitialcloudsyncnotific",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "completedInitialCloudSyncNotification",
+      "type": "topic",
+      "url": "/documentation/foundation/userdefaults/1617169-completedinitialcloudsyncnotific"
+    },
+    "doc://com.apple.documentation/documentation/foundation/userdefaults/1617187-sizelimitexceedednotification": {
+      "abstract": [
+        {
+          "text": "Posted when more data is stored in user defaults than is allowed. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class let "
+        },
+        {
+          "kind": "identifier",
+          "text": "sizeLimitExceededNotification"
+        },
+        {
+          "kind": "text",
+          "text": ": NSNotification.Name"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/userdefaults/1617187-sizelimitexceedednotification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sizeLimitExceededNotification",
+      "type": "topic",
+      "url": "/documentation/foundation/userdefaults/1617187-sizelimitexceedednotification"
+    },
+    "doc://com.apple.documentation/documentation/foundation/userdefaults/1617438-didchangecloudaccountsnotificati": {
+      "abstract": [
+        {
+          "text": "Posted when the user changes the primary iCloud account.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class let "
+        },
+        {
+          "kind": "identifier",
+          "text": "didChangeCloudAccountsNotification"
+        },
+        {
+          "kind": "text",
+          "text": ": NSNotification.Name"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/userdefaults/1617438-didchangecloudaccountsnotificati",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "didChangeCloudAccountsNotification",
+      "type": "topic",
+      "url": "/documentation/foundation/userdefaults/1617438-didchangecloudaccountsnotificati"
+    },
+    "doc://com.apple.documentation/documentation/foundation/userdefaults/1648504-nocloudaccountnotification": {
+      "abstract": [
+        {
+          "text": "Posted when a cloud default is set, but no iCloud user is logged in.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class let "
+        },
+        {
+          "kind": "identifier",
+          "text": "noCloudAccountNotification"
+        },
+        {
+          "kind": "text",
+          "text": ": NSNotification.Name"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/userdefaults/1648504-nocloudaccountnotification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "noCloudAccountNotification",
+      "type": "topic",
+      "url": "/documentation/foundation/userdefaults/1648504-nocloudaccountnotification"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/objectivec/nsobject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "1664621",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/userdefaults/1416603-standard"
+      ],
+      "kind": "taskGroup",
+      "title": "Getting the Standard User Defaults Object"
+    },
+    {
+      "anchor": "1664644",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/userdefaults/1414356-init",
+        "doc://com.apple.documentation/documentation/foundation/userdefaults/1409957-init"
+      ],
+      "kind": "taskGroup",
+      "title": "Creating User Defaults Objects"
+    },
+    {
+      "anchor": "1664701",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/userdefaults/1410095-object",
+        "doc://com.apple.documentation/documentation/foundation/userdefaults/1408648-url",
+        "doc://com.apple.documentation/documentation/foundation/userdefaults/1414792-array",
+        "doc://com.apple.documentation/documentation/foundation/userdefaults/1408563-dictionary",
+        "doc://com.apple.documentation/documentation/foundation/userdefaults/1416700-string",
+        "doc://com.apple.documentation/documentation/foundation/userdefaults/1416414-stringarray",
+        "doc://com.apple.documentation/documentation/foundation/userdefaults/1409590-data",
+        "doc://com.apple.documentation/documentation/foundation/userdefaults/1416388-bool",
+        "doc://com.apple.documentation/documentation/foundation/userdefaults/1407405-integer",
+        "doc://com.apple.documentation/documentation/foundation/userdefaults/1414027-float",
+        "doc://com.apple.documentation/documentation/foundation/userdefaults/1416581-double",
+        "doc://com.apple.documentation/documentation/foundation/userdefaults/1415919-dictionaryrepresentation"
+      ],
+      "kind": "taskGroup",
+      "title": "Getting Default Values"
+    },
+    {
+      "anchor": "1664798",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/userdefaults/1414067-set",
+        "doc://com.apple.documentation/documentation/foundation/userdefaults/1413320-set",
+        "doc://com.apple.documentation/documentation/foundation/userdefaults/1408646-set",
+        "doc://com.apple.documentation/documentation/foundation/userdefaults/1413614-set",
+        "doc://com.apple.documentation/documentation/foundation/userdefaults/1408905-set",
+        "doc://com.apple.documentation/documentation/foundation/userdefaults/1414194-set"
+      ],
+      "kind": "taskGroup",
+      "title": "Setting Default Values"
+    },
+    {
+      "anchor": "1664868",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/userdefaults/1411182-removeobject"
+      ],
+      "kind": "taskGroup",
+      "title": "Removing Defaults"
+    },
+    {
+      "anchor": "1665041",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/userdefaults/1410294-addsuite",
+        "doc://com.apple.documentation/documentation/foundation/userdefaults/1408047-removesuite"
+      ],
+      "kind": "taskGroup",
+      "title": "Maintaining Suites"
+    },
+    {
+      "anchor": "1664678",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/userdefaults/1417065-register"
+      ],
+      "kind": "taskGroup",
+      "title": "Registering Defaults"
+    },
+    {
+      "anchor": "1664889",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/userdefaults/1412197-persistentdomain",
+        "doc://com.apple.documentation/documentation/foundation/userdefaults/1408187-setpersistentdomain",
+        "doc://com.apple.documentation/documentation/foundation/userdefaults/1417339-removepersistentdomain",
+        "doc://com.apple.documentation/documentation/foundation/userdefaults/1589081-persistentdomainnames"
+      ],
+      "kind": "taskGroup",
+      "title": "Maintaining Persistent Domains"
+    },
+    {
+      "anchor": "1665001",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/userdefaults/1414231-volatiledomainnames",
+        "doc://com.apple.documentation/documentation/foundation/userdefaults/1409592-volatiledomain",
+        "doc://com.apple.documentation/documentation/foundation/userdefaults/1413720-setvolatiledomain",
+        "doc://com.apple.documentation/documentation/foundation/userdefaults/1415955-removevolatiledomain"
+      ],
+      "kind": "taskGroup",
+      "title": "Maintaining Volatile Domains"
+    },
+    {
+      "anchor": "1664949",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/userdefaults/1408635-objectisforced",
+        "doc://com.apple.documentation/documentation/foundation/userdefaults/1416306-objectisforced"
+      ],
+      "kind": "taskGroup",
+      "title": "Accessing Managed Environment Keys"
+    },
+    {
+      "anchor": "1665065",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/userdefaults/1410665-argumentdomain",
+        "doc://com.apple.documentation/documentation/foundation/userdefaults/1407355-globaldomain",
+        "doc://com.apple.documentation/documentation/foundation/userdefaults/1415953-registrationdomain"
+      ],
+      "kind": "taskGroup",
+      "title": "Domains"
+    },
+    {
+      "anchor": "1665319",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/userdefaults/1408206-didchangenotification",
+        "doc://com.apple.documentation/documentation/foundation/userdefaults/1617187-sizelimitexceedednotification",
+        "doc://com.apple.documentation/documentation/foundation/userdefaults/1617169-completedinitialcloudsyncnotific",
+        "doc://com.apple.documentation/documentation/foundation/userdefaults/1617438-didchangecloudaccountsnotificati",
+        "doc://com.apple.documentation/documentation/foundation/userdefaults/1648504-nocloudaccountnotification"
+      ],
+      "kind": "taskGroup",
+      "title": "Notifications"
+    },
+    {
+      "anchor": "2926905",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/userdefaults/1589066-init",
+        "doc://com.apple.documentation/documentation/foundation/userdefaults/1414005-synchronize",
+        "doc://com.apple.documentation/documentation/foundation/userdefaults/1407708-resetstandarduserdefaults"
+      ],
+      "kind": "taskGroup",
+      "title": "Legacy"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nsuserdefaults"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/userdefaults"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

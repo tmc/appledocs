@@ -1,0 +1,4314 @@
+{
+  "abstract": [
+    {
+      "text": "An object representing a static ordered collection, for use instead of an ",
+      "type": "text"
+    },
+    {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Array",
+      "isActive": true,
+      "type": "reference"
+    },
+    {
+      "text": " constant in cases that require reference semantics.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/object_runtime",
+        "doc://com.apple.documentation/documentation/foundation/object_runtime/classes_bridged_to_swift_standard_library_value_types"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/nsarray"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1411329,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSArray",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "class "
+      },
+      {
+        "kind": "identifier",
+        "text": "NSArray"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "NSArray"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSArray"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "NSArray",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and its subclass ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutablearray",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " manage ordered collections of objects called ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "arrays",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            },
+            {
+              "text": ". ",
+              "type": "text"
+            },
+            {
+              "code": "NSArray",
+              "type": "codeVoice"
+            },
+            {
+              "text": " creates static arrays, and ",
+              "type": "text"
+            },
+            {
+              "code": "NSMutableArray",
+              "type": "codeVoice"
+            },
+            {
+              "text": " creates dynamic arrays. You can use arrays when you need an ordered collection of objects.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "NSArray",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is “toll-free bridged” with its Core Foundation counterpart, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfarray",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". See ",
+              "type": "text"
+            },
+            {
+              "identifier": "devLink-1745091",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for more information on toll-free bridging.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "2530718",
+          "level": 3,
+          "text": "Creating NSArray Objects Using Array Literals",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In addition to the provided initializers, such as ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray/1460068-initwithobjects",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", you can create an ",
+              "type": "text"
+            },
+            {
+              "code": "NSArray",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object using an ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "array literal",
+                  "type": "text"
+                }
+              ],
+              "type": "newTerm"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let array: NSArray = [someObject, \"Hello, World!\", 42]"
+          ],
+          "metadata": {
+            "anchor": "2555517",
+            "title": "Listing 1"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In Objective-C, the compiler generates code that makes an underlying call to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray/1460096-init",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "id objects[] = { someObject, @\"Hello, World!\", @42 };",
+            "NSUInteger count = sizeof(objects) / sizeof(id);",
+            "NSArray *array = [NSArray arrayWithObjects:objects",
+            "                                     count:count];"
+          ],
+          "metadata": {
+            "anchor": "2555518",
+            "title": "Listing 2"
+          },
+          "syntax": "occ",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You should not terminate the list of objects with ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": " when using this literal syntax, and in fact ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is an invalid value. For more information about object literals in Objective-C, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "devLink-1746083",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in ",
+              "type": "text"
+            },
+            {
+              "identifier": "devLink-1746020",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In Swift, the ",
+              "type": "text"
+            },
+            {
+              "code": "NSArray",
+              "type": "codeVoice"
+            },
+            {
+              "text": " class conforms to the ",
+              "type": "text"
+            },
+            {
+              "code": "ArrayLiteralConvertible",
+              "type": "codeVoice"
+            },
+            {
+              "text": " protocol, which allows it to be initialized with array literals. For more information about object literals in Swift, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "devLink-1751374",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in ",
+              "type": "text"
+            },
+            {
+              "identifier": "devLink-1750951",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "2530719",
+          "level": 3,
+          "text": "Accessing Values Using Subscripting",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In addition to the provided instance methods, such as ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray/1417555-object",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", you can access ",
+              "type": "text"
+            },
+            {
+              "code": "NSArray",
+              "type": "codeVoice"
+            },
+            {
+              "text": " values by their indexes using ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "subscripting",
+                  "type": "text"
+                }
+              ],
+              "type": "newTerm"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let value = array[3]"
+          ],
+          "metadata": {
+            "anchor": "2555519",
+            "title": "Listing 3"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "1651549",
+          "level": 3,
+          "text": "Subclassing Notes",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "There is typically little reason to subclass ",
+              "type": "text"
+            },
+            {
+              "code": "NSArray",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". The class does well what it is designed to do—maintain an ordered collection of objects. But there are situations where a custom ",
+              "type": "text"
+            },
+            {
+              "code": "NSArray",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object might come in handy. Here are a few possibilities:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Changing how ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NSArray",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " stores the elements of its collection. You might do this for performance reasons or for better compatibility with legacy code.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Acquiring more information about what is happening to the collection (for example, statistics gathering).",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "1651563",
+          "level": 4,
+          "text": "Methods to Override",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Any subclass of ",
+              "type": "text"
+            },
+            {
+              "code": "NSArray",
+              "type": "codeVoice"
+            },
+            {
+              "text": "    ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "must",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " override the primitive instance methods ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray/1409982-count",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray/1417555-object",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". These methods must operate on the backing store that you provide for the elements of the collection. For this backing store you can use a static array, a standard ",
+              "type": "text"
+            },
+            {
+              "code": "NSArray",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object, or some other data type or mechanism. You may also choose to override, partially or fully, any other ",
+              "type": "text"
+            },
+            {
+              "code": "NSArray",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method for which you want to provide an alternative implementation.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You might want to implement an initializer for your subclass that is suited to the backing store that the subclass is managing. If you do, your initializer must invoke one of the designated initializers of the ",
+              "type": "text"
+            },
+            {
+              "code": "NSArray",
+              "type": "codeVoice"
+            },
+            {
+              "text": " class, either ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray/1414315-init",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray/1415056-init",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". The ",
+              "type": "text"
+            },
+            {
+              "code": "NSArray",
+              "type": "codeVoice"
+            },
+            {
+              "text": " class adopts the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nscopying",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutablecopying",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nscoding",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocols; custom subclasses of ",
+              "type": "text"
+            },
+            {
+              "code": "NSArray",
+              "type": "codeVoice"
+            },
+            {
+              "text": " should override the methods in these protocols as necessary.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Remember that ",
+              "type": "text"
+            },
+            {
+              "code": "NSArray",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is the public interface for a class cluster and what this entails for your subclass. You must provide the storage for your subclass and implement the primitive methods that directly act on that storage.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "1651568",
+          "level": 4,
+          "text": "Alternatives to Subclassing",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before making a custom subclass of ",
+              "type": "text"
+            },
+            {
+              "code": "NSArray",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", investigate ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nspointerarray",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and the corresponding Core Foundation type, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfarray-s28",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Because ",
+              "type": "text"
+            },
+            {
+              "code": "NSArray",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "CFArray",
+              "type": "codeVoice"
+            },
+            {
+              "text": " are “toll-free bridged,” you can substitute a ",
+              "type": "text"
+            },
+            {
+              "code": "CFArray",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object for a ",
+              "type": "text"
+            },
+            {
+              "code": "NSArray",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object in your code (with appropriate casting). Although they are corresponding types, ",
+              "type": "text"
+            },
+            {
+              "code": "CFArray",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "NSArray",
+              "type": "codeVoice"
+            },
+            {
+              "text": " do not have identical interfaces or implementations, and you can sometimes do things with ",
+              "type": "text"
+            },
+            {
+              "code": "CFArray",
+              "type": "codeVoice"
+            },
+            {
+              "text": " that you cannot easily do with ",
+              "type": "text"
+            },
+            {
+              "code": "NSArray",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". For example, ",
+              "type": "text"
+            },
+            {
+              "code": "CFArray",
+              "type": "codeVoice"
+            },
+            {
+              "text": " provides a set of callbacks, some of which are for implementing custom retain-release behavior. If you specify ",
+              "type": "text"
+            },
+            {
+              "code": "NULL",
+              "type": "codeVoice"
+            },
+            {
+              "text": " implementations for these callbacks, you can easily get a non-retaining array.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the behavior you want to add supplements that of the existing class, you could write a category on ",
+              "type": "text"
+            },
+            {
+              "code": "NSArray",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". Keep in mind, however, that this category will be in effect for all instances of ",
+              "type": "text"
+            },
+            {
+              "code": "NSArray",
+              "type": "codeVoice"
+            },
+            {
+              "text": " that you use, and this might have unintended consequences. Alternatively, you could use composition to achieve the desired behavior.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "devLink-1745091": {
+      "identifier": "devLink-1745091",
+      "title": "Toll-Free Bridging",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/General/Conceptual/CocoaEncyclopedia/Toll-FreeBridgin/Toll-FreeBridgin.html#//apple_ref/doc/uid/TP40010810-CH2"
+    },
+    "devLink-1746020": {
+      "identifier": "devLink-1746020",
+      "title": "Programming with Objective-C",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/ProgrammingWithObjectiveC/Introduction/Introduction.html#//apple_ref/doc/uid/TP40011210"
+    },
+    "devLink-1746083": {
+      "identifier": "devLink-1746083",
+      "title": "Working with Objects",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/ProgrammingWithObjectiveC/WorkingwithObjects/WorkingwithObjects.html#//apple_ref/doc/uid/TP40011210-CH4"
+    },
+    "devLink-1750951": {
+      "identifier": "devLink-1750951",
+      "title": "The Swift Programming Language (Swift 4.1)",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/Swift/Conceptual/Swift_Programming_Language/index.html#//apple_ref/doc/uid/TP40014097"
+    },
+    "devLink-1751374": {
+      "identifier": "devLink-1751374",
+      "title": "Literal Expression",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/Swift/Conceptual/Swift_Programming_Language/Expressions.html#//apple_ref/doc/uid/TP40014097-CH32-ID390"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Array": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Array",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Array",
+      "type": "topic",
+      "url": "/documentation/swift/array"
+    },
+    "doc://com.apple.Swift/documentation/Swift/CustomReflectable": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/CustomReflectable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomReflectable",
+      "type": "topic",
+      "url": "/documentation/swift/customreflectable"
+    },
+    "doc://com.apple.Swift/documentation/Swift/ExpressibleByArrayLiteral": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/ExpressibleByArrayLiteral",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ExpressibleByArrayLiteral",
+      "type": "topic",
+      "url": "/documentation/swift/expressiblebyarrayliteral"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Sequence": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Sequence",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sequence",
+      "type": "topic",
+      "url": "/documentation/swift/sequence"
+    },
+    "doc://com.apple.cloudkit/documentation/CloudKit/CKRecordValueProtocol": {
+      "identifier": "doc://com.apple.cloudkit/documentation/CloudKit/CKRecordValueProtocol",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CKRecordValueProtocol",
+      "type": "topic",
+      "url": "/documentation/cloudkit/ckrecordvalueprotocol"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfarray": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfarray",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFArray",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfarray"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfarray-s28": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfarray-s28",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFArray",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfarray-s28"
+    },
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/comparator": {
+      "abstract": [
+        {
+          "text": "Defines the signature for a block object used for comparison operations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "Comparator"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/comparator",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Comparator",
+      "type": "topic",
+      "url": "/documentation/foundation/comparator"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsarray": {
+      "abstract": [
+        {
+          "text": "An object representing a static ordered collection, for use instead of an ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.Swift/documentation/Swift/Array",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " constant in cases that require reference semantics.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSArray"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSArray",
+      "type": "topic",
+      "url": "/documentation/foundation/nsarray"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsarray#2555517": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray#2555517",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/foundation/nsarray#2555517"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsarray#2555518": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray#2555518",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 2",
+      "type": "section",
+      "url": "/documentation/foundation/nsarray#2555518"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsarray#2555519": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray#2555519",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 3",
+      "type": "section",
+      "url": "/documentation/foundation/nsarray#2555519"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsarray/1407434-removeobserver": {
+      "abstract": [
+        {
+          "text": "Removes ",
+          "type": "text"
+        },
+        {
+          "code": "anObserver",
+          "type": "codeVoice"
+        },
+        {
+          "text": " from all key value observer notifications associated with the specified ",
+          "type": "text"
+        },
+        {
+          "code": "keyPath",
+          "type": "codeVoice"
+        },
+        {
+          "text": " relative to the array’s objects at ",
+          "type": "text"
+        },
+        {
+          "code": "indexes",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeObserver"
+        },
+        {
+          "kind": "text",
+          "text": "(NSObject, "
+        },
+        {
+          "kind": "identifier",
+          "text": "fromObjectsAt"
+        },
+        {
+          "kind": "text",
+          "text": ": IndexSet, "
+        },
+        {
+          "kind": "identifier",
+          "text": "forKeyPath"
+        },
+        {
+          "kind": "text",
+          "text": ": String)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray/1407434-removeobserver",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "removeObserver(_:fromObjectsAt:forKeyPath:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsarray/1407434-removeobserver"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsarray/1407477-contains": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether a given object is present in the array.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "contains"
+        },
+        {
+          "kind": "text",
+          "text": "(Any) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray/1407477-contains",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "contains(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsarray/1407477-contains"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsarray/1407652-indexofobject": {
+      "abstract": [
+        {
+          "text": "Returns the index, from a given set of indexes, of the first object in the array that passes a test in a given block for a given set of enumeration options.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "indexOfObject"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": IndexSet, "
+        },
+        {
+          "kind": "identifier",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": NSEnumerationOptions, "
+        },
+        {
+          "kind": "identifier",
+          "text": "passingTest"
+        },
+        {
+          "kind": "text",
+          "text": ": (Any, Int, UnsafeMutablePointer<ObjCBool>) -> Bool) -> Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray/1407652-indexofobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "indexOfObject(at:options:passingTest:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsarray/1407652-indexofobject"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsarray/1407810-init": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "identifier",
+          "text": "coder"
+        },
+        {
+          "kind": "text",
+          "text": ": NSCoder)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray/1407810-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(coder:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsarray/1407810-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsarray/1408043-indexofobject": {
+      "abstract": [
+        {
+          "text": "Returns the index of the first object in the array that passes a test in a given block.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "indexOfObject"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "passingTest"
+        },
+        {
+          "kind": "text",
+          "text": ": (Any, Int, UnsafeMutablePointer<ObjCBool>) -> Bool) -> Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray/1408043-indexofobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "indexOfObject(passingTest:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsarray/1408043-indexofobject"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsarray/1408213-sortedarray": {
+      "abstract": [
+        {
+          "text": "Returns a new array that lists the receiving array’s elements in ascending order as defined by the comparison function ",
+          "type": "text"
+        },
+        {
+          "code": "comparator",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "sortedArray"
+        },
+        {
+          "kind": "text",
+          "text": "((Any, Any, UnsafeMutableRawPointer?) -> Int, "
+        },
+        {
+          "kind": "identifier",
+          "text": "context"
+        },
+        {
+          "kind": "text",
+          "text": ": UnsafeMutableRawPointer?) -> [Any]"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray/1408213-sortedarray",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sortedArray(_:context:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsarray/1408213-sortedarray"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsarray/1408301-setvalue": {
+      "abstract": [
+        {
+          "text": "Invokes ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray/1408301-setvalue",
+          "isActive": false,
+          "type": "reference"
+        },
+        {
+          "text": " on each of the array's items using the specified ",
+          "type": "text"
+        },
+        {
+          "code": "value",
+          "type": "codeVoice"
+        },
+        {
+          "text": " and ",
+          "type": "text"
+        },
+        {
+          "code": "key",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "setValue"
+        },
+        {
+          "kind": "text",
+          "text": "(Any?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "forKey"
+        },
+        {
+          "kind": "text",
+          "text": ": String)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray/1408301-setvalue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setValue(_:forKey:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsarray/1408301-setvalue"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsarray/1408305-removeobserver": {
+      "abstract": [
+        {
+          "text": "Raises an exception.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeObserver"
+        },
+        {
+          "kind": "text",
+          "text": "(NSObject, "
+        },
+        {
+          "kind": "identifier",
+          "text": "fromObjectsAt"
+        },
+        {
+          "kind": "text",
+          "text": ": IndexSet, "
+        },
+        {
+          "kind": "identifier",
+          "text": "forKeyPath"
+        },
+        {
+          "kind": "text",
+          "text": ": String, "
+        },
+        {
+          "kind": "identifier",
+          "text": "context"
+        },
+        {
+          "kind": "text",
+          "text": ": UnsafeMutableRawPointer?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray/1408305-removeobserver",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "removeObserver(_:fromObjectsAt:forKeyPath:context:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsarray/1408305-removeobserver"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsarray/1408316-lastobject": {
+      "abstract": [
+        {
+          "text": "The last object in the array.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "lastObject"
+        },
+        {
+          "kind": "text",
+          "text": ": Any?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray/1408316-lastobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "lastObject",
+      "type": "topic",
+      "url": "/documentation/foundation/nsarray/1408316-lastobject"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsarray/1408493-init": {
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "objects"
+        },
+        {
+          "kind": "text",
+          "text": ": Any...)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray/1408493-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(objects:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsarray/1408493-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsarray/1408534-adding": {
+      "abstract": [
+        {
+          "text": "Returns a new array that is a copy of the receiving array with a given object added to the end.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "adding"
+        },
+        {
+          "kind": "text",
+          "text": "(Any) -> [Any]"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray/1408534-adding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "adding(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsarray/1408534-adding"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsarray/1408557-init": {
+      "abstract": [
+        {
+          "text": "Initializes a newly allocated array using ",
+          "type": "text"
+        },
+        {
+          "code": "anArray",
+          "type": "codeVoice"
+        },
+        {
+          "text": " as the source of data objects for the array.  ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "array"
+        },
+        {
+          "kind": "text",
+          "text": ": [Any], "
+        },
+        {
+          "kind": "identifier",
+          "text": "copyItems"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray/1408557-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(array:copyItems:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsarray/1408557-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsarray/1408825-firstobjectcommon": {
+      "abstract": [
+        {
+          "text": "Returns the first object contained in the receiving array that’s equal to an object in another given array.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "firstObjectCommon"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": [Any]) -> Any?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray/1408825-firstobjectcommon",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "firstObjectCommon(with:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsarray/1408825-firstobjectcommon"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsarray/1409775-addobserver": {
+      "abstract": [
+        {
+          "text": "Raises an exception.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "addObserver"
+        },
+        {
+          "kind": "text",
+          "text": "(NSObject, "
+        },
+        {
+          "kind": "identifier",
+          "text": "forKeyPath"
+        },
+        {
+          "kind": "text",
+          "text": ": String, "
+        },
+        {
+          "kind": "identifier",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": NSKeyValueObservingOptions, "
+        },
+        {
+          "kind": "identifier",
+          "text": "context"
+        },
+        {
+          "kind": "text",
+          "text": ": UnsafeMutableRawPointer?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray/1409775-addobserver",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "addObserver(_:forKeyPath:options:context:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsarray/1409775-addobserver"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsarray/1409982-count": {
+      "abstract": [
+        {
+          "text": "The number of objects in the array.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "count"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray/1409982-count",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "count",
+      "type": "topic",
+      "url": "/documentation/foundation/nsarray/1409982-count"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsarray/1410025-sortedarray": {
+      "abstract": [
+        {
+          "text": "Returns an array that lists the receiving array’s elements in ascending order, as determined by the comparison method specified by a given selector.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "sortedArray"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "using"
+        },
+        {
+          "kind": "text",
+          "text": ": Selector) -> [Any]"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray/1410025-sortedarray",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sortedArray(using:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsarray/1410025-sortedarray"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsarray/1410518-init": {
+      "abstract": [
+        {
+          "text": "Initializes a newly allocated array with the contents of the location specified by a given URL.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "identifier",
+          "text": "contentsOf"
+        },
+        {
+          "kind": "text",
+          "text": ": URL)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray/1410518-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(contentsOf:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsarray/1410518-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsarray/1410847-indexofobjectidentical": {
+      "abstract": [
+        {
+          "text": "Returns the lowest index whose corresponding array value is identical to a given object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "indexOfObjectIdentical"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": Any) -> Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray/1410847-indexofobjectidentical",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "indexOfObjectIdentical(to:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsarray/1410847-indexofobjectidentical"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsarray/1411033-filtered": {
+      "abstract": [
+        {
+          "text": "Evaluates a given predicate against each object in the receiving array and returns a new array containing the objects for which the predicate returns true.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "filtered"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "using"
+        },
+        {
+          "kind": "text",
+          "text": ": NSPredicate) -> [Any]"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray/1411033-filtered",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "filtered(using:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsarray/1411033-filtered"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsarray/1411195-sortedarray": {
+      "abstract": [
+        {
+          "text": "Returns an array that lists the receiving array’s elements in ascending order, as determined by the comparison method specified by a given ",
+          "type": "text"
+        },
+        {
+          "code": "NSComparator",
+          "type": "codeVoice"
+        },
+        {
+          "text": " block.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "sortedArray"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "comparator"
+        },
+        {
+          "kind": "text",
+          "text": ": (Any, Any) -> ComparisonResult) -> [Any]"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray/1411195-sortedarray",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sortedArray(comparator:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsarray/1411195-sortedarray"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsarray/1411296-objects": {
+      "abstract": [
+        {
+          "text": "Returns an array containing the objects in the array at the indexes specified by a given index set.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "objects"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": IndexSet) -> [Any]"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray/1411296-objects",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "objects(at:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsarray/1411296-objects"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsarray/1411404-addobserver": {
+      "abstract": [
+        {
+          "text": "Registers an observer to receive key value observer notifications for the specified key-path relative to the objects at the indexes. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "addObserver"
+        },
+        {
+          "kind": "text",
+          "text": "(NSObject, "
+        },
+        {
+          "kind": "identifier",
+          "text": "toObjectsAt"
+        },
+        {
+          "kind": "text",
+          "text": ": IndexSet, "
+        },
+        {
+          "kind": "identifier",
+          "text": "forKeyPath"
+        },
+        {
+          "kind": "text",
+          "text": ": String, "
+        },
+        {
+          "kind": "identifier",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": NSKeyValueObservingOptions, "
+        },
+        {
+          "kind": "identifier",
+          "text": "context"
+        },
+        {
+          "kind": "text",
+          "text": ": UnsafeMutableRawPointer?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray/1411404-addobserver",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "addObserver(_:toObjectsAt:forKeyPath:options:context:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsarray/1411404-addobserver"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsarray/1411480-write": {
+      "abstract": [
+        {
+          "text": "Writes the contents of the array to the location specified by a given URL.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "write"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": URL, "
+        },
+        {
+          "kind": "identifier",
+          "text": "atomically"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray/1411480-write",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "write(to:atomically:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsarray/1411480-write"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsarray/1411770-isequal": {
+      "abstract": [
+        {
+          "text": "Compares the receiving array to another array.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "isEqual"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": [Any]) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray/1411770-isequal",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isEqual(to:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsarray/1411770-isequal"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsarray/1411981-init": {
+      "abstract": [
+        {
+          "text": "Creates and returns an array containing a given object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "object"
+        },
+        {
+          "kind": "text",
+          "text": ": Any)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray/1411981-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(object:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsarray/1411981-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsarray/1412075-componentsjoined": {
+      "abstract": [
+        {
+          "text": "Constructs and returns an ",
+          "type": "text"
+        },
+        {
+          "code": "NSString",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object that is the result of interposing a given separator between the elements of the array.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "componentsJoined"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "by"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray/1412075-componentsjoined",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "componentsJoined(by:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsarray/1412075-componentsjoined"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsarray/1412087-addingobjects": {
+      "abstract": [
+        {
+          "text": "Returns a new array that is a copy of the receiving array with the objects contained in another array added to the end.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "addingObjects"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": [Any]) -> [Any]"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray/1412087-addingobjects",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "addingObjects(from:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsarray/1412087-addingobjects"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsarray/1412169-init": {
+      "abstract": [
+        {
+          "text": "Initializes a newly allocated array by placing in it the objects contained in a given array.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "array"
+        },
+        {
+          "kind": "text",
+          "text": ": [Any])"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray/1412169-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(array:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsarray/1412169-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsarray/1412219-value": {
+      "abstract": [
+        {
+          "text": "Returns an array containing the results of invoking ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray/1412219-value",
+          "isActive": false,
+          "type": "reference"
+        },
+        {
+          "text": " using ",
+          "type": "text"
+        },
+        {
+          "code": "key",
+          "type": "codeVoice"
+        },
+        {
+          "text": " on each of the array's objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "value"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forKey"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> Any"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray/1412219-value",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "value(forKey:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsarray/1412219-value"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsarray/1412374-description": {
+      "abstract": [
+        {
+          "text": "Returns a string that represents the contents of the array, formatted as a property list.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "description"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "withLocale"
+        },
+        {
+          "kind": "text",
+          "text": ": Any?) -> String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray/1412374-description",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "description(withLocale:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsarray/1412374-description"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsarray/1412722-index": {
+      "abstract": [
+        {
+          "text": "Returns the index, within a specified range, of an object compared with elements in the array using a given ",
+          "type": "text"
+        },
+        {
+          "code": "NSComparator",
+          "type": "codeVoice"
+        },
+        {
+          "text": " block.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "index"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "of"
+        },
+        {
+          "kind": "text",
+          "text": ": Any, "
+        },
+        {
+          "kind": "identifier",
+          "text": "inSortedRange"
+        },
+        {
+          "kind": "text",
+          "text": ": NSRange, "
+        },
+        {
+          "kind": "identifier",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": NSBinarySearchingOptions, "
+        },
+        {
+          "kind": "identifier",
+          "text": "usingComparator"
+        },
+        {
+          "kind": "text",
+          "text": ": (Any, Any) -> ComparisonResult) -> Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray/1412722-index",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "index(of:inSortedRange:options:usingComparator:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsarray/1412722-index"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsarray/1412852-firstobject": {
+      "abstract": [
+        {
+          "text": "The first object in the array.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "firstObject"
+        },
+        {
+          "kind": "text",
+          "text": ": Any?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray/1412852-firstobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "firstObject",
+      "type": "topic",
+      "url": "/documentation/foundation/nsarray/1412852-firstobject"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsarray/1413010-enumerateobjects": {
+      "abstract": [
+        {
+          "text": "Executes a given closure using each object in the array with the specified options.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "enumerateObjects"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": NSEnumerationOptions, "
+        },
+        {
+          "kind": "identifier",
+          "text": "using"
+        },
+        {
+          "kind": "text",
+          "text": ": (Any, Int, UnsafeMutablePointer<ObjCBool>) -> Void)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray/1413010-enumerateobjects",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "enumerateObjects(options:using:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsarray/1413010-enumerateobjects"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsarray/1413042-description": {
+      "abstract": [
+        {
+          "text": "A string that represents the contents of the array, formatted as a property list.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "description"
+        },
+        {
+          "kind": "text",
+          "text": ": String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray/1413042-description",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "description",
+      "type": "topic",
+      "url": "/documentation/foundation/nsarray/1413042-description"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsarray/1413063-sortedarrayhint": {
+      "abstract": [
+        {
+          "text": "Analyzes the array and returns a “hint” that speeds the sorting of the array when the hint is supplied to ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray/1414839-sortedarray",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "sortedArrayHint"
+        },
+        {
+          "kind": "text",
+          "text": ": Data"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray/1413063-sortedarrayhint",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sortedArrayHint",
+      "type": "topic",
+      "url": "/documentation/foundation/nsarray/1413063-sortedarrayhint"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsarray/1413512-indexesofobjects": {
+      "abstract": [
+        {
+          "text": "Returns the indexes, from a given set of indexes, of objects in the array that pass a test in a given block for a given set of enumeration options.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "indexesOfObjects"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": IndexSet, "
+        },
+        {
+          "kind": "identifier",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": NSEnumerationOptions, "
+        },
+        {
+          "kind": "identifier",
+          "text": "passingTest"
+        },
+        {
+          "kind": "text",
+          "text": ": (Any, Int, UnsafeMutablePointer<ObjCBool>) -> Bool) -> IndexSet"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray/1413512-indexesofobjects",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "indexesOfObjects(at:options:passingTest:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsarray/1413512-indexesofobjects"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsarray/1413844-init": {
+      "abstract": [
+        {
+          "text": "Initializes a newly allocated array with the contents of the file specified by a given path.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "identifier",
+          "text": "contentsOfFile"
+        },
+        {
+          "kind": "text",
+          "text": ": String)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray/1413844-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(contentsOfFile:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsarray/1413844-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsarray/1414084-subscript": {
+      "abstract": [
+        {
+          "text": "Returns the object at the specified index.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "subscript"
+        },
+        {
+          "kind": "text",
+          "text": "(Int) -> Any"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray/1414084-subscript",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "subscript(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsarray/1414084-subscript"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsarray/1414315-init": {
+      "abstract": [
+        {
+          "text": "Initializes a newly allocated array.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray/1414315-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init()",
+      "type": "topic",
+      "url": "/documentation/foundation/nsarray/1414315-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsarray/1414742-write": {
+      "abstract": [
+        {
+          "text": "Writes the contents of the array to a file at a given path.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "write"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "toFile"
+        },
+        {
+          "kind": "text",
+          "text": ": String, "
+        },
+        {
+          "kind": "identifier",
+          "text": "atomically"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool) -> Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray/1414742-write",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "write(toFile:atomically:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsarray/1414742-write"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsarray/1414839-sortedarray": {
+      "abstract": [
+        {
+          "text": "Returns a new array that lists the receiving array’s elements in ascending order as defined by the comparison function ",
+          "type": "text"
+        },
+        {
+          "code": "comparator",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "sortedArray"
+        },
+        {
+          "kind": "text",
+          "text": "((Any, Any, UnsafeMutableRawPointer?) -> Int, "
+        },
+        {
+          "kind": "identifier",
+          "text": "context"
+        },
+        {
+          "kind": "text",
+          "text": ": UnsafeMutableRawPointer?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "hint"
+        },
+        {
+          "kind": "text",
+          "text": ": Data?) -> [Any]"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray/1414839-sortedarray",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sortedArray(_:context:hint:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsarray/1414839-sortedarray"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsarray/1414976-removeobserver": {
+      "abstract": [
+        {
+          "text": "Raises an exception.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeObserver"
+        },
+        {
+          "kind": "text",
+          "text": "(NSObject, "
+        },
+        {
+          "kind": "identifier",
+          "text": "forKeyPath"
+        },
+        {
+          "kind": "text",
+          "text": ": String)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray/1414976-removeobserver",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "removeObserver(_:forKeyPath:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsarray/1414976-removeobserver"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsarray/1415056-init": {
+      "abstract": [
+        {
+          "text": "Initializes a newly allocated array to include a given number of objects from a given C array.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "objects"
+        },
+        {
+          "kind": "text",
+          "text": ": UnsafePointer<AnyObject>?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "count"
+        },
+        {
+          "kind": "text",
+          "text": ": Int)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray/1415056-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(objects:count:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsarray/1415056-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsarray/1415069-sortedarray": {
+      "abstract": [
+        {
+          "text": "Returns a copy of the receiving array sorted as specified by a given array of sort descriptors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "sortedArray"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "using"
+        },
+        {
+          "kind": "text",
+          "text": ": [NSSortDescriptor]) -> [Any]"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray/1415069-sortedarray",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sortedArray(using:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsarray/1415069-sortedarray"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsarray/1415087-indexesofobjects": {
+      "abstract": [
+        {
+          "text": "Returns the indexes of objects in the array that pass a test in a given block for a given set of enumeration options.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "indexesOfObjects"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": NSEnumerationOptions, "
+        },
+        {
+          "kind": "identifier",
+          "text": "passingTest"
+        },
+        {
+          "kind": "text",
+          "text": ": (Any, Int, UnsafeMutablePointer<ObjCBool>) -> Bool) -> IndexSet"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray/1415087-indexesofobjects",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "indexesOfObjects(options:passingTest:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsarray/1415087-indexesofobjects"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsarray/1415157-subarray": {
+      "abstract": [
+        {
+          "text": "Returns a new array containing the receiving array’s elements that fall within the limits specified by a given range.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "subarray"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": NSRange) -> [Any]"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray/1415157-subarray",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "subarray(with:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsarray/1415157-subarray"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsarray/1415248-index": {
+      "abstract": [
+        {
+          "text": "Returns the lowest index within a specified range whose corresponding array value is equal to a given object .",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "index"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "of"
+        },
+        {
+          "kind": "text",
+          "text": ": Any, "
+        },
+        {
+          "kind": "identifier",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": NSRange) -> Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray/1415248-index",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "index(of:in:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsarray/1415248-index"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsarray/1415358-init": {
+      "abstract": [
+        {
+          "text": "Create an instance initialized with ",
+          "type": "text"
+        },
+        {
+          "code": "elements",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "arrayLiteral"
+        },
+        {
+          "kind": "text",
+          "text": ": Any...)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray/1415358-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(arrayLiteral:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsarray/1415358-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsarray/1415734-reverseobjectenumerator": {
+      "abstract": [
+        {
+          "text": "Returns an enumerator object that lets you access each object in the array, in reverse order.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "reverseObjectEnumerator"
+        },
+        {
+          "kind": "text",
+          "text": "() -> NSEnumerator"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray/1415734-reverseobjectenumerator",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "reverseObjectEnumerator()",
+      "type": "topic",
+      "url": "/documentation/foundation/nsarray/1415734-reverseobjectenumerator"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsarray/1415805-indexofobjectidentical": {
+      "abstract": [
+        {
+          "text": "Returns the lowest index within a specified range whose corresponding array value is equal to a given object .",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "indexOfObjectIdentical"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": Any, "
+        },
+        {
+          "kind": "identifier",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": NSRange) -> Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray/1415805-indexofobjectidentical",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "indexOfObjectIdentical(to:in:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsarray/1415805-indexofobjectidentical"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsarray/1415846-enumerateobjects": {
+      "abstract": [
+        {
+          "text": "Executes a given closure using each object in the array, starting with the first object and continuing through the array to the last object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "enumerateObjects"
+        },
+        {
+          "kind": "text",
+          "text": "((Any, Int, UnsafeMutablePointer<ObjCBool>) -> Void)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray/1415846-enumerateobjects",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "enumerateObjects(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsarray/1415846-enumerateobjects"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsarray/1416048-objectenumerator": {
+      "abstract": [
+        {
+          "text": "Returns an enumerator object that lets you access each object in the array.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "objectEnumerator"
+        },
+        {
+          "kind": "text",
+          "text": "() -> NSEnumerator"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray/1416048-objectenumerator",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "objectEnumerator()",
+      "type": "topic",
+      "url": "/documentation/foundation/nsarray/1416048-objectenumerator"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsarray/1416257-description": {
+      "abstract": [
+        {
+          "text": "Returns a string that represents the contents of the array, formatted as a property list.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "description"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "withLocale"
+        },
+        {
+          "kind": "text",
+          "text": ": Any?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "indent"
+        },
+        {
+          "kind": "text",
+          "text": ": Int) -> String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray/1416257-description",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "description(withLocale:indent:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsarray/1416257-description"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsarray/1417053-indexofobject": {
+      "abstract": [
+        {
+          "text": "Returns the index of an object in the array that passes a test in a given block for a given set of enumeration options.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "indexOfObject"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": NSEnumerationOptions, "
+        },
+        {
+          "kind": "identifier",
+          "text": "passingTest"
+        },
+        {
+          "kind": "text",
+          "text": ": (Any, Int, UnsafeMutablePointer<ObjCBool>) -> Bool) -> Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray/1417053-indexofobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "indexOfObject(options:passingTest:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsarray/1417053-indexofobject"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsarray/1417076-index": {
+      "abstract": [
+        {
+          "text": "Returns the lowest index whose corresponding array value is equal to a given object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "index"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "of"
+        },
+        {
+          "kind": "text",
+          "text": ": Any) -> Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray/1417076-index",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "index(of:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsarray/1417076-index"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsarray/1417555-object": {
+      "abstract": [
+        {
+          "text": "Returns the object located at the specified index.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "object"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": Int) -> Any"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray/1417555-object",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "object(at:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsarray/1417555-object"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsarray/1417577-enumerateobjects": {
+      "abstract": [
+        {
+          "text": "Executes a given block using the objects in the array at the specified indexes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "enumerateObjects"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": IndexSet, "
+        },
+        {
+          "kind": "identifier",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": NSEnumerationOptions, "
+        },
+        {
+          "kind": "identifier",
+          "text": "using"
+        },
+        {
+          "kind": "text",
+          "text": ": (Any, Int, UnsafeMutablePointer<ObjCBool>) -> Void)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray/1417577-enumerateobjects",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "enumerateObjects(at:options:using:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsarray/1417577-enumerateobjects"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsarray/1417603-indexesofobjects": {
+      "abstract": [
+        {
+          "text": "Returns the indexes of objects in the array that pass a test in a given block.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "indexesOfObjects"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "passingTest"
+        },
+        {
+          "kind": "text",
+          "text": ": (Any, Int, UnsafeMutablePointer<ObjCBool>) -> Bool) -> IndexSet"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray/1417603-indexesofobjects",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "indexesOfObjects(passingTest:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsarray/1417603-indexesofobjects"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsarray/1417804-sortedarray": {
+      "abstract": [
+        {
+          "text": "Returns an array that lists the receiving array’s elements in ascending order, as determined by the comparison method specified by a given ",
+          "type": "text"
+        },
+        {
+          "code": "NSComparator",
+          "type": "codeVoice"
+        },
+        {
+          "text": " block.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "sortedArray"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": NSSortOptions, "
+        },
+        {
+          "kind": "identifier",
+          "text": "usingComparator"
+        },
+        {
+          "kind": "text",
+          "text": ": (Any, Any) -> ComparisonResult) -> [Any]"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray/1417804-sortedarray",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sortedArray(options:usingComparator:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsarray/1417804-sortedarray"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsarray/1418275-pathsmatchingextensions": {
+      "abstract": [
+        {
+          "text": "Returns an array containing all the pathname elements in the receiving array that have filename extensions from a given array.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "pathsMatchingExtensions"
+        },
+        {
+          "kind": "text",
+          "text": "([String]) -> [String]"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray/1418275-pathsmatchingextensions",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "pathsMatchingExtensions(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsarray/1418275-pathsmatchingextensions"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsarray/1418441-removeobserver": {
+      "abstract": [
+        {
+          "text": "Raises an exception.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeObserver"
+        },
+        {
+          "kind": "text",
+          "text": "(NSObject, "
+        },
+        {
+          "kind": "identifier",
+          "text": "forKeyPath"
+        },
+        {
+          "kind": "text",
+          "text": ": String, "
+        },
+        {
+          "kind": "identifier",
+          "text": "context"
+        },
+        {
+          "kind": "text",
+          "text": ": UnsafeMutableRawPointer?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray/1418441-removeobserver",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "removeObserver(_:forKeyPath:context:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsarray/1418441-removeobserver"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsarray/1460068-initwithobjects": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "initWithObjects:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray/1460068-initwithobjects",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "initWithObjects:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsarray/1460068-initwithobjects"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsarray/1460096-init": {
+      "abstract": [
+        {
+          "text": "Creates and returns an array that includes a given number of objects from a given C array.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "objects"
+        },
+        {
+          "kind": "text",
+          "text": ": UnsafePointer<AnyObject>, "
+        },
+        {
+          "kind": "identifier",
+          "text": "count"
+        },
+        {
+          "kind": "text",
+          "text": ": Int)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray/1460096-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(objects:count:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsarray/1460096-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsarray/1640687-shuffled": {
+      "abstract": [
+        {
+          "text": "Returns a new array that lists this array’s elements in a random order, using the specified random source.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "shuffled"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "using"
+        },
+        {
+          "kind": "text",
+          "text": ": GKRandomSource) -> [Any]"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray/1640687-shuffled",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "shuffled(using:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsarray/1640687-shuffled"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsarray/1640855-shuffled": {
+      "abstract": [
+        {
+          "text": "Returns a new array that lists this array’s elements in a random order.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "shuffled"
+        },
+        {
+          "kind": "text",
+          "text": "() -> [Any]"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray/1640855-shuffled",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "shuffled()",
+      "type": "topic",
+      "url": "/documentation/foundation/nsarray/1640855-shuffled"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsarray/1643143-custommirror": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "customMirror"
+        },
+        {
+          "kind": "text",
+          "text": ": Mirror"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray/1643143-custommirror",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "customMirror",
+      "type": "topic",
+      "url": "/documentation/foundation/nsarray/1643143-custommirror"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsarray/1643246-makeiterator": {
+      "abstract": [
+        {
+          "text": "Return an ",
+          "type": "text"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "iterator",
+              "type": "text"
+            }
+          ],
+          "type": "emphasis"
+        },
+        {
+          "text": " over the elements of this ",
+          "type": "text"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "sequence",
+              "type": "text"
+            }
+          ],
+          "type": "emphasis"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "makeIterator"
+        },
+        {
+          "kind": "text",
+          "text": "() -> NSFastEnumerationIterator"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray/1643246-makeiterator",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "makeIterator()",
+      "type": "topic",
+      "url": "/documentation/foundation/nsarray/1643246-makeiterator"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsarray/2879134-init": {
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "contentsOf"
+        },
+        {
+          "kind": "text",
+          "text": ": URL, "
+        },
+        {
+          "kind": "identifier",
+          "text": "error"
+        },
+        {
+          "kind": "text",
+          "text": ": ())"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray/2879134-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(contentsOf:error:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsarray/2879134-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsarray/2879138-write": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "write"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": URL)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray/2879138-write",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "write(to:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsarray/2879138-write"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsarray/3126723-init": {
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "array"
+        },
+        {
+          "kind": "text",
+          "text": ": NSArray)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray/3126723-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(array:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsarray/3126723-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsarray/3767106-underestimatedcount": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "underestimatedCount"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray/3767106-underestimatedcount",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "underestimatedCount",
+      "type": "topic",
+      "url": "/documentation/foundation/nsarray/3767106-underestimatedcount"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsarray/arrayliteralelement": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSArray.ArrayLiteralElement"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray/arrayliteralelement",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSArray.ArrayLiteralElement",
+      "type": "topic",
+      "url": "/documentation/foundation/nsarray/arrayliteralelement"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsarray/element": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSArray.Element"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray/element",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSArray.Element",
+      "type": "topic",
+      "url": "/documentation/foundation/nsarray/element"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsarray/iterator": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSArray.Iterator"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray/iterator",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSArray.Iterator",
+      "type": "topic",
+      "url": "/documentation/foundation/nsarray/iterator"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsbinarysearchingoptions": {
+      "abstract": [
+        {
+          "text": "Options for searches and insertions using ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray/1412722-index",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSBinarySearchingOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsbinarysearchingoptions",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSBinarySearchingOptions",
+      "type": "topic",
+      "url": "/documentation/foundation/nsbinarysearchingoptions"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscoding": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoding"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscopying": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscopying",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCopying",
+      "type": "topic",
+      "url": "/documentation/foundation/nscopying"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsfastenumeration": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsfastenumeration",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSFastEnumeration",
+      "type": "topic",
+      "url": "/documentation/foundation/nsfastenumeration"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutablearray": {
+      "abstract": [
+        {
+          "text": "An object representing a dynamic ordered collection, for use instead of an ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.Swift/documentation/Swift/Array",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " variable in cases that require reference semantics.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSMutableArray"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutablearray",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSMutableArray",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutablearray"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutablecopying": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutablecopying",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSMutableCopying",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutablecopying"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsorderedcollectiondifference": {
+      "abstract": [
+        {
+          "text": "An object representing the difference between two ordered collections.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSOrderedCollectionDifference"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsorderedcollectiondifference",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSOrderedCollectionDifference",
+      "type": "topic",
+      "url": "/documentation/foundation/nsorderedcollectiondifference"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsorderedcollectiondifferencecalculationoptions": {
+      "abstract": [
+        {
+          "text": "Constants that specify the options to use when creating an ordered collection difference.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSOrderedCollectionDifferenceCalculationOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsorderedcollectiondifferencecalculationoptions",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSOrderedCollectionDifferenceCalculationOptions",
+      "type": "topic",
+      "url": "/documentation/foundation/nsorderedcollectiondifferencecalculationoptions"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nspointerarray": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nspointerarray",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSPointerArray",
+      "type": "topic",
+      "url": "/documentation/foundation/nspointerarray"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nssecurecoding": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nssecurecoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSecureCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nssecurecoding"
+    },
+    "doc://com.apple.documentation/documentation/foundation/object_runtime": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/object_runtime",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Object Runtime",
+      "type": "topic",
+      "url": "/documentation/foundation/object_runtime"
+    },
+    "doc://com.apple.documentation/documentation/foundation/object_runtime/classes_bridged_to_swift_standard_library_value_types": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/object_runtime/classes_bridged_to_swift_standard_library_value_types",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Classes Bridged to Swift Standard Library Value Types",
+      "type": "topic",
+      "url": "/documentation/foundation/object_runtime/classes_bridged_to_swift_standard_library_value_types"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/objectivec/nsobject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.apple.cloudkit/documentation/CloudKit/CKRecordValueProtocol",
+        "doc://com.apple.Swift/documentation/Swift/CustomReflectable",
+        "doc://com.apple.Swift/documentation/Swift/ExpressibleByArrayLiteral",
+        "doc://com.apple.documentation/documentation/foundation/nscopying",
+        "doc://com.apple.documentation/documentation/foundation/nsfastenumeration",
+        "doc://com.apple.documentation/documentation/foundation/nsmutablecopying",
+        "doc://com.apple.documentation/documentation/foundation/nssecurecoding",
+        "doc://com.apple.Swift/documentation/Swift/Sequence"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsmutablearray"
+      ],
+      "title": "Arrays"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "1651576",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsarray/1411981-init",
+        "doc://com.apple.documentation/documentation/foundation/nsarray/1460096-init"
+      ],
+      "kind": "taskGroup",
+      "title": "Creating an Array"
+    },
+    {
+      "anchor": "1651622",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsarray/1414315-init",
+        "doc://com.apple.documentation/documentation/foundation/nsarray/1412169-init",
+        "doc://com.apple.documentation/documentation/foundation/nsarray/1408557-init",
+        "doc://com.apple.documentation/documentation/foundation/nsarray/1413844-init",
+        "doc://com.apple.documentation/documentation/foundation/nsarray/1410518-init",
+        "doc://com.apple.documentation/documentation/foundation/nsarray/1415056-init"
+      ],
+      "kind": "taskGroup",
+      "title": "Initializing an Array"
+    },
+    {
+      "anchor": "1651682",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsarray/1407477-contains",
+        "doc://com.apple.documentation/documentation/foundation/nsarray/1409982-count",
+        "doc://com.apple.documentation/documentation/foundation/nsarray/1412852-firstobject",
+        "doc://com.apple.documentation/documentation/foundation/nsarray/1408316-lastobject",
+        "doc://com.apple.documentation/documentation/foundation/nsarray/1417555-object",
+        "doc://com.apple.documentation/documentation/foundation/nsarray/1414084-subscript",
+        "doc://com.apple.documentation/documentation/foundation/nsarray/1411296-objects",
+        "doc://com.apple.documentation/documentation/foundation/nsarray/1416048-objectenumerator",
+        "doc://com.apple.documentation/documentation/foundation/nsarray/1415734-reverseobjectenumerator"
+      ],
+      "kind": "taskGroup",
+      "title": "Querying an Array"
+    },
+    {
+      "anchor": "1651747",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsarray/1417076-index",
+        "doc://com.apple.documentation/documentation/foundation/nsarray/1415248-index",
+        "doc://com.apple.documentation/documentation/foundation/nsarray/1410847-indexofobjectidentical",
+        "doc://com.apple.documentation/documentation/foundation/nsarray/1415805-indexofobjectidentical",
+        "doc://com.apple.documentation/documentation/foundation/nsarray/1408043-indexofobject",
+        "doc://com.apple.documentation/documentation/foundation/nsarray/1417053-indexofobject",
+        "doc://com.apple.documentation/documentation/foundation/nsarray/1407652-indexofobject",
+        "doc://com.apple.documentation/documentation/foundation/nsarray/1417603-indexesofobjects",
+        "doc://com.apple.documentation/documentation/foundation/nsarray/1415087-indexesofobjects",
+        "doc://com.apple.documentation/documentation/foundation/nsarray/1413512-indexesofobjects",
+        "doc://com.apple.documentation/documentation/foundation/nsarray/1412722-index"
+      ],
+      "kind": "taskGroup",
+      "title": "Finding Objects in an Array"
+    },
+    {
+      "anchor": "1651812",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsarray/1415846-enumerateobjects",
+        "doc://com.apple.documentation/documentation/foundation/nsarray/1413010-enumerateobjects",
+        "doc://com.apple.documentation/documentation/foundation/nsarray/1417577-enumerateobjects"
+      ],
+      "kind": "taskGroup",
+      "title": "Sending Messages to Elements"
+    },
+    {
+      "anchor": "1651840",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsarray/1408825-firstobjectcommon",
+        "doc://com.apple.documentation/documentation/foundation/nsarray/1411770-isequal"
+      ],
+      "kind": "taskGroup",
+      "title": "Comparing Arrays"
+    },
+    {
+      "anchor": "1651855",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsarray/1408534-adding",
+        "doc://com.apple.documentation/documentation/foundation/nsarray/1412087-addingobjects",
+        "doc://com.apple.documentation/documentation/foundation/nsarray/1411033-filtered",
+        "doc://com.apple.documentation/documentation/foundation/nsarray/1415157-subarray"
+      ],
+      "kind": "taskGroup",
+      "title": "Deriving New Arrays"
+    },
+    {
+      "anchor": "1651886",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsarray/1413063-sortedarrayhint",
+        "doc://com.apple.documentation/documentation/foundation/nsarray/1408213-sortedarray",
+        "doc://com.apple.documentation/documentation/foundation/nsarray/1414839-sortedarray",
+        "doc://com.apple.documentation/documentation/foundation/nsarray/1415069-sortedarray",
+        "doc://com.apple.documentation/documentation/foundation/nsarray/1410025-sortedarray",
+        "doc://com.apple.documentation/documentation/foundation/nsarray/1411195-sortedarray",
+        "doc://com.apple.documentation/documentation/foundation/nsarray/1417804-sortedarray",
+        "doc://com.apple.documentation/documentation/foundation/comparator"
+      ],
+      "kind": "taskGroup",
+      "title": "Sorting"
+    },
+    {
+      "anchor": "1651934",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsarray/1412075-componentsjoined"
+      ],
+      "kind": "taskGroup",
+      "title": "Working with String Elements"
+    },
+    {
+      "anchor": "1651945",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsarray/1413042-description",
+        "doc://com.apple.documentation/documentation/foundation/nsarray/1412374-description",
+        "doc://com.apple.documentation/documentation/foundation/nsarray/1416257-description"
+      ],
+      "kind": "taskGroup",
+      "title": "Creating a Description"
+    },
+    {
+      "anchor": "1681114",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsarray/1414742-write",
+        "doc://com.apple.documentation/documentation/foundation/nsarray/1411480-write"
+      ],
+      "kind": "taskGroup",
+      "title": "Storing Arrays"
+    },
+    {
+      "anchor": "1651983",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsarray/1418275-pathsmatchingextensions"
+      ],
+      "kind": "taskGroup",
+      "title": "Collecting Paths"
+    },
+    {
+      "anchor": "1652002",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsarray/1409775-addobserver",
+        "doc://com.apple.documentation/documentation/foundation/nsarray/1414976-removeobserver",
+        "doc://com.apple.documentation/documentation/foundation/nsarray/1418441-removeobserver",
+        "doc://com.apple.documentation/documentation/foundation/nsarray/1408305-removeobserver",
+        "doc://com.apple.documentation/documentation/foundation/nsarray/1411404-addobserver",
+        "doc://com.apple.documentation/documentation/foundation/nsarray/1407434-removeobserver"
+      ],
+      "kind": "taskGroup",
+      "title": "Key-Value Observing"
+    },
+    {
+      "anchor": "1652058",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsarray/1408301-setvalue",
+        "doc://com.apple.documentation/documentation/foundation/nsarray/1412219-value"
+      ],
+      "kind": "taskGroup",
+      "title": "Key-Value Coding"
+    },
+    {
+      "anchor": "1844588",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsarray/1640855-shuffled",
+        "doc://com.apple.documentation/documentation/foundation/nsarray/1640687-shuffled"
+      ],
+      "kind": "taskGroup",
+      "title": "Randomly Shuffling an Array"
+    },
+    {
+      "anchor": "3638510",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsorderedcollectiondifference",
+        "doc://com.apple.documentation/documentation/foundation/nsorderedcollectiondifferencecalculationoptions"
+      ],
+      "kind": "taskGroup",
+      "title": "Comparing with Another Array"
+    },
+    {
+      "anchor": "1844608",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsarray/1407810-init"
+      ],
+      "kind": "taskGroup",
+      "title": "New Methods"
+    },
+    {
+      "anchor": "1681246",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsbinarysearchingoptions"
+      ],
+      "kind": "taskGroup",
+      "title": "Constants"
+    },
+    {
+      "anchor": "3358605",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsarray/arrayliteralelement",
+        "doc://com.apple.documentation/documentation/foundation/nsarray/element",
+        "doc://com.apple.documentation/documentation/foundation/nsarray/iterator"
+      ],
+      "kind": "taskGroup",
+      "title": "Type Aliases"
+    },
+    {
+      "anchor": "2855526",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsarray/3126723-init",
+        "doc://com.apple.documentation/documentation/foundation/nsarray/1415358-init",
+        "doc://com.apple.documentation/documentation/foundation/nsarray/2879134-init",
+        "doc://com.apple.documentation/documentation/foundation/nsarray/1408493-init"
+      ],
+      "kind": "taskGroup",
+      "title": "Initializers"
+    },
+    {
+      "anchor": "2855527",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsarray/1643143-custommirror",
+        "doc://com.apple.documentation/documentation/foundation/nsarray/3767106-underestimatedcount"
+      ],
+      "kind": "taskGroup",
+      "title": "Instance Properties"
+    },
+    {
+      "anchor": "2855528",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsarray/1643246-makeiterator",
+        "doc://com.apple.documentation/documentation/foundation/nsarray/2879138-write"
+      ],
+      "kind": "taskGroup",
+      "title": "Instance Methods"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nsarray"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/nsarray"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

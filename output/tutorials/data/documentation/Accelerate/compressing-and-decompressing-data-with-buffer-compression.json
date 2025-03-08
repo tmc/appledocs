@@ -1,0 +1,1709 @@
+{
+  "abstract": [
+    {
+      "text": "Compress a string, write it to the file system, and decompress the same file using buffer compression.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.accelerate/documentation/Accelerate"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.accelerate/documentation/Accelerate/compressing-and-decompressing-data-with-buffer-compression"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Accelerate"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Compressing and decompressing data with buffer compression"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The code in this article uses the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Compression",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " framework to encode (compress) and decode (decompress) a string. The code writes the encoded result to the temporary directory that the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/1409211-nstemporarydirectory",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function returns.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The code in this sample is useful in applications that store or transmit text files where saving or sending smaller files can improve performance and reduce storage overhead. This sample app implements ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "buffer compression",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", where it reads the contents of a source buffer in a single step to compress or decompress data.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-the-source-data",
+          "level": 3,
+          "text": "Create the source data",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Typically, your app would dynamically generate the source data that it compresses, but for this example, the source data is a hard-coded string.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "import Compression",
+            "",
+            "let sourceString = \"\"\"",
+            "    Lorem ipsum dolor sit amet consectetur adipiscing elit mi",
+            "    nibh ornare proin blandit diam ridiculus, faucibus mus",
+            "    dui eu vehicula nam donec dictumst sed vivamus bibendum",
+            "    aliquet efficitur. Felis imperdiet sodales dictum morbi",
+            "    vivamus augue dis duis aliquet velit ullamcorper porttitor,",
+            "    lobortis dapibus hac purus aliquam natoque iaculis blandit",
+            "    montes nunc pretium.",
+            "    \"\"\"",
+            "",
+            "var sourceBuffer = Array(sourceString.utf8)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "On return, ",
+              "type": "text"
+            },
+            {
+              "code": "sourceBuffer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is an array of ",
+              "type": "text"
+            },
+            {
+              "text": "doc://com.apple.documentation/documentation/kernel/uint8",
+              "type": "text"
+            },
+            {
+              "text": " values that contains the UTF-8 representation of the source string.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-the-destination-buffer",
+          "level": 3,
+          "text": "Create the destination buffer",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Create an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Swift/UnsafeMutablePointer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " structure and allocate it with a capacity of the source string’s ",
+              "type": "text"
+            },
+            {
+              "code": "count",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to receive the encoded data.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let destinationBuffer = UnsafeMutablePointer<UInt8>.allocate(capacity: sourceString.count)",
+            "defer {",
+            "    destinationBuffer.deallocate()",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Select-a-compression-algorithm",
+          "level": 3,
+          "text": "Select a compression algorithm",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The code in this example uses the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Compression/COMPRESSION_LZFSE",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " algorithm, which provides the compression ratio of zlib level 5, but with much higher energy efficiency and speed (between 2x and 3x) for both encode and decode operations.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let algorithm = COMPRESSION_LZFSE"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For apps that require interoperability with non-Apple devices, use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Compression/COMPRESSION_ZLIB",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instead. For more information on other compression algorithms, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Compression/compression_algorithm",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Compress-the-data",
+          "level": 3,
+          "text": "Compress the data",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Compression/compression_encode_buffer(_:_:_:_:_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function compresses the data, writes the result to the destination buffer, and returns the size of the encoded data.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let compressedSize = compression_encode_buffer(destinationBuffer, sourceString.count,",
+            "                                               &sourceBuffer, sourceString.count,",
+            "                                               nil,",
+            "                                               algorithm)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When working with small files, the compression may fail and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Compression/compression_encode_buffer(_:_:_:_:_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " returns ",
+              "type": "text"
+            },
+            {
+              "code": "0",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "if compressedSize == 0 {",
+            "    fatalError(\"Encoding failed.\")",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You may elect to handle this situation differently, for example, by displaying a warning to the user that the compression failed.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Write-the-encoded-data-to-a-file",
+          "level": 3,
+          "text": "Write the encoded data to a file",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The code below writes the encoded data to a file in the the app’s temporary directory on macOS:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let encodedFileName = \"stringEncoded.LZFSE\"",
+            "",
+            "let tempDirURL = NSURL(fileURLWithPath: NSTemporaryDirectory())",
+            "",
+            "guard",
+            "    let encodedFileURL = tempDirURL.appendingPathComponent(encodedFileName) else {",
+            "        return",
+            "}",
+            "",
+            "FileManager.default.createFile(atPath: encodedFileURL.path,",
+            "                               contents: nil,",
+            "                               attributes: nil)",
+            "",
+            "guard let destinationFileHandle = try? FileHandle(forWritingTo: encodedFileURL) else {",
+            "    print(\"destinationFileHandle fail.\")",
+            "    return",
+            "}",
+            "",
+            "let encodedData = NSData(bytesNoCopy: destinationBuffer,",
+            "                         length: compressedSize)",
+            "",
+            "destinationFileHandle.write(encodedData as Data)",
+            "destinationFileHandle.closeFile()"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Read-the-encoded-data-from-a-file",
+          "level": 3,
+          "text": "Read the encoded data from a file",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To read the encoded file, create a file handle for reading from the encoded file’s URL.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "guard",
+            "    let encodedFileHandle = try? FileHandle(forReadingFrom: encodedFileURL) else {",
+            "        print(\"encodedFileHandle fail.\")",
+            "        return",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the file handle to read the entire encoded file and populate ",
+              "type": "text"
+            },
+            {
+              "code": "encodedSourceData",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let encodedSourceData = encodedFileHandle.readDataToEndOfFile()"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Decompress-the-data",
+          "level": 3,
+          "text": "Decompress the data",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Allocate memory to contain the decoded data. Typically, the encoded payload would be part of a larger structure containing additional metadata such as the uncompressed size, and you’d use that to define the buffer capacity. However, for this example, allocate 8 MB:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let decodedCapacity = 8_000_000",
+            "let decodedDestinationBuffer = UnsafeMutablePointer<UInt8>.allocate(capacity: decodedCapacity)",
+            "defer {",
+            "    decodedDestinationBuffer.deallocate()",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Compression/compression_decode_buffer(_:_:_:_:_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to decode the raw bytes of the encoded source data and write the result to ",
+              "type": "text"
+            },
+            {
+              "code": "decodedDestinationBuffer",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". You can create a string from the destination buffer using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Swift/String/init(cString:)-2p84k",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " initializer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let decodedString: String = encodedSourceData.withUnsafeBytes { encodedSourceBuffer in",
+            "    let typedPointer = encodedSourceBuffer.bindMemory(to: UInt8.self)",
+            "    let decodedCharCount = compression_decode_buffer(decodedDestinationBuffer, decodedCapacity,",
+            "                                                     typedPointer.baseAddress!, encodedSourceData.count,",
+            "                                                     nil,",
+            "                                                     algorithm)",
+            "",
+            "    return String(cString: decodedDestinationBuffer)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Compression/compression_decode_buffer(_:_:_:_:_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function returns the size of the decoded data. If the decompression fails, the size returned is zero. This may indicate that the memory allocated to the destination buffer is insufficient and you should switch to the stream API or retry with a larger buffer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.accelerate/documentation/Accelerate": {
+      "abstract": [
+        {
+          "text": "Make large-scale mathematical computations and image calculations, optimized for high performance and low energy consumption.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Accelerate",
+      "type": "topic",
+      "url": "/documentation/accelerate"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/compressing-and-decompressing-data-with-input-and-output-filters": {
+      "abstract": [
+        {
+          "text": "Compress and decompress streamed or from-memory data, using input and output filters.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/compressing-and-decompressing-data-with-input-and-output-filters",
+      "kind": "article",
+      "role": "article",
+      "title": "Compressing and decompressing data with input and output filters",
+      "type": "topic",
+      "url": "/documentation/accelerate/compressing-and-decompressing-data-with-input-and-output-filters"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/compressing-and-decompressing-files-with-stream-compression": {
+      "abstract": [
+        {
+          "text": "Perform compression or the appropriate kind of decompression to a file based on its path extension.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/compressing-and-decompressing-files-with-stream-compression",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Compressing and Decompressing Files with Stream Compression",
+      "type": "topic",
+      "url": "/documentation/accelerate/compressing-and-decompressing-files-with-stream-compression"
+    },
+    "doc://com.apple.documentation/documentation/Compression": {
+      "abstract": [
+        {
+          "text": "Leverage common compression algorithms for lossless data compression.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Compression",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Compression",
+      "type": "topic",
+      "url": "/documentation/Compression"
+    },
+    "doc://com.apple.documentation/documentation/Compression/COMPRESSION_LZFSE": {
+      "abstract": [
+        {
+          "text": "The LZFSE compression algorithm, which is recommended for use on Apple platforms.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "COMPRESSION_LZFSE"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@EA@compression_algorithm",
+          "text": "compression_algorithm"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Compression/COMPRESSION_LZFSE",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "COMPRESSION_LZFSE",
+      "type": "topic",
+      "url": "/documentation/Compression/COMPRESSION_LZFSE"
+    },
+    "doc://com.apple.documentation/documentation/Compression/COMPRESSION_ZLIB": {
+      "abstract": [
+        {
+          "text": "The zlib compression algorithm, which is recommended for cross-platform compression.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "COMPRESSION_ZLIB"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@EA@compression_algorithm",
+          "text": "compression_algorithm"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Compression/COMPRESSION_ZLIB",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "COMPRESSION_ZLIB",
+      "type": "topic",
+      "url": "/documentation/Compression/COMPRESSION_ZLIB"
+    },
+    "doc://com.apple.documentation/documentation/Compression/compression_algorithm": {
+      "abstract": [
+        {
+          "text": "A structure for values that represent compression algorithms.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "compression_algorithm"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Compression/compression_algorithm",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "compression_algorithm",
+      "type": "topic",
+      "url": "/documentation/Compression/compression_algorithm"
+    },
+    "doc://com.apple.documentation/documentation/Compression/compression_decode_buffer(_:_:_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Decompresses the contents of a source buffer into a destination buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "compression_decode_buffer"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "dst_buffer"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5UInt8V",
+          "text": "UInt8"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "dst_size"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "src_buffer"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5UInt8V",
+          "text": "UInt8"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "src_size"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "scratch_buffer"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sv",
+          "text": "UnsafeMutableRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "algorithm"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@EA@compression_algorithm",
+          "text": "compression_algorithm"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Compression/compression_decode_buffer(_:_:_:_:_:_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "compression_decode_buffer(_:_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/Compression/compression_decode_buffer(_:_:_:_:_:_:)"
+    },
+    "doc://com.apple.documentation/documentation/Compression/compression_encode_buffer(_:_:_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Compresses the contents of a source buffer into a destination buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "compression_encode_buffer"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "dst_buffer"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5UInt8V",
+          "text": "UInt8"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "dst_size"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "src_buffer"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5UInt8V",
+          "text": "UInt8"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "src_size"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "scratch_buffer"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sv",
+          "text": "UnsafeMutableRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "algorithm"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@EA@compression_algorithm",
+          "text": "compression_algorithm"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Compression/compression_encode_buffer(_:_:_:_:_:_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "compression_encode_buffer(_:_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/Compression/compression_encode_buffer(_:_:_:_:_:_:)"
+    },
+    "doc://com.apple.documentation/documentation/Swift/String/init(cString:)-2p84k": {
+      "abstract": [
+        {
+          "text": "Creates a new string by copying the null-terminated UTF-8 data referenced by the given pointer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "cString"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "nullTerminatedUTF8"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5CChara",
+          "text": "CChar"
+        },
+        {
+          "kind": "text",
+          "text": ">)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Swift/String/init(cString:)-2p84k",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(cString:)",
+      "type": "topic",
+      "url": "/documentation/Swift/String/init(cString:)-2p84k"
+    },
+    "doc://com.apple.documentation/documentation/Swift/UnsafeMutablePointer": {
+      "abstract": [
+        {
+          "text": "A pointer for accessing and manipulating data of a specific type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@frozen"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Pointee"
+        },
+        {
+          "kind": "text",
+          "text": "> "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Pointee"
+        },
+        {
+          "kind": "text",
+          "text": " : ~Copyable"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Swift/UnsafeMutablePointer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UnsafeMutablePointer",
+      "type": "topic",
+      "url": "/documentation/Swift/UnsafeMutablePointer"
+    },
+    "doc://com.apple.documentation/documentation/foundation/1409211-nstemporarydirectory": {
+      "abstract": [
+        {
+          "text": "Returns the path of the temporary directory for the current user.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSTemporaryDirectory"
+        },
+        {
+          "kind": "text",
+          "text": "() -> String"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/1409211-nstemporarydirectory",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSTemporaryDirectory()",
+      "type": "topic",
+      "url": "/documentation/foundation/1409211-nstemporarydirectory"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Compression",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/compressing-and-decompressing-files-with-stream-compression",
+        "doc://com.apple.accelerate/documentation/Accelerate/compressing-and-decompressing-data-with-input-and-output-filters"
+      ],
+      "title": "Compression"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Compression~1COMPRESSION_ZLIB/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "COMPRESSION_ZLIB"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Compression~1compression_decode_buffer(_:_:_:_:_:_:)/title",
+          "value": "compression_decode_buffer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Compression~1compression_decode_buffer(_:_:_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@size_t",
+              "text": "size_t"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "compression_decode_buffer"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@uint8_t",
+              "text": "uint8_t"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "keyword",
+              "text": "restrict"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "dst_buffer"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@size_t",
+              "text": "size_t"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "dst_size"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "const"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@uint8_t",
+              "text": "uint8_t"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "keyword",
+              "text": "restrict"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "src_buffer"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@size_t",
+              "text": "size_t"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "src_size"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "keyword",
+              "text": "restrict"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "scratch_buffer"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@EA@compression_algorithm",
+              "text": "compression_algorithm"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "algorithm"
+            },
+            {
+              "kind": "text",
+              "text": ");"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~11409211-nstemporarydirectory/title",
+          "value": "NSTemporaryDirectory"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Compression~1compression_algorithm/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "typedef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "enum"
+            },
+            {
+              "kind": "text",
+              "text": " { ... } "
+            },
+            {
+              "kind": "identifier",
+              "text": "compression_algorithm"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Compression~1compression_encode_buffer(_:_:_:_:_:_:)/title",
+          "value": "compression_encode_buffer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Compression~1compression_encode_buffer(_:_:_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@size_t",
+              "text": "size_t"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "compression_encode_buffer"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@uint8_t",
+              "text": "uint8_t"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "keyword",
+              "text": "restrict"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "dst_buffer"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@size_t",
+              "text": "size_t"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "dst_size"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "const"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@uint8_t",
+              "text": "uint8_t"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "keyword",
+              "text": "restrict"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "src_buffer"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@size_t",
+              "text": "size_t"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "src_size"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "keyword",
+              "text": "restrict"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "scratch_buffer"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@EA@compression_algorithm",
+              "text": "compression_algorithm"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "algorithm"
+            },
+            {
+              "kind": "text",
+              "text": ");"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1Compression~1COMPRESSION_LZFSE/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "COMPRESSION_LZFSE"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

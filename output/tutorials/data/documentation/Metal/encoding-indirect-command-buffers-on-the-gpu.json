@@ -1,0 +1,1240 @@
+{
+  "abstract": [
+    {
+      "text": "Maximize CPU to GPU parallelization by generating render commands on the GPU.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.metal/documentation/Metal",
+        "doc://com.apple.metal/documentation/Metal/indirect-command-encoding"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.metal/documentation/Metal",
+        "doc://com.apple.metal/documentation/Metal/metal-sample-code-library"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.metal/documentation/Metal/encoding-indirect-command-buffers-on-the-gpu"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Metal"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "12.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "12.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "10.14",
+        "name": "macOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "12.3",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Encoding Indirect Command Buffers on the GPU"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample app demonstrates how to use ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "indirect command buffers",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " (ICB) to issue rendering instructions from the GPU. When you have a rendering algorithm that runs in a compute kernel, use ICBs to generate draw calls based on your algorithm’s results. The sample app uses a compute kernel to remove invisible objects submitted for rendering, and generates draw commands only for the objects currently visible in the scene.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "icbs-with-gpu-encoding-1-GpuDrivenPipeline",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Without ICBs, you couldn’t submit rendering commands on the GPU. Instead, the CPU would wait for your compute kernel’s results before generating the render commands. Then, the GPU would wait for the rendering commands to make it across the CPU to GPU bridge, which amounts to a round trip slow path as seen in the following diagram:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "icbs-with-gpu-encoding-2-CpuRoundTrip",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample code project, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Metal/encoding-indirect-command-buffers-on-the-cpu",
+              "isActive": true,
+              "overridingTitle": "Encoding Indirect Command Buffers on the CPU",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "Encoding Indirect Command Buffers on the CPU",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " introduces ICBs by creating a single ICB to reuse its commands every frame. While the former sample saved expensive command-encoding time by reusing commands, this sample uses ICBs to effect a GPU-driven rendering pipeline.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The techniques shown by this sample include issuing draw calls from the GPU, and the process of executing a select set of draws.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Getting-Started",
+          "level": 3,
+          "text": "Getting Started",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This project contains targets for macOS and iOS. Run the iOS scheme on a physical device because Metal isn’t supported in the simulator.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample uses ",
+              "type": "text"
+            },
+            {
+              "code": "MTLDebugComputeCommandEncoder",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "dispatchThreads:threadsPerThreadgroup:",
+              "type": "codeVoice"
+            },
+            {
+              "text": " which is supported by GPUs of family greater than or equal to:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "MTLFeatureSet_iOS_GPUFamily4_v2",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "MTLFeatureSet_macOS_GPUFamily2_v1",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Define-the-Data-Read-by-the-ICB",
+          "level": 3,
+          "text": "Define the Data Read by the ICB",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In an ideal scenario, you store each mesh in its own buffer. However, on iOS, kernels running on the GPU can only access a limited number of data buffers per execution. To reduce the number of buffers needed during the ICBs execution, you pack all meshes into a single buffer at varying offsets. Then, use another buffer to store the offset and size of each mesh. The process to do this follows.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "At initialization, create the data for each mesh:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "for(int objectIdx = 0; objectIdx < AAPLNumObjects; objectIdx++)",
+            "{",
+            "    // Choose the parameters to generate a mesh so that each one is unique.",
+            "    uint32_t numTeeth = random() % 50 + 3;",
+            "    float innerRatio = 0.2 + (random() / (1.0 * RAND_MAX)) * 0.7;",
+            "    float toothWidth = 0.1 + (random() / (1.0 * RAND_MAX)) * 0.4;",
+            "    float toothSlope = (random() / (1.0 * RAND_MAX)) * 0.2;",
+            "",
+            "    // Create a vertex buffer and initialize it with a unique 2D gear mesh.",
+            "    tempMeshes[objectIdx] = [self newGearMeshWithNumTeeth:numTeeth",
+            "                                               innerRatio:innerRatio",
+            "                                               toothWidth:toothWidth",
+            "                                               toothSlope:toothSlope];",
+            "}"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Count the individual and accumulated mesh sizes and create the container buffer:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "size_t bufferSize = 0;",
+            "",
+            "for(int objectIdx = 0; objectIdx < AAPLNumObjects; objectIdx++)",
+            "{",
+            "    size_t meshSize = sizeof(AAPLVertex) * tempMeshes[objectIdx].numVerts;",
+            "    bufferSize += meshSize;",
+            "}",
+            "",
+            "_vertexBuffer = [_device newBufferWithLength:bufferSize options:0];"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Finally, insert each mesh into the container buffer while noting its offset and size in the second buffer:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "for(int objectIdx = 0; objectIdx < AAPLNumObjects; objectIdx++)",
+            "{",
+            "    // Store the mesh metadata in the `params` buffer.",
+            "",
+            "    params[objectIdx].numVertices = tempMeshes[objectIdx].numVerts;",
+            "",
+            "    size_t meshSize = sizeof(AAPLVertex) * tempMeshes[objectIdx].numVerts;",
+            "",
+            "    params[objectIdx].startVertex = currentStartVertex;",
+            "",
+            "    // Pack the current mesh data in the combined vertex buffer.",
+            "",
+            "    AAPLVertex* meshStartAddress = ((AAPLVertex*)_vertexBuffer.contents) + currentStartVertex;",
+            "",
+            "    memcpy(meshStartAddress, tempMeshes[objectIdx].vertices, meshSize);",
+            "",
+            "    currentStartVertex += tempMeshes[objectIdx].numVerts;",
+            "",
+            "    free(tempMeshes[objectIdx].vertices);",
+            "",
+            "    // Set the other culling and mesh rendering parameters.",
+            "",
+            "    // Set the position of each object to a unique space in a grid.",
+            "    vector_float2 gridPos = (vector_float2){objectIdx % AAPLGridWidth, objectIdx / AAPLGridWidth};",
+            "    params[objectIdx].position = gridPos * AAPLObjecDistance;",
+            "",
+            "    params[objectIdx].boundingRadius = AAPLObjectSize / 2.0;",
+            "}"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Update-the-Data-Read-by-the-ICB-Dynamically",
+          "level": 3,
+          "text": "Update the Data Read by the ICB Dynamically",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "By culling non-visible vertices from the data fed to the rendering pipeline, you save significant rendering time and effort. To do that, use the same compute kernel that encodes the ICB’s commands to continually update the ICB’s data buffers:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Check whether the object at 'objectIndex' is visible and set draw parameters if so.",
+            "// Otherwise, reset the command so that nothing is done.",
+            "kernel void",
+            "cullMeshesAndEncodeCommands(uint                         objectIndex   [[ thread_position_in_grid ]],",
+            "                            constant AAPLFrameState     *frame_state   [[ buffer(AAPLKernelBufferIndexFrameState) ]],",
+            "                            device AAPLObjectPerameters *object_params [[ buffer(AAPLKernelBufferIndexObjectParams)]],",
+            "                            device AAPLVertex           *vertices      [[ buffer(AAPLKernelBufferIndexVertices) ]],",
+            "                            device ICBContainer         *icb_container [[ buffer(AAPLKernelBufferIndexCommandBufferContainer) ]])",
+            "{",
+            "    float2 worldObjectPostion  = frame_state->translation + object_params[objectIndex].position;",
+            "    float2 clipObjectPosition  = frame_state->aspectScale * AAPLViewScale * worldObjectPostion;",
+            "",
+            "    const float rightBounds =  1.0;",
+            "    const float leftBounds  = -1.0;",
+            "    const float upperBounds =  1.0;",
+            "    const float lowerBounds = -1.0;",
+            "",
+            "    bool visible = true;",
+            "",
+            "    // Set the bounding radius in the view space.",
+            "    const float2 boundingRadius = frame_state->aspectScale * AAPLViewScale * object_params[objectIndex].boundingRadius;",
+            "",
+            "    // Check if the object's bounding circle has moved outside of the view bounds.",
+            "    if(clipObjectPosition.x + boundingRadius.x < leftBounds  ||",
+            "       clipObjectPosition.x - boundingRadius.x > rightBounds ||",
+            "       clipObjectPosition.y + boundingRadius.y < lowerBounds ||",
+            "       clipObjectPosition.y - boundingRadius.y > upperBounds)",
+            "    {",
+            "        visible = false;",
+            "    }",
+            "    // Get indirect render commnd object from the indirect command buffer given the object's unique",
+            "    // index to set parameters for drawing (or not drawing) the object.",
+            "    render_command cmd(icb_container->commandBuffer, objectIndex);",
+            "",
+            "    if(visible)",
+            "    {",
+            "        // Set the buffers and add a draw command.",
+            "        cmd.set_vertex_buffer(frame_state, AAPLVertexBufferIndexFrameState);",
+            "        cmd.set_vertex_buffer(object_params, AAPLVertexBufferIndexObjectParams);",
+            "        cmd.set_vertex_buffer(vertices, AAPLVertexBufferIndexVertices);",
+            "",
+            "        cmd.draw_primitives(primitive_type::triangle,",
+            "                            object_params[objectIndex].startVertex,",
+            "                            object_params[objectIndex].numVertices, 1,",
+            "                            objectIndex);",
+            "    }",
+            "    ",
+            "    // If the object is not visible, no draw command will be set since so long as the app has reset",
+            "    // the indirect command buffer commands with a blit encoder before encoding the draw.",
+            "}"
+          ],
+          "syntax": "metal",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The parallel nature of the GPU partitions the compute task for you, resulting in multiple offscreen meshes getting culled concurrently.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Pass-an-ICB-to-a-Compute-Kernel-Using-an-Argument-Buffer",
+          "level": 3,
+          "text": "Pass an ICB to a Compute Kernel Using an Argument Buffer",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To get an ICB on the GPU and make it accessible to a compute kernel, you pass it through an argument buffer, as follows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Define the container argument buffer as a structure that contains one member, the ICB:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// This is the argument buffer that contains the ICB.",
+            "struct ICBContainer",
+            "{",
+            "    command_buffer commandBuffer [[ id(AAPLArgumentBufferIDCommandBuffer) ]];",
+            "};"
+          ],
+          "syntax": "metal",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Encode the ICB into the argument buffer:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "id<MTLArgumentEncoder> argumentEncoder =",
+            "    [GPUCommandEncodingKernel newArgumentEncoderWithBufferIndex:AAPLKernelBufferIndexCommandBufferContainer];",
+            "",
+            "_icbArgumentBuffer = [_device newBufferWithLength:argumentEncoder.encodedLength",
+            "                                       options:MTLResourceStorageModeShared];",
+            "_icbArgumentBuffer.label = @\"ICB Argument Buffer\";",
+            "",
+            "[argumentEncoder setArgumentBuffer:_icbArgumentBuffer offset:0];",
+            "",
+            "[argumentEncoder setIndirectCommandBuffer:_indirectCommandBuffer",
+            "                                  atIndex:AAPLArgumentBufferIDCommandBuffer];"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Pass the ICB (",
+              "type": "text"
+            },
+            {
+              "code": "_indirectCommandBuffer",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") to the kernel by setting the argument buffer on the kernel’s compute command encoder:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "[computeEncoder setBuffer:_icbArgumentBuffer offset:0 atIndex:AAPLKernelBufferIndexCommandBufferContainer];"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because you pass the ICB through an argument buffer, standard argument buffer rules apply. Call ",
+              "type": "text"
+            },
+            {
+              "code": "useResource",
+              "type": "codeVoice"
+            },
+            {
+              "text": " on the ICB to tell Metal to prepare its use:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "[computeEncoder useResource:_indirectCommandBuffer usage:MTLResourceUsageWrite];"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Encode-and-Optimize-ICB-Commands",
+          "level": 3,
+          "text": "Encode and Optimize ICB Commands",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Reset the ICB’s commands to their initial before beginning encoding:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "[resetBlitEncoder resetCommandsInBuffer:_indirectCommandBuffer",
+            "                              withRange:NSMakeRange(0, AAPLNumObjects)];"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Encode the ICB’s commands by dispatching the compute kernel:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "[computeEncoder dispatchThreads:MTLSizeMake(AAPLNumObjects, 1, 1)",
+            "          threadsPerThreadgroup:MTLSizeMake(threadExecutionWidth, 1, 1)];"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Optimize your ICB commands to remove empty commands or redundant state by calling ",
+              "type": "text"
+            },
+            {
+              "code": "optimizeIndirectCommandBuffer:withRange:",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "[optimizeBlitEncoder optimizeIndirectCommandBuffer:_indirectCommandBuffer",
+            "                                         withRange:NSMakeRange(0, AAPLNumObjects)];"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample optimizes ICB commands because redundant state results from the kernel setting a buffer for each draw, and encoding empty commands for each invisible object. By removing the empty commands, you can free up a significant number of blank spaces in the command buffer that Metal would otherwise spend time skipping at runtime.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If you optimize an indirect command buffer, you won’t be able to call ",
+                  "type": "text"
+                },
+                {
+                  "code": "executeCommandsInBuffer:withRange:",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " with a range that starts in the optimized region. Instead, specify a range staring at the beginning and finishing within or at the end of the optimized region.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Execute-the-ICB",
+          "level": 3,
+          "text": "Execute the ICB",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Draw the onscreen meshes by calling ",
+              "type": "text"
+            },
+            {
+              "code": "executeCommandsInBuffer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " on your render command encoder:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "[renderEncoder executeCommandsInBuffer:_indirectCommandBuffer withRange:NSMakeRange(0, AAPLNumObjects)];"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "While you can encode an ICB’s commands in a compute kernel, you call ",
+              "type": "text"
+            },
+            {
+              "code": "executeCommandsInBuffer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " from your host app to encode a single command that contains all of the commands encoded by the compute kernel. By doing this, you choose the queue and buffer that the ICB’s commands go into. When you call ",
+              "type": "text"
+            },
+            {
+              "code": "executeIndirectCommandBuffer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " determines the placement of the ICB’s commands among any other commands you may also encode in the same buffer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "dbec58cddb55/EncodingIndirectCommandBuffersOnTheGPU.zip": {
+      "checksum": "dbec58cddb55d99c53ca1e66dafc8022f3c3948ce8bfe3b2674afed0dde9572b297f9bff34e4e45c333d1f6c9c03e4ae3cb3f376dd8203e8d51320eacaa31490",
+      "identifier": "dbec58cddb55/EncodingIndirectCommandBuffersOnTheGPU.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/dbec58cddb55/EncodingIndirectCommandBuffersOnTheGPU.zip"
+    },
+    "doc://com.apple.documentation/documentation/Metal/encoding-indirect-command-buffers-on-the-cpu": {
+      "abstract": [
+        {
+          "text": "Reduce CPU overhead and simplify your command execution by reusing commands.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Metal/encoding-indirect-command-buffers-on-the-cpu",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Encoding Indirect Command Buffers on the CPU",
+      "type": "topic",
+      "url": "/documentation/Metal/encoding-indirect-command-buffers-on-the-cpu"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.metal/documentation/Metal": {
+      "abstract": [
+        {
+          "text": "Render advanced 3D graphics and compute data in parallel with graphics processors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Metal",
+      "type": "topic",
+      "url": "/documentation/metal"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLIndirectCommandBuffer": {
+      "abstract": [
+        {
+          "text": "A command buffer containing reusable commands, encoded either on the CPU or GPU.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLIndirectCommandBuffer"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLIndirectCommandBuffer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLIndirectCommandBuffer"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLIndirectCommandBuffer",
+      "type": "topic",
+      "url": "/documentation/metal/mtlindirectcommandbuffer"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLIndirectCommandBufferDescriptor": {
+      "abstract": [
+        {
+          "text": "A configuration you create to customize an indirect command buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLIndirectCommandBufferDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLIndirectCommandBufferDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLIndirectCommandBufferDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLIndirectCommandBufferDescriptor",
+      "type": "topic",
+      "url": "/documentation/metal/mtlindirectcommandbufferdescriptor"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLIndirectCommandBufferExecutionRange": {
+      "abstract": [
+        {
+          "text": "A range of commands in an indirect command buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLIndirectCommandBufferExecutionRange"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLIndirectCommandBufferExecutionRange",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLIndirectCommandBufferExecutionRange"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLIndirectCommandBufferExecutionRange",
+      "type": "topic",
+      "url": "/documentation/metal/mtlindirectcommandbufferexecutionrange"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLIndirectCommandBufferExecutionRangeMake(_:_:)": {
+      "abstract": [
+        {
+          "text": "Creates a command execution range.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLIndirectCommandBufferExecutionRangeMake"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@MTLIndirectCommandBufferExecutionRange",
+          "text": "MTLIndirectCommandBufferExecutionRange"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLIndirectCommandBufferExecutionRangeMake(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLIndirectCommandBufferExecutionRangeMake"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLIndirectCommandBufferExecutionRangeMake(_:_:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlindirectcommandbufferexecutionrangemake(_:_:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLIndirectCommandType": {
+      "abstract": [
+        {
+          "text": "The types of commands that you can encode into the indirect command buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLIndirectCommandType"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLIndirectCommandType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLIndirectCommandType"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLIndirectCommandType",
+      "type": "topic",
+      "url": "/documentation/metal/mtlindirectcommandtype"
+    },
+    "doc://com.apple.metal/documentation/Metal/creating-an-indirect-command-buffer": {
+      "abstract": [
+        {
+          "text": "Configure a descriptor to specify the properties of an indirect command buffer.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/creating-an-indirect-command-buffer",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating an Indirect Command Buffer",
+      "type": "topic",
+      "url": "/documentation/metal/creating-an-indirect-command-buffer"
+    },
+    "doc://com.apple.metal/documentation/Metal/encoding-indirect-command-buffers-on-the-cpu": {
+      "abstract": [
+        {
+          "text": "Reduce CPU overhead and simplify your command execution by reusing commands.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/encoding-indirect-command-buffers-on-the-cpu",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Encoding Indirect Command Buffers on the CPU",
+      "type": "topic",
+      "url": "/documentation/metal/encoding-indirect-command-buffers-on-the-cpu"
+    },
+    "doc://com.apple.metal/documentation/Metal/indirect-command-encoding": {
+      "abstract": [
+        {
+          "text": "Store draw commands in Metal buffers and run them at a later time on the GPU, either once or repeatedly.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/indirect-command-encoding",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Indirect Command Encoding",
+      "type": "topic",
+      "url": "/documentation/metal/indirect-command-encoding"
+    },
+    "doc://com.apple.metal/documentation/Metal/metal-sample-code-library": {
+      "abstract": [
+        {
+          "text": "Explore the complete set of Metal samples.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/metal-sample-code-library",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Metal Sample Code Library",
+      "type": "topic",
+      "url": "/documentation/metal/metal-sample-code-library"
+    },
+    "doc://com.apple.metal/documentation/Metal/specifying-drawing-and-dispatch-arguments-indirectly": {
+      "abstract": [
+        {
+          "text": "Use indirect commands if you don’t know your draw or dispatch call arguments when you encode the command.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/specifying-drawing-and-dispatch-arguments-indirectly",
+      "kind": "article",
+      "role": "article",
+      "title": "Specifying Drawing and Dispatch Arguments Indirectly",
+      "type": "topic",
+      "url": "/documentation/metal/specifying-drawing-and-dispatch-arguments-indirectly"
+    },
+    "icbs-with-gpu-encoding-1-GpuDrivenPipeline": {
+      "alt": "Flow chart of an algorithm and its dependent rendering instructions being performed on the GPU. At left, a body representing the CPU dispatches the algorithm to the GPU via compute kernel. A line flows from the left obdy to another body, at center representing the GPU, which executes the compute kernel and generates its dependent rendering commands using an ICB. A line flows from the center body to a body at right, also representing the GPU,  which executes the rendering commands.",
+      "identifier": "icbs-with-gpu-encoding-1-GpuDrivenPipeline",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/28f04960640b40e69469ea9294b3cd5f/icbs-with-gpu-encoding-1-GpuDrivenPipeline.png"
+        }
+      ]
+    },
+    "icbs-with-gpu-encoding-2-CpuRoundTrip": {
+      "alt": "Flow chart of an algorithm being parallelized on the GPU with the CPU waiting on its results.",
+      "identifier": "icbs-with-gpu-encoding-2-CpuRoundTrip",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/98a58b36c689a56c07a8588158bc6b88/icbs-with-gpu-encoding-2-CpuRoundTrip.png"
+        }
+      ]
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "dbec58cddb55/EncodingIndirectCommandBuffersOnTheGPU.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Indirect-Command-Buffers",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/creating-an-indirect-command-buffer",
+        "doc://com.apple.metal/documentation/Metal/specifying-drawing-and-dispatch-arguments-indirectly",
+        "doc://com.apple.metal/documentation/Metal/encoding-indirect-command-buffers-on-the-cpu",
+        "doc://com.apple.metal/documentation/Metal/MTLIndirectCommandBuffer",
+        "doc://com.apple.metal/documentation/Metal/MTLIndirectCommandBufferDescriptor",
+        "doc://com.apple.metal/documentation/Metal/MTLIndirectCommandType",
+        "doc://com.apple.metal/documentation/Metal/MTLIndirectCommandBufferExecutionRange",
+        "doc://com.apple.metal/documentation/Metal/MTLIndirectCommandBufferExecutionRangeMake(_:_:)"
+      ],
+      "title": "Indirect Command Buffers"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Indirect-Command-Buffers",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/creating-an-indirect-command-buffer",
+                "doc://com.apple.metal/documentation/Metal/specifying-drawing-and-dispatch-arguments-indirectly",
+                "doc://com.apple.metal/documentation/Metal/encoding-indirect-command-buffers-on-the-cpu",
+                "doc://com.apple.metal/documentation/Metal/MTLIndirectCommandBuffer",
+                "doc://com.apple.metal/documentation/Metal/MTLIndirectCommandBufferDescriptor",
+                "doc://com.apple.metal/documentation/Metal/MTLIndirectCommandType",
+                "doc://com.apple.metal/documentation/Metal/MTLIndirectCommandBufferExecutionRange",
+                "doc://com.apple.metal/documentation/Metal/MTLIndirectCommandBufferExecutionRangeMake(_:_:)"
+              ],
+              "title": "Indirect Command Buffers"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIndirectCommandBufferExecutionRange/title",
+          "value": "MTLIndirectCommandBufferExecutionRange"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIndirectCommandBufferExecutionRange/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLIndirectCommandBufferExecutionRange"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIndirectCommandBufferExecutionRange/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLIndirectCommandBufferExecutionRange"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIndirectCommandBufferDescriptor/title",
+          "value": "MTLIndirectCommandBufferDescriptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIndirectCommandBufferDescriptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLIndirectCommandBufferDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIndirectCommandBufferDescriptor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLIndirectCommandBufferDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIndirectCommandBufferExecutionRangeMake(_:_:)/title",
+          "value": "MTLIndirectCommandBufferExecutionRangeMake"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIndirectCommandBufferExecutionRangeMake(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLIndirectCommandBufferExecutionRangeMake"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIndirectCommandBuffer/title",
+          "value": "MTLIndirectCommandBuffer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIndirectCommandBuffer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLIndirectCommandBuffer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIndirectCommandBuffer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLIndirectCommandBuffer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIndirectCommandType/title",
+          "value": "MTLIndirectCommandType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIndirectCommandType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLIndirectCommandType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLIndirectCommandType/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLIndirectCommandType"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/metal/encoding-indirect-command-buffers-on-the-gpu"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/metal/encoding-indirect-command-buffers-on-the-gpu"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

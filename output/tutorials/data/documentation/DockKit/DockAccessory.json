@@ -1,0 +1,3293 @@
+{
+  "abstract": [
+    {
+      "text": "Obtain accessory information and control tracking behavior.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.DockKit/documentation/DockKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.DockKit/documentation/DockKit/DockAccessory"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:7DockKit0A9AccessoryC",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "DockAccessory"
+      }
+    ],
+    "modules": [
+      {
+        "name": "DockKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "DockAccessory"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "DockAccessory"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "Mac Catalyst",
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "final"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "DockAccessory"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "DockAccessory",
+              "type": "codeVoice"
+            },
+            {
+              "text": " provides information about the dock accessory including its model name and firmware version. It also controls the dock accessory when you disable system tracking. Use ",
+              "type": "text"
+            },
+            {
+              "code": "DockAccesory",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to  perform animations, or explicitly control the position of the dock accessory in three-dimensional space by supplying coordinates in units of radians.  The collection of the X, Y, and Z values corresponding to pitch, yaw, and roll is the ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "angular position",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " of the dock accessory.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If there are multiple subjects in a video frame, direct the dock accessory to focus on a particular area of the frame using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/setFramingMode(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "DockKit throws a ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.DockKit/documentation/DockKit/DockKitError/frameRateTooHigh",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " exception if you animate or set the orientation of the dock accessory too quickly, so keep call rates at 2 times per second or less.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.DockKit/documentation/DockKit": {
+      "abstract": [
+        {
+          "text": "Interact with accessories that track subjects on camera as they move around.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.DockKit/documentation/DockKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "DockKit",
+      "type": "topic",
+      "url": "/documentation/dockkit"
+    },
+    "doc://com.apple.DockKit/documentation/DockKit/DockAccessory": {
+      "abstract": [
+        {
+          "text": "Obtain accessory information and control tracking behavior.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DockAccessory"
+        }
+      ],
+      "identifier": "doc://com.apple.DockKit/documentation/DockKit/DockAccessory",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DockAccessory"
+        }
+      ],
+      "role": "symbol",
+      "title": "DockAccessory",
+      "type": "topic",
+      "url": "/documentation/dockkit/dockaccessory"
+    },
+    "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/==(_:_:)": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value indicating whether two values are equal.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "=="
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7DockKit0A9AccessoryC",
+          "text": "DockAccessory"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7DockKit0A9AccessoryC",
+          "text": "DockAccessory"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/==(_:_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "==(_:_:)",
+      "type": "topic",
+      "url": "/documentation/dockkit/dockaccessory/==(_:_:)"
+    },
+    "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/AccessoryEvent": {
+      "abstract": [
+        {
+          "text": "An enumeration that represents an accessory event.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AccessoryEvent"
+        }
+      ],
+      "identifier": "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/AccessoryEvent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AccessoryEvent"
+        }
+      ],
+      "role": "symbol",
+      "title": "DockAccessory.AccessoryEvent",
+      "type": "topic",
+      "url": "/documentation/dockkit/dockaccessory/accessoryevent"
+    },
+    "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/AccessoryEvents-swift.struct": {
+      "abstract": [
+        {
+          "text": "An asynchronous sequence of dock accessory events.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AccessoryEvents"
+        }
+      ],
+      "identifier": "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/AccessoryEvents-swift.struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AccessoryEvents"
+        }
+      ],
+      "role": "symbol",
+      "title": "DockAccessory.AccessoryEvents",
+      "type": "topic",
+      "url": "/documentation/dockkit/dockaccessory/accessoryevents-swift.struct"
+    },
+    "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/Animation": {
+      "abstract": [
+        {
+          "text": "Character animations that describe how to move the dock accessory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Animation"
+        }
+      ],
+      "identifier": "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/Animation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Animation"
+        }
+      ],
+      "role": "symbol",
+      "title": "DockAccessory.Animation",
+      "type": "topic",
+      "url": "/documentation/dockkit/dockaccessory/animation"
+    },
+    "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/BatteryChargeState": {
+      "abstract": [
+        {
+          "text": "The charging state of an accessory battery",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BatteryChargeState"
+        }
+      ],
+      "identifier": "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/BatteryChargeState",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BatteryChargeState"
+        }
+      ],
+      "role": "symbol",
+      "title": "DockAccessory.BatteryChargeState",
+      "type": "topic",
+      "url": "/documentation/dockkit/dockaccessory/batterychargestate"
+    },
+    "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/BatteryState": {
+      "abstract": [
+        {
+          "text": "A struct that represents an accessory battery state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BatteryState"
+        }
+      ],
+      "identifier": "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/BatteryState",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BatteryState"
+        }
+      ],
+      "role": "symbol",
+      "title": "DockAccessory.BatteryState",
+      "type": "topic",
+      "url": "/documentation/dockkit/dockaccessory/batterystate"
+    },
+    "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/BatteryStates-swift.struct": {
+      "abstract": [
+        {
+          "text": "An asynchronous sequence of dock accessory battery states.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BatteryStates"
+        }
+      ],
+      "identifier": "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/BatteryStates-swift.struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BatteryStates"
+        }
+      ],
+      "role": "symbol",
+      "title": "DockAccessory.BatteryStates",
+      "type": "topic",
+      "url": "/documentation/dockkit/dockaccessory/batterystates-swift.struct"
+    },
+    "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/CameraInformation": {
+      "abstract": [
+        {
+          "text": "A collection of tracking information about the camera currently in use.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CameraInformation"
+        }
+      ],
+      "identifier": "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/CameraInformation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CameraInformation"
+        }
+      ],
+      "role": "symbol",
+      "title": "DockAccessory.CameraInformation",
+      "type": "topic",
+      "url": "/documentation/dockkit/dockaccessory/camerainformation"
+    },
+    "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/CameraOrientation": {
+      "abstract": [
+        {
+          "text": "The set of camera orientations used to extract coordinates.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CameraOrientation"
+        }
+      ],
+      "identifier": "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/CameraOrientation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CameraOrientation"
+        }
+      ],
+      "role": "symbol",
+      "title": "DockAccessory.CameraOrientation",
+      "type": "topic",
+      "url": "/documentation/dockkit/dockaccessory/cameraorientation"
+    },
+    "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/Category": {
+      "abstract": [
+        {
+          "text": "Types of supported dock accesories.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Category"
+        }
+      ],
+      "identifier": "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/Category",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Category"
+        }
+      ],
+      "role": "symbol",
+      "title": "DockAccessory.Category",
+      "type": "topic",
+      "url": "/documentation/dockkit/dockaccessory/category"
+    },
+    "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/Equatable-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/Equatable-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Equatable Implementations",
+      "type": "topic",
+      "url": "/documentation/dockkit/dockaccessory/equatable-implementations"
+    },
+    "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/FramingMode-swift.enum": {
+      "abstract": [
+        {
+          "text": "The mode to control framing of the subject when tracking.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FramingMode"
+        }
+      ],
+      "identifier": "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/FramingMode-swift.enum",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FramingMode"
+        }
+      ],
+      "role": "symbol",
+      "title": "DockAccessory.FramingMode",
+      "type": "topic",
+      "url": "/documentation/dockkit/dockaccessory/framingmode-swift.enum"
+    },
+    "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/Identifier-swift.struct": {
+      "abstract": [
+        {
+          "text": "Information that uniquely identifies the dock accessory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Identifier"
+        }
+      ],
+      "identifier": "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/Identifier-swift.struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Identifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "DockAccessory.Identifier",
+      "type": "topic",
+      "url": "/documentation/dockkit/dockaccessory/identifier-swift.struct"
+    },
+    "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/Limits-swift.struct": {
+      "abstract": [
+        {
+          "text": "Soft limits on multiple axes of rotation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Limits"
+        }
+      ],
+      "identifier": "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/Limits-swift.struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Limits"
+        }
+      ],
+      "role": "symbol",
+      "title": "DockAccessory.Limits",
+      "type": "topic",
+      "url": "/documentation/dockkit/dockaccessory/limits-swift.struct"
+    },
+    "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/MotionState": {
+      "abstract": [
+        {
+          "text": "An event that indicates the state of a dock accessory’s current position and speed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MotionState"
+        }
+      ],
+      "identifier": "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/MotionState",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MotionState"
+        }
+      ],
+      "role": "symbol",
+      "title": "DockAccessory.MotionState",
+      "type": "topic",
+      "url": "/documentation/dockkit/dockaccessory/motionstate"
+    },
+    "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/MotionStates-swift.struct": {
+      "abstract": [
+        {
+          "text": "An asynchronous sequence of orientation and velocity updates from the device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MotionStates"
+        }
+      ],
+      "identifier": "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/MotionStates-swift.struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MotionStates"
+        }
+      ],
+      "role": "symbol",
+      "title": "DockAccessory.MotionStates",
+      "type": "topic",
+      "url": "/documentation/dockkit/dockaccessory/motionstates-swift.struct"
+    },
+    "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/Observation": {
+      "abstract": [
+        {
+          "text": "An observation of the contents of a single video frame.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Observation"
+        }
+      ],
+      "identifier": "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/Observation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Observation"
+        }
+      ],
+      "role": "symbol",
+      "title": "DockAccessory.Observation",
+      "type": "topic",
+      "url": "/documentation/dockkit/dockaccessory/observation"
+    },
+    "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/State": {
+      "abstract": [
+        {
+          "text": "The state of a dock accessory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "State"
+        }
+      ],
+      "identifier": "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/State",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "State"
+        }
+      ],
+      "role": "symbol",
+      "title": "DockAccessory.State",
+      "type": "topic",
+      "url": "/documentation/dockkit/dockaccessory/state"
+    },
+    "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/StateChange": {
+      "abstract": [
+        {
+          "text": "An event that indicates a change in the state of a dock accessory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "StateChange"
+        }
+      ],
+      "identifier": "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/StateChange",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "StateChange"
+        }
+      ],
+      "role": "symbol",
+      "title": "DockAccessory.StateChange",
+      "type": "topic",
+      "url": "/documentation/dockkit/dockaccessory/statechange"
+    },
+    "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/StateChanges": {
+      "abstract": [
+        {
+          "text": "An asynchronous sequence of dock accessory state changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "StateChanges"
+        }
+      ],
+      "identifier": "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/StateChanges",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "StateChanges"
+        }
+      ],
+      "role": "symbol",
+      "title": "DockAccessory.StateChanges",
+      "type": "topic",
+      "url": "/documentation/dockkit/dockaccessory/statechanges"
+    },
+    "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/TrackedObject": {
+      "abstract": [
+        {
+          "text": "The state of a tracked object in the active tracking session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TrackedObject"
+        }
+      ],
+      "identifier": "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/TrackedObject",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TrackedObject"
+        }
+      ],
+      "role": "symbol",
+      "title": "DockAccessory.TrackedObject",
+      "type": "topic",
+      "url": "/documentation/dockkit/dockaccessory/trackedobject"
+    },
+    "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/TrackedPerson": {
+      "abstract": [
+        {
+          "text": "The state of a tracked person in the active tracking session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TrackedPerson"
+        }
+      ],
+      "identifier": "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/TrackedPerson",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TrackedPerson"
+        }
+      ],
+      "role": "symbol",
+      "title": "DockAccessory.TrackedPerson",
+      "type": "topic",
+      "url": "/documentation/dockkit/dockaccessory/trackedperson"
+    },
+    "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/TrackedSubjectType": {
+      "abstract": [
+        {
+          "text": "The subjects that the dock can track.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TrackedSubjectType"
+        }
+      ],
+      "identifier": "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/TrackedSubjectType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TrackedSubjectType"
+        }
+      ],
+      "role": "symbol",
+      "title": "DockAccessory.TrackedSubjectType",
+      "type": "topic",
+      "url": "/documentation/dockkit/dockaccessory/trackedsubjecttype"
+    },
+    "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/TrackingState": {
+      "abstract": [
+        {
+          "text": "A representation of the active tracking session state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TrackingState"
+        }
+      ],
+      "identifier": "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/TrackingState",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TrackingState"
+        }
+      ],
+      "role": "symbol",
+      "title": "DockAccessory.TrackingState",
+      "type": "topic",
+      "url": "/documentation/dockkit/dockaccessory/trackingstate"
+    },
+    "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/TrackingStates-swift.struct": {
+      "abstract": [
+        {
+          "text": "An asynchronous sequence of tracking session states.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TrackingStates"
+        }
+      ],
+      "identifier": "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/TrackingStates-swift.struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TrackingStates"
+        }
+      ],
+      "role": "symbol",
+      "title": "DockAccessory.TrackingStates",
+      "type": "topic",
+      "url": "/documentation/dockkit/dockaccessory/trackingstates-swift.struct"
+    },
+    "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/accessoryEvents-swift.property": {
+      "abstract": [
+        {
+          "text": "Events from the accessory that signify button presses or common camera controls.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "accessoryEvents"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7DockKit0A9AccessoryC",
+          "text": "DockAccessory"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7DockKit0A9AccessoryC0C6EventsV",
+          "text": "AccessoryEvents"
+        }
+      ],
+      "identifier": "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/accessoryEvents-swift.property",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "accessoryEvents",
+      "type": "topic",
+      "url": "/documentation/dockkit/dockaccessory/accessoryevents-swift.property"
+    },
+    "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/animate(motion:)": {
+      "abstract": [
+        {
+          "text": "Starts an animation sequence.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "animate"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "motion"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7DockKit0A9AccessoryC",
+          "text": "DockAccessory"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7DockKit0A9AccessoryC9AnimationO",
+          "text": "Animation"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSProgress",
+          "text": "Progress"
+        }
+      ],
+      "identifier": "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/animate(motion:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "animate(motion:)",
+      "type": "topic",
+      "url": "/documentation/dockkit/dockaccessory/animate(motion:)"
+    },
+    "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/batteryStates-swift.property": {
+      "abstract": [
+        {
+          "text": "Battery states from the accessory that indicate changes in battery charge or readiness",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "batteryStates"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7DockKit0A9AccessoryC",
+          "text": "DockAccessory"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7DockKit0A9AccessoryC13BatteryStatesV",
+          "text": "BatteryStates"
+        }
+      ],
+      "identifier": "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/batteryStates-swift.property",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "batteryStates",
+      "type": "topic",
+      "url": "/documentation/dockkit/dockaccessory/batterystates-swift.property"
+    },
+    "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/debugDescription": {
+      "abstract": [
+        {
+          "text": "The text description of the dock accessory state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "debugDescription"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/debugDescription",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "debugDescription",
+      "type": "topic",
+      "url": "/documentation/dockkit/dockaccessory/debugdescription"
+    },
+    "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/firmwareVersion": {
+      "abstract": [
+        {
+          "text": "The firmware version of the dock accessory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "firmwareVersion"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/firmwareVersion",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "firmwareVersion",
+      "type": "topic",
+      "url": "/documentation/dockkit/dockaccessory/firmwareversion"
+    },
+    "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/framingMode-swift.property": {
+      "abstract": [
+        {
+          "text": "The current framing mode.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "framingMode"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7DockKit0A9AccessoryC",
+          "text": "DockAccessory"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7DockKit0A9AccessoryC11FramingModeO",
+          "text": "FramingMode"
+        }
+      ],
+      "identifier": "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/framingMode-swift.property",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "framingMode",
+      "type": "topic",
+      "url": "/documentation/dockkit/dockaccessory/framingmode-swift.property"
+    },
+    "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/hardwareModel": {
+      "abstract": [
+        {
+          "text": "The model of the dock accessory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "hardwareModel"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/hardwareModel",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hardwareModel",
+      "type": "topic",
+      "url": "/documentation/dockkit/dockaccessory/hardwaremodel"
+    },
+    "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/hash(into:)": {
+      "abstract": [
+        {
+          "text": "Creates a unique identifier representing the object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "hash"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "into"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "inout"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6HasherV",
+          "text": "Hasher"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/hash(into:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hash(into:)",
+      "type": "topic",
+      "url": "/documentation/dockkit/dockaccessory/hash(into:)"
+    },
+    "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/hashValue": {
+      "abstract": [
+        {
+          "text": "The hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "hashValue"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/hashValue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hashValue",
+      "type": "topic",
+      "url": "/documentation/dockkit/dockaccessory/hashvalue"
+    },
+    "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/identifier-swift.property": {
+      "abstract": [
+        {
+          "text": "The name and unique identifer of the dock accessory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "identifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7DockKit0A9AccessoryC",
+          "text": "DockAccessory"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7DockKit0A9AccessoryC10IdentifierV",
+          "text": "Identifier"
+        }
+      ],
+      "identifier": "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/identifier-swift.property",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "identifier",
+      "type": "topic",
+      "url": "/documentation/dockkit/dockaccessory/identifier-swift.property"
+    },
+    "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/limits-swift.property": {
+      "abstract": [
+        {
+          "text": "Current limits for the axes of rotation and maximum angular velocity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "limits"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7DockKit0A9AccessoryC",
+          "text": "DockAccessory"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7DockKit0A9AccessoryC6LimitsV",
+          "text": "Limits"
+        }
+      ],
+      "identifier": "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/limits-swift.property",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "limits",
+      "type": "topic",
+      "url": "/documentation/dockkit/dockaccessory/limits-swift.property"
+    },
+    "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/motionStates-swift.property": {
+      "abstract": [
+        {
+          "text": "Motion information from the dock accessory that includes current orientation and velocity of all axes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "motionStates"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7DockKit0A9AccessoryC",
+          "text": "DockAccessory"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7DockKit0A9AccessoryC12MotionStatesV",
+          "text": "MotionStates"
+        }
+      ],
+      "identifier": "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/motionStates-swift.property",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "motionStates",
+      "type": "topic",
+      "url": "/documentation/dockkit/dockaccessory/motionstates-swift.property"
+    },
+    "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/regionOfInterest": {
+      "abstract": [
+        {
+          "text": "The area in the video frame in which the dock accessory tracks a subject.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "regionOfInterest"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGRect",
+          "text": "CGRect"
+        }
+      ],
+      "identifier": "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/regionOfInterest",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "regionOfInterest",
+      "type": "topic",
+      "url": "/documentation/dockkit/dockaccessory/regionofinterest"
+    },
+    "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/selectSubject(at:)": {
+      "abstract": [
+        {
+          "text": "Selects a subject to track at the supplied coordinates.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "selectSubject"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGPoint",
+          "text": "CGPoint"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/selectSubject(at:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "selectSubject(at:)",
+      "type": "topic",
+      "url": "/documentation/dockkit/dockaccessory/selectsubject(at:)"
+    },
+    "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/selectSubjects(_:)": {
+      "abstract": [
+        {
+          "text": "Selects subjects to track with specific identifiers",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "selectSubjects"
+        },
+        {
+          "kind": "text",
+          "text": "(["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4UUIDV",
+          "text": "UUID"
+        },
+        {
+          "kind": "text",
+          "text": "]) "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/selectSubjects(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "selectSubjects(_:)",
+      "type": "topic",
+      "url": "/documentation/dockkit/dockaccessory/selectsubjects(_:)"
+    },
+    "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/setAngularVelocity(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the angular velocity of each axis of orientation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setAngularVelocity"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@UA@SPVector3D",
+          "text": "Vector3D"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/setAngularVelocity(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setAngularVelocity(_:)",
+      "type": "topic",
+      "url": "/documentation/dockkit/dockaccessory/setangularvelocity(_:)"
+    },
+    "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/setFramingMode(_:)": {
+      "abstract": [
+        {
+          "text": "Customize the dock accessory’s tracking behavior.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setFramingMode"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7DockKit0A9AccessoryC",
+          "text": "DockAccessory"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7DockKit0A9AccessoryC11FramingModeO",
+          "text": "FramingMode"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/setFramingMode(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setFramingMode(_:)",
+      "type": "topic",
+      "url": "/documentation/dockkit/dockaccessory/setframingmode(_:)"
+    },
+    "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/setLimits(_:)": {
+      "abstract": [
+        {
+          "text": "Sets limits for the axes of rotation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setLimits"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7DockKit0A9AccessoryC",
+          "text": "DockAccessory"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7DockKit0A9AccessoryC6LimitsV",
+          "text": "Limits"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/setLimits(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setLimits(_:)",
+      "type": "topic",
+      "url": "/documentation/dockkit/dockaccessory/setlimits(_:)"
+    },
+    "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/setOrientation(_:duration:relative:)-2epe2": {
+      "abstract": [
+        {
+          "text": "Sets the position of each axis of orientation to radians for pitch, yaw, and roll.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setOrientation"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@UA@SPVector3D",
+          "text": "Vector3D"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "duration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8DurationV",
+          "text": "Duration"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "relative"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSProgress",
+          "text": "Progress"
+        }
+      ],
+      "identifier": "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/setOrientation(_:duration:relative:)-2epe2",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setOrientation(_:duration:relative:)",
+      "type": "topic",
+      "url": "/documentation/dockkit/dockaccessory/setorientation(_:duration:relative:)-2epe2"
+    },
+    "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/setOrientation(_:duration:relative:)-6b0fl": {
+      "abstract": [
+        {
+          "text": "Sets the position of each axis of orientation to radians for pitch, yaw, and roll.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setOrientation"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@UA@SPRotation3D",
+          "text": "Rotation3D"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "duration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8DurationV",
+          "text": "Duration"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "relative"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSProgress",
+          "text": "Progress"
+        }
+      ],
+      "identifier": "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/setOrientation(_:duration:relative:)-6b0fl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setOrientation(_:duration:relative:)",
+      "type": "topic",
+      "url": "/documentation/dockkit/dockaccessory/setorientation(_:duration:relative:)-6b0fl"
+    },
+    "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/setOrientation(_:duration:relative:)-6h2ah": {
+      "abstract": [
+        {
+          "text": "Sets the position of each axis of orientation to radians for pitch, yaw, and roll.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setOrientation"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@UA@SPRotation3D",
+          "text": "Rotation3D"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "duration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8DurationV",
+          "text": "Duration"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "relative"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSProgress",
+          "text": "Progress"
+        }
+      ],
+      "identifier": "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/setOrientation(_:duration:relative:)-6h2ah",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setOrientation(_:duration:relative:)",
+      "type": "topic",
+      "url": "/documentation/dockkit/dockaccessory/setorientation(_:duration:relative:)-6h2ah"
+    },
+    "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/setOrientation(_:duration:relative:)-84z7i": {
+      "abstract": [
+        {
+          "text": "Sets the position of each axis of orientation to radians for pitch, yaw, and roll.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setOrientation"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@UA@SPVector3D",
+          "text": "Vector3D"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "duration"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s8DurationV",
+          "text": "Duration"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "relative"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSProgress",
+          "text": "Progress"
+        }
+      ],
+      "identifier": "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/setOrientation(_:duration:relative:)-84z7i",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setOrientation(_:duration:relative:)",
+      "type": "topic",
+      "url": "/documentation/dockkit/dockaccessory/setorientation(_:duration:relative:)-84z7i"
+    },
+    "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/setRegionOfInterest(_:)": {
+      "abstract": [
+        {
+          "text": "Sets the area in the video frame in which the dock accessory tracks a subject.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setRegionOfInterest"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGRect",
+          "text": "CGRect"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/setRegionOfInterest(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setRegionOfInterest(_:)",
+      "type": "topic",
+      "url": "/documentation/dockkit/dockaccessory/setregionofinterest(_:)"
+    },
+    "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/track(_:cameraInformation:)-44mwn": {
+      "abstract": [
+        {
+          "text": "Automatically generate and send tracking vectors to the device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "track"
+        },
+        {
+          "kind": "text",
+          "text": "(["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7DockKit0A9AccessoryC",
+          "text": "DockAccessory"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7DockKit0A9AccessoryC11ObservationV",
+          "text": "Observation"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "cameraInformation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7DockKit0A9AccessoryC",
+          "text": "DockAccessory"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7DockKit0A9AccessoryC17CameraInformationV",
+          "text": "CameraInformation"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/track(_:cameraInformation:)-44mwn",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "track(_:cameraInformation:)",
+      "type": "topic",
+      "url": "/documentation/dockkit/dockaccessory/track(_:camerainformation:)-44mwn"
+    },
+    "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/track(_:cameraInformation:)-4yl9b": {
+      "abstract": [
+        {
+          "text": "Automatically generate and send tracking vectors to the device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "track"
+        },
+        {
+          "kind": "text",
+          "text": "(["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVMetadataObject",
+          "text": "AVMetadataObject"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "cameraInformation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7DockKit0A9AccessoryC",
+          "text": "DockAccessory"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7DockKit0A9AccessoryC17CameraInformationV",
+          "text": "CameraInformation"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/track(_:cameraInformation:)-4yl9b",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "track(_:cameraInformation:)",
+      "type": "topic",
+      "url": "/documentation/dockkit/dockaccessory/track(_:camerainformation:)-4yl9b"
+    },
+    "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/track(_:cameraInformation:image:)-3uuza": {
+      "abstract": [
+        {
+          "text": "Automatically generate and send tracking vectors to the device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "track"
+        },
+        {
+          "kind": "text",
+          "text": "(["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7DockKit0A9AccessoryC",
+          "text": "DockAccessory"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7DockKit0A9AccessoryC11ObservationV",
+          "text": "Observation"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "cameraInformation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7DockKit0A9AccessoryC",
+          "text": "DockAccessory"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7DockKit0A9AccessoryC17CameraInformationV",
+          "text": "CameraInformation"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "image"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CVPixelBufferRef",
+          "text": "CVPixelBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/track(_:cameraInformation:image:)-3uuza",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "track(_:cameraInformation:image:)",
+      "type": "topic",
+      "url": "/documentation/dockkit/dockaccessory/track(_:camerainformation:image:)-3uuza"
+    },
+    "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/track(_:cameraInformation:image:)-82m61": {
+      "abstract": [
+        {
+          "text": "Automatically generate and send tracking vectors to the device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "track"
+        },
+        {
+          "kind": "text",
+          "text": "(["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)AVMetadataObject",
+          "text": "AVMetadataObject"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "cameraInformation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7DockKit0A9AccessoryC",
+          "text": "DockAccessory"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7DockKit0A9AccessoryC17CameraInformationV",
+          "text": "CameraInformation"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "image"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CVPixelBufferRef",
+          "text": "CVPixelBuffer"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/track(_:cameraInformation:image:)-82m61",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "track(_:cameraInformation:image:)",
+      "type": "topic",
+      "url": "/documentation/dockkit/dockaccessory/track(_:camerainformation:image:)-82m61"
+    },
+    "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/trackingStates-swift.property": {
+      "abstract": [
+        {
+          "text": "Provides an access to the asynchronous sequence of tracking session states",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "trackingStates"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7DockKit0A9AccessoryC",
+          "text": "DockAccessory"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7DockKit0A9AccessoryC14TrackingStatesV",
+          "text": "TrackingStates"
+        }
+      ],
+      "identifier": "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/trackingStates-swift.property",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "trackingStates",
+      "type": "topic",
+      "url": "/documentation/dockkit/dockaccessory/trackingstates-swift.property"
+    },
+    "doc://com.apple.DockKit/documentation/DockKit/DockAccessoryManager": {
+      "abstract": [
+        {
+          "text": "Observe the state of dock accessories and enable or disable system tracking.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DockAccessoryManager"
+        }
+      ],
+      "identifier": "doc://com.apple.DockKit/documentation/DockKit/DockAccessoryManager",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DockAccessoryManager"
+        }
+      ],
+      "role": "symbol",
+      "title": "DockAccessoryManager",
+      "type": "topic",
+      "url": "/documentation/dockkit/dockaccessorymanager"
+    },
+    "doc://com.apple.DockKit/documentation/DockKit/DockKitError": {
+      "abstract": [
+        {
+          "text": "A list of errors that DockKit sends.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DockKitError"
+        }
+      ],
+      "identifier": "doc://com.apple.DockKit/documentation/DockKit/DockKitError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DockKitError"
+        }
+      ],
+      "role": "symbol",
+      "title": "DockKitError",
+      "type": "topic",
+      "url": "/documentation/dockkit/dockkiterror"
+    },
+    "doc://com.apple.DockKit/documentation/DockKit/DockKitError/frameRateTooHigh": {
+      "abstract": [
+        {
+          "text": "The call rate for the method is too frequent.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "frameRateTooHigh"
+        }
+      ],
+      "identifier": "doc://com.apple.DockKit/documentation/DockKit/DockKitError/frameRateTooHigh",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "DockKitError.frameRateTooHigh",
+      "type": "topic",
+      "url": "/documentation/dockkit/dockkiterror/frameratetoohigh"
+    },
+    "doc://com.apple.DockKit/documentation/DockKit/controlling-a-dockkit-accessory-using-your-camera-app": {
+      "abstract": [
+        {
+          "text": "Follow subjects in real time using an iPhone that you mount on a DockKit accessory.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.DockKit/documentation/DockKit/controlling-a-dockkit-accessory-using-your-camera-app",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Controlling a DockKit accessory using your camera app",
+      "type": "topic",
+      "url": "/documentation/dockkit/controlling-a-dockkit-accessory-using-your-camera-app"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/s:s8SendableP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Controlling-the-dock-accessory",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.DockKit/documentation/DockKit/controlling-a-dockkit-accessory-using-your-camera-app",
+        "doc://com.apple.DockKit/documentation/DockKit/DockAccessoryManager",
+        "doc://com.apple.DockKit/documentation/DockKit/DockKitError"
+      ],
+      "title": "Controlling the dock accessory"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Selecting-and-tracking",
+      "identifiers": [
+        "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/selectSubject(at:)",
+        "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/track(_:cameraInformation:)-4yl9b",
+        "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/track(_:cameraInformation:)-44mwn",
+        "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/Observation",
+        "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/CameraInformation",
+        "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/CameraOrientation"
+      ],
+      "title": "Selecting and tracking"
+    },
+    {
+      "anchor": "Performing-animation",
+      "identifiers": [
+        "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/animate(motion:)",
+        "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/setRegionOfInterest(_:)",
+        "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/regionOfInterest",
+        "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/Animation"
+      ],
+      "title": "Performing animation"
+    },
+    {
+      "anchor": "Setting-position-and-limits",
+      "identifiers": [
+        "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/setLimits(_:)",
+        "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/setOrientation(_:duration:relative:)-2epe2",
+        "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/setOrientation(_:duration:relative:)-6b0fl",
+        "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/setAngularVelocity(_:)"
+      ],
+      "title": "Setting position and limits"
+    },
+    {
+      "anchor": "Setting-framing-mode",
+      "identifiers": [
+        "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/setFramingMode(_:)",
+        "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/framingMode-swift.property",
+        "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/FramingMode-swift.enum"
+      ],
+      "title": "Setting framing mode"
+    },
+    {
+      "anchor": "Getting-position-and-limits",
+      "identifiers": [
+        "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/motionStates-swift.property",
+        "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/limits-swift.property",
+        "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/MotionState",
+        "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/MotionStates-swift.struct",
+        "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/Limits-swift.struct"
+      ],
+      "title": "Getting position and limits"
+    },
+    {
+      "anchor": "Getting-accessory-information",
+      "identifiers": [
+        "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/firmwareVersion",
+        "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/hardwareModel",
+        "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/identifier-swift.property",
+        "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/Identifier-swift.struct",
+        "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/Category",
+        "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/State",
+        "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/StateChange",
+        "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/StateChanges"
+      ],
+      "title": "Getting accessory information"
+    },
+    {
+      "anchor": "Inspecting-the-object",
+      "identifiers": [
+        "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/hash(into:)",
+        "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/debugDescription"
+      ],
+      "title": "Inspecting the object"
+    },
+    {
+      "anchor": "Structures",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/AccessoryEvents-swift.struct",
+        "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/BatteryState",
+        "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/BatteryStates-swift.struct",
+        "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/TrackedObject",
+        "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/TrackedPerson",
+        "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/TrackingState",
+        "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/TrackingStates-swift.struct"
+      ],
+      "title": "Structures"
+    },
+    {
+      "anchor": "Operators",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/==(_:_:)"
+      ],
+      "title": "Operators"
+    },
+    {
+      "anchor": "Instance-Properties",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/accessoryEvents-swift.property",
+        "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/batteryStates-swift.property",
+        "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/hashValue",
+        "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/trackingStates-swift.property"
+      ],
+      "title": "Instance Properties"
+    },
+    {
+      "anchor": "Instance-Methods",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/selectSubjects(_:)",
+        "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/setOrientation(_:duration:relative:)-6h2ah",
+        "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/setOrientation(_:duration:relative:)-84z7i",
+        "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/track(_:cameraInformation:image:)-3uuza",
+        "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/track(_:cameraInformation:image:)-82m61"
+      ],
+      "title": "Instance Methods"
+    },
+    {
+      "anchor": "Enumerations",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/AccessoryEvent",
+        "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/BatteryChargeState",
+        "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/TrackedSubjectType"
+      ],
+      "title": "Enumerations"
+    },
+    {
+      "anchor": "Default-Implementations",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.DockKit/documentation/DockKit/DockAccessory/Equatable-Implementations"
+      ],
+      "title": "Default Implementations"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/dockkit/dockaccessory"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

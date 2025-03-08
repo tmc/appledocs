@@ -1,0 +1,534 @@
+{
+  "abstract": [
+    {
+      "text": "Use the debugger during development to start tasks and to terminate them before completion.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.backgroundtasks/documentation/BackgroundTasks"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.backgroundtasks/documentation/BackgroundTasks/starting-and-terminating-tasks-during-development"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Background Tasks"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Starting and Terminating Tasks During Development"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The delay between the time you schedule a background task and when the system launches your app to run the task can be many hours. While developing your app, you can use two private functions to start a task and to force early termination of the task according to your selected timeline. The debug functions work only on devices.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Use private functions only during development. Including a reference to these functions in apps submitted to the App Store is cause for rejection.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Launch-a-Task",
+          "level": 3,
+          "text": "Launch a Task",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To launch a task:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Set a breakpoint in the code that executes after a successful call to ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.backgroundtasks/documentation/BackgroundTasks/BGTaskScheduler/submit(_:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Run your app on a device until the breakpoint pauses your app.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the debugger, execute the line shown below, substituting the identifier of the desired task for ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "TASK_IDENTIFIER",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Resume your app. The system calls the launch handler for the desired task.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "code": [
+            "e -l objc -- (void)[[BGTaskScheduler sharedScheduler] _simulateLaunchForTaskWithIdentifier:@\"TASK_IDENTIFIER\"]"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Force-Early-Termination-of-a-Task",
+          "level": 3,
+          "text": "Force Early Termination of a Task",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To force termination of a task:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Set a breakpoint in the desired task.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Launch the task using the debugger as described in the previous section.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Wait for your app to pause at the breakpoint.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the debugger, execute the line shown below, substituting the identifier of the desired task for ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "TASK_IDENTIFIER",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Resume your app. The system calls the expiration handler for the desired task.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "code": [
+            "e -l objc -- (void)[[BGTaskScheduler sharedScheduler] _simulateExpirationForTaskWithIdentifier:@\"TASK_IDENTIFIER\"]"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.backgroundtasks/documentation/BackgroundTasks": {
+      "abstract": [
+        {
+          "text": "Request the system to launch your app in the background to run tasks.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.backgroundtasks/documentation/BackgroundTasks",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Background Tasks",
+      "type": "topic",
+      "url": "/documentation/backgroundtasks"
+    },
+    "doc://com.apple.backgroundtasks/documentation/BackgroundTasks/BGTaskScheduler": {
+      "abstract": [
+        {
+          "text": "A class for scheduling task requests that launch your app in the background.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BGTaskScheduler"
+        }
+      ],
+      "identifier": "doc://com.apple.backgroundtasks/documentation/BackgroundTasks/BGTaskScheduler",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BGTaskScheduler"
+        }
+      ],
+      "role": "symbol",
+      "title": "BGTaskScheduler",
+      "type": "topic",
+      "url": "/documentation/backgroundtasks/bgtaskscheduler"
+    },
+    "doc://com.apple.backgroundtasks/documentation/BackgroundTasks/BGTaskScheduler/submit(_:)": {
+      "abstract": [
+        {
+          "text": "Submit a previously registered background task for execution.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "submit"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)BGTaskRequest",
+          "text": "BGTaskRequest"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.backgroundtasks/documentation/BackgroundTasks/BGTaskScheduler/submit(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "submitTaskRequest:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "submit(_:)",
+      "type": "topic",
+      "url": "/documentation/backgroundtasks/bgtaskscheduler/submit(_:)"
+    },
+    "doc://com.apple.backgroundtasks/documentation/BackgroundTasks/choosing-background-strategies-for-your-app": {
+      "abstract": [
+        {
+          "text": "Select the best method of scheduling background runtime for your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.backgroundtasks/documentation/BackgroundTasks/choosing-background-strategies-for-your-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Choosing Background Strategies for Your App",
+      "type": "topic",
+      "url": "/documentation/backgroundtasks/choosing-background-strategies-for-your-app"
+    },
+    "doc://com.apple.backgroundtasks/documentation/BackgroundTasks/refreshing-and-maintaining-your-app-using-background-tasks": {
+      "abstract": [
+        {
+          "text": "Use scheduled background tasks for refreshing your app content and for performing maintenance.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.backgroundtasks/documentation/BackgroundTasks/refreshing-and-maintaining-your-app-using-background-tasks",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Refreshing and Maintaining Your App Using Background Tasks",
+      "type": "topic",
+      "url": "/documentation/backgroundtasks/refreshing-and-maintaining-your-app-using-background-tasks"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.backgroundtasks/documentation/BackgroundTasks/BGTaskScheduler",
+        "doc://com.apple.backgroundtasks/documentation/BackgroundTasks/refreshing-and-maintaining-your-app-using-background-tasks",
+        "doc://com.apple.backgroundtasks/documentation/BackgroundTasks/choosing-background-strategies-for-your-app"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Essentials",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.backgroundtasks/documentation/BackgroundTasks/BGTaskScheduler",
+                "doc://com.apple.backgroundtasks/documentation/BackgroundTasks/refreshing-and-maintaining-your-app-using-background-tasks",
+                "doc://com.apple.backgroundtasks/documentation/BackgroundTasks/choosing-background-strategies-for-your-app"
+              ],
+              "title": "Essentials"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.backgroundtasks~1documentation~1BackgroundTasks~1BGTaskScheduler~1submit(_:)/title",
+          "value": "submitTaskRequest:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.backgroundtasks~1documentation~1BackgroundTasks~1BGTaskScheduler~1submit(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "submitTaskRequest:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.backgroundtasks~1documentation~1BackgroundTasks~1BGTaskScheduler/title",
+          "value": "BGTaskScheduler"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.backgroundtasks~1documentation~1BackgroundTasks~1BGTaskScheduler/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BGTaskScheduler"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.backgroundtasks~1documentation~1BackgroundTasks~1BGTaskScheduler/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BGTaskScheduler"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/backgroundtasks/starting-and-terminating-tasks-during-development"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/backgroundtasks/starting-and-terminating-tasks-during-development"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

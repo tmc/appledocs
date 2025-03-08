@@ -1,0 +1,4391 @@
+{
+  "abstract": [
+    {
+      "text": "Create network connections to send and receive data using transport and security protocols.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.network/documentation/Network"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "Network",
+    "modules": [
+      {
+        "name": "Network"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "12.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "12.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "beta": false,
+        "introducedAt": "10.14",
+        "name": "macOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "12.0",
+        "name": "tvOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "6.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "collection",
+    "roleHeading": "Framework",
+    "symbolKind": "module",
+    "title": "Network"
+  },
+  "primaryContentSections": [
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.network/documentation/Network/indicating-the-source-of-network-activity",
+        "doc://com.apple.network/documentation/Network/inspecting-app-activity-data"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use this framework when you need direct access to protocols like TLS, TCP, and UDP for your custom application protocols. Continue to use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", which is built upon this framework, for loading HTTP- and URL-based resources. For in-depth advice on where to start with networking, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Technotes/tn3151-choosing-the-right-networking-api",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "watchOS supports Network framework for specific use cases. For more details, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/Technotes/tn3135-low-level-networking-on-watchOS",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/Technotes/tn3135-low-level-networking-on-watchOS": {
+      "abstract": [
+        {
+          "text": "Learn about the supported use cases for low-level networking on watchOS.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Technotes/tn3135-low-level-networking-on-watchOS",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3135: Low-level networking on watchOS",
+      "type": "topic",
+      "url": "/documentation/Technotes/tn3135-low-level-networking-on-watchOS"
+    },
+    "doc://com.apple.documentation/documentation/Technotes/tn3151-choosing-the-right-networking-api": {
+      "abstract": [
+        {
+          "text": "Learn which networking API is best for you.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Technotes/tn3151-choosing-the-right-networking-api",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3151: Choosing the right networking API",
+      "type": "topic",
+      "url": "/documentation/Technotes/tn3151-choosing-the-right-networking-api"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsession": {
+      "abstract": [
+        {
+          "text": "An object that coordinates a group of related, network data transfer tasks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "URLSession"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLSession",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsession"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.network/documentation/Network": {
+      "abstract": [
+        {
+          "text": "Create network connections to send and receive data using transport and security protocols.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Network",
+      "type": "topic",
+      "url": "/documentation/network"
+    },
+    "doc://com.apple.network/documentation/Network/NWBrowser": {
+      "abstract": [
+        {
+          "text": "An object you use to browse for available network services.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NWBrowser"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/NWBrowser",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NWBrowser"
+        }
+      ],
+      "role": "symbol",
+      "title": "NWBrowser",
+      "type": "topic",
+      "url": "/documentation/network/nwbrowser"
+    },
+    "doc://com.apple.network/documentation/Network/NWConnection": {
+      "abstract": [
+        {
+          "text": "A bidirectional data connection between a local endpoint and a remote endpoint.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NWConnection"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/NWConnection",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NWConnection"
+        }
+      ],
+      "role": "symbol",
+      "title": "NWConnection",
+      "type": "topic",
+      "url": "/documentation/network/nwconnection"
+    },
+    "doc://com.apple.network/documentation/Network/NWConnectionGroup": {
+      "abstract": [
+        {
+          "text": "An object you use to communicate with a group of endpoints, such as an IP multicast group on a local network.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NWConnectionGroup"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/NWConnectionGroup",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NWConnectionGroup"
+        }
+      ],
+      "role": "symbol",
+      "title": "NWConnectionGroup",
+      "type": "topic",
+      "url": "/documentation/network/nwconnectiongroup"
+    },
+    "doc://com.apple.network/documentation/Network/NWEndpoint": {
+      "abstract": [
+        {
+          "text": "A local or remote endpoint in a network connection.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NWEndpoint"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/NWEndpoint",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NWEndpoint"
+        }
+      ],
+      "role": "symbol",
+      "title": "NWEndpoint",
+      "type": "topic",
+      "url": "/documentation/network/nwendpoint"
+    },
+    "doc://com.apple.network/documentation/Network/NWError": {
+      "abstract": [
+        {
+          "text": "The errors returned by objects in the Network framework.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NWError"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/NWError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NWError"
+        }
+      ],
+      "role": "symbol",
+      "title": "NWError",
+      "type": "topic",
+      "url": "/documentation/network/nwerror"
+    },
+    "doc://com.apple.network/documentation/Network/NWEthernetChannel": {
+      "abstract": [
+        {
+          "text": "An object you use to send and receive custom Ethernet frames.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NWEthernetChannel"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/NWEthernetChannel",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NWEthernetChannel"
+        }
+      ],
+      "role": "symbol",
+      "title": "NWEthernetChannel",
+      "type": "topic",
+      "url": "/documentation/network/nwethernetchannel"
+    },
+    "doc://com.apple.network/documentation/Network/NWInterface": {
+      "abstract": [
+        {
+          "text": "An interface that a network connection uses to send and receive data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NWInterface"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/NWInterface",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NWInterface"
+        }
+      ],
+      "role": "symbol",
+      "title": "NWInterface",
+      "type": "topic",
+      "url": "/documentation/network/nwinterface"
+    },
+    "doc://com.apple.network/documentation/Network/NWListener": {
+      "abstract": [
+        {
+          "text": "An object you use to listen for incoming network connections.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NWListener"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/NWListener",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NWListener"
+        }
+      ],
+      "role": "symbol",
+      "title": "NWListener",
+      "type": "topic",
+      "url": "/documentation/network/nwlistener"
+    },
+    "doc://com.apple.network/documentation/Network/NWMultiplexGroup": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NWMultiplexGroup"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/NWMultiplexGroup",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NWMultiplexGroup"
+        }
+      ],
+      "role": "symbol",
+      "title": "NWMultiplexGroup",
+      "type": "topic",
+      "url": "/documentation/network/nwmultiplexgroup"
+    },
+    "doc://com.apple.network/documentation/Network/NWParameters": {
+      "abstract": [
+        {
+          "text": "An object that stores the protocols to use for connections, options for sending data, and network path constraints.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NWParameters"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/NWParameters",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NWParameters"
+        }
+      ],
+      "role": "symbol",
+      "title": "NWParameters",
+      "type": "topic",
+      "url": "/documentation/network/nwparameters"
+    },
+    "doc://com.apple.network/documentation/Network/NWPath": {
+      "abstract": [
+        {
+          "text": "An object that contains information about the properties of the network that a connection uses, or that are available to your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NWPath"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/NWPath",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NWPath"
+        }
+      ],
+      "role": "symbol",
+      "title": "NWPath",
+      "type": "topic",
+      "url": "/documentation/network/nwpath"
+    },
+    "doc://com.apple.network/documentation/Network/NWPathMonitor": {
+      "abstract": [
+        {
+          "text": "An observer that you use to monitor and react to network changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NWPathMonitor"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/NWPathMonitor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NWPathMonitor"
+        }
+      ],
+      "role": "symbol",
+      "title": "NWPathMonitor",
+      "type": "topic",
+      "url": "/documentation/network/nwpathmonitor"
+    },
+    "doc://com.apple.network/documentation/Network/NWProtocolFramer": {
+      "abstract": [
+        {
+          "text": "A customizable network protocol for defining application message parsers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NWProtocolFramer"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/NWProtocolFramer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NWProtocolFramer"
+        }
+      ],
+      "role": "symbol",
+      "title": "NWProtocolFramer",
+      "type": "topic",
+      "url": "/documentation/network/nwprotocolframer"
+    },
+    "doc://com.apple.network/documentation/Network/NWProtocolIP": {
+      "abstract": [
+        {
+          "text": "A network protocol for configuring the Internet Protocol on connections.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NWProtocolIP"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/NWProtocolIP",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NWProtocolIP"
+        }
+      ],
+      "role": "symbol",
+      "title": "NWProtocolIP",
+      "type": "topic",
+      "url": "/documentation/network/nwprotocolip"
+    },
+    "doc://com.apple.network/documentation/Network/NWProtocolQUIC": {
+      "abstract": [
+        {
+          "text": "A network protocol for connections that use the QUIC transport protocol.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NWProtocolQUIC"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/NWProtocolQUIC",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NWProtocolQUIC"
+        }
+      ],
+      "role": "symbol",
+      "title": "NWProtocolQUIC",
+      "type": "topic",
+      "url": "/documentation/network/nwprotocolquic"
+    },
+    "doc://com.apple.network/documentation/Network/NWProtocolTCP": {
+      "abstract": [
+        {
+          "text": "A network protocol for connections that use the Transmission Control Protocol.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NWProtocolTCP"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/NWProtocolTCP",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NWProtocolTCP"
+        }
+      ],
+      "role": "symbol",
+      "title": "NWProtocolTCP",
+      "type": "topic",
+      "url": "/documentation/network/nwprotocoltcp"
+    },
+    "doc://com.apple.network/documentation/Network/NWProtocolTLS": {
+      "abstract": [
+        {
+          "text": "A network protocol for connections that use Transport Layer Security.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NWProtocolTLS"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/NWProtocolTLS",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NWProtocolTLS"
+        }
+      ],
+      "role": "symbol",
+      "title": "NWProtocolTLS",
+      "type": "topic",
+      "url": "/documentation/network/nwprotocoltls"
+    },
+    "doc://com.apple.network/documentation/Network/NWProtocolUDP": {
+      "abstract": [
+        {
+          "text": "A network protocol for connections that use the User Datagram Protocol.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NWProtocolUDP"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/NWProtocolUDP",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NWProtocolUDP"
+        }
+      ],
+      "role": "symbol",
+      "title": "NWProtocolUDP",
+      "type": "topic",
+      "url": "/documentation/network/nwprotocoludp"
+    },
+    "doc://com.apple.network/documentation/Network/NWProtocolWebSocket": {
+      "abstract": [
+        {
+          "text": "A network protocol for connections that use WebSocket.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NWProtocolWebSocket"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/NWProtocolWebSocket",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NWProtocolWebSocket"
+        }
+      ],
+      "role": "symbol",
+      "title": "NWProtocolWebSocket",
+      "type": "topic",
+      "url": "/documentation/network/nwprotocolwebsocket"
+    },
+    "doc://com.apple.network/documentation/Network/NWTXTRecord": {
+      "abstract": [
+        {
+          "text": "A dictionary representing a TXT record in a DNS packet.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NWTXTRecord"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/NWTXTRecord",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NWTXTRecord"
+        }
+      ],
+      "role": "symbol",
+      "title": "NWTXTRecord",
+      "type": "topic",
+      "url": "/documentation/network/nwtxtrecord"
+    },
+    "doc://com.apple.network/documentation/Network/NW_ASSUME_EXTERNALLY_RETAINED_BEGIN": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "NW_ASSUME_EXTERNALLY_RETAINED_BEGIN"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/NW_ASSUME_EXTERNALLY_RETAINED_BEGIN",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NW_ASSUME_EXTERNALLY_RETAINED_BEGIN",
+      "type": "topic",
+      "url": "/documentation/network/nw_assume_externally_retained_begin"
+    },
+    "doc://com.apple.network/documentation/Network/NW_ASSUME_EXTERNALLY_RETAINED_END": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "NW_ASSUME_EXTERNALLY_RETAINED_END"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/NW_ASSUME_EXTERNALLY_RETAINED_END",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NW_ASSUME_EXTERNALLY_RETAINED_END",
+      "type": "topic",
+      "url": "/documentation/network/nw_assume_externally_retained_end"
+    },
+    "doc://com.apple.network/documentation/Network/NW_EXTERNALLY_RETAINED": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "NW_EXTERNALLY_RETAINED"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/NW_EXTERNALLY_RETAINED",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NW_EXTERNALLY_RETAINED",
+      "type": "topic",
+      "url": "/documentation/network/nw_externally_retained"
+    },
+    "doc://com.apple.network/documentation/Network/OS_nw_advertise_descriptor": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "OS_nw_advertise_descriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/OS_nw_advertise_descriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "OS_nw_advertise_descriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "OS_nw_advertise_descriptor",
+      "type": "topic",
+      "url": "/documentation/network/os_nw_advertise_descriptor"
+    },
+    "doc://com.apple.network/documentation/Network/OS_nw_browse_descriptor": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "OS_nw_browse_descriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/OS_nw_browse_descriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "OS_nw_browse_descriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "OS_nw_browse_descriptor",
+      "type": "topic",
+      "url": "/documentation/network/os_nw_browse_descriptor"
+    },
+    "doc://com.apple.network/documentation/Network/OS_nw_browse_result": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "OS_nw_browse_result"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/OS_nw_browse_result",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "OS_nw_browse_result"
+        }
+      ],
+      "role": "symbol",
+      "title": "OS_nw_browse_result",
+      "type": "topic",
+      "url": "/documentation/network/os_nw_browse_result"
+    },
+    "doc://com.apple.network/documentation/Network/OS_nw_browser": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "OS_nw_browser"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/OS_nw_browser",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "OS_nw_browser"
+        }
+      ],
+      "role": "symbol",
+      "title": "OS_nw_browser",
+      "type": "topic",
+      "url": "/documentation/network/os_nw_browser"
+    },
+    "doc://com.apple.network/documentation/Network/OS_nw_connection": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "OS_nw_connection"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/OS_nw_connection",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "OS_nw_connection"
+        }
+      ],
+      "role": "symbol",
+      "title": "OS_nw_connection",
+      "type": "topic",
+      "url": "/documentation/network/os_nw_connection"
+    },
+    "doc://com.apple.network/documentation/Network/OS_nw_connection_group": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "OS_nw_connection_group"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/OS_nw_connection_group",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "OS_nw_connection_group"
+        }
+      ],
+      "role": "symbol",
+      "title": "OS_nw_connection_group",
+      "type": "topic",
+      "url": "/documentation/network/os_nw_connection_group"
+    },
+    "doc://com.apple.network/documentation/Network/OS_nw_content_context": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "OS_nw_content_context"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/OS_nw_content_context",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "OS_nw_content_context"
+        }
+      ],
+      "role": "symbol",
+      "title": "OS_nw_content_context",
+      "type": "topic",
+      "url": "/documentation/network/os_nw_content_context"
+    },
+    "doc://com.apple.network/documentation/Network/OS_nw_data_transfer_report": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "OS_nw_data_transfer_report"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/OS_nw_data_transfer_report",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "OS_nw_data_transfer_report"
+        }
+      ],
+      "role": "symbol",
+      "title": "OS_nw_data_transfer_report",
+      "type": "topic",
+      "url": "/documentation/network/os_nw_data_transfer_report"
+    },
+    "doc://com.apple.network/documentation/Network/OS_nw_endpoint": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "OS_nw_endpoint"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/OS_nw_endpoint",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "OS_nw_endpoint"
+        }
+      ],
+      "role": "symbol",
+      "title": "OS_nw_endpoint",
+      "type": "topic",
+      "url": "/documentation/network/os_nw_endpoint"
+    },
+    "doc://com.apple.network/documentation/Network/OS_nw_error": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "OS_nw_error"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/OS_nw_error",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "OS_nw_error"
+        }
+      ],
+      "role": "symbol",
+      "title": "OS_nw_error",
+      "type": "topic",
+      "url": "/documentation/network/os_nw_error"
+    },
+    "doc://com.apple.network/documentation/Network/OS_nw_establishment_report": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "OS_nw_establishment_report"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/OS_nw_establishment_report",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "OS_nw_establishment_report"
+        }
+      ],
+      "role": "symbol",
+      "title": "OS_nw_establishment_report",
+      "type": "topic",
+      "url": "/documentation/network/os_nw_establishment_report"
+    },
+    "doc://com.apple.network/documentation/Network/OS_nw_ethernet_channel": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "OS_nw_ethernet_channel"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/OS_nw_ethernet_channel",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "OS_nw_ethernet_channel"
+        }
+      ],
+      "role": "symbol",
+      "title": "OS_nw_ethernet_channel",
+      "type": "topic",
+      "url": "/documentation/network/os_nw_ethernet_channel"
+    },
+    "doc://com.apple.network/documentation/Network/OS_nw_framer": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "OS_nw_framer"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/OS_nw_framer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "OS_nw_framer"
+        }
+      ],
+      "role": "symbol",
+      "title": "OS_nw_framer",
+      "type": "topic",
+      "url": "/documentation/network/os_nw_framer"
+    },
+    "doc://com.apple.network/documentation/Network/OS_nw_group_descriptor": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "OS_nw_group_descriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/OS_nw_group_descriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "OS_nw_group_descriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "OS_nw_group_descriptor",
+      "type": "topic",
+      "url": "/documentation/network/os_nw_group_descriptor"
+    },
+    "doc://com.apple.network/documentation/Network/OS_nw_interface": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "OS_nw_interface"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/OS_nw_interface",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "OS_nw_interface"
+        }
+      ],
+      "role": "symbol",
+      "title": "OS_nw_interface",
+      "type": "topic",
+      "url": "/documentation/network/os_nw_interface"
+    },
+    "doc://com.apple.network/documentation/Network/OS_nw_listener": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "OS_nw_listener"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/OS_nw_listener",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "OS_nw_listener"
+        }
+      ],
+      "role": "symbol",
+      "title": "OS_nw_listener",
+      "type": "topic",
+      "url": "/documentation/network/os_nw_listener"
+    },
+    "doc://com.apple.network/documentation/Network/OS_nw_object": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "OS_nw_object"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/OS_nw_object",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "OS_nw_object"
+        }
+      ],
+      "role": "symbol",
+      "title": "OS_nw_object",
+      "type": "topic",
+      "url": "/documentation/network/os_nw_object"
+    },
+    "doc://com.apple.network/documentation/Network/OS_nw_parameters": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "OS_nw_parameters"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/OS_nw_parameters",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "OS_nw_parameters"
+        }
+      ],
+      "role": "symbol",
+      "title": "OS_nw_parameters",
+      "type": "topic",
+      "url": "/documentation/network/os_nw_parameters"
+    },
+    "doc://com.apple.network/documentation/Network/OS_nw_path": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "OS_nw_path"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/OS_nw_path",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "OS_nw_path"
+        }
+      ],
+      "role": "symbol",
+      "title": "OS_nw_path",
+      "type": "topic",
+      "url": "/documentation/network/os_nw_path"
+    },
+    "doc://com.apple.network/documentation/Network/OS_nw_path_monitor": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "OS_nw_path_monitor"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/OS_nw_path_monitor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "OS_nw_path_monitor"
+        }
+      ],
+      "role": "symbol",
+      "title": "OS_nw_path_monitor",
+      "type": "topic",
+      "url": "/documentation/network/os_nw_path_monitor"
+    },
+    "doc://com.apple.network/documentation/Network/OS_nw_privacy_context": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "OS_nw_privacy_context"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/OS_nw_privacy_context",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "OS_nw_privacy_context"
+        }
+      ],
+      "role": "symbol",
+      "title": "OS_nw_privacy_context",
+      "type": "topic",
+      "url": "/documentation/network/os_nw_privacy_context"
+    },
+    "doc://com.apple.network/documentation/Network/OS_nw_protocol_definition": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "OS_nw_protocol_definition"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/OS_nw_protocol_definition",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "OS_nw_protocol_definition"
+        }
+      ],
+      "role": "symbol",
+      "title": "OS_nw_protocol_definition",
+      "type": "topic",
+      "url": "/documentation/network/os_nw_protocol_definition"
+    },
+    "doc://com.apple.network/documentation/Network/OS_nw_protocol_metadata": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "OS_nw_protocol_metadata"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/OS_nw_protocol_metadata",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "OS_nw_protocol_metadata"
+        }
+      ],
+      "role": "symbol",
+      "title": "OS_nw_protocol_metadata",
+      "type": "topic",
+      "url": "/documentation/network/os_nw_protocol_metadata"
+    },
+    "doc://com.apple.network/documentation/Network/OS_nw_protocol_options": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "OS_nw_protocol_options"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/OS_nw_protocol_options",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "OS_nw_protocol_options"
+        }
+      ],
+      "role": "symbol",
+      "title": "OS_nw_protocol_options",
+      "type": "topic",
+      "url": "/documentation/network/os_nw_protocol_options"
+    },
+    "doc://com.apple.network/documentation/Network/OS_nw_protocol_stack": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "OS_nw_protocol_stack"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/OS_nw_protocol_stack",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "OS_nw_protocol_stack"
+        }
+      ],
+      "role": "symbol",
+      "title": "OS_nw_protocol_stack",
+      "type": "topic",
+      "url": "/documentation/network/os_nw_protocol_stack"
+    },
+    "doc://com.apple.network/documentation/Network/OS_nw_proxy_config": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "OS_nw_proxy_config"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/OS_nw_proxy_config",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "OS_nw_proxy_config"
+        }
+      ],
+      "role": "symbol",
+      "title": "OS_nw_proxy_config",
+      "type": "topic",
+      "url": "/documentation/network/os_nw_proxy_config"
+    },
+    "doc://com.apple.network/documentation/Network/OS_nw_relay_hop": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "OS_nw_relay_hop"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/OS_nw_relay_hop",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "OS_nw_relay_hop"
+        }
+      ],
+      "role": "symbol",
+      "title": "OS_nw_relay_hop",
+      "type": "topic",
+      "url": "/documentation/network/os_nw_relay_hop"
+    },
+    "doc://com.apple.network/documentation/Network/OS_nw_resolution_report": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "OS_nw_resolution_report"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/OS_nw_resolution_report",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "OS_nw_resolution_report"
+        }
+      ],
+      "role": "symbol",
+      "title": "OS_nw_resolution_report",
+      "type": "topic",
+      "url": "/documentation/network/os_nw_resolution_report"
+    },
+    "doc://com.apple.network/documentation/Network/OS_nw_resolver_config": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "OS_nw_resolver_config"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/OS_nw_resolver_config",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "OS_nw_resolver_config"
+        }
+      ],
+      "role": "symbol",
+      "title": "OS_nw_resolver_config",
+      "type": "topic",
+      "url": "/documentation/network/os_nw_resolver_config"
+    },
+    "doc://com.apple.network/documentation/Network/OS_nw_txt_record": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "OS_nw_txt_record"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/OS_nw_txt_record",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "OS_nw_txt_record"
+        }
+      ],
+      "role": "symbol",
+      "title": "OS_nw_txt_record",
+      "type": "topic",
+      "url": "/documentation/network/os_nw_txt_record"
+    },
+    "doc://com.apple.network/documentation/Network/OS_nw_ws_request": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "OS_nw_ws_request"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/OS_nw_ws_request",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "OS_nw_ws_request"
+        }
+      ],
+      "role": "symbol",
+      "title": "OS_nw_ws_request",
+      "type": "topic",
+      "url": "/documentation/network/os_nw_ws_request"
+    },
+    "doc://com.apple.network/documentation/Network/OS_nw_ws_response": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "OS_nw_ws_response"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/OS_nw_ws_response",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "OS_nw_ws_response"
+        }
+      ],
+      "role": "symbol",
+      "title": "OS_nw_ws_response",
+      "type": "topic",
+      "url": "/documentation/network/os_nw_ws_response"
+    },
+    "doc://com.apple.network/documentation/Network/ProxyConfiguration": {
+      "abstract": [
+        {
+          "text": "A proxy configuration for Relays, Oblivious HTTP, HTTP CONNECT, or SOCKSv5.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ProxyConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/ProxyConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ProxyConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "ProxyConfiguration",
+      "type": "topic",
+      "url": "/documentation/network/proxyconfiguration"
+    },
+    "doc://com.apple.network/documentation/Network/building-a-custom-peer-to-peer-protocol": {
+      "abstract": [
+        {
+          "text": "Use networking frameworks to create a custom protocol for playing a game across iOS, iPadOS, watchOS, and tvOS devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/building-a-custom-peer-to-peer-protocol",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Building a custom peer-to-peer protocol",
+      "type": "topic",
+      "url": "/documentation/network/building-a-custom-peer-to-peer-protocol"
+    },
+    "doc://com.apple.network/documentation/Network/c-language-symbols": {
+      "abstract": [],
+      "identifier": "doc://com.apple.network/documentation/Network/c-language-symbols",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "C-Language Symbols",
+      "type": "topic",
+      "url": "/documentation/network/c-language-symbols"
+    },
+    "doc://com.apple.network/documentation/Network/choosing-a-network-debugging-tool": {
+      "abstract": [
+        {
+          "text": "Decide which tool works best for your network debugging problem.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/choosing-a-network-debugging-tool",
+      "kind": "article",
+      "role": "article",
+      "title": "Choosing a Network Debugging Tool",
+      "type": "topic",
+      "url": "/documentation/network/choosing-a-network-debugging-tool"
+    },
+    "doc://com.apple.network/documentation/Network/creating-an-identity-for-local-network-tls": {
+      "abstract": [
+        {
+          "text": "Learn how to create and use a digital identity in your application for local network TLS.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/creating-an-identity-for-local-network-tls",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating an Identity for Local Network TLS",
+      "type": "topic",
+      "url": "/documentation/network/creating-an-identity-for-local-network-tls"
+    },
+    "doc://com.apple.network/documentation/Network/debugging-http-server-side-errors": {
+      "abstract": [
+        {
+          "text": "Understand HTTP server-side errors and how to debug them.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/debugging-http-server-side-errors",
+      "kind": "article",
+      "role": "article",
+      "title": "Debugging HTTP Server-Side Errors",
+      "type": "topic",
+      "url": "/documentation/network/debugging-http-server-side-errors"
+    },
+    "doc://com.apple.network/documentation/Network/debugging-https-problems-with-cfnetwork-diagnostic-logging": {
+      "abstract": [
+        {
+          "text": "Use CFNetwork diagnostic logging to investigate HTTP and HTTPS problems.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/debugging-https-problems-with-cfnetwork-diagnostic-logging",
+      "kind": "article",
+      "role": "article",
+      "title": "Debugging HTTPS Problems with CFNetwork Diagnostic Logging",
+      "type": "topic",
+      "url": "/documentation/network/debugging-https-problems-with-cfnetwork-diagnostic-logging"
+    },
+    "doc://com.apple.network/documentation/Network/framer-protocol-options": {
+      "abstract": [
+        {
+          "text": "Create custom protocols to frame applications messages over a connection.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/framer-protocol-options",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Framer Protocol Options",
+      "type": "topic",
+      "url": "/documentation/network/framer-protocol-options"
+    },
+    "doc://com.apple.network/documentation/Network/implementing-netcat-with-network-framework": {
+      "abstract": [
+        {
+          "text": "Build a simple ",
+          "type": "text"
+        },
+        {
+          "code": "netcat",
+          "type": "codeVoice"
+        },
+        {
+          "text": " tool that establishes network connections and transfers data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/implementing-netcat-with-network-framework",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Implementing netcat with Network Framework",
+      "type": "topic",
+      "url": "/documentation/network/implementing-netcat-with-network-framework"
+    },
+    "doc://com.apple.network/documentation/Network/indicating-the-source-of-network-activity": {
+      "abstract": [
+        {
+          "text": "Control whether the App Privacy Report attributes network traffic to the app or to the user.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/indicating-the-source-of-network-activity",
+      "kind": "article",
+      "role": "article",
+      "title": "Indicating the source of network activity",
+      "type": "topic",
+      "url": "/documentation/network/indicating-the-source-of-network-activity"
+    },
+    "doc://com.apple.network/documentation/Network/inspecting-app-activity-data": {
+      "abstract": [
+        {
+          "text": "Verify that your app accesses only the user data and network resources that you expect it to access.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/inspecting-app-activity-data",
+      "kind": "article",
+      "role": "article",
+      "title": "Inspecting app activity data",
+      "type": "topic",
+      "url": "/documentation/network/inspecting-app-activity-data"
+    },
+    "doc://com.apple.network/documentation/Network/ip-options": {
+      "abstract": [
+        {
+          "text": "Configure Internet Protocol options on connections.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/ip-options",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "IP Options",
+      "type": "topic",
+      "url": "/documentation/network/ip-options"
+    },
+    "doc://com.apple.network/documentation/Network/network-constants": {
+      "abstract": [
+        {
+          "text": "Access Network framework constants used in C.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/network-constants",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Network Constants",
+      "type": "topic",
+      "url": "/documentation/network/network-constants"
+    },
+    "doc://com.apple.network/documentation/Network/network-data-types": {
+      "abstract": [],
+      "identifier": "doc://com.apple.network/documentation/Network/network-data-types",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Network Data Types",
+      "type": "topic",
+      "url": "/documentation/network/network-data-types"
+    },
+    "doc://com.apple.network/documentation/Network/network-enumerations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.network/documentation/Network/network-enumerations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Network Enumerations",
+      "type": "topic",
+      "url": "/documentation/network/network-enumerations"
+    },
+    "doc://com.apple.network/documentation/Network/network-functions": {
+      "abstract": [
+        {
+          "text": "Access Network framework functions used in C.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/network-functions",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Network Functions",
+      "type": "topic",
+      "url": "/documentation/network/network-functions"
+    },
+    "doc://com.apple.network/documentation/Network/network-macros": {
+      "abstract": [],
+      "identifier": "doc://com.apple.network/documentation/Network/network-macros",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Network Macros",
+      "type": "topic",
+      "url": "/documentation/network/network-macros"
+    },
+    "doc://com.apple.network/documentation/Network/nw_browser_t": {
+      "abstract": [
+        {
+          "text": "An object you use to browse for available network services.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "nw_browser_t"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/nw_browser_t",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "nw_browser_t"
+        }
+      ],
+      "role": "symbol",
+      "title": "nw_browser_t",
+      "type": "topic",
+      "url": "/documentation/network/nw_browser_t"
+    },
+    "doc://com.apple.network/documentation/Network/nw_connection_group_t": {
+      "abstract": [
+        {
+          "text": "An object you use to communicate with a group of endpoints, such as an IP multicast group on a local network.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "nw_connection_group_t"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/nw_connection_group_t",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "nw_connection_group_t"
+        }
+      ],
+      "role": "symbol",
+      "title": "nw_connection_group_t",
+      "type": "topic",
+      "url": "/documentation/network/nw_connection_group_t"
+    },
+    "doc://com.apple.network/documentation/Network/nw_connection_t": {
+      "abstract": [
+        {
+          "text": "A bidirectional data connection between a local endpoint and a remote endpoint.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "nw_connection_t"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/nw_connection_t",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "nw_connection_t"
+        }
+      ],
+      "role": "symbol",
+      "title": "nw_connection_t",
+      "type": "topic",
+      "url": "/documentation/network/nw_connection_t"
+    },
+    "doc://com.apple.network/documentation/Network/nw_endpoint_t": {
+      "abstract": [
+        {
+          "text": "A local or remote endpoint in a network connection.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "nw_endpoint_t"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/nw_endpoint_t",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "nw_endpoint_t"
+        }
+      ],
+      "role": "symbol",
+      "title": "nw_endpoint_t",
+      "type": "topic",
+      "url": "/documentation/network/nw_endpoint_t"
+    },
+    "doc://com.apple.network/documentation/Network/nw_error_t": {
+      "abstract": [
+        {
+          "text": "The errors returned by the Network framework.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "nw_error_t"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/nw_error_t",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "nw_error_t"
+        }
+      ],
+      "role": "symbol",
+      "title": "nw_error_t",
+      "type": "topic",
+      "url": "/documentation/network/nw_error_t"
+    },
+    "doc://com.apple.network/documentation/Network/nw_ethernet_channel_t": {
+      "abstract": [
+        {
+          "text": "An object you use to send and receive custom Ethernet frames.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "nw_ethernet_channel_t"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/nw_ethernet_channel_t",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "nw_ethernet_channel_t"
+        }
+      ],
+      "role": "symbol",
+      "title": "nw_ethernet_channel_t",
+      "type": "topic",
+      "url": "/documentation/network/nw_ethernet_channel_t"
+    },
+    "doc://com.apple.network/documentation/Network/nw_interface_radio_type_t": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "nw_interface_radio_type_t"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/nw_interface_radio_type_t",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "nw_interface_radio_type_t"
+        }
+      ],
+      "role": "symbol",
+      "title": "nw_interface_radio_type_t",
+      "type": "topic",
+      "url": "/documentation/network/nw_interface_radio_type_t"
+    },
+    "doc://com.apple.network/documentation/Network/nw_interface_t": {
+      "abstract": [
+        {
+          "text": "An interface that a network connection uses to send and receive data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "nw_interface_t"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/nw_interface_t",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "nw_interface_t"
+        }
+      ],
+      "role": "symbol",
+      "title": "nw_interface_t",
+      "type": "topic",
+      "url": "/documentation/network/nw_interface_t"
+    },
+    "doc://com.apple.network/documentation/Network/nw_listener_t": {
+      "abstract": [
+        {
+          "text": "An object you use to listen for incoming network connections.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "nw_listener_t"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/nw_listener_t",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "nw_listener_t"
+        }
+      ],
+      "role": "symbol",
+      "title": "nw_listener_t",
+      "type": "topic",
+      "url": "/documentation/network/nw_listener_t"
+    },
+    "doc://com.apple.network/documentation/Network/nw_multipath_version_t": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "nw_multipath_version_t"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/nw_multipath_version_t",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "nw_multipath_version_t"
+        }
+      ],
+      "role": "symbol",
+      "title": "nw_multipath_version_t",
+      "type": "topic",
+      "url": "/documentation/network/nw_multipath_version_t"
+    },
+    "doc://com.apple.network/documentation/Network/nw_object_t": {
+      "abstract": [
+        {
+          "text": "The generic type for objects in the Network framework.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "nw_object_t"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/nw_object_t",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "nw_object_t"
+        }
+      ],
+      "role": "symbol",
+      "title": "nw_object_t",
+      "type": "topic",
+      "url": "/documentation/network/nw_object_t"
+    },
+    "doc://com.apple.network/documentation/Network/nw_parameters_t": {
+      "abstract": [
+        {
+          "text": "An object that stores the protocols to use for connections, options for sending data, and network path constraints.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "nw_parameters_t"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/nw_parameters_t",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "nw_parameters_t"
+        }
+      ],
+      "role": "symbol",
+      "title": "nw_parameters_t",
+      "type": "topic",
+      "url": "/documentation/network/nw_parameters_t"
+    },
+    "doc://com.apple.network/documentation/Network/nw_path_monitor_t": {
+      "abstract": [
+        {
+          "text": "An observer that you use to monitor and react to network changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "nw_path_monitor_t"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/nw_path_monitor_t",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "nw_path_monitor_t"
+        }
+      ],
+      "role": "symbol",
+      "title": "nw_path_monitor_t",
+      "type": "topic",
+      "url": "/documentation/network/nw_path_monitor_t"
+    },
+    "doc://com.apple.network/documentation/Network/nw_path_t": {
+      "abstract": [
+        {
+          "text": "An object that contains information about the properties of the network that a connection uses, or that are available to your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "nw_path_t"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/nw_path_t",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "nw_path_t"
+        }
+      ],
+      "role": "symbol",
+      "title": "nw_path_t",
+      "type": "topic",
+      "url": "/documentation/network/nw_path_t"
+    },
+    "doc://com.apple.network/documentation/Network/nw_path_unsatisfied_reason_t": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "nw_path_unsatisfied_reason_t"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/nw_path_unsatisfied_reason_t",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "nw_path_unsatisfied_reason_t"
+        }
+      ],
+      "role": "symbol",
+      "title": "nw_path_unsatisfied_reason_t",
+      "type": "topic",
+      "url": "/documentation/network/nw_path_unsatisfied_reason_t"
+    },
+    "doc://com.apple.network/documentation/Network/nw_quic_stream_type_t": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "nw_quic_stream_type_t"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/nw_quic_stream_type_t",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "nw_quic_stream_type_t"
+        }
+      ],
+      "role": "symbol",
+      "title": "nw_quic_stream_type_t",
+      "type": "topic",
+      "url": "/documentation/network/nw_quic_stream_type_t"
+    },
+    "doc://com.apple.network/documentation/Network/nw_release": {
+      "abstract": [
+        {
+          "text": "Releases a reference count on a Network.framework object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "nw_release"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/nw_release",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "nw_release",
+      "type": "topic",
+      "url": "/documentation/network/nw_release"
+    },
+    "doc://com.apple.network/documentation/Network/nw_retain": {
+      "abstract": [
+        {
+          "text": "Adds a reference count to a Network.framework object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "nw_retain"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/nw_retain",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "nw_retain",
+      "type": "topic",
+      "url": "/documentation/network/nw_retain"
+    },
+    "doc://com.apple.network/documentation/Network/privacy-management": {
+      "abstract": [
+        {
+          "text": "Configure parameters related to user privacy.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/privacy-management",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Privacy Management",
+      "type": "topic",
+      "url": "/documentation/network/privacy-management"
+    },
+    "doc://com.apple.network/documentation/Network/quic-options": {
+      "abstract": [
+        {
+          "text": "Configure options for connections that use the QUIC transport protocol.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/quic-options",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "QUIC Options",
+      "type": "topic",
+      "url": "/documentation/network/quic-options"
+    },
+    "doc://com.apple.network/documentation/Network/recording-a-packet-trace": {
+      "abstract": [
+        {
+          "text": "Learn how to record a low-level trace of network traffic.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/recording-a-packet-trace",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Recording a Packet Trace",
+      "type": "topic",
+      "url": "/documentation/network/recording-a-packet-trace"
+    },
+    "doc://com.apple.network/documentation/Network/security-options": {
+      "abstract": [
+        {
+          "text": "Configure security options for TLS handshakes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/security-options",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Security Options",
+      "type": "topic",
+      "url": "/documentation/network/security-options"
+    },
+    "doc://com.apple.network/documentation/Network/taking-advantage-of-third-party-network-debugging-tools": {
+      "abstract": [
+        {
+          "text": "Learn about the available third-party network debugging tools.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/taking-advantage-of-third-party-network-debugging-tools",
+      "kind": "article",
+      "role": "article",
+      "title": "Taking Advantage of Third-Party Network Debugging Tools",
+      "type": "topic",
+      "url": "/documentation/network/taking-advantage-of-third-party-network-debugging-tools"
+    },
+    "doc://com.apple.network/documentation/Network/tcp-options": {
+      "abstract": [
+        {
+          "text": "Configure options for connections that use the Transmission Control Protocol.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/tcp-options",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "TCP Options",
+      "type": "topic",
+      "url": "/documentation/network/tcp-options"
+    },
+    "doc://com.apple.network/documentation/Network/testing-and-debugging-l4s-in-your-app": {
+      "abstract": [
+        {
+          "text": "Learn how to verify your app on an L4S-capable host and network to improve your app’s responsiveness.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/testing-and-debugging-l4s-in-your-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Testing and Debugging L4S in Your App",
+      "type": "topic",
+      "url": "/documentation/network/testing-and-debugging-l4s-in-your-app"
+    },
+    "doc://com.apple.network/documentation/Network/tls-options": {
+      "abstract": [
+        {
+          "text": "Configure options for connections that use Transport Layer Security.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/tls-options",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "TLS Options",
+      "type": "topic",
+      "url": "/documentation/network/tls-options"
+    },
+    "doc://com.apple.network/documentation/Network/udp-options": {
+      "abstract": [
+        {
+          "text": "Configure options for connections that use the User Datagram Protocol.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/udp-options",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "UDP Options",
+      "type": "topic",
+      "url": "/documentation/network/udp-options"
+    },
+    "doc://com.apple.network/documentation/Network/websocket-options": {
+      "abstract": [
+        {
+          "text": "Configure options for connections that use WebSocket.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/websocket-options",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "WebSocket Options",
+      "type": "topic",
+      "url": "/documentation/network/websocket-options"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Essentials",
+      "identifiers": [
+        "doc://com.apple.network/documentation/Network/NWEndpoint",
+        "doc://com.apple.network/documentation/Network/NWParameters"
+      ],
+      "title": "Essentials"
+    },
+    {
+      "anchor": "Connections-and-Listeners",
+      "identifiers": [
+        "doc://com.apple.network/documentation/Network/NWConnection",
+        "doc://com.apple.network/documentation/Network/NWListener",
+        "doc://com.apple.network/documentation/Network/NWBrowser",
+        "doc://com.apple.network/documentation/Network/NWConnectionGroup",
+        "doc://com.apple.network/documentation/Network/NWEthernetChannel"
+      ],
+      "title": "Connections and Listeners"
+    },
+    {
+      "abstract": [
+        {
+          "text": "Configure protocol options to use with connections and listeners, and inspect the results of protocol handshakes.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Network-Protocols",
+      "identifiers": [
+        "doc://com.apple.network/documentation/Network/building-a-custom-peer-to-peer-protocol",
+        "doc://com.apple.network/documentation/Network/NWProtocolTCP",
+        "doc://com.apple.network/documentation/Network/NWProtocolTLS",
+        "doc://com.apple.network/documentation/Network/NWProtocolQUIC",
+        "doc://com.apple.network/documentation/Network/NWProtocolUDP",
+        "doc://com.apple.network/documentation/Network/NWProtocolIP",
+        "doc://com.apple.network/documentation/Network/NWProtocolWebSocket",
+        "doc://com.apple.network/documentation/Network/NWProtocolFramer"
+      ],
+      "title": "Network Protocols"
+    },
+    {
+      "anchor": "Network-Security-and-Privacy",
+      "identifiers": [
+        "doc://com.apple.network/documentation/Network/security-options",
+        "doc://com.apple.network/documentation/Network/privacy-management",
+        "doc://com.apple.network/documentation/Network/creating-an-identity-for-local-network-tls"
+      ],
+      "title": "Network Security and Privacy"
+    },
+    {
+      "anchor": "Paths-and-Interfaces",
+      "identifiers": [
+        "doc://com.apple.network/documentation/Network/NWPath",
+        "doc://com.apple.network/documentation/Network/NWPathMonitor",
+        "doc://com.apple.network/documentation/Network/NWInterface"
+      ],
+      "title": "Paths and Interfaces"
+    },
+    {
+      "anchor": "Errors",
+      "identifiers": [
+        "doc://com.apple.network/documentation/Network/NWError"
+      ],
+      "title": "Errors"
+    },
+    {
+      "anchor": "Network-Debugging",
+      "identifiers": [
+        "doc://com.apple.network/documentation/Network/choosing-a-network-debugging-tool",
+        "doc://com.apple.network/documentation/Network/debugging-http-server-side-errors",
+        "doc://com.apple.network/documentation/Network/debugging-https-problems-with-cfnetwork-diagnostic-logging",
+        "doc://com.apple.network/documentation/Network/recording-a-packet-trace",
+        "doc://com.apple.network/documentation/Network/taking-advantage-of-third-party-network-debugging-tools",
+        "doc://com.apple.network/documentation/Network/testing-and-debugging-l4s-in-your-app"
+      ],
+      "title": "Network Debugging"
+    },
+    {
+      "abstract": [
+        {
+          "text": "Access Network framework symbols used in C.",
+          "type": "text"
+        }
+      ],
+      "anchor": "C-Language-Symbols",
+      "identifiers": [
+        "doc://com.apple.network/documentation/Network/c-language-symbols"
+      ],
+      "title": "C-Language Symbols"
+    },
+    {
+      "anchor": "Structures",
+      "identifiers": [
+        "doc://com.apple.network/documentation/Network/nw_interface_radio_type_t",
+        "doc://com.apple.network/documentation/Network/nw_multipath_version_t",
+        "doc://com.apple.network/documentation/Network/nw_path_unsatisfied_reason_t",
+        "doc://com.apple.network/documentation/Network/nw_quic_stream_type_t",
+        "doc://com.apple.network/documentation/Network/NWTXTRecord",
+        "doc://com.apple.network/documentation/Network/ProxyConfiguration"
+      ],
+      "title": "Structures"
+    },
+    {
+      "anchor": "Classes",
+      "identifiers": [
+        "doc://com.apple.network/documentation/Network/NWMultiplexGroup"
+      ],
+      "title": "Classes"
+    },
+    {
+      "anchor": "Reference",
+      "identifiers": [
+        "doc://com.apple.network/documentation/Network/network-constants",
+        "doc://com.apple.network/documentation/Network/network-functions",
+        "doc://com.apple.network/documentation/Network/network-data-types"
+      ],
+      "title": "Reference"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Essentials",
+              "identifiers": [
+                "doc://com.apple.network/documentation/Network/nw_endpoint_t",
+                "doc://com.apple.network/documentation/Network/nw_parameters_t"
+              ],
+              "title": "Essentials"
+            },
+            {
+              "anchor": "Connections-and-Listeners",
+              "identifiers": [
+                "doc://com.apple.network/documentation/Network/implementing-netcat-with-network-framework",
+                "doc://com.apple.network/documentation/Network/nw_connection_t",
+                "doc://com.apple.network/documentation/Network/nw_listener_t",
+                "doc://com.apple.network/documentation/Network/nw_browser_t",
+                "doc://com.apple.network/documentation/Network/nw_connection_group_t",
+                "doc://com.apple.network/documentation/Network/nw_ethernet_channel_t"
+              ],
+              "title": "Connections and Listeners"
+            },
+            {
+              "abstract": [
+                {
+                  "text": "Configure protocol options to use with connections and listeners, and inspect the results of protocol handshakes.",
+                  "type": "text"
+                }
+              ],
+              "anchor": "Network-Protocols",
+              "identifiers": [
+                "doc://com.apple.network/documentation/Network/tcp-options",
+                "doc://com.apple.network/documentation/Network/tls-options",
+                "doc://com.apple.network/documentation/Network/quic-options",
+                "doc://com.apple.network/documentation/Network/udp-options",
+                "doc://com.apple.network/documentation/Network/ip-options",
+                "doc://com.apple.network/documentation/Network/websocket-options",
+                "doc://com.apple.network/documentation/Network/framer-protocol-options"
+              ],
+              "title": "Network Protocols"
+            },
+            {
+              "anchor": "Network-Security-and-Privacy",
+              "identifiers": [
+                "doc://com.apple.network/documentation/Network/security-options",
+                "doc://com.apple.network/documentation/Network/privacy-management",
+                "doc://com.apple.network/documentation/Network/creating-an-identity-for-local-network-tls"
+              ],
+              "title": "Network Security and Privacy"
+            },
+            {
+              "anchor": "Paths-and-Interfaces",
+              "identifiers": [
+                "doc://com.apple.network/documentation/Network/nw_path_t",
+                "doc://com.apple.network/documentation/Network/nw_path_monitor_t",
+                "doc://com.apple.network/documentation/Network/nw_interface_t"
+              ],
+              "title": "Paths and Interfaces"
+            },
+            {
+              "anchor": "Memory-Management",
+              "identifiers": [
+                "doc://com.apple.network/documentation/Network/nw_release",
+                "doc://com.apple.network/documentation/Network/nw_retain",
+                "doc://com.apple.network/documentation/Network/nw_object_t"
+              ],
+              "title": "Memory Management"
+            },
+            {
+              "anchor": "Errors",
+              "identifiers": [
+                "doc://com.apple.network/documentation/Network/nw_error_t"
+              ],
+              "title": "Errors"
+            },
+            {
+              "anchor": "Network-Debugging",
+              "identifiers": [
+                "doc://com.apple.network/documentation/Network/choosing-a-network-debugging-tool",
+                "doc://com.apple.network/documentation/Network/debugging-http-server-side-errors",
+                "doc://com.apple.network/documentation/Network/debugging-https-problems-with-cfnetwork-diagnostic-logging",
+                "doc://com.apple.network/documentation/Network/recording-a-packet-trace",
+                "doc://com.apple.network/documentation/Network/taking-advantage-of-third-party-network-debugging-tools",
+                "doc://com.apple.network/documentation/Network/testing-and-debugging-l4s-in-your-app"
+              ],
+              "title": "Network Debugging"
+            },
+            {
+              "anchor": "Protocols",
+              "identifiers": [
+                "doc://com.apple.network/documentation/Network/OS_nw_advertise_descriptor",
+                "doc://com.apple.network/documentation/Network/OS_nw_browse_descriptor",
+                "doc://com.apple.network/documentation/Network/OS_nw_browse_result",
+                "doc://com.apple.network/documentation/Network/OS_nw_browser",
+                "doc://com.apple.network/documentation/Network/OS_nw_connection",
+                "doc://com.apple.network/documentation/Network/OS_nw_connection_group",
+                "doc://com.apple.network/documentation/Network/OS_nw_content_context",
+                "doc://com.apple.network/documentation/Network/OS_nw_data_transfer_report",
+                "doc://com.apple.network/documentation/Network/OS_nw_endpoint",
+                "doc://com.apple.network/documentation/Network/OS_nw_error",
+                "doc://com.apple.network/documentation/Network/OS_nw_establishment_report",
+                "doc://com.apple.network/documentation/Network/OS_nw_ethernet_channel",
+                "doc://com.apple.network/documentation/Network/OS_nw_framer",
+                "doc://com.apple.network/documentation/Network/OS_nw_group_descriptor",
+                "doc://com.apple.network/documentation/Network/OS_nw_interface",
+                "doc://com.apple.network/documentation/Network/OS_nw_listener",
+                "doc://com.apple.network/documentation/Network/OS_nw_object",
+                "doc://com.apple.network/documentation/Network/OS_nw_parameters",
+                "doc://com.apple.network/documentation/Network/OS_nw_path",
+                "doc://com.apple.network/documentation/Network/OS_nw_path_monitor",
+                "doc://com.apple.network/documentation/Network/OS_nw_privacy_context",
+                "doc://com.apple.network/documentation/Network/OS_nw_protocol_definition",
+                "doc://com.apple.network/documentation/Network/OS_nw_protocol_metadata",
+                "doc://com.apple.network/documentation/Network/OS_nw_protocol_options",
+                "doc://com.apple.network/documentation/Network/OS_nw_protocol_stack",
+                "doc://com.apple.network/documentation/Network/OS_nw_proxy_config",
+                "doc://com.apple.network/documentation/Network/OS_nw_relay_hop",
+                "doc://com.apple.network/documentation/Network/OS_nw_resolution_report",
+                "doc://com.apple.network/documentation/Network/OS_nw_resolver_config",
+                "doc://com.apple.network/documentation/Network/OS_nw_txt_record",
+                "doc://com.apple.network/documentation/Network/OS_nw_ws_request",
+                "doc://com.apple.network/documentation/Network/OS_nw_ws_response"
+              ],
+              "title": "Protocols"
+            },
+            {
+              "anchor": "Reference",
+              "identifiers": [
+                "doc://com.apple.network/documentation/Network/network-enumerations",
+                "doc://com.apple.network/documentation/Network/network-constants",
+                "doc://com.apple.network/documentation/Network/network-functions",
+                "doc://com.apple.network/documentation/Network/network-data-types",
+                "doc://com.apple.network/documentation/Network/network-macros"
+              ],
+              "title": "Reference"
+            },
+            {
+              "anchor": "Macros",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.network/documentation/Network/NW_ASSUME_EXTERNALLY_RETAINED_BEGIN",
+                "doc://com.apple.network/documentation/Network/NW_ASSUME_EXTERNALLY_RETAINED_END",
+                "doc://com.apple.network/documentation/Network/NW_EXTERNALLY_RETAINED"
+              ],
+              "title": "Macros"
+            }
+          ]
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_path_unsatisfied_reason_t/title",
+          "value": "nw_path_unsatisfied_reason_t"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_path_unsatisfied_reason_t/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "nw_path_unsatisfied_reason_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_path_unsatisfied_reason_t/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "nw_path_unsatisfied_reason_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_error_t/title",
+          "value": "nw_error_t"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_error_t/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "nw_error_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_error_t/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "nw_error_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_path_t/title",
+          "value": "nw_path_t"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_path_t/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "nw_path_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_path_t/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "nw_path_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1OS_nw_endpoint/title",
+          "value": "OS_nw_endpoint"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1OS_nw_endpoint/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "OS_nw_endpoint"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1OS_nw_endpoint/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "OS_nw_endpoint"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1OS_nw_browse_descriptor/title",
+          "value": "OS_nw_browse_descriptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1OS_nw_browse_descriptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "OS_nw_browse_descriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1OS_nw_browse_descriptor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "OS_nw_browse_descriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1OS_nw_privacy_context/title",
+          "value": "OS_nw_privacy_context"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1OS_nw_privacy_context/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "OS_nw_privacy_context"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1OS_nw_privacy_context/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "OS_nw_privacy_context"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_interface_radio_type_t/title",
+          "value": "nw_interface_radio_type_t"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_interface_radio_type_t/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "nw_interface_radio_type_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_interface_radio_type_t/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "nw_interface_radio_type_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1OS_nw_resolution_report/title",
+          "value": "OS_nw_resolution_report"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1OS_nw_resolution_report/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "OS_nw_resolution_report"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1OS_nw_resolution_report/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "OS_nw_resolution_report"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1OS_nw_path_monitor/title",
+          "value": "OS_nw_path_monitor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1OS_nw_path_monitor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "OS_nw_path_monitor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1OS_nw_path_monitor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "OS_nw_path_monitor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1OS_nw_path/title",
+          "value": "OS_nw_path"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1OS_nw_path/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "OS_nw_path"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1OS_nw_path/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "OS_nw_path"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_connection_group_t/title",
+          "value": "nw_connection_group_t"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_connection_group_t/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "nw_connection_group_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_connection_group_t/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "nw_connection_group_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1OS_nw_browse_result/title",
+          "value": "OS_nw_browse_result"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1OS_nw_browse_result/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "OS_nw_browse_result"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1OS_nw_browse_result/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "OS_nw_browse_result"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1OS_nw_listener/title",
+          "value": "OS_nw_listener"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1OS_nw_listener/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "OS_nw_listener"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1OS_nw_listener/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "OS_nw_listener"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1OS_nw_ws_response/title",
+          "value": "OS_nw_ws_response"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1OS_nw_ws_response/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "OS_nw_ws_response"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1OS_nw_ws_response/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "OS_nw_ws_response"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1OS_nw_group_descriptor/title",
+          "value": "OS_nw_group_descriptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1OS_nw_group_descriptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "OS_nw_group_descriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1OS_nw_group_descriptor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "OS_nw_group_descriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1OS_nw_connection/title",
+          "value": "OS_nw_connection"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1OS_nw_connection/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "OS_nw_connection"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1OS_nw_connection/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "OS_nw_connection"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1OS_nw_relay_hop/title",
+          "value": "OS_nw_relay_hop"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1OS_nw_relay_hop/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "OS_nw_relay_hop"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1OS_nw_relay_hop/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "OS_nw_relay_hop"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1OS_nw_ws_request/title",
+          "value": "OS_nw_ws_request"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1OS_nw_ws_request/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "OS_nw_ws_request"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1OS_nw_ws_request/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "OS_nw_ws_request"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1OS_nw_framer/title",
+          "value": "OS_nw_framer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1OS_nw_framer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "OS_nw_framer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1OS_nw_framer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "OS_nw_framer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1OS_nw_parameters/title",
+          "value": "OS_nw_parameters"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1OS_nw_parameters/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "OS_nw_parameters"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1OS_nw_parameters/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "OS_nw_parameters"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_ethernet_channel_t/title",
+          "value": "nw_ethernet_channel_t"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_ethernet_channel_t/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "nw_ethernet_channel_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_ethernet_channel_t/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "nw_ethernet_channel_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_endpoint_t/title",
+          "value": "nw_endpoint_t"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_endpoint_t/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "nw_endpoint_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_endpoint_t/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "nw_endpoint_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_quic_stream_type_t/title",
+          "value": "nw_quic_stream_type_t"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_quic_stream_type_t/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "nw_quic_stream_type_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_quic_stream_type_t/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "nw_quic_stream_type_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_path_monitor_t/title",
+          "value": "nw_path_monitor_t"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_path_monitor_t/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "nw_path_monitor_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_path_monitor_t/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "nw_path_monitor_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_multipath_version_t/title",
+          "value": "nw_multipath_version_t"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_multipath_version_t/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "nw_multipath_version_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_multipath_version_t/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "nw_multipath_version_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1OS_nw_content_context/title",
+          "value": "OS_nw_content_context"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1OS_nw_content_context/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "OS_nw_content_context"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1OS_nw_content_context/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "OS_nw_content_context"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1urlsession/title",
+          "value": "NSURLSession"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_parameters_t/title",
+          "value": "nw_parameters_t"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_parameters_t/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "nw_parameters_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_parameters_t/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "nw_parameters_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1OS_nw_protocol_metadata/title",
+          "value": "OS_nw_protocol_metadata"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1OS_nw_protocol_metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "OS_nw_protocol_metadata"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1OS_nw_protocol_metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "OS_nw_protocol_metadata"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1OS_nw_txt_record/title",
+          "value": "OS_nw_txt_record"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1OS_nw_txt_record/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "OS_nw_txt_record"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1OS_nw_txt_record/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "OS_nw_txt_record"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1OS_nw_proxy_config/title",
+          "value": "OS_nw_proxy_config"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1OS_nw_proxy_config/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "OS_nw_proxy_config"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1OS_nw_proxy_config/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "OS_nw_proxy_config"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_listener_t/title",
+          "value": "nw_listener_t"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_listener_t/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "nw_listener_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_listener_t/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "nw_listener_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1OS_nw_protocol_options/title",
+          "value": "OS_nw_protocol_options"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1OS_nw_protocol_options/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "OS_nw_protocol_options"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1OS_nw_protocol_options/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "OS_nw_protocol_options"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1OS_nw_protocol_stack/title",
+          "value": "OS_nw_protocol_stack"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1OS_nw_protocol_stack/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "OS_nw_protocol_stack"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1OS_nw_protocol_stack/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "OS_nw_protocol_stack"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1OS_nw_resolver_config/title",
+          "value": "OS_nw_resolver_config"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1OS_nw_resolver_config/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "OS_nw_resolver_config"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1OS_nw_resolver_config/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "OS_nw_resolver_config"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1OS_nw_advertise_descriptor/title",
+          "value": "OS_nw_advertise_descriptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1OS_nw_advertise_descriptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "OS_nw_advertise_descriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1OS_nw_advertise_descriptor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "OS_nw_advertise_descriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_connection_t/title",
+          "value": "nw_connection_t"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_connection_t/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "nw_connection_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_connection_t/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "nw_connection_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_object_t/title",
+          "value": "nw_object_t"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_object_t/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "nw_object_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_object_t/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "nw_object_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_interface_t/title",
+          "value": "nw_interface_t"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_interface_t/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "nw_interface_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_interface_t/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "nw_interface_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1OS_nw_connection_group/title",
+          "value": "OS_nw_connection_group"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1OS_nw_connection_group/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "OS_nw_connection_group"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1OS_nw_connection_group/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "OS_nw_connection_group"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1OS_nw_browser/title",
+          "value": "OS_nw_browser"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1OS_nw_browser/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "OS_nw_browser"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1OS_nw_browser/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "OS_nw_browser"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1OS_nw_data_transfer_report/title",
+          "value": "OS_nw_data_transfer_report"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1OS_nw_data_transfer_report/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "OS_nw_data_transfer_report"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1OS_nw_data_transfer_report/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "OS_nw_data_transfer_report"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1OS_nw_object/title",
+          "value": "OS_nw_object"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1OS_nw_object/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "OS_nw_object"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1OS_nw_object/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "OS_nw_object"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1OS_nw_interface/title",
+          "value": "OS_nw_interface"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1OS_nw_interface/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "OS_nw_interface"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1OS_nw_interface/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "OS_nw_interface"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1OS_nw_establishment_report/title",
+          "value": "OS_nw_establishment_report"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1OS_nw_establishment_report/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "OS_nw_establishment_report"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1OS_nw_establishment_report/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "OS_nw_establishment_report"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_browser_t/title",
+          "value": "nw_browser_t"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_browser_t/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "nw_browser_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1nw_browser_t/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "nw_browser_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1OS_nw_protocol_definition/title",
+          "value": "OS_nw_protocol_definition"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1OS_nw_protocol_definition/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "OS_nw_protocol_definition"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1OS_nw_protocol_definition/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "OS_nw_protocol_definition"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1OS_nw_error/title",
+          "value": "OS_nw_error"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1OS_nw_error/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "OS_nw_error"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1OS_nw_error/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "OS_nw_error"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1OS_nw_ethernet_channel/title",
+          "value": "OS_nw_ethernet_channel"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1OS_nw_ethernet_channel/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "OS_nw_ethernet_channel"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.network~1documentation~1Network~1OS_nw_ethernet_channel/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "OS_nw_ethernet_channel"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/network"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/network"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

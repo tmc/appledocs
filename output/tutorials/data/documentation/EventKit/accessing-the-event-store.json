@@ -1,0 +1,1081 @@
+{
+  "abstract": [
+    {
+      "text": "Request access to a person’s calendar data through the event store.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.eventkit/documentation/EventKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.eventkit/documentation/EventKit/accessing-the-event-store"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "EventKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Accessing the event store"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your app must obtain permission from the person using the app before it can access the calendar database: your app must never directly modify the calendar database on its own. ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.eventkit/documentation/EventKit/EKEventStore",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " is the app’s way of accessing calendar and reminder data.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your app should only request the access it needs to complete its tasks. You can request write-only access to events, which lets your app create new events but doesn’t let it read any events or other calendar information, including events your app created. You can also request full access to either events or reminders, which lets your app create, view, edit, and delete data.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Your app can’t request read-only access to either events or reminders. To read events or reminders from the event store, your app needs full access.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Connect-to-the-event-store",
+          "level": 3,
+          "text": "Connect to the event store",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To receive event or reminder data, you must request access to an entity type after initializing the event store. To request access to reminders, use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.eventkit/documentation/EventKit/EKEventStore/requestFullAccessToReminders(completion:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". To request access to events, use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.eventkit/documentation/EventKit/EKEventStore/requestWriteOnlyAccessToEvents(completion:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.eventkit/documentation/EventKit/EKEventStore/requestFullAccessToEvents(completion:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", depending on the level of access your app needs.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, to request full access to reminders, use the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "// Initialize the store.",
+                    "var store = EKEventStore()",
+                    "",
+                    "// Request access to reminders.",
+                    "store.requestFullAccessToReminders { granted, error in",
+                    "    // Handle the response to the request.",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "// Initialize the store.",
+                    "EKEventStore *store = [[EKEventStore alloc] init];",
+                    "",
+                    "// Request access to reminders.",
+                    "[store requestFullAccessToRemindersWithCompletion: ^(BOOL granted, NSError *error) {",
+                    "  // Handle the response to the request.",
+                    "}];"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Releasing an event store instance before other EventKit objects may result in an error.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Use-EventKit-with-write-only-calendar-access",
+          "level": 3,
+          "text": "Use EventKit with write-only calendar access",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your app can use the entire EventKit calendar API when it has write-only calendar access. If your app has write-only access, a request for a list of calendars returns a single virtual calendar, that doesn’t represent any real calendar in the event store. Requests for events on the virtual calendar return no results. When your app creates an event, EventKit saves it to a calendar that’s chosen by the person using your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.documentation/documentation/EventKitUI",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " presents chooser and editor UI outside of your app’s process on iOS 17 and later. Your app can use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/EventKitUI",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " without requesting write-only or full calendar access. The chooser and editor UI has full access to calendars on the device regardless of the access granted to your app. If your app needs to present UI for creating and editing calendar events, consider using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/EventKitUI",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instead of requesting full access to calendar data. Create an event, then present an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/EventKitUI/EKEventEditViewController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to allow people to edit and save the event. ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/EventKitUI/EKEventEditViewController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " saves the event to the calendar the person requests in the editor UI.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Protect-user-privacy-with-information-property-list-keys",
+          "level": 3,
+          "text": "Protect user privacy with information property list keys",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An iOS app must include in its ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file the usage description keys for the types of data it needs to access. On iOS 17 and later, to access a person’s calendar events or reminders, you need to include descriptions for:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "NSCalendarsWriteOnlyAccessUsageDescription",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "NSCalendarsFullAccessUsageDescription",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", depending on the level of access to events your app needs. Don’t request full access if your app’s features only need write-only access.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "NSRemindersFullAccessUsageDescription",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", if your app needs access to reminders.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "On iOS 17 or later, if your app doesn’t include usage description keys, or only includes the older ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSCalendarsUsageDescription",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " key for describing events access, iOS automatically denies any access request.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To access a person’s calendar events or reminders through EventKit or EventKit UI, your app needs to include descriptions for the following if your app links to iOS 10 or later, and runs on iOS 10 through iOS 16:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSCalendarsUsageDescription",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", which is a fallback if your app runs on iOS 17 or later and doesn’t include descriptions for ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSCalendarsWriteOnlyAccessUsageDescription",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSCalendarsFullAccessUsageDescription",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSRemindersUsageDescription",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", which is a fallback if your app runs on iOS 17 or later and doesn’t include a description for ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSRemindersFullAccessUsageDescription",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSContactsUsageDescription",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", as EventKit UI may need to access Contacts data to choose the correct display name or avatar for a contact in a calendar.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "If your app that’s linked on iOS 10 through iOS 16 doesn’t include these keys, your app crashes.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Warning",
+          "style": "warning",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because these keys provide access to the event store, they protect the person’s privacy by only allowing access to this information if they explicitly grant permission in the app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To access Calendar data, all sandboxed macOS apps must include the ",
+              "type": "text"
+            },
+            {
+              "code": "com.apple.security.personal-information.calendars",
+              "type": "codeVoice"
+            },
+            {
+              "text": " entitlement.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSCalendarsFullAccessUsageDescription": {
+      "abstract": [
+        {
+          "text": "A message that tells people why the app is requesting access to read and write their calendar data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSCalendarsFullAccessUsageDescription",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCalendarsFullAccessUsageDescription",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/NSCalendarsFullAccessUsageDescription"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSCalendarsUsageDescription": {
+      "abstract": [
+        {
+          "text": "A message that tells people why the app is requesting access to their calendar data.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSCalendarsUsageDescription",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCalendarsUsageDescription",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/NSCalendarsUsageDescription"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSCalendarsWriteOnlyAccessUsageDescription": {
+      "abstract": [
+        {
+          "text": "A message that tells people why the app is requesting access to create calendar events.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSCalendarsWriteOnlyAccessUsageDescription",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCalendarsWriteOnlyAccessUsageDescription",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/NSCalendarsWriteOnlyAccessUsageDescription"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSContactsUsageDescription": {
+      "abstract": [
+        {
+          "text": "A message that tells the user why the app is requesting access to the user’s contacts.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSContactsUsageDescription",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSContactsUsageDescription",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/NSContactsUsageDescription"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSRemindersFullAccessUsageDescription": {
+      "abstract": [
+        {
+          "text": "A message that tells people why the app is requesting access to read and write their reminders data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSRemindersFullAccessUsageDescription",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSRemindersFullAccessUsageDescription",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/NSRemindersFullAccessUsageDescription"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSRemindersUsageDescription": {
+      "abstract": [
+        {
+          "text": "A message that tells people why the app is requesting access to their reminders.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSRemindersUsageDescription",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSRemindersUsageDescription",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/NSRemindersUsageDescription"
+    },
+    "doc://com.apple.documentation/documentation/EventKitUI": {
+      "abstract": [
+        {
+          "text": "Display an interface for viewing, selecting, and editing calendar events and reminders.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/EventKitUI",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "EventKit UI",
+      "type": "topic",
+      "url": "/documentation/EventKitUI"
+    },
+    "doc://com.apple.documentation/documentation/EventKitUI/EKEventEditViewController": {
+      "abstract": [
+        {
+          "text": "A view controller for creating, editing, and deleting calendar events.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "EKEventEditViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/EventKitUI/EKEventEditViewController",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "EKEventEditViewController",
+      "type": "topic",
+      "url": "/documentation/EventKitUI/EKEventEditViewController"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.eventkit/documentation/EventKit": {
+      "abstract": [
+        {
+          "text": "Create, view, and edit calendar and reminder events.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.eventkit/documentation/EventKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "EventKit",
+      "type": "topic",
+      "url": "/documentation/eventkit"
+    },
+    "doc://com.apple.eventkit/documentation/EventKit/EKEventStore": {
+      "abstract": [
+        {
+          "text": "An object that accesses a person’s calendar events and reminders and supports the scheduling of new events.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "EKEventStore"
+        }
+      ],
+      "identifier": "doc://com.apple.eventkit/documentation/EventKit/EKEventStore",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "EKEventStore"
+        }
+      ],
+      "role": "symbol",
+      "title": "EKEventStore",
+      "type": "topic",
+      "url": "/documentation/eventkit/ekeventstore"
+    },
+    "doc://com.apple.eventkit/documentation/EventKit/EKEventStore/requestFullAccessToEvents(completion:)": {
+      "abstract": [
+        {
+          "text": "Prompts people to grant or deny read and write access to event data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "requestFullAccessToEvents"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "completion"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@EKEventStoreRequestAccessCompletionHandler",
+          "text": "EKEventStoreRequestAccessCompletionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.eventkit/documentation/EventKit/EKEventStore/requestFullAccessToEvents(completion:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "requestFullAccessToEventsWithCompletion:"
+        }
+      ],
+      "role": "symbol",
+      "title": "requestFullAccessToEvents(completion:)",
+      "type": "topic",
+      "url": "/documentation/eventkit/ekeventstore/requestfullaccesstoevents(completion:)"
+    },
+    "doc://com.apple.eventkit/documentation/EventKit/EKEventStore/requestFullAccessToReminders(completion:)": {
+      "abstract": [
+        {
+          "text": "Prompts people to grant or deny read and write access to reminders.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "requestFullAccessToReminders"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "completion"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@EKEventStoreRequestAccessCompletionHandler",
+          "text": "EKEventStoreRequestAccessCompletionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.eventkit/documentation/EventKit/EKEventStore/requestFullAccessToReminders(completion:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "requestFullAccessToRemindersWithCompletion:"
+        }
+      ],
+      "role": "symbol",
+      "title": "requestFullAccessToReminders(completion:)",
+      "type": "topic",
+      "url": "/documentation/eventkit/ekeventstore/requestfullaccesstoreminders(completion:)"
+    },
+    "doc://com.apple.eventkit/documentation/EventKit/EKEventStore/requestWriteOnlyAccessToEvents(completion:)": {
+      "abstract": [
+        {
+          "text": "Prompts the person using your app to grant or deny write access to event data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "requestWriteOnlyAccessToEvents"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "completion"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@EKEventStoreRequestAccessCompletionHandler",
+          "text": "EKEventStoreRequestAccessCompletionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.eventkit/documentation/EventKit/EKEventStore/requestWriteOnlyAccessToEvents(completion:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "requestWriteOnlyAccessToEventsWithCompletion:"
+        }
+      ],
+      "role": "symbol",
+      "title": "requestWriteOnlyAccessToEvents(completion:)",
+      "type": "topic",
+      "url": "/documentation/eventkit/ekeventstore/requestwriteonlyaccesstoevents(completion:)"
+    },
+    "doc://com.apple.eventkit/documentation/EventKit/accessing-calendar-using-eventkit-and-eventkitui": {
+      "abstract": [
+        {
+          "text": "Choose and implement the appropriate Calendar access level in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.eventkit/documentation/EventKit/accessing-calendar-using-eventkit-and-eventkitui",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Accessing Calendar using EventKit and EventKitUI",
+      "type": "topic",
+      "url": "/documentation/eventkit/accessing-calendar-using-eventkit-and-eventkitui"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.eventkit/documentation/EventKit/EKEventStore",
+        "doc://com.apple.eventkit/documentation/EventKit/accessing-calendar-using-eventkit-and-eventkitui"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Essentials",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.eventkit/documentation/EventKit/EKEventStore"
+              ],
+              "title": "Essentials"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.eventkit~1documentation~1EventKit~1EKEventStore~1requestFullAccessToReminders(completion:)/title",
+          "value": "requestFullAccessToRemindersWithCompletion:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.eventkit~1documentation~1EventKit~1EKEventStore~1requestFullAccessToReminders(completion:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "requestFullAccessToRemindersWithCompletion:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.eventkit~1documentation~1EventKit~1EKEventStore~1requestWriteOnlyAccessToEvents(completion:)/title",
+          "value": "requestWriteOnlyAccessToEventsWithCompletion:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.eventkit~1documentation~1EventKit~1EKEventStore~1requestWriteOnlyAccessToEvents(completion:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "requestWriteOnlyAccessToEventsWithCompletion:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.eventkit~1documentation~1EventKit~1EKEventStore/title",
+          "value": "EKEventStore"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.eventkit~1documentation~1EventKit~1EKEventStore/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "EKEventStore"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.eventkit~1documentation~1EventKit~1EKEventStore/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "EKEventStore"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.eventkit~1documentation~1EventKit~1EKEventStore~1requestFullAccessToEvents(completion:)/title",
+          "value": "requestFullAccessToEventsWithCompletion:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.eventkit~1documentation~1EventKit~1EKEventStore~1requestFullAccessToEvents(completion:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "requestFullAccessToEventsWithCompletion:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1EventKitUI~1EKEventEditViewController/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "EKEventEditViewController"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UINavigationController",
+              "text": "UINavigationController"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/eventkit/accessing-the-event-store"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/eventkit/accessing-the-event-store"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

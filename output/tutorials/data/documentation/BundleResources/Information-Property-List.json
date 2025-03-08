@@ -1,0 +1,1901 @@
+{
+  "abstract": [
+    {
+      "text": "A resource containing key-value pairs that identify and configure a bundle.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 1"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 1"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.bundleresources/documentation/BundleResources"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "plist:Information_Property_List",
+    "modules": [
+      {
+        "name": "Bundle Resources"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "Information Property List"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "2.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "2.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "2.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Property List",
+    "symbolKind": "struct",
+    "title": "Information Property List"
+  },
+  "primaryContentSections": [
+    {
+      "details": {
+        "name": "Information Property List",
+        "platforms": [],
+        "titleStyle": "symbol",
+        "value": [
+          {
+            "arrayMode": false,
+            "baseType": "object"
+          }
+        ]
+      },
+      "kind": "details",
+      "title": "Details"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.bundleresources/documentation/BundleResources/placing-content-in-a-bundle"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Bundles, which represent executables of different kinds, contain an information property list file. This collection of key-value pairs specifies how the system should interpret the associated bundle. Some key-value pairs characterize the bundle itself, while others configure the app, framework, or other entity that the bundle represents. Some keys are required, while others are specific to particular features of the executable.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The information property list file always has the name ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". The file name is case-sensitive and must begin with a capital letter ",
+              "type": "text"
+            },
+            {
+              "code": "I",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". Its location within the bundle depends on both the bundle type and the platform. For example, iOS app bundles store the file in the bundle’s root directory, whereas macOS app bundles place the ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file in the ",
+              "type": "text"
+            },
+            {
+              "code": "Contents",
+              "type": "codeVoice"
+            },
+            {
+              "text": " directory.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To access an information property list, you use an instance of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/bundle",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class, which represents a bundle on disk. You can get the value for a few common keys by accessing properties of the bundle instance. For example, the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/bundle/1418023-bundleidentifier",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property contains the value associated with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/CFBundleIdentifier",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " key. You can obtain the value for an arbitrary key using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/bundle/1408696-object",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To create an information property list for a bundle, you typically rely on Xcode to prepare the file for your apps and other executable targets, as described in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/managing-your-app-s-information-property-list",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.bundleresources/documentation/BundleResources": {
+      "abstract": [
+        {
+          "text": "Resources located in an app, framework, or plugin bundle.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Bundle Resources",
+      "type": "topic",
+      "url": "/documentation/bundleresources"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements": {
+      "abstract": [
+        {
+          "text": "Key-value pairs that grant an executable permission to use a service or technology.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements",
+      "kind": "symbol",
+      "name": "Entitlements",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Entitlements"
+        }
+      ],
+      "role": "symbol",
+      "title": "Entitlements",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/entitlements"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List": {
+      "abstract": [
+        {
+          "text": "A resource containing key-value pairs that identify and configure a bundle.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List",
+      "kind": "symbol",
+      "name": "Information Property List",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Information Property List"
+        }
+      ],
+      "role": "symbol",
+      "title": "Information Property List",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/BEEmbeddedWebBrowserEngine": {
+      "abstract": [],
+      "ideTitle": "App Clip",
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/BEEmbeddedWebBrowserEngine",
+      "kind": "symbol",
+      "name": "BEEmbeddedWebBrowserEngine",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BEEmbeddedWebBrowserEngine"
+        }
+      ],
+      "role": "symbol",
+      "title": "BEEmbeddedWebBrowserEngine",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/beembeddedwebbrowserengine"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/BEEmbeddedWebBrowserEngineVersion": {
+      "abstract": [],
+      "ideTitle": "App Clip",
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/BEEmbeddedWebBrowserEngineVersion",
+      "kind": "symbol",
+      "name": "BEEmbeddedWebBrowserEngineVersion",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BEEmbeddedWebBrowserEngineVersion"
+        }
+      ],
+      "role": "symbol",
+      "title": "BEEmbeddedWebBrowserEngineVersion",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/beembeddedwebbrowserengineversion"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/CFBundleIdentifier": {
+      "abstract": [
+        {
+          "text": "A unique identifier for a bundle.",
+          "type": "text"
+        }
+      ],
+      "ideTitle": "Bundle identifier",
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/CFBundleIdentifier",
+      "kind": "symbol",
+      "name": "CFBundleIdentifier",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CFBundleIdentifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "CFBundleIdentifier",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/cfbundleidentifier"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/IOClass": {
+      "abstract": [
+        {
+          "text": "The name of the class to instantiate from your driver.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/IOClass",
+      "kind": "symbol",
+      "name": "IOClass",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "IOClass"
+        }
+      ],
+      "role": "symbol",
+      "title": "IOClass",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/ioclass"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/IOMatchCategory": {
+      "abstract": [],
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/IOMatchCategory",
+      "kind": "symbol",
+      "name": "IOMatchCategory",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "IOMatchCategory"
+        }
+      ],
+      "role": "symbol",
+      "title": "IOMatchCategory",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/iomatchcategory"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/IONameMatch": {
+      "abstract": [
+        {
+          "text": "One or more strings that contain the names of possible provider objects in the system registry.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/IONameMatch",
+      "kind": "symbol",
+      "name": "IONameMatch",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "IONameMatch"
+        }
+      ],
+      "role": "symbol",
+      "title": "IONameMatch",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/ionamematch"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/IOParentMatch": {
+      "abstract": [],
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/IOParentMatch",
+      "kind": "symbol",
+      "name": "IOParentMatch",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "IOParentMatch"
+        }
+      ],
+      "role": "symbol",
+      "title": "IOParentMatch",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/ioparentmatch"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/IOPathMatch": {
+      "abstract": [],
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/IOPathMatch",
+      "kind": "symbol",
+      "name": "IOPathMatch",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "IOPathMatch"
+        }
+      ],
+      "role": "symbol",
+      "title": "IOPathMatch",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/iopathmatch"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/IOPropertyMatch": {
+      "abstract": [
+        {
+          "text": "The device-specific keys the system must match in order to use your driver.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/IOPropertyMatch",
+      "kind": "symbol",
+      "name": "IOPropertyMatch",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "IOPropertyMatch"
+        }
+      ],
+      "role": "symbol",
+      "title": "IOPropertyMatch",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/iopropertymatch"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/IOProviderClass": {
+      "abstract": [
+        {
+          "text": "The name of the class that your driver expects to provide the implementation for its provider object.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/IOProviderClass",
+      "kind": "symbol",
+      "name": "IOProviderClass",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "IOProviderClass"
+        }
+      ],
+      "role": "symbol",
+      "title": "IOProviderClass",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/ioproviderclass"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/IOResourceMatch": {
+      "abstract": [
+        {
+          "text": "One or more system-specific or device-specific resources that your driver requires.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/IOResourceMatch",
+      "kind": "symbol",
+      "name": "IOResourceMatch",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "IOResourceMatch"
+        }
+      ],
+      "role": "symbol",
+      "title": "IOResourceMatch",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/ioresourcematch"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/IOUserClass": {
+      "abstract": [
+        {
+          "text": "The name of your driver’s main class, which is the entry point for interacting with your driver’s code.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/IOUserClass",
+      "kind": "symbol",
+      "name": "IOUserClass",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "IOUserClass"
+        }
+      ],
+      "role": "symbol",
+      "title": "IOUserClass",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/iouserclass"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/IOUserClientClass": {
+      "abstract": [
+        {
+          "text": "The name of the class to instantiate when the system requires a client connection to the driver.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/IOUserClientClass",
+      "kind": "symbol",
+      "name": "IOUserClientClass",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "IOUserClientClass"
+        }
+      ],
+      "role": "symbol",
+      "title": "IOUserClientClass",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/iouserclientclass"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/IOUserServerName": {
+      "abstract": [
+        {
+          "text": "The name that the system uses to facilitate communication between your driver and other clients.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/IOUserServerName",
+      "kind": "symbol",
+      "name": "IOUserServerName",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "IOUserServerName"
+        }
+      ],
+      "role": "symbol",
+      "title": "IOUserServerName",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/iouserservername"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSAlwaysAllowMicrophoneModeControl": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates if a person can configure a microphone mode regardless of whether the microphone is in an active state.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSAlwaysAllowMicrophoneModeControl",
+      "kind": "symbol",
+      "name": "NSAlwaysAllowMicrophoneModeControl",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSAlwaysAllowMicrophoneModeControl"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSAlwaysAllowMicrophoneModeControl",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/nsalwaysallowmicrophonemodecontrol"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSCriticalMessagingUsageDescription": {
+      "abstract": [],
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSCriticalMessagingUsageDescription",
+      "kind": "symbol",
+      "name": "NSCriticalMessagingUsageDescription",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSCriticalMessagingUsageDescription"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSCriticalMessagingUsageDescription",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/nscriticalmessagingusagedescription"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSExceptionAllowsInsecureHTTPLoads": {
+      "abstract": [
+        {
+          "text": "A Boolean value indicating whether to allow insecure HTTP loads.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSExceptionAllowsInsecureHTTPLoads",
+      "kind": "symbol",
+      "name": "NSExceptionAllowsInsecureHTTPLoads",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSExceptionAllowsInsecureHTTPLoads"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSExceptionAllowsInsecureHTTPLoads",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/nsexceptionallowsinsecurehttploads"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSExceptionMinimumTLSVersion": {
+      "abstract": [
+        {
+          "text": "The minimum Transport Layer Security (TLS) version for network connections.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSExceptionMinimumTLSVersion",
+      "kind": "symbol",
+      "name": "NSExceptionMinimumTLSVersion",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSExceptionMinimumTLSVersion"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSExceptionMinimumTLSVersion",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/nsexceptionminimumtlsversion"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSExceptionRequiresForwardSecrecy": {
+      "abstract": [
+        {
+          "text": "A Boolean value indicating whether to override the perfect forward secrecy requirement.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSExceptionRequiresForwardSecrecy",
+      "kind": "symbol",
+      "name": "NSExceptionRequiresForwardSecrecy",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSExceptionRequiresForwardSecrecy"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSExceptionRequiresForwardSecrecy",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/nsexceptionrequiresforwardsecrecy"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSIncludesSubdomains": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether to extend the configuration to subdomains of the given domain.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSIncludesSubdomains",
+      "kind": "symbol",
+      "name": "NSIncludesSubdomains",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSIncludesSubdomains"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSIncludesSubdomains",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/nsincludessubdomains"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSPinnedCAIdentities": {
+      "abstract": [
+        {
+          "text": "A list of allowed Certificate Authority certificates for a given domain name.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSPinnedCAIdentities",
+      "kind": "symbol",
+      "name": "NSPinnedCAIdentities",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSPinnedCAIdentities"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSPinnedCAIdentities",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/nspinnedcaidentities"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSPinnedLeafIdentities": {
+      "abstract": [
+        {
+          "text": "A list of allowed leaf certificates for a given domain name.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSPinnedLeafIdentities",
+      "kind": "symbol",
+      "name": "NSPinnedLeafIdentities",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSPinnedLeafIdentities"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSPinnedLeafIdentities",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/nspinnedleafidentities"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSRequiresCertificateTransparency": {
+      "abstract": [
+        {
+          "text": "An obsolete Boolean value indicating whether to require Certificate Transparency.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSRequiresCertificateTransparency",
+      "kind": "symbol",
+      "name": "NSRequiresCertificateTransparency",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSRequiresCertificateTransparency"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSRequiresCertificateTransparency",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/nsrequirescertificatetransparency"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/OSAScriptingDefinition": {
+      "abstract": [],
+      "ideTitle": "Scripting definition file name",
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/OSAScriptingDefinition",
+      "kind": "symbol",
+      "name": "OSAScriptingDefinition",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "OSAScriptingDefinition"
+        }
+      ],
+      "role": "symbol",
+      "title": "OSAScriptingDefinition",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/osascriptingdefinition"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/ProvidesOneTimeCodes": {
+      "abstract": [
+        {
+          "text": "Allows this credential provider to show up in one-time-code text fields, to allowing filling time-based verification codes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/ProvidesOneTimeCodes",
+      "kind": "symbol",
+      "name": "ProvidesOneTimeCodes",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ProvidesOneTimeCodes"
+        }
+      ],
+      "role": "symbol",
+      "title": "ProvidesOneTimeCodes",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/providesonetimecodes"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/ProvidesTextToInsert": {
+      "abstract": [
+        {
+          "text": "Allows this credential provider to show up in the system AutoFill context menu, so that it can fill text in any text field.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/ProvidesTextToInsert",
+      "kind": "symbol",
+      "name": "ProvidesTextToInsert",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ProvidesTextToInsert"
+        }
+      ],
+      "role": "symbol",
+      "title": "ProvidesTextToInsert",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/providestexttoinsert"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/SupportsConditionalPasskeyRegistration": {
+      "abstract": [
+        {
+          "text": "Indicates that the credential provider supports automatic passkey upgrades.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/SupportsConditionalPasskeyRegistration",
+      "kind": "symbol",
+      "name": "SupportsConditionalPasskeyRegistration",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SupportsConditionalPasskeyRegistration"
+        }
+      ],
+      "role": "symbol",
+      "title": "SupportsConditionalPasskeyRegistration",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/supportsconditionalpasskeyregistration"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/app-execution": {
+      "abstract": [
+        {
+          "text": "Control app launch, execution, and termination.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/app-execution",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "App execution",
+      "type": "topic",
+      "url": "/documentation/bundleresources/app-execution"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/app-services": {
+      "abstract": [
+        {
+          "text": "Configure services provided by the app, like support for giving directions or using game controllers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/app-services",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "App services",
+      "type": "topic",
+      "url": "/documentation/bundleresources/app-services"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/bundle-configuration": {
+      "abstract": [
+        {
+          "text": "Define basic characteristics of a bundle, like its name, type, and version.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/bundle-configuration",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Bundle configuration",
+      "type": "topic",
+      "url": "/documentation/bundleresources/bundle-configuration"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/data-and-storage": {
+      "abstract": [
+        {
+          "text": "Regulate documents, URLs, and other kinds of data movement and storage.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/data-and-storage",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Data and storage",
+      "type": "topic",
+      "url": "/documentation/bundleresources/data-and-storage"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/kernel-and-drivers": {
+      "abstract": [
+        {
+          "text": "Configure device drivers provided by the app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/kernel-and-drivers",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Kernel and drivers",
+      "type": "topic",
+      "url": "/documentation/bundleresources/kernel-and-drivers"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/managing-your-app-s-information-property-list": {
+      "abstract": [
+        {
+          "text": "Create and customize an information property list file for your app using Xcode.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/managing-your-app-s-information-property-list",
+      "kind": "article",
+      "role": "article",
+      "title": "Managing Your App’s Information Property List",
+      "type": "topic",
+      "url": "/documentation/bundleresources/managing-your-app-s-information-property-list"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/placing-content-in-a-bundle": {
+      "abstract": [
+        {
+          "text": "Place bundle content in the correct location based on its type.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/placing-content-in-a-bundle",
+      "kind": "article",
+      "role": "article",
+      "title": "Placing content in a bundle",
+      "type": "topic",
+      "url": "/documentation/bundleresources/placing-content-in-a-bundle"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/privacy-manifest-files": {
+      "abstract": [
+        {
+          "text": "Describe the data your app or third-party SDK collects and the reasons required APIs it uses.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/privacy-manifest-files",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Privacy manifest files",
+      "type": "topic",
+      "url": "/documentation/bundleresources/privacy-manifest-files"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/protected-resources": {
+      "abstract": [
+        {
+          "text": "Control an app’s access to protected system services and user data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/protected-resources",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Protected resources",
+      "type": "topic",
+      "url": "/documentation/bundleresources/protected-resources"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/user-interface": {
+      "abstract": [
+        {
+          "text": "Configure an app’s scenes, storyboards, icons, fonts, and other user interface elements.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/user-interface",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "User interface",
+      "type": "topic",
+      "url": "/documentation/bundleresources/user-interface"
+    },
+    "doc://com.apple.documentation/documentation/foundation/bundle": {
+      "abstract": [
+        {
+          "text": "A representation of the code and resources stored in a bundle directory on disk. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "Bundle"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/bundle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Bundle",
+      "type": "topic",
+      "url": "/documentation/foundation/bundle"
+    },
+    "doc://com.apple.documentation/documentation/foundation/bundle/1408696-object": {
+      "abstract": [
+        {
+          "text": "Returns the value associated with the specified key in the receiver's information property list.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "object"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forInfoDictionaryKey"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> Any?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/bundle/1408696-object",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "object(forInfoDictionaryKey:)",
+      "type": "topic",
+      "url": "/documentation/foundation/bundle/1408696-object"
+    },
+    "doc://com.apple.documentation/documentation/foundation/bundle/1418023-bundleidentifier": {
+      "abstract": [
+        {
+          "text": "The receiver’s bundle identifier.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "bundleIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": String?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/bundle/1418023-bundleidentifier",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "bundleIdentifier",
+      "type": "topic",
+      "url": "/documentation/foundation/bundle/1418023-bundleidentifier"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Property-Lists",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements",
+        "doc://com.apple.bundleresources/documentation/BundleResources/privacy-manifest-files"
+      ],
+      "title": "Property Lists"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Essentials",
+      "identifiers": [
+        "doc://com.apple.bundleresources/documentation/BundleResources/managing-your-app-s-information-property-list"
+      ],
+      "title": "Essentials"
+    },
+    {
+      "anchor": "Core-settings",
+      "identifiers": [
+        "doc://com.apple.bundleresources/documentation/BundleResources/bundle-configuration",
+        "doc://com.apple.bundleresources/documentation/BundleResources/user-interface",
+        "doc://com.apple.bundleresources/documentation/BundleResources/app-execution"
+      ],
+      "title": "Core settings"
+    },
+    {
+      "anchor": "Services",
+      "identifiers": [
+        "doc://com.apple.bundleresources/documentation/BundleResources/protected-resources",
+        "doc://com.apple.bundleresources/documentation/BundleResources/data-and-storage",
+        "doc://com.apple.bundleresources/documentation/BundleResources/app-services",
+        "doc://com.apple.bundleresources/documentation/BundleResources/kernel-and-drivers"
+      ],
+      "title": "Services"
+    },
+    {
+      "anchor": "AVFoundation",
+      "identifiers": [
+        "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSAlwaysAllowMicrophoneModeControl"
+      ],
+      "title": "AVFoundation"
+    },
+    {
+      "anchor": "BrowserEngineKit",
+      "identifiers": [
+        "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/BEEmbeddedWebBrowserEngine",
+        "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/BEEmbeddedWebBrowserEngineVersion"
+      ],
+      "title": "BrowserEngineKit"
+    },
+    {
+      "anchor": "Dictionaries",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/IOParentMatch",
+        "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/IOPropertyMatch",
+        "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSPinnedCAIdentities",
+        "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSPinnedLeafIdentities"
+      ],
+      "title": "Dictionaries"
+    },
+    {
+      "anchor": "Type-Aliases",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/IOClass",
+        "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/IOMatchCategory",
+        "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/IONameMatch",
+        "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/IOPathMatch",
+        "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/IOProviderClass",
+        "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/IOResourceMatch",
+        "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/IOUserClass",
+        "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/IOUserClientClass",
+        "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/IOUserServerName",
+        "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSCriticalMessagingUsageDescription",
+        "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSExceptionAllowsInsecureHTTPLoads",
+        "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSExceptionMinimumTLSVersion",
+        "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSExceptionRequiresForwardSecrecy",
+        "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSIncludesSubdomains",
+        "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSRequiresCertificateTransparency",
+        "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/OSAScriptingDefinition",
+        "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/ProvidesOneTimeCodes",
+        "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/ProvidesTextToInsert",
+        "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/SupportsConditionalPasskeyRegistration"
+      ],
+      "title": "Type Aliases"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "2.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "2.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.0",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.0",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "9.0",
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "2.0",
+              "name": "watchOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Property List"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "Information Property List"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "struct"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "Information Property List"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.bundleresources/documentation/BundleResources"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Essentials",
+              "identifiers": [
+                "doc://com.apple.bundleresources/documentation/BundleResources/managing-your-app-s-information-property-list"
+              ],
+              "title": "Essentials"
+            },
+            {
+              "anchor": "Core-settings",
+              "identifiers": [
+                "doc://com.apple.bundleresources/documentation/BundleResources/bundle-configuration",
+                "doc://com.apple.bundleresources/documentation/BundleResources/user-interface",
+                "doc://com.apple.bundleresources/documentation/BundleResources/app-execution"
+              ],
+              "title": "Core settings"
+            },
+            {
+              "anchor": "Services",
+              "identifiers": [
+                "doc://com.apple.bundleresources/documentation/BundleResources/protected-resources",
+                "doc://com.apple.bundleresources/documentation/BundleResources/data-and-storage",
+                "doc://com.apple.bundleresources/documentation/BundleResources/app-services",
+                "doc://com.apple.bundleresources/documentation/BundleResources/kernel-and-drivers"
+              ],
+              "title": "Services"
+            },
+            {
+              "anchor": "AVFoundation",
+              "identifiers": [
+                "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSAlwaysAllowMicrophoneModeControl"
+              ],
+              "title": "AVFoundation"
+            },
+            {
+              "anchor": "BrowserEngineKit",
+              "identifiers": [
+                "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/BEEmbeddedWebBrowserEngine",
+                "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/BEEmbeddedWebBrowserEngineVersion"
+              ],
+              "title": "BrowserEngineKit"
+            },
+            {
+              "anchor": "Dictionaries",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/IOParentMatch",
+                "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/IOPropertyMatch",
+                "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSPinnedCAIdentities",
+                "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSPinnedLeafIdentities"
+              ],
+              "title": "Dictionaries"
+            },
+            {
+              "anchor": "Type-Aliases",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/IOClass",
+                "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/IOMatchCategory",
+                "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/IONameMatch",
+                "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/IOPathMatch",
+                "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/IOProviderClass",
+                "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/IOResourceMatch",
+                "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/IOUserClass",
+                "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/IOUserClientClass",
+                "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/IOUserServerName",
+                "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSCriticalMessagingUsageDescription",
+                "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSExceptionAllowsInsecureHTTPLoads",
+                "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSExceptionMinimumTLSVersion",
+                "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSExceptionRequiresForwardSecrecy",
+                "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSIncludesSubdomains",
+                "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSRequiresCertificateTransparency",
+                "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/OSAScriptingDefinition",
+                "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/ProvidesOneTimeCodes",
+                "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/ProvidesTextToInsert",
+                "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/SupportsConditionalPasskeyRegistration"
+              ],
+              "title": "Type Aliases"
+            }
+          ]
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Property-Lists",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements",
+                "doc://com.apple.bundleresources/documentation/BundleResources/privacy-manifest-files"
+              ],
+              "title": "Property Lists"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1BEEmbeddedWebBrowserEngineVersion/title",
+          "value": "BEEmbeddedWebBrowserEngineVersion"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1BEEmbeddedWebBrowserEngineVersion/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BEEmbeddedWebBrowserEngineVersion"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1CFBundleIdentifier/title",
+          "value": "CFBundleIdentifier"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1CFBundleIdentifier/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CFBundleIdentifier"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1IOClass/title",
+          "value": "IOClass"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1IOClass/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "IOClass"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1IOResourceMatch/title",
+          "value": "IOResourceMatch"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1IOResourceMatch/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "IOResourceMatch"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSAlwaysAllowMicrophoneModeControl/title",
+          "value": "NSAlwaysAllowMicrophoneModeControl"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSAlwaysAllowMicrophoneModeControl/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAlwaysAllowMicrophoneModeControl"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1SupportsConditionalPasskeyRegistration/title",
+          "value": "SupportsConditionalPasskeyRegistration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1SupportsConditionalPasskeyRegistration/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SupportsConditionalPasskeyRegistration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1IOMatchCategory/title",
+          "value": "IOMatchCategory"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1IOMatchCategory/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "IOMatchCategory"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1IOPropertyMatch/title",
+          "value": "IOPropertyMatch"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1IOPropertyMatch/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "IOPropertyMatch"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1bundle/title",
+          "value": "NSBundle"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1IOUserClientClass/title",
+          "value": "IOUserClientClass"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1IOUserClientClass/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "IOUserClientClass"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1IOPathMatch/title",
+          "value": "IOPathMatch"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1IOPathMatch/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "IOPathMatch"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1IOProviderClass/title",
+          "value": "IOProviderClass"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1IOProviderClass/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "IOProviderClass"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSPinnedLeafIdentities/title",
+          "value": "NSPinnedLeafIdentities"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSPinnedLeafIdentities/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPinnedLeafIdentities"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1IOUserServerName/title",
+          "value": "IOUserServerName"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1IOUserServerName/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "IOUserServerName"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1IONameMatch/title",
+          "value": "IONameMatch"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1IONameMatch/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "IONameMatch"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1BEEmbeddedWebBrowserEngine/title",
+          "value": "BEEmbeddedWebBrowserEngine"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1BEEmbeddedWebBrowserEngine/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "BEEmbeddedWebBrowserEngine"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSRequiresCertificateTransparency/title",
+          "value": "NSRequiresCertificateTransparency"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSRequiresCertificateTransparency/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSRequiresCertificateTransparency"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1IOParentMatch/title",
+          "value": "IOParentMatch"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1IOParentMatch/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "IOParentMatch"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSExceptionMinimumTLSVersion/title",
+          "value": "NSExceptionMinimumTLSVersion"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSExceptionMinimumTLSVersion/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSExceptionMinimumTLSVersion"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List/title",
+          "value": "Information Property List"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "Information Property List"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSExceptionRequiresForwardSecrecy/title",
+          "value": "NSExceptionRequiresForwardSecrecy"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSExceptionRequiresForwardSecrecy/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSExceptionRequiresForwardSecrecy"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSPinnedCAIdentities/title",
+          "value": "NSPinnedCAIdentities"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSPinnedCAIdentities/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPinnedCAIdentities"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1ProvidesOneTimeCodes/title",
+          "value": "ProvidesOneTimeCodes"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1ProvidesOneTimeCodes/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ProvidesOneTimeCodes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSExceptionAllowsInsecureHTTPLoads/title",
+          "value": "NSExceptionAllowsInsecureHTTPLoads"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSExceptionAllowsInsecureHTTPLoads/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSExceptionAllowsInsecureHTTPLoads"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1IOUserClass/title",
+          "value": "IOUserClass"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1IOUserClass/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "IOUserClass"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1OSAScriptingDefinition/title",
+          "value": "OSAScriptingDefinition"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1OSAScriptingDefinition/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "OSAScriptingDefinition"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Entitlements/title",
+          "value": "Entitlements"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Entitlements/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "Entitlements"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1bundle~11408696-object/title",
+          "value": "objectForInfoDictionaryKey:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1ProvidesTextToInsert/title",
+          "value": "ProvidesTextToInsert"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1ProvidesTextToInsert/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ProvidesTextToInsert"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSCriticalMessagingUsageDescription/title",
+          "value": "NSCriticalMessagingUsageDescription"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSCriticalMessagingUsageDescription/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSCriticalMessagingUsageDescription"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSIncludesSubdomains/title",
+          "value": "NSIncludesSubdomains"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSIncludesSubdomains/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSIncludesSubdomains"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/bundleresources/information-property-list"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/bundleresources/information-property-list"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

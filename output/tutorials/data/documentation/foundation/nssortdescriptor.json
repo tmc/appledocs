@@ -1,0 +1,1198 @@
+{
+  "abstract": [
+    {
+      "text": "An immutable description of how to order a collection of objects according to a property common to all the objects.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/filters_and_sorting"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/nssortdescriptor"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1416334,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSSortDescriptor",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "class "
+      },
+      {
+        "kind": "identifier",
+        "text": "NSSortDescriptor"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.3",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "NSSortDescriptor"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSSortDescriptor"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You construct instances of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nssortdescriptor",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " by specifying the key path of the property to compare and the order of the sort (ascending or descending). Optionally, you can also specify a selector to use to perform the comparison, which allows you to specify other comparison selectors, such as ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsstring/1409742-localizedstandardcompare",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsstring/1417333-localizedcaseinsensitivecompare",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Sorting raises an exception if the objects don’t respond to the sort descriptor’s comparison selector. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can use sort descriptors for the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Sorting an array (an instance of ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutablearray",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " — see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray/1415069-sortedarray",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutablearray/1410745-sort",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ")",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Comparing two objects directly (see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/nssortdescriptor/1411557-compare",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ")",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Specifying the order of objects that return from a Core Data fetch request (see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSFetchRequest/sortDescriptors",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ")",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.coredata/documentation/CoreData/NSFetchRequest/sortDescriptors": {
+      "identifier": "doc://com.apple.coredata/documentation/CoreData/NSFetchRequest/sortDescriptors",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sortDescriptors",
+      "type": "topic",
+      "url": "/documentation/coredata/nsfetchrequest/sortdescriptors"
+    },
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/comparablecomparator": {
+      "abstract": [
+        {
+          "text": "A comparator that compares types according to their conformance to the comparable protocol.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "ComparableComparator"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/comparablecomparator",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ComparableComparator",
+      "type": "topic",
+      "url": "/documentation/foundation/comparablecomparator"
+    },
+    "doc://com.apple.documentation/documentation/foundation/comparisonresult": {
+      "abstract": [
+        {
+          "text": "Constants that indicate sort order.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "enum "
+        },
+        {
+          "kind": "identifier",
+          "text": "ComparisonResult"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/comparisonresult",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ComparisonResult",
+      "type": "topic",
+      "url": "/documentation/foundation/comparisonresult"
+    },
+    "doc://com.apple.documentation/documentation/foundation/filters_and_sorting": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/filters_and_sorting",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Filters and Sorting",
+      "type": "topic",
+      "url": "/documentation/foundation/filters_and_sorting"
+    },
+    "doc://com.apple.documentation/documentation/foundation/keypathcomparator": {
+      "abstract": [
+        {
+          "text": "A comparator that uses another sort comparator to provide the comparison of values at a key path.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "KeyPathComparator"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/keypathcomparator",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "KeyPathComparator",
+      "type": "topic",
+      "url": "/documentation/foundation/keypathcomparator"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsarray": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSArray",
+      "type": "topic",
+      "url": "/documentation/foundation/nsarray"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsarray/1415069-sortedarray": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsarray/1415069-sortedarray",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sortedArray(using:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsarray/1415069-sortedarray"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nscopying": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nscopying",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCopying",
+      "type": "topic",
+      "url": "/documentation/foundation/nscopying"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutablearray": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutablearray",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSMutableArray",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutablearray"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmutablearray/1410745-sort": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmutablearray/1410745-sort",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sort(using:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmutablearray/1410745-sort"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nssecurecoding": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nssecurecoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSecureCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nssecurecoding"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nssortdescriptor": {
+      "abstract": [
+        {
+          "text": "An immutable description of how to order a collection of objects according to a property common to all the objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSSortDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nssortdescriptor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSortDescriptor",
+      "type": "topic",
+      "url": "/documentation/foundation/nssortdescriptor"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nssortdescriptor/1407712-reversedsortdescriptor": {
+      "abstract": [
+        {
+          "text": "Returns a sort descriptor that reverses the sort order.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "reversedSortDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": ": Any"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nssortdescriptor/1407712-reversedsortdescriptor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "reversedSortDescriptor",
+      "type": "topic",
+      "url": "/documentation/foundation/nssortdescriptor/1407712-reversedsortdescriptor"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nssortdescriptor/1408931-ascending": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the receiver specifies sorting in ascending order.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "ascending"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nssortdescriptor/1408931-ascending",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ascending",
+      "type": "topic",
+      "url": "/documentation/foundation/nssortdescriptor/1408931-ascending"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nssortdescriptor/1411426-comparator": {
+      "abstract": [
+        {
+          "text": "The comparator for the sort descriptor.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "comparator"
+        },
+        {
+          "kind": "text",
+          "text": ": Comparator"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nssortdescriptor/1411426-comparator",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "comparator",
+      "type": "topic",
+      "url": "/documentation/foundation/nssortdescriptor/1411426-comparator"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nssortdescriptor/1411557-compare": {
+      "abstract": [
+        {
+          "text": "Returns a comparison result value that indicates the sort order of two objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "compare"
+        },
+        {
+          "kind": "text",
+          "text": "(Any, "
+        },
+        {
+          "kind": "identifier",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": Any) -> ComparisonResult"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nssortdescriptor/1411557-compare",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "compare(_:to:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nssortdescriptor/1411557-compare"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nssortdescriptor/1411607-init": {
+      "abstract": [
+        {
+          "text": "Creates a sort descriptor with a specified string key path and ordering, and a comparator block.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "key"
+        },
+        {
+          "kind": "text",
+          "text": ": String?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "ascending"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool, "
+        },
+        {
+          "kind": "identifier",
+          "text": "comparator"
+        },
+        {
+          "kind": "text",
+          "text": ": Comparator)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nssortdescriptor/1411607-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(key:ascending:comparator:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nssortdescriptor/1411607-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nssortdescriptor/1412371-allowevaluation": {
+      "abstract": [
+        {
+          "text": "Forces a securely decoded sort descriptor to allow evaluation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "allowEvaluation"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nssortdescriptor/1412371-allowevaluation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "allowEvaluation()",
+      "type": "topic",
+      "url": "/documentation/foundation/nssortdescriptor/1412371-allowevaluation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nssortdescriptor/1412495-init": {
+      "abstract": [
+        {
+          "text": "Creates a sort descriptor with a specified string key path, ordering, and comparison selector.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "key"
+        },
+        {
+          "kind": "text",
+          "text": ": String?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "ascending"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool, "
+        },
+        {
+          "kind": "identifier",
+          "text": "selector"
+        },
+        {
+          "kind": "text",
+          "text": ": Selector?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nssortdescriptor/1412495-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(key:ascending:selector:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nssortdescriptor/1412495-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nssortdescriptor/1412503-init": {
+      "abstract": [
+        {
+          "text": "Creates a sort descriptor by decoding from the coder you specify.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "identifier",
+          "text": "coder"
+        },
+        {
+          "kind": "text",
+          "text": ": NSCoder)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nssortdescriptor/1412503-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(coder:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nssortdescriptor/1412503-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nssortdescriptor/1413572-init": {
+      "abstract": [
+        {
+          "text": "Creates a sort descriptor with a specified string key path and sort order.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "key"
+        },
+        {
+          "kind": "text",
+          "text": ": String?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "ascending"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nssortdescriptor/1413572-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(key:ascending:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nssortdescriptor/1413572-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nssortdescriptor/1415022-key": {
+      "abstract": [
+        {
+          "text": "The key that specifies the property to compare during sorting.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "key"
+        },
+        {
+          "kind": "text",
+          "text": ": String?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nssortdescriptor/1415022-key",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "key",
+      "type": "topic",
+      "url": "/documentation/foundation/nssortdescriptor/1415022-key"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nssortdescriptor/1418337-selector": {
+      "abstract": [
+        {
+          "text": "The selector for comparing objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "selector"
+        },
+        {
+          "kind": "text",
+          "text": ": Selector?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nssortdescriptor/1418337-selector",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "selector",
+      "type": "topic",
+      "url": "/documentation/foundation/nssortdescriptor/1418337-selector"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nssortdescriptor/2908854-keypath": {
+      "abstract": [
+        {
+          "text": "The key path that specifies the property to compare during sorting.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "keyPath"
+        },
+        {
+          "kind": "text",
+          "text": ": AnyKeyPath?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nssortdescriptor/2908854-keypath",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "keyPath",
+      "type": "topic",
+      "url": "/documentation/foundation/nssortdescriptor/2908854-keypath"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nssortdescriptor/2908856-init": {
+      "abstract": [
+        {
+          "text": "Creates a sort descriptor with a specified key path and ordering, and a comparator block.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "<Root, Value>("
+        },
+        {
+          "kind": "identifier",
+          "text": "keyPath"
+        },
+        {
+          "kind": "text",
+          "text": ": KeyPath<Root, Value>, "
+        },
+        {
+          "kind": "identifier",
+          "text": "ascending"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool, "
+        },
+        {
+          "kind": "identifier",
+          "text": "comparator"
+        },
+        {
+          "kind": "text",
+          "text": ": Comparator)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nssortdescriptor/2908856-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(keyPath:ascending:comparator:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nssortdescriptor/2908856-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nssortdescriptor/2908880-init": {
+      "abstract": [
+        {
+          "text": "Creates a sort descriptor with a specified key path and ordering.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "<Root, Value>("
+        },
+        {
+          "kind": "identifier",
+          "text": "keyPath"
+        },
+        {
+          "kind": "text",
+          "text": ": KeyPath<Root, Value>, "
+        },
+        {
+          "kind": "identifier",
+          "text": "ascending"
+        },
+        {
+          "kind": "text",
+          "text": ": Bool)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nssortdescriptor/2908880-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(keyPath:ascending:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nssortdescriptor/2908880-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nssortdescriptor/3802339-init": {
+      "abstract": [
+        {
+          "text": "Creates a sort descriptor using a sort descriptor you specify.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "<Compared>(SortDescriptor<Compared>)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nssortdescriptor/3802339-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nssortdescriptor/3802339-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nssortdescriptor/4245872-init": {
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "<Compared>(SortDescriptor<Compared>)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nssortdescriptor/4245872-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nssortdescriptor/4245872-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsstring/1409742-localizedstandardcompare": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsstring/1409742-localizedstandardcompare",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "localizedStandardCompare(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsstring/1409742-localizedstandardcompare"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsstring/1417333-localizedcaseinsensitivecompare": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsstring/1417333-localizedcaseinsensitivecompare",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "localizedCaseInsensitiveCompare(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsstring/1417333-localizedcaseinsensitivecompare"
+    },
+    "doc://com.apple.documentation/documentation/foundation/sortcomparator": {
+      "abstract": [
+        {
+          "text": "A comparison algorithm for a specified type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "SortComparator"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/sortcomparator",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SortComparator",
+      "type": "topic",
+      "url": "/documentation/foundation/sortcomparator"
+    },
+    "doc://com.apple.documentation/documentation/foundation/sortdescriptor": {
+      "abstract": [
+        {
+          "text": "A serializable description of how to sort numerics and strings.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "SortDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/sortdescriptor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SortDescriptor",
+      "type": "topic",
+      "url": "/documentation/foundation/sortdescriptor"
+    },
+    "doc://com.apple.documentation/documentation/foundation/sortorder": {
+      "abstract": [
+        {
+          "text": "The orderings that you can perform sorts with.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "enum "
+        },
+        {
+          "kind": "identifier",
+          "text": "SortOrder"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/sortorder",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SortOrder",
+      "type": "topic",
+      "url": "/documentation/foundation/sortorder"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/objectivec/nsobject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nscopying",
+        "doc://com.apple.documentation/documentation/foundation/nssecurecoding"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/comparisonresult",
+        "doc://com.apple.documentation/documentation/foundation/sortdescriptor",
+        "doc://com.apple.documentation/documentation/foundation/sortcomparator",
+        "doc://com.apple.documentation/documentation/foundation/comparablecomparator",
+        "doc://com.apple.documentation/documentation/foundation/keypathcomparator",
+        "doc://com.apple.documentation/documentation/foundation/sortorder"
+      ],
+      "title": "Sorting"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "1668780",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nssortdescriptor/1413572-init",
+        "doc://com.apple.documentation/documentation/foundation/nssortdescriptor/1412495-init",
+        "doc://com.apple.documentation/documentation/foundation/nssortdescriptor/2908880-init",
+        "doc://com.apple.documentation/documentation/foundation/nssortdescriptor/1411607-init",
+        "doc://com.apple.documentation/documentation/foundation/nssortdescriptor/2908856-init",
+        "doc://com.apple.documentation/documentation/foundation/nssortdescriptor/1412503-init",
+        "doc://com.apple.documentation/documentation/foundation/nssortdescriptor/3802339-init"
+      ],
+      "kind": "taskGroup",
+      "title": "Creating a Sort Descriptor"
+    },
+    {
+      "anchor": "1668884",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nssortdescriptor/1408931-ascending",
+        "doc://com.apple.documentation/documentation/foundation/nssortdescriptor/1415022-key",
+        "doc://com.apple.documentation/documentation/foundation/nssortdescriptor/2908854-keypath",
+        "doc://com.apple.documentation/documentation/foundation/nssortdescriptor/1418337-selector",
+        "doc://com.apple.documentation/documentation/foundation/nssortdescriptor/1411426-comparator"
+      ],
+      "kind": "taskGroup",
+      "title": "Getting Information About a Sort Descriptor"
+    },
+    {
+      "anchor": "1668940",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nssortdescriptor/1411557-compare",
+        "doc://com.apple.documentation/documentation/foundation/nssortdescriptor/1407712-reversedsortdescriptor",
+        "doc://com.apple.documentation/documentation/foundation/nssortdescriptor/1412371-allowevaluation"
+      ],
+      "kind": "taskGroup",
+      "title": "Using Sort Descriptors"
+    },
+    {
+      "anchor": "4246752",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nssortdescriptor/4245872-init"
+      ],
+      "kind": "taskGroup",
+      "title": "Initializers"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nssortdescriptor"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/nssortdescriptor"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

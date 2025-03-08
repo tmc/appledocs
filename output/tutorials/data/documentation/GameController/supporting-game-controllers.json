@@ -1,0 +1,553 @@
+{
+  "abstract": [
+    {
+      "text": "Support a physical controller or add a virtual controller to enhance how people interact with your game through haptics, lighting, and motion sensing.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.gamecontroller/documentation/GameController"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.gamecontroller/documentation/GameController/supporting-game-controllers"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Game Controller"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "14.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "14.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "11.0",
+        "name": "macOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "14.0",
+        "name": "tvOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "12.5",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Supporting Game Controllers"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "This sample code project is associated with WWDC21 session ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/videos/play/wwdc2021/10081/",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ". This sample code project was previously associated with WWDC20 session ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/videos/play/wwdc2020/10614/",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " and originally associated with WWDC17 session ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/videos/play/wwdc2017/604/",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "d7e013f913fb/SupportingGameControllers.zip": {
+      "checksum": "d7e013f913fbf475a8218a7abba1985c67c5276fb70fc197f7f0186d059246cca18ce4019717192aff2dc5553e75dc3c9ee1889b2f8e18d867770a980e826921",
+      "identifier": "d7e013f913fb/SupportingGameControllers.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/d7e013f913fb/SupportingGameControllers.zip"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.gamecontroller/documentation/GameController": {
+      "abstract": [
+        {
+          "text": "Support hardware game controllers in your game.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.gamecontroller/documentation/GameController",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Game Controller",
+      "type": "topic",
+      "url": "/documentation/gamecontroller"
+    },
+    "doc://com.apple.gamecontroller/documentation/GameController/GCController": {
+      "abstract": [
+        {
+          "text": "A representation of a real game controller, a virtual controller, or a snapshot of a controller.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GCController"
+        }
+      ],
+      "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GCController"
+        }
+      ],
+      "role": "symbol",
+      "title": "GCController",
+      "type": "topic",
+      "url": "/documentation/gamecontroller/gccontroller"
+    },
+    "doc://com.apple.gamecontroller/documentation/GameController/GCDevice": {
+      "abstract": [
+        {
+          "text": "A protocol that defines a common interface for game input devices.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GCDevice"
+        }
+      ],
+      "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCDevice",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GCDevice"
+        }
+      ],
+      "role": "symbol",
+      "title": "GCDevice",
+      "type": "topic",
+      "url": "/documentation/gamecontroller/gcdevice"
+    },
+    "doc://com.apple.gamecontroller/documentation/GameController/GCKeyboard": {
+      "abstract": [
+        {
+          "text": "An object that represents a physical keyboard connected to a device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GCKeyboard"
+        }
+      ],
+      "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCKeyboard",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GCKeyboard"
+        }
+      ],
+      "role": "symbol",
+      "title": "GCKeyboard",
+      "type": "topic",
+      "url": "/documentation/gamecontroller/gckeyboard"
+    },
+    "doc://com.apple.gamecontroller/documentation/GameController/GCMouse": {
+      "abstract": [
+        {
+          "text": "An object that represents a physical mouse connected to a device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GCMouse"
+        }
+      ],
+      "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCMouse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GCMouse"
+        }
+      ],
+      "role": "symbol",
+      "title": "GCMouse",
+      "type": "topic",
+      "url": "/documentation/gamecontroller/gcmouse"
+    },
+    "doc://com.apple.gamecontroller/documentation/GameController/GCRacingWheel": {
+      "abstract": [
+        {
+          "text": "An object that represents a physical racing wheel controller connected to a device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GCRacingWheel"
+        }
+      ],
+      "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCRacingWheel",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GCRacingWheel"
+        }
+      ],
+      "role": "symbol",
+      "title": "GCRacingWheel",
+      "type": "topic",
+      "url": "/documentation/gamecontroller/gcracingwheel"
+    },
+    "doc://com.apple.gamecontroller/documentation/GameController/letting-players-use-their-second-generation-siri-remote-as-a-game-controller": {
+      "abstract": [
+        {
+          "text": "Support the second-generation Siri Remote as a game controller in your Apple TV game.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.gamecontroller/documentation/GameController/letting-players-use-their-second-generation-siri-remote-as-a-game-controller",
+      "kind": "article",
+      "role": "article",
+      "title": "Letting players use their second-generation Siri Remote as a game controller",
+      "type": "topic",
+      "url": "/documentation/gamecontroller/letting-players-use-their-second-generation-siri-remote-as-a-game-controller"
+    },
+    "https://developer.apple.com/videos/play/wwdc2017/604/": {
+      "identifier": "https://developer.apple.com/videos/play/wwdc2017/604/",
+      "title": "604: SceneKit: What’s New",
+      "titleInlineContent": [
+        {
+          "text": "604: SceneKit: What’s New",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/videos/play/wwdc2017/604/"
+    },
+    "https://developer.apple.com/videos/play/wwdc2020/10614/": {
+      "identifier": "https://developer.apple.com/videos/play/wwdc2020/10614/",
+      "title": "10614: Advancements in Game Controllers",
+      "titleInlineContent": [
+        {
+          "text": "10614: Advancements in Game Controllers",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/videos/play/wwdc2020/10614/"
+    },
+    "https://developer.apple.com/videos/play/wwdc2021/10081/": {
+      "identifier": "https://developer.apple.com/videos/play/wwdc2021/10081/",
+      "title": "10081: Tap Into Virtual and Physical Game Controllers",
+      "titleInlineContent": [
+        {
+          "text": "10081: Tap Into Virtual and Physical Game Controllers",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/videos/play/wwdc2021/10081/"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "d7e013f913fb/SupportingGameControllers.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Game-controllers",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.gamecontroller/documentation/GameController/letting-players-use-their-second-generation-siri-remote-as-a-game-controller",
+        "doc://com.apple.gamecontroller/documentation/GameController/GCDevice",
+        "doc://com.apple.gamecontroller/documentation/GameController/GCController",
+        "doc://com.apple.gamecontroller/documentation/GameController/GCRacingWheel",
+        "doc://com.apple.gamecontroller/documentation/GameController/GCKeyboard",
+        "doc://com.apple.gamecontroller/documentation/GameController/GCMouse"
+      ],
+      "title": "Game controllers"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCKeyboard/title",
+          "value": "GCKeyboard"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCKeyboard/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GCKeyboard"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCKeyboard/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GCKeyboard"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCController/title",
+          "value": "GCController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GCController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GCController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCMouse/title",
+          "value": "GCMouse"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCMouse/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GCMouse"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCMouse/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GCMouse"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCRacingWheel/title",
+          "value": "GCRacingWheel"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCRacingWheel/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GCRacingWheel"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCRacingWheel/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GCRacingWheel"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCDevice/title",
+          "value": "GCDevice"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCDevice/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GCDevice"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCDevice/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GCDevice"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/gamecontroller/supporting-game-controllers"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,2335 @@
+{
+  "abstract": [
+    {
+      "text": "Receive controller input using either polling or callbacks.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.gamecontroller/documentation/GameController"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.gamecontroller/documentation/GameController",
+        "doc://com.apple.gamecontroller/documentation/GameController/input"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.gamecontroller/documentation/GameController/handling-input-events"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Game Controller"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Handling input events"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Game Controller framework provides your game with low-level and fast access to input from connected gamepads, arcade sticks, and racing wheels. Not all games receive and process input the same way. The Game Controller framework input APIs support several ways for your game to receive controller input:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use polling when input handling occurs at a fixed interval as part of your game’s loop. You request the latest input state from the Game Controller framework each time you handle input. This can occur once per frame, or at a lower frequency than the frame rate.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use callbacks when the input handling in your game is event-driven. You provide one or more blocks that the Game Controller framework invokes when any or certain elements’ input values change.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Get-the-input-profile",
+          "level": 3,
+          "text": "Get the input profile",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You get game controller input from the device’s input profile. The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCDevicePhysicalInput",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol declares the common properties for the input profile. The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCControllerLiveInput",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCRacingWheelInput",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " classes provide the concrete implementations for gamepads and arcade sticks, and racing wheels, respectively.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For gamepads and arcade sticks, first get the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCControllerLiveInput",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object from the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCController/input",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let controller: GCController",
+            "let input: GCControllerLiveInput ",
+            "",
+            "// Get the input profile object.",
+            "input = controller.input"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For racing wheels, first get the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCRacingWheelInput",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object from the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCRacingWheel",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCRacingWheel/wheelInput",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let racingWheel: GCRacingWheel",
+            "let input: GCRacingWheelInput ",
+            "",
+            "// Get the racing wheel input profile object.",
+            "input = racingWheel.wheelInput"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Configure-the-input-dispatch-queue",
+          "level": 3,
+          "text": "Configure the input dispatch queue",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Game Controller framework processes input events, and invokes any configured callbacks, on the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCRacingWheel",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCDevice/handlerQueue",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property of the device. The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCDevice/handlerQueue",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property is the main queue by default. To configure a dedicated queue for input processing, set the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCDevicePhysicalInput/queue",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCControllerLiveInput",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCRacingWheelInput",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Access-input-elements",
+          "level": 3,
+          "text": "Access input elements",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Game controllers organize their input states by elements. These elements correspond to the individual buttons, directional pads, thumbsticks, and other kinds of controls on the gamepad, arcade stick, or racing wheel. Game controllers identify elements by their semantic name, and group them into one or more collections, such as the ",
+              "type": "text"
+            },
+            {
+              "code": "elements",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "buttons",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "dpads",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "axes",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "code": "switches",
+              "type": "codeVoice"
+            },
+            {
+              "text": " properties.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To get objects representing specific elements of a controller, use the subscript notation with the collection properties from an object conforming to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCDevicePhysicalInputState",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol. This includes the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCControllerLiveInput",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCRacingWheelInput",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, to get the A button of a controller, use ",
+              "type": "text"
+            },
+            {
+              "code": ".a",
+              "type": "codeVoice"
+            },
+            {
+              "text": " with the ",
+              "type": "text"
+            },
+            {
+              "code": "buttons",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property, as in the following example:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Get the A button element.",
+            "let aButton = input.buttons[.a]"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To get the left thumbstick of a directional pad, use ",
+              "type": "text"
+            },
+            {
+              "code": ".leftThumbstick",
+              "type": "codeVoice"
+            },
+            {
+              "text": " with the ",
+              "type": "text"
+            },
+            {
+              "code": "dpads",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Get the left thumbstick element.",
+            "let leftThumbstick = input.dpads[.leftThumbstick]"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Get-the-current-input-state",
+          "level": 3,
+          "text": "Get the current input state",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Both the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCControllerLiveInput",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCRacingWheelInput",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects track the last received input state from the game controller. If you poll for input, but just need the current input values, get the elements from the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCControllerLiveInput",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCRacingWheelInput",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects and read their input values.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let input: GCControllerLiveInput",
+            "",
+            "// Read the current A button element pressed state.",
+            "let aButtonPressed = input.buttons[.a].pressedInput.isPressed"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Reading a single input value is an atomic operation. However, the current input state can change between reading distinct input values. To avoid these inconsistencies, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCDevicePhysicalInput",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCDevicePhysicalInput/capture()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to obtain a snapshot of the input state at the current moment. Then read the input values from the snapshot. Snapshots carry very little performance overhead as long as your game doesn’t hold onto the snapshot for long periods of time.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let input: GCControllerLiveInput",
+            "let snapshot: GCControllerInputState",
+            "",
+            "// Capture the current controller input state.",
+            "snapshot = input.capture()",
+            "",
+            "// Read the current A and B button pressed states from the snapshot.",
+            "let aButtonPressed = snapshot.buttons[.a].pressedInput.isPressed",
+            "let bButtonPressed = snapshot.buttons[.b].pressedInput.isPressed"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Poll-for-input-changes",
+          "level": 3,
+          "text": "Poll for input changes",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Sometimes an input device generates input more frequently than your game can process it. For example, a racing wheel with a high refresh rate generates hundreds of inputs per second. If you read the current input values every frame (at 60 frames per second), you miss input events. In this case, configure the Game Controller framework to maintain a queue of input states that you retrieve and process later.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "First, change the input queue depth to a value that’s appropriate for the frequency at which your game polls for input. The input queue depth specifies the maximum number of input states that the Game Controller framework buffers before it purges older input states from the queue. The default value of ",
+              "type": "text"
+            },
+            {
+              "code": "1",
+              "type": "codeVoice"
+            },
+            {
+              "text": " indicates no buffering.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Set the queue depth.",
+            "input.inputStateQueueDepth = 20"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In your game loop, handle all the inputs that occur after the last iteration of your game loop using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCDevicePhysicalInput/nextInputState()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. Call the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCDevicePhysicalInput/nextInputState()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method until the queue is empty.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Optionally, assign a callback to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCDevicePhysicalInput/inputStateAvailableHandler",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCControllerLiveInput",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCRacingWheelInput",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects. The Game Controller framework calls this block when a new input state becomes available, and not again until your game processes all input states in the queue.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Set the input state available handler.",
+            "input.inputStateAvailableHandler = { (input) in",
+            "    // Either handle the queued input states,",
+            "    // or wake up your game loop to handle the input",
+            "    // states later.",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each call to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCDevicePhysicalInput/nextInputState()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method returns a snapshot of the oldest input state in the queue. Use the snapshot to access individual elements and read their input values.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Set the input handler.",
+            "input.inputStateAvailableHandler = { (input) in",
+            "    while let nextInputState = input.nextInputState() {",
+            "        // Handle the input for specific elements.",
+            "        if let buttonA = nextInputState.buttons[.a] {",
+            "            let buttonAPressed = buttonA.pressedInput.isPressed;",
+            "            if (buttonAPressed) {",
+            "                // Handle when the user presses the button.",
+            "            }",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To determine whether an element’s input changed compared to the previous input state, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCDevicePhysicalInputStateDiff/change(for:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. To get a collection of all the elements with changed inputs compared to the previous input state, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCDevicePhysicalInputStateDiff/changedElements()-2zzwm",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Handle all the input since the last game loop iteration.",
+            "while let nextInputState = input.nextInputState() {",
+            "    // Get all the elements with changed inputs.",
+            "    if let changedElements = nextInputState.changedElements() {",
+            "        for changedElement in changedElements {",
+            "            // Handle the change to the element.",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Handle when the queue overflows. If the queue is empty, the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCDevicePhysicalInput/nextInputState()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method returns ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". If the queue overflows, the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCDevicePhysicalInputStateDiff/changedElements()-2zzwm",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method returns ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCDevicePhysicalInputStateDiff/change(for:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method returns ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCDevicePhysicalInputElementChange/unknownChange",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Receive-callbacks-for-input-changes",
+          "level": 3,
+          "text": "Receive callbacks for input changes",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To receive callbacks from specific elements when their inputs change, assign a callback to one or more of the element’s inputs. Then implement the handlers to take the appropriate action for your game.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, a button element has a pressed input representing its pressed state. Assign a block to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCPressedStateInput/pressedDidChangeHandler",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property of the button’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCButtonElement/pressedInput",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property to take an action when the user presses it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Register a callback for the press/release of the A button.",
+            "if let aButton = input.buttons[.a] {",
+            "    aButton.pressedInput.pressedDidChangeHandler = { (_, _, pressed) in",
+            "        if pressed {",
+            "            // Handle when the user presses the button.",
+            "        } else {",
+            "            // Handle when the user releases the button.",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To receive a callback when the inputs of any element change, assign a callback to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCDevicePhysicalInput/elementValueDidChangeHandler",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCControllerLiveInput",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCRacingWheelInput",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects. When input occurs, the Game Controller framework calls the block once for each element that changes. Your code reads the latest values from the element that Game Controller passes to the handler.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Register a callback for any element change.",
+            "input.elementValueDidChangeHandler = { (input, element) in",
+            "    if element === input.buttons[.a] {",
+            "        // Handle A button input.",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/GCSupportedGameControllers": {
+      "abstract": [
+        {
+          "text": "The types of game controller profiles that the app supports or requires.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/GCSupportedGameControllers",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GCSupportedGameControllers",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/GCSupportedGameControllers"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/GCSupportsControllerUserInteraction": {
+      "abstract": [
+        {
+          "text": "A Boolean value indicating whether the app supports a game controller.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/GCSupportsControllerUserInteraction",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GCSupportsControllerUserInteraction",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/GCSupportsControllerUserInteraction"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/GCSupportsMultipleMicroGamepads": {
+      "abstract": [
+        {
+          "text": "A Boolean value indicating whether the physical Apple TV Remote and the Apple TV Remote app operate as separate game controllers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/GCSupportsMultipleMicroGamepads",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GCSupportsMultipleMicroGamepads",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/GCSupportsMultipleMicroGamepads"
+    },
+    "doc://com.apple.documentation/documentation/Updates/GameController": {
+      "abstract": [
+        {
+          "text": "Learn about important changes to Game Controller.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Updates/GameController",
+      "kind": "article",
+      "role": "article",
+      "title": "Game Controller updates",
+      "type": "topic",
+      "url": "/documentation/Updates/GameController"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.gamecontroller/documentation/GameController": {
+      "abstract": [
+        {
+          "text": "Support hardware game controllers in your game.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.gamecontroller/documentation/GameController",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Game Controller",
+      "type": "topic",
+      "url": "/documentation/gamecontroller"
+    },
+    "doc://com.apple.gamecontroller/documentation/GameController/GCButtonElement/pressedInput": {
+      "abstract": [
+        {
+          "text": "The input object that provides the linear and press state of the element.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "pressedInput"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)GCLinearInput",
+          "text": "GCLinearInput"
+        },
+        {
+          "kind": "text",
+          "text": " & "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)GCPressedStateInput",
+          "text": "GCPressedStateInput"
+        }
+      ],
+      "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCButtonElement/pressedInput",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "pressedInput"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "pressedInput",
+      "type": "topic",
+      "url": "/documentation/gamecontroller/gcbuttonelement/pressedinput"
+    },
+    "doc://com.apple.gamecontroller/documentation/GameController/GCController": {
+      "abstract": [
+        {
+          "text": "A representation of a real game controller, a virtual controller, or a snapshot of a controller.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GCController"
+        }
+      ],
+      "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GCController"
+        }
+      ],
+      "role": "symbol",
+      "title": "GCController",
+      "type": "topic",
+      "url": "/documentation/gamecontroller/gccontroller"
+    },
+    "doc://com.apple.gamecontroller/documentation/GameController/GCController/input": {
+      "abstract": [
+        {
+          "text": "The input profile for the controller.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "input"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)GCControllerLiveInput",
+          "text": "GCControllerLiveInput"
+        }
+      ],
+      "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCController/input",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "input"
+        }
+      ],
+      "role": "symbol",
+      "title": "input",
+      "type": "topic",
+      "url": "/documentation/gamecontroller/gccontroller/input"
+    },
+    "doc://com.apple.gamecontroller/documentation/GameController/GCControllerLiveInput": {
+      "abstract": [
+        {
+          "text": "The input profile for a controller.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GCControllerLiveInput"
+        }
+      ],
+      "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCControllerLiveInput",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GCControllerLiveInput"
+        }
+      ],
+      "role": "symbol",
+      "title": "GCControllerLiveInput",
+      "type": "topic",
+      "url": "/documentation/gamecontroller/gccontrollerliveinput"
+    },
+    "doc://com.apple.gamecontroller/documentation/GameController/GCDevice/handlerQueue": {
+      "abstract": [
+        {
+          "text": "The dispatch queue that the framework uses to call element value change handlers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "handlerQueue"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@dispatch_queue_t",
+          "text": "dispatch_queue_t"
+        }
+      ],
+      "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCDevice/handlerQueue",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "handlerQueue"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "handlerQueue",
+      "type": "topic",
+      "url": "/documentation/gamecontroller/gcdevice/handlerqueue"
+    },
+    "doc://com.apple.gamecontroller/documentation/GameController/GCDevicePhysicalInput": {
+      "abstract": [
+        {
+          "text": "The common properties and methods for objects that represent the input profile of a device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GCDevicePhysicalInput"
+        }
+      ],
+      "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCDevicePhysicalInput",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GCDevicePhysicalInput"
+        }
+      ],
+      "role": "symbol",
+      "title": "GCDevicePhysicalInput",
+      "type": "topic",
+      "url": "/documentation/gamecontroller/gcdevicephysicalinput"
+    },
+    "doc://com.apple.gamecontroller/documentation/GameController/GCDevicePhysicalInput/capture()": {
+      "abstract": [
+        {
+          "text": "Returns a snapshot of the physical device inputs.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "capture"
+        },
+        {
+          "kind": "text",
+          "text": "() -> any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)GCDevicePhysicalInputState",
+          "text": "GCDevicePhysicalInputState"
+        }
+      ],
+      "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCDevicePhysicalInput/capture()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "capture"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "capture()",
+      "type": "topic",
+      "url": "/documentation/gamecontroller/gcdevicephysicalinput/capture()"
+    },
+    "doc://com.apple.gamecontroller/documentation/GameController/GCDevicePhysicalInput/elementValueDidChangeHandler": {
+      "abstract": [
+        {
+          "text": "A block that the profile calls when an element’s value changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "elementValueDidChangeHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)GCDevicePhysicalInput",
+          "text": "GCDevicePhysicalInput"
+        },
+        {
+          "kind": "text",
+          "text": ", any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)GCPhysicalInputElement",
+          "text": "GCPhysicalInputElement"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCDevicePhysicalInput/elementValueDidChangeHandler",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "elementValueDidChangeHandler"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "elementValueDidChangeHandler",
+      "type": "topic",
+      "url": "/documentation/gamecontroller/gcdevicephysicalinput/elementvaluedidchangehandler"
+    },
+    "doc://com.apple.gamecontroller/documentation/GameController/GCDevicePhysicalInput/inputStateAvailableHandler": {
+      "abstract": [
+        {
+          "text": "The block that the profile calls when Game Controller adds an input state to the queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "inputStateAvailableHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)GCDevicePhysicalInput",
+          "text": "GCDevicePhysicalInput"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCDevicePhysicalInput/inputStateAvailableHandler",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "inputStateAvailableHandler"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "inputStateAvailableHandler",
+      "type": "topic",
+      "url": "/documentation/gamecontroller/gcdevicephysicalinput/inputstateavailablehandler"
+    },
+    "doc://com.apple.gamecontroller/documentation/GameController/GCDevicePhysicalInput/nextInputState()": {
+      "abstract": [
+        {
+          "text": "Returns the next input state from the queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "nextInputState"
+        },
+        {
+          "kind": "text",
+          "text": "() -> (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)GCDevicePhysicalInputState",
+          "text": "GCDevicePhysicalInputState"
+        },
+        {
+          "kind": "text",
+          "text": " & "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)GCDevicePhysicalInputStateDiff",
+          "text": "GCDevicePhysicalInputStateDiff"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCDevicePhysicalInput/nextInputState()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "nextInputState"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "nextInputState()",
+      "type": "topic",
+      "url": "/documentation/gamecontroller/gcdevicephysicalinput/nextinputstate()"
+    },
+    "doc://com.apple.gamecontroller/documentation/GameController/GCDevicePhysicalInput/queue": {
+      "abstract": [
+        {
+          "text": "The dispatch queue that the system uses for callbacks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "queue"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@dispatch_queue_t",
+          "text": "dispatch_queue_t"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCDevicePhysicalInput/queue",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "queue"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "queue",
+      "type": "topic",
+      "url": "/documentation/gamecontroller/gcdevicephysicalinput/queue"
+    },
+    "doc://com.apple.gamecontroller/documentation/GameController/GCDevicePhysicalInputElementChange/unknownChange": {
+      "abstract": [
+        {
+          "text": "It’s unknown whether there’s a change to the input value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "unknownChange"
+        }
+      ],
+      "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCDevicePhysicalInputElementChange/unknownChange",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GCDevicePhysicalInputElementUnknownChange"
+        }
+      ],
+      "role": "symbol",
+      "title": "GCDevicePhysicalInputElementChange.unknownChange",
+      "type": "topic",
+      "url": "/documentation/gamecontroller/gcdevicephysicalinputelementchange/unknownchange"
+    },
+    "doc://com.apple.gamecontroller/documentation/GameController/GCDevicePhysicalInputState": {
+      "abstract": [
+        {
+          "text": "The common properties for physical devices with elements.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GCDevicePhysicalInputState"
+        }
+      ],
+      "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCDevicePhysicalInputState",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GCDevicePhysicalInputState"
+        }
+      ],
+      "role": "symbol",
+      "title": "GCDevicePhysicalInputState",
+      "type": "topic",
+      "url": "/documentation/gamecontroller/gcdevicephysicalinputstate"
+    },
+    "doc://com.apple.gamecontroller/documentation/GameController/GCDevicePhysicalInputStateDiff/change(for:)": {
+      "abstract": [
+        {
+          "text": "Returns whether the input value of an element changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "change"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)GCPhysicalInputElement",
+          "text": "GCPhysicalInputElement"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@GCDevicePhysicalInputElementChange",
+          "text": "GCDevicePhysicalInputElementChange"
+        }
+      ],
+      "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCDevicePhysicalInputStateDiff/change(for:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "changeForElement:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "change(for:)",
+      "type": "topic",
+      "url": "/documentation/gamecontroller/gcdevicephysicalinputstatediff/change(for:)"
+    },
+    "doc://com.apple.gamecontroller/documentation/GameController/GCDevicePhysicalInputStateDiff/changedElements()-2zzwm": {
+      "abstract": [
+        {
+          "text": "Returns the elements that changed since the previous input state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "changedElements"
+        },
+        {
+          "kind": "text",
+          "text": "() -> ("
+        },
+        {
+          "kind": "keyword",
+          "text": "some"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:ST",
+          "text": "Sequence"
+        },
+        {
+          "kind": "text",
+          "text": "<any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)GCPhysicalInputElement",
+          "text": "GCPhysicalInputElement"
+        },
+        {
+          "kind": "text",
+          "text": ">)?\n"
+        }
+      ],
+      "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCDevicePhysicalInputStateDiff/changedElements()-2zzwm",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "changedElements()",
+      "type": "topic",
+      "url": "/documentation/gamecontroller/gcdevicephysicalinputstatediff/changedelements()-2zzwm"
+    },
+    "doc://com.apple.gamecontroller/documentation/GameController/GCPressedStateInput/pressedDidChangeHandler": {
+      "abstract": [
+        {
+          "text": "The block that the profile calls when an element’s press state changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "pressedDidChangeHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)GCPhysicalInputElement",
+          "text": "GCPhysicalInputElement"
+        },
+        {
+          "kind": "text",
+          "text": ", any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)GCPressedStateInput",
+          "text": "GCPressedStateInput"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCPressedStateInput/pressedDidChangeHandler",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "pressedDidChangeHandler"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "pressedDidChangeHandler",
+      "type": "topic",
+      "url": "/documentation/gamecontroller/gcpressedstateinput/presseddidchangehandler"
+    },
+    "doc://com.apple.gamecontroller/documentation/GameController/GCRacingWheel": {
+      "abstract": [
+        {
+          "text": "An object that represents a physical racing wheel controller connected to a device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GCRacingWheel"
+        }
+      ],
+      "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCRacingWheel",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GCRacingWheel"
+        }
+      ],
+      "role": "symbol",
+      "title": "GCRacingWheel",
+      "type": "topic",
+      "url": "/documentation/gamecontroller/gcracingwheel"
+    },
+    "doc://com.apple.gamecontroller/documentation/GameController/GCRacingWheel/wheelInput": {
+      "abstract": [
+        {
+          "text": "The physical input profile for the racing wheel.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "wheelInput"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)GCRacingWheelInput",
+          "text": "GCRacingWheelInput"
+        }
+      ],
+      "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCRacingWheel/wheelInput",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "wheelInput"
+        }
+      ],
+      "role": "symbol",
+      "title": "wheelInput",
+      "type": "topic",
+      "url": "/documentation/gamecontroller/gcracingwheel/wheelinput"
+    },
+    "doc://com.apple.gamecontroller/documentation/GameController/GCRacingWheelInput": {
+      "abstract": [
+        {
+          "text": "A controller profile that supports a racing wheel.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GCRacingWheelInput"
+        }
+      ],
+      "identifier": "doc://com.apple.gamecontroller/documentation/GameController/GCRacingWheelInput",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GCRacingWheelInput"
+        }
+      ],
+      "role": "symbol",
+      "title": "GCRacingWheelInput",
+      "type": "topic",
+      "url": "/documentation/gamecontroller/gcracingwheelinput"
+    },
+    "doc://com.apple.gamecontroller/documentation/GameController/input": {
+      "abstract": [
+        {
+          "text": "Receive controller input in the way that best integrates with the flow of your game or game engine.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.gamecontroller/documentation/GameController/input",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Input",
+      "type": "topic",
+      "url": "/documentation/gamecontroller/input"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/Updates/GameController",
+        "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/GCSupportsControllerUserInteraction",
+        "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/GCSupportedGameControllers",
+        "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/GCSupportsMultipleMicroGamepads"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Essentials",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/GCSupportsControllerUserInteraction",
+                "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/GCSupportedGameControllers",
+                "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/GCSupportsMultipleMicroGamepads"
+              ],
+              "title": "Essentials"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCControllerLiveInput/title",
+          "value": "GCControllerLiveInput"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCControllerLiveInput/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GCControllerLiveInput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCControllerLiveInput/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GCControllerLiveInput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCDevicePhysicalInput~1inputStateAvailableHandler/title",
+          "value": "inputStateAvailableHandler"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCDevicePhysicalInput~1inputStateAvailableHandler/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "inputStateAvailableHandler"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCDevicePhysicalInput~1capture()/title",
+          "value": "capture"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCDevicePhysicalInput~1capture()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "capture"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCDevicePhysicalInput~1elementValueDidChangeHandler/title",
+          "value": "elementValueDidChangeHandler"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCDevicePhysicalInput~1elementValueDidChangeHandler/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "elementValueDidChangeHandler"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCDevicePhysicalInputElementChange~1unknownChange/title",
+          "value": "GCDevicePhysicalInputElementUnknownChange"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCDevicePhysicalInputElementChange~1unknownChange/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GCDevicePhysicalInputElementUnknownChange"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCController/title",
+          "value": "GCController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GCController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GCController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCDevicePhysicalInputState/title",
+          "value": "GCDevicePhysicalInputState"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCDevicePhysicalInputState/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GCDevicePhysicalInputState"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCDevicePhysicalInputState/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GCDevicePhysicalInputState"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCDevice~1handlerQueue/title",
+          "value": "handlerQueue"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCDevice~1handlerQueue/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "handlerQueue"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCButtonElement~1pressedInput/title",
+          "value": "pressedInput"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCButtonElement~1pressedInput/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "pressedInput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCController~1input/title",
+          "value": "input"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCController~1input/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "input"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCDevicePhysicalInput~1nextInputState()/title",
+          "value": "nextInputState"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCDevicePhysicalInput~1nextInputState()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "nextInputState"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCDevicePhysicalInputStateDiff~1change(for:)/title",
+          "value": "changeForElement:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCDevicePhysicalInputStateDiff~1change(for:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "changeForElement:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCDevicePhysicalInput/title",
+          "value": "GCDevicePhysicalInput"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCDevicePhysicalInput/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GCDevicePhysicalInput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCDevicePhysicalInput/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GCDevicePhysicalInput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCRacingWheel~1wheelInput/title",
+          "value": "wheelInput"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCRacingWheel~1wheelInput/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "wheelInput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCRacingWheelInput/title",
+          "value": "GCRacingWheelInput"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCRacingWheelInput/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GCRacingWheelInput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCRacingWheelInput/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GCRacingWheelInput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCRacingWheel/title",
+          "value": "GCRacingWheel"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCRacingWheel/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GCRacingWheel"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCRacingWheel/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GCRacingWheel"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCPressedStateInput~1pressedDidChangeHandler/title",
+          "value": "pressedDidChangeHandler"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCPressedStateInput~1pressedDidChangeHandler/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "pressedDidChangeHandler"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCDevicePhysicalInput~1queue/title",
+          "value": "queue"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamecontroller~1documentation~1GameController~1GCDevicePhysicalInput~1queue/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "queue"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/gamecontroller/handling-input-events"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/gamecontroller/handling-input-events"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

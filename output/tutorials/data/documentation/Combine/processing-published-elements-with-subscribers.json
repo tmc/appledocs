@@ -1,0 +1,2539 @@
+{
+  "abstract": [
+    {
+      "text": "Apply back pressure to precisely control when publishers produce elements.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Combine/documentation/Combine"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Combine/documentation/Combine/processing-published-elements-with-subscribers"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Combine"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Processing Published Elements with Subscribers"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In Combine, a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Combine/documentation/Combine/Publisher",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " produces elements, and a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Combine/documentation/Combine/Subscriber",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "acts on the elements it receives. However, a publisher can’t send elements until",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the subscriber attaches and asks for them. The subscriber also controls the rate",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "at which the publisher delivers elements, by using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Combine/documentation/Combine/Subscribers/Demand",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "type to indicate how many elements it can receive. A subscriber can indicate demand",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in either of two ways:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "By calling ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.Combine/documentation/Combine/Subscription/request(_:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " on the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.Combine/documentation/Combine/Subscription",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "instance that the publisher provided when the subscriber first subscribed.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "By returning a new demand when the publisher calls the subscriber’s ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.Combine/documentation/Combine/Subscriber/receive(_:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "method to deliver an element.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Demand is additive: If a subscriber has demanded two elements, and then requests",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "Subscribers.Demand(.max(3))",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", the publisher’s unsatisfied demand is now five elements.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "If the publisher then sends an element, the unsatisfied demand decreases to four.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Publishing elements is the only way to reduce unsatisfied demand; subscribers can’t",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "request negative demand.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Many apps just use the operators ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Combine/documentation/Combine/Publisher/sink(receiveValue:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Combine/documentation/Combine/Publisher/assign(to:on:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to create the convenience",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "subscriber types ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Combine/documentation/Combine/Subscribers/Sink",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Combine/documentation/Combine/Subscribers/Assign",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ",",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "respectively. These two subscribers issue a demand for ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Combine/documentation/Combine/Subscribers/Demand/unlimited",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "when they first attach to the publisher. Once a publisher has unlimited demand, there",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "can be no further negotiation of demand between subscriber and publisher.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Consume-Elements-as-the-Publisher-Produces-Them",
+          "level": 3,
+          "text": "Consume Elements as the Publisher Produces Them",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When a publisher has high or unlimited demand, it could send elements faster than",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a subscriber can process them. This scenario could lead to elements being dropped,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "or rapidly increasing memory pressure as elements fill a buffer while they await",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "processing.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This scenario can occur if you use the convenience subscribers, because they demand",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "an unlimited number of elements. Ensure that the closure you provide to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Combine/documentation/Combine/Publisher/sink(receiveValue:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and the side-effects of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Combine/documentation/Combine/Publisher/assign(to:on:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " adhere",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to the following traits:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Don’t block the publisher.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Don’t consume excessive memory by buffering elements.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Don’t get overwhelmed and fail to process elements.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Fortunately, many commonly used publishers, such as publishers associated with user-interface",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "elements, publish at a manageable rate. Other common publishers only produce a single",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "element, like the URL Loading System’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession/datataskpublisher",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "It’s perfectly safe to use sink and assign subscribers with these publishers.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Apply-Back-Pressure-with-a-Custom-Subscriber",
+          "level": 3,
+          "text": "Apply Back Pressure with a Custom Subscriber",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To control the rate at which the publisher sends elements to your subscriber, create",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a custom implementation of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Combine/documentation/Combine/Subscriber",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol. Use",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "your implementation to specify demands that you know your subscriber can keep up",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "with. As the subscriber receives elements, it can request more by returning a new",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "demand value to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Combine/documentation/Combine/Subscriber/receive(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", or by calling",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Combine/documentation/Combine/Subscription/request(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " on the subscription. With either,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "your subscriber can then fine-tune the number of elements the publisher can send",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "it at any given time.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This concept of controlling flow by signaling a subscriber’s readiness to receive",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "elements is called ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "back pressure",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each publisher keeps track of its current unsatisfied demand, meaning how many more",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "elements a subscriber has requested. Even automated sources like Foundation’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/timer/timerpublisher",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "only produce elements when they have pending demand. The following example code illustrates",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "this behavior.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Publisher: Uses a timer to emit the date once per second.",
+            "let timerPub = Timer.publish(every: 1, on: .main, in: .default)",
+            "    .autoconnect()",
+            "",
+            "// Subscriber: Waits 5 seconds after subscription, then requests a",
+            "// maximum of 3 values.",
+            "class MySubscriber: Subscriber {",
+            "    typealias Input = Date",
+            "    typealias Failure = Never",
+            "    var subscription: Subscription?",
+            "    ",
+            "    func receive(subscription: Subscription) {",
+            "        print(\"published                             received\")",
+            "        self.subscription = subscription",
+            "        DispatchQueue.main.asyncAfter(deadline: .now() + 5) {",
+            "            subscription.request(.max(3))",
+            "        }",
+            "    }",
+            "    ",
+            "    func receive(_ input: Date) -> Subscribers.Demand {",
+            "        print(\"\\(input)             \\(Date())\")",
+            "        return Subscribers.Demand.none",
+            "    }",
+            "    ",
+            "    func receive(completion: Subscribers.Completion<Never>) {",
+            "        print (\"--done--\")",
+            "    }",
+            "}",
+            "",
+            "// Subscribe to timerPub.",
+            "let mySub = MySubscriber()",
+            "print (\"Subscribing at \\(Date())\")",
+            "timerPub.subscribe(mySub)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The subscriber’s ",
+              "type": "text"
+            },
+            {
+              "code": "receive(subscription:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " implementation uses a five-second delay",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "before it requests any elements from the publisher. During this period, the publisher",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "exists and has a valid subscriber, but has zero demand, so it doesn’t produce elements.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "It only starts publishing elements after the delay expires and the subscriber gives",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "it a nonzero demand, as seen in the following output:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "Subscribing at 2019-12-09 18:57:06 +0000",
+            "published                             received",
+            "2019-12-09 18:57:11 +0000             2019-12-09 18:57:11 +0000",
+            "2019-12-09 18:57:12 +0000             2019-12-09 18:57:12 +0000",
+            "2019-12-09 18:57:13 +0000             2019-12-09 18:57:13 +0000"
+          ],
+          "syntax": "text",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This example only requests three elements, issuing the demand after the five-second",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "delay expires. As a result, the publisher sends no further elements after the third,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "but also doesn’t complete publishing by sending a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Combine/documentation/Combine/Subscribers/Completion/finished",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "value either, because the publisher is just waiting for more demand. To continue",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to receive elements, the subscriber could store the subscription and periodically",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "request more elements. It could also indicate new demand as the return value from",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Combine/documentation/Combine/Subscriber/receive(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " implementation.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Manage-Unlimited-Demand-by-Using-Back-Pressure-Operators",
+          "level": 3,
+          "text": "Manage Unlimited Demand by Using Back-Pressure Operators",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Even without writing a custom ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Combine/documentation/Combine/Subscriber",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", you can still",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "apply back pressure by using one of Combine’s buffering or timing operators:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.Combine/documentation/Combine/Publisher/buffer(size:prefetch:whenFull:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " holds onto",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "a fixed number of items from an upstream publisher. When full, the buffer either",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "drops elements or throws an error.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.Combine/documentation/Combine/Publisher/debounce(for:scheduler:options:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " publishes",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "only when the upstream publisher stops publishing for a specified interval of time.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.Combine/documentation/Combine/Publisher/throttle(for:scheduler:latest:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " produces elements",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "at a given maximum rate. If it receives multiple elements during an interval, it",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "sends only the newest or oldest.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.Combine/documentation/Combine/Publisher/collect(_:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.Combine/documentation/Combine/Publisher/collect(_:options:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "bundle elements until they exceed a given count or time interval, sending you an",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "array of elements. This option is good if your subscriber can process multiple elements",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "at the same time.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because these operators control the number of elements your subscriber receives,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "you can attach a subscriber that requests unlimited elements, such as ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Combine/documentation/Combine/Publisher/sink(receiveValue:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Combine/documentation/Combine/Publisher/assign(to:on:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Combine-PageImage-card.png": {
+      "alt": "The Swift language logo, overlaid by a graph of interconnected lines and points.",
+      "identifier": "Combine-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ba2aa5f2e9d9ae5b196c642a6cf121dd/Combine-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/8df9b2bdcd94118827dd29f28f3915d7/Combine-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Combine/documentation/Combine": {
+      "abstract": [
+        {
+          "text": "Customize handling of asynchronous events by combining event-processing operators.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Combine/documentation/Combine",
+      "images": [
+        {
+          "identifier": "Combine-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Combine",
+      "type": "topic",
+      "url": "/documentation/combine"
+    },
+    "doc://com.apple.Combine/documentation/Combine/AnySubscriber": {
+      "abstract": [
+        {
+          "text": "A type-erasing subscriber.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AnySubscriber"
+        }
+      ],
+      "identifier": "doc://com.apple.Combine/documentation/Combine/AnySubscriber",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AnySubscriber"
+        }
+      ],
+      "role": "symbol",
+      "title": "AnySubscriber",
+      "type": "topic",
+      "url": "/documentation/combine/anysubscriber"
+    },
+    "doc://com.apple.Combine/documentation/Combine/Publisher": {
+      "abstract": [
+        {
+          "text": "Declares that a type can transmit a sequence of values over time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Publisher"
+        }
+      ],
+      "identifier": "doc://com.apple.Combine/documentation/Combine/Publisher",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Publisher"
+        }
+      ],
+      "role": "symbol",
+      "title": "Publisher",
+      "type": "topic",
+      "url": "/documentation/combine/publisher"
+    },
+    "doc://com.apple.Combine/documentation/Combine/Publisher/assign(to:on:)": {
+      "abstract": [
+        {
+          "text": "Assigns each element from a publisher to a property on an object.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Failure",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "Never",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "assign"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Root"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s24ReferenceWritableKeyPathC",
+          "text": "ReferenceWritableKeyPath"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Root"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Combine9PublisherP6OutputQa",
+          "text": "Output"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "on"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Root"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Combine14AnyCancellableC",
+          "text": "AnyCancellable"
+        }
+      ],
+      "identifier": "doc://com.apple.Combine/documentation/Combine/Publisher/assign(to:on:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "assign(to:on:)",
+      "type": "topic",
+      "url": "/documentation/combine/publisher/assign(to:on:)"
+    },
+    "doc://com.apple.Combine/documentation/Combine/Publisher/buffer(size:prefetch:whenFull:)": {
+      "abstract": [
+        {
+          "text": "Buffers elements received from an upstream publisher.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "buffer"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "size"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "prefetch"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Combine10PublishersO",
+          "text": "Publishers"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Combine10PublishersO16PrefetchStrategyO",
+          "text": "PrefetchStrategy"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "whenFull"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Combine10PublishersO",
+          "text": "Publishers"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Combine10PublishersO17BufferingStrategyO",
+          "text": "BufferingStrategy"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Combine9PublisherP7FailureQa",
+          "text": "Failure"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Combine10PublishersO",
+          "text": "Publishers"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Combine10PublishersO6BufferV",
+          "text": "Buffer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.Combine/documentation/Combine/Publisher/buffer(size:prefetch:whenFull:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "buffer(size:prefetch:whenFull:)",
+      "type": "topic",
+      "url": "/documentation/combine/publisher/buffer(size:prefetch:whenfull:)"
+    },
+    "doc://com.apple.Combine/documentation/Combine/Publisher/collect(_:)": {
+      "abstract": [
+        {
+          "text": "Collects up to the specified number of elements, and then emits a single array of the collection.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "collect"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Combine10PublishersO",
+          "text": "Publishers"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Combine10PublishersO14CollectByCountV",
+          "text": "CollectByCount"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.Combine/documentation/Combine/Publisher/collect(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "collect(_:)",
+      "type": "topic",
+      "url": "/documentation/combine/publisher/collect(_:)"
+    },
+    "doc://com.apple.Combine/documentation/Combine/Publisher/collect(_:options:)": {
+      "abstract": [
+        {
+          "text": "Collects elements by a given time-grouping strategy, and emits a single array of the collection.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "collect"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Combine10PublishersO",
+          "text": "Publishers"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Combine10PublishersO20TimeGroupingStrategyO",
+          "text": "TimeGroupingStrategy"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Combine9SchedulerP0B7OptionsQa",
+          "text": "SchedulerOptions"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Combine10PublishersO",
+          "text": "Publishers"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Combine10PublishersO13CollectByTimeV",
+          "text": "CollectByTime"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.Combine/documentation/Combine/Publisher/collect(_:options:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "collect(_:options:)",
+      "type": "topic",
+      "url": "/documentation/combine/publisher/collect(_:options:)"
+    },
+    "doc://com.apple.Combine/documentation/Combine/Publisher/debounce(for:scheduler:options:)": {
+      "abstract": [
+        {
+          "text": "Publishes elements only after a specified time interval elapses between events.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "debounce"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Combine9SchedulerP0B8TimeTypeQa",
+          "text": "SchedulerTimeType"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sx6StrideQa",
+          "text": "Stride"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "scheduler"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Combine9SchedulerP0B7OptionsQa",
+          "text": "SchedulerOptions"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Combine10PublishersO",
+          "text": "Publishers"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Combine10PublishersO8DebounceV",
+          "text": "Debounce"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.Combine/documentation/Combine/Publisher/debounce(for:scheduler:options:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "debounce(for:scheduler:options:)",
+      "type": "topic",
+      "url": "/documentation/combine/publisher/debounce(for:scheduler:options:)"
+    },
+    "doc://com.apple.Combine/documentation/Combine/Publisher/sink(receiveValue:)": {
+      "abstract": [
+        {
+          "text": "Attaches a subscriber with closure-based behavior to a publisher that never fails.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Failure",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "Never",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sink"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "receiveValue"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Combine9PublisherP6OutputQa",
+          "text": "Output"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Combine14AnyCancellableC",
+          "text": "AnyCancellable"
+        }
+      ],
+      "identifier": "doc://com.apple.Combine/documentation/Combine/Publisher/sink(receiveValue:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sink(receiveValue:)",
+      "type": "topic",
+      "url": "/documentation/combine/publisher/sink(receivevalue:)"
+    },
+    "doc://com.apple.Combine/documentation/Combine/Publisher/throttle(for:scheduler:latest:)": {
+      "abstract": [
+        {
+          "text": "Publishes either the most-recent or first element published by the upstream publisher in the specified time interval.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "throttle"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Combine9SchedulerP0B8TimeTypeQa",
+          "text": "SchedulerTimeType"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sx6StrideQa",
+          "text": "Stride"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "scheduler"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "latest"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Combine10PublishersO",
+          "text": "Publishers"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Combine10PublishersO8ThrottleV",
+          "text": "Throttle"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.Combine/documentation/Combine/Publisher/throttle(for:scheduler:latest:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "throttle(for:scheduler:latest:)",
+      "type": "topic",
+      "url": "/documentation/combine/publisher/throttle(for:scheduler:latest:)"
+    },
+    "doc://com.apple.Combine/documentation/Combine/Subscriber": {
+      "abstract": [
+        {
+          "text": "A protocol that declares a type that can receive input from a publisher.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Subscriber"
+        }
+      ],
+      "identifier": "doc://com.apple.Combine/documentation/Combine/Subscriber",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Subscriber"
+        }
+      ],
+      "role": "symbol",
+      "title": "Subscriber",
+      "type": "topic",
+      "url": "/documentation/combine/subscriber"
+    },
+    "doc://com.apple.Combine/documentation/Combine/Subscriber/receive(_:)": {
+      "abstract": [
+        {
+          "text": "Tells the subscriber that the publisher has produced an element.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "receive"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Combine10SubscriberP5InputQa",
+          "text": "Input"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Combine11SubscribersO",
+          "text": "Subscribers"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Combine11SubscribersO6DemandV",
+          "text": "Demand"
+        }
+      ],
+      "identifier": "doc://com.apple.Combine/documentation/Combine/Subscriber/receive(_:)",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "receive(_:)",
+      "type": "topic",
+      "url": "/documentation/combine/subscriber/receive(_:)"
+    },
+    "doc://com.apple.Combine/documentation/Combine/Subscribers": {
+      "abstract": [
+        {
+          "text": "A namespace for types that serve as subscribers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Subscribers"
+        }
+      ],
+      "identifier": "doc://com.apple.Combine/documentation/Combine/Subscribers",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Subscribers"
+        }
+      ],
+      "role": "symbol",
+      "title": "Subscribers",
+      "type": "topic",
+      "url": "/documentation/combine/subscribers"
+    },
+    "doc://com.apple.Combine/documentation/Combine/Subscribers/Assign": {
+      "abstract": [
+        {
+          "text": "A simple subscriber that assigns received elements to a property indicated by a key path.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Assign"
+        }
+      ],
+      "identifier": "doc://com.apple.Combine/documentation/Combine/Subscribers/Assign",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Assign"
+        }
+      ],
+      "role": "symbol",
+      "title": "Subscribers.Assign",
+      "type": "topic",
+      "url": "/documentation/combine/subscribers/assign"
+    },
+    "doc://com.apple.Combine/documentation/Combine/Subscribers/Completion/finished": {
+      "abstract": [
+        {
+          "text": "The publisher finished normally.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "finished"
+        }
+      ],
+      "identifier": "doc://com.apple.Combine/documentation/Combine/Subscribers/Completion/finished",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Subscribers.Completion.finished",
+      "type": "topic",
+      "url": "/documentation/combine/subscribers/completion/finished"
+    },
+    "doc://com.apple.Combine/documentation/Combine/Subscribers/Demand": {
+      "abstract": [
+        {
+          "text": "A requested number of items, sent to a publisher from a subscriber through the subscription.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Demand"
+        }
+      ],
+      "identifier": "doc://com.apple.Combine/documentation/Combine/Subscribers/Demand",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Demand"
+        }
+      ],
+      "role": "symbol",
+      "title": "Subscribers.Demand",
+      "type": "topic",
+      "url": "/documentation/combine/subscribers/demand"
+    },
+    "doc://com.apple.Combine/documentation/Combine/Subscribers/Demand/unlimited": {
+      "abstract": [
+        {
+          "text": "A request for as many values as the publisher can produce.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "unlimited"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Combine11SubscribersO",
+          "text": "Subscribers"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Combine11SubscribersO6DemandV",
+          "text": "Demand"
+        }
+      ],
+      "identifier": "doc://com.apple.Combine/documentation/Combine/Subscribers/Demand/unlimited",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "unlimited",
+      "type": "topic",
+      "url": "/documentation/combine/subscribers/demand/unlimited"
+    },
+    "doc://com.apple.Combine/documentation/Combine/Subscribers/Sink": {
+      "abstract": [
+        {
+          "text": "A simple subscriber that requests an unlimited number of values upon subscription.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sink"
+        }
+      ],
+      "identifier": "doc://com.apple.Combine/documentation/Combine/Subscribers/Sink",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Sink"
+        }
+      ],
+      "role": "symbol",
+      "title": "Subscribers.Sink",
+      "type": "topic",
+      "url": "/documentation/combine/subscribers/sink"
+    },
+    "doc://com.apple.Combine/documentation/Combine/Subscription": {
+      "abstract": [
+        {
+          "text": "A protocol representing the connection of a subscriber to a publisher.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Subscription"
+        }
+      ],
+      "identifier": "doc://com.apple.Combine/documentation/Combine/Subscription",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Subscription"
+        }
+      ],
+      "role": "symbol",
+      "title": "Subscription",
+      "type": "topic",
+      "url": "/documentation/combine/subscription"
+    },
+    "doc://com.apple.Combine/documentation/Combine/Subscription/request(_:)": {
+      "abstract": [
+        {
+          "text": "Tells a publisher that it may send more values to the subscriber.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "request"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Combine11SubscribersO",
+          "text": "Subscribers"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Combine11SubscribersO6DemandV",
+          "text": "Demand"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.Combine/documentation/Combine/Subscription/request(_:)",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "request(_:)",
+      "type": "topic",
+      "url": "/documentation/combine/subscription/request(_:)"
+    },
+    "doc://com.apple.Combine/documentation/Combine/Subscriptions": {
+      "abstract": [
+        {
+          "text": "A namespace for symbols related to subscriptions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Subscriptions"
+        }
+      ],
+      "identifier": "doc://com.apple.Combine/documentation/Combine/Subscriptions",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Subscriptions"
+        }
+      ],
+      "role": "symbol",
+      "title": "Subscriptions",
+      "type": "topic",
+      "url": "/documentation/combine/subscriptions"
+    },
+    "doc://com.apple.documentation/documentation/foundation/timer/timerpublisher": {
+      "abstract": [
+        {
+          "text": "A publisher that repeatedly emits the current date on a given interval.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "Timer.TimerPublisher"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/timer/timerpublisher",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Timer.TimerPublisher",
+      "type": "topic",
+      "url": "/documentation/foundation/timer/timerpublisher"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsession/datataskpublisher": {
+      "abstract": [
+        {
+          "text": "A publisher that delivers the results of performing URL session data tasks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "URLSession.DataTaskPublisher"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession/datataskpublisher",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLSession.DataTaskPublisher",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsession/datataskpublisher"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Subscribers",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Combine/documentation/Combine/Subscriber",
+        "doc://com.apple.Combine/documentation/Combine/Subscribers",
+        "doc://com.apple.Combine/documentation/Combine/AnySubscriber",
+        "doc://com.apple.Combine/documentation/Combine/Subscription",
+        "doc://com.apple.Combine/documentation/Combine/Subscriptions"
+      ],
+      "title": "Subscribers"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/combine/processing-published-elements-with-subscribers"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

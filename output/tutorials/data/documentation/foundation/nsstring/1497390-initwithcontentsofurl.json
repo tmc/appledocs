@@ -1,0 +1,1417 @@
+{
+  "abstract": [
+    {
+      "text": "Initializes the receiver, a newly allocated ",
+      "type": "text"
+    },
+    {
+      "code": "NSString",
+      "type": "codeVoice"
+    },
+    {
+      "text": " object, by reading data from the location named by a given URL.",
+      "type": "text"
+    }
+  ],
+  "deprecationSummary": [
+    {
+      "inlineContent": [
+        {
+          "text": "Use ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/nsstring/1414463-initwithcontentsofurl",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " or ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/nsstring/1414472-initwithcontentsofurl",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " instead.",
+          "type": "text"
+        }
+      ],
+      "type": "paragraph"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/strings_and_text",
+        "doc://com.apple.documentation/documentation/foundation/nsstring"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/foundation/nsstring/1497390-initwithcontentsofurl"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1497390,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSString(im)initWithContentsOfURL:",
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "parent": {
+      "title": "NSString"
+    },
+    "platforms": [
+      {
+        "current": "18.4",
+        "deprecated": true,
+        "deprecatedAt": "2.0",
+        "introducedAt": "2.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "deprecated": true,
+        "deprecatedAt": "2.0",
+        "introducedAt": "2.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "deprecated": true,
+        "deprecatedAt": "13.1",
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "deprecated": true,
+        "deprecatedAt": "10.4",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "deprecated": true,
+        "deprecatedAt": "9.0",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "deprecated": true,
+        "deprecatedAt": "1.0",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "deprecated": true,
+        "deprecatedAt": "2.0",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Method",
+    "symbolKind": "instm",
+    "title": "initWithContentsOfURL:"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "keyword",
+              "text": "id"
+            },
+            {
+              "kind": "text",
+              "text": ")"
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithContentsOfURL:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsurl",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSURL",
+              "text": "NSURL"
+            },
+            {
+              "kind": "text",
+              "text": " *"
+            },
+            {
+              "kind": "text",
+              "text": ")"
+            },
+            {
+              "kind": "internalParam",
+              "text": "url"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Initializes the receiver, a newly allocated ",
+              "type": "text"
+            },
+            {
+              "code": "NSString",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object, by reading data from the location named by ",
+              "type": "text"
+            },
+            {
+              "code": "aURL",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". If the contents begin with a byte-order mark (",
+              "type": "text"
+            },
+            {
+              "code": "U+FEFF",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "code": "U+FFFE",
+              "type": "codeVoice"
+            },
+            {
+              "text": "), interprets the contents as UTF-16 code units; otherwise interprets the contents as data in the default C string encoding. Returns an initialized object, which might be different from the original receiver, or ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": " if the location can’t be opened.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsmaximumstringlength": {
+      "abstract": [
+        {
+          "text": "Maximum number of characters in an ",
+          "type": "text"
+        },
+        {
+          "code": "NSString",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsmaximumstringlength",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSMaximumStringLength",
+      "type": "topic",
+      "url": "/documentation/foundation/nsmaximumstringlength"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsstring": {
+      "abstract": [
+        {
+          "text": "A static, plain-text Unicode string object.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsstring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSString",
+      "type": "topic",
+      "url": "/documentation/foundation/nsstring"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsstring/1407783-stringbyreplacingpercentescapesu": {
+      "abstract": [
+        {
+          "text": "Returns a new string made by replacing in the receiver all percent escapes with the matching characters as determined by a given encoding.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "stringByReplacingPercentEscapesUsingEncoding:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsstring/1407783-stringbyreplacingpercentescapesu",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "stringByReplacingPercentEscapesUsingEncoding:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsstring/1407783-stringbyreplacingpercentescapesu"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsstring/1414463-initwithcontentsofurl": {
+      "abstract": [
+        {
+          "text": "Returns an ",
+          "type": "text"
+        },
+        {
+          "code": "NSString",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object initialized by reading data from a given URL interpreted using a given encoding. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "initWithContentsOfURL:encoding:error:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsstring/1414463-initwithcontentsofurl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "initWithContentsOfURL:encoding:error:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsstring/1414463-initwithcontentsofurl"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsstring/1414472-initwithcontentsofurl": {
+      "abstract": [
+        {
+          "text": "Returns an ",
+          "type": "text"
+        },
+        {
+          "code": "NSString",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object initialized by reading data from a given URL and returns by reference the encoding used to interpret the data. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "initWithContentsOfURL:usedEncoding:error:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsstring/1414472-initwithcontentsofurl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "initWithContentsOfURL:usedEncoding:error:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsstring/1414472-initwithcontentsofurl"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsstring/1415058-stringbyaddingpercentescapesusin": {
+      "abstract": [
+        {
+          "text": "Returns a representation of the receiver using a given encoding to determine the percent escapes necessary to convert the receiver into a legal URL string.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "stringByAddingPercentEscapesUsingEncoding:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsstring/1415058-stringbyaddingpercentescapesusin",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "stringByAddingPercentEscapesUsingEncoding:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsstring/1415058-stringbyaddingpercentescapesusin"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsstring/1415132-getcharacters": {
+      "abstract": [
+        {
+          "text": "Copies all characters from the receiver into a given buffer.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getCharacters:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsstring/1415132-getcharacters",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getCharacters:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsstring/1415132-getcharacters"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsstring/1497249-getcstring": {
+      "abstract": [
+        {
+          "text": "Invokes ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/nsstring/1497298-getcstring",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " with ",
+          "type": "text"
+        },
+        {
+          "code": "NSMaximumStringLength",
+          "type": "codeVoice"
+        },
+        {
+          "text": " as the maximum length, the receiver’s entire extent as the range, and ",
+          "type": "text"
+        },
+        {
+          "code": "NULL",
+          "type": "codeVoice"
+        },
+        {
+          "text": " for the remaining range. ",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getCString:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsstring/1497249-getcstring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getCString:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsstring/1497249-getcstring"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsstring/1497263-lossycstring": {
+      "abstract": [
+        {
+          "text": "Returns a representation of the receiver as a C string in the default C-string encoding, possibly losing information in converting to that encoding.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "lossyCString"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsstring/1497263-lossycstring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "lossyCString",
+      "type": "topic",
+      "url": "/documentation/foundation/nsstring/1497263-lossycstring"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsstring/1497269-stringwithcontentsoffile": {
+      "abstract": [
+        {
+          "text": "Returns a string created by reading data from the file named by a given path.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "stringWithContentsOfFile:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsstring/1497269-stringwithcontentsoffile",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "stringWithContentsOfFile:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsstring/1497269-stringwithcontentsoffile"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsstring/1497281-initwithcstringnocopy": {
+      "abstract": [
+        {
+          "text": "Initializes the receiver, a newly allocated ",
+          "type": "text"
+        },
+        {
+          "code": "NSString",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object, by converting the data in a given C-string from the default C-string encoding into the Unicode character encoding.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "initWithCStringNoCopy:length:freeWhenDone:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsstring/1497281-initwithcstringnocopy",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "initWithCStringNoCopy:length:freeWhenDone:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsstring/1497281-initwithcstringnocopy"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsstring/1497289-stringwithcstring": {
+      "abstract": [
+        {
+          "text": "Creates a new string using a given C-string.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "stringWithCString:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsstring/1497289-stringwithcstring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "stringWithCString:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsstring/1497289-stringwithcstring"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsstring/1497290-stringwithcstring": {
+      "abstract": [
+        {
+          "text": "Returns a string containing the characters in a given C-string. ",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "stringWithCString:length:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsstring/1497290-stringwithcstring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "stringWithCString:length:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsstring/1497290-stringwithcstring"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsstring/1497296-getcstring": {
+      "abstract": [
+        {
+          "text": "Invokes ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/nsstring/1497298-getcstring",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " with ",
+          "type": "text"
+        },
+        {
+          "code": "maxLength",
+          "type": "codeVoice"
+        },
+        {
+          "text": " as the maximum length in char-sized units, the receiver’s entire extent as the range, and ",
+          "type": "text"
+        },
+        {
+          "code": "NULL",
+          "type": "codeVoice"
+        },
+        {
+          "text": " for the remaining range. ",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getCString:maxLength:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsstring/1497296-getcstring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getCString:maxLength:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsstring/1497296-getcstring"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsstring/1497298-getcstring": {
+      "abstract": [
+        {
+          "text": "Converts the receiver’s content to the default C-string encoding and stores them in a given buffer. ",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getCString:maxLength:range:remainingRange:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsstring/1497298-getcstring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getCString:maxLength:range:remainingRange:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsstring/1497298-getcstring"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsstring/1497299-writetourl": {
+      "abstract": [
+        {
+          "text": "Writes the contents of the receiver to the location specified by a given URL.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "writeToURL:atomically:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsstring/1497299-writetourl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "writeToURL:atomically:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsstring/1497299-writetourl"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsstring/1497303-cstringlength": {
+      "abstract": [
+        {
+          "text": "Returns the length in char-sized units of the receiver’s C-string representation in the default C-string encoding.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "cStringLength"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsstring/1497303-cstringlength",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cStringLength",
+      "type": "topic",
+      "url": "/documentation/foundation/nsstring/1497303-cstringlength"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsstring/1497307-cstring": {
+      "abstract": [
+        {
+          "text": "Returns a representation of the receiver as a C string in the default C-string encoding.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "cString"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsstring/1497307-cstring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cString",
+      "type": "topic",
+      "url": "/documentation/foundation/nsstring/1497307-cstring"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsstring/1497362-writetofile": {
+      "abstract": [
+        {
+          "text": "Writes the contents of the receiver to the file specified by a given path.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "writeToFile:atomically:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsstring/1497362-writetofile",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "writeToFile:atomically:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsstring/1497362-writetofile"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsstring/1497368-stringwithcontentsofurl": {
+      "abstract": [
+        {
+          "text": "Returns a string created by reading data from the file named by a given URL. ",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "stringWithContentsOfURL:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsstring/1497368-stringwithcontentsofurl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "stringWithContentsOfURL:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsstring/1497368-stringwithcontentsofurl"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsstring/1497390-initwithcontentsofurl": {
+      "abstract": [
+        {
+          "text": "Initializes the receiver, a newly allocated ",
+          "type": "text"
+        },
+        {
+          "code": "NSString",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object, by reading data from the location named by a given URL.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "initWithContentsOfURL:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsstring/1497390-initwithcontentsofurl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "initWithContentsOfURL:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsstring/1497390-initwithcontentsofurl"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsstring/1497394-initwithcstring": {
+      "abstract": [
+        {
+          "text": "Initializes the receiver, a newly allocated ",
+          "type": "text"
+        },
+        {
+          "code": "NSString",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object, by converting the data in a given C-string from the default C-string encoding into the Unicode character encoding.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "initWithCString:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsstring/1497394-initwithcstring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "initWithCString:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsstring/1497394-initwithcstring"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsstring/1497398-initwithcontentsoffile": {
+      "abstract": [
+        {
+          "text": "Initializes the receiver, a newly allocated ",
+          "type": "text"
+        },
+        {
+          "code": "NSString",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object, by reading data from the file named by ",
+          "type": "text"
+        },
+        {
+          "code": "path",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "initWithContentsOfFile:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsstring/1497398-initwithcontentsoffile",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "initWithContentsOfFile:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsstring/1497398-initwithcontentsoffile"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsstring/1497403-initwithcstring": {
+      "abstract": [
+        {
+          "text": "Initializes the receiver, a newly allocated ",
+          "type": "text"
+        },
+        {
+          "code": "NSString",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object, by converting the data in a given C-string from the default C-string encoding into the Unicode character encoding.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "initWithCString:length:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsstring/1497403-initwithcstring",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "initWithCString:length:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsstring/1497403-initwithcstring"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsstring/1527536-drawwithrect": {
+      "abstract": [
+        {
+          "text": "Draws the receiver with the specified options and other display characteristics of the given attributes, within the specified rectangle in the current graphics context.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "drawWithRect:options:attributes:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsstring/1527536-drawwithrect",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "drawWithRect:options:attributes:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsstring/1527536-drawwithrect"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsstring/1535578-boundingrectwithsize": {
+      "abstract": [
+        {
+          "text": "Calculates and returns the bounding rect for the receiver drawn using the given options and display characteristics, within the specified rectangle in the current graphics context.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "boundingRectWithSize:options:attributes:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsstring/1535578-boundingrectwithsize",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "boundingRectWithSize:options:attributes:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsstring/1535578-boundingrectwithsize"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsstring/1619894-drawatpoint": {
+      "abstract": [
+        {
+          "text": "Draws the string in a single line with the specified font and attributes, adjusting the font attributes as needed to render as much of the text as possible.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "drawAtPoint:forWidth:withFont:minFontSize:actualFontSize:lineBreakMode:baselineAdjustment:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsstring/1619894-drawatpoint",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "drawAtPoint:forWidth:withFont:minFontSize:actualFontSize:lineBreakMode:baselineAdjustment:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsstring/1619894-drawatpoint"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsstring/1619896-drawatpoint": {
+      "abstract": [
+        {
+          "text": "Draws the string in a single line at the specified point in the current graphics context using the specified font and attributes.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "drawAtPoint:forWidth:withFont:lineBreakMode:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsstring/1619896-drawatpoint",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "drawAtPoint:forWidth:withFont:lineBreakMode:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsstring/1619896-drawatpoint"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsstring/1619898-drawatpoint": {
+      "abstract": [
+        {
+          "text": "Draws the string in a single line at the specified point in the current graphics context using the specified font.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "drawAtPoint:withFont:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsstring/1619898-drawatpoint",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "drawAtPoint:withFont:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsstring/1619898-drawatpoint"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsstring/1619903-sizewithfont": {
+      "abstract": [
+        {
+          "text": "Returns the size of the string if it were rendered with the specified constraints, including a variable font size, on a single line.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "sizeWithFont:minFontSize:actualFontSize:forWidth:lineBreakMode:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsstring/1619903-sizewithfont",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sizeWithFont:minFontSize:actualFontSize:forWidth:lineBreakMode:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsstring/1619903-sizewithfont"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsstring/1619908-drawinrect": {
+      "abstract": [
+        {
+          "text": "Draws the string in the current graphics context using the specified bounding rectangle, font, and attributes. ",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "drawInRect:withFont:lineBreakMode:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsstring/1619908-drawinrect",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "drawInRect:withFont:lineBreakMode:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsstring/1619908-drawinrect"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsstring/1619909-drawinrect": {
+      "abstract": [
+        {
+          "text": "Draws the string in the current graphics context using the specified bounding rectangle and font. ",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "drawInRect:withFont:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsstring/1619909-drawinrect",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "drawInRect:withFont:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsstring/1619909-drawinrect"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsstring/1619910-sizewithfont": {
+      "abstract": [
+        {
+          "text": "Returns the size of the string if it were rendered and constrained to the specified size.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "sizeWithFont:constrainedToSize:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsstring/1619910-sizewithfont",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sizeWithFont:constrainedToSize:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsstring/1619910-sizewithfont"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsstring/1619912-drawinrect": {
+      "abstract": [
+        {
+          "text": "Draws the string in the current graphics context using the specified bounding rectangle, font and attributes.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "drawInRect:withFont:lineBreakMode:alignment:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsstring/1619912-drawinrect",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "drawInRect:withFont:lineBreakMode:alignment:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsstring/1619912-drawinrect"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsstring/1619914-sizewithfont": {
+      "abstract": [
+        {
+          "text": "Returns the size of the string if it were to be rendered with the specified font and line attributes on a single line.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "sizeWithFont:forWidth:lineBreakMode:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsstring/1619914-sizewithfont",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sizeWithFont:forWidth:lineBreakMode:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsstring/1619914-sizewithfont"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsstring/1619915-sizewithfont": {
+      "abstract": [
+        {
+          "text": "Returns the size of the string if it were rendered with the specified constraints. ",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "sizeWithFont:constrainedToSize:lineBreakMode:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsstring/1619915-sizewithfont",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sizeWithFont:constrainedToSize:lineBreakMode:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsstring/1619915-sizewithfont"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsstring/1619917-sizewithfont": {
+      "abstract": [
+        {
+          "text": "Returns the size of the string if it were to be rendered with the specified font on a single line. ",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "sizeWithFont:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsstring/1619917-sizewithfont",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sizeWithFont:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsstring/1619917-sizewithfont"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsstring/1619919-drawatpoint": {
+      "abstract": [
+        {
+          "text": "Draws the string in a single line at the specified point in the current graphics context using the specified font and attributes. ",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "drawAtPoint:forWidth:withFont:fontSize:lineBreakMode:baselineAdjustment:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsstring/1619919-drawatpoint",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "drawAtPoint:forWidth:withFont:fontSize:lineBreakMode:baselineAdjustment:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsstring/1619919-drawatpoint"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurl": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSURL",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurl"
+    },
+    "doc://com.apple.documentation/documentation/foundation/strings_and_text": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/strings_and_text",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Strings and Text",
+      "type": "topic",
+      "url": "/documentation/foundation/strings_and_text"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsstring/1497289-stringwithcstring",
+        "doc://com.apple.documentation/documentation/foundation/nsstring/1497394-initwithcstring",
+        "doc://com.apple.documentation/documentation/foundation/nsstring/1497290-stringwithcstring",
+        "doc://com.apple.documentation/documentation/foundation/nsstring/1497403-initwithcstring",
+        "doc://com.apple.documentation/documentation/foundation/nsstring/1497281-initwithcstringnocopy",
+        "doc://com.apple.documentation/documentation/foundation/nsstring/1497269-stringwithcontentsoffile",
+        "doc://com.apple.documentation/documentation/foundation/nsstring/1497398-initwithcontentsoffile",
+        "doc://com.apple.documentation/documentation/foundation/nsstring/1497368-stringwithcontentsofurl",
+        "doc://com.apple.documentation/documentation/foundation/nsstring/1497362-writetofile",
+        "doc://com.apple.documentation/documentation/foundation/nsstring/1497299-writetourl",
+        "doc://com.apple.documentation/documentation/foundation/nsstring/1415132-getcharacters",
+        "doc://com.apple.documentation/documentation/foundation/nsstring/1497307-cstring",
+        "doc://com.apple.documentation/documentation/foundation/nsstring/1497263-lossycstring",
+        "doc://com.apple.documentation/documentation/foundation/nsstring/1497303-cstringlength",
+        "doc://com.apple.documentation/documentation/foundation/nsstring/1497249-getcstring",
+        "doc://com.apple.documentation/documentation/foundation/nsstring/1497296-getcstring",
+        "doc://com.apple.documentation/documentation/foundation/nsstring/1497298-getcstring",
+        "doc://com.apple.documentation/documentation/foundation/nsstring/1415058-stringbyaddingpercentescapesusin",
+        "doc://com.apple.documentation/documentation/foundation/nsstring/1407783-stringbyreplacingpercentescapesu",
+        "doc://com.apple.documentation/documentation/foundation/nsstring/1619917-sizewithfont",
+        "doc://com.apple.documentation/documentation/foundation/nsstring/1619914-sizewithfont",
+        "doc://com.apple.documentation/documentation/foundation/nsstring/1619903-sizewithfont",
+        "doc://com.apple.documentation/documentation/foundation/nsstring/1619910-sizewithfont",
+        "doc://com.apple.documentation/documentation/foundation/nsstring/1619915-sizewithfont",
+        "doc://com.apple.documentation/documentation/foundation/nsstring/1619898-drawatpoint",
+        "doc://com.apple.documentation/documentation/foundation/nsstring/1619896-drawatpoint",
+        "doc://com.apple.documentation/documentation/foundation/nsstring/1619919-drawatpoint",
+        "doc://com.apple.documentation/documentation/foundation/nsstring/1619894-drawatpoint",
+        "doc://com.apple.documentation/documentation/foundation/nsstring/1619909-drawinrect",
+        "doc://com.apple.documentation/documentation/foundation/nsstring/1619908-drawinrect",
+        "doc://com.apple.documentation/documentation/foundation/nsstring/1619912-drawinrect",
+        "doc://com.apple.documentation/documentation/foundation/nsstring/1527536-drawwithrect",
+        "doc://com.apple.documentation/documentation/foundation/nsstring/1535578-boundingrectwithsize",
+        "doc://com.apple.documentation/documentation/foundation/nsmaximumstringlength"
+      ],
+      "title": "Deprecated"
+    },
+    {
+      "generated": false,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsstring/1414463-initwithcontentsofurl",
+        "doc://com.apple.documentation/documentation/foundation/nsstring/1414472-initwithcontentsofurl"
+      ],
+      "title": "Related Documentation"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nsstring/1497390-initwithcontentsofurl"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/nsstring/1497390-init"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

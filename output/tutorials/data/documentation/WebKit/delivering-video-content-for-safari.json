@@ -1,0 +1,1064 @@
+{
+  "abstract": [
+    {
+      "text": "Improve the performance and appearance of video in your website in Safari.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.webkit/documentation/WebKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.webkit/documentation/WebKit/delivering-video-content-for-safari"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "WebKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Delivering Video Content for Safari"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When adding video content to your website you have several playback and optimization options which can help to improve the playback controls and performance of video for the user:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "For video streaming, use HTTP Live Streaming. See ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/HTTP-Live-Streaming",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "For static video files, use H.264-encoded MP4 files.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "For more customization and control over the loading process, use Media Source Extensions (MSE). See ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://developer.apple.com/videos/play/wwdc2014/504/",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To deliver video content in your website:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Add your video to your website so it can play. Determine whether to autoplay the video or trigger playback with a user interaction.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Optimize your video playback by making use of low-power mode or by using a short video file in an image element instead of animated GIFs.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Add the appropriate playback controls for inline, full screen, or WebRTC, depending on the type of content in the video.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "anchor": "Play-a-Video-in-Your-Webpage",
+          "level": 3,
+          "text": "Play a Video in Your Webpage",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Using ",
+              "type": "text"
+            },
+            {
+              "code": "<video>",
+              "type": "codeVoice"
+            },
+            {
+              "text": " elements in HTML5 markup allows you to embed video on your website.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Safari honors the ",
+              "type": "text"
+            },
+            {
+              "code": "preload=\"metadata\"",
+              "type": "codeVoice"
+            },
+            {
+              "text": " attribute, allowing ",
+              "type": "text"
+            },
+            {
+              "code": "<video>",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "<audio>",
+              "type": "codeVoice"
+            },
+            {
+              "text": " elements to load enough media data to determine that media’s size, duration, and available tracks. A ",
+              "type": "text"
+            },
+            {
+              "code": "<video>",
+              "type": "codeVoice"
+            },
+            {
+              "text": " element can use the ",
+              "type": "text"
+            },
+            {
+              "code": "play()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method to automatically play without user gestures only when it contains no audio tracks or has its ",
+              "type": "text"
+            },
+            {
+              "code": "muted",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property set to ",
+              "type": "text"
+            },
+            {
+              "code": "true",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". If this video element gains an audio track or becomes unmuted without a user gesture,  playback pauses. Playback stops if the video element isn’t visible onscreen or is out of the viewport.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Enable-Video-Autoplay",
+          "level": 4,
+          "text": "Enable Video Autoplay",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Video elements that include ",
+              "type": "text"
+            },
+            {
+              "code": "<video autoplay>",
+              "type": "codeVoice"
+            },
+            {
+              "text": " play automatically when the video loads in Safari on macOS and iOS, only if those elements also include the  ",
+              "type": "text"
+            },
+            {
+              "code": "playsinline",
+              "type": "codeVoice"
+            },
+            {
+              "text": " attribute. For more information on inline playback, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.webkit/documentation/WebKit/delivering-video-content-for-safari#Enable-Inline-Video-Playback",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "By default, autoplay executes only if the video doesn’t contain an audio track, or if the video element includes the ",
+              "type": "text"
+            },
+            {
+              "code": "muted",
+              "type": "codeVoice"
+            },
+            {
+              "text": " attribute. Video playback pauses if the element gains an audio track, becomes unmuted without user interaction, or if the video is no longer onscreen (either by CSS or due to the user scrolling the page). The video doesn’t pause unless the user clicks or taps the video. This same expectation applies to WebRTC one-way video conferencing. For more information on WebRTC playback controls, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.webkit/documentation/WebKit/delivering-video-content-for-safari#Add-WebRTC-Playback-Controls",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Autoplay video when the user expects it to autoplay in your website. For example, autoplay video in interfaces where video playback is the purpose of the webpage, like a video-sharing or hosting website.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Optimize-Video-Content-for-Safari",
+          "level": 3,
+          "text": "Optimize Video Content for Safari",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To ensure that video content takes advantage of the hardware and software optimizations of your machine and Safari, get your video into low-power mode and use MP4 files instead of animated GIFs.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Reduce-Power-Usage-in-Video-Playback",
+          "level": 4,
+          "text": "Reduce Power Usage in Video Playback",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "On certain macOS devices, such as the Retina MacBook or MacBook Pro, hardware configurations make video elements play in low-power mode. This mode allows your video to render efficiently to the display without an expensive color processing step.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Low-power mode is available for a video element that is in full screen, against a black background, and is the only content onscreen. Having only the video element onscreen means a full-screen video layout. In other cases, the system needs to convert the video to RGB so it composites correctly with other content onscreen.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Set the CSS property ",
+              "type": "text"
+            },
+            {
+              "code": "display:none",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for all non-video elements on your webpage while the video is playing, to ensure that low-power mode is enabled for your video element. Then, check that the remaining background behind the video is black.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Use-Quartz-Debug-to-Test-Low-Power-Regions",
+          "level": 5,
+          "text": "Use Quartz Debug to Test Low-Power Regions",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To ensure that low-power mode is working correctly, test the efficiency of your web content using the Show Detached Regions feature of Quartz Debug.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "First, test on your machine’s built-in or primary monitor, and ensure that your MacBook or MacBook Pro is not using external monitors.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Then, open the Quartz Debug app. Quartz Debug is part of the Graphics Tools package for Xcode, available from the Mac Developer Portal. In Quartz Debug, choose Tools > Show Detached Regions.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3030255",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This tool places a color overlay on the desktop. Red represents normal power usage (where everything is composited), and no overlay represents low-power usage for video. If the full-screen video display is using low-power mode, the red color overlay disappears.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3030260",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Use Web Inspector to adjust CSS properties in the browser to see which changes enable low-power mode. Check to see if there are sub-layers attached to the displayed element that contains your video. If there are, adjust your stylesheets with these changes so that there are no sub-layers, then low-power mode can take effect.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you use ",
+              "type": "text"
+            },
+            {
+              "code": "<video controls>",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", then in full screen your video will get low-power mode automatically when the controls disappear. If you make your own custom media controls, then make sure everything is hidden when the user is watching the video. Avoid having items such as timelines remain after it’s clear the user is just watching the video. For more information on debugging low-power mode and other media issues, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://webkit.org/blog/8923/debugging-media-in-web-inspector/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Use-MP4-Video-Instead-of-Animated-GIFs",
+          "level": 4,
+          "text": "Use MP4 Video Instead of Animated GIFs",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "GIFs can be up to 12 times as expensive in bandwidth and twice as expensive in energy use when compared to a modern video codec. Instead, use H.264-encoded MP4 files for animations; for example:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "<img src=\"explosion.mp4\" alt=\"An explosion of colors.\">",
+            ""
+          ],
+          "syntax": "javascript",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "By placing your videos in ",
+              "type": "text"
+            },
+            {
+              "code": "<img>",
+              "type": "codeVoice"
+            },
+            {
+              "text": " elements, the content loads faster, uses less battery power, and gets better performance.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To maintain compatibility with other web browsers, also include a fallback image:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "<picture>",
+            "    <source srcset=\"explosion.mp4\" type=\"video/mp4\">",
+            "    <img src=\"explosion.jpg\" alt=\"An image of an explosion.\">",
+            "</picture>"
+          ],
+          "syntax": "javascript",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Select-Playback-Controls-for-Your-Video",
+          "level": 3,
+          "text": "Select Playback Controls for Your Video",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the best playback mode and controls for your video, depending on what type of content you are playing in your webpage.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Enable-Inline-Video-Playback",
+          "level": 4,
+          "text": "Enable Inline Video Playback",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you want to display short-form content, it is more optimal to play your video inline. Use ",
+              "type": "text"
+            },
+            {
+              "code": "<video playsinline>",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to play videos inline.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Without the ",
+              "type": "text"
+            },
+            {
+              "code": "playsinline",
+              "type": "codeVoice"
+            },
+            {
+              "text": " attribute, videos must be in full-screen mode for playback on iPhone. If videos do play in full-screen mode, they will continue to play inline when the user exits full-screen mode, even if the video element doesn’t contain the ",
+              "type": "text"
+            },
+            {
+              "code": "playsinline",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Enable-Full-Screen-Video-Playback",
+          "level": 4,
+          "text": "Enable Full-Screen Video Playback",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you want to display long-form content, it is more optimal to display your video in full-screen mode. On iPhone, when users play a video, they enter full screen automatically, unless inline playback has been explicitly specified. For all other platforms, if you use the video element’s default playback controls, the full-screen button is always available.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If, however, you want to add custom playback controls to your video element, you can specify custom UI controls that trigger full-screen behavior. To enter or exit full-screen mode, use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/webkitjs/htmlvideoelement/1633500-webkitenterfullscreen",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/webkitjs/htmlvideoelement/1629468-webkitexitfullscreen",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To see all full-screen functions in the API, see Displaying Video Fullscreen. To add additional playback controls for Picture in Picture and AirPlay, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/webkitjs/adding_picture_in_picture_to_your_safari_media_controls",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/webkitjs/adding_an_airplay_button_to_your_safari_media_controls",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-WebRTC-Playback-Controls",
+          "level": 4,
+          "text": "Add WebRTC Playback Controls",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "WebRTC is also available for video broadcasting and conferencing in Safari. There is an expectation when joining a conference or webinar, that any remote video autoplays.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For a two-way video conference, video automatically plays after the user accepts the prompt requesting camera access.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "However, for a one-way video conferencing scenario, such as a webinar, the user does not give explicit permission to the camera. Without a user gesture to indicate playback, the video cannot start. Add a play button to your media controls for one-way WebRTC experiences, so the user can start the video.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more details on WebRTC, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://webkit.org/blog/7726/announcing-webrtc-and-media-capture/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://webkit.org/blog/7763/a-closer-look-into-webrtc/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/HTTP-Live-Streaming": {
+      "abstract": [
+        {
+          "text": "Send audio and video to iOS, tvOS, and macOS devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/HTTP-Live-Streaming",
+      "kind": "article",
+      "role": "collection",
+      "title": "HTTP Live Streaming",
+      "type": "topic",
+      "url": "/documentation/HTTP-Live-Streaming"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.documentation/documentation/webkitjs/adding_an_airplay_button_to_your_safari_media_controls": {
+      "abstract": [
+        {
+          "text": "Create a custom control that adds AirPlay to your Safari media player. ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/webkitjs/adding_an_airplay_button_to_your_safari_media_controls",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding an AirPlay button to your Safari media controls",
+      "type": "topic",
+      "url": "/documentation/webkitjs/adding_an_airplay_button_to_your_safari_media_controls"
+    },
+    "doc://com.apple.documentation/documentation/webkitjs/adding_picture_in_picture_to_your_safari_media_controls": {
+      "abstract": [
+        {
+          "text": "Create a custom control that adds Picture in Picture to your Safari media player. ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/webkitjs/adding_picture_in_picture_to_your_safari_media_controls",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding Picture in Picture to your Safari media controls",
+      "type": "topic",
+      "url": "/documentation/webkitjs/adding_picture_in_picture_to_your_safari_media_controls"
+    },
+    "doc://com.apple.documentation/documentation/webkitjs/htmlvideoelement/1629468-webkitexitfullscreen": {
+      "abstract": [
+        {
+          "text": "Exits fullscreen mode.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/webkitjs/htmlvideoelement/1629468-webkitexitfullscreen",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "webkitExitFullscreen",
+      "type": "topic",
+      "url": "/documentation/webkitjs/htmlvideoelement/1629468-webkitexitfullscreen"
+    },
+    "doc://com.apple.documentation/documentation/webkitjs/htmlvideoelement/1633500-webkitenterfullscreen": {
+      "abstract": [
+        {
+          "text": "Enters fullscreen mode.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/webkitjs/htmlvideoelement/1633500-webkitenterfullscreen",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "webkitEnterFullscreen",
+      "type": "topic",
+      "url": "/documentation/webkitjs/htmlvideoelement/1633500-webkitenterfullscreen"
+    },
+    "doc://com.apple.webkit/documentation/WebKit": {
+      "abstract": [
+        {
+          "text": "Integrate web content seamlessly into your app, and customize content interactions to meet your app’s needs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.webkit/documentation/WebKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "WebKit",
+      "type": "topic",
+      "url": "/documentation/webkit"
+    },
+    "doc://com.apple.webkit/documentation/WebKit/delivering-video-content-for-safari#Add-WebRTC-Playback-Controls": {
+      "abstract": [],
+      "identifier": "doc://com.apple.webkit/documentation/WebKit/delivering-video-content-for-safari#Add-WebRTC-Playback-Controls",
+      "kind": "section",
+      "title": "Add WebRTC Playback Controls",
+      "type": "topic",
+      "url": "/documentation/webkit/delivering-video-content-for-safari#Add-WebRTC-Playback-Controls"
+    },
+    "doc://com.apple.webkit/documentation/WebKit/delivering-video-content-for-safari#Enable-Inline-Video-Playback": {
+      "abstract": [],
+      "identifier": "doc://com.apple.webkit/documentation/WebKit/delivering-video-content-for-safari#Enable-Inline-Video-Playback",
+      "kind": "section",
+      "title": "Enable Inline Video Playback",
+      "type": "topic",
+      "url": "/documentation/webkit/delivering-video-content-for-safari#Enable-Inline-Video-Playback"
+    },
+    "doc://com.apple.webkit/documentation/WebKit/optimizing-your-website-for-safari": {
+      "abstract": [
+        {
+          "text": "Improve your website by optimizing it for Safari.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.webkit/documentation/WebKit/optimizing-your-website-for-safari",
+      "kind": "article",
+      "role": "article",
+      "title": "Optimizing Your Website for Safari",
+      "type": "topic",
+      "url": "/documentation/webkit/optimizing-your-website-for-safari"
+    },
+    "doc://com.apple.webkit/documentation/WebKit/promoting-apps-with-smart-app-banners": {
+      "abstract": [
+        {
+          "text": "Create a banner to promote your app on the App Store from a website.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.webkit/documentation/WebKit/promoting-apps-with-smart-app-banners",
+      "kind": "article",
+      "role": "article",
+      "title": "Promoting Apps with Smart App Banners",
+      "type": "topic",
+      "url": "/documentation/webkit/promoting-apps-with-smart-app-banners"
+    },
+    "https://developer.apple.com/videos/play/wwdc2014/504/": {
+      "identifier": "https://developer.apple.com/videos/play/wwdc2014/504/",
+      "title": "Advanced Media for the Web",
+      "titleInlineContent": [
+        {
+          "text": "Advanced Media for the Web",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/videos/play/wwdc2014/504/"
+    },
+    "https://webkit.org/blog/7726/announcing-webrtc-and-media-capture/": {
+      "identifier": "https://webkit.org/blog/7726/announcing-webrtc-and-media-capture/",
+      "title": "Announcing WebRTC and Media Capture",
+      "titleInlineContent": [
+        {
+          "text": "Announcing WebRTC and Media Capture",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://webkit.org/blog/7726/announcing-webrtc-and-media-capture/"
+    },
+    "https://webkit.org/blog/7763/a-closer-look-into-webrtc/": {
+      "identifier": "https://webkit.org/blog/7763/a-closer-look-into-webrtc/",
+      "title": "A Closer Look into WebRTC",
+      "titleInlineContent": [
+        {
+          "text": "A Closer Look into WebRTC",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://webkit.org/blog/7763/a-closer-look-into-webrtc/"
+    },
+    "https://webkit.org/blog/8923/debugging-media-in-web-inspector/": {
+      "identifier": "https://webkit.org/blog/8923/debugging-media-in-web-inspector/",
+      "title": "Debugging Media in Web Inspector",
+      "titleInlineContent": [
+        {
+          "text": "Debugging Media in Web Inspector",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://webkit.org/blog/8923/debugging-media-in-web-inspector/"
+    },
+    "media-3030255": {
+      "alt": "Enable Show Detached Regions in the Quartz Debug Tools menu.",
+      "identifier": "media-3030255",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c67a5f5a5242d14fde82a4b15043e21c/media-3030255@2x.png"
+        }
+      ]
+    },
+    "media-3030260": {
+      "alt": "A red overlay appears over video content that is not using low-power mode.",
+      "identifier": "media-3030260",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/fafe099846375284211076ba22a3ed0e/media-3030260@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Related-Documentation",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/webkitjs/adding_an_airplay_button_to_your_safari_media_controls",
+        "doc://com.apple.documentation/documentation/webkitjs/adding_picture_in_picture_to_your_safari_media_controls"
+      ],
+      "title": "Related Documentation"
+    },
+    {
+      "anchor": "Safari-Support",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.webkit/documentation/WebKit/optimizing-your-website-for-safari",
+        "doc://com.apple.webkit/documentation/WebKit/promoting-apps-with-smart-app-banners"
+      ],
+      "title": "Safari Support"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Related-Documentation",
+              "identifiers": [
+                "doc://com.apple.documentation/documentation/webkitjs/adding_an_airplay_button_to_your_safari_media_controls",
+                "doc://com.apple.documentation/documentation/webkitjs/adding_picture_in_picture_to_your_safari_media_controls"
+              ],
+              "title": "Related Documentation"
+            },
+            {
+              "anchor": "Safari-Support",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.webkit/documentation/WebKit/optimizing-your-website-for-safari",
+                "doc://com.apple.webkit/documentation/WebKit/promoting-apps-with-smart-app-banners"
+              ],
+              "title": "Safari Support"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/webkit/delivering-video-content-for-safari"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/webkit/delivering-video-content-for-safari"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

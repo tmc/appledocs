@@ -1,0 +1,1687 @@
+{
+  "abstract": [
+    {
+      "text": "An object that defines a summary item for a payment that occurs repeatedly at a specified interval, such as a subscription.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.passkit/documentation/PassKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.passkit/documentation/PassKit/PKRecurringPaymentSummaryItem"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)PKRecurringPaymentSummaryItem",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "PKRecurringPaymentSummaryItem"
+      }
+    ],
+    "modules": [
+      {
+        "name": "PassKit (Apple Pay and Wallet)"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "PKRecurringPaymentSummaryItem"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "12.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "PKRecurringPaymentSummaryItem"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "PKRecurringPaymentSummaryItem"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.passkit/documentation/PassKit/PKRecurringPaymentSummaryItem",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " is a subclass of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPaymentSummaryItemType",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and inherits all properties of the parent class.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Add a summary item of this type to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPaymentRequest/paymentSummaryItems",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property of a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPaymentRequest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to display to the user a recurring payment in the summary items on the payment sheet.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To describe a recurring payment, set the summary item values as follows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPaymentSummaryItem/amount",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " property, provide the billing amount for the set interval, for example, the amount charged per week if the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKRecurringPaymentSummaryItem/intervalUnit",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " is a week.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Omit the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPaymentSummaryItem/type",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " property. The summary item type is only relevant for the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPaymentSummaryItem",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " parent class.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Set the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKRecurringPaymentSummaryItem/startDate",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKRecurringPaymentSummaryItem/endDate",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to represent the term for the recurring payments, as appropriate.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Set the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKRecurringPaymentSummaryItem/intervalUnit",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKRecurringPaymentSummaryItem/intervalCount",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", and ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKRecurringPaymentSummaryItem/endDate",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to specify a number of repeating payments.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, the following code shows a summary item that specifies six monthly payments that start on the transaction date:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let recurringPayment = PKRecurringPaymentSummaryItem(label: \"Total Payment\",                                                  NSDecimalNumber(string: \"199.99\"))",
+            "",
+            "// Payment starts today.",
+            "recurringPayment.startDate = nil",
+            "",
+            "// Pay once a month.",
+            "recurringPayment.intervalUnit = .month",
+            "recurringPayment.intervalCount = 1",
+            "",
+            "// Make 5 more payments for a total of 6 payments.",
+            "var dateComponent = DateComponents()",
+            "dateComponent.month = 5",
+            "recurringPayment.endDate = Calendar.current.date(byAdding: dateComponent, Date())"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The payment interval is a combination of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.passkit/documentation/PassKit/PKRecurringPaymentSummaryItem/intervalUnit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.passkit/documentation/PassKit/PKRecurringPaymentSummaryItem/intervalCount",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". For example, if you set the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.passkit/documentation/PassKit/PKRecurringPaymentSummaryItem/intervalUnit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to .",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfcalendarunit/1533484-month",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.passkit/documentation/PassKit/PKRecurringPaymentSummaryItem/intervalCount",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to ",
+              "type": "text"
+            },
+            {
+              "code": "3",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", then the payment interval is three months.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/corefoundation/cfcalendarunit/1533484-month": {
+      "abstract": [
+        {
+          "text": "Specifies the month unit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static var "
+        },
+        {
+          "kind": "identifier",
+          "text": "month"
+        },
+        {
+          "kind": "text",
+          "text": ": CFCalendarUnit"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfcalendarunit/1533484-month",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "month",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfcalendarunit/1533484-month"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.passkit/documentation/PassKit": {
+      "abstract": [
+        {
+          "text": "Process Apple Pay payments in your app, and create and distribute passes for the Wallet app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "PassKit (Apple Pay and Wallet)",
+      "type": "topic",
+      "url": "/documentation/passkit"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKDeferredPaymentSummaryItem": {
+      "abstract": [
+        {
+          "text": "An object that defines a summary item for a payment that occurs at a later date, such as a pre-order.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKDeferredPaymentSummaryItem"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKDeferredPaymentSummaryItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKDeferredPaymentSummaryItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKDeferredPaymentSummaryItem",
+      "type": "topic",
+      "url": "/documentation/passkit/pkdeferredpaymentsummaryitem"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKPaymentRequest": {
+      "abstract": [
+        {
+          "text": "An object that represents a request for payment, including details about payment-processing capabilities, the payment amount, and shipping information.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKPaymentRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPaymentRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKPaymentRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKPaymentRequest",
+      "type": "topic",
+      "url": "/documentation/passkit/pkpaymentrequest"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKPaymentRequest/paymentSummaryItems": {
+      "abstract": [
+        {
+          "text": "An array of payment summary item objects that summarize the amount of the payment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "paymentSummaryItems"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PKPaymentSummaryItem",
+          "text": "PKPaymentSummaryItem"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPaymentRequest/paymentSummaryItems",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "paymentSummaryItems"
+        }
+      ],
+      "role": "symbol",
+      "title": "paymentSummaryItems",
+      "type": "topic",
+      "url": "/documentation/passkit/pkpaymentrequest/paymentsummaryitems"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKPaymentSummaryItem": {
+      "abstract": [
+        {
+          "text": "An object that defines a summary item in a payment request, taxes, discounts, shipping, a grand total, and the like.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKPaymentSummaryItem"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPaymentSummaryItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKPaymentSummaryItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKPaymentSummaryItem",
+      "type": "topic",
+      "url": "/documentation/passkit/pkpaymentsummaryitem"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKPaymentSummaryItem/amount": {
+      "abstract": [
+        {
+          "text": "The summary item’s amount.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "amount"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSDecimalNumber",
+          "text": "NSDecimalNumber"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPaymentSummaryItem/amount",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "amount"
+        }
+      ],
+      "role": "symbol",
+      "title": "amount",
+      "type": "topic",
+      "url": "/documentation/passkit/pkpaymentsummaryitem/amount"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKPaymentSummaryItem/type": {
+      "abstract": [
+        {
+          "text": "The summary item’s type that indicates whether the amount is final.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "type"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@PKPaymentSummaryItemType",
+          "text": "PKPaymentSummaryItemType"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPaymentSummaryItem/type",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "type"
+        }
+      ],
+      "role": "symbol",
+      "title": "type",
+      "type": "topic",
+      "url": "/documentation/passkit/pkpaymentsummaryitem/type"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKPaymentSummaryItemType": {
+      "abstract": [
+        {
+          "text": "Constants that describe the type of the payment summary item, such as final or pending.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKPaymentSummaryItemType"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPaymentSummaryItemType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKPaymentSummaryItemType"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKPaymentSummaryItemType",
+      "type": "topic",
+      "url": "/documentation/passkit/pkpaymentsummaryitemtype"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKRecurringPaymentSummaryItem": {
+      "abstract": [
+        {
+          "text": "An object that defines a summary item for a payment that occurs repeatedly at a specified interval, such as a subscription.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKRecurringPaymentSummaryItem"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKRecurringPaymentSummaryItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKRecurringPaymentSummaryItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKRecurringPaymentSummaryItem",
+      "type": "topic",
+      "url": "/documentation/passkit/pkrecurringpaymentsummaryitem"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKRecurringPaymentSummaryItem/endDate": {
+      "abstract": [
+        {
+          "text": "The date of the final payment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "endDate"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DateV",
+          "text": "Date"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKRecurringPaymentSummaryItem/endDate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "endDate"
+        }
+      ],
+      "role": "symbol",
+      "title": "endDate",
+      "type": "topic",
+      "url": "/documentation/passkit/pkrecurringpaymentsummaryitem/enddate"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKRecurringPaymentSummaryItem/intervalCount": {
+      "abstract": [
+        {
+          "text": "The number of interval units that make up the total payment interval.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "intervalCount"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKRecurringPaymentSummaryItem/intervalCount",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "intervalCount"
+        }
+      ],
+      "role": "symbol",
+      "title": "intervalCount",
+      "type": "topic",
+      "url": "/documentation/passkit/pkrecurringpaymentsummaryitem/intervalcount"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKRecurringPaymentSummaryItem/intervalUnit": {
+      "abstract": [
+        {
+          "text": "The amount of time – in calendar units such as day, month, or year – that represents a fraction of the total payment interval.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "intervalUnit"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSCalendar",
+          "text": "NSCalendar"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSCalendarUnit",
+          "text": "Unit"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKRecurringPaymentSummaryItem/intervalUnit",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "intervalUnit"
+        }
+      ],
+      "role": "symbol",
+      "title": "intervalUnit",
+      "type": "topic",
+      "url": "/documentation/passkit/pkrecurringpaymentsummaryitem/intervalunit"
+    },
+    "doc://com.apple.passkit/documentation/PassKit/PKRecurringPaymentSummaryItem/startDate": {
+      "abstract": [
+        {
+          "text": "The date of the first payment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "startDate"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DateV",
+          "text": "Date"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.passkit/documentation/PassKit/PKRecurringPaymentSummaryItem/startDate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "startDate"
+        }
+      ],
+      "role": "symbol",
+      "title": "startDate",
+      "type": "topic",
+      "url": "/documentation/passkit/pkrecurringpaymentsummaryitem/startdate"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.passkit/documentation/PassKit/PKPaymentSummaryItem"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Setting-the-payment-summary-items",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.passkit/documentation/PassKit/PKPaymentRequest/paymentSummaryItems",
+        "doc://com.apple.passkit/documentation/PassKit/PKPaymentSummaryItem",
+        "doc://com.apple.passkit/documentation/PassKit/PKDeferredPaymentSummaryItem"
+      ],
+      "title": "Setting the payment summary items"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Setting-the-payment-period",
+      "identifiers": [
+        "doc://com.apple.passkit/documentation/PassKit/PKRecurringPaymentSummaryItem/startDate",
+        "doc://com.apple.passkit/documentation/PassKit/PKRecurringPaymentSummaryItem/endDate"
+      ],
+      "title": "Setting the payment period"
+    },
+    {
+      "anchor": "Setting-the-payment-interval",
+      "identifiers": [
+        "doc://com.apple.passkit/documentation/PassKit/PKRecurringPaymentSummaryItem/intervalUnit",
+        "doc://com.apple.passkit/documentation/PassKit/PKRecurringPaymentSummaryItem/intervalCount"
+      ],
+      "title": "Setting the payment interval"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "15.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "15.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "15.0",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "12.0",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "8.0",
+              "name": "watchOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "PKRecurringPaymentSummaryItem"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKRecurringPaymentSummaryItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKRecurringPaymentSummaryItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.passkit/documentation/PassKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Setting-the-payment-period",
+              "identifiers": [
+                "doc://com.apple.passkit/documentation/PassKit/PKRecurringPaymentSummaryItem/startDate",
+                "doc://com.apple.passkit/documentation/PassKit/PKRecurringPaymentSummaryItem/endDate"
+              ],
+              "title": "Setting the payment period"
+            },
+            {
+              "anchor": "Setting-the-payment-interval",
+              "identifiers": [
+                "doc://com.apple.passkit/documentation/PassKit/PKRecurringPaymentSummaryItem/intervalUnit",
+                "doc://com.apple.passkit/documentation/PassKit/PKRecurringPaymentSummaryItem/intervalCount"
+              ],
+              "title": "Setting the payment interval"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.apple.passkit/documentation/PassKit/PKPaymentSummaryItem"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Setting-the-payment-summary-items",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.passkit/documentation/PassKit/PKPaymentRequest/paymentSummaryItems",
+                "doc://com.apple.passkit/documentation/PassKit/PKPaymentSummaryItem",
+                "doc://com.apple.passkit/documentation/PassKit/PKDeferredPaymentSummaryItem"
+              ],
+              "title": "Setting the payment summary items"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "PKRecurringPaymentSummaryItem"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.apple.passkit/documentation/PassKit/PKPaymentSummaryItem",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)PKPaymentSummaryItem",
+                    "text": "PKPaymentSummaryItem"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKRecurringPaymentSummaryItem~1intervalCount/title",
+          "value": "intervalCount"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKRecurringPaymentSummaryItem~1intervalCount/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "intervalCount"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentSummaryItemType/title",
+          "value": "PKPaymentSummaryItemType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentSummaryItemType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKPaymentSummaryItemType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentSummaryItemType/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKPaymentSummaryItemType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentSummaryItem~1type/title",
+          "value": "type"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentSummaryItem~1type/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "type"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKRecurringPaymentSummaryItem/title",
+          "value": "PKRecurringPaymentSummaryItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKRecurringPaymentSummaryItem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKRecurringPaymentSummaryItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKRecurringPaymentSummaryItem/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKRecurringPaymentSummaryItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKRecurringPaymentSummaryItem~1startDate/title",
+          "value": "startDate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKRecurringPaymentSummaryItem~1startDate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "startDate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentRequest~1paymentSummaryItems/title",
+          "value": "paymentSummaryItems"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentRequest~1paymentSummaryItems/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "paymentSummaryItems"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentRequest/title",
+          "value": "PKPaymentRequest"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentRequest/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKPaymentRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentRequest/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKPaymentRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1corefoundation~1cfcalendarunit~11533484-month/title",
+          "value": "kCFCalendarUnitMonth"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentSummaryItem/title",
+          "value": "PKPaymentSummaryItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentSummaryItem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKPaymentSummaryItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentSummaryItem/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKPaymentSummaryItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKDeferredPaymentSummaryItem/title",
+          "value": "PKDeferredPaymentSummaryItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKDeferredPaymentSummaryItem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKDeferredPaymentSummaryItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKDeferredPaymentSummaryItem/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKDeferredPaymentSummaryItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKRecurringPaymentSummaryItem~1endDate/title",
+          "value": "endDate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKRecurringPaymentSummaryItem~1endDate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "endDate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentSummaryItem~1amount/title",
+          "value": "amount"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKPaymentSummaryItem~1amount/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "amount"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKRecurringPaymentSummaryItem~1intervalUnit/title",
+          "value": "intervalUnit"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.passkit~1documentation~1PassKit~1PKRecurringPaymentSummaryItem~1intervalUnit/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "intervalUnit"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/passkit/pkrecurringpaymentsummaryitem"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/passkit/pkrecurringpaymentsummaryitem"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,2725 @@
+{
+  "abstract": [
+    {
+      "text": "Create and manage notes and to-do list items.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.sirikit/documentation/SiriKit",
+        "doc://com.apple.sirikit/documentation/Intents"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.sirikit/documentation/SiriKit/lists-and-notes"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Intents"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Lists and Notes"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "With the lists and notes domain, users can create to-do lists, mark to-do list items as complete, or ask Siri to create or modify notes in their favorite note-taking app. When creating items in a to-do list, the user may also ask you to set up a reminder based on the user’s location or a specific date. Your intents app extension takes the information provided to it and creates the corresponding tasks, notes, and reminders either directly in your app or by communicating that information to your servers.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.sirikit/documentation/Intents": {
+      "abstract": [
+        {
+          "text": "Empower people to customize interactions for your app on their device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Intents",
+      "type": "topic",
+      "url": "/documentation/intents"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INAddTasksIntent": {
+      "abstract": [
+        {
+          "text": "A request to add tasks to an existing task list.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INAddTasksIntent"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INAddTasksIntent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INAddTasksIntent"
+        }
+      ],
+      "role": "symbol",
+      "title": "INAddTasksIntent",
+      "type": "topic",
+      "url": "/documentation/intents/inaddtasksintent"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INAddTasksIntentHandling": {
+      "abstract": [
+        {
+          "text": "The handler interface for adding tasks to a task list.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INAddTasksIntentHandling"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INAddTasksIntentHandling",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INAddTasksIntentHandling"
+        }
+      ],
+      "role": "symbol",
+      "title": "INAddTasksIntentHandling",
+      "type": "topic",
+      "url": "/documentation/intents/inaddtasksintenthandling"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INAddTasksIntentResponse": {
+      "abstract": [
+        {
+          "text": "Your response to a request to add tasks to a task list.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INAddTasksIntentResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INAddTasksIntentResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INAddTasksIntentResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "INAddTasksIntentResponse",
+      "type": "topic",
+      "url": "/documentation/intents/inaddtasksintentresponse"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INAddTasksTargetTaskListResolutionResult": {
+      "abstract": [
+        {
+          "text": "A resolution result that adds tasks to a target task list.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INAddTasksTargetTaskListResolutionResult"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INAddTasksTargetTaskListResolutionResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INAddTasksTargetTaskListResolutionResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "INAddTasksTargetTaskListResolutionResult",
+      "type": "topic",
+      "url": "/documentation/intents/inaddtaskstargettasklistresolutionresult"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INAddTasksTemporalEventTriggerResolutionResult": {
+      "abstract": [
+        {
+          "text": "A resolution result for a temporal event trigger.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INAddTasksTemporalEventTriggerResolutionResult"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INAddTasksTemporalEventTriggerResolutionResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INAddTasksTemporalEventTriggerResolutionResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "INAddTasksTemporalEventTriggerResolutionResult",
+      "type": "topic",
+      "url": "/documentation/intents/inaddtaskstemporaleventtriggerresolutionresult"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INCreateNoteIntent": {
+      "abstract": [
+        {
+          "text": "A request to create a new note.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INCreateNoteIntent"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INCreateNoteIntent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INCreateNoteIntent"
+        }
+      ],
+      "role": "symbol",
+      "title": "INCreateNoteIntent",
+      "type": "topic",
+      "url": "/documentation/intents/increatenoteintent"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INCreateNoteIntentHandling": {
+      "abstract": [
+        {
+          "text": "The handler interface for creating notes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INCreateNoteIntentHandling"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INCreateNoteIntentHandling",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INCreateNoteIntentHandling"
+        }
+      ],
+      "role": "symbol",
+      "title": "INCreateNoteIntentHandling",
+      "type": "topic",
+      "url": "/documentation/intents/increatenoteintenthandling"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INCreateNoteIntentResponse": {
+      "abstract": [
+        {
+          "text": "Your app’s response to a request to create a note.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INCreateNoteIntentResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INCreateNoteIntentResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INCreateNoteIntentResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "INCreateNoteIntentResponse",
+      "type": "topic",
+      "url": "/documentation/intents/increatenoteintentresponse"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INDateSearchTypeResolutionResult": {
+      "abstract": [
+        {
+          "text": "A resolution result for the types of dates supported by a search.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INDateSearchTypeResolutionResult"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INDateSearchTypeResolutionResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INDateSearchTypeResolutionResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "INDateSearchTypeResolutionResult",
+      "type": "topic",
+      "url": "/documentation/intents/indatesearchtyperesolutionresult"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INDayOfWeekOptions": {
+      "abstract": [
+        {
+          "text": "Days of the week.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INDayOfWeekOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INDayOfWeekOptions",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INDayOfWeekOptions"
+        }
+      ],
+      "role": "symbol",
+      "title": "INDayOfWeekOptions",
+      "type": "topic",
+      "url": "/documentation/intents/indayofweekoptions"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INImageNoteContent": {
+      "abstract": [
+        {
+          "text": "An image contained in a note.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INImageNoteContent"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INImageNoteContent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INImageNoteContent"
+        }
+      ],
+      "role": "symbol",
+      "title": "INImageNoteContent",
+      "type": "topic",
+      "url": "/documentation/intents/inimagenotecontent"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INLocationSearchTypeResolutionResult": {
+      "abstract": [
+        {
+          "text": "A resolution result for location-based searches.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INLocationSearchTypeResolutionResult"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INLocationSearchTypeResolutionResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INLocationSearchTypeResolutionResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "INLocationSearchTypeResolutionResult",
+      "type": "topic",
+      "url": "/documentation/intents/inlocationsearchtyperesolutionresult"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INNote": {
+      "abstract": [
+        {
+          "text": "The content and metadata associated with a single note entry in your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INNote"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INNote",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INNote"
+        }
+      ],
+      "role": "symbol",
+      "title": "INNote",
+      "type": "topic",
+      "url": "/documentation/intents/innote"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INNoteContent": {
+      "abstract": [
+        {
+          "text": "An abstract class that defines the types of content contained in notes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INNoteContent"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INNoteContent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INNoteContent"
+        }
+      ],
+      "role": "symbol",
+      "title": "INNoteContent",
+      "type": "topic",
+      "url": "/documentation/intents/innotecontent"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INNoteContentResolutionResult": {
+      "abstract": [
+        {
+          "text": "A resolution result for the content of notes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INNoteContentResolutionResult"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INNoteContentResolutionResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INNoteContentResolutionResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "INNoteContentResolutionResult",
+      "type": "topic",
+      "url": "/documentation/intents/innotecontentresolutionresult"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INNoteResolutionResult": {
+      "abstract": [
+        {
+          "text": "A resolution result for notes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INNoteResolutionResult"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INNoteResolutionResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INNoteResolutionResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "INNoteResolutionResult",
+      "type": "topic",
+      "url": "/documentation/intents/innoteresolutionresult"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INNotebookItemTypeResolutionResult": {
+      "abstract": [
+        {
+          "text": "A resolution result for the type of items to look for during a search of notes and tasks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INNotebookItemTypeResolutionResult"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INNotebookItemTypeResolutionResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INNotebookItemTypeResolutionResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "INNotebookItemTypeResolutionResult",
+      "type": "topic",
+      "url": "/documentation/intents/innotebookitemtyperesolutionresult"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INSearchForNotebookItemsIntent": {
+      "abstract": [
+        {
+          "text": "A request to search for notes, tasks, and reminders.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INSearchForNotebookItemsIntent"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INSearchForNotebookItemsIntent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INSearchForNotebookItemsIntent"
+        }
+      ],
+      "role": "symbol",
+      "title": "INSearchForNotebookItemsIntent",
+      "type": "topic",
+      "url": "/documentation/intents/insearchfornotebookitemsintent"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INSearchForNotebookItemsIntentHandling": {
+      "abstract": [
+        {
+          "text": "The handler interface for searching for notes, tasks, and reminders.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INSearchForNotebookItemsIntentHandling"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INSearchForNotebookItemsIntentHandling",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INSearchForNotebookItemsIntentHandling"
+        }
+      ],
+      "role": "symbol",
+      "title": "INSearchForNotebookItemsIntentHandling",
+      "type": "topic",
+      "url": "/documentation/intents/insearchfornotebookitemsintenthandling"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INSearchForNotebookItemsIntentResponse": {
+      "abstract": [
+        {
+          "text": "Your app’s response to a request to search for notes, tasks, or reminders.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INSearchForNotebookItemsIntentResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INSearchForNotebookItemsIntentResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INSearchForNotebookItemsIntentResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "INSearchForNotebookItemsIntentResponse",
+      "type": "topic",
+      "url": "/documentation/intents/insearchfornotebookitemsintentresponse"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INSetTaskAttributeIntent": {
+      "abstract": [
+        {
+          "text": "A request to modify the attributes of a task.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INSetTaskAttributeIntent"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INSetTaskAttributeIntent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INSetTaskAttributeIntent"
+        }
+      ],
+      "role": "symbol",
+      "title": "INSetTaskAttributeIntent",
+      "type": "topic",
+      "url": "/documentation/intents/insettaskattributeintent"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INSetTaskAttributeIntentHandling": {
+      "abstract": [
+        {
+          "text": "The handler interface for updating the attributes of an existing task.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INSetTaskAttributeIntentHandling"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INSetTaskAttributeIntentHandling",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INSetTaskAttributeIntentHandling"
+        }
+      ],
+      "role": "symbol",
+      "title": "INSetTaskAttributeIntentHandling",
+      "type": "topic",
+      "url": "/documentation/intents/insettaskattributeintenthandling"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INSetTaskAttributeIntentResponse": {
+      "abstract": [
+        {
+          "text": "Your response to a request to modify the attributes of an existing task.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INSetTaskAttributeIntentResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INSetTaskAttributeIntentResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INSetTaskAttributeIntentResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "INSetTaskAttributeIntentResponse",
+      "type": "topic",
+      "url": "/documentation/intents/insettaskattributeintentresponse"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INSetTaskAttributeTemporalEventTriggerResolutionResult": {
+      "abstract": [
+        {
+          "text": "A resolution result for a temporal event trigger.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INSetTaskAttributeTemporalEventTriggerResolutionResult"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INSetTaskAttributeTemporalEventTriggerResolutionResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INSetTaskAttributeTemporalEventTriggerResolutionResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "INSetTaskAttributeTemporalEventTriggerResolutionResult",
+      "type": "topic",
+      "url": "/documentation/intents/insettaskattributetemporaleventtriggerresolutionresult"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INSnoozeTasksIntent": {
+      "abstract": [
+        {
+          "text": "A request to snooze one or more tasks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INSnoozeTasksIntent"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INSnoozeTasksIntent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INSnoozeTasksIntent"
+        }
+      ],
+      "role": "symbol",
+      "title": "INSnoozeTasksIntent",
+      "type": "topic",
+      "url": "/documentation/intents/insnoozetasksintent"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INSnoozeTasksIntentHandling": {
+      "abstract": [
+        {
+          "text": "The handler interface that snoozes tasks in a task list.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INSnoozeTasksIntentHandling"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INSnoozeTasksIntentHandling",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INSnoozeTasksIntentHandling"
+        }
+      ],
+      "role": "symbol",
+      "title": "INSnoozeTasksIntentHandling",
+      "type": "topic",
+      "url": "/documentation/intents/insnoozetasksintenthandling"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INSnoozeTasksIntentResponse": {
+      "abstract": [
+        {
+          "text": "Your response to a delete tasks request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INSnoozeTasksIntentResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INSnoozeTasksIntentResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INSnoozeTasksIntentResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "INSnoozeTasksIntentResponse",
+      "type": "topic",
+      "url": "/documentation/intents/insnoozetasksintentresponse"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INSnoozeTasksTaskResolutionResult": {
+      "abstract": [
+        {
+          "text": "A resolution result for snoozing a task.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INSnoozeTasksTaskResolutionResult"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INSnoozeTasksTaskResolutionResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INSnoozeTasksTaskResolutionResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "INSnoozeTasksTaskResolutionResult",
+      "type": "topic",
+      "url": "/documentation/intents/insnoozetaskstaskresolutionresult"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INSpatialEventTrigger": {
+      "abstract": [
+        {
+          "text": "A trigger condition based on the user’s arrival or departure from a given location.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INSpatialEventTrigger"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INSpatialEventTrigger",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INSpatialEventTrigger"
+        }
+      ],
+      "role": "symbol",
+      "title": "INSpatialEventTrigger",
+      "type": "topic",
+      "url": "/documentation/intents/inspatialeventtrigger"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INSpatialEventTriggerResolutionResult": {
+      "abstract": [
+        {
+          "text": "A resolution result for the location-based trigger associated with a task.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INSpatialEventTriggerResolutionResult"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INSpatialEventTriggerResolutionResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INSpatialEventTriggerResolutionResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "INSpatialEventTriggerResolutionResult",
+      "type": "topic",
+      "url": "/documentation/intents/inspatialeventtriggerresolutionresult"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INTask": {
+      "abstract": [
+        {
+          "text": "An individual task the user needs to complete.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INTask"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INTask",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INTask"
+        }
+      ],
+      "role": "symbol",
+      "title": "INTask",
+      "type": "topic",
+      "url": "/documentation/intents/intask"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INTaskList": {
+      "abstract": [
+        {
+          "text": "A collection of individual tasks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INTaskList"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INTaskList",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INTaskList"
+        }
+      ],
+      "role": "symbol",
+      "title": "INTaskList",
+      "type": "topic",
+      "url": "/documentation/intents/intasklist"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INTaskListResolutionResult": {
+      "abstract": [
+        {
+          "text": "A resolution result for a list of tasks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INTaskListResolutionResult"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INTaskListResolutionResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INTaskListResolutionResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "INTaskListResolutionResult",
+      "type": "topic",
+      "url": "/documentation/intents/intasklistresolutionresult"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INTaskPriorityResolutionResult": {
+      "abstract": [
+        {
+          "text": "A resolution result for the priority associated with a task.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INTaskPriorityResolutionResult"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INTaskPriorityResolutionResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INTaskPriorityResolutionResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "INTaskPriorityResolutionResult",
+      "type": "topic",
+      "url": "/documentation/intents/intaskpriorityresolutionresult"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INTaskResolutionResult": {
+      "abstract": [
+        {
+          "text": "A resolution result for a single task within a task list.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INTaskResolutionResult"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INTaskResolutionResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INTaskResolutionResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "INTaskResolutionResult",
+      "type": "topic",
+      "url": "/documentation/intents/intaskresolutionresult"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INTaskStatusResolutionResult": {
+      "abstract": [
+        {
+          "text": "A resolution result for the status of a task.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INTaskStatusResolutionResult"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INTaskStatusResolutionResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INTaskStatusResolutionResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "INTaskStatusResolutionResult",
+      "type": "topic",
+      "url": "/documentation/intents/intaskstatusresolutionresult"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INTemporalEventTrigger": {
+      "abstract": [
+        {
+          "text": "A trigger condition based on a date or time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INTemporalEventTrigger"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INTemporalEventTrigger",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INTemporalEventTrigger"
+        }
+      ],
+      "role": "symbol",
+      "title": "INTemporalEventTrigger",
+      "type": "topic",
+      "url": "/documentation/intents/intemporaleventtrigger"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INTemporalEventTriggerResolutionResult": {
+      "abstract": [
+        {
+          "text": "A resolution result for the time-based trigger associated with a task.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INTemporalEventTriggerResolutionResult"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INTemporalEventTriggerResolutionResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INTemporalEventTriggerResolutionResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "INTemporalEventTriggerResolutionResult",
+      "type": "topic",
+      "url": "/documentation/intents/intemporaleventtriggerresolutionresult"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INTemporalEventTriggerTypeOptionsResolutionResult": {
+      "abstract": [
+        {
+          "text": "A resolution result that adds a temporal event trigger.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INTemporalEventTriggerTypeOptionsResolutionResult"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INTemporalEventTriggerTypeOptionsResolutionResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INTemporalEventTriggerTypeOptionsResolutionResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "INTemporalEventTriggerTypeOptionsResolutionResult",
+      "type": "topic",
+      "url": "/documentation/intents/intemporaleventtriggertypeoptionsresolutionresult"
+    },
+    "doc://com.apple.sirikit/documentation/Intents/INTextNoteContent": {
+      "abstract": [
+        {
+          "text": "The textual content of a note.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "INTextNoteContent"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/Intents/INTextNoteContent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "INTextNoteContent"
+        }
+      ],
+      "role": "symbol",
+      "title": "INTextNoteContent",
+      "type": "topic",
+      "url": "/documentation/intents/intextnotecontent"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit": {
+      "abstract": [
+        {
+          "text": "Empower users to interact with their devices through voice, intelligent suggestions, and personalized workflows.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit",
+      "kind": "article",
+      "role": "collection",
+      "title": "SiriKit",
+      "type": "topic",
+      "url": "/documentation/sirikit"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/car-commands": {
+      "abstract": [
+        {
+          "text": "Manage vehicle door locks and get the vehicle’s status.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/car-commands",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Car Commands",
+      "type": "topic",
+      "url": "/documentation/sirikit/car-commands"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/intent-class-identifiers": {
+      "abstract": [
+        {
+          "text": "Identify intents that user notifications specify.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/intent-class-identifiers",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Intent Class Identifiers",
+      "type": "topic",
+      "url": "/documentation/sirikit/intent-class-identifiers"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/media": {
+      "abstract": [
+        {
+          "text": "Listen and control audio through Siri Intents, or listen and watch media content from your app with shortcuts.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/media",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Media",
+      "type": "topic",
+      "url": "/documentation/sirikit/media"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/messaging": {
+      "abstract": [
+        {
+          "text": "Send messages and search the user’s received messages.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/messaging",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Messaging",
+      "type": "topic",
+      "url": "/documentation/sirikit/messaging"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/payments": {
+      "abstract": [
+        {
+          "text": "Send payments between users or pay bills.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/payments",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Payments",
+      "type": "topic",
+      "url": "/documentation/sirikit/payments"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/restaurant-reservations": {
+      "abstract": [
+        {
+          "text": "Create and manage restaurant reservations with help from the Maps app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/restaurant-reservations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Restaurant Reservations",
+      "type": "topic",
+      "url": "/documentation/sirikit/restaurant-reservations"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/ride-booking": {
+      "abstract": [
+        {
+          "text": "Book rides and report their status.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/ride-booking",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Ride Booking",
+      "type": "topic",
+      "url": "/documentation/sirikit/ride-booking"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/voip-calling": {
+      "abstract": [
+        {
+          "text": "Initiate calls and search the user’s call history.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/voip-calling",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "VoIP Calling",
+      "type": "topic",
+      "url": "/documentation/sirikit/voip-calling"
+    },
+    "doc://com.apple.sirikit/documentation/SiriKit/workouts": {
+      "abstract": [
+        {
+          "text": "Start, end, and manage fitness routines.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.sirikit/documentation/SiriKit/workouts",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Workouts",
+      "type": "topic",
+      "url": "/documentation/sirikit/workouts"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Standard-Intents",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.sirikit/documentation/SiriKit/car-commands",
+        "doc://com.apple.sirikit/documentation/SiriKit/media",
+        "doc://com.apple.sirikit/documentation/SiriKit/messaging",
+        "doc://com.apple.sirikit/documentation/SiriKit/payments",
+        "doc://com.apple.sirikit/documentation/SiriKit/restaurant-reservations",
+        "doc://com.apple.sirikit/documentation/SiriKit/ride-booking",
+        "doc://com.apple.sirikit/documentation/SiriKit/voip-calling",
+        "doc://com.apple.sirikit/documentation/SiriKit/workouts",
+        "doc://com.apple.sirikit/documentation/SiriKit/intent-class-identifiers"
+      ],
+      "title": "Standard Intents"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Note-Creation",
+      "identifiers": [
+        "doc://com.apple.sirikit/documentation/Intents/INCreateNoteIntentHandling",
+        "doc://com.apple.sirikit/documentation/Intents/INCreateNoteIntent",
+        "doc://com.apple.sirikit/documentation/Intents/INCreateNoteIntentResponse"
+      ],
+      "title": "Note Creation"
+    },
+    {
+      "anchor": "Notebook-Search",
+      "identifiers": [
+        "doc://com.apple.sirikit/documentation/Intents/INSearchForNotebookItemsIntentHandling",
+        "doc://com.apple.sirikit/documentation/Intents/INSearchForNotebookItemsIntent",
+        "doc://com.apple.sirikit/documentation/Intents/INSearchForNotebookItemsIntentResponse"
+      ],
+      "title": "Notebook Search"
+    },
+    {
+      "anchor": "Task-Addition",
+      "identifiers": [
+        "doc://com.apple.sirikit/documentation/Intents/INAddTasksIntentHandling",
+        "doc://com.apple.sirikit/documentation/Intents/INAddTasksIntent",
+        "doc://com.apple.sirikit/documentation/Intents/INAddTasksIntentResponse"
+      ],
+      "title": "Task Addition"
+    },
+    {
+      "anchor": "Task-Attributes",
+      "identifiers": [
+        "doc://com.apple.sirikit/documentation/Intents/INSetTaskAttributeIntentHandling",
+        "doc://com.apple.sirikit/documentation/Intents/INSetTaskAttributeIntent",
+        "doc://com.apple.sirikit/documentation/Intents/INSetTaskAttributeIntentResponse"
+      ],
+      "title": "Task Attributes"
+    },
+    {
+      "anchor": "Task-Deferral",
+      "identifiers": [
+        "doc://com.apple.sirikit/documentation/Intents/INSnoozeTasksIntentHandling",
+        "doc://com.apple.sirikit/documentation/Intents/INSnoozeTasksIntent",
+        "doc://com.apple.sirikit/documentation/Intents/INSnoozeTasksIntentResponse"
+      ],
+      "title": "Task Deferral"
+    },
+    {
+      "anchor": "Note-Objects",
+      "identifiers": [
+        "doc://com.apple.sirikit/documentation/Intents/INNote",
+        "doc://com.apple.sirikit/documentation/Intents/INNoteContent",
+        "doc://com.apple.sirikit/documentation/Intents/INTextNoteContent",
+        "doc://com.apple.sirikit/documentation/Intents/INImageNoteContent"
+      ],
+      "title": "Note Objects"
+    },
+    {
+      "anchor": "Task-Objects",
+      "identifiers": [
+        "doc://com.apple.sirikit/documentation/Intents/INTaskList",
+        "doc://com.apple.sirikit/documentation/Intents/INTask"
+      ],
+      "title": "Task Objects"
+    },
+    {
+      "anchor": "Event-Triggers",
+      "identifiers": [
+        "doc://com.apple.sirikit/documentation/Intents/INSpatialEventTrigger",
+        "doc://com.apple.sirikit/documentation/Intents/INTemporalEventTrigger",
+        "doc://com.apple.sirikit/documentation/Intents/INTemporalEventTriggerTypeOptionsResolutionResult",
+        "doc://com.apple.sirikit/documentation/Intents/INDayOfWeekOptions"
+      ],
+      "title": "Event Triggers"
+    },
+    {
+      "anchor": "Resolution-Results",
+      "identifiers": [
+        "doc://com.apple.sirikit/documentation/Intents/INAddTasksTargetTaskListResolutionResult",
+        "doc://com.apple.sirikit/documentation/Intents/INAddTasksTemporalEventTriggerResolutionResult",
+        "doc://com.apple.sirikit/documentation/Intents/INDateSearchTypeResolutionResult",
+        "doc://com.apple.sirikit/documentation/Intents/INLocationSearchTypeResolutionResult",
+        "doc://com.apple.sirikit/documentation/Intents/INNoteResolutionResult",
+        "doc://com.apple.sirikit/documentation/Intents/INNoteContentResolutionResult",
+        "doc://com.apple.sirikit/documentation/Intents/INNotebookItemTypeResolutionResult",
+        "doc://com.apple.sirikit/documentation/Intents/INSetTaskAttributeTemporalEventTriggerResolutionResult",
+        "doc://com.apple.sirikit/documentation/Intents/INSnoozeTasksTaskResolutionResult",
+        "doc://com.apple.sirikit/documentation/Intents/INSpatialEventTriggerResolutionResult",
+        "doc://com.apple.sirikit/documentation/Intents/INTaskListResolutionResult",
+        "doc://com.apple.sirikit/documentation/Intents/INTaskResolutionResult",
+        "doc://com.apple.sirikit/documentation/Intents/INTaskStatusResolutionResult",
+        "doc://com.apple.sirikit/documentation/Intents/INTemporalEventTriggerResolutionResult",
+        "doc://com.apple.sirikit/documentation/Intents/INTaskPriorityResolutionResult"
+      ],
+      "title": "Resolution Results"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INNoteResolutionResult/title",
+          "value": "INNoteResolutionResult"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INNoteResolutionResult/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INNoteResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INNoteResolutionResult/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INNoteResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INNoteContentResolutionResult/title",
+          "value": "INNoteContentResolutionResult"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INNoteContentResolutionResult/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INNoteContentResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INNoteContentResolutionResult/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INNoteContentResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INAddTasksTemporalEventTriggerResolutionResult/title",
+          "value": "INAddTasksTemporalEventTriggerResolutionResult"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INAddTasksTemporalEventTriggerResolutionResult/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INAddTasksTemporalEventTriggerResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INAddTasksTemporalEventTriggerResolutionResult/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INAddTasksTemporalEventTriggerResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSetTaskAttributeIntent/title",
+          "value": "INSetTaskAttributeIntent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSetTaskAttributeIntent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INSetTaskAttributeIntent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSetTaskAttributeIntent/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INSetTaskAttributeIntent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INDayOfWeekOptions/title",
+          "value": "INDayOfWeekOptions"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INDayOfWeekOptions/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INDayOfWeekOptions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INDayOfWeekOptions/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INDayOfWeekOptions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INTemporalEventTriggerTypeOptionsResolutionResult/title",
+          "value": "INTemporalEventTriggerTypeOptionsResolutionResult"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INTemporalEventTriggerTypeOptionsResolutionResult/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INTemporalEventTriggerTypeOptionsResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INTemporalEventTriggerTypeOptionsResolutionResult/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INTemporalEventTriggerTypeOptionsResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INNoteContent/title",
+          "value": "INNoteContent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INNoteContent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INNoteContent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INNoteContent/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INNoteContent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSpatialEventTrigger/title",
+          "value": "INSpatialEventTrigger"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSpatialEventTrigger/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INSpatialEventTrigger"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSpatialEventTrigger/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INSpatialEventTrigger"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSearchForNotebookItemsIntentHandling/title",
+          "value": "INSearchForNotebookItemsIntentHandling"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSearchForNotebookItemsIntentHandling/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INSearchForNotebookItemsIntentHandling"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSearchForNotebookItemsIntentHandling/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INSearchForNotebookItemsIntentHandling"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSearchForNotebookItemsIntentResponse/title",
+          "value": "INSearchForNotebookItemsIntentResponse"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSearchForNotebookItemsIntentResponse/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INSearchForNotebookItemsIntentResponse"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSearchForNotebookItemsIntentResponse/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INSearchForNotebookItemsIntentResponse"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INTaskPriorityResolutionResult/title",
+          "value": "INTaskPriorityResolutionResult"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INTaskPriorityResolutionResult/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INTaskPriorityResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INTaskPriorityResolutionResult/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INTaskPriorityResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSearchForNotebookItemsIntent/title",
+          "value": "INSearchForNotebookItemsIntent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSearchForNotebookItemsIntent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INSearchForNotebookItemsIntent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSearchForNotebookItemsIntent/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INSearchForNotebookItemsIntent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INImageNoteContent/title",
+          "value": "INImageNoteContent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INImageNoteContent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INImageNoteContent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INImageNoteContent/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INImageNoteContent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INTaskStatusResolutionResult/title",
+          "value": "INTaskStatusResolutionResult"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INTaskStatusResolutionResult/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INTaskStatusResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INTaskStatusResolutionResult/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INTaskStatusResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INTaskList/title",
+          "value": "INTaskList"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INTaskList/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INTaskList"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INTaskList/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INTaskList"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSnoozeTasksIntentResponse/title",
+          "value": "INSnoozeTasksIntentResponse"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSnoozeTasksIntentResponse/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INSnoozeTasksIntentResponse"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSnoozeTasksIntentResponse/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INSnoozeTasksIntentResponse"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSetTaskAttributeIntentResponse/title",
+          "value": "INSetTaskAttributeIntentResponse"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSetTaskAttributeIntentResponse/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INSetTaskAttributeIntentResponse"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSetTaskAttributeIntentResponse/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INSetTaskAttributeIntentResponse"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INAddTasksIntentResponse/title",
+          "value": "INAddTasksIntentResponse"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INAddTasksIntentResponse/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INAddTasksIntentResponse"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INAddTasksIntentResponse/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INAddTasksIntentResponse"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INNotebookItemTypeResolutionResult/title",
+          "value": "INNotebookItemTypeResolutionResult"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INNotebookItemTypeResolutionResult/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INNotebookItemTypeResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INNotebookItemTypeResolutionResult/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INNotebookItemTypeResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INAddTasksIntentHandling/title",
+          "value": "INAddTasksIntentHandling"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INAddTasksIntentHandling/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INAddTasksIntentHandling"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INAddTasksIntentHandling/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INAddTasksIntentHandling"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INTaskListResolutionResult/title",
+          "value": "INTaskListResolutionResult"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INTaskListResolutionResult/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INTaskListResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INTaskListResolutionResult/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INTaskListResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INTextNoteContent/title",
+          "value": "INTextNoteContent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INTextNoteContent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INTextNoteContent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INTextNoteContent/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INTextNoteContent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INTemporalEventTrigger/title",
+          "value": "INTemporalEventTrigger"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INTemporalEventTrigger/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INTemporalEventTrigger"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INTemporalEventTrigger/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INTemporalEventTrigger"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INTemporalEventTriggerResolutionResult/title",
+          "value": "INTemporalEventTriggerResolutionResult"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INTemporalEventTriggerResolutionResult/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INTemporalEventTriggerResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INTemporalEventTriggerResolutionResult/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INTemporalEventTriggerResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSnoozeTasksIntent/title",
+          "value": "INSnoozeTasksIntent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSnoozeTasksIntent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INSnoozeTasksIntent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSnoozeTasksIntent/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INSnoozeTasksIntent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSetTaskAttributeTemporalEventTriggerResolutionResult/title",
+          "value": "INSetTaskAttributeTemporalEventTriggerResolutionResult"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSetTaskAttributeTemporalEventTriggerResolutionResult/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INSetTaskAttributeTemporalEventTriggerResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSetTaskAttributeTemporalEventTriggerResolutionResult/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INSetTaskAttributeTemporalEventTriggerResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSpatialEventTriggerResolutionResult/title",
+          "value": "INSpatialEventTriggerResolutionResult"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSpatialEventTriggerResolutionResult/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INSpatialEventTriggerResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSpatialEventTriggerResolutionResult/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INSpatialEventTriggerResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INCreateNoteIntent/title",
+          "value": "INCreateNoteIntent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INCreateNoteIntent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INCreateNoteIntent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INCreateNoteIntent/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INCreateNoteIntent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INTask/title",
+          "value": "INTask"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INTask/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INTask"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INTask/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INTask"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INDateSearchTypeResolutionResult/title",
+          "value": "INDateSearchTypeResolutionResult"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INDateSearchTypeResolutionResult/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INDateSearchTypeResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INDateSearchTypeResolutionResult/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INDateSearchTypeResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INCreateNoteIntentHandling/title",
+          "value": "INCreateNoteIntentHandling"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INCreateNoteIntentHandling/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INCreateNoteIntentHandling"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INCreateNoteIntentHandling/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INCreateNoteIntentHandling"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INLocationSearchTypeResolutionResult/title",
+          "value": "INLocationSearchTypeResolutionResult"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INLocationSearchTypeResolutionResult/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INLocationSearchTypeResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INLocationSearchTypeResolutionResult/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INLocationSearchTypeResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSnoozeTasksTaskResolutionResult/title",
+          "value": "INSnoozeTasksTaskResolutionResult"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSnoozeTasksTaskResolutionResult/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INSnoozeTasksTaskResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSnoozeTasksTaskResolutionResult/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INSnoozeTasksTaskResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INAddTasksIntent/title",
+          "value": "INAddTasksIntent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INAddTasksIntent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INAddTasksIntent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INAddTasksIntent/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INAddTasksIntent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSnoozeTasksIntentHandling/title",
+          "value": "INSnoozeTasksIntentHandling"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSnoozeTasksIntentHandling/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INSnoozeTasksIntentHandling"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSnoozeTasksIntentHandling/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INSnoozeTasksIntentHandling"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INCreateNoteIntentResponse/title",
+          "value": "INCreateNoteIntentResponse"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INCreateNoteIntentResponse/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INCreateNoteIntentResponse"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INCreateNoteIntentResponse/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INCreateNoteIntentResponse"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSetTaskAttributeIntentHandling/title",
+          "value": "INSetTaskAttributeIntentHandling"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSetTaskAttributeIntentHandling/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INSetTaskAttributeIntentHandling"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INSetTaskAttributeIntentHandling/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INSetTaskAttributeIntentHandling"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INNote/title",
+          "value": "INNote"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INNote/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INNote"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INNote/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INNote"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INAddTasksTargetTaskListResolutionResult/title",
+          "value": "INAddTasksTargetTaskListResolutionResult"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INAddTasksTargetTaskListResolutionResult/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INAddTasksTargetTaskListResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INAddTasksTargetTaskListResolutionResult/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INAddTasksTargetTaskListResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INTaskResolutionResult/title",
+          "value": "INTaskResolutionResult"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INTaskResolutionResult/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INTaskResolutionResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.sirikit~1documentation~1Intents~1INTaskResolutionResult/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "INTaskResolutionResult"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

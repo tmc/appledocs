@@ -1,0 +1,1426 @@
+{
+  "abstract": [
+    {
+      "text": "Determine the authorization your app needs to access location data.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.bundleresources/documentation/BundleResources",
+        "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List",
+        "doc://com.apple.bundleresources/documentation/BundleResources/protected-resources"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.bundleresources/documentation/BundleResources/choosing-the-location-services-authorization-to-request"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Bundle Resources"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Choosing the  Location Services Authorization to Request"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The authorization status that your app has determines if and when it receives location events. There are two types of authorization your app can request:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Your app can use all location services and receive events while the app is in use. In general, iOS apps are considered in use when they’re in the foreground or running in the background with the background location usage indicator enabled.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "When In Use",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Your app can use all location services and receive events even if the user is not aware that your app is running. If your app isn’t running, the system launches your app and delivers the event.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Always",
+                    "type": "text"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "anchor": "Prefer-When-In-Use-Authorization",
+          "level": 3,
+          "text": "Prefer When In Use Authorization",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Whenever possible, request only When In Use authorization. This mode has powerful features, allowing your app to:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Access all available location services while the user is using the app. If the user stops using your app, any outstanding requests suspend until the user resumes using your app.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Continue to get location updates even after your app enters the background, if you’ve enabled background location updates in your Xcode project. See ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/CoreLocation/handling-location-updates-in-the-background",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " for more information.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use location notification triggers to launch. If your app can rely on your user’s interaction, set up a ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/UserNotifications/UNLocationNotificationTrigger",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to notify users when they enter a relevant region. When users click through the notification, the system launches the app, making it eligible to receive the location event. This method lets users decide at a relevant moment whether to share their location with your app.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Location services are available to apps with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreLocation/CLAuthorizationStatus/authorizedWhenInUse",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " only while the app is “in use”. On all platforms that support When In Use authorization, an app is considered in use:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "When the app runs in the foreground.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the few seconds after an app leaves the foreground, a short grace period for your app to finish any current location tasks the user initiated.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "When the app shows the background location usage indicator (",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/CoreLocation/CLLocationManager/showsBackgroundLocationIndicator",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": "). On iOS, the indicator is a blue bar or pill at the top of the screen; on watchOS it’s a small icon.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For watchOS, the system always considers a complication on the current watch face to be in use. However, while the complication can receive location updates, you request authorization prompts from the main watch app. On watchOS there’s no way to opt out of showing the background location usage indicator.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Ask-for-Always-Authorization",
+          "level": 3,
+          "text": "Ask for Always Authorization",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your app might require Always authorization in some situations where users can’t or don’t want to engage with your app every time you need location information. You may need to ask for Always authorization if:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Your app performs automated tasks during which a prompt might be inconvenient or undesirable. For example, if your app triggers automatic actions when the user enters a location, such as turning on the lights, your app may require Always authorization.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Your app records numerous locations throughout the day, such as for a diary app. The user may prefer to allow Always authorization so your app can record locations even when it’s not in use, and without prompting the user.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Keep in mind that asking for authorization doesn’t guarantee your app will receive it. If you request Always authorization, the user has the option of granting your app When In Use authorization instead. You must always be prepared to run with When In Use authorization.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "If your app requests and receives When In Use authorization, you can make a separate request for Always authorization later. However, apps may make only one request for Always authorization.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "While all platforms support When In Use authorization, the availability and functionality of Always authorization varies, as follows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Only supports When In Use authorization",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "tvOS",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Typically, apps only need When In Use authorization. The watch face context is effectively always in use; if you’re developing a complication, your app likely needs only When In Use authorization. Core location API doesn’t provide launching behavior for watchOS.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "watchOS",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Core Location automatically prompts the user for permission when you start any location service; you don’t have to request authorization. Users can either allow or deny authorization. When In Use and Always authorizations are functionally equivalent.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "macOS",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Your UIKit code can and should request the authorization that makes sense on iOS; the same choice will work when the app runs on the Mac. When In Use and Always authorizations are functionally equivalent on the Mac.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Mac Catalyst",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Supports When In Use and Always authorization.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "iOS",
+                    "type": "text"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "anchor": "Request-Authorization-for-Apps-Running-in-iOS-12-and-Earlier",
+          "level": 3,
+          "text": "Request Authorization for Apps Running in iOS 12 and Earlier",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Apps compiled with iOS 13 or later SDKs but running in iOS 12 or earlier will exhibit behavior consistent with iOS 12 for When In Use authorization. Specifically, in iOS 12 or earlier, some location services are only available to apps with Always authorization, as shown in this table:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Service",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "When In Use",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Always",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Standard location service",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Supported",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Supported",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Significant-change location service",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Not available",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Supported",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Visits service",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Not available",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Supported",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Region monitoring",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Not available",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Supported",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "iBeacon ranging",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Supported",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Supported",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Heading service",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Supported",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Supported",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Geocoding services",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Supported",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Supported",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.bundleresources/documentation/BundleResources": {
+      "abstract": [
+        {
+          "text": "Resources located in an app, framework, or plugin bundle.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Bundle Resources",
+      "type": "topic",
+      "url": "/documentation/bundleresources"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List": {
+      "abstract": [
+        {
+          "text": "A resource containing key-value pairs that identify and configure a bundle.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List",
+      "kind": "symbol",
+      "name": "Information Property List",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Information Property List"
+        }
+      ],
+      "role": "symbol",
+      "title": "Information Property List",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSLocationAlwaysAndWhenInUseUsageDescription": {
+      "abstract": [
+        {
+          "text": "A message that tells the user why the app is requesting access to the user’s location information at all times.",
+          "type": "text"
+        }
+      ],
+      "ideTitle": "Privacy - Location Always and When In Use Usage Description",
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSLocationAlwaysAndWhenInUseUsageDescription",
+      "kind": "symbol",
+      "name": "NSLocationAlwaysAndWhenInUseUsageDescription",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSLocationAlwaysAndWhenInUseUsageDescription"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSLocationAlwaysAndWhenInUseUsageDescription",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/nslocationalwaysandwheninuseusagedescription"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSLocationAlwaysUsageDescription": {
+      "abstract": [
+        {
+          "text": "A message that tells the user why the app is requesting access to the user’s location at all times.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "ideTitle": "Privacy - Location Always Usage Description",
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSLocationAlwaysUsageDescription",
+      "kind": "symbol",
+      "name": "NSLocationAlwaysUsageDescription",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSLocationAlwaysUsageDescription"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSLocationAlwaysUsageDescription",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/nslocationalwaysusagedescription"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSLocationDefaultAccuracyReduced": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the app requests reduced location accuracy by default.",
+          "type": "text"
+        }
+      ],
+      "ideTitle": "Privacy - Location Default Accuracy Reduced",
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSLocationDefaultAccuracyReduced",
+      "kind": "symbol",
+      "name": "NSLocationDefaultAccuracyReduced",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSLocationDefaultAccuracyReduced"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSLocationDefaultAccuracyReduced",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/nslocationdefaultaccuracyreduced"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSLocationTemporaryUsageDescriptionDictionary": {
+      "abstract": [
+        {
+          "text": "A collection of messages that explain why the app is requesting temporary access to the user’s location.",
+          "type": "text"
+        }
+      ],
+      "ideTitle": "Privacy - Location Temporary Usage Description Dictionary",
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSLocationTemporaryUsageDescriptionDictionary",
+      "kind": "symbol",
+      "name": "NSLocationTemporaryUsageDescriptionDictionary",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSLocationTemporaryUsageDescriptionDictionary"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSLocationTemporaryUsageDescriptionDictionary",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/nslocationtemporaryusagedescriptiondictionary"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSLocationUsageDescription": {
+      "abstract": [
+        {
+          "text": "A message that tells the user why the app is requesting access to the user’s location information.",
+          "type": "text"
+        }
+      ],
+      "ideTitle": "Privacy - Location Usage Description",
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSLocationUsageDescription",
+      "kind": "symbol",
+      "name": "NSLocationUsageDescription",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSLocationUsageDescription"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSLocationUsageDescription",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/nslocationusagedescription"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSLocationWhenInUseUsageDescription": {
+      "abstract": [
+        {
+          "text": "A message that tells the user why the app is requesting access to the user’s location information while the app is running in the foreground.",
+          "type": "text"
+        }
+      ],
+      "ideTitle": "Privacy - Location When In Use Usage Description",
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSLocationWhenInUseUsageDescription",
+      "kind": "symbol",
+      "name": "NSLocationWhenInUseUsageDescription",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSLocationWhenInUseUsageDescription"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSLocationWhenInUseUsageDescription",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/nslocationwheninuseusagedescription"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSWidgetWantsLocation": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates a widget uses the user’s location information.",
+          "type": "text"
+        }
+      ],
+      "ideTitle": "Widget wants location",
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSWidgetWantsLocation",
+      "kind": "symbol",
+      "name": "NSWidgetWantsLocation",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSWidgetWantsLocation"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSWidgetWantsLocation",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/information-property-list/nswidgetwantslocation"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/protected-resources": {
+      "abstract": [
+        {
+          "text": "Control an app’s access to protected system services and user data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/protected-resources",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Protected resources",
+      "type": "topic",
+      "url": "/documentation/bundleresources/protected-resources"
+    },
+    "doc://com.apple.documentation/documentation/CoreLocation/CLAuthorizationStatus/authorizedWhenInUse": {
+      "abstract": [
+        {
+          "text": "The user authorized the app to start location services while it is in use.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "authorizedWhenInUse"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreLocation/CLAuthorizationStatus/authorizedWhenInUse",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CLAuthorizationStatus.authorizedWhenInUse",
+      "type": "topic",
+      "url": "/documentation/CoreLocation/CLAuthorizationStatus/authorizedWhenInUse"
+    },
+    "doc://com.apple.documentation/documentation/CoreLocation/CLLocationManager/showsBackgroundLocationIndicator": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the status bar changes its appearance when an app uses location services in the background.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "showsBackgroundLocationIndicator"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "set"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreLocation/CLLocationManager/showsBackgroundLocationIndicator",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "showsBackgroundLocationIndicator",
+      "type": "topic",
+      "url": "/documentation/CoreLocation/CLLocationManager/showsBackgroundLocationIndicator"
+    },
+    "doc://com.apple.documentation/documentation/CoreLocation/handling-location-updates-in-the-background": {
+      "abstract": [
+        {
+          "text": "Configure your app to receive location updates when it isn’t running in the foreground.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreLocation/handling-location-updates-in-the-background",
+      "kind": "article",
+      "role": "article",
+      "title": "Handling location updates in the background",
+      "type": "topic",
+      "url": "/documentation/CoreLocation/handling-location-updates-in-the-background"
+    },
+    "doc://com.apple.documentation/documentation/UserNotifications/UNLocationNotificationTrigger": {
+      "abstract": [
+        {
+          "text": "A trigger condition that causes the system to deliver a notification when the user’s device enters or exits a geographic region you specify.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UNLocationNotificationTrigger"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UserNotifications/UNLocationNotificationTrigger",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UNLocationNotificationTrigger",
+      "type": "topic",
+      "url": "/documentation/UserNotifications/UNLocationNotificationTrigger"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Location",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSLocationAlwaysAndWhenInUseUsageDescription",
+        "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSLocationUsageDescription",
+        "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSLocationWhenInUseUsageDescription",
+        "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSLocationTemporaryUsageDescriptionDictionary",
+        "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSLocationAlwaysUsageDescription",
+        "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSWidgetWantsLocation",
+        "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSLocationDefaultAccuracyReduced"
+      ],
+      "title": "Location"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Location",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSLocationAlwaysAndWhenInUseUsageDescription",
+                "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSLocationUsageDescription",
+                "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSLocationWhenInUseUsageDescription",
+                "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSLocationTemporaryUsageDescriptionDictionary",
+                "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSLocationAlwaysUsageDescription",
+                "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSWidgetWantsLocation",
+                "doc://com.apple.bundleresources/documentation/BundleResources/Information-Property-List/NSLocationDefaultAccuracyReduced"
+              ],
+              "title": "Location"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UserNotifications~1UNLocationNotificationTrigger/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UNLocationNotificationTrigger"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UNNotificationTrigger",
+              "text": "UNNotificationTrigger"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreLocation~1CLLocationManager~1showsBackgroundLocationIndicator/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "nonatomic"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "assign"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@BOOL",
+              "text": "BOOL"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "showsBackgroundLocationIndicator"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSLocationDefaultAccuracyReduced/title",
+          "value": "NSLocationDefaultAccuracyReduced"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSLocationDefaultAccuracyReduced/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSLocationDefaultAccuracyReduced"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSLocationTemporaryUsageDescriptionDictionary/title",
+          "value": "NSLocationTemporaryUsageDescriptionDictionary"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSLocationTemporaryUsageDescriptionDictionary/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSLocationTemporaryUsageDescriptionDictionary"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List/title",
+          "value": "Information Property List"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "Information Property List"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSWidgetWantsLocation/title",
+          "value": "NSWidgetWantsLocation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSWidgetWantsLocation/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSWidgetWantsLocation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSLocationAlwaysUsageDescription/title",
+          "value": "NSLocationAlwaysUsageDescription"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSLocationAlwaysUsageDescription/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSLocationAlwaysUsageDescription"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSLocationAlwaysAndWhenInUseUsageDescription/title",
+          "value": "NSLocationAlwaysAndWhenInUseUsageDescription"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSLocationAlwaysAndWhenInUseUsageDescription/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSLocationAlwaysAndWhenInUseUsageDescription"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreLocation~1CLAuthorizationStatus~1authorizedWhenInUse/title",
+          "value": "kCLAuthorizationStatusAuthorizedWhenInUse"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreLocation~1CLAuthorizationStatus~1authorizedWhenInUse/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kCLAuthorizationStatusAuthorizedWhenInUse"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSLocationWhenInUseUsageDescription/title",
+          "value": "NSLocationWhenInUseUsageDescription"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSLocationWhenInUseUsageDescription/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSLocationWhenInUseUsageDescription"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSLocationUsageDescription/title",
+          "value": "NSLocationUsageDescription"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Information-Property-List~1NSLocationUsageDescription/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSLocationUsageDescription"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/bundleresources/choosing-the-location-services-authorization-to-request"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/bundleresources/choosing-the-location-services-authorization-to-request"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

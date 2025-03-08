@@ -1,0 +1,758 @@
+{
+  "abstract": [
+    {
+      "text": "A provider object that manages interactions with an interface of the USB device.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.usbdriverkit/documentation/USBDriverKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.usbdriverkit/documentation/USBDriverKit/IOUSBHostInterface"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@S@IOUSBHostInterface",
+    "fragments": [
+      {
+        "kind": "identifier",
+        "text": "IOUSBHostInterface"
+      }
+    ],
+    "modules": [
+      {
+        "name": "USBDriverKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "IOUSBHostInterface"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "19.0",
+        "name": "DriverKit"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "IOUSBHostInterface"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "Unsupported OS: driverkit"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "IOUSBHostInterface"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.usbdriverkit/documentation/USBDriverKit/IOUSBHostInterface",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object represents one of the interfaces the USB device supports. When implementing a custom driver, use an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.usbdriverkit/documentation/USBDriverKit/IOUSBHostInterface",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object to get information about the specific interface and to communicate with the device using that interface.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Typically, you don’t create ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.usbdriverkit/documentation/USBDriverKit/IOUSBHostInterface",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects directly. During configuration of your driver, you can specify that your driver relies on an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.usbdriverkit/documentation/USBDriverKit/IOUSBHostInterface",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " as its provider, in which case the system creates the object for you automatically during the matching process. Alternatively, if your driver uses an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.usbdriverkit/documentation/USBDriverKit/IOUSBHostDevice",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object as its provider, you can iterate over all of the device’s interfaces to retrieve the specific ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.usbdriverkit/documentation/USBDriverKit/IOUSBHostInterface",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object you need.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To use a host interface object, call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.usbdriverkit/documentation/USBDriverKit/IOUSBHostInterface/Open",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to create a new session between the interface and your driver. After successfully opening your session, you can request information from the interface and set up pipes to communicate with the interface’s endpoints. Remember to close the session you opened in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/3180713-stop",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method of your driver.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/kernel/ioservice/3180713-stop": {
+      "abstract": [
+        {
+          "text": "Stops the service associated with the specified provider. ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice/3180713-stop",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Stop",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice/3180713-stop"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.usbdriverkit/documentation/USBDriverKit": {
+      "abstract": [
+        {
+          "text": "Develop drivers for USB-based devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.usbdriverkit/documentation/USBDriverKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "USBDriverKit",
+      "type": "topic",
+      "url": "/documentation/usbdriverkit"
+    },
+    "doc://com.apple.usbdriverkit/documentation/USBDriverKit/IOUSBHostDevice": {
+      "abstract": [
+        {
+          "text": "A provider object that represents the USB device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "IOUSBHostDevice"
+        }
+      ],
+      "identifier": "doc://com.apple.usbdriverkit/documentation/USBDriverKit/IOUSBHostDevice",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOUSBHostDevice",
+      "type": "topic",
+      "url": "/documentation/usbdriverkit/iousbhostdevice"
+    },
+    "doc://com.apple.usbdriverkit/documentation/USBDriverKit/IOUSBHostInterface": {
+      "abstract": [
+        {
+          "text": "A provider object that manages interactions with an interface of the USB device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "IOUSBHostInterface"
+        }
+      ],
+      "identifier": "doc://com.apple.usbdriverkit/documentation/USBDriverKit/IOUSBHostInterface",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOUSBHostInterface",
+      "type": "topic",
+      "url": "/documentation/usbdriverkit/iousbhostinterface"
+    },
+    "doc://com.apple.usbdriverkit/documentation/USBDriverKit/IOUSBHostInterface/AbortDeviceRequests": {
+      "abstract": [
+        {
+          "text": "Aborts device requests that you made previously from the current interface client.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "AbortDeviceRequests"
+        }
+      ],
+      "identifier": "doc://com.apple.usbdriverkit/documentation/USBDriverKit/IOUSBHostInterface/AbortDeviceRequests",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AbortDeviceRequests",
+      "type": "topic",
+      "url": "/documentation/usbdriverkit/iousbhostinterface/abortdevicerequests"
+    },
+    "doc://com.apple.usbdriverkit/documentation/USBDriverKit/IOUSBHostInterface/AsyncDeviceRequest": {
+      "abstract": [
+        {
+          "text": "Enqueues a request on the default control endpoint of the device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "AsyncDeviceRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.usbdriverkit/documentation/USBDriverKit/IOUSBHostInterface/AsyncDeviceRequest",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AsyncDeviceRequest",
+      "type": "topic",
+      "url": "/documentation/usbdriverkit/iousbhostinterface/asyncdevicerequest"
+    },
+    "doc://com.apple.usbdriverkit/documentation/USBDriverKit/IOUSBHostInterface/Close": {
+      "abstract": [
+        {
+          "text": "Closes the session to the host interface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "Close"
+        }
+      ],
+      "identifier": "doc://com.apple.usbdriverkit/documentation/USBDriverKit/IOUSBHostInterface/Close",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Close",
+      "type": "topic",
+      "url": "/documentation/usbdriverkit/iousbhostinterface/close"
+    },
+    "doc://com.apple.usbdriverkit/documentation/USBDriverKit/IOUSBHostInterface/CopyConfigurationDescriptor": {
+      "abstract": [
+        {
+          "text": "Retrieves the parent configuration descriptor for this interface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "CopyConfigurationDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.usbdriverkit/documentation/USBDriverKit/IOUSBHostInterface/CopyConfigurationDescriptor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CopyConfigurationDescriptor",
+      "type": "topic",
+      "url": "/documentation/usbdriverkit/iousbhostinterface/copyconfigurationdescriptor"
+    },
+    "doc://com.apple.usbdriverkit/documentation/USBDriverKit/IOUSBHostInterface/CopyDevice": {
+      "abstract": [
+        {
+          "text": "Returns the host device object that contains this interface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "CopyDevice"
+        }
+      ],
+      "identifier": "doc://com.apple.usbdriverkit/documentation/USBDriverKit/IOUSBHostInterface/CopyDevice",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CopyDevice",
+      "type": "topic",
+      "url": "/documentation/usbdriverkit/iousbhostinterface/copydevice"
+    },
+    "doc://com.apple.usbdriverkit/documentation/USBDriverKit/IOUSBHostInterface/CopyPipe": {
+      "abstract": [
+        {
+          "text": "Returns the pipe for the specified endpoint address.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "CopyPipe"
+        }
+      ],
+      "identifier": "doc://com.apple.usbdriverkit/documentation/USBDriverKit/IOUSBHostInterface/CopyPipe",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CopyPipe",
+      "type": "topic",
+      "url": "/documentation/usbdriverkit/iousbhostinterface/copypipe"
+    },
+    "doc://com.apple.usbdriverkit/documentation/USBDriverKit/IOUSBHostInterface/CopyStringDescriptor-83du1": {
+      "abstract": [
+        {
+          "text": "Returns a descriptor from the device in the specified language.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "CopyStringDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.usbdriverkit/documentation/USBDriverKit/IOUSBHostInterface/CopyStringDescriptor-83du1",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CopyStringDescriptor",
+      "type": "topic",
+      "url": "/documentation/usbdriverkit/iousbhostinterface/copystringdescriptor-83du1"
+    },
+    "doc://com.apple.usbdriverkit/documentation/USBDriverKit/IOUSBHostInterface/CopyStringDescriptor-8k65j": {
+      "abstract": [
+        {
+          "text": "Returns a string descriptor from the device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "CopyStringDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.usbdriverkit/documentation/USBDriverKit/IOUSBHostInterface/CopyStringDescriptor-8k65j",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CopyStringDescriptor",
+      "type": "topic",
+      "url": "/documentation/usbdriverkit/iousbhostinterface/copystringdescriptor-8k65j"
+    },
+    "doc://com.apple.usbdriverkit/documentation/USBDriverKit/IOUSBHostInterface/CreateIOBuffer": {
+      "abstract": [
+        {
+          "text": "Allocates a buffer for use during I/O operations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "CreateIOBuffer"
+        }
+      ],
+      "identifier": "doc://com.apple.usbdriverkit/documentation/USBDriverKit/IOUSBHostInterface/CreateIOBuffer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CreateIOBuffer",
+      "type": "topic",
+      "url": "/documentation/usbdriverkit/iousbhostinterface/createiobuffer"
+    },
+    "doc://com.apple.usbdriverkit/documentation/USBDriverKit/IOUSBHostInterface/DeviceRequest": {
+      "abstract": [
+        {
+          "text": "Sends a synchronous request to the device on the default control endpoint.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "DeviceRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.usbdriverkit/documentation/USBDriverKit/IOUSBHostInterface/DeviceRequest",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "DeviceRequest",
+      "type": "topic",
+      "url": "/documentation/usbdriverkit/iousbhostinterface/devicerequest"
+    },
+    "doc://com.apple.usbdriverkit/documentation/USBDriverKit/IOUSBHostInterface/GetFrameNumber": {
+      "abstract": [
+        {
+          "text": "Gets the current frame number of the USB controller.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "GetFrameNumber"
+        }
+      ],
+      "identifier": "doc://com.apple.usbdriverkit/documentation/USBDriverKit/IOUSBHostInterface/GetFrameNumber",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GetFrameNumber",
+      "type": "topic",
+      "url": "/documentation/usbdriverkit/iousbhostinterface/getframenumber"
+    },
+    "doc://com.apple.usbdriverkit/documentation/USBDriverKit/IOUSBHostInterface/GetIdlePolicy": {
+      "abstract": [
+        {
+          "text": "Gets the current idle suspend timeout for the interface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "GetIdlePolicy"
+        }
+      ],
+      "identifier": "doc://com.apple.usbdriverkit/documentation/USBDriverKit/IOUSBHostInterface/GetIdlePolicy",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GetIdlePolicy",
+      "type": "topic",
+      "url": "/documentation/usbdriverkit/iousbhostinterface/getidlepolicy"
+    },
+    "doc://com.apple.usbdriverkit/documentation/USBDriverKit/IOUSBHostInterface/GetInterfaceDescriptor": {
+      "abstract": [
+        {
+          "text": "Returns the version of the interface descriptor that is associated with the specified configuration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "GetInterfaceDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.usbdriverkit/documentation/USBDriverKit/IOUSBHostInterface/GetInterfaceDescriptor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GetInterfaceDescriptor",
+      "type": "topic",
+      "url": "/documentation/usbdriverkit/iousbhostinterface/getinterfacedescriptor"
+    },
+    "doc://com.apple.usbdriverkit/documentation/USBDriverKit/IOUSBHostInterface/GetPortStatus": {
+      "abstract": [
+        {
+          "text": "Gets the current port status.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "GetPortStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.usbdriverkit/documentation/USBDriverKit/IOUSBHostInterface/GetPortStatus",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GetPortStatus",
+      "type": "topic",
+      "url": "/documentation/usbdriverkit/iousbhostinterface/getportstatus"
+    },
+    "doc://com.apple.usbdriverkit/documentation/USBDriverKit/IOUSBHostInterface/Open": {
+      "abstract": [
+        {
+          "text": "Opens a session to the host interface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "Open"
+        }
+      ],
+      "identifier": "doc://com.apple.usbdriverkit/documentation/USBDriverKit/IOUSBHostInterface/Open",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Open",
+      "type": "topic",
+      "url": "/documentation/usbdriverkit/iousbhostinterface/open"
+    },
+    "doc://com.apple.usbdriverkit/documentation/USBDriverKit/IOUSBHostInterface/SelectAlternateSetting": {
+      "abstract": [
+        {
+          "text": "Selects an alternative setting for this interface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SelectAlternateSetting"
+        }
+      ],
+      "identifier": "doc://com.apple.usbdriverkit/documentation/USBDriverKit/IOUSBHostInterface/SelectAlternateSetting",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SelectAlternateSetting",
+      "type": "topic",
+      "url": "/documentation/usbdriverkit/iousbhostinterface/selectalternatesetting"
+    },
+    "doc://com.apple.usbdriverkit/documentation/USBDriverKit/IOUSBHostInterface/SetIdlePolicy": {
+      "abstract": [
+        {
+          "text": "Sets the desired idle suspend timeout for the interface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SetIdlePolicy"
+        }
+      ],
+      "identifier": "doc://com.apple.usbdriverkit/documentation/USBDriverKit/IOUSBHostInterface/SetIdlePolicy",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SetIdlePolicy",
+      "type": "topic",
+      "url": "/documentation/usbdriverkit/iousbhostinterface/setidlepolicy"
+    },
+    "doc://com.apple.usbdriverkit/documentation/USBDriverKit/tIOUSBHostPortStatus": {
+      "abstract": [
+        {
+          "text": "Constants indicating the state of a port.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "tIOUSBHostPortStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.usbdriverkit/documentation/USBDriverKit/tIOUSBHostPortStatus",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "tIOUSBHostPortStatus",
+      "type": "topic",
+      "url": "/documentation/usbdriverkit/tiousbhostportstatus"
+    },
+    "doc://com.externally.resolved.symbol/c:@S@IOService": {
+      "abstract": [
+        {
+          "text": "The base class for managing the setup and registration of your driver.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:@S@IOService",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOService",
+      "type": "topic",
+      "url": "/documentation/driverkit/ioservice"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:@S@IOService"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Providers",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.usbdriverkit/documentation/USBDriverKit/IOUSBHostDevice"
+      ],
+      "title": "Providers"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Managing-the-Device-Session",
+      "identifiers": [
+        "doc://com.apple.usbdriverkit/documentation/USBDriverKit/IOUSBHostInterface/Open",
+        "doc://com.apple.usbdriverkit/documentation/USBDriverKit/IOUSBHostInterface/Close"
+      ],
+      "title": "Managing the Device Session"
+    },
+    {
+      "anchor": "Getting-Interface-Related-Descriptors",
+      "identifiers": [
+        "doc://com.apple.usbdriverkit/documentation/USBDriverKit/IOUSBHostInterface/CopyConfigurationDescriptor",
+        "doc://com.apple.usbdriverkit/documentation/USBDriverKit/IOUSBHostInterface/GetInterfaceDescriptor",
+        "doc://com.apple.usbdriverkit/documentation/USBDriverKit/IOUSBHostInterface/CopyStringDescriptor-83du1",
+        "doc://com.apple.usbdriverkit/documentation/USBDriverKit/IOUSBHostInterface/CopyStringDescriptor-8k65j"
+      ],
+      "title": "Getting Interface-Related Descriptors"
+    },
+    {
+      "anchor": "Getting-an-Endpoint-Pipe",
+      "identifiers": [
+        "doc://com.apple.usbdriverkit/documentation/USBDriverKit/IOUSBHostInterface/CopyPipe"
+      ],
+      "title": "Getting an Endpoint Pipe"
+    },
+    {
+      "anchor": "Getting-the-Device",
+      "identifiers": [
+        "doc://com.apple.usbdriverkit/documentation/USBDriverKit/IOUSBHostInterface/CopyDevice"
+      ],
+      "title": "Getting the Device"
+    },
+    {
+      "anchor": "Requesting-Data-from-the-Default-Control-Endpoint",
+      "identifiers": [
+        "doc://com.apple.usbdriverkit/documentation/USBDriverKit/IOUSBHostInterface/DeviceRequest",
+        "doc://com.apple.usbdriverkit/documentation/USBDriverKit/IOUSBHostInterface/AsyncDeviceRequest",
+        "doc://com.apple.usbdriverkit/documentation/USBDriverKit/IOUSBHostInterface/AbortDeviceRequests"
+      ],
+      "title": "Requesting Data from the Default Control Endpoint"
+    },
+    {
+      "anchor": "Configuring-the-Interface",
+      "identifiers": [
+        "doc://com.apple.usbdriverkit/documentation/USBDriverKit/IOUSBHostInterface/GetFrameNumber",
+        "doc://com.apple.usbdriverkit/documentation/USBDriverKit/IOUSBHostInterface/GetPortStatus",
+        "doc://com.apple.usbdriverkit/documentation/USBDriverKit/IOUSBHostInterface/SelectAlternateSetting",
+        "doc://com.apple.usbdriverkit/documentation/USBDriverKit/IOUSBHostInterface/GetIdlePolicy",
+        "doc://com.apple.usbdriverkit/documentation/USBDriverKit/IOUSBHostInterface/SetIdlePolicy",
+        "doc://com.apple.usbdriverkit/documentation/USBDriverKit/tIOUSBHostPortStatus"
+      ],
+      "title": "Configuring the Interface"
+    },
+    {
+      "anchor": "Creating-Memory-Buffers",
+      "identifiers": [
+        "doc://com.apple.usbdriverkit/documentation/USBDriverKit/IOUSBHostInterface/CreateIOBuffer"
+      ],
+      "title": "Creating Memory Buffers"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/usbdriverkit/iousbhostinterface"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

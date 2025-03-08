@@ -1,0 +1,1684 @@
+{
+  "abstract": [
+    {
+      "text": "Manage the installation of an app that you develop and distribute through your website.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.ManagedAppDistribution/documentation/MarketplaceKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.ManagedAppDistribution/documentation/appdistribution/installing-your-app-from-your-website"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "MarketplaceKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Installing your app from your website"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Alternative distribution apps approved for download from your website install when people navigate to a special URL scheme; see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.ManagedAppDistribution/documentation/appdistribution/distributing-your-app-from-your-website",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When someone taps a button mapped to the URL, the system makes several requests of your web server to facilitate the installation. Each of the following services that you implement on your web server contain at least two endpoints:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Authentication server",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Licensing server",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "App-data server",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "MarketplaceKit supports authentication through the the OAuth 2.0 specification ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://datatracker.ietf.org/doc/html/rfc6749",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". If your website requires someone to be signed-in before they can download an app, or to have made a purchase, include an authentication token in the   ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.ManagedAppDistribution/documentation/MarketplaceKit/MarketplaceKitURIScheme",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " URL to begin the authorization process.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After your server authorizes the device, the system requests a license for the app. Your server uses ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppLicenseDeliverySDK",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in conjunction with the encryption and signing assets that Apple provides to implement ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "digital rights management",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " by issuing a dynamic license for each installation of an app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After the device receives a license, the system requests the app data from your web server’s ",
+              "type": "text"
+            },
+            {
+              "code": "restore",
+              "type": "codeVoice"
+            },
+            {
+              "text": " endpoint to install the app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "installing-your-app-from-your-website-1",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Authenticate-the-page-visitor",
+          "level": 2,
+          "text": "Authenticate the page visitor",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To restrict download access to a specific set of people, include a token in the ",
+              "type": "text"
+            },
+            {
+              "code": "MarketplaceKitURIScheme",
+              "type": "codeVoice"
+            },
+            {
+              "text": " request. If you include the optional ",
+              "type": "text"
+            },
+            {
+              "code": "token",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter in the URL, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.ManagedAppDistribution/documentation/MarketplaceKit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " passes the value to your athentication server to begin authorization. The system looks for details about your authentication server at the following URL:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "<fully-qualified-domain>/.well-known/oauth-authorization-server"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "At this URL, host a JSON file with the following configuration:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "    \"authorization_endpoint\": ",
+            "        \"<fully-qualified-domain>/oauth/authorize\",",
+            "    \"code_challenge_methods_supported\": [",
+            "        \"5256\"",
+            "    ],",
+            "    \"grant_types_supported\": [",
+            "        \"authorization_code\"",
+            "    ],",
+            "    \"issuer\": \"<fully-qualified-domain>\",",
+            "    \"response_types_supported\": [",
+            "        \"code\",",
+            "        \"token\"",
+            "    ],",
+            "    \"token_endpoint\": \"<fully-qualified-domain>/oauth/token\"",
+            "}"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Host the file using ",
+                  "type": "text"
+                },
+                {
+                  "code": "https://",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " with a valid certificate. Don’t use redirects. For more information, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/Xcode/supporting-associated-domains",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system sends the token from your download URL in a POST to your ",
+              "type": "text"
+            },
+            {
+              "code": "token_endpoint",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in the format of described in ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://www.rfc-editor.org/rfc/rfc8693.html#name-example-token-exchange",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", for example:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "POST /oauth/token HTTP/1.1",
+            "Host: server.example.com",
+            "Content-Type: application/x-www-form-urlencoded",
+            "",
+            "grant_type=urn:ietf:params:oauth:grant-type:token-exchange",
+            "&issued_token_type=urn:ietf:params:oauth:token-type:access_token",
+            "&subject_token=eyJhbGciOiJSUzI1NiIsImtpZCI6IjIyIn0",
+            "&subject_token_type=urn:ietf:params:oauth:token-type:access_token",
+            "&client_id=6ef01a168f14431d98a0626cf5c89104"
+          ],
+          "syntax": "http",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The fields in the POST body are:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "URL parameter",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Description",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "grant_type",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The grant type, ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "urn:ietf:params:oauth:grant-type:token-exchange",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", per ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://www.rfc-editor.org/rfc/rfc8693.html#name-example-token-exchange",
+                      "isActive": true,
+                      "overridingTitle": "RFC 8693",
+                      "overridingTitleInlineContent": [
+                        {
+                          "text": "RFC 8693",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "issued_token_type",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The token type, ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "ietf:params:oauth:token-type:access_token",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "client_id",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A value that’s unique for each device, website domain, and account. The system generates a new value if it doesn’t already exist, which might occur after someone deletes the app. The value might change until the person approves the app developer in Settings.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "subject_token",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "token",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " in the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.ManagedAppDistribution/documentation/MarketplaceKit/MarketplaceKitURIScheme",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " request.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "subject_token_type",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The subject token type, ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "ietf:params:oauth:token-type:access_token",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "code": "client_id",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " isn’t a stable way to identify a customer or track the number of simultaneous installs of an app for an account. To identify the customer, use the ",
+                  "type": "text"
+                },
+                {
+                  "code": "token",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " parameter in the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.ManagedAppDistribution/documentation/MarketplaceKit/MarketplaceKitURIScheme",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " instead. To track installation counts for an app, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/applicensedeliverysdk/licensing-alternative-distribution-apps#Track-the-number-of-simultaneous-app-installs-for-an-account",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your token endpoint responds to the request with an access token and, optionally, a refresh token. Here’s an example response:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "HTTP/1.1 200 OK",
+            "Content-Type: application/json;charset=UTF-8",
+            "Cache-Control: no-store",
+            "Pragma: no-cache",
+            "",
+            "{",
+            "   \"access_token\": \"2YotnFZFEjr1zCsicMWpAA\",",
+            "   \"refresh_token\": \"82u9fehjiofasbkr3290\",",
+            "   \"token_type\": \"bearer\",",
+            "   \"expires_in\": 3600",
+            "}"
+          ],
+          "syntax": "http",
+          "type": "codeListing"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "URL parameter",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Description",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "access_token",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A token that authorizes the system to manage apps on behalf of the page visitor.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "refresh_token",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "An optional token that the system exchanges for another access token after the original access token expires.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "token_type",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The value ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "\"bearer\"",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " (required).",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "expires_in",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The time, in seconds, during which the system considers the token valid.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the system makes subsequent calls to your web server for app licenses, app installs (",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "restores",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": "), or app updates, it includes the bearer token in the header for your server to validate the communication and associate with the person’s account.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "For more information on implementing an authentication service, such as generating the tokens, refer to OAuth 2.0 Authorization Framework Specification, ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://datatracker.ietf.org/doc/html/rfc6749",
+                  "isActive": true,
+                  "overridingTitle": "IETF RFC 6749",
+                  "overridingTitleInlineContent": [
+                    {
+                      "text": "IETF RFC 6749",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "reference"
+                },
+                {
+                  "text": ". All communication between your server and device needs to occur over TLS.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Retrieve-a-license-for-the-app-from-your-web-server",
+          "level": 2,
+          "text": "Retrieve a license for the app from your web server",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your website doesn’t require authentication or the device is already successfully authorized to act on behalf of the page visitor, the system requests an app license from your web server. To process license requests, your web server implements an endpoint that serves generated licenses by using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppLicenseDeliverySDK",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Serve-a-restore-request",
+          "level": 2,
+          "text": "Serve a restore request",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When your server responds with a license, the system requests to download your app. Your web server needs to provide a JSON file at the following URL:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "<fully-qualified-domain>/.well-known/marketplace-kit"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Inside the file, define an endpoint to handle ",
+              "type": "text"
+            },
+            {
+              "code": "restore",
+              "type": "codeVoice"
+            },
+            {
+              "text": " requests from the device:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "\"restore\": \"<fully-qualified-domain>/PATH\","
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system calls your restore endpoint with the following example POST:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{ ",
+            "    \"apps\": [",
+            "       { ",
+            "          \"appleItemId\": \"<your marketplace's appleItemID>\",",
+            "          \"appleVersionId\" : \"<version number>\"",
+            "       }",
+            "    ], ",
+            "    \"platform\" : \"iOS\",",
+            "    \"osVersion\" : \"17.4\"",
+            "}"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The request contains the following fields:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Request field",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "description",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "apps",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "An array that contains an object for each app in the request.  Each object in the array consists of an identifier (",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.ManagedAppDistribution/documentation/MarketplaceKit/AppleItemID",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ") and version (",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.ManagedAppDistribution/documentation/MarketplaceKit/AppleVersionID",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ") for the requested app.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "platform",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A string that identifies the platform of the installing device.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "osVersion",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A string that identifies the operating system version of the installing device.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Compare the ",
+              "type": "text"
+            },
+            {
+              "code": "platform",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "osVersion",
+              "type": "codeVoice"
+            },
+            {
+              "text": " fields to those contained within the app’s manifest to confirm that your alternative distribution package supports the device attempting to install it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If downloading your app requires authorization and the system communicates with your endpoint without a valid access token, request reauthentication in your response. An invalid access token can result from token expiration, or the restoration of a device from a backup. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.ManagedAppDistribution/documentation/appdistribution/reauthenticating-a-person-to-manage-apps",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Otherwise, send your app in response by supplying a URL in the ",
+              "type": "text"
+            },
+            {
+              "code": "restores",
+              "type": "codeVoice"
+            },
+            {
+              "text": " element to the alternative distribution package for the requested app version:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "    \"restores\": [",
+            "        {",
+            "            \"appleItemId\": \"10737747186\",",
+            "            \"appleVersionId\": \"2000004563\",",
+            "            \"alternativeDistributionPackage\": ",
+            "                \"<fully qualified domain>/PATH\",",
+            "            \"installVerificationToken\" : \"<required-string>\"",
+            "            \"appShareURL\" : <URL>",
+            "        }",
+            "    ]",
+            "}"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "\"restores\"",
+              "type": "codeVoice"
+            },
+            {
+              "text": " array in the response contains an object with the following fields:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Response field",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "description",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "appleItemId",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "An identifier for your app. For more information, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.ManagedAppDistribution/documentation/MarketplaceKit/AppleItemID",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "appleVersionId",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A version number that corresponds to the alternative distribution package. For more information, see  ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.ManagedAppDistribution/documentation/MarketplaceKit/AppleVersionID",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "alternativeDistributionPackage",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Your app’s alternative distribution package in the assembled format described in ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.ManagedAppDistribution/documentation/appdistribution/ingesting-an-alternative-distribution-package",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". This value has unique domain-matching requirements; for more information, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.ManagedAppDistribution/documentation/MarketplaceKit/MarketplaceKitURIScheme",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "installVerificationToken",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A JSON web signature that ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.ManagedAppDistribution/documentation/MarketplaceKit",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " uses for installations. For more information, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.ManagedAppDistribution/documentation/appdistribution/supplying-an-install-verification-token",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "appShareURL",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A URL to a product landing page for the app on your marketplace website. The operating system populates the value in the Share Sheet when a person touches and holds the app’s icon on the Home Screen.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.ManagedAppDistribution/documentation/MarketplaceKit": {
+      "abstract": [
+        {
+          "text": "Create an alternative app marketplace, distribute your app on an alternative app marketplace, or distribute your app from your website.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.ManagedAppDistribution/documentation/MarketplaceKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "MarketplaceKit",
+      "type": "topic",
+      "url": "/documentation/marketplacekit"
+    },
+    "doc://com.apple.ManagedAppDistribution/documentation/MarketplaceKit/AppleItemID": {
+      "abstract": [
+        {
+          "text": "An identifier that represents an app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AppleItemID"
+        }
+      ],
+      "identifier": "doc://com.apple.ManagedAppDistribution/documentation/MarketplaceKit/AppleItemID",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AppleItemID"
+        }
+      ],
+      "role": "symbol",
+      "title": "AppleItemID",
+      "type": "topic",
+      "url": "/documentation/marketplacekit/appleitemid"
+    },
+    "doc://com.apple.ManagedAppDistribution/documentation/MarketplaceKit/AppleVersionID": {
+      "abstract": [
+        {
+          "text": "An identifier that represents a single app version.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AppleVersionID"
+        }
+      ],
+      "identifier": "doc://com.apple.ManagedAppDistribution/documentation/MarketplaceKit/AppleVersionID",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AppleVersionID"
+        }
+      ],
+      "role": "symbol",
+      "title": "AppleVersionID",
+      "type": "topic",
+      "url": "/documentation/marketplacekit/appleversionid"
+    },
+    "doc://com.apple.ManagedAppDistribution/documentation/MarketplaceKit/MarketplaceKitURIScheme": {
+      "abstract": [
+        {
+          "text": "A URI scheme that defines an alternative distribution app installation link.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MarketplaceKitURIScheme"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.ManagedAppDistribution/documentation/MarketplaceKit/MarketplaceKitURIScheme",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MarketplaceKitURIScheme",
+      "type": "topic",
+      "url": "/documentation/marketplacekit/marketplacekiturischeme"
+    },
+    "doc://com.apple.ManagedAppDistribution/documentation/appdistribution/distributing-your-app-from-your-website": {
+      "abstract": [
+        {
+          "text": "Configure your app and website to enable people to install your app on their devices from your website.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.ManagedAppDistribution/documentation/appdistribution/distributing-your-app-from-your-website",
+      "kind": "article",
+      "role": "article",
+      "title": "Distributing your app from your website",
+      "type": "topic",
+      "url": "/documentation/appdistribution/distributing-your-app-from-your-website"
+    },
+    "doc://com.apple.ManagedAppDistribution/documentation/appdistribution/ingesting-an-alternative-distribution-package": {
+      "abstract": [
+        {
+          "text": "Process an available app version from App Store Connect and store it for download from your server.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.ManagedAppDistribution/documentation/appdistribution/ingesting-an-alternative-distribution-package",
+      "kind": "article",
+      "role": "article",
+      "title": "Ingesting an alternative distribution package",
+      "type": "topic",
+      "url": "/documentation/appdistribution/ingesting-an-alternative-distribution-package"
+    },
+    "doc://com.apple.ManagedAppDistribution/documentation/appdistribution/installing-apps-from-an-alternative-marketplace": {
+      "abstract": [
+        {
+          "text": "Manage the installation of apps that developers distribute from your marketplace app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.ManagedAppDistribution/documentation/appdistribution/installing-apps-from-an-alternative-marketplace",
+      "kind": "article",
+      "role": "article",
+      "title": "Installing apps from an alternative marketplace",
+      "type": "topic",
+      "url": "/documentation/appdistribution/installing-apps-from-an-alternative-marketplace"
+    },
+    "doc://com.apple.ManagedAppDistribution/documentation/appdistribution/processing-alternative-marketplace-notifications": {
+      "abstract": [
+        {
+          "text": "Manage the addition and removal of apps available on your alternative marketplace.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.ManagedAppDistribution/documentation/appdistribution/processing-alternative-marketplace-notifications",
+      "kind": "article",
+      "role": "article",
+      "title": "Processing alternative app marketplace notifications",
+      "type": "topic",
+      "url": "/documentation/appdistribution/processing-alternative-marketplace-notifications"
+    },
+    "doc://com.apple.ManagedAppDistribution/documentation/appdistribution/reauthenticating-a-person-to-manage-apps": {
+      "abstract": [
+        {
+          "text": "Renew your app’s authorization when an app needs updating or when a device restores from backup.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.ManagedAppDistribution/documentation/appdistribution/reauthenticating-a-person-to-manage-apps",
+      "kind": "article",
+      "role": "article",
+      "title": "Reauthenticating a person to manage apps",
+      "type": "topic",
+      "url": "/documentation/appdistribution/reauthenticating-a-person-to-manage-apps"
+    },
+    "doc://com.apple.ManagedAppDistribution/documentation/appdistribution/supplying-an-install-verification-token": {
+      "abstract": [
+        {
+          "text": "Support the installation of alternative distribution apps by creating signed JSON web tokens.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.ManagedAppDistribution/documentation/appdistribution/supplying-an-install-verification-token",
+      "kind": "article",
+      "role": "article",
+      "title": "Supplying an install verification token",
+      "type": "topic",
+      "url": "/documentation/appdistribution/supplying-an-install-verification-token"
+    },
+    "doc://com.apple.documentation/documentation/AppLicenseDeliverySDK": {
+      "abstract": [
+        {
+          "text": "Secure the installation of alternative distribution apps on iOS or iPadOS devices by vending licenses from your web server.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppLicenseDeliverySDK",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "App License Delivery SDK",
+      "type": "topic",
+      "url": "/documentation/AppLicenseDeliverySDK"
+    },
+    "doc://com.apple.documentation/documentation/Xcode/supporting-associated-domains": {
+      "abstract": [
+        {
+          "text": "Connect your app and a website to provide both a native app and a browser experience.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Xcode/supporting-associated-domains",
+      "kind": "article",
+      "role": "article",
+      "title": "Supporting associated domains",
+      "type": "topic",
+      "url": "/documentation/Xcode/supporting-associated-domains"
+    },
+    "doc://com.apple.documentation/documentation/applicensedeliverysdk/licensing-alternative-distribution-apps#Track-the-number-of-simultaneous-app-installs-for-an-account": {
+      "abstract": [
+        {
+          "text": "Build a license server that supports the installation of your apps and the apps available in your marketplace.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/applicensedeliverysdk/licensing-alternative-distribution-apps#Track-the-number-of-simultaneous-app-installs-for-an-account",
+      "kind": "article",
+      "role": "article",
+      "title": "Licensing alternative distribution apps",
+      "type": "topic",
+      "url": "/documentation/applicensedeliverysdk/licensing-alternative-distribution-apps"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://datatracker.ietf.org/doc/html/rfc6749": {
+      "identifier": "https://datatracker.ietf.org/doc/html/rfc6749",
+      "title": "IETF RFC 6749",
+      "titleInlineContent": [
+        {
+          "text": "IETF RFC 6749",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://datatracker.ietf.org/doc/html/rfc6749"
+    },
+    "https://www.rfc-editor.org/rfc/rfc8693.html#name-example-token-exchange": {
+      "identifier": "https://www.rfc-editor.org/rfc/rfc8693.html#name-example-token-exchange",
+      "title": "RFC 8693 section 2.3",
+      "titleInlineContent": [
+        {
+          "text": "RFC 8693 section 2.3",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://www.rfc-editor.org/rfc/rfc8693.html#name-example-token-exchange"
+    },
+    "installing-your-app-from-your-website-1": {
+      "alt": "A diagram that shows the flow of installing your app from your website. When a person taps download from their device on your webpage, your webpage retrieves an authentication token from your App web server’s token endpoint, then your app webpage issues an installation request to the device. Next, the device provides the authentication token to the token endpoint and receives back an access token. Then the device requests an app license from the marketplacekit endpoints, after receiving the license, the device issues a restore request to the marketplacekit endpoints and downloads and installs the app.",
+      "identifier": "installing-your-app-from-your-website-1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/0b00b345858c33429762d00be6b1488e/installing-your-app-from-your-website-1@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f55055845933c38137dff965a0978a5f/installing-your-app-from-your-website-1~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Web-services",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.ManagedAppDistribution/documentation/appdistribution/processing-alternative-marketplace-notifications",
+        "doc://com.apple.ManagedAppDistribution/documentation/appdistribution/ingesting-an-alternative-distribution-package",
+        "doc://com.apple.ManagedAppDistribution/documentation/appdistribution/installing-apps-from-an-alternative-marketplace",
+        "doc://com.apple.ManagedAppDistribution/documentation/appdistribution/supplying-an-install-verification-token"
+      ],
+      "title": "Web services"
+    }
+  ]
+}

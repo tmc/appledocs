@@ -1,0 +1,390 @@
+{
+  "abstract": [
+    {
+      "text": "Prevent overlapping a timed subtitle track with a forced subtitle track.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.qtff/documentation/quicktime-file-format",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Media_data_atom_types",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Subtitle_media"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Referencing_a_related_forced_subtitle_track"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "QuickTime File Format"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Referencing a related forced subtitle track"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A subtitle track can contain a track reference of type ",
+              "type": "text"
+            },
+            {
+              "code": "'forc'",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to a paired subtitle track that contains only forced subtitles.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Pairing two subtitle tracks might be necessary if the timing of forced subtitle samples (see ",
+              "type": "text"
+            },
+            {
+              "code": "'frcd'",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") differs from the regular subtitle text, such as when a forced subtitle display would overlap in time with the display of the regular subtitle. If timings are the same, a single subtitle track should be used.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To pair two tracks, one subtitle track can contain any combination of forced and non-forced (regular) subtitle samples and the other track must contain only forced subtitles. The tracks must be in the same alternate group and be tagged with the same extended language tag and language code. The first, regular track then uses a track reference of type ",
+              "type": "text"
+            },
+            {
+              "code": "'forc'",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to reference the second, forced-only track. (Mixing extended language tags or codes for the same language in the same alternate group is undefined.)",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The regular track in a pair provides a complete transcription of the audio as subtitle text. This allows a user to listen in one language but to read subtitled dialogue in another language.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Preparing_sound_and_subtitle_alternate_groups_for_use_with_Apple_devices",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Track_reference_atom",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for more information.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Media_data_atom_types": {
+      "abstract": [
+        {
+          "text": "Store different types of media data, including video, sound, subtitles, and more.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Media_data_atom_types",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Media data atom types",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/media_data_atom_types"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Preparing_sound_and_subtitle_alternate_groups_for_use_with_Apple_devices": {
+      "abstract": [
+        {
+          "text": "Create collections of tracks that all serve the same purpose, where any track in the group can be substituted for another in a movie.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Preparing_sound_and_subtitle_alternate_groups_for_use_with_Apple_devices",
+      "kind": "article",
+      "role": "article",
+      "title": "Preparing sound and subtitle alternate groups for use with Apple devices",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/preparing_sound_and_subtitle_alternate_groups_for_use_with_apple_devices"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Subtitle_media": {
+      "abstract": [
+        {
+          "text": "Store text data used for subtitles in QuickTime movies.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Subtitle_media",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Subtitle media",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/subtitle_media"
+    },
+    "doc://com.apple.qtff/documentation/QuickTime-File-Format/Subtitle_track_header_size_and_placement": {
+      "abstract": [
+        {
+          "text": "Specify the size and placement of subtitles.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/QuickTime-File-Format/Subtitle_track_header_size_and_placement",
+      "kind": "article",
+      "role": "article",
+      "title": "Subtitle track header size and placement",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/subtitle_track_header_size_and_placement"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format": {
+      "abstract": [
+        {
+          "text": "An object-oriented file format for the storage and exchange of digital media between devices, applications, and operating systems.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "QuickTime File Format",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Font_table_atom": {
+      "abstract": [
+        {
+          "text": "An atom that specifies the font used to display the subtitle.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Font_table_atom",
+          "text": "Font table atom ('ftab')"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Font_table_atom",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Font table atom ('ftab')",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/font_table_atom"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Subtitle_sample_data": {
+      "abstract": [
+        {
+          "text": "An atom that contains subtitle sample data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Subtitle_sample_data",
+          "text": "Subtitle sample data"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Subtitle_sample_data",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Subtitle sample data",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/subtitle_sample_data"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Subtitle_sample_description": {
+      "abstract": [
+        {
+          "text": "An atom that defines how to interpret subtitle media data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Subtitle_sample_description",
+          "text": "Subtitle sample description"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Subtitle_sample_description",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Subtitle sample description",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/subtitle_sample_description"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Subtitle_style_atom": {
+      "abstract": [
+        {
+          "text": "An atom that specifies changes to the appearance of a subtitle.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Subtitle_style_atom",
+          "text": "Subtitle style atom ('styl')"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Subtitle_style_atom",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Subtitle style atom ('styl')",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/subtitle_style_atom"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Text_box_atom": {
+      "abstract": [
+        {
+          "text": "An atom that defines a text box for a subtitle sample.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Text_box_atom",
+          "text": "Text box atom ('tbox')"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Text_box_atom",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Text box atom ('tbox')",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/text_box_atom"
+    },
+    "doc://com.apple.qtff/documentation/quicktime-file-format/Track_reference_atom": {
+      "abstract": [
+        {
+          "text": "An atom that defines relationships between tracks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "preciseIdentifier": "__docc_universal_symbol_reference_$Track_reference_atom",
+          "text": "Track reference atom ('tref')"
+        }
+      ],
+      "identifier": "doc://com.apple.qtff/documentation/quicktime-file-format/Track_reference_atom",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Track reference atom ('tref')",
+      "type": "topic",
+      "url": "/documentation/quicktime-file-format/track_reference_atom"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Storing-subtitles",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Subtitle_sample_description",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Font_table_atom",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Subtitle_sample_data",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Subtitle_style_atom",
+        "doc://com.apple.qtff/documentation/quicktime-file-format/Text_box_atom",
+        "doc://com.apple.qtff/documentation/QuickTime-File-Format/Subtitle_track_header_size_and_placement"
+      ],
+      "title": "Storing subtitles"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/quicktime-file-format/referencing_a_related_forced_subtitle_track"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

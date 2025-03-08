@@ -1,0 +1,379 @@
+{
+  "abstract": [
+    {
+      "text": "Authenticate requests for user data using the Music User Token.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.applemusicapi/documentation/AppleMusicAPI"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/user-authentication-for-musickit"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Apple Music API"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "User Authentication for MusicKit"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Apple Music API requires the inclusion of a Music User Token for any requests for data specific to an Apple Music subscriber, such as to fetch content from the user’s library. The way to configure your requests to Apple Music API with a valid Music User Token depends on the platform for your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Automatic-Music-User-Token-Management",
+          "level": 3,
+          "text": "Automatic Music User Token Management",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "MusicKit automatically manages Music User Token for Apple platforms and for web apps. If you’re developing an app for Apple platforms (iOS, tvOS, watchOS, or macOS), use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/MusicKit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for Swift to integrate with Apple Music. The framework automatically decorates requests to Apple Music API with a valid Music User Token.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Similarly, if you’re developing a web app, ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/musickit/web/?path=/story/user-authorization--page",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " automatically decorates requests to Apple Music API with a valid Music User Token.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Manual-Music-User-Token-Management-for-Android",
+          "level": 3,
+          "text": "Manual Music User Token Management for Android",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Automatic Music User Token management is not available for Android. If you’re developing an app for Android, please refer to the authentication section of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/musickit/android/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "’s documentation to learn more about how to retrieve a Music User Token.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Once you’ve successfully retrieved a Music User Token, make sure to include it in your HTTP requests to Apple Music API with the ",
+              "type": "text"
+            },
+            {
+              "code": "Music-User-Token",
+              "type": "codeVoice"
+            },
+            {
+              "text": " header.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Below is an example of issuing a personalized request to Apple Music API using ",
+              "type": "text"
+            },
+            {
+              "code": "curl.",
+              "type": "codeVoice"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "curl -v -H 'Authorization: Bearer [developer token]' -H 'Music-User-Token: [music user token]' \"https://api.music.apple.com/v1/me/library/songs\""
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about requests, responses, and error handling, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/handling-requests-and-responses",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI": {
+      "abstract": [
+        {
+          "text": "Integrate streaming music with catalog and personal content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Apple Music API",
+      "type": "topic",
+      "url": "/documentation/applemusicapi"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/common-objects": {
+      "abstract": [
+        {
+          "text": "Understand the common JSON objects that framework responses contain.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/common-objects",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Common Objects",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/common-objects"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/fetching-resources-by-page": {
+      "abstract": [
+        {
+          "text": "Use pagination to fetch the next set of objects.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/fetching-resources-by-page",
+      "kind": "article",
+      "role": "article",
+      "title": "Fetching Resources by Page",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/fetching-resources-by-page"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/generating-developer-tokens": {
+      "abstract": [
+        {
+          "text": "Generate a developer token needed to make requests to Apple Music API.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/generating-developer-tokens",
+      "kind": "article",
+      "role": "article",
+      "title": "Generating Developer Tokens",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/generating-developer-tokens"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/handling-requests-and-responses": {
+      "abstract": [
+        {
+          "text": "Write a request and handle responses from the API.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/handling-requests-and-responses",
+      "kind": "article",
+      "role": "article",
+      "title": "Handling Requests and Responses",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/handling-requests-and-responses"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/handling-resource-representation-and-relationships": {
+      "abstract": [
+        {
+          "text": "Fetch resources with extended attributes and included relationships and relationship views.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/handling-resource-representation-and-relationships",
+      "kind": "article",
+      "role": "article",
+      "title": "Handling Resource Representation and Relationships",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/handling-resource-representation-and-relationships"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/managing-content-ratings-alternate-versions-and-equivalencies": {
+      "abstract": [
+        {
+          "text": "Handle multiple and alternate versions of content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/managing-content-ratings-alternate-versions-and-equivalencies",
+      "kind": "article",
+      "role": "article",
+      "title": "Managing Content Ratings, Alternate Versions, and Equivalencies",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/managing-content-ratings-alternate-versions-and-equivalencies"
+    },
+    "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/storefronts-and-localization": {
+      "abstract": [
+        {
+          "text": "Pick a region-specific geographic location from which to retrieve catalog information, or retrieve information from the user’s personal library.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/storefronts-and-localization",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Storefronts and Localization",
+      "type": "topic",
+      "url": "/documentation/applemusicapi/storefronts-and-localization"
+    },
+    "doc://com.apple.documentation/documentation/MusicKit": {
+      "abstract": [
+        {
+          "text": "Integrate your app with Apple Music.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/MusicKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "MusicKit",
+      "type": "topic",
+      "url": "/documentation/MusicKit"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/musickit/android/": {
+      "identifier": "https://developer.apple.com/musickit/android/",
+      "title": "MusicKit for Android",
+      "titleInlineContent": [
+        {
+          "text": "MusicKit for Android",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/musickit/android/"
+    },
+    "https://developer.apple.com/musickit/web/?path=/story/user-authorization--page": {
+      "identifier": "https://developer.apple.com/musickit/web/?path=/story/user-authorization--page",
+      "title": "MusicKit on the Web",
+      "titleInlineContent": [
+        {
+          "text": "MusicKit on the Web",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/musickit/web/?path=/story/user-authorization--page"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/generating-developer-tokens",
+        "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/handling-requests-and-responses",
+        "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/handling-resource-representation-and-relationships",
+        "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/storefronts-and-localization",
+        "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/common-objects",
+        "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/managing-content-ratings-alternate-versions-and-equivalencies",
+        "doc://com.apple.applemusicapi/documentation/AppleMusicAPI/fetching-resources-by-page"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/applemusicapi/user-authentication-for-musickit"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1609 @@
+{
+  "abstract": [
+    {
+      "text": "The key used to look up an entry in a strings file or strings dictionary",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "file.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.SwiftUI/documentation/SwiftUI/LocalizedStringKey"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:7SwiftUI18LocalizedStringKeyV",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "struct"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "LocalizedStringKey"
+      }
+    ],
+    "modules": [
+      {
+        "name": "SwiftUI"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "LocalizedStringKey"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.15",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "6.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "LocalizedStringKey"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "attribute",
+              "text": "@frozen"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "LocalizedStringKey"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Preparing-views-for-localization",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Adding-a-search-interface-to-your-app"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Initializers for several SwiftUI types – such as ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Text",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Toggle",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ",",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Picker",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and others –  implicitly look up a localized string when you",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "provide a string literal. When you use the initializer ",
+              "type": "text"
+            },
+            {
+              "code": "Text(\"Hello\")",
+              "type": "codeVoice"
+            },
+            {
+              "text": ",",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "SwiftUI creates a ",
+              "type": "text"
+            },
+            {
+              "code": "LocalizedStringKey",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for you and uses that to look up a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "localization of the ",
+              "type": "text"
+            },
+            {
+              "code": "Hello",
+              "type": "codeVoice"
+            },
+            {
+              "text": " string. This works because ",
+              "type": "text"
+            },
+            {
+              "code": "LocalizedStringKey",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "conforms to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Swift/ExpressibleByStringLiteral",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Types whose initializers take a ",
+              "type": "text"
+            },
+            {
+              "code": "LocalizedStringKey",
+              "type": "codeVoice"
+            },
+            {
+              "text": " usually have",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a corresponding initializer that accepts a parameter that conforms to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Swift/StringProtocol",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Passing",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a ",
+              "type": "text"
+            },
+            {
+              "code": "String",
+              "type": "codeVoice"
+            },
+            {
+              "text": " variable to these initializers avoids localization, which is",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "usually appropriate when the variable contains a user-provided value.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As a general rule, use a string literal argument when you want",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "localization, and a string variable argument when you don’t. In the case",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "where you want to localize the value of a string variable, use the string to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "create a new ",
+              "type": "text"
+            },
+            {
+              "code": "LocalizedStringKey",
+              "type": "codeVoice"
+            },
+            {
+              "text": " instance.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following example shows how to create ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Text",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instances both",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "with and without localization. The title parameter provided to the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Section",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " is a literal string, so SwiftUI creates a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "LocalizedStringKey",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for it. However, the string entries in the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "messageStore.today",
+              "type": "codeVoice"
+            },
+            {
+              "text": " array are ",
+              "type": "text"
+            },
+            {
+              "code": "String",
+              "type": "codeVoice"
+            },
+            {
+              "text": " variables, so the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Text",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " views",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in the list use the string values verbatim.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "List {",
+            "    Section(header: Text(\"Today\")) {",
+            "        ForEach(messageStore.today) { message in",
+            "            Text(message.title)",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the app is localized into Japanese with the following",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "translation of its ",
+              "type": "text"
+            },
+            {
+              "code": "Localizable.strings",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "\"Today\" = \"今日\";"
+          ],
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When run in Japanese, the example produces a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "list like the following, localizing “Today” for the section header, but not",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the list items.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "SwiftUI-LocalizedStringKey-Today-List-Japanese.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "SwiftUI-LocalizedStringKey-Today-List-Japanese.png": {
+      "alt": "A list with a single section header displayed in Japanese.",
+      "identifier": "SwiftUI-LocalizedStringKey-Today-List-Japanese.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/d90163e00915e5a2cb0b2b6a7628c942/SwiftUI-LocalizedStringKey-Today-List-Japanese@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/9b7ae9181f04638a0e4074040a5fbe41/SwiftUI-LocalizedStringKey-Today-List-Japanese~dark@2x.png"
+        }
+      ]
+    },
+    "SwiftUI-PageImage-card.png": {
+      "alt": "A black Swift logo on a swirly blue and purple background.",
+      "identifier": "SwiftUI-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b1de0de086f81a5d0eac3839a0af6e6f/SwiftUI-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1450d0b30a6b024e10c148e3f31dafe9/SwiftUI-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI": {
+      "abstract": [
+        {
+          "text": "Declare the user interface and behavior for your app on every platform.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI",
+      "images": [
+        {
+          "identifier": "SwiftUI-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SwiftUI",
+      "type": "topic",
+      "url": "/documentation/swiftui"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Adding-a-search-interface-to-your-app": {
+      "abstract": [
+        {
+          "text": "Present an interface that people can use to search for content in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Adding-a-search-interface-to-your-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding a search interface to your app",
+      "type": "topic",
+      "url": "/documentation/swiftui/adding-a-search-interface-to-your-app"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/locale": {
+      "abstract": [
+        {
+          "text": "The current locale that views should use.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "locale"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation6LocaleV",
+          "text": "Locale"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/locale",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "locale",
+      "type": "topic",
+      "url": "/documentation/swiftui/environmentvalues/locale"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/LocalizedStringKey": {
+      "abstract": [
+        {
+          "text": "The key used to look up an entry in a strings file or strings dictionary",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LocalizedStringKey"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/LocalizedStringKey",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LocalizedStringKey"
+        }
+      ],
+      "role": "symbol",
+      "title": "LocalizedStringKey",
+      "type": "topic",
+      "url": "/documentation/swiftui/localizedstringkey"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/LocalizedStringKey/StringInterpolation": {
+      "abstract": [
+        {
+          "text": "Represents the contents of a string literal with interpolations",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "while it’s being built, for use in creating a localized string key.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "StringInterpolation"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/LocalizedStringKey/StringInterpolation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "StringInterpolation"
+        }
+      ],
+      "role": "symbol",
+      "title": "LocalizedStringKey.StringInterpolation",
+      "type": "topic",
+      "url": "/documentation/swiftui/localizedstringkey/stringinterpolation"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/LocalizedStringKey/init(_:)": {
+      "abstract": [
+        {
+          "text": "Creates a localized string key from the given string value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/LocalizedStringKey/init(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(_:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/localizedstringkey/init(_:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/LocalizedStringKey/init(stringInterpolation:)": {
+      "abstract": [
+        {
+          "text": "Creates a localized string key from the given string interpolation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "stringInterpolation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI18LocalizedStringKeyV",
+          "text": "LocalizedStringKey"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI18LocalizedStringKeyV0D13InterpolationV",
+          "text": "StringInterpolation"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/LocalizedStringKey/init(stringInterpolation:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(stringInterpolation:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/localizedstringkey/init(stringinterpolation:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/LocalizedStringKey/init(stringLiteral:)": {
+      "abstract": [
+        {
+          "text": "Creates a localized string key from the given string literal.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "stringLiteral"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/LocalizedStringKey/init(stringLiteral:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(stringLiteral:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/localizedstringkey/init(stringliteral:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Picker": {
+      "abstract": [
+        {
+          "text": "A control for selecting from a set of mutually exclusive values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Picker"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Picker",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Picker"
+        }
+      ],
+      "role": "symbol",
+      "title": "Picker",
+      "type": "topic",
+      "url": "/documentation/swiftui/picker"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Preparing-views-for-localization": {
+      "abstract": [
+        {
+          "text": "Specify hints and add strings to localize your SwiftUI views.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Preparing-views-for-localization",
+      "kind": "article",
+      "role": "article",
+      "title": "Preparing views for localization",
+      "type": "topic",
+      "url": "/documentation/swiftui/preparing-views-for-localization"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Section": {
+      "abstract": [
+        {
+          "text": "A container view that you can use to add hierarchy within certain views.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Section"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Section",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Section"
+        }
+      ],
+      "role": "symbol",
+      "title": "Section",
+      "type": "topic",
+      "url": "/documentation/swiftui/section"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Text": {
+      "abstract": [
+        {
+          "text": "A view that displays one or more lines of read-only text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Text",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Text"
+        }
+      ],
+      "role": "symbol",
+      "title": "Text",
+      "type": "topic",
+      "url": "/documentation/swiftui/text"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Toggle": {
+      "abstract": [
+        {
+          "text": "A control that toggles between on and off states.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Toggle"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Toggle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Toggle"
+        }
+      ],
+      "role": "symbol",
+      "title": "Toggle",
+      "type": "topic",
+      "url": "/documentation/swiftui/toggle"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/TypesettingLanguage": {
+      "abstract": [
+        {
+          "text": "Defines how typesetting language is determined for text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TypesettingLanguage"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/TypesettingLanguage",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TypesettingLanguage"
+        }
+      ],
+      "role": "symbol",
+      "title": "TypesettingLanguage",
+      "type": "topic",
+      "url": "/documentation/swiftui/typesettinglanguage"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View/typesettingLanguage(_:isEnabled:)": {
+      "abstract": [
+        {
+          "text": "Specifies the language for typesetting.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "typesettingLanguage"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": ":"
+        },
+        {
+          "kind": "externalParam",
+          "text": "isEnabled"
+        },
+        {
+          "kind": "text",
+          "text": ":)"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View/typesettingLanguage(_:isEnabled:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "typesettingLanguage(_:isEnabled:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/view/typesettinglanguage(_:isenabled:)"
+    },
+    "doc://com.apple.documentation/documentation/Swift/ExpressibleByStringLiteral": {
+      "abstract": [
+        {
+          "text": "A type that can be initialized with a string literal.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ExpressibleByStringLiteral"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s43ExpressibleByExtendedGraphemeClusterLiteralP",
+          "text": "ExpressibleByExtendedGraphemeClusterLiteral"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Swift/ExpressibleByStringLiteral",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ExpressibleByStringLiteral",
+      "type": "topic",
+      "url": "/documentation/Swift/ExpressibleByStringLiteral"
+    },
+    "doc://com.apple.documentation/documentation/Swift/StringProtocol": {
+      "abstract": [
+        {
+          "text": "A type that can represent a string as a collection of characters.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "StringProtocol"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SK",
+          "text": "BidirectionalCollection"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SL",
+          "text": "Comparable"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s32ExpressibleByStringInterpolationP",
+          "text": "ExpressibleByStringInterpolation"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SH",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s25LosslessStringConvertibleP",
+          "text": "LosslessStringConvertible"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s16TextOutputStreamP",
+          "text": "TextOutputStream"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s20TextOutputStreamableP",
+          "text": "TextOutputStreamable"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:ST7ElementQa",
+          "text": "Element"
+        },
+        {
+          "kind": "text",
+          "text": " == "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SJ",
+          "text": "Character"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sl5IndexQa",
+          "text": "Index"
+        },
+        {
+          "kind": "text",
+          "text": " == "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS5IndexV",
+          "text": "Index"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s32ExpressibleByStringInterpolationP0cD0Qa",
+          "text": "StringInterpolation"
+        },
+        {
+          "kind": "text",
+          "text": " == "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s26DefaultStringInterpolationV",
+          "text": "DefaultStringInterpolation"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sl11SubSequenceQa",
+          "text": "SubSequence"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sy",
+          "text": "StringProtocol"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Swift/StringProtocol",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "StringProtocol",
+      "type": "topic",
+      "url": "/documentation/Swift/StringProtocol"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s26ExpressibleByStringLiteralP": {
+      "abstract": [
+        {
+          "text": "A type that can be initialized with a string literal.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ExpressibleByStringLiteral"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s43ExpressibleByExtendedGraphemeClusterLiteralP",
+          "text": "ExpressibleByExtendedGraphemeClusterLiteral"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s26ExpressibleByStringLiteralP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ExpressibleByStringLiteral",
+      "type": "topic",
+      "url": "/documentation/Swift/ExpressibleByStringLiteral"
+    },
+    "doc://com.externally.resolved.symbol/s:s32ExpressibleByStringInterpolationP": {
+      "abstract": [
+        {
+          "text": "A type that can be initialized by string interpolation with a string literal that includes expressions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ExpressibleByStringInterpolation"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s26ExpressibleByStringLiteralP",
+          "text": "ExpressibleByStringLiteral"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s32ExpressibleByStringInterpolationP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ExpressibleByStringInterpolation",
+      "type": "topic",
+      "url": "/documentation/Swift/ExpressibleByStringInterpolation"
+    },
+    "doc://com.externally.resolved.symbol/s:s33ExpressibleByUnicodeScalarLiteralP": {
+      "abstract": [
+        {
+          "text": "A type that can be initialized with a string literal containing a single Unicode scalar value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ExpressibleByUnicodeScalarLiteral"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s33ExpressibleByUnicodeScalarLiteralP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ExpressibleByUnicodeScalarLiteral",
+      "type": "topic",
+      "url": "/documentation/Swift/ExpressibleByUnicodeScalarLiteral"
+    },
+    "doc://com.externally.resolved.symbol/s:s43ExpressibleByExtendedGraphemeClusterLiteralP": {
+      "abstract": [
+        {
+          "text": "A type that can be initialized with a string literal containing a single extended grapheme cluster.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ExpressibleByExtendedGraphemeClusterLiteral"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s33ExpressibleByUnicodeScalarLiteralP",
+          "text": "ExpressibleByUnicodeScalarLiteral"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s43ExpressibleByExtendedGraphemeClusterLiteralP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ExpressibleByExtendedGraphemeClusterLiteral",
+      "type": "topic",
+      "url": "/documentation/Swift/ExpressibleByExtendedGraphemeClusterLiteral"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:s43ExpressibleByExtendedGraphemeClusterLiteralP",
+        "doc://com.externally.resolved.symbol/s:s32ExpressibleByStringInterpolationP",
+        "doc://com.externally.resolved.symbol/s:s26ExpressibleByStringLiteralP",
+        "doc://com.externally.resolved.symbol/s:s33ExpressibleByUnicodeScalarLiteralP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Localizing-text",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Preparing-views-for-localization",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/EnvironmentValues/locale",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View/typesettingLanguage(_:isEnabled:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/TypesettingLanguage"
+      ],
+      "title": "Localizing text"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-key-from-a-literal-value",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/LocalizedStringKey/init(_:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/LocalizedStringKey/init(stringLiteral:)"
+      ],
+      "title": "Creating a key from a literal value"
+    },
+    {
+      "anchor": "Creating-a-key-from-an-interpolation",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/LocalizedStringKey/init(stringInterpolation:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/LocalizedStringKey/StringInterpolation"
+      ],
+      "title": "Creating a key from an interpolation"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/swiftui/localizedstringkey"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

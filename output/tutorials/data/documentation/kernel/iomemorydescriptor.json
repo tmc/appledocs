@@ -1,0 +1,1982 @@
+{
+  "abstract": [
+    {
+      "text": "An abstract base class that defines common methods for describing physical or virtual memory.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/kernel",
+        "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals",
+        "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals/memory"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1400998,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@S@IOMemoryDescriptor",
+    "modules": [
+      {
+        "name": "Kernel"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "15.4",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "IOMemoryDescriptor"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "IOMemoryDescriptor"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/osobject",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@S@OSObject",
+              "text": "OSObject"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " object represents a buffer or range of memory, specified as one or more physical or virtual address ranges. It contains methods to return the memory's physically contiguous segments (fragments), for use with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorycursor",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and methods to map the memory into any address space with caching and placed mapping options.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/kernel": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Kernel",
+      "type": "topic",
+      "url": "/documentation/kernel"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iobuffermemorydescriptor": {
+      "abstract": [
+        {
+          "text": "A simple memory descriptor that allocates its own buffer memory.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iobuffermemorydescriptor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOBufferMemoryDescriptor",
+      "type": "topic",
+      "url": "/documentation/kernel/iobuffermemorydescriptor"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iodevicememory": {
+      "abstract": [
+        {
+          "text": "An IOMemoryDescriptor used for device physical memory ranges.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iodevicememory",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IODeviceMemory",
+      "type": "topic",
+      "url": "/documentation/kernel/iodevicememory"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iogeneralmemorydescriptor": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iogeneralmemorydescriptor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOGeneralMemoryDescriptor",
+      "type": "topic",
+      "url": "/documentation/kernel/iogeneralmemorydescriptor"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iointerleavedmemorydescriptor": {
+      "abstract": [
+        {
+          "text": "The IOInterleavedMemoryDescriptor object describes a memory area made up of portions of several other IOMemoryDescriptors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iointerleavedmemorydescriptor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOInterleavedMemoryDescriptor",
+      "type": "topic",
+      "url": "/documentation/kernel/iointerleavedmemorydescriptor"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "IOKit Fundamentals",
+      "type": "topic",
+      "url": "/documentation/kernel/iokit_fundamentals"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals/memory": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals/memory",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Memory",
+      "type": "topic",
+      "url": "/documentation/kernel/iokit_fundamentals/memory"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomemorycursor": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorycursor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOMemoryCursor",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorycursor"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor": {
+      "abstract": [
+        {
+          "text": "An abstract base class that defines common methods for describing physical or virtual memory.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOMemoryDescriptor",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorydescriptor"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1441761-performoperation": {
+      "abstract": [
+        {
+          "text": "Perform an operation on the memory descriptor's memory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "performOperation"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1441761-performoperation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "performOperation",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorydescriptor/1441761-performoperation"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1441778-removemapping": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeMapping"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1441778-removemapping",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "removeMapping",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorydescriptor/1441778-removemapping"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1441782-handlefault": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "handleFault"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1441782-handlefault",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "handleFault",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorydescriptor/1441782-handlefault"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1441787-settag": {
+      "abstract": [
+        {
+          "text": "Set the tag for the memory descriptor.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setTag"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1441787-settag",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setTag",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorydescriptor/1441787-settag"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1441794-withaddressranges": {
+      "abstract": [
+        {
+          "text": "Creates an IOMemoryDescriptor to describe one or more virtual ranges.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "withAddressRanges"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1441794-withaddressranges",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "withAddressRanges",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorydescriptor/1441794-withaddressranges"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1441798-initialize": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "initialize"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1441798-initialize",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "initialize",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorydescriptor/1441798-initialize"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1441823-readbytes": {
+      "abstract": [
+        {
+          "text": "Copy data from the memory descriptor's buffer to the specified buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "readBytes"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1441823-readbytes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "readBytes",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorydescriptor/1441823-readbytes"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1441825-withoptions": {
+      "abstract": [
+        {
+          "text": "Primary initializer for all variants of memory descriptors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "withOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1441825-withoptions",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "withOptions",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorydescriptor/1441825-withoptions"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1441859-createmappingintask": {
+      "abstract": [
+        {
+          "text": "Maps an IOMemoryDescriptor into a task.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "createMappingInTask"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1441859-createmappingintask",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "createMappingInTask",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorydescriptor/1441859-createmappingintask"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1441871-redirect": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "redirect"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1441871-redirect",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "redirect",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorydescriptor/1441871-redirect"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1441877-withphysicaladdress": {
+      "abstract": [
+        {
+          "text": "Creates an IOMemoryDescriptor to describe one physical range.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "withPhysicalAddress"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1441877-withphysicaladdress",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "withPhysicalAddress",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorydescriptor/1441877-withphysicaladdress"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1441883-dounmap": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "doUnmap"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1441883-dounmap",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "doUnmap",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorydescriptor/1441883-dounmap"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1441897-withaddressrange": {
+      "abstract": [
+        {
+          "text": "Creates an IOMemoryDescriptor to describe one virtual range of the specified map.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "withAddressRange"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1441897-withaddressrange",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "withAddressRange",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorydescriptor/1441897-withaddressrange"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1441908-map": {
+      "abstract": [
+        {
+          "text": "Maps an IOMemoryDescriptor into the kernel map.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "map"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1441908-map",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "map",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorydescriptor/1441908-map"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1441916-getphysicaladdress": {
+      "abstract": [
+        {
+          "text": "Return the physical address of the first byte in the memory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getPhysicalAddress"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1441916-getphysicaladdress",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getPhysicalAddress",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorydescriptor/1441916-getphysicaladdress"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1441923-makemapping": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "makeMapping"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1441923-makemapping",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "makeMapping",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorydescriptor/1441923-makemapping"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1441925-getdirection": {
+      "abstract": [
+        {
+          "text": "Gets the direction of memory transfers associated with the descriptor. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getDirection"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1441925-getdirection",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getDirection",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorydescriptor/1441925-getdirection"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1441941-domap": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "doMap"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1441941-domap",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "doMap",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorydescriptor/1441941-domap"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1441948-setmapping": {
+      "abstract": [
+        {
+          "text": "Establishes an already existing mapping.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setMapping"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1441948-setmapping",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setMapping",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorydescriptor/1441948-setmapping"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1441964-getpreparationid": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getPreparationID"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1441964-getpreparationid",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getPreparationID",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorydescriptor/1441964-getpreparationid"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1441969-initwithoptions": {
+      "abstract": [
+        {
+          "text": "Primary initializer for all variants of memory descriptors. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "initWithOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1441969-initwithoptions",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "initWithOptions",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorydescriptor/1441969-initwithoptions"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1441983-withpersistentmemorydescriptor": {
+      "abstract": [
+        {
+          "text": "Copy constructor that generates a new memory descriptor if the backing memory for the same task's virtual address and length has changed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "withPersistentMemoryDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1441983-withpersistentmemorydescriptor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "withPersistentMemoryDescriptor",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorydescriptor/1441983-withpersistentmemorydescriptor"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1441992-getpagecounts": {
+      "abstract": [
+        {
+          "text": "Retrieve the number of resident and/or dirty pages encompassed by a memory descriptor.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getPageCounts"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1441992-getpagecounts",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getPageCounts",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorydescriptor/1441992-getpagecounts"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1442011-setpreparationid": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setPreparationID"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1442011-setpreparationid",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setPreparationID",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorydescriptor/1442011-setpreparationid"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1442013-addmapping": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "addMapping"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1442013-addmapping",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "addMapping",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorydescriptor/1442013-addmapping"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1442017-populatedevicepager": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "populateDevicePager"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1442017-populatedevicepager",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "populateDevicePager",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorydescriptor/1442017-populatedevicepager"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1442024-prepare": {
+      "abstract": [
+        {
+          "text": "Prepare the memory for an I/O transfer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "prepare"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1442024-prepare",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "prepare",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorydescriptor/1442024-prepare"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1442032-withaddress": {
+      "abstract": [
+        {
+          "text": "Creates an IOMemoryDescriptor to describe one virtual range of the kernel task.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "withAddress"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1442032-withaddress",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "withAddress",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorydescriptor/1442032-withaddress"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1442036-getlength": {
+      "abstract": [
+        {
+          "text": "Accessor to get the length of the memory descriptor (over all its ranges).",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getLength"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1442036-getlength",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getLength",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorydescriptor/1442036-getlength"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1442038-writebytes": {
+      "abstract": [
+        {
+          "text": "Copy data to the memory descriptor's buffer from the specified buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "writeBytes"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1442038-writebytes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "writeBytes",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorydescriptor/1442038-writebytes"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1442040-dmacommandoperation": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "dmaCommandOperation"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1442040-dmacommandoperation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dmaCommandOperation",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorydescriptor/1442040-dmacommandoperation"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1442043-complete": {
+      "abstract": [
+        {
+          "text": "Complete processing of the memory after an I/O transfer finishes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "complete"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1442043-complete",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "complete",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorydescriptor/1442043-complete"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1442065-setpurgeable": {
+      "abstract": [
+        {
+          "text": "Control the purgeable status of a memory descriptors memory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setPurgeable"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1442065-setpurgeable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setPurgeable",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorydescriptor/1442065-setpurgeable"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1442068-getphysicalsegment": {
+      "abstract": [
+        {
+          "text": "Break a memory descriptor into its physically contiguous segments.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getPhysicalSegment"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1442068-getphysicalsegment",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getPhysicalSegment",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorydescriptor/1442068-getphysicalsegment"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1442070-gettag": {
+      "abstract": [
+        {
+          "text": "Accessor to the retrieve the tag for the memory descriptor.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getTag"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1442070-gettag",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getTag",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorydescriptor/1442070-gettag"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1442096-getmetaclass": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getMetaClass"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1442096-getmetaclass",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getMetaClass",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorydescriptor/1442096-getmetaclass"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1812740-complete": {
+      "abstract": [
+        {
+          "text": "Complete processing of the memory after an I/O transfer finishes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1812740-complete",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "complete",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorydescriptor/1812740-complete"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1812752-createmappingintask": {
+      "abstract": [
+        {
+          "text": "Maps an IOMemoryDescriptor into a task.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1812752-createmappingintask",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "createMappingInTask",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorydescriptor/1812752-createmappingintask"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1812765-getdirection": {
+      "abstract": [
+        {
+          "text": "Gets the direction of memory transfers associated with the descriptor. ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1812765-getdirection",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getDirection",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorydescriptor/1812765-getdirection"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1812776-getlength": {
+      "abstract": [
+        {
+          "text": "Accessor to get the length of the memory descriptor (over all its ranges).",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1812776-getlength",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getLength",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorydescriptor/1812776-getlength"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1812787-getpagecounts": {
+      "abstract": [
+        {
+          "text": "Retrieve the number of resident and/or dirty pages encompassed by a memory descriptor.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1812787-getpagecounts",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getPageCounts",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorydescriptor/1812787-getpagecounts"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1812795-getphysicaladdress": {
+      "abstract": [
+        {
+          "text": "Return the physical address of the first byte in the memory.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1812795-getphysicaladdress",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getPhysicalAddress",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorydescriptor/1812795-getphysicaladdress"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1812807-getphysicalsegment": {
+      "abstract": [
+        {
+          "text": "Break a memory descriptor into its physically contiguous segments.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1812807-getphysicalsegment",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getPhysicalSegment",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorydescriptor/1812807-getphysicalsegment"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1812815-gettag": {
+      "abstract": [
+        {
+          "text": "Accessor to the retrieve the tag for the memory descriptor.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1812815-gettag",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getTag",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorydescriptor/1812815-gettag"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1812826-initwithoptions": {
+      "abstract": [
+        {
+          "text": "Primary initializer for all variants of memory descriptors. ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1812826-initwithoptions",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "initWithOptions",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorydescriptor/1812826-initwithoptions"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1812830-map": {
+      "abstract": [
+        {
+          "text": "Maps an IOMemoryDescriptor into the kernel map.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1812830-map",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "map",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorydescriptor/1812830-map"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1812840-performoperation": {
+      "abstract": [
+        {
+          "text": "Perform an operation on the memory descriptor's memory.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1812840-performoperation",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "performOperation",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorydescriptor/1812840-performoperation"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1812845-prepare": {
+      "abstract": [
+        {
+          "text": "Prepare the memory for an I/O transfer.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1812845-prepare",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "prepare",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorydescriptor/1812845-prepare"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1812854-readbytes": {
+      "abstract": [
+        {
+          "text": "Copy data from the memory descriptor's buffer to the specified buffer.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1812854-readbytes",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "readBytes",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorydescriptor/1812854-readbytes"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1812859-setmapping": {
+      "abstract": [
+        {
+          "text": "Establishes an already existing mapping.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1812859-setmapping",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setMapping",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorydescriptor/1812859-setmapping"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1812865-setpurgeable": {
+      "abstract": [
+        {
+          "text": "Control the purgeable status of a memory descriptors memory.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1812865-setpurgeable",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setPurgeable",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorydescriptor/1812865-setpurgeable"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1812873-settag": {
+      "abstract": [
+        {
+          "text": "Set the tag for the memory descriptor.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1812873-settag",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setTag",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorydescriptor/1812873-settag"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1812881-withaddress": {
+      "abstract": [
+        {
+          "text": "Creates an IOMemoryDescriptor to describe one virtual range of the kernel task.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1812881-withaddress",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "withAddress",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorydescriptor/1812881-withaddress"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1812885-withaddressrange": {
+      "abstract": [
+        {
+          "text": "Creates an IOMemoryDescriptor to describe one virtual range of the specified map.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1812885-withaddressrange",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "withAddressRange",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorydescriptor/1812885-withaddressrange"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1812892-withaddressranges": {
+      "abstract": [
+        {
+          "text": "Creates an IOMemoryDescriptor to describe one or more virtual ranges.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1812892-withaddressranges",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "withAddressRanges",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorydescriptor/1812892-withaddressranges"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1812897-withoptions": {
+      "abstract": [
+        {
+          "text": "Primary initializer for all variants of memory descriptors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1812897-withoptions",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "withOptions",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorydescriptor/1812897-withoptions"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1812901-withpersistentmemorydescriptor": {
+      "abstract": [
+        {
+          "text": "Copy constructor that generates a new memory descriptor if the backing memory for the same task's virtual address and length has changed.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1812901-withpersistentmemorydescriptor",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "withPersistentMemoryDescriptor",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorydescriptor/1812901-withpersistentmemorydescriptor"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1812908-withphysicaladdress": {
+      "abstract": [
+        {
+          "text": "Creates an IOMemoryDescriptor to describe one physical range.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1812908-withphysicaladdress",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "withPhysicalAddress",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorydescriptor/1812908-withphysicaladdress"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1812910-writebytes": {
+      "abstract": [
+        {
+          "text": "Copy data to the memory descriptor's buffer from the specified buffer.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1812910-writebytes",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "writeBytes",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorydescriptor/1812910-writebytes"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/2870265-getflags": {
+      "abstract": [
+        {
+          "text": "Returns the options used to create the memory descriptor.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getFlags"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/2870265-getflags",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getFlags",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorydescriptor/2870265-getflags"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/3131493-getvmtag": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getVMTag"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/3131493-getvmtag",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getVMTag",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorydescriptor/3131493-getvmtag"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/3131494-setvmtags": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setVMTags"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/3131494-setvmtags",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setVMTags",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorydescriptor/3131494-setvmtags"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/3142952-setownership": {
+      "abstract": [
+        {
+          "text": "Set the task that owns the descriptor’s memory. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setOwnership"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/3142952-setownership",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setOwnership",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorydescriptor/3142952-setownership"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/3174974-createmapping": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "CreateMapping"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/3174974-createmapping",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CreateMapping",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorydescriptor/3174974-createmapping"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/3174975-createmapping_impl": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "CreateMapping_Impl"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/3174975-createmapping_impl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CreateMapping_Impl",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorydescriptor/3174975-createmapping_impl"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/3174976-createmapping_invoke": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "CreateMapping_Invoke"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/3174976-createmapping_invoke",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CreateMapping_Invoke",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorydescriptor/3174976-createmapping_invoke"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/3180641-dispatch": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "Dispatch"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/3180641-dispatch",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Dispatch",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorydescriptor/3180641-dispatch"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/3180642-getlength": {
+      "abstract": [
+        {
+          "text": "Returns the length of the memory block represented by this object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "GetLength"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/3180642-getlength",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "GetLength",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorydescriptor/3180642-getlength"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/3180643-map": {
+      "abstract": [
+        {
+          "text": "Maps memory internally. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "Map"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/3180643-map",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Map",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorydescriptor/3180643-map"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/3180646-free": {
+      "abstract": [
+        {
+          "text": "Performs any final cleanup for the memory descriptor object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "free"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/3180646-free",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "free",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorydescriptor/3180646-free"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/3553361-getdmamaplength": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getDMAMapLength"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/3553361-getdmamaplength",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getDMAMapLength",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorydescriptor/3553361-getdmamaplength"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/3674611-createsubmemorydescriptor": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "CreateSubMemoryDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/3674611-createsubmemorydescriptor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CreateSubMemoryDescriptor",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorydescriptor/3674611-createsubmemorydescriptor"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/3674612-createsubmemorydescriptor_impl": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "CreateSubMemoryDescriptor_Impl"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/3674612-createsubmemorydescriptor_impl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CreateSubMemoryDescriptor_Impl",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorydescriptor/3674612-createsubmemorydescriptor_impl"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/3674613-createsubmemorydescriptor_invoke": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "CreateSubMemoryDescriptor_Invoke"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/3674613-createsubmemorydescriptor_invoke",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CreateSubMemoryDescriptor_Invoke",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorydescriptor/3674613-createsubmemorydescriptor_invoke"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/3674614-createwithmemorydescriptors": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "CreateWithMemoryDescriptors"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/3674614-createwithmemorydescriptors",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CreateWithMemoryDescriptors",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorydescriptor/3674614-createwithmemorydescriptors"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/3674615-createwithmemorydescriptors_impl": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "CreateWithMemoryDescriptors_Impl"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/3674615-createwithmemorydescriptors_impl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CreateWithMemoryDescriptors_Impl",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorydescriptor/3674615-createwithmemorydescriptors_impl"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/3674616-createwithmemorydescriptors_invo": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "CreateWithMemoryDescriptors_Invoke"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/3674616-createwithmemorydescriptors_invo",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CreateWithMemoryDescriptors_Invoke",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorydescriptor/3674616-createwithmemorydescriptors_invo"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/3917633-getmapperoptions": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getMapperOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/3917633-getmapperoptions",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getMapperOptions",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorydescriptor/3917633-getmapperoptions"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/3917634-setmapperoptions": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setMapperOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/3917634-setmapperoptions",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setMapperOptions",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorydescriptor/3917634-setmapperoptions"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/reserved": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/reserved",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "reserved",
+      "type": "topic",
+      "url": "/documentation/kernel/iomemorydescriptor/reserved"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iomultimemorydescriptor": {
+      "abstract": [
+        {
+          "text": "The IOMultiMemoryDescriptor object describes a memory area made up of several other IOMemoryDescriptors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iomultimemorydescriptor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOMultiMemoryDescriptor",
+      "type": "topic",
+      "url": "/documentation/kernel/iomultimemorydescriptor"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iosubmemorydescriptor": {
+      "abstract": [
+        {
+          "text": "The IOSubMemoryDescriptor object describes a memory area made up of a portion of another IOMemoryDescriptor.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iosubmemorydescriptor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOSubMemoryDescriptor",
+      "type": "topic",
+      "url": "/documentation/kernel/iosubmemorydescriptor"
+    },
+    "doc://com.apple.documentation/documentation/kernel/osobject": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/osobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "OSObject",
+      "type": "topic",
+      "url": "/documentation/kernel/osobject"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/osobject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/iobuffermemorydescriptor",
+        "doc://com.apple.documentation/documentation/kernel/iodevicememory",
+        "doc://com.apple.documentation/documentation/kernel/iogeneralmemorydescriptor",
+        "doc://com.apple.documentation/documentation/kernel/iointerleavedmemorydescriptor",
+        "doc://com.apple.documentation/documentation/kernel/iomultimemorydescriptor",
+        "doc://com.apple.documentation/documentation/kernel/iosubmemorydescriptor"
+      ],
+      "title": "Descriptors"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "3683075",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1812826-initwithoptions",
+        "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1441969-initwithoptions",
+        "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1812897-withoptions",
+        "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1441825-withoptions",
+        "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1812881-withaddress",
+        "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1442032-withaddress",
+        "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1812885-withaddressrange",
+        "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1441897-withaddressrange",
+        "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1812892-withaddressranges",
+        "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1441794-withaddressranges",
+        "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1812901-withpersistentmemorydescriptor",
+        "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1441983-withpersistentmemorydescriptor",
+        "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1812908-withphysicaladdress",
+        "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1441877-withphysicaladdress",
+        "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/3180646-free"
+      ],
+      "kind": "taskGroup",
+      "title": "Creating the Memory Buffer"
+    },
+    {
+      "anchor": "3683079",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/3142952-setownership",
+        "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1812865-setpurgeable",
+        "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1442065-setpurgeable"
+      ],
+      "kind": "taskGroup",
+      "title": "Configuring the Descriptor"
+    },
+    {
+      "anchor": "3683081",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1812845-prepare",
+        "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1442024-prepare",
+        "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1812740-complete",
+        "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1442043-complete",
+        "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1441964-getpreparationid",
+        "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1442011-setpreparationid"
+      ],
+      "kind": "taskGroup",
+      "title": "Preparing the Buffer"
+    },
+    {
+      "anchor": "3683078",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1812854-readbytes",
+        "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1441823-readbytes",
+        "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1812910-writebytes",
+        "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1442038-writebytes"
+      ],
+      "kind": "taskGroup",
+      "title": "Reading and Writing Buffer Data"
+    },
+    {
+      "anchor": "3683077",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1812752-createmappingintask",
+        "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1441859-createmappingintask",
+        "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1812830-map",
+        "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1441908-map",
+        "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1812859-setmapping",
+        "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1441948-setmapping"
+      ],
+      "kind": "taskGroup",
+      "title": "Mapping to the Other Address Spaces"
+    },
+    {
+      "anchor": "3683084",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1812787-getpagecounts",
+        "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1441992-getpagecounts",
+        "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1812795-getphysicaladdress",
+        "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1441916-getphysicaladdress",
+        "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1812807-getphysicalsegment",
+        "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1442068-getphysicalsegment"
+      ],
+      "kind": "taskGroup",
+      "title": "Getting the Memory Pages"
+    },
+    {
+      "anchor": "3683080",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1812765-getdirection",
+        "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1441925-getdirection",
+        "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1812776-getlength",
+        "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1442036-getlength",
+        "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/3180642-getlength",
+        "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/3553361-getdmamaplength",
+        "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/2870265-getflags",
+        "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1442096-getmetaclass"
+      ],
+      "kind": "taskGroup",
+      "title": "Getting the Descriptor Information"
+    },
+    {
+      "anchor": "3683076",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1812815-gettag",
+        "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1442070-gettag",
+        "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1812873-settag",
+        "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1441787-settag",
+        "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/3131493-getvmtag",
+        "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/3131494-setvmtags"
+      ],
+      "kind": "taskGroup",
+      "title": "Accessing the Buffer's Tag"
+    },
+    {
+      "anchor": "3683082",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1812840-performoperation",
+        "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1441761-performoperation",
+        "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1442040-dmacommandoperation"
+      ],
+      "kind": "taskGroup",
+      "title": "Operating on the Memory"
+    },
+    {
+      "anchor": "1818740",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/reserved",
+        "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1441798-initialize",
+        "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/3180641-dispatch",
+        "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/3174976-createmapping_invoke",
+        "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1442017-populatedevicepager",
+        "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/3174974-createmapping",
+        "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/3174975-createmapping_impl",
+        "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/3180643-map",
+        "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1442013-addmapping",
+        "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1441778-removemapping",
+        "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1441923-makemapping",
+        "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1441941-domap",
+        "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1441883-dounmap",
+        "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1441782-handlefault",
+        "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/1441871-redirect"
+      ],
+      "kind": "taskGroup",
+      "title": "Managing Internal Structures"
+    },
+    {
+      "anchor": "3917789",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/3917633-getmapperoptions",
+        "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/3917634-setmapperoptions"
+      ],
+      "kind": "taskGroup",
+      "title": "Instance Methods"
+    },
+    {
+      "anchor": "3699261",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/3674611-createsubmemorydescriptor",
+        "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/3674612-createsubmemorydescriptor_impl",
+        "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/3674613-createsubmemorydescriptor_invoke",
+        "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/3674614-createwithmemorydescriptors",
+        "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/3674615-createwithmemorydescriptors_impl",
+        "doc://com.apple.documentation/documentation/kernel/iomemorydescriptor/3674616-createwithmemorydescriptors_invo"
+      ],
+      "kind": "taskGroup",
+      "title": "Type Methods"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/kernel/iomemorydescriptor"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

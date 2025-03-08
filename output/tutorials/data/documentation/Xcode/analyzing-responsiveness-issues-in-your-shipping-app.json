@@ -1,0 +1,843 @@
+{
+  "abstract": [
+    {
+      "text": "Identify responsiveness issues your users encounter, and use the hang and hitch data in Xcode Organizer to determine which issues are most important to fix.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Xcode/documentation/Xcode",
+        "doc://com.apple.Xcode/documentation/Xcode/performance-and-metrics"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Xcode/documentation/Xcode/analyzing-responsiveness-issues-in-your-shipping-app"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Analyzing responsiveness issues in your shipping app"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Hitches and hangs are two types of responsiveness issues that negatively impact an app’s user experience.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The system monitors for hangs and hitches for running apps, and periodically collects reports on the issues from a statistical sample.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Xcode Organizer uses this data to display information about the hitch rate, the hang rate, and individual hang reports for your apps.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "All of this data is also available in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/MetricKit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", so you can gather and aggregate it in your own infrastructure.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For more information about hangs and hitches, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/understanding-user-interface-responsiveness",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "View-your-apps-hitch-rate",
+          "level": 3,
+          "text": "View your app’s hitch rate",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Scrolling pane of the Xcode Organizer window displays information about the hitch rate of your app over time.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "improving-app-responsiveness-1",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Based on the scroll hitch rate for a version of your app, the bar appears in red, yellow, or green.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Red bars indicate a poor scroll with a hitch rate of more than 10 milliseconds per second (ms/s), yellow bars indicate a fair scroll with a hitch rate of 5–10 ms/s, and green bars indicate a good scroll with a hitch rate of less than 5 ms/s.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Aim for green bars to provide the best scroll experience for your users.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Hitch-rate data is only available for iOS and iPadOS devices.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "View-your-apps-hang-rate",
+          "level": 3,
+          "text": "View your app’s hang rate",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Xcode Organizer reports the hang rate as the number of seconds per hour that the app is",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "unresponsive, while only counting periods of unresponsiveness of more than 250 ms.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The Organizer window shows both the median hang rate of a typical user experience, and the extreme",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "90th percentile hang rate. ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/MetricKit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " provides",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the same hang rate metric as a histogram.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "improving-app-responsiveness-2",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Apple operating systems support a broad variety of devices with different hardware capabilities and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "performance characteristics. Code that performs flawlessly on one hardware model",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "can hang on another. Use the device filter at the top of the Organizer window to filter the hang rate for specific device types and uncover hangs that only manifest in certain circumstances.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Hang rate data is available for iOS and macOS devices.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Analyze-hang-reports-to-determine-a-course-of-action",
+          "level": 3,
+          "text": "Analyze hang reports to determine a course of action",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The hang rate provides general information about how responsive a specific app version is on average, while hang reports highlight individual causes of hangs.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "When the main thread is unresponsive for 1 s or longer, the system also samples the app to capture a backtrace profile, highlighting where the app is spending its time during the hang.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The system sends anonymous diagnostic reports with hang stack traces to Apple for users who consent to share data with app developers.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Xcode Organizer aggregates these individual hang reports and groups them by similar backtraces to identify common causes of hangs.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Alternatively, you can create your own reports from logs that ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/MetricKit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " collects.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "analyzing-responsiveness-issues-in-your-shipping-app-1",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each report in the Report List shows the function call that generates the hang, and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the percentage of total hang time it accounts for in the release. The Report List sorts function calls",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in descending order of hang-time contribution to the app release. Clicking a report",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "shows a sample main thread stack trace, as well as additional details in the Inspector, including:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "iOS version",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Device model",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Number of logs received",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "14-day reporting trend",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Total hang time",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Details such as iOS version, device model, number of logs received, and 14-day reporting",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "trend refer to the report, whereas details such as total hang time refer to the function calls.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Identify the code that’s causing the hang by using the function calls",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "for a specific report in the Report List and the corresponding stack trace.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Hang reports are only available for iOS and iPadOS devices.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Reproduce-problems-to-analyze-and-fix-them",
+          "level": 3,
+          "text": "Reproduce problems to analyze and fix them",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The metrics in Xcode Organizer allow you to detect when your shipping app has a problem, such as the hitch rate increasing with the most recent release, but not necessarily what the cause of the problem is.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "To determine the source of the problem, consider the following steps:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Filter the relevant metric by various dimensions, such as device type or app version, to identify whether the issue occurs only on a specific combination of device and version of your app.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Identify the first app version that has the issue you’re looking for. Then use a version control system to identify the changes between app versions, and focus your testing on those areas.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you narrow down the areas of the app where the issue may be occurring, focus your testing on trying to reproduce the issue.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You can use the on-device hang detection in iOS and iPadOS to receive notifications about a hang that occurs while you use the device. Or you can attach your device to Instruments and profile your app using the Time Profiler template to see any hangs in the trace while also recording additional data about what happens in your app during the hang.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Then, follow the steps in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/improving-app-responsiveness",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to analyze and fix the issues.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Xcode-PageImage-card.png": {
+      "alt": "The Xcode logo on a blue gradient background.",
+      "identifier": "Xcode-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cc63eacd8f7f660388b46204d1d9bbcb/Xcode-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/62dba87d5f60ec96eb48882c9dff86d8/Xcode-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "analyzing-responsiveness-issues-in-your-shipping-app-1": {
+      "alt": "A screenshot of the Hang reports pane in the Xcode Organizer window. From left to",
+      "identifier": "analyzing-responsiveness-issues-in-your-shipping-app-1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4e74644803213a17e7b261aa4f2ebeb1/analyzing-responsiveness-issues-in-your-shipping-app-1@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/027f026243cb6970004d654b9f1b4b0b/analyzing-responsiveness-issues-in-your-shipping-app-1~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Xcode/documentation/Xcode": {
+      "abstract": [
+        {
+          "text": "Build, test, and submit your app with Apple’s integrated development environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode",
+      "images": [
+        {
+          "identifier": "Xcode-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/diagnosing-performance-issues-early": {
+      "abstract": [
+        {
+          "text": "Diagnose potential performance issues in your app during testing with the Thread Performance Checker tool in Xcode.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/diagnosing-performance-issues-early",
+      "kind": "article",
+      "role": "article",
+      "title": "Diagnosing performance issues early",
+      "type": "topic",
+      "url": "/documentation/xcode/diagnosing-performance-issues-early"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/improving-app-responsiveness": {
+      "abstract": [
+        {
+          "text": "Create a user experience that feels responsive by removing hangs and hitches from your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/improving-app-responsiveness",
+      "kind": "article",
+      "role": "article",
+      "title": "Improving app responsiveness",
+      "type": "topic",
+      "url": "/documentation/xcode/improving-app-responsiveness"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/performance-and-metrics": {
+      "abstract": [
+        {
+          "text": "Measure, investigate, and address the use of system resources and issues impacting performance using Instruments and Xcode Organizer.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/performance-and-metrics",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Performance and metrics",
+      "type": "topic",
+      "url": "/documentation/xcode/performance-and-metrics"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/reduce-terminations-in-your-app": {
+      "abstract": [
+        {
+          "text": "Minimize how frequently the system stops your app by addressing common termination reasons.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/reduce-terminations-in-your-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Reducing terminations in your app",
+      "type": "topic",
+      "url": "/documentation/xcode/reduce-terminations-in-your-app"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/reducing-disk-writes": {
+      "abstract": [
+        {
+          "text": "Improve your app’s responsiveness by optimizing how it writes data to permanent storage.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/reducing-disk-writes",
+      "kind": "article",
+      "role": "article",
+      "title": "Reducing disk writes",
+      "type": "topic",
+      "url": "/documentation/xcode/reducing-disk-writes"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/reducing-your-app-s-launch-time": {
+      "abstract": [
+        {
+          "text": "Create a more responsive experience with your app by minimizing time spent in startup.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/reducing-your-app-s-launch-time",
+      "kind": "article",
+      "role": "article",
+      "title": "Reducing your app’s launch time",
+      "type": "topic",
+      "url": "/documentation/xcode/reducing-your-app-s-launch-time"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/understanding-hangs-in-your-app": {
+      "abstract": [
+        {
+          "text": "Determine the cause for delays in user interactions by examining the main thread and the main run loop.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/understanding-hangs-in-your-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Understanding hangs in your app",
+      "type": "topic",
+      "url": "/documentation/xcode/understanding-hangs-in-your-app"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/understanding-hitches-in-your-app": {
+      "abstract": [
+        {
+          "text": "Determine the cause of interruptions in motion by examining the render loop.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/understanding-hitches-in-your-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Understanding hitches in your app",
+      "type": "topic",
+      "url": "/documentation/xcode/understanding-hitches-in-your-app"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/understanding-user-interface-responsiveness": {
+      "abstract": [
+        {
+          "text": "Make your app more responsive by examining the event-handling and rendering loop.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/understanding-user-interface-responsiveness",
+      "kind": "article",
+      "role": "article",
+      "title": "Understanding user interface responsiveness",
+      "type": "topic",
+      "url": "/documentation/xcode/understanding-user-interface-responsiveness"
+    },
+    "doc://com.apple.documentation/documentation/MetricKit": {
+      "abstract": [
+        {
+          "text": "Aggregate and analyze per-device reports on exception and crash diagnostics and on power and performance metrics.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/MetricKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "MetricKit",
+      "type": "topic",
+      "url": "/documentation/MetricKit"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "improving-app-responsiveness-1": {
+      "alt": "A screenshot of the Scrolling metric pane in the Xcode Organizer window. From left to right are the list of metrics and reports, the metric UI with a bar graph showing the scroll hitch rate for the past 12 app versions, the selected version, the comparison data for the selected and latest versions, and the goal keys.",
+      "identifier": "improving-app-responsiveness-1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c3c3c4a0f84ff4296c49fa46853d90c4/improving-app-responsiveness-1@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ead368de5bf65301780cb2be5cbab4d8/improving-app-responsiveness-1~dark@2x.png"
+        }
+      ]
+    },
+    "improving-app-responsiveness-2": {
+      "alt": "A screenshot of the Hang Rate metric pane in the Xcode Organizer window. From left to right are the list of metrics and reports, the metric UI with a bar graph showing the hang rate for the past 12 app versions, the selected version, and the comparison data for the selected and latest versions.",
+      "identifier": "improving-app-responsiveness-2",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/402d2ecc35e6998f4dc9fb27dd7ca9c7/improving-app-responsiveness-2@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/100a80e0339df493a74361de08da325d/improving-app-responsiveness-2~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Responsiveness",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Xcode/documentation/Xcode/improving-app-responsiveness",
+        "doc://com.apple.Xcode/documentation/Xcode/understanding-user-interface-responsiveness",
+        "doc://com.apple.Xcode/documentation/Xcode/understanding-hangs-in-your-app",
+        "doc://com.apple.Xcode/documentation/Xcode/understanding-hitches-in-your-app",
+        "doc://com.apple.Xcode/documentation/Xcode/diagnosing-performance-issues-early",
+        "doc://com.apple.Xcode/documentation/Xcode/reducing-your-app-s-launch-time",
+        "doc://com.apple.Xcode/documentation/Xcode/reduce-terminations-in-your-app",
+        "doc://com.apple.Xcode/documentation/Xcode/reducing-disk-writes"
+      ],
+      "title": "Responsiveness"
+    }
+  ]
+}

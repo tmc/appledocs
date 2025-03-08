@@ -1,0 +1,888 @@
+{
+  "abstract": [
+    {
+      "text": "Decide how to store data and model behavior.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Swift/documentation/Swift"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Swift/documentation/Swift/choosing-between-structures-and-classes"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Swift"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Choosing Between Structures and Classes"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Structures and classes are good choices for storing data and modeling behavior in",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "your apps, but their similarities can make it difficult to choose one over the other.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Consider the following recommendations to help choose which option makes sense when",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "adding a new data type to your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use structures by default.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use classes when you need Objective-C interoperability.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use classes when you need to control the identity of the data you’re modeling.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use structures along with protocols to adopt behavior by sharing implementations.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Choose-Structures-by-Default",
+          "level": 3,
+          "text": "Choose Structures by Default",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use structures to represent common kinds of data. Structures in Swift include many",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "features that are limited to classes in other languages: They can include stored",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "properties, computed properties, and methods. Moreover, Swift structures can adopt",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "protocols to gain behavior through default implementations. The Swift standard library",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and Foundation use structures for types you use frequently, such as numbers, strings,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "arrays, and dictionaries.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Using structures makes it easier to reason about a portion of your code without needing",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to consider the whole state of your app. Because structures are value types—unlike",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "classes—local changes to a structure aren’t visible to the rest of your app unless",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "you intentionally communicate those changes as part of the flow of your app. As a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "result, you can look at a section of code and be more confident that changes to instances",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in that section will be made explicitly, rather than being made invisibly from a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "tangentially related function call.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Use-Classes-When-You-Need-Objective-C-Interoperability",
+          "level": 3,
+          "text": "Use Classes When You Need Objective-C Interoperability",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you use an Objective-C API that needs to process your data, or you need to fit",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "your data model into an existing class hierarchy defined in an Objective-C framework,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "you might need to use classes and class inheritance to model your data. For example,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "many Objective-C frameworks expose classes that you are expected to subclass.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Use-Classes-When-You-Need-to-Control-Identity",
+          "level": 3,
+          "text": "Use Classes When You Need to Control Identity",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Classes in Swift come with a built-in notion of identity because they’re reference",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "types. This means that when two different class instances have the same value for",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "each of their stored properties, they’re still considered to be different by the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "identity operator (",
+              "type": "text"
+            },
+            {
+              "code": "===",
+              "type": "codeVoice"
+            },
+            {
+              "text": "). It also means that when you share a class instance across",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "your app, changes you make to that instance are visible to every part of your code",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that holds a reference to that instance. Use classes when you need your instances",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to have this kind of identity. Common use cases are file handles, network connections,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and shared hardware intermediaries like ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreBluetooth/CBCentralManager",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, if you have a type that represents a local database connection, the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "code that manages access to that database needs full control over the state of the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "database as viewed from your app. It’s appropriate to use a class in this case, but",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "be sure to limit which parts of your app get access to the shared database object.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Treat identity with care. Sharing class instances pervasively throughout",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "an app makes logic errors more likely. You might not anticipate the consequences",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "of changing a heavily shared instance, so it’s more work to write such code correctly.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Use-Structures-When-You-Dont-Control-Identity",
+          "level": 3,
+          "text": "Use Structures When You Don’t Control Identity",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use structures when you’re modeling data that contains information about an entity",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "with an identity that you don’t control.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In an app that consults a remote database, for example, an instance’s identity may",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "be fully owned by an external entity and communicated by an identifier. If the consistency",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of an app’s models is stored on a server, you can model records as structures with",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "identifiers. In the example below, ",
+              "type": "text"
+            },
+            {
+              "code": "jsonResponse",
+              "type": "codeVoice"
+            },
+            {
+              "text": " contains an encoded ",
+              "type": "text"
+            },
+            {
+              "code": "PenPalRecord",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "instance from a server:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct PenPalRecord {",
+            "    let myID: Int",
+            "    var myNickname: String",
+            "    var recommendedPenPalID: Int",
+            "}",
+            "",
+            "var myRecord = try JSONDecoder().decode(PenPalRecord.self, from: jsonResponse)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Local changes to model types like ",
+              "type": "text"
+            },
+            {
+              "code": "PenPalRecord",
+              "type": "codeVoice"
+            },
+            {
+              "text": " are useful. For example, an app",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "might recommend multiple different penpals in response to user feedback. Because",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the ",
+              "type": "text"
+            },
+            {
+              "code": "PenPalRecord",
+              "type": "codeVoice"
+            },
+            {
+              "text": " structure doesn’t control the identity of the underlying database",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "records, there’s no risk that the changes made to local ",
+              "type": "text"
+            },
+            {
+              "code": "PenPalRecord",
+              "type": "codeVoice"
+            },
+            {
+              "text": " instances",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "accidentally change values in the database.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If another part of the app changes ",
+              "type": "text"
+            },
+            {
+              "code": "myNickname",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and submits a change request back",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to the server, the most recently rejected penpal recommendation won’t be mistakenly",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "picked up by the change. Because the ",
+              "type": "text"
+            },
+            {
+              "code": "myID",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property is declared as a constant, it",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "can’t change locally. As a result, requests to the database won’t accidentally change",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the wrong record.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Use-Structures-and-Protocols-to-Model-Inheritance-and-Share-Behavior",
+          "level": 3,
+          "text": "Use Structures and Protocols to Model Inheritance and Share Behavior",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Structures and classes both support a form of inheritance. Structures and protocols",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "can only adopt protocols; they can’t inherit from classes. However, the kinds of",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "inheritance hierarchies you can build with class inheritance can be also modeled",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "using protocol inheritance and structures.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you’re building an inheritance relationship from scratch, prefer protocol inheritance.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Protocols permit classes, structures, and enumerations to participate in inheritance,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "while class inheritance is only compatible with other classes. When you’re choosing",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "how to model your data, try building the hierarchy of data types using protocol inheritance",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "first, then adopt those protocols in your structures.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Swift-PageImage-card.png": {
+      "alt": "An orange Swift logo on a gradient background.",
+      "identifier": "Swift-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/81257762cf893d205c049e3021340e5f/Swift-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4d2ed632470b4616483901941fae4098/Swift-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Swift/documentation/Swift": {
+      "abstract": [
+        {
+          "text": "Build apps using a powerful open language.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift",
+      "images": [
+        {
+          "identifier": "Swift-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Swift",
+      "type": "topic",
+      "url": "/documentation/swift"
+    },
+    "doc://com.apple.Swift/documentation/Swift/adopting-common-protocols": {
+      "abstract": [
+        {
+          "text": "Make your custom types easier to use by ensuring that they conform to Swift protocols.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift/documentation/Swift/adopting-common-protocols",
+      "kind": "article",
+      "role": "article",
+      "title": "Adopting Common Protocols",
+      "type": "topic",
+      "url": "/documentation/swift/adopting-common-protocols"
+    },
+    "doc://com.apple.documentation/documentation/CoreBluetooth/CBCentralManager": {
+      "abstract": [
+        {
+          "text": "An object that scans for, discovers, connects to, and manages peripherals.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CBCentralManager"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreBluetooth/CBCentralManager",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CBCentralManager",
+      "type": "topic",
+      "url": "/documentation/CoreBluetooth/CBCentralManager"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Data-Modeling",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/adopting-common-protocols"
+      ],
+      "title": "Data Modeling"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreBluetooth~1CBCentralManager/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CBCentralManager"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)CBManager",
+              "text": "CBManager"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

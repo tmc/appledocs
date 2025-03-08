@@ -1,0 +1,496 @@
+{
+  "abstract": [
+    {
+      "text": "A Boolean value that indicates whether a bundle represents an App Clip.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.bundleresources/documentation/BundleResources",
+        "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.on-demand-install-capable"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "entitlements:Entitlements.com.apple.developer.on-demand-install-capable",
+    "modules": [
+      {
+        "name": "Bundle Resources"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "com.apple.developer.on-demand-install-capable"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "iPadOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Property List Key",
+    "symbolKind": "typealias",
+    "title": "com.apple.developer.on-demand-install-capable"
+  },
+  "primaryContentSections": [
+    {
+      "details": {
+        "name": "com.apple.developer.on-demand-install-capable",
+        "platforms": [],
+        "titleStyle": "symbol",
+        "value": [
+          {
+            "arrayMode": false,
+            "baseType": "boolean"
+          }
+        ]
+      },
+      "kind": "details",
+      "title": "Details"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Adding an App Clip target to your project as described in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppClip/creating-an-app-clip-with-xcode",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " enables a capability called On Demand Install Capable for the App Clip target.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you code-sign your full app, Xcode embeds the App Clip in the full app and applies the ",
+              "type": "text"
+            },
+            {
+              "code": "com.apple.developer.on-demand-install-capable",
+              "type": "codeVoice"
+            },
+            {
+              "text": " entitlement. Because of this behavior, the App Clip’s ",
+              "type": "text"
+            },
+            {
+              "code": ".entitlements",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file doesn’t include this entitlement if you open the file in Xcode’s Project navigator.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To see the entitlement in the ",
+              "type": "text"
+            },
+            {
+              "code": ".entitlements",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file, first archive the full app, then export the App Clip for distribution as described in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppClip/distributing-your-app-clip",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Next, open the Terminal app and run ",
+              "type": "text"
+            },
+            {
+              "code": "codesign -d --entitlements :- /path/to/ExampleApp.app/AppClips/ExampleAppClip.app",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.bundleresources/documentation/BundleResources": {
+      "abstract": [
+        {
+          "text": "Resources located in an app, framework, or plugin bundle.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Bundle Resources",
+      "type": "topic",
+      "url": "/documentation/bundleresources"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements": {
+      "abstract": [
+        {
+          "text": "Key-value pairs that grant an executable permission to use a service or technology.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements",
+      "kind": "symbol",
+      "name": "Entitlements",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Entitlements"
+        }
+      ],
+      "role": "symbol",
+      "title": "Entitlements",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/entitlements"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.associated-appclip-app-identifiers": {
+      "abstract": [
+        {
+          "text": "A list of App Clip identifiers for an app with exactly one entry.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.associated-appclip-app-identifiers",
+      "kind": "symbol",
+      "name": "com.apple.developer.associated-appclip-app-identifiers",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "com.apple.developer.associated-appclip-app-identifiers"
+        }
+      ],
+      "role": "symbol",
+      "title": "com.apple.developer.associated-appclip-app-identifiers",
+      "titleStyle": "title",
+      "type": "topic",
+      "url": "/documentation/bundleresources/entitlements/com.apple.developer.associated-appclip-app-identifiers"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.on-demand-install-capable": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether a bundle represents an App Clip.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.on-demand-install-capable",
+      "kind": "symbol",
+      "name": "com.apple.developer.on-demand-install-capable",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "com.apple.developer.on-demand-install-capable"
+        }
+      ],
+      "role": "symbol",
+      "title": "com.apple.developer.on-demand-install-capable",
+      "titleStyle": "title",
+      "type": "topic",
+      "url": "/documentation/bundleresources/entitlements/com.apple.developer.on-demand-install-capable"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.parent-application-identifiers": {
+      "abstract": [
+        {
+          "text": "A list of parent application identifiers for an App Clip with exactly one entry.",
+          "type": "text"
+        }
+      ],
+      "ideTitle": "Parent Application Identifiers Entitlement",
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.parent-application-identifiers",
+      "kind": "symbol",
+      "name": "com.apple.developer.parent-application-identifiers",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "com.apple.developer.parent-application-identifiers"
+        }
+      ],
+      "role": "symbol",
+      "title": "Parent Application Identifiers Entitlement",
+      "titleStyle": "title",
+      "type": "topic",
+      "url": "/documentation/bundleresources/entitlements/com.apple.developer.parent-application-identifiers"
+    },
+    "doc://com.apple.documentation/documentation/AppClip/creating-an-app-clip-with-xcode": {
+      "abstract": [
+        {
+          "text": "Add an App Clip target to your Xcode project and share code between the App Clip and its corresponding full app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppClip/creating-an-app-clip-with-xcode",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating an App Clip with Xcode",
+      "type": "topic",
+      "url": "/documentation/AppClip/creating-an-app-clip-with-xcode"
+    },
+    "doc://com.apple.documentation/documentation/AppClip/distributing-your-app-clip": {
+      "abstract": [
+        {
+          "text": "Archive the full app for your App Clip, upload it to App Store Connect, and distribute it to testers or publish it on the App Store.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppClip/distributing-your-app-clip",
+      "kind": "article",
+      "role": "article",
+      "title": "Distributing your App Clip",
+      "type": "topic",
+      "url": "/documentation/AppClip/distributing-your-app-clip"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "App-Clips",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.parent-application-identifiers",
+        "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.associated-appclip-app-identifiers"
+      ],
+      "title": "App Clips"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "14.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "14.0",
+              "name": "iPadOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Property List Key"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "com.apple.developer.on-demand-install-capable"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "typealias"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "com.apple.developer.on-demand-install-capable"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.bundleresources/documentation/BundleResources",
+                "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "App-Clips",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.parent-application-identifiers",
+                "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.associated-appclip-app-identifiers"
+              ],
+              "title": "App Clips"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Entitlements/title",
+          "value": "Entitlements"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Entitlements/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "Entitlements"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Entitlements~1com.apple.developer.on-demand-install-capable/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "com.apple.developer.on-demand-install-capable"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Entitlements~1com.apple.developer.associated-appclip-app-identifiers/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "com.apple.developer.associated-appclip-app-identifiers"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Entitlements~1com.apple.developer.parent-application-identifiers/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "com.apple.developer.parent-application-identifiers"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/bundleresources/entitlements/com.apple.developer.on-demand-install-capable"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/bundleresources/entitlements/com.apple.developer.on-demand-install-capable"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

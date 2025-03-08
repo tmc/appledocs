@@ -1,0 +1,1489 @@
+{
+  "abstract": [
+    {
+      "text": "A representation of an item from a report descriptor for a HID device.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.CoreHID/documentation/CoreHID"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.CoreHID/documentation/CoreHID/HIDElement"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:7CoreHID10HIDElementV",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "struct"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "HIDElement"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Core HID"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "HIDElement"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "HIDElement"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "HIDElement"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.CoreHID/documentation/CoreHID/CommunicatingWithHIDDevices"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.CoreHID/documentation/CoreHID/HIDElement",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " is an abstraction for the data in a HID report, and represents one item of data that could be sent or received in a report for a specific device. For example, for a mouse with a report descriptor that declares a report with 1 byte of data for each an X and a Y coordinate, there would be an element for the data associated with the X coordinate. If this element was monitored by a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.CoreHID/documentation/CoreHID/HIDDeviceClient",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", when an input report was received with an update to the X coordinate, a notification with the updated data would be sent to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.CoreHID/documentation/CoreHID/HIDDeviceClient/Notification/elementUpdates(values:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Elements are only received by requesting the elements for a specific device through a client’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.CoreHID/documentation/CoreHID/HIDDeviceClient/elements",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "See the HID specification for more details: ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://www.usb.org/hid",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "communicating-with-human-interface-devices-PageImage-card.png": {
+      "alt": "An image showing the Swift logo on the left. Three arrows emerge from it and point to the right. The first arrow points to a game controller. The second arrow points to a mouse. The third arrow points to a keyboard.",
+      "identifier": "communicating-with-human-interface-devices-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/511a51153ce79288598131c3a935be6d/communicating-with-human-interface-devices-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2f3fccacff140628cdffa2006b623b1e/communicating-with-human-interface-devices-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.CoreHID/documentation/CoreHID": {
+      "abstract": [
+        {
+          "text": "Interact with keyboards, mice, and other human interface devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.CoreHID/documentation/CoreHID",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core HID",
+      "type": "topic",
+      "url": "/documentation/corehid"
+    },
+    "doc://com.apple.CoreHID/documentation/CoreHID/CommunicatingWithHIDDevices": {
+      "abstract": [
+        {
+          "text": "Interact with and obtain data from devices such as keyboards and mice.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.CoreHID/documentation/CoreHID/CommunicatingWithHIDDevices",
+      "images": [
+        {
+          "identifier": "communicating-with-human-interface-devices-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "article",
+      "title": "Communicating with human interface devices",
+      "type": "topic",
+      "url": "/documentation/corehid/communicatingwithhiddevices"
+    },
+    "doc://com.apple.CoreHID/documentation/CoreHID/HIDDeviceClient": {
+      "abstract": [
+        {
+          "text": "A client of a physical or virtual HID compatible peripheral.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "actor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HIDDeviceClient"
+        }
+      ],
+      "identifier": "doc://com.apple.CoreHID/documentation/CoreHID/HIDDeviceClient",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HIDDeviceClient"
+        }
+      ],
+      "role": "symbol",
+      "title": "HIDDeviceClient",
+      "type": "topic",
+      "url": "/documentation/corehid/hiddeviceclient"
+    },
+    "doc://com.apple.CoreHID/documentation/CoreHID/HIDDeviceClient/Notification/elementUpdates(values:)": {
+      "abstract": [
+        {
+          "text": "A notification that elements of the device were updated.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "elementUpdates"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "values"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7CoreHID10HIDElementV",
+          "text": "HIDElement"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7CoreHID10HIDElementV5ValueV",
+          "text": "Value"
+        },
+        {
+          "kind": "text",
+          "text": "])"
+        }
+      ],
+      "identifier": "doc://com.apple.CoreHID/documentation/CoreHID/HIDDeviceClient/Notification/elementUpdates(values:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "HIDDeviceClient.Notification.elementUpdates(values:)",
+      "type": "topic",
+      "url": "/documentation/corehid/hiddeviceclient/notification/elementupdates(values:)"
+    },
+    "doc://com.apple.CoreHID/documentation/CoreHID/HIDDeviceClient/elements": {
+      "abstract": [
+        {
+          "text": "All HID elements associated with the device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "elements"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7CoreHID10HIDElementV",
+          "text": "HIDElement"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.CoreHID/documentation/CoreHID/HIDDeviceClient/elements",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "elements",
+      "type": "topic",
+      "url": "/documentation/corehid/hiddeviceclient/elements"
+    },
+    "doc://com.apple.CoreHID/documentation/CoreHID/HIDDeviceError": {
+      "abstract": [
+        {
+          "text": "Errors that the framework can throw.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HIDDeviceError"
+        }
+      ],
+      "identifier": "doc://com.apple.CoreHID/documentation/CoreHID/HIDDeviceError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HIDDeviceError"
+        }
+      ],
+      "role": "symbol",
+      "title": "HIDDeviceError",
+      "type": "topic",
+      "url": "/documentation/corehid/hiddeviceerror"
+    },
+    "doc://com.apple.CoreHID/documentation/CoreHID/HIDDeviceLocalizationCode": {
+      "abstract": [
+        {
+          "text": "The localization codes that some HID devices declare to specify conformance to a certain format or language.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HIDDeviceLocalizationCode"
+        }
+      ],
+      "identifier": "doc://com.apple.CoreHID/documentation/CoreHID/HIDDeviceLocalizationCode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HIDDeviceLocalizationCode"
+        }
+      ],
+      "role": "symbol",
+      "title": "HIDDeviceLocalizationCode",
+      "type": "topic",
+      "url": "/documentation/corehid/hiddevicelocalizationcode"
+    },
+    "doc://com.apple.CoreHID/documentation/CoreHID/HIDDeviceTransport": {
+      "abstract": [
+        {
+          "text": "Common transport types that transmit data to or from a HID device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HIDDeviceTransport"
+        }
+      ],
+      "identifier": "doc://com.apple.CoreHID/documentation/CoreHID/HIDDeviceTransport",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HIDDeviceTransport"
+        }
+      ],
+      "role": "symbol",
+      "title": "HIDDeviceTransport",
+      "type": "topic",
+      "url": "/documentation/corehid/hiddevicetransport"
+    },
+    "doc://com.apple.CoreHID/documentation/CoreHID/HIDElement": {
+      "abstract": [
+        {
+          "text": "A representation of an item from a report descriptor for a HID device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HIDElement"
+        }
+      ],
+      "identifier": "doc://com.apple.CoreHID/documentation/CoreHID/HIDElement",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HIDElement"
+        }
+      ],
+      "role": "symbol",
+      "title": "HIDElement",
+      "type": "topic",
+      "url": "/documentation/corehid/hidelement"
+    },
+    "doc://com.apple.CoreHID/documentation/CoreHID/HIDElement/CustomStringConvertible-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.CoreHID/documentation/CoreHID/HIDElement/CustomStringConvertible-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CustomStringConvertible Implementations",
+      "type": "topic",
+      "url": "/documentation/corehid/hidelement/customstringconvertible-implementations"
+    },
+    "doc://com.apple.CoreHID/documentation/CoreHID/HIDElement/Equatable-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.CoreHID/documentation/CoreHID/HIDElement/Equatable-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Equatable Implementations",
+      "type": "topic",
+      "url": "/documentation/corehid/hidelement/equatable-implementations"
+    },
+    "doc://com.apple.CoreHID/documentation/CoreHID/HIDElement/Hashable-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.CoreHID/documentation/CoreHID/HIDElement/Hashable-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Hashable Implementations",
+      "type": "topic",
+      "url": "/documentation/corehid/hidelement/hashable-implementations"
+    },
+    "doc://com.apple.CoreHID/documentation/CoreHID/HIDElement/Value": {
+      "abstract": [
+        {
+          "text": "Data associated with a HID element.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Value"
+        }
+      ],
+      "identifier": "doc://com.apple.CoreHID/documentation/CoreHID/HIDElement/Value",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Value"
+        }
+      ],
+      "role": "symbol",
+      "title": "HIDElement.Value",
+      "type": "topic",
+      "url": "/documentation/corehid/hidelement/value"
+    },
+    "doc://com.apple.CoreHID/documentation/CoreHID/HIDElement/client": {
+      "abstract": [
+        {
+          "text": "The client for the device with which this element is associated.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "client"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7CoreHID15HIDDeviceClientC",
+          "text": "HIDDeviceClient"
+        }
+      ],
+      "identifier": "doc://com.apple.CoreHID/documentation/CoreHID/HIDElement/client",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "client",
+      "type": "topic",
+      "url": "/documentation/corehid/hidelement/client"
+    },
+    "doc://com.apple.CoreHID/documentation/CoreHID/HIDElement/logicalMaximum": {
+      "abstract": [
+        {
+          "text": "The logical maximum for this element’s data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "logicalMaximum"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int64V",
+          "text": "Int64"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.CoreHID/documentation/CoreHID/HIDElement/logicalMaximum",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "logicalMaximum",
+      "type": "topic",
+      "url": "/documentation/corehid/hidelement/logicalmaximum"
+    },
+    "doc://com.apple.CoreHID/documentation/CoreHID/HIDElement/logicalMinimum": {
+      "abstract": [
+        {
+          "text": "The logical minimum for this element’s data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "logicalMinimum"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int64V",
+          "text": "Int64"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.CoreHID/documentation/CoreHID/HIDElement/logicalMinimum",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "logicalMinimum",
+      "type": "topic",
+      "url": "/documentation/corehid/hidelement/logicalminimum"
+    },
+    "doc://com.apple.CoreHID/documentation/CoreHID/HIDElement/parentCollection": {
+      "abstract": [
+        {
+          "text": "The ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.CoreHID/documentation/CoreHID/HIDElementCollection",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " that contains this element.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "parentCollection"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7CoreHID20HIDElementCollectionV",
+          "text": "HIDElementCollection"
+        }
+      ],
+      "identifier": "doc://com.apple.CoreHID/documentation/CoreHID/HIDElement/parentCollection",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "parentCollection",
+      "type": "topic",
+      "url": "/documentation/corehid/hidelement/parentcollection"
+    },
+    "doc://com.apple.CoreHID/documentation/CoreHID/HIDElement/physicalMaximum": {
+      "abstract": [
+        {
+          "text": "The physical maximum for this element’s data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "physicalMaximum"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int64V",
+          "text": "Int64"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.CoreHID/documentation/CoreHID/HIDElement/physicalMaximum",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "physicalMaximum",
+      "type": "topic",
+      "url": "/documentation/corehid/hidelement/physicalmaximum"
+    },
+    "doc://com.apple.CoreHID/documentation/CoreHID/HIDElement/physicalMinimum": {
+      "abstract": [
+        {
+          "text": "The physical minimum for this element’s data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "physicalMinimum"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int64V",
+          "text": "Int64"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.CoreHID/documentation/CoreHID/HIDElement/physicalMinimum",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "physicalMinimum",
+      "type": "topic",
+      "url": "/documentation/corehid/hidelement/physicalminimum"
+    },
+    "doc://com.apple.CoreHID/documentation/CoreHID/HIDElement/reportID": {
+      "abstract": [
+        {
+          "text": "The report ID for the report that contains this element.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "reportID"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7CoreHID11HIDReportIDV",
+          "text": "HIDReportID"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.CoreHID/documentation/CoreHID/HIDElement/reportID",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "reportID",
+      "type": "topic",
+      "url": "/documentation/corehid/hidelement/reportid"
+    },
+    "doc://com.apple.CoreHID/documentation/CoreHID/HIDElement/reportSize": {
+      "abstract": [
+        {
+          "text": "The size in bits of the data for this element.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "reportSize"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        }
+      ],
+      "identifier": "doc://com.apple.CoreHID/documentation/CoreHID/HIDElement/reportSize",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "reportSize",
+      "type": "topic",
+      "url": "/documentation/corehid/hidelement/reportsize"
+    },
+    "doc://com.apple.CoreHID/documentation/CoreHID/HIDElement/type": {
+      "abstract": [
+        {
+          "text": "The type of this element.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "type"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7CoreHID13HIDReportTypeO",
+          "text": "HIDReportType"
+        }
+      ],
+      "identifier": "doc://com.apple.CoreHID/documentation/CoreHID/HIDElement/type",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "type",
+      "type": "topic",
+      "url": "/documentation/corehid/hidelement/type"
+    },
+    "doc://com.apple.CoreHID/documentation/CoreHID/HIDElement/unit": {
+      "abstract": [
+        {
+          "text": "The HID specification compliant unit code for this element.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "unit"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.CoreHID/documentation/CoreHID/HIDElement/unit",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "unit",
+      "type": "topic",
+      "url": "/documentation/corehid/hidelement/unit"
+    },
+    "doc://com.apple.CoreHID/documentation/CoreHID/HIDElement/unitExponent": {
+      "abstract": [
+        {
+          "text": "The calculated exponent for this element.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "unitExponent"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Int8V",
+          "text": "Int8"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.CoreHID/documentation/CoreHID/HIDElement/unitExponent",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "unitExponent",
+      "type": "topic",
+      "url": "/documentation/corehid/hidelement/unitexponent"
+    },
+    "doc://com.apple.CoreHID/documentation/CoreHID/HIDElement/usage": {
+      "abstract": [
+        {
+          "text": "The HID specification compliant usage for this element.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "usage"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7CoreHID8HIDUsageO",
+          "text": "HIDUsage"
+        }
+      ],
+      "identifier": "doc://com.apple.CoreHID/documentation/CoreHID/HIDElement/usage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "usage",
+      "type": "topic",
+      "url": "/documentation/corehid/hidelement/usage"
+    },
+    "doc://com.apple.CoreHID/documentation/CoreHID/HIDElementCollection": {
+      "abstract": [
+        {
+          "text": "A collection of items from a report descriptor for a HID device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HIDElementCollection"
+        }
+      ],
+      "identifier": "doc://com.apple.CoreHID/documentation/CoreHID/HIDElementCollection",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HIDElementCollection"
+        }
+      ],
+      "role": "symbol",
+      "title": "HIDElementCollection",
+      "type": "topic",
+      "url": "/documentation/corehid/hidelementcollection"
+    },
+    "doc://com.apple.CoreHID/documentation/CoreHID/HIDElementUpdate": {
+      "abstract": [
+        {
+          "text": "A base protocol for element update types.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HIDElementUpdate"
+        }
+      ],
+      "identifier": "doc://com.apple.CoreHID/documentation/CoreHID/HIDElementUpdate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HIDElementUpdate"
+        }
+      ],
+      "role": "symbol",
+      "title": "HIDElementUpdate",
+      "type": "topic",
+      "url": "/documentation/corehid/hidelementupdate"
+    },
+    "doc://com.apple.CoreHID/documentation/CoreHID/HIDReportID": {
+      "abstract": [
+        {
+          "text": "A type to represent the report IDs of HID reports.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HIDReportID"
+        }
+      ],
+      "identifier": "doc://com.apple.CoreHID/documentation/CoreHID/HIDReportID",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HIDReportID"
+        }
+      ],
+      "role": "symbol",
+      "title": "HIDReportID",
+      "type": "topic",
+      "url": "/documentation/corehid/hidreportid"
+    },
+    "doc://com.apple.CoreHID/documentation/CoreHID/HIDReportType": {
+      "abstract": [
+        {
+          "text": "Types for HID reports.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HIDReportType"
+        }
+      ],
+      "identifier": "doc://com.apple.CoreHID/documentation/CoreHID/HIDReportType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HIDReportType"
+        }
+      ],
+      "role": "symbol",
+      "title": "HIDReportType",
+      "type": "topic",
+      "url": "/documentation/corehid/hidreporttype"
+    },
+    "doc://com.apple.CoreHID/documentation/CoreHID/HIDUsage": {
+      "abstract": [
+        {
+          "text": "A type to represent HID usage pages.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HIDUsage"
+        }
+      ],
+      "identifier": "doc://com.apple.CoreHID/documentation/CoreHID/HIDUsage",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HIDUsage"
+        }
+      ],
+      "role": "symbol",
+      "title": "HIDUsage",
+      "type": "topic",
+      "url": "/documentation/corehid/hidusage"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s8CopyableP": {
+      "abstract": [
+        {
+          "text": "A type whose values can be implicitly or explicitly copied.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Copyable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8CopyableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Copyable",
+      "type": "topic",
+      "url": "/documentation/Swift/Copyable"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    },
+    "https://www.usb.org/hid": {
+      "identifier": "https://www.usb.org/hid",
+      "title": "https://www.usb.org/hid",
+      "titleInlineContent": [
+        {
+          "text": "https://www.usb.org/hid",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://www.usb.org/hid"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s8CopyableP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/s:s8SendableP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Interaction",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.CoreHID/documentation/CoreHID/CommunicatingWithHIDDevices",
+        "doc://com.apple.CoreHID/documentation/CoreHID/HIDDeviceClient",
+        "doc://com.apple.CoreHID/documentation/CoreHID/HIDElementCollection",
+        "doc://com.apple.CoreHID/documentation/CoreHID/HIDElement/Value",
+        "doc://com.apple.CoreHID/documentation/CoreHID/HIDElementUpdate",
+        "doc://com.apple.CoreHID/documentation/CoreHID/HIDReportType",
+        "doc://com.apple.CoreHID/documentation/CoreHID/HIDReportID",
+        "doc://com.apple.CoreHID/documentation/CoreHID/HIDUsage",
+        "doc://com.apple.CoreHID/documentation/CoreHID/HIDDeviceError",
+        "doc://com.apple.CoreHID/documentation/CoreHID/HIDDeviceTransport",
+        "doc://com.apple.CoreHID/documentation/CoreHID/HIDDeviceLocalizationCode"
+      ],
+      "title": "Interaction"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Structures",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.CoreHID/documentation/CoreHID/HIDElement/Value"
+      ],
+      "title": "Structures"
+    },
+    {
+      "anchor": "Instance-Properties",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.CoreHID/documentation/CoreHID/HIDElement/client",
+        "doc://com.apple.CoreHID/documentation/CoreHID/HIDElement/logicalMaximum",
+        "doc://com.apple.CoreHID/documentation/CoreHID/HIDElement/logicalMinimum",
+        "doc://com.apple.CoreHID/documentation/CoreHID/HIDElement/parentCollection",
+        "doc://com.apple.CoreHID/documentation/CoreHID/HIDElement/physicalMaximum",
+        "doc://com.apple.CoreHID/documentation/CoreHID/HIDElement/physicalMinimum",
+        "doc://com.apple.CoreHID/documentation/CoreHID/HIDElement/reportID",
+        "doc://com.apple.CoreHID/documentation/CoreHID/HIDElement/reportSize",
+        "doc://com.apple.CoreHID/documentation/CoreHID/HIDElement/type",
+        "doc://com.apple.CoreHID/documentation/CoreHID/HIDElement/unit",
+        "doc://com.apple.CoreHID/documentation/CoreHID/HIDElement/unitExponent",
+        "doc://com.apple.CoreHID/documentation/CoreHID/HIDElement/usage"
+      ],
+      "title": "Instance Properties"
+    },
+    {
+      "anchor": "Default-Implementations",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.CoreHID/documentation/CoreHID/HIDElement/CustomStringConvertible-Implementations",
+        "doc://com.apple.CoreHID/documentation/CoreHID/HIDElement/Equatable-Implementations",
+        "doc://com.apple.CoreHID/documentation/CoreHID/HIDElement/Hashable-Implementations"
+      ],
+      "title": "Default Implementations"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/corehid/hidelement"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

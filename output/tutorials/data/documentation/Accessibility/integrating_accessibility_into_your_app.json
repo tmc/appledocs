@@ -1,0 +1,2022 @@
+{
+  "abstract": [
+    {
+      "text": "Make your app more accessible to users with disabilities by adding accessibility features.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Accessibility/documentation/Accessibility"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Accessibility/documentation/Accessibility/integrating_accessibility_into_your_app"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Accessibility"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "13.1",
+        "name": "macOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "14.2",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Integrating accessibility into your app"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "By adding accessibility features to your app, you make it available to a wider range of users. This sample code project shows how to implement accessibility for several common UI controls. The examples make the controls accessible by using accessibility properties, accessibility protocols, and the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppKit/NSAccessibilityElement-swift.class",
+              "isActive": true,
+              "overridingTitle": "NSAccessibilityElement",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "NSAccessibilityElement",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " class.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In macOS 10.10, the Accessibility API moved to a protocol-based approach, in contrast to the key-based API from macOS 10.9 and earlier.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "With the protocol-based API, you can:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Simplify the implementation of accessibility",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "More closely align macOS accessibility features with those of iOS",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Ensure compatibility with existing macOS apps and code",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Accessibility API features in macOS versions earlier than 10.10 are deprecated, but can coexist with the current API. No changes are required for apps or accessibility clients that use earlier versions of the Accessibility API. If you implement both APIs on the same class, the current API takes precedence for that class. For cell-based controls, you need to provide Accessibility API implementations on the cell.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-accessibility-attributes",
+          "level": 3,
+          "text": "Add accessibility attributes",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Most accessibility attributes from macOS 10.9 and earlier are now properties in the following AppKit classes:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "NSApplication",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "NSWindow",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "NSView",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "NSDrawer",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "NSPopover",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "NSCell",
+                      "type": "codeVoice"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To set an accessibility attribute value on an instance of one of these classes (or a subclass), simply assign the value to the property.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "button.setAccessibilityLabel(NSLocalizedString(\"My label\", comment: \"label to use for this button\"))"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "x-source-tag://setAccessibilityLabel",
+              "isActive": true,
+              "type": "reference"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Alternatively, you can override the getter in the subclass’s implementation.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "override func accessibilityLabel() -> String? {",
+            "    return NSLocalizedString(\"Play\", comment: \"accessibility label of the Play button\")",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "x-source-tag://accessibilityLabel",
+              "isActive": true,
+              "type": "reference"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppKit/nsaccessibility",
+              "isActive": true,
+              "overridingTitle": "NSAccessibility",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "NSAccessibility",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " contains the full list of accessibility properties.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-accessibility-protocols-to-custom-controls",
+          "level": 3,
+          "text": "Add accessibility protocols to custom controls",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Accessibility API protocols define the required accessibility functions for many common accessibility elements. Conformance to an accessibility protocol isn’t required to use the API, but it’s recommended when making custom controls accessible. Conforming to an accessibility protocol results in a warning for each unimplemented required function and allows the system to automatically infer the  ",
+              "type": "text"
+            },
+            {
+              "text": "`accessibilityRole`",
+              "type": "text"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppKit/NSAccessibilityProtocol/isAccessibilityElement()",
+              "isActive": true,
+              "overridingTitle": "isAccessibilityElement",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "isAccessibilityElement",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " properties.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Standard AppKit controls conform to the related accessibility protocol (for example, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppKit/NSButton",
+              "isActive": true,
+              "overridingTitle": "NSButton",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "NSButton",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " conforms to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppKit/NSAccessibilityButton",
+              "isActive": true,
+              "overridingTitle": "NSAccessibilityButton",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "NSAccessibilityButton",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " protocol, and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppKit/NSSlider",
+              "isActive": true,
+              "overridingTitle": "NSSlider",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "NSSlider",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " conforms to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppKit/NSAccessibilitySlider",
+              "isActive": true,
+              "overridingTitle": "NSAccessibilitySlider",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "NSAccessibilitySlider",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " protocol). Whenever possible, subclass from the appropriate AppKit control to leverage the built-in accessibility.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To add accessibility to a custom control:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Conform to the appropriate protocol.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Implement all the required functions. A warning appears for each unimplemented required function.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Test using VoiceOver and the Accessibility Inspector.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, the following code sample creates a custom control that subclasses ",
+              "type": "text"
+            },
+            {
+              "code": "NSView",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and draws and behaves like a button:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "class CustomButtonView: NSView {"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "x-source-tag://customButtonDeclare",
+              "isActive": true,
+              "type": "reference"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If a custom control doesn’t conform to an accessibility protocol, you need to implement the ",
+              "type": "text"
+            },
+            {
+              "text": " `accessibilityRole`",
+              "type": "text"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AppKit/NSAccessibilityProtocol/isAccessibilityElement()",
+              "isActive": true,
+              "overridingTitle": "isAccessibilityElement",
+              "overridingTitleInlineContent": [
+                {
+                  "code": "isAccessibilityElement",
+                  "type": "codeVoice"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " functions.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "override func accessibilityRole() -> NSAccessibility.Role? {",
+            "    return NSAccessibility.Role.button",
+            "}",
+            "",
+            "override func isAccessibilityElement() -> Bool {",
+            "    return true",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "x-source-tag://customButtonAdoption",
+              "isActive": true,
+              "type": "reference"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-an-accessibility-element",
+          "level": 3,
+          "text": "Create an accessibility element",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For objects that don’t have a backing view — for example, a single view that draws several images, each of which is individually accessible — create an instance of ",
+              "type": "text"
+            },
+            {
+              "code": "NSAccessibilityElement",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for each object, and return an array of the instances from the containing view’s ",
+              "type": "text"
+            },
+            {
+              "code": "accessibilityChildren",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Simplify-your-accessibility-code",
+          "level": 3,
+          "text": "Simplify your accessibility code",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "NSAccessibilityElement",
+              "type": "codeVoice"
+            },
+            {
+              "text": " has two convenience methods that simplify its use:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSAccessibilityElement-swift.class/accessibilityAddChildElement(_:)",
+                      "isActive": true,
+                      "overridingTitle": "accessibilityAddChildElement",
+                      "overridingTitleInlineContent": [
+                        {
+                          "code": "accessibilityAddChildElement",
+                          "type": "codeVoice"
+                        }
+                      ],
+                      "type": "reference"
+                    },
+                    {
+                      "text": " — This function sets the specified element as a subelement of the receiver’s ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "`accessibilityChildren`",
+                      "type": "text"
+                    },
+                    {
+                      "text": " and the receiver as the container to the specified element. This behavior is useful when you create hierarchies of accessibility elements.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "`accessibilityFrameInParentSpace`",
+                      "type": "text"
+                    },
+                    {
+                      "text": " — This property allows the accessibility element to specify its frame relative to its accessibility container, so that the system can automatically recalculate the  ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSAccessibilityElementProtocol/accessibilityFrame()",
+                      "isActive": true,
+                      "overridingTitle": "accessibilityFrame",
+                      "overridingTitleInlineContent": [
+                        {
+                          "code": "accessibilityFrame",
+                          "type": "codeVoice"
+                        }
+                      ],
+                      "type": "reference"
+                    },
+                    {
+                      "text": " property value (given in screen coordinates) whenever the element or any of its containing views changes location.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Accessibility API includes two convenience methods in ",
+              "type": "text"
+            },
+            {
+              "code": "AppKit/NSAccessibility.h",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to simplify common accessibility tasks:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSAccessibility-swift.struct/screenRect(fromView:rect:)",
+                      "isActive": true,
+                      "overridingTitle": "NSAccessibilityFrameInView",
+                      "overridingTitleInlineContent": [
+                        {
+                          "code": "NSAccessibilityFrameInView",
+                          "type": "codeVoice"
+                        }
+                      ],
+                      "type": "reference"
+                    },
+                    {
+                      "text": " — This convenience method converts ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "frame",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " from the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "parentView",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " coordinate space to the screen coordinate space. This is useful when you calculate an object’s ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "`accessibilityFrame`",
+                      "type": "text"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSAccessibility-swift.struct/screenPoint(fromView:point:)",
+                      "isActive": true,
+                      "overridingTitle": "NSAccessibilityPointInView",
+                      "overridingTitleInlineContent": [
+                        {
+                          "code": "NSAccessibilityPointInView",
+                          "type": "codeVoice"
+                        }
+                      ],
+                      "type": "reference"
+                    },
+                    {
+                      "text": " — This convenience method converts ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "point",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " from the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "parentView",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " coordinate space to the screen coordinate space. This is useful when you calculate an object’s ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSAccessibilityProtocol/accessibilityActivationPoint()",
+                      "isActive": true,
+                      "overridingTitle": "accessibilityActivationPoint",
+                      "overridingTitleInlineContent": [
+                        {
+                          "code": "accessibilityActivationPoint",
+                          "type": "codeVoice"
+                        }
+                      ],
+                      "type": "reference"
+                    },
+                    {
+                      "text": " coordinates.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Test-the-accessibility-features-on-your-app",
+          "level": 3,
+          "text": "Test the accessibility features on your app",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Accessibility Inspector is an Xcode tool that displays all accessibility information for the element currently beneath the cursor, including the accessibility hierarchy, accessibility attributes, and accessibility actions. It also shows warnings for common accessibility problems, such as a missing accessibility label. Launch the Accessibility Inspector from the Xcode > Open Developer Tool menu.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To test VoiceOver, choose System Settings > Accessibility > VoiceOver and click the toggle to enable it, or press Command-F5. To learn how to use VoiceOver, choose System Settings > Accessibility > VoiceOver > Open VoiceOver Training.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Accessibility-PageImage-card.png": {
+      "alt": "",
+      "identifier": "Accessibility-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/718b8a161d77a3423dde2dd53ac35ffb/Accessibility-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ed433f19cfa41ebf0c9f495a066b6bbd/Accessibility-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "aadcfd031663/IntegratingAccessibilityIntoYourApp.zip": {
+      "checksum": "aadcfd0316635f2147375c590972eca60b1a1faf9a949e6334114aab8f83f858461377171174783379e3fb0a4a24293334dfc985a3d5ff03a93b0d69aca0e1c0",
+      "identifier": "aadcfd031663/IntegratingAccessibilityIntoYourApp.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/aadcfd031663/IntegratingAccessibilityIntoYourApp.zip"
+    },
+    "doc://com.apple.Accessibility/documentation/Accessibility": {
+      "abstract": [
+        {
+          "text": "Make your apps accessible to everyone who uses Apple devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Accessibility/documentation/Accessibility",
+      "images": [
+        {
+          "identifier": "Accessibility-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Accessibility",
+      "type": "topic",
+      "url": "/documentation/accessibility"
+    },
+    "doc://com.apple.Accessibility/documentation/Accessibility/accessibility_design_for_mac_catalyst": {
+      "abstract": [
+        {
+          "text": "Improve navigation in your app by using keyboard shortcuts and accessibility containers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Accessibility/documentation/Accessibility/accessibility_design_for_mac_catalyst",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Accessibility design for Mac Catalyst",
+      "type": "topic",
+      "url": "/documentation/accessibility/accessibility_design_for_mac_catalyst"
+    },
+    "doc://com.apple.Accessibility/documentation/Accessibility/delivering_an_exceptional_accessibility_experience": {
+      "abstract": [
+        {
+          "text": "Make improvements to your app’s interaction model to support assistive technologies such as VoiceOver.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Accessibility/documentation/Accessibility/delivering_an_exceptional_accessibility_experience",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Delivering an exceptional accessibility experience",
+      "type": "topic",
+      "url": "/documentation/accessibility/delivering_an_exceptional_accessibility_experience"
+    },
+    "doc://com.apple.Accessibility/documentation/Accessibility/enhancing-the-accessibility-of-your-swiftui-app": {
+      "abstract": [
+        {
+          "text": "Support advancements in SwiftUI accessibility to make your app accessible to everyone.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Accessibility/documentation/Accessibility/enhancing-the-accessibility-of-your-swiftui-app",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Enhancing the accessibility of your SwiftUI app",
+      "type": "topic",
+      "url": "/documentation/accessibility/enhancing-the-accessibility-of-your-swiftui-app"
+    },
+    "doc://com.apple.documentation/documentation/AppKit/NSAccessibility-swift.struct/screenPoint(fromView:point:)": {
+      "abstract": [
+        {
+          "text": "Returns the point in screen coordinates.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "screenPoint"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "fromView"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "parentView"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSView",
+          "text": "NSView"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "point"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSPoint",
+          "text": "NSPoint"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSPoint",
+          "text": "NSPoint"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSAccessibility-swift.struct/screenPoint(fromView:point:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "screenPoint(fromView:point:)",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSAccessibility-swift.struct/screenPoint(fromView:point:)"
+    },
+    "doc://com.apple.documentation/documentation/AppKit/NSAccessibility-swift.struct/screenRect(fromView:rect:)": {
+      "abstract": [
+        {
+          "text": "Returns the frame in screen coordinates.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "screenRect"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "fromView"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "parentView"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSView",
+          "text": "NSView"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "rect"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "frame"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSRect",
+          "text": "NSRect"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSRect",
+          "text": "NSRect"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSAccessibility-swift.struct/screenRect(fromView:rect:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "screenRect(fromView:rect:)",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSAccessibility-swift.struct/screenRect(fromView:rect:)"
+    },
+    "doc://com.apple.documentation/documentation/AppKit/NSAccessibilityButton": {
+      "abstract": [
+        {
+          "text": "A role-based protocol that declares the minimum interface necessary for an accessibility element to act as a button.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSAccessibilityButton"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSAccessibilityElement",
+          "text": "NSAccessibilityElementProtocol"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSAccessibilityButton",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSAccessibilityButton",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSAccessibilityButton"
+    },
+    "doc://com.apple.documentation/documentation/AppKit/NSAccessibilityElement-swift.class": {
+      "abstract": [
+        {
+          "text": "The basic infrastructure necessary for interacting with an assistive app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSAccessibilityElement"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSAccessibilityElement-swift.class",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSAccessibilityElement",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSAccessibilityElement-swift.class"
+    },
+    "doc://com.apple.documentation/documentation/AppKit/NSAccessibilityElement-swift.class/accessibilityAddChildElement(_:)": {
+      "abstract": [
+        {
+          "text": "Adds a child to the accessibility element in the accessibility hierarchy.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "accessibilityAddChildElement"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "childElement"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSAccessibilityElement",
+          "text": "NSAccessibilityElement"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSAccessibilityElement-swift.class/accessibilityAddChildElement(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "accessibilityAddChildElement(_:)",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSAccessibilityElement-swift.class/accessibilityAddChildElement(_:)"
+    },
+    "doc://com.apple.documentation/documentation/AppKit/NSAccessibilityElementProtocol/accessibilityFrame()": {
+      "abstract": [
+        {
+          "text": "Returns the accessibility element’s frame in screen coordinates.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "accessibilityFrame"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSRect",
+          "text": "NSRect"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSAccessibilityElementProtocol/accessibilityFrame()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "accessibilityFrame()",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSAccessibilityElementProtocol/accessibilityFrame()"
+    },
+    "doc://com.apple.documentation/documentation/AppKit/NSAccessibilityProtocol/accessibilityActivationPoint()": {
+      "abstract": [
+        {
+          "text": "Returns the activation point for the user interface element.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "accessibilityActivationPoint"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSPoint",
+          "text": "NSPoint"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSAccessibilityProtocol/accessibilityActivationPoint()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "accessibilityActivationPoint()",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSAccessibilityProtocol/accessibilityActivationPoint()"
+    },
+    "doc://com.apple.documentation/documentation/AppKit/NSAccessibilityProtocol/isAccessibilityElement()": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that determines whether the accessibility element participates in the accessibility hierarchy.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isAccessibilityElement"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSAccessibilityProtocol/isAccessibilityElement()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isAccessibilityElement()",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSAccessibilityProtocol/isAccessibilityElement()"
+    },
+    "doc://com.apple.documentation/documentation/AppKit/NSAccessibilitySlider": {
+      "abstract": [
+        {
+          "text": "A role-based protocol that declares the minimum interface necessary for an accessibility element to act as a slider.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSAccessibilitySlider"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSAccessibilityElement",
+          "text": "NSAccessibilityElementProtocol"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSAccessibilitySlider",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSAccessibilitySlider",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSAccessibilitySlider"
+    },
+    "doc://com.apple.documentation/documentation/AppKit/NSButton": {
+      "abstract": [
+        {
+          "text": "A control that defines an area on the screen that a user clicks to trigger an action.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSButton"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSButton",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSButton",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSButton"
+    },
+    "doc://com.apple.documentation/documentation/AppKit/NSSlider": {
+      "abstract": [
+        {
+          "text": "A display of a bar representing a continuous range of numerical values and a knob representing the currently selected value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSSlider"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/NSSlider",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSSlider",
+      "type": "topic",
+      "url": "/documentation/AppKit/NSSlider"
+    },
+    "doc://com.apple.documentation/documentation/AppKit/nsaccessibility": {
+      "abstract": [
+        {
+          "text": "A legacy, informal protocol that Apple doesn’t recommend for active use.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AppKit/nsaccessibility",
+      "kind": "article",
+      "role": "article",
+      "title": "NSAccessibility",
+      "type": "topic",
+      "url": "/documentation/AppKit/nsaccessibility"
+    },
+    "doc://com.apple.documentation/documentation/swiftui/creating_accessible_views": {
+      "abstract": [
+        {
+          "text": "Make your app accessible to everyone by applying accessibility modifiers to your SwiftUI views.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/swiftui/creating_accessible_views",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Creating Accessible Views",
+      "type": "topic",
+      "url": "/documentation/swiftui/creating_accessible_views"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "x-source-tag://accessibilityLabel": {
+      "identifier": "x-source-tag://accessibilityLabel",
+      "title": "View in Source",
+      "titleInlineContent": [
+        {
+          "text": "View in Source",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "x-source-tag://accessibilityLabel"
+    },
+    "x-source-tag://customButtonAdoption": {
+      "identifier": "x-source-tag://customButtonAdoption",
+      "title": "View in Source",
+      "titleInlineContent": [
+        {
+          "text": "View in Source",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "x-source-tag://customButtonAdoption"
+    },
+    "x-source-tag://customButtonDeclare": {
+      "identifier": "x-source-tag://customButtonDeclare",
+      "title": "View in Source",
+      "titleInlineContent": [
+        {
+          "text": "View in Source",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "x-source-tag://customButtonDeclare"
+    },
+    "x-source-tag://setAccessibilityLabel": {
+      "identifier": "x-source-tag://setAccessibilityLabel",
+      "title": "View in Source",
+      "titleInlineContent": [
+        {
+          "text": "View in Source",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "x-source-tag://setAccessibilityLabel"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "aadcfd031663/IntegratingAccessibilityIntoYourApp.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Sample-code",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Accessibility/documentation/Accessibility/enhancing-the-accessibility-of-your-swiftui-app",
+        "doc://com.apple.documentation/documentation/swiftui/creating_accessible_views",
+        "doc://com.apple.Accessibility/documentation/Accessibility/delivering_an_exceptional_accessibility_experience",
+        "doc://com.apple.Accessibility/documentation/Accessibility/accessibility_design_for_mac_catalyst"
+      ],
+      "title": "Sample code"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Sample-code",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.Accessibility/documentation/Accessibility/delivering_an_exceptional_accessibility_experience",
+                "doc://com.apple.Accessibility/documentation/Accessibility/accessibility_design_for_mac_catalyst"
+              ],
+              "title": "Sample code"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSAccessibilityElement-swift.class~1accessibilityAddChildElement(_:)/title",
+          "value": "accessibilityAddChildElement:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSAccessibilityElement-swift.class~1accessibilityAddChildElement(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "accessibilityAddChildElement:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSAccessibilityElement",
+              "text": "NSAccessibilityElement"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "childElement"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSAccessibility-swift.struct~1screenRect(fromView:rect:)/title",
+          "value": "NSAccessibilityFrameInView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSAccessibility-swift.struct~1screenRect(fromView:rect:)/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@NSRect",
+              "text": "NSRect"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSAccessibilityFrameInView"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSView",
+              "text": "NSView"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "internalParam",
+              "text": "parentView"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@NSRect",
+              "text": "NSRect"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "frame"
+            },
+            {
+              "kind": "text",
+              "text": ");"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSAccessibilityElementProtocol~1accessibilityFrame()/title",
+          "value": "accessibilityFrame"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSAccessibilityElementProtocol~1accessibilityFrame()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@NSRect",
+              "text": "NSRect"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "accessibilityFrame"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSSlider/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSSlider"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSControl",
+              "text": "NSControl"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSButton/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSButton"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSControl",
+              "text": "NSControl"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSAccessibilityButton/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSAccessibilityButton"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSAccessibilityElement",
+              "text": "NSAccessibilityElement"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSAccessibilityElement-swift.class/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSAccessibilityElement"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSAccessibility-swift.struct~1screenPoint(fromView:point:)/title",
+          "value": "NSAccessibilityPointInView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSAccessibility-swift.struct~1screenPoint(fromView:point:)/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@NSPoint",
+              "text": "NSPoint"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSAccessibilityPointInView"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSView",
+              "text": "NSView"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "internalParam",
+              "text": "parentView"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@NSPoint",
+              "text": "NSPoint"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "point"
+            },
+            {
+              "kind": "text",
+              "text": ");"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AppKit~1NSAccessibilitySlider/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@protocol"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSAccessibilitySlider"
+            },
+            {
+              "kind": "text",
+              "text": " <"
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)NSAccessibilityElement",
+              "text": "NSAccessibilityElement"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/accessibility/integrating_accessibility_into_your_app"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/accessibility/integrating_accessibility_into_your_app"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

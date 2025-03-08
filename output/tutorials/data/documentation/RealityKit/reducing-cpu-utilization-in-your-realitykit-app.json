@@ -1,0 +1,1697 @@
+{
+  "abstract": [
+    {
+      "text": "Target specific CPU metrics with adjustments to your app and its content.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.RealityKit/documentation/RealityKit"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.RealityKit/documentation/RealityKit",
+        "doc://com.apple.RealityKit/documentation/RealityKit/improving-the-performance-of-a-realitykit-app"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.RealityKit/documentation/RealityKit",
+        "doc://com.apple.RealityKit/documentation/RealityKit/presentation-views-and-attachments",
+        "doc://com.apple.RealityKit/documentation/RealityKit/ARView",
+        "doc://com.apple.RealityKit/documentation/RealityKit/improving-the-performance-of-a-realitykit-app"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.RealityKit/documentation/RealityKit/reducing-cpu-utilization-in-your-realitykit-app"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "RealityKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Reducing CPU Utilization in Your RealityKit App"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your app’s main thread consumes more than 16.6 ms per frame, it won’t be able",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to achieve 60 fps. You can use the CPU metrics measured by RealityKit, as described",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/improving-the-performance-of-a-realitykit-app",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", to decide where you need",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to focus your efforts to reach this goal.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Note that with multithreaded rendering, keeping the main CPU thread below 16.6 ms",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "doesn’t guarantee 60 fps. If the render thread also takes a long time, RealityKit",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "might occasionally drop a frame to prevent the main thread from getting too far ahead.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For the best user experience, keep both the main and render threads below about 12",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "ms on average. It’s helpful to keep the average time consumed well below the 16.6",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "ms limit to handle situations where the CPU load increases suddenly, such as when",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the user triggers multiple complex effects simultaneously. Also, the closer you run",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "to the hardware’s limit, the more likely the system might have to throttle the frame",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "rate to avoid overheating.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Improve-render-thread-time-by-merging-meshes",
+          "level": 3,
+          "text": "Improve render thread time by merging meshes",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The bulk of CPU render time involves setting up draw calls and command buffers, preparing",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "render targets, and encoding buffers for submission to the GPU. Because RealityKit",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "invokes a draw call for each mesh, having more meshes consumes more CPU time. To",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "reduce render thread time, merge meshes that share a material when possible.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "RealityKit does this for you automatically to the extent that it can when you load",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "an entity in a usdz file as a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ModelEntity",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", for example using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity/loadModel(named:in:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "method. But you can help by minimizing the number of distinct meshes in your models",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in the first place.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "On the other hand, merging meshes may reduce opportunities for visibility culling",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and other optimizations, which can lead to increased GPU utilization. This is because",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "while RealityKit avoids rendering off-screen meshes, it does render the entirety",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of any mesh that’s even partially visible. So consider carefully how you merge meshes.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For example, it usually doesn’t make sense to merge two meshes that are physically",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "separated by a large distance.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "While disabling certain effects primarily benefits GPU utilization, as described",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "in ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/reducing-gpu-utilization-in-your-realitykit-app#Choose-render-effects-carefully",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ",",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "disabling these effects may also help reduce CPU render time. For modest gains, experiment",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "by turning off shadows, HDR, motion blur, depth of field, and environment texturing.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Improve-ecs-time-by-flattening-your-assets",
+          "level": 3,
+          "text": "Improve ecs time by flattening your assets",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The CPU does ECS work for rendering, animation, physics, assets, networking, and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "audio on every frame, for every entity with related components. You can reduce this",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "work by flattening your assets as much as possible. That is, combine an entity and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "its attached descendants into a single entity.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When loading entities stored in usdz files as ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ModelEntity",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instances,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "RealityKit automatically flattens the model for you, as described in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/loading-entities-from-a-file",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Do this unless you need programmatic access to the descendant entities.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Improve-physics-time-by-reducing-collisions",
+          "level": 3,
+          "text": "Improve physics time by reducing collisions",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Model entities employ physics to move and interact in ways that appear natural to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the user. The CPU carries out the necessary calculations, the cost of which comes",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "primarily from detecting collisions. You can usually reduce the physics portion of",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "your app’s CPU utilization by minimizing the number of collisions in the scene and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "simplifying collision shapes:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Reduce the number of rigid bodies. Design your app to minimize the number of objects",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "in the scene that can collide.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Isolate rigid bodies into distinct areas to cut down on the number of ways objects",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "can collide. A box that holds 200 rigid bodies generates a lot more collisions than",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "4 boxes each containing 50 rigid bodies.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use care when calling ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity/generateCollisionShapes(recursive:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "to recursively create collision shapes. You might be able to manually construct simpler",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "collision shapes that are less computationally complex for some meshes.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Choose the right collision shape. Some shapes, like those with complex hulls, can",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "drastically increase computational effort. Experiment with different shapes to see",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "how they affect physics computation time.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Improve-network-time-by-reducing-synchronization-traffic",
+          "level": 3,
+          "text": "Improve network time by reducing synchronization traffic",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Synchronizing data among devices enables rich multiuser experiences. However, network",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "access comes at a cost. It’s typically best to maximize locality, performing computations",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "on the device where you need the data, and synchronizing as little as possible.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "On the other hand, data synchronization can be a better option than repeated calculation",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of the same data. For example, it might be better to perform an expensive calculation",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that produces a small number of bytes only once, and share the result with other",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "devices.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When using synchronization, try to minimize the number of synchronized entities.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Each entity that requires synchronization consumes CPU time. You can turn off synchronization",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "for a particular entity by deleting its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity/synchronization",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " component:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "entity.synchronization = nil"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Within an entity, the system automatically synchronizes properties of all built-in",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "components, as well the properties of custom components that adopt the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Swift/Codable",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "protocol. If you want to avoid synchronizing data for a particular custom component,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "skip the codable conformance.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "RealityKit only synchronizes component properties. It doesn’t synchronize",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "any custom entity properties.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Improve-audio-time-by-reducing-audio-complexity",
+          "level": 3,
+          "text": "Improve audio time by reducing audio complexity",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Audio sources tied to objects in the environment help to make a scene feel immersive.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "But if you find that audio processing consumes too much CPU time, take steps to minimize",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the performance impact of audio:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Limit the number of audio sources in the scene at any given time. For example,",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "you might remove distant audio sources, or merge multiple audio sources into one.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Prefer static audio sources whenever possible. Audio sources that move require",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "frequently updated audio transforms.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Avoid adding a large number of audio components to a scene all at once, which can",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "cause a spike in CPU activity. Instead, space out the initializations, or do them",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "before the user begins interacting with the environment.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Improve-asset-time-by-streamlining-the-asset-pipeline",
+          "level": 3,
+          "text": "Improve asset time by streamlining the asset pipeline",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Reduce or defer the performance cost of loading or creating assets:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Prefer Reality files over usdz files. Reality files provide better performance.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Avoid loading or creating assets during active AR operation. For example, consider",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "preloading data while the user chooses from options on a menu.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use asynchronous loads, with methods like ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity/loadModelAsync(named:in:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ",",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "to prevent blocking your main thread.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Share resources, like instances of ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/MeshResource",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", rather than creating",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "new instances of the same resource for each entity.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Consider breaking large assets into a collection of smaller assets. Smaller assets",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "load faster, giving you the flexibility to distribute asset loading over time, if",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "it makes sense for your app.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information about loading entities, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/loading-entities-from-a-file",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.RealityKit/documentation/RealityKit": {
+      "abstract": [
+        {
+          "text": "Simulate and render 3D content for use in your augmented reality apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "RealityKit",
+      "type": "topic",
+      "url": "/documentation/realitykit"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/ARView": {
+      "abstract": [
+        {
+          "text": "A view that enables you to display an AR experience with RealityKit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARView"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ARView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ARView"
+        }
+      ],
+      "role": "symbol",
+      "title": "ARView",
+      "type": "topic",
+      "url": "/documentation/realitykit/arview"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Entity/generateCollisionShapes(recursive:)": {
+      "abstract": [
+        {
+          "text": "Creates the shape used to detect collisions between two entities that",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "have collision components.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "generateCollisionShapes"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "recursive"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity/generateCollisionShapes(recursive:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "generateCollisionShapes(recursive:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/entity/generatecollisionshapes(recursive:)"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Entity/loadModel(named:in:)": {
+      "abstract": [
+        {
+          "text": "Synchronously loads a model entity from a bundle.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "loadModel"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "named"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSBundle",
+          "text": "Bundle"
+        },
+        {
+          "kind": "text",
+          "text": "?) "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation11ModelEntityC",
+          "text": "ModelEntity"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity/loadModel(named:in:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "loadModel(named:in:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/entity/loadmodel(named:in:)"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Entity/loadModelAsync(named:in:)": {
+      "abstract": [
+        {
+          "text": "Asynchronously loads a model entity from a bundle.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "loadModelAsync"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "named"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSBundle",
+          "text": "Bundle"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation11LoadRequestC",
+          "text": "LoadRequest"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation11ModelEntityC",
+          "text": "ModelEntity"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity/loadModelAsync(named:in:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "loadModelAsync(named:in:)",
+      "type": "topic",
+      "url": "/documentation/realitykit/entity/loadmodelasync(named:in:)"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Entity/synchronization": {
+      "abstract": [
+        {
+          "text": "The entity’s synchronization component.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "synchronization"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:17RealityFoundation24SynchronizationComponentV",
+          "text": "SynchronizationComponent"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Entity/synchronization",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "synchronization",
+      "type": "topic",
+      "url": "/documentation/realitykit/entity/synchronization"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/MeshResource": {
+      "abstract": [
+        {
+          "text": "A high-level representation of a collection of vertices and edges that",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "define a shape.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MeshResource"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/MeshResource",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MeshResource"
+        }
+      ],
+      "role": "symbol",
+      "title": "MeshResource",
+      "type": "topic",
+      "url": "/documentation/realitykit/meshresource"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/ModelEntity": {
+      "abstract": [
+        {
+          "text": "A representation of a physical object that RealityKit renders and optionally",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "simulates.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ModelEntity"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/ModelEntity",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ModelEntity"
+        }
+      ],
+      "role": "symbol",
+      "title": "ModelEntity",
+      "type": "topic",
+      "url": "/documentation/realitykit/modelentity"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Resource": {
+      "abstract": [
+        {
+          "text": "A shared resource you use to configure a component, like a material, mesh,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "or texture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Resource"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Resource",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Resource"
+        }
+      ],
+      "role": "symbol",
+      "title": "Resource",
+      "type": "topic",
+      "url": "/documentation/realitykit/resource"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/construct-an-immersive-environment-for-visionOS": {
+      "abstract": [
+        {
+          "text": "Build efficient custom worlds for your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/construct-an-immersive-environment-for-visionOS",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Construct an immersive environment for visionOS",
+      "type": "topic",
+      "url": "/documentation/realitykit/construct-an-immersive-environment-for-visionos"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/improving-the-performance-of-a-realitykit-app": {
+      "abstract": [
+        {
+          "text": "Measure CPU and GPU utilization to find ways to improve your app’s performance.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/improving-the-performance-of-a-realitykit-app",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Improving the Performance of a RealityKit App",
+      "type": "topic",
+      "url": "/documentation/realitykit/improving-the-performance-of-a-realitykit-app"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/loading-entities-from-a-file": {
+      "abstract": [
+        {
+          "text": "Retrieve an entity from storage on disk using a synchronous or an asynchronous load",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "operation.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/loading-entities-from-a-file",
+      "kind": "article",
+      "role": "article",
+      "title": "Loading entities from a file",
+      "type": "topic",
+      "url": "/documentation/realitykit/loading-entities-from-a-file"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/passing-metal-command-objects-around-your-application": {
+      "abstract": [
+        {
+          "text": "Build a system that creates and passes Metal command objects to entities dispatching Metal compute shaders.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/passing-metal-command-objects-around-your-application",
+      "kind": "article",
+      "role": "article",
+      "title": "Passing Metal command objects around your application",
+      "type": "topic",
+      "url": "/documentation/realitykit/passing-metal-command-objects-around-your-application"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/presentation-views-and-attachments": {
+      "abstract": [
+        {
+          "text": "Bring RealityKit content into your app with views and renderers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/presentation-views-and-attachments",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Views and attachments",
+      "type": "topic",
+      "url": "/documentation/realitykit/presentation-views-and-attachments"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/reducing-gpu-utilization-in-your-realitykit-app": {
+      "abstract": [
+        {
+          "text": "Prevent the GPU from limiting your app’s frame rate by reducing the complexity of",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "your render.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/reducing-gpu-utilization-in-your-realitykit-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Reducing GPU Utilization in Your RealityKit App",
+      "type": "topic",
+      "url": "/documentation/realitykit/reducing-gpu-utilization-in-your-realitykit-app"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/reducing-gpu-utilization-in-your-realitykit-app#Choose-render-effects-carefully": {
+      "abstract": [],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/reducing-gpu-utilization-in-your-realitykit-app#Choose-render-effects-carefully",
+      "kind": "section",
+      "title": "Choose render effects carefully",
+      "type": "topic",
+      "url": "/documentation/realitykit/reducing-gpu-utilization-in-your-realitykit-app#Choose-render-effects-carefully"
+    },
+    "doc://com.apple.documentation/documentation/Swift/Codable": {
+      "abstract": [
+        {
+          "text": "A type that can convert itself into and out of an external representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Codable"
+        },
+        {
+          "kind": "text",
+          "text": " = "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Se",
+          "text": "Decodable"
+        },
+        {
+          "kind": "text",
+          "text": " & "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SE",
+          "text": "Encodable"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Swift/Codable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Codable",
+      "type": "topic",
+      "url": "/documentation/Swift/Codable"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Performance-improvements",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/improving-the-performance-of-a-realitykit-app",
+        "doc://com.apple.RealityKit/documentation/RealityKit/reducing-gpu-utilization-in-your-realitykit-app",
+        "doc://com.apple.RealityKit/documentation/RealityKit/construct-an-immersive-environment-for-visionOS",
+        "doc://com.apple.RealityKit/documentation/RealityKit/passing-metal-command-objects-around-your-application",
+        "doc://com.apple.RealityKit/documentation/RealityKit/Resource"
+      ],
+      "title": "Performance improvements"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/realitykit/reducing-cpu-utilization-in-your-realitykit-app"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,2085 @@
+{
+  "abstract": [
+    {
+      "text": "Format source data for the vDSP Fourier functions, and interpret the results.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.accelerate/documentation/Accelerate"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.accelerate/documentation/Accelerate",
+        "doc://com.apple.accelerate/documentation/Accelerate/fast-fourier-transforms"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.accelerate/documentation/Accelerate",
+        "doc://com.apple.accelerate/documentation/Accelerate/vdsp-library",
+        "doc://com.apple.accelerate/documentation/Accelerate/fast-fourier-transforms"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.accelerate/documentation/Accelerate/understanding-data-packing-for-fourier-transforms"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Accelerate"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Understanding data packing for Fourier transforms"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The vDSP real-to-complex fast Fourier transform (FFT) and discrete Fourier transform (DFT) functions write their output in a special packed format to conserve memory. Use the code samples below to understand how to format source data for and interpret the results from the vDSP Fourier transform functions.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Convert-real-values-to-the-split-complex-format",
+          "level": 3,
+          "text": "Convert real values to the split-complex format",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The vDSP FFT and DFT functions work with data in split-complex format. Split-complex format separates the real and imaginary parts of complex numbers into two separate arrays. Given an array, ",
+              "type": "text"
+            },
+            {
+              "code": "signal",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", that contains real values, the following code converts the values to split-complex format. Use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_ctoz",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to populate the split collections ",
+              "type": "text"
+            },
+            {
+              "code": "complexReals",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "complexImaginaries",
+              "type": "codeVoice"
+            },
+            {
+              "text": " with the real values from ",
+              "type": "text"
+            },
+            {
+              "code": "signal",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let signal: [Float] = [0, 1, 2, 3, 4, 5, 6, 7]",
+            "let complexValuesCount = signal.count / 2",
+            "",
+            "var complexReals = [Float]()",
+            "var complexImaginaries = [Float]()",
+            "",
+            "signal.withUnsafeBytes { signalPtr in",
+            "    complexReals = [Float](unsafeUninitializedCapacity: complexValuesCount) {",
+            "        realBuffer, realInitializedCount in",
+            "        ",
+            "        complexImaginaries = [Float](unsafeUninitializedCapacity: complexValuesCount) {",
+            "            imagBuffer, imagInitializedCount in",
+            "            ",
+            "            var splitComplex = DSPSplitComplex(realp: realBuffer.baseAddress!,",
+            "                                               imagp: imagBuffer.baseAddress!)",
+            "            ",
+            "            vDSP_ctoz([DSPComplex](signalPtr.bindMemory(to: DSPComplex.self)), 2,",
+            "                      &splitComplex, 1,",
+            "                      vDSP_Length(complexValuesCount))",
+            "            ",
+            "            imagInitializedCount = complexValuesCount",
+            "        }",
+            "        realInitializedCount = complexValuesCount",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "On return, ",
+              "type": "text"
+            },
+            {
+              "code": "complexReals",
+              "type": "codeVoice"
+            },
+            {
+              "text": " contains the values ",
+              "type": "text"
+            },
+            {
+              "code": "[0.0, 2.0, 4.0, 6.0]",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "code": "complexImaginaries",
+              "type": "codeVoice"
+            },
+            {
+              "text": " contains the values ",
+              "type": "text"
+            },
+            {
+              "code": "[1.0, 3.0, 5.0, 7.0]",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". The diagram below illustrates how ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_ctoz",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " converts the real values to the even-odd split configuration:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3705864",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-a-composite-sine-wave",
+          "level": 3,
+          "text": "Create a composite sine wave",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the following function to fill an array with values that represent a composite sine wave:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "/// Returns an array that contains a composite sine wave from the specified frequency-amplitude pairs.",
+            "static func makeCompositeSineWave(from frequencyAmplitudePairs: [(f: Float,",
+            "                                                                  a: Float)],",
+            "                                  count: Int) -> [Float] {",
+            "",
+            "    return [Float](unsafeUninitializedCapacity: count) {",
+            "        buffer, initializedCount in",
+            "        ",
+            "        /// Fill the buffer with zeros.",
+            "        vDSP.fill(&buffer, with: 0)",
+            "        /// Create a reusable array that the function uses to calculate the ",
+            "        /// sine wave for each iteration.",
+            "        var iterationValues = [Float](repeating: 0, count: count)",
+            "        ",
+            "        for frequencyAmplitudePair in frequencyAmplitudePairs {",
+            "            /// Fill the working array with a ramp in the range `0 ..< frequency`.",
+            "            vDSP.formRamp(withInitialValue: 0,",
+            "                          increment: frequencyAmplitudePair.f / Float(count / 2),",
+            "                          result: &iterationValues)",
+            "            /// Compute `sin(x * .pi)` for each element.",
+            "            vForce.sinPi(iterationValues, result: &iterationValues)",
+            "            if frequencyAmplitudePair.a != 1 {",
+            "                /// Mulitply each element by the specified amplitude.",
+            "                vDSP.multiply(frequencyAmplitudePair.a, iterationValues,",
+            "                              result: &iterationValues)",
+            "            }",
+            "            /// Add this sine wave iteration to the composite sine wave accumulator.",
+            "            vDSP.add(iterationValues, buffer, result: &buffer)",
+            "        }",
+            "        ",
+            "        initializedCount = count",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following figure visualizes the values of a 1024-element array that ",
+              "type": "text"
+            },
+            {
+              "code": "makeCompositeSineWave()",
+              "type": "codeVoice"
+            },
+            {
+              "text": " returns with the frequency-amplitude pairs ",
+              "type": "text"
+            },
+            {
+              "code": "[(f: 2, a: 1.5), (f: 8, a: 1.0)]:",
+              "type": "codeVoice"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3696650",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Perform-Fourier-transform-on-1D-real-data-in-split-complex-format",
+          "level": 3,
+          "text": "Perform Fourier transform on 1D real data in split-complex format",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the following code to populate the real ",
+              "type": "text"
+            },
+            {
+              "code": "signal",
+              "type": "codeVoice"
+            },
+            {
+              "text": " array with a composite of four sine waves and create empty arrays for the complex values:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let realValuesCount = 32",
+            "let signal: [Float] = makeCompositeSineWave(from: [(f: 1, a: 1),",
+            "                                                   (f: 5, a: 1),",
+            "                                                   (f: 10, a: 1),",
+            "                                                   (f: 15, a: 1)],",
+            "                                            count: realValuesCount)",
+            "",
+            "let complexValuesCount = realValuesCount / 2",
+            "var complexReals = [Float](repeating: 0,",
+            "                           count: complexValuesCount)",
+            "var complexImaginaries = [Float](repeating: 0,",
+            "                                 count: complexValuesCount)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_fft_zrip",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to perform an in-place fast Fourier transform (FFT) on the real values. In this example, the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_ctoz",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function uses a ",
+              "type": "text"
+            },
+            {
+              "code": "DSPSplitComplex",
+              "type": "codeVoice"
+            },
+            {
+              "text": " structure as an intermediary to populate the ",
+              "type": "text"
+            },
+            {
+              "code": "complexReals",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "complexImaginaries",
+              "type": "codeVoice"
+            },
+            {
+              "text": " arrays:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "signal.withUnsafeBytes { signalPtr in",
+            "    complexReals.withUnsafeMutableBufferPointer { realPtr in",
+            "        complexImaginaries.withUnsafeMutableBufferPointer { imagPtr in",
+            "            var splitComplex = DSPSplitComplex(realp: realPtr.baseAddress!,",
+            "                                               imagp: imagPtr.baseAddress!)",
+            "            ",
+            "            vDSP_ctoz([DSPComplex](signalPtr.bindMemory(to: DSPComplex.self)), 2,",
+            "                      &splitComplex, 1,",
+            "                      vDSP_Length(complexValuesCount))",
+            "            ",
+            "            let log2n = vDSP_Length(log2(Float(realValuesCount)))",
+            "            if let fft = vDSP_create_fftsetup(log2n, FFTRadix(kFFTRadix2)) {",
+            "                vDSP_fft_zrip(fft,",
+            "                              &splitComplex, 1,",
+            "                              log2n,",
+            "                              FFTDirection(kFFTDirection_Forward))",
+            "                ",
+            "                vDSP_destroy_fftsetup(fft)",
+            "            }",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Alternatively, use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_DFT_zrop_CreateSetup",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to create an object that performs a discrete Fourier transform on the real values:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "signal.withUnsafeBytes { signalPtr in",
+            "    complexReals.withUnsafeMutableBufferPointer { realPtr in",
+            "        complexImaginaries.withUnsafeMutableBufferPointer { imagPtr in",
+            "            var splitComplex = DSPSplitComplex(realp: realPtr.baseAddress!,",
+            "                                               imagp: imagPtr.baseAddress!)",
+            "            ",
+            "            vDSP_ctoz([DSPComplex](signalPtr.bindMemory(to: DSPComplex.self)), 2,",
+            "                      &splitComplex, 1,",
+            "                      vDSP_Length(complexValuesCount))",
+            "",
+            "            if let dft = vDSP_DFT_zrop_CreateSetup(nil,",
+            "                                                   vDSP_Length(realValuesCount),",
+            "                                                   .FORWARD) {",
+            "                vDSP_DFT_Execute(dft,",
+            "                                 realPtr.baseAddress!, imagPtr.baseAddress!,",
+            "                                 realPtr.baseAddress!, imagPtr.baseAddress!)",
+            "                vDSP_DFT_DestroySetup(dft)",
+            "            }",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The result of a forward Fourier transform on ",
+              "type": "text"
+            },
+            {
+              "code": "n",
+              "type": "codeVoice"
+            },
+            {
+              "text": " real values is ",
+              "type": "text"
+            },
+            {
+              "code": "n",
+              "type": "codeVoice"
+            },
+            {
+              "text": " complex values. The list below describes how the vDSP library structures the result:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Complex element ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "0",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " contains the DC component (equal to the sum of the time domain values) in its real part and zero in its imaginary part.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Complex elements ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "1",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " through ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "n/2 - 1",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " contain the complex frequency-domain values.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Complex element ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "n/2",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " contains the Nyquist component (the cosine component coefficient at the Nyquist frequency) in its real part and zero in its imaginary part.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The remaining complex elements contain the complex conjugates of the complex frequency-domain values.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "vDSP exploits the zeros in the DC and Nyquist elements and the symmetry of the complex conjugates. The Fourier transform routines represent the frequency-domain data in ",
+              "type": "text"
+            },
+            {
+              "code": "n/2",
+              "type": "codeVoice"
+            },
+            {
+              "text": " complex values. They achieve this by placing the real Nyquist component in the imaginary part of the DC element and omitting the complex conjugates:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3705871",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following figure illustrates the frequency-domain result from performing a forward transform on the signal data that contains the four composite sine waves:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3705868",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The indices of the nonzero elements in the frequency-domain data are the sine wave frequencies in the original time-domain signal: ",
+              "type": "text"
+            },
+            {
+              "code": "1",
+              "type": "codeVoice"
+            },
+            {
+              "text": " , ",
+              "type": "text"
+            },
+            {
+              "code": "5",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "10",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "code": "15",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Convert-interleaved-complex-to-the-split-complex-format",
+          "level": 3,
+          "text": "Convert interleaved-complex to the split-complex format",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Given an array, ",
+              "type": "text"
+            },
+            {
+              "code": "interleavedComplex",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", that contains interleaved complex values, the following code converts the values to split-complex format. Use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_ctoz",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to populate the split collections ",
+              "type": "text"
+            },
+            {
+              "code": "complexReals",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "complexImaginaries",
+              "type": "codeVoice"
+            },
+            {
+              "text": " with the complex values from ",
+              "type": "text"
+            },
+            {
+              "code": "interleavedComplex",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let interleavedComplex: [DSPComplex] = [DSPComplex(real: 0, imag: 1),",
+            "                                        DSPComplex(real: 2, imag: 3),",
+            "                                        DSPComplex(real: 4, imag: 5),",
+            "                                        DSPComplex(real: 6, imag: 6)]",
+            "",
+            "let count = interleavedComplex.count",
+            "",
+            "var complexImaginaries = [Float]()",
+            "var complexReals = [Float](unsafeUninitializedCapacity: count) {",
+            "    realBuffer, realInitializedCount in",
+            "    ",
+            "    complexImaginaries = [Float](unsafeUninitializedCapacity: count) {",
+            "        imagBuffer, imagInitializedCount in",
+            "        ",
+            "        var splitComplex = DSPSplitComplex(realp: realBuffer.baseAddress!,",
+            "                                           imagp: imagBuffer.baseAddress!)",
+            "        ",
+            "        vDSP_ctoz(interleavedComplex, 2,",
+            "                  &splitComplex, 1,",
+            "                  vDSP_Length(count))",
+            "",
+            "        imagInitializedCount = count",
+            "    }",
+            "    ",
+            "    realInitializedCount = count",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "On return, ",
+              "type": "text"
+            },
+            {
+              "code": "complexReals",
+              "type": "codeVoice"
+            },
+            {
+              "text": " contains the values ",
+              "type": "text"
+            },
+            {
+              "code": "[0.0, 2.0, 4.0, 6.0]",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "code": "complexImaginaries",
+              "type": "codeVoice"
+            },
+            {
+              "text": " contains the values [",
+              "type": "text"
+            },
+            {
+              "code": "1.0, 3.0, 5.0, 7.0]",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". The following diagram illustrates how ",
+              "type": "text"
+            },
+            {
+              "code": "vDSP_ctoz(_:_:_:_:_:)",
+              "type": "codeVoice"
+            },
+            {
+              "text": " converts the interleaved values to the even-odd split configuration:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3705866",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Perform-Fourier-transform-on-1D-complex-data",
+          "level": 3,
+          "text": "Perform Fourier transform on 1D complex data",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following figure shows a representation of time-domain complex data. The real part and imaginary part contain distinct composite sine waves:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3704699",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_DFT_zop_CreateSetup",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to create a DFT object for a complex transform, or call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_fft_zip",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to perform a complex FFT in place. The following code creates a complex signal and performs a forward DFT:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let complexValuesCount = 16",
+            "",
+            "let realFrequencyAmplitudePairs: [(f: Float, a: Float)] = [(3, 1), (5, 0.2)]",
+            "var complexReals = makeCompositeSineWave(from: realFrequencyAmplitudePairs,",
+            "                                         count: complexValuesCount)",
+            "",
+            "let imaginaryFrequencyAmplitudePairs: [(f: Float, a: Float)] = [(4, 1), (7, 0.25)]",
+            "var complexImaginaries = makeCompositeSineWave(from: imaginaryFrequencyAmplitudePairs,",
+            "                                               count: complexValuesCount)",
+            "",
+            "if let dft = vDSP_DFT_zop_CreateSetup(nil,",
+            "                                      vDSP_Length(complexValuesCount),",
+            "                                      .FORWARD) {",
+            "    ",
+            "    vDSP_DFT_Execute(dft,",
+            "                     complexReals,",
+            "                     complexImaginaries,",
+            "                     &complexReals,",
+            "                     &complexImaginaries)",
+            "    ",
+            "    vDSP_DFT_DestroySetup(dft)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "On return, ",
+              "type": "text"
+            },
+            {
+              "code": "complexReals",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "complexImaginaries",
+              "type": "codeVoice"
+            },
+            {
+              "text": " contain the following values:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "Reals:",
+            "[ 0.0, 0.0, 0.0,  8.0,  8.0,  1.6,  0.0,  2.0, 0.0,  2.0, 0.0, 1.6,  8.0, 8.0,  0.0, 0.0 ]",
+            "Imaginaries:",
+            "[ 0.0, 0.0, 0.0, -8.0, -0.0, -1.6, -0.0, -0.0, 0.0, -0.0, 0.0, 1.6, -0.0, 8.0, -0.0, -0.0]"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The indices of the nonzero magnitudes indicate the component frequencies ",
+              "type": "text"
+            },
+            {
+              "code": "3",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "4",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "5",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "code": "7",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following figure shows the layout of the frequency-domain data. The DC and Nyquist components contain real and imaginary parts. The elements ",
+              "type": "text"
+            },
+            {
+              "code": "0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to ",
+              "type": "text"
+            },
+            {
+              "code": "n/2 -1",
+              "type": "codeVoice"
+            },
+            {
+              "text": " contain the positive-frequency values, and the elements ",
+              "type": "text"
+            },
+            {
+              "code": "n/2 +",
+              "type": "codeVoice"
+            },
+            {
+              "text": " 1 to ",
+              "type": "text"
+            },
+            {
+              "code": "n - 1",
+              "type": "codeVoice"
+            },
+            {
+              "text": " contain the negative-frequency values.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3705870",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Perform-Fourier-transform-on-2D-real-data",
+          "level": 3,
+          "text": "Perform Fourier transform on 2D real data",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "vDSP provides routines you can use to compute the FFT of 2D real data such as single-channel images. The following figure shows the original, spatial-domain representations of grids of dots with their frequency-domain counterparts:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3705867",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_ctoz",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to convert real spatial-domain values like pixel intensities to complex values. The real part of each complex value contains the even pixel values, and the imaginary part of each complex value contains the odd pixel values. The following code defines the width and height of the matrix of complex values for a 512 x 512 real matrix:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let realDimension = 512",
+            "let complexValuesWidth = realDimension / 2",
+            "let complexValuesHeight = realDimension"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_fft2d_zrip",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to perform the forward FFT in place. In this example, ",
+              "type": "text"
+            },
+            {
+              "code": "imageData",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is an array that contains ",
+              "type": "text"
+            },
+            {
+              "code": "realDimension * realDimension",
+              "type": "codeVoice"
+            },
+            {
+              "text": " real pixel values:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let complexElementCount = complexValuesWidth * complexValuesHeight",
+            "var complexReals = [Float]()",
+            "var complexImaginaries = [Float]()",
+            "",
+            "imageData.withUnsafeBytes { imageDataPtr in",
+            "    complexReals = [Float](unsafeUninitializedCapacity: complexElementCount) {",
+            "        realBuffer, realInitializedCount in",
+            "        complexImaginaries = [Float](unsafeUninitializedCapacity: complexElementCount) {",
+            "            imagBuffer, imagInitializedCount in",
+            "            ",
+            "            var splitComplex = DSPSplitComplex(",
+            "                realp: realBuffer.baseAddress!,",
+            "                imagp: imagBuffer.baseAddress!)",
+            "            ",
+            "            vDSP_ctoz([DSPComplex](imageDataPtr.bindMemory(to: DSPComplex.self)), 2,",
+            "                      &splitComplex, 1,",
+            "                      vDSP_Length(complexValuesWidth * complexValuesHeight))",
+            "            ",
+            "            // The binary logarithm of `max(rowCount, columnCount)`.",
+            "            let countLog2n = vDSP_Length(log2(Float(realDimension)))",
+            "            if let fft = vDSP_create_fftsetup(countLog2n, FFTRadix(kFFTRadix2)) {",
+            "       ",
+            "                let dimensionLog2n = vDSP_Length(log2(Float(realDimension)))",
+            "                vDSP_fft2d_zrip(fft, &splitComplex,",
+            "                                1, 0,",
+            "                                dimensionLog2n, dimensionLog2n,",
+            "                                FFTDirection(kFFTDirection_Forward))",
+            "                ",
+            "                vDSP_destroy_fftsetup(fft)",
+            "            }",
+            "",
+            "            imagInitializedCount = complexElementCount",
+            "        }",
+            "        realInitializedCount = complexElementCount",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The 2D FFT operates on real data by first transforming each row. This transform generates real values — the DC and Nyquist component of each row — in the first two elements of each row. The second pass of the transform computes the FFT for each column. The first two columns contain real values, and vDSP uses the real transform routines. Subsequent columns contain complex values, and vDSP uses the complex transform routines:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3705869",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because the complex elements ",
+              "type": "text"
+            },
+            {
+              "code": "n/2 +",
+              "type": "codeVoice"
+            },
+            {
+              "text": " 1 to ",
+              "type": "text"
+            },
+            {
+              "code": "n - 1",
+              "type": "codeVoice"
+            },
+            {
+              "text": " contain the negative-frequency values, for tasks such as visualizing the frequency-domain representation of 2D real data, you may be able to discard the bottom ",
+              "type": "text"
+            },
+            {
+              "code": "n/2",
+              "type": "codeVoice"
+            },
+            {
+              "text": " rows.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Perform-Fourier-transform-on-2D-complex-data",
+          "level": 3,
+          "text": "Perform Fourier transform on 2D complex data",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "vDSP provides functions for performing Fourier transforms on 2D complex data, such as two-channel images. The following image shows the spatial-domain representation of 2D complex data with low-frequency data in the red and green channels, and high-frequency data in the blue channel. The frequency-domain representation shows the magnitude of the complex values:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3696140",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_fft2d_zip",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to perform a complex FFT on 2D complex data:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let complexDimension = 512",
+            "     ",
+            "var complexReals = [Float](repeating: 0,",
+            "                           count: complexDimension * complexDimension)",
+            "var complexImaginaries = [Float](repeating: 0,",
+            "                                 count: complexDimension * complexDimension)",
+            "",
+            "// Populate `complexReals` and `complexImaginaries` with 2D complex data.",
+            " ",
+            "complexReals.withUnsafeMutableBufferPointer { realPtr in",
+            "    complexImaginaries.withUnsafeMutableBufferPointer { imagPtr in",
+            "        ",
+            "        var splitComplex = DSPSplitComplex(",
+            "            realp: realPtr.baseAddress!,",
+            "            imagp: imagPtr.baseAddress!)",
+            "        ",
+            "        // The binary logarithm of `max(rowCount, columnCount)`.",
+            "        let countLog2n = vDSP_Length(log2(Float(complexDimension)))",
+            "        if let fft = vDSP_create_fftsetup(countLog2n, FFTRadix(kFFTRadix2)) {",
+            "            ",
+            "            // The binary logarithm of the width or height of the 2D matrix.",
+            "            let dimensionLog2n = vDSP_Length(log2(Float(complexDimension)))",
+            "            vDSP_fft2d_zip(fft, &splitComplex,",
+            "                           1, 0,",
+            "                           dimensionLog2n, dimensionLog2n,",
+            "                           FFTDirection(kFFTDirection_Forward))",
+            "            ",
+            "            vDSP_destroy_fftsetup(fft)",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "On return, ",
+              "type": "text"
+            },
+            {
+              "code": "complexReals",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "complexImaginaries",
+              "type": "codeVoice"
+            },
+            {
+              "text": " contain the frequency-domain representation of the complex data. Because both the horizontal pass and the vertical pass are complex FFTs, the right ",
+              "type": "text"
+            },
+            {
+              "code": "n/2",
+              "type": "codeVoice"
+            },
+            {
+              "text": " columns and the bottom ",
+              "type": "text"
+            },
+            {
+              "code": "n/2",
+              "type": "codeVoice"
+            },
+            {
+              "text": " rows contain the negative frequencies:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3696221",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Scale-time-and-frequency-domain-data",
+          "level": 3,
+          "text": "Scale time- and frequency-domain data",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To provide the best execution performance, vDSP’s Fourier routines don’t scale transform results. The following table summarizes the scaling factor for the vDSP FFT and DFT operations:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "header": "row",
+          "rows": [
+            [
+              [
+                {
+                  "inlineContent": [],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "1D",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "2D",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Real forward transform",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "2",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "2",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Real inverse transform",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Number of real elements",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Number of real elements (rows x columns)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Complex forward transform",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "1",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "1",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Complex inverse transform",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Number of complex elements",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Number of complex elements (rows x columns)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            ]
+          ],
+          "type": "table"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, the following code performs a forward transform and an inverse transform on eight real elements. The code multiplies the frequency-domain data by ",
+              "type": "text"
+            },
+            {
+              "code": "1/2",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and the time-domain data by ",
+              "type": "text"
+            },
+            {
+              "code": "1/n",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". The result is identical to the original data:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let realValuesCount = 8",
+            "",
+            "// The result of `vDSP_ctoz` on `[0, 1, 2, 3, 4, 5, 6, 7]`.",
+            "var complexReals: [Float] = [0, 2, 4, 6]",
+            "var complexImaginaries: [Float] = [1, 3, 5, 7]",
+            "",
+            "// Perform forward transform.",
+            "if let dft = vDSP_DFT_zrop_CreateSetup(nil,",
+            "                                       vDSP_Length(realValuesCount),",
+            "                                       .FORWARD) {",
+            "    vDSP_DFT_Execute(dft,",
+            "                     complexReals, complexImaginaries,",
+            "                     &complexReals, &complexImaginaries)",
+            "    ",
+            "    vDSP_DFT_DestroySetup(dft)",
+            "}",
+            "",
+            "// Apply real forward scaling factor (2).",
+            "vDSP.multiply(1 / 2, complexReals, result: &complexReals)",
+            "vDSP.multiply(1 / 2, complexImaginaries, result: &complexImaginaries)",
+            "",
+            "// Perform inverse transform.",
+            "if let dft = vDSP_DFT_zrop_CreateSetup(nil,",
+            "                                       vDSP_Length(realValuesCount),",
+            "                                       .INVERSE) {",
+            "    vDSP_DFT_Execute(dft,",
+            "                     complexReals, complexImaginaries,",
+            "                     &complexReals, &complexImaginaries)",
+            "    ",
+            "    vDSP_DFT_DestroySetup(dft)",
+            "}",
+            "",
+            "// Apply real inverse scaling factor (n).",
+            "vDSP.multiply(1 / Float(realValuesCount), complexReals, result: &complexReals)",
+            "vDSP.multiply(1 / Float(realValuesCount), complexImaginaries, result: &complexImaginaries)",
+            "",
+            "print(complexReals) // Prints \"[0.0, 2.0, 4.0, 6.0]\".",
+            "print(complexImaginaries) // Prints \"[1.0, 3.0, 5.0, 7.0]\"."
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.accelerate/documentation/Accelerate": {
+      "abstract": [
+        {
+          "text": "Make large-scale mathematical computations and image calculations, optimized for high performance and low energy consumption.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Accelerate",
+      "type": "topic",
+      "url": "/documentation/accelerate"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/discrete-cosine-transforms": {
+      "abstract": [
+        {
+          "text": "Transform vectors of temporal and spatial domain real values to the frequency domain, and vice versa.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/discrete-cosine-transforms",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Discrete Cosine transforms",
+      "type": "topic",
+      "url": "/documentation/accelerate/discrete-cosine-transforms"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/discrete-fourier-transforms": {
+      "abstract": [
+        {
+          "text": "Transform vectors of temporal and spatial domain complex values to the frequency domain, and vice versa.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/discrete-fourier-transforms",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Discrete Fourier transforms",
+      "type": "topic",
+      "url": "/documentation/accelerate/discrete-fourier-transforms"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/fast-fourier-transforms": {
+      "abstract": [
+        {
+          "text": "Transform vectors and matrices of temporal and spatial domain complex values to the frequency domain, and vice versa.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/fast-fourier-transforms",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Fast Fourier transforms",
+      "type": "topic",
+      "url": "/documentation/accelerate/fast-fourier-transforms"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/finding-the-component-frequencies-in-a-composite-sine-wave": {
+      "abstract": [
+        {
+          "text": "Use 1D fast Fourier transform to compute the frequency components of a signal.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/finding-the-component-frequencies-in-a-composite-sine-wave",
+      "kind": "article",
+      "role": "article",
+      "title": "Finding the component frequencies in a composite sine wave",
+      "type": "topic",
+      "url": "/documentation/accelerate/finding-the-component-frequencies-in-a-composite-sine-wave"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/halftone-descreening-with-2d-fast-fourier-transform": {
+      "abstract": [
+        {
+          "text": "Reduce or remove periodic artifacts from images.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/halftone-descreening-with-2d-fast-fourier-transform",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Halftone descreening with 2D fast Fourier transform",
+      "type": "topic",
+      "url": "/documentation/accelerate/halftone-descreening-with-2d-fast-fourier-transform"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/performing-fourier-transforms-on-interleaved-complex-data": {
+      "abstract": [
+        {
+          "text": "Optimize discrete Fourier transform (DFT) performance with the vDSP interleaved DFT routines.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/performing-fourier-transforms-on-interleaved-complex-data",
+      "kind": "article",
+      "role": "article",
+      "title": "Performing Fourier transforms on interleaved-complex data",
+      "type": "topic",
+      "url": "/documentation/accelerate/performing-fourier-transforms-on-interleaved-complex-data"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/performing-fourier-transforms-on-multiple-signals": {
+      "abstract": [
+        {
+          "text": "Use Accelerate’s multiple-signal fast Fourier transform (FFT) functions to transform multiple signals with a single function call.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/performing-fourier-transforms-on-multiple-signals",
+      "kind": "article",
+      "role": "article",
+      "title": "Performing Fourier Transforms on Multiple Signals",
+      "type": "topic",
+      "url": "/documentation/accelerate/performing-fourier-transforms-on-multiple-signals"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/reducing-spectral-leakage-with-windowing": {
+      "abstract": [
+        {
+          "text": "Multiply signal data by window sequence values when performing transforms with noninteger period signals.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/reducing-spectral-leakage-with-windowing",
+      "kind": "article",
+      "role": "article",
+      "title": "Reducing spectral leakage with windowing",
+      "type": "topic",
+      "url": "/documentation/accelerate/reducing-spectral-leakage-with-windowing"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/signal-extraction-from-noise": {
+      "abstract": [
+        {
+          "text": "Use Accelerate’s discrete cosine transform to remove noise from a signal.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/signal-extraction-from-noise",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Signal extraction from noise",
+      "type": "topic",
+      "url": "/documentation/accelerate/signal-extraction-from-noise"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP_DFT_zop_CreateSetup": {
+      "abstract": [
+        {
+          "text": "Returns a setup structure that contains precalculated data for forward and inverse, complex, single-precision DFT functions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "vDSP_DFT_zop_CreateSetup"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_DFT_zop_CreateSetup",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vDSP_DFT_zop_CreateSetup",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp_dft_zop_createsetup"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP_DFT_zrop_CreateSetup": {
+      "abstract": [
+        {
+          "text": "Returns a setup structure that contains precalculated data for forward and inverse, real, single-precision DFT functions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "vDSP_DFT_zrop_CreateSetup"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_DFT_zrop_CreateSetup",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vDSP_DFT_zrop_CreateSetup",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp_dft_zrop_createsetup"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP_ctoz": {
+      "abstract": [
+        {
+          "text": "Copies the contents of an interleaved single-precision complex vector to a split complex vector.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "vDSP_ctoz"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_ctoz",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vDSP_ctoz",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp_ctoz"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP_fft2d_zip": {
+      "abstract": [
+        {
+          "text": "Computes a 2D forward or inverse in-place, single-precision complex FFT.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "vDSP_fft2d_zip"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_fft2d_zip",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vDSP_fft2d_zip",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp_fft2d_zip"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP_fft2d_zrip": {
+      "abstract": [
+        {
+          "text": "Computes a 2D forward or inverse in-place, single-precision real FFT.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "vDSP_fft2d_zrip"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_fft2d_zrip",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vDSP_fft2d_zrip",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp_fft2d_zrip"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP_fft_zip": {
+      "abstract": [
+        {
+          "text": "Computes a forward or inverse in-place, single-precision complex FFT.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "vDSP_fft_zip"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_fft_zip",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vDSP_fft_zip",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp_fft_zip"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vDSP_fft_zrip": {
+      "abstract": [
+        {
+          "text": "Computes a forward or inverse in-place, single-precision real FFT.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "vDSP_fft_zrip"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vDSP_fft_zrip",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "vDSP_fft_zrip",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp_fft_zrip"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/vdsp-library": {
+      "abstract": [
+        {
+          "text": "Perform basic arithmetic operations and common digital signal processing (DSP) routines on large vectors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/vdsp-library",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "vDSP",
+      "type": "topic",
+      "url": "/documentation/accelerate/vdsp-library"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "media-3696140": {
+      "alt": "Pair of images that shows image data before and after forward Fourier transform. The spatial-domain image contains a matrix 16 times 16 yellow dots and a matrix of 64 times 64 blue dots. The frequency-domain representation contains two star-like highlights.",
+      "identifier": "media-3696140",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/8dce3cb78d5e878ab45ac877ab0c194f/media-3696140@2x.png"
+        }
+      ]
+    },
+    "media-3696221": {
+      "alt": "Image of the frequency-domain representation of the matrix 16 times 16 yellow dots and a matrix of 64 times 64 blue dots. The top-left quadrant represents the positive frequencies and contains two star-like highlights. The other three quadrants represent negative frequencies and are grayed out.",
+      "identifier": "media-3696221",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a439499da53212ee750e3e60771c37c7/media-3696221@2x.png"
+        }
+      ]
+    },
+    "media-3696650": {
+      "alt": "Illustration of a composite sine wave.",
+      "identifier": "media-3696650",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/8024c03dca26a46202bfb72113285798/media-3696650@2x.png"
+        }
+      ]
+    },
+    "media-3704699": {
+      "alt": "Three stacked images of a complex signal. The top and middle images show the signal from the top view and side view respectively and render as composite sine waves. The bottom view show the signal in 3D and renders the signal as a distorted helix.",
+      "identifier": "media-3704699",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/dd314cdab2808660fbaedd32955458aa/media-3704699@2x.png"
+        }
+      ]
+    },
+    "media-3705864": {
+      "alt": "Diagram showing an array of eight real elements converted to an array of four split-complex elements. The conversion stores the split-complex elements across an array of real parts and an array of complex parts.",
+      "identifier": "media-3705864",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/56b9ca73fdb8c0441be5bf51032eec73/media-3705864@2x.png"
+        }
+      ]
+    },
+    "media-3705866": {
+      "alt": "Diagram showing an array of four interleaved-complex elements converted to an array of four split-complex elements. The conversion stores the split-complex elements across an array of real parts and an array of complex parts.",
+      "identifier": "media-3705866",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/dba3e512f635264c9f4426e49292d1e6/media-3705866@2x.png"
+        }
+      ]
+    },
+    "media-3705867": {
+      "alt": "Two pairs of images that show image data before and after forward Fourier transform. The first pair of images shows a grid of 32 times 32 dots for the spatial-domain representation that corresponds to a single star-like highlight in the top-left of the frequency-domain representation. The second pair of images shows a grid of 128 times 128 dots for the spatial-domain representation that corresponds to a single star-like highlight in the center of the frequency-domain representation ",
+      "identifier": "media-3705867",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/05abc1f99f2a41221d663bbfc9166bc1/media-3705867@2x.png"
+        }
+      ]
+    },
+    "media-3705868": {
+      "alt": "Stacked diagram showing a composite sine wave before and after forward Fourier transform. The time-domain sine wave is illustrated as a line, and the frequency-domain representation is illustrated as two arrays that form the split-complex values.",
+      "identifier": "media-3705868",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f07398e16619dbdf14520fbc671b5ac7/media-3705868@2x.png"
+        }
+      ]
+    },
+    "media-3705869": {
+      "alt": "Flow diagram showing a matrix of 8 times 8 real pixels forward Fourier transformed with eight horizontal passes. The intermediate result is forward Fourier transformed with two vertical real passes and six vertical complex passes.",
+      "identifier": "media-3705869",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/fc9a55cfc0a7a4b3c6ba6ba74f91bcce/media-3705869@2x.png"
+        }
+      ]
+    },
+    "media-3705870": {
+      "alt": "Stacked diagram showing a complex signal before and after forward Fourier transform. The time-domain signal is illustrated as two line graphs, and the frequency-domain representation is illustrated as two arrays that store the split-complex values.",
+      "identifier": "media-3705870",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/d1de92ceb2441d035badb8875a4f6163/media-3705870@2x.png"
+        }
+      ]
+    },
+    "media-3705871": {
+      "alt": "Diagram showing the result of a forward Fourier transform before and after data packing.",
+      "identifier": "media-3705871",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/92c1707daf705c382a7a51992b21887e/media-3705871@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Fourier-and-Cosine-Transforms",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/finding-the-component-frequencies-in-a-composite-sine-wave",
+        "doc://com.apple.accelerate/documentation/Accelerate/performing-fourier-transforms-on-interleaved-complex-data",
+        "doc://com.apple.accelerate/documentation/Accelerate/reducing-spectral-leakage-with-windowing",
+        "doc://com.apple.accelerate/documentation/Accelerate/signal-extraction-from-noise",
+        "doc://com.apple.accelerate/documentation/Accelerate/performing-fourier-transforms-on-multiple-signals",
+        "doc://com.apple.accelerate/documentation/Accelerate/halftone-descreening-with-2d-fast-fourier-transform",
+        "doc://com.apple.accelerate/documentation/Accelerate/fast-fourier-transforms",
+        "doc://com.apple.accelerate/documentation/Accelerate/discrete-fourier-transforms",
+        "doc://com.apple.accelerate/documentation/Accelerate/discrete-cosine-transforms"
+      ],
+      "title": "Fourier and Cosine Transforms"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

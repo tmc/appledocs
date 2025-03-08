@@ -1,0 +1,979 @@
+{
+  "abstract": [
+    {
+      "text": "The dictionary that contains IPSec settings.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/VPN"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.devicemanagement/documentation/DeviceManagement/VPN/AlwaysOn-data.dictionary"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "mdm-profiles:VPN.AlwaysOn",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "object "
+      },
+      {
+        "kind": "identifier",
+        "text": "VPN.AlwaysOn"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Device Management"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "VPN.AlwaysOn"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "4.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "4.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.7",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "Device Assignment Services",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "VPP License Management",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Device Management Profile",
+    "symbolKind": "dictionary",
+    "title": "VPN.AlwaysOn"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "data"
+          ],
+          "platforms": [
+            "Unsupported OS: iOS",
+            "Unsupported OS: macOS",
+            "Unsupported OS: tvOS",
+            "Unsupported OS: visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "text",
+              "text": "object "
+            },
+            {
+              "kind": "identifier",
+              "text": "VPN.AlwaysOn"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "items": [
+        {
+          "attributes": [
+            {
+              "kind": "default",
+              "value": "0"
+            },
+            {
+              "kind": "allowedValues",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If ",
+                  "type": "text"
+                },
+                {
+                  "code": "1",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", allows traffic from all captive networking apps outside the VPN tunnel to perform captive network handling.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "4.0.0",
+          "name": "AllowAllCaptiveNetworkPlugins",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "integer"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "default",
+              "value": "0"
+            },
+            {
+              "kind": "allowedValues",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If ",
+                  "type": "text"
+                },
+                {
+                  "code": "1",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", allows traffic from Captive Web Sheet outside the VPN tunnel.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "4.0.0",
+          "name": "AllowCaptiveWebSheet",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "integer"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The array of captive networking apps whose traffic is allowed outside the VPN tunnel, to perform captive network handling. Used only when ",
+                  "type": "text"
+                },
+                {
+                  "code": "AllowAllCaptiveNetworkPlugins",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " is ",
+                  "type": "text"
+                },
+                {
+                  "code": "false",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "4.0.0",
+          "name": "AllowedCaptiveNetworkPlugins",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "["
+            },
+            {
+              "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/VPN/AlwaysOn-data.dictionary/AllowedCaptiveNetworkPluginElement",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "mdm-profiles:VPN.AlwaysOn.AllowedCaptiveNetworkPluginElement",
+              "text": "VPN.AlwaysOn.AllowedCaptiveNetworkPluginElement"
+            },
+            {
+              "kind": "text",
+              "text": "]"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An array that contains an arbitrary number of apps whose connections occur outside the VPN.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "4.0.0",
+          "name": "ApplicationExceptions",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "["
+            },
+            {
+              "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/VPN/AlwaysOn-data.dictionary/ApplicationExceptionElement",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "mdm-profiles:VPN.AlwaysOn.ApplicationExceptionElement",
+              "text": "VPN.AlwaysOn.ApplicationExceptionElement"
+            },
+            {
+              "kind": "text",
+              "text": "]"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An array that contains an arbitrary number of service exceptions.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "4.0.0",
+          "name": "ServiceExceptions",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "["
+            },
+            {
+              "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/VPN/AlwaysOn-data.dictionary/ServiceExceptionElement",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "mdm-profiles:VPN.AlwaysOn.ServiceExceptionElement",
+              "text": "VPN.AlwaysOn.ServiceExceptionElement"
+            },
+            {
+              "kind": "text",
+              "text": "]"
+            }
+          ]
+        },
+        {
+          "attributes": [],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "An array that contains an arbitrary number of tunnel configurations.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "4.0.0",
+          "name": "TunnelConfigurations",
+          "required": true,
+          "type": [
+            {
+              "kind": "text",
+              "text": "["
+            },
+            {
+              "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/VPN/AlwaysOn-data.dictionary/TunnelConfigurationElement",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "mdm-profiles:VPN.AlwaysOn.TunnelConfigurationElement",
+              "text": "VPN.AlwaysOn.TunnelConfigurationElement"
+            },
+            {
+              "kind": "text",
+              "text": "]"
+            }
+          ]
+        },
+        {
+          "attributes": [
+            {
+              "kind": "default",
+              "value": "0"
+            },
+            {
+              "kind": "allowedValues",
+              "values": [
+                "0",
+                "1"
+              ]
+            }
+          ],
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If ",
+                  "type": "text"
+                },
+                {
+                  "code": "1",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", allows the user to disable the VPN configuration.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "introducedVersion": "4.0.0",
+          "name": "UIToggleEnabled",
+          "required": false,
+          "type": [
+            {
+              "kind": "text",
+              "text": "integer"
+            }
+          ]
+        }
+      ],
+      "kind": "properties",
+      "title": "Properties"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system uses this dictionary when the ",
+              "type": "text"
+            },
+            {
+              "code": "VPNType",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is ",
+              "type": "text"
+            },
+            {
+              "code": "AlwaysOn",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement": {
+      "abstract": [
+        {
+          "text": "Manage your organization’s devices remotely.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Device Management",
+      "type": "topic",
+      "url": "/documentation/devicemanagement"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/VPN": {
+      "abstract": [
+        {
+          "text": "The payload you use to configure a VPN.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "VPN"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/VPN",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VPN"
+        }
+      ],
+      "role": "symbol",
+      "title": "VPN",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/vpn"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/VPN/AlwaysOn-data.dictionary": {
+      "abstract": [
+        {
+          "text": "The dictionary that contains IPSec settings.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "VPN.AlwaysOn"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/VPN/AlwaysOn-data.dictionary",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VPN.AlwaysOn"
+        }
+      ],
+      "role": "symbol",
+      "title": "VPN.AlwaysOn",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/vpn/alwayson-data.dictionary"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/VPN/AlwaysOn-data.dictionary/AllowedCaptiveNetworkPluginElement": {
+      "abstract": [
+        {
+          "text": "The dictionary for captive network configurations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "VPN.AlwaysOn.AllowedCaptiveNetworkPluginElement"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/VPN/AlwaysOn-data.dictionary/AllowedCaptiveNetworkPluginElement",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VPN.AlwaysOn.AllowedCaptiveNetworkPluginElement"
+        }
+      ],
+      "role": "symbol",
+      "title": "VPN.AlwaysOn.AllowedCaptiveNetworkPluginElement",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/vpn/alwayson-data.dictionary/allowedcaptivenetworkpluginelement"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/VPN/AlwaysOn-data.dictionary/ApplicationExceptionElement": {
+      "abstract": [
+        {
+          "text": "The dictionary that defines which applications can have traffic outside the VPN tunnel.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "VPN.AlwaysOn.ApplicationExceptionElement"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/VPN/AlwaysOn-data.dictionary/ApplicationExceptionElement",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VPN.AlwaysOn.ApplicationExceptionElement"
+        }
+      ],
+      "role": "symbol",
+      "title": "VPN.AlwaysOn.ApplicationExceptionElement",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/vpn/alwayson-data.dictionary/applicationexceptionelement"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/VPN/AlwaysOn-data.dictionary/ServiceExceptionElement": {
+      "abstract": [
+        {
+          "text": "The dictionary that defines service exceptions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "VPN.AlwaysOn.ServiceExceptionElement"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/VPN/AlwaysOn-data.dictionary/ServiceExceptionElement",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VPN.AlwaysOn.ServiceExceptionElement"
+        }
+      ],
+      "role": "symbol",
+      "title": "VPN.AlwaysOn.ServiceExceptionElement",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/vpn/alwayson-data.dictionary/serviceexceptionelement"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/VPN/AlwaysOn-data.dictionary/TunnelConfigurationElement": {
+      "abstract": [
+        {
+          "text": "The dictionary used to configure VPN tunnels.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "VPN.AlwaysOn.TunnelConfigurationElement"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/VPN/AlwaysOn-data.dictionary/TunnelConfigurationElement",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VPN.AlwaysOn.TunnelConfigurationElement"
+        }
+      ],
+      "role": "symbol",
+      "title": "VPN.AlwaysOn.TunnelConfigurationElement",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/vpn/alwayson-data.dictionary/tunnelconfigurationelement"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/VPN/DNS-data.dictionary": {
+      "abstract": [
+        {
+          "text": "The dictionary to configure DNS settings for the VPN.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "VPN.DNS"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/VPN/DNS-data.dictionary",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VPN.DNS"
+        }
+      ],
+      "role": "symbol",
+      "title": "VPN.DNS",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/vpn/dns-data.dictionary"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/VPN/IKEv2-data.dictionary": {
+      "abstract": [
+        {
+          "text": "The dictionary to use for an IKEv2 VPN type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "VPN.IKEv2"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/VPN/IKEv2-data.dictionary",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VPN.IKEv2"
+        }
+      ],
+      "role": "symbol",
+      "title": "VPN.IKEv2",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/vpn/ikev2-data.dictionary"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/VPN/IPSec-data.dictionary": {
+      "abstract": [
+        {
+          "text": "The dictionary to use for an IPSec VPN type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "VPN.IPSec"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/VPN/IPSec-data.dictionary",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VPN.IPSec"
+        }
+      ],
+      "role": "symbol",
+      "title": "VPN.IPSec",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/vpn/ipsec-data.dictionary"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/VPN/IPv4-data.dictionary": {
+      "abstract": [
+        {
+          "text": "The dictionary that contains IPV4 settings.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "VPN.IPv4"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/VPN/IPv4-data.dictionary",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VPN.IPv4"
+        }
+      ],
+      "role": "symbol",
+      "title": "VPN.IPv4",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/vpn/ipv4-data.dictionary"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/VPN/PPP-data.dictionary": {
+      "abstract": [
+        {
+          "text": "The dictionary that contains PPP settings.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "VPN.PPP"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/VPN/PPP-data.dictionary",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VPN.PPP"
+        }
+      ],
+      "role": "symbol",
+      "title": "VPN.PPP",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/vpn/ppp-data.dictionary"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/VPN/Proxies-data.dictionary": {
+      "abstract": [
+        {
+          "text": "The dictionary that contains the Proxies settings.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "VPN.Proxies"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/VPN/Proxies-data.dictionary",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VPN.Proxies"
+        }
+      ],
+      "role": "symbol",
+      "title": "VPN.Proxies",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/vpn/proxies-data.dictionary"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/VPN/TransparentProxy-data.dictionary": {
+      "abstract": [
+        {
+          "text": "The dictionary to use for a transparent proxy VPN type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "VPN.TransparentProxy"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/VPN/TransparentProxy-data.dictionary",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VPN.TransparentProxy"
+        }
+      ],
+      "role": "symbol",
+      "title": "VPN.TransparentProxy",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/vpn/transparentproxy-data.dictionary"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/VPN/VPN-data.dictionary": {
+      "abstract": [
+        {
+          "text": "The dictionary that contains VPN, IPSec, and IKEv2 settings.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "VPN.VPN"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/VPN/VPN-data.dictionary",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VPN.VPN"
+        }
+      ],
+      "role": "symbol",
+      "title": "VPN.VPN",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/vpn/vpn-data.dictionary"
+    },
+    "doc://com.apple.devicemanagement/documentation/DeviceManagement/VPN/VendorConfig-data.dictionary": {
+      "abstract": [
+        {
+          "text": "The vendor-specific configuration dictionary.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "VPN.VendorConfig"
+        }
+      ],
+      "identifier": "doc://com.apple.devicemanagement/documentation/DeviceManagement/VPN/VendorConfig-data.dictionary",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VPN.VendorConfig"
+        }
+      ],
+      "role": "symbol",
+      "title": "VPN.VendorConfig",
+      "type": "topic",
+      "url": "/documentation/devicemanagement/vpn/vendorconfig-data.dictionary"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Profiles",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/VPN/DNS-data.dictionary",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/VPN/IKEv2-data.dictionary",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/VPN/IPSec-data.dictionary",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/VPN/IPv4-data.dictionary",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/VPN/PPP-data.dictionary",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/VPN/Proxies-data.dictionary",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/VPN/VPN-data.dictionary",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/VPN/TransparentProxy-data.dictionary",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/VPN/VendorConfig-data.dictionary"
+      ],
+      "title": "Profiles"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Objects",
+      "identifiers": [
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/VPN/AlwaysOn-data.dictionary/AllowedCaptiveNetworkPluginElement",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/VPN/AlwaysOn-data.dictionary/ApplicationExceptionElement",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/VPN/AlwaysOn-data.dictionary/ServiceExceptionElement",
+        "doc://com.apple.devicemanagement/documentation/DeviceManagement/VPN/AlwaysOn-data.dictionary/TunnelConfigurationElement"
+      ],
+      "title": "Objects"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/devicemanagement/vpn/alwayson-data.dictionary"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

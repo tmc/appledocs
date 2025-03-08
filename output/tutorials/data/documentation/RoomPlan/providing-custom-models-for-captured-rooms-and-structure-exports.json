@@ -1,0 +1,874 @@
+{
+  "abstract": [
+    {
+      "text": "Enhance the look of an exported 3D model by substituting object bounding boxes with detailed 3D renditions.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.RoomPlan/documentation/RoomPlan"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.RoomPlan/documentation/RoomPlan/providing-custom-models-for-captured-rooms-and-structure-exports"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "RoomPlan"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "17.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "17.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "18.2",
+        "name": "Mac Catalyst"
+      },
+      {
+        "beta": false,
+        "introducedAt": "16.2",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Providing custom models for captured rooms and structure exports"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "This sample code project is associated with WWDC23 session 10192: ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/wwdc23/10192",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Configure-the-sample-code-project",
+          "level": 3,
+          "text": "Configure the sample code project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before you run the ",
+              "type": "text"
+            },
+            {
+              "code": "RoomPlanExporter",
+              "type": "codeVoice"
+            },
+            {
+              "text": " target in Xcode:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Set the run destination to an iOS 17 or later device; this app doesn’t support Simulator.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Export a scanned room in JSON format, which you generate with the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.RoomPlan/documentation/RoomPlan/create-a-3d-model-of-an-interior-room-by-guiding-the-user-through-an-ar-experience",
+                      "isActive": true,
+                      "overridingTitle": "RoomCaptureView sample app",
+                      "overridingTitleInlineContent": [
+                        {
+                          "text": "RoomCaptureView sample app",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "reference"
+                    },
+                    {
+                      "text": ". Alternatively, you can generate a JSON export of several rooms merged into a single structure by using the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.RoomPlan/documentation/RoomPlan/merging-multiple-scans-into-a-single-structure",
+                      "isActive": true,
+                      "overridingTitle": "Scan-merging sample app",
+                      "overridingTitleInlineContent": [
+                        {
+                          "text": "Scan-merging sample app",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To run the app:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Run the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "RoomPlanExporter",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " target.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Tap Open a CapturedRoom and choose a scanned room or structure in JSON format in the Open File dialog.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Tap Export and choose the Model option.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Tap Share Export and observe the output files in the resulting ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Export",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " folder. The USDZ output file features a detailed 3D model in replacement for any object in the room that the framework recognizes during the scan as being one of the known object types from the target’s ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "RoomPlanCatalog.bundle",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "RoomPlanCatalogGenerator",
+              "type": "codeVoice"
+            },
+            {
+              "text": " target in Xcode provides a command-line tool that enables you to generate your own catalog of 3D models similar to the ",
+              "type": "text"
+            },
+            {
+              "code": "RoomPlanCatalog.bundle",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in this sample code project. Before running the tool, set the run destination to a macOS 14 or later device with Mac Catalyst, and enable the command-line argument as follows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "RoomPlanCatalogGenerator",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " scheme and choose Edit Scheme.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select the Run task’s Arguments tab.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click or tap the checkbox to enable just the first argument:",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "code": [
+            "create-folders -i \"~/RoomPlan/Catalog/\""
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Run the scheme in Xcode, which creates a folder structure at the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "~/RoomPlan/Catalog",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " location on disk.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Fill the folder structure with 3D models that correspond to the folder names. The folder names correspond to the types of objects and attributes that RoomPlan recognizes during a scan. The framework supports 3D models in ",
+                      "type": "text"
+                    },
+                    {
+                      "code": ".usdc",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " format (preferred), and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": ".abc",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": ".obj",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": ".ply",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", or ",
+                      "type": "text"
+                    },
+                    {
+                      "code": ".stl",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " formats.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If you don’t have your own 3D models, you can use the 3D models that this sample code project provides by substituting the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "~/RoomPlan/Catalog/Resources",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " folder on disk for the sample code project’s ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "/RoomPlanExporter/RoomPlanCatalog.bundle/Resources",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " folder.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "RoomPlanCatalogGenerator",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " scheme and choose ‘Edit Scheme’.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the Run task’s Arguments pane, click or tap the checkbox to enable just the second argument:",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "start": 4,
+          "type": "orderedList"
+        },
+        {
+          "code": [
+            "generate -i \"~/RoomPlan/Catalog\" \\",
+            "         -o \"~/RoomPlan/RoomPlanCatalog.bundle\""
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Run the scheme in Xcode, which generates a ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "RoomPlanCatalog.bundle",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " file from the folder structure filled with 3D models.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Place a scanned room in JSON format at the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "~/RoomPlan/Room.json",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " path on disk. You generate the file by exporting a scanned room with the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.RoomPlan/documentation/RoomPlan/create-a-3d-model-of-an-interior-room-by-guiding-the-user-through-an-ar-experience",
+                      "isActive": true,
+                      "overridingTitle": "RoomCaptureView sample app",
+                      "overridingTitleInlineContent": [
+                        {
+                          "text": "RoomCaptureView sample app",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", or by exporting several rooms merged into a single structure with the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.RoomPlan/documentation/RoomPlan/merging-multiple-scans-into-a-single-structure",
+                      "isActive": true,
+                      "overridingTitle": "Scan-merging sample app",
+                      "overridingTitleInlineContent": [
+                        {
+                          "text": "Scan-merging sample app",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "RoomPlanCatalogGenerator",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " scheme and choose ‘Edit Scheme’.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the Run task’s Arguments pane, click or tap the checkbox to enable just the third argument:",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "start": 9,
+          "type": "orderedList"
+        },
+        {
+          "code": [
+            "convert -i \"~/RoomPlan/Room.json\" \\",
+            "        -c \"~/RoomPlan/RoomPlanCatalog.bundle\" \\ ",
+            "        -o \"~/RoomPlan/Room.usdz\""
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Run the scheme in Xcode, which converts the serialized room or structure to a USDZ file at path ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "~/RoomPlan/Room.usdz",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " on disk that includes substituted 3D models from the catalog bundle.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "start": 13,
+          "type": "orderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "92666d9d480f/ProvidingCustomModelsForCapturedRoomsAndStructureExports.zip": {
+      "checksum": "92666d9d480fabfaff114cba637242ff1e2ebc5da0a392065ce5f68a41954a768668b0d07b123050fee6e5000b07ae03dbf80eb4c75d913d0c38b0662de34d13",
+      "identifier": "92666d9d480f/ProvidingCustomModelsForCapturedRoomsAndStructureExports.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/92666d9d480f/ProvidingCustomModelsForCapturedRoomsAndStructureExports.zip"
+    },
+    "doc://com.apple.RoomPlan/documentation/RoomPlan": {
+      "abstract": [
+        {
+          "text": "Create a 3D model of a room by interactively guiding people to scan their physical environment using a device’s camera.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RoomPlan/documentation/RoomPlan",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "RoomPlan",
+      "type": "topic",
+      "url": "/documentation/roomplan"
+    },
+    "doc://com.apple.RoomPlan/documentation/RoomPlan/CapturedRoom/USDExportOptions": {
+      "abstract": [
+        {
+          "text": "Options that determine the underlying data format of a scan export.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "USDExportOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.RoomPlan/documentation/RoomPlan/CapturedRoom/USDExportOptions",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "USDExportOptions"
+        }
+      ],
+      "role": "symbol",
+      "title": "CapturedRoom.USDExportOptions",
+      "type": "topic",
+      "url": "/documentation/roomplan/capturedroom/usdexportoptions"
+    },
+    "doc://com.apple.RoomPlan/documentation/RoomPlan/RoomBuilder": {
+      "abstract": [
+        {
+          "text": "An object that generates a 3D asset from room-capture data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RoomBuilder"
+        }
+      ],
+      "identifier": "doc://com.apple.RoomPlan/documentation/RoomPlan/RoomBuilder",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RoomBuilder"
+        }
+      ],
+      "role": "symbol",
+      "title": "RoomBuilder",
+      "type": "topic",
+      "url": "/documentation/roomplan/roombuilder"
+    },
+    "doc://com.apple.RoomPlan/documentation/RoomPlan/StructureBuilder": {
+      "abstract": [
+        {
+          "text": "An object that combines multiple scan sessions into a single captured result.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "StructureBuilder"
+        }
+      ],
+      "identifier": "doc://com.apple.RoomPlan/documentation/RoomPlan/StructureBuilder",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "StructureBuilder"
+        }
+      ],
+      "role": "symbol",
+      "title": "StructureBuilder",
+      "type": "topic",
+      "url": "/documentation/roomplan/structurebuilder"
+    },
+    "doc://com.apple.RoomPlan/documentation/RoomPlan/create-a-3d-model-of-an-interior-room-by-guiding-the-user-through-an-ar-experience": {
+      "abstract": [
+        {
+          "text": "Highlight physical structures and display text that guides a user to scan the shape of their physical environment using a framework-provided view.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RoomPlan/documentation/RoomPlan/create-a-3d-model-of-an-interior-room-by-guiding-the-user-through-an-ar-experience",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Create a 3D model of an interior room by guiding the user through an AR experience",
+      "type": "topic",
+      "url": "/documentation/roomplan/create-a-3d-model-of-an-interior-room-by-guiding-the-user-through-an-ar-experience"
+    },
+    "doc://com.apple.RoomPlan/documentation/RoomPlan/merging-multiple-scans-into-a-single-structure": {
+      "abstract": [
+        {
+          "text": "Export a 3D model that consists of multiple rooms captured in the same physical vicinity.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RoomPlan/documentation/RoomPlan/merging-multiple-scans-into-a-single-structure",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Merging multiple scans into a single structure",
+      "type": "topic",
+      "url": "/documentation/roomplan/merging-multiple-scans-into-a-single-structure"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/wwdc23/10192": {
+      "identifier": "https://developer.apple.com/wwdc23/10192",
+      "title": "Explore enhancements to RoomPlan",
+      "titleInlineContent": [
+        {
+          "text": "Explore enhancements to RoomPlan",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/wwdc23/10192"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "92666d9d480f/ProvidingCustomModelsForCapturedRoomsAndStructureExports.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "3D-Asset-Output",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.RoomPlan/documentation/RoomPlan/RoomBuilder",
+        "doc://com.apple.RoomPlan/documentation/RoomPlan/StructureBuilder",
+        "doc://com.apple.RoomPlan/documentation/RoomPlan/CapturedRoom/USDExportOptions"
+      ],
+      "title": "3D Asset Output"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/roomplan/providing-custom-models-for-captured-rooms-and-structure-exports"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

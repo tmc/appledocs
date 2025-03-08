@@ -1,0 +1,1781 @@
+{
+  "abstract": [
+    {
+      "text": "Apply a new color scheme to your article.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.applenews/documentation/AppleNews",
+        "doc://com.apple.applenews/documentation/AppleNews/apple-news-format-tutorials"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.applenews/documentation/AppleNews/giving-the-article-a-dark-color-scheme"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Giving the Article a Dark Color Scheme"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In this third advanced article design, you’ll create some visual effects using a dark color scheme, a ",
+              "type": "text"
+            },
+            {
+              "code": "video",
+              "type": "codeVoice"
+            },
+            {
+              "text": " component, and a fixed image fill.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "On this page, you’ll learn how to use ComponentStyle objects to implement a color scheme",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3624917",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Define-a-Dark-Background-Color-for-Components",
+          "level": 3,
+          "text": "Define a Dark Background Color for Components",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can use a dark color scheme to create contrast between one group of articles and another or for variety within a single article.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This ",
+              "type": "text"
+            },
+            {
+              "code": "ComponentStyle",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object has a dark background color.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Open the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "article.json",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " file that you completed in ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.applenews/documentation/AppleNews/adding-a-scene",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", or open ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Desktop/News_Design_Tutorial/News_Design_Tutorial_Advanced_Article_2/article.json",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Copy the example code ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.applenews/documentation/AppleNews/giving-the-article-a-dark-color-scheme#darkBackgroundStyle-Copy-This-Code",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Paste the code between the closing brace (",
+                      "type": "text"
+                    },
+                    {
+                      "code": "}",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ") of the last ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "ComponentStyle",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " object and the closing brace for the whole ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "componentStyles",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " property.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your code should look like the example code ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNews/giving-the-article-a-dark-color-scheme#darkBackgroundStyle-Result",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "darkBackgroundStyle-Copy-This-Code",
+          "level": 4,
+          "text": "darkBackgroundStyle: Copy This Code",
+          "type": "heading"
+        },
+        {
+          "code": [
+            ",",
+            "    \"darkBackgroundStyle\": {",
+            "      \"backgroundColor\": \"#202020\"",
+            "    }"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "darkBackgroundStyle-Result",
+          "level": 4,
+          "text": "darkBackgroundStyle: Result",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Ellipses (",
+              "type": "text"
+            },
+            {
+              "code": "...",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") indicate lines of code that have been omitted from this example.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "  ...",
+            "  \"componentStyles\": {",
+            "    ...",
+            "    \"darkBackgroundStyle\": {",
+            "      \"backgroundColor\": \"#202020\"",
+            "    }",
+            "  },",
+            "  ...",
+            "}"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Define-a-Light-Color-Text-Style",
+          "level": 3,
+          "text": "Define a Light-Color Text Style",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "ComponentTextStyle",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object called ",
+              "type": "text"
+            },
+            {
+              "code": "bodyFirstDropCapDark",
+              "type": "codeVoice"
+            },
+            {
+              "text": " has a light text color.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Copy the example code ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.applenews/documentation/AppleNews/giving-the-article-a-dark-color-scheme#bodyFirstDropCapDark-Copy-This-Code",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Paste the code inside the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "ArticleDocument.componentTextStyles",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " object in your ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "article.json",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " file, after the closing brace (",
+                      "type": "text"
+                    },
+                    {
+                      "code": "}",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ") of the last text style and before the closing bracket for the whole ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "componentTextStyles",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " property.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your code should look like the example code ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNews/giving-the-article-a-dark-color-scheme#bodyFirstDropCapDark-Result",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "bodyFirstDropCapDark-Copy-This-Code",
+          "level": 4,
+          "text": "bodyFirstDropCapDark: Copy This Code",
+          "type": "heading"
+        },
+        {
+          "code": [
+            ",",
+            "    \"bodyFirstDropCapDark\": {",
+            "      \"textColor\": \"#FFF\",",
+            "      \"dropCapStyle\": {",
+            "        \"fontName\": \"DINAlternate-Bold\",",
+            "        \"textColor\": \"#D5B327\",",
+            "        \"numberOfLines\": 2",
+            "      }",
+            "    }"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "bodyFirstDropCapDark-Result",
+          "level": 4,
+          "text": "bodyFirstDropCapDark: Result",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Ellipses (",
+              "type": "text"
+            },
+            {
+              "code": "...",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") indicate lines of code that have been omitted from this example.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "  ...",
+            "  \"componentTextStyles\": {",
+            "    ...",
+            "    \"bodyFirstDropCapDark\": {",
+            "      \"textColor\": \"#FFF\",",
+            "      \"dropCapStyle\": {",
+            "        \"fontName\": \"DINAlternate-Bold\",",
+            "        \"textColor\": \"#D5B327\",",
+            "        \"numberOfLines\": 2",
+            "      }",
+            "    }",
+            "  }",
+            "}"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Implement-the-Dark-Color-Scheme",
+          "level": 3,
+          "text": "Implement the Dark Color Scheme",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You’ll move some components from the header into a new section and add references to a new ",
+              "type": "text"
+            },
+            {
+              "code": "ComponentStyle",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object and a new ",
+              "type": "text"
+            },
+            {
+              "code": "ComponentTextStyle",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In your ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "article.json",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " file, delete the contents of your header’s ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "components",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " array. The code you’re deleting begins with the opening brace (",
+                      "type": "text"
+                    },
+                    {
+                      "code": "{",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ") before ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "\"role\": \"container\"",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", and ends with a mix of three alternating brackets and braces (",
+                      "type": "text"
+                    },
+                    {
+                      "code": "}]}",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ").",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Copy the example code ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.applenews/documentation/AppleNews/giving-the-article-a-dark-color-scheme#Components-Copy-This-Code",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Paste the code inside your second section’s ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "components",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " array, after the opening bracket (",
+                      "type": "text"
+                    },
+                    {
+                      "code": "[",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ").",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Copy the example code ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.applenews/documentation/AppleNews/giving-the-article-a-dark-color-scheme#Section-Boundary-Copy-This-Code",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Paste the code inside your second section, replacing the comma that follows the first body component.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In your second section, change the value of ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "style",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "\"darkBackgroundStyle\"",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In your floating caption, add a ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "textStyle",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " property with a value of ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "\"captionLight\"",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In the body component that uses ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "bodyFirstDropCap",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", change the value of ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "textStyle",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "\"bodyFirstDropCapDark\"",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", and change the value of ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "layout",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "\"fullMarginBelowLayout\"",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your code should look like the example code ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNews/giving-the-article-a-dark-color-scheme#Dark-Color-Scheme-Result",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you make these changes in your code, you can preview your working ",
+              "type": "text"
+            },
+            {
+              "code": "article.json",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file in News Preview to see the dark color scheme.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Components-Copy-This-Code",
+          "level": 4,
+          "text": "Components: Copy This Code",
+          "type": "heading"
+        },
+        {
+          "code": [
+            "        {",
+            "          \"role\": \"heading1\",",
+            "          \"layout\": \"heading1Layout\",",
+            "          \"text\": \"HEADING\"",
+            "        },",
+            "        {",
+            "          \"role\": \"divider\",",
+            "          \"layout\": \"bigDividerLayout\",",
+            "          \"stroke\": {",
+            "            \"width\": 3,",
+            "            \"color\": \"#D5B327\"",
+            "          }",
+            "        },",
+            "        {",
+            "          \"role\": \"title\",",
+            "          \"format\": \"html\",",
+            "          \"layout\": \"halfMarginBelowLayout\",",
+            "          \"text\": \"<span data-anf-textstyle='lightGrayText'>ARTICLE TITLE</span> <span data-anf-textstyle='whiteText'>WITH INLINE TEXT STYLE REFERENCES</span>\"",
+            "        },"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Section-Boundary-Copy-This-Code",
+          "level": 4,
+          "text": "Section Boundary: Copy This Code",
+          "type": "heading"
+        },
+        {
+          "code": [
+            "]",
+            "    },",
+            "    {",
+            "      \"role\": \"section\",",
+            "      \"layout\": \"fullBleedLayout\",",
+            "      \"style\": \"bodyBackgroundStyle\",",
+            "      \"components\": ["
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Dark-Color-Scheme-Result",
+          "level": 4,
+          "text": "Dark Color Scheme: Result",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Ellipses (",
+              "type": "text"
+            },
+            {
+              "code": "...",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") indicate lines of code that have been omitted from this example.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{",
+            "  ...",
+            "  \"components\": [",
+            "    {",
+            "      \"role\": \"section\",",
+            "      \"layout\": \"fullBleedLayout\",",
+            "      \"scene\": {",
+            "        \"type\": \"fading_sticky_header\",",
+            "        \"fadeColor\": \"#000\"",
+            "      },",
+            "      \"components\": [",
+            "        {",
+            "          \"role\": \"header\",",
+            "          \"layout\": \"headerImageLayout\",",
+            "          \"style\": {",
+            "            \"fill\": {",
+            "              \"type\": \"image\",",
+            "              \"URL\": \"bundle://header.jpg\",",
+            "              \"fillMode\": \"cover\",",
+            "              \"verticalAlignment\": \"top\",",
+            "              \"horizontalAlignment\": \"center\"",
+            "            }",
+            "          }",
+            "        }",
+            "      ]",
+            "    },",
+            "    {",
+            "      \"role\": \"section\",",
+            "      \"layout\": \"fullBleedLayout\",",
+            "      \"style\": \"darkBackgroundStyle\",",
+            "      \"components\": [",
+            "        {",
+            "          \"role\": \"heading1\",",
+            "          \"layout\": \"heading1Layout\",",
+            "          \"text\": \"HEADING\"",
+            "        },",
+            "        {",
+            "          \"role\": \"divider\",",
+            "          \"layout\": \"bigDividerLayout\",",
+            "          \"stroke\": {",
+            "            \"width\": 3,",
+            "            \"color\": \"#D5B327\"",
+            "          }",
+            "        },",
+            "        {",
+            "          \"role\": \"title\",",
+            "          \"format\": \"html\",",
+            "          \"layout\": \"halfMarginBelowLayout\",",
+            "          \"text\": \"<span data-anf-textstyle='lightGrayText'>ARTICLE TITLE</span> <span data-anf-textstyle='whiteText'>WITH INLINE TEXT STYLE REFERENCES</span>\"",
+            "        },",
+            "        ...",
+            "        {",
+            "          \"identifier\": \"body1\",",
+            "          \"role\": \"body\",",
+            "          \"format\": \"html\",",
+            "          \"layout\": \"fullMarginBelowLayout\",",
+            "          \"textStyle\": \"bodyFirstDropCapDark\",",
+            "          \"text\": \"<p><span data-anf-textstyle='DINText'>Bold lead-in,</span> cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, dolor repellendus. <a href='http://www.apple.com'>Link text</a> quibusdam et aut.</p><p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, adipisci velit.</p>\"",
+            "        }",
+            "      ]",
+            "    },",
+            "    {",
+            "      \"role\": \"section\",",
+            "      \"layout\": \"fullBleedLayout\",",
+            "      \"style\": \"bodyBackgroundStyle\",",
+            "      \"components\": [",
+            "        {",
+            "          \"role\": \"heading2\",",
+            "          \"layout\": \"fullMarginAboveHalfBelowLayout\",",
+            "          \"text\": \"HEADING\"",
+            "        },",
+            "        ...",
+            "      ]",
+            "    }",
+            "  ],",
+            "  ...",
+            "}"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Set-the-Default-to-a-Dark-Color-Scheme",
+          "level": 3,
+          "text": "Set the Default to a Dark Color Scheme",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To view the dark color scheme in Dark Mode, switch your simulator device to a dark systemwide appearance (Features > Toggle Appearance).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can maintain the dark color scheme for your article even when a user switches between a light or dark appearance. Set the ",
+              "type": "text"
+            },
+            {
+              "code": "preferredColorScheme",
+              "type": "codeVoice"
+            },
+            {
+              "text": " conditional to define the background color for a specific appearance. For more information about conditionals, see Apple News Format > ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/Condition",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNews/giving-the-article-a-dark-color-scheme#Define-a-Dark-Background-Color-for-Components",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", you created a new ",
+              "type": "text"
+            },
+            {
+              "code": "ComponentStyle",
+              "type": "codeVoice"
+            },
+            {
+              "text": " called ",
+              "type": "text"
+            },
+            {
+              "code": "darkBackgroundStyle",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". Now you’ll update that style with a conditional to explicitly set a value for your article’s  dark appearance.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Copy the example code from ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.applenews/documentation/AppleNews/giving-the-article-a-dark-color-scheme#Condition-Dark-Mode-Copy-This-Code",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Paste the code inside the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "darkBackgroundStyle",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "componentStyle",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " of your article, at the end of this line: ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "\"backgroundColor\": \"#202020\"",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    },
+                    {
+                      "code": " ",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": "Your code should look like the example code in ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.applenews/documentation/AppleNews/giving-the-article-a-dark-color-scheme#Condition-Dark-Mode-Result",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "anchor": "Condition-Dark-Mode-Copy-This-Code",
+          "level": 4,
+          "text": "Condition Dark Mode: Copy This Code",
+          "type": "heading"
+        },
+        {
+          "code": [
+            ",",
+            "\"conditional\": [",
+            "  {",
+            "    \"backgroundColor\": \"#202020\",",
+            "    \"conditions\": [",
+            "      {",
+            "        \"preferredColorScheme\": \"dark\"",
+            "      }",
+            "    ]",
+            "  }",
+            "]",
+            ""
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Condition-Dark-Mode-Result",
+          "level": 4,
+          "text": "Condition Dark Mode: Result",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Ellipses (",
+              "type": "text"
+            },
+            {
+              "code": "...",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") indicate lines of code that have been omitted from this example.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "{  ...",
+            "  \"componentStyles\": {",
+            "    ...",
+            "     \"darkBackgroundStyle\": {",
+            "      \"backgroundColor\": \"#202020\",",
+            "      \"conditional\": [",
+            "        {",
+            "          \"backgroundColor\": \"#202020\",",
+            "          \"don’tions\": [",
+            "            {",
+            "              \"preferredColorScheme\": \"dark\"",
+            "            }",
+            "          ]",
+            "        }",
+            "      ]",
+            "    },",
+            "    ...",
+            "}"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To view the dark color scheme when the device appearance is toggled, preview your working ",
+              "type": "text"
+            },
+            {
+              "code": "article.json",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file in News Preview.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Light Appearance",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3966565",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Dark Appearance",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3966566",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Further-Exploration",
+          "level": 3,
+          "text": "Further Exploration",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For information about using Dark Mode and adjusting designs for light and dark appearances, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/design/human-interface-guidelines/macos/visual-design/dark-mode/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For information about updating your article so that it adapts when Dark Mode is active, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNews/supporting-dark-mode-for-your-article",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Previous",
+          "level": 3,
+          "text": "Previous",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNews/viewing-the-finished-article-for-advanced-design-tutorial-2",
+              "isActive": true,
+              "type": "reference"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Next",
+          "level": 3,
+          "text": "Next",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.applenews/documentation/AppleNews/adding-a-video",
+              "isActive": true,
+              "type": "reference"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.applenews/documentation/AppleNews": {
+      "abstract": [
+        {
+          "text": "Design, create, and publish signature content for Apple News.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews",
+      "kind": "article",
+      "role": "collection",
+      "title": "Apple News",
+      "type": "topic",
+      "url": "/documentation/applenews"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/adding-a-fixed-image-fill": {
+      "abstract": [
+        {
+          "text": "Add an image that remains stationary when the user scrolls.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/adding-a-fixed-image-fill",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding a Fixed Image Fill",
+      "type": "topic",
+      "url": "/documentation/applenews/adding-a-fixed-image-fill"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/adding-a-scene": {
+      "abstract": [
+        {
+          "text": "Control how the article’s opening section comes into view.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/adding-a-scene",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding a Scene",
+      "type": "topic",
+      "url": "/documentation/applenews/adding-a-scene"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/adding-a-video": {
+      "abstract": [
+        {
+          "text": "Add a video component inside the header component.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/adding-a-video",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding a Video",
+      "type": "topic",
+      "url": "/documentation/applenews/adding-a-video"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/apple-news-format-tutorials": {
+      "abstract": [
+        {
+          "text": "Create a basic article and then add advanced design features.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/apple-news-format-tutorials",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Apple News Format Tutorials",
+      "type": "topic",
+      "url": "/documentation/applenews/apple-news-format-tutorials"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/applying-a-background-to-a-component": {
+      "abstract": [
+        {
+          "text": "Change the appearance of the backgrounds in your article.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/applying-a-background-to-a-component",
+      "kind": "article",
+      "role": "article",
+      "title": "Applying a Background to a Component",
+      "type": "topic",
+      "url": "/documentation/applenews/applying-a-background-to-a-component"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/creating-a-newsletter-sign-up-element": {
+      "abstract": [
+        {
+          "text": "Add a newsletter sign-up element in your article.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/creating-a-newsletter-sign-up-element",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating a Newsletter Sign-Up Element",
+      "type": "topic",
+      "url": "/documentation/applenews/creating-a-newsletter-sign-up-element"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/creating-a-sidebar": {
+      "abstract": [
+        {
+          "text": "Create a box with an HTML bulleted list in the margin.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/creating-a-sidebar",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating a Sidebar",
+      "type": "topic",
+      "url": "/documentation/applenews/creating-a-sidebar"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/defining-a-component-style": {
+      "abstract": [
+        {
+          "text": "Set style options for the components in your article.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/defining-a-component-style",
+      "kind": "article",
+      "role": "article",
+      "title": "Defining a Component Style",
+      "type": "topic",
+      "url": "/documentation/applenews/defining-a-component-style"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/giving-the-article-a-dark-color-scheme#Components-Copy-This-Code": {
+      "abstract": [],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/giving-the-article-a-dark-color-scheme#Components-Copy-This-Code",
+      "kind": "section",
+      "title": "Components: Copy This Code",
+      "type": "topic",
+      "url": "/documentation/applenews/giving-the-article-a-dark-color-scheme#Components-Copy-This-Code"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/giving-the-article-a-dark-color-scheme#Condition-Dark-Mode-Copy-This-Code": {
+      "abstract": [],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/giving-the-article-a-dark-color-scheme#Condition-Dark-Mode-Copy-This-Code",
+      "kind": "section",
+      "title": "Condition Dark Mode: Copy This Code",
+      "type": "topic",
+      "url": "/documentation/applenews/giving-the-article-a-dark-color-scheme#Condition-Dark-Mode-Copy-This-Code"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/giving-the-article-a-dark-color-scheme#Condition-Dark-Mode-Result": {
+      "abstract": [],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/giving-the-article-a-dark-color-scheme#Condition-Dark-Mode-Result",
+      "kind": "section",
+      "title": "Condition Dark Mode: Result",
+      "type": "topic",
+      "url": "/documentation/applenews/giving-the-article-a-dark-color-scheme#Condition-Dark-Mode-Result"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/giving-the-article-a-dark-color-scheme#Dark-Color-Scheme-Result": {
+      "abstract": [],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/giving-the-article-a-dark-color-scheme#Dark-Color-Scheme-Result",
+      "kind": "section",
+      "title": "Dark Color Scheme: Result",
+      "type": "topic",
+      "url": "/documentation/applenews/giving-the-article-a-dark-color-scheme#Dark-Color-Scheme-Result"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/giving-the-article-a-dark-color-scheme#Define-a-Dark-Background-Color-for-Components": {
+      "abstract": [],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/giving-the-article-a-dark-color-scheme#Define-a-Dark-Background-Color-for-Components",
+      "kind": "section",
+      "title": "Define a Dark Background Color for Components",
+      "type": "topic",
+      "url": "/documentation/applenews/giving-the-article-a-dark-color-scheme#Define-a-Dark-Background-Color-for-Components"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/giving-the-article-a-dark-color-scheme#Section-Boundary-Copy-This-Code": {
+      "abstract": [],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/giving-the-article-a-dark-color-scheme#Section-Boundary-Copy-This-Code",
+      "kind": "section",
+      "title": "Section Boundary: Copy This Code",
+      "type": "topic",
+      "url": "/documentation/applenews/giving-the-article-a-dark-color-scheme#Section-Boundary-Copy-This-Code"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/giving-the-article-a-dark-color-scheme#bodyFirstDropCapDark-Copy-This-Code": {
+      "abstract": [],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/giving-the-article-a-dark-color-scheme#bodyFirstDropCapDark-Copy-This-Code",
+      "kind": "section",
+      "title": "bodyFirstDropCapDark: Copy This Code",
+      "type": "topic",
+      "url": "/documentation/applenews/giving-the-article-a-dark-color-scheme#bodyFirstDropCapDark-Copy-This-Code"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/giving-the-article-a-dark-color-scheme#bodyFirstDropCapDark-Result": {
+      "abstract": [],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/giving-the-article-a-dark-color-scheme#bodyFirstDropCapDark-Result",
+      "kind": "section",
+      "title": "bodyFirstDropCapDark: Result",
+      "type": "topic",
+      "url": "/documentation/applenews/giving-the-article-a-dark-color-scheme#bodyFirstDropCapDark-Result"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/giving-the-article-a-dark-color-scheme#darkBackgroundStyle-Copy-This-Code": {
+      "abstract": [],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/giving-the-article-a-dark-color-scheme#darkBackgroundStyle-Copy-This-Code",
+      "kind": "section",
+      "title": "darkBackgroundStyle: Copy This Code",
+      "type": "topic",
+      "url": "/documentation/applenews/giving-the-article-a-dark-color-scheme#darkBackgroundStyle-Copy-This-Code"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/giving-the-article-a-dark-color-scheme#darkBackgroundStyle-Result": {
+      "abstract": [],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/giving-the-article-a-dark-color-scheme#darkBackgroundStyle-Result",
+      "kind": "section",
+      "title": "darkBackgroundStyle: Result",
+      "type": "topic",
+      "url": "/documentation/applenews/giving-the-article-a-dark-color-scheme#darkBackgroundStyle-Result"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/supporting-dark-mode-for-your-article": {
+      "abstract": [
+        {
+          "text": "Update your article template so that your article adapts when Dark Mode is active.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/supporting-dark-mode-for-your-article",
+      "kind": "article",
+      "role": "article",
+      "title": "Supporting Dark Mode for Your Article",
+      "type": "topic",
+      "url": "/documentation/applenews/supporting-dark-mode-for-your-article"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/viewing-the-finished-article-for-advanced-design-tutorial-2": {
+      "abstract": [
+        {
+          "text": "See the full JSON code from this tutorial.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/viewing-the-finished-article-for-advanced-design-tutorial-2",
+      "kind": "article",
+      "role": "article",
+      "title": "Viewing the Finished Article for Advanced Design Tutorial 2",
+      "type": "topic",
+      "url": "/documentation/applenews/viewing-the-finished-article-for-advanced-design-tutorial-2"
+    },
+    "doc://com.apple.applenews/documentation/AppleNews/viewing-the-finished-article-for-advanced-design-tutorial-3": {
+      "abstract": [
+        {
+          "text": "See the full JSON code from this tutorial.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNews/viewing-the-finished-article-for-advanced-design-tutorial-3",
+      "kind": "article",
+      "role": "article",
+      "title": "Viewing the Finished Article for Advanced Design Tutorial 3",
+      "type": "topic",
+      "url": "/documentation/applenews/viewing-the-finished-article-for-advanced-design-tutorial-3"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/ComponentStyle": {
+      "abstract": [
+        {
+          "text": "The object for setting style properties for components, including background color and fill, borders, and table styles.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "ComponentStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/ComponentStyle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ComponentStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "ComponentStyle",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/componentstyle"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/Condition": {
+      "abstract": [
+        {
+          "text": "The object for defining a condition that, when met, causes conditional properties to go into effect.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "Condition"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/Condition",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Condition"
+        }
+      ],
+      "role": "symbol",
+      "title": "Condition",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/condition"
+    },
+    "doc://com.apple.applenews/documentation/AppleNewsFormat/TextStyle": {
+      "abstract": [
+        {
+          "text": "The object for defining the text style, such as font family, size, and color, that you can apply to ranges of text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "TextStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.applenews/documentation/AppleNewsFormat/TextStyle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TextStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "TextStyle",
+      "type": "topic",
+      "url": "/documentation/applenewsformat/textstyle"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/design/human-interface-guidelines/macos/visual-design/dark-mode/": {
+      "identifier": "https://developer.apple.com/design/human-interface-guidelines/macos/visual-design/dark-mode/",
+      "title": "Apple Human Interface Guidelines > Dark Mode",
+      "titleInlineContent": [
+        {
+          "text": "Apple Human Interface Guidelines > Dark Mode",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/design/human-interface-guidelines/macos/visual-design/dark-mode/"
+    },
+    "media-3624917": {
+      "alt": "Screenshot of an Apple News article with a dark color scheme on iPhone.",
+      "identifier": "media-3624917",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1159bd5b0ddc9c289e47312c6661f9f2/media-3624917@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c521f378930603eb21822fa83cd45191/media-3624917~dark@2x.png"
+        }
+      ]
+    },
+    "media-3966565": {
+      "alt": "Screenshot of an Apple News article with a dark color scheme on iPhone displaying a light systemwide appearance.",
+      "identifier": "media-3966565",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/538f90f9e7aa5df57307c6b781824527/media-3966565@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c9b896b7c6817b442cd4514e8f31a8f0/media-3966565~dark@2x.png"
+        }
+      ]
+    },
+    "media-3966566": {
+      "alt": "Screenshot of an Apple News article with a dark color scheme on iPhone displaying a dark systemwide appearance.",
+      "identifier": "media-3966566",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/3ec0beb9f7108c7f92601ee91056edad/media-3966566@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/45c92dbf957d7f9d3f5f96e28a0afe64/media-3966566~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Related-Documentation",
+      "identifiers": [
+        "doc://com.apple.applenews/documentation/AppleNews/applying-a-background-to-a-component",
+        "doc://com.apple.applenews/documentation/AppleNews/defining-a-component-style",
+        "doc://com.apple.applenews/documentation/AppleNewsFormat/ComponentStyle",
+        "doc://com.apple.applenews/documentation/AppleNewsFormat/TextStyle"
+      ],
+      "title": "Related Documentation"
+    },
+    {
+      "anchor": "Advanced-Design-Tutorial-3-More-Ideas",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.applenews/documentation/AppleNews/adding-a-video",
+        "doc://com.apple.applenews/documentation/AppleNews/creating-a-sidebar",
+        "doc://com.apple.applenews/documentation/AppleNews/adding-a-fixed-image-fill",
+        "doc://com.apple.applenews/documentation/AppleNews/creating-a-newsletter-sign-up-element",
+        "doc://com.apple.applenews/documentation/AppleNews/viewing-the-finished-article-for-advanced-design-tutorial-3"
+      ],
+      "title": "Advanced Design Tutorial 3: More Ideas"
+    }
+  ]
+}

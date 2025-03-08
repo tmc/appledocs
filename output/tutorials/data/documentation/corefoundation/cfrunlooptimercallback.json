@@ -1,0 +1,410 @@
+{
+  "abstract": [
+    {
+      "text": "Callback invoked when a CFRunLoopTimer object fires.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/corefoundation",
+        "doc://com.apple.documentation/documentation/corefoundation/cfrunlooptimer-rhk"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/corefoundation/cfrunlooptimercallback"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1541574,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@T@CFRunLoopTimerCallBack",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "typealias "
+      },
+      {
+        "kind": "identifier",
+        "text": "CFRunLoopTimerCallBack"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Core Foundation"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Type Alias",
+    "symbolKind": "tdef",
+    "title": "CFRunLoopTimerCallBack"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "typealias"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CFRunLoopTimerCallBack"
+            },
+            {
+              "kind": "text",
+              "text": " = ("
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfrunlooptimer",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CFRunLoopTimerRef",
+              "text": "CFRunLoopTimer"
+            },
+            {
+              "kind": "text",
+              "text": "?"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Swift/UnsafeMutableRawPointer",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:Sv",
+              "text": "UnsafeMutableRawPointer"
+            },
+            {
+              "kind": "text",
+              "text": "?"
+            },
+            {
+              "kind": "text",
+              "text": ") -> "
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Swift/Void",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:s4Voida",
+              "text": "Void"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "languages": [
+        "swift"
+      ],
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The run loop timer that is firing. ",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "timer"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The ",
+                  "type": "text"
+                },
+                {
+                  "code": "info",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " member of the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfrunlooptimercontext",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " structure that was used when creating the run loop timer.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "info"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If ",
+              "type": "text"
+            },
+            {
+              "code": "timer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " repeats, the run loop automatically schedules the next firing time after calling this function, unless you manually update the firing time within this callback by calling ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/corefoundation/1542501-cfrunlooptimersetnextfiredate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". If ",
+              "type": "text"
+            },
+            {
+              "code": "timer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " does not repeat, the run loop invalidates ",
+              "type": "text"
+            },
+            {
+              "code": "timer",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You specify this callback when you create the timer with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/corefoundation/1543570-cfrunlooptimercreate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.Swift/documentation/Swift/UnsafeMutableRawPointer": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/UnsafeMutableRawPointer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UnsafeMutableRawPointer",
+      "type": "topic",
+      "url": "/documentation/swift/unsafemutablerawpointer"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Void": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Void",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Void",
+      "type": "topic",
+      "url": "/documentation/swift/void"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Foundation",
+      "type": "topic",
+      "url": "/documentation/corefoundation"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1542501-cfrunlooptimersetnextfiredate": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1542501-cfrunlooptimersetnextfiredate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFRunLoopTimerSetNextFireDate(_:_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1542501-cfrunlooptimersetnextfiredate"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/1543570-cfrunlooptimercreate": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/1543570-cfrunlooptimercreate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFRunLoopTimerCreate(_:_:_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/corefoundation/1543570-cfrunlooptimercreate"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfrunlooptimer": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfrunlooptimer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFRunLoopTimer",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfrunlooptimer"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfrunlooptimer-rhk": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfrunlooptimer-rhk",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "CFRunLoopTimer",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfrunlooptimer-rhk"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfrunlooptimercallback": {
+      "abstract": [
+        {
+          "text": "Callback invoked when a CFRunLoopTimer object fires.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "typealias "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFRunLoopTimerCallBack"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfrunlooptimercallback",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFRunLoopTimerCallBack",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfrunlooptimercallback"
+    },
+    "doc://com.apple.documentation/documentation/corefoundation/cfrunlooptimercontext": {
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfrunlooptimercontext",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFRunLoopTimerContext",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfrunlooptimercontext"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variants": [
+    {
+      "paths": [
+        "documentation/corefoundation/cfrunlooptimercallback"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/corefoundation/cfrunlooptimercallback"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

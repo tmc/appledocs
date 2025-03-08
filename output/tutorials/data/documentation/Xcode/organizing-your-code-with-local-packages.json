@@ -1,0 +1,525 @@
+{
+  "abstract": [
+    {
+      "text": "Simplify maintenance, promote modularity, and encourage reuse by organizing your",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "app’s code into local Swift packages.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Xcode/documentation/Xcode",
+        "doc://com.apple.Xcode/documentation/Xcode/swift-packages"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Xcode/documentation/Xcode/organizing-your-code-with-local-packages"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Organizing your code with local packages"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As you develop your app, organize its code in a modular way to keep it maintainable",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "by creating Swift packages and using them as ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "local packages",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "First, identify code that’s a good candidate for modularization; for example, networking",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "logic, source files that contain utilities, and so on. Next, move the code into a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "local package like this:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Open your Xcode project and create a local Swift package as part of your project",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "by selecting File > New > Package (or Swift Package in versions earlier than Xcode 15)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To create a package pre-configured for a library, select Multiplatform from the top of the package templates dialog, choose the Library template, and click Next. Choose from the other templates in the dialog to create packages configured for other kinds of content.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Choose a project and a group, but don’t create a new Git repository if your app",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "is already under version control; then create the new Swift package.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Move your code to the new package in the Project navigator and make any needed",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "updates to the ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "package manifest",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": ". The amount of configuration depends on your requirements.",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "For example, you might need to vend your code as a library product and declare the",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "package’s targets. To learn more about configuring a Swift package, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.Xcode/documentation/Xcode/creating-a-standalone-swift-package-with-xcode",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select your project in the Project navigator, then select your app target and",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "navigate to its General pane.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click the + button in the “Frameworks, Libraries, and Embedded Content” section,",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "select the local package’s library product, and add it as a dependency.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you organize your app’s codebase using local packages, your Swift package’s",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "code is part of the same repository as your app’s code. As you create more apps,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "consider moving local packages to their own Git repositories, and add them to your",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "apps as a package dependency to reuse code across apps. You may even consider sharing",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "them with other developers. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/publishing-a-swift-package-with-xcode",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Xcode-PageImage-card.png": {
+      "alt": "The Xcode logo on a blue gradient background.",
+      "identifier": "Xcode-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cc63eacd8f7f660388b46204d1d9bbcb/Xcode-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/62dba87d5f60ec96eb48882c9dff86d8/Xcode-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Xcode/documentation/Xcode": {
+      "abstract": [
+        {
+          "text": "Build, test, and submit your app with Apple’s integrated development environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode",
+      "images": [
+        {
+          "identifier": "Xcode-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/bundling-resources-with-a-swift-package": {
+      "abstract": [
+        {
+          "text": "Add resource files to your Swift package and access them in your code.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/bundling-resources-with-a-swift-package",
+      "kind": "article",
+      "role": "article",
+      "title": "Bundling resources with a Swift package",
+      "type": "topic",
+      "url": "/documentation/xcode/bundling-resources-with-a-swift-package"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/creating-a-standalone-swift-package-with-xcode": {
+      "abstract": [
+        {
+          "text": "Bundle executable or shareable code into a standalone Swift package.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/creating-a-standalone-swift-package-with-xcode",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating a standalone Swift package with Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode/creating-a-standalone-swift-package-with-xcode"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/developing-a-swift-package-in-tandem-with-an-app": {
+      "abstract": [
+        {
+          "text": "Add your published Swift package as a local package to your app’s project and develop",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "the package and the app in tandem.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/developing-a-swift-package-in-tandem-with-an-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Developing a Swift package in tandem with an app",
+      "type": "topic",
+      "url": "/documentation/xcode/developing-a-swift-package-in-tandem-with-an-app"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/distributing-binary-frameworks-as-swift-packages": {
+      "abstract": [
+        {
+          "text": "Make binaries available to other developers by creating Swift packages that include",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "one or more XCFrameworks.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/distributing-binary-frameworks-as-swift-packages",
+      "kind": "article",
+      "role": "article",
+      "title": "Distributing binary frameworks as Swift packages",
+      "type": "topic",
+      "url": "/documentation/xcode/distributing-binary-frameworks-as-swift-packages"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/localizing-package-resources": {
+      "abstract": [
+        {
+          "text": "Ensure that your Swift package provides localized resources for many locales.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/localizing-package-resources",
+      "kind": "article",
+      "role": "article",
+      "title": "Localizing package resources",
+      "type": "topic",
+      "url": "/documentation/xcode/localizing-package-resources"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/publishing-a-swift-package-with-xcode": {
+      "abstract": [
+        {
+          "text": "Publish your Swift package privately, or share it globally with other developers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/publishing-a-swift-package-with-xcode",
+      "kind": "article",
+      "role": "article",
+      "title": "Publishing a Swift package with Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode/publishing-a-swift-package-with-xcode"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/swift-packages": {
+      "abstract": [
+        {
+          "text": "Create reusable code, organize it in a lightweight way, and share it across Xcode projects and with other developers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/swift-packages",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Swift packages",
+      "type": "topic",
+      "url": "/documentation/xcode/swift-packages"
+    },
+    "doc://com.apple.documentation/documentation/PackageDescription": {
+      "abstract": [
+        {
+          "text": "Create reusable code, organize it in a lightweight way, and share it across your projects and with other developers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/PackageDescription",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "PackageDescription",
+      "type": "topic",
+      "url": "/documentation/PackageDescription"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Package-creation",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Xcode/documentation/Xcode/creating-a-standalone-swift-package-with-xcode",
+        "doc://com.apple.Xcode/documentation/Xcode/bundling-resources-with-a-swift-package",
+        "doc://com.apple.Xcode/documentation/Xcode/localizing-package-resources",
+        "doc://com.apple.Xcode/documentation/Xcode/distributing-binary-frameworks-as-swift-packages",
+        "doc://com.apple.Xcode/documentation/Xcode/developing-a-swift-package-in-tandem-with-an-app",
+        "doc://com.apple.documentation/documentation/PackageDescription"
+      ],
+      "title": "Package creation"
+    }
+  ]
+}

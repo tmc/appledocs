@@ -1,0 +1,777 @@
+{
+  "abstract": [
+    {
+      "text": "Monitor and interpret the status of your push notifications with Apple Push Notification service (APNs).",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.usernotifications/documentation/UserNotifications",
+        "doc://com.apple.usernotifications/documentation/UserNotifications/setting-up-a-remote-notification-server"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.usernotifications/documentation/UserNotifications/viewing-the-status-of-push-notifications-using-metrics-and-apns"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "User Notifications"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Viewing the status of push notifications using Metrics and APNs"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Push notifications can help optimize the user experience for your app by delivering important and time-sensitive information. Knowing the status of your notifications and whether your audience actually received them provides clarity and a better experience for people who use your app. You can monitor the status of your push notifications, after APNs accepts your request, using Metrics. Metrics shows you if APNs delivers or discards your push notifications, or saves them in persistent storage to attempt delivery later.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Get-access-to-the-Push-Notifications-Console",
+          "level": 3,
+          "text": "Get access to the Push Notifications Console",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://icloud.developer.apple.com/dashboard/notifications",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " is available to developers with valid WWDR developer accounts. To get access to the Push Notifications Console for your application, sign in with your developer account credentials. Verify that you’re part of the WWDR development team that registered the bundle ID of your application. Ask the admin of your WWDR team to add you to the team with the appropriate role. For more information, refer to ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/help/account/manage-your-team/invite-team-members",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The console is available to all team members, but certain features are only accessible to the admin role. For example, any team member can send a push notification to the APNs development environment, but only an admin user can send a push notification to the APNs production environment. For more details, refer to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/testing-notifications-using-the-push-notification-console",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Similar access restrictions apply when you’re exporting delivery metrics. For more information, refer to ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/pushkit/exporting-delivery-metrics-logs",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". To learn more about managing a team member’s roles, refer to ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/help/account/manage-your-team/roles",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "View-your-metrics",
+          "level": 3,
+          "text": "View your metrics",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://icloud.developer.apple.com/dashboard",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " Metrics tab provides aggregated, rounded reports on notification states as your notifications pass through APNs. Under the Metrics tab, it shows multiple notification statuses, such as delivered, stored, and discarded. Successful delivery depends on multiple factors, including:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Notification attributes, such as push priority and push type",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The destination device, such as the device’s power state",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "External factors, such as the device’s connection quality (both cellular and Wi-Fi)",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A person’s actions, such as disabling push notifications or background refresh",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If APNs stores or discards a notification, Metrics seperates the notifications into categories that explain why that status occured. For example, ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Stored - Device Offline",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " means APNs stored the notification because the device was offline. Metrics collects the notification status data when a notification reaches a specific state. For example, a notification for an offline device may get delivered later when the device is back online. For that notification, saving in APNs storage and delivery are seperate data points for a single notification.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the notification metrics to observe adoption of your new notification features or to tune your existing solution. For example, an uptick of ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Discarded - Disabled",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " means that people who use your app find notifications for your app irrelevant or noisy. Consider emphasizing on events that are interesting for people who use your app. Check the number of notifications preserved in APNs storage for offline devices and compare it with the number of push notifications delivered from APNs storage. If the former is significantly higher, it’s a strong indication that a large volume of notifications are sent to devices that aren’t active with APNs. To preserve privacy, APNs doesn’t track states of offline devices, other than preserving notifications. In this scenario, consider building a system to remove push tokens of inactive users and save on resources for your service.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Interpret-data-about-discarded-notifications",
+          "level": 3,
+          "text": "Interpret data about discarded notifications",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The figure below shows the logical flow that APNs takes to deliver a push notification to the destination device.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-4307812",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After viewing or exporting your notification metrics, you may see that APNs discarded some notifications. APNs discards a push notification for a number of reasons:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Your push token is no longer active on the destination device because a person removed your application or the push token for your application changes. For more information, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/registering-your-app-with-apns",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A person disabled push notifications for your app in Settings on the destination device. For more information, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/asking-permission-to-use-notifications",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The push notification expires. You can adjust the expiration attribute accordingly for future notifications. For more information, see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/sending-notification-requests-to-apns",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can use the Push Notification Console to send test notifications. For information on how to test notifications, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/testing-notifications-using-the-push-notification-console",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Interpret-data-about-stored-notifications",
+          "level": 3,
+          "text": "Interpret data about stored notifications",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After viewing or exporting your notification metrics, you may see that APNs stored some notifications in storage. APNs stores a push notification for a number of reasons. If the destination device isn’t connected to APNs, then APNs saves the push notification in persistent storage to deliver later (unless it expires). APNs attempts to deliver an unexpired, stored push notification when the destination device connects to the APNs server the next time. When APNs delivers the push notification to the destination device, the delivery may take multiple attempts and some attempts may reach across multiple network interfaces.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the destination device is connected to APNs but it has power restrictions, APNs may defer delivery of a notification to conserve battery. In that case, APNs stores the notification in persistent storage. When the device revises its power assertions and removes the restriction on delivery, APNs reattempts to deliver the stored notification.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When APNs tries to deliver a notification from the APNs persistent storage, it might get delivered successfully or get discarded, depending on a number of factors. See the figure below to understand the logical flow of a push notification getting discarded in APNs persistant storage.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-4307477",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "While in APNs persistent storage, other notifications can overwrite notifications you send for the same device token and bundle ID. APNs persistent storage only stores one notification per application per device. If you send multiple notifications for the same bundle ID while APNs can’t deliver the notifications, APNs preserves only one of the accepted push notifications. Most of the time, it’s the last notification sent, but because APNs doesn’t have any ordering guarantees, this isn’t always the case.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "When storing a push notification, APNs uses either the specified expiry or defaults to time-to-live (TTL) of 30 days, whichever comes first.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your push notification expires before the destination device connects to APNs and removes power state restrictions, APNs discards the notification. Your app may need to synchronize with your application server about the information missed due to discarded, expired, or overwritten notification.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "UserNotifications-PageImage-card.png": {
+      "alt": "[A notification interface displayed on the lock screen of an iOS device.]",
+      "identifier": "UserNotifications-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/074de9a9213bf2905d67fae5eb46e4f8/UserNotifications-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5733742e1c084fc202b3c92df9083686/UserNotifications-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications": {
+      "abstract": [
+        {
+          "text": "Push user-facing notifications to the user’s device from a server, or generate them locally from your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications",
+      "images": [
+        {
+          "identifier": "UserNotifications-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "User Notifications",
+      "type": "topic",
+      "url": "/documentation/usernotifications"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/asking-permission-to-use-notifications": {
+      "abstract": [
+        {
+          "text": "Request permission to display alerts, play sounds, or badge the app’s icon in response to a notification.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/asking-permission-to-use-notifications",
+      "kind": "article",
+      "role": "article",
+      "title": "Asking permission to use notifications",
+      "type": "topic",
+      "url": "/documentation/usernotifications/asking-permission-to-use-notifications"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/handling-notification-responses-from-apns": {
+      "abstract": [
+        {
+          "text": "Respond to the status codes that the APNs servers return.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/handling-notification-responses-from-apns",
+      "kind": "article",
+      "role": "article",
+      "title": "Handling notification responses from APNs",
+      "type": "topic",
+      "url": "/documentation/usernotifications/handling-notification-responses-from-apns"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/registering-your-app-with-apns": {
+      "abstract": [
+        {
+          "text": "Communicate with Apple Push Notification service (APNs) and receive a unique device token that identifies your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/registering-your-app-with-apns",
+      "kind": "article",
+      "role": "article",
+      "title": "Registering your app with APNs",
+      "type": "topic",
+      "url": "/documentation/usernotifications/registering-your-app-with-apns"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/sending-notification-requests-to-apns": {
+      "abstract": [
+        {
+          "text": "Transmit your remote notification payload and device token information to Apple Push Notification service (APNs).",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/sending-notification-requests-to-apns",
+      "kind": "article",
+      "role": "article",
+      "title": "Sending notification requests to APNs",
+      "type": "topic",
+      "url": "/documentation/usernotifications/sending-notification-requests-to-apns"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/setting-up-a-remote-notification-server": {
+      "abstract": [
+        {
+          "text": "Generate notifications and push them to user devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/setting-up-a-remote-notification-server",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Setting up a remote notification server",
+      "type": "topic",
+      "url": "/documentation/usernotifications/setting-up-a-remote-notification-server"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/testing-notifications-using-the-push-notification-console": {
+      "abstract": [
+        {
+          "text": "Send test notifications and access delivery logs to test your app’s integration with Apple Push Notification service (APNs).",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/testing-notifications-using-the-push-notification-console",
+      "kind": "article",
+      "role": "article",
+      "title": "Testing notifications using the Push Notification Console",
+      "type": "topic",
+      "url": "/documentation/usernotifications/testing-notifications-using-the-push-notification-console"
+    },
+    "https://developer.apple.com/documentation/pushkit/exporting-delivery-metrics-logs": {
+      "identifier": "https://developer.apple.com/documentation/pushkit/exporting-delivery-metrics-logs",
+      "title": "Exporting delivery metrics logs",
+      "titleInlineContent": [
+        {
+          "text": "Exporting delivery metrics logs",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/pushkit/exporting-delivery-metrics-logs"
+    },
+    "https://developer.apple.com/help/account/manage-your-team/invite-team-members": {
+      "identifier": "https://developer.apple.com/help/account/manage-your-team/invite-team-members",
+      "title": "Invite team members",
+      "titleInlineContent": [
+        {
+          "text": "Invite team members",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/help/account/manage-your-team/invite-team-members"
+    },
+    "https://developer.apple.com/help/account/manage-your-team/roles": {
+      "identifier": "https://developer.apple.com/help/account/manage-your-team/roles",
+      "title": "Roles and access",
+      "titleInlineContent": [
+        {
+          "text": "Roles and access",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/help/account/manage-your-team/roles"
+    },
+    "https://icloud.developer.apple.com/dashboard": {
+      "identifier": "https://icloud.developer.apple.com/dashboard",
+      "title": "Push Notification Console",
+      "titleInlineContent": [
+        {
+          "text": "Push Notification Console",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://icloud.developer.apple.com/dashboard"
+    },
+    "https://icloud.developer.apple.com/dashboard/notifications": {
+      "identifier": "https://icloud.developer.apple.com/dashboard/notifications",
+      "title": "Push Notifications Console",
+      "titleInlineContent": [
+        {
+          "text": "Push Notifications Console",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://icloud.developer.apple.com/dashboard/notifications"
+    },
+    "media-4307477": {
+      "alt": "A flow diagram depicting the steps taken by APNs to deliver a push notification to the destination device after the notification is in APNs storage. APNs checks if the device removed power reservation assertion and if the device is online with APNs. If the answer is no, then APNs discards the notification. If the answer is yes, then APNs sends the notification back to device flow. In device flow, APNs reattempts to deliver the notfication.",
+      "identifier": "media-4307477",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/7dc2dee48b26830305d092e5eafea62b/media-4307477@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/8f3de32cc63caa3e9d28fdae75666b11/media-4307477~dark@2x.png"
+        }
+      ]
+    },
+    "media-4307812": {
+      "alt": "A flow diagram depicting the steps taken by APNs to deliver a push notification to the destination device. Starting on the left, APNs accepts the push notification and checks if the token is registered and if push notifications is enabled. If the answer is no, APNs discards the notification and checks if the destination device imposed power reservation. If the answer is no, then the notification gets delivered to the destination device. Otherwise, APNs checks if the push is expired. If the answer is yes, APNs discards the notification. If the answer is no, APNs stores the notification in APNs storage to send at a later time.",
+      "identifier": "media-4307812",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b021c2b9d3c0d0630659d30557185513/media-4307812@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/639a33e598d605572f733a857c11959c/media-4307812~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Device-push-notifications",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.usernotifications/documentation/UserNotifications/sending-notification-requests-to-apns",
+        "doc://com.apple.usernotifications/documentation/UserNotifications/handling-notification-responses-from-apns"
+      ],
+      "title": "Device push notifications"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Device-push-notifications",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.usernotifications/documentation/UserNotifications/sending-notification-requests-to-apns",
+                "doc://com.apple.usernotifications/documentation/UserNotifications/handling-notification-responses-from-apns"
+              ],
+              "title": "Device push notifications"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/usernotifications/viewing-the-status-of-push-notifications-using-metrics-and-apns"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/usernotifications/viewing-the-status-of-push-notifications-using-metrics-and-apns"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

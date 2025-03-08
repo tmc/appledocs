@@ -1,0 +1,492 @@
+{
+  "abstract": [
+    {
+      "text": "Creates a new memory buffer descriptor object in the current process space.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/driverkit",
+        "doc://com.apple.documentation/documentation/driverkit/iobuffermemorydescriptor"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/kernel",
+        "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals",
+        "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals/memory",
+        "doc://com.apple.documentation/documentation/kernel/iobuffermemorydescriptor"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/kernel/iobuffermemorydescriptor/3180450-create"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 3180450,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@S@IOBufferMemoryDescriptor@F@Create#k#k#k#**$@S@IOBufferMemoryDescriptor#S",
+    "modules": [
+      {
+        "name": "DriverKit"
+      },
+      {
+        "name": "Kernel"
+      }
+    ],
+    "parent": {
+      "title": "IOBufferMemoryDescriptor"
+    },
+    "platforms": [
+      {
+        "current": "24.4",
+        "introducedAt": "19.0",
+        "name": "DriverKit"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.15",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Type Method",
+    "symbolKind": "clm",
+    "title": "Create"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "DriverKit",
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "static"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/kern_return_t",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@kern_return_t",
+              "text": "kern_return_t"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "Create"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "keyword",
+              "text": "uint64_t"
+            },
+            {
+              "kind": "text",
+              "text": " options, "
+            },
+            {
+              "kind": "keyword",
+              "text": "uint64_t"
+            },
+            {
+              "kind": "text",
+              "text": " capacity, "
+            },
+            {
+              "kind": "keyword",
+              "text": "uint64_t"
+            },
+            {
+              "kind": "text",
+              "text": " alignment, "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/driverkit/iobuffermemorydescriptor",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@S@IOBufferMemoryDescriptor",
+              "text": "IOBufferMemoryDescriptor"
+            },
+            {
+              "kind": "text",
+              "text": " **memory);"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "languages": [
+        "occ"
+      ],
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The direction in which buffer data moves, relative to your process. For example, specify ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/driverkit/3852596-anonymous/kiomemorydirectionin",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " if your driver only reads from the buffer. For a list of possible values, see ",
+                  "type": "text"
+                },
+                {
+                  "code": "Memory Buffer Options",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "options"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The maximum number of bytes to allocate for the memory buffer. The buffer's initial length is set to the value in this parameter. You can change the length later by calling the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/kernel/iobuffermemorydescriptor/3180454-setlength",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " method.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "capacity"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The minimum required alignment of the buffer in bytes. For example, specify 256 to align the buffer on an address where bits 0 to 7 are ",
+                  "type": "text"
+                },
+                {
+                  "code": "0",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ". Specify ",
+                  "type": "text"
+                },
+                {
+                  "code": "0",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " if you don't require a specific alignment. ",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "alignment"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A variable in which to store the newly created buffer memory descriptor. ",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "memory"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return_value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.documentation/documentation/driverkit/kioreturnsuccess",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " on success, or another value if an error occurs. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/driverkit/error_codes",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/driverkit": {
+      "identifier": "doc://com.apple.documentation/documentation/driverkit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "DriverKit",
+      "type": "topic",
+      "url": "/documentation/driverkit"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/3852596-anonymous/kiomemorydirectionin": {
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/3852596-anonymous/kiomemorydirectionin",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kIOMemoryDirectionIn",
+      "type": "topic",
+      "url": "/documentation/driverkit/3852596-anonymous/kiomemorydirectionin"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/error_codes": {
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/error_codes",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Error Codes",
+      "type": "topic",
+      "url": "/documentation/driverkit/error_codes"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/iobuffermemorydescriptor": {
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/iobuffermemorydescriptor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOBufferMemoryDescriptor",
+      "type": "topic",
+      "url": "/documentation/driverkit/iobuffermemorydescriptor"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/iobuffermemorydescriptor/3180457-init": {
+      "abstract": [
+        {
+          "text": "Initializes the buffer memory descriptor object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/iobuffermemorydescriptor/3180457-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init",
+      "type": "topic",
+      "url": "/documentation/driverkit/iobuffermemorydescriptor/3180457-init"
+    },
+    "doc://com.apple.documentation/documentation/driverkit/kioreturnsuccess": {
+      "identifier": "doc://com.apple.documentation/documentation/driverkit/kioreturnsuccess",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kIOReturnSuccess",
+      "type": "topic",
+      "url": "/documentation/driverkit/kioreturnsuccess"
+    },
+    "doc://com.apple.documentation/documentation/kernel": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Kernel",
+      "type": "topic",
+      "url": "/documentation/kernel"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iobuffermemorydescriptor": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iobuffermemorydescriptor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOBufferMemoryDescriptor",
+      "type": "topic",
+      "url": "/documentation/kernel/iobuffermemorydescriptor"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iobuffermemorydescriptor/3180450-create": {
+      "abstract": [
+        {
+          "text": "Creates a new memory buffer descriptor object in the current process space.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "Create"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iobuffermemorydescriptor/3180450-create",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Create",
+      "type": "topic",
+      "url": "/documentation/kernel/iobuffermemorydescriptor/3180450-create"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iobuffermemorydescriptor/3180454-setlength": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "SetLength"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iobuffermemorydescriptor/3180454-setlength",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SetLength",
+      "type": "topic",
+      "url": "/documentation/kernel/iobuffermemorydescriptor/3180454-setlength"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iobuffermemorydescriptor/3180456-free": {
+      "abstract": [
+        {
+          "text": "Performs any final cleanup for the memory buffer descriptor object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "free"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iobuffermemorydescriptor/3180456-free",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "free",
+      "type": "topic",
+      "url": "/documentation/kernel/iobuffermemorydescriptor/3180456-free"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "IOKit Fundamentals",
+      "type": "topic",
+      "url": "/documentation/kernel/iokit_fundamentals"
+    },
+    "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals/memory": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/iokit_fundamentals/memory",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Memory",
+      "type": "topic",
+      "url": "/documentation/kernel/iokit_fundamentals/memory"
+    },
+    "doc://com.apple.documentation/documentation/kernel/kern_return_t": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/kern_return_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "kern_return_t",
+      "type": "topic",
+      "url": "/documentation/kernel/kern_return_t"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/driverkit/iobuffermemorydescriptor/3180457-init",
+        "doc://com.apple.documentation/documentation/kernel/iobuffermemorydescriptor/3180456-free"
+      ],
+      "title": "Creating a Memory Buffer"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/kernel/iobuffermemorydescriptor/3180450-create",
+        "documentation/driverkit/iobuffermemorydescriptor/3180450-create"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

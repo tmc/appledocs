@@ -1,0 +1,1225 @@
+{
+  "abstract": [
+    {
+      "text": "A container that manages the storage of cookies. ",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/url_loading_system"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/url_loading_system",
+        "doc://com.apple.documentation/documentation/foundation/urlsession",
+        "doc://com.apple.documentation/documentation/foundation/urlsessionconfiguration"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/httpcookiestorage"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1415659,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSHTTPCookieStorage",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "class "
+      },
+      {
+        "kind": "identifier",
+        "text": "HTTPCookieStorage"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.2",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "HTTPCookieStorage"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "HTTPCookieStorage"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each stored cookie is represented by an instance of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/httpcookie",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "2940044",
+          "level": 3,
+          "text": "Sharing cookie storage",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The persistent cookie storage returned by ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/httpcookiestorage/1416095-shared",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " may be available to app extensions or other apps, subject to the following guidelines:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "iOS — Each app and app extension has a unique data container, meaning  they have separate cookie stores. You can obtain a common cookie storage by using the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/httpcookiestorage/1411361-sharedcookiestorage",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " method.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "macOS (non-sandboxed) — As of macOS 10.11, each app has its own cookie storage. Prior to macOS 10.11, a common cookie store is shared among the user's apps.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "macOS (sandboxed) — Same as iOS.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIWebView",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " — ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "UIWebView",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " instances within an app inherit the parent app's shared cookie storage.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.webkit/documentation/WebKit/WKWebView",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " — Each ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "WKWebView",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " instance has its own cookie storage. See the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.webkit/documentation/WebKit/WKHTTPCookieStore",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " class for more information.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Session cookies (where the cookie object’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/httpcookie/1392991-issessiononly",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property is ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/swift/true",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": ") are local to a single process and are not shared.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "In cases where a cookie storage is shared between processes, changes made to the cookie accept policy affect all currently running apps using the cookie storage. ",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "2940351",
+          "level": 3,
+          "text": "Subclassing notes",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/httpcookiestorage",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " class is usable as-is, but you can subclass it. For example, you can override the storage methods like ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/httpcookiestorage/1415381-storecookies",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/httpcookiestorage/1408517-getcookiesfor",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " to screen which cookies are stored, or reimplement the storage mechanism for security or other reasons.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When overriding methods of this class, be aware that methods that take a ",
+              "type": "text"
+            },
+            {
+              "code": "task",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter are preferred by the system to equivalent methods that do not. Therefore, you should override the task-based methods when subclassing, as follows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Retrieving cookies — Override ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/httpcookiestorage/1408517-getcookiesfor",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", instead of or in addition to ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/httpcookiestorage/1412100-cookies",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Adding cookies — Override ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/httpcookiestorage/1415381-storecookies",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", instead of or in addition to ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/httpcookiestorage/1412510-setcookies",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.Swift/documentation/Swift/Sendable": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Sendable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/swift/sendable"
+    },
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/httpcookie": {
+      "abstract": [
+        {
+          "text": "A representation of an HTTP cookie.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "HTTPCookie"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/httpcookie",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "HTTPCookie",
+      "type": "topic",
+      "url": "/documentation/foundation/httpcookie"
+    },
+    "doc://com.apple.documentation/documentation/foundation/httpcookie/1392991-issessiononly": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/httpcookie/1392991-issessiononly",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "isSessionOnly",
+      "type": "topic",
+      "url": "/documentation/foundation/httpcookie/1392991-issessiononly"
+    },
+    "doc://com.apple.documentation/documentation/foundation/httpcookie/acceptpolicy": {
+      "abstract": [
+        {
+          "text": "Cookie acceptance policies implemented by the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/httpcookiestorage",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " class.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "enum "
+        },
+        {
+          "kind": "identifier",
+          "text": "HTTPCookie.AcceptPolicy"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/httpcookie/acceptpolicy",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "HTTPCookie.AcceptPolicy",
+      "type": "topic",
+      "url": "/documentation/foundation/httpcookie/acceptpolicy"
+    },
+    "doc://com.apple.documentation/documentation/foundation/httpcookiestorage": {
+      "abstract": [
+        {
+          "text": "A container that manages the storage of cookies. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "HTTPCookieStorage"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/httpcookiestorage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "HTTPCookieStorage",
+      "type": "topic",
+      "url": "/documentation/foundation/httpcookiestorage"
+    },
+    "doc://com.apple.documentation/documentation/foundation/httpcookiestorage/1407256-removecookies": {
+      "abstract": [
+        {
+          "text": "Removes cookies that were stored after a given date.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeCookies"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "since"
+        },
+        {
+          "kind": "text",
+          "text": ": Date)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/httpcookiestorage/1407256-removecookies",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "removeCookies(since:)",
+      "type": "topic",
+      "url": "/documentation/foundation/httpcookiestorage/1407256-removecookies"
+    },
+    "doc://com.apple.documentation/documentation/foundation/httpcookiestorage/1408517-getcookiesfor": {
+      "abstract": [
+        {
+          "text": "Fetches cookies relevant to the specified task and passes them to the completion handler.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "getCookiesFor"
+        },
+        {
+          "kind": "text",
+          "text": "(URLSessionTask, "
+        },
+        {
+          "kind": "identifier",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ([HTTPCookie]?) -> Void)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/httpcookiestorage/1408517-getcookiesfor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getCookiesFor(_:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/foundation/httpcookiestorage/1408517-getcookiesfor"
+    },
+    "doc://com.apple.documentation/documentation/foundation/httpcookiestorage/1409218-deletecookie": {
+      "abstract": [
+        {
+          "text": "Deletes the specified cookie from the cookie storage.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "deleteCookie"
+        },
+        {
+          "kind": "text",
+          "text": "(HTTPCookie)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/httpcookiestorage/1409218-deletecookie",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "deleteCookie(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/httpcookiestorage/1409218-deletecookie"
+    },
+    "doc://com.apple.documentation/documentation/foundation/httpcookiestorage/1410415-cookieacceptpolicy": {
+      "abstract": [
+        {
+          "text": "The cookie storage’s cookie accept policy.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "cookieAcceptPolicy"
+        },
+        {
+          "kind": "text",
+          "text": ": HTTPCookie.AcceptPolicy"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/httpcookiestorage/1410415-cookieacceptpolicy",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cookieAcceptPolicy",
+      "type": "topic",
+      "url": "/documentation/foundation/httpcookiestorage/1410415-cookieacceptpolicy"
+    },
+    "doc://com.apple.documentation/documentation/foundation/httpcookiestorage/1411361-sharedcookiestorage": {
+      "abstract": [
+        {
+          "text": "Returns the cookie storage instance for the container associated with the specified app group identifier.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "sharedCookieStorage"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forGroupContainerIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> HTTPCookieStorage"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/httpcookiestorage/1411361-sharedcookiestorage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sharedCookieStorage(forGroupContainerIdentifier:)",
+      "type": "topic",
+      "url": "/documentation/foundation/httpcookiestorage/1411361-sharedcookiestorage"
+    },
+    "doc://com.apple.documentation/documentation/foundation/httpcookiestorage/1412100-cookies": {
+      "abstract": [
+        {
+          "text": "Returns all the cookie storage’s cookies that are sent to a specified URL.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "cookies"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": URL) -> [HTTPCookie]?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/httpcookiestorage/1412100-cookies",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cookies(for:)",
+      "type": "topic",
+      "url": "/documentation/foundation/httpcookiestorage/1412100-cookies"
+    },
+    "doc://com.apple.documentation/documentation/foundation/httpcookiestorage/1412510-setcookies": {
+      "abstract": [
+        {
+          "text": "Adds an array of cookies to the cookie storage if the storage’s cookie acceptance policy permits.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "setCookies"
+        },
+        {
+          "kind": "text",
+          "text": "([HTTPCookie], "
+        },
+        {
+          "kind": "identifier",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": URL?, "
+        },
+        {
+          "kind": "identifier",
+          "text": "mainDocumentURL"
+        },
+        {
+          "kind": "text",
+          "text": ": URL?)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/httpcookiestorage/1412510-setcookies",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setCookies(_:for:mainDocumentURL:)",
+      "type": "topic",
+      "url": "/documentation/foundation/httpcookiestorage/1412510-setcookies"
+    },
+    "doc://com.apple.documentation/documentation/foundation/httpcookiestorage/1413730-sortedcookies": {
+      "abstract": [
+        {
+          "text": "Returns all of the cookie storage’s cookies, sorted according to a given set of sort descriptors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "sortedCookies"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "using"
+        },
+        {
+          "kind": "text",
+          "text": ": [NSSortDescriptor]) -> [HTTPCookie]"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/httpcookiestorage/1413730-sortedcookies",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sortedCookies(using:)",
+      "type": "topic",
+      "url": "/documentation/foundation/httpcookiestorage/1413730-sortedcookies"
+    },
+    "doc://com.apple.documentation/documentation/foundation/httpcookiestorage/1415381-storecookies": {
+      "abstract": [
+        {
+          "text": "Stores an array of cookies in the cookie storage, on behalf of the provided task, if the cookie accept policy permits.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "storeCookies"
+        },
+        {
+          "kind": "text",
+          "text": "([HTTPCookie], "
+        },
+        {
+          "kind": "identifier",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": URLSessionTask)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/httpcookiestorage/1415381-storecookies",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "storeCookies(_:for:)",
+      "type": "topic",
+      "url": "/documentation/foundation/httpcookiestorage/1415381-storecookies"
+    },
+    "doc://com.apple.documentation/documentation/foundation/httpcookiestorage/1416095-shared": {
+      "abstract": [
+        {
+          "text": "The shared cookie storage instance.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class var "
+        },
+        {
+          "kind": "identifier",
+          "text": "shared"
+        },
+        {
+          "kind": "text",
+          "text": ": HTTPCookieStorage"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/httpcookiestorage/1416095-shared",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "shared",
+      "type": "topic",
+      "url": "/documentation/foundation/httpcookiestorage/1416095-shared"
+    },
+    "doc://com.apple.documentation/documentation/foundation/httpcookiestorage/1418356-setcookie": {
+      "abstract": [
+        {
+          "text": "Stores a specified cookie in the cookie storage if the cookie accept policy permits.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "setCookie"
+        },
+        {
+          "kind": "text",
+          "text": "(HTTPCookie)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/httpcookiestorage/1418356-setcookie",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setCookie(_:)",
+      "type": "topic",
+      "url": "/documentation/foundation/httpcookiestorage/1418356-setcookie"
+    },
+    "doc://com.apple.documentation/documentation/foundation/httpcookiestorage/1418390-cookies": {
+      "abstract": [
+        {
+          "text": "The cookie storage’s cookies.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "cookies"
+        },
+        {
+          "kind": "text",
+          "text": ": [HTTPCookie]?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/httpcookiestorage/1418390-cookies",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cookies",
+      "type": "topic",
+      "url": "/documentation/foundation/httpcookiestorage/1418390-cookies"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1409500-nshttpcookiemanagercookieschange": {
+      "abstract": [
+        {
+          "text": "A notification posted when the cookies stored in the cookie storage have changed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static let "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSHTTPCookieManagerCookiesChanged"
+        },
+        {
+          "kind": "text",
+          "text": ": NSNotification.Name"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1409500-nshttpcookiemanagercookieschange",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSHTTPCookieManagerCookiesChanged",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnotification/name/1409500-nshttpcookiemanagercookieschange"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1415149-nshttpcookiemanageracceptpolicyc": {
+      "abstract": [
+        {
+          "text": "A notification posted when the acceptance policy of the cookie storage has changed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static let "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSHTTPCookieManagerAcceptPolicyChanged"
+        },
+        {
+          "kind": "text",
+          "text": ": NSNotification.Name"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1415149-nshttpcookiemanageracceptpolicyc",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSHTTPCookieManagerAcceptPolicyChanged",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnotification/name/1415149-nshttpcookiemanageracceptpolicyc"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url_loading_system": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "URL Loading System",
+      "type": "topic",
+      "url": "/documentation/foundation/url_loading_system"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsession": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLSession",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsession"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessionconfiguration": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessionconfiguration",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLSessionConfiguration",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessionconfiguration"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.apple.documentation/documentation/swift/true": {
+      "identifier": "doc://com.apple.documentation/documentation/swift/true",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "true",
+      "type": "topic",
+      "url": "/documentation/swift/true"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIWebView": {
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIWebView",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UIWebView",
+      "type": "topic",
+      "url": "/documentation/uikit/uiwebview"
+    },
+    "doc://com.apple.webkit/documentation/WebKit/WKHTTPCookieStore": {
+      "identifier": "doc://com.apple.webkit/documentation/WebKit/WKHTTPCookieStore",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "WKHTTPCookieStore",
+      "type": "topic",
+      "url": "/documentation/webkit/wkhttpcookiestore"
+    },
+    "doc://com.apple.webkit/documentation/WebKit/WKWebView": {
+      "identifier": "doc://com.apple.webkit/documentation/WebKit/WKWebView",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "WKWebView",
+      "type": "topic",
+      "url": "/documentation/webkit/wkwebview"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/objectivec/nsobject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.apple.Swift/documentation/Swift/Sendable"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/httpcookie"
+      ],
+      "title": "Cookies"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "1651210",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/httpcookiestorage/1416095-shared",
+        "doc://com.apple.documentation/documentation/foundation/httpcookiestorage/1411361-sharedcookiestorage"
+      ],
+      "kind": "taskGroup",
+      "title": "Getting the shared cookie storage object"
+    },
+    {
+      "anchor": "1651236",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/httpcookiestorage/1410415-cookieacceptpolicy",
+        "doc://com.apple.documentation/documentation/foundation/httpcookie/acceptpolicy"
+      ],
+      "kind": "taskGroup",
+      "title": "Getting and setting the cookie accept policy"
+    },
+    {
+      "anchor": "1651273",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/httpcookiestorage/1407256-removecookies",
+        "doc://com.apple.documentation/documentation/foundation/httpcookiestorage/1409218-deletecookie",
+        "doc://com.apple.documentation/documentation/foundation/httpcookiestorage/1418356-setcookie",
+        "doc://com.apple.documentation/documentation/foundation/httpcookiestorage/1412510-setcookies",
+        "doc://com.apple.documentation/documentation/foundation/httpcookiestorage/1415381-storecookies"
+      ],
+      "kind": "taskGroup",
+      "title": "Adding and removing cookies"
+    },
+    {
+      "anchor": "1651328",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/httpcookiestorage/1418390-cookies",
+        "doc://com.apple.documentation/documentation/foundation/httpcookiestorage/1408517-getcookiesfor",
+        "doc://com.apple.documentation/documentation/foundation/httpcookiestorage/1412100-cookies",
+        "doc://com.apple.documentation/documentation/foundation/httpcookiestorage/1413730-sortedcookies"
+      ],
+      "kind": "taskGroup",
+      "title": "Retrieving cookies"
+    },
+    {
+      "anchor": "1651451",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1409500-nshttpcookiemanagercookieschange",
+        "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1415149-nshttpcookiemanageracceptpolicyc"
+      ],
+      "kind": "taskGroup",
+      "title": "Tracking cookie storage changes"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nshttpcookiestorage"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/httpcookiestorage"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

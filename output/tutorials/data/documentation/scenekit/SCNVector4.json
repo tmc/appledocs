@@ -1,0 +1,2043 @@
+{
+  "abstract": [
+    {
+      "text": "A representation of a four-component vector.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.scenekit/documentation/SceneKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.scenekit/documentation/SceneKit/SCNVector4"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@S@SCNVector4",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "struct"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "SCNVector4"
+      }
+    ],
+    "modules": [
+      {
+        "name": "SceneKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "SCNVector4"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "SCNVector4"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "SCNVector4"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "SceneKit uses four-component vectors to represent multiple kinds of data:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Axis-angle rotation or torque. The ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "x",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "y",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "z",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " fields contain the normalized x-, y-, and z-components of the rotation axis, and the ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "w",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " field contains the rotation angle, in radians, or torque magnitude, in newton-meters.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Color value (or range). The ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "x",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "y",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "z",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", and ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "w",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " fields contain the red, green, blue, and alpha components of the color, or the width of the color variation range in each component.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "In macOS, the ",
+                  "type": "text"
+                },
+                {
+                  "code": "x",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", ",
+                  "type": "text"
+                },
+                {
+                  "code": "y",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ", ",
+                  "type": "text"
+                },
+                {
+                  "code": "z",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " and ",
+                  "type": "text"
+                },
+                {
+                  "code": "w",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " fields in this structure are ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/corefoundation/cgfloat",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " values. In iOS, tvOS, and watchOS, these fields are ",
+                  "type": "text"
+                },
+                {
+                  "code": "float",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " values.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/corefoundation/cgfloat": {
+      "abstract": [
+        {
+          "text": "The basic type for floating-point scalar values in Core Graphics and related frameworks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "CGFloat"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cgfloat",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CGFloat",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cgfloat"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit": {
+      "abstract": [
+        {
+          "text": "Create 3D games and add 3D content to apps using high-level scene descriptions, and easily add animations, physics simulation, particle effects, and realistic physically based rendering.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SceneKit",
+      "type": "topic",
+      "url": "/documentation/scenekit"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNVector3": {
+      "abstract": [
+        {
+          "text": "A representation of a three-component vector.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNVector3"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNVector3",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNVector3"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNVector3",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnvector3"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNVector4": {
+      "abstract": [
+        {
+          "text": "A representation of a four-component vector.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNVector4"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNVector4",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNVector4"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNVector4",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnvector4"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNVector4/init()": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNVector4/init()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init()",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnvector4/init()"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNVector4/init(_:)-5q2cx": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5SIMD4V",
+          "text": "SIMD4"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": ">)"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNVector4/init(_:)-5q2cx",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(_:)",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnvector4/init(_:)-5q2cx"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNVector4/init(_:)-6w6mx": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5SIMD4V",
+          "text": "SIMD4"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ">)"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNVector4/init(_:)-6w6mx",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(_:)",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnvector4/init(_:)-6w6mx"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNVector4/init(_:_:_:_:)-6otq6": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNVector4/init(_:_:_:_:)-6otq6",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnvector4/init(_:_:_:_:)-6otq6"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNVector4/init(_:_:_:_:)-85e6w": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNVector4/init(_:_:_:_:)-85e6w",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnvector4/init(_:_:_:_:)-85e6w"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNVector4/init(_:_:_:_:)-93hx1": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNVector4/init(_:_:_:_:)-93hx1",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnvector4/init(_:_:_:_:)-93hx1"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNVector4/init(_:_:_:_:)-pk7r": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNVector4/init(_:_:_:_:)-pk7r",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnvector4/init(_:_:_:_:)-pk7r"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNVector4/init(x:y:z:w:)-37b3a": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "x"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "y"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "z"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "w"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNVector4/init(x:y:z:w:)-37b3a",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(x:y:z:w:)",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnvector4/init(x:y:z:w:)-37b3a"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNVector4/init(x:y:z:w:)-7hxmu": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "x"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "y"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "z"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "w"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNVector4/init(x:y:z:w:)-7hxmu",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(x:y:z:w:)",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnvector4/init(x:y:z:w:)-7hxmu"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNVector4/w": {
+      "abstract": [
+        {
+          "text": "The fourth component in the vector.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "w"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNVector4/w",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "w"
+        }
+      ],
+      "role": "symbol",
+      "title": "w",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnvector4/w"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNVector4/x": {
+      "abstract": [
+        {
+          "text": "The first component in the vector.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "x"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNVector4/x",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "x"
+        }
+      ],
+      "role": "symbol",
+      "title": "x",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnvector4/x"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNVector4/y": {
+      "abstract": [
+        {
+          "text": "The second component in the vector.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "y"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNVector4/y",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "y"
+        }
+      ],
+      "role": "symbol",
+      "title": "y",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnvector4/y"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNVector4/z": {
+      "abstract": [
+        {
+          "text": "The third component in the vector.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "z"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNVector4/z",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "z"
+        }
+      ],
+      "role": "symbol",
+      "title": "z",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnvector4/z"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNVector4EqualToVector4(_:_:)": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value that indicates whether the corresponding components of two vectors are equal.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNVector4EqualToVector4"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@SCNVector4",
+          "text": "SCNVector4"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@SCNVector4",
+          "text": "SCNVector4"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNVector4EqualToVector4(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNVector4EqualToVector4"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNVector4EqualToVector4(_:_:)",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnvector4equaltovector4(_:_:)"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNVector4FromFloat4": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SCNVector4FromFloat4"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNVector4FromFloat4",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SCNVector4FromFloat4",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnvector4fromfloat4"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNVector4FromGLKVector4(_:)": {
+      "abstract": [
+        {
+          "text": "Returns a four-element SceneKit vector structure corresponding to a GLKit vector structure.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNVector4FromGLKVector4"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "GLKVector4"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@SCNVector4",
+          "text": "SCNVector4"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNVector4FromGLKVector4(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNVector4FromGLKVector4"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNVector4FromGLKVector4(_:)",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnvector4fromglkvector4(_:)"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNVector4Make(_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Returns a new four-component vector created from individual component values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNVector4Make"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sf",
+          "text": "Float"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@SCNVector4",
+          "text": "SCNVector4"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNVector4Make(_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNVector4Make"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNVector4Make(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnvector4make(_:_:_:_:)"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNVector4ToFloat4": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "SCNVector4ToFloat4"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNVector4ToFloat4",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SCNVector4ToFloat4",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnvector4tofloat4"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNVector4ToGLKVector4(_:)": {
+      "abstract": [
+        {
+          "text": "Returns a four-element GLKit vector structure corresponding to a SceneKit vector structure.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNVector4ToGLKVector4"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@SCNVector4",
+          "text": "SCNVector4"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "GLKVector4"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNVector4ToGLKVector4(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNVector4ToGLKVector4"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNVector4ToGLKVector4(_:)",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnvector4toglkvector4(_:)"
+    },
+    "doc://com.apple.scenekit/documentation/SceneKit/SCNVector4Zero": {
+      "abstract": [
+        {
+          "text": "The four-component vector whose every component is ",
+          "type": "text"
+        },
+        {
+          "code": "0.0",
+          "type": "codeVoice"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SCNVector4Zero"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@SCNVector4",
+          "text": "SCNVector4"
+        }
+      ],
+      "identifier": "doc://com.apple.scenekit/documentation/SceneKit/SCNVector4Zero",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SCNVector4Zero"
+        }
+      ],
+      "role": "symbol",
+      "title": "SCNVector4Zero",
+      "type": "topic",
+      "url": "/documentation/scenekit/scnvector4zero"
+    },
+    "doc://com.externally.resolved.symbol/s:s15BitwiseCopyableP": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BitwiseCopyable"
+        },
+        {
+          "kind": "text",
+          "text": " : ~Escapable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s15BitwiseCopyableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "BitwiseCopyable",
+      "type": "topic",
+      "url": "/documentation/Swift/BitwiseCopyable"
+    },
+    "doc://com.externally.resolved.symbol/s:s8CopyableP": {
+      "abstract": [
+        {
+          "text": "A type whose values can be implicitly or explicitly copied.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Copyable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8CopyableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Copyable",
+      "type": "topic",
+      "url": "/documentation/Swift/Copyable"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s15BitwiseCopyableP",
+        "doc://com.externally.resolved.symbol/s:s8CopyableP",
+        "doc://com.externally.resolved.symbol/s:s8SendableP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Vectors",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNVector3"
+      ],
+      "title": "Vectors"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Components",
+      "identifiers": [
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNVector4/x",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNVector4/y",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNVector4/z",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNVector4/w"
+      ],
+      "title": "Components"
+    },
+    {
+      "anchor": "Creating-Vectors",
+      "identifiers": [
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNVector4Make(_:_:_:_:)"
+      ],
+      "title": "Creating Vectors"
+    },
+    {
+      "anchor": "Converting-Vector-Types",
+      "identifiers": [
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNVector4FromGLKVector4(_:)",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNVector4ToGLKVector4(_:)"
+      ],
+      "title": "Converting Vector Types"
+    },
+    {
+      "anchor": "Comparing-Vectors",
+      "identifiers": [
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNVector4EqualToVector4(_:_:)"
+      ],
+      "title": "Comparing Vectors"
+    },
+    {
+      "anchor": "Zero-Constant",
+      "identifiers": [
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNVector4Zero"
+      ],
+      "title": "Zero Constant"
+    },
+    {
+      "anchor": "Initializers",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNVector4/init()",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNVector4/init(_:)-5q2cx",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNVector4/init(_:)-6w6mx",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNVector4/init(_:_:_:_:)-6otq6",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNVector4/init(_:_:_:_:)-85e6w",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNVector4/init(_:_:_:_:)-93hx1",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNVector4/init(_:_:_:_:)-pk7r",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNVector4/init(x:y:z:w:)-37b3a",
+        "doc://com.apple.scenekit/documentation/SceneKit/SCNVector4/init(x:y:z:w:)-7hxmu"
+      ],
+      "title": "Initializers"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "visionOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "watchOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Structure"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "SCNVector4"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "struct"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNVector4"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNVector4"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.scenekit/documentation/SceneKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Components",
+              "identifiers": [
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNVector4/x",
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNVector4/y",
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNVector4/z",
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNVector4/w"
+              ],
+              "title": "Components"
+            },
+            {
+              "anchor": "Creating-Vectors",
+              "identifiers": [
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNVector4Make(_:_:_:_:)"
+              ],
+              "title": "Creating Vectors"
+            },
+            {
+              "anchor": "Converting-Vector-Types",
+              "identifiers": [
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNVector4FromGLKVector4(_:)",
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNVector4ToGLKVector4(_:)",
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNVector4FromFloat4",
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNVector4ToFloat4"
+              ],
+              "title": "Converting Vector Types"
+            },
+            {
+              "anchor": "Comparing-Vectors",
+              "identifiers": [
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNVector4EqualToVector4(_:_:)"
+              ],
+              "title": "Comparing Vectors"
+            },
+            {
+              "anchor": "Zero-Constant",
+              "identifiers": [
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNVector4Zero"
+              ],
+              "title": "Zero Constant"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Vectors",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.scenekit/documentation/SceneKit/SCNVector3"
+              ],
+              "title": "Vectors"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "typedef"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "keyword",
+                    "text": "struct"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "SCNVector4"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " { ... } "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "SCNVector4"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ";"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNVector4FromGLKVector4(_:)/title",
+          "value": "SCNVector4FromGLKVector4"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNVector4FromGLKVector4(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNVector4FromGLKVector4"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNVector4~1z/title",
+          "value": "z"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNVector4~1z/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "z"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNVector4Zero/title",
+          "value": "SCNVector4Zero"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNVector4Zero/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNVector4Zero"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNVector4~1y/title",
+          "value": "y"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNVector4~1y/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "y"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNVector4EqualToVector4(_:_:)/title",
+          "value": "SCNVector4EqualToVector4"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNVector4EqualToVector4(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNVector4EqualToVector4"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNVector3/title",
+          "value": "SCNVector3"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNVector3/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNVector3"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNVector3/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNVector3"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNVector4ToGLKVector4(_:)/title",
+          "value": "SCNVector4ToGLKVector4"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNVector4ToGLKVector4(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNVector4ToGLKVector4"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNVector4Make(_:_:_:_:)/title",
+          "value": "SCNVector4Make"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNVector4Make(_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNVector4Make"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNVector4~1x/title",
+          "value": "x"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNVector4~1x/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "x"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNVector4~1w/title",
+          "value": "w"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNVector4~1w/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "w"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNVector4/title",
+          "value": "SCNVector4"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNVector4/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNVector4"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.scenekit~1documentation~1SceneKit~1SCNVector4/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SCNVector4"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/scenekit/scnvector4"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/scenekit/scnvector4"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

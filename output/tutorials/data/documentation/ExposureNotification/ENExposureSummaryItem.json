@@ -1,0 +1,1302 @@
+{
+  "abstract": [
+    {
+      "text": "The summary of exposures for a specific time period or report type.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.exposurenotification/documentation/ExposureNotification"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENExposureSummaryItem"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)ENExposureSummaryItem",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "ENExposureSummaryItem"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Exposure Notification"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "ENExposureSummaryItem"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "12.5",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "12.5",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "12.5",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "ENExposureSummaryItem"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "ENExposureSummaryItem"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "This class is available in iOS 12.5, iOS 13.7, and later.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The exposure summary item provides a summary of exposures for a particular day. The framework computes this summary by compiling values for a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENExposureSummaryItem/weightedDurationSum",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENExposureSummaryItem/maximumScore",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " (the maximum of the exposure risk values), and a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENExposureSummaryItem/scoreSum",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". This summary of exposures can be for a specific report type (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENExposureDaySummary/confirmedTestSummary",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ") or a combination across all report types (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENExposureDaySummary/daySummary",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "). An instance of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENExposureDaySummary",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " contains the exposure summary item.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To illustrate how the framework computes this value, assume Alice encounters Bob, Carol, and Dave on a particular day; each person has weights set by their respective Public Health Authority.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Bob’s minutes-at-attenuation weight is 50, his infectiousness weight is 100%, and his report type weight is 200% (a confirmed test). His exposure risk value is 100 as dictated by his Public Health Authority.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3744329",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Carol’s minutes-at-attenuation weight is 30, her infectiousness weight is 100%, and her report type weight is 100% (a confirmed clinical diagnosis). Her exposure risk value is 30 as dictated by her Public Health Authority.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3744330",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Dave’s minutes-at-attenuation weight is 40, his infectiousness weight is 0%, and his report type weight is 80% (a self-diagnosis). His exposure risk value is 0 as dictated by his Public Health Authority.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3744527",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Alice’s exposure summary item for that day would be a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENExposureSummaryItem/weightedDurationSum",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " of 120 (50 + 30 + 40), a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENExposureSummaryItem/maximumScore",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " of 100 (the maximum of the exposure risk values), and a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENExposureSummaryItem/scoreSum",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " of 130 (100 + 30).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.exposurenotification/documentation/ExposureNotification": {
+      "abstract": [
+        {
+          "text": "Implement a COVID-19 exposure notification system that protects user privacy.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.exposurenotification/documentation/ExposureNotification",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Exposure Notification",
+      "type": "topic",
+      "url": "/documentation/exposurenotification"
+    },
+    "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENExposureDaySummary": {
+      "abstract": [
+        {
+          "text": "The summary of exposure information for a single day.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ENExposureDaySummary"
+        }
+      ],
+      "identifier": "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENExposureDaySummary",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ENExposureDaySummary"
+        }
+      ],
+      "role": "symbol",
+      "title": "ENExposureDaySummary",
+      "type": "topic",
+      "url": "/documentation/exposurenotification/enexposuredaysummary"
+    },
+    "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENExposureDaySummary/confirmedTestSummary": {
+      "abstract": [
+        {
+          "text": "The summary of exposures with a confirmed diagnosis.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "confirmedTestSummary"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ENExposureSummaryItem",
+          "text": "ENExposureSummaryItem"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENExposureDaySummary/confirmedTestSummary",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "confirmedTestSummary"
+        }
+      ],
+      "role": "symbol",
+      "title": "confirmedTestSummary",
+      "type": "topic",
+      "url": "/documentation/exposurenotification/enexposuredaysummary/confirmedtestsummary"
+    },
+    "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENExposureDaySummary/daySummary": {
+      "abstract": [
+        {
+          "text": "The summary of all exposures for the day.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "daySummary"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ENExposureSummaryItem",
+          "text": "ENExposureSummaryItem"
+        }
+      ],
+      "identifier": "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENExposureDaySummary/daySummary",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "daySummary"
+        }
+      ],
+      "role": "symbol",
+      "title": "daySummary",
+      "type": "topic",
+      "url": "/documentation/exposurenotification/enexposuredaysummary/daysummary"
+    },
+    "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENExposureDetectionSummary": {
+      "abstract": [
+        {
+          "text": "A summary of exposures.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ENExposureDetectionSummary"
+        }
+      ],
+      "identifier": "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENExposureDetectionSummary",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ENExposureDetectionSummary"
+        }
+      ],
+      "role": "symbol",
+      "title": "ENExposureDetectionSummary",
+      "type": "topic",
+      "url": "/documentation/exposurenotification/enexposuredetectionsummary"
+    },
+    "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENExposureSummaryItem": {
+      "abstract": [
+        {
+          "text": "The summary of exposures for a specific time period or report type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ENExposureSummaryItem"
+        }
+      ],
+      "identifier": "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENExposureSummaryItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ENExposureSummaryItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "ENExposureSummaryItem",
+      "type": "topic",
+      "url": "/documentation/exposurenotification/enexposuresummaryitem"
+    },
+    "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENExposureSummaryItem/maximumScore": {
+      "abstract": [
+        {
+          "text": "The highest score of all exposures for this item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "maximumScore"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        }
+      ],
+      "identifier": "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENExposureSummaryItem/maximumScore",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "maximumScore"
+        }
+      ],
+      "role": "symbol",
+      "title": "maximumScore",
+      "type": "topic",
+      "url": "/documentation/exposurenotification/enexposuresummaryitem/maximumscore"
+    },
+    "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENExposureSummaryItem/scoreSum": {
+      "abstract": [
+        {
+          "text": "The sum of scores for all exposure for this item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "scoreSum"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        }
+      ],
+      "identifier": "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENExposureSummaryItem/scoreSum",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "scoreSum"
+        }
+      ],
+      "role": "symbol",
+      "title": "scoreSum",
+      "type": "topic",
+      "url": "/documentation/exposurenotification/enexposuresummaryitem/scoresum"
+    },
+    "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENExposureSummaryItem/weightedDurationSum": {
+      "abstract": [
+        {
+          "text": "The sum of exposure durations weighted by their attenuation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "weightedDurationSum"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSTimeInterval",
+          "text": "TimeInterval"
+        }
+      ],
+      "identifier": "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENExposureSummaryItem/weightedDurationSum",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "weightedDurationSum"
+        }
+      ],
+      "role": "symbol",
+      "title": "weightedDurationSum",
+      "type": "topic",
+      "url": "/documentation/exposurenotification/enexposuresummaryitem/weighteddurationsum"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    },
+    "media-3744329": {
+      "alt": "A diagram showing that Bob’s exposure risk value is a product of his minutes-at-attenuation weight, infectiousness weight, and report type. ",
+      "identifier": "media-3744329",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/edb87363ba43f32f6cea7ce3c0e77ea9/media-3744329@2x.png"
+        }
+      ]
+    },
+    "media-3744330": {
+      "alt": "A diagram showing that Carol’s exposure risk value is a product of her minutes-at-attenuation weight, infectiousness weight, and report type. ",
+      "identifier": "media-3744330",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/996e341da3d94c1f1fd0224030a40e9b/media-3744330@2x.png"
+        }
+      ]
+    },
+    "media-3744527": {
+      "alt": "A diagram showing that Dave’s exposure risk value is a product of his minutes-at-attenuation weight, infectiousness weight, and report type. ",
+      "identifier": "media-3744527",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/377c78066bdd32826913eefeea0a53d7/media-3744527@2x.png"
+        }
+      ]
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Summaries",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENExposureDetectionSummary",
+        "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENExposureDaySummary"
+      ],
+      "title": "Summaries"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Getting-Summary-Properties",
+      "identifiers": [
+        "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENExposureSummaryItem/maximumScore",
+        "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENExposureSummaryItem/scoreSum",
+        "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENExposureSummaryItem/weightedDurationSum"
+      ],
+      "title": "Getting Summary Properties"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "12.5",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "12.5",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "12.5",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "ENExposureSummaryItem"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ENExposureSummaryItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ENExposureSummaryItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.exposurenotification/documentation/ExposureNotification"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Getting-Summary-Properties",
+              "identifiers": [
+                "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENExposureSummaryItem/maximumScore",
+                "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENExposureSummaryItem/scoreSum",
+                "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENExposureSummaryItem/weightedDurationSum"
+              ],
+              "title": "Getting Summary Properties"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Summaries",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENExposureDetectionSummary",
+                "doc://com.apple.exposurenotification/documentation/ExposureNotification/ENExposureDaySummary"
+              ],
+              "title": "Summaries"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "ENExposureSummaryItem"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.exposurenotification~1documentation~1ExposureNotification~1ENExposureSummaryItem/title",
+          "value": "ENExposureSummaryItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.exposurenotification~1documentation~1ExposureNotification~1ENExposureSummaryItem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ENExposureSummaryItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.exposurenotification~1documentation~1ExposureNotification~1ENExposureSummaryItem/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ENExposureSummaryItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.exposurenotification~1documentation~1ExposureNotification~1ENExposureDaySummary~1confirmedTestSummary/title",
+          "value": "confirmedTestSummary"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.exposurenotification~1documentation~1ExposureNotification~1ENExposureDaySummary~1confirmedTestSummary/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "confirmedTestSummary"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.exposurenotification~1documentation~1ExposureNotification~1ENExposureDetectionSummary/title",
+          "value": "ENExposureDetectionSummary"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.exposurenotification~1documentation~1ExposureNotification~1ENExposureDetectionSummary/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ENExposureDetectionSummary"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.exposurenotification~1documentation~1ExposureNotification~1ENExposureDetectionSummary/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ENExposureDetectionSummary"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.exposurenotification~1documentation~1ExposureNotification~1ENExposureSummaryItem~1scoreSum/title",
+          "value": "scoreSum"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.exposurenotification~1documentation~1ExposureNotification~1ENExposureSummaryItem~1scoreSum/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "scoreSum"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.exposurenotification~1documentation~1ExposureNotification~1ENExposureDaySummary/title",
+          "value": "ENExposureDaySummary"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.exposurenotification~1documentation~1ExposureNotification~1ENExposureDaySummary/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ENExposureDaySummary"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.exposurenotification~1documentation~1ExposureNotification~1ENExposureDaySummary/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ENExposureDaySummary"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.exposurenotification~1documentation~1ExposureNotification~1ENExposureDaySummary~1daySummary/title",
+          "value": "daySummary"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.exposurenotification~1documentation~1ExposureNotification~1ENExposureDaySummary~1daySummary/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "daySummary"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.exposurenotification~1documentation~1ExposureNotification~1ENExposureSummaryItem~1maximumScore/title",
+          "value": "maximumScore"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.exposurenotification~1documentation~1ExposureNotification~1ENExposureSummaryItem~1maximumScore/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "maximumScore"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.exposurenotification~1documentation~1ExposureNotification~1ENExposureSummaryItem~1weightedDurationSum/title",
+          "value": "weightedDurationSum"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.exposurenotification~1documentation~1ExposureNotification~1ENExposureSummaryItem~1weightedDurationSum/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "weightedDurationSum"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/exposurenotification/enexposuresummaryitem"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/exposurenotification/enexposuresummaryitem"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

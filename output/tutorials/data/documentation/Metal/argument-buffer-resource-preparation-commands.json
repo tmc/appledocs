@@ -1,0 +1,945 @@
+{
+  "abstract": [
+    {
+      "text": "Load individual resources and multiple resources within a heap into GPU memory so that they’re available to shaders through argument buffers.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.metal/documentation/Metal",
+        "doc://com.apple.metal/documentation/Metal/render-passes",
+        "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.metal/documentation/Metal/argument-buffer-resource-preparation-commands"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Metal"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Argument Buffer Resource Preparation Commands"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The commands these methods encode ensure your shaders can access resources through one or more argument buffers by loading them into GPU memory. To load an individual resource, call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/useResource(_:usage:stages:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", or another resource-based method. Alternatively, you can load all the resources within a heap by calling ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/useHeap(_:stages:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or another heap-based method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "The heap-based methods don’t provide a ",
+                  "type": "text"
+                },
+                {
+                  "code": "usage",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " parameter (see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.metal/documentation/Metal/MTLResourceUsage",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ") and set the usage for the resources within each heap to ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.metal/documentation/Metal/MTLResourceUsage/read",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To give shaders write or read/write access to specific resources within a heap, call a resource-based method after the heap-based method. Metal combines usage modes set for a resource through both heap and resource methods.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/improving-cpu-performance-by-using-argument-buffers",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.metal/documentation/Metal": {
+      "abstract": [
+        {
+          "text": "Render advanced 3D graphics and compute data in parallel with graphics processors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Metal",
+      "type": "topic",
+      "url": "/documentation/metal"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder": {
+      "abstract": [
+        {
+          "text": "An interface that encodes a render pass into a command buffer, including all its draw calls and configuration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLRenderCommandEncoder"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLRenderCommandEncoder"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLRenderCommandEncoder",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrendercommandencoder"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/useHeap(_:stages:)": {
+      "abstract": [
+        {
+          "text": "Ensures the shaders in the render pass’s subsequent draw commands have access to the resources you allocate from a heap.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "useHeap"
+        },
+        {
+          "kind": "text",
+          "text": "(any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLHeap",
+          "text": "MTLHeap"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "stages"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MTLRenderStages",
+          "text": "MTLRenderStages"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/useHeap(_:stages:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "useHeap:stages:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "useHeap(_:stages:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrendercommandencoder/useheap(_:stages:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/useHeaps(_:stages:)": {
+      "abstract": [
+        {
+          "text": "Ensures the shaders in the render pass’s subsequent draw commands have access to the resources you allocate from multiple heaps.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "useHeaps"
+        },
+        {
+          "kind": "text",
+          "text": "([any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLHeap",
+          "text": "MTLHeap"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "stages"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MTLRenderStages",
+          "text": "MTLRenderStages"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/useHeaps(_:stages:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "useHeaps(_:stages:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrendercommandencoder/useheaps(_:stages:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/useHeaps:count:stages:": {
+      "abstract": [
+        {
+          "text": "Ensures the shaders in the render pass’s subsequent draw commands have access to the resources you allocate from multiple heaps.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "useHeaps:count:stages:"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/useHeaps:count:stages:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "useHeaps:count:stages:"
+        }
+      ],
+      "role": "symbol",
+      "title": "useHeaps:count:stages:",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrendercommandencoder/useheaps:count:stages:"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/useResource(_:usage:stages:)": {
+      "abstract": [
+        {
+          "text": "Ensures the shaders in the render pass’s subsequent draw commands have access to a resource.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "useResource"
+        },
+        {
+          "kind": "text",
+          "text": "(any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLResource",
+          "text": "MTLResource"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "usage"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MTLResourceUsage",
+          "text": "MTLResourceUsage"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "stages"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MTLRenderStages",
+          "text": "MTLRenderStages"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/useResource(_:usage:stages:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "useResource:usage:stages:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "useResource(_:usage:stages:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrendercommandencoder/useresource(_:usage:stages:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/useResources(_:usage:stages:)": {
+      "abstract": [
+        {
+          "text": "Ensures the shaders in the render pass’s subsequent draw commands have access to multiple resources.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "useResources"
+        },
+        {
+          "kind": "text",
+          "text": "([any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLResource",
+          "text": "MTLResource"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "usage"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MTLResourceUsage",
+          "text": "MTLResourceUsage"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "stages"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MTLRenderStages",
+          "text": "MTLRenderStages"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/useResources(_:usage:stages:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "useResources(_:usage:stages:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrendercommandencoder/useresources(_:usage:stages:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/useResources:count:usage:stages:": {
+      "abstract": [
+        {
+          "text": "Ensures the shaders in the render pass’s subsequent draw commands have access to multiple resources.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "useResources:count:usage:stages:"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/useResources:count:usage:stages:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "useResources:count:usage:stages:"
+        }
+      ],
+      "role": "symbol",
+      "title": "useResources:count:usage:stages:",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrendercommandencoder/useresources:count:usage:stages:"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLResourceUsage": {
+      "abstract": [
+        {
+          "text": "Options that describe how a graphics or compute function uses an argument buffer’s resource.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLResourceUsage"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLResourceUsage",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLResourceUsage"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLResourceUsage",
+      "type": "topic",
+      "url": "/documentation/metal/mtlresourceusage"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLResourceUsage/read": {
+      "abstract": [
+        {
+          "text": "An option that enables reading from the resource.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "read"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MTLResourceUsage",
+          "text": "MTLResourceUsage"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLResourceUsage/read",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLResourceUsageRead"
+        }
+      ],
+      "role": "symbol",
+      "title": "read",
+      "type": "topic",
+      "url": "/documentation/metal/mtlresourceusage/read"
+    },
+    "doc://com.apple.metal/documentation/Metal/fragment-shader-resource-preparation-commands": {
+      "abstract": [
+        {
+          "text": "Assign resources to fragment shaders, including buffers, textures, acceleration structures, sampler states, and function tables.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/fragment-shader-resource-preparation-commands",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Fragment Shader Resource Preparation Commands",
+      "type": "topic",
+      "url": "/documentation/metal/fragment-shader-resource-preparation-commands"
+    },
+    "doc://com.apple.metal/documentation/Metal/improving-cpu-performance-by-using-argument-buffers": {
+      "abstract": [
+        {
+          "text": "Optimize your app’s performance by grouping your resources into argument buffers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/improving-cpu-performance-by-using-argument-buffers",
+      "kind": "article",
+      "role": "article",
+      "title": "Improving CPU Performance by Using Argument Buffers",
+      "type": "topic",
+      "url": "/documentation/metal/improving-cpu-performance-by-using-argument-buffers"
+    },
+    "doc://com.apple.metal/documentation/Metal/mesh-and-object-shader-resource-preparation-commands": {
+      "abstract": [
+        {
+          "text": "Assign resources to mesh and object shaders, including buffers, textures, acceleration structures, sampler states, and function tables.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/mesh-and-object-shader-resource-preparation-commands",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Mesh and Object Shader Resource Preparation Commands",
+      "type": "topic",
+      "url": "/documentation/metal/mesh-and-object-shader-resource-preparation-commands"
+    },
+    "doc://com.apple.metal/documentation/Metal/render-passes": {
+      "abstract": [
+        {
+          "text": "Encode a render pass to draw graphics into an image.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/render-passes",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Render Passes",
+      "type": "topic",
+      "url": "/documentation/metal/render-passes"
+    },
+    "doc://com.apple.metal/documentation/Metal/tile-shaders-resource-preparation-commands": {
+      "abstract": [
+        {
+          "text": "Assign resources to tile shaders, including buffers, textures, acceleration structures, sampler states, and function tables.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/tile-shaders-resource-preparation-commands",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Tile Shaders Resource Preparation Commands",
+      "type": "topic",
+      "url": "/documentation/metal/tile-shaders-resource-preparation-commands"
+    },
+    "doc://com.apple.metal/documentation/Metal/vertex-shader-resource-preparation-commands": {
+      "abstract": [
+        {
+          "text": "Assign resources to vertex shaders, including buffers, textures, acceleration structures, sampler states, and function tables.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/vertex-shader-resource-preparation-commands",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Vertex Shader Resource Preparation Commands",
+      "type": "topic",
+      "url": "/documentation/metal/vertex-shader-resource-preparation-commands"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Encoding-Resource-Preparation-Commands",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/mesh-and-object-shader-resource-preparation-commands",
+        "doc://com.apple.metal/documentation/Metal/vertex-shader-resource-preparation-commands",
+        "doc://com.apple.metal/documentation/Metal/fragment-shader-resource-preparation-commands",
+        "doc://com.apple.metal/documentation/Metal/tile-shaders-resource-preparation-commands"
+      ],
+      "title": "Encoding Resource Preparation Commands"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Loading-Individual-Resources-for-Argument-Buffers",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/useResource(_:usage:stages:)",
+        "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/useResources(_:usage:stages:)"
+      ],
+      "title": "Loading Individual Resources for Argument Buffers"
+    },
+    {
+      "anchor": "Loading-Heaps-and-the-Resources-They-Contain-for-Argument-Buffers",
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/useHeap(_:stages:)",
+        "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/useHeaps(_:stages:)"
+      ],
+      "title": "Loading Heaps and the Resources They Contain for Argument Buffers"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Loading-Individual-Resources-for-Argument-Buffers",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/useResource(_:usage:stages:)",
+                "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/useResources:count:usage:stages:"
+              ],
+              "title": "Loading Individual Resources for Argument Buffers"
+            },
+            {
+              "anchor": "Loading-Heaps-and-the-Resources-They-Contain-for-Argument-Buffers",
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/useHeap(_:stages:)",
+                "doc://com.apple.metal/documentation/Metal/MTLRenderCommandEncoder/useHeaps:count:stages:"
+              ],
+              "title": "Loading Heaps and the Resources They Contain for Argument Buffers"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Encoding-Resource-Preparation-Commands",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/mesh-and-object-shader-resource-preparation-commands",
+                "doc://com.apple.metal/documentation/Metal/vertex-shader-resource-preparation-commands",
+                "doc://com.apple.metal/documentation/Metal/fragment-shader-resource-preparation-commands",
+                "doc://com.apple.metal/documentation/Metal/tile-shaders-resource-preparation-commands"
+              ],
+              "title": "Encoding Resource Preparation Commands"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLResourceUsage/title",
+          "value": "MTLResourceUsage"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLResourceUsage/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLResourceUsage"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLResourceUsage/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLResourceUsage"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderCommandEncoder~1useHeap(_:stages:)/title",
+          "value": "useHeap:stages:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderCommandEncoder~1useHeap(_:stages:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "useHeap:stages:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLResourceUsage~1read/title",
+          "value": "MTLResourceUsageRead"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLResourceUsage~1read/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLResourceUsageRead"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderCommandEncoder/title",
+          "value": "MTLRenderCommandEncoder"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderCommandEncoder/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLRenderCommandEncoder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderCommandEncoder/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLRenderCommandEncoder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderCommandEncoder~1useResource(_:usage:stages:)/title",
+          "value": "useResource:usage:stages:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderCommandEncoder~1useResource(_:usage:stages:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "useResource:usage:stages:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/metal/argument-buffer-resource-preparation-commands"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/metal/argument-buffer-resource-preparation-commands"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

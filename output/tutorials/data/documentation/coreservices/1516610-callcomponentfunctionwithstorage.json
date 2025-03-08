@@ -1,0 +1,458 @@
+{
+  "abstract": [
+    {
+      "text": "Invokes the specified function of your component. ",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/coreservices",
+        "doc://com.apple.documentation/documentation/coreservices/carbon_core",
+        "doc://com.apple.documentation/documentation/coreservices/carbon_core/component_manager"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/coreservices/1516610-callcomponentfunctionwithstorage"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1516610,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@F@CallComponentFunctionWithStorage",
+    "modules": [
+      {
+        "name": "Core Services"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "15.4",
+        "deprecated": true,
+        "deprecatedAt": "10.8",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Function",
+    "symbolKind": "func",
+    "title": "CallComponentFunctionWithStorage"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreservices/componentresult",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@ComponentResult",
+              "text": "ComponentResult"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CallComponentFunctionWithStorage"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/handle",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@Handle",
+              "text": "Handle"
+            },
+            {
+              "kind": "text",
+              "text": " storage, "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreservices/componentparameters",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@ComponentParameters",
+              "text": "ComponentParameters"
+            },
+            {
+              "kind": "text",
+              "text": " *params, "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreservices/componentfunctionupp",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@ComponentFunctionUPP",
+              "text": "ComponentFunctionUPP"
+            },
+            {
+              "kind": "text",
+              "text": " func);"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "languages": [
+        "occ"
+      ],
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A handle to the memory associated with the current connection. The Component Manager provides this handle to your component along with the request. ",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "storage"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A pointer to the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/coreservices/componentparameters",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " structure that your component received from the Component Manager. These are the parameters originally provided by the application that called your component. ",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "params"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A universal procedure pointer to the component function that is to handle the request. The Component Manager calls the function referred to by the ",
+                  "type": "text"
+                },
+                {
+                  "code": "func",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " parameter, using Pascal calling conventions, with the parameters that were originally provided by the application that called your component. These parameters are preceded by a handle to the memory associated with the current connection. The function referred to by the ",
+                  "type": "text"
+                },
+                {
+                  "code": "func",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " parameter must return a function result of type ",
+                  "type": "text"
+                },
+                {
+                  "code": "ComponentResult",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " indicating the success or failure of the operation. See the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/coreservices/componentroutineprocptr",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " callback for more information on component functions. ",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "func"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return_value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The value that is returned by the function referred to by the ",
+              "type": "text"
+            },
+            {
+              "code": "func",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter. Your component should use this value to set the current error for this connection. Use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreservices/1516663-setcomponentinstanceerror",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function to set the current error for a connection. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When an application requests service from your component, your component receives a component parameters structure containing the parameters that the application provided when it called your component. Your component can use this structure to access the parameters directly. Alternatively, you can use either the  ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreservices/1516603-callcomponentfunction",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "  function or this function to extract those parameters and pass them to a subroutine of your component. By taking advantage of these functions, you can simplify the structure of your component code. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your component subroutine requires a handle to the memory associated with the connection, you must use this function. You allocate the memory for a given connection each time your component is opened. You inform the Component Manager that a connection has memory associated with it by calling the  ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreservices/1516663-setcomponentinstanceerror",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "  function.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Subroutines of a component that don’t need global data should use ",
+              "type": "text"
+            },
+            {
+              "code": "CallComponentFunction",
+              "type": "codeVoice"
+            },
+            {
+              "text": " instead. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/coreservices": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Services",
+      "type": "topic",
+      "url": "/documentation/coreservices"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1516344-callcomponentfunctionwithstorage": {
+      "abstract": [],
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1516344-callcomponentfunctionwithstorage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CallComponentFunctionWithStorageProcInfo",
+      "type": "topic",
+      "url": "/documentation/coreservices/1516344-callcomponentfunctionwithstorage"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1516603-callcomponentfunction": {
+      "abstract": [
+        {
+          "text": "Invokes the specified function of your component.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1516603-callcomponentfunction",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CallComponentFunction",
+      "type": "topic",
+      "url": "/documentation/coreservices/1516603-callcomponentfunction"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1516610-callcomponentfunctionwithstorage": {
+      "abstract": [
+        {
+          "text": "Invokes the specified function of your component. ",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1516610-callcomponentfunctionwithstorage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CallComponentFunctionWithStorage",
+      "type": "topic",
+      "url": "/documentation/coreservices/1516610-callcomponentfunctionwithstorage"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/1516663-setcomponentinstanceerror": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/1516663-setcomponentinstanceerror",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "SetComponentInstanceError",
+      "type": "topic",
+      "url": "/documentation/coreservices/1516663-setcomponentinstanceerror"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/carbon_core": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/carbon_core",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Carbon Core",
+      "type": "topic",
+      "url": "/documentation/coreservices/carbon_core"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/carbon_core/component_manager": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/carbon_core/component_manager",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Component Manager",
+      "type": "topic",
+      "url": "/documentation/coreservices/carbon_core/component_manager"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/componentfunctionupp": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/componentfunctionupp",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ComponentFunctionUPP",
+      "type": "topic",
+      "url": "/documentation/coreservices/componentfunctionupp"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/componentparameters": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/componentparameters",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ComponentParameters",
+      "type": "topic",
+      "url": "/documentation/coreservices/componentparameters"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/componentresult": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/componentresult",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ComponentResult",
+      "type": "topic",
+      "url": "/documentation/coreservices/componentresult"
+    },
+    "doc://com.apple.documentation/documentation/coreservices/componentroutineprocptr": {
+      "identifier": "doc://com.apple.documentation/documentation/coreservices/componentroutineprocptr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ComponentRoutineProcPtr",
+      "type": "topic",
+      "url": "/documentation/coreservices/componentroutineprocptr"
+    },
+    "doc://com.apple.documentation/documentation/kernel/handle": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/handle",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Handle",
+      "type": "topic",
+      "url": "/documentation/kernel/handle"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreservices/1516603-callcomponentfunction",
+        "doc://com.apple.documentation/documentation/coreservices/1516344-callcomponentfunctionwithstorage"
+      ],
+      "title": "Dispatching to Component Functions"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/coreservices/1516610-callcomponentfunctionwithstorage"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

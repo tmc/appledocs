@@ -1,0 +1,2415 @@
+{
+  "abstract": [
+    {
+      "text": "Parse streamed audio files as the data arrives on the user’s computer.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-file-stream-services"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Audio Toolbox"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Audio File Stream Services"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Audio File Stream Services provides the interface for parsing streamed audio files—in which only a limited window of data is available at a time.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Audio file streams, by nature, are not random access. When you request data from a stream, earlier data might no longer be accessible and later data might not yet be available. In addition, the data you obtain (and then provide to a parser) might include partial packets. To parse streamed audio data, then, a parser must remember data from partially satisfied requests, and must be able to wait for the remainder of that data. In other words, a parser must be able to suspend parsing as needed and then resume where it left off.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To use a parser, you pass data from a streamed audio file, as you acquire it, to the parser. When the parser has a complete packet of audio data or a complete property, it invokes a callback function. Your callbacks then process the parsed data—such as by playing it or writing it to disk.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Here, in outline form, is a typical usage pattern for an audio file stream parser:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Create a new audio file stream parser by calling the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileStreamOpen(_:_:_:_:_:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " function. Pass pointers to your callback functions for audio data and metadata (",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileStream_PacketsProc",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileStream_PropertyListenerProc",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": "). The ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileStreamOpen(_:_:_:_:_:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " function gives you a reference to the new parser.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Acquire some streamed data. Call the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileStreamParseBytes(_:_:_:_:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " function when you have data to pass to the parser. Send the data to the parser sequentially and, if possible, without gaps.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "When the parser acquires a usable buffer of audio data, it invokes your audio data callback. Your callback can then play the data, write it to a file, or otherwise process it.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "When the parser acquires metadata, it invokes your property callback—which in turn can obtain the property value by calling the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileStreamGetPropertyInfo(_:_:_:_:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileStreamGetProperty(_:_:_:_:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " functions.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "When finished parsing a stream, call the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileStreamClose(_:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " function to close and deallocate the parser.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Audio File Stream Services supports the following audio data types:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "AIFF",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "AIFC",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "WAVE",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "CAF",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "NeXT",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "ADTS",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "MPEG Audio Layer 3",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "AAC",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox": {
+      "abstract": [
+        {
+          "text": "Record or play audio, convert formats, parse audio streams, and configure your audio session.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Audio Toolbox",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1391506-audio-file-stream-properties": {
+      "abstract": [
+        {
+          "text": "Audio file stream properties contain information that you can use to help interpret the audio data in a stream.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1391506-audio-file-stream-properties",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Audio File Stream Properties",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/1391506-audio-file-stream-properties"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1391572-audio-file-stream-errors": {
+      "abstract": [],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1391572-audio-file-stream-errors",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Audio File Stream Errors",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/1391572-audio-file-stream-errors"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1576497-audio-file-types": {
+      "abstract": [],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1576497-audio-file-types",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Audio File Types",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/1576497-audio-file-types"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1576500-audio-file-errors": {
+      "abstract": [],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1576500-audio-file-errors",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Audio File Errors",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/1576500-audio-file-errors"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileStreamClose(_:)": {
+      "abstract": [
+        {
+          "text": "Closes and deallocates the specified audio file stream parser.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioFileStreamClose"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioFileStreamID",
+          "text": "AudioFileStreamID"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileStreamClose(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioFileStreamClose"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioFileStreamClose(_:)",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audiofilestreamclose(_:)"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileStreamGetProperty(_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Retrieves the value of the specified property.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioFileStreamGetProperty"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioFileStreamID",
+          "text": "AudioFileStreamID"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioFileStreamPropertyID",
+          "text": "AudioFileStreamPropertyID"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sv",
+          "text": "UnsafeMutableRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileStreamGetProperty(_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioFileStreamGetProperty"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioFileStreamGetProperty(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audiofilestreamgetproperty(_:_:_:_:)"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileStreamGetPropertyInfo(_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Retrieves information about a property value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioFileStreamGetPropertyInfo"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioFileStreamID",
+          "text": "AudioFileStreamID"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioFileStreamPropertyID",
+          "text": "AudioFileStreamPropertyID"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ">?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:6Darwin0A7BooleanV",
+          "text": "DarwinBoolean"
+        },
+        {
+          "kind": "text",
+          "text": ">?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileStreamGetPropertyInfo(_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioFileStreamGetPropertyInfo"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioFileStreamGetPropertyInfo(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audiofilestreamgetpropertyinfo(_:_:_:_:)"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileStreamID": {
+      "abstract": [
+        {
+          "text": "Defines an opaque data type that represents an audio file stream parser.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioFileStreamID"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileStreamID",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioFileStreamID"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioFileStreamID",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audiofilestreamid"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileStreamOpen(_:_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Creates and opens a new audio file stream parser.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioFileStreamOpen"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sv",
+          "text": "UnsafeMutableRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioFileStream_PropertyListenerProc",
+          "text": "AudioFileStream_PropertyListenerProc"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioFileStream_PacketsProc",
+          "text": "AudioFileStream_PacketsProc"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioFileTypeID",
+          "text": "AudioFileTypeID"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioFileStreamID",
+          "text": "AudioFileStreamID"
+        },
+        {
+          "kind": "text",
+          "text": "?>) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileStreamOpen(_:_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioFileStreamOpen"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioFileStreamOpen(_:_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audiofilestreamopen(_:_:_:_:_:)"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileStreamParseBytes(_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Passes audio file stream data to the parser.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioFileStreamParseBytes"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioFileStreamID",
+          "text": "AudioFileStreamID"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SV",
+          "text": "UnsafeRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@AudioFileStreamParseFlags",
+          "text": "AudioFileStreamParseFlags"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileStreamParseBytes(_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioFileStreamParseBytes"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioFileStreamParseBytes(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audiofilestreamparsebytes(_:_:_:_:)"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileStreamPropertyID": {
+      "abstract": [
+        {
+          "text": "Uniquely identifies an audio file stream property.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioFileStreamPropertyID"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileStreamPropertyID",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioFileStreamPropertyID"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioFileStreamPropertyID",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audiofilestreampropertyid"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileStreamSeek(_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Provides a byte offset for a specified packet in the data stream.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioFileStreamSeek"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioFileStreamID",
+          "text": "AudioFileStreamID"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int64V",
+          "text": "Int64"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5Int64V",
+          "text": "Int64"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@AudioFileStreamSeekFlags",
+          "text": "AudioFileStreamSeekFlags"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileStreamSeek(_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioFileStreamSeek"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioFileStreamSeek(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audiofilestreamseek(_:_:_:_:)"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileStreamSetProperty(_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Sets the value of the specified property.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioFileStreamSetProperty"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioFileStreamID",
+          "text": "AudioFileStreamID"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@AudioFileStreamPropertyID",
+          "text": "AudioFileStreamPropertyID"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt32V",
+          "text": "UInt32"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SV",
+          "text": "UnsafeRawPointer"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileStreamSetProperty(_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioFileStreamSetProperty"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioFileStreamSetProperty(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audiofilestreamsetproperty(_:_:_:_:)"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileStream_PacketsProc": {
+      "abstract": [
+        {
+          "text": "Invoked by an audio file stream parser when it finds audio data in the audio file stream.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioFileStream_PacketsProc"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileStream_PacketsProc",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioFileStream_PacketsProc"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioFileStream_PacketsProc",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audiofilestream_packetsproc"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileStream_PropertyListenerProc": {
+      "abstract": [
+        {
+          "text": "Invoked by an audio file stream parser when it finds a property value in the audio file stream.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AudioFileStream_PropertyListenerProc"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileStream_PropertyListenerProc",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AudioFileStream_PropertyListenerProc"
+        }
+      ],
+      "role": "symbol",
+      "title": "AudioFileStream_PropertyListenerProc",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audiofilestream_propertylistenerproc"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-file-components": {
+      "abstract": [
+        {
+          "text": "Get information about audio file formats, and about files containing audio data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-file-components",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Audio File Components",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audio-file-components"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-file-services": {
+      "abstract": [
+        {
+          "text": "Read or write a variety of audio data to or from disk or a memory buffer.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-file-services",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Audio File Services",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audio-file-services"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-file-stream-flags": {
+      "abstract": [
+        {
+          "text": "Flags set by the property listener callback and the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileStreamParseBytes(_:_:_:_:)",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " function.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-file-stream-flags",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Audio File Stream Flags",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audio-file-stream-flags"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-format-services": {
+      "abstract": [
+        {
+          "text": "Access information about audio formats and codecs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-format-services",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Audio Format Services",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/audio-format-services"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/core-audio-file-format": {
+      "abstract": [
+        {
+          "text": "Parse the structure of Core Audio files.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/core-audio-file-format",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Core Audio File Format",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/core-audio-file-format"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/extended-audio-file-services": {
+      "abstract": [
+        {
+          "text": "Read and write compressed files and linear PCM audio files using a simplified interface.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/extended-audio-file-services",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Extended Audio File Services",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/extended-audio-file-services"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioFileStreamError_BadPropertySize": {
+      "abstract": [
+        {
+          "text": "The size of the buffer you provided for property data was not correct.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAudioFileStreamError_BadPropertySize"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioFileStreamError_BadPropertySize",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kAudioFileStreamError_BadPropertySize"
+        }
+      ],
+      "role": "symbol",
+      "title": "kAudioFileStreamError_BadPropertySize",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kaudiofilestreamerror_badpropertysize"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioFileStreamError_DataUnavailable": {
+      "abstract": [
+        {
+          "text": "The amount of data provided to the parser was insufficient to produce any result.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAudioFileStreamError_DataUnavailable"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioFileStreamError_DataUnavailable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kAudioFileStreamError_DataUnavailable"
+        }
+      ],
+      "role": "symbol",
+      "title": "kAudioFileStreamError_DataUnavailable",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kaudiofilestreamerror_dataunavailable"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioFileStreamError_DiscontinuityCantRecover": {
+      "abstract": [
+        {
+          "text": "A discontinuity has occurred in the audio data, and Audio File Stream Services cannot recover.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAudioFileStreamError_DiscontinuityCantRecover"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioFileStreamError_DiscontinuityCantRecover",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kAudioFileStreamError_DiscontinuityCantRecover"
+        }
+      ],
+      "role": "symbol",
+      "title": "kAudioFileStreamError_DiscontinuityCantRecover",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kaudiofilestreamerror_discontinuitycantrecover"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioFileStreamError_IllegalOperation": {
+      "abstract": [
+        {
+          "text": "An illegal operation was attempted.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAudioFileStreamError_IllegalOperation"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioFileStreamError_IllegalOperation",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kAudioFileStreamError_IllegalOperation"
+        }
+      ],
+      "role": "symbol",
+      "title": "kAudioFileStreamError_IllegalOperation",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kaudiofilestreamerror_illegaloperation"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioFileStreamError_InvalidFile": {
+      "abstract": [
+        {
+          "text": "The file is malformed, not a valid instance of an audio file of its type, or not recognized as an audio file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAudioFileStreamError_InvalidFile"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioFileStreamError_InvalidFile",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kAudioFileStreamError_InvalidFile"
+        }
+      ],
+      "role": "symbol",
+      "title": "kAudioFileStreamError_InvalidFile",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kaudiofilestreamerror_invalidfile"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioFileStreamError_InvalidPacketOffset": {
+      "abstract": [
+        {
+          "text": "A packet offset was less than ",
+          "type": "text"
+        },
+        {
+          "code": "0",
+          "type": "codeVoice"
+        },
+        {
+          "text": ", or past the end of the file, or a corrupt packet size was read when building the packet table.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAudioFileStreamError_InvalidPacketOffset"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioFileStreamError_InvalidPacketOffset",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kAudioFileStreamError_InvalidPacketOffset"
+        }
+      ],
+      "role": "symbol",
+      "title": "kAudioFileStreamError_InvalidPacketOffset",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kaudiofilestreamerror_invalidpacketoffset"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioFileStreamError_NotOptimized": {
+      "abstract": [
+        {
+          "text": "It is not possible to produce output packets because the streamed audio file’s packet table or other defining information is not present or appears after the audio data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAudioFileStreamError_NotOptimized"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioFileStreamError_NotOptimized",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kAudioFileStreamError_NotOptimized"
+        }
+      ],
+      "role": "symbol",
+      "title": "kAudioFileStreamError_NotOptimized",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kaudiofilestreamerror_notoptimized"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioFileStreamError_UnspecifiedError": {
+      "abstract": [
+        {
+          "text": "An unspecified error has occurred.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAudioFileStreamError_UnspecifiedError"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioFileStreamError_UnspecifiedError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kAudioFileStreamError_UnspecifiedError"
+        }
+      ],
+      "role": "symbol",
+      "title": "kAudioFileStreamError_UnspecifiedError",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kaudiofilestreamerror_unspecifiederror"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioFileStreamError_UnsupportedDataFormat": {
+      "abstract": [
+        {
+          "text": "The data format is not supported by the specified file type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAudioFileStreamError_UnsupportedDataFormat"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioFileStreamError_UnsupportedDataFormat",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kAudioFileStreamError_UnsupportedDataFormat"
+        }
+      ],
+      "role": "symbol",
+      "title": "kAudioFileStreamError_UnsupportedDataFormat",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kaudiofilestreamerror_unsupporteddataformat"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioFileStreamError_UnsupportedFileType": {
+      "abstract": [
+        {
+          "text": "The specified file type is not supported.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAudioFileStreamError_UnsupportedFileType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioFileStreamError_UnsupportedFileType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kAudioFileStreamError_UnsupportedFileType"
+        }
+      ],
+      "role": "symbol",
+      "title": "kAudioFileStreamError_UnsupportedFileType",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kaudiofilestreamerror_unsupportedfiletype"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioFileStreamError_UnsupportedProperty": {
+      "abstract": [
+        {
+          "text": "The property is not supported.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAudioFileStreamError_UnsupportedProperty"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioFileStreamError_UnsupportedProperty",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kAudioFileStreamError_UnsupportedProperty"
+        }
+      ],
+      "role": "symbol",
+      "title": "kAudioFileStreamError_UnsupportedProperty",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kaudiofilestreamerror_unsupportedproperty"
+    },
+    "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioFileStreamError_ValueUnknown": {
+      "abstract": [
+        {
+          "text": "The property value is not present in this file before the audio data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kAudioFileStreamError_ValueUnknown"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioFileStreamError_ValueUnknown",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kAudioFileStreamError_ValueUnknown"
+        }
+      ],
+      "role": "symbol",
+      "title": "kAudioFileStreamError_ValueUnknown",
+      "type": "topic",
+      "url": "/documentation/audiotoolbox/kaudiofilestreamerror_valueunknown"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Audio-Files-and-Formats",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-format-services",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-file-services",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/extended-audio-file-services",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-file-components",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/core-audio-file-format"
+      ],
+      "title": "Audio Files and Formats"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Opening-Audio-File-Streams",
+      "identifiers": [
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileStreamOpen(_:_:_:_:_:)"
+      ],
+      "title": "Opening Audio File Streams"
+    },
+    {
+      "anchor": "Supplying-Data-to-the-Parser",
+      "identifiers": [
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileStreamParseBytes(_:_:_:_:)"
+      ],
+      "title": "Supplying Data to the Parser"
+    },
+    {
+      "anchor": "Seeking-Packets-in-the-Data-Stream",
+      "identifiers": [
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileStreamSeek(_:_:_:_:)"
+      ],
+      "title": "Seeking Packets in the Data Stream"
+    },
+    {
+      "anchor": "Working-with-Data-Stream-Property-Information",
+      "identifiers": [
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileStreamGetPropertyInfo(_:_:_:_:)",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileStreamGetProperty(_:_:_:_:)",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileStreamSetProperty(_:_:_:_:)"
+      ],
+      "title": "Working with Data Stream Property Information"
+    },
+    {
+      "anchor": "Closing-an-Audio-File-Stream",
+      "identifiers": [
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileStreamClose(_:)"
+      ],
+      "title": "Closing an Audio File Stream"
+    },
+    {
+      "anchor": "Callbacks",
+      "identifiers": [
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileStream_PropertyListenerProc",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileStream_PacketsProc"
+      ],
+      "title": "Callbacks"
+    },
+    {
+      "anchor": "Data-Types",
+      "identifiers": [
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileStreamPropertyID",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileStreamID"
+      ],
+      "title": "Data Types"
+    },
+    {
+      "anchor": "Enumerations",
+      "identifiers": [
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1391572-audio-file-stream-errors",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1576497-audio-file-types"
+      ],
+      "title": "Enumerations"
+    },
+    {
+      "anchor": "Constants",
+      "identifiers": [
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-file-stream-flags",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1391506-audio-file-stream-properties"
+      ],
+      "title": "Constants"
+    },
+    {
+      "abstract": [
+        {
+          "text": "This table lists the result codes defined for Audio File Stream Services.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Result-Codes",
+      "identifiers": [
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1576500-audio-file-errors",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioFileStreamError_UnsupportedFileType",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioFileStreamError_UnsupportedDataFormat",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioFileStreamError_UnsupportedProperty",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioFileStreamError_BadPropertySize",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioFileStreamError_NotOptimized",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioFileStreamError_InvalidPacketOffset",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioFileStreamError_InvalidFile",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioFileStreamError_ValueUnknown",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioFileStreamError_DataUnavailable",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioFileStreamError_IllegalOperation",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioFileStreamError_UnspecifiedError",
+        "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioFileStreamError_DiscontinuityCantRecover"
+      ],
+      "title": "Result Codes"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Opening-Audio-File-Streams",
+              "identifiers": [
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileStreamOpen(_:_:_:_:_:)"
+              ],
+              "title": "Opening Audio File Streams"
+            },
+            {
+              "anchor": "Supplying-Data-to-the-Parser",
+              "identifiers": [
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileStreamParseBytes(_:_:_:_:)"
+              ],
+              "title": "Supplying Data to the Parser"
+            },
+            {
+              "anchor": "Seeking-Packets-in-the-Data-Stream",
+              "identifiers": [
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileStreamSeek(_:_:_:_:)"
+              ],
+              "title": "Seeking Packets in the Data Stream"
+            },
+            {
+              "anchor": "Working-with-Data-Stream-Property-Information",
+              "identifiers": [
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileStreamGetPropertyInfo(_:_:_:_:)",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileStreamGetProperty(_:_:_:_:)",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileStreamSetProperty(_:_:_:_:)"
+              ],
+              "title": "Working with Data Stream Property Information"
+            },
+            {
+              "anchor": "Closing-an-Audio-File-Stream",
+              "identifiers": [
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileStreamClose(_:)"
+              ],
+              "title": "Closing an Audio File Stream"
+            },
+            {
+              "anchor": "Callbacks",
+              "identifiers": [
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileStream_PropertyListenerProc",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileStream_PacketsProc"
+              ],
+              "title": "Callbacks"
+            },
+            {
+              "anchor": "Data-Types",
+              "identifiers": [
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileStreamPropertyID",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/AudioFileStreamID"
+              ],
+              "title": "Data Types"
+            },
+            {
+              "anchor": "Enumerations",
+              "identifiers": [
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1391572-audio-file-stream-errors",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1576497-audio-file-types"
+              ],
+              "title": "Enumerations"
+            },
+            {
+              "anchor": "Constants",
+              "identifiers": [
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-file-stream-flags",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1391506-audio-file-stream-properties"
+              ],
+              "title": "Constants"
+            },
+            {
+              "abstract": [
+                {
+                  "text": "This table lists the result codes defined for Audio File Stream Services.",
+                  "type": "text"
+                }
+              ],
+              "anchor": "Result-Codes",
+              "identifiers": [
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/1576500-audio-file-errors",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioFileStreamError_UnsupportedFileType",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioFileStreamError_UnsupportedDataFormat",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioFileStreamError_UnsupportedProperty",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioFileStreamError_BadPropertySize",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioFileStreamError_NotOptimized",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioFileStreamError_InvalidPacketOffset",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioFileStreamError_InvalidFile",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioFileStreamError_ValueUnknown",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioFileStreamError_DataUnavailable",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioFileStreamError_IllegalOperation",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioFileStreamError_UnspecifiedError",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/kAudioFileStreamError_DiscontinuityCantRecover"
+              ],
+              "title": "Result Codes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Audio-Files-and-Formats",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-format-services",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-file-services",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/extended-audio-file-services",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/audio-file-components",
+                "doc://com.apple.audiotoolbox/documentation/AudioToolbox/core-audio-file-format"
+              ],
+              "title": "Audio Files and Formats"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioFileStream_PropertyListenerProc/title",
+          "value": "AudioFileStream_PropertyListenerProc"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioFileStream_PropertyListenerProc/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioFileStream_PropertyListenerProc"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioFileStream_PropertyListenerProc/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioFileStream_PropertyListenerProc"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioFileStreamGetPropertyInfo(_:_:_:_:)/title",
+          "value": "AudioFileStreamGetPropertyInfo"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioFileStreamGetPropertyInfo(_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioFileStreamGetPropertyInfo"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioFileStreamError_DataUnavailable/title",
+          "value": "kAudioFileStreamError_DataUnavailable"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioFileStreamError_DataUnavailable/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kAudioFileStreamError_DataUnavailable"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioFileStreamError_NotOptimized/title",
+          "value": "kAudioFileStreamError_NotOptimized"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioFileStreamError_NotOptimized/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kAudioFileStreamError_NotOptimized"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioFileStreamID/title",
+          "value": "AudioFileStreamID"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioFileStreamID/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioFileStreamID"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioFileStreamID/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioFileStreamID"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioFileStreamError_ValueUnknown/title",
+          "value": "kAudioFileStreamError_ValueUnknown"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioFileStreamError_ValueUnknown/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kAudioFileStreamError_ValueUnknown"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioFileStreamError_InvalidFile/title",
+          "value": "kAudioFileStreamError_InvalidFile"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioFileStreamError_InvalidFile/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kAudioFileStreamError_InvalidFile"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioFileStreamParseBytes(_:_:_:_:)/title",
+          "value": "AudioFileStreamParseBytes"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioFileStreamParseBytes(_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioFileStreamParseBytes"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioFileStreamError_UnsupportedDataFormat/title",
+          "value": "kAudioFileStreamError_UnsupportedDataFormat"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioFileStreamError_UnsupportedDataFormat/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kAudioFileStreamError_UnsupportedDataFormat"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioFileStreamSetProperty(_:_:_:_:)/title",
+          "value": "AudioFileStreamSetProperty"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioFileStreamSetProperty(_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioFileStreamSetProperty"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioFileStreamError_UnsupportedProperty/title",
+          "value": "kAudioFileStreamError_UnsupportedProperty"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioFileStreamError_UnsupportedProperty/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kAudioFileStreamError_UnsupportedProperty"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioFileStreamError_IllegalOperation/title",
+          "value": "kAudioFileStreamError_IllegalOperation"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioFileStreamError_IllegalOperation/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kAudioFileStreamError_IllegalOperation"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioFileStreamError_BadPropertySize/title",
+          "value": "kAudioFileStreamError_BadPropertySize"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioFileStreamError_BadPropertySize/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kAudioFileStreamError_BadPropertySize"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioFileStream_PacketsProc/title",
+          "value": "AudioFileStream_PacketsProc"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioFileStream_PacketsProc/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioFileStream_PacketsProc"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioFileStream_PacketsProc/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioFileStream_PacketsProc"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioFileStreamClose(_:)/title",
+          "value": "AudioFileStreamClose"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioFileStreamClose(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioFileStreamClose"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioFileStreamError_UnsupportedFileType/title",
+          "value": "kAudioFileStreamError_UnsupportedFileType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioFileStreamError_UnsupportedFileType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kAudioFileStreamError_UnsupportedFileType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioFileStreamError_InvalidPacketOffset/title",
+          "value": "kAudioFileStreamError_InvalidPacketOffset"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioFileStreamError_InvalidPacketOffset/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kAudioFileStreamError_InvalidPacketOffset"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioFileStreamOpen(_:_:_:_:_:)/title",
+          "value": "AudioFileStreamOpen"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioFileStreamOpen(_:_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioFileStreamOpen"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioFileStreamSeek(_:_:_:_:)/title",
+          "value": "AudioFileStreamSeek"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioFileStreamSeek(_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioFileStreamSeek"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioFileStreamError_UnspecifiedError/title",
+          "value": "kAudioFileStreamError_UnspecifiedError"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioFileStreamError_UnspecifiedError/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kAudioFileStreamError_UnspecifiedError"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioFileStreamGetProperty(_:_:_:_:)/title",
+          "value": "AudioFileStreamGetProperty"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioFileStreamGetProperty(_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioFileStreamGetProperty"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioFileStreamError_DiscontinuityCantRecover/title",
+          "value": "kAudioFileStreamError_DiscontinuityCantRecover"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1kAudioFileStreamError_DiscontinuityCantRecover/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kAudioFileStreamError_DiscontinuityCantRecover"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioFileStreamPropertyID/title",
+          "value": "AudioFileStreamPropertyID"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioFileStreamPropertyID/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioFileStreamPropertyID"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.audiotoolbox~1documentation~1AudioToolbox~1AudioFileStreamPropertyID/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "AudioFileStreamPropertyID"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/audiotoolbox/audio-file-stream-services"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/audiotoolbox/audio-file-stream-services"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

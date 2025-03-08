@@ -1,0 +1,1866 @@
+{
+  "abstract": [
+    {
+      "text": "Write your Metal pipeline states to a binary archive at app runtime, and build binaries for any supported GPU.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.metal/documentation/Metal",
+        "doc://com.apple.metal/documentation/Metal/shader-libraries",
+        "doc://com.apple.metal/documentation/Metal/metal-binary-archives"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.metal/documentation/Metal/creating-binary-archives-from-device-built-pipeline-state-objects"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Metal"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Creating Binary Archives from Device-Built Pipeline State Objects"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When building your shaders at runtime, Metal uses pipeline state descriptors in addition to the Metal IR it compiles from your shader functions. To build binary archives for distribution, the compiler needs some information about your app’s Metal pipelines, and a way to interpret them. When serializing a binary archive to device storage from your app, Metal includes a pipeline configuration script with it. The Metal translator is the part of the compiler that reads these configurations, and enables GPU-specific compilation for platforms other than the host GPU. Invoke the translator with the ",
+              "type": "text"
+            },
+            {
+              "code": "metal-tt",
+              "type": "codeVoice"
+            },
+            {
+              "text": " command in Terminal or from a build script.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-4336949",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This article explains how to serialize an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLBinaryArchive",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance, extract the binary archive from an app you deploy to a device in Xcode, and provide it to the Metal translator to create GPU binaries for your project. You can use the code examples in this article with the app and shaders from the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/using-a-render-pipeline-to-render-primitives",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " sample. Another common approach is to create a small command-line tool that loads and compiles your shaders to an initial binary archive in macOS, which you can integrate as part your app’s build scripts.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.metal/documentation/Metal/MTLBinaryArchive",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " serialization on device doesn’t have support for specialized functions. For shaders using specialized functions, you need to manually edit the configuration script. For instructions, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.metal/documentation/Metal/compiling-binary-archives-from-a-custom-configuration-script",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Create-a-Metal-Binary-Archive-in-Your-App",
+          "level": 3,
+          "text": "Create a Metal Binary Archive in Your App",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Create an instance of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLBinaryArchive",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " from an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLBinaryArchiveDescriptor",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " with a ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLBinaryArchiveDescriptor/url",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property. This instructs Metal to create, rather than load, a binary archive. After creating the archive, add all pipeline descriptors you use in your encoder to the binary archive. The following code example performs these steps for an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLDevice",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance named ",
+              "type": "text"
+            },
+            {
+              "code": "device",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderPipelineDescriptor",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance named ",
+              "type": "text"
+            },
+            {
+              "code": "pipelineStateDescriptor",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "do {",
+                    "    let archiveDescriptor = MTLBinaryArchiveDescriptor()",
+                    "    let archive = device.makeBinaryArchive(descriptor: archiveDescriptor)",
+                    "    try archive.addRenderPipelineFunctions(descriptor: pipelineStateDescriptor)",
+                    "}",
+                    "catch {",
+                    "    print(\"Failed to create binary archive: \\(error)\")",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "MTLBinaryArchiveDescriptor *archiveDescriptor = [[MTLBinaryArchiveDescriptor alloc] init];",
+                    "id<MTLBinaryArchive> archive = [_device newBinaryArchiveWithDescriptor:archiveDescriptor error:&error];",
+                    "NSAssert(archive, @\"Failed to create binary archive: %@\", error);",
+                    "",
+                    "BOOL success = [archive addRenderPipelineFunctionsWithDescriptor:pipelineStateDescriptor error:&error];"
+                  ],
+                  "syntax": "objective-c",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "If you’re adding binary archive serialization to an existing app, create your render pipeline state after creating your binary archive instance in the app. When you do, Metal can take advantage of optimizations that increase shader compilation speed and reduce memory usage.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Tip",
+          "style": "tip",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After adding pipeline descriptors to the binary archive, serialize it to storage. The following code example shows how to serialize an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLBinaryArchive",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance to device storage:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "fn serializeBinary(archive: MTLBinaryArchive, name: String) throws {",
+                    "    var success = false;",
+                    "    var directory: URL? = FileManager.default.url(for: .applicationSupportDirectory, in: .userDomainMask, appropriateFor: nil, create: true)",
+                    "",
+                    "#if os(macOS)",
+                    "    directory = URL(string: Bundle.main.bundleIdentifier, relativeTo: directory).absoluteURL;",
+                    "    if directory == nil {",
+                    "        throw",
+                    "    }",
+                    "    FileManager.default.createDirectory(at: directory, withIntermediateDirectories: true, attributes: nil)",
+                    "#endif",
+                    "",
+                    "    let url = directory.appendingPathComponent(\"\\(name).binary.metallib\"",
+                    "    archive.serialize(to: url.absoluteURL)",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "-(BOOL) serializeBinaryArchive:(id<MTLBinaryArchive>)archive named:(NSString*)name error:(NSError**)error {",
+                    "    BOOL success = false;",
+                    "",
+                    "    NSURL* directory = [[NSFileManager defaultManager] URLForDirectory:NSApplicationSupportDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:YES error:error];",
+                    "#if TARGET_OS_OSX",
+                    "    directory = [[NSURL URLWithString:[[NSBundle mainBundle] bundleIdentifier] relativeToURL:directory] absoluteURL];",
+                    "    success = [[NSFileManager defaultManager] createDirectoryAtURL:directory withIntermediateDirectories:YES attributes:nil error:error];",
+                    "    if (!success) {",
+                    "        return NO;",
+                    "    }",
+                    "#endif",
+                    "",
+                    "    NSURL* url = [directory URLByAppendingPathComponent:[NSString stringWithFormat:@\"%@.binary.metallib\", name]];  ",
+                    "    success = [archive serializeToURL:url error:error];",
+                    "    return success;    ",
+                    "}"
+                  ],
+                  "syntax": "objective-c",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "In macOS, store resources outside your application bundle and within an appropriate directory. Storing runtime-created resources inside an application bundle can cause code-signing and verification errors when rebuilding. For more information on how to discover and diagnose these issues, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/Xcode/testing-a-release-build",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Run your app on a device to create a Metal binary archive at the URL in your code.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Extract-the-Binary-Archive-from-Your-App",
+          "level": 3,
+          "text": "Extract the Binary Archive from Your App",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After running your app, the resulting binary archive contains a single binary slice for the GPU architecture of your target device. In macOS, you can access the archive directly on your development computer at the path ",
+              "type": "text"
+            },
+            {
+              "code": "${HOME}/Library/Application Support/${BUNDLE_ID}/${LIBRARY_NAME}.binary.metallib",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For archived binaries you produce on another type of device, retrieve them as follows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Connect your device with the app that contains the archived binary to your development computer.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In Xcode, choose Window > Devices and Simulators.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click the Devices tab and select the device and app you want to extract the binary from.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click the More (…) icon, select Download Container, and save the container to a location on your development computer.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In Finder, navigate to the container’s saved location, Control-click it, and select Show Package Contents to open it.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Copy the binary archive located at ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "AppData/Library/Application Support/${LIBRARY_NAME}.binary.metallib",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to another directory.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-4336586",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use ",
+              "type": "text"
+            },
+            {
+              "code": "metal-lipo -archs",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to inspect a binary archive and display the compiled GPU architectures. For example, a MacBook M1 Pro produces an ",
+              "type": "text"
+            },
+            {
+              "code": "applegpu_g13g",
+              "type": "codeVoice"
+            },
+            {
+              "text": " binary archive.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "$ xcrun -sdk macosx metal-lipo device.binary.metallib -archs",
+            "applegpu_g13g air64_v26"
+          ],
+          "syntax": "shell",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Note that binary archives still contain a Metal IR slice, ",
+              "type": "text"
+            },
+            {
+              "code": "air64_v26",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". Metal may invalidate binaries when upgrading a device’s operating system, and shaders recompile from the Metal IR in the archive.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Copy-and-Modify-the-Configuration-Script",
+          "level": 3,
+          "text": "Copy and Modify the Configuration Script",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The pipeline state that Metal builds during binary serialization is a ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "pipeline configuration script",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", a JSON file with the extension ",
+              "type": "text"
+            },
+            {
+              "code": "mtlp-json",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". This is the data you retrieve from the binary archive and modify to compile new binary slices. Start by extracting the Metal binaries and configuration script from the archive using the ",
+              "type": "text"
+            },
+            {
+              "code": "metal-source",
+              "type": "codeVoice"
+            },
+            {
+              "text": " command-line tool in Terminal.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "% xcrun metal-source -flatbuffers=json device-compiled.binary.metallib -o extracted-source"
+          ],
+          "syntax": "shell",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Within the ",
+              "type": "text"
+            },
+            {
+              "code": "extracted-source",
+              "type": "codeVoice"
+            },
+            {
+              "text": " directory is the configuration script that Metal uses to drive compilation. This file has a generated name ending with the extension ",
+              "type": "text"
+            },
+            {
+              "code": "mtlp-json",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". Use the ",
+              "type": "text"
+            },
+            {
+              "code": "find",
+              "type": "codeVoice"
+            },
+            {
+              "text": " command in Terminal to locate and copy the file to ",
+              "type": "text"
+            },
+            {
+              "code": "metal-build.mtlp-json",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in the current directory.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "% cp $(find extracted-source -type f -name '*.mtlp-json') ./metal-build.mtlp-json"
+          ],
+          "syntax": "shell",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You also need the path to a library containing a Metal IR slice for your shaders. Use the Metal library from Xcode’s compilation of your app that contains these shaders.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the copied configuration script, you tell the Metal translator where to locate the Metal library from Xcode, and script a section that determines which GPUs to compile for. Open the created ",
+              "type": "text"
+            },
+            {
+              "code": "metal-build.mtlp-json",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file in a text editor and modify the ",
+              "type": "text"
+            },
+            {
+              "code": "path",
+              "type": "codeVoice"
+            },
+            {
+              "text": " value to reference the path of your locally compiled library from Xcode.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "  \"libraries\": {",
+            "    \"paths\": [",
+            "      {",
+            "        \"label\": \"1D54EB2B266CDA015BA52C746856B43364E8204D7FB39B18E0C95882F132E4C0\",",
+            "        \"path\": \"./xcode-compiled-library.metallib\"",
+            "      }",
+            "    ]",
+            "  },"
+          ],
+          "syntax": "json",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Some shader types, such as tile shaders, require specific GPU or Metal support. For Metal translator to compile binaries of these shaders, add an ",
+                  "type": "text"
+                },
+                {
+                  "code": "enable",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " key to the pipeline description and set its value to a pipeline script defining which conditions make a valid platform. For full documentation on the script format, run ",
+                  "type": "text"
+                },
+                {
+                  "code": "man metal-pipelines-script",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " in Terminal.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Run the ",
+              "type": "text"
+            },
+            {
+              "code": "metal-tt",
+              "type": "codeVoice"
+            },
+            {
+              "text": " command-line tool in Terminal to generate a new archived binary. The following command builds for devices running iOS 16 that support Metal 3:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "% xcrun -sdk iphoneos metal-tt -target air64-apple-ios16.0 -gpu-family metal3 ./metal-build.mtlp-json -o precompiled.binary.metallib"
+          ],
+          "syntax": "shell",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "The ",
+                  "type": "text"
+                },
+                {
+                  "code": "metal-config",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " command-line tool can provide a full set of compiler flags for ",
+                  "type": "text"
+                },
+                {
+                  "code": "metal-tt",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ". For more information, run ",
+                  "type": "text"
+                },
+                {
+                  "code": "man metal-config",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " in Terminal.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Tip",
+          "style": "tip",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Any compatible device can load the ",
+              "type": "text"
+            },
+            {
+              "code": "precompiled.binary.metallib",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and skip runtime compilation of shaders. Running the ",
+              "type": "text"
+            },
+            {
+              "code": "metal-lipo",
+              "type": "codeVoice"
+            },
+            {
+              "text": " command-line tool shows the available architectures.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "% xcrun metal-lipo ./precompiled.binary.metallib -archs",
+            "applegpu_g12p applegpu_g13p applegpu_g13g applegpu_g14p applegpu_g14g applegpu_g16p applegpu_g15p"
+          ],
+          "syntax": "shell",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Add-Your-Compiled-Binary-Archive-to-Your-App",
+          "level": 3,
+          "text": "Add Your Compiled Binary Archive to Your App",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To use this newly created Metal binary archive, you need to add it to your Xcode project’s bundle resources. Add the ",
+              "type": "text"
+            },
+            {
+              "code": "precompiled.binary.metallib",
+              "type": "codeVoice"
+            },
+            {
+              "text": " archive to your project’s Copy Bundle Resources build phase. For instructions, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Xcode/customizing-the-build-phases-of-a-target",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For Metal to take advantage of precompiled binaries, load them with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLDevice/makeBinaryArchive(descriptor:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and provide an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLBinaryArchiveDescriptor",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " with a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLBinaryArchiveDescriptor/url",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " pointing to the binary archive. Then add them to a pipeline descriptor instance’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderPipelineDescriptor/binaryArchives",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "let archiveDescriptor = MTLBinaryArchiveDescriptor()",
+                    "archiveDescriptor.url = Bundle.main.url(forResource: \"precompiled.binary\", withExtension: \"metallib\", subdirectory: nil)",
+                    "if archiveDescriptor.url == nil {",
+                    "    // Throw an appropriate error for your app failing to locate the binary archive.",
+                    "}",
+                    "",
+                    "let archive = device.makeBinaryArchive(descriptor: archiveDescriptor)",
+                    "pipelineDescriptor.binaryArchives.append(archive)"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "MTLBinaryArchiveDescriptor* archiveDescriptor = [[MTLBinaryArchiveDescriptor alloc] init];",
+                    "archiveDescriptor.url = [[NSBundle main] URLForResource:@\"precompiled.binary\" withExtension:@\"metallib\" subdirectory:nil];",
+                    "if (archiveDescriptor.url == nil) {",
+                    "    // Handle failing to load the binary archive.",
+                    "}",
+                    "",
+                    "id<MTLBinaryArchive> archive = [device newBinaryArchiveWithDescriptor:archiveDescriptor error:error];",
+                    "if (archive == nil) {",
+                    "    // Handle failing to load the binary archive.",
+                    "}",
+                    "",
+                    "pipelineDescriptor.binaryArchives = [pipelineDescriptor.binaryArchives arrayByAddingObject:archive];"
+                  ],
+                  "syntax": "objective-c",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Failing to load a binary archive isn’t a fatal error in Metal, and it falls back on the compilation of Metal IR at runtime. To cause a failure from the Metal system when an expected binary archive doesn’t load, configure your pipeline with an ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.metal/documentation/Metal/MTLPipelineOption",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " of ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.metal/documentation/Metal/MTLPipelineOption/failOnBinaryArchiveMiss",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Tip",
+          "style": "tip",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/Xcode/customizing-the-build-phases-of-a-target": {
+      "abstract": [
+        {
+          "text": "Specify the tasks to perform during a build, including the source files to compile, the scripts to run, and the resources to include in the final product.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Xcode/customizing-the-build-phases-of-a-target",
+      "kind": "article",
+      "role": "article",
+      "title": "Customizing the build phases of a target",
+      "type": "topic",
+      "url": "/documentation/Xcode/customizing-the-build-phases-of-a-target"
+    },
+    "doc://com.apple.documentation/documentation/Xcode/testing-a-release-build": {
+      "abstract": [
+        {
+          "text": "Run your app in simulated user environments to discover and identify deployment errors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Xcode/testing-a-release-build",
+      "kind": "article",
+      "role": "article",
+      "title": "Testing a release build",
+      "type": "topic",
+      "url": "/documentation/Xcode/testing-a-release-build"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.metal/documentation/Metal": {
+      "abstract": [
+        {
+          "text": "Render advanced 3D graphics and compute data in parallel with graphics processors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Metal",
+      "type": "topic",
+      "url": "/documentation/metal"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLBinaryArchive": {
+      "abstract": [
+        {
+          "text": "A container for pipeline state descriptors and their associated compiled shader code.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLBinaryArchive"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLBinaryArchive",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLBinaryArchive"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLBinaryArchive",
+      "type": "topic",
+      "url": "/documentation/metal/mtlbinaryarchive"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLBinaryArchiveDescriptor": {
+      "abstract": [
+        {
+          "text": "A description of a binary shader archive that you want to create.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLBinaryArchiveDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLBinaryArchiveDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLBinaryArchiveDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLBinaryArchiveDescriptor",
+      "type": "topic",
+      "url": "/documentation/metal/mtlbinaryarchivedescriptor"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLBinaryArchiveDescriptor/url": {
+      "abstract": [
+        {
+          "text": "A URL to a Metal binary archive file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "url"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLBinaryArchiveDescriptor/url",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "url"
+        }
+      ],
+      "role": "symbol",
+      "title": "url",
+      "type": "topic",
+      "url": "/documentation/metal/mtlbinaryarchivedescriptor/url"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLDevice": {
+      "abstract": [
+        {
+          "text": "The main Metal interface to a GPU that apps use to draw graphics and run computations in parallel.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLDevice"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLDevice",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLDevice"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLDevice",
+      "type": "topic",
+      "url": "/documentation/metal/mtldevice"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLDevice/makeBinaryArchive(descriptor:)": {
+      "abstract": [
+        {
+          "text": "Creates a Metal binary archive instance.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "makeBinaryArchive"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "descriptor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)MTLBinaryArchiveDescriptor",
+          "text": "MTLBinaryArchiveDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLBinaryArchive",
+          "text": "MTLBinaryArchive"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLDevice/makeBinaryArchive(descriptor:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "newBinaryArchiveWithDescriptor:error:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "makeBinaryArchive(descriptor:)",
+      "type": "topic",
+      "url": "/documentation/metal/mtldevice/makebinaryarchive(descriptor:)"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLPipelineOption": {
+      "abstract": [
+        {
+          "text": "Options that determine how Metal prepares the pipeline.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLPipelineOption"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLPipelineOption",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLPipelineOption"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLPipelineOption",
+      "type": "topic",
+      "url": "/documentation/metal/mtlpipelineoption"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLPipelineOption/failOnBinaryArchiveMiss": {
+      "abstract": [
+        {
+          "text": "An option that specifies that Metal only creates the pipeline state object if the compiled shader is present inside a linked binary archive.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "failOnBinaryArchiveMiss"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@MTLPipelineOption",
+          "text": "MTLPipelineOption"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLPipelineOption/failOnBinaryArchiveMiss",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLPipelineOptionFailOnBinaryArchiveMiss"
+        }
+      ],
+      "role": "symbol",
+      "title": "failOnBinaryArchiveMiss",
+      "type": "topic",
+      "url": "/documentation/metal/mtlpipelineoption/failonbinaryarchivemiss"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRenderPipelineDescriptor": {
+      "abstract": [
+        {
+          "text": "An argument of options you pass to a GPU device to get a render pipeline state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLRenderPipelineDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderPipelineDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLRenderPipelineDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLRenderPipelineDescriptor",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrenderpipelinedescriptor"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLRenderPipelineDescriptor/binaryArchives": {
+      "abstract": [
+        {
+          "text": "An array of binary archives to search for precompiled versions of the shader.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "binaryArchives"
+        },
+        {
+          "kind": "text",
+          "text": ": [any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)MTLBinaryArchive",
+          "text": "MTLBinaryArchive"
+        },
+        {
+          "kind": "text",
+          "text": "]?"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLRenderPipelineDescriptor/binaryArchives",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "binaryArchives"
+        }
+      ],
+      "role": "symbol",
+      "title": "binaryArchives",
+      "type": "topic",
+      "url": "/documentation/metal/mtlrenderpipelinedescriptor/binaryarchives"
+    },
+    "doc://com.apple.metal/documentation/Metal/compiling-binary-archives-from-a-custom-configuration-script": {
+      "abstract": [
+        {
+          "text": "Define how the Metal translator builds binary archives without precompiled binaries as a starting source.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/compiling-binary-archives-from-a-custom-configuration-script",
+      "kind": "article",
+      "role": "article",
+      "title": "Compiling Binary Archives from a Custom Configuration Script",
+      "type": "topic",
+      "url": "/documentation/metal/compiling-binary-archives-from-a-custom-configuration-script"
+    },
+    "doc://com.apple.metal/documentation/Metal/manipulating-metal-binary-archives": {
+      "abstract": [
+        {
+          "text": "Split precompiled binaries into individual slices, and combine them back together for targeted distribution.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/manipulating-metal-binary-archives",
+      "kind": "article",
+      "role": "article",
+      "title": "Manipulating Metal Binary Archives",
+      "type": "topic",
+      "url": "/documentation/metal/manipulating-metal-binary-archives"
+    },
+    "doc://com.apple.metal/documentation/Metal/metal-binary-archives": {
+      "abstract": [
+        {
+          "text": "Distribute precompiled GPU-specific binaries as part of your app to avoid runtime compilation of Metal shaders.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/metal-binary-archives",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Metal Binary Archives",
+      "type": "topic",
+      "url": "/documentation/metal/metal-binary-archives"
+    },
+    "doc://com.apple.metal/documentation/Metal/shader-libraries": {
+      "abstract": [
+        {
+          "text": "Manage and load your app’s Metal shaders.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/shader-libraries",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Shader Libraries",
+      "type": "topic",
+      "url": "/documentation/metal/shader-libraries"
+    },
+    "doc://com.apple.metal/documentation/Metal/using-a-render-pipeline-to-render-primitives": {
+      "abstract": [
+        {
+          "text": "Render a simple 2D triangle.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/using-a-render-pipeline-to-render-primitives",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Using a Render Pipeline to Render Primitives",
+      "type": "topic",
+      "url": "/documentation/metal/using-a-render-pipeline-to-render-primitives"
+    },
+    "media-4336586": {
+      "alt": "A screenshot of the Devices and Simulators window in Xcode, showing a connected iPhone 15. In the pane on the right, HelloTriangle is selected in the Installed Apps section. At the bottom of the pane, the Download Container option is highlighted in the More menu.",
+      "identifier": "media-4336586",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/fe3fd19459211b9f8e4219383661db28/media-4336586@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b9bdf3306bcd556763cb500d54407877/media-4336586~dark@2x.png"
+        }
+      ]
+    },
+    "media-4336949": {
+      "alt": "A block flow diagram of the workflow for creating Metal binary archives. At the upper left, the process starts with a shader.msl source file that flows to the metal command-line tool and the resulting Metal IR library, shader.metallib. At the bottom middle, an independent workflow shows two boxes labeled Extract from app and Author with text editor. These combine to a final configuration script named HASH.mtlp-json. At the right, the Metal IR library and Metal config boxes flow together into the metal-tt command-line tool and produce the final product of a binary archive named shader.binary.metallib.",
+      "identifier": "media-4336949",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/0065e6ab5b2e70cc642d7b5ed869ccb9/media-4336949@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/999939d30466967e4e221768fdd89075/media-4336949~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Working-with-Metal-Binary-Archives",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/manipulating-metal-binary-archives",
+        "doc://com.apple.metal/documentation/Metal/compiling-binary-archives-from-a-custom-configuration-script"
+      ],
+      "title": "Working with Metal Binary Archives"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Working-with-Metal-Binary-Archives",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/manipulating-metal-binary-archives",
+                "doc://com.apple.metal/documentation/Metal/compiling-binary-archives-from-a-custom-configuration-script"
+              ],
+              "title": "Working with Metal Binary Archives"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice/title",
+          "value": "MTLDevice"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLDevice"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLDevice"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice~1makeBinaryArchive(descriptor:)/title",
+          "value": "newBinaryArchiveWithDescriptor:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLDevice~1makeBinaryArchive(descriptor:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "newBinaryArchiveWithDescriptor:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLBinaryArchiveDescriptor~1url/title",
+          "value": "url"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLBinaryArchiveDescriptor~1url/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "url"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderPipelineDescriptor/title",
+          "value": "MTLRenderPipelineDescriptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderPipelineDescriptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLRenderPipelineDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderPipelineDescriptor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLRenderPipelineDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLBinaryArchive/title",
+          "value": "MTLBinaryArchive"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLBinaryArchive/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLBinaryArchive"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLBinaryArchive/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLBinaryArchive"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderPipelineDescriptor~1binaryArchives/title",
+          "value": "binaryArchives"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLRenderPipelineDescriptor~1binaryArchives/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "binaryArchives"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLBinaryArchiveDescriptor/title",
+          "value": "MTLBinaryArchiveDescriptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLBinaryArchiveDescriptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLBinaryArchiveDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLBinaryArchiveDescriptor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLBinaryArchiveDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLPipelineOption/title",
+          "value": "MTLPipelineOption"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLPipelineOption/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLPipelineOption"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLPipelineOption/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLPipelineOption"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLPipelineOption~1failOnBinaryArchiveMiss/title",
+          "value": "MTLPipelineOptionFailOnBinaryArchiveMiss"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLPipelineOption~1failOnBinaryArchiveMiss/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLPipelineOptionFailOnBinaryArchiveMiss"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/metal/creating-binary-archives-from-device-built-pipeline-state-objects"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/metal/creating-binary-archives-from-device-built-pipeline-state-objects"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

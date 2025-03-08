@@ -1,0 +1,870 @@
+{
+  "abstract": [
+    {
+      "text": "Store a certificate in the keychain for safekeeping.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.security/documentation/Security",
+        "doc://com.apple.security/documentation/Security/certificate-key-and-trust-services",
+        "doc://com.apple.security/documentation/Security/certificates"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.security/documentation/Security/storing-a-certificate-in-the-keychain"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Security"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Storing a Certificate in the Keychain"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you receive a certificate, perhaps from a ",
+              "type": "text"
+            },
+            {
+              "code": ".cer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file, as shown in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/storing-a-der-encoded-x-509-certificate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", you can store it in your keychain for safekeeping. As with other keychain operations, begin by creating a query:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "let addquery: [String: Any] = [kSecClass as String: kSecClassCertificate,",
+                    "                               kSecValueRef as String: certificate,",
+                    "                               kSecAttrLabel as String: \"My Certificate\"]"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "NSDictionary* addquery = @{ (id)kSecValueRef:   (__bridge id)certificate,",
+                    "                            (id)kSecClass:      (id)kSecClassCertificate,",
+                    "                            (id)kSecAttrLabel:  @\"My Certificate\",",
+                    "                           };"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In addition to including the certificate reference itself and the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/kSecClassCertificate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " attribute value, you add a label with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/kSecAttrLabel",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " attribute, making it easier to search for the certificate later.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You then supply the query to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/SecItemAdd(_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "let status = SecItemAdd(addquery as CFDictionary, nil)",
+                    "guard status == errSecSuccess else { throw <# an error #> }"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "OSStatus status = SecItemAdd((__bridge CFDictionaryRef)addquery, NULL);",
+                    "if (status != errSecSuccess) {",
+                    "    // Handle the error",
+                    "}"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As always, test the return status before proceeding. Because you don’t need another reference to the certificate in this case, you omit the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/kSecReturnRef",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " attribute from the query dictionary and leave the second argument to the function call empty.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Later, when you want to read the certificate back from the keychain, create a new query dictionary:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "let getquery: [String: Any] = [kSecClass as String: kSecClassCertificate,",
+                    "                               kSecAttrLabel as String: \"My Certificate\",",
+                    "                               kSecReturnRef as String: kCFBooleanTrue]"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "NSDictionary *getquery = @{ (id)kSecClass:     (id)kSecClassCertificate,",
+                    "                            (id)kSecAttrLabel: @\"My Certificate\",",
+                    "                            (id)kSecReturnRef: @YES,",
+                    "                            };"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This query dictionary again uses the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/kSecClassCertificate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " value for the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/kSecClass",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " entry to specify a search for a certificate item (as opposed to a key, identity, or password). Further, the query indicates the label you used when you stored the certificate. Finally, it says that the retrieval should return a certificate reference (rather than the data itself).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use this query with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/SecItemCopyMatching(_:_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "var item: CFTypeRef?",
+                    "let status = SecItemCopyMatching(getquery as CFDictionary, &item)",
+                    "guard status == errSecSuccess else { throw <# an error #> }",
+                    "let certificate = item as! SecCertificate"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "SecCertificateRef certificate = NULL;",
+                    "OSStatus status = SecItemCopyMatching((__bridge CFDictionaryRef)getquery,",
+                    "                                      (CFTypeRef *)&certificate);",
+                    "if (status != errSecSuccess) { <# Handle error #> }",
+                    "else                         { <# Use certificate #> }",
+                    " ",
+                    "if (certificate) { CFRelease(certificate); } // After you are done with it"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Objective-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Assuming the call is successful, the function populates the item reference. In Objective-C, when you are done with the certificate, you are responsible for freeing the object’s memory. In Swift, the system manages the object’s memory automatically, releasing it when the certificate goes out of scope.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.security/documentation/Security": {
+      "abstract": [
+        {
+          "text": "Secure the data your app manages, and control access to your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Security",
+      "type": "topic",
+      "url": "/documentation/security"
+    },
+    "doc://com.apple.security/documentation/Security/SecItemAdd(_:_:)": {
+      "abstract": [
+        {
+          "text": "Adds one or more items to a keychain.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecItemAdd"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFDictionaryRef",
+          "text": "CFDictionary"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFTypeRef",
+          "text": "CFTypeRef"
+        },
+        {
+          "kind": "text",
+          "text": "?>?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecItemAdd(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecItemAdd"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecItemAdd(_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/secitemadd(_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/SecItemCopyMatching(_:_:)": {
+      "abstract": [
+        {
+          "text": "Returns one or more keychain items that match a search query, or copies attributes of specific keychain items.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecItemCopyMatching"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFDictionaryRef",
+          "text": "CFDictionary"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFTypeRef",
+          "text": "CFTypeRef"
+        },
+        {
+          "kind": "text",
+          "text": "?>?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecItemCopyMatching(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecItemCopyMatching"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecItemCopyMatching(_:_:)",
+      "type": "topic",
+      "url": "/documentation/security/secitemcopymatching(_:_:)"
+    },
+    "doc://com.apple.security/documentation/Security/certificate-key-and-trust-services": {
+      "abstract": [
+        {
+          "text": "Establish trust using certificates and cryptographic keys.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/certificate-key-and-trust-services",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Certificate, Key, and Trust Services",
+      "type": "topic",
+      "url": "/documentation/security/certificate-key-and-trust-services"
+    },
+    "doc://com.apple.security/documentation/Security/certificates": {
+      "abstract": [
+        {
+          "text": "Manage digital certificates.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/certificates",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Certificates",
+      "type": "topic",
+      "url": "/documentation/security/certificates"
+    },
+    "doc://com.apple.security/documentation/Security/kSecAttrLabel": {
+      "abstract": [
+        {
+          "text": "A key with a value that’s a string indicating the item’s label.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kSecAttrLabel"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/kSecAttrLabel",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kSecAttrLabel"
+        }
+      ],
+      "role": "symbol",
+      "title": "kSecAttrLabel",
+      "type": "topic",
+      "url": "/documentation/security/ksecattrlabel"
+    },
+    "doc://com.apple.security/documentation/Security/kSecClass": {
+      "abstract": [
+        {
+          "text": "A dictionary key whose value is the item’s class.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kSecClass"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/kSecClass",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kSecClass"
+        }
+      ],
+      "role": "symbol",
+      "title": "kSecClass",
+      "type": "topic",
+      "url": "/documentation/security/ksecclass"
+    },
+    "doc://com.apple.security/documentation/Security/kSecClassCertificate": {
+      "abstract": [
+        {
+          "text": "The value that indicates a certificate item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kSecClassCertificate"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/kSecClassCertificate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kSecClassCertificate"
+        }
+      ],
+      "role": "symbol",
+      "title": "kSecClassCertificate",
+      "type": "topic",
+      "url": "/documentation/security/ksecclasscertificate"
+    },
+    "doc://com.apple.security/documentation/Security/kSecReturnRef": {
+      "abstract": [
+        {
+          "text": "A key whose value is a Boolean indicating whether or not to return a reference to an item.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kSecReturnRef"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/kSecReturnRef",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kSecReturnRef"
+        }
+      ],
+      "role": "symbol",
+      "title": "kSecReturnRef",
+      "type": "topic",
+      "url": "/documentation/security/ksecreturnref"
+    },
+    "doc://com.apple.security/documentation/Security/storing-a-der-encoded-x-509-certificate": {
+      "abstract": [
+        {
+          "text": "Import and export a certificate from a file.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/storing-a-der-encoded-x-509-certificate",
+      "kind": "article",
+      "role": "article",
+      "title": "Storing a DER-Encoded X.509 Certificate",
+      "type": "topic",
+      "url": "/documentation/security/storing-a-der-encoded-x-509-certificate"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecClassCertificate/title",
+          "value": "kSecClassCertificate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecClassCertificate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kSecClassCertificate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecAttrLabel/title",
+          "value": "kSecAttrLabel"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecAttrLabel/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kSecAttrLabel"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecItemAdd(_:_:)/title",
+          "value": "SecItemAdd"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecItemAdd(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecItemAdd"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecItemCopyMatching(_:_:)/title",
+          "value": "SecItemCopyMatching"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecItemCopyMatching(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecItemCopyMatching"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecClass/title",
+          "value": "kSecClass"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecClass/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kSecClass"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecReturnRef/title",
+          "value": "kSecReturnRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1kSecReturnRef/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kSecReturnRef"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/security/storing-a-certificate-in-the-keychain"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/security/storing-a-certificate-in-the-keychain"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

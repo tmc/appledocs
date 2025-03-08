@@ -1,0 +1,405 @@
+{
+  "abstract": [
+    {
+      "text": "Write your own custom kernels in either the Core Image Kernel Language or the Metal Shading Language.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/coreimage"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/coreimage/writing_custom_kernels"
+  },
+  "kind": "article",
+  "legacy_identifier": 2975847,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Core Image"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Writing Custom Kernels"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Core Image Kernel Language is a shading language optimized for writing custom kernels for use in apps leveraging Core Image.  You can add custom image processing routines to a Core Image pipeline.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can also write your own kernels in the Metal Shading Language.  The following flowchart shows how you decide which language to use for writing custom kernels:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3011610",
+              "metadata": {
+                "anchor": "3011610",
+                "title": "Figure 1"
+              },
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Source code written in Core Image Kernel Language should contain one or more image processing routines and may optionally contain other functions that are called by these routines. The source code is parsed and validated when the code is passed to Core Image's ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/coreimage/cikernel",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " creation APIs. When rendering, Core Image can concatenate kernel functions used within an image graph and construct optimized shader programs. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "link-3011611",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for a list of supported data types, functions, and language features.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Alternatively, you can write custom kernels in the Metal Shading Language. If you intend to use Metal-only language features and support exclusively Metal-supported devices, then writing custom kernels in Metal Shading Language can reduce compile-time cost while providing code consistency across your Metal app. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "link-3011612",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for a list of supported data types, functions, and language features.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/coreimage": {
+      "identifier": "doc://com.apple.documentation/documentation/coreimage",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Image",
+      "type": "topic",
+      "url": "/documentation/coreimage"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciblendkernel": {
+      "abstract": [
+        {
+          "text": "A GPU-based image-processing routine that is optimized for blending two images.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "CIBlendKernel"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciblendkernel",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CIBlendKernel",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciblendkernel"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cicolorkernel": {
+      "abstract": [
+        {
+          "text": "A GPU-based image-processing routine that processes only the color information in images, used to create custom Core Image filters.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "CIColorKernel"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cicolorkernel",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CIColorKernel",
+      "type": "topic",
+      "url": "/documentation/coreimage/cicolorkernel"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cifiltershape": {
+      "abstract": [
+        {
+          "text": "A description of the bounding shape of a filter and the domain of definition for a filter operation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "CIFilterShape"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cifiltershape",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CIFilterShape",
+      "type": "topic",
+      "url": "/documentation/coreimage/cifiltershape"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciformat": {
+      "abstract": [
+        {
+          "text": "Pixel data formats for image input, output, and processing.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "CIFormat"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciformat",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CIFormat",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciformat"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cikernel": {
+      "abstract": [
+        {
+          "text": "A GPU-based image-processing routine used to create custom Core Image filters.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "CIKernel"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cikernel",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CIKernel",
+      "type": "topic",
+      "url": "/documentation/coreimage/cikernel"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/cisampler": {
+      "abstract": [
+        {
+          "text": "An object that retrieves pixel samples for processing by a filter kernel.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "CISampler"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/cisampler",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CISampler",
+      "type": "topic",
+      "url": "/documentation/coreimage/cisampler"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/ciwarpkernel": {
+      "abstract": [
+        {
+          "text": "A GPU-based image-processing routine that processes only the geometry information in an image, used to create custom Core Image filters.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "CIWarpKernel"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/ciwarpkernel",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CIWarpKernel",
+      "type": "topic",
+      "url": "/documentation/coreimage/ciwarpkernel"
+    },
+    "doc://com.apple.documentation/documentation/coreimage/writing_custom_kernels": {
+      "abstract": [
+        {
+          "text": "Write your own custom kernels in either the Core Image Kernel Language or the Metal Shading Language.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/coreimage/writing_custom_kernels",
+      "kind": "article",
+      "role": "article",
+      "title": "Writing Custom Kernels",
+      "type": "topic",
+      "url": "/documentation/coreimage/writing_custom_kernels"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "link-3011611": {
+      "identifier": "link-3011611",
+      "kind": "article",
+      "role": "link",
+      "title": "Core Image Kernel Language Reference",
+      "type": "topic",
+      "url": "https://developer.apple.com/go/?id=core-image-kernel-language-reference"
+    },
+    "link-3011612": {
+      "identifier": "link-3011612",
+      "kind": "article",
+      "role": "link",
+      "title": "Metal Shading Language for Core Image Kernels",
+      "type": "topic",
+      "url": "https://developer.apple.com/go/?id=metal-shading-language-for-core-image-kernels"
+    },
+    "link-media-3011610": {
+      "identifier": "link-media-3011610",
+      "title": "Figure 1",
+      "type": "link",
+      "url": "/documentation/coreimage/writing_custom_kernels#3011610"
+    },
+    "media-3011610": {
+      "alt": "Flowchart showing how to choose a kernel language for writing custom CIKernel filters.",
+      "identifier": "media-3011610",
+      "title": "Figure 1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e83d911c8a/b3d15078-0ebe-463e-9f60-156a431e0d42.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/coreimage/cikernel",
+        "doc://com.apple.documentation/documentation/coreimage/cicolorkernel",
+        "doc://com.apple.documentation/documentation/coreimage/ciwarpkernel",
+        "doc://com.apple.documentation/documentation/coreimage/ciblendkernel",
+        "doc://com.apple.documentation/documentation/coreimage/cisampler",
+        "doc://com.apple.documentation/documentation/coreimage/cifiltershape",
+        "doc://com.apple.documentation/documentation/coreimage/ciformat"
+      ],
+      "title": "Custom Filters"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/coreimage/writing_custom_kernels"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/coreimage/writing_custom_kernels"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1831 @@
+{
+  "abstract": [
+    {
+      "text": "An angular gradient.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.SwiftUI/documentation/SwiftUI/AngularGradient"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:7SwiftUI15AngularGradientV",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "struct"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "AngularGradient"
+      }
+    ],
+    "modules": [
+      {
+        "name": "SwiftUI"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "AngularGradient"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.15",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "6.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "AngularGradient"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "attribute",
+              "text": "@frozen"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AngularGradient"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An angular gradient is also known as a “conic” gradient. This gradient",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "applies the color function as the angle changes, relative to a center",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "point and defined start and end angles. If ",
+              "type": "text"
+            },
+            {
+              "code": "endAngle - startAngle > 2π",
+              "type": "codeVoice"
+            },
+            {
+              "text": ",",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the gradient only draws the last complete turn. If",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "endAngle - startAngle < 2π",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", the gradient fills the missing area with",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the colors defined by gradient locations one and zero, transitioning",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "between the two halfway across the missing area. The gradient maps the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "unit space center point into the bounding rectangle of each shape filled",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "with the gradient.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When using an angular gradient as a shape style, you can also use",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ShapeStyle/angularGradient(_:center:startAngle:endAngle:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ",",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ShapeStyle/conicGradient(_:center:angle:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", or similar methods.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "SwiftUI-PageImage-card.png": {
+      "alt": "A black Swift logo on a swirly blue and purple background.",
+      "identifier": "SwiftUI-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b1de0de086f81a5d0eac3839a0af6e6f/SwiftUI-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1450d0b30a6b024e10c148e3f31dafe9/SwiftUI-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI": {
+      "abstract": [
+        {
+          "text": "Declare the user interface and behavior for your app on every platform.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI",
+      "images": [
+        {
+          "identifier": "SwiftUI-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SwiftUI",
+      "type": "topic",
+      "url": "/documentation/swiftui"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/AngularGradient": {
+      "abstract": [
+        {
+          "text": "An angular gradient.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AngularGradient"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/AngularGradient",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "AngularGradient"
+        }
+      ],
+      "role": "symbol",
+      "title": "AngularGradient",
+      "type": "topic",
+      "url": "/documentation/swiftui/angulargradient"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/AngularGradient/init(colors:center:angle:)": {
+      "abstract": [
+        {
+          "text": "Creates a conic gradient from a collection of colors that completes",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "a full turn.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "colors"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI5ColorV",
+          "text": "Color"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "center"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI9UnitPointV",
+          "text": "UnitPoint"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "angle"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI5AngleV",
+          "text": "Angle"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/AngularGradient/init(colors:center:angle:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(colors:center:angle:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/angulargradient/init(colors:center:angle:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/AngularGradient/init(colors:center:startAngle:endAngle:)": {
+      "abstract": [
+        {
+          "text": "Creates an angular gradient from a collection of colors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "colors"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI5ColorV",
+          "text": "Color"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "center"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI9UnitPointV",
+          "text": "UnitPoint"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "startAngle"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI5AngleV",
+          "text": "Angle"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "endAngle"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI5AngleV",
+          "text": "Angle"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/AngularGradient/init(colors:center:startAngle:endAngle:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(colors:center:startAngle:endAngle:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/angulargradient/init(colors:center:startangle:endangle:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/AngularGradient/init(gradient:center:angle:)": {
+      "abstract": [
+        {
+          "text": "Creates a conic gradient that completes a full turn.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "gradient"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI8GradientV",
+          "text": "Gradient"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "center"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI9UnitPointV",
+          "text": "UnitPoint"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "angle"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI5AngleV",
+          "text": "Angle"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/AngularGradient/init(gradient:center:angle:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(gradient:center:angle:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/angulargradient/init(gradient:center:angle:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/AngularGradient/init(gradient:center:startAngle:endAngle:)": {
+      "abstract": [
+        {
+          "text": "Creates an angular gradient.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "gradient"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI8GradientV",
+          "text": "Gradient"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "center"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI9UnitPointV",
+          "text": "UnitPoint"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "startAngle"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI5AngleV",
+          "text": "Angle"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "endAngle"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI5AngleV",
+          "text": "Angle"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/AngularGradient/init(gradient:center:startAngle:endAngle:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(gradient:center:startAngle:endAngle:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/angulargradient/init(gradient:center:startangle:endangle:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/AngularGradient/init(stops:center:angle:)": {
+      "abstract": [
+        {
+          "text": "Creates a conic gradient from a collection of color stops that",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "completes a full turn.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "stops"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI8GradientV",
+          "text": "Gradient"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI8GradientV4StopV",
+          "text": "Stop"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "center"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI9UnitPointV",
+          "text": "UnitPoint"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "angle"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI5AngleV",
+          "text": "Angle"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/AngularGradient/init(stops:center:angle:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(stops:center:angle:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/angulargradient/init(stops:center:angle:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/AngularGradient/init(stops:center:startAngle:endAngle:)": {
+      "abstract": [
+        {
+          "text": "Creates an angular gradient from a collection of color stops.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "stops"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI8GradientV",
+          "text": "Gradient"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI8GradientV4StopV",
+          "text": "Stop"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "center"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI9UnitPointV",
+          "text": "UnitPoint"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "startAngle"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI5AngleV",
+          "text": "Angle"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "endAngle"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI5AngleV",
+          "text": "Angle"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/AngularGradient/init(stops:center:startAngle:endAngle:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(stops:center:startAngle:endAngle:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/angulargradient/init(stops:center:startangle:endangle:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/BackgroundStyle": {
+      "abstract": [
+        {
+          "text": "The background style in the current context.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BackgroundStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/BackgroundStyle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "BackgroundStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "BackgroundStyle",
+      "type": "topic",
+      "url": "/documentation/swiftui/backgroundstyle"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/EllipticalGradient": {
+      "abstract": [
+        {
+          "text": "A radial gradient that draws an ellipse.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "EllipticalGradient"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/EllipticalGradient",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "EllipticalGradient"
+        }
+      ],
+      "role": "symbol",
+      "title": "EllipticalGradient",
+      "type": "topic",
+      "url": "/documentation/swiftui/ellipticalgradient"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/FillShapeStyle": {
+      "abstract": [
+        {
+          "text": "A shape style that displays one of the overlay fills.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FillShapeStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/FillShapeStyle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FillShapeStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "FillShapeStyle",
+      "type": "topic",
+      "url": "/documentation/swiftui/fillshapestyle"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/ForegroundStyle": {
+      "abstract": [
+        {
+          "text": "The foreground style in the current context.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ForegroundStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ForegroundStyle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ForegroundStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "ForegroundStyle",
+      "type": "topic",
+      "url": "/documentation/swiftui/foregroundstyle"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/HierarchicalShapeStyle": {
+      "abstract": [
+        {
+          "text": "A shape style that maps to one of the numbered content styles.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HierarchicalShapeStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/HierarchicalShapeStyle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HierarchicalShapeStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "HierarchicalShapeStyle",
+      "type": "topic",
+      "url": "/documentation/swiftui/hierarchicalshapestyle"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/HierarchicalShapeStyleModifier": {
+      "abstract": [
+        {
+          "text": "Styles that you can apply to hierarchical shapes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HierarchicalShapeStyleModifier"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/HierarchicalShapeStyleModifier",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HierarchicalShapeStyleModifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "HierarchicalShapeStyleModifier",
+      "type": "topic",
+      "url": "/documentation/swiftui/hierarchicalshapestylemodifier"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/ImagePaint": {
+      "abstract": [
+        {
+          "text": "A shape style that fills a shape by repeating a region of an image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ImagePaint"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ImagePaint",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ImagePaint"
+        }
+      ],
+      "role": "symbol",
+      "title": "ImagePaint",
+      "type": "topic",
+      "url": "/documentation/swiftui/imagepaint"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/LinearGradient": {
+      "abstract": [
+        {
+          "text": "A linear gradient.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LinearGradient"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/LinearGradient",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LinearGradient"
+        }
+      ],
+      "role": "symbol",
+      "title": "LinearGradient",
+      "type": "topic",
+      "url": "/documentation/swiftui/lineargradient"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/LinkShapeStyle": {
+      "abstract": [
+        {
+          "text": "A style appropriate for links.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "LinkShapeStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/LinkShapeStyle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "LinkShapeStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "LinkShapeStyle",
+      "type": "topic",
+      "url": "/documentation/swiftui/linkshapestyle"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/Material": {
+      "abstract": [
+        {
+          "text": "A background material type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Material"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/Material",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Material"
+        }
+      ],
+      "role": "symbol",
+      "title": "Material",
+      "type": "topic",
+      "url": "/documentation/swiftui/material"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/PlaceholderTextShapeStyle": {
+      "abstract": [
+        {
+          "text": "A style appropriate for placeholder text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PlaceholderTextShapeStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/PlaceholderTextShapeStyle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PlaceholderTextShapeStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "PlaceholderTextShapeStyle",
+      "type": "topic",
+      "url": "/documentation/swiftui/placeholdertextshapestyle"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/RadialGradient": {
+      "abstract": [
+        {
+          "text": "A radial gradient.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RadialGradient"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/RadialGradient",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RadialGradient"
+        }
+      ],
+      "role": "symbol",
+      "title": "RadialGradient",
+      "type": "topic",
+      "url": "/documentation/swiftui/radialgradient"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/SelectionShapeStyle": {
+      "abstract": [
+        {
+          "text": "A style used to visually indicate selection following platform conventional",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "colors and behaviors.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SelectionShapeStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/SelectionShapeStyle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SelectionShapeStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "SelectionShapeStyle",
+      "type": "topic",
+      "url": "/documentation/swiftui/selectionshapestyle"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/SeparatorShapeStyle": {
+      "abstract": [
+        {
+          "text": "A style appropriate for foreground separator or border lines.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SeparatorShapeStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/SeparatorShapeStyle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SeparatorShapeStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "SeparatorShapeStyle",
+      "type": "topic",
+      "url": "/documentation/swiftui/separatorshapestyle"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/ShapeStyle": {
+      "abstract": [
+        {
+          "text": "A color or pattern to use when rendering a shape.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ShapeStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ShapeStyle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ShapeStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "ShapeStyle",
+      "type": "topic",
+      "url": "/documentation/swiftui/shapestyle"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/ShapeStyle/angularGradient(_:center:startAngle:endAngle:)": {
+      "abstract": [
+        {
+          "text": "An angular gradient, which applies the color function as the",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "angle changes between the start and end angles, and anchored to",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "a relative center point within the filled shape.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Self",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "AngularGradient",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "angularGradient"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": ":"
+        },
+        {
+          "kind": "externalParam",
+          "text": "center"
+        },
+        {
+          "kind": "text",
+          "text": ":"
+        },
+        {
+          "kind": "externalParam",
+          "text": "startAngle"
+        },
+        {
+          "kind": "text",
+          "text": ":"
+        },
+        {
+          "kind": "externalParam",
+          "text": "endAngle"
+        },
+        {
+          "kind": "text",
+          "text": ":)"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ShapeStyle/angularGradient(_:center:startAngle:endAngle:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "angularGradient(_:center:startAngle:endAngle:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/shapestyle/angulargradient(_:center:startangle:endangle:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/ShapeStyle/conicGradient(_:center:angle:)": {
+      "abstract": [
+        {
+          "text": "A conic gradient that completes a full turn, optionally starting from",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "a given angle and anchored to a relative center point within the filled",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "shape.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Self",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "AngularGradient",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "conicGradient"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": ":"
+        },
+        {
+          "kind": "externalParam",
+          "text": "center"
+        },
+        {
+          "kind": "text",
+          "text": ":"
+        },
+        {
+          "kind": "externalParam",
+          "text": "angle"
+        },
+        {
+          "kind": "text",
+          "text": ":)"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/ShapeStyle/conicGradient(_:center:angle:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "conicGradient(_:center:angle:)",
+      "type": "topic",
+      "url": "/documentation/swiftui/shapestyle/conicgradient(_:center:angle:)"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/TintShapeStyle": {
+      "abstract": [
+        {
+          "text": "A style that reflects the current tint color.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TintShapeStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/TintShapeStyle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TintShapeStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "TintShapeStyle",
+      "type": "topic",
+      "url": "/documentation/swiftui/tintshapestyle"
+    },
+    "doc://com.apple.SwiftUI/documentation/SwiftUI/View": {
+      "abstract": [
+        {
+          "text": "A type that represents part of your app’s user interface and provides",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "modifiers that you use to configure views.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "View"
+        }
+      ],
+      "identifier": "doc://com.apple.SwiftUI/documentation/SwiftUI/View",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "View"
+        }
+      ],
+      "role": "symbol",
+      "title": "View",
+      "type": "topic",
+      "url": "/documentation/swiftui/view"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s8SendableP",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/ShapeStyle",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/View"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Supporting-types",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/EllipticalGradient",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/LinearGradient",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/RadialGradient",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/Material",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/ImagePaint",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/HierarchicalShapeStyle",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/HierarchicalShapeStyleModifier",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/ForegroundStyle",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/BackgroundStyle",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/SelectionShapeStyle",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/SeparatorShapeStyle",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/TintShapeStyle",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/FillShapeStyle",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/LinkShapeStyle",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/PlaceholderTextShapeStyle"
+      ],
+      "title": "Supporting types"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-full-rotation-angular-gradient",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/AngularGradient/init(gradient:center:angle:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/AngularGradient/init(colors:center:angle:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/AngularGradient/init(stops:center:angle:)"
+      ],
+      "title": "Creating a full rotation angular gradient"
+    },
+    {
+      "anchor": "Creating-a-partial-rotation-angular-gradient",
+      "identifiers": [
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/AngularGradient/init(gradient:center:startAngle:endAngle:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/AngularGradient/init(colors:center:startAngle:endAngle:)",
+        "doc://com.apple.SwiftUI/documentation/SwiftUI/AngularGradient/init(stops:center:startAngle:endAngle:)"
+      ],
+      "title": "Creating a partial rotation angular gradient"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/swiftui/angulargradient"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1707 @@
+{
+  "abstract": [
+    {
+      "text": "A concrete feedback generator subclass that creates haptics to simulate physical impacts.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.uikit/documentation/UIKit/UIImpactFeedbackGenerator"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)UIImpactFeedbackGenerator",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "UIImpactFeedbackGenerator"
+      }
+    ],
+    "modules": [
+      {
+        "name": "UIKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "UIImpactFeedbackGenerator"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "UIImpactFeedbackGenerator"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst"
+          ],
+          "tokens": [
+            {
+              "kind": "attribute",
+              "text": "@"
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+              "kind": "attribute",
+              "preciseIdentifier": "s:ScM",
+              "text": "MainActor"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "UIImpactFeedbackGenerator"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use impact feedback to indicate when an impact occurs. For example, you might trigger impact feedback when a user interface object collides with another object.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code example shows how to use a pan gesture to drag a square, playing haptic feedback to indicate when the square collides with the edge of its superview.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "var feedback = UIImpactFeedbackGenerator()",
+            "",
+            "override func viewDidLoad() {",
+            "    super.viewDidLoad()",
+            "    ",
+            "    // Create an impact feedback object and associate it with the view.",
+            "    feedback = UIImpactFeedbackGenerator(view: view)",
+            "    ",
+            "    // Draw a basic square and add it to the view hierarchy.",
+            "    let center = CGPoint(x: view.center.x - 50, y: view.center.y - 50)",
+            "    let square = UIView(frame: CGRect(origin: center,",
+            "                                     size: CGSize(width: 100, height: 100)))",
+            "    square.backgroundColor = .tintColor",
+            "    view.addSubview(square)",
+            "    ",
+            "    // Add a pan gesture to allow dragging the square.",
+            "    let panGesture = UIPanGestureRecognizer(target: self, action: #selector(dragSquare(_:)))",
+            "    square.isUserInteractionEnabled = true",
+            "    square.addGestureRecognizer(panGesture)",
+            "}",
+            "",
+            "@objc",
+            "private func dragSquare(_ sender: UIPanGestureRecognizer) {",
+            "    guard let square = sender.view else { return }",
+            "    ",
+            "    if sender.state == .began {",
+            "        // Prepare the feedback object.",
+            "        feedback.prepare()",
+            "    }",
+            "",
+            "    // Move the square in response to a pan gesture.",
+            "    let distance = sender.translation(in: view)",
+            "    square.center = CGPoint(x: square.center.x + distance.x, y: square.center.y + distance.y)",
+            "    sender.setTranslation(CGPoint.zero, in: view)",
+            "",
+            "    // Play impact feedback if the square bumps into the edge of its superview.",
+            "    if square.hitEdge(of: view) {",
+            "        feedback.impactOccurred(intensity: 1, at: sender.location(in: view))",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information, read ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/ApplePencil/playing-haptic-feedback-in-your-app",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/ApplePencil/playing-haptic-feedback-in-your-app": {
+      "abstract": [
+        {
+          "text": "Provide tactile feedback when people perform certain actions in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ApplePencil/playing-haptic-feedback-in-your-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Playing haptic feedback in your app",
+      "type": "topic",
+      "url": "/documentation/ApplePencil/playing-haptic-feedback-in-your-app"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.uikit/documentation/UIKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your iOS, iPadOS, or tvOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "UIKit",
+      "type": "topic",
+      "url": "/documentation/uikit"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UICanvasFeedbackGenerator": {
+      "abstract": [
+        {
+          "text": "A concrete feedback generator subclass that creates haptics to indicate events on a drawing canvas.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UICanvasFeedbackGenerator"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UICanvasFeedbackGenerator",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UICanvasFeedbackGenerator"
+        }
+      ],
+      "role": "symbol",
+      "title": "UICanvasFeedbackGenerator",
+      "type": "topic",
+      "url": "/documentation/uikit/uicanvasfeedbackgenerator"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIFeedbackGenerator": {
+      "abstract": [
+        {
+          "text": "The abstract superclass for all feedback generators.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIFeedbackGenerator"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIFeedbackGenerator",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIFeedbackGenerator"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIFeedbackGenerator",
+      "type": "topic",
+      "url": "/documentation/uikit/uifeedbackgenerator"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIImpactFeedbackGenerator": {
+      "abstract": [
+        {
+          "text": "A concrete feedback generator subclass that creates haptics to simulate physical impacts.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIImpactFeedbackGenerator"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImpactFeedbackGenerator",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIImpactFeedbackGenerator"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIImpactFeedbackGenerator",
+      "type": "topic",
+      "url": "/documentation/uikit/uiimpactfeedbackgenerator"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIImpactFeedbackGenerator/FeedbackStyle": {
+      "abstract": [
+        {
+          "text": "The mass of the objects in the collision simulated by an impact feedback generator object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "FeedbackStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImpactFeedbackGenerator/FeedbackStyle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "FeedbackStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIImpactFeedbackGenerator.FeedbackStyle",
+      "type": "topic",
+      "url": "/documentation/uikit/uiimpactfeedbackgenerator/feedbackstyle"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIImpactFeedbackGenerator/impactOccurred()": {
+      "abstract": [
+        {
+          "text": "Triggers impact feedback.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "impactOccurred"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImpactFeedbackGenerator/impactOccurred()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "impactOccurred"
+        }
+      ],
+      "role": "symbol",
+      "title": "impactOccurred()",
+      "type": "topic",
+      "url": "/documentation/uikit/uiimpactfeedbackgenerator/impactoccurred()"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIImpactFeedbackGenerator/impactOccurred(at:)": {
+      "abstract": [
+        {
+          "text": "Triggers impact feedback at the specified location.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "impactOccurred"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGPoint",
+          "text": "CGPoint"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImpactFeedbackGenerator/impactOccurred(at:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "impactOccurredAtLocation:"
+        }
+      ],
+      "role": "symbol",
+      "title": "impactOccurred(at:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiimpactfeedbackgenerator/impactoccurred(at:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIImpactFeedbackGenerator/impactOccurred(intensity:)": {
+      "abstract": [
+        {
+          "text": "Triggers impact feedback with a specific intensity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "impactOccurred"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "intensity"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImpactFeedbackGenerator/impactOccurred(intensity:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "impactOccurredWithIntensity:"
+        }
+      ],
+      "role": "symbol",
+      "title": "impactOccurred(intensity:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiimpactfeedbackgenerator/impactoccurred(intensity:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIImpactFeedbackGenerator/impactOccurred(intensity:at:)": {
+      "abstract": [
+        {
+          "text": "Triggers impact feedback with a specific intensity at the specified location.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "impactOccurred"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "intensity"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "at"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGPoint",
+          "text": "CGPoint"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImpactFeedbackGenerator/impactOccurred(intensity:at:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "impactOccurredWithIntensity:atLocation:"
+        }
+      ],
+      "role": "symbol",
+      "title": "impactOccurred(intensity:at:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiimpactfeedbackgenerator/impactoccurred(intensity:at:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIImpactFeedbackGenerator/init(style:)": {
+      "abstract": [
+        {
+          "text": "Creates an impact feedback generator with the specified style.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "style"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIImpactFeedbackGenerator",
+          "text": "UIImpactFeedbackGenerator"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@UIImpactFeedbackStyle",
+          "text": "FeedbackStyle"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImpactFeedbackGenerator/init(style:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithStyle:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(style:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiimpactfeedbackgenerator/init(style:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIImpactFeedbackGenerator/init(style:view:)": {
+      "abstract": [
+        {
+          "text": "Creates an impact feedback generator with the specified style and view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "convenience"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "style"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIImpactFeedbackGenerator",
+          "text": "UIImpactFeedbackGenerator"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@UIImpactFeedbackStyle",
+          "text": "FeedbackStyle"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "view"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIView",
+          "text": "UIView"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIImpactFeedbackGenerator/init(style:view:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "feedbackGeneratorWithStyle:forView:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(style:view:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uiimpactfeedbackgenerator/init(style:view:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIInteraction": {
+      "abstract": [
+        {
+          "text": "The protocol that an interaction implements to access the view that owns it.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIInteraction"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIInteraction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIInteraction"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIInteraction",
+      "type": "topic",
+      "url": "/documentation/uikit/uiinteraction"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UINotificationFeedbackGenerator": {
+      "abstract": [
+        {
+          "text": "A concrete feedback generator subclass that creates haptics to communicate successes, failures, and warnings.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UINotificationFeedbackGenerator"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UINotificationFeedbackGenerator",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UINotificationFeedbackGenerator"
+        }
+      ],
+      "role": "symbol",
+      "title": "UINotificationFeedbackGenerator",
+      "type": "topic",
+      "url": "/documentation/uikit/uinotificationfeedbackgenerator"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UISelectionFeedbackGenerator": {
+      "abstract": [
+        {
+          "text": "A concrete feedback generator subclass that creates haptics to indicate a change in selection.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UISelectionFeedbackGenerator"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UISelectionFeedbackGenerator",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UISelectionFeedbackGenerator"
+        }
+      ],
+      "role": "symbol",
+      "title": "UISelectionFeedbackGenerator",
+      "type": "topic",
+      "url": "/documentation/uikit/uiselectionfeedbackgenerator"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:ScM": {
+      "abstract": [
+        {
+          "text": "A singleton actor whose executor is equivalent to the main dispatch queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@globalActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "final"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "actor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MainActor"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MainActor",
+      "type": "topic",
+      "url": "/documentation/Swift/MainActor"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIFeedbackGenerator"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+        "doc://com.externally.resolved.symbol/s:s8SendableP",
+        "doc://com.apple.uikit/documentation/UIKit/UIInteraction"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Haptic-feedback",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/ApplePencil/playing-haptic-feedback-in-your-app",
+        "doc://com.apple.uikit/documentation/UIKit/UIFeedbackGenerator",
+        "doc://com.apple.uikit/documentation/UIKit/UINotificationFeedbackGenerator",
+        "doc://com.apple.uikit/documentation/UIKit/UISelectionFeedbackGenerator",
+        "doc://com.apple.uikit/documentation/UIKit/UICanvasFeedbackGenerator"
+      ],
+      "title": "Haptic feedback"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Initializing-the-feedback-generator",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIImpactFeedbackGenerator/init(style:view:)",
+        "doc://com.apple.uikit/documentation/UIKit/UIImpactFeedbackGenerator/FeedbackStyle"
+      ],
+      "title": "Initializing the feedback generator"
+    },
+    {
+      "anchor": "Reporting-impacts",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIImpactFeedbackGenerator/impactOccurred()",
+        "doc://com.apple.uikit/documentation/UIKit/UIImpactFeedbackGenerator/impactOccurred(intensity:)",
+        "doc://com.apple.uikit/documentation/UIKit/UIImpactFeedbackGenerator/impactOccurred(at:)",
+        "doc://com.apple.uikit/documentation/UIKit/UIImpactFeedbackGenerator/impactOccurred(intensity:at:)"
+      ],
+      "title": "Reporting impacts"
+    },
+    {
+      "anchor": "Deprecated",
+      "identifiers": [
+        "doc://com.apple.uikit/documentation/UIKit/UIImpactFeedbackGenerator/init(style:)"
+      ],
+      "title": "Deprecated"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "UIImpactFeedbackGenerator"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIImpactFeedbackGenerator"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIImpactFeedbackGenerator"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.uikit/documentation/UIKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Initializing-the-feedback-generator",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIImpactFeedbackGenerator/init(style:view:)",
+                "doc://com.apple.uikit/documentation/UIKit/UIImpactFeedbackGenerator/FeedbackStyle"
+              ],
+              "title": "Initializing the feedback generator"
+            },
+            {
+              "anchor": "Reporting-impacts",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIImpactFeedbackGenerator/impactOccurred()",
+                "doc://com.apple.uikit/documentation/UIKit/UIImpactFeedbackGenerator/impactOccurred(intensity:)",
+                "doc://com.apple.uikit/documentation/UIKit/UIImpactFeedbackGenerator/impactOccurred(at:)",
+                "doc://com.apple.uikit/documentation/UIKit/UIImpactFeedbackGenerator/impactOccurred(intensity:at:)"
+              ],
+              "title": "Reporting impacts"
+            },
+            {
+              "anchor": "Deprecated",
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIImpactFeedbackGenerator/init(style:)"
+              ],
+              "title": "Deprecated"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIFeedbackGenerator"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Haptic-feedback",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.uikit/documentation/UIKit/UIFeedbackGenerator",
+                "doc://com.apple.uikit/documentation/UIKit/UINotificationFeedbackGenerator",
+                "doc://com.apple.uikit/documentation/UIKit/UISelectionFeedbackGenerator",
+                "doc://com.apple.uikit/documentation/UIKit/UICanvasFeedbackGenerator"
+              ],
+              "title": "Haptic feedback"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "tvOS",
+                  "visionOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "UIImpactFeedbackGenerator"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.apple.uikit/documentation/UIKit/UIFeedbackGenerator",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)UIFeedbackGenerator",
+                    "text": "UIFeedbackGenerator"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImpactFeedbackGenerator~1impactOccurred()/title",
+          "value": "impactOccurred"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImpactFeedbackGenerator~1impactOccurred()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "impactOccurred"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImpactFeedbackGenerator~1init(style:)/title",
+          "value": "initWithStyle:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImpactFeedbackGenerator~1init(style:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithStyle:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImpactFeedbackGenerator/title",
+          "value": "UIImpactFeedbackGenerator"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImpactFeedbackGenerator/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIImpactFeedbackGenerator"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImpactFeedbackGenerator/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIImpactFeedbackGenerator"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIInteraction/title",
+          "value": "UIInteraction"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIInteraction/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIInteraction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIInteraction/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIInteraction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFeedbackGenerator/title",
+          "value": "UIFeedbackGenerator"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFeedbackGenerator/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIFeedbackGenerator"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIFeedbackGenerator/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIFeedbackGenerator"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISelectionFeedbackGenerator/title",
+          "value": "UISelectionFeedbackGenerator"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISelectionFeedbackGenerator/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UISelectionFeedbackGenerator"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UISelectionFeedbackGenerator/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UISelectionFeedbackGenerator"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICanvasFeedbackGenerator/title",
+          "value": "UICanvasFeedbackGenerator"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICanvasFeedbackGenerator/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICanvasFeedbackGenerator"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UICanvasFeedbackGenerator/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UICanvasFeedbackGenerator"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImpactFeedbackGenerator~1init(style:view:)/title",
+          "value": "feedbackGeneratorWithStyle:forView:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImpactFeedbackGenerator~1init(style:view:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "feedbackGeneratorWithStyle:forView:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINotificationFeedbackGenerator/title",
+          "value": "UINotificationFeedbackGenerator"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINotificationFeedbackGenerator/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UINotificationFeedbackGenerator"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UINotificationFeedbackGenerator/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UINotificationFeedbackGenerator"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImpactFeedbackGenerator~1impactOccurred(intensity:)/title",
+          "value": "impactOccurredWithIntensity:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImpactFeedbackGenerator~1impactOccurred(intensity:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "impactOccurredWithIntensity:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImpactFeedbackGenerator~1FeedbackStyle/title",
+          "value": "UIImpactFeedbackStyle"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImpactFeedbackGenerator~1FeedbackStyle/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIImpactFeedbackStyle"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImpactFeedbackGenerator~1FeedbackStyle/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIImpactFeedbackStyle"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImpactFeedbackGenerator~1impactOccurred(at:)/title",
+          "value": "impactOccurredAtLocation:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImpactFeedbackGenerator~1impactOccurred(at:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "impactOccurredAtLocation:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImpactFeedbackGenerator~1impactOccurred(intensity:at:)/title",
+          "value": "impactOccurredWithIntensity:atLocation:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIImpactFeedbackGenerator~1impactOccurred(intensity:at:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "impactOccurredWithIntensity:atLocation:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/uikit/uiimpactfeedbackgenerator"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/uikit/uiimpactfeedbackgenerator"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

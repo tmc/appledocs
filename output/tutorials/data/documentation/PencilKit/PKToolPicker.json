@@ -1,0 +1,3261 @@
+{
+  "abstract": [
+    {
+      "text": "A tool palette that displays a selection of drawing tools and colors for tools that a person can choose from.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.pencilkit/documentation/PencilKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPicker"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)PKToolPicker",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "PKToolPicker"
+      }
+    ],
+    "modules": [
+      {
+        "name": "PencilKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "PKToolPicker"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "PKToolPicker"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "PKToolPicker"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.pencilkit/documentation/PencilKit/supporting-backward-compatibility-for-ink-types"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPicker",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " manages a draggable palette that displays drawing tools, colors, and additional options. You add a tool picker to your interface and configure it to display its palette at appropriate times. While the palette is onscreen, a person may reposition it anywhere within the current window. When a person interacts with the palette, the tool picker notifies registered observers of the changes so that they can respond.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "The tool picker doesn’t display in Mac apps built with Mac Catalyst.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When configuring your interface, call the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPicker/setVisible(_:forFirstResponder:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method to associate the tool picker with one or more views in your interface. Each window manages its own tool picker, and the window’s first responder determines the visibility of that tool picker. When one of the registered objects becomes first responder, the tool picker automatically adds its palette view to the current window. When there isn’t a registered object as first responder, the tool picker hides its palette view.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.pencilkit/documentation/PencilKit/PKCanvasView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " implements the observer protocol for detecting tool picker changes. Adding your canvas view as an observer to a tool picker automatically updates the current drawing tools. For more information about implementing custom observer objects, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPickerObserver",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.pencilkit/documentation/PencilKit": {
+      "abstract": [
+        {
+          "text": "Capture touch and Apple Pencil input as a drawing, and display that content from your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.pencilkit/documentation/PencilKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "PencilKit",
+      "type": "topic",
+      "url": "/documentation/pencilkit"
+    },
+    "doc://com.apple.pencilkit/documentation/PencilKit/PKCanvasView": {
+      "abstract": [
+        {
+          "text": "A view that captures Apple Pencil input and displays the rendered results in an iOS app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKCanvasView"
+        }
+      ],
+      "identifier": "doc://com.apple.pencilkit/documentation/PencilKit/PKCanvasView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKCanvasView"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKCanvasView",
+      "type": "topic",
+      "url": "/documentation/pencilkit/pkcanvasview"
+    },
+    "doc://com.apple.pencilkit/documentation/PencilKit/PKEraserTool-swift.struct": {
+      "abstract": [
+        {
+          "text": "A tool for erasing previously drawn content in a canvas view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKEraserTool"
+        }
+      ],
+      "identifier": "doc://com.apple.pencilkit/documentation/PencilKit/PKEraserTool-swift.struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKEraserTool"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKEraserTool",
+      "type": "topic",
+      "url": "/documentation/pencilkit/pkerasertool-swift.struct"
+    },
+    "doc://com.apple.pencilkit/documentation/PencilKit/PKEraserToolReference": {
+      "abstract": [
+        {
+          "text": "A tool for erasing previously drawn content in a canvas view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKEraserToolReference"
+        }
+      ],
+      "identifier": "doc://com.apple.pencilkit/documentation/PencilKit/PKEraserToolReference",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKEraserToolReference"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKEraserToolReference",
+      "type": "topic",
+      "url": "/documentation/pencilkit/pkerasertoolreference"
+    },
+    "doc://com.apple.pencilkit/documentation/PencilKit/PKInkingTool-swift.struct": {
+      "abstract": [
+        {
+          "text": "A structure that defines the drawing characteristics (width, color, pen style) to use when drawing lines on a canvas view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKInkingTool"
+        }
+      ],
+      "identifier": "doc://com.apple.pencilkit/documentation/PencilKit/PKInkingTool-swift.struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKInkingTool"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKInkingTool",
+      "type": "topic",
+      "url": "/documentation/pencilkit/pkinkingtool-swift.struct"
+    },
+    "doc://com.apple.pencilkit/documentation/PencilKit/PKInkingToolReference": {
+      "abstract": [
+        {
+          "text": "An object that defines the drawing characteristics (width, color, pen style) to use when drawing lines on a canvas view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKInkingToolReference"
+        }
+      ],
+      "identifier": "doc://com.apple.pencilkit/documentation/PencilKit/PKInkingToolReference",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKInkingToolReference"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKInkingToolReference",
+      "type": "topic",
+      "url": "/documentation/pencilkit/pkinkingtoolreference"
+    },
+    "doc://com.apple.pencilkit/documentation/PencilKit/PKLassoTool-swift.struct": {
+      "abstract": [
+        {
+          "text": "A tool for selecting stroked lines and shapes in a canvas view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKLassoTool"
+        }
+      ],
+      "identifier": "doc://com.apple.pencilkit/documentation/PencilKit/PKLassoTool-swift.struct",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKLassoTool"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKLassoTool",
+      "type": "topic",
+      "url": "/documentation/pencilkit/pklassotool-swift.struct"
+    },
+    "doc://com.apple.pencilkit/documentation/PencilKit/PKLassoToolReference": {
+      "abstract": [
+        {
+          "text": "A tool for selecting stroked lines and shapes in a canvas view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKLassoToolReference"
+        }
+      ],
+      "identifier": "doc://com.apple.pencilkit/documentation/PencilKit/PKLassoToolReference",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKLassoToolReference"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKLassoToolReference",
+      "type": "topic",
+      "url": "/documentation/pencilkit/pklassotoolreference"
+    },
+    "doc://com.apple.pencilkit/documentation/PencilKit/PKTool-c.class": {
+      "abstract": [
+        {
+          "text": "An abstract base class for tools used by a canvas view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "PKTool"
+        }
+      ],
+      "identifier": "doc://com.apple.pencilkit/documentation/PencilKit/PKTool-c.class",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "PKTool",
+      "type": "topic",
+      "url": "/documentation/pencilkit/pktool-c.class"
+    },
+    "doc://com.apple.pencilkit/documentation/PencilKit/PKTool-swift.protocol": {
+      "abstract": [
+        {
+          "text": "An interface adopted by drawing and writing tools used by a canvas view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKTool"
+        }
+      ],
+      "identifier": "doc://com.apple.pencilkit/documentation/PencilKit/PKTool-swift.protocol",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKTool"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKTool",
+      "type": "topic",
+      "url": "/documentation/pencilkit/pktool-swift.protocol"
+    },
+    "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPicker": {
+      "abstract": [
+        {
+          "text": "A tool palette that displays a selection of drawing tools and colors for tools that a person can choose from.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKToolPicker"
+        }
+      ],
+      "identifier": "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPicker",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKToolPicker"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKToolPicker",
+      "type": "topic",
+      "url": "/documentation/pencilkit/pktoolpicker"
+    },
+    "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPicker/Delegate-swift.protocol": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Delegate"
+        }
+      ],
+      "identifier": "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPicker/Delegate-swift.protocol",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Delegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKToolPicker.Delegate",
+      "type": "topic",
+      "url": "/documentation/pencilkit/pktoolpicker/delegate-swift.protocol"
+    },
+    "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPicker/accessoryItem": {
+      "abstract": [
+        {
+          "text": "An optional button that appears at the trailing edge of the tool picker.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "accessoryItem"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIBarButtonItem",
+          "text": "UIBarButtonItem"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPicker/accessoryItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "accessoryItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "accessoryItem",
+      "type": "topic",
+      "url": "/documentation/pencilkit/pktoolpicker/accessoryitem"
+    },
+    "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPicker/addObserver(_:)": {
+      "abstract": [
+        {
+          "text": "Adds the specified object to the list of objects to notify when the picker configuration changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "addObserver"
+        },
+        {
+          "kind": "text",
+          "text": "(any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)PKToolPickerObserver",
+          "text": "PKToolPickerObserver"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPicker/addObserver(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "addObserver:"
+        }
+      ],
+      "role": "symbol",
+      "title": "addObserver(_:)",
+      "type": "topic",
+      "url": "/documentation/pencilkit/pktoolpicker/addobserver(_:)"
+    },
+    "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPicker/colorUserInterfaceStyle": {
+      "abstract": [
+        {
+          "text": "The user interface style for the tool picker.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "colorUserInterfaceStyle"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@UIUserInterfaceStyle",
+          "text": "UIUserInterfaceStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPicker/colorUserInterfaceStyle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "colorUserInterfaceStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "colorUserInterfaceStyle",
+      "type": "topic",
+      "url": "/documentation/pencilkit/pktoolpicker/coloruserinterfacestyle"
+    },
+    "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPicker/delegate-swift.property": {
+      "abstract": [
+        {
+          "text": "The delegate for the tool picker.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "delegate"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PKToolPicker",
+          "text": "PKToolPicker"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)PKToolPickerDelegate",
+          "text": "Delegate"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPicker/delegate-swift.property",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "delegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "delegate",
+      "type": "topic",
+      "url": "/documentation/pencilkit/pktoolpicker/delegate-swift.property"
+    },
+    "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPicker/frameObscured(in:)": {
+      "abstract": [
+        {
+          "text": "Returns the portion of the specified view that the tool picker obscures.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "frameObscured"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIView",
+          "text": "UIView"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@CGRect",
+          "text": "CGRect"
+        }
+      ],
+      "identifier": "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPicker/frameObscured(in:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "frameObscuredInView:"
+        }
+      ],
+      "role": "symbol",
+      "title": "frameObscured(in:)",
+      "type": "topic",
+      "url": "/documentation/pencilkit/pktoolpicker/frameobscured(in:)"
+    },
+    "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPicker/init()": {
+      "abstract": [
+        {
+          "text": "Creates a new tool picker with a default set of tools.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPicker/init()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        }
+      ],
+      "role": "symbol",
+      "title": "init()",
+      "type": "topic",
+      "url": "/documentation/pencilkit/pktoolpicker/init()"
+    },
+    "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPicker/init(toolItems:)": {
+      "abstract": [
+        {
+          "text": "Creates a new tool picker with the tools you specify.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "toolItems"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PKToolPickerItem",
+          "text": "PKToolPickerItem"
+        },
+        {
+          "kind": "text",
+          "text": "])"
+        }
+      ],
+      "identifier": "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPicker/init(toolItems:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithToolItems:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(toolItems:)",
+      "type": "topic",
+      "url": "/documentation/pencilkit/pktoolpicker/init(toolitems:)"
+    },
+    "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPicker/isRulerActive": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the ruler is visible on the canvas.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isRulerActive"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPicker/isRulerActive",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "rulerActive"
+        }
+      ],
+      "role": "symbol",
+      "title": "isRulerActive",
+      "type": "topic",
+      "url": "/documentation/pencilkit/pktoolpicker/isruleractive"
+    },
+    "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPicker/isVisible": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the tool picker is currently visible.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isVisible"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPicker/isVisible",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "isVisible"
+        }
+      ],
+      "role": "symbol",
+      "title": "isVisible",
+      "type": "topic",
+      "url": "/documentation/pencilkit/pktoolpicker/isvisible"
+    },
+    "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPicker/maximumSupportedContentVersion": {
+      "abstract": [
+        {
+          "text": "The maximum version of PencilKit to support.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "maximumSupportedContentVersion"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@PKContentVersion",
+          "text": "PKContentVersion"
+        }
+      ],
+      "identifier": "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPicker/maximumSupportedContentVersion",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "maximumSupportedContentVersion"
+        }
+      ],
+      "role": "symbol",
+      "title": "maximumSupportedContentVersion",
+      "type": "topic",
+      "url": "/documentation/pencilkit/pktoolpicker/maximumsupportedcontentversion"
+    },
+    "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPicker/overrideUserInterfaceStyle": {
+      "abstract": [
+        {
+          "text": "The specific user interface style to apply to the tool picker.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "overrideUserInterfaceStyle"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@UIUserInterfaceStyle",
+          "text": "UIUserInterfaceStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPicker/overrideUserInterfaceStyle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "overrideUserInterfaceStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "overrideUserInterfaceStyle",
+      "type": "topic",
+      "url": "/documentation/pencilkit/pktoolpicker/overrideuserinterfacestyle"
+    },
+    "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPicker/prefersDismissControlVisible": {
+      "abstract": [
+        {
+          "text": "If this is true the tool picker may show UI that allows dismissing it.",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "If this is false the tool picker will not show this UI.",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "By default this resigns first responder, but is customizable by ",
+          "type": "text"
+        },
+        {
+          "code": "PKToolPickerDelegate",
+          "type": "codeVoice"
+        },
+        {
+          "text": "’s ",
+          "type": "text"
+        },
+        {
+          "code": "toolPickerWillDismiss...",
+          "type": "codeVoice"
+        },
+        {
+          "text": " method.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "prefersDismissControlVisible"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPicker/prefersDismissControlVisible",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "prefersDismissControlVisible"
+        }
+      ],
+      "role": "symbol",
+      "title": "prefersDismissControlVisible",
+      "type": "topic",
+      "url": "/documentation/pencilkit/pktoolpicker/prefersdismisscontrolvisible"
+    },
+    "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPicker/removeObserver(_:)": {
+      "abstract": [
+        {
+          "text": "Removes the specified object from the list of objects to notify when the picker configuration changes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeObserver"
+        },
+        {
+          "kind": "text",
+          "text": "(any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)PKToolPickerObserver",
+          "text": "PKToolPickerObserver"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPicker/removeObserver(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "removeObserver:"
+        }
+      ],
+      "role": "symbol",
+      "title": "removeObserver(_:)",
+      "type": "topic",
+      "url": "/documentation/pencilkit/pktoolpicker/removeobserver(_:)"
+    },
+    "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPicker/selectedTool-2lptq": {
+      "abstract": [
+        {
+          "text": "The currently selected tool in the tool picker.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "selectedTool"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:9PencilKit6PKToolP",
+          "text": "PKTool"
+        }
+      ],
+      "identifier": "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPicker/selectedTool-2lptq",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "selectedTool",
+      "type": "topic",
+      "url": "/documentation/pencilkit/pktoolpicker/selectedtool-2lptq"
+    },
+    "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPicker/selectedTool-93ikc": {
+      "abstract": [
+        {
+          "text": "The currently selected tool in the tool picker.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "selectedTool"
+        }
+      ],
+      "identifier": "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPicker/selectedTool-93ikc",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "selectedTool",
+      "type": "topic",
+      "url": "/documentation/pencilkit/pktoolpicker/selectedtool-93ikc"
+    },
+    "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPicker/selectedToolItem": {
+      "abstract": [
+        {
+          "text": "The currently selected tool item in the tool picker.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "selectedToolItem"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PKToolPickerItem",
+          "text": "PKToolPickerItem"
+        }
+      ],
+      "identifier": "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPicker/selectedToolItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "selectedToolItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "selectedToolItem",
+      "type": "topic",
+      "url": "/documentation/pencilkit/pktoolpicker/selectedtoolitem"
+    },
+    "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPicker/selectedToolItemIdentifier": {
+      "abstract": [
+        {
+          "text": "The identifier of the selected tool item in the tool picker.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "selectedToolItemIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPicker/selectedToolItemIdentifier",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "selectedToolItemIdentifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "selectedToolItemIdentifier",
+      "type": "topic",
+      "url": "/documentation/pencilkit/pktoolpicker/selectedtoolitemidentifier"
+    },
+    "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPicker/setVisible(_:forFirstResponder:)": {
+      "abstract": [
+        {
+          "text": "Sets the visibility for the tool picker, based on when the specified responder object becomes active.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setVisible"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "forFirstResponder"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIResponder",
+          "text": "UIResponder"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPicker/setVisible(_:forFirstResponder:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setVisible:forFirstResponder:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setVisible(_:forFirstResponder:)",
+      "type": "topic",
+      "url": "/documentation/pencilkit/pktoolpicker/setvisible(_:forfirstresponder:)"
+    },
+    "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPicker/shared(for:)": {
+      "abstract": [
+        {
+          "text": "Returns the tool picker object to use for the specified window.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "shared"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIWindow",
+          "text": "UIWindow"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PKToolPicker",
+          "text": "PKToolPicker"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPicker/shared(for:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "sharedToolPickerForWindow:"
+        }
+      ],
+      "role": "symbol",
+      "title": "shared(for:)",
+      "type": "topic",
+      "url": "/documentation/pencilkit/pktoolpicker/shared(for:)"
+    },
+    "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPicker/showsDrawingPolicyControls": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the default drawing policy UI is visible.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "showsDrawingPolicyControls"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPicker/showsDrawingPolicyControls",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "showsDrawingPolicyControls"
+        }
+      ],
+      "role": "symbol",
+      "title": "showsDrawingPolicyControls",
+      "type": "topic",
+      "url": "/documentation/pencilkit/pktoolpicker/showsdrawingpolicycontrols"
+    },
+    "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPicker/stateAutosaveName": {
+      "abstract": [
+        {
+          "text": "The name used to automatically save the tool picker’s state in the defaults system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "stateAutosaveName"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPicker/stateAutosaveName",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "stateAutosaveName"
+        }
+      ],
+      "role": "symbol",
+      "title": "stateAutosaveName",
+      "type": "topic",
+      "url": "/documentation/pencilkit/pktoolpicker/stateautosavename"
+    },
+    "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPicker/toolItems": {
+      "abstract": [
+        {
+          "text": "All tool items in the tool picker.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "toolItems"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PKToolPickerItem",
+          "text": "PKToolPickerItem"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPicker/toolItems",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "toolItems"
+        }
+      ],
+      "role": "symbol",
+      "title": "toolItems",
+      "type": "topic",
+      "url": "/documentation/pencilkit/pktoolpicker/toolitems"
+    },
+    "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPickerCustomItem": {
+      "abstract": [
+        {
+          "text": "An item that represents a custom tool in the tool picker.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKToolPickerCustomItem"
+        }
+      ],
+      "identifier": "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPickerCustomItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKToolPickerCustomItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKToolPickerCustomItem",
+      "type": "topic",
+      "url": "/documentation/pencilkit/pktoolpickercustomitem"
+    },
+    "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPickerEraserItem": {
+      "abstract": [
+        {
+          "text": "An item that represents an eraser tool in the tool picker.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKToolPickerEraserItem"
+        }
+      ],
+      "identifier": "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPickerEraserItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKToolPickerEraserItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKToolPickerEraserItem",
+      "type": "topic",
+      "url": "/documentation/pencilkit/pktoolpickereraseritem"
+    },
+    "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPickerInkingItem": {
+      "abstract": [
+        {
+          "text": "An item that represents an inking tool in the tool picker.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKToolPickerInkingItem"
+        }
+      ],
+      "identifier": "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPickerInkingItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKToolPickerInkingItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKToolPickerInkingItem",
+      "type": "topic",
+      "url": "/documentation/pencilkit/pktoolpickerinkingitem"
+    },
+    "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPickerItem": {
+      "abstract": [
+        {
+          "text": "The base class for an item in the tool picker.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKToolPickerItem"
+        }
+      ],
+      "identifier": "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPickerItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKToolPickerItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKToolPickerItem",
+      "type": "topic",
+      "url": "/documentation/pencilkit/pktoolpickeritem"
+    },
+    "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPickerLassoItem": {
+      "abstract": [
+        {
+          "text": "An item that represents a lasso tool in the tool picker.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKToolPickerLassoItem"
+        }
+      ],
+      "identifier": "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPickerLassoItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKToolPickerLassoItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKToolPickerLassoItem",
+      "type": "topic",
+      "url": "/documentation/pencilkit/pktoolpickerlassoitem"
+    },
+    "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPickerObserver": {
+      "abstract": [
+        {
+          "text": "An interface you use to detect when the user changes the selected tools and drawing characteristics of a tool picker object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKToolPickerObserver"
+        }
+      ],
+      "identifier": "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPickerObserver",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKToolPickerObserver"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKToolPickerObserver",
+      "type": "topic",
+      "url": "/documentation/pencilkit/pktoolpickerobserver"
+    },
+    "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPickerRulerItem": {
+      "abstract": [
+        {
+          "text": "An item that represents a ruler tool in the tool picker.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKToolPickerRulerItem"
+        }
+      ],
+      "identifier": "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPickerRulerItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKToolPickerRulerItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKToolPickerRulerItem",
+      "type": "topic",
+      "url": "/documentation/pencilkit/pktoolpickerruleritem"
+    },
+    "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPickerScribbleItem": {
+      "abstract": [
+        {
+          "text": "An item that represents a Scribble tool in the tool picker.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PKToolPickerScribbleItem"
+        }
+      ],
+      "identifier": "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPickerScribbleItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PKToolPickerScribbleItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "PKToolPickerScribbleItem",
+      "type": "topic",
+      "url": "/documentation/pencilkit/pktoolpickerscribbleitem"
+    },
+    "doc://com.apple.pencilkit/documentation/PencilKit/configuring-the-pencilkit-tool-picker": {
+      "abstract": [
+        {
+          "text": "Incorporate a custom PencilKit tool picker with a variety of system and custom tools into a drawing app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.pencilkit/documentation/PencilKit/configuring-the-pencilkit-tool-picker",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Configuring the PencilKit tool picker",
+      "type": "topic",
+      "url": "/documentation/pencilkit/configuring-the-pencilkit-tool-picker"
+    },
+    "doc://com.apple.pencilkit/documentation/PencilKit/supporting-backward-compatibility-for-ink-types": {
+      "abstract": [
+        {
+          "text": "Leverage the latest PencilKit features while providing a good user experience in earlier versions of the OS that don’t support those features.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.pencilkit/documentation/PencilKit/supporting-backward-compatibility-for-ink-types",
+      "kind": "article",
+      "role": "article",
+      "title": "Supporting backward compatibility for ink types",
+      "type": "topic",
+      "url": "/documentation/pencilkit/supporting-backward-compatibility-for-ink-types"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Tools",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.pencilkit/documentation/PencilKit/configuring-the-pencilkit-tool-picker",
+        "doc://com.apple.pencilkit/documentation/PencilKit/PKInkingTool-swift.struct",
+        "doc://com.apple.pencilkit/documentation/PencilKit/PKEraserTool-swift.struct",
+        "doc://com.apple.pencilkit/documentation/PencilKit/PKLassoTool-swift.struct",
+        "doc://com.apple.pencilkit/documentation/PencilKit/PKTool-swift.protocol"
+      ],
+      "title": "Tools"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-tool-picker",
+      "identifiers": [
+        "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPicker/init()",
+        "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPicker/init(toolItems:)",
+        "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPickerInkingItem",
+        "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPickerEraserItem",
+        "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPickerLassoItem",
+        "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPickerRulerItem",
+        "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPickerScribbleItem",
+        "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPickerCustomItem",
+        "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPickerItem"
+      ],
+      "title": "Creating a tool picker"
+    },
+    {
+      "anchor": "Accessing-the-pickers-tools",
+      "identifiers": [
+        "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPicker/toolItems"
+      ],
+      "title": "Accessing the picker’s tools"
+    },
+    {
+      "anchor": "Detecting-changes-to-the-picker",
+      "identifiers": [
+        "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPicker/addObserver(_:)",
+        "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPicker/removeObserver(_:)",
+        "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPickerObserver"
+      ],
+      "title": "Detecting changes to the picker"
+    },
+    {
+      "anchor": "Coordinating-the-visibility-of-the-picker",
+      "identifiers": [
+        "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPicker/setVisible(_:forFirstResponder:)",
+        "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPicker/isVisible",
+        "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPicker/frameObscured(in:)"
+      ],
+      "title": "Coordinating the visibility of the picker"
+    },
+    {
+      "anchor": "Managing-selected-tools",
+      "identifiers": [
+        "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPicker/selectedToolItem",
+        "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPicker/selectedToolItemIdentifier"
+      ],
+      "title": "Managing selected tools"
+    },
+    {
+      "anchor": "Customizing-picker-behavior",
+      "identifiers": [
+        "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPicker/isRulerActive",
+        "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPicker/colorUserInterfaceStyle",
+        "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPicker/overrideUserInterfaceStyle",
+        "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPicker/showsDrawingPolicyControls",
+        "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPicker/stateAutosaveName"
+      ],
+      "title": "Customizing picker behavior"
+    },
+    {
+      "anchor": "Configuring-the-accessory-item",
+      "identifiers": [
+        "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPicker/accessoryItem"
+      ],
+      "title": "Configuring the accessory item"
+    },
+    {
+      "anchor": "Supporting-PencilKit-versions",
+      "identifiers": [
+        "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPicker/maximumSupportedContentVersion"
+      ],
+      "title": "Supporting PencilKit versions"
+    },
+    {
+      "anchor": "Deprecated",
+      "identifiers": [
+        "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPicker/shared(for:)",
+        "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPicker/selectedTool-2lptq"
+      ],
+      "title": "Deprecated"
+    },
+    {
+      "anchor": "Protocols",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPicker/Delegate-swift.protocol"
+      ],
+      "title": "Protocols"
+    },
+    {
+      "anchor": "Instance-Properties",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPicker/delegate-swift.property",
+        "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPicker/prefersDismissControlVisible"
+      ],
+      "title": "Instance Properties"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "PKToolPicker"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKToolPicker"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKToolPicker"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.pencilkit/documentation/PencilKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Creating-a-tool-picker",
+              "identifiers": [
+                "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPicker/init()",
+                "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPicker/init(toolItems:)",
+                "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPickerInkingItem",
+                "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPickerEraserItem",
+                "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPickerLassoItem",
+                "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPickerRulerItem",
+                "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPickerScribbleItem",
+                "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPickerCustomItem",
+                "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPickerItem"
+              ],
+              "title": "Creating a tool picker"
+            },
+            {
+              "anchor": "Accessing-the-pickers-tools",
+              "identifiers": [
+                "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPicker/toolItems"
+              ],
+              "title": "Accessing the picker’s tools"
+            },
+            {
+              "anchor": "Detecting-changes-to-the-picker",
+              "identifiers": [
+                "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPicker/addObserver(_:)",
+                "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPicker/removeObserver(_:)",
+                "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPickerObserver"
+              ],
+              "title": "Detecting changes to the picker"
+            },
+            {
+              "anchor": "Coordinating-the-visibility-of-the-picker",
+              "identifiers": [
+                "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPicker/setVisible(_:forFirstResponder:)",
+                "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPicker/isVisible",
+                "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPicker/frameObscured(in:)"
+              ],
+              "title": "Coordinating the visibility of the picker"
+            },
+            {
+              "anchor": "Managing-selected-tools",
+              "identifiers": [
+                "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPicker/selectedToolItem",
+                "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPicker/selectedToolItemIdentifier"
+              ],
+              "title": "Managing selected tools"
+            },
+            {
+              "anchor": "Customizing-picker-behavior",
+              "identifiers": [
+                "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPicker/isRulerActive",
+                "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPicker/colorUserInterfaceStyle",
+                "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPicker/overrideUserInterfaceStyle",
+                "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPicker/showsDrawingPolicyControls",
+                "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPicker/stateAutosaveName"
+              ],
+              "title": "Customizing picker behavior"
+            },
+            {
+              "anchor": "Configuring-the-accessory-item",
+              "identifiers": [
+                "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPicker/accessoryItem"
+              ],
+              "title": "Configuring the accessory item"
+            },
+            {
+              "anchor": "Supporting-PencilKit-versions",
+              "identifiers": [
+                "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPicker/maximumSupportedContentVersion"
+              ],
+              "title": "Supporting PencilKit versions"
+            },
+            {
+              "anchor": "Deprecated",
+              "identifiers": [
+                "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPicker/shared(for:)",
+                "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPicker/selectedTool-93ikc"
+              ],
+              "title": "Deprecated"
+            },
+            {
+              "anchor": "Instance-Properties",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPicker/delegate-swift.property",
+                "doc://com.apple.pencilkit/documentation/PencilKit/PKToolPicker/prefersDismissControlVisible"
+              ],
+              "title": "Instance Properties"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Tools",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.pencilkit/documentation/PencilKit/PKInkingToolReference",
+                "doc://com.apple.pencilkit/documentation/PencilKit/PKEraserToolReference",
+                "doc://com.apple.pencilkit/documentation/PencilKit/PKLassoToolReference",
+                "doc://com.apple.pencilkit/documentation/PencilKit/PKTool-c.class"
+              ],
+              "title": "Tools"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "visionOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "PKToolPicker"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pencilkit~1documentation~1PencilKit~1PKToolPicker~1stateAutosaveName/title",
+          "value": "stateAutosaveName"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pencilkit~1documentation~1PencilKit~1PKToolPicker~1stateAutosaveName/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "stateAutosaveName"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pencilkit~1documentation~1PencilKit~1PKToolPickerLassoItem/title",
+          "value": "PKToolPickerLassoItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pencilkit~1documentation~1PencilKit~1PKToolPickerLassoItem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKToolPickerLassoItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pencilkit~1documentation~1PencilKit~1PKToolPickerLassoItem/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKToolPickerLassoItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pencilkit~1documentation~1PencilKit~1PKInkingToolReference/title",
+          "value": "PKInkingTool"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pencilkit~1documentation~1PencilKit~1PKInkingToolReference/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKInkingTool"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pencilkit~1documentation~1PencilKit~1PKInkingToolReference/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKInkingTool"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pencilkit~1documentation~1PencilKit~1PKToolPicker~1maximumSupportedContentVersion/title",
+          "value": "maximumSupportedContentVersion"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pencilkit~1documentation~1PencilKit~1PKToolPicker~1maximumSupportedContentVersion/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "maximumSupportedContentVersion"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pencilkit~1documentation~1PencilKit~1PKToolPickerObserver/title",
+          "value": "PKToolPickerObserver"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pencilkit~1documentation~1PencilKit~1PKToolPickerObserver/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKToolPickerObserver"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pencilkit~1documentation~1PencilKit~1PKToolPickerObserver/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKToolPickerObserver"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pencilkit~1documentation~1PencilKit~1PKToolPickerEraserItem/title",
+          "value": "PKToolPickerEraserItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pencilkit~1documentation~1PencilKit~1PKToolPickerEraserItem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKToolPickerEraserItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pencilkit~1documentation~1PencilKit~1PKToolPickerEraserItem/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKToolPickerEraserItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pencilkit~1documentation~1PencilKit~1PKToolPicker~1selectedToolItem/title",
+          "value": "selectedToolItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pencilkit~1documentation~1PencilKit~1PKToolPicker~1selectedToolItem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "selectedToolItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pencilkit~1documentation~1PencilKit~1PKEraserToolReference/title",
+          "value": "PKEraserTool"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pencilkit~1documentation~1PencilKit~1PKEraserToolReference/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKEraserTool"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pencilkit~1documentation~1PencilKit~1PKEraserToolReference/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKEraserTool"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pencilkit~1documentation~1PencilKit~1PKToolPickerScribbleItem/title",
+          "value": "PKToolPickerScribbleItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pencilkit~1documentation~1PencilKit~1PKToolPickerScribbleItem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKToolPickerScribbleItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pencilkit~1documentation~1PencilKit~1PKToolPickerScribbleItem/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKToolPickerScribbleItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pencilkit~1documentation~1PencilKit~1PKToolPicker~1selectedToolItemIdentifier/title",
+          "value": "selectedToolItemIdentifier"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pencilkit~1documentation~1PencilKit~1PKToolPicker~1selectedToolItemIdentifier/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "selectedToolItemIdentifier"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pencilkit~1documentation~1PencilKit~1PKToolPicker~1overrideUserInterfaceStyle/title",
+          "value": "overrideUserInterfaceStyle"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pencilkit~1documentation~1PencilKit~1PKToolPicker~1overrideUserInterfaceStyle/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "overrideUserInterfaceStyle"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pencilkit~1documentation~1PencilKit~1PKToolPicker~1isVisible/title",
+          "value": "isVisible"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pencilkit~1documentation~1PencilKit~1PKToolPicker~1isVisible/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "isVisible"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pencilkit~1documentation~1PencilKit~1PKToolPickerRulerItem/title",
+          "value": "PKToolPickerRulerItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pencilkit~1documentation~1PencilKit~1PKToolPickerRulerItem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKToolPickerRulerItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pencilkit~1documentation~1PencilKit~1PKToolPickerRulerItem/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKToolPickerRulerItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pencilkit~1documentation~1PencilKit~1PKToolPicker~1showsDrawingPolicyControls/title",
+          "value": "showsDrawingPolicyControls"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pencilkit~1documentation~1PencilKit~1PKToolPicker~1showsDrawingPolicyControls/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "showsDrawingPolicyControls"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pencilkit~1documentation~1PencilKit~1PKToolPicker~1toolItems/title",
+          "value": "toolItems"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pencilkit~1documentation~1PencilKit~1PKToolPicker~1toolItems/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "toolItems"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pencilkit~1documentation~1PencilKit~1PKToolPicker~1colorUserInterfaceStyle/title",
+          "value": "colorUserInterfaceStyle"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pencilkit~1documentation~1PencilKit~1PKToolPicker~1colorUserInterfaceStyle/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "colorUserInterfaceStyle"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pencilkit~1documentation~1PencilKit~1PKToolPicker~1isRulerActive/title",
+          "value": "rulerActive"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pencilkit~1documentation~1PencilKit~1PKToolPicker~1isRulerActive/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "rulerActive"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pencilkit~1documentation~1PencilKit~1PKCanvasView/title",
+          "value": "PKCanvasView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pencilkit~1documentation~1PencilKit~1PKCanvasView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKCanvasView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pencilkit~1documentation~1PencilKit~1PKCanvasView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKCanvasView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pencilkit~1documentation~1PencilKit~1PKToolPickerCustomItem/title",
+          "value": "PKToolPickerCustomItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pencilkit~1documentation~1PencilKit~1PKToolPickerCustomItem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKToolPickerCustomItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pencilkit~1documentation~1PencilKit~1PKToolPickerCustomItem/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKToolPickerCustomItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pencilkit~1documentation~1PencilKit~1PKToolPicker~1init(toolItems:)/title",
+          "value": "initWithToolItems:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pencilkit~1documentation~1PencilKit~1PKToolPicker~1init(toolItems:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithToolItems:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pencilkit~1documentation~1PencilKit~1PKToolPicker~1addObserver(_:)/title",
+          "value": "addObserver:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pencilkit~1documentation~1PencilKit~1PKToolPicker~1addObserver(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "addObserver:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pencilkit~1documentation~1PencilKit~1PKToolPicker~1setVisible(_:forFirstResponder:)/title",
+          "value": "setVisible:forFirstResponder:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pencilkit~1documentation~1PencilKit~1PKToolPicker~1setVisible(_:forFirstResponder:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setVisible:forFirstResponder:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pencilkit~1documentation~1PencilKit~1PKToolPicker~1init()/title",
+          "value": "init"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pencilkit~1documentation~1PencilKit~1PKToolPicker~1init()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "init"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pencilkit~1documentation~1PencilKit~1PKToolPicker~1frameObscured(in:)/title",
+          "value": "frameObscuredInView:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pencilkit~1documentation~1PencilKit~1PKToolPicker~1frameObscured(in:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "frameObscuredInView:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pencilkit~1documentation~1PencilKit~1PKToolPickerInkingItem/title",
+          "value": "PKToolPickerInkingItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pencilkit~1documentation~1PencilKit~1PKToolPickerInkingItem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKToolPickerInkingItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pencilkit~1documentation~1PencilKit~1PKToolPickerInkingItem/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKToolPickerInkingItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pencilkit~1documentation~1PencilKit~1PKToolPicker~1shared(for:)/title",
+          "value": "sharedToolPickerForWindow:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pencilkit~1documentation~1PencilKit~1PKToolPicker~1shared(for:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "sharedToolPickerForWindow:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pencilkit~1documentation~1PencilKit~1PKToolPicker~1Delegate-swift.protocol/title",
+          "value": "PKToolPickerDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pencilkit~1documentation~1PencilKit~1PKToolPicker~1Delegate-swift.protocol/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKToolPickerDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pencilkit~1documentation~1PencilKit~1PKToolPicker~1Delegate-swift.protocol/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKToolPickerDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pencilkit~1documentation~1PencilKit~1PKLassoToolReference/title",
+          "value": "PKLassoTool"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pencilkit~1documentation~1PencilKit~1PKLassoToolReference/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKLassoTool"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pencilkit~1documentation~1PencilKit~1PKLassoToolReference/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKLassoTool"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pencilkit~1documentation~1PencilKit~1PKToolPicker~1removeObserver(_:)/title",
+          "value": "removeObserver:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pencilkit~1documentation~1PencilKit~1PKToolPicker~1removeObserver(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "removeObserver:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pencilkit~1documentation~1PencilKit~1PKToolPicker~1delegate-swift.property/title",
+          "value": "delegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pencilkit~1documentation~1PencilKit~1PKToolPicker~1delegate-swift.property/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "delegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pencilkit~1documentation~1PencilKit~1PKToolPicker/title",
+          "value": "PKToolPicker"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pencilkit~1documentation~1PencilKit~1PKToolPicker/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKToolPicker"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pencilkit~1documentation~1PencilKit~1PKToolPicker/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKToolPicker"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pencilkit~1documentation~1PencilKit~1PKToolPicker~1prefersDismissControlVisible/title",
+          "value": "prefersDismissControlVisible"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pencilkit~1documentation~1PencilKit~1PKToolPicker~1prefersDismissControlVisible/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "prefersDismissControlVisible"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pencilkit~1documentation~1PencilKit~1PKToolPickerItem/title",
+          "value": "PKToolPickerItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pencilkit~1documentation~1PencilKit~1PKToolPickerItem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKToolPickerItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pencilkit~1documentation~1PencilKit~1PKToolPickerItem/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PKToolPickerItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pencilkit~1documentation~1PencilKit~1PKToolPicker~1accessoryItem/title",
+          "value": "accessoryItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.pencilkit~1documentation~1PencilKit~1PKToolPicker~1accessoryItem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "accessoryItem"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/pencilkit/pktoolpicker"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/pencilkit/pktoolpicker"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

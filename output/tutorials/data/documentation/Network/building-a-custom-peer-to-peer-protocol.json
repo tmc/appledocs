@@ -1,0 +1,542 @@
+{
+  "abstract": [
+    {
+      "text": "Use networking frameworks to create a custom protocol for playing a game across iOS, iPadOS, watchOS, and tvOS devices.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.network/documentation/Network"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.network/documentation/Network/building-a-custom-peer-to-peer-protocol"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Network"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "16.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "16.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "16.0",
+        "name": "tvOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "9.0",
+        "name": "watchOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "15.0",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Building a custom peer-to-peer protocol"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This TicTacToe sample code project creates a networked game that you can play between different devices, communicating with a custom protocol. The game offers two ways to play:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "On Apple TV, the game uses ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/DeviceDiscoveryUI",
+                      "isActive": true,
+                      "overridingTitle": "DeviceDiscoveryUI",
+                      "overridingTitleInlineContent": [
+                        {
+                          "text": "DeviceDiscoveryUI",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to discover nearby iOS, iPadOS, and watchOS devices. After connecting, you can use your device to play against an AI opponent on Apple TV.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "On iOS and iPadOS devices, the game uses Bonjour and TLS to establish secure connections between nearby devices. You can use this mode to play a peer-to-peer two-player game.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "This sample code project is associated with WWDC22 session ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/wwdc22/110339/",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ". It’s also associated with WWDC 2020 session ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/wwdc20/10110/",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " and with WWDC 2019 session ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/wwdc19/713/",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "b9d884834905/BuildingACustomPeerToPeerProtocol.zip": {
+      "checksum": "b9d884834905346c2e68f64899b015cb6c84c8315bdd1bdf3b4a21f01292721f13cd7503b45814c3528e0fc5b62c69f92946852d16095652166ba5bc3e50a114",
+      "identifier": "b9d884834905/BuildingACustomPeerToPeerProtocol.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/b9d884834905/BuildingACustomPeerToPeerProtocol.zip"
+    },
+    "doc://com.apple.documentation/documentation/DeviceDiscoveryUI": {
+      "abstract": [
+        {
+          "text": "Display an interface that lets users connect a tvOS app to a mobile device over the local network.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/DeviceDiscoveryUI",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "DeviceDiscoveryUI",
+      "type": "topic",
+      "url": "/documentation/DeviceDiscoveryUI"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.network/documentation/Network": {
+      "abstract": [
+        {
+          "text": "Create network connections to send and receive data using transport and security protocols.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Network",
+      "type": "topic",
+      "url": "/documentation/network"
+    },
+    "doc://com.apple.network/documentation/Network/NWProtocolFramer": {
+      "abstract": [
+        {
+          "text": "A customizable network protocol for defining application message parsers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NWProtocolFramer"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/NWProtocolFramer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NWProtocolFramer"
+        }
+      ],
+      "role": "symbol",
+      "title": "NWProtocolFramer",
+      "type": "topic",
+      "url": "/documentation/network/nwprotocolframer"
+    },
+    "doc://com.apple.network/documentation/Network/NWProtocolIP": {
+      "abstract": [
+        {
+          "text": "A network protocol for configuring the Internet Protocol on connections.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NWProtocolIP"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/NWProtocolIP",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NWProtocolIP"
+        }
+      ],
+      "role": "symbol",
+      "title": "NWProtocolIP",
+      "type": "topic",
+      "url": "/documentation/network/nwprotocolip"
+    },
+    "doc://com.apple.network/documentation/Network/NWProtocolQUIC": {
+      "abstract": [
+        {
+          "text": "A network protocol for connections that use the QUIC transport protocol.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NWProtocolQUIC"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/NWProtocolQUIC",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NWProtocolQUIC"
+        }
+      ],
+      "role": "symbol",
+      "title": "NWProtocolQUIC",
+      "type": "topic",
+      "url": "/documentation/network/nwprotocolquic"
+    },
+    "doc://com.apple.network/documentation/Network/NWProtocolTCP": {
+      "abstract": [
+        {
+          "text": "A network protocol for connections that use the Transmission Control Protocol.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NWProtocolTCP"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/NWProtocolTCP",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NWProtocolTCP"
+        }
+      ],
+      "role": "symbol",
+      "title": "NWProtocolTCP",
+      "type": "topic",
+      "url": "/documentation/network/nwprotocoltcp"
+    },
+    "doc://com.apple.network/documentation/Network/NWProtocolTLS": {
+      "abstract": [
+        {
+          "text": "A network protocol for connections that use Transport Layer Security.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NWProtocolTLS"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/NWProtocolTLS",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NWProtocolTLS"
+        }
+      ],
+      "role": "symbol",
+      "title": "NWProtocolTLS",
+      "type": "topic",
+      "url": "/documentation/network/nwprotocoltls"
+    },
+    "doc://com.apple.network/documentation/Network/NWProtocolUDP": {
+      "abstract": [
+        {
+          "text": "A network protocol for connections that use the User Datagram Protocol.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NWProtocolUDP"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/NWProtocolUDP",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NWProtocolUDP"
+        }
+      ],
+      "role": "symbol",
+      "title": "NWProtocolUDP",
+      "type": "topic",
+      "url": "/documentation/network/nwprotocoludp"
+    },
+    "doc://com.apple.network/documentation/Network/NWProtocolWebSocket": {
+      "abstract": [
+        {
+          "text": "A network protocol for connections that use WebSocket.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NWProtocolWebSocket"
+        }
+      ],
+      "identifier": "doc://com.apple.network/documentation/Network/NWProtocolWebSocket",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NWProtocolWebSocket"
+        }
+      ],
+      "role": "symbol",
+      "title": "NWProtocolWebSocket",
+      "type": "topic",
+      "url": "/documentation/network/nwprotocolwebsocket"
+    },
+    "https://developer.apple.com/wwdc19/713/": {
+      "identifier": "https://developer.apple.com/wwdc19/713/",
+      "title": "713: Advances in Networking, Part 2",
+      "titleInlineContent": [
+        {
+          "text": "713: Advances in Networking, Part 2",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/wwdc19/713/"
+    },
+    "https://developer.apple.com/wwdc20/10110/": {
+      "identifier": "https://developer.apple.com/wwdc20/10110/",
+      "title": "10110: Support local network privacy in your app",
+      "titleInlineContent": [
+        {
+          "text": "10110: Support local network privacy in your app",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/wwdc20/10110/"
+    },
+    "https://developer.apple.com/wwdc22/110339/": {
+      "identifier": "https://developer.apple.com/wwdc22/110339/",
+      "title": "110339: Build device-to-device interactions with the Network framework",
+      "titleInlineContent": [
+        {
+          "text": "110339: Build device-to-device interactions with the Network framework",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/wwdc22/110339/"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "b9d884834905/BuildingACustomPeerToPeerProtocol.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Network-Protocols",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.network/documentation/Network/NWProtocolTCP",
+        "doc://com.apple.network/documentation/Network/NWProtocolTLS",
+        "doc://com.apple.network/documentation/Network/NWProtocolQUIC",
+        "doc://com.apple.network/documentation/Network/NWProtocolUDP",
+        "doc://com.apple.network/documentation/Network/NWProtocolIP",
+        "doc://com.apple.network/documentation/Network/NWProtocolWebSocket",
+        "doc://com.apple.network/documentation/Network/NWProtocolFramer"
+      ],
+      "title": "Network Protocols"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/network/building-a-custom-peer-to-peer-protocol"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

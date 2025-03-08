@@ -1,0 +1,2154 @@
+{
+  "abstract": [
+    {
+      "text": "A forecast collection for minute, hourly, and daily forecasts.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.WeatherKit/documentation/WeatherKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.WeatherKit/documentation/WeatherKit/Forecast"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:10WeatherKit8ForecastV",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "struct"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "Forecast"
+      }
+    ],
+    "modules": [
+      {
+        "name": "WeatherKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "Forecast"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "Forecast"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "Forecast"
+            },
+            {
+              "kind": "text",
+              "text": "<"
+            },
+            {
+              "kind": "genericParameter",
+              "text": "Element"
+            },
+            {
+              "kind": "text",
+              "text": "> "
+            },
+            {
+              "kind": "keyword",
+              "text": "where"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "text": "Element"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:Se",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:Se",
+              "text": "Decodable"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "typeIdentifier",
+              "text": "Element"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:SE",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:SE",
+              "text": "Encodable"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "typeIdentifier",
+              "text": "Element"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:SQ",
+              "text": "Equatable"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.WeatherKit/documentation/WeatherKit/Forecast",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " conforms to the ",
+              "type": "text"
+            },
+            {
+              "code": "RandomAccessCollection",
+              "type": "codeVoice"
+            },
+            {
+              "text": " protocol to support efficient random-access index traversal through",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "forecast types. The protocol involves forwarding the required properties",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and methods to the underlying forecast collection. The implementation of ",
+              "type": "text"
+            },
+            {
+              "code": "subscript",
+              "type": "codeVoice"
+            },
+            {
+              "text": " returns an",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "instance of the ",
+              "type": "text"
+            },
+            {
+              "code": "Element",
+              "type": "codeVoice"
+            },
+            {
+              "text": " type.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.WeatherKit/documentation/WeatherKit": {
+      "abstract": [
+        {
+          "text": "Deliver weather conditions and alerts to your users.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.WeatherKit/documentation/WeatherKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "WeatherKit",
+      "type": "topic",
+      "url": "/documentation/weatherkit"
+    },
+    "doc://com.apple.WeatherKit/documentation/WeatherKit/DayWeather": {
+      "abstract": [
+        {
+          "text": "A structure that represents the weather conditions for the day.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DayWeather"
+        }
+      ],
+      "identifier": "doc://com.apple.WeatherKit/documentation/WeatherKit/DayWeather",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DayWeather"
+        }
+      ],
+      "role": "symbol",
+      "title": "DayWeather",
+      "type": "topic",
+      "url": "/documentation/weatherkit/dayweather"
+    },
+    "doc://com.apple.WeatherKit/documentation/WeatherKit/Forecast": {
+      "abstract": [
+        {
+          "text": "A forecast collection for minute, hourly, and daily forecasts.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Forecast"
+        }
+      ],
+      "identifier": "doc://com.apple.WeatherKit/documentation/WeatherKit/Forecast",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Forecast"
+        }
+      ],
+      "role": "symbol",
+      "title": "Forecast",
+      "type": "topic",
+      "url": "/documentation/weatherkit/forecast"
+    },
+    "doc://com.apple.WeatherKit/documentation/WeatherKit/Forecast/==(_:_:)-9xlo4": {
+      "abstract": [],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Element",
+            "type": "codeVoice"
+          },
+          {
+            "text": " conforms to ",
+            "type": "text"
+          },
+          {
+            "code": "Decodable",
+            "type": "codeVoice"
+          },
+          {
+            "text": ", ",
+            "type": "text"
+          },
+          {
+            "code": "Encodable",
+            "type": "codeVoice"
+          },
+          {
+            "text": ", and ",
+            "type": "text"
+          },
+          {
+            "code": "Equatable",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "=="
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10WeatherKit8ForecastV",
+          "text": "Forecast"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10WeatherKit06MinuteA0V",
+          "text": "MinuteWeather"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10WeatherKit8ForecastV",
+          "text": "Forecast"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10WeatherKit06MinuteA0V",
+          "text": "MinuteWeather"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.WeatherKit/documentation/WeatherKit/Forecast/==(_:_:)-9xlo4",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "==(_:_:)",
+      "type": "topic",
+      "url": "/documentation/weatherkit/forecast/==(_:_:)-9xlo4"
+    },
+    "doc://com.apple.WeatherKit/documentation/WeatherKit/Forecast/==(_:_:)-n0ps": {
+      "abstract": [
+        {
+          "text": "Returns a Boolean value indicating whether two values are equal.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "=="
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10WeatherKit8ForecastV",
+          "text": "Forecast"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Element"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10WeatherKit8ForecastV",
+          "text": "Forecast"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Element"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.WeatherKit/documentation/WeatherKit/Forecast/==(_:_:)-n0ps",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "==(_:_:)",
+      "type": "topic",
+      "url": "/documentation/weatherkit/forecast/==(_:_:)-n0ps"
+    },
+    "doc://com.apple.WeatherKit/documentation/WeatherKit/Forecast/BidirectionalCollection-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.WeatherKit/documentation/WeatherKit/Forecast/BidirectionalCollection-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "BidirectionalCollection Implementations",
+      "type": "topic",
+      "url": "/documentation/weatherkit/forecast/bidirectionalcollection-implementations"
+    },
+    "doc://com.apple.WeatherKit/documentation/WeatherKit/Forecast/Collection-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.WeatherKit/documentation/WeatherKit/Forecast/Collection-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Collection Implementations",
+      "type": "topic",
+      "url": "/documentation/weatherkit/forecast/collection-implementations"
+    },
+    "doc://com.apple.WeatherKit/documentation/WeatherKit/Forecast/Equatable-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.WeatherKit/documentation/WeatherKit/Forecast/Equatable-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Equatable Implementations",
+      "type": "topic",
+      "url": "/documentation/weatherkit/forecast/equatable-implementations"
+    },
+    "doc://com.apple.WeatherKit/documentation/WeatherKit/Forecast/Index": {
+      "abstract": [
+        {
+          "text": "The forecast index.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Index"
+        }
+      ],
+      "identifier": "doc://com.apple.WeatherKit/documentation/WeatherKit/Forecast/Index",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Index"
+        }
+      ],
+      "role": "symbol",
+      "title": "Forecast.Index",
+      "type": "topic",
+      "url": "/documentation/weatherkit/forecast/index"
+    },
+    "doc://com.apple.WeatherKit/documentation/WeatherKit/Forecast/Indices": {
+      "abstract": [
+        {
+          "text": "A type that represents the indices that are valid for subscripting the",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "collection, in ascending order.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Indices"
+        }
+      ],
+      "identifier": "doc://com.apple.WeatherKit/documentation/WeatherKit/Forecast/Indices",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Indices"
+        }
+      ],
+      "role": "symbol",
+      "title": "Forecast.Indices",
+      "type": "topic",
+      "url": "/documentation/weatherkit/forecast/indices"
+    },
+    "doc://com.apple.WeatherKit/documentation/WeatherKit/Forecast/Iterator": {
+      "abstract": [
+        {
+          "text": "A type that provides the collection’s iteration interface and",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "encapsulates its iteration state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Iterator"
+        }
+      ],
+      "identifier": "doc://com.apple.WeatherKit/documentation/WeatherKit/Forecast/Iterator",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Iterator"
+        }
+      ],
+      "role": "symbol",
+      "title": "Forecast.Iterator",
+      "type": "topic",
+      "url": "/documentation/weatherkit/forecast/iterator"
+    },
+    "doc://com.apple.WeatherKit/documentation/WeatherKit/Forecast/RandomAccessCollection-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.WeatherKit/documentation/WeatherKit/Forecast/RandomAccessCollection-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "RandomAccessCollection Implementations",
+      "type": "topic",
+      "url": "/documentation/weatherkit/forecast/randomaccesscollection-implementations"
+    },
+    "doc://com.apple.WeatherKit/documentation/WeatherKit/Forecast/Sequence-Implementations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.WeatherKit/documentation/WeatherKit/Forecast/Sequence-Implementations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Sequence Implementations",
+      "type": "topic",
+      "url": "/documentation/weatherkit/forecast/sequence-implementations"
+    },
+    "doc://com.apple.WeatherKit/documentation/WeatherKit/Forecast/SubSequence": {
+      "abstract": [
+        {
+          "text": "A collection representing a contiguous subrange of this collection’s",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "elements. The subsequence shares indices with the original collection.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SubSequence"
+        }
+      ],
+      "identifier": "doc://com.apple.WeatherKit/documentation/WeatherKit/Forecast/SubSequence",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SubSequence"
+        }
+      ],
+      "role": "symbol",
+      "title": "Forecast.SubSequence",
+      "type": "topic",
+      "url": "/documentation/weatherkit/forecast/subsequence"
+    },
+    "doc://com.apple.WeatherKit/documentation/WeatherKit/Forecast/encode(to:)-5zuqd": {
+      "abstract": [],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Element",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "DayWeather",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "encode"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s7EncoderP",
+          "text": "Encoder"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.WeatherKit/documentation/WeatherKit/Forecast/encode(to:)-5zuqd",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "encode(to:)",
+      "type": "topic",
+      "url": "/documentation/weatherkit/forecast/encode(to:)-5zuqd"
+    },
+    "doc://com.apple.WeatherKit/documentation/WeatherKit/Forecast/encode(to:)-6lmvg": {
+      "abstract": [
+        {
+          "text": "Encodes this value into the given encoder.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "encode"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s7EncoderP",
+          "text": "Encoder"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.WeatherKit/documentation/WeatherKit/Forecast/encode(to:)-6lmvg",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "encode(to:)",
+      "type": "topic",
+      "url": "/documentation/weatherkit/forecast/encode(to:)-6lmvg"
+    },
+    "doc://com.apple.WeatherKit/documentation/WeatherKit/Forecast/encode(to:)-fbco": {
+      "abstract": [],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Element",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "HourWeather",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "encode"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s7EncoderP",
+          "text": "Encoder"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.WeatherKit/documentation/WeatherKit/Forecast/encode(to:)-fbco",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "encode(to:)",
+      "type": "topic",
+      "url": "/documentation/weatherkit/forecast/encode(to:)-fbco"
+    },
+    "doc://com.apple.WeatherKit/documentation/WeatherKit/Forecast/endIndex": {
+      "abstract": [
+        {
+          "text": "The forecast end index.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "endIndex"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10WeatherKit8ForecastV",
+          "text": "Forecast"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Element"
+        },
+        {
+          "kind": "text",
+          "text": ">."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10WeatherKit8ForecastV5Indexa",
+          "text": "Index"
+        }
+      ],
+      "identifier": "doc://com.apple.WeatherKit/documentation/WeatherKit/Forecast/endIndex",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "endIndex",
+      "type": "topic",
+      "url": "/documentation/weatherkit/forecast/endindex"
+    },
+    "doc://com.apple.WeatherKit/documentation/WeatherKit/Forecast/forecast": {
+      "abstract": [
+        {
+          "text": "The forecast collection.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "forecast"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Element"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.WeatherKit/documentation/WeatherKit/Forecast/forecast",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "forecast",
+      "type": "topic",
+      "url": "/documentation/weatherkit/forecast/forecast"
+    },
+    "doc://com.apple.WeatherKit/documentation/WeatherKit/Forecast/init(from:)-390k1": {
+      "abstract": [],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Element",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "HourWeather",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s7DecoderP",
+          "text": "Decoder"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.WeatherKit/documentation/WeatherKit/Forecast/init(from:)-390k1",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(from:)",
+      "type": "topic",
+      "url": "/documentation/weatherkit/forecast/init(from:)-390k1"
+    },
+    "doc://com.apple.WeatherKit/documentation/WeatherKit/Forecast/init(from:)-4wobg": {
+      "abstract": [],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Element",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "DayWeather",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s7DecoderP",
+          "text": "Decoder"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.WeatherKit/documentation/WeatherKit/Forecast/init(from:)-4wobg",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(from:)",
+      "type": "topic",
+      "url": "/documentation/weatherkit/forecast/init(from:)-4wobg"
+    },
+    "doc://com.apple.WeatherKit/documentation/WeatherKit/Forecast/init(from:)-51k1n": {
+      "abstract": [
+        {
+          "text": "Creates a new instance by decoding from the given decoder.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s7DecoderP",
+          "text": "Decoder"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.WeatherKit/documentation/WeatherKit/Forecast/init(from:)-51k1n",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(from:)",
+      "type": "topic",
+      "url": "/documentation/weatherkit/forecast/init(from:)-51k1n"
+    },
+    "doc://com.apple.WeatherKit/documentation/WeatherKit/Forecast/metadata": {
+      "abstract": [
+        {
+          "text": "Descriptive information about the forecast data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "metadata"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10WeatherKit0A8MetadataV",
+          "text": "WeatherMetadata"
+        }
+      ],
+      "identifier": "doc://com.apple.WeatherKit/documentation/WeatherKit/Forecast/metadata",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "metadata",
+      "type": "topic",
+      "url": "/documentation/weatherkit/forecast/metadata"
+    },
+    "doc://com.apple.WeatherKit/documentation/WeatherKit/Forecast/startIndex": {
+      "abstract": [
+        {
+          "text": "The forecast start index.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "startIndex"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10WeatherKit8ForecastV",
+          "text": "Forecast"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Element"
+        },
+        {
+          "kind": "text",
+          "text": ">."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10WeatherKit8ForecastV5Indexa",
+          "text": "Index"
+        }
+      ],
+      "identifier": "doc://com.apple.WeatherKit/documentation/WeatherKit/Forecast/startIndex",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "startIndex",
+      "type": "topic",
+      "url": "/documentation/weatherkit/forecast/startindex"
+    },
+    "doc://com.apple.WeatherKit/documentation/WeatherKit/Forecast/subscript(_:)": {
+      "abstract": [
+        {
+          "text": "The forecast element at the provided index.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "subscript"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10WeatherKit8ForecastV",
+          "text": "Forecast"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Element"
+        },
+        {
+          "kind": "text",
+          "text": ">."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10WeatherKit8ForecastV5Indexa",
+          "text": "Index"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Element"
+        }
+      ],
+      "identifier": "doc://com.apple.WeatherKit/documentation/WeatherKit/Forecast/subscript(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "subscript(_:)",
+      "type": "topic",
+      "url": "/documentation/weatherkit/forecast/subscript(_:)"
+    },
+    "doc://com.apple.WeatherKit/documentation/WeatherKit/Forecast/summary": {
+      "abstract": [
+        {
+          "text": "A convenient localized description of the minute forecast.",
+          "type": "text"
+        }
+      ],
+      "conformance": {
+        "availabilityPrefix": [
+          {
+            "text": "Available when",
+            "type": "text"
+          }
+        ],
+        "conformancePrefix": [
+          {
+            "text": "Conforms when",
+            "type": "text"
+          }
+        ],
+        "constraints": [
+          {
+            "code": "Element",
+            "type": "codeVoice"
+          },
+          {
+            "text": " is ",
+            "type": "text"
+          },
+          {
+            "code": "MinuteWeather",
+            "type": "codeVoice"
+          },
+          {
+            "text": ".",
+            "type": "text"
+          }
+        ]
+      },
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "summary"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.WeatherKit/documentation/WeatherKit/Forecast/summary",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "summary",
+      "type": "topic",
+      "url": "/documentation/weatherkit/forecast/summary"
+    },
+    "doc://com.apple.WeatherKit/documentation/WeatherKit/HourWeather": {
+      "abstract": [
+        {
+          "text": "A structure that represents the weather conditions for the hour.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "HourWeather"
+        }
+      ],
+      "identifier": "doc://com.apple.WeatherKit/documentation/WeatherKit/HourWeather",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "HourWeather"
+        }
+      ],
+      "role": "symbol",
+      "title": "HourWeather",
+      "type": "topic",
+      "url": "/documentation/weatherkit/hourweather"
+    },
+    "doc://com.apple.WeatherKit/documentation/WeatherKit/MinuteWeather": {
+      "abstract": [
+        {
+          "text": "A structure that represents the next hour minute forecasts.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MinuteWeather"
+        }
+      ],
+      "identifier": "doc://com.apple.WeatherKit/documentation/WeatherKit/MinuteWeather",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MinuteWeather"
+        }
+      ],
+      "role": "symbol",
+      "title": "MinuteWeather",
+      "type": "topic",
+      "url": "/documentation/weatherkit/minuteweather"
+    },
+    "doc://com.apple.WeatherKit/documentation/WeatherKit/WeatherAlert": {
+      "abstract": [
+        {
+          "text": "A weather alert issued for the requested  location by a governmental authority.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WeatherAlert"
+        }
+      ],
+      "identifier": "doc://com.apple.WeatherKit/documentation/WeatherKit/WeatherAlert",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WeatherAlert"
+        }
+      ],
+      "role": "symbol",
+      "title": "WeatherAlert",
+      "type": "topic",
+      "url": "/documentation/weatherkit/weatheralert"
+    },
+    "doc://com.apple.WeatherKit/documentation/WeatherKit/WeatherAvailability": {
+      "abstract": [
+        {
+          "text": "A structure that indicates the availability of data at the requested location.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WeatherAvailability"
+        }
+      ],
+      "identifier": "doc://com.apple.WeatherKit/documentation/WeatherKit/WeatherAvailability",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WeatherAvailability"
+        }
+      ],
+      "role": "symbol",
+      "title": "WeatherAvailability",
+      "type": "topic",
+      "url": "/documentation/weatherkit/weatheravailability"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/s:SE": {
+      "abstract": [
+        {
+          "text": "A type that can encode itself to an external representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Encodable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SE",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Encodable",
+      "type": "topic",
+      "url": "/documentation/Swift/Encodable"
+    },
+    "doc://com.externally.resolved.symbol/s:SK": {
+      "abstract": [
+        {
+          "text": "A collection that supports backward as well as forward traversal.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "BidirectionalCollection"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SK7ElementQa",
+          "text": "Element"
+        },
+        {
+          "kind": "text",
+          "text": "> : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sl",
+          "text": "Collection"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sl7IndicesQa",
+          "text": "Indices"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SK",
+          "text": "BidirectionalCollection"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sl11SubSequenceQa",
+          "text": "SubSequence"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SK",
+          "text": "BidirectionalCollection"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SK",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "BidirectionalCollection",
+      "type": "topic",
+      "url": "/documentation/Swift/BidirectionalCollection"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:ST": {
+      "abstract": [
+        {
+          "text": "A type that provides sequential, iterated access to its elements.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sequence"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:ST7ElementQa",
+          "text": "Element"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:ST",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sequence",
+      "type": "topic",
+      "url": "/documentation/Swift/Sequence"
+    },
+    "doc://com.externally.resolved.symbol/s:Se": {
+      "abstract": [
+        {
+          "text": "A type that can decode itself from an external representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Decodable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:Se",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Decodable",
+      "type": "topic",
+      "url": "/documentation/Swift/Decodable"
+    },
+    "doc://com.externally.resolved.symbol/s:Sk": {
+      "abstract": [
+        {
+          "text": "A collection that supports efficient random-access index traversal.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RandomAccessCollection"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sk7ElementQa",
+          "text": "Element"
+        },
+        {
+          "kind": "text",
+          "text": "> : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SK",
+          "text": "BidirectionalCollection"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "where"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sl7IndicesQa",
+          "text": "Indices"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sk",
+          "text": "RandomAccessCollection"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sl11SubSequenceQa",
+          "text": "SubSequence"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sk",
+          "text": "RandomAccessCollection"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:Sk",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "RandomAccessCollection",
+      "type": "topic",
+      "url": "/documentation/Swift/RandomAccessCollection"
+    },
+    "doc://com.externally.resolved.symbol/s:Sl": {
+      "abstract": [
+        {
+          "text": "A sequence whose elements can be traversed multiple times, nondestructively, and accessed by an indexed subscript.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Collection"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sl7ElementQa",
+          "text": "Element"
+        },
+        {
+          "kind": "text",
+          "text": "> : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:ST",
+          "text": "Sequence"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:Sl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Collection",
+      "type": "topic",
+      "url": "/documentation/Swift/Collection"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:SK",
+        "doc://com.externally.resolved.symbol/s:Sl",
+        "doc://com.externally.resolved.symbol/s:Se",
+        "doc://com.externally.resolved.symbol/s:SE",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:Sk",
+        "doc://com.externally.resolved.symbol/s:ST"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Alerts-and-forecasts",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.WeatherKit/documentation/WeatherKit/WeatherAlert",
+        "doc://com.apple.WeatherKit/documentation/WeatherKit/WeatherAvailability",
+        "doc://com.apple.WeatherKit/documentation/WeatherKit/MinuteWeather",
+        "doc://com.apple.WeatherKit/documentation/WeatherKit/HourWeather",
+        "doc://com.apple.WeatherKit/documentation/WeatherKit/DayWeather"
+      ],
+      "title": "Alerts and forecasts"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-the-forecast",
+      "identifiers": [
+        "doc://com.apple.WeatherKit/documentation/WeatherKit/Forecast/init(from:)-390k1",
+        "doc://com.apple.WeatherKit/documentation/WeatherKit/Forecast/init(from:)-4wobg",
+        "doc://com.apple.WeatherKit/documentation/WeatherKit/Forecast/init(from:)-51k1n"
+      ],
+      "title": "Creating the forecast"
+    },
+    {
+      "anchor": "Serializing-objects",
+      "identifiers": [
+        "doc://com.apple.WeatherKit/documentation/WeatherKit/Forecast/encode(to:)-5zuqd",
+        "doc://com.apple.WeatherKit/documentation/WeatherKit/Forecast/encode(to:)-6lmvg",
+        "doc://com.apple.WeatherKit/documentation/WeatherKit/Forecast/encode(to:)-fbco"
+      ],
+      "title": "Serializing objects"
+    },
+    {
+      "anchor": "Getting-the-properties",
+      "identifiers": [
+        "doc://com.apple.WeatherKit/documentation/WeatherKit/Forecast/endIndex",
+        "doc://com.apple.WeatherKit/documentation/WeatherKit/Forecast/forecast",
+        "doc://com.apple.WeatherKit/documentation/WeatherKit/Forecast/metadata",
+        "doc://com.apple.WeatherKit/documentation/WeatherKit/Forecast/startIndex",
+        "doc://com.apple.WeatherKit/documentation/WeatherKit/Forecast/summary"
+      ],
+      "title": "Getting the properties"
+    },
+    {
+      "anchor": "Accessing-elements",
+      "identifiers": [
+        "doc://com.apple.WeatherKit/documentation/WeatherKit/Forecast/subscript(_:)",
+        "doc://com.apple.WeatherKit/documentation/WeatherKit/Forecast/Index"
+      ],
+      "title": "Accessing elements"
+    },
+    {
+      "anchor": "Comparing-forecasts",
+      "identifiers": [
+        "doc://com.apple.WeatherKit/documentation/WeatherKit/Forecast/==(_:_:)-9xlo4"
+      ],
+      "title": "Comparing forecasts"
+    },
+    {
+      "anchor": "Operators",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.WeatherKit/documentation/WeatherKit/Forecast/==(_:_:)-n0ps"
+      ],
+      "title": "Operators"
+    },
+    {
+      "anchor": "Type-Aliases",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.WeatherKit/documentation/WeatherKit/Forecast/Indices",
+        "doc://com.apple.WeatherKit/documentation/WeatherKit/Forecast/Iterator",
+        "doc://com.apple.WeatherKit/documentation/WeatherKit/Forecast/SubSequence"
+      ],
+      "title": "Type Aliases"
+    },
+    {
+      "anchor": "Default-Implementations",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.WeatherKit/documentation/WeatherKit/Forecast/BidirectionalCollection-Implementations",
+        "doc://com.apple.WeatherKit/documentation/WeatherKit/Forecast/Collection-Implementations",
+        "doc://com.apple.WeatherKit/documentation/WeatherKit/Forecast/Equatable-Implementations",
+        "doc://com.apple.WeatherKit/documentation/WeatherKit/Forecast/RandomAccessCollection-Implementations",
+        "doc://com.apple.WeatherKit/documentation/WeatherKit/Forecast/Sequence-Implementations"
+      ],
+      "title": "Default Implementations"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/weatherkit/forecast"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1104 @@
+{
+  "abstract": [
+    {
+      "text": "The key that defines the traffic category entitlement to enable Cellular Network Slicing.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.bundleresources/documentation/BundleResources",
+        "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.networking.slicing.trafficcategory"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "entitlements:Entitlements.com.apple.developer.networking.slicing.trafficcategory",
+    "modules": [
+      {
+        "name": "Bundle Resources"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "com.apple.developer.networking.slicing.trafficcategory"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "17.0",
+        "name": "iPadOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Property List Key",
+    "symbolKind": "typealias",
+    "title": "5G Network Slicing Traffic Category"
+  },
+  "primaryContentSections": [
+    {
+      "details": {
+        "ideTitle": "5G Network Slicing Traffic Category",
+        "name": "com.apple.developer.networking.slicing.trafficcategory",
+        "platforms": [],
+        "titleStyle": "title",
+        "value": [
+          {
+            "arrayMode": true,
+            "baseType": "string "
+          }
+        ]
+      },
+      "kind": "details",
+      "title": "Details"
+    },
+    {
+      "kind": "possibleValues",
+      "title": "Possible Values",
+      "values": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A service type for Cellular Network Slicing when not setting the other service types.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "defaultslice-1"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A service type for low-delay tolerant, very low-loss tolerant, inelastic flow, and constant packet rate connections.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "video-2"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A service type for high-delay tolerant, high-loss tolerant, elastic flow, and variable size connections.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "background-3"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A service type for low-delay tolerant, very low-loss tolerant, inelastic flow, and constant packet rate connections.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "voice-4"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A service for low-loss tolerant, inelastic-flow, jitter tolerant, bursty but short rate, and variable size connections.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "callsignaling-5"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A service type for medium-delay tolerant, elastic and inelastic flow, bursty, and long-lived connections.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "responsivedata-6"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A service type for medium-delay tolerant, low-medium-loss tolerant, elastic flow, constant packet interval, variable rate, and size connections.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "avstreaming-7"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A service type for low-delay tolerant, low-to-medium-loss tolerant, elastic flow, variable packet interval, rate, and size responsive (time-sensitive) connections.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "responsiveav-8"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To enable Cellular Network Slicing, you need to set the appropriate entitlements and properties.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Set this entitlement and the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.networking.slicing.appcategory",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " entitlement in your property list. If you don’t entitle your app by specifying both these entitlements, your apps network connections won’t use Cellular Network Slicing, even if supported by the carrier.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use this array to define the different slice types your app’s entitled to. For example, if your app opens network connections using the network service types video, voice, and call signaling, the entitlement property must include ",
+              "type": "text"
+            },
+            {
+              "code": "video-2",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "voice-4,",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "callsignaling-5",
+              "type": "codeVoice"
+            },
+            {
+              "text": " values for this entitlement key.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Also set one of the following properties, depending on your app’s networking implementation:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Set ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/Network/NWParameters/serviceClass-swift.property",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " when using the Networking framework.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Set ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessionconfiguration/1411606-networkservicetype",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " when using ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessionconfiguration",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Set ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/urlrequest/2011409-networkservicetype",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " when using ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/foundation/urlrequest",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your app uses sockets, set this entitlement to ",
+              "type": "text"
+            },
+            {
+              "code": "defaultslice-1",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". With sockets, all your app traffic uses a slice defined by the carrier to accept all traffic categories. You should still set the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.networking.slicing.appcategory",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " entitlement.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Cellular Network Slicing is only available on supported carriers. Check with individual carriers for availability.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.bundleresources/documentation/BundleResources": {
+      "abstract": [
+        {
+          "text": "Resources located in an app, framework, or plugin bundle.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Bundle Resources",
+      "type": "topic",
+      "url": "/documentation/bundleresources"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements": {
+      "abstract": [
+        {
+          "text": "Key-value pairs that grant an executable permission to use a service or technology.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements",
+      "kind": "symbol",
+      "name": "Entitlements",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Entitlements"
+        }
+      ],
+      "role": "symbol",
+      "title": "Entitlements",
+      "titleStyle": "symbol",
+      "type": "topic",
+      "url": "/documentation/bundleresources/entitlements"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.associated-domains": {
+      "abstract": [
+        {
+          "text": "The associated domains for specific services, such as shared web credentials, universal links, and App Clips.",
+          "type": "text"
+        }
+      ],
+      "ideTitle": "Associated Domains Entitlement",
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.associated-domains",
+      "kind": "symbol",
+      "name": "com.apple.developer.associated-domains",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "com.apple.developer.associated-domains"
+        }
+      ],
+      "role": "symbol",
+      "title": "Associated Domains Entitlement",
+      "titleStyle": "title",
+      "type": "topic",
+      "url": "/documentation/bundleresources/entitlements/com.apple.developer.associated-domains"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.associated-domains.applinks.read-write": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the app can use universal links.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.associated-domains.applinks.read-write",
+      "kind": "symbol",
+      "name": "com.apple.developer.associated-domains.applinks.read-write",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "com.apple.developer.associated-domains.applinks.read-write"
+        }
+      ],
+      "role": "symbol",
+      "title": "com.apple.developer.associated-domains.applinks.read-write",
+      "titleStyle": "title",
+      "type": "topic",
+      "url": "/documentation/bundleresources/entitlements/com.apple.developer.associated-domains.applinks.read-write"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.networking.manage-thread-network-credentials": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the app can use ThreadNetwork.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.networking.manage-thread-network-credentials",
+      "kind": "symbol",
+      "name": "com.apple.developer.networking.manage-thread-network-credentials",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "com.apple.developer.networking.manage-thread-network-credentials"
+        }
+      ],
+      "role": "symbol",
+      "title": "com.apple.developer.networking.manage-thread-network-credentials",
+      "titleStyle": "title",
+      "type": "topic",
+      "url": "/documentation/bundleresources/entitlements/com.apple.developer.networking.manage-thread-network-credentials"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.networking.multicast": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether an app can send or receive IP multicast traffic.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.networking.multicast",
+      "kind": "symbol",
+      "name": "com.apple.developer.networking.multicast",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "com.apple.developer.networking.multicast"
+        }
+      ],
+      "role": "symbol",
+      "title": "com.apple.developer.networking.multicast",
+      "titleStyle": "title",
+      "type": "topic",
+      "url": "/documentation/bundleresources/entitlements/com.apple.developer.networking.multicast"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.networking.networkextension": {
+      "abstract": [
+        {
+          "text": "The APIs an app can use to customize networking features.",
+          "type": "text"
+        }
+      ],
+      "ideTitle": "Network Extensions Entitlement",
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.networking.networkextension",
+      "kind": "symbol",
+      "name": "com.apple.developer.networking.networkextension",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "com.apple.developer.networking.networkextension"
+        }
+      ],
+      "role": "symbol",
+      "title": "Network Extensions Entitlement",
+      "titleStyle": "title",
+      "type": "topic",
+      "url": "/documentation/bundleresources/entitlements/com.apple.developer.networking.networkextension"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.networking.slicing.appcategory": {
+      "abstract": [
+        {
+          "text": "The key that defines the app category entitlement to enable Cellular Network Slicing.",
+          "type": "text"
+        }
+      ],
+      "ideTitle": "5G Network Slicing App Category",
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.networking.slicing.appcategory",
+      "kind": "symbol",
+      "name": "com.apple.developer.networking.slicing.appcategory",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "com.apple.developer.networking.slicing.appcategory"
+        }
+      ],
+      "role": "symbol",
+      "title": "5G Network Slicing App Category",
+      "titleStyle": "title",
+      "type": "topic",
+      "url": "/documentation/bundleresources/entitlements/com.apple.developer.networking.slicing.appcategory"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.networking.slicing.trafficcategory": {
+      "abstract": [
+        {
+          "text": "The key that defines the traffic category entitlement to enable Cellular Network Slicing.",
+          "type": "text"
+        }
+      ],
+      "ideTitle": "5G Network Slicing Traffic Category",
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.networking.slicing.trafficcategory",
+      "kind": "symbol",
+      "name": "com.apple.developer.networking.slicing.trafficcategory",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "com.apple.developer.networking.slicing.trafficcategory"
+        }
+      ],
+      "role": "symbol",
+      "title": "5G Network Slicing Traffic Category",
+      "titleStyle": "title",
+      "type": "topic",
+      "url": "/documentation/bundleresources/entitlements/com.apple.developer.networking.slicing.trafficcategory"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.networking.vmnet": {
+      "abstract": [],
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.networking.vmnet",
+      "kind": "symbol",
+      "name": "com.apple.developer.networking.vmnet",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "com.apple.developer.networking.vmnet"
+        }
+      ],
+      "role": "symbol",
+      "title": "com.apple.developer.networking.vmnet",
+      "titleStyle": "title",
+      "type": "topic",
+      "url": "/documentation/bundleresources/entitlements/com.apple.developer.networking.vmnet"
+    },
+    "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.networking.vpn.api": {
+      "abstract": [
+        {
+          "text": "The API an app can use to create and control a custom system VPN configuration.",
+          "type": "text"
+        }
+      ],
+      "ideTitle": "Personal VPN Entitlement",
+      "identifier": "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.networking.vpn.api",
+      "kind": "symbol",
+      "name": "com.apple.developer.networking.vpn.api",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "com.apple.developer.networking.vpn.api"
+        }
+      ],
+      "role": "symbol",
+      "title": "Personal VPN Entitlement",
+      "titleStyle": "title",
+      "type": "topic",
+      "url": "/documentation/bundleresources/entitlements/com.apple.developer.networking.vpn.api"
+    },
+    "doc://com.apple.documentation/documentation/Network/NWParameters/serviceClass-swift.property": {
+      "abstract": [
+        {
+          "text": "A level of service quality for connections to use for Cellular Network Slicing.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "final"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "serviceClass"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Network12NWParametersC",
+          "text": "NWParameters"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7Network12NWParametersC12ServiceClassO",
+          "text": "ServiceClass"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "set"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Network/NWParameters/serviceClass-swift.property",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "serviceClass",
+      "type": "topic",
+      "url": "/documentation/Network/NWParameters/serviceClass-swift.property"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlrequest": {
+      "abstract": [
+        {
+          "text": "A URL load request that is independent of protocol or URL scheme.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "struct "
+        },
+        {
+          "kind": "identifier",
+          "text": "URLRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlrequest",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLRequest",
+      "type": "topic",
+      "url": "/documentation/foundation/urlrequest"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlrequest/2011409-networkservicetype": {
+      "abstract": [
+        {
+          "text": "The type of network service for all tasks within network sessions to enable Cellular Network Slicing. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "networkServiceType"
+        },
+        {
+          "kind": "text",
+          "text": ": URLRequest.NetworkServiceType"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlrequest/2011409-networkservicetype",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "networkServiceType",
+      "type": "topic",
+      "url": "/documentation/foundation/urlrequest/2011409-networkservicetype"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessionconfiguration": {
+      "abstract": [
+        {
+          "text": "A configuration object that defines behavior and policies for a URL session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "URLSessionConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessionconfiguration",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URLSessionConfiguration",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessionconfiguration"
+    },
+    "doc://com.apple.documentation/documentation/foundation/urlsessionconfiguration/1411606-networkservicetype": {
+      "abstract": [
+        {
+          "text": "The type of network service for all tasks within network sessions to enable Cellular Network Slicing.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "networkServiceType"
+        },
+        {
+          "kind": "text",
+          "text": ": NSURLRequest.NetworkServiceType"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/urlsessionconfiguration/1411606-networkservicetype",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "networkServiceType",
+      "type": "topic",
+      "url": "/documentation/foundation/urlsessionconfiguration/1411606-networkservicetype"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Networking",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.networking.networkextension",
+        "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.networking.vpn.api",
+        "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.associated-domains",
+        "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.networking.multicast",
+        "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.associated-domains.applinks.read-write",
+        "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.networking.manage-thread-network-credentials",
+        "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.networking.slicing.appcategory",
+        "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.networking.vmnet"
+      ],
+      "title": "Networking"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "17.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "17.0",
+              "name": "iPadOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Property List Key"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "5G Network Slicing Traffic Category"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "typealias"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "com.apple.developer.networking.slicing.trafficcategory"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.bundleresources/documentation/BundleResources",
+                "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Networking",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.networking.networkextension",
+                "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.networking.vpn.api",
+                "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.associated-domains",
+                "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.networking.multicast",
+                "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.associated-domains.applinks.read-write",
+                "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.networking.manage-thread-network-credentials",
+                "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.networking.slicing.appcategory",
+                "doc://com.apple.bundleresources/documentation/BundleResources/Entitlements/com.apple.developer.networking.vmnet"
+              ],
+              "title": "Networking"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Entitlements~1com.apple.developer.associated-domains.applinks.read-write/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "com.apple.developer.associated-domains.applinks.read-write"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Entitlements~1com.apple.developer.networking.vpn.api/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "com.apple.developer.networking.vpn.api"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Entitlements~1com.apple.developer.networking.slicing.trafficcategory/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "com.apple.developer.networking.slicing.trafficcategory"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Entitlements~1com.apple.developer.networking.vmnet/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "com.apple.developer.networking.vmnet"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Entitlements~1com.apple.developer.networking.networkextension/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "com.apple.developer.networking.networkextension"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Entitlements~1com.apple.developer.networking.slicing.appcategory/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "com.apple.developer.networking.slicing.appcategory"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Entitlements/title",
+          "value": "Entitlements"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Entitlements/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "Entitlements"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1foundation~1urlsessionconfiguration/title",
+          "value": "NSURLSessionConfiguration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Entitlements~1com.apple.developer.networking.multicast/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "com.apple.developer.networking.multicast"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Entitlements~1com.apple.developer.associated-domains/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "com.apple.developer.associated-domains"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.bundleresources~1documentation~1BundleResources~1Entitlements~1com.apple.developer.networking.manage-thread-network-credentials/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "com.apple.developer.networking.manage-thread-network-credentials"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/bundleresources/entitlements/com.apple.developer.networking.slicing.trafficcategory"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/bundleresources/entitlements/com.apple.developer.networking.slicing.trafficcategory"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

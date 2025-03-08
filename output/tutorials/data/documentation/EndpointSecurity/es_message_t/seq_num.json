@@ -1,0 +1,840 @@
+{
+  "abstract": [
+    {
+      "text": "The sequence number of the message.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.endpointsecurity/documentation/EndpointSecurity",
+        "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_message_t"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_message_t/seq_num"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@SA@es_message_t@FI@seq_num",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "var"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "seq_num"
+      },
+      {
+        "kind": "text",
+        "text": ": "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "s:s6UInt64V",
+        "text": "UInt64"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Endpoint Security"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "seq_num"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Property",
+    "symbolKind": "property",
+    "title": "seq_num"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "Mac Catalyst",
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "var"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "seq_num"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:s6UInt64V",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:s6UInt64V",
+              "text": "UInt64"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Inspect the sequence number per-client and per-event-type to detect whether the kernel had to drop events for this client. If the kernel doesn’t drop any events for this client, ",
+              "type": "text"
+            },
+            {
+              "code": "seq_num",
+              "type": "codeVoice"
+            },
+            {
+              "text": " increments by 1 for every message of that event type.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To determine whether the kernel dropped events, compare the previous value of ",
+              "type": "text"
+            },
+            {
+              "code": "seq_num",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for this event type to the value received in the latest message. When the kernel drops no events, the difference is 1, since the current message increments the counter. You can therefore calculate the number of dropped messages as follows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "numberOfDroppedEvents = thisMessage.seq_num - (prevMessage.seq_num + 1)"
+          ],
+          "syntax": "c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Dropped events generally indicate that the kernel generated more events than the client could handle.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This field is available if the message version is greater than ",
+              "type": "text"
+            },
+            {
+              "code": "2",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "For an equivalent counter that filters only by client and not event type, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_message_t/global_seq_num",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Tip",
+          "style": "tip",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.endpointsecurity/documentation/EndpointSecurity": {
+      "abstract": [
+        {
+          "text": "Develop system extensions that enhance user security.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.endpointsecurity/documentation/EndpointSecurity",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Endpoint Security",
+      "type": "topic",
+      "url": "/documentation/endpointsecurity"
+    },
+    "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_message_t": {
+      "abstract": [
+        {
+          "text": "A message from the Endpoint Security subsystem that describes a security event.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "es_message_t"
+        }
+      ],
+      "identifier": "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_message_t",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "es_message_t"
+        }
+      ],
+      "role": "symbol",
+      "title": "es_message_t",
+      "type": "topic",
+      "url": "/documentation/endpointsecurity/es_message_t"
+    },
+    "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_message_t/deadline": {
+      "abstract": [
+        {
+          "text": "The deadline by which your app must respond to the event.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "deadline"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt64V",
+          "text": "UInt64"
+        }
+      ],
+      "identifier": "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_message_t/deadline",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "deadline"
+        }
+      ],
+      "role": "symbol",
+      "title": "deadline",
+      "type": "topic",
+      "url": "/documentation/endpointsecurity/es_message_t/deadline"
+    },
+    "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_message_t/global_seq_num": {
+      "abstract": [
+        {
+          "text": "The global sequence number of the message.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "global_seq_num"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt64V",
+          "text": "UInt64"
+        }
+      ],
+      "identifier": "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_message_t/global_seq_num",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "global_seq_num"
+        }
+      ],
+      "role": "symbol",
+      "title": "global_seq_num",
+      "type": "topic",
+      "url": "/documentation/endpointsecurity/es_message_t/global_seq_num"
+    },
+    "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_message_t/mach_time": {
+      "abstract": [
+        {
+          "text": "The time the event occurred, as a Mach time value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mach_time"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt64V",
+          "text": "UInt64"
+        }
+      ],
+      "identifier": "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_message_t/mach_time",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "mach_time"
+        }
+      ],
+      "role": "symbol",
+      "title": "mach_time",
+      "type": "topic",
+      "url": "/documentation/endpointsecurity/es_message_t/mach_time"
+    },
+    "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_message_t/seq_num": {
+      "abstract": [
+        {
+          "text": "The sequence number of the message.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "seq_num"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s6UInt64V",
+          "text": "UInt64"
+        }
+      ],
+      "identifier": "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_message_t/seq_num",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "seq_num"
+        }
+      ],
+      "role": "symbol",
+      "title": "seq_num",
+      "type": "topic",
+      "url": "/documentation/endpointsecurity/es_message_t/seq_num"
+    },
+    "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_message_t/time": {
+      "abstract": [
+        {
+          "text": "The time the event occurred, expressed as a Darwin time value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "time"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@timespec",
+          "text": "timespec"
+        }
+      ],
+      "identifier": "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_message_t/time",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "time"
+        }
+      ],
+      "role": "symbol",
+      "title": "time",
+      "type": "topic",
+      "url": "/documentation/endpointsecurity/es_message_t/time"
+    },
+    "doc://com.externally.resolved.symbol/c:@T@uint64_t": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:@T@uint64_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "uint64_t",
+      "type": "topic",
+      "url": "/documentation/kernel/uint64_t"
+    },
+    "doc://com.externally.resolved.symbol/s:s6UInt64V": {
+      "abstract": [
+        {
+          "text": "A 64-bit unsigned integer value type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@frozen"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UInt64"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s6UInt64V",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "UInt64",
+      "type": "topic",
+      "url": "/documentation/Swift/UInt64"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Inspecting-Timing-Properties",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_message_t/time",
+        "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_message_t/mach_time",
+        "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_message_t/deadline",
+        "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_message_t/global_seq_num"
+      ],
+      "title": "Inspecting Timing Properties"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "macOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Instance Property"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "seq_num"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "property"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "seq_num"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.endpointsecurity/documentation/EndpointSecurity",
+                "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_message_t"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Inspecting-Timing-Properties",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_message_t/time",
+                "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_message_t/mach_time",
+                "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_message_t/deadline",
+                "doc://com.apple.endpointsecurity/documentation/EndpointSecurity/es_message_t/global_seq_num"
+              ],
+              "title": "Inspecting Timing Properties"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "Mac Catalyst",
+                  "macOS"
+                ],
+                "tokens": [
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:@T@uint64_t",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:@T@uint64_t",
+                    "text": "uint64_t"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "seq_num"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ";"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.endpointsecurity~1documentation~1EndpointSecurity~1es_message_t~1time/title",
+          "value": "time"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.endpointsecurity~1documentation~1EndpointSecurity~1es_message_t~1time/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "time"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.endpointsecurity~1documentation~1EndpointSecurity~1es_message_t/title",
+          "value": "es_message_t"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.endpointsecurity~1documentation~1EndpointSecurity~1es_message_t/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "es_message_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.endpointsecurity~1documentation~1EndpointSecurity~1es_message_t/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "es_message_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.endpointsecurity~1documentation~1EndpointSecurity~1es_message_t~1seq_num/title",
+          "value": "seq_num"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.endpointsecurity~1documentation~1EndpointSecurity~1es_message_t~1seq_num/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "seq_num"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.endpointsecurity~1documentation~1EndpointSecurity~1es_message_t~1global_seq_num/title",
+          "value": "global_seq_num"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.endpointsecurity~1documentation~1EndpointSecurity~1es_message_t~1global_seq_num/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "global_seq_num"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.endpointsecurity~1documentation~1EndpointSecurity~1es_message_t~1mach_time/title",
+          "value": "mach_time"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.endpointsecurity~1documentation~1EndpointSecurity~1es_message_t~1mach_time/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "mach_time"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.endpointsecurity~1documentation~1EndpointSecurity~1es_message_t~1deadline/title",
+          "value": "deadline"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.endpointsecurity~1documentation~1EndpointSecurity~1es_message_t~1deadline/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "deadline"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/endpointsecurity/es_message_t/seq_num"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/endpointsecurity/es_message_t/seq_num"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

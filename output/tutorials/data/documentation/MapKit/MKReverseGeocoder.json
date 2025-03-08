@@ -1,0 +1,661 @@
+{
+  "abstract": [
+    {
+      "text": "Provides services for converting a map coordinate (specified as a latitude/longitude pair) into information about that coordinate, such as the country or region, city, or street.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.mapkit/documentation/MapKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.mapkit/documentation/MapKit/MKReverseGeocoder"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)MKReverseGeocoder",
+    "fragments": [
+      {
+        "kind": "identifier",
+        "text": "MKReverseGeocoder"
+      }
+    ],
+    "modules": [
+      {
+        "name": "MapKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "MKReverseGeocoder"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "deprecatedAt": "5.0",
+        "introducedAt": "3.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "deprecatedAt": "5.0",
+        "introducedAt": "3.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "deprecatedAt": "13.1",
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "MKReverseGeocoder"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "MKReverseGeocoder"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A reverse geocoder object is a single-shot object that works with a network-based map service to look up placemark information for its specified coordinate value.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Google terms of service require that the reverse geocoding service be used in conjunction with a Google map; take this into account when designing your application’s user interface.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each Map Kit application has a limited amount of reverse geocoding capacity, so it is to your advantage to use reverse geocode requests sparingly. Here are some rules of thumb for using this class most effectively:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Send at most one reverse-geocoding request for any one user action.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If the user performs multiple actions that involve reverse-geocoding the same location, reuse the results from the initial reverse-geocoding request instead of starting individual requests for each action.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "When you want to update the location automatically (such as when the user is moving), reissue the reverse-geocoding request only when the user’s location has moved a significant distance and after a reasonable amount of time has passed. For example, in a typical situation, you should not send more than one reverse-geocode request per minute.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Do not start a reverse-geocoding request at a time when the user will not see the results immediately. For example, do not start a request if your application recently resigned the active state (possibly because of an interruption such as a phone call) and is waiting to become active again.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An iOS-based device must have access to the network in order for the reverse geocoder object to return valid information. The reverse geocoder returns information through its associated delegate object, which is an object that conforms to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKReverseGeocoderDelegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol. If the reverse geocoder is unable to retrieve the requested information, it similarly reports the error to its delegate object. For more information on this protocol, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKReverseGeocoderDelegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This class is deprecated in iOS 5.0. Use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreLocation/CLGeocoder",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class instead.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/CoreLocation/CLGeocoder": {
+      "abstract": [
+        {
+          "text": "An interface for converting between geographic coordinates and place names.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CLGeocoder"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreLocation/CLGeocoder",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CLGeocoder",
+      "type": "topic",
+      "url": "/documentation/CoreLocation/CLGeocoder"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit": {
+      "abstract": [
+        {
+          "text": "Display map or satellite imagery within your app, call out points of interest, and determine placemark information for map coordinates.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "MapKit",
+      "type": "topic",
+      "url": "/documentation/mapkit"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit/MKReverseGeocoder": {
+      "abstract": [
+        {
+          "text": "Provides services for converting a map coordinate (specified as a latitude/longitude pair) into information about that coordinate, such as the country or region, city, or street.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "MKReverseGeocoder"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKReverseGeocoder",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MKReverseGeocoder",
+      "type": "topic",
+      "url": "/documentation/mapkit/mkreversegeocoder"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit/MKReverseGeocoder/cancel": {
+      "abstract": [
+        {
+          "text": "Cancels a pending reverse-geocoding request.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "cancel"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKReverseGeocoder/cancel",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "cancel"
+        }
+      ],
+      "role": "symbol",
+      "title": "cancel",
+      "type": "topic",
+      "url": "/documentation/mapkit/mkreversegeocoder/cancel"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit/MKReverseGeocoder/coordinate": {
+      "abstract": [
+        {
+          "text": "The coordinate whose placemark data you want to retrieve.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "coordinate"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKReverseGeocoder/coordinate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "coordinate",
+      "type": "topic",
+      "url": "/documentation/mapkit/mkreversegeocoder/coordinate"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit/MKReverseGeocoder/delegate": {
+      "abstract": [
+        {
+          "text": "The reverse geocoder’s delegate object.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "delegate"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKReverseGeocoder/delegate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "delegate",
+      "type": "topic",
+      "url": "/documentation/mapkit/mkreversegeocoder/delegate"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit/MKReverseGeocoder/initWithCoordinate:": {
+      "abstract": [
+        {
+          "text": "Initializes the reverse geocoder with the specified coordinate value.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "initWithCoordinate:"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKReverseGeocoder/initWithCoordinate:",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithCoordinate:"
+        }
+      ],
+      "role": "symbol",
+      "title": "initWithCoordinate:",
+      "type": "topic",
+      "url": "/documentation/mapkit/mkreversegeocoder/initwithcoordinate:"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit/MKReverseGeocoder/placemark": {
+      "abstract": [
+        {
+          "text": "The result of the reverse-geocoding operation.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "placemark"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKReverseGeocoder/placemark",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "placemark",
+      "type": "topic",
+      "url": "/documentation/mapkit/mkreversegeocoder/placemark"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit/MKReverseGeocoder/querying": {
+      "abstract": [
+        {
+          "text": "A Boolean value indicating whether the receiver is in the middle of reverse-geocoding its coordinate.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "querying"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKReverseGeocoder/querying",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "querying",
+      "type": "topic",
+      "url": "/documentation/mapkit/mkreversegeocoder/querying"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit/MKReverseGeocoder/start": {
+      "abstract": [
+        {
+          "text": "Starts the reverse-geocoding process asynchronously.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "start"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKReverseGeocoder/start",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "start"
+        }
+      ],
+      "role": "symbol",
+      "title": "start",
+      "type": "topic",
+      "url": "/documentation/mapkit/mkreversegeocoder/start"
+    },
+    "doc://com.apple.mapkit/documentation/MapKit/MKReverseGeocoderDelegate": {
+      "abstract": [
+        {
+          "text": "Defines the interface for receiving messages from an ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKReverseGeocoder",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "MKReverseGeocoderDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.mapkit/documentation/MapKit/MKReverseGeocoderDelegate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MKReverseGeocoderDelegate",
+      "type": "topic",
+      "url": "/documentation/mapkit/mkreversegeocoderdelegate"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Initializing-the-Reverse-Geocoder",
+      "identifiers": [
+        "doc://com.apple.mapkit/documentation/MapKit/MKReverseGeocoder/initWithCoordinate:"
+      ],
+      "title": "Initializing the Reverse Geocoder"
+    },
+    {
+      "anchor": "Accessing-Reverse-Geocoder-Attributes",
+      "identifiers": [
+        "doc://com.apple.mapkit/documentation/MapKit/MKReverseGeocoder/delegate",
+        "doc://com.apple.mapkit/documentation/MapKit/MKReverseGeocoder/coordinate",
+        "doc://com.apple.mapkit/documentation/MapKit/MKReverseGeocoder/placemark"
+      ],
+      "title": "Accessing Reverse Geocoder Attributes"
+    },
+    {
+      "anchor": "Managing-the-Search",
+      "identifiers": [
+        "doc://com.apple.mapkit/documentation/MapKit/MKReverseGeocoder/start",
+        "doc://com.apple.mapkit/documentation/MapKit/MKReverseGeocoder/querying",
+        "doc://com.apple.mapkit/documentation/MapKit/MKReverseGeocoder/cancel"
+      ],
+      "title": "Managing the Search"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreLocation~1CLGeocoder/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CLGeocoder"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/mapkit/mkreversegeocoder"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

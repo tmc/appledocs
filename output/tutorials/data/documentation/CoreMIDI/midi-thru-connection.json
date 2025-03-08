@@ -1,0 +1,1412 @@
+{
+  "abstract": [
+    {
+      "text": "Create play-through connections between sources and destinations.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.coremidi/documentation/CoreMIDI"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.coremidi/documentation/CoreMIDI/midi-thru-connection"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Core MIDI"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "MIDI Thru Connection"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use play-through connections, instead of performing MIDI Thru operations, to reduce the overhead of moving MIDI messages between the server and the client. This API provides a simple interface to perform a variety of transformations.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.coremidi/documentation/CoreMIDI": {
+      "abstract": [
+        {
+          "text": "Communicate with MIDI devices such as hardware keyboards and synthesizers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coremidi/documentation/CoreMIDI",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core MIDI",
+      "type": "topic",
+      "url": "/documentation/coremidi"
+    },
+    "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIControlTransform": {
+      "abstract": [
+        {
+          "text": "A structure that describes the transformation of MIDI control change events.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MIDIControlTransform"
+        }
+      ],
+      "identifier": "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIControlTransform",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MIDIControlTransform"
+        }
+      ],
+      "role": "symbol",
+      "title": "MIDIControlTransform",
+      "type": "topic",
+      "url": "/documentation/coremidi/midicontroltransform"
+    },
+    "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIThruConnectionCreate(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Creates a MIDI thru connection.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MIDIThruConnectionCreate"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFDataRef",
+          "text": "CFData"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@MIDIThruConnectionRef",
+          "text": "MIDIThruConnectionRef"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIThruConnectionCreate(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MIDIThruConnectionCreate"
+        }
+      ],
+      "role": "symbol",
+      "title": "MIDIThruConnectionCreate(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/coremidi/midithruconnectioncreate(_:_:_:)"
+    },
+    "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIThruConnectionDispose(_:)": {
+      "abstract": [
+        {
+          "text": "Disposes a MIDI thru connection.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MIDIThruConnectionDispose"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@MIDIThruConnectionRef",
+          "text": "MIDIThruConnectionRef"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIThruConnectionDispose(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MIDIThruConnectionDispose"
+        }
+      ],
+      "role": "symbol",
+      "title": "MIDIThruConnectionDispose(_:)",
+      "type": "topic",
+      "url": "/documentation/coremidi/midithruconnectiondispose(_:)"
+    },
+    "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIThruConnectionEndpoint": {
+      "abstract": [
+        {
+          "text": "A source or destination in a MIDI thru connection.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MIDIThruConnectionEndpoint"
+        }
+      ],
+      "identifier": "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIThruConnectionEndpoint",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MIDIThruConnectionEndpoint"
+        }
+      ],
+      "role": "symbol",
+      "title": "MIDIThruConnectionEndpoint",
+      "type": "topic",
+      "url": "/documentation/coremidi/midithruconnectionendpoint"
+    },
+    "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIThruConnectionFind(_:_:)": {
+      "abstract": [
+        {
+          "text": "Finds the persistent thru connections for the specified client.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MIDIThruConnectionFind"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFStringRef",
+          "text": "CFString"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s9UnmanagedV",
+          "text": "Unmanaged"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFDataRef",
+          "text": "CFData"
+        },
+        {
+          "kind": "text",
+          "text": ">>) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIThruConnectionFind(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MIDIThruConnectionFind"
+        }
+      ],
+      "role": "symbol",
+      "title": "MIDIThruConnectionFind(_:_:)",
+      "type": "topic",
+      "url": "/documentation/coremidi/midithruconnectionfind(_:_:)"
+    },
+    "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIThruConnectionGetParams(_:_:)": {
+      "abstract": [
+        {
+          "text": "Returns the thru connection’s parameters.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MIDIThruConnectionGetParams"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@MIDIThruConnectionRef",
+          "text": "MIDIThruConnectionRef"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s9UnmanagedV",
+          "text": "Unmanaged"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFDataRef",
+          "text": "CFData"
+        },
+        {
+          "kind": "text",
+          "text": ">>) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIThruConnectionGetParams(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MIDIThruConnectionGetParams"
+        }
+      ],
+      "role": "symbol",
+      "title": "MIDIThruConnectionGetParams(_:_:)",
+      "type": "topic",
+      "url": "/documentation/coremidi/midithruconnectiongetparams(_:_:)"
+    },
+    "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIThruConnectionParams": {
+      "abstract": [
+        {
+          "text": "A set of MIDI routings and transformations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MIDIThruConnectionParams"
+        }
+      ],
+      "identifier": "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIThruConnectionParams",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MIDIThruConnectionParams"
+        }
+      ],
+      "role": "symbol",
+      "title": "MIDIThruConnectionParams",
+      "type": "topic",
+      "url": "/documentation/coremidi/midithruconnectionparams"
+    },
+    "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIThruConnectionParamsInitialize(_:)": {
+      "abstract": [
+        {
+          "text": "Initializes a parameters object with its default values.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MIDIThruConnectionParamsInitialize"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sp",
+          "text": "UnsafeMutablePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@MIDIThruConnectionParams",
+          "text": "MIDIThruConnectionParams"
+        },
+        {
+          "kind": "text",
+          "text": ">)"
+        }
+      ],
+      "identifier": "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIThruConnectionParamsInitialize(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MIDIThruConnectionParamsInitialize"
+        }
+      ],
+      "role": "symbol",
+      "title": "MIDIThruConnectionParamsInitialize(_:)",
+      "type": "topic",
+      "url": "/documentation/coremidi/midithruconnectionparamsinitialize(_:)"
+    },
+    "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIThruConnectionParamsSize(_:)": {
+      "abstract": [
+        {
+          "text": "Returns the size of a MIDI thru connection parameters object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MIDIThruConnectionParamsSize"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SP",
+          "text": "UnsafePointer"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@S@MIDIThruConnectionParams",
+          "text": "MIDIThruConnectionParams"
+        },
+        {
+          "kind": "text",
+          "text": ">) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIThruConnectionParamsSize(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MIDIThruConnectionParamsSize"
+        }
+      ],
+      "role": "symbol",
+      "title": "MIDIThruConnectionParamsSize(_:)",
+      "type": "topic",
+      "url": "/documentation/coremidi/midithruconnectionparamssize(_:)"
+    },
+    "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIThruConnectionRef": {
+      "abstract": [
+        {
+          "text": "An opaque reference to a play-through connection.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MIDIThruConnectionRef"
+        }
+      ],
+      "identifier": "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIThruConnectionRef",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MIDIThruConnectionRef"
+        }
+      ],
+      "role": "symbol",
+      "title": "MIDIThruConnectionRef",
+      "type": "topic",
+      "url": "/documentation/coremidi/midithruconnectionref"
+    },
+    "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIThruConnectionSetParams(_:_:)": {
+      "abstract": [
+        {
+          "text": "Updates a thru connection’s parameters.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MIDIThruConnectionSetParams"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@MIDIThruConnectionRef",
+          "text": "MIDIThruConnectionRef"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFDataRef",
+          "text": "CFData"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIThruConnectionSetParams(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MIDIThruConnectionSetParams"
+        }
+      ],
+      "role": "symbol",
+      "title": "MIDIThruConnectionSetParams(_:_:)",
+      "type": "topic",
+      "url": "/documentation/coremidi/midithruconnectionsetparams(_:_:)"
+    },
+    "doc://com.apple.coremidi/documentation/CoreMIDI/MIDITransform": {
+      "abstract": [
+        {
+          "text": "The transformation of a single type of MIDI event.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MIDITransform"
+        }
+      ],
+      "identifier": "doc://com.apple.coremidi/documentation/CoreMIDI/MIDITransform",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MIDITransform"
+        }
+      ],
+      "role": "symbol",
+      "title": "MIDITransform",
+      "type": "topic",
+      "url": "/documentation/coremidi/miditransform"
+    },
+    "doc://com.apple.coremidi/documentation/CoreMIDI/MIDITransformControlType": {
+      "abstract": [
+        {
+          "text": "A set of values that indicate how to interpret control numbers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MIDITransformControlType"
+        }
+      ],
+      "identifier": "doc://com.apple.coremidi/documentation/CoreMIDI/MIDITransformControlType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MIDITransformControlType"
+        }
+      ],
+      "role": "symbol",
+      "title": "MIDITransformControlType",
+      "type": "topic",
+      "url": "/documentation/coremidi/miditransformcontroltype"
+    },
+    "doc://com.apple.coremidi/documentation/CoreMIDI/MIDITransformType": {
+      "abstract": [
+        {
+          "text": "Values that specify the type of MIDI transformation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MIDITransformType"
+        }
+      ],
+      "identifier": "doc://com.apple.coremidi/documentation/CoreMIDI/MIDITransformType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MIDITransformType"
+        }
+      ],
+      "role": "symbol",
+      "title": "MIDITransformType",
+      "type": "topic",
+      "url": "/documentation/coremidi/miditransformtype"
+    },
+    "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIValueMap": {
+      "abstract": [
+        {
+          "text": "A custom lookup table to transform MIDI 7-bit values, as contained in note numbers, velocities, control values, and so on.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MIDIValueMap"
+        }
+      ],
+      "identifier": "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIValueMap",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MIDIValueMap"
+        }
+      ],
+      "role": "symbol",
+      "title": "MIDIValueMap",
+      "type": "topic",
+      "url": "/documentation/coremidi/midivaluemap"
+    },
+    "doc://com.apple.coremidi/documentation/CoreMIDI/endpoint-configuration": {
+      "abstract": [
+        {
+          "text": "Values that define the supported endpoint configurations.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coremidi/documentation/CoreMIDI/endpoint-configuration",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Endpoint Configuration",
+      "type": "topic",
+      "url": "/documentation/coremidi/endpoint-configuration"
+    },
+    "doc://com.apple.coremidi/documentation/CoreMIDI/midi-bluetooth": {
+      "abstract": [
+        {
+          "text": "Connect to Bluetooth Low Energy MIDI peripherals.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coremidi/documentation/CoreMIDI/midi-bluetooth",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "MIDI Bluetooth",
+      "type": "topic",
+      "url": "/documentation/coremidi/midi-bluetooth"
+    },
+    "doc://com.apple.coremidi/documentation/CoreMIDI/midi-capability-inquiry": {
+      "abstract": [
+        {
+          "text": "Provide support for bidirectional discovery and configuration of devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coremidi/documentation/CoreMIDI/midi-capability-inquiry",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "MIDI Capability Inquiry",
+      "type": "topic",
+      "url": "/documentation/coremidi/midi-capability-inquiry"
+    },
+    "doc://com.apple.coremidi/documentation/CoreMIDI/midi-drivers": {
+      "abstract": [
+        {
+          "text": "Create driver plug-ins.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coremidi/documentation/CoreMIDI/midi-drivers",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "MIDI Drivers",
+      "type": "topic",
+      "url": "/documentation/coremidi/midi-drivers"
+    },
+    "doc://com.apple.coremidi/documentation/CoreMIDI/midi-messages": {
+      "abstract": [
+        {
+          "text": "Create and configure messages.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coremidi/documentation/CoreMIDI/midi-messages",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "MIDI Messages",
+      "type": "topic",
+      "url": "/documentation/coremidi/midi-messages"
+    },
+    "doc://com.apple.coremidi/documentation/CoreMIDI/midi-networking": {
+      "abstract": [
+        {
+          "text": "Create and manage devices connected over a local network.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coremidi/documentation/CoreMIDI/midi-networking",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "MIDI Networking",
+      "type": "topic",
+      "url": "/documentation/coremidi/midi-networking"
+    },
+    "doc://com.apple.coremidi/documentation/CoreMIDI/midi-services": {
+      "abstract": [
+        {
+          "text": "Communicate with hardware using Universal MIDI Packets.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coremidi/documentation/CoreMIDI/midi-services",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "MIDI Services",
+      "type": "topic",
+      "url": "/documentation/coremidi/midi-services"
+    },
+    "doc://com.apple.coremidi/documentation/CoreMIDI/midi-system-setup": {
+      "abstract": [
+        {
+          "text": "Configure the global MIDI system.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coremidi/documentation/CoreMIDI/midi-system-setup",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "MIDI System Setup",
+      "type": "topic",
+      "url": "/documentation/coremidi/midi-system-setup"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Services",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.coremidi/documentation/CoreMIDI/midi-services",
+        "doc://com.apple.coremidi/documentation/CoreMIDI/midi-system-setup",
+        "doc://com.apple.coremidi/documentation/CoreMIDI/midi-bluetooth",
+        "doc://com.apple.coremidi/documentation/CoreMIDI/midi-messages",
+        "doc://com.apple.coremidi/documentation/CoreMIDI/midi-networking",
+        "doc://com.apple.coremidi/documentation/CoreMIDI/midi-drivers",
+        "doc://com.apple.coremidi/documentation/CoreMIDI/midi-capability-inquiry"
+      ],
+      "title": "Services"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Finding-Connections",
+      "identifiers": [
+        "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIThruConnectionFind(_:_:)"
+      ],
+      "title": "Finding Connections"
+    },
+    {
+      "anchor": "Managing-Connections",
+      "identifiers": [
+        "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIThruConnectionCreate(_:_:_:)",
+        "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIThruConnectionDispose(_:)",
+        "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIThruConnectionRef",
+        "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIThruConnectionEndpoint",
+        "doc://com.apple.coremidi/documentation/CoreMIDI/endpoint-configuration"
+      ],
+      "title": "Managing Connections"
+    },
+    {
+      "anchor": "Configuring-Parameters",
+      "identifiers": [
+        "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIThruConnectionParams",
+        "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIThruConnectionParamsSize(_:)",
+        "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIThruConnectionParamsInitialize(_:)",
+        "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIThruConnectionGetParams(_:_:)",
+        "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIThruConnectionSetParams(_:_:)"
+      ],
+      "title": "Configuring Parameters"
+    },
+    {
+      "anchor": "Transforming-Values",
+      "identifiers": [
+        "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIValueMap",
+        "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIControlTransform",
+        "doc://com.apple.coremidi/documentation/CoreMIDI/MIDITransform",
+        "doc://com.apple.coremidi/documentation/CoreMIDI/MIDITransformType",
+        "doc://com.apple.coremidi/documentation/CoreMIDI/MIDITransformControlType"
+      ],
+      "title": "Transforming Values"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Finding-Connections",
+              "identifiers": [
+                "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIThruConnectionFind(_:_:)"
+              ],
+              "title": "Finding Connections"
+            },
+            {
+              "anchor": "Managing-Connections",
+              "identifiers": [
+                "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIThruConnectionCreate(_:_:_:)",
+                "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIThruConnectionDispose(_:)",
+                "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIThruConnectionRef",
+                "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIThruConnectionEndpoint",
+                "doc://com.apple.coremidi/documentation/CoreMIDI/endpoint-configuration"
+              ],
+              "title": "Managing Connections"
+            },
+            {
+              "anchor": "Configuring-Parameters",
+              "identifiers": [
+                "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIThruConnectionParams",
+                "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIThruConnectionParamsSize(_:)",
+                "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIThruConnectionParamsInitialize(_:)",
+                "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIThruConnectionGetParams(_:_:)",
+                "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIThruConnectionSetParams(_:_:)"
+              ],
+              "title": "Configuring Parameters"
+            },
+            {
+              "anchor": "Transforming-Values",
+              "identifiers": [
+                "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIValueMap",
+                "doc://com.apple.coremidi/documentation/CoreMIDI/MIDIControlTransform",
+                "doc://com.apple.coremidi/documentation/CoreMIDI/MIDITransform",
+                "doc://com.apple.coremidi/documentation/CoreMIDI/MIDITransformType",
+                "doc://com.apple.coremidi/documentation/CoreMIDI/MIDITransformControlType"
+              ],
+              "title": "Transforming Values"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Services",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.coremidi/documentation/CoreMIDI/midi-services",
+                "doc://com.apple.coremidi/documentation/CoreMIDI/midi-system-setup",
+                "doc://com.apple.coremidi/documentation/CoreMIDI/midi-bluetooth",
+                "doc://com.apple.coremidi/documentation/CoreMIDI/midi-messages",
+                "doc://com.apple.coremidi/documentation/CoreMIDI/midi-networking",
+                "doc://com.apple.coremidi/documentation/CoreMIDI/midi-drivers",
+                "doc://com.apple.coremidi/documentation/CoreMIDI/midi-capability-inquiry"
+              ],
+              "title": "Services"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDIThruConnectionParamsSize(_:)/title",
+          "value": "MIDIThruConnectionParamsSize"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDIThruConnectionParamsSize(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MIDIThruConnectionParamsSize"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDIThruConnectionCreate(_:_:_:)/title",
+          "value": "MIDIThruConnectionCreate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDIThruConnectionCreate(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MIDIThruConnectionCreate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDIThruConnectionSetParams(_:_:)/title",
+          "value": "MIDIThruConnectionSetParams"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDIThruConnectionSetParams(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MIDIThruConnectionSetParams"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDIControlTransform/title",
+          "value": "MIDIControlTransform"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDIControlTransform/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MIDIControlTransform"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDIControlTransform/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MIDIControlTransform"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDIThruConnectionGetParams(_:_:)/title",
+          "value": "MIDIThruConnectionGetParams"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDIThruConnectionGetParams(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MIDIThruConnectionGetParams"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDIThruConnectionParams/title",
+          "value": "MIDIThruConnectionParams"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDIThruConnectionParams/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MIDIThruConnectionParams"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDIThruConnectionParams/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MIDIThruConnectionParams"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDITransformType/title",
+          "value": "MIDITransformType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDITransformType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MIDITransformType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDITransformType/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MIDITransformType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDITransformControlType/title",
+          "value": "MIDITransformControlType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDITransformControlType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MIDITransformControlType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDITransformControlType/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MIDITransformControlType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDIThruConnectionFind(_:_:)/title",
+          "value": "MIDIThruConnectionFind"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDIThruConnectionFind(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MIDIThruConnectionFind"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDITransform/title",
+          "value": "MIDITransform"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDITransform/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MIDITransform"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDITransform/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MIDITransform"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDIValueMap/title",
+          "value": "MIDIValueMap"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDIValueMap/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MIDIValueMap"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDIValueMap/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MIDIValueMap"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDIThruConnectionParamsInitialize(_:)/title",
+          "value": "MIDIThruConnectionParamsInitialize"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDIThruConnectionParamsInitialize(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MIDIThruConnectionParamsInitialize"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDIThruConnectionRef/title",
+          "value": "MIDIThruConnectionRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDIThruConnectionRef/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MIDIThruConnectionRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDIThruConnectionRef/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MIDIThruConnectionRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDIThruConnectionEndpoint/title",
+          "value": "MIDIThruConnectionEndpoint"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDIThruConnectionEndpoint/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MIDIThruConnectionEndpoint"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDIThruConnectionEndpoint/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MIDIThruConnectionEndpoint"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDIThruConnectionDispose(_:)/title",
+          "value": "MIDIThruConnectionDispose"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coremidi~1documentation~1CoreMIDI~1MIDIThruConnectionDispose(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MIDIThruConnectionDispose"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/coremidi/midi-thru-connection"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/coremidi/midi-thru-connection"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

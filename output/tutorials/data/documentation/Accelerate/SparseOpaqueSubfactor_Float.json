@@ -1,0 +1,1035 @@
+{
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.accelerate/documentation/Accelerate"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.accelerate/documentation/Accelerate/SparseOpaqueSubfactor_Float"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@SA@SparseOpaqueSubfactor_Float",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "struct"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "SparseOpaqueSubfactor_Float"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Accelerate"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "SparseOpaqueSubfactor_Float"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Structure",
+    "symbolKind": "struct",
+    "title": "SparseOpaqueSubfactor_Float"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "SparseOpaqueSubfactor_Float"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Attributes of subfactor. Notably transpose indicates whether it should be",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "considered as the transpose of its underlying contents (e.g. should it",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "count as L or L^T if .contents=SparseSubfactorL).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Subfactor this represents, e.g. L or Q.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Underlying factorization this subfactor is part of.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The size of the workspace, in bytes, required to perform SparseMultiply()",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "or SparseSolve() with this subfactor is given by the expression:",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "workspaceRequiredStatic + nrhs*workspaceRequiredPerRhs",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "where nrhs is the number of right-hand side vectors.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The size of the workspace, in bytes, required to perform SparseMultiply()",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "or SparseSolve() with this subfactor is given by the expression:",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "workspaceRequiredStatic + nrhs*workspaceRequiredPerRhs",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "where nrhs is the number of right-hand side vectors.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.accelerate/documentation/Accelerate": {
+      "abstract": [
+        {
+          "text": "Make large-scale mathematical computations and image calculations, optimized for high performance and low energy consumption.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Accelerate",
+      "type": "topic",
+      "url": "/documentation/accelerate"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/SparseOpaqueSubfactor_Double": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SparseOpaqueSubfactor_Double"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/SparseOpaqueSubfactor_Double",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SparseOpaqueSubfactor_Double"
+        }
+      ],
+      "role": "symbol",
+      "title": "SparseOpaqueSubfactor_Double",
+      "type": "topic",
+      "url": "/documentation/accelerate/sparseopaquesubfactor_double"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/SparseOpaqueSubfactor_Float": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SparseOpaqueSubfactor_Float"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/SparseOpaqueSubfactor_Float",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SparseOpaqueSubfactor_Float"
+        }
+      ],
+      "role": "symbol",
+      "title": "SparseOpaqueSubfactor_Float",
+      "type": "topic",
+      "url": "/documentation/accelerate/sparseopaquesubfactor_float"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/SparseOpaqueSubfactor_Float/attributes": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "attributes"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@SparseAttributes_t",
+          "text": "SparseAttributes_t"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/SparseOpaqueSubfactor_Float/attributes",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "attributes"
+        }
+      ],
+      "role": "symbol",
+      "title": "attributes",
+      "type": "topic",
+      "url": "/documentation/accelerate/sparseopaquesubfactor_float/attributes"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/SparseOpaqueSubfactor_Float/contents": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "contents"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@EA@SparseSubfactor_t",
+          "text": "SparseSubfactor_t"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/SparseOpaqueSubfactor_Float/contents",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "contents"
+        }
+      ],
+      "role": "symbol",
+      "title": "contents",
+      "type": "topic",
+      "url": "/documentation/accelerate/sparseopaquesubfactor_float/contents"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/SparseOpaqueSubfactor_Float/factor": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "factor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@SparseOpaqueFactorization_Float",
+          "text": "SparseOpaqueFactorization_Float"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/SparseOpaqueSubfactor_Float/factor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "factor"
+        }
+      ],
+      "role": "symbol",
+      "title": "factor",
+      "type": "topic",
+      "url": "/documentation/accelerate/sparseopaquesubfactor_float/factor"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/SparseOpaqueSubfactor_Float/init()": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/SparseOpaqueSubfactor_Float/init()",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init()",
+      "type": "topic",
+      "url": "/documentation/accelerate/sparseopaquesubfactor_float/init()"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/SparseOpaqueSubfactor_Float/init(attributes:contents:factor:workspaceRequiredStatic:workspaceRequiredPerRHS:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "attributes"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@SparseAttributes_t",
+          "text": "SparseAttributes_t"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "contents"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@EA@SparseSubfactor_t",
+          "text": "SparseSubfactor_t"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "factor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@SparseOpaqueFactorization_Float",
+          "text": "SparseOpaqueFactorization_Float"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "workspaceRequiredStatic"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "workspaceRequiredPerRHS"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/SparseOpaqueSubfactor_Float/init(attributes:contents:factor:workspaceRequiredStatic:workspaceRequiredPerRHS:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(attributes:contents:factor:workspaceRequiredStatic:workspaceRequiredPerRHS:)",
+      "type": "topic",
+      "url": "/documentation/accelerate/sparseopaquesubfactor_float/init(attributes:contents:factor:workspacerequiredstatic:workspacerequiredperrhs:)"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/SparseOpaqueSubfactor_Float/workspaceRequiredPerRHS": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "workspaceRequiredPerRHS"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/SparseOpaqueSubfactor_Float/workspaceRequiredPerRHS",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "workspaceRequiredPerRHS"
+        }
+      ],
+      "role": "symbol",
+      "title": "workspaceRequiredPerRHS",
+      "type": "topic",
+      "url": "/documentation/accelerate/sparseopaquesubfactor_float/workspacerequiredperrhs"
+    },
+    "doc://com.apple.accelerate/documentation/Accelerate/SparseOpaqueSubfactor_Float/workspaceRequiredStatic": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "workspaceRequiredStatic"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.accelerate/documentation/Accelerate/SparseOpaqueSubfactor_Float/workspaceRequiredStatic",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "workspaceRequiredStatic"
+        }
+      ],
+      "role": "symbol",
+      "title": "workspaceRequiredStatic",
+      "type": "topic",
+      "url": "/documentation/accelerate/sparseopaquesubfactor_float/workspacerequiredstatic"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Structures",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/SparseOpaqueSubfactor_Double"
+      ],
+      "title": "Structures"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Initializers",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/SparseOpaqueSubfactor_Float/init()",
+        "doc://com.apple.accelerate/documentation/Accelerate/SparseOpaqueSubfactor_Float/init(attributes:contents:factor:workspaceRequiredStatic:workspaceRequiredPerRHS:)"
+      ],
+      "title": "Initializers"
+    },
+    {
+      "anchor": "Instance-Properties",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.accelerate/documentation/Accelerate/SparseOpaqueSubfactor_Float/attributes",
+        "doc://com.apple.accelerate/documentation/Accelerate/SparseOpaqueSubfactor_Float/contents",
+        "doc://com.apple.accelerate/documentation/Accelerate/SparseOpaqueSubfactor_Float/factor",
+        "doc://com.apple.accelerate/documentation/Accelerate/SparseOpaqueSubfactor_Float/workspaceRequiredPerRHS",
+        "doc://com.apple.accelerate/documentation/Accelerate/SparseOpaqueSubfactor_Float/workspaceRequiredStatic"
+      ],
+      "title": "Instance Properties"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "visionOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "watchOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Structure"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "SparseOpaqueSubfactor_Float"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "struct"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SparseOpaqueSubfactor_Float"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SparseOpaqueSubfactor_Float"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.accelerate/documentation/Accelerate"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Instance-Properties",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.accelerate/documentation/Accelerate/SparseOpaqueSubfactor_Float/attributes",
+                "doc://com.apple.accelerate/documentation/Accelerate/SparseOpaqueSubfactor_Float/contents",
+                "doc://com.apple.accelerate/documentation/Accelerate/SparseOpaqueSubfactor_Float/factor",
+                "doc://com.apple.accelerate/documentation/Accelerate/SparseOpaqueSubfactor_Float/workspaceRequiredPerRHS",
+                "doc://com.apple.accelerate/documentation/Accelerate/SparseOpaqueSubfactor_Float/workspaceRequiredStatic"
+              ],
+              "title": "Instance Properties"
+            }
+          ]
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Structures",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.accelerate/documentation/Accelerate/SparseOpaqueSubfactor_Double"
+              ],
+              "title": "Structures"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "typedef"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "keyword",
+                    "text": "struct"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " { ... } "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "SparseOpaqueSubfactor_Float"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ";"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseOpaqueSubfactor_Float~1workspaceRequiredStatic/title",
+          "value": "workspaceRequiredStatic"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseOpaqueSubfactor_Float~1workspaceRequiredStatic/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "workspaceRequiredStatic"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseOpaqueSubfactor_Double/title",
+          "value": "SparseOpaqueSubfactor_Double"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseOpaqueSubfactor_Double/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SparseOpaqueSubfactor_Double"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseOpaqueSubfactor_Double/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SparseOpaqueSubfactor_Double"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseOpaqueSubfactor_Float~1factor/title",
+          "value": "factor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseOpaqueSubfactor_Float~1factor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "factor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseOpaqueSubfactor_Float~1contents/title",
+          "value": "contents"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseOpaqueSubfactor_Float~1contents/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "contents"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseOpaqueSubfactor_Float~1workspaceRequiredPerRHS/title",
+          "value": "workspaceRequiredPerRHS"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseOpaqueSubfactor_Float~1workspaceRequiredPerRHS/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "workspaceRequiredPerRHS"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseOpaqueSubfactor_Float/title",
+          "value": "SparseOpaqueSubfactor_Float"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseOpaqueSubfactor_Float/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SparseOpaqueSubfactor_Float"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseOpaqueSubfactor_Float/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SparseOpaqueSubfactor_Float"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseOpaqueSubfactor_Float~1attributes/title",
+          "value": "attributes"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.accelerate~1documentation~1Accelerate~1SparseOpaqueSubfactor_Float~1attributes/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "attributes"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/accelerate/sparseopaquesubfactor_float"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/accelerate/sparseopaquesubfactor_float"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

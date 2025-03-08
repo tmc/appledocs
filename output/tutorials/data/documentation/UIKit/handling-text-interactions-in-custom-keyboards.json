@@ -1,0 +1,1459 @@
+{
+  "abstract": [
+    {
+      "text": "Insert, delete, and manipulate text by using a proxy to a text input view.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.uikit/documentation/UIKit",
+        "doc://com.apple.uikit/documentation/UIKit/keyboards-and-input",
+        "doc://com.apple.uikit/documentation/UIKit/creating-a-custom-keyboard"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.uikit/documentation/UIKit/handling-text-interactions-in-custom-keyboards"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "UIKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Handling text interactions in custom keyboards"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Custom keyboards execute in a separate process that doesn’t have direct access to the text a user is editing. A proxy object, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextDocumentProxy",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", provides access to the input text view. Through the text document proxy you can insert or delete text, manipulate the insertion point, and access additional textual context around the insertion point.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3570308",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Insert-and-delete-text",
+          "level": 3,
+          "text": "Insert and delete text",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The text document proxy conforms to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIKeyInput",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol, providing methods for inserting and deleting text. To insert a character or string into the current input view:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "textDocumentProxy.insertText(\"Hello world.\")"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To delete the character preceding the current insertion point:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "textDocumentProxy.deleteBackward()"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can determine if the input view has any text at all using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIKeyInput/hasText",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "if textDocumentProxy.hasText {",
+            "    // Do something with the text",
+            "}",
+            ""
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Adjust-the-insertion-point",
+          "level": 3,
+          "text": "Adjust the insertion point",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To move the insertion point in the text input view, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextDocumentProxy/adjustTextPosition(byCharacterOffset:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. For example, if you want to implement a forward delete action, move the insertion position forward by one character then delete backwards:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Move the text insertion position forward 1 character",
+            "textDocumentProxy.adjustTextPosition(byCharacterOffset: 1)",
+            "",
+            "// Delete the previous character",
+            "textDocumentProxy.deleteBackward()"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You might choose to enable this capability only when the insertion point isn’t at the end of the text being input by checking the context after the insertion point. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/handling-text-interactions-in-custom-keyboards#Get-context-around-the-insertion-point",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for more details.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Respond-to-changes-while-the-user-is-editing",
+          "level": 3,
+          "text": "Respond to changes while the user is editing",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "While your keyboard is active, the user may perform operations that change the text or selection. Your custom keyboard controller, a subclass of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UIInputViewController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " that conforms to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextInputDelegate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol, can automatically be informed of these text and selection changes. You can override two sets of methods in this delegate protocol to receive these notifications. The first set is called when text is changing, and the second is called when the selection is changing. Because your keyboard extension doesn’t have direct access to the text input field, the argument is ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func textWillChange(_ textInput: UITextInput?)",
+            "func textDidChange(_ textInput: UITextInput?)",
+            "",
+            "func selectionWillChange(_ textInput: UITextInput?)",
+            "func selectionDidChange(_ textInput: UITextInput?)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Get-context-around-the-insertion-point",
+          "level": 3,
+          "text": "Get context around the insertion point",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To perform certain operations like autocomplete or autocapitalization, you may need additional context of the text surrounding what the user is typing. You can access the context before and after the insertion point as follows:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let precedingText = textDocumentProxy.documentContextBeforeInput ?? \"\"",
+            "let followingText = textDocumentProxy.documentContextAfterInput ?? \"\"",
+            "let selectedText = textDocumentProxy.selectedText ?? \"\"",
+            "let fullText = \"\\(precedingText)\\(selectedText)\\(followingText)\""
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfstringtokenizer-rf8",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to better understand the context by breaking the surrounding text (or combined text) into words, paragraphs, or sentences. This information enables you to implement autocapitalization.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Call ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextDocumentProxy/documentContextBeforeInput",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to get the text preceding the insertion point.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Use ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfstringtokenizer-rf8",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " to locate the beginning of the current word.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Move the insertion point after the first character of the word.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Call ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIKeyInput/deleteBackward()",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Call ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIKeyInput/insertText(_:)",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and pass the appropriate capitalized letter.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Move the insertion point back to its original position.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "anchor": "Mark-text-while-the-user-is-editing",
+          "level": 3,
+          "text": "Mark text while the user is editing",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Some text input operations require multiple actions in order to complete a single character or word. For example, your keyboard might support a language that requires multiple keystrokes to compose a single character. ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextDocumentProxy",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " allows you to insert text and mark some or all of it for subsequent editing operations. The following code shows how you could insert a combining accent character as marked text using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextDocumentProxy/setMarkedText(_:selectedRange:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let accentCharacter = \" \\u{0301}\"",
+            "let range = NSRange(location: 0, length: accentCharacter.count)",
+            "textDocumentProxy.setMarkedText(accentCharacter, selectedRange: range)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Calling ",
+              "type": "text"
+            },
+            {
+              "code": "setMarkedText",
+              "type": "codeVoice"
+            },
+            {
+              "text": " selects the text specified by ",
+              "type": "text"
+            },
+            {
+              "code": "range",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". Subsequent insertions replace the characters selected in the range. In the example above, a space with a combining acute accent is shown. If the next character input by the user is an ",
+              "type": "text"
+            },
+            {
+              "code": "a",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", you could then insert a combined ",
+              "type": "text"
+            },
+            {
+              "code": "á",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "textDocumentProxy.insertText(\"a\\u{0301}\")"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the range passed to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextDocumentProxy/setMarkedText(_:selectedRange:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " only covers a portion of the string passed in, the nonselected portion is marked with a background color. You could use this to display autocompleted content. For example, if you supported autocompletion of names and the user had typed “Anth”, you might display “Anthony” as the autocompletion:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let text = \"Anthony\"",
+            "let range = NSRange(location: 4, length: 3)",
+            "textDocumentProxy.setMarkedText(text, selectedRange: range)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The above would display the text as:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3570318",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As the user continues to type, you can update the marked text with subsequent calls to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextDocumentProxy/setMarkedText(_:selectedRange:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextDocumentProxy/unmarkText()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to clear the marked text indication, leaving the text in the input view.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/corefoundation/cfstringtokenizer-rf8": {
+      "abstract": [
+        {
+          "text": "CFStringTokenizer allows you to tokenize strings into words, sentences or paragraphs in a language-neutral way. It supports languages such as Japanese and Chinese that do not delimit words by spaces, as well as de-compounding German compounds. You can obtain Latin transcription for tokens. It also provides language identification API.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/corefoundation/cfstringtokenizer-rf8",
+      "kind": "article",
+      "role": "article",
+      "title": "CFStringTokenizer",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfstringtokenizer-rf8"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.uikit/documentation/UIKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your iOS, iPadOS, or tvOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "UIKit",
+      "type": "topic",
+      "url": "/documentation/uikit"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIInputViewController": {
+      "abstract": [
+        {
+          "text": "The primary view controller for a custom keyboard app extension.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIInputViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIInputViewController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIInputViewController"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIInputViewController",
+      "type": "topic",
+      "url": "/documentation/uikit/uiinputviewcontroller"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIKeyInput": {
+      "abstract": [
+        {
+          "text": "A set of methods a responder uses to implement simple text entry.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UIKeyInput"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIKeyInput",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UIKeyInput"
+        }
+      ],
+      "role": "symbol",
+      "title": "UIKeyInput",
+      "type": "topic",
+      "url": "/documentation/uikit/uikeyinput"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIKeyInput/deleteBackward()": {
+      "abstract": [
+        {
+          "text": "Deletes a character from the displayed text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "deleteBackward"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIKeyInput/deleteBackward()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "deleteBackward"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "deleteBackward()",
+      "type": "topic",
+      "url": "/documentation/uikit/uikeyinput/deletebackward()"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIKeyInput/hasText": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the text-entry object has any text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "hasText"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIKeyInput/hasText",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "hasText"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "hasText",
+      "type": "topic",
+      "url": "/documentation/uikit/uikeyinput/hastext"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UIKeyInput/insertText(_:)": {
+      "abstract": [
+        {
+          "text": "Inserts a character into the displayed text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "insertText"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UIKeyInput/insertText(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "insertText:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "insertText(_:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uikeyinput/inserttext(_:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITextDocumentProxy": {
+      "abstract": [
+        {
+          "text": "An object that provides textual context to a custom keyboard.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITextDocumentProxy"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextDocumentProxy",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITextDocumentProxy"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITextDocumentProxy",
+      "type": "topic",
+      "url": "/documentation/uikit/uitextdocumentproxy"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITextDocumentProxy/adjustTextPosition(byCharacterOffset:)": {
+      "abstract": [
+        {
+          "text": "Moves the insertion point forward or backward in the current text input object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "adjustTextPosition"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "byCharacterOffset"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextDocumentProxy/adjustTextPosition(byCharacterOffset:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "adjustTextPositionByCharacterOffset:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "adjustTextPosition(byCharacterOffset:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uitextdocumentproxy/adjusttextposition(bycharacteroffset:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITextDocumentProxy/documentContextBeforeInput": {
+      "abstract": [
+        {
+          "text": "Textual context before the insertion point in the current text input object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "documentContextBeforeInput"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextDocumentProxy/documentContextBeforeInput",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "documentContextBeforeInput"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "documentContextBeforeInput",
+      "type": "topic",
+      "url": "/documentation/uikit/uitextdocumentproxy/documentcontextbeforeinput"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITextDocumentProxy/setMarkedText(_:selectedRange:)": {
+      "abstract": [
+        {
+          "text": "Inserts the provided text and marks it to indicate that it’s part of an active input session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setMarkedText"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "selectedRange"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "NSRange"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextDocumentProxy/setMarkedText(_:selectedRange:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setMarkedText:selectedRange:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "setMarkedText(_:selectedRange:)",
+      "type": "topic",
+      "url": "/documentation/uikit/uitextdocumentproxy/setmarkedtext(_:selectedrange:)"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITextDocumentProxy/unmarkText()": {
+      "abstract": [
+        {
+          "text": "Unmarks the currently marked text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "unmarkText"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextDocumentProxy/unmarkText()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "unmarkText"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "unmarkText()",
+      "type": "topic",
+      "url": "/documentation/uikit/uitextdocumentproxy/unmarktext()"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/UITextInputDelegate": {
+      "abstract": [
+        {
+          "text": "An intermediary between a document and the text input system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UITextInputDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/UITextInputDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UITextInputDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "UITextInputDelegate",
+      "type": "topic",
+      "url": "/documentation/uikit/uitextinputdelegate"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/creating-a-custom-keyboard": {
+      "abstract": [
+        {
+          "text": "Add an extension to your Xcode project to provide systemwide customized text input.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/creating-a-custom-keyboard",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Creating a custom keyboard",
+      "type": "topic",
+      "url": "/documentation/uikit/creating-a-custom-keyboard"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/handling-text-interactions-in-custom-keyboards#Get-context-around-the-insertion-point": {
+      "abstract": [],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/handling-text-interactions-in-custom-keyboards#Get-context-around-the-insertion-point",
+      "kind": "section",
+      "title": "Get context around the insertion point",
+      "type": "topic",
+      "url": "/documentation/uikit/handling-text-interactions-in-custom-keyboards#Get-context-around-the-insertion-point"
+    },
+    "doc://com.apple.uikit/documentation/UIKit/keyboards-and-input": {
+      "abstract": [
+        {
+          "text": "Configure the system keyboard, create your own keyboards to handle input, or detect key presses on a physical keyboard.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.uikit/documentation/UIKit/keyboards-and-input",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Keyboards and input",
+      "type": "topic",
+      "url": "/documentation/uikit/keyboards-and-input"
+    },
+    "media-3570308": {
+      "alt": "Diagram showing the relationship of a custom keyboard extension process to the text input object. In the keyboard extension process the input view controller uses the text document proxy to insert a string into the text input view.",
+      "identifier": "media-3570308",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5d24d830be3383436ad7ed079165abfc/media-3570308@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/3618ce9e2ae23c81e3c1087046dda6ac/media-3570308~dark@2x.png"
+        }
+      ]
+    },
+    "media-3570318": {
+      "alt": "Screenshot showing text showing marked text. The beginning of the word is marked to indicate that it’s being autocompleted, and the end of the word is selected to indicate that subsequent keystrokes will replace that portion of the text.",
+      "identifier": "media-3570318",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2b0de0baa7f34b710e5edbc57971968a/media-3570318@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIInputViewController/title",
+          "value": "UIInputViewController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIInputViewController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIInputViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIInputViewController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIInputViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextDocumentProxy~1unmarkText()/title",
+          "value": "unmarkText"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextDocumentProxy~1unmarkText()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "unmarkText"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextInputDelegate/title",
+          "value": "UITextInputDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextInputDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITextInputDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextInputDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITextInputDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextDocumentProxy~1adjustTextPosition(byCharacterOffset:)/title",
+          "value": "adjustTextPositionByCharacterOffset:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextDocumentProxy~1adjustTextPosition(byCharacterOffset:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "adjustTextPositionByCharacterOffset:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextDocumentProxy/title",
+          "value": "UITextDocumentProxy"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextDocumentProxy/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITextDocumentProxy"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextDocumentProxy/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UITextDocumentProxy"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIKeyInput~1deleteBackward()/title",
+          "value": "deleteBackward"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIKeyInput~1deleteBackward()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "deleteBackward"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIKeyInput~1hasText/title",
+          "value": "hasText"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIKeyInput~1hasText/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "hasText"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIKeyInput/title",
+          "value": "UIKeyInput"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIKeyInput/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIKeyInput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIKeyInput/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UIKeyInput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextDocumentProxy~1documentContextBeforeInput/title",
+          "value": "documentContextBeforeInput"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextDocumentProxy~1documentContextBeforeInput/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "documentContextBeforeInput"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextDocumentProxy~1setMarkedText(_:selectedRange:)/title",
+          "value": "setMarkedText:selectedRange:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UITextDocumentProxy~1setMarkedText(_:selectedRange:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setMarkedText:selectedRange:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIKeyInput~1insertText(_:)/title",
+          "value": "insertText:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.uikit~1documentation~1UIKit~1UIKeyInput~1insertText(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "insertText:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/uikit/handling-text-interactions-in-custom-keyboards"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/uikit/handling-text-interactions-in-custom-keyboards"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

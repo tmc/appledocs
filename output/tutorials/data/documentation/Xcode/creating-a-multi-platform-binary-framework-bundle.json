@@ -1,0 +1,1349 @@
+{
+  "abstract": [
+    {
+      "text": "Combine variants of a binary framework or library into an XCFramework bundle that",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "supports multiple platforms.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Xcode/documentation/Xcode",
+        "doc://com.apple.Xcode/documentation/Xcode/bundles-and-frameworks"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Xcode/documentation/Xcode/creating-a-multi-platform-binary-framework-bundle"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Creating a multiplatform binary framework bundle"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An XCFramework bundle, or ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "artifact",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", is a binary package created by Xcode that",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "includes the frameworks and libraries necessary to build for multiple platforms",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "(iOS, iPadOS, macOS, tvOS, visionOS, watchOS, and DriverKit), including Simulator builds. The frameworks can be static or dynamic and also include headers.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Include an XCFramework bundle inside a Swift package to distribute code in binary",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "form for use in other projects. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/distributing-binary-frameworks-as-swift-packages",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Session 417: ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/videos/play/wwdc2019/416",
+                  "isActive": true,
+                  "type": "reference"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Related sessions from WWDC19",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Set-up-the-project",
+          "level": 3,
+          "text": "Set up the project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To set up your project for creating an XCFramework, ensure your Xcode project has",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a scheme that builds only the framework target and its dependencies.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Configure these build settings on your target:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Set the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.Xcode/documentation/Xcode/build-settings-reference#Build-Libraries-for-Distribution",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " build setting to Yes. For Swift, this enables support for library evolution and generation of a module interface file.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Set the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.Xcode/documentation/Xcode/build-settings-reference#Skip-Install",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " build setting to No. If enabled, the built products aren‘t included in the archives.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Leave the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.Xcode/documentation/Xcode/build-settings-reference#Architectures",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " build setting unset. The predefined value configures the target to build a universal binary for all the possible architectures the target platform uses.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/customizing-the-build-schemes-for-a-project",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/configuring-the-build-settings-of-a-target",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-archives-for-frameworks-or-libraries",
+          "level": 3,
+          "text": "Create archives for frameworks or libraries",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Create an archive of your framework or library for each platform you wish to support",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "by running ",
+              "type": "text"
+            },
+            {
+              "code": "xcodebuild",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in Terminal using the ",
+              "type": "text"
+            },
+            {
+              "code": "archive",
+              "type": "codeVoice"
+            },
+            {
+              "text": " build action.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following command archives a framework for the iOS platform:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "xcodebuild archive ",
+            "    -project MyFramework.xcodeproj",
+            "    -scheme MyFramework",
+            "    -destination \"generic/platform=iOS\"",
+            "    -archivePath \"archives/MyFramework\""
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system determines the architectures and SDK according to build settings when running",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the command with the ",
+              "type": "text"
+            },
+            {
+              "code": "-destination",
+              "type": "codeVoice"
+            },
+            {
+              "text": " flag, like the example above. Avoid common errors by",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "using this flag rather than ",
+              "type": "text"
+            },
+            {
+              "code": "-arch",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "-sdk",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To build an archive for a different platform, adjust the value for ",
+              "type": "text"
+            },
+            {
+              "code": "-destination",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Replacing this value with ",
+              "type": "text"
+            },
+            {
+              "code": "\"generic/platform=iOS Simulator\"",
+              "type": "codeVoice"
+            },
+            {
+              "text": " creates an archive for Simulator.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An XCFramework can contain versions of your framework built for macOS with and without Mac Catalyst.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "To generate an archive for the Mac Catalyst variant, use ",
+              "type": "text"
+            },
+            {
+              "code": "\"generic/platform=macOS,variant=Mac Catalyst\"",
+              "type": "codeVoice"
+            },
+            {
+              "text": ",",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "adding the the variant type to the ",
+              "type": "text"
+            },
+            {
+              "code": "-destination",
+              "type": "codeVoice"
+            },
+            {
+              "text": " value.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To see an extensive list of all the command options, execute ",
+              "type": "text"
+            },
+            {
+              "code": "xcodebuild",
+              "type": "codeVoice"
+            },
+            {
+              "text": " with the ",
+              "type": "text"
+            },
+            {
+              "code": "-help",
+              "type": "codeVoice"
+            },
+            {
+              "text": " flag.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Clients of your XCFramework need it to support all the possible architectures",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "the platform uses. As platforms move forward to adopt new architectures, such as",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "the adoption of Apple silicon by macOS and iOS Simulator, keep the binaries",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "your XCFramework includes up to date by rebuilding the frameworks and libraries to",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "include new architectures. To determine the architectures of a binary, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.Xcode/documentation/Xcode/creating-a-multi-platform-binary-framework-bundle#Determine-the-architectures-a-binary-supports",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Generate-the-XCFramework-bundle",
+          "level": 3,
+          "text": "Generate the XCFramework bundle",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To package the built content of a given framework or library for multiple platforms",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and variants into a single XCFramework bundle, execute ",
+              "type": "text"
+            },
+            {
+              "code": "xcodebuild",
+              "type": "codeVoice"
+            },
+            {
+              "text": " with the ",
+              "type": "text"
+            },
+            {
+              "code": "-create-xcframework",
+              "type": "codeVoice"
+            },
+            {
+              "text": " option.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following command creates an XCFramework with variants for iOS, iOS Simulator, macOS, and Mac Catalyst:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "xcodebuild -create-xcframework",
+            "    -archive archives/MyFramework-iOS.xcarchive -framework MyFramework.framework",
+            "    -archive archives/MyFramework-iOS_Simulator.xcarchive -framework MyFramework.framework",
+            "    -archive archives/MyFramework-macOS.xcarchive -framework MyFramework.framework",
+            "    -archive archives/MyFramework-Mac_Catalyst.xcarchive -framework MyFramework.framework",
+            "    -output xcframeworks/MyFramework.xcframework"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To include a static library file (",
+              "type": "text"
+            },
+            {
+              "code": ".a",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file), replace ",
+              "type": "text"
+            },
+            {
+              "code": "-framework",
+              "type": "codeVoice"
+            },
+            {
+              "text": " with ",
+              "type": "text"
+            },
+            {
+              "code": "-library",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "command above.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the content you wish to include exists outside of an archive, provide",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "paths for the instances of ",
+              "type": "text"
+            },
+            {
+              "code": "-framework",
+              "type": "codeVoice"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "code": "-library",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and include paths to headers",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "using the additional ",
+              "type": "text"
+            },
+            {
+              "code": "-headers",
+              "type": "codeVoice"
+            },
+            {
+              "text": " flag.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "xcodebuild -create-xcframework",
+            "    -library products/iOS/usr/local/lib/libMyLibrary.a -headers products/iOS/usr/local/include",
+            "    -library products/iOS_Simulator/usr/local/lib/libMyLibrary.a -headers products/iOS/usr/local/include",
+            "    -library products/macOS/usr/local/lib/libMyLibrary.a -headers products/macOS/usr/local/include",
+            "    -library products/Mac\\ Catalyst/usr/local/lib/libMyLibrary.a -headers products/Mac\\ Catalyst/usr/local/include",
+            "    -output xcframeworks/MyLibrary.xcframework"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To see all the options the XCFramework utility supports, execute:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "xcodebuild -create-xcframework -help"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Sign-the-XCFramework-bundle",
+          "level": 3,
+          "text": "Sign the XCFramework bundle",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Signing your XCFramework using your code signing identity informs developers who use your framework that it came from you and that it hasn’t been tampered with since you added the signature. To sign your framework, run the following command:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "% codesign --timestamp -s <identity> xcframeworks/MyLibrary.xcframework"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To sign a framework for distribution as a member of the Apple Developer Program, your code signing identity should be an Apple Distribution or Apple Development identity. To sign a framework for distribution as a member of an Enterprise Program, use an iOS Distribution or iOS App Development identity. You don’t need to supply the full name of your code signing identity after the ",
+              "type": "text"
+            },
+            {
+              "code": "-s",
+              "type": "codeVoice"
+            },
+            {
+              "text": " option. Use a string that uniquely identifies the code signing identity in the keychain you use to sign the XCFramework. For more information on the ",
+              "type": "text"
+            },
+            {
+              "code": "codesign",
+              "type": "codeVoice"
+            },
+            {
+              "text": " tool, see the UNIX manual page for ",
+              "type": "text"
+            },
+            {
+              "code": "codesign",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "If you revoke a certificate for a code signing identity that you use to sign frameworks for distribution, sign the framework with a different code signing identity that isn’t revoked and share that version with developers who use your framework. The Xcode build system fails with an error when it encounters a framework with a code signature that contains a revoked certificate.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Avoid-issues-when-using-alternate-build-systems",
+          "level": 3,
+          "text": "Avoid issues when using alternate build systems",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When using an alternative build system, common for open source projects, follow a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "similar process to compile the source code into static library files, using one binary",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "per platform, or ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "destination",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ". Use the files to create the XCFramework.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "For each library and each platform, build a binary static libary file (",
+                      "type": "text"
+                    },
+                    {
+                      "code": ".a",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " file) that includes slices for all the possible architectures the platform uses.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Specify the path to each of the binaries you create in a call to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "xcodebuild -create-xcframework",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " to generate the XCFramework.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Avoid wrapping a static library in a ",
+              "type": "text"
+            },
+            {
+              "code": ".framework",
+              "type": "codeVoice"
+            },
+            {
+              "text": " bundle and omitting the ",
+              "type": "text"
+            },
+            {
+              "code": ".a",
+              "type": "codeVoice"
+            },
+            {
+              "text": " extension.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Use the ",
+              "type": "text"
+            },
+            {
+              "code": "-library",
+              "type": "codeVoice"
+            },
+            {
+              "text": " flag to create an XCFramework with a static library; see the example above under ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/creating-a-multi-platform-binary-framework-bundle#Generate-the-XCFramework-bundle",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Avoid using tools such as ",
+              "type": "text"
+            },
+            {
+              "code": "lipo",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to combine architecture slices built for iOS and",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "iOS Simulator into a single binary. The static library files for iOS and iOS Simulator must",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "remain seperate. For an XCFramework that supports iOS and iOS Simulator, you",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "produce at least two binary static library files. The binary iOS devices use is built for ARM64.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The universal binary for Simulator includes slices for x86_64 and ARM64",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "for Apple silicon.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Avoid using dynamic library files (",
+              "type": "text"
+            },
+            {
+              "code": ".dylib",
+              "type": "codeVoice"
+            },
+            {
+              "text": " files) for dynamic linking. An XCFramework",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "can include dynamic library files, but only macOS supports these libraries for dynamic",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "linking. Dynamic linking on iOS, iPadOS, tvOS, visionOS, and watchOS requires the XCFramework to contain ",
+              "type": "text"
+            },
+            {
+              "code": ".framework",
+              "type": "codeVoice"
+            },
+            {
+              "text": " bundles.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you have further questions on how to compile the library to meet these goals,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "work with support for the library vendor.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Determine-the-architectures-a-binary-supports",
+          "level": 3,
+          "text": "Determine the architectures a binary supports",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Projects that link to your XCFramework require that it contains",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "universal binaries covering the architectures each platform builds for.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To determine the architectures an existing binary includes, execute ",
+              "type": "text"
+            },
+            {
+              "code": "file",
+              "type": "codeVoice"
+            },
+            {
+              "text": " from Terminal",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and provide the path to the binary.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "file <PathToFramework>/<FrameworkName>.framework/<FrameworkName>"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        },
+        {
+          "code": [
+            "file <PathToLibrary>/libMyLibrary.a"
+          ],
+          "syntax": null,
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Xcode-PageImage-card.png": {
+      "alt": "The Xcode logo on a blue gradient background.",
+      "identifier": "Xcode-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cc63eacd8f7f660388b46204d1d9bbcb/Xcode-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/62dba87d5f60ec96eb48882c9dff86d8/Xcode-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Xcode/documentation/Xcode": {
+      "abstract": [
+        {
+          "text": "Build, test, and submit your app with Apple’s integrated development environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode",
+      "images": [
+        {
+          "identifier": "Xcode-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/build-settings-reference#Architectures": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/build-settings-reference#Architectures",
+      "kind": "section",
+      "title": "Architectures",
+      "type": "topic",
+      "url": "/documentation/xcode/build-settings-reference#Architectures"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/build-settings-reference#Build-Libraries-for-Distribution": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/build-settings-reference#Build-Libraries-for-Distribution",
+      "kind": "section",
+      "title": "Build Libraries for Distribution",
+      "type": "topic",
+      "url": "/documentation/xcode/build-settings-reference#Build-Libraries-for-Distribution"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/build-settings-reference#Skip-Install": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/build-settings-reference#Skip-Install",
+      "kind": "section",
+      "title": "Skip Install",
+      "type": "topic",
+      "url": "/documentation/xcode/build-settings-reference#Skip-Install"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/bundles-and-frameworks": {
+      "abstract": [
+        {
+          "text": "Organize code and resources in bundles and frameworks.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/bundles-and-frameworks",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Bundles and frameworks",
+      "type": "topic",
+      "url": "/documentation/xcode/bundles-and-frameworks"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/configuring-the-build-settings-of-a-target": {
+      "abstract": [
+        {
+          "text": "Specify the options you use to compile, link, and produce a",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "product from a target, and identify settings inherited from",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "your project or the system.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/configuring-the-build-settings-of-a-target",
+      "kind": "article",
+      "role": "article",
+      "title": "Configuring the build settings of a target",
+      "type": "topic",
+      "url": "/documentation/xcode/configuring-the-build-settings-of-a-target"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/creating-a-multi-platform-binary-framework-bundle#Determine-the-architectures-a-binary-supports": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/creating-a-multi-platform-binary-framework-bundle#Determine-the-architectures-a-binary-supports",
+      "kind": "section",
+      "title": "Determine the architectures a binary supports",
+      "type": "topic",
+      "url": "/documentation/xcode/creating-a-multi-platform-binary-framework-bundle#Determine-the-architectures-a-binary-supports"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/creating-a-multi-platform-binary-framework-bundle#Generate-the-XCFramework-bundle": {
+      "abstract": [],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/creating-a-multi-platform-binary-framework-bundle#Generate-the-XCFramework-bundle",
+      "kind": "section",
+      "title": "Generate the XCFramework bundle",
+      "type": "topic",
+      "url": "/documentation/xcode/creating-a-multi-platform-binary-framework-bundle#Generate-the-XCFramework-bundle"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/creating-a-static-framework": {
+      "abstract": [
+        {
+          "text": "Configure your project to build a new static framework.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/creating-a-static-framework",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating a static framework",
+      "type": "topic",
+      "url": "/documentation/xcode/creating-a-static-framework"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/customizing-the-build-schemes-for-a-project": {
+      "abstract": [
+        {
+          "text": "Specify which targets to build, and customize the settings Xcode uses",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "to build, run, test, and profile those targets.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/customizing-the-build-schemes-for-a-project",
+      "kind": "article",
+      "role": "article",
+      "title": "Customizing the build schemes for a project",
+      "type": "topic",
+      "url": "/documentation/xcode/customizing-the-build-schemes-for-a-project"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/distributing-binary-frameworks-as-swift-packages": {
+      "abstract": [
+        {
+          "text": "Make binaries available to other developers by creating Swift packages that include",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "one or more XCFrameworks.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/distributing-binary-frameworks-as-swift-packages",
+      "kind": "article",
+      "role": "article",
+      "title": "Distributing binary frameworks as Swift packages",
+      "type": "topic",
+      "url": "/documentation/xcode/distributing-binary-frameworks-as-swift-packages"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/identifying-and-addressing-framework-module-issues": {
+      "abstract": [
+        {
+          "text": "Detect and fix common problems found in framework modules with the module verifier.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/identifying-and-addressing-framework-module-issues",
+      "kind": "article",
+      "role": "article",
+      "title": "Identifying and addressing framework module issues",
+      "type": "topic",
+      "url": "/documentation/xcode/identifying-and-addressing-framework-module-issues"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/videos/play/wwdc2019/416": {
+      "identifier": "https://developer.apple.com/videos/play/wwdc2019/416",
+      "title": "Binary Frameworks in Swift",
+      "titleInlineContent": [
+        {
+          "text": "Binary Frameworks in Swift",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/videos/play/wwdc2019/416"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Frameworks",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Xcode/documentation/Xcode/creating-a-static-framework",
+        "doc://com.apple.Xcode/documentation/Xcode/identifying-and-addressing-framework-module-issues"
+      ],
+      "title": "Frameworks"
+    }
+  ]
+}

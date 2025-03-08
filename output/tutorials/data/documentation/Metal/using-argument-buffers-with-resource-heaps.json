@@ -1,0 +1,1638 @@
+{
+  "abstract": [
+    {
+      "text": "Reduce CPU overhead by using arrays inside argument buffers and combining them with resource heaps.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.metal/documentation/Metal",
+        "doc://com.apple.metal/documentation/Metal/buffers"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.metal/documentation/Metal",
+        "doc://com.apple.metal/documentation/Metal/memory-heaps"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.metal/documentation/Metal",
+        "doc://com.apple.metal/documentation/Metal/metal-sample-code-library"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.metal/documentation/Metal/using-argument-buffers-with-resource-heaps"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Metal"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "12.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "12.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "10.13",
+        "name": "macOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "12.0",
+        "name": "tvOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "12.3",
+        "name": "Xcode"
+      }
+    ],
+    "role": "sampleCode",
+    "roleHeading": "Sample Code",
+    "title": "Using Argument Buffers with Resource Heaps"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Metal/managing-groups-of-resources-with-argument-buffers",
+              "isActive": true,
+              "overridingTitle": "Managing Groups of Resources with Argument Buffers",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "Managing Groups of Resources with Argument Buffers",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " sample, you learned how to specify, encode, set, and access resources in an argument buffer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In this sample, you’ll learn how to combine argument buffers with arrays of resources and resource heaps. In particular, you’ll learn how to define an argument buffer structure that contains arrays and how to allocate and use resources from a heap. The sample renders a static quad that uses multiple resources encoded into an argument buffer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Getting-Started",
+          "level": 3,
+          "text": "Getting Started",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Xcode project contains schemes for running the sample on macOS, iOS, or tvOS. Metal is not supported in the iOS or tvOS Simulator, so the iOS and tvOS schemes require a physical device to run the sample. The default scheme is macOS, which runs the sample as is on your Mac.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Arrays-of-Arguments-in-the-Metal-Shading-Language",
+          "level": 3,
+          "text": "Arrays of Arguments in the Metal Shading Language",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Arrays can be used as parameters to graphics or compute functions. When a function takes an array as a parameter, the index of the first resource in the array is equal to the base index of the array parameter itself. Thus, each subsequent resource in the array is automatically assigned a subsequent index value, counting incrementally from the base index value.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, the following fragment function, ",
+              "type": "text"
+            },
+            {
+              "code": "exampleFragmentFunction",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", has a parameter, ",
+              "type": "text"
+            },
+            {
+              "code": "textureParameters",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", that’s an array of 10 textures with a base index value of ",
+              "type": "text"
+            },
+            {
+              "code": "5",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "fragment float4",
+            "exampleFragmentFunction(array<texture2d<float>, 10> textureParameters [[ texture(5) ]])"
+          ],
+          "syntax": "metal",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because ",
+              "type": "text"
+            },
+            {
+              "code": "textureParameters",
+              "type": "codeVoice"
+            },
+            {
+              "text": " has a ",
+              "type": "text"
+            },
+            {
+              "code": "[[ texture(5) ]]",
+              "type": "codeVoice"
+            },
+            {
+              "text": " attribute qualifier, the corresponding Metal framework method to set this parameter is ",
+              "type": "text"
+            },
+            {
+              "code": "setFragmentTexture:atIndex:",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", where the values for ",
+              "type": "text"
+            },
+            {
+              "code": "index",
+              "type": "codeVoice"
+            },
+            {
+              "text": " begin at ",
+              "type": "text"
+            },
+            {
+              "code": "5",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". Thus, the texture at array index ",
+              "type": "text"
+            },
+            {
+              "code": "0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is set at index number ",
+              "type": "text"
+            },
+            {
+              "code": "5",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", the texture at array index ",
+              "type": "text"
+            },
+            {
+              "code": "1",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is set at index number ",
+              "type": "text"
+            },
+            {
+              "code": "6",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and so on. The last texture in the array, at array index ",
+              "type": "text"
+            },
+            {
+              "code": "9",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", is set at index number ",
+              "type": "text"
+            },
+            {
+              "code": "14",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Define-Argument-Buffers-with-Arrays",
+          "level": 3,
+          "text": "Define Argument Buffers with Arrays",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Arrays can also be used as elements of an argument buffer structure. In this case, the ",
+              "type": "text"
+            },
+            {
+              "code": "[[ id(n) ]]",
+              "type": "codeVoice"
+            },
+            {
+              "text": " attribute qualifier of an argument buffer behaves the same way as the ",
+              "type": "text"
+            },
+            {
+              "code": "[[ texture(n) ]]",
+              "type": "codeVoice"
+            },
+            {
+              "text": " attribute qualifier of a function parameter, where ",
+              "type": "text"
+            },
+            {
+              "code": "n",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is the base index value of the array. However, you don’t call the ",
+              "type": "text"
+            },
+            {
+              "code": "setFragmentTexture:atIndex:",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method, of a ",
+              "type": "text"
+            },
+            {
+              "code": "MTLRenderCommandEncoder",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object, to set a texture from the array. Instead, you call the ",
+              "type": "text"
+            },
+            {
+              "code": "setTexture:atIndex:",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method, of a ",
+              "type": "text"
+            },
+            {
+              "code": "MTLArgumentEncoder",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object, to encode a texture from the array into the argument buffer, where ",
+              "type": "text"
+            },
+            {
+              "code": "index",
+              "type": "codeVoice"
+            },
+            {
+              "text": " corresponds to the base index value, ",
+              "type": "text"
+            },
+            {
+              "code": "n",
+              "type": "codeVoice"
+            },
+            {
+              "text": ",  plus the index of the texture within the array.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The argument buffer in this sample is declared as a ",
+              "type": "text"
+            },
+            {
+              "code": "FragmentShaderArguments",
+              "type": "codeVoice"
+            },
+            {
+              "text": " structure, and this is its definition:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct FragmentShaderArguments {",
+            "    array<texture2d<float>, AAPLNumTextureArguments> exampleTextures  [[ id(AAPLArgumentBufferIDExampleTextures)  ]];",
+            "    array<device float *,  AAPLNumBufferArguments>   exampleBuffers   [[ id(AAPLArgumentBufferIDExampleBuffers)   ]];",
+            "    array<uint32_t, AAPLNumBufferArguments>          exampleConstants [[ id(AAPLArgumentBufferIDExampleConstants) ]];",
+            "};"
+          ],
+          "syntax": "metal",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each element of this structure uses the ",
+              "type": "text"
+            },
+            {
+              "code": "array<T, N>",
+              "type": "codeVoice"
+            },
+            {
+              "text": " template, which defines the element as an array of a certain type, ",
+              "type": "text"
+            },
+            {
+              "code": "T",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and number of elements, ",
+              "type": "text"
+            },
+            {
+              "code": "N",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". This argument buffer contains the following resources:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "exampleTextures",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", an array of 32 2D textures with a base index value of ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "0",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "exampleBuffers",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", an array of 32 ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "float",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " buffers with a base index value of ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "100",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "code": "exampleConstants",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ", an array of 32 ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "uint32_t",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " constants with a base index value of ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "200",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "argument-buffers-with-heaps-1-ArgumentBufferWithArrays",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Encode-Array-Elements-into-an-Argument-Buffer",
+          "level": 3,
+          "text": "Encode Array Elements into an Argument Buffer",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This sample encodes array elements into an argument buffer by matching the ",
+              "type": "text"
+            },
+            {
+              "code": "index",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter of each ",
+              "type": "text"
+            },
+            {
+              "code": "setTexture:atIndex:",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "setBuffer:offset:atIndex:",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "code": "constantDataAtIndex:",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method call to the element’s corresponding index value, defined by the ",
+              "type": "text"
+            },
+            {
+              "code": "[[ id(n) ]]",
+              "type": "codeVoice"
+            },
+            {
+              "text": " attribute qualifier in the argument buffer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "for(uint32_t i = 0; i < AAPLNumTextureArguments; i++)",
+            "{",
+            "    [argumentEncoder setTexture:_texture[i]",
+            "                        atIndex:AAPLArgumentBufferIDExampleTextures+i];",
+            "}"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "code": [
+            "for(uint32_t i = 0; i < AAPLNumBufferArguments; i++)",
+            "{",
+            "    [argumentEncoder setBuffer:_dataBuffer[i]",
+            "                        offset:0",
+            "                        atIndex:AAPLArgumentBufferIDExampleBuffers+i];",
+            "",
+            "    uint32_t *elementCountAddress =",
+            "        [argumentEncoder constantDataAtIndex:AAPLArgumentBufferIDExampleConstants+i];",
+            "",
+            "    *elementCountAddress = (uint32_t)_dataBuffer[i].length / 4;",
+            "}"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Access-Array-Elements-in-an-Argument-Buffer",
+          "level": 3,
+          "text": "Access Array Elements in an Argument Buffer",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Within a function, accessing elements of an array encoded in an argument buffer is the same as accessing elements of a standard array. In this sample, the ",
+              "type": "text"
+            },
+            {
+              "code": "exampleTextures",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "exampleBuffers",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "code": "exampleConstants",
+              "type": "codeVoice"
+            },
+            {
+              "text": " arrays are accessed via the ",
+              "type": "text"
+            },
+            {
+              "code": "fragmentShaderArgs",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameter of the ",
+              "type": "text"
+            },
+            {
+              "code": "fragmentShader",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function. Each array element is accessed with the ",
+              "type": "text"
+            },
+            {
+              "code": "[n]",
+              "type": "codeVoice"
+            },
+            {
+              "text": " subscript syntax, where ",
+              "type": "text"
+            },
+            {
+              "code": "n",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is the index of the element within the array.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "for(uint32_t textureToSample = 0; textureToSample < AAPLNumTextureArguments; textureToSample++)",
+            "{",
+            "    float4 textureValue = fragmentShaderArgs.exampleTextures[textureToSample].sample(textureSampler, in.texCoord);",
+            "",
+            "    color += textureValue;",
+            "}"
+          ],
+          "syntax": "metal",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "fragmentShader",
+              "type": "codeVoice"
+            },
+            {
+              "text": " function contains an ",
+              "type": "text"
+            },
+            {
+              "code": "if-else",
+              "type": "codeVoice"
+            },
+            {
+              "text": " condition that evaluates the ",
+              "type": "text"
+            },
+            {
+              "code": "x",
+              "type": "codeVoice"
+            },
+            {
+              "text": " component of ",
+              "type": "text"
+            },
+            {
+              "code": "texCoord",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to determine which side of the quad the fragment is on. If the fragment is on the left side of the quad, the function samples each texture in the ",
+              "type": "text"
+            },
+            {
+              "code": "exampleTextures",
+              "type": "codeVoice"
+            },
+            {
+              "text": " array and adds the sampled values to determine the final output color.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the fragment is on right side of the quad, the function reads a value from the ",
+              "type": "text"
+            },
+            {
+              "code": "exampleBuffers",
+              "type": "codeVoice"
+            },
+            {
+              "text": " array. The function uses the ",
+              "type": "text"
+            },
+            {
+              "code": "x",
+              "type": "codeVoice"
+            },
+            {
+              "text": " component of ",
+              "type": "text"
+            },
+            {
+              "code": "texCoord",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to determine which buffer to read from and then uses the ",
+              "type": "text"
+            },
+            {
+              "code": "y",
+              "type": "codeVoice"
+            },
+            {
+              "text": " component of ",
+              "type": "text"
+            },
+            {
+              "code": "texCoord",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to determine where in the buffer to read from. The value in the buffer determines the final output color.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Use texCoord.x to select the buffer to read from",
+            "uint32_t bufferToRead = (in.texCoord.x-0.5)*2.0 * (AAPLNumBufferArguments-1);",
+            "",
+            "// Retrieve the number of elements for the selected buffer from",
+            "// the array of constants in the argument buffer",
+            "uint32_t numElements = fragmentShaderArgs.exampleConstants[bufferToRead];",
+            "",
+            "// Determine the index used to read from the buffer",
+            "uint32_t indexToRead = in.texCoord.y * numElements;",
+            "",
+            "// Retrieve the buffer to read from by accessing the array of",
+            "// buffers in the argument buffer",
+            "device float* buffer = fragmentShaderArgs.exampleBuffers[bufferToRead];",
+            "",
+            "// Read from the buffer and assign the value to the output color",
+            "color = buffer[indexToRead];"
+          ],
+          "syntax": "metal",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Combine-Argument-Buffers-with-Resource-Heaps",
+          "level": 3,
+          "text": "Combine Argument Buffers with Resource Heaps",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The fragment function accesses 32 textures and 32 buffers via the argument buffer, totaling 64 different resources overall. If memory for each of these resources was allocated individually, despite residing in arrays, Metal would need to validate the memory of 64 individual resources before making these resources accessible to the GPU.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Instead, this sample allocates resources from a ",
+              "type": "text"
+            },
+            {
+              "code": "MTLHeap",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object. A heap is a single memory region from which multiple resources can be allocated. Therefore, the sample can make the heap’s entire memory, including the memory of all the resources within the heap, accessible to the GPU by calling the ",
+              "type": "text"
+            },
+            {
+              "code": "useHeap:",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method once.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample implements a ",
+              "type": "text"
+            },
+            {
+              "code": "loadResources",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method that loads the resource data into temporary ",
+              "type": "text"
+            },
+            {
+              "code": "MTLTexture",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "MTLBuffer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " objects. Then, the sample implements a ",
+              "type": "text"
+            },
+            {
+              "code": "createHeap",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method that calculates the total size required to store the resource data in the heap and creates the heap itself.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "- (void) createHeap",
+            "{",
+            "    MTLHeapDescriptor *heapDescriptor = [MTLHeapDescriptor new];",
+            "    heapDescriptor.storageMode = MTLStorageModePrivate;",
+            "    heapDescriptor.size =  0;",
+            "",
+            "    // Build a descriptor for each texture and calculate the size required to store all textures in the heap",
+            "    for(uint32_t i = 0; i < AAPLNumTextureArguments; i++)",
+            "    {",
+            "        // Create a descriptor using the texture's properties",
+            "        MTLTextureDescriptor *descriptor = [AAPLRenderer newDescriptorFromTexture:_texture[i]",
+            "                                                                      storageMode:heapDescriptor.storageMode];",
+            "",
+            "        // Determine the size required for the heap for the given descriptor",
+            "        MTLSizeAndAlign sizeAndAlign = [_device heapTextureSizeAndAlignWithDescriptor:descriptor];",
+            "",
+            "        // Align the size so that more resources will fit in the heap after this texture",
+            "        sizeAndAlign.size += (sizeAndAlign.size & (sizeAndAlign.align - 1)) + sizeAndAlign.align;",
+            "",
+            "        // Accumulate the size required to store this texture in the heap",
+            "        heapDescriptor.size += sizeAndAlign.size;",
+            "    }",
+            "",
+            "    // Calculate the size required to store all buffers in the heap",
+            "    for(uint32_t i = 0; i < AAPLNumBufferArguments; i++)",
+            "    {",
+            "        // Determine the size required for the heap for the given buffer size",
+            "        MTLSizeAndAlign sizeAndAlign = [_device heapBufferSizeAndAlignWithLength:_dataBuffer[i].length",
+            "                                                                         options:MTLResourceStorageModePrivate];",
+            "",
+            "        // Align the size so that more resources will fit in the heap after this buffer",
+            "        sizeAndAlign.size +=  (sizeAndAlign.size & (sizeAndAlign.align - 1)) + sizeAndAlign.align;",
+            "",
+            "        // Accumulate the size required to store this buffer in the heap",
+            "        heapDescriptor.size += sizeAndAlign.size;",
+            "    }",
+            "",
+            "    // Create a heap large enough to store all resources",
+            "    _heap = [_device newHeapWithDescriptor:heapDescriptor];",
+            "}"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The sample implements a ",
+              "type": "text"
+            },
+            {
+              "code": "moveResourcesToHeap",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method that creates permanent ",
+              "type": "text"
+            },
+            {
+              "code": "MTLTexture",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "MTLBuffer",
+              "type": "codeVoice"
+            },
+            {
+              "text": " objects allocated from the heap. Then, the method uses a ",
+              "type": "text"
+            },
+            {
+              "code": "MTLBlitCommandEncoder",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to copy the resource data from the temporary objects to the permanent objects.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "- (void)moveResourcesToHeap",
+            "{",
+            "    // Create a command buffer and blit encoder to copy data from the existing resources to",
+            "    // the new resources created from the heap",
+            "    id <MTLCommandBuffer> commandBuffer = [_commandQueue commandBuffer];",
+            "    commandBuffer.label = @\"Heap Copy Command Buffer\";",
+            "",
+            "    id <MTLBlitCommandEncoder> blitEncoder = commandBuffer.blitCommandEncoder;",
+            "    blitEncoder.label = @\"Heap Transfer Blit Encoder\";",
+            "",
+            "    // Create new textures from the heap and copy the contents of the existing textures to",
+            "    // the new textures",
+            "    for(uint32_t i = 0; i < AAPLNumTextureArguments; i++)",
+            "    {",
+            "        // Create a descriptor using the texture's properties",
+            "        MTLTextureDescriptor *descriptor = [AAPLRenderer newDescriptorFromTexture:_texture[i]",
+            "                                                                      storageMode:_heap.storageMode];",
+            "",
+            "        // Create a texture from the heap",
+            "        id<MTLTexture> heapTexture = [_heap newTextureWithDescriptor:descriptor];",
+            "",
+            "        heapTexture.label = _texture[i].label;",
+            "",
+            "        [blitEncoder pushDebugGroup:[NSString stringWithFormat:@\"%@ Blits\", heapTexture.label]];",
+            "",
+            "        // Blit every slice of every level from the existing texture to the new texture",
+            "        MTLRegion region = MTLRegionMake2D(0, 0, _texture[i].width, _texture[i].height);",
+            "        for(NSUInteger level = 0; level < _texture[i].mipmapLevelCount;  level++)",
+            "        {",
+            "",
+            "            [blitEncoder pushDebugGroup:[NSString stringWithFormat:@\"Level %lu Blit\", level]];",
+            "",
+            "            for(NSUInteger slice = 0; slice < _texture[i].arrayLength; slice++)",
+            "            {",
+            "                [blitEncoder copyFromTexture:_texture[i]",
+            "                                 sourceSlice:slice",
+            "                                 sourceLevel:level",
+            "                                sourceOrigin:region.origin",
+            "                                  sourceSize:region.size",
+            "                                   toTexture:heapTexture",
+            "                            destinationSlice:slice",
+            "                            destinationLevel:level",
+            "                           destinationOrigin:region.origin];",
+            "            }",
+            "            region.size.width /= 2;",
+            "            region.size.height /= 2;",
+            "            if(region.size.width == 0) region.size.width = 1;",
+            "            if(region.size.height == 0) region.size.height = 1;",
+            "",
+            "            [blitEncoder popDebugGroup];",
+            "        }",
+            "",
+            "        [blitEncoder popDebugGroup];",
+            "",
+            "        // Replace the existing texture with the new texture",
+            "        _texture[i] = heapTexture;",
+            "    }",
+            "",
+            "    // Create new buffers from the heap and copy the contents of existing buffers to the",
+            "    // new buffers",
+            "    for(uint32_t i = 0; i < AAPLNumBufferArguments; i++)",
+            "    {",
+            "        // Create a buffer from the heap",
+            "        id<MTLBuffer> heapBuffer = [_heap newBufferWithLength:_dataBuffer[i].length",
+            "                                                      options:MTLResourceStorageModePrivate];",
+            "",
+            "        heapBuffer.label = _dataBuffer[i].label;",
+            "",
+            "        // Blit contents of the original buffer to the new buffer",
+            "        [blitEncoder copyFromBuffer:_dataBuffer[i]",
+            "                       sourceOffset:0",
+            "                           toBuffer:heapBuffer",
+            "                  destinationOffset:0",
+            "                               size:heapBuffer.length];",
+            "",
+            "        // Replace the existing buffer with the new buffer",
+            "        _dataBuffer[i] = heapBuffer;",
+            "    }",
+            "",
+            "    [blitEncoder endEncoding];",
+            "    [commandBuffer commit];",
+            "}"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before using these resources, instead of calling the ",
+              "type": "text"
+            },
+            {
+              "code": "useResource:usage:",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method once for each resource, the sample calls the ",
+              "type": "text"
+            },
+            {
+              "code": "useHeap:",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method once for the entire heap.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "#if ENABLE_RESOURCE_HEAP",
+            "        // Make a single `useHeap:` call for the entire heap, instead of one",
+            "        // `useResource:usage:` call per texture and per buffer",
+            "        [renderEncoder useHeap:_heap];",
+            "#else",
+            "        for(uint32_t i = 0; i < AAPLNumTextureArguments; i++)",
+            "        {",
+            "            // Indicate to Metal that these textures will be accessed by the GPU and",
+            "            // therefore must be mapped to the GPU's address space",
+            "            [renderEncoder useResource:_texture[i] usage:MTLResourceUsageSample];",
+            "        }",
+            "",
+            "        for(uint32_t i = 0; i < AAPLNumBufferArguments; i++)",
+            "        {",
+            "            // Indicate to Metal that these buffers will be accessed by the GPU and",
+            "            // therefore must be mapped to the GPU's address space",
+            "            [renderEncoder useResource:_dataBuffer[i] usage:MTLResourceUsageRead];",
+            "        }",
+            "#endif"
+          ],
+          "syntax": "objective-c",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Next-Steps",
+          "level": 3,
+          "text": "Next Steps",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In this sample, you learned how to combine argument buffers with arrays of resources and resource heaps. In the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Metal/encoding-argument-buffers-on-the-gpu",
+              "isActive": true,
+              "overridingTitle": "Encoding Argument Buffers on the GPU",
+              "overridingTitleInlineContent": [
+                {
+                  "text": "Encoding Argument Buffers on the GPU",
+                  "type": "text"
+                }
+              ],
+              "type": "reference"
+            },
+            {
+              "text": " sample, you’ll learn how to encode resources into argument buffers with a graphics or compute function.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "8e9abaedfb52/UsingArgumentBuffersWithResourceHeaps.zip": {
+      "checksum": "8e9abaedfb52d302ccf147391fdf930466cc466a86a2943cae8c8b3487f1765320fead33d874fd8d72b76784543a10d6e5eb4674f4e02d887d1c311be8f07489",
+      "identifier": "8e9abaedfb52/UsingArgumentBuffersWithResourceHeaps.zip",
+      "type": "download",
+      "url": "https://docs-assets.developer.apple.com/published/8e9abaedfb52/UsingArgumentBuffersWithResourceHeaps.zip"
+    },
+    "argument-buffers-with-heaps-1-ArgumentBufferWithArrays": {
+      "alt": "Layout diagram that shows an array of textures, an array of buffers, and an array of constants all encoded into a single argument buffer.",
+      "identifier": "argument-buffers-with-heaps-1-ArgumentBufferWithArrays",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c6d3fcaf3ae4a7586e95129c46cb72a5/argument-buffers-with-heaps-1-ArgumentBufferWithArrays.png"
+        }
+      ]
+    },
+    "doc://com.apple.documentation/documentation/Metal/encoding-argument-buffers-on-the-gpu": {
+      "abstract": [
+        {
+          "text": "Use a compute pass to encode an argument buffer and access its arguments in a subsequent render pass.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Metal/encoding-argument-buffers-on-the-gpu",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Encoding Argument Buffers on the GPU",
+      "type": "topic",
+      "url": "/documentation/Metal/encoding-argument-buffers-on-the-gpu"
+    },
+    "doc://com.apple.documentation/documentation/Metal/managing-groups-of-resources-with-argument-buffers": {
+      "abstract": [
+        {
+          "text": "Create argument buffers to organize related resources.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Metal/managing-groups-of-resources-with-argument-buffers",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Managing groups of resources with argument buffers",
+      "type": "topic",
+      "url": "/documentation/Metal/managing-groups-of-resources-with-argument-buffers"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.metal/documentation/Metal": {
+      "abstract": [
+        {
+          "text": "Render advanced 3D graphics and compute data in parallel with graphics processors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Metal",
+      "type": "topic",
+      "url": "/documentation/metal"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLArgumentDescriptor": {
+      "abstract": [
+        {
+          "text": "A representation of an argument within an argument buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLArgumentDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLArgumentDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLArgumentDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLArgumentDescriptor",
+      "type": "topic",
+      "url": "/documentation/metal/mtlargumentdescriptor"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLArgumentEncoder": {
+      "abstract": [
+        {
+          "text": "An object used to encode data into an argument buffer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLArgumentEncoder"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLArgumentEncoder",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLArgumentEncoder"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLArgumentEncoder",
+      "type": "topic",
+      "url": "/documentation/metal/mtlargumentencoder"
+    },
+    "doc://com.apple.metal/documentation/Metal/MTLAttributeStrideStatic": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MTLAttributeStrideStatic"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/MTLAttributeStrideStatic",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MTLAttributeStrideStatic"
+        }
+      ],
+      "role": "symbol",
+      "title": "MTLAttributeStrideStatic",
+      "type": "topic",
+      "url": "/documentation/metal/mtlattributestridestatic"
+    },
+    "doc://com.apple.metal/documentation/Metal/buffers": {
+      "abstract": [
+        {
+          "text": "Create and manage untyped data your app uses to exchange information with its shader functions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/buffers",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Buffers",
+      "type": "topic",
+      "url": "/documentation/metal/buffers"
+    },
+    "doc://com.apple.metal/documentation/Metal/encoding-argument-buffers-on-the-gpu": {
+      "abstract": [
+        {
+          "text": "Use a compute pass to encode an argument buffer and access its arguments in a subsequent render pass.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/encoding-argument-buffers-on-the-gpu",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Encoding Argument Buffers on the GPU",
+      "type": "topic",
+      "url": "/documentation/metal/encoding-argument-buffers-on-the-gpu"
+    },
+    "doc://com.apple.metal/documentation/Metal/improving-cpu-performance-by-using-argument-buffers": {
+      "abstract": [
+        {
+          "text": "Optimize your app’s performance by grouping your resources into argument buffers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/improving-cpu-performance-by-using-argument-buffers",
+      "kind": "article",
+      "role": "article",
+      "title": "Improving CPU Performance by Using Argument Buffers",
+      "type": "topic",
+      "url": "/documentation/metal/improving-cpu-performance-by-using-argument-buffers"
+    },
+    "doc://com.apple.metal/documentation/Metal/indexing-argument-buffers": {
+      "abstract": [
+        {
+          "text": "Assign resource indices within an argument buffer.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/indexing-argument-buffers",
+      "kind": "article",
+      "role": "article",
+      "title": "Indexing Argument Buffers",
+      "type": "topic",
+      "url": "/documentation/metal/indexing-argument-buffers"
+    },
+    "doc://com.apple.metal/documentation/Metal/managing-groups-of-resources-with-argument-buffers": {
+      "abstract": [
+        {
+          "text": "Create argument buffers to organize related resources.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/managing-groups-of-resources-with-argument-buffers",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Managing groups of resources with argument buffers",
+      "type": "topic",
+      "url": "/documentation/metal/managing-groups-of-resources-with-argument-buffers"
+    },
+    "doc://com.apple.metal/documentation/Metal/memory-heaps": {
+      "abstract": [
+        {
+          "text": "Take control of your app’s GPU memory management by creating a large memory allocation for various buffers, textures, and other resources.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/memory-heaps",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Memory Heaps",
+      "type": "topic",
+      "url": "/documentation/metal/memory-heaps"
+    },
+    "doc://com.apple.metal/documentation/Metal/metal-sample-code-library": {
+      "abstract": [
+        {
+          "text": "Explore the complete set of Metal samples.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/metal-sample-code-library",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Metal Sample Code Library",
+      "type": "topic",
+      "url": "/documentation/metal/metal-sample-code-library"
+    },
+    "doc://com.apple.metal/documentation/Metal/rendering-terrain-dynamically-with-argument-buffers": {
+      "abstract": [
+        {
+          "text": "Use argument buffers to render terrain in real time with a GPU-driven pipeline.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/rendering-terrain-dynamically-with-argument-buffers",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Rendering Terrain Dynamically with Argument Buffers",
+      "type": "topic",
+      "url": "/documentation/metal/rendering-terrain-dynamically-with-argument-buffers"
+    },
+    "doc://com.apple.metal/documentation/Metal/tracking-the-resource-residency-of-argument-buffers": {
+      "abstract": [
+        {
+          "text": "Optimize resource performance within an argument buffer.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.metal/documentation/Metal/tracking-the-resource-residency-of-argument-buffers",
+      "kind": "article",
+      "role": "article",
+      "title": "Tracking the Resource Residency of Argument Buffers",
+      "type": "topic",
+      "url": "/documentation/metal/tracking-the-resource-residency-of-argument-buffers"
+    }
+  },
+  "sampleCodeDownload": {
+    "action": {
+      "identifier": "8e9abaedfb52/UsingArgumentBuffersWithResourceHeaps.zip",
+      "isActive": true,
+      "overridingTitle": "Download",
+      "type": "reference"
+    },
+    "kind": "sampleDownload"
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Argument-Buffers",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.metal/documentation/Metal/improving-cpu-performance-by-using-argument-buffers",
+        "doc://com.apple.metal/documentation/Metal/managing-groups-of-resources-with-argument-buffers",
+        "doc://com.apple.metal/documentation/Metal/tracking-the-resource-residency-of-argument-buffers",
+        "doc://com.apple.metal/documentation/Metal/indexing-argument-buffers",
+        "doc://com.apple.metal/documentation/Metal/rendering-terrain-dynamically-with-argument-buffers",
+        "doc://com.apple.metal/documentation/Metal/encoding-argument-buffers-on-the-gpu",
+        "doc://com.apple.metal/documentation/Metal/MTLArgumentDescriptor",
+        "doc://com.apple.metal/documentation/Metal/MTLArgumentEncoder",
+        "doc://com.apple.metal/documentation/Metal/MTLAttributeStrideStatic"
+      ],
+      "title": "Argument Buffers"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Argument-Buffers",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.metal/documentation/Metal/improving-cpu-performance-by-using-argument-buffers",
+                "doc://com.apple.metal/documentation/Metal/managing-groups-of-resources-with-argument-buffers",
+                "doc://com.apple.metal/documentation/Metal/tracking-the-resource-residency-of-argument-buffers",
+                "doc://com.apple.metal/documentation/Metal/indexing-argument-buffers",
+                "doc://com.apple.metal/documentation/Metal/rendering-terrain-dynamically-with-argument-buffers",
+                "doc://com.apple.metal/documentation/Metal/encoding-argument-buffers-on-the-gpu",
+                "doc://com.apple.metal/documentation/Metal/MTLArgumentDescriptor",
+                "doc://com.apple.metal/documentation/Metal/MTLArgumentEncoder",
+                "doc://com.apple.metal/documentation/Metal/MTLAttributeStrideStatic"
+              ],
+              "title": "Argument Buffers"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLArgumentDescriptor/title",
+          "value": "MTLArgumentDescriptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLArgumentDescriptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLArgumentDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLArgumentDescriptor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLArgumentDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLArgumentEncoder/title",
+          "value": "MTLArgumentEncoder"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLArgumentEncoder/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLArgumentEncoder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLArgumentEncoder/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLArgumentEncoder"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAttributeStrideStatic/title",
+          "value": "MTLAttributeStrideStatic"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.metal~1documentation~1Metal~1MTLAttributeStrideStatic/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "MTLAttributeStrideStatic"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/metal/using-argument-buffers-with-resource-heaps"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/metal/using-argument-buffers-with-resource-heaps"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

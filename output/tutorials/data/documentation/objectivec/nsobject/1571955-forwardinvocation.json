@@ -1,0 +1,698 @@
+{
+  "abstract": [
+    {
+      "text": "Overridden by subclasses to forward messages to other objects.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/objectivec",
+        "doc://com.apple.documentation/documentation/objectivec/nsobject"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/object_runtime",
+        "doc://com.apple.documentation/documentation/objectivec/nsobject"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/objectivec/nsobject/1571955-forwardinvocation"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1571955,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSObject(im)forwardInvocation:",
+    "modules": [
+      {
+        "name": "Objective-C Runtime"
+      }
+    ],
+    "parent": {
+      "title": "NSObject"
+    },
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "2.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Method",
+    "symbolKind": "instm",
+    "title": "forwardInvocation:"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "keyword",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ")"
+            },
+            {
+              "kind": "identifier",
+              "text": "forwardInvocation:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsinvocation",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSInvocation",
+              "text": "NSInvocation"
+            },
+            {
+              "kind": "text",
+              "text": " *"
+            },
+            {
+              "kind": "text",
+              "text": ")"
+            },
+            {
+              "kind": "internalParam",
+              "text": "anInvocation"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "languages": [
+        "occ"
+      ],
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The invocation to forward.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "anInvocation"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When an object is sent a message for which it has no corresponding method, the runtime system gives the receiver an opportunity to delegate the message to another receiver. It delegates the message by creating an ",
+              "type": "text"
+            },
+            {
+              "code": "NSInvocation",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object representing the message and sending the receiver a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1571955-forwardinvocation",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " message containing this ",
+              "type": "text"
+            },
+            {
+              "code": "NSInvocation",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object as the argument. The receiver’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1571955-forwardinvocation",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " method can then choose to forward the message to another object. (If that object can’t respond to the message either, it too will be given a chance to forward it.)",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1571955-forwardinvocation",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " message thus allows an object to establish relationships with other objects that will, for certain messages, act on its behalf. The forwarding object is, in a sense, able to “inherit” some of the characteristics of the object it forwards the message to.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "To respond to methods that your object does not itself recognize, you must override ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1571960-methodsignatureforselector",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " in addition to ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1571955-forwardinvocation",
+                  "isActive": false,
+                  "type": "reference"
+                },
+                {
+                  "text": ". The mechanism for forwarding messages uses information obtained from ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1571960-methodsignatureforselector",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " to create the ",
+                  "type": "text"
+                },
+                {
+                  "code": "NSInvocation",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " object to be forwarded. Your overriding method must provide an appropriate method signature for the given selector, either by pre formulating one or by asking another object for one.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An implementation of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1571955-forwardinvocation",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " method has two tasks:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To locate an object that can respond to the message encoded in ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "anInvocation",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". This object need not be the same for all messages.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "To send the message to that object using ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "anInvocation",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ". ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "anInvocation",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " will hold the result, and the runtime system will extract and deliver this result to the original sender.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the simple case, in which an object forwards messages to just one destination (such as the hypothetical ",
+              "type": "text"
+            },
+            {
+              "code": "friend",
+              "type": "codeVoice"
+            },
+            {
+              "text": " instance variable in the example below), a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1571955-forwardinvocation",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " method could be as simple as this:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "- (void)forwardInvocation:(NSInvocation *)invocation",
+            "{",
+            "    SEL aSelector = [invocation selector];",
+            " ",
+            "    if ([friend respondsToSelector:aSelector])",
+            "        [invocation invokeWithTarget:friend];",
+            "    else",
+            "        [super forwardInvocation:invocation];",
+            "}"
+          ],
+          "metadata": {
+            "anchor": "2555774",
+            "title": "Listing 1"
+          },
+          "syntax": "occ",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The message that’s forwarded must have a fixed number of arguments; variable numbers of arguments (in the style of ",
+              "type": "text"
+            },
+            {
+              "code": "printf()",
+              "type": "codeVoice"
+            },
+            {
+              "text": ") are not supported.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The return value of the forwarded message is returned to the original sender. All types of return values can be delivered to the sender: ",
+              "type": "text"
+            },
+            {
+              "code": "id",
+              "type": "codeVoice"
+            },
+            {
+              "text": " types, structures, double-precision floating-point numbers. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Implementations of the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1571955-forwardinvocation",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " method can do more than just forward messages. ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1571955-forwardinvocation",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " can, for example, be used to consolidate code that responds to a variety of different messages, thus avoiding the necessity of having to write a separate method for each selector. A ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1571955-forwardinvocation",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " method might also involve several other objects in the response to a given message, rather than forward it to just one.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "NSObject",
+              "type": "codeVoice"
+            },
+            {
+              "text": "’s implementation of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1571955-forwardinvocation",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " simply invokes the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1418637-doesnotrecognizeselector",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method; it doesn’t forward any messages. Thus, if you choose not to implement ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1571955-forwardinvocation",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": ", sending unrecognized messages to objects will raise exceptions.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsinvocation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsinvocation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSInvocation",
+      "type": "topic",
+      "url": "/documentation/foundation/nsinvocation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/object_runtime": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/object_runtime",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Object Runtime",
+      "type": "topic",
+      "url": "/documentation/foundation/object_runtime"
+    },
+    "doc://com.apple.documentation/documentation/objectivec": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Objective-C Runtime",
+      "type": "topic",
+      "url": "/documentation/objectivec"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject/1418637-doesnotrecognizeselector": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "doesNotRecognizeSelector:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1418637-doesnotrecognizeselector",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "doesNotRecognizeSelector:",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject/1418637-doesnotrecognizeselector"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject/1418855-forwardingtargetforselector": {
+      "abstract": [
+        {
+          "text": "Returns the object to which unrecognized messages should first be directed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "forwardingTargetForSelector:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1418855-forwardingtargetforselector",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "forwardingTargetForSelector:",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject/1418855-forwardingtargetforselector"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject/1571955-forwardinvocation": {
+      "abstract": [
+        {
+          "text": "Overridden by subclasses to forward messages to other objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "forwardInvocation:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1571955-forwardinvocation",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "forwardInvocation:",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject/1571955-forwardinvocation"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject/1571955-forwardinvocation#2555774": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1571955-forwardinvocation#2555774",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/objectivec/nsobject/1571955-forwardinvocation#2555774"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject/1571960-methodsignatureforselector": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "methodSignatureForSelector:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject/1571960-methodsignatureforselector",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "methodSignatureForSelector:",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject/1571960-methodsignatureforselector"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/objectivec/nsobject/1418855-forwardingtargetforselector"
+      ],
+      "title": "Forwarding Messages"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/objectivec/nsobject/1571955-forwardinvocation"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

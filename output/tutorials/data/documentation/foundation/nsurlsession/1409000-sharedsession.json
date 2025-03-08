@@ -1,0 +1,478 @@
+{
+  "abstract": [
+    {
+      "text": "The shared singleton session object.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/url_loading_system",
+        "doc://com.apple.documentation/documentation/foundation/nsurlsession"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/foundation/nsurlsession/1409000-sharedsession"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1409000,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSURLSession(cpy)sharedSession",
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "parent": {
+      "title": "NSURLSession"
+    },
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "7.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "7.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.9",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Type Property",
+    "symbolKind": "cldata",
+    "title": "sharedSession"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": "(class, readonly, strong) "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsession",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSURLSession",
+              "text": "NSURLSession"
+            },
+            {
+              "kind": "text",
+              "text": " *"
+            },
+            {
+              "kind": "identifier",
+              "text": "sharedSession"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For basic requests, the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsession",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " class provides a shared singleton session object that gives you a reasonable default behavior for creating tasks. Use the shared session to fetch the contents of a URL to memory with just a few lines of code.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Unlike the other session types, you don’t create the shared session; you merely access it by using this property directly. As a result, you don’t provide a delegate or a configuration object.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "2934449",
+          "level": 3,
+          "text": "Limitations of the shared session",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because the shared session has neither a delegate nor a customizable configuration object, the shared session has important limitations:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You can’t obtain data incrementally as it arrives from the server.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You can’t significantly customize the default connection behavior.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Your ability to perform authentication is limited.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You can’t perform background downloads or uploads when your app isn’t running.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The shared session uses the shared ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlcache",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nshttpcookiestorage",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlcredentialstorage",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects, uses a shared custom networking protocol list (configured with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlprotocol/1407208-registerclass",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlprotocol/1409131-unregisterclass",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "), and is based on a default configuration.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In general, when working with a shared session, you should avoid customizing the cache, cookie storage, or credential storage (unless you are already doing so with ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlconnection",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "). There’s a good chance that you’ll outgrow the capabilities of the default session, at which point you’ll have to rewrite all of those customizations to work with your custom URL sessions.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In other words, if you’re doing ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "anything",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " with caches, cookies, authentication, or custom networking protocols, you should probably be using a default session instead of the shared session.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nshttpcookiestorage": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nshttpcookiestorage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSHTTPCookieStorage",
+      "type": "topic",
+      "url": "/documentation/foundation/nshttpcookiestorage"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlcache": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlcache",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSURLCache",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlcache"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlconnection": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlconnection",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSURLConnection",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlconnection"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlcredentialstorage": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlcredentialstorage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSURLCredentialStorage",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlcredentialstorage"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlprotocol/1407208-registerclass": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "registerClass:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlprotocol/1407208-registerclass",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "registerClass:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlprotocol/1407208-registerclass"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlprotocol/1409131-unregisterclass": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "unregisterClass:"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlprotocol/1409131-unregisterclass",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "unregisterClass:",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlprotocol/1409131-unregisterclass"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlsession": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSURLSession",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlsession"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsurlsession/1409000-sharedsession": {
+      "abstract": [
+        {
+          "text": "The shared singleton session object.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsurlsession/1409000-sharedsession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sharedSession",
+      "type": "topic",
+      "url": "/documentation/foundation/nsurlsession/1409000-sharedsession"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url_loading_system": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url_loading_system",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "URL Loading System",
+      "type": "topic",
+      "url": "/documentation/foundation/url_loading_system"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nsurlsession/1409000-sharedsession"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/urlsession/1409000-shared"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

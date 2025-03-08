@@ -1,0 +1,1032 @@
+{
+  "abstract": [
+    {
+      "text": "A migrator that maps ClockKit complications to their WidgetKit replacements.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.clockkit/documentation/ClockKit",
+        "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationDataSource"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationDataSource/widgetMigrator"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(pl)CLKComplicationDataSource(py)widgetMigrator",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "var"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "widgetMigrator"
+      },
+      {
+        "kind": "text",
+        "text": ": any "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "c:objc(pl)CLKComplicationWidgetMigrator",
+        "text": "CLKComplicationWidgetMigrator"
+      }
+    ],
+    "modules": [
+      {
+        "name": "ClockKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "widgetMigrator"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Property",
+    "symbolKind": "property",
+    "title": "widgetMigrator"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "attribute",
+              "text": "@"
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+              "kind": "attribute",
+              "preciseIdentifier": "s:ScM",
+              "text": "MainActor"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "optional"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "var"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "widgetMigrator"
+            },
+            {
+              "kind": "text",
+              "text": ": any "
+            },
+            {
+              "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationWidgetMigrator",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(pl)CLKComplicationWidgetMigrator",
+              "text": "CLKComplicationWidgetMigrator"
+            },
+            {
+              "kind": "text",
+              "text": " { "
+            },
+            {
+              "kind": "keyword",
+              "text": "get"
+            },
+            {
+              "kind": "text",
+              "text": " }"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Implement this to provide an instance that can migrate a user’s ClockKit complications to their WidgetKit replacements. For example, update your data source so that it also conforms to the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationWidgetMigrator",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "class ComplicationController: NSObject, CLKComplicationDataSource, CLKComplicationWidgetMigrator {",
+            "   // ...",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Then, have its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationDataSource/widgetMigrator",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property return ",
+              "type": "text"
+            },
+            {
+              "code": "self",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "var widgetMigrator: CLKComplicationWidgetMigrator {",
+            "    self",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Finally, implement the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationWidgetMigrator/getWidgetConfiguration(from:completionHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. This method determines the best WidgetKit configuration for the given complication descriptor. The following example uses the Swift async version of the method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "func widgetConfiguration(from complicationDescriptor: CLKComplicationDescriptor) async -> CLKComplicationWidgetMigrationConfiguration? {",
+            "    ",
+            "    switch complicationDescriptor.identifier {",
+            "    case caffeineDoseIdentifier:",
+            "        return CLKComplicationStaticWidgetMigrationConfiguration(",
+            "            kind: \"Caffeine_Complications\",",
+            "            extensionBundleIdentifier: \"com.example.apple-samplecode.Coffee-Tracker.watchkitapp.watchkitextension.CoffeeTracker-Complications\")",
+            "",
+            "",
+            "    case cupTotalIdentifier:",
+            "        return CLKComplicationStaticWidgetMigrationConfiguration(",
+            "            kind: \"CupTotal_Complications\",",
+            "            extensionBundleIdentifier: \"com.example.apple-samplecode.Coffee-Tracker.watchkitapp.watchkitextension.CoffeeTracker-Complications\")",
+            "",
+            "",
+            "    case cupAndCaffeineIdentifier:",
+            "        return CLKComplicationStaticWidgetMigrationConfiguration(",
+            "            kind: \"CupAndCaffeine_Complications\",",
+            "            extensionBundleIdentifier: \"com.example.apple-samplecode.Coffee-Tracker.watchkitapp.watchkitextension.CoffeeTracker-Complications\")",
+            "",
+            "",
+            "    default:",
+            "        return nil",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.clockkit/documentation/ClockKit": {
+      "abstract": [
+        {
+          "text": "Display app-specific data on the clock face.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "ClockKit",
+      "type": "topic",
+      "url": "/documentation/clockkit"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationAppIntentWidgetMigrationConfiguration": {
+      "abstract": [
+        {
+          "text": "A configuration object that specifies a WidgetKit complication that uses app intents.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CLKComplicationAppIntentWidgetMigrationConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationAppIntentWidgetMigrationConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CLKComplicationAppIntentWidgetMigrationConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "CLKComplicationAppIntentWidgetMigrationConfiguration",
+      "type": "topic",
+      "url": "/documentation/clockkit/clkcomplicationappintentwidgetmigrationconfiguration"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationDataSource": {
+      "abstract": [
+        {
+          "text": "A protocol that provides ClockKit with information about your complication.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CLKComplicationDataSource"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationDataSource",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CLKComplicationDataSource"
+        }
+      ],
+      "role": "symbol",
+      "title": "CLKComplicationDataSource",
+      "type": "topic",
+      "url": "/documentation/clockkit/clkcomplicationdatasource"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationDataSource/widgetMigrator": {
+      "abstract": [
+        {
+          "text": "A migrator that maps ClockKit complications to their WidgetKit replacements.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "widgetMigrator"
+        },
+        {
+          "kind": "text",
+          "text": ": any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)CLKComplicationWidgetMigrator",
+          "text": "CLKComplicationWidgetMigrator"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationDataSource/widgetMigrator",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "widgetMigrator"
+        }
+      ],
+      "role": "symbol",
+      "title": "widgetMigrator",
+      "type": "topic",
+      "url": "/documentation/clockkit/clkcomplicationdatasource/widgetmigrator"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationIntentWidgetMigrationConfiguration": {
+      "abstract": [
+        {
+          "text": "A configuration object that specifies an intents-based complication in WidgetKit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CLKComplicationIntentWidgetMigrationConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationIntentWidgetMigrationConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CLKComplicationIntentWidgetMigrationConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "CLKComplicationIntentWidgetMigrationConfiguration",
+      "type": "topic",
+      "url": "/documentation/clockkit/clkcomplicationintentwidgetmigrationconfiguration"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationStaticWidgetMigrationConfiguration": {
+      "abstract": [
+        {
+          "text": "A configuration object that specifies a static complication in WidgetKit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CLKComplicationStaticWidgetMigrationConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationStaticWidgetMigrationConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CLKComplicationStaticWidgetMigrationConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "CLKComplicationStaticWidgetMigrationConfiguration",
+      "type": "topic",
+      "url": "/documentation/clockkit/clkcomplicationstaticwidgetmigrationconfiguration"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationWidgetMigrationConfiguration": {
+      "abstract": [
+        {
+          "text": "An abstract class that specifies WidgetKit complications.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CLKComplicationWidgetMigrationConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationWidgetMigrationConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CLKComplicationWidgetMigrationConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "CLKComplicationWidgetMigrationConfiguration",
+      "type": "topic",
+      "url": "/documentation/clockkit/clkcomplicationwidgetmigrationconfiguration"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationWidgetMigrator": {
+      "abstract": [
+        {
+          "text": "A protocol that maps ClockKit complications to their WidgetKit replacements.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CLKComplicationWidgetMigrator"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationWidgetMigrator",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CLKComplicationWidgetMigrator"
+        }
+      ],
+      "role": "symbol",
+      "title": "CLKComplicationWidgetMigrator",
+      "type": "topic",
+      "url": "/documentation/clockkit/clkcomplicationwidgetmigrator"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationWidgetMigrator/getWidgetConfiguration(from:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Returns a configuration object that defines the WidgetKit replacement for the provided ClockKit complication.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "getWidgetConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "from"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CLKComplicationDescriptor",
+          "text": "CLKComplicationDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CLKComplicationWidgetMigrationConfiguration",
+          "text": "CLKComplicationWidgetMigrationConfiguration"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationWidgetMigrator/getWidgetConfiguration(from:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "getWidgetConfigurationFrom:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "getWidgetConfiguration(from:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/clockkit/clkcomplicationwidgetmigrator/getwidgetconfiguration(from:completionhandler:)"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/s:ScM": {
+      "abstract": [
+        {
+          "text": "A singleton actor whose executor is equivalent to the main dispatch queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@globalActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "final"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "actor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MainActor"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MainActor",
+      "type": "topic",
+      "url": "/documentation/Swift/MainActor"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Migrating-to-WidgetKit",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationStaticWidgetMigrationConfiguration",
+        "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationAppIntentWidgetMigrationConfiguration",
+        "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationIntentWidgetMigrationConfiguration",
+        "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationWidgetMigrator",
+        "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationWidgetMigrationConfiguration"
+      ],
+      "title": "Migrating to WidgetKit"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "9.0",
+              "name": "watchOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Instance Property"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "widgetMigrator"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "property"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "widgetMigrator"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.clockkit/documentation/ClockKit",
+                "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationDataSource"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Migrating-to-WidgetKit",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationStaticWidgetMigrationConfiguration",
+                "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationIntentWidgetMigrationConfiguration",
+                "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationWidgetMigrator",
+                "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationWidgetMigrationConfiguration"
+              ],
+              "title": "Migrating to WidgetKit"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@property"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " ("
+                  },
+                  {
+                    "kind": "keyword",
+                    "text": "nonatomic"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ", "
+                  },
+                  {
+                    "kind": "keyword",
+                    "text": "readonly"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ") "
+                  },
+                  {
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:Qoobjc(pl)CLKComplicationWidgetMigrator",
+                    "text": "id<CLKComplicationWidgetMigrator>"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "widgetMigrator"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ";"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplicationWidgetMigrator~1getWidgetConfiguration(from:completionHandler:)/title",
+          "value": "getWidgetConfigurationFrom:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplicationWidgetMigrator~1getWidgetConfiguration(from:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "getWidgetConfigurationFrom:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplicationDataSource~1widgetMigrator/title",
+          "value": "widgetMigrator"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplicationDataSource~1widgetMigrator/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "widgetMigrator"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplicationDataSource/title",
+          "value": "CLKComplicationDataSource"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplicationDataSource/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLKComplicationDataSource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplicationDataSource/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLKComplicationDataSource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplicationWidgetMigrationConfiguration/title",
+          "value": "CLKComplicationWidgetMigrationConfiguration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplicationWidgetMigrationConfiguration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLKComplicationWidgetMigrationConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplicationWidgetMigrationConfiguration/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLKComplicationWidgetMigrationConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplicationWidgetMigrator/title",
+          "value": "CLKComplicationWidgetMigrator"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplicationWidgetMigrator/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLKComplicationWidgetMigrator"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplicationWidgetMigrator/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLKComplicationWidgetMigrator"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplicationStaticWidgetMigrationConfiguration/title",
+          "value": "CLKComplicationStaticWidgetMigrationConfiguration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplicationStaticWidgetMigrationConfiguration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLKComplicationStaticWidgetMigrationConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplicationStaticWidgetMigrationConfiguration/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLKComplicationStaticWidgetMigrationConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplicationIntentWidgetMigrationConfiguration/title",
+          "value": "CLKComplicationIntentWidgetMigrationConfiguration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplicationIntentWidgetMigrationConfiguration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLKComplicationIntentWidgetMigrationConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplicationIntentWidgetMigrationConfiguration/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLKComplicationIntentWidgetMigrationConfiguration"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/clockkit/clkcomplicationdatasource/widgetmigrator"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/clockkit/clkcomplicationdatasource/widgetmigrator"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

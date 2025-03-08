@@ -1,0 +1,1821 @@
+{
+  "abstract": [
+    {
+      "text": "Improve your model by using transformed versions of your training images.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/augmenting-images-to-expand-your-training-data"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Create ML Components"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Augmenting images to expand your training data"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Training a good image model requires a variety of training images with different characteristics.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "If you’re training an image classifier to recognize flowers you can improve classification accuracy by providing",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "flower photos with a variety of lighting conditions, angles, and backgrounds.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "However, collecting and labeling images is a time-consuming process.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To maximize the potential impact of your data you can use image augmentations.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Augmenting images is the process of applying transformations such as flipping, cropping, resizing, adjusting brightness, adding noise, and so on.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Image augmentations are not a replacement for a good image data set, but they help maximize the data set’s effectiveness.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Each augmentation has the potential to multiply the size of your training data which is helpful when your training sample size is small.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "image_augmentation",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Keep in mind that performing augmentations has some drawbacks.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You can’t reuse extracted features across training iterations because each iteration produces a new set of augmented images.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "This increase in training time can be significant.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Augmentations have the most impact when your dataset is small relative to the number of parameters in your model.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Write-an-augmentation",
+          "level": 3,
+          "text": "Write an augmentation",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/Augmenter",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to create a custom augmentation.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The augmenter applies each transformer to each image in sequence.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For example, this augmenter randomly flips (with 50% probability) and then randomly crops images:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let augmenter = Augmenter {",
+            "    ApplyRandomly(probability: 0.5) {",
+            "        ImageFlipper(orientation: .horizontal)",
+            "    }",
+            "    RandomImageCropper(scale: 0.8 ..< 0.9, aspectRatio: 1.0)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To generate a random number each time, use ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/UniformRandomFloatingPointParameter",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You can use the random number with any transformer.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For instance, to perform a slight rotation using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/ImageRotator",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let augmenter = Augmenter {",
+            "    ApplyRandomly(probability: 0.5) {",
+            "        ImageFlipper(orientation: .horizontal)",
+            "    }",
+            "    UniformRandomFloatingPointParameter(range: -10.0 ... 10.0) { angle in",
+            "        ImageRotator(angle: angle * .pi / 180)",
+            "    }",
+            "    RandomImageCropper(scale: 0.8 ..< 0.9, aspectRatio: 1.0)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Apply-augmentations-to-your-training-data",
+          "level": 3,
+          "text": "Apply augmentations to your training data",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you create an augmenter, you can use it to augment your training data.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You do this with the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/Augmenter/applied(to:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let augmentedTrainingData = augmenter.applied(to: trainingData)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because augmentations are usually random, it makes sense to do more than one pass over your training data.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Each pass results in a different set of images, for instance with different scale factors.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You can control the number of passes by using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/Augmenter/applied(to:upsampledBy:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For instance, to get 10 times the number of images:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let augmentedTrainingData = augmenter.applied(",
+            "   to: trainingData,",
+            "   upsampledBy: 10",
+            ")"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The result of the augmentations is an asynchronous sequence.",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "The augmenter doesn’t perform augmentations until you request them to avoid the memory overhead.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Train-an-image-classifier",
+          "level": 3,
+          "text": "Train an image classifier",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can now use your augmented data set to train an image classifier.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Because augmentations take images, not URLs, you may need to read your files first.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let reader = ImageReader().adaptedAsAnnotatedFeatureTransformer(annotationType: String.self)",
+            "let trainingImages = try await reader.applied(to: trainingFiles)",
+            "let validationImages = try await reader.applied(to: validationFiles)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Now that you have annotated images, the next step is to create your pipeline.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For an image classifier, create a feature extractor and a classifier.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let featurePrint = ImageFeaturePrint(revision: 2)",
+            "let classifier = FullyConnectedNetworkClassifier<Float, String>(labels: labels, configuration: configuration)",
+            "let task = featurePrint.appending(classifier)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Next, create the augmenter that transforms the training images.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let augmenter = Augmenter {",
+            "    ApplyRandomly(probability: 0.5) {",
+            "        ImageFlipper(orientation: .horizontal)",
+            "    }",
+            "    UniformRandomFloatingPointParameter(range: -10.0 ... 10.0) { angle in",
+            "        ImageRotator(angle: angle * .pi / 180)",
+            "    }",
+            "    RandomImageCropper(scale: 0.8 ..< 0.9, aspectRatio: 1.0)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Finally, create a model, apply the augmenter to the training data, and progressively train the model using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/UpdatableSupervisedEstimator/update(_:with:eventHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The following example applies the ",
+              "type": "text"
+            },
+            {
+              "code": "augmenter",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to the ",
+              "type": "text"
+            },
+            {
+              "code": "trainingImages",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and updates the ",
+              "type": "text"
+            },
+            {
+              "code": "model",
+              "type": "codeVoice"
+            },
+            {
+              "text": " up to 100 times:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "var model = task.makeTransformer()",
+            "for iteration in 0 ..< 100 {",
+            "    // Perform one training iteration.",
+            "    let augmentedData = augmenter.applied(to: trainingImages.shuffled())",
+            "    for try await batch in augmentedData.batches(ofSize: 32, dropsLastPartialBatch: false) {",
+            "        try await task.update(&model, with: batch)",
+            "    }",
+            "",
+            "    // Compute accuracy on validation data, stop when done.",
+            "    // ...",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The example above applies the ",
+              "type": "text"
+            },
+            {
+              "code": "augmenter",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to shuffled images.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Shuffling images creates more variation, which helps prevent over-fitting.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The example breaks the data into batches after each augmentation, and updates the model with each ",
+              "type": "text"
+            },
+            {
+              "code": "batch",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Using a smaller batch size typically produces a better model, while using a larger batch size can speed up training.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A batch size of 32 is often a good starting point.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Tip",
+          "style": "tip",
+          "type": "aside"
+        },
+        {
+          "anchor": "Stop-training",
+          "level": 3,
+          "text": "Stop training",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Training your model progressively using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/UpdatableSupervisedEstimator/update(_:with:eventHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method lets you control when to stop training.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Stop training when the validation accuracy stops improving, for example:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "var accuracies = [Double](repeating: 0, count 5)",
+            "for iteration in 0 ..< 100 {",
+            "    // Perform one training iteration.",
+            "    // ...",
+            "",
+            "    // Compute the accuracy on the validation data.",
+            "    let predictions = try await model.prediction(from: validationImages)",
+            "    let validationMetrics = ClassificationMetrics(",
+            "        predictions.map(\\.prediction.mostLikelyLabel),",
+            "        predictions.map(\\.annotation)",
+            "    )",
+            "    let validationAccuracy = validationMetrics.accuracy",
+            "",
+            "    // Save the accuracy in a circular buffer.",
+            "    metrics[iteration % accuracies.count] = validationAccuracy",
+            "",
+            "    // Stop when there has been no significant improvement in the last 5 iterations.",
+            "    if accuracies.allSatisfy({ $0 >= validationAccuracy - 0.01 }) {",
+            "        break",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents": {
+      "abstract": [
+        {
+          "text": "Create more customizable machine learning models in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Create ML Components",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/ApplyEachRandomly": {
+      "abstract": [
+        {
+          "text": "Applies each transformer randomly given a probability.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ApplyEachRandomly"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/ApplyEachRandomly",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ApplyEachRandomly"
+        }
+      ],
+      "role": "symbol",
+      "title": "ApplyEachRandomly",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/applyeachrandomly"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/ApplyRandomly": {
+      "abstract": [
+        {
+          "text": "Randomly applies the transformer with the given probability.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ApplyRandomly"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/ApplyRandomly",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ApplyRandomly"
+        }
+      ],
+      "role": "symbol",
+      "title": "ApplyRandomly",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/applyrandomly"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/Augmenter": {
+      "abstract": [
+        {
+          "text": "An augmenter.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Augmenter"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/Augmenter",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Augmenter"
+        }
+      ],
+      "role": "symbol",
+      "title": "Augmenter",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/augmenter"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/Augmenter/applied(to:)": {
+      "abstract": [
+        {
+          "text": "Applies an augmentation per input of the base sequence.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "applied"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Annotation"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:18CreateMLComponents20AugmentationSequenceV",
+          "text": "AugmentationSequence"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "RandomTransformer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "RandomNumberGenerator"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Annotation"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/Augmenter/applied(to:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "applied(to:)",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/augmenter/applied(to:)"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/Augmenter/applied(to:upsampledBy:)": {
+      "abstract": [
+        {
+          "text": "Applies an augmentation repeatedly to an array of inputs.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "applied"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "C"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "genericParameter",
+          "text": "Annotation"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "upsampledBy"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:18CreateMLComponents29UpsampledAugmentationSequenceV",
+          "text": "UpsampledAugmentationSequence"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "C"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "RandomTransformer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "RandomNumberGenerator"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Annotation"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/Augmenter/applied(to:upsampledBy:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "applied(to:upsampledBy:)",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/augmenter/applied(to:upsampledby:)"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/ChooseRandomly": {
+      "abstract": [
+        {
+          "text": "Apply single transformation randomly chosen from a list of transformers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ChooseRandomly"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/ChooseRandomly",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ChooseRandomly"
+        }
+      ],
+      "role": "symbol",
+      "title": "ChooseRandomly",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/chooserandomly"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/ImageBlur": {
+      "abstract": [
+        {
+          "text": "An image blurring transformer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ImageBlur"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/ImageBlur",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ImageBlur"
+        }
+      ],
+      "role": "symbol",
+      "title": "ImageBlur",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/imageblur"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/ImageColorTransformer": {
+      "abstract": [
+        {
+          "text": "An image color transformer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ImageColorTransformer"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/ImageColorTransformer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ImageColorTransformer"
+        }
+      ],
+      "role": "symbol",
+      "title": "ImageColorTransformer",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/imagecolortransformer"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/ImageCropper": {
+      "abstract": [
+        {
+          "text": "An image crop transformer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ImageCropper"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/ImageCropper",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ImageCropper"
+        }
+      ],
+      "role": "symbol",
+      "title": "ImageCropper",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/imagecropper"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/ImageExposureAdjuster": {
+      "abstract": [
+        {
+          "text": "An image exposure adjusting transformer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ImageExposureAdjuster"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/ImageExposureAdjuster",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ImageExposureAdjuster"
+        }
+      ],
+      "role": "symbol",
+      "title": "ImageExposureAdjuster",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/imageexposureadjuster"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/ImageFeatureExtractor": {
+      "abstract": [
+        {
+          "text": "A transformer that takes an image and outputs image features.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ImageFeatureExtractor"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/ImageFeatureExtractor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ImageFeatureExtractor"
+        }
+      ],
+      "role": "symbol",
+      "title": "ImageFeatureExtractor",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/imagefeatureextractor"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/ImageFeaturePrint": {
+      "abstract": [
+        {
+          "text": "ImageFeaturePrint image feature extractor.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ImageFeaturePrint"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/ImageFeaturePrint",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ImageFeaturePrint"
+        }
+      ],
+      "role": "symbol",
+      "title": "ImageFeaturePrint",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/imagefeatureprint"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/ImageFlipper": {
+      "abstract": [
+        {
+          "text": "An image flipper transformer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ImageFlipper"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/ImageFlipper",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ImageFlipper"
+        }
+      ],
+      "role": "symbol",
+      "title": "ImageFlipper",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/imageflipper"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/ImageReader": {
+      "abstract": [
+        {
+          "text": "An image file reader.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ImageReader"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/ImageReader",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ImageReader"
+        }
+      ],
+      "role": "symbol",
+      "title": "ImageReader",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/imagereader"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/ImageRotator": {
+      "abstract": [
+        {
+          "text": "An image rotating transformer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ImageRotator"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/ImageRotator",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ImageRotator"
+        }
+      ],
+      "role": "symbol",
+      "title": "ImageRotator",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/imagerotator"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/ImageScaler": {
+      "abstract": [
+        {
+          "text": "An image scaling transformer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ImageScaler"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/ImageScaler",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ImageScaler"
+        }
+      ],
+      "role": "symbol",
+      "title": "ImageScaler",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/imagescaler"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/MLModelImageFeatureExtractor": {
+      "abstract": [
+        {
+          "text": "An image feature extractor provided by an MLModel.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MLModelImageFeatureExtractor"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/MLModelImageFeatureExtractor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MLModelImageFeatureExtractor"
+        }
+      ],
+      "role": "symbol",
+      "title": "MLModelImageFeatureExtractor",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/mlmodelimagefeatureextractor"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/RandomImageCropper": {
+      "abstract": [
+        {
+          "text": "Crops an image at a random location.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RandomImageCropper"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/RandomImageCropper",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RandomImageCropper"
+        }
+      ],
+      "role": "symbol",
+      "title": "RandomImageCropper",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/randomimagecropper"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/RandomImageNoiseGenerator": {
+      "abstract": [
+        {
+          "text": "A transformer that adds random noise to an image.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RandomImageNoiseGenerator"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/RandomImageNoiseGenerator",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RandomImageNoiseGenerator"
+        }
+      ],
+      "role": "symbol",
+      "title": "RandomImageNoiseGenerator",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/randomimagenoisegenerator"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/RandomTransformer": {
+      "abstract": [
+        {
+          "text": "A transformer that takes an input and a random number generator and produces a randomized output.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "RandomTransformer"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/RandomTransformer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "RandomTransformer"
+        }
+      ],
+      "role": "symbol",
+      "title": "RandomTransformer",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/randomtransformer"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/ShuffleRandomly": {
+      "abstract": [
+        {
+          "text": "Apply transformations in a random order.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ShuffleRandomly"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/ShuffleRandomly",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ShuffleRandomly"
+        }
+      ],
+      "role": "symbol",
+      "title": "ShuffleRandomly",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/shufflerandomly"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/UniformRandomFloatingPointParameter": {
+      "abstract": [
+        {
+          "text": "Applies the transformer with a randomly generated input parameter.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UniformRandomFloatingPointParameter"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/UniformRandomFloatingPointParameter",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UniformRandomFloatingPointParameter"
+        }
+      ],
+      "role": "symbol",
+      "title": "UniformRandomFloatingPointParameter",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/uniformrandomfloatingpointparameter"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/UniformRandomIntegerParameter": {
+      "abstract": [
+        {
+          "text": "Applies the transformer with a randomly generated input parameter.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UniformRandomIntegerParameter"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/UniformRandomIntegerParameter",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UniformRandomIntegerParameter"
+        }
+      ],
+      "role": "symbol",
+      "title": "UniformRandomIntegerParameter",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/uniformrandomintegerparameter"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/UpdatableSupervisedEstimator/update(_:with:eventHandler:)": {
+      "abstract": [
+        {
+          "text": "Updates a transformer with a new sequence of examples.",
+          "type": "text"
+        }
+      ],
+      "defaultImplementations": 1,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "update"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "InputSequence"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "keyword",
+          "text": "inout"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "Self"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:18CreateMLComponents19SupervisedEstimatorP11TransformerQa",
+          "text": "Transformer"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "InputSequence"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "eventHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:18CreateMLComponents12EventHandlera",
+          "text": "EventHandler"
+        },
+        {
+          "kind": "text",
+          "text": "?) "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/UpdatableSupervisedEstimator/update(_:with:eventHandler:)",
+      "kind": "symbol",
+      "required": true,
+      "role": "symbol",
+      "title": "update(_:with:eventHandler:)",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/updatablesupervisedestimator/update(_:with:eventhandler:)"
+    },
+    "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/creating-a-multi-label-image-classifier": {
+      "abstract": [
+        {
+          "text": "Train a machine learning model to assign multiple labels to an image.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/creating-a-multi-label-image-classifier",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating a multi-label image classifier",
+      "type": "topic",
+      "url": "/documentation/createmlcomponents/creating-a-multi-label-image-classifier"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "image_augmentation": {
+      "alt": "Diagram that shows an image with arrows pointing to variations of it. Variations include a cropped image, a resized image, a faded image, and an image with added noise.",
+      "identifier": "image_augmentation",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/8a1b64ac2d8e78eb0405e12ac466c976/image_augmentation@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Related-Documentation",
+      "identifiers": [
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/Augmenter",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/ApplyEachRandomly",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/ApplyRandomly",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/ChooseRandomly",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/RandomImageCropper",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/RandomTransformer",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/ShuffleRandomly",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/UniformRandomFloatingPointParameter",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/UniformRandomIntegerParameter"
+      ],
+      "title": "Related Documentation"
+    },
+    {
+      "anchor": "Image-components",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/creating-a-multi-label-image-classifier",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/ImageReader",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/ImageFeatureExtractor",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/ImageCropper",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/ImageScaler",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/ImageFeaturePrint",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/ImageBlur",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/ImageColorTransformer",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/ImageExposureAdjuster",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/ImageFlipper",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/ImageRotator",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/RandomImageNoiseGenerator",
+        "doc://com.apple.CreateMLComponents/documentation/CreateMLComponents/MLModelImageFeatureExtractor"
+      ],
+      "title": "Image components"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/createmlcomponents/augmenting-images-to-expand-your-training-data"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

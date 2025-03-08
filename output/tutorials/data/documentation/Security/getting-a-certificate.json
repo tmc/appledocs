@@ -1,0 +1,449 @@
+{
+  "abstract": [
+    {
+      "text": "Obtain a certificate from an identity, from DER-encoded data, or from the keychain.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.security/documentation/Security",
+        "doc://com.apple.security/documentation/Security/certificate-key-and-trust-services",
+        "doc://com.apple.security/documentation/Security/certificates"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.security/documentation/Security/getting-a-certificate"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Security"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Getting a Certificate"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You use functions of the certificate, key, and trust services API to manage and manipulate certificates. The API defines the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.security/documentation/Security/SecCertificate",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " opaque type to hold certificate objects. You typically use such an object to indicate the certificate to use for a particular cryptographic operation, such as evaluating trust. How you get a certificate reference depends on where the certificate is stored or how it’s provided to you. For example, it might come from any of the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "An identity.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " When you read an identity from a password-protected file or from the keychain (as described in ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.security/documentation/Security/importing-an-identity",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.security/documentation/Security/storing-an-identity-in-the-keychain",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", respectively), you can extract the certificate it contains (see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.security/documentation/Security/parsing-an-identity",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": "). In macOS, you can also store a certificate in an identity along with its associated private key (see ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.security/documentation/Security/creating-an-identity",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ").",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "DER-encoded data.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " You can export a certificate as DER-encoded data that you then store on disk or send through the network. Similarly, you can restore a certificate from this kind of data. See ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.security/documentation/Security/storing-a-der-encoded-x-509-certificate",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " for details.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "The keychain.",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "strong"
+                    },
+                    {
+                      "text": " Just as with keys and passwords, you can store a certificate in a keychain and later retrieve it from there. See ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.security/documentation/Security/storing-a-certificate-in-the-keychain",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " for details.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.security/documentation/Security": {
+      "abstract": [
+        {
+          "text": "Secure the data your app manages, and control access to your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Security",
+      "type": "topic",
+      "url": "/documentation/security"
+    },
+    "doc://com.apple.security/documentation/Security/SecCertificate": {
+      "abstract": [
+        {
+          "text": "An abstract Core Foundation-type object representing an X.509 certificate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SecCertificate"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/SecCertificate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SecCertificate"
+        }
+      ],
+      "role": "symbol",
+      "title": "SecCertificate",
+      "type": "topic",
+      "url": "/documentation/security/seccertificate"
+    },
+    "doc://com.apple.security/documentation/Security/certificate-key-and-trust-services": {
+      "abstract": [
+        {
+          "text": "Establish trust using certificates and cryptographic keys.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/certificate-key-and-trust-services",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Certificate, Key, and Trust Services",
+      "type": "topic",
+      "url": "/documentation/security/certificate-key-and-trust-services"
+    },
+    "doc://com.apple.security/documentation/Security/certificates": {
+      "abstract": [
+        {
+          "text": "Manage digital certificates.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/certificates",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Certificates",
+      "type": "topic",
+      "url": "/documentation/security/certificates"
+    },
+    "doc://com.apple.security/documentation/Security/creating-an-identity": {
+      "abstract": [
+        {
+          "text": "Create an identity from a certificate and private key.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/creating-an-identity",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating an Identity",
+      "type": "topic",
+      "url": "/documentation/security/creating-an-identity"
+    },
+    "doc://com.apple.security/documentation/Security/importing-an-identity": {
+      "abstract": [
+        {
+          "text": "Learn how to import an identity from file.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/importing-an-identity",
+      "kind": "article",
+      "role": "article",
+      "title": "Importing an Identity",
+      "type": "topic",
+      "url": "/documentation/security/importing-an-identity"
+    },
+    "doc://com.apple.security/documentation/Security/parsing-an-identity": {
+      "abstract": [
+        {
+          "text": "Extract the private key and certificate from an identity.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/parsing-an-identity",
+      "kind": "article",
+      "role": "article",
+      "title": "Parsing an Identity",
+      "type": "topic",
+      "url": "/documentation/security/parsing-an-identity"
+    },
+    "doc://com.apple.security/documentation/Security/storing-a-certificate-in-the-keychain": {
+      "abstract": [
+        {
+          "text": "Store a certificate in the keychain for safekeeping.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/storing-a-certificate-in-the-keychain",
+      "kind": "article",
+      "role": "article",
+      "title": "Storing a Certificate in the Keychain",
+      "type": "topic",
+      "url": "/documentation/security/storing-a-certificate-in-the-keychain"
+    },
+    "doc://com.apple.security/documentation/Security/storing-a-der-encoded-x-509-certificate": {
+      "abstract": [
+        {
+          "text": "Import and export a certificate from a file.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/storing-a-der-encoded-x-509-certificate",
+      "kind": "article",
+      "role": "article",
+      "title": "Storing a DER-Encoded X.509 Certificate",
+      "type": "topic",
+      "url": "/documentation/security/storing-a-der-encoded-x-509-certificate"
+    },
+    "doc://com.apple.security/documentation/Security/storing-an-identity-in-the-keychain": {
+      "abstract": [
+        {
+          "text": "Securely store an identity in the keychain.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.security/documentation/Security/storing-an-identity-in-the-keychain",
+      "kind": "article",
+      "role": "article",
+      "title": "Storing an Identity in the Keychain",
+      "type": "topic",
+      "url": "/documentation/security/storing-an-identity-in-the-keychain"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecCertificate/title",
+          "value": "SecCertificateRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecCertificate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecCertificateRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.security~1documentation~1Security~1SecCertificate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SecCertificateRef"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/security/getting-a-certificate"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/security/getting-a-certificate"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

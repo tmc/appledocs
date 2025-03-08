@@ -1,0 +1,3585 @@
+{
+  "abstract": [
+    {
+      "text": "An object that controls swipe navigation and animations between views or view content.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.appkit/documentation/AppKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.appkit/documentation/AppKit/NSPageController"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSPageController",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "NSPageController"
+      }
+    ],
+    "modules": [
+      {
+        "name": "AppKit"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "NSPageController"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.8",
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "NSPageController"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "attribute",
+              "text": "@"
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+              "kind": "attribute",
+              "preciseIdentifier": "s:ScM",
+              "text": "MainActor"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSPageController"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPageController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " is useful for user interfaces which control navigating multiple pages as in a book or a web browser history. Page controller inherits from the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSViewController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class . You must assign the ",
+              "type": "text"
+            },
+            {
+              "code": "view",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property to a view in your view hierarchy. The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPageController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class does not vend a view and does insert itself into the responder chain.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Conceptually, the page controller manages swiping between an array of pages, the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPageController/arrangedObjects",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPageController/selectedIndex",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property, you can determine how many pages forward or backward the user may navigate.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "When using history mode, do not wire ",
+                  "type": "text"
+                },
+                {
+                  "code": "pageController.view",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " to an ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSplitView",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " subview. This will actually cause a 3rd split when the private transition view is put in the view hierarchy. You can work around this by using an empty ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " instance as the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSplitView",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " subview and placing the real contents in a subview of the empty view.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Page-Controller-Modes",
+          "level": 3,
+          "text": "Page Controller Modes",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "There are two modes that an ",
+              "type": "text"
+            },
+            {
+              "code": "NSPageController",
+              "type": "codeVoice"
+            },
+            {
+              "text": " instance may operate in, history mode and book mode. The main difference between the two modes is that ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "History mode",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            },
+            {
+              "text": " expects ",
+              "type": "text"
+            },
+            {
+              "code": "pageController.view",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to be the content and ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Book mode",
+                  "type": "text"
+                }
+              ],
+              "type": "strong"
+            },
+            {
+              "text": " expects ",
+              "type": "text"
+            },
+            {
+              "code": "pageController.view",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to be be a container for the content that you will supply by returning ",
+              "type": "text"
+            },
+            {
+              "code": "viewControllers",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in your delegate methods.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "History-Mode",
+          "level": 4,
+          "text": "History Mode",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "History mode is designed to be the easiest way to create a history user interface. The page controller will manage the history (the ",
+              "type": "text"
+            },
+            {
+              "code": "arrangedObjects",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property), snapshots, and user navigation between pages in the history.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "As the user navigates to new content, add to the history by calling ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPageController/navigateForward(to:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". The page controller will remove any ",
+              "type": "text"
+            },
+            {
+              "code": "arrangedObjects",
+              "type": "codeVoice"
+            },
+            {
+              "text": " after the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPageController/selectedIndex",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and then add the object to the end of the ",
+              "type": "text"
+            },
+            {
+              "code": "arrangedObjects",
+              "type": "codeVoice"
+            },
+            {
+              "text": " array and update the ",
+              "type": "text"
+            },
+            {
+              "code": "selectedIndex",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property. Just like navigating in a new direction in a web browser, all forward history is lost once the user starts navigating a new path. After returning from ",
+              "type": "text"
+            },
+            {
+              "code": "navigateForwardToObject:",
+              "type": "codeVoice"
+            },
+            {
+              "text": " you are free to update the contents of ",
+              "type": "text"
+            },
+            {
+              "code": "pageController.view",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Delegate-Method-Invocation-During-History-Mode-Swiping",
+          "level": 5,
+          "text": "Delegate Method Invocation During History Mode Swiping",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "During swiping, the following optional delegate methods are called in the specified order:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPageControllerDelegate/pageControllerWillStartLiveTransition(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " delegate method is invoked when the user starts a swipe action. This is the appropriate point at which to save information that you may need to restore, such as a page’s scrolled location.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Upon returning from the this delegate method, ",
+              "type": "text"
+            },
+            {
+              "code": "pageController.view",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is hidden. In it’s place the page controller shows a private view hierarchy to animate previously taken snapshots of the page history. This allows the page controller to remain responsive to the user without any required action by your application.Next, if implemented, the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPageControllerDelegate/pageController(_:didTransitionTo:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " delegate method is invoked. This delegate method is called after a physically successful swipe, but before the animation has completed. The supplied object is the page the user navigated to – the new ",
+              "type": "text"
+            },
+            {
+              "code": "selectedIndex",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object in ",
+              "type": "text"
+            },
+            {
+              "code": "arrangedObjects",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". If background loading tasks need to be initiated this is the appropriate time to do so. However, do not block the main thread or the animation will stutter or pause.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Finally, the pageControllerDidEndLiveTransition: delegate method is invoked after the swipe and swipe animations are complete. You should any position settings or other display specific state stored in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPageControllerDelegate/pageControllerWillStartLiveTransition(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " implementation. The ",
+              "type": "text"
+            },
+            {
+              "code": "pageController.view",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is still hidden at this point and you must call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPageController/completeTransition()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " on the page controller instance to inform the instance to hide the private transition view and show ",
+              "type": "text"
+            },
+            {
+              "code": "pageController.view",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". Often you do this immediately, however, if your content is not ready you can call this at a later.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Book-Mode-View-Controller-Mode",
+          "level": 4,
+          "text": "Book Mode (View Controller Mode)",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Book mode is designed to give you more control over the swiping process and to facilitate more user interface designs than just history, although you can use book mode to create a history user interface.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In this mode, ",
+              "type": "text"
+            },
+            {
+              "code": "pageController.view",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is a container view and the content views are vended by view controller instances supplied by the delegate object.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To enable book mode, you must implement the following two methods in your delegate: ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPageControllerDelegate/pageController(_:identifierFor:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPageControllerDelegate/pageController(_:viewControllerForIdentifier:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The page controller instance caches the view controllers supplied for each identifier and only asks it’s delegate to create more if one does not already exists in its cache. If you have different type of views you want to swipe in, then supply a different identifier for each type.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When needed, you will be asked to prepare a view controller instance with a page via the optional delegate method ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPageControllerDelegate/pageController(_:prepare:with:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". If you do not implement this method, then the ",
+              "type": "text"
+            },
+            {
+              "code": "representedObject",
+              "type": "codeVoice"
+            },
+            {
+              "text": " of the view controller that would have been passed to this delegate method is set as the object.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The delegate will be asked to prepare a view controller with a ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": " object for each unique identifier it encounters. The NSPageController instance will use this to generate a default snapshot for that identifier.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When using the book mode, if ",
+              "type": "text"
+            },
+            {
+              "code": "pageController.view",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is layer backed, live layers are used during transition instead of snapshots.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Generally, when using book mode, the set of pages are known and it is your responsibility to set the ",
+              "type": "text"
+            },
+            {
+              "code": "arrangedObjects",
+              "type": "codeVoice"
+            },
+            {
+              "text": " array property and initially selected page using the ",
+              "type": "text"
+            },
+            {
+              "code": "selectedIndex",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Delegate-Method-Invocation-During-Book-Mode-Swiping",
+          "level": 5,
+          "text": "Delegate Method Invocation During Book Mode Swiping",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "During swiping, the following optional delegate methods are called in the specified order:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The delegate method ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPageControllerDelegate/pageControllerWillStartLiveTransition(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " is invoked when the user starts a swipe action. As in history mode, this is the appropriate point at which to save information that you may need to restore, such as a page’s scrolled location.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After returning from the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPageControllerDelegate/pageControllerWillStartLiveTransition(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " delegate method, the page controller takes a snapshot of the ",
+              "type": "text"
+            },
+            {
+              "code": "view",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in the specified ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPageController/selectedViewController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and then removes it from ",
+              "type": "text"
+            },
+            {
+              "code": "pageController.view",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". The page controller replaces it with a private view hierarchy to animate previously taken snapshots. Unlike when building up a history, snapshots may not yet exist for the page being navigated to. In this case, a previously gathered default snapshot is used for that page’s identifier. Regardless, if using a default snapshot or a previously gathered snapshot of actual contents, a view controller is prepared for the page being navigated to, and passed to the delegate. This ",
+              "type": "text"
+            },
+            {
+              "code": "viewController.view",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is then asked to draw on a background thread while swiping continues. Note that at this point the view does not reside within a window. Once the background threaded drawing completes, the initial snapshot is replaced with the newly generated snapshot.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Next the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPageControllerDelegate/pageController(_:didTransitionTo:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " delegate method is invoked after a physically successful swipe, but before the animation has completed. The supplied object is the page the user navigated to - the new object in the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPageController/arrangedObjects",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " array at the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPageController/selectedIndex",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Note that the page controller’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPageController/selectedViewController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " has not been updated yet. If you need to start some background loading tasks, now is the time to do it. Do not block the main thread or the animation will stutter or pause.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Finally the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPageControllerDelegate/pageControllerDidEndLiveTransition(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method is invoked after the swipe and swipe animations are complete. The ",
+              "type": "text"
+            },
+            {
+              "code": "selectedViewController.view",
+              "type": "codeVoice"
+            },
+            {
+              "text": " is still detached at this point and you must call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPageController/completeTransition()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " on the page controller to hide the private transition view and update the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPageController/selectedViewController",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Often you do this immediately, however, if your content is not ready you can call this at a later.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Completing-the-Page-Controller-Transition",
+          "level": 3,
+          "text": "Completing the Page Controller Transition",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An ",
+              "type": "text"
+            },
+            {
+              "code": "NSPageController",
+              "type": "codeVoice"
+            },
+            {
+              "text": " instance uses a private view hierarchy during swiping. To create a seamless transition to the new content, it is your responsibility to inform the page controller when you are ready to draw the new content. Ideally, the new content should match the snapshot so the user is none the wiser. You inform the page controller to complete the transition by calling ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPageController/completeTransition()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". If needed, a view controller is prepared and then the content view is shown (or added) to the view hierarchy and the private transition view is hidden.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "During page controller initiated animations, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPageControllerDelegate/pageControllerWillStartLiveTransition(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPageControllerDelegate/pageControllerDidEndLiveTransition(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " are invoked on the delegate. Generally during ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPageControllerDelegate/pageControllerDidEndLiveTransition(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " you will call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPageController/completeTransition()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Programatic animations via the animator proxy do not call the delegate methods and you are responsible for calling ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPageController/completeTransition()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " when the animation completes.This is easily done via a completion handler on an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appkit/documentation/AppKit/NSAnimationContext",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " grouping. For example:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            " //To instantly change the selectedIndex:",
+            "  pageController.selectedIndex = newIndex;",
+            " ",
+            "  //To animate a selectedIndex change:",
+            "  [NSAnimationContext runAnimationGroup:^(NSAnimationContext *context) {",
+            "    [[pageController animator] setSelectedIndex:newIndex];",
+            "  } completionHandler:^{",
+            "    [pageController completeTransition];",
+            "  }];"
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.appkit/documentation/AppKit": {
+      "abstract": [
+        {
+          "text": "Construct and manage a graphical, event-driven user interface for your macOS app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AppKit",
+      "type": "topic",
+      "url": "/documentation/appkit"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSAnimatablePropertyContainer": {
+      "abstract": [
+        {
+          "text": "A set of methods that defines a way to add animation to an existing class with a minimum of API impact.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSAnimatablePropertyContainer"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSAnimatablePropertyContainer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSAnimatablePropertyContainer"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSAnimatablePropertyContainer",
+      "type": "topic",
+      "url": "/documentation/appkit/nsanimatablepropertycontainer"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSAnimationContext": {
+      "abstract": [
+        {
+          "text": "An animation context, which contains information about environment and state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSAnimationContext"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSAnimationContext",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSAnimationContext"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSAnimationContext",
+      "type": "topic",
+      "url": "/documentation/appkit/nsanimationcontext"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSEditor": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSEditor"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSEditor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSEditor"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSEditor",
+      "type": "topic",
+      "url": "/documentation/appkit/nseditor"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPageController": {
+      "abstract": [
+        {
+          "text": "An object that controls swipe navigation and animations between views or view content.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSPageController"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPageController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSPageController"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSPageController",
+      "type": "topic",
+      "url": "/documentation/appkit/nspagecontroller"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPageController/TransitionStyle-swift.enum": {
+      "abstract": [
+        {
+          "text": "These constants control the transition style of the page controller.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TransitionStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPageController/TransitionStyle-swift.enum",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TransitionStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSPageController.TransitionStyle",
+      "type": "topic",
+      "url": "/documentation/appkit/nspagecontroller/transitionstyle-swift.enum"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPageController/arrangedObjects": {
+      "abstract": [
+        {
+          "text": "An array containing the objects displayed in the page controller’s view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "arrangedObjects"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPageController/arrangedObjects",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "arrangedObjects"
+        }
+      ],
+      "role": "symbol",
+      "title": "arrangedObjects",
+      "type": "topic",
+      "url": "/documentation/appkit/nspagecontroller/arrangedobjects"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPageController/completeTransition()": {
+      "abstract": [
+        {
+          "text": "Invoked when the page transition is completed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "completeTransition"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPageController/completeTransition()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "completeTransition"
+        }
+      ],
+      "role": "symbol",
+      "title": "completeTransition()",
+      "type": "topic",
+      "url": "/documentation/appkit/nspagecontroller/completetransition()"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPageController/delegate": {
+      "abstract": [
+        {
+          "text": "The page controller’s delegate object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "delegate"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)NSPageControllerDelegate",
+          "text": "NSPageControllerDelegate"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPageController/delegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "delegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "delegate",
+      "type": "topic",
+      "url": "/documentation/appkit/nspagecontroller/delegate"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPageController/navigateBack(_:)": {
+      "abstract": [
+        {
+          "text": "Navigates backwards in the page controller’s arranged objects array.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "navigateBack"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPageController/navigateBack(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "navigateBack:"
+        }
+      ],
+      "role": "symbol",
+      "title": "navigateBack(_:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nspagecontroller/navigateback(_:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPageController/navigateForward(_:)": {
+      "abstract": [
+        {
+          "text": "Navigates to the next object in the page controller’s arranged objects array, if appropriate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "navigateForward"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPageController/navigateForward(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "navigateForward:"
+        }
+      ],
+      "role": "symbol",
+      "title": "navigateForward(_:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nspagecontroller/navigateforward(_:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPageController/navigateForward(to:)": {
+      "abstract": [
+        {
+          "text": "Navigates to the specific object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "navigateForward"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPageController/navigateForward(to:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "navigateForwardToObject:"
+        }
+      ],
+      "role": "symbol",
+      "title": "navigateForward(to:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nspagecontroller/navigateforward(to:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPageController/selectedIndex": {
+      "abstract": [
+        {
+          "text": "The currently selected object in the arranged objects array.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "selectedIndex"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPageController/selectedIndex",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "selectedIndex"
+        }
+      ],
+      "role": "symbol",
+      "title": "selectedIndex",
+      "type": "topic",
+      "url": "/documentation/appkit/nspagecontroller/selectedindex"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPageController/selectedViewController": {
+      "abstract": [
+        {
+          "text": "The view controller associated with the selected object..",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "selectedViewController"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSViewController",
+          "text": "NSViewController"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPageController/selectedViewController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "selectedViewController"
+        }
+      ],
+      "role": "symbol",
+      "title": "selectedViewController",
+      "type": "topic",
+      "url": "/documentation/appkit/nspagecontroller/selectedviewcontroller"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPageController/takeSelectedIndexFrom(_:)": {
+      "abstract": [
+        {
+          "text": "Navigates to the selected index, which is taken from the sender.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "takeSelectedIndexFrom"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPageController/takeSelectedIndexFrom(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "takeSelectedIndexFrom:"
+        }
+      ],
+      "role": "symbol",
+      "title": "takeSelectedIndexFrom(_:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nspagecontroller/takeselectedindexfrom(_:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPageController/transitionStyle-swift.property": {
+      "abstract": [
+        {
+          "text": "The transition style the page controller uses when changing pages.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "transitionStyle"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPageController",
+          "text": "NSPageController"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSPageControllerTransitionStyle",
+          "text": "TransitionStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPageController/transitionStyle-swift.property",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "transitionStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "transitionStyle",
+      "type": "topic",
+      "url": "/documentation/appkit/nspagecontroller/transitionstyle-swift.property"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPageControllerDelegate": {
+      "abstract": [
+        {
+          "text": "The ",
+          "type": "text"
+        },
+        {
+          "code": "NSPageControllerDelegate",
+          "type": "codeVoice"
+        },
+        {
+          "text": " protocol allows you to customize the behavior of instances of the NSPageController class.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSPageControllerDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPageControllerDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSPageControllerDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSPageControllerDelegate",
+      "type": "topic",
+      "url": "/documentation/appkit/nspagecontrollerdelegate"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPageControllerDelegate/pageController(_:didTransitionTo:)": {
+      "abstract": [
+        {
+          "text": "This message is sent when any page transition is completed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "pageController"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPageController",
+          "text": "NSPageController"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "didTransitionTo"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPageControllerDelegate/pageController(_:didTransitionTo:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "pageController:didTransitionToObject:"
+        }
+      ],
+      "role": "symbol",
+      "title": "pageController(_:didTransitionTo:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nspagecontrollerdelegate/pagecontroller(_:didtransitionto:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPageControllerDelegate/pageController(_:identifierFor:)": {
+      "abstract": [
+        {
+          "text": "Return the identifier of the view controller that owns a view to display the object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "pageController"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPageController",
+          "text": "NSPageController"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "identifierFor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPageController",
+          "text": "NSPageController"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSPageControllerObjectIdentifier",
+          "text": "ObjectIdentifier"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPageControllerDelegate/pageController(_:identifierFor:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "pageController:identifierForObject:"
+        }
+      ],
+      "role": "symbol",
+      "title": "pageController(_:identifierFor:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nspagecontrollerdelegate/pagecontroller(_:identifierfor:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPageControllerDelegate/pageController(_:prepare:with:)": {
+      "abstract": [
+        {
+          "text": "Prepare the view controller and it’s view for drawing.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "pageController"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPageController",
+          "text": "NSPageController"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "prepare"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSViewController",
+          "text": "NSViewController"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPageControllerDelegate/pageController(_:prepare:with:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "pageController:prepareViewController:withObject:"
+        }
+      ],
+      "role": "symbol",
+      "title": "pageController(_:prepare:with:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nspagecontrollerdelegate/pagecontroller(_:prepare:with:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPageControllerDelegate/pageController(_:viewControllerForIdentifier:)": {
+      "abstract": [
+        {
+          "text": "Returns a view controller the page controller uses for managing the specified identifier.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "pageController"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPageController",
+          "text": "NSPageController"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "viewControllerForIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPageController",
+          "text": "NSPageController"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@NSPageControllerObjectIdentifier",
+          "text": "ObjectIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSViewController",
+          "text": "NSViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPageControllerDelegate/pageController(_:viewControllerForIdentifier:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "pageController:viewControllerForIdentifier:"
+        }
+      ],
+      "role": "symbol",
+      "title": "pageController(_:viewControllerForIdentifier:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nspagecontrollerdelegate/pagecontroller(_:viewcontrollerforidentifier:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPageControllerDelegate/pageControllerDidEndLiveTransition(_:)": {
+      "abstract": [
+        {
+          "text": "This message is sent when a transition animation completes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "pageControllerDidEndLiveTransition"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPageController",
+          "text": "NSPageController"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPageControllerDelegate/pageControllerDidEndLiveTransition(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "pageControllerDidEndLiveTransition:"
+        }
+      ],
+      "role": "symbol",
+      "title": "pageControllerDidEndLiveTransition(_:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nspagecontrollerdelegate/pagecontrollerdidendlivetransition(_:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSPageControllerDelegate/pageControllerWillStartLiveTransition(_:)": {
+      "abstract": [
+        {
+          "text": "This message is sent when the user begins a transition.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "pageControllerWillStartLiveTransition"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSPageController",
+          "text": "NSPageController"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSPageControllerDelegate/pageControllerWillStartLiveTransition(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "pageControllerWillStartLiveTransition:"
+        }
+      ],
+      "role": "symbol",
+      "title": "pageControllerWillStartLiveTransition(_:)",
+      "type": "topic",
+      "url": "/documentation/appkit/nspagecontrollerdelegate/pagecontrollerwillstartlivetransition(_:)"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSSeguePerforming": {
+      "abstract": [
+        {
+          "text": "A set of methods that support the mediation of a custom segue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSSeguePerforming"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSeguePerforming",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSSeguePerforming"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSSeguePerforming",
+      "type": "topic",
+      "url": "/documentation/appkit/nssegueperforming"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSSplitView": {
+      "abstract": [
+        {
+          "text": "A view that arranges two or more views in a linear stack running horizontally or vertically.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSSplitView"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSSplitView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSSplitView"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSSplitView",
+      "type": "topic",
+      "url": "/documentation/appkit/nssplitview"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSStandardKeyBindingResponding": {
+      "abstract": [
+        {
+          "text": "Methods that responder subclasses implement to support key binding commands, such as inserting tabs and newlines, or moving the insertion point.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSStandardKeyBindingResponding"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSStandardKeyBindingResponding",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSStandardKeyBindingResponding"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSStandardKeyBindingResponding",
+      "type": "topic",
+      "url": "/documentation/appkit/nsstandardkeybindingresponding"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSTouchBarProvider": {
+      "abstract": [
+        {
+          "text": "A protocol that an object adopts to create a bar object in your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSTouchBarProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSTouchBarProvider",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSTouchBarProvider"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSTouchBarProvider",
+      "type": "topic",
+      "url": "/documentation/appkit/nstouchbarprovider"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSUserActivityRestoring": {
+      "abstract": [
+        {
+          "text": "A protocol that marks classes to restore the state of your app to continue a user activity.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSUserActivityRestoring"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSUserActivityRestoring",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSUserActivityRestoring"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSUserActivityRestoring",
+      "type": "topic",
+      "url": "/documentation/appkit/nsuseractivityrestoring"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSUserInterfaceItemIdentification": {
+      "abstract": [
+        {
+          "text": "A set of methods used to associate a unique identifier with objects in your user interface.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSUserInterfaceItemIdentification"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSUserInterfaceItemIdentification",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSUserInterfaceItemIdentification"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSUserInterfaceItemIdentification",
+      "type": "topic",
+      "url": "/documentation/appkit/nsuserinterfaceitemidentification"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSView": {
+      "abstract": [
+        {
+          "text": "The infrastructure for drawing, printing, and handling events in an app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSView"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSView"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSView",
+      "type": "topic",
+      "url": "/documentation/appkit/nsview"
+    },
+    "doc://com.apple.appkit/documentation/AppKit/NSViewController": {
+      "abstract": [
+        {
+          "text": "A controller that manages a view, typically loaded from a nib file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSViewController"
+        }
+      ],
+      "identifier": "doc://com.apple.appkit/documentation/AppKit/NSViewController",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSViewController"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSViewController",
+      "type": "topic",
+      "url": "/documentation/appkit/nsviewcontroller"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding": {
+      "abstract": [
+        {
+          "text": "A protocol that enables an object to be encoded and decoded for archiving and distribution.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCoding"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCoding",
+      "type": "topic",
+      "url": "/documentation/foundation/nscoding"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSExtensionRequestHandling": {
+      "abstract": [
+        {
+          "text": "The interface an app extension uses to respond to a request from a host app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSExtensionRequestHandling"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSExtensionRequestHandling",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSExtensionRequestHandling",
+      "type": "topic",
+      "url": "/documentation/foundation/nsextensionrequesthandling"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:ScM": {
+      "abstract": [
+        {
+          "text": "A singleton actor whose executor is equivalent to the main dispatch queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@globalActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "final"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "actor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MainActor"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:ScM",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MainActor",
+      "type": "topic",
+      "url": "/documentation/Swift/MainActor"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSViewController"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.apple.appkit/documentation/AppKit/NSAnimatablePropertyContainer",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding",
+        "doc://com.apple.appkit/documentation/AppKit/NSEditor",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSExtensionRequestHandling",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+        "doc://com.apple.appkit/documentation/AppKit/NSSeguePerforming",
+        "doc://com.apple.appkit/documentation/AppKit/NSStandardKeyBindingResponding",
+        "doc://com.apple.appkit/documentation/AppKit/NSTouchBarProvider",
+        "doc://com.apple.appkit/documentation/AppKit/NSUserActivityRestoring",
+        "doc://com.apple.appkit/documentation/AppKit/NSUserInterfaceItemIdentification",
+        "doc://com.externally.resolved.symbol/s:s8SendableP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Customizing-the-Paged-Interface-Behavior",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSPageController/delegate",
+        "doc://com.apple.appkit/documentation/AppKit/NSPageControllerDelegate"
+      ],
+      "title": "Customizing the Paged Interface Behavior"
+    },
+    {
+      "anchor": "Page-Controller-Items",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSPageController/arrangedObjects",
+        "doc://com.apple.appkit/documentation/AppKit/NSPageController/navigateForward(to:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSPageController/selectedIndex"
+      ],
+      "title": "Page Controller Items"
+    },
+    {
+      "anchor": "Page-Controller-Navigation",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSPageController/navigateBack(_:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSPageController/navigateForward(_:)",
+        "doc://com.apple.appkit/documentation/AppKit/NSPageController/takeSelectedIndexFrom(_:)"
+      ],
+      "title": "Page Controller Navigation"
+    },
+    {
+      "anchor": "Transition-Style",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSPageController/transitionStyle-swift.property"
+      ],
+      "title": "Transition Style"
+    },
+    {
+      "anchor": "Completing-Page-Transition",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSPageController/completeTransition()"
+      ],
+      "title": "Completing Page Transition"
+    },
+    {
+      "anchor": "Getting-the-View-Controller",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSPageController/selectedViewController"
+      ],
+      "title": "Getting the View Controller"
+    },
+    {
+      "anchor": "Constants",
+      "identifiers": [
+        "doc://com.apple.appkit/documentation/AppKit/NSPageController/TransitionStyle-swift.enum"
+      ],
+      "title": "Constants"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.8",
+              "name": "macOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "NSPageController"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPageController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPageController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.appkit/documentation/AppKit"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Customizing-the-Paged-Interface-Behavior",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSPageController/delegate",
+                "doc://com.apple.appkit/documentation/AppKit/NSPageControllerDelegate"
+              ],
+              "title": "Customizing the Paged Interface Behavior"
+            },
+            {
+              "anchor": "Page-Controller-Items",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSPageController/arrangedObjects",
+                "doc://com.apple.appkit/documentation/AppKit/NSPageController/navigateForward(to:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSPageController/selectedIndex"
+              ],
+              "title": "Page Controller Items"
+            },
+            {
+              "anchor": "Page-Controller-Navigation",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSPageController/navigateBack(_:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSPageController/navigateForward(_:)",
+                "doc://com.apple.appkit/documentation/AppKit/NSPageController/takeSelectedIndexFrom(_:)"
+              ],
+              "title": "Page Controller Navigation"
+            },
+            {
+              "anchor": "Transition-Style",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSPageController/transitionStyle-swift.property"
+              ],
+              "title": "Transition Style"
+            },
+            {
+              "anchor": "Completing-Page-Transition",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSPageController/completeTransition()"
+              ],
+              "title": "Completing Page Transition"
+            },
+            {
+              "anchor": "Getting-the-View-Controller",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSPageController/selectedViewController"
+              ],
+              "title": "Getting the View Controller"
+            },
+            {
+              "anchor": "Constants",
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSPageController/TransitionStyle-swift.enum"
+              ],
+              "title": "Constants"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSViewController"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            },
+            {
+              "identifiers": [
+                "doc://com.apple.appkit/documentation/AppKit/NSAnimatablePropertyContainer",
+                "doc://com.externally.resolved.symbol/c:objc(pl)NSCoding"
+              ],
+              "kind": "relationships",
+              "title": "Conforms To",
+              "type": "conformsTo"
+            }
+          ]
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "Mac Catalyst",
+                  "macOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "NSPageController"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.apple.appkit/documentation/AppKit/NSViewController",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSViewController",
+                    "text": "NSViewController"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTouchBarProvider/title",
+          "value": "NSTouchBarProvider"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTouchBarProvider/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTouchBarProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSTouchBarProvider/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSTouchBarProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPageController~1TransitionStyle-swift.enum/title",
+          "value": "NSPageControllerTransitionStyle"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPageController~1TransitionStyle-swift.enum/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPageControllerTransitionStyle"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPageController~1TransitionStyle-swift.enum/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPageControllerTransitionStyle"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPageController/title",
+          "value": "NSPageController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPageController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPageController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPageController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPageController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSStandardKeyBindingResponding/title",
+          "value": "NSStandardKeyBindingResponding"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSStandardKeyBindingResponding/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSStandardKeyBindingResponding"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSStandardKeyBindingResponding/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSStandardKeyBindingResponding"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPageControllerDelegate~1pageControllerDidEndLiveTransition(_:)/title",
+          "value": "pageControllerDidEndLiveTransition:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPageControllerDelegate~1pageControllerDidEndLiveTransition(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "pageControllerDidEndLiveTransition:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSEditor/title",
+          "value": "NSEditor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSEditor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSEditor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSEditor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSEditor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAnimatablePropertyContainer/title",
+          "value": "NSAnimatablePropertyContainer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAnimatablePropertyContainer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAnimatablePropertyContainer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAnimatablePropertyContainer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAnimatablePropertyContainer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPageController~1arrangedObjects/title",
+          "value": "arrangedObjects"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPageController~1arrangedObjects/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "arrangedObjects"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPageController~1navigateForward(_:)/title",
+          "value": "navigateForward:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPageController~1navigateForward(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "navigateForward:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPageController~1takeSelectedIndexFrom(_:)/title",
+          "value": "takeSelectedIndexFrom:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPageController~1takeSelectedIndexFrom(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "takeSelectedIndexFrom:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPageControllerDelegate/title",
+          "value": "NSPageControllerDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPageControllerDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPageControllerDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPageControllerDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPageControllerDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPageController~1transitionStyle-swift.property/title",
+          "value": "transitionStyle"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPageController~1transitionStyle-swift.property/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "transitionStyle"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPageControllerDelegate~1pageController(_:identifierFor:)/title",
+          "value": "pageController:identifierForObject:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPageControllerDelegate~1pageController(_:identifierFor:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "pageController:identifierForObject:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPageController~1navigateBack(_:)/title",
+          "value": "navigateBack:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPageController~1navigateBack(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "navigateBack:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPageController~1selectedIndex/title",
+          "value": "selectedIndex"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPageController~1selectedIndex/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "selectedIndex"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPageControllerDelegate~1pageControllerWillStartLiveTransition(_:)/title",
+          "value": "pageControllerWillStartLiveTransition:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPageControllerDelegate~1pageControllerWillStartLiveTransition(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "pageControllerWillStartLiveTransition:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPageController~1navigateForward(to:)/title",
+          "value": "navigateForwardToObject:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPageController~1navigateForward(to:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "navigateForwardToObject:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSViewController/title",
+          "value": "NSViewController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSViewController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSViewController/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPageControllerDelegate~1pageController(_:prepare:with:)/title",
+          "value": "pageController:prepareViewController:withObject:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPageControllerDelegate~1pageController(_:prepare:with:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "pageController:prepareViewController:withObject:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSplitView/title",
+          "value": "NSSplitView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSplitView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSSplitView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSplitView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSSplitView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSUserInterfaceItemIdentification/title",
+          "value": "NSUserInterfaceItemIdentification"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSUserInterfaceItemIdentification/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSUserInterfaceItemIdentification"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSUserInterfaceItemIdentification/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSUserInterfaceItemIdentification"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSUserActivityRestoring/title",
+          "value": "NSUserActivityRestoring"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSUserActivityRestoring/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSUserActivityRestoring"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSUserActivityRestoring/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSUserActivityRestoring"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPageController~1selectedViewController/title",
+          "value": "selectedViewController"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPageController~1selectedViewController/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "selectedViewController"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPageControllerDelegate~1pageController(_:didTransitionTo:)/title",
+          "value": "pageController:didTransitionToObject:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPageControllerDelegate~1pageController(_:didTransitionTo:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "pageController:didTransitionToObject:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSeguePerforming/title",
+          "value": "NSSeguePerforming"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSeguePerforming/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSSeguePerforming"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSSeguePerforming/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSSeguePerforming"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPageController~1delegate/title",
+          "value": "delegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPageController~1delegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "delegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView/title",
+          "value": "NSView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSView/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAnimationContext/title",
+          "value": "NSAnimationContext"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAnimationContext/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAnimationContext"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSAnimationContext/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSAnimationContext"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPageControllerDelegate~1pageController(_:viewControllerForIdentifier:)/title",
+          "value": "pageController:viewControllerForIdentifier:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPageControllerDelegate~1pageController(_:viewControllerForIdentifier:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "pageController:viewControllerForIdentifier:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPageController~1completeTransition()/title",
+          "value": "completeTransition"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.appkit~1documentation~1AppKit~1NSPageController~1completeTransition()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "completeTransition"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/appkit/nspagecontroller"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/appkit/nspagecontroller"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

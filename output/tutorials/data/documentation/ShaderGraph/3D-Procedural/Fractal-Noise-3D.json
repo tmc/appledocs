@@ -1,0 +1,3399 @@
+{
+  "abstract": [
+    {
+      "text": "Zero-centered 3D fractal noise created by summing several octaves of 3D Perlin noise.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://ShaderGraph-Docs/documentation/ShaderGraph",
+        "doc://ShaderGraph-Docs/documentation/ShaderGraph/3D-Procedural"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://ShaderGraph-Docs/documentation/ShaderGraph/3D-Procedural/Fractal-Noise-3D"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "Shader_ND_fractal3d_float",
+    "images": [
+      {
+        "identifier": "purple.seal.png",
+        "type": "icon"
+      }
+    ],
+    "modules": [
+      {
+        "name": "ShaderGraph"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "ShaderGraph Node",
+    "symbolKind": "subscript",
+    "title": "Fractal Noise 3D"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Parameter-Types",
+          "level": 2,
+          "text": "Parameter Types",
+          "type": "heading"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "columns": [
+                    {
+                      "content": [
+                        {
+                          "header": "row",
+                          "rows": [
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Input",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Type",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ],
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "code": "Amplitude",
+                                      "type": "codeVoice"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Float",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ],
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "code": "Octaves",
+                                      "type": "codeVoice"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Int32",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ],
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "code": "Lacunarity",
+                                      "type": "codeVoice"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Float",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ],
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "code": "Diminish",
+                                      "type": "codeVoice"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Float",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ],
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "code": "Position",
+                                      "type": "codeVoice"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Vector3f",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ]
+                          ],
+                          "type": "table"
+                        }
+                      ],
+                      "size": 1
+                    },
+                    {
+                      "content": [
+                        {
+                          "header": "row",
+                          "rows": [
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Output",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Type",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ],
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "code": "Out",
+                                      "type": "codeVoice"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Float",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ]
+                          ],
+                          "type": "table"
+                        }
+                      ],
+                      "size": 1
+                    }
+                  ],
+                  "numberOfColumns": 2,
+                  "type": "row"
+                }
+              ],
+              "title": "Fractal Noise 3D (float)"
+            },
+            {
+              "content": [
+                {
+                  "columns": [
+                    {
+                      "content": [
+                        {
+                          "header": "row",
+                          "rows": [
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Input",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Type",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ],
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "code": "Amplitude",
+                                      "type": "codeVoice"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Vector2f",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ],
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "code": "Octaves",
+                                      "type": "codeVoice"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Int32",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ],
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "code": "Lacunarity",
+                                      "type": "codeVoice"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Float",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ],
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "code": "Diminish",
+                                      "type": "codeVoice"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Float",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ],
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "code": "Position",
+                                      "type": "codeVoice"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Vector3f",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ]
+                          ],
+                          "type": "table"
+                        }
+                      ],
+                      "size": 1
+                    },
+                    {
+                      "content": [
+                        {
+                          "header": "row",
+                          "rows": [
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Output",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Type",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ],
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "code": "Out",
+                                      "type": "codeVoice"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Vector2f",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ]
+                          ],
+                          "type": "table"
+                        }
+                      ],
+                      "size": 1
+                    }
+                  ],
+                  "numberOfColumns": 2,
+                  "type": "row"
+                }
+              ],
+              "title": "Fractal Noise 3D (vector2f)"
+            },
+            {
+              "content": [
+                {
+                  "columns": [
+                    {
+                      "content": [
+                        {
+                          "header": "row",
+                          "rows": [
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Input",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Type",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ],
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "code": "Amplitude",
+                                      "type": "codeVoice"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Vector4f",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ],
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "code": "Octaves",
+                                      "type": "codeVoice"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Int32",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ],
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "code": "Lacunarity",
+                                      "type": "codeVoice"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Float",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ],
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "code": "Diminish",
+                                      "type": "codeVoice"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Float",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ],
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "code": "Position",
+                                      "type": "codeVoice"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Vector3f",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ]
+                          ],
+                          "type": "table"
+                        }
+                      ],
+                      "size": 1
+                    },
+                    {
+                      "content": [
+                        {
+                          "header": "row",
+                          "rows": [
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Output",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Type",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ],
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "code": "Out",
+                                      "type": "codeVoice"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Vector4f",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ]
+                          ],
+                          "type": "table"
+                        }
+                      ],
+                      "size": 1
+                    }
+                  ],
+                  "numberOfColumns": 2,
+                  "type": "row"
+                }
+              ],
+              "title": "Fractal Noise 3D (vector4f)"
+            },
+            {
+              "content": [
+                {
+                  "columns": [
+                    {
+                      "content": [
+                        {
+                          "header": "row",
+                          "rows": [
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Input",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Type",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ],
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "code": "Amplitude",
+                                      "type": "codeVoice"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Float",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ],
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "code": "Octaves",
+                                      "type": "codeVoice"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Int32",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ],
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "code": "Lacunarity",
+                                      "type": "codeVoice"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Float",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ],
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "code": "Diminish",
+                                      "type": "codeVoice"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Float",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ],
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "code": "Position",
+                                      "type": "codeVoice"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Vector3f",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ]
+                          ],
+                          "type": "table"
+                        }
+                      ],
+                      "size": 1
+                    },
+                    {
+                      "content": [
+                        {
+                          "header": "row",
+                          "rows": [
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Output",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Type",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ],
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "code": "Out",
+                                      "type": "codeVoice"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Vector3f",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ]
+                          ],
+                          "type": "table"
+                        }
+                      ],
+                      "size": 1
+                    }
+                  ],
+                  "numberOfColumns": 2,
+                  "type": "row"
+                }
+              ],
+              "title": "Fractal Noise 3D (vector3f FA)"
+            },
+            {
+              "content": [
+                {
+                  "columns": [
+                    {
+                      "content": [
+                        {
+                          "header": "row",
+                          "rows": [
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Input",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Type",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ],
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "code": "Amplitude",
+                                      "type": "codeVoice"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Vector4f",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ],
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "code": "Octaves",
+                                      "type": "codeVoice"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Int32",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ],
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "code": "Lacunarity",
+                                      "type": "codeVoice"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Float",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ],
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "code": "Diminish",
+                                      "type": "codeVoice"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Float",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ],
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "code": "Position",
+                                      "type": "codeVoice"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Vector3f",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ]
+                          ],
+                          "type": "table"
+                        }
+                      ],
+                      "size": 1
+                    },
+                    {
+                      "content": [
+                        {
+                          "header": "row",
+                          "rows": [
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Output",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Type",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ],
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "code": "Out",
+                                      "type": "codeVoice"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Color4",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ]
+                          ],
+                          "type": "table"
+                        }
+                      ],
+                      "size": 1
+                    }
+                  ],
+                  "numberOfColumns": 2,
+                  "type": "row"
+                }
+              ],
+              "title": "Fractal Noise 3D (color4f)"
+            },
+            {
+              "content": [
+                {
+                  "columns": [
+                    {
+                      "content": [
+                        {
+                          "header": "row",
+                          "rows": [
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Input",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Type",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ],
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "code": "Amplitude",
+                                      "type": "codeVoice"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Vector3f",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ],
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "code": "Octaves",
+                                      "type": "codeVoice"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Int32",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ],
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "code": "Lacunarity",
+                                      "type": "codeVoice"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Float",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ],
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "code": "Diminish",
+                                      "type": "codeVoice"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Float",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ],
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "code": "Position",
+                                      "type": "codeVoice"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Vector3f",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ]
+                          ],
+                          "type": "table"
+                        }
+                      ],
+                      "size": 1
+                    },
+                    {
+                      "content": [
+                        {
+                          "header": "row",
+                          "rows": [
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Output",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Type",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ],
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "code": "Out",
+                                      "type": "codeVoice"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Vector3f",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ]
+                          ],
+                          "type": "table"
+                        }
+                      ],
+                      "size": 1
+                    }
+                  ],
+                  "numberOfColumns": 2,
+                  "type": "row"
+                }
+              ],
+              "title": "Fractal Noise 3D (vector3f)"
+            },
+            {
+              "content": [
+                {
+                  "columns": [
+                    {
+                      "content": [
+                        {
+                          "header": "row",
+                          "rows": [
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Input",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Type",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ],
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "code": "Amplitude",
+                                      "type": "codeVoice"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Float",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ],
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "code": "Octaves",
+                                      "type": "codeVoice"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Int32",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ],
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "code": "Lacunarity",
+                                      "type": "codeVoice"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Float",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ],
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "code": "Diminish",
+                                      "type": "codeVoice"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Float",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ],
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "code": "Position",
+                                      "type": "codeVoice"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Vector3f",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ]
+                          ],
+                          "type": "table"
+                        }
+                      ],
+                      "size": 1
+                    },
+                    {
+                      "content": [
+                        {
+                          "header": "row",
+                          "rows": [
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Output",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Type",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ],
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "code": "Out",
+                                      "type": "codeVoice"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Color4",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ]
+                          ],
+                          "type": "table"
+                        }
+                      ],
+                      "size": 1
+                    }
+                  ],
+                  "numberOfColumns": 2,
+                  "type": "row"
+                }
+              ],
+              "title": "Fractal Noise 3D (color4f FA)"
+            },
+            {
+              "content": [
+                {
+                  "columns": [
+                    {
+                      "content": [
+                        {
+                          "header": "row",
+                          "rows": [
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Input",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Type",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ],
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "code": "Amplitude",
+                                      "type": "codeVoice"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Float",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ],
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "code": "Octaves",
+                                      "type": "codeVoice"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Int32",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ],
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "code": "Lacunarity",
+                                      "type": "codeVoice"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Float",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ],
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "code": "Diminish",
+                                      "type": "codeVoice"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Float",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ],
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "code": "Position",
+                                      "type": "codeVoice"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Vector3f",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ]
+                          ],
+                          "type": "table"
+                        }
+                      ],
+                      "size": 1
+                    },
+                    {
+                      "content": [
+                        {
+                          "header": "row",
+                          "rows": [
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Output",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Type",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ],
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "code": "Out",
+                                      "type": "codeVoice"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Vector2f",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ]
+                          ],
+                          "type": "table"
+                        }
+                      ],
+                      "size": 1
+                    }
+                  ],
+                  "numberOfColumns": 2,
+                  "type": "row"
+                }
+              ],
+              "title": "Fractal Noise 3D (vector2f FA)"
+            },
+            {
+              "content": [
+                {
+                  "columns": [
+                    {
+                      "content": [
+                        {
+                          "header": "row",
+                          "rows": [
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Input",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Type",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ],
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "code": "Amplitude",
+                                      "type": "codeVoice"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Vector3f",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ],
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "code": "Octaves",
+                                      "type": "codeVoice"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Int32",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ],
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "code": "Lacunarity",
+                                      "type": "codeVoice"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Float",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ],
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "code": "Diminish",
+                                      "type": "codeVoice"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Float",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ],
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "code": "Position",
+                                      "type": "codeVoice"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Vector3f",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ]
+                          ],
+                          "type": "table"
+                        }
+                      ],
+                      "size": 1
+                    },
+                    {
+                      "content": [
+                        {
+                          "header": "row",
+                          "rows": [
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Output",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Type",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ],
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "code": "Out",
+                                      "type": "codeVoice"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Color3",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ]
+                          ],
+                          "type": "table"
+                        }
+                      ],
+                      "size": 1
+                    }
+                  ],
+                  "numberOfColumns": 2,
+                  "type": "row"
+                }
+              ],
+              "title": "Fractal Noise 3D (color3f)"
+            },
+            {
+              "content": [
+                {
+                  "columns": [
+                    {
+                      "content": [
+                        {
+                          "header": "row",
+                          "rows": [
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Input",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Type",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ],
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "code": "Amplitude",
+                                      "type": "codeVoice"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Float",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ],
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "code": "Octaves",
+                                      "type": "codeVoice"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Int32",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ],
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "code": "Lacunarity",
+                                      "type": "codeVoice"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Float",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ],
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "code": "Diminish",
+                                      "type": "codeVoice"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Float",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ],
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "code": "Position",
+                                      "type": "codeVoice"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Vector3f",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ]
+                          ],
+                          "type": "table"
+                        }
+                      ],
+                      "size": 1
+                    },
+                    {
+                      "content": [
+                        {
+                          "header": "row",
+                          "rows": [
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Output",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Type",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ],
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "code": "Out",
+                                      "type": "codeVoice"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Color3",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ]
+                          ],
+                          "type": "table"
+                        }
+                      ],
+                      "size": 1
+                    }
+                  ],
+                  "numberOfColumns": 2,
+                  "type": "row"
+                }
+              ],
+              "title": "Fractal Noise 3D (color3f FA)"
+            },
+            {
+              "content": [
+                {
+                  "columns": [
+                    {
+                      "content": [
+                        {
+                          "header": "row",
+                          "rows": [
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Input",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Type",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ],
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "code": "Amplitude",
+                                      "type": "codeVoice"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Float",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ],
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "code": "Octaves",
+                                      "type": "codeVoice"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Int32",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ],
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "code": "Lacunarity",
+                                      "type": "codeVoice"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Float",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ],
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "code": "Diminish",
+                                      "type": "codeVoice"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Float",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ],
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "code": "Position",
+                                      "type": "codeVoice"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Vector3f",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ]
+                          ],
+                          "type": "table"
+                        }
+                      ],
+                      "size": 1
+                    },
+                    {
+                      "content": [
+                        {
+                          "header": "row",
+                          "rows": [
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Output",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Type",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ],
+                            [
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "code": "Out",
+                                      "type": "codeVoice"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ],
+                              [
+                                {
+                                  "inlineContent": [
+                                    {
+                                      "text": "Vector4f",
+                                      "type": "text"
+                                    }
+                                  ],
+                                  "type": "paragraph"
+                                }
+                              ]
+                            ]
+                          ],
+                          "type": "table"
+                        }
+                      ],
+                      "size": 1
+                    }
+                  ],
+                  "numberOfColumns": 2,
+                  "type": "row"
+                }
+              ],
+              "title": "Fractal Noise 3D (vector4f FA)"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "anchor": "Parameter-descriptions",
+          "level": 2,
+          "text": "Parameter descriptions",
+          "type": "heading"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The intensity of the generated noise. The higher the amplitude, the more pronounced the variations of the noise pattern.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "Amplitude",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The number of layers of 3D Perlin noise that the node sums together. The default value is 3.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "Octaves",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The exponential scale between each octave. This value determines how different each successive octave or layer of Perlin noise is from one another. The default value is ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "2.0",
+                        "type": "codeVoice"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "Lacunarity",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The rate that the amplitude of each successive octave is decreased. Maintain the value for this parameter in the range of ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "0.0-1.0",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ". The default value is ",
+                        "type": "text"
+                      },
+                      {
+                        "code": "0.5",
+                        "type": "codeVoice"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "Diminish",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "The 3D coordinates at which the data is read in order to map the texture onto a surface. The default is to use the current 3D object-space coordinates.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "Position",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Fractal Noise node produces its output by summing up multiple layers or octaves of 3D Perlin noise. The more octaves in the fractal noise, the finer the detail of the noise. Each successive octave differs from the previous; the ",
+              "type": "text"
+            },
+            {
+              "code": "Lacunarity",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "Diminish",
+              "type": "codeVoice"
+            },
+            {
+              "text": " parameters determine the difference.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Lacunarity",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " refers to the difference in frequency between each octavex. As this value increases, the resulting fractal noise becomes more uneven and less smooth.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Diminish",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " refers to how the amplitude changes between octaves. A value of ",
+              "type": "text"
+            },
+            {
+              "code": "1",
+              "type": "codeVoice"
+            },
+            {
+              "text": " indicates no change to the  amplitude. As the value decreases, the amplitude from octave to octave decreases more quickly.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Below is an example of a simple node graph that uses the Fractal Noise 3D node to generate a black and white pattern procedurally.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "FractalNoise3DGraph",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Multiply the incoming position with a constant float. The float changes the frequency of the generated noise to a higher number that corresponds with the pattern repeating more often.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Below, the resulting texture applies to a cube with various values for each parameter. All values are the default, unless specified under the image.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "columns": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "Fractal3DOctaves1",
+                      "metadata": {
+                        "abstract": [
+                          {
+                            "text": "1 Octave",
+                            "type": "text"
+                          }
+                        ]
+                      },
+                      "type": "image"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              "size": 1
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "Fractal3DOctaves3",
+                      "metadata": {
+                        "abstract": [
+                          {
+                            "text": "3 Octaves",
+                            "type": "text"
+                          }
+                        ]
+                      },
+                      "type": "image"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              "size": 1
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "Fractal3DOctaves5",
+                      "metadata": {
+                        "abstract": [
+                          {
+                            "text": "5 Octaves",
+                            "type": "text"
+                          }
+                        ]
+                      },
+                      "type": "image"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              "size": 1
+            }
+          ],
+          "numberOfColumns": 3,
+          "type": "row"
+        },
+        {
+          "columns": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "Fractal3DLacunarity1",
+                      "metadata": {
+                        "abstract": [
+                          {
+                            "text": "Lacunarity of 1",
+                            "type": "text"
+                          }
+                        ]
+                      },
+                      "type": "image"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              "size": 1
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "Fractal3DLacunarity2",
+                      "metadata": {
+                        "abstract": [
+                          {
+                            "text": "Lacunarity of 2",
+                            "type": "text"
+                          }
+                        ]
+                      },
+                      "type": "image"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              "size": 1
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "Fractal3DLacunarity5",
+                      "metadata": {
+                        "abstract": [
+                          {
+                            "text": "Lacunarity of 5",
+                            "type": "text"
+                          }
+                        ]
+                      },
+                      "type": "image"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              "size": 1
+            }
+          ],
+          "numberOfColumns": 3,
+          "type": "row"
+        },
+        {
+          "columns": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "Fractal3DDiminish0.2",
+                      "metadata": {
+                        "abstract": [
+                          {
+                            "text": "Diminish of 0.2",
+                            "type": "text"
+                          }
+                        ]
+                      },
+                      "type": "image"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              "size": 1
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "Fractal3DDiminish0.5",
+                      "metadata": {
+                        "abstract": [
+                          {
+                            "text": "Diminish of 0.5",
+                            "type": "text"
+                          }
+                        ]
+                      },
+                      "type": "image"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              "size": 1
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "Fractal3DDiminish1",
+                      "metadata": {
+                        "abstract": [
+                          {
+                            "text": "Diminish of 1",
+                            "type": "text"
+                          }
+                        ]
+                      },
+                      "type": "image"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              "size": 1
+            }
+          ],
+          "numberOfColumns": 3,
+          "type": "row"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Fractal3DDiminish0.2": {
+      "alt": null,
+      "identifier": "Fractal3DDiminish0.2",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/0efe5fc6e911cb096b733362fb2c6927/Fractal3DDiminish0.2.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f7aa6a4eb0432c984575fde31dfda0aa/Fractal3DDiminish0.2~dark.png"
+        }
+      ]
+    },
+    "Fractal3DDiminish0.5": {
+      "alt": null,
+      "identifier": "Fractal3DDiminish0.5",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1559ce00401ed2d1827a945699610fe1/Fractal3DDiminish0.5.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5629cf3cebe6ec2ea2225c504db5b3a5/Fractal3DDiminish0.5~dark.png"
+        }
+      ]
+    },
+    "Fractal3DDiminish1": {
+      "alt": null,
+      "identifier": "Fractal3DDiminish1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/284a8e2b82918359c95c1d78e6876247/Fractal3DDiminish1.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5a00e9edc1656f1fa82823217c31ca2b/Fractal3DDiminish1~dark.png"
+        }
+      ]
+    },
+    "Fractal3DLacunarity1": {
+      "alt": null,
+      "identifier": "Fractal3DLacunarity1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e72e9e2ded38148ba59b0c96d630f322/Fractal3DLacunarity1.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ed99204071cd8a47e5ef51965918547c/Fractal3DLacunarity1~dark.png"
+        }
+      ]
+    },
+    "Fractal3DLacunarity2": {
+      "alt": null,
+      "identifier": "Fractal3DLacunarity2",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1559ce00401ed2d1827a945699610fe1/Fractal3DLacunarity2.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5629cf3cebe6ec2ea2225c504db5b3a5/Fractal3DLacunarity2~dark.png"
+        }
+      ]
+    },
+    "Fractal3DLacunarity5": {
+      "alt": null,
+      "identifier": "Fractal3DLacunarity5",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/30cc09fe6e18c0c843c0e1541c07eb3e/Fractal3DLacunarity5.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/61cc7f8a72d4a1f4dd7873a82fb3aff0/Fractal3DLacunarity5~dark.png"
+        }
+      ]
+    },
+    "Fractal3DOctaves1": {
+      "alt": null,
+      "identifier": "Fractal3DOctaves1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/c23b310eb88ce7fe0b2f7e7c4fe88036/Fractal3DOctaves1.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ff3c901b03a338a4b15f5f1ca5d595b5/Fractal3DOctaves1~dark.png"
+        }
+      ]
+    },
+    "Fractal3DOctaves3": {
+      "alt": null,
+      "identifier": "Fractal3DOctaves3",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1559ce00401ed2d1827a945699610fe1/Fractal3DOctaves3.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5629cf3cebe6ec2ea2225c504db5b3a5/Fractal3DOctaves3~dark.png"
+        }
+      ]
+    },
+    "Fractal3DOctaves5": {
+      "alt": null,
+      "identifier": "Fractal3DOctaves5",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/571202d34b43b741a3bfc8b63d1f5839/Fractal3DOctaves5.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5d971906f188824db63ff6cdbb241b24/Fractal3DOctaves5~dark.png"
+        }
+      ]
+    },
+    "FractalNoise3DGraph": {
+      "alt": null,
+      "identifier": "FractalNoise3DGraph",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1623056b5ba6202fb824330ce949c39e/FractalNoise3DGraph.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b2066409025fce5273843be594fdb5b1/FractalNoise3DGraph~dark.png"
+        }
+      ]
+    },
+    "doc://ShaderGraph-Docs/documentation/ShaderGraph": {
+      "abstract": [
+        {
+          "text": "Create custom materials and effects for 3D content in Reality Composer Pro.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://ShaderGraph-Docs/documentation/ShaderGraph",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "ShaderGraph",
+      "type": "topic",
+      "url": "/documentation/shadergraph"
+    },
+    "doc://ShaderGraph-Docs/documentation/ShaderGraph/3D-Procedural": {
+      "abstract": [
+        {
+          "text": "Generate 3D noise patterns programmatically for your material.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://ShaderGraph-Docs/documentation/ShaderGraph/3D-Procedural",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "3D-Procedural",
+      "type": "topic",
+      "url": "/documentation/shadergraph/3d-procedural"
+    },
+    "doc://ShaderGraph-Docs/documentation/ShaderGraph/3D-Procedural/Cellular-Noise-3D": {
+      "abstract": [
+        {
+          "text": "A 3D cellular noise generator.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://ShaderGraph-Docs/documentation/ShaderGraph/3D-Procedural/Cellular-Noise-3D",
+      "images": [
+        {
+          "identifier": "purple.circle.hexagongrid.png",
+          "type": "icon"
+        }
+      ],
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Cellular Noise 3D",
+      "type": "topic",
+      "url": "/documentation/shadergraph/3d-procedural/cellular-noise-3d"
+    },
+    "doc://ShaderGraph-Docs/documentation/ShaderGraph/3D-Procedural/Fractal-Noise-3D": {
+      "abstract": [
+        {
+          "text": "Zero-centered 3D fractal noise created by summing several octaves of 3D Perlin noise.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://ShaderGraph-Docs/documentation/ShaderGraph/3D-Procedural/Fractal-Noise-3D",
+      "images": [
+        {
+          "identifier": "purple.seal.png",
+          "type": "icon"
+        }
+      ],
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Fractal Noise 3D",
+      "type": "topic",
+      "url": "/documentation/shadergraph/3d-procedural/fractal-noise-3d"
+    },
+    "doc://ShaderGraph-Docs/documentation/ShaderGraph/3D-Procedural/Noise-3D": {
+      "abstract": [
+        {
+          "text": "A 3D Perlin noise generator.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://ShaderGraph-Docs/documentation/ShaderGraph/3D-Procedural/Noise-3D",
+      "images": [
+        {
+          "identifier": "purple.circle.hexagongrid.png",
+          "type": "icon"
+        }
+      ],
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Noise 3D",
+      "type": "topic",
+      "url": "/documentation/shadergraph/3d-procedural/noise-3d"
+    },
+    "doc://ShaderGraph-Docs/documentation/ShaderGraph/3D-Procedural/Worley-Noise-3D": {
+      "abstract": [
+        {
+          "text": "A 3D Worley noise generator.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://ShaderGraph-Docs/documentation/ShaderGraph/3D-Procedural/Worley-Noise-3D",
+      "images": [
+        {
+          "identifier": "purple.circle.hexagongrid.png",
+          "type": "icon"
+        }
+      ],
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Worley Noise 3D",
+      "type": "topic",
+      "url": "/documentation/shadergraph/3d-procedural/worley-noise-3d"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "purple.circle.hexagongrid.png": {
+      "alt": "nil",
+      "identifier": "purple.circle.hexagongrid.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/d607f1a1f5add7da3fd22982133e27d5/purple.circle.hexagongrid.png"
+        }
+      ]
+    },
+    "purple.seal.png": {
+      "alt": "nil",
+      "identifier": "purple.seal.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a0c4f6dd53807e31d634935648388951/purple.seal.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Nodes",
+      "generated": true,
+      "identifiers": [
+        "doc://ShaderGraph-Docs/documentation/ShaderGraph/3D-Procedural/Noise-3D",
+        "doc://ShaderGraph-Docs/documentation/ShaderGraph/3D-Procedural/Cellular-Noise-3D",
+        "doc://ShaderGraph-Docs/documentation/ShaderGraph/3D-Procedural/Worley-Noise-3D"
+      ],
+      "title": "Nodes"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/shadergraph/3d-procedural/fractal-noise-3d"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

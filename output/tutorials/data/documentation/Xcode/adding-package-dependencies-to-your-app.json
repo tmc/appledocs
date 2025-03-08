@@ -1,0 +1,1202 @@
+{
+  "abstract": [
+    {
+      "text": "Integrate package dependencies to share code between projects, or leverage code from other developers.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Xcode/documentation/Xcode",
+        "doc://com.apple.Xcode/documentation/Xcode/projects-and-workspaces"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Xcode/documentation/Xcode",
+        "doc://com.apple.Xcode/documentation/Xcode/swift-packages"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Xcode/documentation/Xcode/adding-package-dependencies-to-your-app"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Adding package dependencies to your app"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Xcode comes with built-in support for source control accounts and makes it easy to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "leverage available Swift packages. Use Xcode to manage the versions of package dependencies",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and make sure your project has the most up-to-date code changes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A package author can publish their Swift package to either public or private",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "repositories. Xcode supports both private and publicly available packages.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Add-a-package-dependency",
+          "level": 3,
+          "text": "Add a package dependency",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To add a package dependency to your Xcode project, select File > Add Package Dependency and enter its source control repository URL. You can also navigate to your target’s General pane, and in the “Frameworks, Libraries, and Embedded Content” section, click the + button, select Add Other, and choose Add Package Dependency.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "adding-package-dependencies-to-your-app-1",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Instead of adding a source control repository URL, you can search for a package on ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://github.com",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://github.com/enterprise",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Add your GitHub",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "or GitHub Enterprise account in Xcode’s preferences, and a list of package repositories appears as you type. The following screenshot shows a list of repositories for the search term ",
+              "type": "text"
+            },
+            {
+              "code": "ExamplePackage",
+              "type": "codeVoice"
+            },
+            {
+              "text": " for a user who added their Git provider in Xcode’s preferences.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "adding-package-dependencies-to-your-app-2",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you’ve added a source control account in Xcode’s preferences and you haven’t yet",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "entered a search term, the list contains package repositories from:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Your Git Repositories",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Your team’s Git repositories",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Your starred repositories on ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://github.com",
+                      "isActive": true,
+                      "overridingTitle": "GitHub",
+                      "overridingTitleInlineContent": [
+                        {
+                          "text": "GitHub",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://github.com/enterprise",
+                      "isActive": true,
+                      "overridingTitle": "GitHub Enterprise",
+                      "overridingTitleInlineContent": [
+                        {
+                          "text": "GitHub Enterprise",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "reference"
+                    },
+                    {
+                      "text": ",",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://gitlab.com",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", or your ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "https://about.gitlab.com/free-trial/self-managed/",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "instance",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Only add package dependencies by trustworthy authors. In addition, adding",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "a binary dependency comes with drawbacks over adding a source-based dependency. See",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.Xcode/documentation/Xcode/identifying-binary-dependencies",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " to learn more.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Decide-on-package-requirements",
+          "level": 3,
+          "text": "Decide on package requirements",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you enter the package dependency’s URL or pick a Swift package from the list",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "of packages, choose one of three ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "package requirements",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ". Package requirements determine",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the allowed versions of the package dependency in your project, and Xcode updates",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "your package dependency based on the requirement that you choose.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Decide whether your project accepts updates to a package dependency up to the next major version or up to the next minor version. To be more restrictive, select a specific version range or an exact version. Major versions tend to have more significant changes than minor versions, and may require you to modify your code when they update. The version rule requires Swift packages to conform to semantic versioning. To learn more about the semantic versioning standard, visit ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "https://semver.org",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": ". Selecting the version requirement is the recommended way to add a package dependency. It allows you to create a balance between restricting changes and obtaining improvements and features.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Version",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Select the name of the branch for your package dependency to follow. Use branch-based dependencies when you’re developing multiple packages in tandem and don’t want to publish versions of your package dependencies.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Branch",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Select the commit hash for your package dependency to follow. Choosing this option isn’t recommended, and you should only use this option in exceptional cases. While pinning your package dependency to a specific commit ensures that the package dependency doesn’t change and your code remains stable, you don’t receive any updates. If you worry about the stability of a remote package, consider one of the more restrictive options of the version-based requirement.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Commit",
+                    "type": "text"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After you choose a package requirement, Xcode resolves and fetches the package dependency.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Select the package’s products that you need, and add them to targets in your project.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In Xcode’s Project navigator, the Swift Package Dependencies section shows the newly",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "added package dependency. Click the disclosure triangle to view the contents of the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "package as it exists locally on your Mac.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Although Xcode updates your package dependencies and resolves package versions",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "automatically, you can trigger both actions from the File > Packages menu.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Tip",
+          "style": "tip",
+          "type": "aside"
+        },
+        {
+          "anchor": "Use-features-and-assets-provided-by-a-Swift-package",
+          "level": 3,
+          "text": "Use features and assets provided by a Swift package",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To use a Swift package’s functionality in your app, import a package’s product as",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a Swift module. The following code snippet shows a view controller that imports a",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Swift package’s ",
+              "type": "text"
+            },
+            {
+              "code": "MyLibrary",
+              "type": "codeVoice"
+            },
+            {
+              "text": " module and uses the package’s functionality:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "import UIKit",
+            "",
+            "// Import the module that corresponds with the Swift package’s library product MyLibrary.",
+            "import MyLibrary",
+            "",
+            "class ViewController: UIViewController {",
+            "",
+            "    @IBOutlet var aLabel: UILabel!",
+            "    @IBOutlet var aButton: UIButton!",
+            "    @IBOutlet var anImageView: UIImageView!",
+            "    @IBOutlet var aCustomView: CustomView!",
+            "",
+            "    override func viewDidLoad() {",
+            "        super.viewDidLoad()",
+            "",
+            "        // Use a string that the package exposes as a property in the MyLibrary file.",
+            "        self.aLabel.text = MyLibrary.titleText",
+            "",
+            "        // Load an image that the MyLibrary package makes available through a class method.",
+            "        if let imagePath = MyClass.exampleImagePath() {",
+            "            self.anImageView.image = UIImage(contentsOfFile: imagePath)",
+            "        }",
+            "",
+            "        // Use the Swift package’s CustomView class.",
+            "        self.aCustomView = CustomView()",
+            "    }",
+            "",
+            "    // Show an alert by calling the package’s API.",
+            "    @IBAction func showAlert(_ sender: Any) {",
+            "        MyClass.showAlertUsing(viewController: self)",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Edit-a-package-dependency",
+          "level": 3,
+          "text": "Edit a package dependency",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can’t edit the content of your package dependencies directly. If you want to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "make changes to a package dependency, you need to add it as a ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "local package",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " to",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "your project. See ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/editing-a-package-dependency-as-a-local-package",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to learn",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "how you can override a package dependency with a local package and make edits.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Coordinate-package-versions-across-your-team",
+          "level": 3,
+          "text": "Coordinate package versions across your team",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When collaborating on a project, make sure everyone uses the same version of a package",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "dependency. When you add a package dependency to a project, Xcode creates the ",
+              "type": "text"
+            },
+            {
+              "code": "Package.resolved",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "file. It lists the specific Git commits to which each package dependency resolves",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/PackageDescription/Target/checksum",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " of each binary dependency. Commit",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "this file in Git to ensure that everyone is using the same version of a package dependency.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "You can find the ",
+                  "type": "text"
+                },
+                {
+                  "code": "Package.resolved",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " file inside your .",
+                  "type": "text"
+                },
+                {
+                  "code": "xcodeproj",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " directory",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "at ",
+                  "type": "text"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "[appName]",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "emphasis"
+                },
+                {
+                  "code": ".xcodeproj/project.workspace/xcshareddata/swiftpm/Package.resolved",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Tip",
+          "style": "tip",
+          "type": "aside"
+        },
+        {
+          "anchor": "Delete-a-package-dependency",
+          "level": 3,
+          "text": "Delete a package dependency",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To remove a package dependency from your Xcode project:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select your project in the Project Editor and navigate to the Packages Dependencies pane.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select the package from the list of package dependencies.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Click the - button from the bottom of the list and click Remove to confirm.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "adding-package-dependencies-to-your-app-3",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Xcode-PageImage-card.png": {
+      "alt": "The Xcode logo on a blue gradient background.",
+      "identifier": "Xcode-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cc63eacd8f7f660388b46204d1d9bbcb/Xcode-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/62dba87d5f60ec96eb48882c9dff86d8/Xcode-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "adding-package-dependencies-to-your-app-1": {
+      "alt": "Screenshot showing the dialogue for adding content to the “Frameworks, Libraries, and Embedded Content” with Add Package Dependency… selected.",
+      "identifier": "adding-package-dependencies-to-your-app-1",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/9e53f203a6a4c3e6fcc05ab6a52ad4bc/adding-package-dependencies-to-your-app-1@2x.png"
+        }
+      ]
+    },
+    "adding-package-dependencies-to-your-app-2": {
+      "alt": "Screenshot showing the dialogue to add a package dependency. The user has entered ExamplePackage in the search field.",
+      "identifier": "adding-package-dependencies-to-your-app-2",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5912b3a4fb5c25545fe107028c8be837/adding-package-dependencies-to-your-app-2@2x.png"
+        }
+      ]
+    },
+    "adding-package-dependencies-to-your-app-3": {
+      "alt": "Screenshot showing the confirmation dialogue that appears when removing a package dependency.",
+      "identifier": "adding-package-dependencies-to-your-app-3",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/02b97a57423502e8cfac9b1a5dcf6193/adding-package-dependencies-to-your-app-3@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Xcode/documentation/Xcode": {
+      "abstract": [
+        {
+          "text": "Build, test, and submit your app with Apple’s integrated development environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode",
+      "images": [
+        {
+          "identifier": "Xcode-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/editing-a-package-dependency-as-a-local-package": {
+      "abstract": [
+        {
+          "text": "Override a package dependency and edit its content by adding it as a local package.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/editing-a-package-dependency-as-a-local-package",
+      "kind": "article",
+      "role": "article",
+      "title": "Editing a package dependency as a local package",
+      "type": "topic",
+      "url": "/documentation/xcode/editing-a-package-dependency-as-a-local-package"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/embedding-a-helper-tool-in-a-sandboxed-app": {
+      "abstract": [
+        {
+          "text": "Add a command-line tool to a sandboxed app’s Xcode project so the resulting app can run it as a helper tool.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/embedding-a-helper-tool-in-a-sandboxed-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Embedding a command-line tool in a sandboxed app",
+      "type": "topic",
+      "url": "/documentation/xcode/embedding-a-helper-tool-in-a-sandboxed-app"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/identifying-binary-dependencies": {
+      "abstract": [
+        {
+          "text": "Find out if a package dependency references a binary and verify the binary’s authenticity.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/identifying-binary-dependencies",
+      "kind": "article",
+      "role": "article",
+      "title": "Identifying binary dependencies",
+      "type": "topic",
+      "url": "/documentation/xcode/identifying-binary-dependencies"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/projects-and-workspaces": {
+      "abstract": [
+        {
+          "text": "Manage the code and resources you use to build apps, libraries, and other",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "software for Apple platforms.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/projects-and-workspaces",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Projects and workspaces",
+      "type": "topic",
+      "url": "/documentation/xcode/projects-and-workspaces"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/swift-packages": {
+      "abstract": [
+        {
+          "text": "Create reusable code, organize it in a lightweight way, and share it across Xcode projects and with other developers.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/swift-packages",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Swift packages",
+      "type": "topic",
+      "url": "/documentation/xcode/swift-packages"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/managing-your-app-s-information-property-list": {
+      "abstract": [
+        {
+          "text": "Create and customize an information property list file for your app using Xcode.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/managing-your-app-s-information-property-list",
+      "kind": "article",
+      "role": "article",
+      "title": "Managing Your App’s Information Property List",
+      "type": "topic",
+      "url": "/documentation/BundleResources/managing-your-app-s-information-property-list"
+    },
+    "doc://com.apple.documentation/documentation/PackageDescription/Target/checksum": {
+      "abstract": [
+        {
+          "text": "The checksum for the archive file that contains the referenced binary artifact.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "final"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "checksum"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/PackageDescription/Target/checksum",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "checksum",
+      "type": "topic",
+      "url": "/documentation/PackageDescription/Target/checksum"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/creating-a-mac-version-of-your-ipad-app": {
+      "abstract": [
+        {
+          "text": "Bring your iPad app to macOS with Mac Catalyst.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/creating-a-mac-version-of-your-ipad-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Creating a Mac version of your iPad app",
+      "type": "topic",
+      "url": "/documentation/UIKit/creating-a-mac-version-of-your-ipad-app"
+    },
+    "doc://com.apple.documentation/documentation/WatchKit/setting-up-a-watchos-project": {
+      "abstract": [
+        {
+          "text": "Create a new watchOS project or add a watch target to an existing iOS project.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/WatchKit/setting-up-a-watchos-project",
+      "kind": "article",
+      "role": "article",
+      "title": "Setting up a watchOS project",
+      "type": "topic",
+      "url": "/documentation/WatchKit/setting-up-a-watchos-project"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://about.gitlab.com/free-trial/self-managed/": {
+      "identifier": "https://about.gitlab.com/free-trial/self-managed/",
+      "title": "self-managed GitLab",
+      "titleInlineContent": [
+        {
+          "text": "self-managed GitLab",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://about.gitlab.com/free-trial/self-managed/"
+    },
+    "https://github.com": {
+      "identifier": "https://github.com",
+      "title": "GitHub",
+      "titleInlineContent": [
+        {
+          "text": "GitHub",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://github.com"
+    },
+    "https://github.com/enterprise": {
+      "identifier": "https://github.com/enterprise",
+      "title": "GitHub Enterprise",
+      "titleInlineContent": [
+        {
+          "text": "GitHub Enterprise",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://github.com/enterprise"
+    },
+    "https://gitlab.com": {
+      "identifier": "https://gitlab.com",
+      "title": "GitLab",
+      "titleInlineContent": [
+        {
+          "text": "GitLab",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://gitlab.com"
+    },
+    "https://semver.org": {
+      "identifier": "https://semver.org",
+      "title": "Semantic Versioning 2.0.0",
+      "titleInlineContent": [
+        {
+          "text": "Semantic Versioning 2.0.0",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://semver.org"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Project-configuration",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/BundleResources/managing-your-app-s-information-property-list",
+        "doc://com.apple.documentation/documentation/UIKit/creating-a-mac-version-of-your-ipad-app",
+        "doc://com.apple.documentation/documentation/WatchKit/setting-up-a-watchos-project",
+        "doc://com.apple.Xcode/documentation/Xcode/embedding-a-helper-tool-in-a-sandboxed-app"
+      ],
+      "title": "Project configuration"
+    }
+  ]
+}

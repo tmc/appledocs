@@ -1,0 +1,3060 @@
+{
+  "abstract": [
+    {
+      "text": "A group containing Photos asset collections, such as Moments, Years, or folders of user-created albums.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.photokit/documentation/Photos"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.photokit/documentation/Photos/PHCollectionList"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)PHCollectionList",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "PHCollectionList"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Photos"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "PHCollectionList"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "8.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.13",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "PHCollectionList"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "PHCollectionList"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.photokit/documentation/PhotoKit/fetching-objects-and-requesting-changes",
+        "doc://com.apple.photokit/documentation/PhotoKit/requesting-changes-to-the-photo-library"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the Photos framework, collection objects (including asset collections) do not directly reference their member objects, and there are no other objects that directly reference collection objects. To retrieve the members of a collection list, fetch them with a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.photokit/documentation/Photos/PHCollection",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class method such as ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.photokit/documentation/Photos/PHCollection/fetchCollections(in:options:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". To find objects at the root of the collection list hierarchy (such as album folders with no parent folders), use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.photokit/documentation/Photos/PHCollection/fetchTopLevelUserCollections(with:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Accessing or modifying the Photos library requires explicit authorization from the user. The first time you call one of the methods listed in the Fetching Collection Lists group, Photos automatically prompts the user for authorization. (Alternatively, you can use the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.photokit/documentation/Photos/PHPhotoLibrary",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.photokit/documentation/Photos/PHPhotoLibrary/requestAuthorization(_:)",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " method to prompt the user at a time of your choosing.)",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Your app’s ",
+                  "type": "text"
+                },
+                {
+                  "code": "Info.plist",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " file must provide a value for the ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CocoaKeys.html#//apple_ref/doc/uid/TP40009251-SW17",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " key that explains to the user why your app is requesting Photos access. Apps linked on or after iOS 10.0 will crash if this key is not present.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Like assets and asset collections, collection lists are immutable. To create, rename, or delete collection lists, or to add, remove, or rearrange members in a collection list, create a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.photokit/documentation/Photos/PHCollectionListChangeRequest",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object within a photo library change block. For details on using change requests and change blocks to update the photo library, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.photokit/documentation/Photos/PHPhotoLibrary",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.photokit/documentation/PhotoKit/fetching-objects-and-requesting-changes": {
+      "abstract": [
+        {
+          "text": "Get assets, asset collections, and collection lists matching a specified query.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/PhotoKit/fetching-objects-and-requesting-changes",
+      "kind": "article",
+      "role": "article",
+      "title": "Fetching Objects and Requesting Changes",
+      "type": "topic",
+      "url": "/documentation/photokit/fetching-objects-and-requesting-changes"
+    },
+    "doc://com.apple.photokit/documentation/PhotoKit/requesting-changes-to-the-photo-library": {
+      "abstract": [
+        {
+          "text": "Create, delete, or modify assets and collections in a photo library by making change requests.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/PhotoKit/requesting-changes-to-the-photo-library",
+      "kind": "article",
+      "role": "article",
+      "title": "Requesting Changes to the Photo Library",
+      "type": "topic",
+      "url": "/documentation/photokit/requesting-changes-to-the-photo-library"
+    },
+    "doc://com.apple.photokit/documentation/Photos": {
+      "abstract": [
+        {
+          "text": "Work with image and video assets that the Photos app manages, including those from iCloud Photos and Live Photos.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/Photos",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Photos",
+      "type": "topic",
+      "url": "/documentation/photos"
+    },
+    "doc://com.apple.photokit/documentation/Photos/PHAsset": {
+      "abstract": [
+        {
+          "text": "A representation of an image, video, or Live Photo in the Photos library.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PHAsset"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/Photos/PHAsset",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PHAsset"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHAsset",
+      "type": "topic",
+      "url": "/documentation/photos/phasset"
+    },
+    "doc://com.apple.photokit/documentation/Photos/PHAssetCollection": {
+      "abstract": [
+        {
+          "text": "A representation of a Photos asset grouping, such as a moment, user-created album, or smart album.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PHAssetCollection"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/Photos/PHAssetCollection",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PHAssetCollection"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHAssetCollection",
+      "type": "topic",
+      "url": "/documentation/photos/phassetcollection"
+    },
+    "doc://com.apple.photokit/documentation/Photos/PHCollection": {
+      "abstract": [
+        {
+          "text": "The abstract superclass for Photos asset collections and collection lists.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PHCollection"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/Photos/PHCollection",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PHCollection"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHCollection",
+      "type": "topic",
+      "url": "/documentation/photos/phcollection"
+    },
+    "doc://com.apple.photokit/documentation/Photos/PHCollection/fetchCollections(in:options:)": {
+      "abstract": [
+        {
+          "text": "Retrieves collections from the specified collection list.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "fetchCollections"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "in"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PHCollectionList",
+          "text": "PHCollectionList"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PHFetchOptions",
+          "text": "PHFetchOptions"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PHFetchResult",
+          "text": "PHFetchResult"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PHCollection",
+          "text": "PHCollection"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/Photos/PHCollection/fetchCollections(in:options:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "fetchCollectionsInCollectionList:options:"
+        }
+      ],
+      "role": "symbol",
+      "title": "fetchCollections(in:options:)",
+      "type": "topic",
+      "url": "/documentation/photos/phcollection/fetchcollections(in:options:)"
+    },
+    "doc://com.apple.photokit/documentation/Photos/PHCollection/fetchTopLevelUserCollections(with:)": {
+      "abstract": [
+        {
+          "text": "Retrieves collections from the root of the photo library’s hierarchy of user-created albums and folders.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "fetchTopLevelUserCollections"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PHFetchOptions",
+          "text": "PHFetchOptions"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PHFetchResult",
+          "text": "PHFetchResult"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PHCollection",
+          "text": "PHCollection"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/Photos/PHCollection/fetchTopLevelUserCollections(with:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "fetchTopLevelUserCollectionsWithOptions:"
+        }
+      ],
+      "role": "symbol",
+      "title": "fetchTopLevelUserCollections(with:)",
+      "type": "topic",
+      "url": "/documentation/photos/phcollection/fetchtoplevelusercollections(with:)"
+    },
+    "doc://com.apple.photokit/documentation/Photos/PHCollectionList": {
+      "abstract": [
+        {
+          "text": "A group containing Photos asset collections, such as Moments, Years, or folders of user-created albums.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PHCollectionList"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/Photos/PHCollectionList",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PHCollectionList"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHCollectionList",
+      "type": "topic",
+      "url": "/documentation/photos/phcollectionlist"
+    },
+    "doc://com.apple.photokit/documentation/Photos/PHCollectionList/collectionListSubtype": {
+      "abstract": [
+        {
+          "text": "The type of asset collection grouping the collection list represents.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "collectionListSubtype"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@PHCollectionListSubtype",
+          "text": "PHCollectionListSubtype"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/Photos/PHCollectionList/collectionListSubtype",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "collectionListSubtype"
+        }
+      ],
+      "role": "symbol",
+      "title": "collectionListSubtype",
+      "type": "topic",
+      "url": "/documentation/photos/phcollectionlist/collectionlistsubtype"
+    },
+    "doc://com.apple.photokit/documentation/Photos/PHCollectionList/collectionListType": {
+      "abstract": [
+        {
+          "text": "The type of asset collection group that the collection list represents.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "collectionListType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@PHCollectionListType",
+          "text": "PHCollectionListType"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/Photos/PHCollectionList/collectionListType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "collectionListType"
+        }
+      ],
+      "role": "symbol",
+      "title": "collectionListType",
+      "type": "topic",
+      "url": "/documentation/photos/phcollectionlist/collectionlisttype"
+    },
+    "doc://com.apple.photokit/documentation/Photos/PHCollectionList/endDate": {
+      "abstract": [
+        {
+          "text": "The latest creation date among all assets in the collection list.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "endDate"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DateV",
+          "text": "Date"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/Photos/PHCollectionList/endDate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "endDate"
+        }
+      ],
+      "role": "symbol",
+      "title": "endDate",
+      "type": "topic",
+      "url": "/documentation/photos/phcollectionlist/enddate"
+    },
+    "doc://com.apple.photokit/documentation/Photos/PHCollectionList/fetchCollectionLists(with:subtype:options:)": {
+      "abstract": [
+        {
+          "text": "Retrieves collection lists of the specified type.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "fetchCollectionLists"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@PHCollectionListType",
+          "text": "PHCollectionListType"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "subtype"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@PHCollectionListSubtype",
+          "text": "PHCollectionListSubtype"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PHFetchOptions",
+          "text": "PHFetchOptions"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PHFetchResult",
+          "text": "PHFetchResult"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PHCollectionList",
+          "text": "PHCollectionList"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/Photos/PHCollectionList/fetchCollectionLists(with:subtype:options:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "fetchCollectionListsWithType:subtype:options:"
+        }
+      ],
+      "role": "symbol",
+      "title": "fetchCollectionLists(with:subtype:options:)",
+      "type": "topic",
+      "url": "/documentation/photos/phcollectionlist/fetchcollectionlists(with:subtype:options:)"
+    },
+    "doc://com.apple.photokit/documentation/Photos/PHCollectionList/fetchCollectionLists(withLocalIdentifiers:options:)": {
+      "abstract": [
+        {
+          "text": "Retrieves collection lists with the specified local-device-specific unique identifiers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "fetchCollectionLists"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withLocalIdentifiers"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PHFetchOptions",
+          "text": "PHFetchOptions"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PHFetchResult",
+          "text": "PHFetchResult"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PHCollectionList",
+          "text": "PHCollectionList"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/Photos/PHCollectionList/fetchCollectionLists(withLocalIdentifiers:options:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "fetchCollectionListsWithLocalIdentifiers:options:"
+        }
+      ],
+      "role": "symbol",
+      "title": "fetchCollectionLists(withLocalIdentifiers:options:)",
+      "type": "topic",
+      "url": "/documentation/photos/phcollectionlist/fetchcollectionlists(withlocalidentifiers:options:)"
+    },
+    "doc://com.apple.photokit/documentation/Photos/PHCollectionList/fetchCollectionListsContaining(_:options:)": {
+      "abstract": [
+        {
+          "text": "Retrieves collection lists that contain the specified collection.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "fetchCollectionListsContaining"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PHCollection",
+          "text": "PHCollection"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PHFetchOptions",
+          "text": "PHFetchOptions"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PHFetchResult",
+          "text": "PHFetchResult"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PHCollectionList",
+          "text": "PHCollectionList"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/Photos/PHCollectionList/fetchCollectionListsContaining(_:options:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "fetchCollectionListsContainingCollection:options:"
+        }
+      ],
+      "role": "symbol",
+      "title": "fetchCollectionListsContaining(_:options:)",
+      "type": "topic",
+      "url": "/documentation/photos/phcollectionlist/fetchcollectionlistscontaining(_:options:)"
+    },
+    "doc://com.apple.photokit/documentation/Photos/PHCollectionList/fetchMomentLists(with:containingMoment:options:)": {
+      "abstract": [
+        {
+          "text": "Retrieves collection lists of the specified moment list type containing the specified moment.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "fetchMomentLists"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@PHCollectionListSubtype",
+          "text": "PHCollectionListSubtype"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "containingMoment"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PHAssetCollection",
+          "text": "PHAssetCollection"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PHFetchOptions",
+          "text": "PHFetchOptions"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PHFetchResult",
+          "text": "PHFetchResult"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PHCollectionList",
+          "text": "PHCollectionList"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/Photos/PHCollectionList/fetchMomentLists(with:containingMoment:options:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "fetchMomentListsWithSubtype:containingMoment:options:"
+        }
+      ],
+      "role": "symbol",
+      "title": "fetchMomentLists(with:containingMoment:options:)",
+      "type": "topic",
+      "url": "/documentation/photos/phcollectionlist/fetchmomentlists(with:containingmoment:options:)"
+    },
+    "doc://com.apple.photokit/documentation/Photos/PHCollectionList/fetchMomentLists(with:options:)": {
+      "abstract": [
+        {
+          "text": "Retrieves collection lists of the specified moment list type.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "fetchMomentLists"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@PHCollectionListSubtype",
+          "text": "PHCollectionListSubtype"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PHFetchOptions",
+          "text": "PHFetchOptions"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PHFetchResult",
+          "text": "PHFetchResult"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PHCollectionList",
+          "text": "PHCollectionList"
+        },
+        {
+          "kind": "text",
+          "text": ">"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/Photos/PHCollectionList/fetchMomentLists(with:options:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "fetchMomentListsWithSubtype:options:"
+        }
+      ],
+      "role": "symbol",
+      "title": "fetchMomentLists(with:options:)",
+      "type": "topic",
+      "url": "/documentation/photos/phcollectionlist/fetchmomentlists(with:options:)"
+    },
+    "doc://com.apple.photokit/documentation/Photos/PHCollectionList/localizedLocationNames": {
+      "abstract": [
+        {
+          "text": "The names of locations grouped by the collection (an array of ",
+          "type": "text"
+        },
+        {
+          "code": "NSString",
+          "type": "codeVoice"
+        },
+        {
+          "text": " objects).",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "localizedLocationNames"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/Photos/PHCollectionList/localizedLocationNames",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "localizedLocationNames"
+        }
+      ],
+      "role": "symbol",
+      "title": "localizedLocationNames",
+      "type": "topic",
+      "url": "/documentation/photos/phcollectionlist/localizedlocationnames"
+    },
+    "doc://com.apple.photokit/documentation/Photos/PHCollectionList/startDate": {
+      "abstract": [
+        {
+          "text": "The earliest creation date among all assets in the collection list.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "startDate"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DateV",
+          "text": "Date"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/Photos/PHCollectionList/startDate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "startDate"
+        }
+      ],
+      "role": "symbol",
+      "title": "startDate",
+      "type": "topic",
+      "url": "/documentation/photos/phcollectionlist/startdate"
+    },
+    "doc://com.apple.photokit/documentation/Photos/PHCollectionList/transientCollectionList(with:title:)": {
+      "abstract": [
+        {
+          "text": "Creates a temporary collection list that contains the specified asset collections.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "transientCollectionList"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PHCollection",
+          "text": "PHCollection"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "title"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PHCollectionList",
+          "text": "PHCollectionList"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/Photos/PHCollectionList/transientCollectionList(with:title:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "transientCollectionListWithCollections:title:"
+        }
+      ],
+      "role": "symbol",
+      "title": "transientCollectionList(with:title:)",
+      "type": "topic",
+      "url": "/documentation/photos/phcollectionlist/transientcollectionlist(with:title:)"
+    },
+    "doc://com.apple.photokit/documentation/Photos/PHCollectionList/transientCollectionList(withCollectionsFetchResult:title:)": {
+      "abstract": [
+        {
+          "text": "Creates a temporary collection list containing the asset collections in the specified fetch result.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "transientCollectionList"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withCollectionsFetchResult"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PHFetchResult",
+          "text": "PHFetchResult"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PHCollection",
+          "text": "PHCollection"
+        },
+        {
+          "kind": "text",
+          "text": ">, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "title"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)PHCollectionList",
+          "text": "PHCollectionList"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/Photos/PHCollectionList/transientCollectionList(withCollectionsFetchResult:title:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "transientCollectionListWithCollectionsFetchResult:title:"
+        }
+      ],
+      "role": "symbol",
+      "title": "transientCollectionList(withCollectionsFetchResult:title:)",
+      "type": "topic",
+      "url": "/documentation/photos/phcollectionlist/transientcollectionlist(withcollectionsfetchresult:title:)"
+    },
+    "doc://com.apple.photokit/documentation/Photos/PHCollectionListChangeRequest": {
+      "abstract": [
+        {
+          "text": "A request to create, delete, or modify a Photos collection list, for use in a photo library change block.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PHCollectionListChangeRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/Photos/PHCollectionListChangeRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PHCollectionListChangeRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHCollectionListChangeRequest",
+      "type": "topic",
+      "url": "/documentation/photos/phcollectionlistchangerequest"
+    },
+    "doc://com.apple.photokit/documentation/Photos/PHCollectionListSubtype": {
+      "abstract": [
+        {
+          "text": "Major distinctions between kinds of collection list, used by the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.photokit/documentation/Photos/PHCollectionList/collectionListSubtype",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " property and ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.photokit/documentation/Photos/PHCollectionList/fetchCollectionLists(with:subtype:options:)",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ", ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.photokit/documentation/Photos/PHCollectionList/fetchMomentLists(with:containingMoment:options:)",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ", and ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.photokit/documentation/Photos/PHCollectionList/fetchMomentLists(with:options:)",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " methods.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PHCollectionListSubtype"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/Photos/PHCollectionListSubtype",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PHCollectionListSubtype"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHCollectionListSubtype",
+      "type": "topic",
+      "url": "/documentation/photos/phcollectionlistsubtype"
+    },
+    "doc://com.apple.photokit/documentation/Photos/PHCollectionListType": {
+      "abstract": [
+        {
+          "text": "Major distinctions between kinds of collection list, used by the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.photokit/documentation/Photos/PHCollectionList/collectionListType",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " property and ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.photokit/documentation/Photos/PHCollectionList/fetchCollectionLists(with:subtype:options:)",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " method.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PHCollectionListType"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/Photos/PHCollectionListType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PHCollectionListType"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHCollectionListType",
+      "type": "topic",
+      "url": "/documentation/photos/phcollectionlisttype"
+    },
+    "doc://com.apple.photokit/documentation/Photos/PHFetchOptions": {
+      "abstract": [
+        {
+          "text": "A set of options that affect the filtering, sorting, and management of results that Photos returns when you fetch asset or collection objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PHFetchOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/Photos/PHFetchOptions",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PHFetchOptions"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHFetchOptions",
+      "type": "topic",
+      "url": "/documentation/photos/phfetchoptions"
+    },
+    "doc://com.apple.photokit/documentation/Photos/PHFetchResult": {
+      "abstract": [
+        {
+          "text": "An ordered list of assets or collections returned from a Photos fetch method.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PHFetchResult"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/Photos/PHFetchResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PHFetchResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHFetchResult",
+      "type": "topic",
+      "url": "/documentation/photos/phfetchresult"
+    },
+    "doc://com.apple.photokit/documentation/Photos/PHObject": {
+      "abstract": [
+        {
+          "text": "The abstract superclass for Photos model objects (assets and collections).",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PHObject"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/Photos/PHObject",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PHObject"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHObject",
+      "type": "topic",
+      "url": "/documentation/photos/phobject"
+    },
+    "doc://com.apple.photokit/documentation/Photos/PHPhotoLibrary": {
+      "abstract": [
+        {
+          "text": "An object that manages access and changes to the user’s photo library.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PHPhotoLibrary"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/Photos/PHPhotoLibrary",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PHPhotoLibrary"
+        }
+      ],
+      "role": "symbol",
+      "title": "PHPhotoLibrary",
+      "type": "topic",
+      "url": "/documentation/photos/phphotolibrary"
+    },
+    "doc://com.apple.photokit/documentation/Photos/PHPhotoLibrary/requestAuthorization(_:)": {
+      "abstract": [
+        {
+          "text": "Requests the user’s permission, if needed, to access the photo library.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "requestAuthorization"
+        },
+        {
+          "kind": "text",
+          "text": "(("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@PHAuthorizationStatus",
+          "text": "PHAuthorizationStatus"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.photokit/documentation/Photos/PHPhotoLibrary/requestAuthorization(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "requestAuthorization:"
+        }
+      ],
+      "role": "symbol",
+      "title": "requestAuthorization(_:)",
+      "type": "topic",
+      "url": "/documentation/photos/phphotolibrary/requestauthorization(_:)"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying": {
+      "abstract": [
+        {
+          "text": "A protocol that objects adopt to provide functional copies of themselves.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSCopying"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSCopying",
+      "type": "topic",
+      "url": "/documentation/foundation/nscopying"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    },
+    "https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CocoaKeys.html#//apple_ref/doc/uid/TP40009251-SW17": {
+      "identifier": "https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CocoaKeys.html#//apple_ref/doc/uid/TP40009251-SW17",
+      "title": "NSPhotoLibraryUsageDescription",
+      "titleInlineContent": [
+        {
+          "text": "NSPhotoLibraryUsageDescription",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CocoaKeys.html#//apple_ref/doc/uid/TP40009251-SW17"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.photokit/documentation/Photos/PHCollection"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSCopying",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+        "doc://com.externally.resolved.symbol/s:s8SendableP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Asset-retrieval",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.photokit/documentation/PhotoKit/fetching-objects-and-requesting-changes",
+        "doc://com.apple.photokit/documentation/Photos/PHAsset",
+        "doc://com.apple.photokit/documentation/Photos/PHAssetCollection",
+        "doc://com.apple.photokit/documentation/Photos/PHCollection",
+        "doc://com.apple.photokit/documentation/Photos/PHObject",
+        "doc://com.apple.photokit/documentation/Photos/PHFetchResult",
+        "doc://com.apple.photokit/documentation/Photos/PHFetchOptions"
+      ],
+      "title": "Asset retrieval"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Fetching-Collection-Lists",
+      "identifiers": [
+        "doc://com.apple.photokit/documentation/Photos/PHCollectionList/fetchCollectionListsContaining(_:options:)",
+        "doc://com.apple.photokit/documentation/Photos/PHCollectionList/fetchCollectionLists(withLocalIdentifiers:options:)",
+        "doc://com.apple.photokit/documentation/Photos/PHCollectionList/fetchCollectionLists(with:subtype:options:)",
+        "doc://com.apple.photokit/documentation/Photos/PHCollectionList/fetchMomentLists(with:containingMoment:options:)",
+        "doc://com.apple.photokit/documentation/Photos/PHCollectionList/fetchMomentLists(with:options:)"
+      ],
+      "title": "Fetching Collection Lists"
+    },
+    {
+      "anchor": "Reading-Collection-List-Metadata",
+      "identifiers": [
+        "doc://com.apple.photokit/documentation/Photos/PHCollectionList/collectionListType",
+        "doc://com.apple.photokit/documentation/Photos/PHCollectionListType",
+        "doc://com.apple.photokit/documentation/Photos/PHCollectionList/collectionListSubtype",
+        "doc://com.apple.photokit/documentation/Photos/PHCollectionListSubtype",
+        "doc://com.apple.photokit/documentation/Photos/PHCollectionList/startDate",
+        "doc://com.apple.photokit/documentation/Photos/PHCollectionList/endDate",
+        "doc://com.apple.photokit/documentation/Photos/PHCollectionList/localizedLocationNames"
+      ],
+      "title": "Reading Collection List Metadata"
+    },
+    {
+      "anchor": "Creating-Temporary-Collection-Lists",
+      "identifiers": [
+        "doc://com.apple.photokit/documentation/Photos/PHCollectionList/transientCollectionList(with:title:)",
+        "doc://com.apple.photokit/documentation/Photos/PHCollectionList/transientCollectionList(withCollectionsFetchResult:title:)"
+      ],
+      "title": "Creating Temporary Collection Lists"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "8.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "8.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.13",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.0",
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "PHCollectionList"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHCollectionList"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHCollectionList"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.photokit/documentation/Photos"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Fetching-Collection-Lists",
+              "identifiers": [
+                "doc://com.apple.photokit/documentation/Photos/PHCollectionList/fetchCollectionListsContaining(_:options:)",
+                "doc://com.apple.photokit/documentation/Photos/PHCollectionList/fetchCollectionLists(withLocalIdentifiers:options:)",
+                "doc://com.apple.photokit/documentation/Photos/PHCollectionList/fetchCollectionLists(with:subtype:options:)",
+                "doc://com.apple.photokit/documentation/Photos/PHCollectionList/fetchMomentLists(with:containingMoment:options:)",
+                "doc://com.apple.photokit/documentation/Photos/PHCollectionList/fetchMomentLists(with:options:)"
+              ],
+              "title": "Fetching Collection Lists"
+            },
+            {
+              "anchor": "Reading-Collection-List-Metadata",
+              "identifiers": [
+                "doc://com.apple.photokit/documentation/Photos/PHCollectionList/collectionListType",
+                "doc://com.apple.photokit/documentation/Photos/PHCollectionListType",
+                "doc://com.apple.photokit/documentation/Photos/PHCollectionList/collectionListSubtype",
+                "doc://com.apple.photokit/documentation/Photos/PHCollectionListSubtype",
+                "doc://com.apple.photokit/documentation/Photos/PHCollectionList/startDate",
+                "doc://com.apple.photokit/documentation/Photos/PHCollectionList/endDate",
+                "doc://com.apple.photokit/documentation/Photos/PHCollectionList/localizedLocationNames"
+              ],
+              "title": "Reading Collection List Metadata"
+            },
+            {
+              "anchor": "Creating-Temporary-Collection-Lists",
+              "identifiers": [
+                "doc://com.apple.photokit/documentation/Photos/PHCollectionList/transientCollectionList(with:title:)",
+                "doc://com.apple.photokit/documentation/Photos/PHCollectionList/transientCollectionList(withCollectionsFetchResult:title:)"
+              ],
+              "title": "Creating Temporary Collection Lists"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.apple.photokit/documentation/Photos/PHCollection"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Asset-retrieval",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.photokit/documentation/Photos/PHAsset",
+                "doc://com.apple.photokit/documentation/Photos/PHAssetCollection",
+                "doc://com.apple.photokit/documentation/Photos/PHCollection",
+                "doc://com.apple.photokit/documentation/Photos/PHObject",
+                "doc://com.apple.photokit/documentation/Photos/PHFetchResult",
+                "doc://com.apple.photokit/documentation/Photos/PHFetchOptions"
+              ],
+              "title": "Asset retrieval"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "PHCollectionList"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.apple.photokit/documentation/Photos/PHCollection",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)PHCollection",
+                    "text": "PHCollection"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHPhotoLibrary/title",
+          "value": "PHPhotoLibrary"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHPhotoLibrary/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHPhotoLibrary"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHPhotoLibrary/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHPhotoLibrary"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHCollectionList~1fetchCollectionLists(withLocalIdentifiers:options:)/title",
+          "value": "fetchCollectionListsWithLocalIdentifiers:options:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHCollectionList~1fetchCollectionLists(withLocalIdentifiers:options:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "fetchCollectionListsWithLocalIdentifiers:options:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHCollectionList~1localizedLocationNames/title",
+          "value": "localizedLocationNames"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHCollectionList~1localizedLocationNames/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "localizedLocationNames"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHFetchOptions/title",
+          "value": "PHFetchOptions"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHFetchOptions/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHFetchOptions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHFetchOptions/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHFetchOptions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHFetchResult/title",
+          "value": "PHFetchResult"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHFetchResult/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHFetchResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHFetchResult/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHFetchResult"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHCollectionListSubtype/title",
+          "value": "PHCollectionListSubtype"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHCollectionListSubtype/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHCollectionListSubtype"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHCollectionListSubtype/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHCollectionListSubtype"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHCollectionList~1transientCollectionList(withCollectionsFetchResult:title:)/title",
+          "value": "transientCollectionListWithCollectionsFetchResult:title:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHCollectionList~1transientCollectionList(withCollectionsFetchResult:title:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "transientCollectionListWithCollectionsFetchResult:title:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHAsset/title",
+          "value": "PHAsset"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHAsset/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHAsset"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHAsset/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHAsset"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHCollectionListType/title",
+          "value": "PHCollectionListType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHCollectionListType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHCollectionListType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHCollectionListType/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHCollectionListType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHPhotoLibrary~1requestAuthorization(_:)/title",
+          "value": "requestAuthorization:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHPhotoLibrary~1requestAuthorization(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "requestAuthorization:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHCollectionList~1fetchCollectionListsContaining(_:options:)/title",
+          "value": "fetchCollectionListsContainingCollection:options:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHCollectionList~1fetchCollectionListsContaining(_:options:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "fetchCollectionListsContainingCollection:options:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHCollectionList~1fetchMomentLists(with:options:)/title",
+          "value": "fetchMomentListsWithSubtype:options:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHCollectionList~1fetchMomentLists(with:options:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "fetchMomentListsWithSubtype:options:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHAssetCollection/title",
+          "value": "PHAssetCollection"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHAssetCollection/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHAssetCollection"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHAssetCollection/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHAssetCollection"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHCollectionList~1transientCollectionList(with:title:)/title",
+          "value": "transientCollectionListWithCollections:title:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHCollectionList~1transientCollectionList(with:title:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "transientCollectionListWithCollections:title:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHCollection~1fetchCollections(in:options:)/title",
+          "value": "fetchCollectionsInCollectionList:options:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHCollection~1fetchCollections(in:options:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "fetchCollectionsInCollectionList:options:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHCollectionListChangeRequest/title",
+          "value": "PHCollectionListChangeRequest"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHCollectionListChangeRequest/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHCollectionListChangeRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHCollectionListChangeRequest/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHCollectionListChangeRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHCollectionList~1startDate/title",
+          "value": "startDate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHCollectionList~1startDate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "startDate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHObject/title",
+          "value": "PHObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHObject/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHObject/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHCollection/title",
+          "value": "PHCollection"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHCollection/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHCollection"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHCollection/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHCollection"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHCollectionList~1fetchMomentLists(with:containingMoment:options:)/title",
+          "value": "fetchMomentListsWithSubtype:containingMoment:options:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHCollectionList~1fetchMomentLists(with:containingMoment:options:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "fetchMomentListsWithSubtype:containingMoment:options:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHCollectionList~1collectionListSubtype/title",
+          "value": "collectionListSubtype"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHCollectionList~1collectionListSubtype/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "collectionListSubtype"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHCollectionList/title",
+          "value": "PHCollectionList"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHCollectionList/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHCollectionList"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHCollectionList/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "PHCollectionList"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHCollection~1fetchTopLevelUserCollections(with:)/title",
+          "value": "fetchTopLevelUserCollectionsWithOptions:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHCollection~1fetchTopLevelUserCollections(with:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "fetchTopLevelUserCollectionsWithOptions:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHCollectionList~1endDate/title",
+          "value": "endDate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHCollectionList~1endDate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "endDate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHCollectionList~1fetchCollectionLists(with:subtype:options:)/title",
+          "value": "fetchCollectionListsWithType:subtype:options:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHCollectionList~1fetchCollectionLists(with:subtype:options:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "fetchCollectionListsWithType:subtype:options:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHCollectionList~1collectionListType/title",
+          "value": "collectionListType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.photokit~1documentation~1Photos~1PHCollectionList~1collectionListType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "collectionListType"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/photos/phcollectionlist"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/photos/phcollectionlist"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

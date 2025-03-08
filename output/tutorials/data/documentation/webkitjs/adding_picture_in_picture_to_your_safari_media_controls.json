@@ -1,0 +1,273 @@
+{
+  "abstract": [
+    {
+      "text": "Create a custom control that adds Picture in Picture to your Safari media player. ",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/webkitjs"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.documentation/documentation/webkitjs/adding_picture_in_picture_to_your_safari_media_controls"
+  },
+  "kind": "article",
+  "legacy_identifier": 2940029,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "WebKit JS"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Adding Picture in Picture to your Safari media controls"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Although default controls are available for audio and video elements in your Safari webpage, you can also create your own custom media controls. One of the custom controls you should add is Picture in Picture. With Picture in Picture, your video remains in view in a floating video overlay while users interact with other apps.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "2940030",
+          "level": 3,
+          "text": "Write markup for a custom control",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In this example, the custom controls for a video have only a Play button and a hidden Pause button: ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "<video id=\"video\" src=\"my-video.mp4\"></video>",
+            "<div id=\"controls\">",
+            "    <button id=\"playButton\">Play</button>",
+            "    <button id=\"pauseButton\" hidden>Pause</button>",
+            "</div>"
+          ],
+          "metadata": {
+            "abstract": [],
+            "anchor": "2940033",
+            "title": "Listing 1"
+          },
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "2940031",
+          "level": 3,
+          "text": "Add a Picture-in-Picture element to your markup",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Add markup for a new Picture-in-Picture button, which is visible by default. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "<video id=\"video\" src=\"my-video.mp4\"></video>",
+            "<div id=\"controls\">",
+            "    <button id=\"playButton\">Play</button>",
+            "    <button id=\"pauseButton\" hidden>Pause</button>",
+            "    <button id=\"PiPButton\">PiP</button>",
+            "</div> "
+          ],
+          "metadata": {
+            "abstract": [],
+            "anchor": "2940034",
+            "title": "Listing 2"
+          },
+          "syntax": "other",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "2940032",
+          "level": 3,
+          "text": "Add functionality to the button",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Add a function to toggle Picture in Picture using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/webkitjs/htmlvideoelement/1631224-webkitsetpresentationmode",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property from the presentation mode API.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "if (video.webkitSupportsPresentationMode && video.webkitSupportsPresentationMode(\"picture-in-picture\") && typeof video.webkitSetPresentationMode === \"function\") {",
+            "    // Toggle PiP when the user clicks the button.",
+            "    pipButtonElement.addEventListener(\"click\", function(event) {",
+            "        video.webkitSetPresentationMode(video.webkitPresentationMode === \"picture-in-picture\" ? \"inline\" : \"picture-in-picture\");",
+            "    });",
+            "} else {",
+            "    pipButtonElement.disabled = true;",
+            "}"
+          ],
+          "metadata": {
+            "abstract": [],
+            "anchor": "2940035",
+            "title": "Listing 3"
+          },
+          "syntax": "javascript",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.documentation/documentation/webkitjs": {
+      "identifier": "doc://com.apple.documentation/documentation/webkitjs",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "WebKit JS",
+      "type": "topic",
+      "url": "/documentation/webkitjs"
+    },
+    "doc://com.apple.documentation/documentation/webkitjs/adding_an_airplay_button_to_your_safari_media_controls": {
+      "abstract": [
+        {
+          "text": "Create a custom control that adds AirPlay to your Safari media player. ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/webkitjs/adding_an_airplay_button_to_your_safari_media_controls",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding an AirPlay button to your Safari media controls",
+      "type": "topic",
+      "url": "/documentation/webkitjs/adding_an_airplay_button_to_your_safari_media_controls"
+    },
+    "doc://com.apple.documentation/documentation/webkitjs/adding_picture_in_picture_to_your_safari_media_controls": {
+      "abstract": [
+        {
+          "text": "Create a custom control that adds Picture in Picture to your Safari media player. ",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/webkitjs/adding_picture_in_picture_to_your_safari_media_controls",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding Picture in Picture to your Safari media controls",
+      "type": "topic",
+      "url": "/documentation/webkitjs/adding_picture_in_picture_to_your_safari_media_controls"
+    },
+    "doc://com.apple.documentation/documentation/webkitjs/adding_picture_in_picture_to_your_safari_media_controls#2940033": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/webkitjs/adding_picture_in_picture_to_your_safari_media_controls#2940033",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/webkitjs/adding_picture_in_picture_to_your_safari_media_controls#2940033"
+    },
+    "doc://com.apple.documentation/documentation/webkitjs/adding_picture_in_picture_to_your_safari_media_controls#2940034": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/webkitjs/adding_picture_in_picture_to_your_safari_media_controls#2940034",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 2",
+      "type": "section",
+      "url": "/documentation/webkitjs/adding_picture_in_picture_to_your_safari_media_controls#2940034"
+    },
+    "doc://com.apple.documentation/documentation/webkitjs/adding_picture_in_picture_to_your_safari_media_controls#2940035": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/webkitjs/adding_picture_in_picture_to_your_safari_media_controls#2940035",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 3",
+      "type": "section",
+      "url": "/documentation/webkitjs/adding_picture_in_picture_to_your_safari_media_controls#2940035"
+    },
+    "doc://com.apple.documentation/documentation/webkitjs/htmlvideoelement/1631224-webkitsetpresentationmode": {
+      "identifier": "doc://com.apple.documentation/documentation/webkitjs/htmlvideoelement/1631224-webkitsetpresentationmode",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "webkitSetPresentationMode",
+      "type": "topic",
+      "url": "/documentation/webkitjs/htmlvideoelement/1631224-webkitsetpresentationmode"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/webkitjs/adding_an_airplay_button_to_your_safari_media_controls"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/webkitjs/adding_picture_in_picture_to_your_safari_media_controls"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

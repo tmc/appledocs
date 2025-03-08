@@ -1,0 +1,1470 @@
+{
+  "abstract": [
+    {
+      "text": "Read contactless physical and digital wallet cards using your iPhone.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "beta": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.3 beta 1",
+        "16.3 beta 2"
+      ]
+    },
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.ProximityReader/documentation/ProximityReader"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "ProximityReader",
+    "modules": [
+      {
+        "name": "ProximityReader"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "15.4",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "15.4",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "15.4",
+        "name": "Mac Catalyst"
+      }
+    ],
+    "role": "collection",
+    "roleHeading": "Framework",
+    "symbolKind": "module",
+    "title": "ProximityReader"
+  },
+  "primaryContentSections": [
+    {
+      "kind": "mentions",
+      "mentions": [
+        "doc://com.apple.ProximityReader/documentation/ProximityReader/adding-support-for-tap-to-pay-on-iphone-to-your-app",
+        "doc://com.apple.ProximityReader/documentation/ProximityReader/adopting-the-verifier-api-in-your-iphone-app"
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ProximityReader framework supports ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Tap to Pay on iPhone",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", which",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "allows a person’s iPhone to act as a point-of-sale device without",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "additional hardware. ProximityReader also supports the reading of loyalty cards",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "from the Wallet app. Use this framework to initiate the payment process",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "from your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The use of this framework requires you to coordinate with a participating",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "payment service provider that is Level 3 certified.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Contact your payment provider and work with them to set up a workflow for",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "handling payments. When you’re ready, contact Apple and request the entitlement",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "you need to integrate Tap to Pay on iPhone support into your app.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For information on requesting this entitlement, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/setting-up-the-entitlement-for-tap-to-pay-on-iPhone",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Tap to Pay on iPhone follows the PCI CPoC Standard, which uses",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Level 2 certified payment kernels and a user interface for reading contactless",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "payment cards.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "adding-support-for-tap-to-pay-PageImage-card.png": {
+      "alt": null,
+      "identifier": "adding-support-for-tap-to-pay-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e00a45db446b415a6f963fde477927bb/adding-support-for-tap-to-pay-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/d72a97caaff209593b35adaa4b804377/adding-support-for-tap-to-pay-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.ProximityReader/documentation/ProximityReader": {
+      "abstract": [
+        {
+          "text": "Read contactless physical and digital wallet cards using your iPhone.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "ProximityReader",
+      "type": "topic",
+      "url": "/documentation/proximityreader"
+    },
+    "doc://com.apple.ProximityReader/documentation/ProximityReader/MobileDocumentReader": {
+      "abstract": [
+        {
+          "text": "An object for configuring mobile document reading on the current device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MobileDocumentReader"
+        }
+      ],
+      "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/MobileDocumentReader",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MobileDocumentReader"
+        }
+      ],
+      "role": "symbol",
+      "title": "MobileDocumentReader",
+      "type": "topic",
+      "url": "/documentation/proximityreader/mobiledocumentreader"
+    },
+    "doc://com.apple.ProximityReader/documentation/ProximityReader/MobileDocumentReaderError": {
+      "abstract": [
+        {
+          "text": "An error type that indicates problems when preparing a mobile document reader session and performing document requests.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MobileDocumentReaderError"
+        }
+      ],
+      "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/MobileDocumentReaderError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MobileDocumentReaderError"
+        }
+      ],
+      "role": "symbol",
+      "title": "MobileDocumentReaderError",
+      "type": "topic",
+      "url": "/documentation/proximityreader/mobiledocumentreadererror"
+    },
+    "doc://com.apple.ProximityReader/documentation/ProximityReader/MobileDocumentReaderSession": {
+      "abstract": [
+        {
+          "text": "The object you use to start reading a mobile document.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MobileDocumentReaderSession"
+        }
+      ],
+      "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/MobileDocumentReaderSession",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MobileDocumentReaderSession"
+        }
+      ],
+      "role": "symbol",
+      "title": "MobileDocumentReaderSession",
+      "type": "topic",
+      "url": "/documentation/proximityreader/mobiledocumentreadersession"
+    },
+    "doc://com.apple.ProximityReader/documentation/ProximityReader/MobileDocumentRequest": {
+      "abstract": [
+        {
+          "text": "A type that represents a mobile document request.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MobileDocumentRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/MobileDocumentRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MobileDocumentRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "MobileDocumentRequest",
+      "type": "topic",
+      "url": "/documentation/proximityreader/mobiledocumentrequest"
+    },
+    "doc://com.apple.ProximityReader/documentation/ProximityReader/MobileDriversLicenseDataRequest": {
+      "abstract": [
+        {
+          "text": "A mobile driver’s license request that retrieves elements from the holder and returns the validated document elements.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MobileDriversLicenseDataRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/MobileDriversLicenseDataRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MobileDriversLicenseDataRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "MobileDriversLicenseDataRequest",
+      "type": "topic",
+      "url": "/documentation/proximityreader/mobiledriverslicensedatarequest"
+    },
+    "doc://com.apple.ProximityReader/documentation/ProximityReader/MobileDriversLicenseDisplayRequest": {
+      "abstract": [
+        {
+          "text": "A mobile driver’s license request that retrieves elements from the holder",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "and displays the results onscreen for visual inspection.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MobileDriversLicenseDisplayRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/MobileDriversLicenseDisplayRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MobileDriversLicenseDisplayRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "MobileDriversLicenseDisplayRequest",
+      "type": "topic",
+      "url": "/documentation/proximityreader/mobiledriverslicensedisplayrequest"
+    },
+    "doc://com.apple.ProximityReader/documentation/ProximityReader/MobileDriversLicenseRawDataRequest": {
+      "abstract": [
+        {
+          "text": "A mobile driver’s license request which retrieves elements from the holder and returns the raw response data for processing.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MobileDriversLicenseRawDataRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/MobileDriversLicenseRawDataRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MobileDriversLicenseRawDataRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "MobileDriversLicenseRawDataRequest",
+      "type": "topic",
+      "url": "/documentation/proximityreader/mobiledriverslicenserawdatarequest"
+    },
+    "doc://com.apple.ProximityReader/documentation/ProximityReader/MobileNationalIDCardDataRequest": {
+      "abstract": [
+        {
+          "text": "A mobile national ID card request that retrieves elements from the holder and returns the validated document elements.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MobileNationalIDCardDataRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/MobileNationalIDCardDataRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MobileNationalIDCardDataRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "MobileNationalIDCardDataRequest",
+      "type": "topic",
+      "url": "/documentation/proximityreader/mobilenationalidcarddatarequest"
+    },
+    "doc://com.apple.ProximityReader/documentation/ProximityReader/MobileNationalIDCardDisplayRequest": {
+      "abstract": [
+        {
+          "text": "A mobile national ID card request that retrieves elements from the holder",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "and displays the results onscreen for visual inspection.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MobileNationalIDCardDisplayRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/MobileNationalIDCardDisplayRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MobileNationalIDCardDisplayRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "MobileNationalIDCardDisplayRequest",
+      "type": "topic",
+      "url": "/documentation/proximityreader/mobilenationalidcarddisplayrequest"
+    },
+    "doc://com.apple.ProximityReader/documentation/ProximityReader/MobileNationalIDCardRawDataRequest": {
+      "abstract": [
+        {
+          "text": "A mobile national ID card request which retrieves elements from the holder and returns the raw response data for processing.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MobileNationalIDCardRawDataRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/MobileNationalIDCardRawDataRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MobileNationalIDCardRawDataRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "MobileNationalIDCardRawDataRequest",
+      "type": "topic",
+      "url": "/documentation/proximityreader/mobilenationalidcardrawdatarequest"
+    },
+    "doc://com.apple.ProximityReader/documentation/ProximityReader/PaymentCardReadResult": {
+      "abstract": [
+        {
+          "text": "The result of a payment card read operation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PaymentCardReadResult"
+        }
+      ],
+      "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/PaymentCardReadResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PaymentCardReadResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "PaymentCardReadResult",
+      "type": "topic",
+      "url": "/documentation/proximityreader/paymentcardreadresult"
+    },
+    "doc://com.apple.ProximityReader/documentation/ProximityReader/PaymentCardReader": {
+      "abstract": [
+        {
+          "text": "An object you use to configure Tap to Pay on iPhone on the current device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PaymentCardReader"
+        }
+      ],
+      "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/PaymentCardReader",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PaymentCardReader"
+        }
+      ],
+      "role": "symbol",
+      "title": "PaymentCardReader",
+      "type": "topic",
+      "url": "/documentation/proximityreader/paymentcardreader"
+    },
+    "doc://com.apple.ProximityReader/documentation/ProximityReader/PaymentCardReaderError": {
+      "abstract": [
+        {
+          "text": "An error type that indicates problems with the configuration of the reader.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PaymentCardReaderError"
+        }
+      ],
+      "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/PaymentCardReaderError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PaymentCardReaderError"
+        }
+      ],
+      "role": "symbol",
+      "title": "PaymentCardReaderError",
+      "type": "topic",
+      "url": "/documentation/proximityreader/paymentcardreadererror"
+    },
+    "doc://com.apple.ProximityReader/documentation/ProximityReader/PaymentCardReaderSession": {
+      "abstract": [
+        {
+          "text": "The object you use to start reading a contactless payment or loyalty card.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PaymentCardReaderSession"
+        }
+      ],
+      "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/PaymentCardReaderSession",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PaymentCardReaderSession"
+        }
+      ],
+      "role": "symbol",
+      "title": "PaymentCardReaderSession",
+      "type": "topic",
+      "url": "/documentation/proximityreader/paymentcardreadersession"
+    },
+    "doc://com.apple.ProximityReader/documentation/ProximityReader/PaymentCardReaderStore": {
+      "abstract": [
+        {
+          "text": "A structure that manages the store that contains all the Store and Forward reads.",
+          "type": "text"
+        }
+      ],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PaymentCardReaderStore"
+        }
+      ],
+      "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/PaymentCardReaderStore",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PaymentCardReaderStore"
+        }
+      ],
+      "role": "symbol",
+      "title": "PaymentCardReaderStore",
+      "type": "topic",
+      "url": "/documentation/proximityreader/paymentcardreaderstore"
+    },
+    "doc://com.apple.ProximityReader/documentation/ProximityReader/PaymentCardTransactionRequest": {
+      "abstract": [
+        {
+          "text": "A request for a contactless purchase or refund that includes the purchase amount and currency information.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PaymentCardTransactionRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/PaymentCardTransactionRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PaymentCardTransactionRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "PaymentCardTransactionRequest",
+      "type": "topic",
+      "url": "/documentation/proximityreader/paymentcardtransactionrequest"
+    },
+    "doc://com.apple.ProximityReader/documentation/ProximityReader/PaymentCardVerificationRequest": {
+      "abstract": [
+        {
+          "text": "A request to verify details for a contactless payment card.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "PaymentCardVerificationRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/PaymentCardVerificationRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "PaymentCardVerificationRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "PaymentCardVerificationRequest",
+      "type": "topic",
+      "url": "/documentation/proximityreader/paymentcardverificationrequest"
+    },
+    "doc://com.apple.ProximityReader/documentation/ProximityReader/ProximityReaderDiscovery": {
+      "abstract": [
+        {
+          "text": "An object that presents a UI with information about how to use",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "Tap to Pay on iPhone.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ProximityReaderDiscovery"
+        }
+      ],
+      "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/ProximityReaderDiscovery",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ProximityReaderDiscovery"
+        }
+      ],
+      "role": "symbol",
+      "title": "ProximityReaderDiscovery",
+      "type": "topic",
+      "url": "/documentation/proximityreader/proximityreaderdiscovery"
+    },
+    "doc://com.apple.ProximityReader/documentation/ProximityReader/ProximityReaderVersionNumber": {
+      "abstract": [
+        {
+          "text": "Project version number for ProximityReader.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "ProximityReaderVersionNumber"
+        }
+      ],
+      "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/ProximityReaderVersionNumber",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ProximityReaderVersionNumber",
+      "type": "topic",
+      "url": "/documentation/proximityreader/proximityreaderversionnumber"
+    },
+    "doc://com.apple.ProximityReader/documentation/ProximityReader/ProximityReaderVersionString": {
+      "abstract": [
+        {
+          "text": "Project version string for ProximityReader.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "ProximityReaderVersionString"
+        }
+      ],
+      "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/ProximityReaderVersionString",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ProximityReaderVersionString",
+      "type": "topic",
+      "url": "/documentation/proximityreader/proximityreaderversionstring"
+    },
+    "doc://com.apple.ProximityReader/documentation/ProximityReader/StoreAndForwardBatch": {
+      "abstract": [
+        {
+          "text": "A structure that stores the data to send to the payment service provider to process.",
+          "type": "text"
+        }
+      ],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "StoreAndForwardBatch"
+        }
+      ],
+      "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/StoreAndForwardBatch",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "StoreAndForwardBatch"
+        }
+      ],
+      "role": "symbol",
+      "title": "StoreAndForwardBatch",
+      "type": "topic",
+      "url": "/documentation/proximityreader/storeandforwardbatch"
+    },
+    "doc://com.apple.ProximityReader/documentation/ProximityReader/StoreAndForwardBatchDeletionToken": {
+      "abstract": [
+        {
+          "text": "A secure token that you use to delete a Store and Forward batch.",
+          "type": "text"
+        }
+      ],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "StoreAndForwardBatchDeletionToken"
+        }
+      ],
+      "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/StoreAndForwardBatchDeletionToken",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "StoreAndForwardBatchDeletionToken"
+        }
+      ],
+      "role": "symbol",
+      "title": "StoreAndForwardBatchDeletionToken",
+      "type": "topic",
+      "url": "/documentation/proximityreader/storeandforwardbatchdeletiontoken"
+    },
+    "doc://com.apple.ProximityReader/documentation/ProximityReader/StoreAndForwardPaymentCardReaderSession": {
+      "abstract": [
+        {
+          "text": "The object you use to start reading a contactless payment or loyalty card in Store and Forward mode.",
+          "type": "text"
+        }
+      ],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "StoreAndForwardPaymentCardReaderSession"
+        }
+      ],
+      "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/StoreAndForwardPaymentCardReaderSession",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "StoreAndForwardPaymentCardReaderSession"
+        }
+      ],
+      "role": "symbol",
+      "title": "StoreAndForwardPaymentCardReaderSession",
+      "type": "topic",
+      "url": "/documentation/proximityreader/storeandforwardpaymentcardreadersession"
+    },
+    "doc://com.apple.ProximityReader/documentation/ProximityReader/StoreAndForwardStatus": {
+      "abstract": [
+        {
+          "text": "A structure that describes the Store and Forward session status.",
+          "type": "text"
+        }
+      ],
+      "beta": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "StoreAndForwardStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/StoreAndForwardStatus",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "StoreAndForwardStatus"
+        }
+      ],
+      "role": "symbol",
+      "title": "StoreAndForwardStatus",
+      "type": "topic",
+      "url": "/documentation/proximityreader/storeandforwardstatus"
+    },
+    "doc://com.apple.ProximityReader/documentation/ProximityReader/VASReadResult": {
+      "abstract": [
+        {
+          "text": "The result of a request to read loyalty card information.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VASReadResult"
+        }
+      ],
+      "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/VASReadResult",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VASReadResult"
+        }
+      ],
+      "role": "symbol",
+      "title": "VASReadResult",
+      "type": "topic",
+      "url": "/documentation/proximityreader/vasreadresult"
+    },
+    "doc://com.apple.ProximityReader/documentation/ProximityReader/VASRequest": {
+      "abstract": [
+        {
+          "text": "A request to read a contactless loyalty card and retrieve loyalty program",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "identifiers for the person.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VASRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/VASRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VASRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "VASRequest",
+      "type": "topic",
+      "url": "/documentation/proximityreader/vasrequest"
+    },
+    "doc://com.apple.ProximityReader/documentation/ProximityReader/accepting-loyalty-passes-from-wallet": {
+      "abstract": [
+        {
+          "text": "Set up the necessary components so your app can begin using Tap to Pay on iPhone to read and issue loyalty passes.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/accepting-loyalty-passes-from-wallet",
+      "kind": "article",
+      "role": "article",
+      "title": "Accepting loyalty passes from Wallet",
+      "type": "topic",
+      "url": "/documentation/proximityreader/accepting-loyalty-passes-from-wallet"
+    },
+    "doc://com.apple.ProximityReader/documentation/ProximityReader/adding-support-for-tap-to-pay-on-iphone-to-your-app": {
+      "abstract": [
+        {
+          "text": "Configure your app to use Tap to Pay on iPhone to read contactless payment cards.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/adding-support-for-tap-to-pay-on-iphone-to-your-app",
+      "images": [
+        {
+          "identifier": "adding-support-for-tap-to-pay-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "article",
+      "title": "Adding support for Tap to Pay on iPhone to your app",
+      "type": "topic",
+      "url": "/documentation/proximityreader/adding-support-for-tap-to-pay-on-iphone-to-your-app"
+    },
+    "doc://com.apple.ProximityReader/documentation/ProximityReader/adopting-the-verifier-api-in-your-iphone-app": {
+      "abstract": [
+        {
+          "text": "Configure and test ID Verifier support in your app for reading mobile documents.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/adopting-the-verifier-api-in-your-iphone-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Adopting the Verifier API in your iPhone app",
+      "type": "topic",
+      "url": "/documentation/proximityreader/adopting-the-verifier-api-in-your-iphone-app"
+    },
+    "doc://com.apple.ProximityReader/documentation/ProximityReader/checking-ids-with-the-verifier-api": {
+      "abstract": [
+        {
+          "text": "Read and verify mobile driver’s license information without any additional hardware.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/checking-ids-with-the-verifier-api",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Checking IDs with the Verifier API",
+      "type": "topic",
+      "url": "/documentation/proximityreader/checking-ids-with-the-verifier-api"
+    },
+    "doc://com.apple.ProximityReader/documentation/ProximityReader/generating-reader-tokens-for-the-verifier-api": {
+      "abstract": [
+        {
+          "text": "Configure your server to generate reader tokens to prepare a device for mobile document reading.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/generating-reader-tokens-for-the-verifier-api",
+      "kind": "article",
+      "role": "article",
+      "title": "Generating reader tokens for the Verifier API",
+      "type": "topic",
+      "url": "/documentation/proximityreader/generating-reader-tokens-for-the-verifier-api"
+    },
+    "doc://com.apple.ProximityReader/documentation/ProximityReader/setting-up-the-entitlement-for-tap-to-pay-on-iPhone": {
+      "abstract": [
+        {
+          "text": "Request and configure the required entitlement to support Tap to Pay on iPhone.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.ProximityReader/documentation/ProximityReader/setting-up-the-entitlement-for-tap-to-pay-on-iPhone",
+      "kind": "article",
+      "role": "article",
+      "title": "Setting up Tap to Pay on iPhone",
+      "type": "topic",
+      "url": "/documentation/proximityreader/setting-up-the-entitlement-for-tap-to-pay-on-iphone"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Payment-card-reader",
+      "identifiers": [
+        "doc://com.apple.ProximityReader/documentation/ProximityReader/setting-up-the-entitlement-for-tap-to-pay-on-iPhone",
+        "doc://com.apple.ProximityReader/documentation/ProximityReader/adding-support-for-tap-to-pay-on-iphone-to-your-app",
+        "doc://com.apple.ProximityReader/documentation/ProximityReader/PaymentCardReader",
+        "doc://com.apple.ProximityReader/documentation/ProximityReader/PaymentCardReaderSession"
+      ],
+      "title": "Payment card reader"
+    },
+    {
+      "anchor": "Payment-requests",
+      "identifiers": [
+        "doc://com.apple.ProximityReader/documentation/ProximityReader/PaymentCardTransactionRequest",
+        "doc://com.apple.ProximityReader/documentation/ProximityReader/PaymentCardVerificationRequest",
+        "doc://com.apple.ProximityReader/documentation/ProximityReader/PaymentCardReadResult"
+      ],
+      "title": "Payment requests"
+    },
+    {
+      "anchor": "Loyalty-card-requests",
+      "identifiers": [
+        "doc://com.apple.ProximityReader/documentation/ProximityReader/accepting-loyalty-passes-from-wallet",
+        "doc://com.apple.ProximityReader/documentation/ProximityReader/VASRequest",
+        "doc://com.apple.ProximityReader/documentation/ProximityReader/VASReadResult"
+      ],
+      "title": "Loyalty card requests"
+    },
+    {
+      "anchor": "Merchant-discovery",
+      "identifiers": [
+        "doc://com.apple.ProximityReader/documentation/ProximityReader/ProximityReaderDiscovery"
+      ],
+      "title": "Merchant discovery"
+    },
+    {
+      "anchor": "Mobile-document-reader",
+      "identifiers": [
+        "doc://com.apple.ProximityReader/documentation/ProximityReader/adopting-the-verifier-api-in-your-iphone-app",
+        "doc://com.apple.ProximityReader/documentation/ProximityReader/generating-reader-tokens-for-the-verifier-api",
+        "doc://com.apple.ProximityReader/documentation/ProximityReader/checking-ids-with-the-verifier-api",
+        "doc://com.apple.ProximityReader/documentation/ProximityReader/MobileDocumentReader",
+        "doc://com.apple.ProximityReader/documentation/ProximityReader/MobileDocumentReaderSession"
+      ],
+      "title": "Mobile document reader"
+    },
+    {
+      "anchor": "Mobile-document-requests",
+      "identifiers": [
+        "doc://com.apple.ProximityReader/documentation/ProximityReader/MobileDriversLicenseDisplayRequest",
+        "doc://com.apple.ProximityReader/documentation/ProximityReader/MobileDriversLicenseDataRequest",
+        "doc://com.apple.ProximityReader/documentation/ProximityReader/MobileDriversLicenseRawDataRequest",
+        "doc://com.apple.ProximityReader/documentation/ProximityReader/MobileNationalIDCardDisplayRequest",
+        "doc://com.apple.ProximityReader/documentation/ProximityReader/MobileNationalIDCardDataRequest",
+        "doc://com.apple.ProximityReader/documentation/ProximityReader/MobileNationalIDCardRawDataRequest",
+        "doc://com.apple.ProximityReader/documentation/ProximityReader/MobileDocumentRequest"
+      ],
+      "title": "Mobile document requests"
+    },
+    {
+      "anchor": "Errors",
+      "identifiers": [
+        "doc://com.apple.ProximityReader/documentation/ProximityReader/PaymentCardReaderError",
+        "doc://com.apple.ProximityReader/documentation/ProximityReader/MobileDocumentReaderError"
+      ],
+      "title": "Errors"
+    },
+    {
+      "anchor": "Classes",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.ProximityReader/documentation/ProximityReader/StoreAndForwardPaymentCardReaderSession"
+      ],
+      "title": "Classes"
+    },
+    {
+      "anchor": "Structures",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.ProximityReader/documentation/ProximityReader/PaymentCardReaderStore",
+        "doc://com.apple.ProximityReader/documentation/ProximityReader/StoreAndForwardBatch",
+        "doc://com.apple.ProximityReader/documentation/ProximityReader/StoreAndForwardBatchDeletionToken",
+        "doc://com.apple.ProximityReader/documentation/ProximityReader/StoreAndForwardStatus"
+      ],
+      "title": "Structures"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Payment-card-reader",
+              "identifiers": [
+                "doc://com.apple.ProximityReader/documentation/ProximityReader/setting-up-the-entitlement-for-tap-to-pay-on-iPhone",
+                "doc://com.apple.ProximityReader/documentation/ProximityReader/adding-support-for-tap-to-pay-on-iphone-to-your-app"
+              ],
+              "title": "Payment card reader"
+            },
+            {
+              "anchor": "Loyalty-card-requests",
+              "identifiers": [
+                "doc://com.apple.ProximityReader/documentation/ProximityReader/accepting-loyalty-passes-from-wallet"
+              ],
+              "title": "Loyalty card requests"
+            },
+            {
+              "anchor": "Mobile-document-reader",
+              "identifiers": [
+                "doc://com.apple.ProximityReader/documentation/ProximityReader/adopting-the-verifier-api-in-your-iphone-app",
+                "doc://com.apple.ProximityReader/documentation/ProximityReader/generating-reader-tokens-for-the-verifier-api",
+                "doc://com.apple.ProximityReader/documentation/ProximityReader/checking-ids-with-the-verifier-api"
+              ],
+              "title": "Mobile document reader"
+            },
+            {
+              "anchor": "Variables",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.ProximityReader/documentation/ProximityReader/ProximityReaderVersionNumber",
+                "doc://com.apple.ProximityReader/documentation/ProximityReader/ProximityReaderVersionString"
+              ],
+              "title": "Variables"
+            }
+          ]
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/proximityreader"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/proximityreader"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

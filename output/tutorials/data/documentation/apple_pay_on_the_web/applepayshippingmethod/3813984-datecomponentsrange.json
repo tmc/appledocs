@@ -1,0 +1,359 @@
+{
+  "abstract": [
+    {
+      "text": "The expected range of dates for shipping or picking up an item.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/apple_pay_on_the_web",
+        "doc://com.apple.documentation/documentation/apple_pay_on_the_web/apple_pay_js_api",
+        "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepaypaymentrequest",
+        "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepayshippingmethod"
+      ],
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/apple_pay_on_the_web",
+        "doc://com.apple.documentation/documentation/apple_pay_on_the_web/payment_request_api",
+        "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepaymodifier",
+        "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepayshippingmethod"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepayshippingmethod/3813984-datecomponentsrange"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 3813984,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "structp/ApplePayShippingMethod/dateComponentsRange",
+    "modules": [
+      {
+        "name": "Apple Pay JS"
+      }
+    ],
+    "parent": {
+      "title": "ApplePayShippingMethod"
+    },
+    "platforms": [
+      {
+        "current": "18.0",
+        "introducedAt": "15.0",
+        "name": "Safari Desktop"
+      },
+      {
+        "current": "18.0",
+        "introducedAt": "15.0",
+        "name": "Safari Mobile"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Instance Property",
+    "symbolKind": "structp",
+    "title": "dateComponentsRange"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "data"
+          ],
+          "platforms": [
+            "Safari Desktop",
+            "Safari Mobile"
+          ],
+          "tokens": [
+            {
+              "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepaydatecomponentsrange",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "struct/ApplePayDateComponentsRange",
+              "text": "ApplePayDateComponentsRange"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "dateComponentsRange"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use this object to set the expected date range for shipping a package, or the time an item is available for pickup. The payment sheet displays the range as part of the shipping method on the main sheet. When assembling the date components, provide absolute dates to represent the range.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The example code below shows setting a two day time range for shipping a package that starts three days from today:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let shippingStart = new Date;",
+            "shippingStart.setDate(shippingStart.getDate() + 3);",
+            "",
+            "let shippingEnd = new Date;",
+            "shippingEnd.setDate(shippingEnd.getDate() + 5);",
+            "",
+            "let applePayShippingMethod = {",
+            "    amount: \"0.00\",",
+            "    dateComponentsRange: {",
+            "        startDateComponents: {",
+            "            year: shippingStart.getFullYear(),",
+            "            // Because the JavaScript getMonth() function is 0-based, add 1 to return a 1-based month.",
+            "            months: shippingStart.getMonth() + 1,",
+            "            days: shippingStart.getDate(),",
+            "        },",
+            "        endDateComponents: {",
+            "            year: shippingEnd.getFullYear(),",
+            "            months: shippingEnd.getMonth() + 1,",
+            "            days: shippingEnd.getDate(),",
+            "        },",
+            "    },",
+            "    detail: \"Tickets sent to your address\",",
+            "    identifier: \"delivery\",",
+            "    label: \"Delivery\",",
+            "};"
+          ],
+          "metadata": {
+            "anchor": "3817247",
+            "title": "Listing 1"
+          },
+          "syntax": "javascript",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web": {
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Apple Pay on the Web",
+      "type": "topic",
+      "url": "/documentation/apple_pay_on_the_web"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web/apple_pay_js_api": {
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/apple_pay_js_api",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Apple Pay JS API",
+      "type": "topic",
+      "url": "/documentation/apple_pay_on_the_web/apple_pay_js_api"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepaydatecomponentsrange": {
+      "abstract": [
+        {
+          "text": "A dictionary that specifies the start and end dates for a range of time.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepaydatecomponentsrange",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ApplePayDateComponentsRange",
+      "type": "topic",
+      "url": "/documentation/apple_pay_on_the_web/applepaydatecomponentsrange"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepaymodifier": {
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepaymodifier",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ApplePayModifier",
+      "type": "topic",
+      "url": "/documentation/apple_pay_on_the_web/applepaymodifier"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepaypaymentrequest": {
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepaypaymentrequest",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ApplePayPaymentRequest",
+      "type": "topic",
+      "url": "/documentation/apple_pay_on_the_web/applepaypaymentrequest"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepayshippingmethod": {
+      "abstract": [
+        {
+          "text": "A dictionary that describes the shipping method for delivering physical goods.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepayshippingmethod",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ApplePayShippingMethod",
+      "type": "topic",
+      "url": "/documentation/apple_pay_on_the_web/applepayshippingmethod"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepayshippingmethod/2870970-label": {
+      "abstract": [
+        {
+          "text": "A short description of the shipping method.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepayshippingmethod/2870970-label",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "label",
+      "type": "topic",
+      "url": "/documentation/apple_pay_on_the_web/applepayshippingmethod/2870970-label"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepayshippingmethod/2870971-amount": {
+      "abstract": [
+        {
+          "text": "The nonnegative cost associated with this shipping method.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepayshippingmethod/2870971-amount",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "amount",
+      "type": "topic",
+      "url": "/documentation/apple_pay_on_the_web/applepayshippingmethod/2870971-amount"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepayshippingmethod/2870973-identifier": {
+      "abstract": [
+        {
+          "text": "A client-defined value used to identify this shipping method.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepayshippingmethod/2870973-identifier",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "identifier",
+      "type": "topic",
+      "url": "/documentation/apple_pay_on_the_web/applepayshippingmethod/2870973-identifier"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepayshippingmethod/2870974-detail": {
+      "abstract": [
+        {
+          "text": "Additional description of the shipping method.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepayshippingmethod/2870974-detail",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "detail",
+      "type": "topic",
+      "url": "/documentation/apple_pay_on_the_web/applepayshippingmethod/2870974-detail"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepayshippingmethod/3813984-datecomponentsrange": {
+      "abstract": [
+        {
+          "text": "The expected range of dates for shipping or picking up an item.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepayshippingmethod/3813984-datecomponentsrange",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dateComponentsRange",
+      "type": "topic",
+      "url": "/documentation/apple_pay_on_the_web/applepayshippingmethod/3813984-datecomponentsrange"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepayshippingmethod/3813984-datecomponentsrange#3817247": {
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepayshippingmethod/3813984-datecomponentsrange#3817247",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/apple_pay_on_the_web/applepayshippingmethod/3813984-datecomponentsrange#3817247"
+    },
+    "doc://com.apple.documentation/documentation/apple_pay_on_the_web/payment_request_api": {
+      "identifier": "doc://com.apple.documentation/documentation/apple_pay_on_the_web/payment_request_api",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Payment Request API",
+      "type": "topic",
+      "url": "/documentation/apple_pay_on_the_web/payment_request_api"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepayshippingmethod/2870970-label",
+        "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepayshippingmethod/2870974-detail",
+        "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepayshippingmethod/2870973-identifier",
+        "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepayshippingmethod/2870971-amount",
+        "doc://com.apple.documentation/documentation/apple_pay_on_the_web/applepaydatecomponentsrange"
+      ],
+      "title": "Working with shipping method properties"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/apple_pay_on_the_web/applepayshippingmethod/3813984-datecomponentsrange"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

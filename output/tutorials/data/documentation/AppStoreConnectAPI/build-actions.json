@@ -1,0 +1,641 @@
+{
+  "abstract": [
+    {
+      "text": "Read information about actions you configured for an Xcode Cloud workflow and their related data such as artifacts, issues, or test results.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "beta": {
+      "change": "modified",
+      "platform": "App Store Connect API",
+      "versions": [
+        "3.6 beta 1",
+        "3.6"
+      ]
+    },
+    "major": {
+      "change": "modified",
+      "platform": "App Store Connect API",
+      "versions": [
+        "3.0",
+        "3.6"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "App Store Connect API",
+      "versions": [
+        "3.5",
+        "3.6"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/xcode-cloud-workflows-and-builds"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "data",
+    "url": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/build-actions"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "App Store Connect API"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Build Actions"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "ciBuildActions",
+              "type": "codeVoice"
+            },
+            {
+              "text": " resource represents the actions Xcode Cloud performed when it built your project or workspace. Use it to read information about the actions Xcode Cloud performed during a build; for example:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Type, name, and date information of the action",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Status information for an ongoing and completed action",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Artifacts created by the action",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Issues that occurred",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Detailed information about test results",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To update a workflow’s actions, use the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/workflows",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " resource.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "This resource supports JSON web tokens with a lifetime of up to six months. For more information, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/generating-tokens-for-api-requests#Determine-the-Appropriate-Token-Lifetime",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI": {
+      "abstract": [
+        {
+          "text": "Automate the tasks you perform on the Apple Developer website and in App Store Connect.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "App Store Connect API",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/CiArtifactsResponse": {
+      "abstract": [
+        {
+          "text": "A response that contains a list of Artifacts resources.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "CiArtifactsResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/CiArtifactsResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CiArtifactsResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "CiArtifactsResponse",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/ciartifactsresponse"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/CiBuildAction": {
+      "abstract": [
+        {
+          "text": "The data structure that represents a Build Actions resource.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "CiBuildAction"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/CiBuildAction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CiBuildAction"
+        }
+      ],
+      "role": "symbol",
+      "title": "CiBuildAction",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/cibuildaction"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/CiBuildActionResponse": {
+      "abstract": [
+        {
+          "text": "A response that contains a single Build Actions resource.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "CiBuildActionResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/CiBuildActionResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CiBuildActionResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "CiBuildActionResponse",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/cibuildactionresponse"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/CiIssuesResponse": {
+      "abstract": [
+        {
+          "text": "A response that contains a list of Issues resources.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "CiIssuesResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/CiIssuesResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CiIssuesResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "CiIssuesResponse",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/ciissuesresponse"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/CiTestResultsResponse": {
+      "abstract": [
+        {
+          "text": "A response that contains a list of Test Results resources.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "object "
+        },
+        {
+          "kind": "identifier",
+          "text": "CiTestResultsResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/CiTestResultsResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CiTestResultsResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "CiTestResultsResponse",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/citestresultsresponse"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-ciBuildActions-_id_": {
+      "abstract": [
+        {
+          "text": "Get information about a specific action Xcode Cloud performed as part of a build.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-ciBuildActions-_id_",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GET /v1/ciBuildActions/{id}"
+        }
+      ],
+      "role": "symbol",
+      "title": "Read Build Action Information",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/get-v1-cibuildactions-_id_"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-ciBuildActions-_id_-artifacts": {
+      "abstract": [
+        {
+          "text": "List all artifacts Xcode Cloud created when it performed an action.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-ciBuildActions-_id_-artifacts",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GET /v1/ciBuildActions/{id}/artifacts"
+        }
+      ],
+      "role": "symbol",
+      "title": "List All Artifacts for a Build Action",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/get-v1-cibuildactions-_id_-artifacts"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-ciBuildActions-_id_-buildRun": {
+      "abstract": [
+        {
+          "text": "Get Xcode Cloud build information for a given build action.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-ciBuildActions-_id_-buildRun",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GET /v1/ciBuildActions/{id}/buildRun"
+        }
+      ],
+      "role": "symbol",
+      "title": "Read the Xcode Cloud Build Information for a Build Action",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/get-v1-cibuildactions-_id_-buildrun"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-ciBuildActions-_id_-issues": {
+      "abstract": [
+        {
+          "text": "List all issues that occurred for a specific action that Xcode Cloud performed as part of a build.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-ciBuildActions-_id_-issues",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GET /v1/ciBuildActions/{id}/issues"
+        }
+      ],
+      "role": "symbol",
+      "title": "List All Issues for a Build Action",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/get-v1-cibuildactions-_id_-issues"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-ciBuildActions-_id_-testResults": {
+      "abstract": [
+        {
+          "text": "List all test results for a specific test action Xcode Cloud performed as part of a build.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-ciBuildActions-_id_-testResults",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GET /v1/ciBuildActions/{id}/testResults"
+        }
+      ],
+      "role": "symbol",
+      "title": "List All Test Results for an Xcode Cloud Test Action",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/get-v1-cibuildactions-_id_-testresults"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/artifacts": {
+      "abstract": [
+        {
+          "text": "Read information about artifacts Xcode Cloud creates when it performs a build.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/artifacts",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Artifacts",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/artifacts"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/build-runs": {
+      "abstract": [
+        {
+          "text": "Read detailed build information and start new builds.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/build-runs",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Build Runs",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/build-runs"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/generating-tokens-for-api-requests#Determine-the-Appropriate-Token-Lifetime": {
+      "abstract": [],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/generating-tokens-for-api-requests#Determine-the-Appropriate-Token-Lifetime",
+      "kind": "section",
+      "title": "Determine the Appropriate Token Lifetime",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/generating-tokens-for-api-requests#Determine-the-Appropriate-Token-Lifetime"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/issues": {
+      "abstract": [
+        {
+          "text": "Read information about issues that occurred when Xcode Cloud performs a build.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/issues",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Issues",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/issues"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/test-results": {
+      "abstract": [
+        {
+          "text": "Read test results for test actions Xcode Cloud performs.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/test-results",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Test Results",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/test-results"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/workflows": {
+      "abstract": [
+        {
+          "text": "Manage Xcode Cloud workflows and view workflow details like actions and start conditions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/workflows",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Workflows",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/workflows"
+    },
+    "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/xcode-cloud-workflows-and-builds": {
+      "abstract": [
+        {
+          "text": "Automate reading Xcode Cloud data, managing workflows, and starting builds.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/xcode-cloud-workflows-and-builds",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Xcode Cloud Workflows and Builds",
+      "type": "topic",
+      "url": "/documentation/appstoreconnectapi/xcode-cloud-workflows-and-builds"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Build-Information",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/build-runs",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/artifacts",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/issues",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/test-results"
+      ],
+      "title": "Build Information"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Getting-Build-Actions",
+      "identifiers": [
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-ciBuildActions-_id_",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-ciBuildActions-_id_-artifacts",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-ciBuildActions-_id_-buildRun",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-ciBuildActions-_id_-issues",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/GET-v1-ciBuildActions-_id_-testResults"
+      ],
+      "title": "Getting Build Actions"
+    },
+    {
+      "anchor": "Objects",
+      "identifiers": [
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/CiBuildAction",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/CiArtifactsResponse",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/CiBuildActionResponse",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/CiIssuesResponse",
+        "doc://com.apple.appstoreconnectapi/documentation/AppStoreConnectAPI/CiTestResultsResponse"
+      ],
+      "title": "Objects"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/appstoreconnectapi/build-actions"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "data"
+        }
+      ]
+    }
+  ]
+}

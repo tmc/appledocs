@@ -1,0 +1,3386 @@
+{
+  "abstract": [
+    {
+      "text": "Detect nearby accessories and facilitate their setup.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/discovering-and-configuring-accessories"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "images": [
+      {
+        "identifier": "discovering-configuring-accessories-PageImage-card.png",
+        "type": "card"
+      }
+    ],
+    "modules": [
+      {
+        "name": "AccessorySetupKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Discovering and configuring accessories"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the AccessorySetupKit framework to simplify discovery and configuration of Bluetooth or Wi-Fi accessories. This allows the person using your app to use these devices without granting overly-broad Bluetooth or Wi-Fi access.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To discover accessories and present them in your app:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Declare that your app uses AccessorySetupKit in its information property list.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In your app, create and activate an instance of ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASAccessorySession",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Provide information about your supported accessories to display a picker. This lets the person using your app discover and select nearby accessories to configure.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "When the picker sends an accessory added event, use information about the selected device to create a Bluetooth or Wi-Fi connection.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "anchor": "Declare-your-apps-accessories",
+          "level": 3,
+          "text": "Declare your app’s accessories",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To prepare your app to discover accessories, add the ",
+              "type": "text"
+            },
+            {
+              "code": "NSAccessorySetupKitSupports",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key to its information property list.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Set its value to an array of strings that contains one or more of the following values:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Add this value if your app discovers accessories using Bluetooth or Bluetooth Low Energy.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "Bluetooth",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Add this value if your app discovers accessories by finding Wi-Fi SSIDs that the accessories publish.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "WiFi",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you add ",
+              "type": "text"
+            },
+            {
+              "code": "Bluetooth",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to the list of supported protocols, you also need to add the following keys and values to your app’s information property list:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "An array of strings that represent the Bluetooth company identifiers for accessories your app configures.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "NSAccessorySetupBluetoothCompanyIdentifiers",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "An array of strings that represent the Bluetooth device names for accessories your app configures.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "NSAccessorySetupBluetoothNames",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "An array of strings that represent the hexadecimal values of Bluetooth services for accessories your app configures.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "NSAccessorySetupBluetoothServices",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "If your app tries to discover Bluetooth accessories during setup without supplying these keys and values, or uses identifiers, names, or services that it doesn’t include in its information property list, the app crashes. This only affects use of AccessorySetupKit discovery and selection; you can use other services and properties on the accessory after the person using the app selects it.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Activate-a-discovery-session",
+          "level": 3,
+          "text": "Activate a discovery session",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASAccessorySession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " is how your app uses the AccessorySetupKit framework. In your app, you create an instance of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASAccessorySession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and activate it to receive callbacks with events as the session processes events. The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASAccessorySession/activate(on:eventHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method takes a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Dispatch/DispatchQueue",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and an event-handling block or closure. The callbacks occur on the provided queue, which defaults to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Dispatch/DispatchQueue/main",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The event handler receives a single parameter of type ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASAccessoryEvent",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", which has an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASAccessoryEvent/eventType",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " that you use to determine what to do with each callback. For example, shortly after activating the session, your callback receives the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASAccessoryEventType/activated",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " event. The following listing comments on the meaning of these events and how you may want to handle them.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let session = ASAccessorySession()",
+            "override func viewDidLoad() {",
+            "    super.viewDidLoad()",
+            "    ",
+            "    session.activate(on: DispatchQueue.main) { [weak self] event in",
+            "        guard let self else { return }",
+            "        ",
+            "        switch event.eventType {",
+            "        case .activated:",
+            "            // Use previously-discovered accessories in",
+            "            // session.accessories, if necessary.",
+            "        case .accessoryAdded:",
+            "            // Handle addition of an accessory by person using the app.",
+            "        case .accessoryRemoved, .accessoryChanged:",
+            "            // Handle removal or change of previously-added",
+            "            // accessory, if necessary.",
+            "        case .invalidated:",
+            "            // The session is now invalid and you can't use it further.",
+            "        case .migrationComplete:",
+            "            // Handle migration.",
+            "        case .pickerDidPresent:",
+            "            // Update state for picker appearing, if necessary.",
+            "        case .pickerDidDismiss:",
+            "            // Update state for picker disappearing, if necessary.",
+            "        case .unknown:",
+            "            // Handle unknown event type, if appropriate.",
+            "        @unknown default:",
+            "            // Reserve this space for yet-to-be-defined event types.",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Display-an-accessory-picker",
+          "level": 3,
+          "text": "Display an accessory picker",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the session activates, its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASAccessorySession/accessories",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " array contains any accessories previously authorized for the app, which you can inspect. To discover new devices, your app needs to show an accessory picker. The person using the app uses this picker to choose the accessory to configure.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If someone renames a previously-discovered Wi-Fi accessory, it becomes discoverable again by the picker.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Create instances of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASPickerDisplayItem",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " that describe the items in the session that your app can configure. Collect these items in an array and pass them to the session for the operating system to present a picker:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "private func showMyPicker() {",
+            "    var descriptor = ASDiscoveryDescriptor()",
+            "    descriptor.bluetoothServiceUUID = CBUUID(string: MY_ACCESSORY_UUID_STRING) // If using Wi-Fi, set descriptor.ssid instead.",
+            "    ",
+            "    let displayName = \"My Accessory\"",
+            "    guard let productImage = UIImage(named: MY_ACCESSORY_IMAGE_NAME) else { return }",
+            "    ",
+            "    var items: [ASPickerDisplayItem] = []",
+            "    items.append (ASPickerDisplayItem(name: displayName,",
+            "                                      productImage: productImage,",
+            "                                      descriptor: descriptor))",
+            "    ",
+            "    // Create additional picker items if you support multiple accessories",
+            "    // with different Wi-Fi SSIDs or Bluetooth service UUIDs.",
+            "    ",
+            "    session.showPicker(for: items) { error in",
+            "        if let error {",
+            "            // Handle error.",
+            "        } else {",
+            "            // Perform any post-picker cleanup.",
+            "            // If the picker finished by selecting an item, the event",
+            "            // handler receives it as an event of type `.accessoryAdded`.",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Each display item’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASPickerDisplayItem/descriptor",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", a property of type ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASDiscoveryDescriptor",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", needs to have a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASDiscoveryDescriptor/bluetoothCompanyIdentifier",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASDiscoveryDescriptor/bluetoothServiceUUID",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and at least one of the following accessory identifiers:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASDiscoveryDescriptor/bluetoothNameSubstring",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASDiscoveryDescriptor/bluetoothManufacturerDataBlob",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASDiscoveryDescriptor/bluetoothManufacturerDataMask",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " set to the same length.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASDiscoveryDescriptor/bluetoothServiceDataBlob",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASDiscoveryDescriptor/bluetoothServiceDataMask",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " set to the same length.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Either ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASDiscoveryDescriptor/ssid",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " or ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASDiscoveryDescriptor/ssidPrefix",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", which needs to have a non-zero length. Only supply one of these; the app crashes if you supply both.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For Bluetooth accessories, the accessory identifiers you use in display items need to match the values you supply in the app’s information property list.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Along with filtering matched accessories to show in the picker, the display item and its descriptor allow you to control certain behaviors of the picker interaction. You can limit the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASDiscoveryDescriptor/bluetoothRange",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " of the descriptor to only match accessories in the immediate physical proximity of the device running the app. To specify behaviors like allowing renaming of the accessory during setup, or confirming accessory authorization before showing the setup view, set the display item’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASPickerDisplayItem/setupOptions-swift.property",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the picker appears, the person using the app sees a view of all nearby accessories that match the identifiers you provide. When multiple devices match a given identifier, the picker shows a separate item for each unique device. This allows the person to select a single device with the picker.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Use-the-picker-when-migrating-to-AccessorySetupKit",
+          "level": 3,
+          "text": "Use the picker when migrating to AccessorySetupKit",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can also perform a one-time migration of previously-configured accessories, which adds them to the AccessorySetupKit framework’s list of known accessories. To do this, create instances of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASMigrationDisplayItem",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and include them in the array of items you send to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASAccessorySession/showPicker(for:completionHandler:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For items you want to migrate, set one or both of the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASMigrationDisplayItem/hotspotSSID",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", which must be a full SSID and not a prefix.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASMigrationDisplayItem/peripheralIdentifier",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": ", which corresponds to the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/CoreBluetooth/CBPeer/identifier",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " property of the ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/CoreBluetooth/CBPeer",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " type.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Don’t initialize a ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/CoreBluetooth/CBCentralManager",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " before migration is complete. If you do, your callback handler receives an error and the picker fails to appear.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Connect-and-configure-the-selected-device",
+          "level": 3,
+          "text": "Connect and configure the selected device",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the person picks an accessory, the picker sends an event of type ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASAccessoryEventType/accessoryAdded",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", followed by an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASAccessoryEventType/pickerDidDismiss",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " event when they dismiss the picker. If your app presents its own UI to configure the accessory, wait for the picker to dismiss, then use the accessory from the first event. You can handle this scenario by rewriting your event handler closure from before as follows, storing the accessory on the first event and retrieving it on the second.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "case .accessoryAdded:",
+            "    self.pickedAccessory = event.accessory",
+            "case .pickerDidDismiss:",
+            "    guard let accessory = self.pickedAccessory else { return }",
+            "    self.pickedAccessory = nil",
+            "    self.handleAccessoryAdded(accessory)"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The event’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASAccessoryEvent/accessory",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property contains details of the selected device, like its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASAccessory/displayName",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASAccessory/bluetoothIdentifier",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for Bluetooth devices or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASAccessory/ssid",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for Wi-Fi. Use this information to connect to the accessory — using ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/CoreBluetooth",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for Bluetooth or ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/NetworkExtension",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for Wi-Fi — and begin your device-specific setup process.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "private func handleAccessoryAdded(_ accessory: ASAccessory) {",
+            "    if let btIdentifier = accessory.bluetoothIdentifier {",
+            "        // Use Core Bluetooth to communicate with and configure the accessory.",
+            "    }",
+            "    else if let ssid = accessory.ssid {",
+            "        // Create a `NEHotspotConfiguration` with this SSID to configure.",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because the app discovered the device with AccessorySetupKit, connecting to the device won’t invoke the TCC or other alerts that the system normally shows when using these system frameworks.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "authorizing-a-bluetooth-accessory-PageImage-card.png": {
+      "alt": "An illustration of a die over a background patterned with the Bluetooth logo.",
+      "identifier": "authorizing-a-bluetooth-accessory-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/7888823e893746ded65d008246db50b5/authorizing-a-bluetooth-accessory-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ac870df192b194e8124f2d548bfe0de9/authorizing-a-bluetooth-accessory-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "discovering-configuring-accessories-PageImage-card.png": {
+      "alt": null,
+      "identifier": "discovering-configuring-accessories-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ab9450c2b7948ffea221e483d1b210d3/discovering-configuring-accessories-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/50cc817a2ebceed40a67b891238dd603/discovering-configuring-accessories-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit": {
+      "abstract": [
+        {
+          "text": "Enable privacy-preserving discovery and configuration of accessories.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "AccessorySetupKit",
+      "type": "topic",
+      "url": "/documentation/accessorysetupkit"
+    },
+    "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASAccessory/bluetoothIdentifier": {
+      "abstract": [
+        {
+          "text": "The accessory’s unique Bluetooth identifier, if any.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "bluetoothIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4UUIDV",
+          "text": "UUID"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASAccessory/bluetoothIdentifier",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "bluetoothIdentifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "bluetoothIdentifier",
+      "type": "topic",
+      "url": "/documentation/accessorysetupkit/asaccessory/bluetoothidentifier"
+    },
+    "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASAccessory/displayName": {
+      "abstract": [
+        {
+          "text": "The accessory’s name, suitable for displaying to someone using your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "displayName"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASAccessory/displayName",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "displayName"
+        }
+      ],
+      "role": "symbol",
+      "title": "displayName",
+      "type": "topic",
+      "url": "/documentation/accessorysetupkit/asaccessory/displayname"
+    },
+    "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASAccessory/ssid": {
+      "abstract": [
+        {
+          "text": "The accessory’s Wi-Fi SSID, if any.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ssid"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASAccessory/ssid",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SSID"
+        }
+      ],
+      "role": "symbol",
+      "title": "ssid",
+      "type": "topic",
+      "url": "/documentation/accessorysetupkit/asaccessory/ssid"
+    },
+    "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASAccessoryEvent": {
+      "abstract": [
+        {
+          "text": "Properties of an event encountered during accessory discovery.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ASAccessoryEvent"
+        }
+      ],
+      "identifier": "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASAccessoryEvent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ASAccessoryEvent"
+        }
+      ],
+      "role": "symbol",
+      "title": "ASAccessoryEvent",
+      "type": "topic",
+      "url": "/documentation/accessorysetupkit/asaccessoryevent"
+    },
+    "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASAccessoryEvent/accessory": {
+      "abstract": [
+        {
+          "text": "The accessory involved in the event, if any.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "accessory"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ASAccessory",
+          "text": "ASAccessory"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASAccessoryEvent/accessory",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "accessory"
+        }
+      ],
+      "role": "symbol",
+      "title": "accessory",
+      "type": "topic",
+      "url": "/documentation/accessorysetupkit/asaccessoryevent/accessory"
+    },
+    "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASAccessoryEvent/eventType": {
+      "abstract": [
+        {
+          "text": "The type of event, such as accessory addition or removal, or picker presentation or removal.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "eventType"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@ASAccessoryEventType",
+          "text": "ASAccessoryEventType"
+        }
+      ],
+      "identifier": "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASAccessoryEvent/eventType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "eventType"
+        }
+      ],
+      "role": "symbol",
+      "title": "eventType",
+      "type": "topic",
+      "url": "/documentation/accessorysetupkit/asaccessoryevent/eventtype"
+    },
+    "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASAccessoryEventType/accessoryAdded": {
+      "abstract": [
+        {
+          "text": "The session added an accessory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "accessoryAdded"
+        }
+      ],
+      "identifier": "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASAccessoryEventType/accessoryAdded",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ASAccessoryEventTypeAccessoryAdded"
+        }
+      ],
+      "role": "symbol",
+      "title": "ASAccessoryEventType.accessoryAdded",
+      "type": "topic",
+      "url": "/documentation/accessorysetupkit/asaccessoryeventtype/accessoryadded"
+    },
+    "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASAccessoryEventType/activated": {
+      "abstract": [
+        {
+          "text": "The discovery session activated.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "activated"
+        }
+      ],
+      "identifier": "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASAccessoryEventType/activated",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ASAccessoryEventTypeActivated"
+        }
+      ],
+      "role": "symbol",
+      "title": "ASAccessoryEventType.activated",
+      "type": "topic",
+      "url": "/documentation/accessorysetupkit/asaccessoryeventtype/activated"
+    },
+    "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASAccessoryEventType/pickerDidDismiss": {
+      "abstract": [
+        {
+          "text": "The discovery session picker dismissed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "pickerDidDismiss"
+        }
+      ],
+      "identifier": "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASAccessoryEventType/pickerDidDismiss",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ASAccessoryEventTypePickerDidDismiss"
+        }
+      ],
+      "role": "symbol",
+      "title": "ASAccessoryEventType.pickerDidDismiss",
+      "type": "topic",
+      "url": "/documentation/accessorysetupkit/asaccessoryeventtype/pickerdiddismiss"
+    },
+    "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASAccessorySession": {
+      "abstract": [
+        {
+          "text": "A class to coordinate accessory discovery.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ASAccessorySession"
+        }
+      ],
+      "identifier": "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASAccessorySession",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ASAccessorySession"
+        }
+      ],
+      "role": "symbol",
+      "title": "ASAccessorySession",
+      "type": "topic",
+      "url": "/documentation/accessorysetupkit/asaccessorysession"
+    },
+    "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASAccessorySession/accessories": {
+      "abstract": [
+        {
+          "text": "An array of previously-selected accessories for this application.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "accessories"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ASAccessory",
+          "text": "ASAccessory"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASAccessorySession/accessories",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "accessories"
+        }
+      ],
+      "role": "symbol",
+      "title": "accessories",
+      "type": "topic",
+      "url": "/documentation/accessorysetupkit/asaccessorysession/accessories"
+    },
+    "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASAccessorySession/activate(on:eventHandler:)": {
+      "abstract": [
+        {
+          "text": "Activate the session and start delivering events to an event handler.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "activate"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "on"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@dispatch_queue_t",
+          "text": "dispatch_queue_t"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "eventHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ASAccessoryEvent",
+          "text": "ASAccessoryEvent"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASAccessorySession/activate(on:eventHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "activateWithQueue:eventHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "activate(on:eventHandler:)",
+      "type": "topic",
+      "url": "/documentation/accessorysetupkit/asaccessorysession/activate(on:eventhandler:)"
+    },
+    "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASAccessorySession/showPicker(for:completionHandler:)": {
+      "abstract": [
+        {
+          "text": "Present a picker that shows discovered accessories matching an array of display items.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "showPicker"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ASPickerDisplayItem",
+          "text": "ASPickerDisplayItem"
+        },
+        {
+          "kind": "text",
+          "text": "], "
+        },
+        {
+          "kind": "externalParam",
+          "text": "completionHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": ((any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASAccessorySession/showPicker(for:completionHandler:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "showPickerForDisplayItems:completionHandler:"
+        }
+      ],
+      "role": "symbol",
+      "title": "showPicker(for:completionHandler:)",
+      "type": "topic",
+      "url": "/documentation/accessorysetupkit/asaccessorysession/showpicker(for:completionhandler:)"
+    },
+    "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASDiscoveryDescriptor": {
+      "abstract": [
+        {
+          "text": "Descriptive traits used to discover accessories.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ASDiscoveryDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASDiscoveryDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ASDiscoveryDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "ASDiscoveryDescriptor",
+      "type": "topic",
+      "url": "/documentation/accessorysetupkit/asdiscoverydescriptor"
+    },
+    "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASDiscoveryDescriptor/bluetoothCompanyIdentifier": {
+      "abstract": [
+        {
+          "text": "The accessory’s 16-bit Bluetooth Company Identifier.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "bluetoothCompanyIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@ASBluetoothCompanyIdentifier",
+          "text": "ASBluetoothCompanyIdentifier"
+        }
+      ],
+      "identifier": "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASDiscoveryDescriptor/bluetoothCompanyIdentifier",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "bluetoothCompanyIdentifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "bluetoothCompanyIdentifier",
+      "type": "topic",
+      "url": "/documentation/accessorysetupkit/asdiscoverydescriptor/bluetoothcompanyidentifier"
+    },
+    "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASDiscoveryDescriptor/bluetoothManufacturerDataBlob": {
+      "abstract": [
+        {
+          "text": "A byte buffer that matches the accessory’s Bluetooth manufacturer data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "bluetoothManufacturerDataBlob"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASDiscoveryDescriptor/bluetoothManufacturerDataBlob",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "bluetoothManufacturerDataBlob"
+        }
+      ],
+      "role": "symbol",
+      "title": "bluetoothManufacturerDataBlob",
+      "type": "topic",
+      "url": "/documentation/accessorysetupkit/asdiscoverydescriptor/bluetoothmanufacturerdatablob"
+    },
+    "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASDiscoveryDescriptor/bluetoothManufacturerDataMask": {
+      "abstract": [
+        {
+          "text": "The accessory’s Bluetooth manufacturer data mask.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "bluetoothManufacturerDataMask"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASDiscoveryDescriptor/bluetoothManufacturerDataMask",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "bluetoothManufacturerDataMask"
+        }
+      ],
+      "role": "symbol",
+      "title": "bluetoothManufacturerDataMask",
+      "type": "topic",
+      "url": "/documentation/accessorysetupkit/asdiscoverydescriptor/bluetoothmanufacturerdatamask"
+    },
+    "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASDiscoveryDescriptor/bluetoothNameSubstring": {
+      "abstract": [
+        {
+          "text": "The accessory’s over-the-air Bluetooth name substring.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "bluetoothNameSubstring"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASDiscoveryDescriptor/bluetoothNameSubstring",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "bluetoothNameSubstring"
+        }
+      ],
+      "role": "symbol",
+      "title": "bluetoothNameSubstring",
+      "type": "topic",
+      "url": "/documentation/accessorysetupkit/asdiscoverydescriptor/bluetoothnamesubstring"
+    },
+    "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASDiscoveryDescriptor/bluetoothRange": {
+      "abstract": [
+        {
+          "text": "A property that tells the session to discover accessories within a specific Bluetooth range.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "bluetoothRange"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ASDiscoveryDescriptor",
+          "text": "ASDiscoveryDescriptor"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@ASDiscoveryDescriptorRange",
+          "text": "Range"
+        }
+      ],
+      "identifier": "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASDiscoveryDescriptor/bluetoothRange",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "bluetoothRange"
+        }
+      ],
+      "role": "symbol",
+      "title": "bluetoothRange",
+      "type": "topic",
+      "url": "/documentation/accessorysetupkit/asdiscoverydescriptor/bluetoothrange"
+    },
+    "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASDiscoveryDescriptor/bluetoothServiceDataBlob": {
+      "abstract": [
+        {
+          "text": "A byte buffer that matches the accessory’s Bluetooth service data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "bluetoothServiceDataBlob"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASDiscoveryDescriptor/bluetoothServiceDataBlob",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "bluetoothServiceDataBlob"
+        }
+      ],
+      "role": "symbol",
+      "title": "bluetoothServiceDataBlob",
+      "type": "topic",
+      "url": "/documentation/accessorysetupkit/asdiscoverydescriptor/bluetoothservicedatablob"
+    },
+    "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASDiscoveryDescriptor/bluetoothServiceDataMask": {
+      "abstract": [
+        {
+          "text": "The accessory’s Bluetooth service data mask.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "bluetoothServiceDataMask"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASDiscoveryDescriptor/bluetoothServiceDataMask",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "bluetoothServiceDataMask"
+        }
+      ],
+      "role": "symbol",
+      "title": "bluetoothServiceDataMask",
+      "type": "topic",
+      "url": "/documentation/accessorysetupkit/asdiscoverydescriptor/bluetoothservicedatamask"
+    },
+    "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASDiscoveryDescriptor/bluetoothServiceUUID": {
+      "abstract": [
+        {
+          "text": "The accessory’s Bluetooth service UUID.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "bluetoothServiceUUID"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CBUUID",
+          "text": "CBUUID"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASDiscoveryDescriptor/bluetoothServiceUUID",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "bluetoothServiceUUID"
+        }
+      ],
+      "role": "symbol",
+      "title": "bluetoothServiceUUID",
+      "type": "topic",
+      "url": "/documentation/accessorysetupkit/asdiscoverydescriptor/bluetoothserviceuuid"
+    },
+    "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASDiscoveryDescriptor/ssid": {
+      "abstract": [
+        {
+          "text": "The SSID of the accessory’s Wi-Fi network.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ssid"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASDiscoveryDescriptor/ssid",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SSID"
+        }
+      ],
+      "role": "symbol",
+      "title": "ssid",
+      "type": "topic",
+      "url": "/documentation/accessorysetupkit/asdiscoverydescriptor/ssid"
+    },
+    "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASDiscoveryDescriptor/ssidPrefix": {
+      "abstract": [
+        {
+          "text": "The prefix string of SSID of the accessory’s Wi-Fi network.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ssidPrefix"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASDiscoveryDescriptor/ssidPrefix",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SSIDPrefix"
+        }
+      ],
+      "role": "symbol",
+      "title": "ssidPrefix",
+      "type": "topic",
+      "url": "/documentation/accessorysetupkit/asdiscoverydescriptor/ssidprefix"
+    },
+    "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASMigrationDisplayItem": {
+      "abstract": [
+        {
+          "text": "A previously-discovered accessory as presented by the discovery picker, for use when migrating it to AccessorySetupKit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ASMigrationDisplayItem"
+        }
+      ],
+      "identifier": "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASMigrationDisplayItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ASMigrationDisplayItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "ASMigrationDisplayItem",
+      "type": "topic",
+      "url": "/documentation/accessorysetupkit/asmigrationdisplayitem"
+    },
+    "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASMigrationDisplayItem/hotspotSSID": {
+      "abstract": [
+        {
+          "text": "The Wi-Fi hotspot SSID of the accessory to migrate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "hotspotSSID"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASMigrationDisplayItem/hotspotSSID",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "hotspotSSID"
+        }
+      ],
+      "role": "symbol",
+      "title": "hotspotSSID",
+      "type": "topic",
+      "url": "/documentation/accessorysetupkit/asmigrationdisplayitem/hotspotssid"
+    },
+    "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASMigrationDisplayItem/peripheralIdentifier": {
+      "abstract": [
+        {
+          "text": "The Bluetooth identifier of the accessory to migrate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "peripheralIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4UUIDV",
+          "text": "UUID"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASMigrationDisplayItem/peripheralIdentifier",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "peripheralIdentifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "peripheralIdentifier",
+      "type": "topic",
+      "url": "/documentation/accessorysetupkit/asmigrationdisplayitem/peripheralidentifier"
+    },
+    "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASPickerDisplayItem": {
+      "abstract": [
+        {
+          "text": "An accessory as presented by the discovery picker.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ASPickerDisplayItem"
+        }
+      ],
+      "identifier": "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASPickerDisplayItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ASPickerDisplayItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "ASPickerDisplayItem",
+      "type": "topic",
+      "url": "/documentation/accessorysetupkit/aspickerdisplayitem"
+    },
+    "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASPickerDisplayItem/descriptor": {
+      "abstract": [
+        {
+          "text": "A descriptor that the picker uses to determine which discovered accessories to display.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "descriptor"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ASDiscoveryDescriptor",
+          "text": "ASDiscoveryDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASPickerDisplayItem/descriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "descriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "descriptor",
+      "type": "topic",
+      "url": "/documentation/accessorysetupkit/aspickerdisplayitem/descriptor"
+    },
+    "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASPickerDisplayItem/setupOptions-swift.property": {
+      "abstract": [
+        {
+          "text": "Custom setup options for the accessory.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setupOptions"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ASPickerDisplayItem",
+          "text": "ASPickerDisplayItem"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@ASPickerDisplayItemSetupOptions",
+          "text": "SetupOptions"
+        }
+      ],
+      "identifier": "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASPickerDisplayItem/setupOptions-swift.property",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setupOptions"
+        }
+      ],
+      "role": "symbol",
+      "title": "setupOptions",
+      "type": "topic",
+      "url": "/documentation/accessorysetupkit/aspickerdisplayitem/setupoptions-swift.property"
+    },
+    "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/authorizing-a-bluetooth-accessory-to-share-a-dice-roll": {
+      "abstract": [
+        {
+          "text": "Discover, select, and set up a specific Bluetooth accessory without requesting permission to use Bluetooth.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/authorizing-a-bluetooth-accessory-to-share-a-dice-roll",
+      "images": [
+        {
+          "identifier": "authorizing-a-bluetooth-accessory-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Authorizing a Bluetooth accessory to share a dice roll",
+      "type": "topic",
+      "url": "/documentation/accessorysetupkit/authorizing-a-bluetooth-accessory-to-share-a-dice-roll"
+    },
+    "doc://com.apple.documentation/documentation/CoreBluetooth": {
+      "abstract": [
+        {
+          "text": "Communicate with Bluetooth low energy and BR/EDR (“Classic”) Devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreBluetooth",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Bluetooth",
+      "type": "topic",
+      "url": "/documentation/CoreBluetooth"
+    },
+    "doc://com.apple.documentation/documentation/CoreBluetooth/CBCentralManager": {
+      "abstract": [
+        {
+          "text": "An object that scans for, discovers, connects to, and manages peripherals.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CBCentralManager"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreBluetooth/CBCentralManager",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CBCentralManager",
+      "type": "topic",
+      "url": "/documentation/CoreBluetooth/CBCentralManager"
+    },
+    "doc://com.apple.documentation/documentation/CoreBluetooth/CBPeer": {
+      "abstract": [
+        {
+          "text": "An object that represents a remote device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CBPeer"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreBluetooth/CBPeer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CBPeer",
+      "type": "topic",
+      "url": "/documentation/CoreBluetooth/CBPeer"
+    },
+    "doc://com.apple.documentation/documentation/CoreBluetooth/CBPeer/identifier": {
+      "abstract": [
+        {
+          "text": "The UUID associated with the peer.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "identifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4UUIDV",
+          "text": "UUID"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/CoreBluetooth/CBPeer/identifier",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "identifier",
+      "type": "topic",
+      "url": "/documentation/CoreBluetooth/CBPeer/identifier"
+    },
+    "doc://com.apple.documentation/documentation/Dispatch/DispatchQueue": {
+      "abstract": [
+        {
+          "text": "An object that manages the execution of tasks serially or concurrently on your app’s main thread or on a background thread.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DispatchQueue"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Dispatch/DispatchQueue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "DispatchQueue",
+      "type": "topic",
+      "url": "/documentation/Dispatch/DispatchQueue"
+    },
+    "doc://com.apple.documentation/documentation/Dispatch/DispatchQueue/main": {
+      "abstract": [
+        {
+          "text": "The dispatch queue associated with the main thread of the current process.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "main"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)OS_dispatch_queue",
+          "text": "DispatchQueue"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Dispatch/DispatchQueue/main",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "main",
+      "type": "topic",
+      "url": "/documentation/Dispatch/DispatchQueue/main"
+    },
+    "doc://com.apple.documentation/documentation/NetworkExtension": {
+      "abstract": [
+        {
+          "text": "Customize and extend core networking features.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/NetworkExtension",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Network Extension",
+      "type": "topic",
+      "url": "/documentation/NetworkExtension"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/authorizing-a-bluetooth-accessory-to-share-a-dice-roll",
+        "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASAccessorySession"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Essentials",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASAccessorySession"
+              ],
+              "title": "Essentials"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.AccessorySetupKit~1documentation~1AccessorySetupKit~1ASDiscoveryDescriptor~1bluetoothRange/title",
+          "value": "bluetoothRange"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.AccessorySetupKit~1documentation~1AccessorySetupKit~1ASDiscoveryDescriptor~1bluetoothRange/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "bluetoothRange"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreBluetooth~1CBPeer~1identifier/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@property"
+            },
+            {
+              "kind": "text",
+              "text": " ("
+            },
+            {
+              "kind": "keyword",
+              "text": "nonatomic"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "kind": "keyword",
+              "text": "readonly"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSUUID",
+              "text": "NSUUID"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "identifier",
+              "text": "identifier"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.AccessorySetupKit~1documentation~1AccessorySetupKit~1ASPickerDisplayItem~1setupOptions-swift.property/title",
+          "value": "setupOptions"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.AccessorySetupKit~1documentation~1AccessorySetupKit~1ASPickerDisplayItem~1setupOptions-swift.property/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "setupOptions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.AccessorySetupKit~1documentation~1AccessorySetupKit~1ASDiscoveryDescriptor~1ssid/title",
+          "value": "SSID"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.AccessorySetupKit~1documentation~1AccessorySetupKit~1ASDiscoveryDescriptor~1ssid/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SSID"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.AccessorySetupKit~1documentation~1AccessorySetupKit~1ASAccessory~1ssid/title",
+          "value": "SSID"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.AccessorySetupKit~1documentation~1AccessorySetupKit~1ASAccessory~1ssid/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SSID"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.AccessorySetupKit~1documentation~1AccessorySetupKit~1ASDiscoveryDescriptor~1ssidPrefix/title",
+          "value": "SSIDPrefix"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.AccessorySetupKit~1documentation~1AccessorySetupKit~1ASDiscoveryDescriptor~1ssidPrefix/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SSIDPrefix"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.AccessorySetupKit~1documentation~1AccessorySetupKit~1ASPickerDisplayItem~1descriptor/title",
+          "value": "descriptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.AccessorySetupKit~1documentation~1AccessorySetupKit~1ASPickerDisplayItem~1descriptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "descriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.AccessorySetupKit~1documentation~1AccessorySetupKit~1ASAccessorySession~1accessories/title",
+          "value": "accessories"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.AccessorySetupKit~1documentation~1AccessorySetupKit~1ASAccessorySession~1accessories/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "accessories"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.AccessorySetupKit~1documentation~1AccessorySetupKit~1ASAccessoryEvent/title",
+          "value": "ASAccessoryEvent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.AccessorySetupKit~1documentation~1AccessorySetupKit~1ASAccessoryEvent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAccessoryEvent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.AccessorySetupKit~1documentation~1AccessorySetupKit~1ASAccessoryEvent/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAccessoryEvent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.AccessorySetupKit~1documentation~1AccessorySetupKit~1ASAccessorySession~1activate(on:eventHandler:)/title",
+          "value": "activateWithQueue:eventHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.AccessorySetupKit~1documentation~1AccessorySetupKit~1ASAccessorySession~1activate(on:eventHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "activateWithQueue:eventHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreBluetooth~1CBCentralManager/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CBCentralManager"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)CBManager",
+              "text": "CBManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1CoreBluetooth~1CBPeer/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CBPeer"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.AccessorySetupKit~1documentation~1AccessorySetupKit~1ASAccessoryEvent~1eventType/title",
+          "value": "eventType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.AccessorySetupKit~1documentation~1AccessorySetupKit~1ASAccessoryEvent~1eventType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "eventType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.AccessorySetupKit~1documentation~1AccessorySetupKit~1ASAccessorySession/title",
+          "value": "ASAccessorySession"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.AccessorySetupKit~1documentation~1AccessorySetupKit~1ASAccessorySession/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAccessorySession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.AccessorySetupKit~1documentation~1AccessorySetupKit~1ASAccessorySession/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAccessorySession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.AccessorySetupKit~1documentation~1AccessorySetupKit~1ASMigrationDisplayItem~1hotspotSSID/title",
+          "value": "hotspotSSID"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.AccessorySetupKit~1documentation~1AccessorySetupKit~1ASMigrationDisplayItem~1hotspotSSID/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "hotspotSSID"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.AccessorySetupKit~1documentation~1AccessorySetupKit~1ASAccessory~1displayName/title",
+          "value": "displayName"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.AccessorySetupKit~1documentation~1AccessorySetupKit~1ASAccessory~1displayName/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "displayName"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.AccessorySetupKit~1documentation~1AccessorySetupKit~1ASDiscoveryDescriptor~1bluetoothManufacturerDataMask/title",
+          "value": "bluetoothManufacturerDataMask"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.AccessorySetupKit~1documentation~1AccessorySetupKit~1ASDiscoveryDescriptor~1bluetoothManufacturerDataMask/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "bluetoothManufacturerDataMask"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.AccessorySetupKit~1documentation~1AccessorySetupKit~1ASMigrationDisplayItem/title",
+          "value": "ASMigrationDisplayItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.AccessorySetupKit~1documentation~1AccessorySetupKit~1ASMigrationDisplayItem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASMigrationDisplayItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.AccessorySetupKit~1documentation~1AccessorySetupKit~1ASMigrationDisplayItem/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASMigrationDisplayItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.AccessorySetupKit~1documentation~1AccessorySetupKit~1ASPickerDisplayItem/title",
+          "value": "ASPickerDisplayItem"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.AccessorySetupKit~1documentation~1AccessorySetupKit~1ASPickerDisplayItem/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASPickerDisplayItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.AccessorySetupKit~1documentation~1AccessorySetupKit~1ASPickerDisplayItem/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASPickerDisplayItem"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.AccessorySetupKit~1documentation~1AccessorySetupKit~1ASDiscoveryDescriptor~1bluetoothServiceDataBlob/title",
+          "value": "bluetoothServiceDataBlob"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.AccessorySetupKit~1documentation~1AccessorySetupKit~1ASDiscoveryDescriptor~1bluetoothServiceDataBlob/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "bluetoothServiceDataBlob"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.AccessorySetupKit~1documentation~1AccessorySetupKit~1ASDiscoveryDescriptor~1bluetoothNameSubstring/title",
+          "value": "bluetoothNameSubstring"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.AccessorySetupKit~1documentation~1AccessorySetupKit~1ASDiscoveryDescriptor~1bluetoothNameSubstring/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "bluetoothNameSubstring"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.AccessorySetupKit~1documentation~1AccessorySetupKit~1ASAccessorySession~1showPicker(for:completionHandler:)/title",
+          "value": "showPickerForDisplayItems:completionHandler:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.AccessorySetupKit~1documentation~1AccessorySetupKit~1ASAccessorySession~1showPicker(for:completionHandler:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "showPickerForDisplayItems:completionHandler:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.AccessorySetupKit~1documentation~1AccessorySetupKit~1ASMigrationDisplayItem~1peripheralIdentifier/title",
+          "value": "peripheralIdentifier"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.AccessorySetupKit~1documentation~1AccessorySetupKit~1ASMigrationDisplayItem~1peripheralIdentifier/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "peripheralIdentifier"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.AccessorySetupKit~1documentation~1AccessorySetupKit~1ASAccessoryEventType~1pickerDidDismiss/title",
+          "value": "ASAccessoryEventTypePickerDidDismiss"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.AccessorySetupKit~1documentation~1AccessorySetupKit~1ASAccessoryEventType~1pickerDidDismiss/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAccessoryEventTypePickerDidDismiss"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.AccessorySetupKit~1documentation~1AccessorySetupKit~1ASAccessory~1bluetoothIdentifier/title",
+          "value": "bluetoothIdentifier"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.AccessorySetupKit~1documentation~1AccessorySetupKit~1ASAccessory~1bluetoothIdentifier/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "bluetoothIdentifier"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.AccessorySetupKit~1documentation~1AccessorySetupKit~1ASDiscoveryDescriptor~1bluetoothServiceUUID/title",
+          "value": "bluetoothServiceUUID"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.AccessorySetupKit~1documentation~1AccessorySetupKit~1ASDiscoveryDescriptor~1bluetoothServiceUUID/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "bluetoothServiceUUID"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.AccessorySetupKit~1documentation~1AccessorySetupKit~1ASAccessoryEventType~1activated/title",
+          "value": "ASAccessoryEventTypeActivated"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.AccessorySetupKit~1documentation~1AccessorySetupKit~1ASAccessoryEventType~1activated/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAccessoryEventTypeActivated"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.AccessorySetupKit~1documentation~1AccessorySetupKit~1ASDiscoveryDescriptor~1bluetoothManufacturerDataBlob/title",
+          "value": "bluetoothManufacturerDataBlob"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.AccessorySetupKit~1documentation~1AccessorySetupKit~1ASDiscoveryDescriptor~1bluetoothManufacturerDataBlob/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "bluetoothManufacturerDataBlob"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.AccessorySetupKit~1documentation~1AccessorySetupKit~1ASDiscoveryDescriptor~1bluetoothServiceDataMask/title",
+          "value": "bluetoothServiceDataMask"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.AccessorySetupKit~1documentation~1AccessorySetupKit~1ASDiscoveryDescriptor~1bluetoothServiceDataMask/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "bluetoothServiceDataMask"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.AccessorySetupKit~1documentation~1AccessorySetupKit~1ASDiscoveryDescriptor~1bluetoothCompanyIdentifier/title",
+          "value": "bluetoothCompanyIdentifier"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.AccessorySetupKit~1documentation~1AccessorySetupKit~1ASDiscoveryDescriptor~1bluetoothCompanyIdentifier/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "bluetoothCompanyIdentifier"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.AccessorySetupKit~1documentation~1AccessorySetupKit~1ASAccessoryEventType~1accessoryAdded/title",
+          "value": "ASAccessoryEventTypeAccessoryAdded"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.AccessorySetupKit~1documentation~1AccessorySetupKit~1ASAccessoryEventType~1accessoryAdded/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASAccessoryEventTypeAccessoryAdded"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.AccessorySetupKit~1documentation~1AccessorySetupKit~1ASAccessoryEvent~1accessory/title",
+          "value": "accessory"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.AccessorySetupKit~1documentation~1AccessorySetupKit~1ASAccessoryEvent~1accessory/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "accessory"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.AccessorySetupKit~1documentation~1AccessorySetupKit~1ASDiscoveryDescriptor/title",
+          "value": "ASDiscoveryDescriptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.AccessorySetupKit~1documentation~1AccessorySetupKit~1ASDiscoveryDescriptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASDiscoveryDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.AccessorySetupKit~1documentation~1AccessorySetupKit~1ASDiscoveryDescriptor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASDiscoveryDescriptor"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/accessorysetupkit/discovering-and-configuring-accessories"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/accessorysetupkit/discovering-and-configuring-accessories"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

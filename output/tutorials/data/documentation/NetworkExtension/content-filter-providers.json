@@ -1,0 +1,1275 @@
+{
+  "abstract": [
+    {
+      "text": "Create an on-device network content filter.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.networkextension/documentation/NetworkExtension"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.networkextension/documentation/NetworkExtension/content-filter-providers"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Network Extension"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Content filter providers"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An on-device network content filter examines user network content as it passes through the network stack and determines if it should block that content or allow it to pass on to its final destination. You might create a content filter and sell it to organizations, like schools and businesses, that want to prevent users from accessing specific Internet content.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A content filter consists of two providers that work in close cooperation:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A filter data provider receives user network content and examines that content to determine whether to block or allow it.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A filter control provider passes configuration information to the filter data provider to allow that provider to do its job.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This separation exists to guarantee user privacy. The filter data provider runs in a very restrictive sandbox that prevents user network content from escaping that provider. The filter control provider has a less restrictive sandbox but doesn’t have access to user network content. By combining these providers, your content filter has access to the network but can’t use that access to export user network content.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For example, your filter control provider might download a set of filtering rules and save them to a shared app group. Your filter data provider has ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "read-only",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " access to that app group, allowing it use those rules to filter content but still preventing it from exporting user network content.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For detailed information about content filter provider deployment options, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Technotes/tn3134-network-extension-provider-deployment",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "When a VPN configuration is active, connections use the VPN instead of iCloud Private Relay. Network Extension providers also don’t use iCloud Private Relay.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.networking.networkextension": {
+      "abstract": [
+        {
+          "text": "The APIs an app can use to customize networking features.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.networking.networkextension",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Network Extensions Entitlement",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Entitlements/com.apple.developer.networking.networkextension"
+    },
+    "doc://com.apple.documentation/documentation/Technotes/tn3134-network-extension-provider-deployment": {
+      "abstract": [
+        {
+          "text": "Explore the platforms, packaging, OS versions, and device configurations for Network Extension provider deployment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Technotes/tn3134-network-extension-provider-deployment",
+      "kind": "article",
+      "role": "article",
+      "title": "TN3134: Network Extension provider deployment",
+      "type": "topic",
+      "url": "/documentation/Technotes/tn3134-network-extension-provider-deployment"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension": {
+      "abstract": [
+        {
+          "text": "Customize and extend core networking features.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Network Extension",
+      "type": "topic",
+      "url": "/documentation/networkextension"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterBrowserFlow": {
+      "abstract": [
+        {
+          "text": "A flow of network data, originating from a WebKit-based browser, that the filter examines.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NEFilterBrowserFlow"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterBrowserFlow",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NEFilterBrowserFlow"
+        }
+      ],
+      "role": "symbol",
+      "title": "NEFilterBrowserFlow",
+      "type": "topic",
+      "url": "/documentation/networkextension/nefilterbrowserflow"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterControlProvider": {
+      "abstract": [
+        {
+          "text": "The principal class for a filter control provider extension.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NEFilterControlProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterControlProvider",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NEFilterControlProvider"
+        }
+      ],
+      "role": "symbol",
+      "title": "NEFilterControlProvider",
+      "type": "topic",
+      "url": "/documentation/networkextension/nefiltercontrolprovider"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterControlVerdict": {
+      "abstract": [
+        {
+          "text": "The result from a filter control provider.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NEFilterControlVerdict"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterControlVerdict",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NEFilterControlVerdict"
+        }
+      ],
+      "role": "symbol",
+      "title": "NEFilterControlVerdict",
+      "type": "topic",
+      "url": "/documentation/networkextension/nefiltercontrolverdict"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterDataProvider": {
+      "abstract": [
+        {
+          "text": "The principal class for a filter data provider extension.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NEFilterDataProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterDataProvider",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NEFilterDataProvider"
+        }
+      ],
+      "role": "symbol",
+      "title": "NEFilterDataProvider",
+      "type": "topic",
+      "url": "/documentation/networkextension/nefilterdataprovider"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterDataVerdict": {
+      "abstract": [
+        {
+          "text": "The result from a filter data provder for subsequent chunks of data on a flow.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NEFilterDataVerdict"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterDataVerdict",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NEFilterDataVerdict"
+        }
+      ],
+      "role": "symbol",
+      "title": "NEFilterDataVerdict",
+      "type": "topic",
+      "url": "/documentation/networkextension/nefilterdataverdict"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterFlow": {
+      "abstract": [
+        {
+          "text": "The abstract base class for types that represent flows of network data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NEFilterFlow"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterFlow",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NEFilterFlow"
+        }
+      ],
+      "role": "symbol",
+      "title": "NEFilterFlow",
+      "type": "topic",
+      "url": "/documentation/networkextension/nefilterflow"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterManager": {
+      "abstract": [
+        {
+          "text": "An object to create and manage a content filter’s configuration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NEFilterManager"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterManager",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NEFilterManager"
+        }
+      ],
+      "role": "symbol",
+      "title": "NEFilterManager",
+      "type": "topic",
+      "url": "/documentation/networkextension/nefiltermanager"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterNewFlowVerdict": {
+      "abstract": [
+        {
+          "text": "The result from a filter data provder after the initial examination of a flow.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NEFilterNewFlowVerdict"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterNewFlowVerdict",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NEFilterNewFlowVerdict"
+        }
+      ],
+      "role": "symbol",
+      "title": "NEFilterNewFlowVerdict",
+      "type": "topic",
+      "url": "/documentation/networkextension/nefilternewflowverdict"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterPacketProvider": {
+      "abstract": [
+        {
+          "text": "A filter provider that evaluates network packets and decides whether to block, allow, or delay the packets.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NEFilterPacketProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterPacketProvider",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NEFilterPacketProvider"
+        }
+      ],
+      "role": "symbol",
+      "title": "NEFilterPacketProvider",
+      "type": "topic",
+      "url": "/documentation/networkextension/nefilterpacketprovider"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterProvider": {
+      "abstract": [
+        {
+          "text": "An abstract base class shared by content filters.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NEFilterProvider"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterProvider",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NEFilterProvider"
+        }
+      ],
+      "role": "symbol",
+      "title": "NEFilterProvider",
+      "type": "topic",
+      "url": "/documentation/networkextension/nefilterprovider"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterProviderConfiguration": {
+      "abstract": [
+        {
+          "text": "Configuration parameters for a content filter.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NEFilterProviderConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterProviderConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NEFilterProviderConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "NEFilterProviderConfiguration",
+      "type": "topic",
+      "url": "/documentation/networkextension/nefilterproviderconfiguration"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterRemediationVerdict": {
+      "abstract": [
+        {
+          "text": "The result from a filter data provider after the user requests remediation for a blocked flow.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NEFilterRemediationVerdict"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterRemediationVerdict",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NEFilterRemediationVerdict"
+        }
+      ],
+      "role": "symbol",
+      "title": "NEFilterRemediationVerdict",
+      "type": "topic",
+      "url": "/documentation/networkextension/nefilterremediationverdict"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterReport": {
+      "abstract": [
+        {
+          "text": "The report of the data provider’s action on a flow.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NEFilterReport"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterReport",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NEFilterReport"
+        }
+      ],
+      "role": "symbol",
+      "title": "NEFilterReport",
+      "type": "topic",
+      "url": "/documentation/networkextension/nefilterreport"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterSocketFlow": {
+      "abstract": [
+        {
+          "text": "A flow of network data that the filter examines.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NEFilterSocketFlow"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterSocketFlow",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NEFilterSocketFlow"
+        }
+      ],
+      "role": "symbol",
+      "title": "NEFilterSocketFlow",
+      "type": "topic",
+      "url": "/documentation/networkextension/nefiltersocketflow"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterVerdict": {
+      "abstract": [
+        {
+          "text": "The abstract base class for filter verdict classes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NEFilterVerdict"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterVerdict",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NEFilterVerdict"
+        }
+      ],
+      "role": "symbol",
+      "title": "NEFilterVerdict",
+      "type": "topic",
+      "url": "/documentation/networkextension/nefilterverdict"
+    },
+    "doc://com.apple.networkextension/documentation/NetworkExtension/filtering-network-traffic": {
+      "abstract": [
+        {
+          "text": "Use the Network Extension framework to allow or deny network connections.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.networkextension/documentation/NetworkExtension/filtering-network-traffic",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Filtering Network Traffic",
+      "type": "topic",
+      "url": "/documentation/networkextension/filtering-network-traffic"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Content-filters",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.networkextension/documentation/NetworkExtension/filtering-network-traffic"
+      ],
+      "title": "Content filters"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Essentials",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.networking.networkextension"
+      ],
+      "title": "Essentials"
+    },
+    {
+      "anchor": "Data-and-control-providers",
+      "identifiers": [
+        "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterDataProvider",
+        "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterControlProvider",
+        "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterPacketProvider",
+        "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterProvider"
+      ],
+      "title": "Data and control providers"
+    },
+    {
+      "anchor": "Flow-handling",
+      "identifiers": [
+        "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterFlow",
+        "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterBrowserFlow",
+        "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterSocketFlow",
+        "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterNewFlowVerdict",
+        "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterDataVerdict",
+        "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterControlVerdict",
+        "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterRemediationVerdict",
+        "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterVerdict",
+        "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterReport"
+      ],
+      "title": "Flow handling"
+    },
+    {
+      "anchor": "Filter-configuration",
+      "identifiers": [
+        "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterManager",
+        "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterProviderConfiguration"
+      ],
+      "title": "Filter configuration"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Essentials",
+              "identifiers": [
+                "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.networking.networkextension"
+              ],
+              "title": "Essentials"
+            },
+            {
+              "anchor": "Data-and-control-providers",
+              "identifiers": [
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterDataProvider",
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterControlProvider",
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterPacketProvider",
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterProvider"
+              ],
+              "title": "Data and control providers"
+            },
+            {
+              "anchor": "Flow-handling",
+              "identifiers": [
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterFlow",
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterBrowserFlow",
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterSocketFlow",
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterNewFlowVerdict",
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterDataVerdict",
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterControlVerdict",
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterRemediationVerdict",
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterVerdict",
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterReport"
+              ],
+              "title": "Flow handling"
+            },
+            {
+              "anchor": "Filter-configuration",
+              "identifiers": [
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterManager",
+                "doc://com.apple.networkextension/documentation/NetworkExtension/NEFilterProviderConfiguration"
+              ],
+              "title": "Filter configuration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEFilterProviderConfiguration/title",
+          "value": "NEFilterProviderConfiguration"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEFilterProviderConfiguration/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEFilterProviderConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEFilterProviderConfiguration/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEFilterProviderConfiguration"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEFilterSocketFlow/title",
+          "value": "NEFilterSocketFlow"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEFilterSocketFlow/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEFilterSocketFlow"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEFilterSocketFlow/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEFilterSocketFlow"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEFilterFlow/title",
+          "value": "NEFilterFlow"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEFilterFlow/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEFilterFlow"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEFilterFlow/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEFilterFlow"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEFilterRemediationVerdict/title",
+          "value": "NEFilterRemediationVerdict"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEFilterRemediationVerdict/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEFilterRemediationVerdict"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEFilterRemediationVerdict/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEFilterRemediationVerdict"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEFilterPacketProvider/title",
+          "value": "NEFilterPacketProvider"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEFilterPacketProvider/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEFilterPacketProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEFilterPacketProvider/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEFilterPacketProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEFilterManager/title",
+          "value": "NEFilterManager"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEFilterManager/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEFilterManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEFilterManager/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEFilterManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEFilterNewFlowVerdict/title",
+          "value": "NEFilterNewFlowVerdict"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEFilterNewFlowVerdict/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEFilterNewFlowVerdict"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEFilterNewFlowVerdict/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEFilterNewFlowVerdict"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEFilterVerdict/title",
+          "value": "NEFilterVerdict"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEFilterVerdict/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEFilterVerdict"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEFilterVerdict/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEFilterVerdict"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEFilterControlProvider/title",
+          "value": "NEFilterControlProvider"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEFilterControlProvider/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEFilterControlProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEFilterControlProvider/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEFilterControlProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEFilterControlVerdict/title",
+          "value": "NEFilterControlVerdict"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEFilterControlVerdict/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEFilterControlVerdict"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEFilterControlVerdict/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEFilterControlVerdict"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEFilterDataVerdict/title",
+          "value": "NEFilterDataVerdict"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEFilterDataVerdict/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEFilterDataVerdict"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEFilterDataVerdict/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEFilterDataVerdict"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEFilterProvider/title",
+          "value": "NEFilterProvider"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEFilterProvider/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEFilterProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEFilterProvider/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEFilterProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEFilterBrowserFlow/title",
+          "value": "NEFilterBrowserFlow"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEFilterBrowserFlow/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEFilterBrowserFlow"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEFilterBrowserFlow/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEFilterBrowserFlow"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEFilterReport/title",
+          "value": "NEFilterReport"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEFilterReport/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEFilterReport"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEFilterReport/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEFilterReport"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEFilterDataProvider/title",
+          "value": "NEFilterDataProvider"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEFilterDataProvider/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEFilterDataProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.networkextension~1documentation~1NetworkExtension~1NEFilterDataProvider/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NEFilterDataProvider"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/networkextension/content-filter-providers"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/networkextension/content-filter-providers"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

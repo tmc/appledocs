@@ -1,0 +1,2017 @@
+{
+  "abstract": [
+    {
+      "text": "An object that manages the execution of tasks serially or concurrently on your app’s main thread or on a background thread.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.dispatch/documentation/Dispatch"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.dispatch/documentation/Dispatch/dispatch-queue"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Dispatch"
+      }
+    ],
+    "role": "collectionGroup",
+    "roleHeading": "API Collection",
+    "title": "Dispatch Queue"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Dispatch queues are FIFO queues to which your application can submit tasks in the form of block objects. Dispatch queues execute tasks either serially or concurrently. Work submitted to dispatch queues executes on a pool of threads managed by the system. Except for the dispatch queue representing your app’s main thread, the system makes no guarantees about which thread it uses to execute a task.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You schedule work items synchronously or asynchronously. When you schedule a work item synchronously, your code waits until that item finishes execution. When you schedule a work item asynchronously, your code continues executing while the work item runs elsewhere.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Attempting to synchronously execute a work item on the main queue results in deadlock.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Dispatch queues provide minimal support for autoreleased objects by default. System APIs may return autoreleased objects to your code. For example, ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nserror",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects are often autoreleased. If you see memory pressure increase because of autoreleased objects created in your blocks, consider adding autorelease pools to those blocks to relieve the pressure. You can also configure the default autorelease behavior of any custom dispatch queues using the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch_queue_attr_make_with_autorelease_frequency",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function at creation time.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Avoiding-Excessive-Thread-Creation",
+          "level": 3,
+          "text": "Avoiding Excessive Thread Creation",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When designing tasks for concurrent execution, do not call methods that block the current thread of execution. When a task scheduled by a concurrent dispatch queue blocks a thread, the system creates additional threads to run other queued concurrent tasks. If too many tasks block, the system may run out of threads for your app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Another way that apps consume too many threads is by creating too many private concurrent dispatch queues. Because each dispatch queue consumes thread resources, creating additional concurrent dispatch queues exacerbates the thread consumption problem. Instead of creating private concurrent queues, submit tasks to one of the global concurrent dispatch queues. For serial tasks, set the target of your serial queue to one of the global concurrent queues. That way, you can maintain the serialized behavior of the queue while minimizing the number of separate queues creating threads.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.dispatch/documentation/Dispatch": {
+      "abstract": [
+        {
+          "text": "Execute code concurrently on multicore hardware by submitting work to dispatch queues managed by the system.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Dispatch",
+      "type": "topic",
+      "url": "/documentation/dispatch"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/DISPATCH_APPLY_AUTO": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "DISPATCH_APPLY_AUTO"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/DISPATCH_APPLY_AUTO",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "DISPATCH_APPLY_AUTO",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatch_apply_auto"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/DISPATCH_CURRENT_QUEUE_LABEL": {
+      "abstract": [
+        {
+          "text": "Pass this constant to the ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch_queue_get_label",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " function to retrieve the label of the current queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "DISPATCH_CURRENT_QUEUE_LABEL"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/DISPATCH_CURRENT_QUEUE_LABEL",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "DISPATCH_CURRENT_QUEUE_LABEL",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatch_current_queue_label"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/DISPATCH_QUEUE_CONCURRENT": {
+      "abstract": [
+        {
+          "text": "A dispatch queue that executes blocks concurrently.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "DISPATCH_QUEUE_CONCURRENT"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/DISPATCH_QUEUE_CONCURRENT",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "DISPATCH_QUEUE_CONCURRENT",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatch_queue_concurrent"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/DISPATCH_QUEUE_SERIAL": {
+      "abstract": [
+        {
+          "text": "A dispatch queue that executes blocks serially in FIFO order.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "DISPATCH_QUEUE_SERIAL"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/DISPATCH_QUEUE_SERIAL",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "DISPATCH_QUEUE_SERIAL",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatch_queue_serial"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/DispatchGroup": {
+      "abstract": [
+        {
+          "text": "A group of tasks that you monitor as a single unit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DispatchGroup"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/DispatchGroup",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DispatchGroup"
+        }
+      ],
+      "role": "symbol",
+      "title": "DispatchGroup",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatchgroup"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/DispatchObject/setTarget(queue:)": {
+      "abstract": [
+        {
+          "text": "Specifies the dispatch queue on which to perform work associated with the current object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setTarget"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "queue"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@dispatch_queue_t",
+          "text": "dispatch_queue_t"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/DispatchObject/setTarget(queue:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "dispatch_set_target_queue"
+        }
+      ],
+      "role": "symbol",
+      "title": "setTarget(queue:)",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatchobject/settarget(queue:)"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/DispatchQueue": {
+      "abstract": [
+        {
+          "text": "An object that manages the execution of tasks serially or concurrently on your app’s main thread or on a background thread.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DispatchQueue"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/DispatchQueue",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DispatchQueue"
+        }
+      ],
+      "role": "symbol",
+      "title": "DispatchQueue",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatchqueue"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/DispatchQueue/asyncAndWait(execute:)-1udeu": {
+      "abstract": [
+        {
+          "text": "Submits a work item for execution and returns only after it finishes executing.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "asyncAndWait"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "execute"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/DispatchQueue/asyncAndWait(execute:)-1udeu",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "dispatch_async_and_wait"
+        }
+      ],
+      "role": "symbol",
+      "title": "asyncAndWait(execute:)",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatchqueue/asyncandwait(execute:)-1udeu"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/DispatchQueue/sync(execute:)-3segw": {
+      "abstract": [
+        {
+          "text": "Submits a block object for execution and returns after that block finishes executing.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sync"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "execute"
+        },
+        {
+          "kind": "text",
+          "text": ": () -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/DispatchQueue/sync(execute:)-3segw",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "dispatch_sync"
+        }
+      ],
+      "role": "symbol",
+      "title": "sync(execute:)",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatchqueue/sync(execute:)-3segw"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/DispatchWorkItem": {
+      "abstract": [
+        {
+          "text": "The work you want to perform, encapsulated in a way that lets you attach a completion handle or execution dependencies.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DispatchWorkItem"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/DispatchWorkItem",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DispatchWorkItem"
+        }
+      ],
+      "role": "symbol",
+      "title": "DispatchWorkItem",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatchworkitem"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/dispatch-group": {
+      "abstract": [
+        {
+          "text": "A group of tasks that you monitor as a single unit.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch-group",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Dispatch Group",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatch-group"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/dispatch-work-item": {
+      "abstract": [
+        {
+          "text": "The work you want to perform, encapsulated in a way that lets you attach a completion handle or execution dependencies.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch-work-item",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Dispatch Work Item",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatch-work-item"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/dispatchMain()": {
+      "abstract": [
+        {
+          "text": "Executes blocks submitted to the main queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "dispatchMain"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5NeverO",
+          "text": "Never"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatchMain()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "dispatch_main"
+        }
+      ],
+      "role": "symbol",
+      "title": "dispatchMain()",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatchmain()"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/dispatch_after": {
+      "abstract": [
+        {
+          "text": "Enqueues a block for execution at the specified time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "dispatch_after"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch_after",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dispatch_after",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatch_after"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/dispatch_after_f": {
+      "abstract": [
+        {
+          "text": "Enqueues an app-defined function for execution at the specified time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "dispatch_after_f"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch_after_f",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dispatch_after_f",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatch_after_f"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/dispatch_apply": {
+      "abstract": [
+        {
+          "text": "Submits a single block to the dispatch queue and causes the block to be executed the specified number of times.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "dispatch_apply"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch_apply",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dispatch_apply",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatch_apply"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/dispatch_apply_f": {
+      "abstract": [
+        {
+          "text": "Submits a single function to the dispatch queue and causes the function to be executed the specified number of times.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "dispatch_apply_f"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch_apply_f",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dispatch_apply_f",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatch_apply_f"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/dispatch_assert_queue": {
+      "abstract": [
+        {
+          "text": "Generates an assertion if the current block is not running on the specified dispatch queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "dispatch_assert_queue"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch_assert_queue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dispatch_assert_queue",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatch_assert_queue"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/dispatch_assert_queue_barrier": {
+      "abstract": [
+        {
+          "text": "Generates an assertion if the current block is not running as a barrier on the specified dispatch queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "dispatch_assert_queue_barrier"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch_assert_queue_barrier",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dispatch_assert_queue_barrier",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatch_assert_queue_barrier"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/dispatch_assert_queue_not": {
+      "abstract": [
+        {
+          "text": "Generates an assertion if the current block is executing on the specified dispatch queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "dispatch_assert_queue_not"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch_assert_queue_not",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dispatch_assert_queue_not",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatch_assert_queue_not"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/dispatch_async": {
+      "abstract": [
+        {
+          "text": "Submits a block for asynchronous execution on a dispatch queue and returns immediately.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "dispatch_async"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch_async",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dispatch_async",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatch_async"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/dispatch_async_and_wait_f": {
+      "abstract": [
+        {
+          "text": "Submits a function-based work item for execution and returns only after it finishes executing.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "dispatch_async_and_wait_f"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch_async_and_wait_f",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dispatch_async_and_wait_f",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatch_async_and_wait_f"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/dispatch_async_f": {
+      "abstract": [
+        {
+          "text": "Submits an app-defined function for asynchronous execution on a dispatch queue and returns immediately.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "dispatch_async_f"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch_async_f",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dispatch_async_f",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatch_async_f"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/dispatch_autorelease_frequency_t": {
+      "abstract": [
+        {
+          "text": "Constants indicating the frequency with which a dispatch queue creates autorelease pools for its tasks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "dispatch_autorelease_frequency_t"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch_autorelease_frequency_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dispatch_autorelease_frequency_t",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatch_autorelease_frequency_t"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/dispatch_barrier_async": {
+      "abstract": [
+        {
+          "text": "Submits a barrier block for asynchronous execution and returns immediately.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "dispatch_barrier_async"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch_barrier_async",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dispatch_barrier_async",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatch_barrier_async"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/dispatch_barrier_async_and_wait": {
+      "abstract": [
+        {
+          "text": "Submits a work item for synchronous execution and marks the work as a barrier for subsequent concurrent tasks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "dispatch_barrier_async_and_wait"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch_barrier_async_and_wait",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dispatch_barrier_async_and_wait",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatch_barrier_async_and_wait"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/dispatch_barrier_async_and_wait_f": {
+      "abstract": [
+        {
+          "text": "Submits a function-based work item for synchronous execution and marks the work as a barrier for subsequent concurrent tasks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "dispatch_barrier_async_and_wait_f"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch_barrier_async_and_wait_f",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dispatch_barrier_async_and_wait_f",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatch_barrier_async_and_wait_f"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/dispatch_barrier_async_f": {
+      "abstract": [
+        {
+          "text": "Submits a barrier function for asynchronous execution and returns immediately.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "dispatch_barrier_async_f"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch_barrier_async_f",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dispatch_barrier_async_f",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatch_barrier_async_f"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/dispatch_barrier_sync": {
+      "abstract": [
+        {
+          "text": "Submits a barrier block object for execution and waits until that block completes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "dispatch_barrier_sync"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch_barrier_sync",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dispatch_barrier_sync",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatch_barrier_sync"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/dispatch_barrier_sync_f": {
+      "abstract": [
+        {
+          "text": "Submits a barrier function for execution and waits until that function completes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "dispatch_barrier_sync_f"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch_barrier_sync_f",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dispatch_barrier_sync_f",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatch_barrier_sync_f"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/dispatch_block_t": {
+      "abstract": [
+        {
+          "text": "The prototype of blocks submitted to dispatch queues, which take no arguments and have no return value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "dispatch_block_t"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch_block_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dispatch_block_t",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatch_block_t"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/dispatch_function_t": {
+      "abstract": [
+        {
+          "text": "The prototype of functions submitted to dispatch queues.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "dispatch_function_t"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch_function_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dispatch_function_t",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatch_function_t"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/dispatch_get_global_queue": {
+      "abstract": [
+        {
+          "text": "Returns a system-defined global concurrent queue with the specified quality-of-service class.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "dispatch_get_global_queue"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch_get_global_queue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dispatch_get_global_queue",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatch_get_global_queue"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/dispatch_get_main_queue": {
+      "abstract": [
+        {
+          "text": "Returns the serial dispatch queue associated with the application’s main thread.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "dispatch_get_main_queue"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch_get_main_queue",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dispatch_get_main_queue",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatch_get_main_queue"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/dispatch_get_specific": {
+      "abstract": [
+        {
+          "text": "Returns the value for the key associated with the current dispatch queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "dispatch_get_specific"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch_get_specific",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dispatch_get_specific",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatch_get_specific"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/dispatch_once-c.func": {
+      "abstract": [
+        {
+          "text": "Executes a block object only once for the lifetime of an application.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "dispatch_once"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch_once-c.func",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dispatch_once",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatch_once-c.func"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/dispatch_once_f-c.func": {
+      "abstract": [
+        {
+          "text": "Executes an application-defined function only once for the lifetime of an application.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "dispatch_once_f"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch_once_f-c.func",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dispatch_once_f",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatch_once_f-c.func"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/dispatch_once_t": {
+      "abstract": [
+        {
+          "text": "A predicate for use with the ",
+          "type": "text"
+        },
+        {
+          "code": "dispatch_once",
+          "type": "codeVoice"
+        },
+        {
+          "text": " function.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "dispatch_once_t"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch_once_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dispatch_once_t",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatch_once_t"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/dispatch_qos_class_t": {
+      "abstract": [
+        {
+          "text": "Quality-of-service classes that specify the priorities for executing tasks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "dispatch_qos_class_t"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch_qos_class_t",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dispatch_qos_class_t",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatch_qos_class_t"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/dispatch_queue_attr_make_initially_inactive": {
+      "abstract": [
+        {
+          "text": "Returns an attribute that configures a dispatch queue as initially inactive.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "dispatch_queue_attr_make_initially_inactive"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch_queue_attr_make_initially_inactive",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dispatch_queue_attr_make_initially_inactive",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatch_queue_attr_make_initially_inactive"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/dispatch_queue_attr_make_with_autorelease_frequency": {
+      "abstract": [
+        {
+          "text": "Returns an attribute that specifies how the dispatch queue manages autorelease pools for the blocks it executes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "dispatch_queue_attr_make_with_autorelease_frequency"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch_queue_attr_make_with_autorelease_frequency",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dispatch_queue_attr_make_with_autorelease_frequency",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatch_queue_attr_make_with_autorelease_frequency"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/dispatch_queue_attr_make_with_qos_class": {
+      "abstract": [
+        {
+          "text": "Returns attributes suitable for creating a dispatch queue with the desired quality-of-service information.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "dispatch_queue_attr_make_with_qos_class"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch_queue_attr_make_with_qos_class",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dispatch_queue_attr_make_with_qos_class",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatch_queue_attr_make_with_qos_class"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/dispatch_queue_attr_t": {
+      "abstract": [
+        {
+          "text": "Attributes describing the behaviors of a dispatch queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "dispatch_queue_attr_t"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch_queue_attr_t",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "dispatch_queue_attr_t"
+        }
+      ],
+      "role": "symbol",
+      "title": "dispatch_queue_attr_t",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatch_queue_attr_t"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/dispatch_queue_concurrent_t": {
+      "abstract": [
+        {
+          "text": "A dispatch queue that executes tasks concurrently and in any order, respecting any barriers that may be in place.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "dispatch_queue_concurrent_t"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch_queue_concurrent_t",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "dispatch_queue_concurrent_t"
+        }
+      ],
+      "role": "symbol",
+      "title": "dispatch_queue_concurrent_t",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatch_queue_concurrent_t"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/dispatch_queue_create": {
+      "abstract": [
+        {
+          "text": "Creates a new dispatch queue to which you can submit blocks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "dispatch_queue_create"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch_queue_create",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dispatch_queue_create",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatch_queue_create"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/dispatch_queue_create_with_target": {
+      "abstract": [
+        {
+          "text": "Creates a new dispatch queue to which you can submit blocks.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "dispatch_queue_create_with_target"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch_queue_create_with_target",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dispatch_queue_create_with_target",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatch_queue_create_with_target"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/dispatch_queue_get_label": {
+      "abstract": [
+        {
+          "text": "Returns the label you assigned to the dispatch queue at creation time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "dispatch_queue_get_label"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch_queue_get_label",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dispatch_queue_get_label",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatch_queue_get_label"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/dispatch_queue_get_qos_class": {
+      "abstract": [
+        {
+          "text": "Returns the quality-of-service class for the specified queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "dispatch_queue_get_qos_class"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch_queue_get_qos_class",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dispatch_queue_get_qos_class",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatch_queue_get_qos_class"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/dispatch_queue_get_specific": {
+      "abstract": [
+        {
+          "text": "Gets the value for the key associated with the specified dispatch queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "dispatch_queue_get_specific"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch_queue_get_specific",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dispatch_queue_get_specific",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatch_queue_get_specific"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/dispatch_queue_global_t": {
+      "abstract": [
+        {
+          "text": "A dispatch queue that executes tasks concurrently using threads from the global thread pool.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "dispatch_queue_global_t"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch_queue_global_t",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "dispatch_queue_global_t"
+        }
+      ],
+      "role": "symbol",
+      "title": "dispatch_queue_global_t",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatch_queue_global_t"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/dispatch_queue_main_t": {
+      "abstract": [
+        {
+          "text": "A dispatch queue that is bound to the app’s main thread and executes tasks serially on that thread.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "dispatch_queue_main_t"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch_queue_main_t",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "dispatch_queue_main_t"
+        }
+      ],
+      "role": "symbol",
+      "title": "dispatch_queue_main_t",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatch_queue_main_t"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/dispatch_queue_serial_t": {
+      "abstract": [
+        {
+          "text": "A dispatch queue that executes tasks serially in first-in, first-out (FIFO) order.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "dispatch_queue_serial_t"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch_queue_serial_t",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "dispatch_queue_serial_t"
+        }
+      ],
+      "role": "symbol",
+      "title": "dispatch_queue_serial_t",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatch_queue_serial_t"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/dispatch_queue_set_specific": {
+      "abstract": [
+        {
+          "text": "Sets the key/value data for the specified dispatch queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "dispatch_queue_set_specific"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch_queue_set_specific",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dispatch_queue_set_specific",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatch_queue_set_specific"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/dispatch_queue_t": {
+      "abstract": [
+        {
+          "text": "A lightweight object to which your application submits blocks for subsequent execution.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "dispatch_queue_t"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch_queue_t",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "dispatch_queue_t"
+        }
+      ],
+      "role": "symbol",
+      "title": "dispatch_queue_t",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatch_queue_t"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/dispatch_sync_f": {
+      "abstract": [
+        {
+          "text": "Submits an app-defined function for synchronous execution on a dispatch queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "dispatch_sync_f"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/dispatch_sync_f",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dispatch_sync_f",
+      "type": "topic",
+      "url": "/documentation/dispatch/dispatch_sync_f"
+    },
+    "doc://com.apple.dispatch/documentation/Dispatch/workloop": {
+      "abstract": [
+        {
+          "text": "A dispatch object that prioritizes the execution of tasks based on their quality-of-service (QoS) level.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.dispatch/documentation/Dispatch/workloop",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Workloop",
+      "type": "topic",
+      "url": "/documentation/dispatch/workloop"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nserror": {
+      "abstract": [
+        {
+          "text": "Information about an error condition including a domain, a domain-specific error code, and application-specific information.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSError"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nserror",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSError",
+      "type": "topic",
+      "url": "/documentation/foundation/nserror"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Queues-and-Tasks",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.dispatch/documentation/Dispatch/DispatchQueue",
+        "doc://com.apple.dispatch/documentation/Dispatch/DispatchWorkItem",
+        "doc://com.apple.dispatch/documentation/Dispatch/DispatchGroup",
+        "doc://com.apple.dispatch/documentation/Dispatch/dispatch-work-item",
+        "doc://com.apple.dispatch/documentation/Dispatch/dispatch-group",
+        "doc://com.apple.dispatch/documentation/Dispatch/workloop"
+      ],
+      "title": "Queues and Tasks"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-Dispatch-Queue",
+      "identifiers": [
+        "doc://com.apple.dispatch/documentation/Dispatch/dispatch_queue_t",
+        "doc://com.apple.dispatch/documentation/Dispatch/dispatch_queue_main_t",
+        "doc://com.apple.dispatch/documentation/Dispatch/dispatch_queue_global_t",
+        "doc://com.apple.dispatch/documentation/Dispatch/dispatch_queue_serial_t",
+        "doc://com.apple.dispatch/documentation/Dispatch/dispatch_queue_concurrent_t"
+      ],
+      "title": "Creating a Dispatch Queue"
+    },
+    {
+      "anchor": "Configuring-Queue-Execution-Parameters",
+      "identifiers": [
+        "doc://com.apple.dispatch/documentation/Dispatch/dispatch_queue_attr_t"
+      ],
+      "title": "Configuring Queue Execution Parameters"
+    },
+    {
+      "anchor": "Executing-Tasks-Synchronously",
+      "identifiers": [
+        "doc://com.apple.dispatch/documentation/Dispatch/DispatchQueue/sync(execute:)-3segw",
+        "doc://com.apple.dispatch/documentation/Dispatch/DispatchQueue/asyncAndWait(execute:)-1udeu"
+      ],
+      "title": "Executing Tasks Synchronously"
+    },
+    {
+      "anchor": "Managing-Queue-Attributes",
+      "identifiers": [
+        "doc://com.apple.dispatch/documentation/Dispatch/DispatchObject/setTarget(queue:)"
+      ],
+      "title": "Managing Queue Attributes"
+    },
+    {
+      "anchor": "Managing-the-Main-Dispatch-Queue",
+      "identifiers": [
+        "doc://com.apple.dispatch/documentation/Dispatch/dispatchMain()"
+      ],
+      "title": "Managing the Main Dispatch Queue"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Creating-a-Dispatch-Queue",
+              "identifiers": [
+                "doc://com.apple.dispatch/documentation/Dispatch/dispatch_get_main_queue",
+                "doc://com.apple.dispatch/documentation/Dispatch/dispatch_get_global_queue",
+                "doc://com.apple.dispatch/documentation/Dispatch/dispatch_queue_create",
+                "doc://com.apple.dispatch/documentation/Dispatch/dispatch_queue_create_with_target",
+                "doc://com.apple.dispatch/documentation/Dispatch/DISPATCH_QUEUE_SERIAL",
+                "doc://com.apple.dispatch/documentation/Dispatch/DISPATCH_QUEUE_CONCURRENT",
+                "doc://com.apple.dispatch/documentation/Dispatch/dispatch_queue_t",
+                "doc://com.apple.dispatch/documentation/Dispatch/dispatch_queue_main_t",
+                "doc://com.apple.dispatch/documentation/Dispatch/dispatch_queue_global_t",
+                "doc://com.apple.dispatch/documentation/Dispatch/dispatch_queue_serial_t",
+                "doc://com.apple.dispatch/documentation/Dispatch/dispatch_queue_concurrent_t"
+              ],
+              "title": "Creating a Dispatch Queue"
+            },
+            {
+              "anchor": "Configuring-Queue-Execution-Parameters",
+              "identifiers": [
+                "doc://com.apple.dispatch/documentation/Dispatch/dispatch_queue_attr_t",
+                "doc://com.apple.dispatch/documentation/Dispatch/dispatch_queue_attr_make_with_qos_class",
+                "doc://com.apple.dispatch/documentation/Dispatch/dispatch_queue_get_qos_class",
+                "doc://com.apple.dispatch/documentation/Dispatch/dispatch_qos_class_t",
+                "doc://com.apple.dispatch/documentation/Dispatch/dispatch_queue_attr_make_initially_inactive",
+                "doc://com.apple.dispatch/documentation/Dispatch/dispatch_queue_attr_make_with_autorelease_frequency",
+                "doc://com.apple.dispatch/documentation/Dispatch/dispatch_autorelease_frequency_t"
+              ],
+              "title": "Configuring Queue Execution Parameters"
+            },
+            {
+              "anchor": "Executing-Tasks-Asynchronously",
+              "identifiers": [
+                "doc://com.apple.dispatch/documentation/Dispatch/dispatch_async",
+                "doc://com.apple.dispatch/documentation/Dispatch/dispatch_async_f",
+                "doc://com.apple.dispatch/documentation/Dispatch/dispatch_after",
+                "doc://com.apple.dispatch/documentation/Dispatch/dispatch_after_f",
+                "doc://com.apple.dispatch/documentation/Dispatch/dispatch_function_t",
+                "doc://com.apple.dispatch/documentation/Dispatch/dispatch_block_t"
+              ],
+              "title": "Executing Tasks Asynchronously"
+            },
+            {
+              "anchor": "Executing-Tasks-Synchronously",
+              "identifiers": [
+                "doc://com.apple.dispatch/documentation/Dispatch/DispatchQueue/sync(execute:)-3segw",
+                "doc://com.apple.dispatch/documentation/Dispatch/dispatch_sync_f",
+                "doc://com.apple.dispatch/documentation/Dispatch/DispatchQueue/asyncAndWait(execute:)-1udeu",
+                "doc://com.apple.dispatch/documentation/Dispatch/dispatch_async_and_wait_f",
+                "doc://com.apple.dispatch/documentation/Dispatch/dispatch_barrier_async_and_wait",
+                "doc://com.apple.dispatch/documentation/Dispatch/dispatch_barrier_async_and_wait_f"
+              ],
+              "title": "Executing Tasks Synchronously"
+            },
+            {
+              "anchor": "Executing-a-Task-Only-Once",
+              "identifiers": [
+                "doc://com.apple.dispatch/documentation/Dispatch/dispatch_once-c.func",
+                "doc://com.apple.dispatch/documentation/Dispatch/dispatch_once_f-c.func",
+                "doc://com.apple.dispatch/documentation/Dispatch/dispatch_once_t"
+              ],
+              "title": "Executing a Task Only Once"
+            },
+            {
+              "anchor": "Executing-a-Task-in-Parallel",
+              "identifiers": [
+                "doc://com.apple.dispatch/documentation/Dispatch/dispatch_apply",
+                "doc://com.apple.dispatch/documentation/Dispatch/dispatch_apply_f",
+                "doc://com.apple.dispatch/documentation/Dispatch/DISPATCH_APPLY_AUTO"
+              ],
+              "title": "Executing a Task in Parallel"
+            },
+            {
+              "anchor": "Executing-a-Barrier-Task",
+              "identifiers": [
+                "doc://com.apple.dispatch/documentation/Dispatch/dispatch_barrier_async",
+                "doc://com.apple.dispatch/documentation/Dispatch/dispatch_barrier_async_f",
+                "doc://com.apple.dispatch/documentation/Dispatch/dispatch_barrier_sync",
+                "doc://com.apple.dispatch/documentation/Dispatch/dispatch_barrier_sync_f",
+                "doc://com.apple.dispatch/documentation/Dispatch/dispatch_barrier_async_and_wait",
+                "doc://com.apple.dispatch/documentation/Dispatch/dispatch_barrier_async_and_wait_f"
+              ],
+              "title": "Executing a Barrier Task"
+            },
+            {
+              "anchor": "Managing-Queue-Attributes",
+              "identifiers": [
+                "doc://com.apple.dispatch/documentation/Dispatch/dispatch_queue_get_label",
+                "doc://com.apple.dispatch/documentation/Dispatch/DISPATCH_CURRENT_QUEUE_LABEL",
+                "doc://com.apple.dispatch/documentation/Dispatch/DispatchObject/setTarget(queue:)"
+              ],
+              "title": "Managing Queue Attributes"
+            },
+            {
+              "anchor": "Getting-and-Setting-Contextual-Data",
+              "identifiers": [
+                "doc://com.apple.dispatch/documentation/Dispatch/dispatch_get_specific",
+                "doc://com.apple.dispatch/documentation/Dispatch/dispatch_queue_set_specific",
+                "doc://com.apple.dispatch/documentation/Dispatch/dispatch_queue_get_specific"
+              ],
+              "title": "Getting and Setting Contextual Data"
+            },
+            {
+              "anchor": "Managing-the-Main-Dispatch-Queue",
+              "identifiers": [
+                "doc://com.apple.dispatch/documentation/Dispatch/dispatchMain()"
+              ],
+              "title": "Managing the Main Dispatch Queue"
+            },
+            {
+              "anchor": "Testing-the-Execution-Context",
+              "identifiers": [
+                "doc://com.apple.dispatch/documentation/Dispatch/dispatch_assert_queue",
+                "doc://com.apple.dispatch/documentation/Dispatch/dispatch_assert_queue_barrier",
+                "doc://com.apple.dispatch/documentation/Dispatch/dispatch_assert_queue_not"
+              ],
+              "title": "Testing the Execution Context"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Queues-and-Tasks",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.dispatch/documentation/Dispatch/dispatch_get_main_queue",
+                "doc://com.apple.dispatch/documentation/Dispatch/dispatch_get_global_queue",
+                "doc://com.apple.dispatch/documentation/Dispatch/dispatch-work-item",
+                "doc://com.apple.dispatch/documentation/Dispatch/dispatch-group",
+                "doc://com.apple.dispatch/documentation/Dispatch/workloop"
+              ],
+              "title": "Queues and Tasks"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.dispatch~1documentation~1Dispatch~1dispatch_queue_concurrent_t/title",
+          "value": "dispatch_queue_concurrent_t"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.dispatch~1documentation~1Dispatch~1dispatch_queue_concurrent_t/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "dispatch_queue_concurrent_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.dispatch~1documentation~1Dispatch~1dispatch_queue_concurrent_t/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "dispatch_queue_concurrent_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.dispatch~1documentation~1Dispatch~1dispatch_queue_t/title",
+          "value": "dispatch_queue_t"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.dispatch~1documentation~1Dispatch~1dispatch_queue_t/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "dispatch_queue_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.dispatch~1documentation~1Dispatch~1dispatch_queue_t/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "dispatch_queue_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.dispatch~1documentation~1Dispatch~1dispatch_queue_global_t/title",
+          "value": "dispatch_queue_global_t"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.dispatch~1documentation~1Dispatch~1dispatch_queue_global_t/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "dispatch_queue_global_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.dispatch~1documentation~1Dispatch~1dispatch_queue_global_t/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "dispatch_queue_global_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.dispatch~1documentation~1Dispatch~1DispatchObject~1setTarget(queue:)/title",
+          "value": "dispatch_set_target_queue"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.dispatch~1documentation~1Dispatch~1DispatchObject~1setTarget(queue:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "dispatch_set_target_queue"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.dispatch~1documentation~1Dispatch~1DispatchQueue~1sync(execute:)-3segw/title",
+          "value": "dispatch_sync"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.dispatch~1documentation~1Dispatch~1DispatchQueue~1sync(execute:)-3segw/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "dispatch_sync"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.dispatch~1documentation~1Dispatch~1dispatchMain()/title",
+          "value": "dispatch_main"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.dispatch~1documentation~1Dispatch~1dispatchMain()/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "dispatch_main"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.dispatch~1documentation~1Dispatch~1dispatch_queue_serial_t/title",
+          "value": "dispatch_queue_serial_t"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.dispatch~1documentation~1Dispatch~1dispatch_queue_serial_t/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "dispatch_queue_serial_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.dispatch~1documentation~1Dispatch~1dispatch_queue_serial_t/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "dispatch_queue_serial_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.dispatch~1documentation~1Dispatch~1dispatch_queue_main_t/title",
+          "value": "dispatch_queue_main_t"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.dispatch~1documentation~1Dispatch~1dispatch_queue_main_t/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "dispatch_queue_main_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.dispatch~1documentation~1Dispatch~1dispatch_queue_main_t/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "dispatch_queue_main_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.dispatch~1documentation~1Dispatch~1dispatch_queue_attr_t/title",
+          "value": "dispatch_queue_attr_t"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.dispatch~1documentation~1Dispatch~1dispatch_queue_attr_t/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "dispatch_queue_attr_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.dispatch~1documentation~1Dispatch~1dispatch_queue_attr_t/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "dispatch_queue_attr_t"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.dispatch~1documentation~1Dispatch~1DispatchQueue~1asyncAndWait(execute:)-1udeu/title",
+          "value": "dispatch_async_and_wait"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.dispatch~1documentation~1Dispatch~1DispatchQueue~1asyncAndWait(execute:)-1udeu/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "dispatch_async_and_wait"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/dispatch/dispatch-queue"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/dispatch/dispatch-queue"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

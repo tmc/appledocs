@@ -1,0 +1,2087 @@
+{
+  "abstract": [
+    {
+      "text": "A typesetter which performs line layout.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.coretext/documentation/CoreText"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.coretext/documentation/CoreText/CTTypesetter"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@T@CTTypesetterRef",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "CTTypesetter"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Core Text"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "CTTypesetter"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "CTTypesetter"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CTTypesetter"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Line layout includes word wrapping, hyphenation, and line breaking in either vertical or horizontal rectangles. A typesetter object takes as input an attributed string and produces a line of typeset glyphs (composed into glyph runs) in a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coretext/documentation/CoreText/CTLine",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object. The typesetter performs character-to-glyph encoding, glyph ordering, and positional operations, such as kerning, tracking, and baseline adjustments. If multiline layout is needed, it is performed by a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coretext/documentation/CoreText/CTFramesetter",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object, which calls into the typesetter to generate the typeset lines to fill the frame.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "A ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.coretext/documentation/CoreText/CTFramesetter",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " encapsulates a typesetter and provides a reference to it as a convenience, but a caller may also choose to create a freestanding typesetter.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.coretext/documentation/CoreText": {
+      "abstract": [
+        {
+          "text": "Create text layouts, optimize font handling, and access font metrics and glyph data.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coretext/documentation/CoreText",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Text",
+      "type": "topic",
+      "url": "/documentation/coretext"
+    },
+    "doc://com.apple.coretext/documentation/CoreText/CTFont": {
+      "abstract": [
+        {
+          "text": "A font object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CTFont"
+        }
+      ],
+      "identifier": "doc://com.apple.coretext/documentation/CoreText/CTFont",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CTFont"
+        }
+      ],
+      "role": "symbol",
+      "title": "CTFont",
+      "type": "topic",
+      "url": "/documentation/coretext/ctfont"
+    },
+    "doc://com.apple.coretext/documentation/CoreText/CTFontCollection": {
+      "abstract": [
+        {
+          "text": "A font collection.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CTFontCollection"
+        }
+      ],
+      "identifier": "doc://com.apple.coretext/documentation/CoreText/CTFontCollection",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CTFontCollection"
+        }
+      ],
+      "role": "symbol",
+      "title": "CTFontCollection",
+      "type": "topic",
+      "url": "/documentation/coretext/ctfontcollection"
+    },
+    "doc://com.apple.coretext/documentation/CoreText/CTFontDescriptor": {
+      "abstract": [
+        {
+          "text": "A font descriptor.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CTFontDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.coretext/documentation/CoreText/CTFontDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CTFontDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "CTFontDescriptor",
+      "type": "topic",
+      "url": "/documentation/coretext/ctfontdescriptor"
+    },
+    "doc://com.apple.coretext/documentation/CoreText/CTFrame": {
+      "abstract": [
+        {
+          "text": "A frame.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CTFrame"
+        }
+      ],
+      "identifier": "doc://com.apple.coretext/documentation/CoreText/CTFrame",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CTFrame"
+        }
+      ],
+      "role": "symbol",
+      "title": "CTFrame",
+      "type": "topic",
+      "url": "/documentation/coretext/ctframe"
+    },
+    "doc://com.apple.coretext/documentation/CoreText/CTFramesetter": {
+      "abstract": [
+        {
+          "text": "Generate text frames.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CTFramesetter"
+        }
+      ],
+      "identifier": "doc://com.apple.coretext/documentation/CoreText/CTFramesetter",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CTFramesetter"
+        }
+      ],
+      "role": "symbol",
+      "title": "CTFramesetter",
+      "type": "topic",
+      "url": "/documentation/coretext/ctframesetter"
+    },
+    "doc://com.apple.coretext/documentation/CoreText/CTGlyphInfo": {
+      "abstract": [
+        {
+          "text": "Override a font’s specified mapping from Unicode to the glyph ID.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CTGlyphInfo"
+        }
+      ],
+      "identifier": "doc://com.apple.coretext/documentation/CoreText/CTGlyphInfo",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CTGlyphInfo"
+        }
+      ],
+      "role": "symbol",
+      "title": "CTGlyphInfo",
+      "type": "topic",
+      "url": "/documentation/coretext/ctglyphinfo"
+    },
+    "doc://com.apple.coretext/documentation/CoreText/CTLine": {
+      "abstract": [
+        {
+          "text": "A line of text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CTLine"
+        }
+      ],
+      "identifier": "doc://com.apple.coretext/documentation/CoreText/CTLine",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CTLine"
+        }
+      ],
+      "role": "symbol",
+      "title": "CTLine",
+      "type": "topic",
+      "url": "/documentation/coretext/ctline"
+    },
+    "doc://com.apple.coretext/documentation/CoreText/CTParagraphStyle": {
+      "abstract": [
+        {
+          "text": "Paragraph or ruler attributes in an attributed string.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CTParagraphStyle"
+        }
+      ],
+      "identifier": "doc://com.apple.coretext/documentation/CoreText/CTParagraphStyle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CTParagraphStyle"
+        }
+      ],
+      "role": "symbol",
+      "title": "CTParagraphStyle",
+      "type": "topic",
+      "url": "/documentation/coretext/ctparagraphstyle"
+    },
+    "doc://com.apple.coretext/documentation/CoreText/CTRun": {
+      "abstract": [
+        {
+          "text": "A glyph run.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CTRun"
+        }
+      ],
+      "identifier": "doc://com.apple.coretext/documentation/CoreText/CTRun",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CTRun"
+        }
+      ],
+      "role": "symbol",
+      "title": "CTRun",
+      "type": "topic",
+      "url": "/documentation/coretext/ctrun"
+    },
+    "doc://com.apple.coretext/documentation/CoreText/CTRunDelegate": {
+      "abstract": [
+        {
+          "text": "A run delegate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CTRunDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.coretext/documentation/CoreText/CTRunDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CTRunDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "CTRunDelegate",
+      "type": "topic",
+      "url": "/documentation/coretext/ctrundelegate"
+    },
+    "doc://com.apple.coretext/documentation/CoreText/CTTextTab": {
+      "abstract": [
+        {
+          "text": "A tab in a paragraph style, storing an alignment type and location.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CTTextTab"
+        }
+      ],
+      "identifier": "doc://com.apple.coretext/documentation/CoreText/CTTextTab",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CTTextTab"
+        }
+      ],
+      "role": "symbol",
+      "title": "CTTextTab",
+      "type": "topic",
+      "url": "/documentation/coretext/cttexttab"
+    },
+    "doc://com.apple.coretext/documentation/CoreText/CTTypesetter": {
+      "abstract": [
+        {
+          "text": "A typesetter which performs line layout.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CTTypesetter"
+        }
+      ],
+      "identifier": "doc://com.apple.coretext/documentation/CoreText/CTTypesetter",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CTTypesetter"
+        }
+      ],
+      "role": "symbol",
+      "title": "CTTypesetter",
+      "type": "topic",
+      "url": "/documentation/coretext/cttypesetter"
+    },
+    "doc://com.apple.coretext/documentation/CoreText/CTTypesetterCreateLine(_:_:)": {
+      "abstract": [
+        {
+          "text": "Creates an immutable line from the typesetter.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CTTypesetterCreateLine"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CTTypesetterRef",
+          "text": "CTTypesetter"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CFRange",
+          "text": "CFRange"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CTLineRef",
+          "text": "CTLine"
+        }
+      ],
+      "identifier": "doc://com.apple.coretext/documentation/CoreText/CTTypesetterCreateLine(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CTTypesetterCreateLine"
+        }
+      ],
+      "role": "symbol",
+      "title": "CTTypesetterCreateLine(_:_:)",
+      "type": "topic",
+      "url": "/documentation/coretext/cttypesettercreateline(_:_:)"
+    },
+    "doc://com.apple.coretext/documentation/CoreText/CTTypesetterCreateLineWithOffset(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Creates an immutable line from the typesetter at a specified line offset.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CTTypesetterCreateLineWithOffset"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CTTypesetterRef",
+          "text": "CTTypesetter"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@SA@CFRange",
+          "text": "CFRange"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CTLineRef",
+          "text": "CTLine"
+        }
+      ],
+      "identifier": "doc://com.apple.coretext/documentation/CoreText/CTTypesetterCreateLineWithOffset(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CTTypesetterCreateLineWithOffset"
+        }
+      ],
+      "role": "symbol",
+      "title": "CTTypesetterCreateLineWithOffset(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/coretext/cttypesettercreatelinewithoffset(_:_:_:)"
+    },
+    "doc://com.apple.coretext/documentation/CoreText/CTTypesetterCreateWithAttributedString(_:)": {
+      "abstract": [
+        {
+          "text": "Creates an immutable typesetter object using an attributed string.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CTTypesetterCreateWithAttributedString"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFAttributedStringRef",
+          "text": "CFAttributedString"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CTTypesetterRef",
+          "text": "CTTypesetter"
+        }
+      ],
+      "identifier": "doc://com.apple.coretext/documentation/CoreText/CTTypesetterCreateWithAttributedString(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CTTypesetterCreateWithAttributedString"
+        }
+      ],
+      "role": "symbol",
+      "title": "CTTypesetterCreateWithAttributedString(_:)",
+      "type": "topic",
+      "url": "/documentation/coretext/cttypesettercreatewithattributedstring(_:)"
+    },
+    "doc://com.apple.coretext/documentation/CoreText/CTTypesetterCreateWithAttributedStringAndOptions(_:_:)": {
+      "abstract": [
+        {
+          "text": "Creates an immutable typesetter object using an attributed string and a dictionary of options.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CTTypesetterCreateWithAttributedStringAndOptions"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFAttributedStringRef",
+          "text": "CFAttributedString"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFDictionaryRef",
+          "text": "CFDictionary"
+        },
+        {
+          "kind": "text",
+          "text": "?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CTTypesetterRef",
+          "text": "CTTypesetter"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.coretext/documentation/CoreText/CTTypesetterCreateWithAttributedStringAndOptions(_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CTTypesetterCreateWithAttributedStringAndOptions"
+        }
+      ],
+      "role": "symbol",
+      "title": "CTTypesetterCreateWithAttributedStringAndOptions(_:_:)",
+      "type": "topic",
+      "url": "/documentation/coretext/cttypesettercreatewithattributedstringandoptions(_:_:)"
+    },
+    "doc://com.apple.coretext/documentation/CoreText/CTTypesetterGetTypeID()": {
+      "abstract": [
+        {
+          "text": "Returns the Core Foundation type identifier of the typesetter object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CTTypesetterGetTypeID"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFTypeID",
+          "text": "CFTypeID"
+        }
+      ],
+      "identifier": "doc://com.apple.coretext/documentation/CoreText/CTTypesetterGetTypeID()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CTTypesetterGetTypeID"
+        }
+      ],
+      "role": "symbol",
+      "title": "CTTypesetterGetTypeID()",
+      "type": "topic",
+      "url": "/documentation/coretext/cttypesettergettypeid()"
+    },
+    "doc://com.apple.coretext/documentation/CoreText/CTTypesetterSuggestClusterBreak(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Suggests a cluster line breakpoint based on the width provided.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CTTypesetterSuggestClusterBreak"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CTTypesetterRef",
+          "text": "CTTypesetter"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFIndex",
+          "text": "CFIndex"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFIndex",
+          "text": "CFIndex"
+        }
+      ],
+      "identifier": "doc://com.apple.coretext/documentation/CoreText/CTTypesetterSuggestClusterBreak(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CTTypesetterSuggestClusterBreak"
+        }
+      ],
+      "role": "symbol",
+      "title": "CTTypesetterSuggestClusterBreak(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/coretext/cttypesettersuggestclusterbreak(_:_:_:)"
+    },
+    "doc://com.apple.coretext/documentation/CoreText/CTTypesetterSuggestClusterBreakWithOffset(_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Suggests a cluster line breakpoint based on the specified width and line offset.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CTTypesetterSuggestClusterBreakWithOffset"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CTTypesetterRef",
+          "text": "CTTypesetter"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFIndex",
+          "text": "CFIndex"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFIndex",
+          "text": "CFIndex"
+        }
+      ],
+      "identifier": "doc://com.apple.coretext/documentation/CoreText/CTTypesetterSuggestClusterBreakWithOffset(_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CTTypesetterSuggestClusterBreakWithOffset"
+        }
+      ],
+      "role": "symbol",
+      "title": "CTTypesetterSuggestClusterBreakWithOffset(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/coretext/cttypesettersuggestclusterbreakwithoffset(_:_:_:_:)"
+    },
+    "doc://com.apple.coretext/documentation/CoreText/CTTypesetterSuggestLineBreak(_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Suggests a contextual line breakpoint based on the width provided.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CTTypesetterSuggestLineBreak"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CTTypesetterRef",
+          "text": "CTTypesetter"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFIndex",
+          "text": "CFIndex"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFIndex",
+          "text": "CFIndex"
+        }
+      ],
+      "identifier": "doc://com.apple.coretext/documentation/CoreText/CTTypesetterSuggestLineBreak(_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CTTypesetterSuggestLineBreak"
+        }
+      ],
+      "role": "symbol",
+      "title": "CTTypesetterSuggestLineBreak(_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/coretext/cttypesettersuggestlinebreak(_:_:_:)"
+    },
+    "doc://com.apple.coretext/documentation/CoreText/CTTypesetterSuggestLineBreakWithOffset(_:_:_:_:)": {
+      "abstract": [
+        {
+          "text": "Suggests a contextual line breakpoint based on the width provided and the specified offset.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CTTypesetterSuggestLineBreakWithOffset"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CTTypesetterRef",
+          "text": "CTTypesetter"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFIndex",
+          "text": "CFIndex"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sd",
+          "text": "Double"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CFIndex",
+          "text": "CFIndex"
+        }
+      ],
+      "identifier": "doc://com.apple.coretext/documentation/CoreText/CTTypesetterSuggestLineBreakWithOffset(_:_:_:_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CTTypesetterSuggestLineBreakWithOffset"
+        }
+      ],
+      "role": "symbol",
+      "title": "CTTypesetterSuggestLineBreakWithOffset(_:_:_:_:)",
+      "type": "topic",
+      "url": "/documentation/coretext/cttypesettersuggestlinebreakwithoffset(_:_:_:_:)"
+    },
+    "doc://com.apple.coretext/documentation/CoreText/typesetter-options": {
+      "abstract": [
+        {
+          "text": "Control aspects of the typesetter’s text processing.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.coretext/documentation/CoreText/typesetter-options",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Typesetter Options",
+      "type": "topic",
+      "url": "/documentation/coretext/typesetter-options"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Opaque-Types",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.coretext/documentation/CoreText/CTFont",
+        "doc://com.apple.coretext/documentation/CoreText/CTFontCollection",
+        "doc://com.apple.coretext/documentation/CoreText/CTFontDescriptor",
+        "doc://com.apple.coretext/documentation/CoreText/CTFrame",
+        "doc://com.apple.coretext/documentation/CoreText/CTFramesetter",
+        "doc://com.apple.coretext/documentation/CoreText/CTGlyphInfo",
+        "doc://com.apple.coretext/documentation/CoreText/CTLine",
+        "doc://com.apple.coretext/documentation/CoreText/CTParagraphStyle",
+        "doc://com.apple.coretext/documentation/CoreText/CTRun",
+        "doc://com.apple.coretext/documentation/CoreText/CTRunDelegate",
+        "doc://com.apple.coretext/documentation/CoreText/CTTextTab"
+      ],
+      "title": "Opaque Types"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Creating-a-Typesetter",
+      "identifiers": [
+        "doc://com.apple.coretext/documentation/CoreText/CTTypesetterCreateWithAttributedString(_:)",
+        "doc://com.apple.coretext/documentation/CoreText/CTTypesetterCreateWithAttributedStringAndOptions(_:_:)"
+      ],
+      "title": "Creating a Typesetter"
+    },
+    {
+      "anchor": "Creating-Lines",
+      "identifiers": [
+        "doc://com.apple.coretext/documentation/CoreText/CTTypesetterCreateLine(_:_:)",
+        "doc://com.apple.coretext/documentation/CoreText/CTTypesetterCreateLineWithOffset(_:_:_:)"
+      ],
+      "title": "Creating Lines"
+    },
+    {
+      "anchor": "Breaking-Lines",
+      "identifiers": [
+        "doc://com.apple.coretext/documentation/CoreText/CTTypesetterSuggestLineBreak(_:_:_:)",
+        "doc://com.apple.coretext/documentation/CoreText/CTTypesetterSuggestLineBreakWithOffset(_:_:_:_:)",
+        "doc://com.apple.coretext/documentation/CoreText/CTTypesetterSuggestClusterBreak(_:_:_:)",
+        "doc://com.apple.coretext/documentation/CoreText/CTTypesetterSuggestClusterBreakWithOffset(_:_:_:_:)"
+      ],
+      "title": "Breaking Lines"
+    },
+    {
+      "anchor": "Getting-the-Type-Identifier",
+      "identifiers": [
+        "doc://com.apple.coretext/documentation/CoreText/CTTypesetterGetTypeID()"
+      ],
+      "title": "Getting the Type Identifier"
+    },
+    {
+      "anchor": "Constants",
+      "identifiers": [
+        "doc://com.apple.coretext/documentation/CoreText/typesetter-options"
+      ],
+      "title": "Constants"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "visionOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "name": "watchOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Type Alias"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "CTTypesetterRef"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "typealias"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CTTypesetterRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CTTypesetterRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.coretext/documentation/CoreText"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Creating-a-Typesetter",
+              "identifiers": [
+                "doc://com.apple.coretext/documentation/CoreText/CTTypesetterCreateWithAttributedString(_:)",
+                "doc://com.apple.coretext/documentation/CoreText/CTTypesetterCreateWithAttributedStringAndOptions(_:_:)"
+              ],
+              "title": "Creating a Typesetter"
+            },
+            {
+              "anchor": "Creating-Lines",
+              "identifiers": [
+                "doc://com.apple.coretext/documentation/CoreText/CTTypesetterCreateLine(_:_:)",
+                "doc://com.apple.coretext/documentation/CoreText/CTTypesetterCreateLineWithOffset(_:_:_:)"
+              ],
+              "title": "Creating Lines"
+            },
+            {
+              "anchor": "Breaking-Lines",
+              "identifiers": [
+                "doc://com.apple.coretext/documentation/CoreText/CTTypesetterSuggestLineBreak(_:_:_:)",
+                "doc://com.apple.coretext/documentation/CoreText/CTTypesetterSuggestLineBreakWithOffset(_:_:_:_:)",
+                "doc://com.apple.coretext/documentation/CoreText/CTTypesetterSuggestClusterBreak(_:_:_:)",
+                "doc://com.apple.coretext/documentation/CoreText/CTTypesetterSuggestClusterBreakWithOffset(_:_:_:_:)"
+              ],
+              "title": "Breaking Lines"
+            },
+            {
+              "anchor": "Getting-the-Type-Identifier",
+              "identifiers": [
+                "doc://com.apple.coretext/documentation/CoreText/CTTypesetterGetTypeID()"
+              ],
+              "title": "Getting the Type Identifier"
+            },
+            {
+              "anchor": "Constants",
+              "identifiers": [
+                "doc://com.apple.coretext/documentation/CoreText/typesetter-options"
+              ],
+              "title": "Constants"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Opaque-Types",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.coretext/documentation/CoreText/CTFont",
+                "doc://com.apple.coretext/documentation/CoreText/CTFontCollection",
+                "doc://com.apple.coretext/documentation/CoreText/CTFontDescriptor",
+                "doc://com.apple.coretext/documentation/CoreText/CTFrame",
+                "doc://com.apple.coretext/documentation/CoreText/CTFramesetter",
+                "doc://com.apple.coretext/documentation/CoreText/CTGlyphInfo",
+                "doc://com.apple.coretext/documentation/CoreText/CTLine",
+                "doc://com.apple.coretext/documentation/CoreText/CTParagraphStyle",
+                "doc://com.apple.coretext/documentation/CoreText/CTRun",
+                "doc://com.apple.coretext/documentation/CoreText/CTRunDelegate",
+                "doc://com.apple.coretext/documentation/CoreText/CTTextTab"
+              ],
+              "title": "Opaque Types"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "typedef"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "keyword",
+                    "text": "const"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "keyword",
+                    "text": "struct"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:@S@__CTTypesetter",
+                    "text": "__CTTypesetter"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " * "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "CTTypesetterRef"
+                  },
+                  {
+                    "kind": "text",
+                    "text": ";"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coretext~1documentation~1CoreText~1CTRunDelegate/title",
+          "value": "CTRunDelegateRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coretext~1documentation~1CoreText~1CTRunDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CTRunDelegateRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coretext~1documentation~1CoreText~1CTRunDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CTRunDelegateRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coretext~1documentation~1CoreText~1CTFontDescriptor/title",
+          "value": "CTFontDescriptorRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coretext~1documentation~1CoreText~1CTFontDescriptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CTFontDescriptorRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coretext~1documentation~1CoreText~1CTFontDescriptor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CTFontDescriptorRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coretext~1documentation~1CoreText~1CTParagraphStyle/title",
+          "value": "CTParagraphStyleRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coretext~1documentation~1CoreText~1CTParagraphStyle/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CTParagraphStyleRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coretext~1documentation~1CoreText~1CTParagraphStyle/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CTParagraphStyleRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coretext~1documentation~1CoreText~1CTFontCollection/title",
+          "value": "CTFontCollectionRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coretext~1documentation~1CoreText~1CTFontCollection/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CTFontCollectionRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coretext~1documentation~1CoreText~1CTFontCollection/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CTFontCollectionRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coretext~1documentation~1CoreText~1CTRun/title",
+          "value": "CTRunRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coretext~1documentation~1CoreText~1CTRun/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CTRunRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coretext~1documentation~1CoreText~1CTRun/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CTRunRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coretext~1documentation~1CoreText~1CTTypesetterSuggestClusterBreakWithOffset(_:_:_:_:)/title",
+          "value": "CTTypesetterSuggestClusterBreakWithOffset"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coretext~1documentation~1CoreText~1CTTypesetterSuggestClusterBreakWithOffset(_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CTTypesetterSuggestClusterBreakWithOffset"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coretext~1documentation~1CoreText~1CTTypesetterGetTypeID()/title",
+          "value": "CTTypesetterGetTypeID"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coretext~1documentation~1CoreText~1CTTypesetterGetTypeID()/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CTTypesetterGetTypeID"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coretext~1documentation~1CoreText~1CTTypesetterSuggestLineBreakWithOffset(_:_:_:_:)/title",
+          "value": "CTTypesetterSuggestLineBreakWithOffset"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coretext~1documentation~1CoreText~1CTTypesetterSuggestLineBreakWithOffset(_:_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CTTypesetterSuggestLineBreakWithOffset"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coretext~1documentation~1CoreText~1CTTypesetterCreateWithAttributedString(_:)/title",
+          "value": "CTTypesetterCreateWithAttributedString"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coretext~1documentation~1CoreText~1CTTypesetterCreateWithAttributedString(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CTTypesetterCreateWithAttributedString"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coretext~1documentation~1CoreText~1CTTypesetterCreateLineWithOffset(_:_:_:)/title",
+          "value": "CTTypesetterCreateLineWithOffset"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coretext~1documentation~1CoreText~1CTTypesetterCreateLineWithOffset(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CTTypesetterCreateLineWithOffset"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coretext~1documentation~1CoreText~1CTTypesetterSuggestLineBreak(_:_:_:)/title",
+          "value": "CTTypesetterSuggestLineBreak"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coretext~1documentation~1CoreText~1CTTypesetterSuggestLineBreak(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CTTypesetterSuggestLineBreak"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coretext~1documentation~1CoreText~1CTTextTab/title",
+          "value": "CTTextTabRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coretext~1documentation~1CoreText~1CTTextTab/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CTTextTabRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coretext~1documentation~1CoreText~1CTTextTab/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CTTextTabRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coretext~1documentation~1CoreText~1CTTypesetterCreateWithAttributedStringAndOptions(_:_:)/title",
+          "value": "CTTypesetterCreateWithAttributedStringAndOptions"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coretext~1documentation~1CoreText~1CTTypesetterCreateWithAttributedStringAndOptions(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CTTypesetterCreateWithAttributedStringAndOptions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coretext~1documentation~1CoreText~1CTLine/title",
+          "value": "CTLineRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coretext~1documentation~1CoreText~1CTLine/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CTLineRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coretext~1documentation~1CoreText~1CTLine/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CTLineRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coretext~1documentation~1CoreText~1CTTypesetter/title",
+          "value": "CTTypesetterRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coretext~1documentation~1CoreText~1CTTypesetter/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CTTypesetterRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coretext~1documentation~1CoreText~1CTTypesetter/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CTTypesetterRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coretext~1documentation~1CoreText~1CTFont/title",
+          "value": "CTFontRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coretext~1documentation~1CoreText~1CTFont/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CTFontRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coretext~1documentation~1CoreText~1CTFont/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CTFontRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coretext~1documentation~1CoreText~1CTGlyphInfo/title",
+          "value": "CTGlyphInfoRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coretext~1documentation~1CoreText~1CTGlyphInfo/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CTGlyphInfoRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coretext~1documentation~1CoreText~1CTGlyphInfo/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CTGlyphInfoRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coretext~1documentation~1CoreText~1CTFramesetter/title",
+          "value": "CTFramesetterRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coretext~1documentation~1CoreText~1CTFramesetter/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CTFramesetterRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coretext~1documentation~1CoreText~1CTFramesetter/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CTFramesetterRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coretext~1documentation~1CoreText~1CTTypesetterSuggestClusterBreak(_:_:_:)/title",
+          "value": "CTTypesetterSuggestClusterBreak"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coretext~1documentation~1CoreText~1CTTypesetterSuggestClusterBreak(_:_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CTTypesetterSuggestClusterBreak"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coretext~1documentation~1CoreText~1CTTypesetterCreateLine(_:_:)/title",
+          "value": "CTTypesetterCreateLine"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coretext~1documentation~1CoreText~1CTTypesetterCreateLine(_:_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CTTypesetterCreateLine"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coretext~1documentation~1CoreText~1CTFrame/title",
+          "value": "CTFrameRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coretext~1documentation~1CoreText~1CTFrame/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CTFrameRef"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.coretext~1documentation~1CoreText~1CTFrame/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CTFrameRef"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/coretext/cttypesetter"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/coretext/cttypesetter"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

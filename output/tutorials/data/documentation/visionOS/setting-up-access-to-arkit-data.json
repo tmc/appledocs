@@ -1,0 +1,987 @@
+{
+  "abstract": [
+    {
+      "text": "Check whether your app can use ARKit and respect people’s privacy.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.visionOS/documentation/visionOS"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.visionOS/documentation/visionOS/setting-up-access-to-arkit-data"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Setting up access to ARKit data"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "columns": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "In visionOS, ARKit can enable new kinds of experiences that leverage data such as hand tracking and world sensing. The system gates access to this kind of sensitive information. Because people can decline your app’s request to use ARKit data or revoke access later, you need to provide alternative ways to use your app and to handle cases where your app loses access to data.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              "size": 1
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "request-data.png",
+                      "type": "image"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ],
+              "size": 1
+            }
+          ],
+          "numberOfColumns": 2,
+          "type": "row"
+        },
+        {
+          "anchor": "Add-usage-descriptions-for-ARKit-data-access",
+          "level": 3,
+          "text": "Add usage descriptions for ARKit data access",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "People need to know why your app wants to access data from ARKit. Add the following keys to your app’s information property list to provide a user-facing usage description that explains how your app uses the data:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Use this key if your app uses hand tracking.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSHandsTrackingUsageDescription",
+                    "isActive": true,
+                    "type": "reference"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Use this key if your app uses image tracking, plane detection, or scene reconstruction.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSWorldSensingUsageDescription",
+                    "isActive": true,
+                    "type": "reference"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "World ",
+                  "type": "text"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "tracking",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "emphasis"
+                },
+                {
+                  "text": " — unlike world ",
+                  "type": "text"
+                },
+                {
+                  "inlineContent": [
+                    {
+                      "text": "sensing",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "emphasis"
+                },
+                {
+                  "text": " — doesn’t require authorization. For more information, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.visionOS/documentation/visionOS/tracking-points-in-world-space",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Choose-between-up-front-or-as-needed-authorization",
+          "level": 3,
+          "text": "Choose between up-front or as-needed authorization",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can choose when someone sees an authorization request to use ARKit data. If you need precise control over when the request appears, call the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/ARKit/ARKitSession/requestAuthorization(for:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method on ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/ARKit/ARKitSession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to explicitly authorize access at the time you call it. Otherwise, people see an authorization request when you call the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/ARKit/ARKitSession/run(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. This is an implicit authorization because the timing of the request depends entirely on when you start the session.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Open-a-space-and-run-a-session",
+          "level": 3,
+          "text": "Open a space and run a session",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To help protect people’s privacy, ARKit data is available only when your app presents a Full Space and other apps are hidden. Present one of these space styles before calling the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/ARKit/ARKitSession/run(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following shows an app structure that’s set up to use a space with ARKit:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "@main",
+            "struct MyApp: App {",
+            "    @State var session = ARKitSession()",
+            "    @State var immersionState: ImmersionStyle = .mixed",
+            "    var body: some Scene {",
+            "        WindowGroup {",
+            "            ContentView()",
+            "        }",
+            "        ImmersiveSpace(id: \"appSpace\") {",
+            "            MixedImmersionView()",
+            "            .task {",
+            "                let planeData = PlaneDetectionProvider(alignments: [.horizontal])",
+            "                ",
+            "                if PlaneDetectionProvider.isSupported {",
+            "                    do {",
+            "                        try await session.run([planeData])",
+            "                        for await update in planeData.anchorUpdates {",
+            "                            // Update app state.",
+            "                        }",
+            "                    } catch {",
+            "                        print(\"ARKit session error \\(error)\")",
+            "                    }",
+            "                }",
+            "            }",
+            "        }",
+            "        .immersionStyle(selection: $immersionState, in: .mixed)",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/SwiftUI/EnvironmentValues/openImmersiveSpace",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " from your app’s user interface to create a space, start running an ARKit session, and kick off an immersive experience. The following shows a simple view with a button that opens the space:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct ContentView: View {",
+            "    @Environment(\\.openImmersiveSpace) private var openImmersiveSpace",
+            "    ",
+            "    var body: some View {",
+            "        Button(\"Start ARKit experience\") {",
+            "            Task {",
+            "                await openImmersiveSpace(id: \"appSpace\")",
+            "            }",
+            "        }",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Provide-alternatives-for-declined-and-revoked-authorizations",
+          "level": 3,
+          "text": "Provide alternatives for declined and revoked authorizations",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Someone might not want to give your app access to data from ARKit, or they might choose to revoke that access later in Settings. Handle these situations gracefully, and remove or transition content that depends on ARKit data. For example, you might fade out content that you need to remove, or recenter content to an appropriate starting position. If your app uses ARKit data to place content in a person’s surroundings, consider letting people place content using the system-provided interface.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Providing alternatives is especially important if you’re using ARKit for user input. People using accessibility features, trackpads, keyboards, or other forms of input might need a way to use your app without ARKit.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Building-local-experiences-with-room-tracking-PageImage-card.png": {
+      "alt": "A view into the corner of a room with an open doorway, where one wall is a portal to a virtual universe.",
+      "identifier": "Building-local-experiences-with-room-tracking-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ecb2f88d37f7bba036c739568409febf/Building-local-experiences-with-room-tracking-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/af99ba5e2e307907caed07d89553f518/Building-local-experiences-with-room-tracking-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "Happy-Beam-intro.png": {
+      "alt": "A screenshot showing the Happy Beam game. A player makes a heart gesture with their hands, a beam projects from it aimed at nearby clouds, and a scoreboard window shows seven points.",
+      "identifier": "Happy-Beam-intro.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/52b497b6d705af322726d7371dee6ddd/Happy-Beam-intro@2x.png"
+        }
+      ]
+    },
+    "Object-Tracking-PageImage-card.png": {
+      "alt": "An image of a room with several rectangular tiers on which glowing and textured, reflective spheres rest.",
+      "identifier": "Object-Tracking-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/dfd3696d1b7df884ded8407cef3e8045/Object-Tracking-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/2332d74827799a86de0261e14c5a61f5/Object-Tracking-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.documentation/documentation/ARKit/ARKitSession": {
+      "abstract": [
+        {
+          "text": "The main entry point for receiving data from ARKit.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "final"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ARKitSession"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ARKit/ARKitSession",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ARKitSession",
+      "type": "topic",
+      "url": "/documentation/ARKit/ARKitSession"
+    },
+    "doc://com.apple.documentation/documentation/ARKit/ARKitSession/requestAuthorization(for:)": {
+      "abstract": [
+        {
+          "text": "Requests authorization from the user to use the specified kinds of ARKit data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "final"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "requestAuthorization"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "authorizationTypes"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:5ARKit0A7SessionC",
+          "text": "ARKitSession"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:5ARKit0A7SessionC17AuthorizationTypeO",
+          "text": "AuthorizationType"
+        },
+        {
+          "kind": "text",
+          "text": "]) "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:5ARKit0A7SessionC",
+          "text": "ARKitSession"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:5ARKit0A7SessionC17AuthorizationTypeO",
+          "text": "AuthorizationType"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:5ARKit0A7SessionC",
+          "text": "ARKitSession"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:5ARKit0A7SessionC19AuthorizationStatusO",
+          "text": "AuthorizationStatus"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ARKit/ARKitSession/requestAuthorization(for:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "requestAuthorization(for:)",
+      "type": "topic",
+      "url": "/documentation/ARKit/ARKitSession/requestAuthorization(for:)"
+    },
+    "doc://com.apple.documentation/documentation/ARKit/ARKitSession/run(_:)": {
+      "abstract": [
+        {
+          "text": "Runs a session with the data providers you supply.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "final"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "run"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "dataProviders"
+        },
+        {
+          "kind": "text",
+          "text": ": [any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:5ARKit12DataProviderP",
+          "text": "DataProvider"
+        },
+        {
+          "kind": "text",
+          "text": "]) "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/ARKit/ARKitSession/run(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "run(_:)",
+      "type": "topic",
+      "url": "/documentation/ARKit/ARKitSession/run(_:)"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSHandsTrackingUsageDescription": {
+      "abstract": [
+        {
+          "text": "A message that tells the user why the app is requesting access to track the user’s hand position and location.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSHandsTrackingUsageDescription",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSHandsTrackingUsageDescription",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/NSHandsTrackingUsageDescription"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSWorldSensingUsageDescription": {
+      "abstract": [
+        {
+          "text": "A message that tells the user why the app is requesting access to image tracking, plane detection, or scene reconstruction.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/NSWorldSensingUsageDescription",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSWorldSensingUsageDescription",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/NSWorldSensingUsageDescription"
+    },
+    "doc://com.apple.documentation/documentation/SwiftUI/EnvironmentValues/openImmersiveSpace": {
+      "abstract": [
+        {
+          "text": "An action that presents an immersive space.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "openImmersiveSpace"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:7SwiftUI24OpenImmersiveSpaceActionV",
+          "text": "OpenImmersiveSpaceAction"
+        },
+        {
+          "kind": "text",
+          "text": " { "
+        },
+        {
+          "kind": "keyword",
+          "text": "get"
+        },
+        {
+          "kind": "text",
+          "text": " }"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/SwiftUI/EnvironmentValues/openImmersiveSpace",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "openImmersiveSpace",
+      "type": "topic",
+      "url": "/documentation/SwiftUI/EnvironmentValues/openImmersiveSpace"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS": {
+      "abstract": [
+        {
+          "text": "Create a new universe of apps and games for Apple Vision Pro.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS",
+      "images": [
+        {
+          "identifier": "headset-orange.svg",
+          "type": "icon"
+        },
+        {
+          "identifier": "visionOS-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "visionOS",
+      "type": "topic",
+      "url": "/documentation/visionos"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/building_local_experiences_with_room_tracking": {
+      "abstract": [
+        {
+          "text": "Use room tracking in visionOS to provide custom interactions with physical spaces.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/building_local_experiences_with_room_tracking",
+      "images": [
+        {
+          "identifier": "Building-local-experiences-with-room-tracking-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Building local experiences with room tracking",
+      "type": "topic",
+      "url": "/documentation/visionos/building_local_experiences_with_room_tracking"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/exploring_object_tracking_with_arkit": {
+      "abstract": [
+        {
+          "text": "Find and track real-world objects in visionOS using reference objects trained with Create ML.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/exploring_object_tracking_with_arkit",
+      "images": [
+        {
+          "identifier": "Object-Tracking-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Exploring object tracking with ARKit",
+      "type": "topic",
+      "url": "/documentation/visionos/exploring_object_tracking_with_arkit"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/happybeam": {
+      "abstract": [
+        {
+          "text": "Leverage a Full Space to create a fun game using ARKit.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/happybeam",
+      "images": [
+        {
+          "identifier": "Happy-Beam-intro.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Happy Beam",
+      "type": "topic",
+      "url": "/documentation/visionos/happybeam"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/incorporating-real-world-surroundings-in-an-immersive-experience": {
+      "abstract": [
+        {
+          "text": "Create an immersive experience by making your app’s content respond to the local shape of the world.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/incorporating-real-world-surroundings-in-an-immersive-experience",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Incorporating real-world surroundings in an immersive experience",
+      "type": "topic",
+      "url": "/documentation/visionos/incorporating-real-world-surroundings-in-an-immersive-experience"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/object-tracking-with-reality-composer-pro-experiences": {
+      "abstract": [
+        {
+          "text": "Use object tracking in visionOS to attach digital content to real objects to create engaging experiences.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/object-tracking-with-reality-composer-pro-experiences",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Object tracking with Reality Composer Pro experiences",
+      "type": "topic",
+      "url": "/documentation/visionos/object-tracking-with-reality-composer-pro-experiences"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/placing-content-on-detected-planes": {
+      "abstract": [
+        {
+          "text": "Detect horizontal surfaces like tables and floors, as well as vertical planes like walls and doors.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/placing-content-on-detected-planes",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Placing content on detected planes",
+      "type": "topic",
+      "url": "/documentation/visionos/placing-content-on-detected-planes"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/placing-entities-using-head-and-device-transform": {
+      "abstract": [
+        {
+          "text": "Query and react to changes in the position and rotation of Apple Vision Pro.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/placing-entities-using-head-and-device-transform",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Placing entities using head and device transform",
+      "type": "topic",
+      "url": "/documentation/visionos/placing-entities-using-head-and-device-transform"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/tracking-images-in-3d-space": {
+      "abstract": [
+        {
+          "text": "Place content based on the current position of a known image in a person’s surroundings.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/tracking-images-in-3d-space",
+      "kind": "article",
+      "role": "article",
+      "title": "Tracking preregistered images in 3D space",
+      "type": "topic",
+      "url": "/documentation/visionos/tracking-images-in-3d-space"
+    },
+    "doc://com.apple.visionOS/documentation/visionOS/tracking-points-in-world-space": {
+      "abstract": [
+        {
+          "text": "Retrieve the position and orientation of anchors your app stores in ARKit.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.visionOS/documentation/visionOS/tracking-points-in-world-space",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Tracking specific points in world space",
+      "type": "topic",
+      "url": "/documentation/visionos/tracking-points-in-world-space"
+    },
+    "headset-orange.svg": {
+      "alt": "An icon representing visionOS.",
+      "identifier": "headset-orange.svg",
+      "type": "image",
+      "variants": [
+        {
+          "svgID": "a",
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/77dc6a0821bfb2da8db4a3b2033e6f6b/headset-orange.svg"
+        }
+      ]
+    },
+    "request-data.png": {
+      "alt": "A screenshot that shows the system permission alert for hand tracking. The options are Don't Allow and OK. The app-specific usage description is Track your hands to detect a heart gesture.",
+      "identifier": "request-data.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/caa9cb3bdf25ecb38b21c5e8343b93d1/request-data@2x.png"
+        }
+      ]
+    },
+    "visionOS-PageImage-card.png": {
+      "alt": "A stylized illustration of an Apple Vision Pro with the word 'hello' written across the front in cursive.",
+      "identifier": "visionOS-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/90294957b44e5508a55fe39373eea478/visionOS-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/90fe463571fd45badfabacbb07f30591/visionOS-PageImage-card~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "ARKit",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.visionOS/documentation/visionOS/happybeam",
+        "doc://com.apple.visionOS/documentation/visionOS/incorporating-real-world-surroundings-in-an-immersive-experience",
+        "doc://com.apple.visionOS/documentation/visionOS/placing-content-on-detected-planes",
+        "doc://com.apple.visionOS/documentation/visionOS/tracking-points-in-world-space",
+        "doc://com.apple.visionOS/documentation/visionOS/tracking-images-in-3d-space",
+        "doc://com.apple.visionOS/documentation/visionOS/exploring_object_tracking_with_arkit",
+        "doc://com.apple.visionOS/documentation/visionOS/object-tracking-with-reality-composer-pro-experiences",
+        "doc://com.apple.visionOS/documentation/visionOS/building_local_experiences_with_room_tracking",
+        "doc://com.apple.visionOS/documentation/visionOS/placing-entities-using-head-and-device-transform"
+      ],
+      "title": "ARKit"
+    }
+  ]
+}

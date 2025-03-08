@@ -1,0 +1,574 @@
+{
+  "abstract": [
+    {
+      "text": "Returns information about the Media Extension video decoder required to decode the specified format.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.videotoolbox/documentation/VideoToolbox"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTCopyVideoDecoderExtensionProperties"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@F@VTCopyVideoDecoderExtensionProperties",
+    "fragments": [
+      {
+        "kind": "identifier",
+        "text": "VTCopyVideoDecoderExtensionProperties"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Video Toolbox"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "VTCopyVideoDecoderExtensionProperties"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Function",
+    "symbolKind": "func",
+    "title": "VTCopyVideoDecoderExtensionProperties"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "extern"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@OSStatus",
+              "text": "OSStatus"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "VTCopyVideoDecoderExtensionProperties"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:@T@CMFormatDescriptionRef",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CMFormatDescriptionRef",
+              "text": "CMFormatDescriptionRef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "internalParam",
+              "text": "formatDesc"
+            },
+            {
+              "kind": "text",
+              "text": ", "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/c:@T@CFDictionaryRef",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@T@CFDictionaryRef",
+              "text": "CFDictionaryRef"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "internalParam",
+              "text": "mediaExtensionPropertiesOut"
+            },
+            {
+              "kind": "text",
+              "text": ");"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "The format description for the video format for which information is being requested.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "formatDesc"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If a ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/MediaExtension",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " video decoder will be used to decode the specified format, this pointer will return a dictionary with a set of properties describing the extension video decoder. The dictionary keys are VTExtensionPropertiesKey values.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "mediaExtensionPropertiesOut"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "return-value",
+          "level": 2,
+          "text": "Return Value",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the function succeeds and a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/MediaExtension",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " video decoder will be used to decode this format, the return value will be ",
+              "type": "text"
+            },
+            {
+              "code": "noErr",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". If the function succeeds but a Media Extension video decoder will not be used to decode this format, the return value will be ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.videotoolbox/documentation/VideoToolbox/kVTCouldNotFindExtensionErr",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Otherwise, the return value will be an error code describing the failure.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    },
+    {
+      "content": [
+        {
+          "anchor": "Discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If a Media Extension video decoder will be used to decode the specified format, this function will return information about the Media Extension that will be used.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/MediaExtension": {
+      "abstract": [
+        {
+          "text": "This framework provides a means for developers to create format readers, video decoders, and RAW processors for media that the system doesn’t natively support.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/MediaExtension",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "MediaExtension",
+      "type": "topic",
+      "url": "/documentation/MediaExtension"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.videotoolbox/documentation/VideoToolbox": {
+      "abstract": [
+        {
+          "text": "Work directly with hardware-accelerated video encoding and decoding capabilities.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.videotoolbox/documentation/VideoToolbox",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Video Toolbox",
+      "type": "topic",
+      "url": "/documentation/videotoolbox"
+    },
+    "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTCopyVideoDecoderExtensionProperties": {
+      "abstract": [
+        {
+          "text": "Returns information about the Media Extension video decoder required to decode the specified format.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "VTCopyVideoDecoderExtensionProperties"
+        }
+      ],
+      "identifier": "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTCopyVideoDecoderExtensionProperties",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "VTCopyVideoDecoderExtensionProperties",
+      "type": "topic",
+      "url": "/documentation/videotoolbox/vtcopyvideodecoderextensionproperties"
+    },
+    "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTExtensionPropertiesKey": {
+      "abstract": [
+        {
+          "text": "A key in a Media Extension extension properties dictionary.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "VTExtensionPropertiesKey"
+        }
+      ],
+      "identifier": "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTExtensionPropertiesKey",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "VTExtensionPropertiesKey"
+        }
+      ],
+      "role": "symbol",
+      "title": "VTExtensionPropertiesKey",
+      "type": "topic",
+      "url": "/documentation/videotoolbox/vtextensionpropertieskey"
+    },
+    "doc://com.apple.videotoolbox/documentation/VideoToolbox/kVTCouldNotFindExtensionErr": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "kVTCouldNotFindExtensionErr"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@OSStatus",
+          "text": "OSStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.videotoolbox/documentation/VideoToolbox/kVTCouldNotFindExtensionErr",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "kVTCouldNotFindExtensionErr"
+        }
+      ],
+      "role": "symbol",
+      "title": "kVTCouldNotFindExtensionErr",
+      "type": "topic",
+      "url": "/documentation/videotoolbox/kvtcouldnotfindextensionerr"
+    },
+    "doc://com.externally.resolved.symbol/c:@T@CFDictionaryRef": {
+      "abstract": [
+        {
+          "text": "A reference to an immutable dictionary object.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "CFDictionary"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:@T@CFDictionaryRef",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CFDictionary",
+      "type": "topic",
+      "url": "/documentation/corefoundation/cfdictionary"
+    },
+    "doc://com.externally.resolved.symbol/c:@T@CMFormatDescriptionRef": {
+      "abstract": [
+        {
+          "text": "An object that describes a media format descriptor.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CMFormatDescription"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:@T@CMFormatDescriptionRef",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CMFormatDescription",
+      "type": "topic",
+      "url": "/documentation/CoreMedia/CMFormatDescription"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Media-Extension",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.videotoolbox/documentation/VideoToolbox/VTExtensionPropertiesKey"
+      ],
+      "title": "Media Extension"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.videotoolbox~1documentation~1VideoToolbox~1VTExtensionPropertiesKey/title",
+          "value": "VTExtensionPropertiesKey"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.videotoolbox~1documentation~1VideoToolbox~1VTExtensionPropertiesKey/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VTExtensionPropertiesKey"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.videotoolbox~1documentation~1VideoToolbox~1VTExtensionPropertiesKey/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "VTExtensionPropertiesKey"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:@T@CMFormatDescriptionRef/title",
+          "value": "CMFormatDescriptionRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:@T@CMFormatDescriptionRef/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "typedef"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "const"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "keyword",
+              "text": "struct"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@S@opaqueCMFormatDescription",
+              "text": "opaqueCMFormatDescription"
+            },
+            {
+              "kind": "text",
+              "text": " * "
+            },
+            {
+              "kind": "identifier",
+              "text": "CMFormatDescriptionRef"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:@T@CFDictionaryRef/title",
+          "value": "CFDictionaryRef"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.videotoolbox~1documentation~1VideoToolbox~1kVTCouldNotFindExtensionErr/title",
+          "value": "kVTCouldNotFindExtensionErr"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.videotoolbox~1documentation~1VideoToolbox~1kVTCouldNotFindExtensionErr/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "kVTCouldNotFindExtensionErr"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/videotoolbox/vtcopyvideodecoderextensionproperties"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

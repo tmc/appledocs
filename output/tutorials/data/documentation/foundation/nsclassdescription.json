@@ -1,0 +1,746 @@
+{
+  "abstract": [
+    {
+      "text": "An abstract class that provides the interface for querying the relationships and properties of a class.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/scripting_support"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/nsclassdescription"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1407554,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSClassDescription",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "class "
+      },
+      {
+        "kind": "identifier",
+        "text": "NSClassDescription"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "15.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.0",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "NSClassDescription"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "Mac Catalyst",
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSClassDescription"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSObject",
+              "text": "NSObject"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Concrete subclasses of ",
+              "type": "text"
+            },
+            {
+              "code": "NSClassDescription",
+              "type": "codeVoice"
+            },
+            {
+              "text": " provide the available attributes of objects of a particular class and the relationships between that class and other classes. Defining these relationships between classes allows for more intelligent and flexible manipulation of objects with key-value coding.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "It is important to note that there are no class descriptions by default. To use ",
+              "type": "text"
+            },
+            {
+              "code": "NSClassDescription",
+              "type": "codeVoice"
+            },
+            {
+              "text": " objects in your code you have to implement them for your model classes. For all concrete subclasses, you must provide implementations for all instance methods of ",
+              "type": "text"
+            },
+            {
+              "code": "NSClassDescription",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". (",
+              "type": "text"
+            },
+            {
+              "code": "NSClassDescription",
+              "type": "codeVoice"
+            },
+            {
+              "text": " provides only the implementation for the class methods that maintain the cache of registered class descriptions.) Once created, you must register a class description with the ",
+              "type": "text"
+            },
+            {
+              "code": "NSClassDescription",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsclassdescription/1407444-register",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can use the ",
+              "type": "text"
+            },
+            {
+              "code": "NSString",
+              "type": "codeVoice"
+            },
+            {
+              "text": " objects in the arrays returned by methods such as ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsclassdescription/1415001-attributekeys",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsclassdescription/1408530-tomanyrelationshipkeys",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "  to access—using key-value coding—the properties of an instance of the class to which a class description object corresponds. For more about attributes and relationships, see Cocoa Fundamentals Guide. For more about key-value coding, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "devLink-1695989",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsscriptclassdescription",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", which is used to map the relationships between scriptable classes, is the only concrete subclass of ",
+              "type": "text"
+            },
+            {
+              "code": "NSClassDescription",
+              "type": "codeVoice"
+            },
+            {
+              "text": " provided as part of the Cocoa framework.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "devLink-1695989": {
+      "identifier": "devLink-1695989",
+      "title": "Key-Value Coding Programming Guide",
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/KeyValueCoding/index.html#//apple_ref/doc/uid/10000107i"
+    },
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsclassdescription": {
+      "abstract": [
+        {
+          "text": "An abstract class that provides the interface for querying the relationships and properties of a class.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSClassDescription"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsclassdescription",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSClassDescription",
+      "type": "topic",
+      "url": "/documentation/foundation/nsclassdescription"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsclassdescription/1407444-register": {
+      "abstract": [
+        {
+          "text": "Registers an ",
+          "type": "text"
+        },
+        {
+          "code": "NSClassDescription",
+          "type": "codeVoice"
+        },
+        {
+          "text": " object for a given class in the ",
+          "type": "text"
+        },
+        {
+          "code": "NSClassDescription",
+          "type": "codeVoice"
+        },
+        {
+          "text": " cache.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "register"
+        },
+        {
+          "kind": "text",
+          "text": "(NSClassDescription, "
+        },
+        {
+          "kind": "identifier",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": AnyClass)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsclassdescription/1407444-register",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "register(_:for:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsclassdescription/1407444-register"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsclassdescription/1408530-tomanyrelationshipkeys": {
+      "abstract": [
+        {
+          "text": "Overridden by subclasses to return the keys for the to-many relationship properties of instances of the described class.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "toManyRelationshipKeys"
+        },
+        {
+          "kind": "text",
+          "text": ": [String]"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsclassdescription/1408530-tomanyrelationshipkeys",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "toManyRelationshipKeys",
+      "type": "topic",
+      "url": "/documentation/foundation/nsclassdescription/1408530-tomanyrelationshipkeys"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsclassdescription/1410945-inverse": {
+      "abstract": [
+        {
+          "text": "Overridden by subclasses to return the name of the inverse relationship from a relationship specified by a given key. ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "func "
+        },
+        {
+          "kind": "identifier",
+          "text": "inverse"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "forRelationshipKey"
+        },
+        {
+          "kind": "text",
+          "text": ": String) -> String?"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsclassdescription/1410945-inverse",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "inverse(forRelationshipKey:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsclassdescription/1410945-inverse"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsclassdescription/1411937-toonerelationshipkeys": {
+      "abstract": [
+        {
+          "text": "Overridden by subclasses to return the keys for the to-one relationship properties of instances of the described class.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "toOneRelationshipKeys"
+        },
+        {
+          "kind": "text",
+          "text": ": [String]"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsclassdescription/1411937-toonerelationshipkeys",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "toOneRelationshipKeys",
+      "type": "topic",
+      "url": "/documentation/foundation/nsclassdescription/1411937-toonerelationshipkeys"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsclassdescription/1413026-init": {
+      "abstract": [
+        {
+          "text": "Returns the class description for a given class.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "?("
+        },
+        {
+          "kind": "identifier",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": AnyClass)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsclassdescription/1413026-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(for:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsclassdescription/1413026-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsclassdescription/1413040-invalidateclassdescriptioncache": {
+      "abstract": [
+        {
+          "text": "Removes all ",
+          "type": "text"
+        },
+        {
+          "code": "NSClassDescription",
+          "type": "codeVoice"
+        },
+        {
+          "text": " objects from the cache.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class func "
+        },
+        {
+          "kind": "identifier",
+          "text": "invalidateClassDescriptionCache"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsclassdescription/1413040-invalidateclassdescriptioncache",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "invalidateClassDescriptionCache()",
+      "type": "topic",
+      "url": "/documentation/foundation/nsclassdescription/1413040-invalidateclassdescriptioncache"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsclassdescription/1415001-attributekeys": {
+      "abstract": [
+        {
+          "text": "Overridden by subclasses to return the names of attributes of instances of the described class.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "attributeKeys"
+        },
+        {
+          "kind": "text",
+          "text": ": [String]"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsclassdescription/1415001-attributekeys",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "attributeKeys",
+      "type": "topic",
+      "url": "/documentation/foundation/nsclassdescription/1415001-attributekeys"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1413373-nsclassdescriptionneededforclass": {
+      "abstract": [
+        {
+          "text": "Posted by ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.documentation/documentation/foundation/nsclassdescription/1413026-init",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": " when a class description cannot be found for a class.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "static let "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSClassDescriptionNeededForClass"
+        },
+        {
+          "kind": "text",
+          "text": ": NSNotification.Name"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1413373-nsclassdescriptionneededforclass",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSClassDescriptionNeededForClass",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnotification/name/1413373-nsclassdescriptionneededforclass"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsscriptclassdescription": {
+      "abstract": [
+        {
+          "text": "A scriptable class that a macOS app supports.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSScriptClassDescription"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsscriptclassdescription",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSScriptClassDescription",
+      "type": "topic",
+      "url": "/documentation/foundation/nsscriptclassdescription"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsscriptcommanddescription": {
+      "abstract": [
+        {
+          "text": "A script command that a macOS app supports.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSScriptCommandDescription"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsscriptcommanddescription",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSScriptCommandDescription",
+      "type": "topic",
+      "url": "/documentation/foundation/nsscriptcommanddescription"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsscriptsuiteregistry": {
+      "abstract": [
+        {
+          "text": "The top-level repository of scriptability information for an app at runtime.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSScriptSuiteRegistry"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsscriptsuiteregistry",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSScriptSuiteRegistry",
+      "type": "topic",
+      "url": "/documentation/foundation/nsscriptsuiteregistry"
+    },
+    "doc://com.apple.documentation/documentation/foundation/scripting_support": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/scripting_support",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Scripting Support",
+      "type": "topic",
+      "url": "/documentation/foundation/scripting_support"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nsobject": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nsobject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/objectivec/nsobject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsscriptsuiteregistry",
+        "doc://com.apple.documentation/documentation/foundation/nsscriptclassdescription",
+        "doc://com.apple.documentation/documentation/foundation/nsscriptcommanddescription"
+      ],
+      "title": "Script Dictionary Description"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "1680164",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsclassdescription/1413026-init",
+        "doc://com.apple.documentation/documentation/foundation/nsclassdescription/1413040-invalidateclassdescriptioncache",
+        "doc://com.apple.documentation/documentation/foundation/nsclassdescription/1407444-register"
+      ],
+      "kind": "taskGroup",
+      "title": "Working with class descriptions"
+    },
+    {
+      "anchor": "1680186",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsclassdescription/1415001-attributekeys"
+      ],
+      "kind": "taskGroup",
+      "title": "Attribute keys"
+    },
+    {
+      "anchor": "1680200",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsclassdescription/1410945-inverse",
+        "doc://com.apple.documentation/documentation/foundation/nsclassdescription/1408530-tomanyrelationshipkeys",
+        "doc://com.apple.documentation/documentation/foundation/nsclassdescription/1411937-toonerelationshipkeys"
+      ],
+      "kind": "taskGroup",
+      "title": "Relationship keys"
+    },
+    {
+      "anchor": "1651459",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsnotification/name/1413373-nsclassdescriptionneededforclass"
+      ],
+      "kind": "taskGroup",
+      "title": "Notifications"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nsclassdescription"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/nsclassdescription"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

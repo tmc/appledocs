@@ -1,0 +1,1156 @@
+{
+  "abstract": [
+    {
+      "text": "Use a web authentication session to authenticate a user in your app.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.authenticationservices/documentation/AuthenticationServices"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/authenticating-a-user-through-a-web-service"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "Authentication Services"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Authenticating a User Through a Web Service"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Some websites provide, as a service, a secure mechanism for authenticating users. When the user navigates to the site’s authentication URL, the site presents the user with a form to collect credentials. After validating the credentials, the site redirects the user’s browser, typically using a custom scheme, to a URL that indicates the outcome of the authentication attempt.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-a-Web-Authentication-Session",
+          "level": 3,
+          "text": "Create a Web Authentication Session",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can make use of a web authentication service in your app by initializing an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASWebAuthenticationSession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance with a URL that points to the authentication webpage. The page can be one that you maintain, or one operated by a third party. During initialization, indicate the callback scheme that the page uses to return the authentication outcome:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "// Use the URL and callback scheme specified by the authorization provider.",
+            "guard let authURL = URL(string: \"https://example.com/auth\") else { return }",
+            "let scheme = \"exampleauth\"",
+            "",
+            "// Initialize the session.",
+            "let session = ASWebAuthenticationSession(url: authURL, callbackURLScheme: scheme)",
+            "{ callbackURL, error in",
+            "    // Handle the callback.",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the initializer’s trailing closure to tell the session how to handle the callback after authentication completes, as described below in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/authenticating-a-user-through-a-web-service#Handle-the-Callback",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In macOS, or if you have a deployment target of iOS 13 or later, the session keeps a strong reference to itself until the authentication process completes to prevent the system from deallocating the closure. For earlier iOS deployment targets, your app needs to keep a strong reference to the session until authentication completes.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Provide-a-Presentation-Context",
+          "level": 3,
+          "text": "Provide a Presentation Context",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Your app indicates the window that should act as a presentation anchor for the session by adopting the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASWebAuthenticationPresentationContextProviding",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " protocol. From the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASWebAuthenticationPresentationContextProviding/presentationAnchor(for:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method, which is the protocol’s one required method, return the window that should act as the anchor:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "extension ViewController: ASWebAuthenticationPresentationContextProviding {",
+            "    func presentationAnchor(for session: ASWebAuthenticationSession) -> ASPresentationAnchor {",
+            "        return view.window!",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After creating the session, set an appropriate context provider instance as the session’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASWebAuthenticationSession/presentationContextProvider",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " delegate:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "session.presentationContextProvider = viewController"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Optionally-Request-Ephemeral-Browsing",
+          "level": 3,
+          "text": "Optionally Request Ephemeral Browsing",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can configure the session to request ephemeral browsing by setting the session’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASWebAuthenticationSession/prefersEphemeralWebBrowserSession",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " property to ",
+              "type": "text"
+            },
+            {
+              "code": "true",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "session.prefersEphemeralWebBrowserSession = true"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This setting asks the browser to avoid using any existing browsing data, like cookies, during the authentication process. It also asks that the browser avoid retaining any data collected during the authentication attempt beyond the lifetime of the attempt, or sharing it with any other session. An ephemeral session may improve security but prevents reusing the result of a previously successful authentication, potentially forcing the user to reenter credentials. As a result, it’s typically best to let the user choose whether to request ephemeral browsing.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Safari always respects the request. In macOS, the user can choose a different default browser that might or might not respect the request.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "When not using an ephemeral session, all cookies except session cookies are available to the browser.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "anchor": "Start-the-Authentication-Flow",
+          "level": 3,
+          "text": "Start the Authentication Flow",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After configuring the session, call its ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASWebAuthenticationSession/start()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "session.start()"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In iOS, the session loads the authentication web page that you indicated during initialization in an embedded browser view. In macOS, the session sends the page load request to the user’s default browser if it handles authentication sessions, or to Safari otherwise. In any case, the browser presents the user with the authentication page, which is typically a form for entering a username and password.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can cancel the authentication attempt from your app before the user finishes by calling the session’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASWebAuthenticationSession/cancel()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "session.cancel()"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you cancel, the session automatically dismisses the corresponding browser view.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Handle-the-Callback",
+          "level": 3,
+          "text": "Handle the Callback",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After the user authenticates, the authentication provider redirects the browser to a URL that uses the callback scheme. The browser detects the redirect, dismisses itself, and passes the complete URL to your app by calling the closure you specified during initialization.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When you receive this callback, first check for errors. For example, you receive the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASWebAuthenticationSessionError/canceledLogin",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " error if the user aborts the flow by dismissing the browser window. If the error is ",
+              "type": "text"
+            },
+            {
+              "code": "nil",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", inspect the callback URL to determine the outcome of the authentication:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "guard error == nil, let callbackURL = callbackURL else { return }",
+            "",
+            "// The callback URL format depends on the provider. For this example:",
+            "//   exampleauth://auth?token=1234",
+            "let queryItems = URLComponents(string: callbackURL.absoluteString)?.queryItems",
+            "let token = queryItems?.filter({ $0.name == \"token\" }).first?.value"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The above example looks for a token stored as a query parameter. The specific parsing that you have to do depends on how the authentication provider structures the callback URL.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices": {
+      "abstract": [
+        {
+          "text": "Make it easy for users to log into apps and services.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Authentication Services",
+      "type": "topic",
+      "url": "/documentation/authenticationservices"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASWebAuthenticationPresentationContextProviding": {
+      "abstract": [
+        {
+          "text": "An interface the session uses to ask a delegate for a presentation context.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ASWebAuthenticationPresentationContextProviding"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASWebAuthenticationPresentationContextProviding",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ASWebAuthenticationPresentationContextProviding"
+        }
+      ],
+      "role": "symbol",
+      "title": "ASWebAuthenticationPresentationContextProviding",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/aswebauthenticationpresentationcontextproviding"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASWebAuthenticationPresentationContextProviding/presentationAnchor(for:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate from which window it should present content to the user.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "presentationAnchor"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)ASWebAuthenticationSession",
+          "text": "ASWebAuthenticationSession"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@ASPresentationAnchor",
+          "text": "ASPresentationAnchor"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASWebAuthenticationPresentationContextProviding/presentationAnchor(for:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "presentationAnchorForWebAuthenticationSession:"
+        }
+      ],
+      "required": true,
+      "role": "symbol",
+      "title": "presentationAnchor(for:)",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/aswebauthenticationpresentationcontextproviding/presentationanchor(for:)"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASWebAuthenticationSession": {
+      "abstract": [
+        {
+          "text": "A session that an app uses to authenticate a user through a web service.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ASWebAuthenticationSession"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASWebAuthenticationSession",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ASWebAuthenticationSession"
+        }
+      ],
+      "role": "symbol",
+      "title": "ASWebAuthenticationSession",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/aswebauthenticationsession"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASWebAuthenticationSession/cancel()": {
+      "abstract": [
+        {
+          "text": "Cancels a web authentication session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "cancel"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASWebAuthenticationSession/cancel()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "cancel"
+        }
+      ],
+      "role": "symbol",
+      "title": "cancel()",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/aswebauthenticationsession/cancel()"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASWebAuthenticationSession/prefersEphemeralWebBrowserSession": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the session should ask the browser for a private authentication session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "prefersEphemeralWebBrowserSession"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASWebAuthenticationSession/prefersEphemeralWebBrowserSession",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "prefersEphemeralWebBrowserSession"
+        }
+      ],
+      "role": "symbol",
+      "title": "prefersEphemeralWebBrowserSession",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/aswebauthenticationsession/prefersephemeralwebbrowsersession"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASWebAuthenticationSession/presentationContextProvider": {
+      "abstract": [
+        {
+          "text": "A delegate that provides a display context in which the system can present an authentication session to the user.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "presentationContextProvider"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)ASWebAuthenticationPresentationContextProviding",
+          "text": "ASWebAuthenticationPresentationContextProviding"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASWebAuthenticationSession/presentationContextProvider",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "presentationContextProvider"
+        }
+      ],
+      "role": "symbol",
+      "title": "presentationContextProvider",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/aswebauthenticationsession/presentationcontextprovider"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASWebAuthenticationSession/start()": {
+      "abstract": [
+        {
+          "text": "Starts a web authentication session.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "start"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASWebAuthenticationSession/start()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "start"
+        }
+      ],
+      "role": "symbol",
+      "title": "start()",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/aswebauthenticationsession/start()"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASWebAuthenticationSessionError/canceledLogin": {
+      "abstract": [
+        {
+          "text": "The login has been canceled.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "static"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "canceledLogin"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SC35ASWebAuthenticationSessionErrorCodeLeV",
+          "text": "ASWebAuthenticationSessionError"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@ASWebAuthenticationSessionErrorCode",
+          "text": "Code"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASWebAuthenticationSessionError/canceledLogin",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "canceledLogin",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/aswebauthenticationsessionerror/canceledlogin"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASWebAuthenticationSessionWebBrowserSessionManager": {
+      "abstract": [
+        {
+          "text": "A session manager that mediates sharing data between an app and a web browser.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "ASWebAuthenticationSessionWebBrowserSessionManager"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASWebAuthenticationSessionWebBrowserSessionManager",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "ASWebAuthenticationSessionWebBrowserSessionManager"
+        }
+      ],
+      "role": "symbol",
+      "title": "ASWebAuthenticationSessionWebBrowserSessionManager",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/aswebauthenticationsessionwebbrowsersessionmanager"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/WebAuthenticationSession": {
+      "abstract": [
+        {
+          "text": "A SwiftUI environment value that views use to authenticate someone using a web service.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "WebAuthenticationSession"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/WebAuthenticationSession",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "WebAuthenticationSession"
+        }
+      ],
+      "role": "symbol",
+      "title": "WebAuthenticationSession",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/webauthenticationsession"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/authenticating-a-user-through-a-web-service#Handle-the-Callback": {
+      "abstract": [],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/authenticating-a-user-through-a-web-service#Handle-the-Callback",
+      "kind": "section",
+      "title": "Handle the Callback",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/authenticating-a-user-through-a-web-service#Handle-the-Callback"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/securing-logins-with-icloud-keychain-verification-codes": {
+      "abstract": [
+        {
+          "text": "Use time-based codes generated on-device for a secure authentication experience.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/securing-logins-with-icloud-keychain-verification-codes",
+      "kind": "article",
+      "role": "article",
+      "title": "Securing Logins with iCloud Keychain Verification Codes",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/securing-logins-with-icloud-keychain-verification-codes"
+    },
+    "doc://com.apple.authenticationservices/documentation/AuthenticationServices/supporting-single-sign-on-in-a-web-browser-app": {
+      "abstract": [
+        {
+          "text": "Extend your web browser app to handle web authentication requests from other apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.authenticationservices/documentation/AuthenticationServices/supporting-single-sign-on-in-a-web-browser-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Supporting Single Sign-On in a Web Browser App",
+      "type": "topic",
+      "url": "/documentation/authenticationservices/supporting-single-sign-on-in-a-web-browser-app"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/ASWebAuthenticationSessionWebBrowserSupportCapabilities": {
+      "abstract": [
+        {
+          "text": "A collection of keys that a browser app uses to declare its ability to handle authentication requests from other apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/ASWebAuthenticationSessionWebBrowserSupportCapabilities",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ASWebAuthenticationSessionWebBrowserSupportCapabilities",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Information-Property-List/ASWebAuthenticationSessionWebBrowserSupportCapabilities"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Web-authentication-sessions",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.authenticationservices/documentation/AuthenticationServices/securing-logins-with-icloud-keychain-verification-codes",
+        "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASWebAuthenticationSession",
+        "doc://com.apple.authenticationservices/documentation/AuthenticationServices/WebAuthenticationSession",
+        "doc://com.apple.authenticationservices/documentation/AuthenticationServices/supporting-single-sign-on-in-a-web-browser-app",
+        "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASWebAuthenticationSessionWebBrowserSessionManager",
+        "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/ASWebAuthenticationSessionWebBrowserSupportCapabilities"
+      ],
+      "title": "Web authentication sessions"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Web-authentication-sessions",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.authenticationservices/documentation/AuthenticationServices/securing-logins-with-icloud-keychain-verification-codes",
+                "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASWebAuthenticationSession",
+                "doc://com.apple.authenticationservices/documentation/AuthenticationServices/supporting-single-sign-on-in-a-web-browser-app",
+                "doc://com.apple.authenticationservices/documentation/AuthenticationServices/ASWebAuthenticationSessionWebBrowserSessionManager",
+                "doc://com.apple.documentation/documentation/BundleResources/Information-Property-List/ASWebAuthenticationSessionWebBrowserSupportCapabilities"
+              ],
+              "title": "Web authentication sessions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASWebAuthenticationSession~1presentationContextProvider/title",
+          "value": "presentationContextProvider"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASWebAuthenticationSession~1presentationContextProvider/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "presentationContextProvider"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASWebAuthenticationSessionWebBrowserSessionManager/title",
+          "value": "ASWebAuthenticationSessionWebBrowserSessionManager"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASWebAuthenticationSessionWebBrowserSessionManager/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASWebAuthenticationSessionWebBrowserSessionManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASWebAuthenticationSessionWebBrowserSessionManager/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASWebAuthenticationSessionWebBrowserSessionManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASWebAuthenticationSession~1start()/title",
+          "value": "start"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASWebAuthenticationSession~1start()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "start"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASWebAuthenticationSession/title",
+          "value": "ASWebAuthenticationSession"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASWebAuthenticationSession/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASWebAuthenticationSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASWebAuthenticationSession/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASWebAuthenticationSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASWebAuthenticationPresentationContextProviding~1presentationAnchor(for:)/title",
+          "value": "presentationAnchorForWebAuthenticationSession:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASWebAuthenticationPresentationContextProviding~1presentationAnchor(for:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "presentationAnchorForWebAuthenticationSession:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASWebAuthenticationPresentationContextProviding/title",
+          "value": "ASWebAuthenticationPresentationContextProviding"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASWebAuthenticationPresentationContextProviding/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASWebAuthenticationPresentationContextProviding"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASWebAuthenticationPresentationContextProviding/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "ASWebAuthenticationPresentationContextProviding"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASWebAuthenticationSession~1cancel()/title",
+          "value": "cancel"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASWebAuthenticationSession~1cancel()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "cancel"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASWebAuthenticationSession~1prefersEphemeralWebBrowserSession/title",
+          "value": "prefersEphemeralWebBrowserSession"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.authenticationservices~1documentation~1AuthenticationServices~1ASWebAuthenticationSession~1prefersEphemeralWebBrowserSession/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "prefersEphemeralWebBrowserSession"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/authenticationservices/authenticating-a-user-through-a-web-service"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/authenticationservices/authenticating-a-user-through-a-web-service"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

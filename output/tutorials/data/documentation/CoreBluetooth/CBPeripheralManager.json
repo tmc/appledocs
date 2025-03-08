@@ -1,0 +1,2770 @@
+{
+  "abstract": [
+    {
+      "text": "An object that manages and advertises peripheral services exposed by this app.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.corebluetooth/documentation/CoreBluetooth"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheralManager"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)CBPeripheralManager",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "CBPeripheralManager"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Core Bluetooth"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "CBPeripheralManager"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "6.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "6.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.9",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "9.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "2.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "CBPeripheralManager"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "CBPeripheralManager"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Core Bluetooth uses ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheralManager",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects to manage published services within the local peripheral’s Generic Attribute Profile (GATT) database and to advertise these services to central devices (represented by ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBCentral",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects). While a service is in the database, any connected central can see and connect to it. That said, if your app hasn’t specified the ",
+              "type": "text"
+            },
+            {
+              "code": "bluetooth-peripheral",
+              "type": "codeVoice"
+            },
+            {
+              "text": " background mode, the contents of its services become disabled when it’s in the background or in a suspended state. In this scenario, any remote central trying to access the service’s characteristic value or characteristic descriptors receives an error.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before you call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheralManager",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " methods, the peripheral manager object must be in the powered-on state, as indicated by the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheralManagerState/poweredOn",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". This state indicates that the device (your iPhone or iPad, for instance) supports Bluetooth low energy and that its Bluetooth is on and available for use.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In watchOS, tvOS, and visionOS, you can’t advertise services using a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheralManager",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " object because support for doing so is unavailable.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.corebluetooth/documentation/CoreBluetooth": {
+      "abstract": [
+        {
+          "text": "Communicate with Bluetooth low energy and BR/EDR (“Classic”) Devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.corebluetooth/documentation/CoreBluetooth",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Core Bluetooth",
+      "type": "topic",
+      "url": "/documentation/corebluetooth"
+    },
+    "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBAttribute": {
+      "abstract": [
+        {
+          "text": "A representation of common aspects of services offered by a peripheral.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CBAttribute"
+        }
+      ],
+      "identifier": "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBAttribute",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CBAttribute"
+        }
+      ],
+      "role": "symbol",
+      "title": "CBAttribute",
+      "type": "topic",
+      "url": "/documentation/corebluetooth/cbattribute"
+    },
+    "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBAttributePermissions": {
+      "abstract": [
+        {
+          "text": "Values that represent the read, write, and encryption permissions for a characteristic’s value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CBAttributePermissions"
+        }
+      ],
+      "identifier": "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBAttributePermissions",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CBAttributePermissions"
+        }
+      ],
+      "role": "symbol",
+      "title": "CBAttributePermissions",
+      "type": "topic",
+      "url": "/documentation/corebluetooth/cbattributepermissions"
+    },
+    "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBCentral": {
+      "abstract": [
+        {
+          "text": "A remote device connected to a local app, which is acting as a peripheral.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CBCentral"
+        }
+      ],
+      "identifier": "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBCentral",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CBCentral"
+        }
+      ],
+      "role": "symbol",
+      "title": "CBCentral",
+      "type": "topic",
+      "url": "/documentation/corebluetooth/cbcentral"
+    },
+    "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBManager": {
+      "abstract": [
+        {
+          "text": "The abstract base class that manages central and peripheral objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CBManager"
+        }
+      ],
+      "identifier": "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBManager",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CBManager"
+        }
+      ],
+      "role": "symbol",
+      "title": "CBManager",
+      "type": "topic",
+      "url": "/documentation/corebluetooth/cbmanager"
+    },
+    "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheral": {
+      "abstract": [
+        {
+          "text": "A remote peripheral device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CBPeripheral"
+        }
+      ],
+      "identifier": "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheral",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CBPeripheral"
+        }
+      ],
+      "role": "symbol",
+      "title": "CBPeripheral",
+      "type": "topic",
+      "url": "/documentation/corebluetooth/cbperipheral"
+    },
+    "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheralDelegate": {
+      "abstract": [
+        {
+          "text": "A protocol that provides updates on the use of a peripheral’s services.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CBPeripheralDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheralDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CBPeripheralDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "CBPeripheralDelegate",
+      "type": "topic",
+      "url": "/documentation/corebluetooth/cbperipheraldelegate"
+    },
+    "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheralManager": {
+      "abstract": [
+        {
+          "text": "An object that manages and advertises peripheral services exposed by this app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CBPeripheralManager"
+        }
+      ],
+      "identifier": "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheralManager",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CBPeripheralManager"
+        }
+      ],
+      "role": "symbol",
+      "title": "CBPeripheralManager",
+      "type": "topic",
+      "url": "/documentation/corebluetooth/cbperipheralmanager"
+    },
+    "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheralManager/add(_:)": {
+      "abstract": [
+        {
+          "text": "Publishes a service and any of its associated characteristics and characteristic descriptors to the local GATT database.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "add"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CBMutableService",
+          "text": "CBMutableService"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheralManager/add(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "addService:"
+        }
+      ],
+      "role": "symbol",
+      "title": "add(_:)",
+      "type": "topic",
+      "url": "/documentation/corebluetooth/cbperipheralmanager/add(_:)"
+    },
+    "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheralManager/authorizationStatus()": {
+      "abstract": [
+        {
+          "text": "Returns the app’s authorization status for sharing data while in the background.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "authorizationStatus"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@CBPeripheralManagerAuthorizationStatus",
+          "text": "CBPeripheralManagerAuthorizationStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheralManager/authorizationStatus()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "authorizationStatus"
+        }
+      ],
+      "role": "symbol",
+      "title": "authorizationStatus()",
+      "type": "topic",
+      "url": "/documentation/corebluetooth/cbperipheralmanager/authorizationstatus()"
+    },
+    "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheralManager/delegate": {
+      "abstract": [
+        {
+          "text": "The delegate object specified to receive peripheral events.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "delegate"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)CBPeripheralManagerDelegate",
+          "text": "CBPeripheralManagerDelegate"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheralManager/delegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "delegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "delegate",
+      "type": "topic",
+      "url": "/documentation/corebluetooth/cbperipheralmanager/delegate"
+    },
+    "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheralManager/init()": {
+      "abstract": [
+        {
+          "text": "Initializes the peripheral manager without a delegate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "convenience"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheralManager/init()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        }
+      ],
+      "role": "symbol",
+      "title": "init()",
+      "type": "topic",
+      "url": "/documentation/corebluetooth/cbperipheralmanager/init()"
+    },
+    "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheralManager/init(delegate:queue:)": {
+      "abstract": [
+        {
+          "text": "Initializes the peripheral manager with a specified delegate and dispatch queue.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "convenience"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "delegate"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)CBPeripheralManagerDelegate",
+          "text": "CBPeripheralManagerDelegate"
+        },
+        {
+          "kind": "text",
+          "text": ")?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "queue"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@dispatch_queue_t",
+          "text": "dispatch_queue_t"
+        },
+        {
+          "kind": "text",
+          "text": "?)"
+        }
+      ],
+      "identifier": "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheralManager/init(delegate:queue:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithDelegate:queue:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(delegate:queue:)",
+      "type": "topic",
+      "url": "/documentation/corebluetooth/cbperipheralmanager/init(delegate:queue:)"
+    },
+    "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheralManager/init(delegate:queue:options:)": {
+      "abstract": [
+        {
+          "text": "Initializes the peripheral manager with a specified delegate, dispatch queue, and initialization options.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "delegate"
+        },
+        {
+          "kind": "text",
+          "text": ": (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(pl)CBPeripheralManagerDelegate",
+          "text": "CBPeripheralManagerDelegate"
+        },
+        {
+          "kind": "text",
+          "text": ")?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "queue"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@dispatch_queue_t",
+          "text": "dispatch_queue_t"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]?)"
+        }
+      ],
+      "identifier": "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheralManager/init(delegate:queue:options:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithDelegate:queue:options:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(delegate:queue:options:)",
+      "type": "topic",
+      "url": "/documentation/corebluetooth/cbperipheralmanager/init(delegate:queue:options:)"
+    },
+    "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheralManager/isAdvertising": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the peripheral is advertising data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isAdvertising"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheralManager/isAdvertising",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "isAdvertising"
+        }
+      ],
+      "role": "symbol",
+      "title": "isAdvertising",
+      "type": "topic",
+      "url": "/documentation/corebluetooth/cbperipheralmanager/isadvertising"
+    },
+    "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheralManager/publishL2CAPChannel(withEncryption:)": {
+      "abstract": [
+        {
+          "text": "Creates a listener for incoming L2CAP channel connections.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "publishL2CAPChannel"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "withEncryption"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheralManager/publishL2CAPChannel(withEncryption:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "publishL2CAPChannelWithEncryption:"
+        }
+      ],
+      "role": "symbol",
+      "title": "publishL2CAPChannel(withEncryption:)",
+      "type": "topic",
+      "url": "/documentation/corebluetooth/cbperipheralmanager/publishl2capchannel(withencryption:)"
+    },
+    "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheralManager/remove(_:)": {
+      "abstract": [
+        {
+          "text": "Removes a specified published service from the local GATT database.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "remove"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CBMutableService",
+          "text": "CBMutableService"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheralManager/remove(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "removeService:"
+        }
+      ],
+      "role": "symbol",
+      "title": "remove(_:)",
+      "type": "topic",
+      "url": "/documentation/corebluetooth/cbperipheralmanager/remove(_:)"
+    },
+    "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheralManager/removeAllServices()": {
+      "abstract": [
+        {
+          "text": "Removes all published services from the local GATT database.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeAllServices"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheralManager/removeAllServices()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "removeAllServices"
+        }
+      ],
+      "role": "symbol",
+      "title": "removeAllServices()",
+      "type": "topic",
+      "url": "/documentation/corebluetooth/cbperipheralmanager/removeallservices()"
+    },
+    "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheralManager/respond(to:withResult:)": {
+      "abstract": [
+        {
+          "text": "Responds to a read or write request from a connected central.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "respond"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "to"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CBATTRequest",
+          "text": "CBATTRequest"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "withResult"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SC10CBATTErrorLeV",
+          "text": "CBATTError"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@CBATTError",
+          "text": "Code"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheralManager/respond(to:withResult:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "respondToRequest:withResult:"
+        }
+      ],
+      "role": "symbol",
+      "title": "respond(to:withResult:)",
+      "type": "topic",
+      "url": "/documentation/corebluetooth/cbperipheralmanager/respond(to:withresult:)"
+    },
+    "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheralManager/setDesiredConnectionLatency(_:for:)": {
+      "abstract": [
+        {
+          "text": "Sets the desired connection latency for an existing connection to a central device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setDesiredConnectionLatency"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@CBPeripheralManagerConnectionLatency",
+          "text": "CBPeripheralManagerConnectionLatency"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CBCentral",
+          "text": "CBCentral"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheralManager/setDesiredConnectionLatency(_:for:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "setDesiredConnectionLatency:forCentral:"
+        }
+      ],
+      "role": "symbol",
+      "title": "setDesiredConnectionLatency(_:for:)",
+      "type": "topic",
+      "url": "/documentation/corebluetooth/cbperipheralmanager/setdesiredconnectionlatency(_:for:)"
+    },
+    "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheralManager/startAdvertising(_:)": {
+      "abstract": [
+        {
+          "text": "Advertises peripheral manager data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "startAdvertising"
+        },
+        {
+          "kind": "text",
+          "text": "(["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "keyword",
+          "text": "Any"
+        },
+        {
+          "kind": "text",
+          "text": "]?)"
+        }
+      ],
+      "identifier": "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheralManager/startAdvertising(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "startAdvertising:"
+        }
+      ],
+      "role": "symbol",
+      "title": "startAdvertising(_:)",
+      "type": "topic",
+      "url": "/documentation/corebluetooth/cbperipheralmanager/startadvertising(_:)"
+    },
+    "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheralManager/stopAdvertising()": {
+      "abstract": [
+        {
+          "text": "Stops advertising peripheral manager data.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "stopAdvertising"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheralManager/stopAdvertising()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "stopAdvertising"
+        }
+      ],
+      "role": "symbol",
+      "title": "stopAdvertising()",
+      "type": "topic",
+      "url": "/documentation/corebluetooth/cbperipheralmanager/stopadvertising()"
+    },
+    "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheralManager/unpublishL2CAPChannel(_:)": {
+      "abstract": [
+        {
+          "text": "Removes a published service from the local system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "unpublishL2CAPChannel"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@T@CBL2CAPPSM",
+          "text": "CBL2CAPPSM"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheralManager/unpublishL2CAPChannel(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "unpublishL2CAPChannel:"
+        }
+      ],
+      "role": "symbol",
+      "title": "unpublishL2CAPChannel(_:)",
+      "type": "topic",
+      "url": "/documentation/corebluetooth/cbperipheralmanager/unpublishl2capchannel(_:)"
+    },
+    "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheralManager/updateValue(_:for:onSubscribedCentrals:)": {
+      "abstract": [
+        {
+          "text": "Send an updated characteristic value to one or more subscribed centrals, using a notification or indication.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "updateValue"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation4DataV",
+          "text": "Data"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "for"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CBMutableCharacteristic",
+          "text": "CBMutableCharacteristic"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "onSubscribedCentrals"
+        },
+        {
+          "kind": "text",
+          "text": ": ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)CBCentral",
+          "text": "CBCentral"
+        },
+        {
+          "kind": "text",
+          "text": "]?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheralManager/updateValue(_:for:onSubscribedCentrals:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "updateValue:forCharacteristic:onSubscribedCentrals:"
+        }
+      ],
+      "role": "symbol",
+      "title": "updateValue(_:for:onSubscribedCentrals:)",
+      "type": "topic",
+      "url": "/documentation/corebluetooth/cbperipheralmanager/updatevalue(_:for:onsubscribedcentrals:)"
+    },
+    "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheralManagerAuthorizationStatus": {
+      "abstract": [
+        {
+          "text": "Values representing the current authorization state of the peripheral manager.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CBPeripheralManagerAuthorizationStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheralManagerAuthorizationStatus",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CBPeripheralManagerAuthorizationStatus"
+        }
+      ],
+      "role": "symbol",
+      "title": "CBPeripheralManagerAuthorizationStatus",
+      "type": "topic",
+      "url": "/documentation/corebluetooth/cbperipheralmanagerauthorizationstatus"
+    },
+    "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheralManagerConnectionLatency": {
+      "abstract": [
+        {
+          "text": "Values representing the connection latency of the peripheral manager.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CBPeripheralManagerConnectionLatency"
+        }
+      ],
+      "identifier": "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheralManagerConnectionLatency",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CBPeripheralManagerConnectionLatency"
+        }
+      ],
+      "role": "symbol",
+      "title": "CBPeripheralManagerConnectionLatency",
+      "type": "topic",
+      "url": "/documentation/corebluetooth/cbperipheralmanagerconnectionlatency"
+    },
+    "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheralManagerDelegate": {
+      "abstract": [
+        {
+          "text": "A protocol that provides updates for local peripheral state and interactions with remote central devices.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CBPeripheralManagerDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheralManagerDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CBPeripheralManagerDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "CBPeripheralManagerDelegate",
+      "type": "topic",
+      "url": "/documentation/corebluetooth/cbperipheralmanagerdelegate"
+    },
+    "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheralManagerState": {
+      "abstract": [
+        {
+          "text": "Values that represent the current state of the peripheral manager.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CBPeripheralManagerState"
+        }
+      ],
+      "identifier": "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheralManagerState",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CBPeripheralManagerState"
+        }
+      ],
+      "role": "symbol",
+      "title": "CBPeripheralManagerState",
+      "type": "topic",
+      "url": "/documentation/corebluetooth/cbperipheralmanagerstate"
+    },
+    "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheralManagerState/poweredOn": {
+      "abstract": [
+        {
+          "text": "A manager state that indicates Bluetooth is currently powered on and is available to use.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "poweredOn"
+        }
+      ],
+      "identifier": "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheralManagerState/poweredOn",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CBPeripheralManagerStatePoweredOn"
+        }
+      ],
+      "role": "symbol",
+      "title": "CBPeripheralManagerState.poweredOn",
+      "type": "topic",
+      "url": "/documentation/corebluetooth/cbperipheralmanagerstate/poweredon"
+    },
+    "doc://com.apple.corebluetooth/documentation/CoreBluetooth/advertising-data": {
+      "abstract": [],
+      "identifier": "doc://com.apple.corebluetooth/documentation/CoreBluetooth/advertising-data",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Advertising Data",
+      "type": "topic",
+      "url": "/documentation/corebluetooth/advertising-data"
+    },
+    "doc://com.apple.corebluetooth/documentation/CoreBluetooth/peripheral-manager-initialization-options": {
+      "abstract": [
+        {
+          "text": "Keys used to specify options when creating a peripheral manager.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.corebluetooth/documentation/CoreBluetooth/peripheral-manager-initialization-options",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Peripheral Manager Initialization Options",
+      "type": "topic",
+      "url": "/documentation/corebluetooth/peripheral-manager-initialization-options"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBManager"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Peripherals",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheral",
+        "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheralDelegate",
+        "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheralManagerDelegate",
+        "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBAttribute",
+        "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBAttributePermissions"
+      ],
+      "title": "Peripherals"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Initializing-a-Peripheral-Manager",
+      "identifiers": [
+        "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheralManager/init()",
+        "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheralManager/init(delegate:queue:)",
+        "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheralManager/init(delegate:queue:options:)",
+        "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheralManager/delegate",
+        "doc://com.apple.corebluetooth/documentation/CoreBluetooth/peripheral-manager-initialization-options"
+      ],
+      "title": "Initializing a Peripheral Manager"
+    },
+    {
+      "anchor": "Monitoring-the-State-of-a-Peripheral-Manager",
+      "identifiers": [
+        "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheralManager/authorizationStatus()",
+        "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheralManagerAuthorizationStatus",
+        "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheralManagerState"
+      ],
+      "title": "Monitoring the State of a Peripheral Manager"
+    },
+    {
+      "anchor": "Adding-and-Removing-Services",
+      "identifiers": [
+        "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheralManager/add(_:)",
+        "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheralManager/remove(_:)",
+        "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheralManager/removeAllServices()"
+      ],
+      "title": "Adding and Removing Services"
+    },
+    {
+      "anchor": "Managing-Advertising",
+      "identifiers": [
+        "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheralManager/startAdvertising(_:)",
+        "doc://com.apple.corebluetooth/documentation/CoreBluetooth/advertising-data",
+        "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheralManager/stopAdvertising()",
+        "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheralManager/isAdvertising"
+      ],
+      "title": "Managing Advertising"
+    },
+    {
+      "anchor": "Sending-Updates-of-a-Characteristics-Value",
+      "identifiers": [
+        "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheralManager/updateValue(_:for:onSubscribedCentrals:)"
+      ],
+      "title": "Sending Updates of a Characteristic’s Value"
+    },
+    {
+      "anchor": "Responding-to-Read-and-Write-Requests",
+      "identifiers": [
+        "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheralManager/respond(to:withResult:)"
+      ],
+      "title": "Responding to Read and Write Requests"
+    },
+    {
+      "anchor": "Setting-Connection-Latency",
+      "identifiers": [
+        "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheralManager/setDesiredConnectionLatency(_:for:)",
+        "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheralManagerConnectionLatency"
+      ],
+      "title": "Setting Connection Latency"
+    },
+    {
+      "anchor": "Using-L2CAP-Channels",
+      "identifiers": [
+        "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheralManager/publishL2CAPChannel(withEncryption:)",
+        "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheralManager/unpublishL2CAPChannel(_:)"
+      ],
+      "title": "Using L2CAP Channels"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "6.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "6.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "13.1",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.9",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "9.0",
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "2.0",
+              "name": "watchOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "CBPeripheralManager"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CBPeripheralManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CBPeripheralManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.corebluetooth/documentation/CoreBluetooth"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Initializing-a-Peripheral-Manager",
+              "identifiers": [
+                "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheralManager/init()",
+                "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheralManager/init(delegate:queue:)",
+                "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheralManager/init(delegate:queue:options:)",
+                "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheralManager/delegate",
+                "doc://com.apple.corebluetooth/documentation/CoreBluetooth/peripheral-manager-initialization-options"
+              ],
+              "title": "Initializing a Peripheral Manager"
+            },
+            {
+              "anchor": "Monitoring-the-State-of-a-Peripheral-Manager",
+              "identifiers": [
+                "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheralManager/authorizationStatus()",
+                "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheralManagerAuthorizationStatus",
+                "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheralManagerState"
+              ],
+              "title": "Monitoring the State of a Peripheral Manager"
+            },
+            {
+              "anchor": "Adding-and-Removing-Services",
+              "identifiers": [
+                "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheralManager/add(_:)",
+                "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheralManager/remove(_:)",
+                "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheralManager/removeAllServices()"
+              ],
+              "title": "Adding and Removing Services"
+            },
+            {
+              "anchor": "Managing-Advertising",
+              "identifiers": [
+                "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheralManager/startAdvertising(_:)",
+                "doc://com.apple.corebluetooth/documentation/CoreBluetooth/advertising-data",
+                "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheralManager/stopAdvertising()",
+                "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheralManager/isAdvertising"
+              ],
+              "title": "Managing Advertising"
+            },
+            {
+              "anchor": "Sending-Updates-of-a-Characteristics-Value",
+              "identifiers": [
+                "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheralManager/updateValue(_:for:onSubscribedCentrals:)"
+              ],
+              "title": "Sending Updates of a Characteristic’s Value"
+            },
+            {
+              "anchor": "Responding-to-Read-and-Write-Requests",
+              "identifiers": [
+                "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheralManager/respond(to:withResult:)"
+              ],
+              "title": "Responding to Read and Write Requests"
+            },
+            {
+              "anchor": "Setting-Connection-Latency",
+              "identifiers": [
+                "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheralManager/setDesiredConnectionLatency(_:for:)",
+                "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheralManagerConnectionLatency"
+              ],
+              "title": "Setting Connection Latency"
+            },
+            {
+              "anchor": "Using-L2CAP-Channels",
+              "identifiers": [
+                "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheralManager/publishL2CAPChannel(withEncryption:)",
+                "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheralManager/unpublishL2CAPChannel(_:)"
+              ],
+              "title": "Using L2CAP Channels"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBManager"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Peripherals",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheral",
+                "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheralDelegate",
+                "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBPeripheralManagerDelegate",
+                "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBAttribute",
+                "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBAttributePermissions"
+              ],
+              "title": "Peripherals"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "Mac Catalyst",
+                  "macOS",
+                  "tvOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "CBPeripheralManager"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBManager",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)CBManager",
+                    "text": "CBManager"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corebluetooth~1documentation~1CoreBluetooth~1CBPeripheralManager/title",
+          "value": "CBPeripheralManager"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corebluetooth~1documentation~1CoreBluetooth~1CBPeripheralManager/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CBPeripheralManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corebluetooth~1documentation~1CoreBluetooth~1CBPeripheralManager/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CBPeripheralManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corebluetooth~1documentation~1CoreBluetooth~1CBPeripheral/title",
+          "value": "CBPeripheral"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corebluetooth~1documentation~1CoreBluetooth~1CBPeripheral/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CBPeripheral"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corebluetooth~1documentation~1CoreBluetooth~1CBPeripheral/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CBPeripheral"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corebluetooth~1documentation~1CoreBluetooth~1CBPeripheralManager~1respond(to:withResult:)/title",
+          "value": "respondToRequest:withResult:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corebluetooth~1documentation~1CoreBluetooth~1CBPeripheralManager~1respond(to:withResult:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "respondToRequest:withResult:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corebluetooth~1documentation~1CoreBluetooth~1CBPeripheralManager~1removeAllServices()/title",
+          "value": "removeAllServices"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corebluetooth~1documentation~1CoreBluetooth~1CBPeripheralManager~1removeAllServices()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "removeAllServices"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corebluetooth~1documentation~1CoreBluetooth~1CBPeripheralManager~1remove(_:)/title",
+          "value": "removeService:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corebluetooth~1documentation~1CoreBluetooth~1CBPeripheralManager~1remove(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "removeService:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corebluetooth~1documentation~1CoreBluetooth~1CBPeripheralManager~1unpublishL2CAPChannel(_:)/title",
+          "value": "unpublishL2CAPChannel:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corebluetooth~1documentation~1CoreBluetooth~1CBPeripheralManager~1unpublishL2CAPChannel(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "unpublishL2CAPChannel:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corebluetooth~1documentation~1CoreBluetooth~1CBPeripheralManager~1stopAdvertising()/title",
+          "value": "stopAdvertising"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corebluetooth~1documentation~1CoreBluetooth~1CBPeripheralManager~1stopAdvertising()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "stopAdvertising"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corebluetooth~1documentation~1CoreBluetooth~1CBPeripheralManager~1init(delegate:queue:options:)/title",
+          "value": "initWithDelegate:queue:options:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corebluetooth~1documentation~1CoreBluetooth~1CBPeripheralManager~1init(delegate:queue:options:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithDelegate:queue:options:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corebluetooth~1documentation~1CoreBluetooth~1CBAttribute/title",
+          "value": "CBAttribute"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corebluetooth~1documentation~1CoreBluetooth~1CBAttribute/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CBAttribute"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corebluetooth~1documentation~1CoreBluetooth~1CBAttribute/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CBAttribute"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corebluetooth~1documentation~1CoreBluetooth~1CBPeripheralManager~1updateValue(_:for:onSubscribedCentrals:)/title",
+          "value": "updateValue:forCharacteristic:onSubscribedCentrals:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corebluetooth~1documentation~1CoreBluetooth~1CBPeripheralManager~1updateValue(_:for:onSubscribedCentrals:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "updateValue:forCharacteristic:onSubscribedCentrals:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corebluetooth~1documentation~1CoreBluetooth~1CBPeripheralManagerState~1poweredOn/title",
+          "value": "CBPeripheralManagerStatePoweredOn"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corebluetooth~1documentation~1CoreBluetooth~1CBPeripheralManagerState~1poweredOn/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CBPeripheralManagerStatePoweredOn"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corebluetooth~1documentation~1CoreBluetooth~1CBPeripheralManager~1startAdvertising(_:)/title",
+          "value": "startAdvertising:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corebluetooth~1documentation~1CoreBluetooth~1CBPeripheralManager~1startAdvertising(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "startAdvertising:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corebluetooth~1documentation~1CoreBluetooth~1CBPeripheralManager~1isAdvertising/title",
+          "value": "isAdvertising"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corebluetooth~1documentation~1CoreBluetooth~1CBPeripheralManager~1isAdvertising/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "isAdvertising"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corebluetooth~1documentation~1CoreBluetooth~1CBPeripheralManagerConnectionLatency/title",
+          "value": "CBPeripheralManagerConnectionLatency"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corebluetooth~1documentation~1CoreBluetooth~1CBPeripheralManagerConnectionLatency/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CBPeripheralManagerConnectionLatency"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corebluetooth~1documentation~1CoreBluetooth~1CBPeripheralManagerConnectionLatency/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CBPeripheralManagerConnectionLatency"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corebluetooth~1documentation~1CoreBluetooth~1CBCentral/title",
+          "value": "CBCentral"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corebluetooth~1documentation~1CoreBluetooth~1CBCentral/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CBCentral"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corebluetooth~1documentation~1CoreBluetooth~1CBCentral/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CBCentral"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corebluetooth~1documentation~1CoreBluetooth~1CBPeripheralManager~1setDesiredConnectionLatency(_:for:)/title",
+          "value": "setDesiredConnectionLatency:forCentral:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corebluetooth~1documentation~1CoreBluetooth~1CBPeripheralManager~1setDesiredConnectionLatency(_:for:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "setDesiredConnectionLatency:forCentral:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corebluetooth~1documentation~1CoreBluetooth~1CBPeripheralManagerAuthorizationStatus/title",
+          "value": "CBPeripheralManagerAuthorizationStatus"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corebluetooth~1documentation~1CoreBluetooth~1CBPeripheralManagerAuthorizationStatus/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CBPeripheralManagerAuthorizationStatus"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corebluetooth~1documentation~1CoreBluetooth~1CBPeripheralManagerAuthorizationStatus/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CBPeripheralManagerAuthorizationStatus"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corebluetooth~1documentation~1CoreBluetooth~1CBPeripheralManager~1authorizationStatus()/title",
+          "value": "authorizationStatus"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corebluetooth~1documentation~1CoreBluetooth~1CBPeripheralManager~1authorizationStatus()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "+ "
+            },
+            {
+              "kind": "identifier",
+              "text": "authorizationStatus"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corebluetooth~1documentation~1CoreBluetooth~1CBPeripheralManager~1publishL2CAPChannel(withEncryption:)/title",
+          "value": "publishL2CAPChannelWithEncryption:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corebluetooth~1documentation~1CoreBluetooth~1CBPeripheralManager~1publishL2CAPChannel(withEncryption:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "publishL2CAPChannelWithEncryption:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corebluetooth~1documentation~1CoreBluetooth~1CBPeripheralManagerState/title",
+          "value": "CBPeripheralManagerState"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corebluetooth~1documentation~1CoreBluetooth~1CBPeripheralManagerState/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CBPeripheralManagerState"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corebluetooth~1documentation~1CoreBluetooth~1CBPeripheralManagerState/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CBPeripheralManagerState"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corebluetooth~1documentation~1CoreBluetooth~1CBManager/title",
+          "value": "CBManager"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corebluetooth~1documentation~1CoreBluetooth~1CBManager/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CBManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corebluetooth~1documentation~1CoreBluetooth~1CBManager/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CBManager"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corebluetooth~1documentation~1CoreBluetooth~1CBPeripheralManager~1init(delegate:queue:)/title",
+          "value": "initWithDelegate:queue:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corebluetooth~1documentation~1CoreBluetooth~1CBPeripheralManager~1init(delegate:queue:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithDelegate:queue:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corebluetooth~1documentation~1CoreBluetooth~1CBPeripheralManager~1init()/title",
+          "value": "init"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corebluetooth~1documentation~1CoreBluetooth~1CBPeripheralManager~1init()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "init"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corebluetooth~1documentation~1CoreBluetooth~1CBPeripheralManager~1add(_:)/title",
+          "value": "addService:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corebluetooth~1documentation~1CoreBluetooth~1CBPeripheralManager~1add(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "addService:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corebluetooth~1documentation~1CoreBluetooth~1CBAttributePermissions/title",
+          "value": "CBAttributePermissions"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corebluetooth~1documentation~1CoreBluetooth~1CBAttributePermissions/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CBAttributePermissions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corebluetooth~1documentation~1CoreBluetooth~1CBAttributePermissions/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CBAttributePermissions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corebluetooth~1documentation~1CoreBluetooth~1CBPeripheralDelegate/title",
+          "value": "CBPeripheralDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corebluetooth~1documentation~1CoreBluetooth~1CBPeripheralDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CBPeripheralDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corebluetooth~1documentation~1CoreBluetooth~1CBPeripheralDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CBPeripheralDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corebluetooth~1documentation~1CoreBluetooth~1CBPeripheralManagerDelegate/title",
+          "value": "CBPeripheralManagerDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corebluetooth~1documentation~1CoreBluetooth~1CBPeripheralManagerDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CBPeripheralManagerDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corebluetooth~1documentation~1CoreBluetooth~1CBPeripheralManagerDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CBPeripheralManagerDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corebluetooth~1documentation~1CoreBluetooth~1CBPeripheralManager~1delegate/title",
+          "value": "delegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.corebluetooth~1documentation~1CoreBluetooth~1CBPeripheralManager~1delegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "delegate"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/corebluetooth/cbperipheralmanager"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/corebluetooth/cbperipheralmanager"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

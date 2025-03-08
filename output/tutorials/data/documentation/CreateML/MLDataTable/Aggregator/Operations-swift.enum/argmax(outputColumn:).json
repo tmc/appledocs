@@ -1,0 +1,1187 @@
+{
+  "abstract": [
+    {
+      "text": "An operation that retrieves the value in the given column that’s",
+      "type": "text"
+    },
+    {
+      "text": " ",
+      "type": "text"
+    },
+    {
+      "text": "in the same row as the maximum value of the aggregator’s column.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.CreateML/documentation/CreateML",
+        "doc://com.apple.CreateML/documentation/CreateML/MLDataTable",
+        "doc://com.apple.CreateML/documentation/CreateML/MLDataTable/Aggregator",
+        "doc://com.apple.CreateML/documentation/CreateML/MLDataTable/Aggregator/Operations-swift.enum"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.CreateML/documentation/CreateML/MLDataTable/Aggregator/Operations-swift.enum/argmax(outputColumn:)"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:8CreateML11MLDataTableV10AggregatorV10OperationsO6argmaxyAGSS_tcAGmF",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "case"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "argmax"
+      },
+      {
+        "kind": "text",
+        "text": "("
+      },
+      {
+        "kind": "externalParam",
+        "text": "outputColumn"
+      },
+      {
+        "kind": "text",
+        "text": ": "
+      },
+      {
+        "kind": "typeIdentifier",
+        "preciseIdentifier": "s:SS",
+        "text": "String"
+      },
+      {
+        "kind": "text",
+        "text": ")"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Create ML"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "15.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.14",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "16.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Case",
+    "symbolKind": "case",
+    "title": "MLDataTable.Aggregator.Operations.argmax(outputColumn:)"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "case"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "argmax"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "externalParam",
+              "text": "outputColumn"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.externally.resolved.symbol/s:SS",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:SS",
+              "text": "String"
+            },
+            {
+              "kind": "text",
+              "text": ")"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use this operation to find a value in the given ",
+              "type": "text"
+            },
+            {
+              "code": "outputColumn",
+              "type": "codeVoice"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "that’s in the same row as the maximum value in the aggregator’s",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "column. For example, take the following data table of drink",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "ratings.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let teaVsCoffee = try! MLDataTable(dictionary: [",
+            "    \"userName\" : [\"Sara\", \"Sara\", \"James\", \"James\"],",
+            "    \"drink\"    : [\"tea\", \"coffee\", \"tea\", \"coffee\"],",
+            "    \"rating\"   : [5.0, 3.5, 3.1, 4.9]",
+            "])",
+            "",
+            "print(teaVsCoffee)",
+            "",
+            "Prints ...",
+            " Columns:",
+            "    ratingfloat",
+            "    drinkstring",
+            "    userNamestring",
+            "Rows: 4 Data:",
+            "+----------------+----------------+----------------+",
+            "| drink          | userName       | rating         |",
+            "+----------------+----------------+----------------+",
+            "| tea            | Sara           | 5              |",
+            "| coffee         | Sara           | 3.5            |",
+            "| tea            | James          | 3.1            |",
+            "| coffee         | James          | 4.9            |",
+            "+----------------+----------------+----------------+",
+            "[4 rows x 3 columns]"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To find out which person gave the highest rating for any",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "particular beverage, use the ",
+              "type": "text"
+            },
+            {
+              "code": "argmax",
+              "type": "codeVoice"
+            },
+            {
+              "text": " operation with the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "\"userName\"",
+              "type": "codeVoice"
+            },
+            {
+              "text": " string. Then use the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLDataTable/group(columnsNamed:aggregators:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " function group",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "the ",
+              "type": "text"
+            },
+            {
+              "code": "\"drink\"",
+              "type": "codeVoice"
+            },
+            {
+              "text": " column.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "var highestRater = MLDataTable.Aggregator(operations: .argmax(outputColumn: \"userName\"),",
+            "                                          of: \"rating\")",
+            "",
+            "let highestDrinkRatings = teaVsCoffee.group(columnsNamed: \"drink\",",
+            "                                            aggregators: [highestRater])",
+            "print(highestDrinkRatings)",
+            "",
+            "Prints ...",
+            "+----------------+----------------+",
+            "| drink          | ratingArgmax   |",
+            "+----------------+----------------+",
+            "| tea            | Sara           |",
+            "| coffee         | James          |",
+            "+----------------+----------------+",
+            "[2 rows x 2 columns]"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In this example, the drinks column only has two distinct drinks,",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "tea and coffee, which result in a data table with two rows.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "outputColumn: The name of the column that holds the values",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "associated with the maximum values of the aggregator’s",
+                      "type": "text"
+                    },
+                    {
+                      "text": " ",
+                      "type": "text"
+                    },
+                    {
+                      "text": "designated column.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.CreateML/documentation/CreateML": {
+      "abstract": [
+        {
+          "text": "Create machine learning models for use in your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Create ML",
+      "type": "topic",
+      "url": "/documentation/createml"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLDataTable": {
+      "abstract": [
+        {
+          "text": "A table of data for training or evaluating a machine learning model.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "MLDataTable"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLDataTable",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "MLDataTable"
+        }
+      ],
+      "role": "symbol",
+      "title": "MLDataTable",
+      "type": "topic",
+      "url": "/documentation/createml/mldatatable"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLDataTable/Aggregator": {
+      "abstract": [
+        {
+          "text": "A collection of column operations you can use with a data table’s",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "code": "group",
+          "type": "codeVoice"
+        },
+        {
+          "text": " method.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Aggregator"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLDataTable/Aggregator",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Aggregator"
+        }
+      ],
+      "role": "symbol",
+      "title": "MLDataTable.Aggregator",
+      "type": "topic",
+      "url": "/documentation/createml/mldatatable/aggregator"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLDataTable/Aggregator/Operations-swift.enum": {
+      "abstract": [
+        {
+          "text": "The operations that an aggregator can perform on a column in a data",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "table.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Operations"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLDataTable/Aggregator/Operations-swift.enum",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Operations"
+        }
+      ],
+      "role": "symbol",
+      "title": "MLDataTable.Aggregator.Operations",
+      "type": "topic",
+      "url": "/documentation/createml/mldatatable/aggregator/operations-swift.enum"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLDataTable/Aggregator/Operations-swift.enum/argmax(outputColumn:)": {
+      "abstract": [
+        {
+          "text": "An operation that retrieves the value in the given column that’s",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "in the same row as the maximum value of the aggregator’s column.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "argmax"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "outputColumn"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLDataTable/Aggregator/Operations-swift.enum/argmax(outputColumn:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MLDataTable.Aggregator.Operations.argmax(outputColumn:)",
+      "type": "topic",
+      "url": "/documentation/createml/mldatatable/aggregator/operations-swift.enum/argmax(outputcolumn:)"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLDataTable/Aggregator/Operations-swift.enum/argmin(outputColumn:)": {
+      "abstract": [
+        {
+          "text": "An operation that retrieves the value in the given column that’s",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "in the same row as the minimum value of the aggregator’s column.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "argmin"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "outputColumn"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLDataTable/Aggregator/Operations-swift.enum/argmin(outputColumn:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MLDataTable.Aggregator.Operations.argmin(outputColumn:)",
+      "type": "topic",
+      "url": "/documentation/createml/mldatatable/aggregator/operations-swift.enum/argmin(outputcolumn:)"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLDataTable/Aggregator/Operations-swift.enum/count": {
+      "abstract": [
+        {
+          "text": "An operation that counts the number of values in a column.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "count"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLDataTable/Aggregator/Operations-swift.enum/count",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MLDataTable.Aggregator.Operations.count",
+      "type": "topic",
+      "url": "/documentation/createml/mldatatable/aggregator/operations-swift.enum/count"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLDataTable/Aggregator/Operations-swift.enum/dictionaryMerge(valueColumn:)": {
+      "abstract": [
+        {
+          "text": "An operation that combines two columns into a dictionary, using",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "the given column as the values for that dictionary.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "dictionaryMerge"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "valueColumn"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLDataTable/Aggregator/Operations-swift.enum/dictionaryMerge(valueColumn:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MLDataTable.Aggregator.Operations.dictionaryMerge(valueColumn:)",
+      "type": "topic",
+      "url": "/documentation/createml/mldatatable/aggregator/operations-swift.enum/dictionarymerge(valuecolumn:)"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLDataTable/Aggregator/Operations-swift.enum/distinctCount": {
+      "abstract": [
+        {
+          "text": "An operation that counts the number of distinct values in a",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "column.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "distinctCount"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLDataTable/Aggregator/Operations-swift.enum/distinctCount",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MLDataTable.Aggregator.Operations.distinctCount",
+      "type": "topic",
+      "url": "/documentation/createml/mldatatable/aggregator/operations-swift.enum/distinctcount"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLDataTable/Aggregator/Operations-swift.enum/max": {
+      "abstract": [
+        {
+          "text": "An operation that identifies the largest value in a column.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "max"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLDataTable/Aggregator/Operations-swift.enum/max",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MLDataTable.Aggregator.Operations.max",
+      "type": "topic",
+      "url": "/documentation/createml/mldatatable/aggregator/operations-swift.enum/max"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLDataTable/Aggregator/Operations-swift.enum/mean": {
+      "abstract": [
+        {
+          "text": "An operation that computes the mean of the values in a column.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mean"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLDataTable/Aggregator/Operations-swift.enum/mean",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MLDataTable.Aggregator.Operations.mean",
+      "type": "topic",
+      "url": "/documentation/createml/mldatatable/aggregator/operations-swift.enum/mean"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLDataTable/Aggregator/Operations-swift.enum/min": {
+      "abstract": [
+        {
+          "text": "An operation that identifies the smallest value in a column.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "min"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLDataTable/Aggregator/Operations-swift.enum/min",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MLDataTable.Aggregator.Operations.min",
+      "type": "topic",
+      "url": "/documentation/createml/mldatatable/aggregator/operations-swift.enum/min"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLDataTable/Aggregator/Operations-swift.enum/randomlySelectOne": {
+      "abstract": [
+        {
+          "text": "An operation that selects a random value from a column.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "randomlySelectOne"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLDataTable/Aggregator/Operations-swift.enum/randomlySelectOne",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MLDataTable.Aggregator.Operations.randomlySelectOne",
+      "type": "topic",
+      "url": "/documentation/createml/mldatatable/aggregator/operations-swift.enum/randomlyselectone"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLDataTable/Aggregator/Operations-swift.enum/sequenceMerge": {
+      "abstract": [
+        {
+          "text": "An operation that combines the values in a column into a",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "sequence.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sequenceMerge"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLDataTable/Aggregator/Operations-swift.enum/sequenceMerge",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MLDataTable.Aggregator.Operations.sequenceMerge",
+      "type": "topic",
+      "url": "/documentation/createml/mldatatable/aggregator/operations-swift.enum/sequencemerge"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLDataTable/Aggregator/Operations-swift.enum/stdev": {
+      "abstract": [
+        {
+          "text": "An operation that computes the standard deviation of the values",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "in a column.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "stdev"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLDataTable/Aggregator/Operations-swift.enum/stdev",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MLDataTable.Aggregator.Operations.stdev",
+      "type": "topic",
+      "url": "/documentation/createml/mldatatable/aggregator/operations-swift.enum/stdev"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLDataTable/Aggregator/Operations-swift.enum/sum": {
+      "abstract": [
+        {
+          "text": "An operation that the adds the values in a column.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "sum"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLDataTable/Aggregator/Operations-swift.enum/sum",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MLDataTable.Aggregator.Operations.sum",
+      "type": "topic",
+      "url": "/documentation/createml/mldatatable/aggregator/operations-swift.enum/sum"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLDataTable/Aggregator/Operations-swift.enum/variance": {
+      "abstract": [
+        {
+          "text": "An operation that computes the variance in a column.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "case"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "variance"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLDataTable/Aggregator/Operations-swift.enum/variance",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "MLDataTable.Aggregator.Operations.variance",
+      "type": "topic",
+      "url": "/documentation/createml/mldatatable/aggregator/operations-swift.enum/variance"
+    },
+    "doc://com.apple.CreateML/documentation/CreateML/MLDataTable/group(columnsNamed:aggregators:)": {
+      "abstract": [
+        {
+          "text": "Creates a new data table with the given columns and adds a new column",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "for each of the given aggregators.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "group"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "columnsNamed"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "..., "
+        },
+        {
+          "kind": "externalParam",
+          "text": "aggregators"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "S"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8CreateML11MLDataTableV",
+          "text": "MLDataTable"
+        }
+      ],
+      "identifier": "doc://com.apple.CreateML/documentation/CreateML/MLDataTable/group(columnsNamed:aggregators:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "group(columnsNamed:aggregators:)",
+      "type": "topic",
+      "url": "/documentation/createml/mldatatable/group(columnsnamed:aggregators:)"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.externally.resolved.symbol/s:SS": {
+      "abstract": [
+        {
+          "text": "A Unicode string value that is a collection of characters.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@frozen"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SS",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "String",
+      "type": "topic",
+      "url": "/documentation/Swift/String"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Aggregation-operations",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.CreateML/documentation/CreateML/MLDataTable/Aggregator/Operations-swift.enum/min",
+        "doc://com.apple.CreateML/documentation/CreateML/MLDataTable/Aggregator/Operations-swift.enum/max",
+        "doc://com.apple.CreateML/documentation/CreateML/MLDataTable/Aggregator/Operations-swift.enum/sum",
+        "doc://com.apple.CreateML/documentation/CreateML/MLDataTable/Aggregator/Operations-swift.enum/mean",
+        "doc://com.apple.CreateML/documentation/CreateML/MLDataTable/Aggregator/Operations-swift.enum/stdev",
+        "doc://com.apple.CreateML/documentation/CreateML/MLDataTable/Aggregator/Operations-swift.enum/variance",
+        "doc://com.apple.CreateML/documentation/CreateML/MLDataTable/Aggregator/Operations-swift.enum/count",
+        "doc://com.apple.CreateML/documentation/CreateML/MLDataTable/Aggregator/Operations-swift.enum/distinctCount",
+        "doc://com.apple.CreateML/documentation/CreateML/MLDataTable/Aggregator/Operations-swift.enum/randomlySelectOne",
+        "doc://com.apple.CreateML/documentation/CreateML/MLDataTable/Aggregator/Operations-swift.enum/sequenceMerge",
+        "doc://com.apple.CreateML/documentation/CreateML/MLDataTable/Aggregator/Operations-swift.enum/dictionaryMerge(valueColumn:)",
+        "doc://com.apple.CreateML/documentation/CreateML/MLDataTable/Aggregator/Operations-swift.enum/argmin(outputColumn:)"
+      ],
+      "title": "Aggregation operations"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/createml/mldatatable/aggregator/operations-swift.enum/argmax(outputcolumn:)"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

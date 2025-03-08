@@ -1,0 +1,830 @@
+{
+  "abstract": [
+    {
+      "text": "Debug and profile your Metal workload with a GPU trace.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Xcode/documentation/Xcode",
+        "doc://com.apple.Xcode/documentation/Xcode/debugging"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Xcode/documentation/Xcode/Metal-debugger"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "collectionGroup",
+    "title": "Metal debugger"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Metal debugger consists of a suite of tools for debugging and profiling your Metal app.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Unlike pausing at breakpoints during runtime, you can capture your Metal workload for multiple frames and then jump back and forth in time to explore the captured work.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The Metal debugger enables you to explore the dependencies between passes, and offers insights for improving the performance of your app.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You can also debug your shaders in draw commands and compute dispatches to fix sources of artifacts (see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/Investigating-visual-artifacts",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ").",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In addition, the Metal debugger displays your Metal workload on a profiling timeline and offers detailed statistics like performance counters and per-line shader profiling data.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "These tools can help you identify and eliminate performance bottlenecks in your app (see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/Optimizing-GPU-performance",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ").",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gputools-metal-debugger-hero.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For additional information about the Metal debugger, see the following video sessions:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "https://developer.apple.com/videos/play/wwdc2018/608/",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "https://developer.apple.com/videos/play/wwdc2020/10605/",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "https://developer.apple.com/videos/play/wwdc2020/10603/",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "https://developer.apple.com/videos/play/wwdc2021/10157/",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "https://developer.apple.com/videos/play/wwdc2022/10106/",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Metal-Developer-Workflow-PageImage-card.png": {
+      "alt": "Metal logo",
+      "identifier": "Metal-Developer-Workflow-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/713b476e42e48070365a2abf70bc49b0/Metal-Developer-Workflow-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e226f618b21dde7899eba5de3bd4641a/Metal-Developer-Workflow-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "Xcode-PageImage-card.png": {
+      "alt": "The Xcode logo on a blue gradient background.",
+      "identifier": "Xcode-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cc63eacd8f7f660388b46204d1d9bbcb/Xcode-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/62dba87d5f60ec96eb48882c9dff86d8/Xcode-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Xcode/documentation/Xcode": {
+      "abstract": [
+        {
+          "text": "Build, test, and submit your app with Apple’s integrated development environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode",
+      "images": [
+        {
+          "identifier": "Xcode-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Analyzing-Apple-GPU-performance-using-a-visual-timeline": {
+      "abstract": [
+        {
+          "text": "Locate performance issues using the Performance timeline.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Analyzing-Apple-GPU-performance-using-a-visual-timeline",
+      "kind": "article",
+      "role": "article",
+      "title": "Analyzing Apple GPU performance using a visual timeline",
+      "type": "topic",
+      "url": "/documentation/xcode/analyzing-apple-gpu-performance-using-a-visual-timeline"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Analyzing-Apple-GPU-performance-using-counter-statistics": {
+      "abstract": [
+        {
+          "text": "Optimize performance by examining counters for individual passes and commands.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Analyzing-Apple-GPU-performance-using-counter-statistics",
+      "kind": "article",
+      "role": "article",
+      "title": "Analyzing Apple GPU performance using counter statistics",
+      "type": "topic",
+      "url": "/documentation/xcode/analyzing-apple-gpu-performance-using-counter-statistics"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Analyzing-Apple-GPU-performance-using-performance-heatmaps-a17-m3": {
+      "abstract": [
+        {
+          "text": "Gain insights to SIMD group performance by inspecting source code execution.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Analyzing-Apple-GPU-performance-using-performance-heatmaps-a17-m3",
+      "kind": "article",
+      "role": "article",
+      "title": "Analyzing Apple GPU performance with performance heat maps",
+      "type": "topic",
+      "url": "/documentation/xcode/analyzing-apple-gpu-performance-using-performance-heatmaps-a17-m3"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Analyzing-Apple-GPU-performance-using-shader-cost-graph-a17-m3": {
+      "abstract": [
+        {
+          "text": "Discover potential shader performance issues by examining pipeline states.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Analyzing-Apple-GPU-performance-using-shader-cost-graph-a17-m3",
+      "kind": "article",
+      "role": "article",
+      "title": "Analyzing Apple GPU performance using the shader cost graph",
+      "type": "topic",
+      "url": "/documentation/xcode/analyzing-apple-gpu-performance-using-shader-cost-graph-a17-m3"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Analyzing-draw-command-and-compute-dispatch-performance-with-GPU-counters": {
+      "abstract": [
+        {
+          "text": "Identify issues within your frame capture by examining performance counters.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Analyzing-draw-command-and-compute-dispatch-performance-with-GPU-counters",
+      "kind": "article",
+      "role": "article",
+      "title": "Analyzing draw command and compute dispatch performance with GPU counters",
+      "type": "topic",
+      "url": "/documentation/xcode/analyzing-draw-command-and-compute-dispatch-performance-with-gpu-counters"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Analyzing-draw-command-and-compute-dispatch-performance-with-pipeline-statistics": {
+      "abstract": [
+        {
+          "text": "Identify issues within your frame capture by examining pipeline statistics.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Analyzing-draw-command-and-compute-dispatch-performance-with-pipeline-statistics",
+      "kind": "article",
+      "role": "article",
+      "title": "Analyzing draw command and compute dispatch performance with pipeline statistics",
+      "type": "topic",
+      "url": "/documentation/xcode/analyzing-draw-command-and-compute-dispatch-performance-with-pipeline-statistics"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Analyzing-memory-usage": {
+      "abstract": [
+        {
+          "text": "Manage your Metal app’s memory usage by inspecting its resources.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Analyzing-memory-usage",
+      "kind": "article",
+      "role": "article",
+      "title": "Analyzing memory usage",
+      "type": "topic",
+      "url": "/documentation/xcode/analyzing-memory-usage"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Analyzing-non-Apple-GPU-performance-using-counter-statistics": {
+      "abstract": [
+        {
+          "text": "Optimize performance by examining counters for individual passes and commands.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Analyzing-non-Apple-GPU-performance-using-counter-statistics",
+      "kind": "article",
+      "role": "article",
+      "title": "Analyzing non-Apple GPU performance using counter statistics",
+      "type": "topic",
+      "url": "/documentation/xcode/analyzing-non-apple-gpu-performance-using-counter-statistics"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Analyzing-resource-dependencies": {
+      "abstract": [
+        {
+          "text": "Avoid unnecessary work in your Metal app by understanding the relationships between resources.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Analyzing-resource-dependencies",
+      "kind": "article",
+      "role": "article",
+      "title": "Analyzing resource dependencies",
+      "type": "topic",
+      "url": "/documentation/xcode/analyzing-resource-dependencies"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Analyzing-your-Metal-workload": {
+      "abstract": [
+        {
+          "text": "Investigate your app’s workload, dependencies, performance, and memory impact using the Metal debugger.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Analyzing-your-Metal-workload",
+      "kind": "article",
+      "role": "article",
+      "title": "Analyzing your Metal workload",
+      "type": "topic",
+      "url": "/documentation/xcode/analyzing-your-metal-workload"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Capturing-a-Metal-workload-in-Xcode": {
+      "abstract": [
+        {
+          "text": "Analyze your app’s performance by configuring your project to use the Metal debugger.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Capturing-a-Metal-workload-in-Xcode",
+      "kind": "article",
+      "role": "article",
+      "title": "Capturing a Metal workload in Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode/capturing-a-metal-workload-in-xcode"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Capturing-a-Metal-workload-programmatically": {
+      "abstract": [
+        {
+          "text": "Analyze your app’s performance by invoking Metal’s frame capture.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Capturing-a-Metal-workload-programmatically",
+      "kind": "article",
+      "role": "article",
+      "title": "Capturing a Metal workload programmatically",
+      "type": "topic",
+      "url": "/documentation/xcode/capturing-a-metal-workload-programmatically"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Debugging-the-shaders-within-a-draw-command-or-compute-dispatch": {
+      "abstract": [
+        {
+          "text": "Identify and fix problematic shaders in your app using the shader debugger.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Debugging-the-shaders-within-a-draw-command-or-compute-dispatch",
+      "kind": "article",
+      "role": "article",
+      "title": "Debugging the shaders within a draw command or compute dispatch",
+      "type": "topic",
+      "url": "/documentation/xcode/debugging-the-shaders-within-a-draw-command-or-compute-dispatch"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Inspecting-acceleration-structures": {
+      "abstract": [
+        {
+          "text": "Reveal ray intersection bottlenecks by examining your acceleration structures.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Inspecting-acceleration-structures",
+      "kind": "article",
+      "role": "article",
+      "title": "Inspecting acceleration structures",
+      "type": "topic",
+      "url": "/documentation/xcode/inspecting-acceleration-structures"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Inspecting-buffers": {
+      "abstract": [
+        {
+          "text": "Confirm your buffer formats by examining buffer content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Inspecting-buffers",
+      "kind": "article",
+      "role": "article",
+      "title": "Inspecting buffers",
+      "type": "topic",
+      "url": "/documentation/xcode/inspecting-buffers"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Inspecting-pipeline-states": {
+      "abstract": [
+        {
+          "text": "Determine how your render and compute passes behave by examining their properties.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Inspecting-pipeline-states",
+      "kind": "article",
+      "role": "article",
+      "title": "Inspecting pipeline states",
+      "type": "topic",
+      "url": "/documentation/xcode/inspecting-pipeline-states"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Inspecting-sampler-states": {
+      "abstract": [
+        {
+          "text": "Verify your sampler state configurations by examining their properties.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Inspecting-sampler-states",
+      "kind": "article",
+      "role": "article",
+      "title": "Inspecting sampler states",
+      "type": "topic",
+      "url": "/documentation/xcode/inspecting-sampler-states"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Inspecting-shaders": {
+      "abstract": [
+        {
+          "text": "Improve your app’s shader performance by examining and editing your shaders.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Inspecting-shaders",
+      "kind": "article",
+      "role": "article",
+      "title": "Inspecting shaders",
+      "type": "topic",
+      "url": "/documentation/xcode/inspecting-shaders"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Inspecting-textures": {
+      "abstract": [
+        {
+          "text": "Discover issues in your textures by examining their content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Inspecting-textures",
+      "kind": "article",
+      "role": "article",
+      "title": "Inspecting textures",
+      "type": "topic",
+      "url": "/documentation/xcode/inspecting-textures"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Inspecting-the-attachments-of-a-draw-command": {
+      "abstract": [
+        {
+          "text": "Discover attachment issues by inspecting individual pixels and samples.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Inspecting-the-attachments-of-a-draw-command",
+      "kind": "article",
+      "role": "article",
+      "title": "Inspecting the attachments of a draw command",
+      "type": "topic",
+      "url": "/documentation/xcode/inspecting-the-attachments-of-a-draw-command"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Inspecting-the-bound-resources-for-a-command": {
+      "abstract": [
+        {
+          "text": "Discover issues by examining the bound resources at any point in an encoder.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Inspecting-the-bound-resources-for-a-command",
+      "kind": "article",
+      "role": "article",
+      "title": "Inspecting the bound resources for a command",
+      "type": "topic",
+      "url": "/documentation/xcode/inspecting-the-bound-resources-for-a-command"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Inspecting-the-geometry-of-a-draw-command": {
+      "abstract": [
+        {
+          "text": "Find problems in your app’s vertex, object, or mesh function by examining the current geometry.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Inspecting-the-geometry-of-a-draw-command",
+      "kind": "article",
+      "role": "article",
+      "title": "Inspecting the geometry of a draw command",
+      "type": "topic",
+      "url": "/documentation/xcode/inspecting-the-geometry-of-a-draw-command"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Investigating-visual-artifacts": {
+      "abstract": [
+        {
+          "text": "Discover, diagnose, and fix visual artifacts in your app with the Metal debugger.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Investigating-visual-artifacts",
+      "kind": "article",
+      "role": "article",
+      "title": "Investigating visual artifacts",
+      "type": "topic",
+      "url": "/documentation/xcode/investigating-visual-artifacts"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Metal-developer-workflows": {
+      "abstract": [
+        {
+          "text": "Locate and fix issues related to your app’s use of the Metal API and GPU functions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Metal-developer-workflows",
+      "images": [
+        {
+          "identifier": "Metal-Developer-Workflow-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Metal developer workflows",
+      "type": "topic",
+      "url": "/documentation/xcode/metal-developer-workflows"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Optimizing-GPU-performance": {
+      "abstract": [
+        {
+          "text": "Find and address performance bottlenecks using the Metal debugger.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Optimizing-GPU-performance",
+      "kind": "article",
+      "role": "article",
+      "title": "Optimizing GPU performance",
+      "type": "topic",
+      "url": "/documentation/xcode/optimizing-gpu-performance"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Replaying-a-GPU-trace-file": {
+      "abstract": [
+        {
+          "text": "Debug and profile your app’s performance using a GPU trace file in the Metal debugger.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Replaying-a-GPU-trace-file",
+      "kind": "article",
+      "role": "article",
+      "title": "Replaying a GPU trace file",
+      "type": "topic",
+      "url": "/documentation/xcode/replaying-a-gpu-trace-file"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/debugging": {
+      "abstract": [
+        {
+          "text": "Identify and address issues in your app using the Xcode debugger, Xcode Organizer, Metal debugger, and Instruments.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/debugging",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Debugging",
+      "type": "topic",
+      "url": "/documentation/xcode/debugging"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "gputools-metal-debugger-hero.png": {
+      "alt": "A screenshot of the Metal debugger showing the bound resources and attachments for a draw command.",
+      "identifier": "gputools-metal-debugger-hero.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/41dec1ced249f9f0b2c733fc369c1260/gputools-metal-debugger-hero.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a7cba2f6c40a790c84564b5ed827fa13/gputools-metal-debugger-hero@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/99a15059bfc0473f5ffd66627d27f45f/gputools-metal-debugger-hero~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/9925c5ccffbf42f5bd9ea535c88846e0/gputools-metal-debugger-hero~dark@2x.png"
+        }
+      ]
+    },
+    "https://developer.apple.com/videos/play/wwdc2018/608/": {
+      "identifier": "https://developer.apple.com/videos/play/wwdc2018/608/",
+      "title": "Metal Shader Debugging and Profiling",
+      "titleInlineContent": [
+        {
+          "text": "Metal Shader Debugging and Profiling",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/videos/play/wwdc2018/608/"
+    },
+    "https://developer.apple.com/videos/play/wwdc2020/10603/": {
+      "identifier": "https://developer.apple.com/videos/play/wwdc2020/10603/",
+      "title": "Optimize Metal apps and games with GPU counters",
+      "titleInlineContent": [
+        {
+          "text": "Optimize Metal apps and games with GPU counters",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/videos/play/wwdc2020/10603/"
+    },
+    "https://developer.apple.com/videos/play/wwdc2020/10605/": {
+      "identifier": "https://developer.apple.com/videos/play/wwdc2020/10605/",
+      "title": "Gain insights into your Metal app with Xcode 12",
+      "titleInlineContent": [
+        {
+          "text": "Gain insights into your Metal app with Xcode 12",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/videos/play/wwdc2020/10605/"
+    },
+    "https://developer.apple.com/videos/play/wwdc2021/10157/": {
+      "identifier": "https://developer.apple.com/videos/play/wwdc2021/10157/",
+      "title": "Discover Metal debugging, profiling, and asset creation tools",
+      "titleInlineContent": [
+        {
+          "text": "Discover Metal debugging, profiling, and asset creation tools",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/videos/play/wwdc2021/10157/"
+    },
+    "https://developer.apple.com/videos/play/wwdc2022/10106/": {
+      "identifier": "https://developer.apple.com/videos/play/wwdc2022/10106/",
+      "title": "Profile and optimize your game’s memory",
+      "titleInlineContent": [
+        {
+          "text": "Profile and optimize your game’s memory",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/videos/play/wwdc2022/10106/"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Graphics",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Xcode/documentation/Xcode/Metal-developer-workflows"
+      ],
+      "title": "Graphics"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Essentials",
+      "identifiers": [
+        "doc://com.apple.Xcode/documentation/Xcode/Capturing-a-Metal-workload-in-Xcode",
+        "doc://com.apple.Xcode/documentation/Xcode/Capturing-a-Metal-workload-programmatically",
+        "doc://com.apple.Xcode/documentation/Xcode/Replaying-a-GPU-trace-file",
+        "doc://com.apple.Xcode/documentation/Xcode/Investigating-visual-artifacts",
+        "doc://com.apple.Xcode/documentation/Xcode/Optimizing-GPU-performance"
+      ],
+      "title": "Essentials"
+    },
+    {
+      "anchor": "Metal-workload-analysis",
+      "identifiers": [
+        "doc://com.apple.Xcode/documentation/Xcode/Analyzing-your-Metal-workload",
+        "doc://com.apple.Xcode/documentation/Xcode/Analyzing-resource-dependencies",
+        "doc://com.apple.Xcode/documentation/Xcode/Analyzing-memory-usage",
+        "doc://com.apple.Xcode/documentation/Xcode/Analyzing-Apple-GPU-performance-using-a-visual-timeline",
+        "doc://com.apple.Xcode/documentation/Xcode/Analyzing-Apple-GPU-performance-using-counter-statistics",
+        "doc://com.apple.Xcode/documentation/Xcode/Analyzing-Apple-GPU-performance-using-performance-heatmaps-a17-m3",
+        "doc://com.apple.Xcode/documentation/Xcode/Analyzing-Apple-GPU-performance-using-shader-cost-graph-a17-m3",
+        "doc://com.apple.Xcode/documentation/Xcode/Analyzing-non-Apple-GPU-performance-using-counter-statistics"
+      ],
+      "title": "Metal workload analysis"
+    },
+    {
+      "anchor": "Metal-resource-inspection",
+      "identifiers": [
+        "doc://com.apple.Xcode/documentation/Xcode/Inspecting-acceleration-structures",
+        "doc://com.apple.Xcode/documentation/Xcode/Inspecting-buffers",
+        "doc://com.apple.Xcode/documentation/Xcode/Inspecting-pipeline-states",
+        "doc://com.apple.Xcode/documentation/Xcode/Inspecting-sampler-states",
+        "doc://com.apple.Xcode/documentation/Xcode/Inspecting-shaders",
+        "doc://com.apple.Xcode/documentation/Xcode/Inspecting-textures"
+      ],
+      "title": "Metal resource inspection"
+    },
+    {
+      "anchor": "Metal-command-analysis",
+      "identifiers": [
+        "doc://com.apple.Xcode/documentation/Xcode/Inspecting-the-bound-resources-for-a-command",
+        "doc://com.apple.Xcode/documentation/Xcode/Inspecting-the-geometry-of-a-draw-command",
+        "doc://com.apple.Xcode/documentation/Xcode/Inspecting-the-attachments-of-a-draw-command",
+        "doc://com.apple.Xcode/documentation/Xcode/Debugging-the-shaders-within-a-draw-command-or-compute-dispatch",
+        "doc://com.apple.Xcode/documentation/Xcode/Analyzing-draw-command-and-compute-dispatch-performance-with-GPU-counters",
+        "doc://com.apple.Xcode/documentation/Xcode/Analyzing-draw-command-and-compute-dispatch-performance-with-pipeline-statistics"
+      ],
+      "title": "Metal command analysis"
+    }
+  ]
+}

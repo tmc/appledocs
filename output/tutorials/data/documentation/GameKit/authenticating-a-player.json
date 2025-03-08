@@ -1,0 +1,1394 @@
+{
+  "abstract": [
+    {
+      "text": "Confirm player credentials and device capabilities and check for account restrictions.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.gamekit/documentation/GameKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.gamekit/documentation/GameKit/authenticating-a-player"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "GameKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Authenticating a player"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To identify themselves and access their game data from all their devices, players create a Game Center account that includes a profile with an avatar and nickname. A single account allows players to sign in to Game Center once and use the same credentials for all Game Center games on their device.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the GameKit framework, you use player objects to post scores, award achievements, build leaderboards, and start multiplayer games. The ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "local player",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKLocalPlayer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ") represents the user playing your game and other ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "players",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKPlayer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ") may be friends, recent matches, or global players of your and other games.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before you access any Game Center data, you must verify that the local player signed in to Game Center on the device. Check if the player has any account restrictions and adjust your game accordingly. On Apple TV, your game can also support the ability to switch between user accounts.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Authenticate-the-local-player",
+          "level": 3,
+          "text": "Authenticate the local player",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In your game, you need to authenticate the local player before you can use any GameKit APIs and Game Center services. Game Center verifies the credentials of the player and ensures their account is ready for use. Game Center also checks whether you configured your game for Game Center.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To authenticate the user, set the authentication handler (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKLocalPlayer/authenticateHandler",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ") on the shared instance of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKLocalPlayer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " that represents the player of your game as in:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "GKLocalPlayer.local.authenticateHandler = { viewController, error in",
+            "   // Handle the authorization callbacks.",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "GameKit calls the authentication handler, possibly several times, for the following cases:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If the local player needs to perform some action, GameKit passes a view controller that you must present to the player to complete the authentication.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If the player successfully signs in, GameKit sets the local player’s ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKLocalPlayer/isAuthenticated",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " property to ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/swift/true",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and calls the handler again, this time passing ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "nil",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " for both the view controller and error parameters. You can then start the game.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If the player decides not to sign in or create a Game Center account, GameKit sets the local player’s ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKLocalPlayer/isAuthenticated",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " property to ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/swift/false",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and calls the handler again by passing an error that indicates the reason the player isn’t authenticated. In this case, disable Game Center in your game.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "If the local player previously signed in on the device when you set the authentication handler, GameKit sets the local player’s ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKLocalPlayer/isAuthenticated",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " property to ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.documentation/documentation/swift/true",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " and passes ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "nil",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " for both the view controller and error parameters, and you can start the game.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "anchor": "Check-for-restrictions",
+          "level": 3,
+          "text": "Check for restrictions",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before starting a game, check the local player’s account for restrictions and disable or hide features and content accordingly.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Check if there are any restrictions in the authentication handler when the player signs in to Game Center. In addition to checking whether the player is underage (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKLocalPlayer/isUnderage",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ") or not allowed to play multiplayer games (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKLocalPlayer/isMultiplayerGamingRestricted",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "), check for any communication restrictions (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKLocalPlayer/isPersonalizedCommunicationRestricted",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ").",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "GKLocalPlayer.local.authenticateHandler = { viewController, error in",
+            "    if let viewController = viewController {",
+            "        // Present the view controller so the player can sign in.",
+            "        return",
+            "    }",
+            "    if error != nil {",
+            "        // Player could not be authenticated.",
+            "        // Disable Game Center in the game.",
+            "        return        ",
+            "    }",
+            "    ",
+            "    // Player was successfully authenticated.",
+            "    // Check if there are any player restrictions before starting the game.",
+            "            ",
+            "    if GKLocalPlayer.local.isUnderage {",
+            "        // Hide explicit game content.",
+            "    }",
+            "",
+            "    if GKLocalPlayer.local.isMultiplayerGamingRestricted {",
+            "        // Disable multiplayer game features.",
+            "    } ",
+            "",
+            "    if GKLocalPlayer.local.isPersonalizedCommunicationRestricted {",
+            "        // Disable in game communication UI.",
+            "    }",
+            "    ",
+            "    // Perform any other configurations as needed (for example, access point).",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If the ",
+              "type": "text"
+            },
+            {
+              "code": "isPersonalizedCommunicationRestricted",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property is ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/swift/true",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", then the player isn’t allowed to use voice or messaging features during a multiplayer game. If your game includes any custom communication features, you should disable them. Note that if the player is underage, this property is always ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/swift/true",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Support-user-switching",
+          "level": 3,
+          "text": "Support user switching",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Multiple people can sign in to their accounts on a single Apple TV and you can allow players to run your game on Apple TV using their individual Game Center account. After you configure your app, add code to support user switching; otherwise, the system runs your game as the default user.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To support user switching, add the User Management capability to your app in Xcode. In the project editor, select the target, click the Signing & Capabilities tab, click the Library button (+), and then double-click the User Management capability or drag it to the Signing & Capabilities pane. Under User Management in the Signing & Capabilities pane, select Run as Current User. This entitlement grants your game access to the current user’s Game Center data.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3678701",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the user switches on Apple TV, the system relaunches your game. To save game data if the users switch while your game is in the foreground, implement the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIApplicationDelegate/applicationWillTerminate(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method. To save data when the user switches to another app, implement the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/UIKit/UIApplicationDelegate/applicationWillResignActive(_:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the system relaunches your game, GameKit passes the new user to the authentication handler. For more information on user switching, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/TVServices/personalizing-your-app-for-each-user-on-apple-tv",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.game-center": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether users of the app may see and compare achievements on a leaderboard, invite friends, and start multiplayer games.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.game-center",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Game Center Entitlement",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Entitlements/com.apple.developer.game-center"
+    },
+    "doc://com.apple.documentation/documentation/TVServices/personalizing-your-app-for-each-user-on-apple-tv": {
+      "abstract": [
+        {
+          "text": "Use account-specific storage to segregate data on a multiuser system.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/TVServices/personalizing-your-app-for-each-user-on-apple-tv",
+      "kind": "article",
+      "role": "article",
+      "title": "Personalizing Your App for Each User on Apple TV",
+      "type": "topic",
+      "url": "/documentation/TVServices/personalizing-your-app-for-each-user-on-apple-tv"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIApplicationDelegate/applicationWillResignActive(_:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate that the app is about to become inactive.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "optional"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "applicationWillResignActive"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "application"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIApplication",
+          "text": "UIApplication"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIApplicationDelegate/applicationWillResignActive(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "applicationWillResignActive(_:)",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIApplicationDelegate/applicationWillResignActive(_:)"
+    },
+    "doc://com.apple.documentation/documentation/UIKit/UIApplicationDelegate/applicationWillTerminate(_:)": {
+      "abstract": [
+        {
+          "text": "Tells the delegate when the app is about to terminate.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "optional"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "applicationWillTerminate"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "_"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "internalParam",
+          "text": "application"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIApplication",
+          "text": "UIApplication"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/UIKit/UIApplicationDelegate/applicationWillTerminate(_:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "applicationWillTerminate(_:)",
+      "type": "topic",
+      "url": "/documentation/UIKit/UIApplicationDelegate/applicationWillTerminate(_:)"
+    },
+    "doc://com.apple.documentation/documentation/swift/false": {
+      "abstract": [
+        {
+          "text": "A false value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/swift/false",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "false",
+      "type": "topic",
+      "url": "/documentation/swift/false"
+    },
+    "doc://com.apple.documentation/documentation/swift/true": {
+      "abstract": [
+        {
+          "text": "A true value.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/swift/true",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "true",
+      "type": "topic",
+      "url": "/documentation/swift/true"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit": {
+      "abstract": [
+        {
+          "text": "Enable players to interact with friends, compare leaderboard ranks, earn achievements, and participate in multiplayer games.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "GameKit",
+      "type": "topic",
+      "url": "/documentation/gamekit"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKLocalPlayer": {
+      "abstract": [
+        {
+          "text": "The local player who signs in to Game Center on the device running the game.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GKLocalPlayer"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKLocalPlayer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GKLocalPlayer"
+        }
+      ],
+      "role": "symbol",
+      "title": "GKLocalPlayer",
+      "type": "topic",
+      "url": "/documentation/gamekit/gklocalplayer"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKLocalPlayer/authenticateHandler": {
+      "abstract": [
+        {
+          "text": "A handler that GameKit calls while authenticating the local player.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "authenticateHandler"
+        },
+        {
+          "kind": "text",
+          "text": ": (("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)UIViewController",
+          "text": "UIViewController"
+        },
+        {
+          "kind": "text",
+          "text": "?, (any "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s5ErrorP",
+          "text": "Error"
+        },
+        {
+          "kind": "text",
+          "text": ")?) -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:s4Voida",
+          "text": "Void"
+        },
+        {
+          "kind": "text",
+          "text": ")?"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKLocalPlayer/authenticateHandler",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "authenticateHandler"
+        }
+      ],
+      "role": "symbol",
+      "title": "authenticateHandler",
+      "type": "topic",
+      "url": "/documentation/gamekit/gklocalplayer/authenticatehandler"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKLocalPlayer/isAuthenticated": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether a local player has signed in to Game Center.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isAuthenticated"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKLocalPlayer/isAuthenticated",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "authenticated"
+        }
+      ],
+      "role": "symbol",
+      "title": "isAuthenticated",
+      "type": "topic",
+      "url": "/documentation/gamekit/gklocalplayer/isauthenticated"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKLocalPlayer/isMultiplayerGamingRestricted": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the player can join multiplayer games.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isMultiplayerGamingRestricted"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKLocalPlayer/isMultiplayerGamingRestricted",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "multiplayerGamingRestricted"
+        }
+      ],
+      "role": "symbol",
+      "title": "isMultiplayerGamingRestricted",
+      "type": "topic",
+      "url": "/documentation/gamekit/gklocalplayer/ismultiplayergamingrestricted"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKLocalPlayer/isPersonalizedCommunicationRestricted": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the player can use personalized communication on the device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isPersonalizedCommunicationRestricted"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKLocalPlayer/isPersonalizedCommunicationRestricted",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "personalizedCommunicationRestricted"
+        }
+      ],
+      "role": "symbol",
+      "title": "isPersonalizedCommunicationRestricted",
+      "type": "topic",
+      "url": "/documentation/gamekit/gklocalplayer/ispersonalizedcommunicationrestricted"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKLocalPlayer/isUnderage": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the local player is underage.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isUnderage"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKLocalPlayer/isUnderage",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "underage"
+        }
+      ],
+      "role": "symbol",
+      "title": "isUnderage",
+      "type": "topic",
+      "url": "/documentation/gamekit/gklocalplayer/isunderage"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/GKPlayer": {
+      "abstract": [
+        {
+          "text": "A remote player who the local player running your game can invite and communicate with through Game Center.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "GKPlayer"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/GKPlayer",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "GKPlayer"
+        }
+      ],
+      "role": "symbol",
+      "title": "GKPlayer",
+      "type": "topic",
+      "url": "/documentation/gamekit/gkplayer"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/enabling-and-configuring-game-center": {
+      "abstract": [
+        {
+          "text": "Enable Game Center in your Xcode project and configure features in App Store Connect.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/enabling-and-configuring-game-center",
+      "kind": "article",
+      "role": "article",
+      "title": "Enabling and configuring Game Center",
+      "type": "topic",
+      "url": "/documentation/gamekit/enabling-and-configuring-game-center"
+    },
+    "doc://com.apple.gamekit/documentation/GameKit/improving-the-player-experience-for-games-with-large-downloads": {
+      "abstract": [
+        {
+          "text": "Provide ample content in your base installation and then use on-demand resources and the Background Assets API to handle additional content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.gamekit/documentation/GameKit/improving-the-player-experience-for-games-with-large-downloads",
+      "kind": "article",
+      "role": "article",
+      "title": "Improving the player experience for games with large downloads",
+      "type": "topic",
+      "url": "/documentation/gamekit/improving-the-player-experience-for-games-with-large-downloads"
+    },
+    "media-3678701": {
+      "alt": "Screenshot of the Capabilities library showing the User Managment capability selected.",
+      "identifier": "media-3678701",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/50ca2f7141843853063e74f6bbea9b23/media-3678701@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Essentials",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.gamekit/documentation/GameKit/enabling-and-configuring-game-center",
+        "doc://com.apple.gamekit/documentation/GameKit/improving-the-player-experience-for-games-with-large-downloads",
+        "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.game-center"
+      ],
+      "title": "Essentials"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "Essentials",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.gamekit/documentation/GameKit/enabling-and-configuring-game-center",
+                "doc://com.apple.gamekit/documentation/GameKit/improving-the-player-experience-for-games-with-large-downloads",
+                "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.game-center"
+              ],
+              "title": "Essentials"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIApplicationDelegate~1applicationWillResignActive(_:)/title",
+          "value": "applicationWillResignActive:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIApplicationDelegate~1applicationWillResignActive(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "applicationWillResignActive:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIApplication",
+              "text": "UIApplication"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "application"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKLocalPlayer~1isAuthenticated/title",
+          "value": "authenticated"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKLocalPlayer~1isAuthenticated/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "authenticated"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIApplicationDelegate~1applicationWillTerminate(_:)/title",
+          "value": "applicationWillTerminate:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1UIKit~1UIApplicationDelegate~1applicationWillTerminate(_:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- ("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:v",
+              "text": "void"
+            },
+            {
+              "kind": "text",
+              "text": ") "
+            },
+            {
+              "kind": "identifier",
+              "text": "applicationWillTerminate:"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIApplication",
+              "text": "UIApplication"
+            },
+            {
+              "kind": "text",
+              "text": " *) "
+            },
+            {
+              "kind": "internalParam",
+              "text": "application"
+            },
+            {
+              "kind": "text",
+              "text": ";"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKLocalPlayer/title",
+          "value": "GKLocalPlayer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKLocalPlayer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKLocalPlayer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKLocalPlayer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKLocalPlayer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKLocalPlayer~1isMultiplayerGamingRestricted/title",
+          "value": "multiplayerGamingRestricted"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKLocalPlayer~1isMultiplayerGamingRestricted/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "multiplayerGamingRestricted"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKPlayer/title",
+          "value": "GKPlayer"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKPlayer/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKPlayer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKPlayer/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "GKPlayer"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKLocalPlayer~1isUnderage/title",
+          "value": "underage"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKLocalPlayer~1isUnderage/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "underage"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKLocalPlayer~1isPersonalizedCommunicationRestricted/title",
+          "value": "personalizedCommunicationRestricted"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKLocalPlayer~1isPersonalizedCommunicationRestricted/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "personalizedCommunicationRestricted"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKLocalPlayer~1authenticateHandler/title",
+          "value": "authenticateHandler"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.gamekit~1documentation~1GameKit~1GKLocalPlayer~1authenticateHandler/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "authenticateHandler"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/gamekit/authenticating-a-player"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/gamekit/authenticating-a-player"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

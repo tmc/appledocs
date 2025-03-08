@@ -1,0 +1,2126 @@
+{
+  "abstract": [
+    {
+      "text": "The interface for providing preference panes to System Preferences or other apps.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.preferencepanes/documentation/PreferencePanes"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.preferencepanes/documentation/PreferencePanes/NSPreferencePane"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSPreferencePane",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "NSPreferencePane"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Preference Panes"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "NSPreferencePane"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "10.1",
+        "name": "macOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "NSPreferencePane"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSPreferencePane"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Preference panes are subclasses of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.preferencepanes/documentation/PreferencePanes/NSPreferencePane",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", packaged up in bundles and loaded by a preference application, such as System Preferences. These bundles have a suffix of ",
+              "type": "text"
+            },
+            {
+              "code": ".prefPane",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". Bundles intended for use by System Preferences are located in the ",
+              "type": "text"
+            },
+            {
+              "code": "Library/PreferencePanes",
+              "type": "codeVoice"
+            },
+            {
+              "text": " directories of the various file system domains. See the chapter ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/library/archive/documentation/FileManagement/Conceptual/FileSystemProgrammingGuide/FileSystemOverview/FileSystemOverview.html#//apple_ref/doc/uid/TP40010672-CH2-SW14",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " in ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/library/archive/documentation/FileManagement/Conceptual/FileSystemProgrammingGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40010672",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for information about domains.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The preference pane bundle normally contains a nib file with the user interface for modifying user preferences. The nib file contains a window assigned to the _window outlet of the preference pane instance (the nib’s File’s Owner). The ",
+              "type": "text"
+            },
+            {
+              "code": "NSPreferencePane",
+              "type": "codeVoice"
+            },
+            {
+              "text": " implementation of ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.preferencepanes/documentation/PreferencePanes/NSPreferencePane/loadMainView()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", invoked by the preference application, loads the nib file and uses the content view of _window as the preference pane’s main view. Override this method if you need a different technique for creating the user interface.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.preferencepanes/documentation/PreferencePanes/NSPreferencePane",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " subclass is responsible for initializing the user interface with the current preference settings and recording any modifications the user makes. Through a series of ",
+              "type": "text"
+            },
+            {
+              "code": "will...",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "code": "did...",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "code": "should...",
+              "type": "codeVoice"
+            },
+            {
+              "text": " methods, the preference application notifies the preference pane when the pane is selected (displayed) and deselected, allowing the pane to perform the necessary actions at the appropriate times. Implement these methods (and any additional target-action methods connected to the interface) as needed to produce the desired behavior for your preference pane.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Preference panes support Help menu items. Specify global help menu items in your bundle’s ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " file under the ",
+              "type": "text"
+            },
+            {
+              "code": "NSPrefPaneHelpAnchors",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key. To add dynamic help items, implement the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.preferencepanes/documentation/PreferencePanes/NSPreferencePane/updateHelpMenu(with:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.preferencepanes/documentation/PreferencePanes": {
+      "abstract": [
+        {
+          "text": "Integrate your app’s custom preferences into the System Preferences app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.preferencepanes/documentation/PreferencePanes",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Preference Panes",
+      "type": "topic",
+      "url": "/documentation/preferencepanes"
+    },
+    "doc://com.apple.preferencepanes/documentation/PreferencePanes/NSPreferencePane": {
+      "abstract": [
+        {
+          "text": "The interface for providing preference panes to System Preferences or other apps.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSPreferencePane"
+        }
+      ],
+      "identifier": "doc://com.apple.preferencepanes/documentation/PreferencePanes/NSPreferencePane",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSPreferencePane"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSPreferencePane",
+      "type": "topic",
+      "url": "/documentation/preferencepanes/nspreferencepane"
+    },
+    "doc://com.apple.preferencepanes/documentation/PreferencePanes/NSPreferencePane/assignMainView()": {
+      "abstract": [
+        {
+          "text": "Locates and assigns the preference pane’s main view from the nib file loaded by ",
+          "type": "text"
+        },
+        {
+          "identifier": "doc://com.apple.preferencepanes/documentation/PreferencePanes/NSPreferencePane/loadMainView()",
+          "isActive": true,
+          "type": "reference"
+        },
+        {
+          "text": ".",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "assignMainView"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.preferencepanes/documentation/PreferencePanes/NSPreferencePane/assignMainView()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "assignMainView"
+        }
+      ],
+      "role": "symbol",
+      "title": "assignMainView()",
+      "type": "topic",
+      "url": "/documentation/preferencepanes/nspreferencepane/assignmainview()"
+    },
+    "doc://com.apple.preferencepanes/documentation/PreferencePanes/NSPreferencePane/autoSaveTextFields": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether text fields save their values before changing preference panes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "autoSaveTextFields"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.preferencepanes/documentation/PreferencePanes/NSPreferencePane/autoSaveTextFields",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "autoSaveTextFields"
+        }
+      ],
+      "role": "symbol",
+      "title": "autoSaveTextFields",
+      "type": "topic",
+      "url": "/documentation/preferencepanes/nspreferencepane/autosavetextfields"
+    },
+    "doc://com.apple.preferencepanes/documentation/PreferencePanes/NSPreferencePane/bundle": {
+      "abstract": [
+        {
+          "text": "The preference pane’s bundle.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "bundle"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSBundle",
+          "text": "Bundle"
+        }
+      ],
+      "identifier": "doc://com.apple.preferencepanes/documentation/PreferencePanes/NSPreferencePane/bundle",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "bundle"
+        }
+      ],
+      "role": "symbol",
+      "title": "bundle",
+      "type": "topic",
+      "url": "/documentation/preferencepanes/nspreferencepane/bundle"
+    },
+    "doc://com.apple.preferencepanes/documentation/PreferencePanes/NSPreferencePane/didSelect()": {
+      "abstract": [
+        {
+          "text": "Notifies the preference pane that the main app has just displayed the preference pane’s main view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "didSelect"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.preferencepanes/documentation/PreferencePanes/NSPreferencePane/didSelect()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "didSelect"
+        }
+      ],
+      "role": "symbol",
+      "title": "didSelect()",
+      "type": "topic",
+      "url": "/documentation/preferencepanes/nspreferencepane/didselect()"
+    },
+    "doc://com.apple.preferencepanes/documentation/PreferencePanes/NSPreferencePane/didUnselect()": {
+      "abstract": [
+        {
+          "text": "Notifies the preference pane that the main app has just stopped displaying the preference pane’s main view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "didUnselect"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.preferencepanes/documentation/PreferencePanes/NSPreferencePane/didUnselect()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "didUnselect"
+        }
+      ],
+      "role": "symbol",
+      "title": "didUnselect()",
+      "type": "topic",
+      "url": "/documentation/preferencepanes/nspreferencepane/didunselect()"
+    },
+    "doc://com.apple.preferencepanes/documentation/PreferencePanes/NSPreferencePane/firstKeyView": {
+      "abstract": [
+        {
+          "text": "The first view in the keyboard focus chain.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "firstKeyView"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSView",
+          "text": "NSView"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.preferencepanes/documentation/PreferencePanes/NSPreferencePane/firstKeyView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "firstKeyView"
+        }
+      ],
+      "role": "symbol",
+      "title": "firstKeyView",
+      "type": "topic",
+      "url": "/documentation/preferencepanes/nspreferencepane/firstkeyview"
+    },
+    "doc://com.apple.preferencepanes/documentation/PreferencePanes/NSPreferencePane/init(bundle:)": {
+      "abstract": [
+        {
+          "text": "Initializes a preference pane with the specified bundle.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "bundle"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSBundle",
+          "text": "Bundle"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.preferencepanes/documentation/PreferencePanes/NSPreferencePane/init(bundle:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithBundle:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(bundle:)",
+      "type": "topic",
+      "url": "/documentation/preferencepanes/nspreferencepane/init(bundle:)"
+    },
+    "doc://com.apple.preferencepanes/documentation/PreferencePanes/NSPreferencePane/initialKeyView": {
+      "abstract": [
+        {
+          "text": "The view that should have keyboard focus when the pane is selected.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "initialKeyView"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSView",
+          "text": "NSView"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.preferencepanes/documentation/PreferencePanes/NSPreferencePane/initialKeyView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initialKeyView"
+        }
+      ],
+      "role": "symbol",
+      "title": "initialKeyView",
+      "type": "topic",
+      "url": "/documentation/preferencepanes/nspreferencepane/initialkeyview"
+    },
+    "doc://com.apple.preferencepanes/documentation/PreferencePanes/NSPreferencePane/isSelected": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the preference pane is currently selected.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "isSelected"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.preferencepanes/documentation/PreferencePanes/NSPreferencePane/isSelected",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "selected"
+        }
+      ],
+      "role": "symbol",
+      "title": "isSelected",
+      "type": "topic",
+      "url": "/documentation/preferencepanes/nspreferencepane/isselected"
+    },
+    "doc://com.apple.preferencepanes/documentation/PreferencePanes/NSPreferencePane/lastKeyView": {
+      "abstract": [
+        {
+          "text": "The last view in the keyboard focus chain.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "lastKeyView"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSView",
+          "text": "NSView"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.preferencepanes/documentation/PreferencePanes/NSPreferencePane/lastKeyView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "lastKeyView"
+        }
+      ],
+      "role": "symbol",
+      "title": "lastKeyView",
+      "type": "topic",
+      "url": "/documentation/preferencepanes/nspreferencepane/lastkeyview"
+    },
+    "doc://com.apple.preferencepanes/documentation/PreferencePanes/NSPreferencePane/loadMainView()": {
+      "abstract": [
+        {
+          "text": "Loads the preference pane’s user interface into its main view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "loadMainView"
+        },
+        {
+          "kind": "text",
+          "text": "() -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSView",
+          "text": "NSView"
+        }
+      ],
+      "identifier": "doc://com.apple.preferencepanes/documentation/PreferencePanes/NSPreferencePane/loadMainView()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "loadMainView"
+        }
+      ],
+      "role": "symbol",
+      "title": "loadMainView()",
+      "type": "topic",
+      "url": "/documentation/preferencepanes/nspreferencepane/loadmainview()"
+    },
+    "doc://com.apple.preferencepanes/documentation/PreferencePanes/NSPreferencePane/mainNibName": {
+      "abstract": [
+        {
+          "text": "The name of the preference pane’s nib file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mainNibName"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.preferencepanes/documentation/PreferencePanes/NSPreferencePane/mainNibName",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "mainNibName"
+        }
+      ],
+      "role": "symbol",
+      "title": "mainNibName",
+      "type": "topic",
+      "url": "/documentation/preferencepanes/nspreferencepane/mainnibname"
+    },
+    "doc://com.apple.preferencepanes/documentation/PreferencePanes/NSPreferencePane/mainView": {
+      "abstract": [
+        {
+          "text": "The main view of the preference pane.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mainView"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)NSView",
+          "text": "NSView"
+        }
+      ],
+      "identifier": "doc://com.apple.preferencepanes/documentation/PreferencePanes/NSPreferencePane/mainView",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "mainView"
+        }
+      ],
+      "role": "symbol",
+      "title": "mainView",
+      "type": "topic",
+      "url": "/documentation/preferencepanes/nspreferencepane/mainview"
+    },
+    "doc://com.apple.preferencepanes/documentation/PreferencePanes/NSPreferencePane/mainViewDidLoad()": {
+      "abstract": [
+        {
+          "text": "Notifies the preference pane that the main view is set up and prepared to be displayed.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "mainViewDidLoad"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.preferencepanes/documentation/PreferencePanes/NSPreferencePane/mainViewDidLoad()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "mainViewDidLoad"
+        }
+      ],
+      "role": "symbol",
+      "title": "mainViewDidLoad()",
+      "type": "topic",
+      "url": "/documentation/preferencepanes/nspreferencepane/mainviewdidload()"
+    },
+    "doc://com.apple.preferencepanes/documentation/PreferencePanes/NSPreferencePane/reply(toShouldUnselect:)": {
+      "abstract": [
+        {
+          "text": "Notifies the main application of the preference pane’s ability to be deselected.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "reply"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "toShouldUnselect"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        },
+        {
+          "kind": "text",
+          "text": ")"
+        }
+      ],
+      "identifier": "doc://com.apple.preferencepanes/documentation/PreferencePanes/NSPreferencePane/reply(toShouldUnselect:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "replyToShouldUnselect:"
+        }
+      ],
+      "role": "symbol",
+      "title": "reply(toShouldUnselect:)",
+      "type": "topic",
+      "url": "/documentation/preferencepanes/nspreferencepane/reply(toshouldunselect:)"
+    },
+    "doc://com.apple.preferencepanes/documentation/PreferencePanes/NSPreferencePane/shouldUnselect": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the preference pane is able to be deselected.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "shouldUnselect"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@NSPreferencePaneUnselectReply",
+          "text": "NSPreferencePaneUnselectReply"
+        }
+      ],
+      "identifier": "doc://com.apple.preferencepanes/documentation/PreferencePanes/NSPreferencePane/shouldUnselect",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "shouldUnselect"
+        }
+      ],
+      "role": "symbol",
+      "title": "shouldUnselect",
+      "type": "topic",
+      "url": "/documentation/preferencepanes/nspreferencepane/shouldunselect"
+    },
+    "doc://com.apple.preferencepanes/documentation/PreferencePanes/NSPreferencePane/updateHelpMenu(with:)": {
+      "abstract": [
+        {
+          "text": "Updates the help menu.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "updateHelpMenu"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "with"
+        },
+        {
+          "kind": "text",
+          "text": ": [["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": "]]?)"
+        }
+      ],
+      "identifier": "doc://com.apple.preferencepanes/documentation/PreferencePanes/NSPreferencePane/updateHelpMenu(with:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "updateHelpMenuWithArray:"
+        }
+      ],
+      "role": "symbol",
+      "title": "updateHelpMenu(with:)",
+      "type": "topic",
+      "url": "/documentation/preferencepanes/nspreferencepane/updatehelpmenu(with:)"
+    },
+    "doc://com.apple.preferencepanes/documentation/PreferencePanes/NSPreferencePane/willSelect()": {
+      "abstract": [
+        {
+          "text": "Notifies the preference pane that the main app is about to display the preference pane’s main view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "willSelect"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.preferencepanes/documentation/PreferencePanes/NSPreferencePane/willSelect()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "willSelect"
+        }
+      ],
+      "role": "symbol",
+      "title": "willSelect()",
+      "type": "topic",
+      "url": "/documentation/preferencepanes/nspreferencepane/willselect()"
+    },
+    "doc://com.apple.preferencepanes/documentation/PreferencePanes/NSPreferencePane/willUnselect()": {
+      "abstract": [
+        {
+          "text": "Notifies the preference pane that the main app is about to stop displaying the preference pane’s main view.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "willUnselect"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.preferencepanes/documentation/PreferencePanes/NSPreferencePane/willUnselect()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "willUnselect"
+        }
+      ],
+      "role": "symbol",
+      "title": "willUnselect()",
+      "type": "topic",
+      "url": "/documentation/preferencepanes/nspreferencepane/willunselect()"
+    },
+    "doc://com.apple.preferencepanes/documentation/PreferencePanes/NSPreferencePaneUnselectReply": {
+      "abstract": [
+        {
+          "text": "Constants that indicate the preference pane’s availability to be deselected.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSPreferencePaneUnselectReply"
+        }
+      ],
+      "identifier": "doc://com.apple.preferencepanes/documentation/PreferencePanes/NSPreferencePaneUnselectReply",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "NSPreferencePaneUnselectReply"
+        }
+      ],
+      "role": "symbol",
+      "title": "NSPreferencePaneUnselectReply",
+      "type": "topic",
+      "url": "/documentation/preferencepanes/nspreferencepaneunselectreply"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    },
+    "https://developer.apple.com/library/archive/documentation/FileManagement/Conceptual/FileSystemProgrammingGuide/FileSystemOverview/FileSystemOverview.html#//apple_ref/doc/uid/TP40010672-CH2-SW14": {
+      "identifier": "https://developer.apple.com/library/archive/documentation/FileManagement/Conceptual/FileSystemProgrammingGuide/FileSystemOverview/FileSystemOverview.html#//apple_ref/doc/uid/TP40010672-CH2-SW14",
+      "title": "About the macOS File System",
+      "titleInlineContent": [
+        {
+          "text": "About the macOS File System",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/FileManagement/Conceptual/FileSystemProgrammingGuide/FileSystemOverview/FileSystemOverview.html#//apple_ref/doc/uid/TP40010672-CH2-SW14"
+    },
+    "https://developer.apple.com/library/archive/documentation/FileManagement/Conceptual/FileSystemProgrammingGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40010672": {
+      "identifier": "https://developer.apple.com/library/archive/documentation/FileManagement/Conceptual/FileSystemProgrammingGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40010672",
+      "title": "File System Programming Guide",
+      "titleInlineContent": [
+        {
+          "text": "File System Programming Guide",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/library/archive/documentation/FileManagement/Conceptual/FileSystemProgrammingGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40010672"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Initializing-the-Preference-Pane",
+      "identifiers": [
+        "doc://com.apple.preferencepanes/documentation/PreferencePanes/NSPreferencePane/init(bundle:)"
+      ],
+      "title": "Initializing the Preference Pane"
+    },
+    {
+      "anchor": "Loading-the-Main-View",
+      "identifiers": [
+        "doc://com.apple.preferencepanes/documentation/PreferencePanes/NSPreferencePane/loadMainView()",
+        "doc://com.apple.preferencepanes/documentation/PreferencePanes/NSPreferencePane/assignMainView()",
+        "doc://com.apple.preferencepanes/documentation/PreferencePanes/NSPreferencePane/mainViewDidLoad()"
+      ],
+      "title": "Loading the Main View"
+    },
+    {
+      "anchor": "Getting-the-Bundle-Information",
+      "identifiers": [
+        "doc://com.apple.preferencepanes/documentation/PreferencePanes/NSPreferencePane/bundle",
+        "doc://com.apple.preferencepanes/documentation/PreferencePanes/NSPreferencePane/mainNibName",
+        "doc://com.apple.preferencepanes/documentation/PreferencePanes/NSPreferencePane/mainView"
+      ],
+      "title": "Getting the Bundle Information"
+    },
+    {
+      "anchor": "Selecting-and-Deselecting-the-Preference-Pane",
+      "identifiers": [
+        "doc://com.apple.preferencepanes/documentation/PreferencePanes/NSPreferencePane/willSelect()",
+        "doc://com.apple.preferencepanes/documentation/PreferencePanes/NSPreferencePane/didSelect()",
+        "doc://com.apple.preferencepanes/documentation/PreferencePanes/NSPreferencePane/willUnselect()",
+        "doc://com.apple.preferencepanes/documentation/PreferencePanes/NSPreferencePane/didUnselect()",
+        "doc://com.apple.preferencepanes/documentation/PreferencePanes/NSPreferencePane/isSelected",
+        "doc://com.apple.preferencepanes/documentation/PreferencePanes/NSPreferencePane/shouldUnselect",
+        "doc://com.apple.preferencepanes/documentation/PreferencePanes/NSPreferencePaneUnselectReply",
+        "doc://com.apple.preferencepanes/documentation/PreferencePanes/NSPreferencePane/reply(toShouldUnselect:)"
+      ],
+      "title": "Selecting and Deselecting the Preference Pane"
+    },
+    {
+      "anchor": "Handling-keyboard-focus",
+      "identifiers": [
+        "doc://com.apple.preferencepanes/documentation/PreferencePanes/NSPreferencePane/firstKeyView",
+        "doc://com.apple.preferencepanes/documentation/PreferencePanes/NSPreferencePane/initialKeyView",
+        "doc://com.apple.preferencepanes/documentation/PreferencePanes/NSPreferencePane/lastKeyView",
+        "doc://com.apple.preferencepanes/documentation/PreferencePanes/NSPreferencePane/autoSaveTextFields"
+      ],
+      "title": "Handling keyboard focus"
+    },
+    {
+      "anchor": "Help-Menu-support",
+      "identifiers": [
+        "doc://com.apple.preferencepanes/documentation/PreferencePanes/NSPreferencePane/updateHelpMenu(with:)"
+      ],
+      "title": "Help Menu support"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "14.0",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "10.1",
+              "name": "macOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "NSPreferencePane"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPreferencePane"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPreferencePane"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.preferencepanes/documentation/PreferencePanes"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Initializing-the-Preference-Pane",
+              "identifiers": [
+                "doc://com.apple.preferencepanes/documentation/PreferencePanes/NSPreferencePane/init(bundle:)"
+              ],
+              "title": "Initializing the Preference Pane"
+            },
+            {
+              "anchor": "Loading-the-Main-View",
+              "identifiers": [
+                "doc://com.apple.preferencepanes/documentation/PreferencePanes/NSPreferencePane/loadMainView()",
+                "doc://com.apple.preferencepanes/documentation/PreferencePanes/NSPreferencePane/assignMainView()",
+                "doc://com.apple.preferencepanes/documentation/PreferencePanes/NSPreferencePane/mainViewDidLoad()"
+              ],
+              "title": "Loading the Main View"
+            },
+            {
+              "anchor": "Getting-the-Bundle-Information",
+              "identifiers": [
+                "doc://com.apple.preferencepanes/documentation/PreferencePanes/NSPreferencePane/bundle",
+                "doc://com.apple.preferencepanes/documentation/PreferencePanes/NSPreferencePane/mainNibName",
+                "doc://com.apple.preferencepanes/documentation/PreferencePanes/NSPreferencePane/mainView"
+              ],
+              "title": "Getting the Bundle Information"
+            },
+            {
+              "anchor": "Selecting-and-Deselecting-the-Preference-Pane",
+              "identifiers": [
+                "doc://com.apple.preferencepanes/documentation/PreferencePanes/NSPreferencePane/willSelect()",
+                "doc://com.apple.preferencepanes/documentation/PreferencePanes/NSPreferencePane/didSelect()",
+                "doc://com.apple.preferencepanes/documentation/PreferencePanes/NSPreferencePane/willUnselect()",
+                "doc://com.apple.preferencepanes/documentation/PreferencePanes/NSPreferencePane/didUnselect()",
+                "doc://com.apple.preferencepanes/documentation/PreferencePanes/NSPreferencePane/isSelected",
+                "doc://com.apple.preferencepanes/documentation/PreferencePanes/NSPreferencePane/shouldUnselect",
+                "doc://com.apple.preferencepanes/documentation/PreferencePanes/NSPreferencePaneUnselectReply",
+                "doc://com.apple.preferencepanes/documentation/PreferencePanes/NSPreferencePane/reply(toShouldUnselect:)"
+              ],
+              "title": "Selecting and Deselecting the Preference Pane"
+            },
+            {
+              "anchor": "Handling-keyboard-focus",
+              "identifiers": [
+                "doc://com.apple.preferencepanes/documentation/PreferencePanes/NSPreferencePane/firstKeyView",
+                "doc://com.apple.preferencepanes/documentation/PreferencePanes/NSPreferencePane/initialKeyView",
+                "doc://com.apple.preferencepanes/documentation/PreferencePanes/NSPreferencePane/lastKeyView",
+                "doc://com.apple.preferencepanes/documentation/PreferencePanes/NSPreferencePane/autoSaveTextFields"
+              ],
+              "title": "Handling keyboard focus"
+            },
+            {
+              "anchor": "Help-Menu-support",
+              "identifiers": [
+                "doc://com.apple.preferencepanes/documentation/PreferencePanes/NSPreferencePane/updateHelpMenu(with:)"
+              ],
+              "title": "Help Menu support"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "macOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "NSPreferencePane"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.preferencepanes~1documentation~1PreferencePanes~1NSPreferencePane~1didSelect()/title",
+          "value": "didSelect"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.preferencepanes~1documentation~1PreferencePanes~1NSPreferencePane~1didSelect()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "didSelect"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.preferencepanes~1documentation~1PreferencePanes~1NSPreferencePane/title",
+          "value": "NSPreferencePane"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.preferencepanes~1documentation~1PreferencePanes~1NSPreferencePane/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPreferencePane"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.preferencepanes~1documentation~1PreferencePanes~1NSPreferencePane/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPreferencePane"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.preferencepanes~1documentation~1PreferencePanes~1NSPreferencePane~1willSelect()/title",
+          "value": "willSelect"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.preferencepanes~1documentation~1PreferencePanes~1NSPreferencePane~1willSelect()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "willSelect"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.preferencepanes~1documentation~1PreferencePanes~1NSPreferencePane~1loadMainView()/title",
+          "value": "loadMainView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.preferencepanes~1documentation~1PreferencePanes~1NSPreferencePane~1loadMainView()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "loadMainView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.preferencepanes~1documentation~1PreferencePanes~1NSPreferencePane~1autoSaveTextFields/title",
+          "value": "autoSaveTextFields"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.preferencepanes~1documentation~1PreferencePanes~1NSPreferencePane~1autoSaveTextFields/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "autoSaveTextFields"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.preferencepanes~1documentation~1PreferencePanes~1NSPreferencePane~1willUnselect()/title",
+          "value": "willUnselect"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.preferencepanes~1documentation~1PreferencePanes~1NSPreferencePane~1willUnselect()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "willUnselect"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.preferencepanes~1documentation~1PreferencePanes~1NSPreferencePane~1reply(toShouldUnselect:)/title",
+          "value": "replyToShouldUnselect:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.preferencepanes~1documentation~1PreferencePanes~1NSPreferencePane~1reply(toShouldUnselect:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "replyToShouldUnselect:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.preferencepanes~1documentation~1PreferencePanes~1NSPreferencePane~1firstKeyView/title",
+          "value": "firstKeyView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.preferencepanes~1documentation~1PreferencePanes~1NSPreferencePane~1firstKeyView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "firstKeyView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.preferencepanes~1documentation~1PreferencePanes~1NSPreferencePane~1didUnselect()/title",
+          "value": "didUnselect"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.preferencepanes~1documentation~1PreferencePanes~1NSPreferencePane~1didUnselect()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "didUnselect"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.preferencepanes~1documentation~1PreferencePanes~1NSPreferencePane~1init(bundle:)/title",
+          "value": "initWithBundle:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.preferencepanes~1documentation~1PreferencePanes~1NSPreferencePane~1init(bundle:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithBundle:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.preferencepanes~1documentation~1PreferencePanes~1NSPreferencePane~1updateHelpMenu(with:)/title",
+          "value": "updateHelpMenuWithArray:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.preferencepanes~1documentation~1PreferencePanes~1NSPreferencePane~1updateHelpMenu(with:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "updateHelpMenuWithArray:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.preferencepanes~1documentation~1PreferencePanes~1NSPreferencePane~1initialKeyView/title",
+          "value": "initialKeyView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.preferencepanes~1documentation~1PreferencePanes~1NSPreferencePane~1initialKeyView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "initialKeyView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.preferencepanes~1documentation~1PreferencePanes~1NSPreferencePane~1assignMainView()/title",
+          "value": "assignMainView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.preferencepanes~1documentation~1PreferencePanes~1NSPreferencePane~1assignMainView()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "assignMainView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.preferencepanes~1documentation~1PreferencePanes~1NSPreferencePane~1isSelected/title",
+          "value": "selected"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.preferencepanes~1documentation~1PreferencePanes~1NSPreferencePane~1isSelected/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "selected"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.preferencepanes~1documentation~1PreferencePanes~1NSPreferencePane~1shouldUnselect/title",
+          "value": "shouldUnselect"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.preferencepanes~1documentation~1PreferencePanes~1NSPreferencePane~1shouldUnselect/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "shouldUnselect"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.preferencepanes~1documentation~1PreferencePanes~1NSPreferencePane~1mainViewDidLoad()/title",
+          "value": "mainViewDidLoad"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.preferencepanes~1documentation~1PreferencePanes~1NSPreferencePane~1mainViewDidLoad()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "mainViewDidLoad"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.preferencepanes~1documentation~1PreferencePanes~1NSPreferencePane~1lastKeyView/title",
+          "value": "lastKeyView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.preferencepanes~1documentation~1PreferencePanes~1NSPreferencePane~1lastKeyView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "lastKeyView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.preferencepanes~1documentation~1PreferencePanes~1NSPreferencePane~1mainNibName/title",
+          "value": "mainNibName"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.preferencepanes~1documentation~1PreferencePanes~1NSPreferencePane~1mainNibName/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "mainNibName"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.preferencepanes~1documentation~1PreferencePanes~1NSPreferencePaneUnselectReply/title",
+          "value": "NSPreferencePaneUnselectReply"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.preferencepanes~1documentation~1PreferencePanes~1NSPreferencePaneUnselectReply/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPreferencePaneUnselectReply"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.preferencepanes~1documentation~1PreferencePanes~1NSPreferencePaneUnselectReply/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "NSPreferencePaneUnselectReply"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.preferencepanes~1documentation~1PreferencePanes~1NSPreferencePane~1mainView/title",
+          "value": "mainView"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.preferencepanes~1documentation~1PreferencePanes~1NSPreferencePane~1mainView/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "mainView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.preferencepanes~1documentation~1PreferencePanes~1NSPreferencePane~1bundle/title",
+          "value": "bundle"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.preferencepanes~1documentation~1PreferencePanes~1NSPreferencePane~1bundle/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "bundle"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/preferencepanes/nspreferencepane"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/preferencepanes/nspreferencepane"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

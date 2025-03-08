@@ -1,0 +1,1411 @@
+{
+  "abstract": [
+    {
+      "text": "Investigate your app’s workload, dependencies, performance, and memory impact using the Metal debugger.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Xcode/documentation/Xcode",
+        "doc://com.apple.Xcode/documentation/Xcode/debugging",
+        "doc://com.apple.Xcode/documentation/Xcode/Metal-debugger"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Xcode/documentation/Xcode/Analyzing-your-Metal-workload"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Analyzing your Metal workload"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Metal debugger provides useful tools for analyzing many aspects of how your app uses the GPU.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After capturing a Metal workload (see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/Capturing-a-Metal-workload-in-Xcode",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ") or replaying a GPU trace (see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/Replaying-a-GPU-trace-file",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "), the Metal debugger presents the Summary viewer.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The Summary viewer includes a preview of the last presented drawable in your app on the left, several statistics on the right, and a list of automatically generated recommendations, called Insights, at the bottom.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To the left of the Summary viewer is the Debug navigator, which enables quick access to top-level information about your Metal workload. You can explore all of the GPU commands in your capture, as well as all of the pipeline states it uses.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gputools-metal-debugger-debug-navigator-summary-page.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "View-statistics-for-your-Metal-workload",
+          "level": 3,
+          "text": "View statistics for your Metal workload",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Metal debugger automatically calculates several statistics and displays them on the right side of the Summary viewer.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Overview section includes the number of command buffers, command encoders, and draw commands or compute dispatches.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "It takes CPU time to encode commands, and GPU time to execute them.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "If your app is creating too many command buffers or command encoders that start to have a significant impact on performance, consider reducing the workload.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You can click the Show Dependencies button to open the Dependencies viewer and learn how your command encoders connect with one another (see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/Analyzing-resource-dependencies",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ").",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gputools-metal-debugger-sp-overview.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Performance section includes the total GPU time and the number of vertices.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "If your workload has a high GPU time, consider optimizing its performance (see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/Optimizing-GPU-performance",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ").",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You can also click the Show Performance button to display the Performance timeline and discover which aspects of your Metal workload are taking the most time",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "(see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/Analyzing-Apple-GPU-performance-using-a-visual-timeline",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ").",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gputools-metal-debugger-sp-performance.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "If you don’t select the Profile after Replay checkbox in the Metal Capture popover (see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.Xcode/documentation/Xcode/Capturing-a-Metal-workload-in-Xcode",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ") or the Profile GPU Trace checkbox in the Replay window (see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.Xcode/documentation/Xcode/Replaying-a-GPU-trace-file",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": "), the performance section doesn’t show any statistics.",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "To see the statistics, click the Profile button and wait for profiling to finish.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gputools-metal-debugger-sp-no-profile.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Memory section includes a brief overview of GPU memory for various resource types, such as textures and buffers.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "If your Metal workload is using a large amount of memory, consider optimizing the memory use",
+              "type": "text"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You can also click the Show Memory button to open the Memory viewer and discover which aspects of your Metal workload are using the most memory (see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.Xcode/documentation/Xcode/Analyzing-memory-usage",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ").",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gputools-metal-debugger-sp-memory.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Browse-API-calls",
+          "level": 3,
+          "text": "Browse API calls",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "By default, the Metal debugger shows an outline of captured Metal commands — grouped by command buffers, passes, and debug groups — in the Debug navigator.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "In addition, for render passes, the outline includes a list of render attachment thumbnail images.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gputools-metal-debugger-debug-navigator-group-by-api.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "It’s common for a render pass to issue a massive number of draw commands.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You can skim through the draw commands by moving your pointer over the rows to quickly locate a draw command of interest.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The Metal debugger shows a preview of the first attachment in the popover.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gputools-metal-debugger-debug-navigator-skim.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Browse-pipeline-states",
+          "level": 3,
+          "text": "Browse pipeline states",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Instead of viewing the hierarchy of Metal commands, you can begin exploring your captured Metal workload from pipeline states.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Click the Outline popup menu and select Group by Pipeline State.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gputools-metal-debugger-debug-navigator-group-by-pso.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Metal debugger shows a list of pipeline states.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Expanding a pipeline state allows you to see its shaders.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Further expansion shows all the draw commands and compute dispatches that use that pipeline state.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "With profiling data, the Debug navigator displays the percentage of samples from the shaders of each pipeline state when running the workload with overlap.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "In a shader-bound workload, this sorted list of pipeline states is helpful in identifying the most expensive pipeline state.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Improve-your-Metal-workload-with-Insights",
+          "level": 3,
+          "text": "Improve your Metal workload with Insights",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The Metal debugger automatically generates a number of recommendations, called Insights, and includes them at the bottom of the Summary viewer to help you improve your Metal workload.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "The Insights information includes the following categories:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Memory insights provide recommendations to reduce the amount of GPU memory that your workload uses. By default, Xcode sorts the recommendations by the amount of memory saved, so you can focus on the biggest potential wins first. In the following example, setting the wrong storage mode results in an additional 10.2 MB of GPU memory usage. The developer of this app can save that memory by following the advice and switching to memoryless.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Memory",
+                    "type": "text"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gputools-metal-debugger-sp-insights.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Bandwidth insights provide recommendations to reduce the amount of memory bandwidth, which is particularly important on Apple GPUs. Transfers to and from external memory often result in decreased power efficiency and slower performance. To learn more, see ",
+                        "type": "text"
+                      },
+                      {
+                        "identifier": "doc://com.apple.documentation/documentation/Metal/tailor-your-apps-for-apple-gpus-and-tile-based-deferred-rendering",
+                        "isActive": true,
+                        "type": "reference"
+                      },
+                      {
+                        "text": ".",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Bandwidth",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "Performance insights provide recommendations to increase your app’s performance by avoiding expensive and redundant operations in the rendering pipeline.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Performance",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "API Usage insights provide recommendations to improve your Metal API usage. Fewer API calls can lead to less CPU time. In the following example, you can see that the vertex and fragment buffers are redundantly bound for each draw command:",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "API Usage",
+                    "type": "text"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gputools-metal-debugger-sp-api-usage.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Click the Insights button next to the command in the Debug navigator to see in-depth details and recommendations that may improve your command.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "gputools-metal-debugger-debug-navigator-insights-popover.png",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Limit-your-scope-with-filters",
+          "level": 3,
+          "text": "Limit your scope with filters",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the filter bar at the bottom of the Debug navigator to adjust filtering criteria.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "You can type filter terms into the filter bar’s text field, and the outline in the Debug navigator shows only rows with labels that match those filter terms.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When there are two or more filter terms, you can click the filter button to choose whether to match any or all of the terms.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "For any filter term, you can click it to choose to include or exclude resources that match that term.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following additional filter tools appear to the right:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "After capturing a fresh GPU trace, you can inspect the call stack for each Metal command. This allows filtering for the stack frames in your project.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Show only related stack frames",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "This allows filtering for just the Metal commands with insights from the Metal debugger.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Show only calls with issues",
+                    "type": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "text": "This allows filtering for Metal commands like draw commands, compute dispatches, and blit operations.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "text": "Show only markers and commands",
+                    "type": "text"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "Xcode-PageImage-card.png": {
+      "alt": "The Xcode logo on a blue gradient background.",
+      "identifier": "Xcode-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/cc63eacd8f7f660388b46204d1d9bbcb/Xcode-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/62dba87d5f60ec96eb48882c9dff86d8/Xcode-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.Xcode/documentation/Xcode": {
+      "abstract": [
+        {
+          "text": "Build, test, and submit your app with Apple’s integrated development environment.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode",
+      "images": [
+        {
+          "identifier": "Xcode-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "article",
+      "role": "collection",
+      "title": "Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Analyzing-Apple-GPU-performance-using-a-visual-timeline": {
+      "abstract": [
+        {
+          "text": "Locate performance issues using the Performance timeline.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Analyzing-Apple-GPU-performance-using-a-visual-timeline",
+      "kind": "article",
+      "role": "article",
+      "title": "Analyzing Apple GPU performance using a visual timeline",
+      "type": "topic",
+      "url": "/documentation/xcode/analyzing-apple-gpu-performance-using-a-visual-timeline"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Analyzing-Apple-GPU-performance-using-counter-statistics": {
+      "abstract": [
+        {
+          "text": "Optimize performance by examining counters for individual passes and commands.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Analyzing-Apple-GPU-performance-using-counter-statistics",
+      "kind": "article",
+      "role": "article",
+      "title": "Analyzing Apple GPU performance using counter statistics",
+      "type": "topic",
+      "url": "/documentation/xcode/analyzing-apple-gpu-performance-using-counter-statistics"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Analyzing-Apple-GPU-performance-using-performance-heatmaps-a17-m3": {
+      "abstract": [
+        {
+          "text": "Gain insights to SIMD group performance by inspecting source code execution.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Analyzing-Apple-GPU-performance-using-performance-heatmaps-a17-m3",
+      "kind": "article",
+      "role": "article",
+      "title": "Analyzing Apple GPU performance with performance heat maps",
+      "type": "topic",
+      "url": "/documentation/xcode/analyzing-apple-gpu-performance-using-performance-heatmaps-a17-m3"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Analyzing-Apple-GPU-performance-using-shader-cost-graph-a17-m3": {
+      "abstract": [
+        {
+          "text": "Discover potential shader performance issues by examining pipeline states.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Analyzing-Apple-GPU-performance-using-shader-cost-graph-a17-m3",
+      "kind": "article",
+      "role": "article",
+      "title": "Analyzing Apple GPU performance using the shader cost graph",
+      "type": "topic",
+      "url": "/documentation/xcode/analyzing-apple-gpu-performance-using-shader-cost-graph-a17-m3"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Analyzing-memory-usage": {
+      "abstract": [
+        {
+          "text": "Manage your Metal app’s memory usage by inspecting its resources.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Analyzing-memory-usage",
+      "kind": "article",
+      "role": "article",
+      "title": "Analyzing memory usage",
+      "type": "topic",
+      "url": "/documentation/xcode/analyzing-memory-usage"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Analyzing-non-Apple-GPU-performance-using-counter-statistics": {
+      "abstract": [
+        {
+          "text": "Optimize performance by examining counters for individual passes and commands.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Analyzing-non-Apple-GPU-performance-using-counter-statistics",
+      "kind": "article",
+      "role": "article",
+      "title": "Analyzing non-Apple GPU performance using counter statistics",
+      "type": "topic",
+      "url": "/documentation/xcode/analyzing-non-apple-gpu-performance-using-counter-statistics"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Analyzing-resource-dependencies": {
+      "abstract": [
+        {
+          "text": "Avoid unnecessary work in your Metal app by understanding the relationships between resources.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Analyzing-resource-dependencies",
+      "kind": "article",
+      "role": "article",
+      "title": "Analyzing resource dependencies",
+      "type": "topic",
+      "url": "/documentation/xcode/analyzing-resource-dependencies"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Capturing-a-Metal-workload-in-Xcode": {
+      "abstract": [
+        {
+          "text": "Analyze your app’s performance by configuring your project to use the Metal debugger.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Capturing-a-Metal-workload-in-Xcode",
+      "kind": "article",
+      "role": "article",
+      "title": "Capturing a Metal workload in Xcode",
+      "type": "topic",
+      "url": "/documentation/xcode/capturing-a-metal-workload-in-xcode"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Metal-debugger": {
+      "abstract": [
+        {
+          "text": "Debug and profile your Metal workload with a GPU trace.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Metal-debugger",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Metal debugger",
+      "type": "topic",
+      "url": "/documentation/xcode/metal-debugger"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Optimizing-GPU-performance": {
+      "abstract": [
+        {
+          "text": "Find and address performance bottlenecks using the Metal debugger.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Optimizing-GPU-performance",
+      "kind": "article",
+      "role": "article",
+      "title": "Optimizing GPU performance",
+      "type": "topic",
+      "url": "/documentation/xcode/optimizing-gpu-performance"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/Replaying-a-GPU-trace-file": {
+      "abstract": [
+        {
+          "text": "Debug and profile your app’s performance using a GPU trace file in the Metal debugger.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/Replaying-a-GPU-trace-file",
+      "kind": "article",
+      "role": "article",
+      "title": "Replaying a GPU trace file",
+      "type": "topic",
+      "url": "/documentation/xcode/replaying-a-gpu-trace-file"
+    },
+    "doc://com.apple.Xcode/documentation/Xcode/debugging": {
+      "abstract": [
+        {
+          "text": "Identify and address issues in your app using the Xcode debugger, Xcode Organizer, Metal debugger, and Instruments.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Xcode/documentation/Xcode/debugging",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Debugging",
+      "type": "topic",
+      "url": "/documentation/xcode/debugging"
+    },
+    "doc://com.apple.documentation/documentation/Metal/tailor-your-apps-for-apple-gpus-and-tile-based-deferred-rendering": {
+      "abstract": [
+        {
+          "text": "Learn about characteristic Apple GPU features, including imageblocks, tile shaders, and raster order groups.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Metal/tailor-your-apps-for-apple-gpus-and-tile-based-deferred-rendering",
+      "kind": "article",
+      "role": "article",
+      "title": "Tailor Your Apps for Apple GPUs and Tile-Based Deferred Rendering",
+      "type": "topic",
+      "url": "/documentation/Metal/tailor-your-apps-for-apple-gpus-and-tile-based-deferred-rendering"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "gputools-metal-debugger-debug-navigator-group-by-api.png": {
+      "alt": "A screenshot of the Metal debugger highlighting the Debug navigator.",
+      "identifier": "gputools-metal-debugger-debug-navigator-group-by-api.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e8ffa5face2df1c8769704f45f582c2b/gputools-metal-debugger-debug-navigator-group-by-api.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f6ea610234dd4583bc692c4919b73f5a/gputools-metal-debugger-debug-navigator-group-by-api@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/501839816ee6701afc74b52452a36e65/gputools-metal-debugger-debug-navigator-group-by-api~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/fe935e6c8cbea254db910ba06f771f64/gputools-metal-debugger-debug-navigator-group-by-api~dark@2x.png"
+        }
+      ]
+    },
+    "gputools-metal-debugger-debug-navigator-group-by-pso.png": {
+      "alt": "A screenshot of the Metal debugger’s Debug navigator showing the commands grouped by pipeline states.",
+      "identifier": "gputools-metal-debugger-debug-navigator-group-by-pso.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a68e377cc08ba4f5ad09019f899f4a43/gputools-metal-debugger-debug-navigator-group-by-pso.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/796446141540d5b1c73aaa6e395a85a8/gputools-metal-debugger-debug-navigator-group-by-pso@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/21826b4bc88c236a183699345f184a89/gputools-metal-debugger-debug-navigator-group-by-pso~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/d50e8c5ccafb9f1bcfad9cb1ffb29e46/gputools-metal-debugger-debug-navigator-group-by-pso~dark@2x.png"
+        }
+      ]
+    },
+    "gputools-metal-debugger-debug-navigator-insights-popover.png": {
+      "alt": "A screenshot of the Insights popover with detailed information and recommendations for a command in the Debug navigator.",
+      "identifier": "gputools-metal-debugger-debug-navigator-insights-popover.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a057fca0be87b1fe971eba2314793488/gputools-metal-debugger-debug-navigator-insights-popover.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b2dd632c00ba7fd1b38d185c8d301676/gputools-metal-debugger-debug-navigator-insights-popover@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/24f49fc90ae4bc446ddd9349bf1f247d/gputools-metal-debugger-debug-navigator-insights-popover~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5226e78713f08d7bff5a285574b8c53f/gputools-metal-debugger-debug-navigator-insights-popover~dark@2x.png"
+        }
+      ]
+    },
+    "gputools-metal-debugger-debug-navigator-skim.png": {
+      "alt": "A screenshot of the Debug navigator showing the popover that appears when the pointer hovers over any command in the outline.",
+      "identifier": "gputools-metal-debugger-debug-navigator-skim.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/89c21a06c11c39202dcf0a3717e9d546/gputools-metal-debugger-debug-navigator-skim.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/006a04ff7f20fd69ca2dd01d19de59cb/gputools-metal-debugger-debug-navigator-skim@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/ed01559f723a56159c62d28cd337aeef/gputools-metal-debugger-debug-navigator-skim~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/05897dccdf08c972d111a897dfaf8c4a/gputools-metal-debugger-debug-navigator-skim~dark@2x.png"
+        }
+      ]
+    },
+    "gputools-metal-debugger-debug-navigator-summary-page.png": {
+      "alt": "A screenshot of the Metal debugger showing the Debug navigator and the Summary viewer. The Debug navigator includes top-level gauges, the Outline popup menu, the GPU trace outline, and a filter bar.",
+      "identifier": "gputools-metal-debugger-debug-navigator-summary-page.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4f52e815846e905e123034c0505357b5/gputools-metal-debugger-debug-navigator-summary-page.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/33b57024a9675b7e181693051f4397d2/gputools-metal-debugger-debug-navigator-summary-page@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/499c8aed948c5792cc522523fba5f2f6/gputools-metal-debugger-debug-navigator-summary-page~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f025b48947d354075f432a8db6d02469/gputools-metal-debugger-debug-navigator-summary-page~dark@2x.png"
+        }
+      ]
+    },
+    "gputools-metal-debugger-sp-api-usage.png": {
+      "alt": "A screenshot of the Insights section in the Summary viewer showing an API usage insight.",
+      "identifier": "gputools-metal-debugger-sp-api-usage.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/46859887d9de29edcca1dc5ea9e5c695/gputools-metal-debugger-sp-api-usage.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/e780d4fe50f19ebe89a78e2d2b428a15/gputools-metal-debugger-sp-api-usage@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/7e839ee525bc38e48219a006ce8e8bf9/gputools-metal-debugger-sp-api-usage~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/dceffaac4865bdd1f14f1e135afda70d/gputools-metal-debugger-sp-api-usage~dark@2x.png"
+        }
+      ]
+    },
+    "gputools-metal-debugger-sp-insights.png": {
+      "alt": "A screenshot of the Insights section in the Summary viewer showing a memory insight.",
+      "identifier": "gputools-metal-debugger-sp-insights.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/8ec0283cbbe495b01c3b9c31dcc30ae7/gputools-metal-debugger-sp-insights.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/54302fcdad52b0e9ae97a1b5b68baa14/gputools-metal-debugger-sp-insights@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/af552ad2becc15607bd72bea25ee4f55/gputools-metal-debugger-sp-insights~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f19389fbdcee6d5d37395903c6293360/gputools-metal-debugger-sp-insights~dark@2x.png"
+        }
+      ]
+    },
+    "gputools-metal-debugger-sp-memory.png": {
+      "alt": "A screenshot of the Summary viewer highlighting the Memory section.",
+      "identifier": "gputools-metal-debugger-sp-memory.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f011f8aee88d4a85fcf0e00bee5ea1f4/gputools-metal-debugger-sp-memory.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/868766f4a87065b54e3618acba14b913/gputools-metal-debugger-sp-memory@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4440d9c996bc18e201599e939f78e240/gputools-metal-debugger-sp-memory~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/032f532c1bb571f9cbba5910750fe814/gputools-metal-debugger-sp-memory~dark@2x.png"
+        }
+      ]
+    },
+    "gputools-metal-debugger-sp-no-profile.png": {
+      "alt": "A screenshot of the Performance section when there isn’t any profiling data displaying. The Profile button is highlighted.",
+      "identifier": "gputools-metal-debugger-sp-no-profile.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/8461886da0c9b0c200cb735c09bce2d9/gputools-metal-debugger-sp-no-profile.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/684e8b3148503f6c9bbfad5864245538/gputools-metal-debugger-sp-no-profile@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/51136773c3921e4d2ad81b405c1e0b21/gputools-metal-debugger-sp-no-profile~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/4a93daca13d43ad22d755a4327ddf2c8/gputools-metal-debugger-sp-no-profile~dark@2x.png"
+        }
+      ]
+    },
+    "gputools-metal-debugger-sp-overview.png": {
+      "alt": "A screenshot of the Summary viewer highlighting the Overview section.",
+      "identifier": "gputools-metal-debugger-sp-overview.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/0ef321c0ec006c357c0cc6091029b972/gputools-metal-debugger-sp-overview.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/a6a7a7b7fcce85a573a213dda23ef005/gputools-metal-debugger-sp-overview@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/50eaa8c143f1fd6a239d1ce911413588/gputools-metal-debugger-sp-overview~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b6e87d52850fac7041ff478ff292117d/gputools-metal-debugger-sp-overview~dark@2x.png"
+        }
+      ]
+    },
+    "gputools-metal-debugger-sp-performance.png": {
+      "alt": "A screenshot of the Summary viewer highlighting the Performance section.",
+      "identifier": "gputools-metal-debugger-sp-performance.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "1x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5bd4b8f78927e2c34ac2a4266c1d109d/gputools-metal-debugger-sp-performance.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/355c61c05ccf0e4e5948c00698450b8f/gputools-metal-debugger-sp-performance@2x.png"
+        },
+        {
+          "traits": [
+            "1x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/82d6b7654cf35433b357ee67cfa9fe9e/gputools-metal-debugger-sp-performance~dark.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/48f959b7ec8c3937cb856a5d548213eb/gputools-metal-debugger-sp-performance~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Metal-workload-analysis",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Xcode/documentation/Xcode/Analyzing-resource-dependencies",
+        "doc://com.apple.Xcode/documentation/Xcode/Analyzing-memory-usage",
+        "doc://com.apple.Xcode/documentation/Xcode/Analyzing-Apple-GPU-performance-using-a-visual-timeline",
+        "doc://com.apple.Xcode/documentation/Xcode/Analyzing-Apple-GPU-performance-using-counter-statistics",
+        "doc://com.apple.Xcode/documentation/Xcode/Analyzing-Apple-GPU-performance-using-performance-heatmaps-a17-m3",
+        "doc://com.apple.Xcode/documentation/Xcode/Analyzing-Apple-GPU-performance-using-shader-cost-graph-a17-m3",
+        "doc://com.apple.Xcode/documentation/Xcode/Analyzing-non-Apple-GPU-performance-using-counter-statistics"
+      ],
+      "title": "Metal workload analysis"
+    }
+  ]
+}

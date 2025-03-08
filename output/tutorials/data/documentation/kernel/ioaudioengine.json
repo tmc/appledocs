@@ -1,0 +1,3496 @@
+{
+  "abstract": [
+    {
+      "text": "Abstract base class for a single audio audio / I/O engine.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/kernel",
+        "doc://com.apple.documentation/documentation/kernel/hardware_families",
+        "doc://com.apple.documentation/documentation/kernel/hardware_families/audio"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/kernel/ioaudioengine"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1495510,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@S@IOAudioEngine",
+    "modules": [
+      {
+        "name": "Kernel"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "15.4",
+        "introducedAt": "10.1",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "IOAudioEngine"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "IOAudioEngine"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@S@IOService",
+              "text": "IOService"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An IOAudioEngine is defined by a single I/O engine to transfer data to or from one or more sample buffers. Each sample buffer is represented by a single IOAudioStream instance. A single IOAudioEngine must contain at least one IOAudioStream, but has no upper limit on the number of IOAudioStreams it may contain. An IOAudioEngine instance may contain both input and output IOAudioStreams.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An audio driver must subclass IOAudioEngine in order to provide certain services. An IOAudioEngine subclass must start and stop the I/O engine when requested. The I/O engine should be continuously running and loop around from end to beginning. While the audio engine is running, it must take a timestamp as the sample buffer(s) wrap around and start at the beginning. The CoreAudio.framework uses the timestamp to calculate the exact position of the audio engine. An IOAudioEngine subclass must implement getCurrentSampleFrame() to provide a sample position on demand. Finally, an IOAudioEngine subclass must provide clipping and format conversion routines to go to/from the CoreAudio.framework's native float format.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If multiple stream formats or sample rates are allowed, the IOAudioEngine subclass must provide support for changing the hardware when a format or sample rate is changed.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "There are several attributes associated with a single IOAudioEngine:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The IOAudioEngine superclass provides a shared status buffer that contains all of the dynamic pieces of information about the audio engine (type IOAudioEngineStatus). It runs an erase process on all of the output streams. The erase head is used to zero out the mix and sample buffers after the samples have been played. Additionally, the IOAudioEngine superclass handles the communication with the CoreAudio.framework and makes the decision to start and stop the audio engine when it detects it is in use.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In order for an audio device to play back or record sound, an IOAudioEngine subclass must be created. The subclass must initialize all of the necessary hardware resources to prepare for starting the audio I/O engine. It typically will perform these tasks in the initHardware() method. A subclass may also implement a stop() method which is called as the driver is being torn down. This is typically called in preparation of removing the device from the system for removable devices.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In addition to initializing the necessary hardware, there are a number of other tasks an IOAudioEngine must do during initHardware(). It must create the necessary IOAudioStream objects to match the device capabilities. Each IOAudioStream must be added using addAudioStream(). It also should create the IOAudioControls needed to control the various attributes of the audio engine: output volume, mute, input gain, input selection, analog passthru. To do that, addDefaultAudioControl() should be called with each IOAudioControl to be attached to the IOAudioEngine. In order to provide for proper synchronization, the latency of the audio engine should be specified with setSampleLatency(). This value represents the latency between the timestamp taken at the beginning of the buffer and when the audio is actually played (or recorded) by the device. If a device is block based or if there is a need to keep the CoreAudio.framework a certain number of samples ahead of (or behind for input) the I/O head, that value should be specified using setSampleOffset(). If this is not specified the CoreAudio.framework may attempt to get as close to the I/O head as possible.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following fields in the shared IOAudioEngineStatus struct must be maintained by the subclass implementation:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            " ",
+            "  <t>  fCurrentLoopCount - the number of times the sample buffer has wrapped around to the beginning",
+            "  <t>  fLastLoopTime - timestamp of the most recent time that the I/O engine looped back to the",
+            "  beginning of the sample buffer",
+            " "
+          ],
+          "metadata": {
+            "anchor": "2556494",
+            "title": "Listing 1"
+          },
+          "syntax": "occ",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "It is critically important that the fLastLoopTime field be as accurate as possible. It is the basis for the entire timer and synchronization mechanism used by the audio system.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "At init time, the IOAudioEngine subclass must call setNumSampleFramesPerBuffer() to indicate how large each of the sample buffers are (measured in sample frames). Within a single IOAudioEngine, all sample buffers must be the same size and be running at the same sample rate. If different buffers/streams can be run at different rates, separate IOAudioEngines should be used. The IOAudioEngine subclass must also call setSampleRate() at init time to indicate the starting sample rate of the device.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/kernel": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Kernel",
+      "type": "topic",
+      "url": "/documentation/kernel"
+    },
+    "doc://com.apple.documentation/documentation/kernel/hardware_families": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/hardware_families",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Hardware Families",
+      "type": "topic",
+      "url": "/documentation/kernel/hardware_families"
+    },
+    "doc://com.apple.documentation/documentation/kernel/hardware_families/audio": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/hardware_families/audio",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Audio",
+      "type": "topic",
+      "url": "/documentation/kernel/hardware_families/audio"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudiocontrol": {
+      "abstract": [
+        {
+          "text": "Represents any controllable attribute of an IOAudioDevice.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudiocontrol",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOAudioControl",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudiocontrol"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine": {
+      "abstract": [
+        {
+          "text": "Abstract base class for a single audio audio / I/O engine.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOAudioEngine",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine#2556494": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine#2556494",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/kernel/ioaudioengine#2556494"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561544-setoutputsamplelatency": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setOutputSampleLatency"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561544-setoutputsamplelatency",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setOutputSampleLatency",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/1561544-setoutputsamplelatency"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561545-setclockisstable": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setClockIsStable"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561545-setclockisstable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setClockIsStable",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/1561545-setclockisstable"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561546-getnumsampleframesperbuffer": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getNumSampleFramesPerBuffer"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561546-getnumsampleframesperbuffer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getNumSampleFramesPerBuffer",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/1561546-getnumsampleframesperbuffer"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561547-startaudioengine": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "startAudioEngine"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561547-startaudioengine",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "startAudioEngine",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/1561547-startaudioengine"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561548-getaudiostream": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getAudioStream"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561548-getaudiostream",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getAudioStream",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/1561548-getaudiostream"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561549-getstatus": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getStatus"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561549-getstatus",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getStatus",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/1561549-getstatus"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561550-sendnotification": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "sendNotification"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561550-sendnotification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sendNotification",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/1561550-sendnotification"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561551-convertinputsamplesvbr": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "convertInputSamplesVBR"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561551-convertinputsamplesvbr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "convertInputSamplesVBR",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/1561551-convertinputsamplesvbr"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561552-calculatesampletimeout": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "calculateSampleTimeout"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561552-calculatesampletimeout",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "calculateSampleTimeout",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/1561552-calculatesampletimeout"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561553-completeconfigurationchange": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "completeConfigurationChange"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561553-completeconfigurationchange",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "completeConfigurationChange",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/1561553-completeconfigurationchange"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561554-detachaudiostreams": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "detachAudioStreams"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561554-detachaudiostreams",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "detachAudioStreams",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/1561554-detachaudiostreams"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561555-removealldefaultaudiocontrols": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeAllDefaultAudioControls"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561555-removealldefaultaudiocontrols",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "removeAllDefaultAudioControls",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/1561555-removealldefaultaudiocontrols"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561556-clipoutputsamples": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "clipOutputSamples"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561556-clipoutputsamples",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "clipOutputSamples",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/1561556-clipoutputsamples"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561557-performerase": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "performErase"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561557-performerase",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "performErase",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/1561557-performerase"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561558-performflush": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "performFlush"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561558-performflush",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "performFlush",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/1561558-performflush"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561560-getbytesinoutputbufferarraydescr": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getBytesInOutputBufferArrayDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561560-getbytesinoutputbufferarraydescr",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getBytesInOutputBufferArrayDescriptor",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/1561560-getbytesinoutputbufferarraydescr"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561561-unlockallstreams": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "unlockAllStreams"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561561-unlockallstreams",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "unlockAllStreams",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/1561561-unlockallstreams"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561563-stopclient": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "stopClient"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561563-stopclient",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "stopClient",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/1561563-stopclient"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561564-getnextstreamid": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getNextStreamID"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561564-getnextstreamid",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getNextStreamID",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/1561564-getnextstreamid"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561565-removeuserclientaction": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeUserClientAction"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561565-removeuserclientaction",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "removeUserClientAction",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/1561565-removeuserclientaction"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561566-adduserclientaction": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "addUserClientAction"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561566-adduserclientaction",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "addUserClientAction",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/1561566-adduserclientaction"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561567-detachuserclientsaction": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "detachUserClientsAction"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561567-detachuserclientsaction",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "detachUserClientsAction",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/1561567-detachuserclientsaction"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561568-cancelconfigurationchange": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "cancelConfigurationChange"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561568-cancelconfigurationchange",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "cancelConfigurationChange",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/1561568-cancelconfigurationchange"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561569-resetstatusbuffer": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "resetStatusBuffer"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561569-resetstatusbuffer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "resetStatusBuffer",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/1561569-resetstatusbuffer"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561570-newuserclient": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "newUserClient"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561570-newuserclient",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "newUserClient",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/1561570-newuserclient"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561571-getrunerasehead": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getRunEraseHead"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561571-getrunerasehead",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getRunEraseHead",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/1561571-getrunerasehead"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561572-unlockstreamforio": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "unlockStreamForIO"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561572-unlockstreamforio",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "unlockStreamForIO",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/1561572-unlockstreamforio"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561573-addtimer": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "addTimer"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561573-addtimer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "addTimer",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/1561573-addtimer"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561574-getstate": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getState"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561574-getstate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getState",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/1561574-getstate"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561575-free": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "free"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561575-free",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "free",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/1561575-free"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561576-setstate": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setState"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561576-setstate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setState",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/1561576-setstate"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561577-setmixclipoverhead": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setMixClipOverhead"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561577-setmixclipoverhead",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setMixClipOverhead",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/1561577-setmixclipoverhead"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561578-resetclipposition": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "resetClipPosition"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561578-resetclipposition",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "resetClipPosition",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/1561578-resetclipposition"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561579-setnumsampleframesperbuffer": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setNumSampleFramesPerBuffer"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561579-setnumsampleframesperbuffer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setNumSampleFramesPerBuffer",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/1561579-setnumsampleframesperbuffer"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561580-lockallstreams": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "lockAllStreams"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561580-lockallstreams",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "lockAllStreams",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/1561580-lockallstreams"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561581-getstreamforid": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getStreamForID"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561581-getstreamforid",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getStreamForID",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/1561581-getstreamforid"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561582-start": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "start"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561582-start",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "start",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/1561582-start"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561583-stop": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "stop"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561583-stop",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "stop",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/1561583-stop"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561584-setindex": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setIndex"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561584-setindex",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setIndex",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/1561584-setindex"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561585-removetimer": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeTimer"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561585-removetimer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "removeTimer",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/1561585-removetimer"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561586-initkeys": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "initKeys"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561586-initkeys",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "initKeys",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/1561586-initkeys"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561587-setaudiodevice": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setAudioDevice"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561587-setaudiodevice",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setAudioDevice",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/1561587-setaudiodevice"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561588-getlocaluniqueid": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getLocalUniqueID"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561588-getlocaluniqueid",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getLocalUniqueID",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/1561588-getlocaluniqueid"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561589-performaudioenginestop": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "performAudioEngineStop"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561589-performaudioenginestop",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "performAudioEngineStop",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/1561589-performaudioenginestop"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561591-setdescription": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setDescription"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561591-setdescription",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setDescription",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/1561591-setdescription"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561592-getloopcountandtimestamp": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getLoopCountAndTimeStamp"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561592-getloopcountandtimestamp",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getLoopCountAndTimeStamp",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/1561592-getloopcountandtimestamp"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561593-getmetaclass": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getMetaClass"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561593-getmetaclass",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getMetaClass",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/1561593-getmetaclass"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561594-getglobaluniqueid": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getGlobalUniqueID"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561594-getglobaluniqueid",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getGlobalUniqueID",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/1561594-getglobaluniqueid"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561595-stopengineatposition": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "stopEngineAtPosition"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561595-stopengineatposition",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "stopEngineAtPosition",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/1561595-stopengineatposition"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561596-resumeaudioengine": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "resumeAudioEngine"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561596-resumeaudioengine",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "resumeAudioEngine",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/1561596-resumeaudioengine"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561597-pauseaudioengine": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "pauseAudioEngine"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561597-pauseaudioengine",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "pauseAudioEngine",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/1561597-pauseaudioengine"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561598-removeuserclient": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeUserClient"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561598-removeuserclient",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "removeUserClient",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/1561598-removeuserclient"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561599-performformatchange": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "performFormatChange"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561599-performformatchange",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "performFormatChange",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/1561599-performformatchange"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561600-setsamplelatency": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setSampleLatency"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561600-setsamplelatency",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setSampleLatency",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/1561600-setsamplelatency"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561601-setattributeforconnection": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setAttributeForConnection"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561601-setattributeforconnection",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setAttributeForConnection",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/1561601-setattributeforconnection"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561602-createdictionaryfromsamplerate": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "createDictionaryFromSampleRate"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561602-createdictionaryfromsamplerate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "createDictionaryFromSampleRate",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/1561602-createdictionaryfromsamplerate"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561603-setinputsampleoffset": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setInputSampleOffset"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561603-setinputsampleoffset",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setInputSampleOffset",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/1561603-setinputsampleoffset"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561604-addaudiostream": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "addAudioStream"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561604-addaudiostream",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "addAudioStream",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/1561604-addaudiostream"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561605-detachuserclients": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "detachUserClients"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561605-detachuserclients",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "detachUserClients",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/1561605-detachuserclients"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561606-incrementactiveuserclients": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "incrementActiveUserClients"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561606-incrementactiveuserclients",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "incrementActiveUserClients",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/1561606-incrementactiveuserclients"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561608-setcommandgateusage": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "setCommandGateUsage"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561608-setcommandgateusage",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setCommandGateUsage",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/1561608-setcommandgateusage"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561609-mixoutputsamples": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "mixOutputSamples"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561609-mixoutputsamples",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "mixOutputSamples",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/1561609-mixoutputsamples"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561610-inithardware": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "initHardware"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561610-inithardware",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "initHardware",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/1561610-inithardware"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561611-decrementactiveuserclients": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "decrementActiveUserClients"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561611-decrementactiveuserclients",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "decrementActiveUserClients",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/1561611-decrementactiveuserclients"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561612-startclient": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "startClient"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561612-startclient",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "startClient",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/1561612-startclient"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561613-setclockdomain": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setClockDomain"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561613-setclockdomain",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setClockDomain",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/1561613-setclockdomain"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561614-beginconfigurationchange": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "beginConfigurationChange"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561614-beginconfigurationchange",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "beginConfigurationChange",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/1561614-beginconfigurationchange"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561615-updatechannelnumbers": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "updateChannelNumbers"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561615-updatechannelnumbers",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "updateChannelNumbers",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/1561615-updatechannelnumbers"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561616-setsampleoffset": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setSampleOffset"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561616-setsampleoffset",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setSampleOffset",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/1561616-setsampleoffset"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561617-setoutputsampleoffset": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setOutputSampleOffset"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561617-setoutputsampleoffset",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setOutputSampleOffset",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/1561617-setoutputsampleoffset"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561618-adduserclient": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "addUserClient"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561618-adduserclient",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "addUserClient",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/1561618-adduserclient"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561619-sendformatchangenotification": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "sendFormatChangeNotification"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561619-sendformatchangenotification",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "sendFormatChangeNotification",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/1561619-sendformatchangenotification"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561620-clearallsamplebuffers": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "clearAllSampleBuffers"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561620-clearallsamplebuffers",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "clearAllSampleBuffers",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/1561620-clearallsamplebuffers"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561621-getneareststarttime": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getNearestStartTime"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561621-getneareststarttime",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getNearestStartTime",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/1561621-getneareststarttime"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561622-createuserclient": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "createUserClient"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561622-createuserclient",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "createUserClient",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/1561622-createuserclient"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561623-getattributeforconnection": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getAttributeForConnection"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561623-getattributeforconnection",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getAttributeForConnection",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/1561623-getattributeforconnection"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561624-timercallback": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "timerCallback"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561624-timercallback",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "timerCallback",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/1561624-timercallback"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561625-setrunerasehead": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setRunEraseHead"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561625-setrunerasehead",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setRunEraseHead",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/1561625-setrunerasehead"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561626-getbytesininputbufferarraydescri": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getBytesInInputBufferArrayDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561626-getbytesininputbufferarraydescri",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getBytesInInputBufferArrayDescriptor",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/1561626-getbytesininputbufferarraydescri"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561627-getstatusdescriptor": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getStatusDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561627-getstatusdescriptor",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getStatusDescriptor",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/1561627-getstatusdescriptor"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561628-performaudioenginestart": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "performAudioEngineStart"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561628-performaudioenginestart",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "performAudioEngineStart",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/1561628-performaudioenginestart"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561629-taketimestamp": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "takeTimeStamp"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561629-taketimestamp",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "takeTimeStamp",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/1561629-taketimestamp"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561630-eraseoutputsamples": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "eraseOutputSamples"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561630-eraseoutputsamples",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "eraseOutputSamples",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/1561630-eraseoutputsamples"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561631-convertinputsamples": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "convertInputSamples"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561631-convertinputsamples",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "convertInputSamples",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/1561631-convertinputsamples"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561632-lockstreamforio": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "lockStreamForIO"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561632-lockstreamforio",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "lockStreamForIO",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/1561632-lockstreamforio"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561633-stopaudioengine": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "stopAudioEngine"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561633-stopaudioengine",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "stopAudioEngine",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/1561633-stopaudioengine"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561634-gettimerinterval": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getTimerInterval"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561634-gettimerinterval",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getTimerInterval",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/1561634-gettimerinterval"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561635-getworkloop": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getWorkLoop"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561635-getworkloop",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getWorkLoop",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/1561635-getworkloop"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561636-getcurrentsampleframe": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getCurrentSampleFrame"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561636-getcurrentsampleframe",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getCurrentSampleFrame",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/1561636-getcurrentsampleframe"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561637-hardwaresampleratechanged": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "hardwareSampleRateChanged"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561637-hardwaresampleratechanged",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hardwareSampleRateChanged",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/1561637-hardwaresampleratechanged"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561638-registerservice": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "registerService"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561638-registerservice",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "registerService",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/1561638-registerservice"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561639-adddefaultaudiocontrol": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "addDefaultAudioControl"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561639-adddefaultaudiocontrol",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "addDefaultAudioControl",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/1561639-adddefaultaudiocontrol"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561640-setinputsamplelatency": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setInputSampleLatency"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561640-setinputsamplelatency",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setInputSampleLatency",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/1561640-setinputsamplelatency"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561641-clientclosed": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "clientClosed"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561641-clientclosed",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "clientClosed",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/1561641-clientclosed"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561642-waitforengineresume": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "waitForEngineResume"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561642-waitforengineresume",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "waitForEngineResume",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/1561642-waitforengineresume"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561643-setworklooponallaudiocontrols": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setWorkLoopOnAllAudioControls"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561643-setworklooponallaudiocontrols",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setWorkLoopOnAllAudioControls",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/1561643-setworklooponallaudiocontrols"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561644-getsamplerate": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getSampleRate"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561644-getsamplerate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getSampleRate",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/1561644-getsamplerate"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561646-getcommandgate": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getCommandGate"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561646-getcommandgate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getCommandGate",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/1561646-getcommandgate"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561647-createsampleratefromdictionary": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "createSampleRateFromDictionary"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561647-createsampleratefromdictionary",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "createSampleRateFromDictionary",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/1561647-createsampleratefromdictionary"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561648-removedefaultaudiocontrol": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeDefaultAudioControl"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561648-removedefaultaudiocontrol",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "removeDefaultAudioControl",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/1561648-removedefaultaudiocontrol"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561649-setsamplerate": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setSampleRate"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561649-setsamplerate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setSampleRate",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/1561649-setsamplerate"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561651-init": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561651-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/1561651-init"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561652-timerfired": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "timerFired"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561652-timerfired",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "timerFired",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/1561652-timerfired"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1812081-addaudiostream": {
+      "abstract": [
+        {
+          "text": "Adds an IOAudioStream to the audio engine.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1812081-addaudiostream",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "addAudioStream",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/1812081-addaudiostream"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1812084-addtimer": {
+      "abstract": [
+        {
+          "text": "Enables the timer event for the audio engine.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1812084-addtimer",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "addTimer",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/1812084-addtimer"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1812089-clearallsamplebuffers": {
+      "abstract": [
+        {
+          "text": "Zeros out all of the sample and mix buffers associated with the IOAudioEngine",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1812089-clearallsamplebuffers",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "clearAllSampleBuffers",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/1812089-clearallsamplebuffers"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1812093-clientclosed": {
+      "abstract": [
+        {
+          "text": "Called automatically when a user client closes its connection to the audio engine.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1812093-clientclosed",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "clientClosed",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/1812093-clientclosed"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1812098-convertinputsamplesvbr": {
+      "abstract": [
+        {
+          "text": "Override this method if you want to return a different number of sample frames than was requested.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1812098-convertinputsamplesvbr",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "convertInputSamplesVBR",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/1812098-convertinputsamplesvbr"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1812105-createdictionaryfromsamplerate": {
+      "abstract": [
+        {
+          "text": "Generates a dictionary matching the given sample rate.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1812105-createdictionaryfromsamplerate",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "createDictionaryFromSampleRate",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/1812105-createdictionaryfromsamplerate"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1812109-createsampleratefromdictionary": {
+      "abstract": [
+        {
+          "text": "Generates a sample rate from an OSDictionary.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1812109-createsampleratefromdictionary",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "createSampleRateFromDictionary",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/1812109-createsampleratefromdictionary"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1812115-eraseoutputsamples": {
+      "abstract": [
+        {
+          "text": "This function allows for the actual erasing of the mix and sample buffer to be overridden by a child class.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1812115-eraseoutputsamples",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "eraseOutputSamples",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/1812115-eraseoutputsamples"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1812122-free": {
+      "abstract": [
+        {
+          "text": "Frees all of the resources allocated by the IOAudioEngine.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1812122-free",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "free",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/1812122-free"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1812127-getattributeforconnection": {
+      "abstract": [
+        {
+          "text": "Generic method to retrieve some attribute of the audio engine, specific to one connection.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1812127-getattributeforconnection",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getAttributeForConnection",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/1812127-getattributeforconnection"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1812131-getcommandgate": {
+      "abstract": [
+        {
+          "text": "Returns the IOCommandGate for this IOAudioEngine.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1812131-getcommandgate",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getCommandGate",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/1812131-getcommandgate"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1812136-getcurrentsampleframe": {
+      "abstract": [
+        {
+          "text": "Gets the current sample frame from the IOAudioEngine subclass.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1812136-getcurrentsampleframe",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getCurrentSampleFrame",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/1812136-getcurrentsampleframe"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1812140-getrunerasehead": {
+      "abstract": [
+        {
+          "text": "Returns true if the audio engine will run the erase head when the audio engine is running.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1812140-getrunerasehead",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getRunEraseHead",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/1812140-getrunerasehead"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1812148-getsamplerate": {
+      "abstract": [
+        {
+          "text": "Returns the sample rate of the IOAudioEngine in samples per second.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1812148-getsamplerate",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getSampleRate",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/1812148-getsamplerate"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1812155-getstate": {
+      "abstract": [
+        {
+          "text": "Returns the current state of the IOAudioEngine.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1812155-getstate",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getState",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/1812155-getstate"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1812164-getstatus": {
+      "abstract": [
+        {
+          "text": "Returns a pointer to the shared status buffer.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1812164-getstatus",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getStatus",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/1812164-getstatus"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1812174-gettimerinterval": {
+      "abstract": [
+        {
+          "text": "Gets the timer interval for use by the timer event.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1812174-gettimerinterval",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getTimerInterval",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/1812174-gettimerinterval"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1812185-getworkloop": {
+      "abstract": [
+        {
+          "text": "Returns the IOWorkLoop for the driver.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1812185-getworkloop",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "getWorkLoop",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/1812185-getworkloop"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1812194-init": {
+      "abstract": [
+        {
+          "text": "Performs initialization of a newly allocated IOAudioEngine.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1812194-init",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "init",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/1812194-init"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1812206-inithardware": {
+      "abstract": [
+        {
+          "text": "This function is called by start() to provide a convenient place for the subclass to perform its hardware initialization.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1812206-inithardware",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "initHardware",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/1812206-inithardware"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1812218-initkeys": {
+      "abstract": [
+        {
+          "text": "Generates the OSSymbols with the keys.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1812218-initkeys",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "initKeys",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/1812218-initkeys"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1812227-newuserclient": {
+      "abstract": [
+        {
+          "text": "Requests a new user client object for this service.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1812227-newuserclient",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "newUserClient",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/1812227-newuserclient"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1812238-performaudioenginestart": {
+      "abstract": [
+        {
+          "text": "Called to start the audio I/O engine",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1812238-performaudioenginestart",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "performAudioEngineStart",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/1812238-performaudioenginestart"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1812251-performaudioenginestop": {
+      "abstract": [
+        {
+          "text": "Called to stop the audio I/O engine",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1812251-performaudioenginestop",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "performAudioEngineStop",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/1812251-performaudioenginestop"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1812263-performerase": {
+      "abstract": [
+        {
+          "text": "Performs erase head processing.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1812263-performerase",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "performErase",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/1812263-performerase"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1812272-performflush": {
+      "abstract": [
+        {
+          "text": "Performs the flush operation.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1812272-performflush",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "performFlush",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/1812272-performflush"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1812282-registerservice": {
+      "abstract": [
+        {
+          "text": "Called when this audio engine is ready to begin vending services.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1812282-registerservice",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "registerService",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/1812282-registerservice"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1812286-removetimer": {
+      "abstract": [
+        {
+          "text": "Disables the timer event for the audio engine.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1812286-removetimer",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "removeTimer",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/1812286-removetimer"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1812290-resetstatusbuffer": {
+      "abstract": [
+        {
+          "text": "Resets the status buffer to its default values.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1812290-resetstatusbuffer",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "resetStatusBuffer",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/1812290-resetstatusbuffer"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1812296-setattributeforconnection": {
+      "abstract": [
+        {
+          "text": "Generic method to set some attribute of the audio engine, specific to one connection.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1812296-setattributeforconnection",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setAttributeForConnection",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/1812296-setattributeforconnection"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1812301-setclockdomain": {
+      "abstract": [
+        {
+          "text": "Sets a property that CoreAudio uses to determine how devices are synchronized. If an audio device can tell that it is synchronized to another engine, it should set this value to that engine's clock domain. If an audio device can be a primary clock, it may publish its own clock domain for other devices to use.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1812301-setclockdomain",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setClockDomain",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/1812301-setclockdomain"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1812306-setclockisstable": {
+      "abstract": [
+        {
+          "text": "This function sets a flag that CoreAudio uses to select its sample rate tracking algorithm. Set this to TRUE unless that results in dropped audio. If the driver is experiencing unexplained dropouts setting this FALSE might help.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1812306-setclockisstable",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setClockIsStable",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/1812306-setclockisstable"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1812309-setinputsampleoffset": {
+      "abstract": [
+        {
+          "text": "set the offset CoreAudio will read from off the current read pointer",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1812309-setinputsampleoffset",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setInputSampleOffset",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/1812309-setinputsampleoffset"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1812312-setmixclipoverhead": {
+      "abstract": [
+        {
+          "text": "Used to tell IOAudioFamily when the watchdog timer must fire by.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1812312-setmixclipoverhead",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setMixClipOverhead",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/1812312-setmixclipoverhead"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1812315-setoutputsampleoffset": {
+      "abstract": [
+        {
+          "text": "set the offset CoreAudio will write at off the current write pointer",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1812315-setoutputsampleoffset",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setOutputSampleOffset",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/1812315-setoutputsampleoffset"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1812317-setrunerasehead": {
+      "abstract": [
+        {
+          "text": "Tells the audio engine whether or not to run the erase head.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1812317-setrunerasehead",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setRunEraseHead",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/1812317-setrunerasehead"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1812320-setsamplelatency": {
+      "abstract": [
+        {
+          "text": "Sets the sample latency for the audio engine.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1812320-setsamplelatency",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setSampleLatency",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/1812320-setsamplelatency"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1812325-setsamplerate": {
+      "abstract": [
+        {
+          "text": "Records the sample rate of the audio engine.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1812325-setsamplerate",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setSampleRate",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/1812325-setsamplerate"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1812329-setstate": {
+      "abstract": [
+        {
+          "text": "Indicates that the audio engine is in the specified state.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1812329-setstate",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "setState",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/1812329-setstate"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1812338-start": {
+      "abstract": [
+        {
+          "text": "A simple cover function for start(IOService *, IOAudioDevice *) that assumes the provider is the IOAudioDevice.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1812338-start",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "start(IOService *)",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/1812338-start"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1812342-start": {
+      "abstract": [
+        {
+          "text": "Standard IOKit start() routine called to start an IOService.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1812342-start",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "start(IOService *, IOAudioDevice *)",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/1812342-start"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1812346-startaudioengine": {
+      "abstract": [
+        {
+          "text": "Starts the audio I/O engine.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1812346-startaudioengine",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "startAudioEngine",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/1812346-startaudioengine"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1812350-stop": {
+      "abstract": [
+        {
+          "text": "Stops the service and prepares for the driver to be terminated.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1812350-stop",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "stop",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/1812350-stop"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1812359-stopaudioengine": {
+      "abstract": [
+        {
+          "text": "Stops the audio I/O engine.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1812359-stopaudioengine",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "stopAudioEngine",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/1812359-stopaudioengine"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1812365-timercallback": {
+      "abstract": [
+        {
+          "text": "A static method used as a callback for the IOAudioDevice timer services.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1812365-timercallback",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "timerCallback",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/1812365-timercallback"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1812371-timerfired": {
+      "abstract": [
+        {
+          "text": "Indicates the timer has fired.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1812371-timerfired",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "timerFired",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/1812371-timerfired"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/3516522-createuserclient": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "createUserClient"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/3516522-createuserclient",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "createUserClient",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/3516522-createuserclient"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/3516523-newuserclient": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "newUserClient"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/3516523-newuserclient",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "newUserClient",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/3516523-newuserclient"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/3516524-performformatchange": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "performFormatChange"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/3516524-performformatchange",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "performFormatChange",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/3516524-performformatchange"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/3516525-start": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "start"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/3516525-start",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "start",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/3516525-start"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/3593108-calculatesampletimeouthires": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "calculateSampleTimeoutHiRes"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/3593108-calculatesampletimeouthires",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "calculateSampleTimeoutHiRes",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/3593108-calculatesampletimeouthires"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/3593109-usehiressampleinterval": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "useHiResSampleInterval"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/3593109-usehiressampleinterval",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "useHiResSampleInterval",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/3593109-usehiressampleinterval"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/3608701-driverdesireshiressampleinterval": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "driverDesiresHiResSampleIntervals"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/3608701-driverdesireshiressampleinterval",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "driverDesiresHiResSampleIntervals",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/3608701-driverdesireshiressampleinterval"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/audiodevice": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/audiodevice",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "audioDevice",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/audiodevice"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/audioenginestopposition": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/audioenginestopposition",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "audioEngineStopPosition",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/audioenginestopposition"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/commandgate": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/commandgate",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "commandGate",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/commandgate"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/configurationchangeinprogress": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/configurationchangeinprogress",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "configurationChangeInProgress",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/configurationchangeinprogress"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/defaultaudiocontrols": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/defaultaudiocontrols",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "defaultAudioControls",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/defaultaudiocontrols"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/devicestartedaudioengine": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/devicestartedaudioengine",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "deviceStartedAudioEngine",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/devicestartedaudioengine"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/gsampleratefractionkey": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/gsampleratefractionkey",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "gSampleRateFractionKey",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/gsampleratefractionkey"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/gsampleratewholenumberkey": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/gsampleratewholenumberkey",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "gSampleRateWholeNumberKey",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/gsampleratewholenumberkey"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/inputstreams": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/inputstreams",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "inputStreams",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/inputstreams"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/isregistered": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/isregistered",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "isRegistered",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/isregistered"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/numactiveuserclients": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/numactiveuserclients",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "numActiveUserClients",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/numactiveuserclients"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/numerasesperbuffer": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/numerasesperbuffer",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "numErasesPerBuffer",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/numerasesperbuffer"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/numsampleframesperbuffer": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/numsampleframesperbuffer",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "numSampleFramesPerBuffer",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/numsampleframesperbuffer"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/outputstreams": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/outputstreams",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "outputStreams",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/outputstreams"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/runerasehead": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/runerasehead",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "runEraseHead",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/runerasehead"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/samplerate": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/samplerate",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "sampleRate",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/samplerate"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/state": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/state",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "state",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/state"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/status": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/status",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "status",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/status"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/userclients": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/userclients",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "userClients",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/userclients"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine/workloop": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine/workloop",
+      "kind": "symbol",
+      "role": "pseudoSymbol",
+      "title": "workLoop",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine/workloop"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudiolevelcontrol": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudiolevelcontrol",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOAudioLevelControl",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudiolevelcontrol"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioport": {
+      "abstract": [
+        {
+          "text": "Represents a logical or physical port or functional unit in an audio device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioport",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOAudioPort",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioport"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioselectorcontrol": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioselectorcontrol",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOAudioSelectorControl",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioselectorcontrol"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudiostream": {
+      "abstract": [
+        {
+          "text": "This class wraps a single sample buffer in an audio driver.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudiostream",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOAudioStream",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudiostream"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudiotogglecontrol": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudiotogglecontrol",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOAudioToggleControl",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudiotogglecontrol"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOService",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/ioservice"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/ioaudiolevelcontrol",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioselectorcontrol",
+        "doc://com.apple.documentation/documentation/kernel/ioaudiotogglecontrol",
+        "doc://com.apple.documentation/documentation/kernel/ioaudiocontrol",
+        "doc://com.apple.documentation/documentation/kernel/ioaudiostream",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioport"
+      ],
+      "title": "Interfaces"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "1818840",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1812081-addaudiostream",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1812084-addtimer",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1812089-clearallsamplebuffers",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1812093-clientclosed",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1812098-convertinputsamplesvbr",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1812105-createdictionaryfromsamplerate",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1812109-createsampleratefromdictionary",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1812115-eraseoutputsamples",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1812122-free",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1812127-getattributeforconnection",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1812131-getcommandgate",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1812136-getcurrentsampleframe",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1812140-getrunerasehead",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1812148-getsamplerate",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1812155-getstate",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1812164-getstatus",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1812174-gettimerinterval",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1812185-getworkloop",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1812194-init",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1812206-inithardware",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1812218-initkeys",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1812227-newuserclient",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1812238-performaudioenginestart",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1812251-performaudioenginestop",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1812263-performerase",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1812272-performflush",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1812282-registerservice",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1812286-removetimer",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1812290-resetstatusbuffer",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1812296-setattributeforconnection",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1812301-setclockdomain",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1812306-setclockisstable",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1812309-setinputsampleoffset",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1812312-setmixclipoverhead",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1812315-setoutputsampleoffset",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1812317-setrunerasehead",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1812320-setsamplelatency",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1812325-setsamplerate",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1812329-setstate",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1812338-start",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1812342-start",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1812346-startaudioengine",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1812350-stop",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1812359-stopaudioengine",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1812365-timercallback",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1812371-timerfired"
+      ],
+      "kind": "taskGroup",
+      "title": "Miscellaneous"
+    },
+    {
+      "anchor": "1818970",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/gsampleratewholenumberkey",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/gsampleratefractionkey"
+      ],
+      "kind": "taskGroup",
+      "title": "Constants"
+    },
+    {
+      "anchor": "1818977",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/workloop",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/userclients",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/status",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/state",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/samplerate",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/runerasehead",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/outputstreams",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/numsampleframesperbuffer",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/numerasesperbuffer",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/numactiveuserclients",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/isregistered",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/inputstreams",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/devicestartedaudioengine",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/defaultaudiocontrols",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/configurationchangeinprogress",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/commandgate",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/audioenginestopposition",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/audiodevice"
+      ],
+      "kind": "taskGroup",
+      "title": "Instance Variables"
+    },
+    {
+      "anchor": "2857575",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561604-addaudiostream",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561639-adddefaultaudiocontrol",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561573-addtimer",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561618-adduserclient",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561614-beginconfigurationchange",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561552-calculatesampletimeout",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/3593108-calculatesampletimeouthires",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561568-cancelconfigurationchange",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561620-clearallsamplebuffers",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561641-clientclosed",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561556-clipoutputsamples",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561553-completeconfigurationchange",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561631-convertinputsamples",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561551-convertinputsamplesvbr",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561622-createuserclient",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/3516522-createuserclient",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561611-decrementactiveuserclients",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561554-detachaudiostreams",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561605-detachuserclients",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/3608701-driverdesireshiressampleinterval",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561630-eraseoutputsamples",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561575-free",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561623-getattributeforconnection",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561548-getaudiostream",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561626-getbytesininputbufferarraydescri",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561560-getbytesinoutputbufferarraydescr",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561646-getcommandgate",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561636-getcurrentsampleframe",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561594-getglobaluniqueid",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561588-getlocaluniqueid",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561592-getloopcountandtimestamp",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561593-getmetaclass",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561621-getneareststarttime",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561564-getnextstreamid",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561546-getnumsampleframesperbuffer",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561571-getrunerasehead",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561644-getsamplerate",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561574-getstate",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561549-getstatus",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561627-getstatusdescriptor",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561581-getstreamforid",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561634-gettimerinterval",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561635-getworkloop",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561637-hardwaresampleratechanged",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561606-incrementactiveuserclients",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561651-init",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561610-inithardware",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561580-lockallstreams",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561609-mixoutputsamples",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561570-newuserclient",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/3516523-newuserclient",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561597-pauseaudioengine",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561628-performaudioenginestart",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561589-performaudioenginestop",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561557-performerase",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561558-performflush",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561599-performformatchange",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/3516524-performformatchange",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561638-registerservice",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561555-removealldefaultaudiocontrols",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561648-removedefaultaudiocontrol",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561585-removetimer",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561598-removeuserclient",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561578-resetclipposition",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561569-resetstatusbuffer",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561596-resumeaudioengine",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561619-sendformatchangenotification",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561550-sendnotification",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561601-setattributeforconnection",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561587-setaudiodevice",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561613-setclockdomain",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561545-setclockisstable",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561591-setdescription",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561584-setindex",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561640-setinputsamplelatency",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561603-setinputsampleoffset",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561577-setmixclipoverhead",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561579-setnumsampleframesperbuffer",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561544-setoutputsamplelatency",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561617-setoutputsampleoffset",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561625-setrunerasehead",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561600-setsamplelatency",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561616-setsampleoffset",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561649-setsamplerate",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561576-setstate",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561643-setworklooponallaudiocontrols",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561582-start",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/3516525-start",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561547-startaudioengine",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561612-startclient",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561583-stop",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561633-stopaudioengine",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561563-stopclient",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561595-stopengineatposition",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561629-taketimestamp",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561652-timerfired",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561561-unlockallstreams",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561615-updatechannelnumbers",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/3593109-usehiressampleinterval",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561642-waitforengineresume"
+      ],
+      "kind": "taskGroup",
+      "title": "Instance Methods"
+    },
+    {
+      "anchor": "2857576",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561566-adduserclientaction",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561602-createdictionaryfromsamplerate",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561647-createsampleratefromdictionary",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561567-detachuserclientsaction",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561586-initkeys",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561632-lockstreamforio",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561565-removeuserclientaction",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561608-setcommandgateusage",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561624-timercallback",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine/1561572-unlockstreamforio"
+      ],
+      "kind": "taskGroup",
+      "title": "Type Methods"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/kernel/ioaudioengine"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

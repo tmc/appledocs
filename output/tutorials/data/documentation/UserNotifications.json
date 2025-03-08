@@ -1,0 +1,2460 @@
+{
+  "abstract": [
+    {
+      "text": "Push user-facing notifications to the user’s device from a server, or generate them locally from your app.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.usernotifications/documentation/UserNotifications"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "UserNotifications",
+    "images": [
+      {
+        "identifier": "UserNotifications-PageImage-card.png",
+        "type": "card"
+      }
+    ],
+    "modules": [
+      {
+        "name": "User Notifications"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "10.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "10.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "13.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "beta": false,
+        "introducedAt": "10.14",
+        "name": "macOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "10.0",
+        "name": "tvOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "3.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "collection",
+    "roleHeading": "Framework",
+    "symbolKind": "module",
+    "title": "User Notifications"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "User-facing notifications communicate important information to users of your app, regardless of whether your app is running on the user’s device. For example, a sports app can let the user know when their favorite team scores. Notifications can also tell your app to download information and update its interface. Notifications can display an alert, play a sound, or badge the app’s icon.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-4182210",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can generate notifications locally from your app or remotely from a server that you manage. For ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "local notifications",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", the app creates the notification content and specifies a condition, like a time or location, that triggers the delivery of the notification. For ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "remote notifications",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": ", your company’s server generates push notifications, and Apple Push Notification service (APNs) handles the delivery of those notifications to the user’s devices.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use this framework to do the following:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Define the types of notifications that your app supports.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Define any custom actions associated with your notification types.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Schedule local notifications for delivery.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Process already delivered notifications.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Respond to user-selected actions.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system makes every attempt to deliver local and remote notifications in a timely manner, but delivery isn’t guaranteed. The PushKit framework offers a more timely delivery mechanism for specific types of notifications, such as those VoIP and watchOS complications use. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/PushKit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For webpages in Safari version 16.0 and higher, generate remote notifications from a server that you manage using ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://www.w3.org/TR/push-api/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " code that works in Safari and other browsers.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "Siri can provide suggestions to users in search, News, Safari, and other apps using on-device information that your app contributes through the Notifications API. Users can change this functionality to allow at any time through Siri and Search settings for your app.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For design guidance, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/design/human-interface-guidelines/ios/system-capabilities/notifications/",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "UserNotifications-PageImage-card.png": {
+      "alt": "[A notification interface displayed on the lock screen of an iOS device.]",
+      "identifier": "UserNotifications-PageImage-card.png",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/074de9a9213bf2905d67fae5eb46e4f8/UserNotifications-PageImage-card@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/5733742e1c084fc202b3c92df9083686/UserNotifications-PageImage-card~dark@2x.png"
+        }
+      ]
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Entitlements/aps-environment": {
+      "abstract": [
+        {
+          "text": "The environment for push notifications.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/aps-environment",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "APS Environment Entitlement",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Entitlements/aps-environment"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.aps-environment": {
+      "abstract": [
+        {
+          "text": "The environment for push notifications in macOS apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.aps-environment",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "APS Environment (macOS) Entitlement",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Entitlements/com.apple.developer.aps-environment"
+    },
+    "doc://com.apple.documentation/documentation/PushKit": {
+      "abstract": [
+        {
+          "text": "Respond to push notifications related to your app’s complications, file providers, and VoIP services.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/PushKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "PushKit",
+      "type": "topic",
+      "url": "/documentation/PushKit"
+    },
+    "doc://com.apple.documentation/documentation/Updates/UserNotifications": {
+      "abstract": [
+        {
+          "text": "Learn about important changes in User Notifications.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Updates/UserNotifications",
+      "kind": "article",
+      "role": "article",
+      "title": "User Notifications updates",
+      "type": "topic",
+      "url": "/documentation/Updates/UserNotifications"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications": {
+      "abstract": [
+        {
+          "text": "Push user-facing notifications to the user’s device from a server, or generate them locally from your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications",
+      "images": [
+        {
+          "identifier": "UserNotifications-PageImage-card.png",
+          "type": "card"
+        }
+      ],
+      "kind": "symbol",
+      "role": "collection",
+      "title": "User Notifications",
+      "type": "topic",
+      "url": "/documentation/usernotifications"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/UNCalendarNotificationTrigger": {
+      "abstract": [
+        {
+          "text": "A trigger condition that causes a notification the system delivers at a specific date and time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UNCalendarNotificationTrigger"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/UNCalendarNotificationTrigger",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UNCalendarNotificationTrigger"
+        }
+      ],
+      "role": "symbol",
+      "title": "UNCalendarNotificationTrigger",
+      "type": "topic",
+      "url": "/documentation/usernotifications/uncalendarnotificationtrigger"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/UNLocationNotificationTrigger": {
+      "abstract": [
+        {
+          "text": "A trigger condition that causes the system to deliver a notification when the user’s device enters or exits a geographic region you specify.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UNLocationNotificationTrigger"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/UNLocationNotificationTrigger",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UNLocationNotificationTrigger"
+        }
+      ],
+      "role": "symbol",
+      "title": "UNLocationNotificationTrigger",
+      "type": "topic",
+      "url": "/documentation/usernotifications/unlocationnotificationtrigger"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/UNMutableNotificationContent": {
+      "abstract": [
+        {
+          "text": "The editable content for a notification.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UNMutableNotificationContent"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/UNMutableNotificationContent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UNMutableNotificationContent"
+        }
+      ],
+      "role": "symbol",
+      "title": "UNMutableNotificationContent",
+      "type": "topic",
+      "url": "/documentation/usernotifications/unmutablenotificationcontent"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotification": {
+      "abstract": [
+        {
+          "text": "The data for a local or remote notification the system delivers to your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UNNotification"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotification",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UNNotification"
+        }
+      ],
+      "role": "symbol",
+      "title": "UNNotification",
+      "type": "topic",
+      "url": "/documentation/usernotifications/unnotification"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationAction": {
+      "abstract": [
+        {
+          "text": "A task your app performs in response to a notification that the system delivers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UNNotificationAction"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationAction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UNNotificationAction"
+        }
+      ],
+      "role": "symbol",
+      "title": "UNNotificationAction",
+      "type": "topic",
+      "url": "/documentation/usernotifications/unnotificationaction"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationActionIcon": {
+      "abstract": [
+        {
+          "text": "An icon associated with an action.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UNNotificationActionIcon"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationActionIcon",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UNNotificationActionIcon"
+        }
+      ],
+      "role": "symbol",
+      "title": "UNNotificationActionIcon",
+      "type": "topic",
+      "url": "/documentation/usernotifications/unnotificationactionicon"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationAttachment": {
+      "abstract": [
+        {
+          "text": "A media file associated with a notification.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UNNotificationAttachment"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationAttachment",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UNNotificationAttachment"
+        }
+      ],
+      "role": "symbol",
+      "title": "UNNotificationAttachment",
+      "type": "topic",
+      "url": "/documentation/usernotifications/unnotificationattachment"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationAttributedMessageContext": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UNNotificationAttributedMessageContext"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationAttributedMessageContext",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UNNotificationAttributedMessageContext"
+        }
+      ],
+      "role": "symbol",
+      "title": "UNNotificationAttributedMessageContext",
+      "type": "topic",
+      "url": "/documentation/usernotifications/unnotificationattributedmessagecontext"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationCategory": {
+      "abstract": [
+        {
+          "text": "A type of notification your app supports and the custom actions that the system displays.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UNNotificationCategory"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationCategory",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UNNotificationCategory"
+        }
+      ],
+      "role": "symbol",
+      "title": "UNNotificationCategory",
+      "type": "topic",
+      "url": "/documentation/usernotifications/unnotificationcategory"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationContent": {
+      "abstract": [
+        {
+          "text": "The uneditable content of a notification.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UNNotificationContent"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationContent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UNNotificationContent"
+        }
+      ],
+      "role": "symbol",
+      "title": "UNNotificationContent",
+      "type": "topic",
+      "url": "/documentation/usernotifications/unnotificationcontent"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationContentProviding": {
+      "abstract": [
+        {
+          "text": "A protocol the system uses to provide context relevant to user notifications.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UNNotificationContentProviding"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationContentProviding",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UNNotificationContentProviding"
+        }
+      ],
+      "role": "symbol",
+      "title": "UNNotificationContentProviding",
+      "type": "topic",
+      "url": "/documentation/usernotifications/unnotificationcontentproviding"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationRequest": {
+      "abstract": [
+        {
+          "text": "A request to schedule a local notification, which includes the content of the notification and the trigger conditions for delivery.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UNNotificationRequest"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationRequest",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UNNotificationRequest"
+        }
+      ],
+      "role": "symbol",
+      "title": "UNNotificationRequest",
+      "type": "topic",
+      "url": "/documentation/usernotifications/unnotificationrequest"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationResponse": {
+      "abstract": [
+        {
+          "text": "The user’s response to an actionable notification.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UNNotificationResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UNNotificationResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "UNNotificationResponse",
+      "type": "topic",
+      "url": "/documentation/usernotifications/unnotificationresponse"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationServiceExtension": {
+      "abstract": [
+        {
+          "text": "An object that modifies the content of a remote notification before it’s delivered to the user.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UNNotificationServiceExtension"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationServiceExtension",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UNNotificationServiceExtension"
+        }
+      ],
+      "role": "symbol",
+      "title": "UNNotificationServiceExtension",
+      "type": "topic",
+      "url": "/documentation/usernotifications/unnotificationserviceextension"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationSettings": {
+      "abstract": [
+        {
+          "text": "The object for managing notification-related settings and the authorization status of your app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UNNotificationSettings"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationSettings",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UNNotificationSettings"
+        }
+      ],
+      "role": "symbol",
+      "title": "UNNotificationSettings",
+      "type": "topic",
+      "url": "/documentation/usernotifications/unnotificationsettings"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationSound": {
+      "abstract": [
+        {
+          "text": "The sound played upon delivery of a notification.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UNNotificationSound"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationSound",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UNNotificationSound"
+        }
+      ],
+      "role": "symbol",
+      "title": "UNNotificationSound",
+      "type": "topic",
+      "url": "/documentation/usernotifications/unnotificationsound"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationSoundName": {
+      "abstract": [
+        {
+          "text": "A string providing the name of a sound file.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UNNotificationSoundName"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationSoundName",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UNNotificationSoundName"
+        }
+      ],
+      "role": "symbol",
+      "title": "UNNotificationSoundName",
+      "type": "topic",
+      "url": "/documentation/usernotifications/unnotificationsoundname"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationTrigger": {
+      "abstract": [
+        {
+          "text": "The common behavior for subclasses that trigger the delivery of a local or remote notification.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UNNotificationTrigger"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationTrigger",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UNNotificationTrigger"
+        }
+      ],
+      "role": "symbol",
+      "title": "UNNotificationTrigger",
+      "type": "topic",
+      "url": "/documentation/usernotifications/unnotificationtrigger"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/UNPushNotificationTrigger": {
+      "abstract": [
+        {
+          "text": "A trigger condition that indicates Apple Push Notification Service (APNs) has sent the notification.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UNPushNotificationTrigger"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/UNPushNotificationTrigger",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UNPushNotificationTrigger"
+        }
+      ],
+      "role": "symbol",
+      "title": "UNPushNotificationTrigger",
+      "type": "topic",
+      "url": "/documentation/usernotifications/unpushnotificationtrigger"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/UNTextInputNotificationAction": {
+      "abstract": [
+        {
+          "text": "An action that accepts user-typed text.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UNTextInputNotificationAction"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/UNTextInputNotificationAction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UNTextInputNotificationAction"
+        }
+      ],
+      "role": "symbol",
+      "title": "UNTextInputNotificationAction",
+      "type": "topic",
+      "url": "/documentation/usernotifications/untextinputnotificationaction"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/UNTextInputNotificationResponse": {
+      "abstract": [
+        {
+          "text": "The user’s response to an actionable notification, including any custom text that the user typed or dictated.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UNTextInputNotificationResponse"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/UNTextInputNotificationResponse",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UNTextInputNotificationResponse"
+        }
+      ],
+      "role": "symbol",
+      "title": "UNTextInputNotificationResponse",
+      "type": "topic",
+      "url": "/documentation/usernotifications/untextinputnotificationresponse"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/UNTimeIntervalNotificationTrigger": {
+      "abstract": [
+        {
+          "text": "A trigger condition that causes the system to deliver a notification after the amount of time you specify elapses.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UNTimeIntervalNotificationTrigger"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/UNTimeIntervalNotificationTrigger",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UNTimeIntervalNotificationTrigger"
+        }
+      ],
+      "role": "symbol",
+      "title": "UNTimeIntervalNotificationTrigger",
+      "type": "topic",
+      "url": "/documentation/usernotifications/untimeintervalnotificationtrigger"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/UNUserNotificationCenter": {
+      "abstract": [
+        {
+          "text": "The central object for managing notification-related activities for your app or app extension.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UNUserNotificationCenter"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/UNUserNotificationCenter",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UNUserNotificationCenter"
+        }
+      ],
+      "role": "symbol",
+      "title": "UNUserNotificationCenter",
+      "type": "topic",
+      "url": "/documentation/usernotifications/unusernotificationcenter"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/UNUserNotificationCenterDelegate": {
+      "abstract": [
+        {
+          "text": "An interface for processing incoming notifications and responding to notification actions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "UNUserNotificationCenterDelegate"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/UNUserNotificationCenterDelegate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "UNUserNotificationCenterDelegate"
+        }
+      ],
+      "role": "symbol",
+      "title": "UNUserNotificationCenterDelegate",
+      "type": "topic",
+      "url": "/documentation/usernotifications/unusernotificationcenterdelegate"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/asking-permission-to-use-notifications": {
+      "abstract": [
+        {
+          "text": "Request permission to display alerts, play sounds, or badge the app’s icon in response to a notification.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/asking-permission-to-use-notifications",
+      "kind": "article",
+      "role": "article",
+      "title": "Asking permission to use notifications",
+      "type": "topic",
+      "url": "/documentation/usernotifications/asking-permission-to-use-notifications"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/declaring-your-actionable-notification-types": {
+      "abstract": [
+        {
+          "text": "Differentiate your notifications and add action buttons to the notification interface.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/declaring-your-actionable-notification-types",
+      "kind": "article",
+      "role": "article",
+      "title": "Declaring your actionable notification types",
+      "type": "topic",
+      "url": "/documentation/usernotifications/declaring-your-actionable-notification-types"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/handling-communication-notifications-and-focus-status-updates": {
+      "abstract": [
+        {
+          "text": "Create a richer calling and messaging experience in your app by implementing communication notifications and Focus status updates.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/handling-communication-notifications-and-focus-status-updates",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Handling Communication Notifications and Focus Status Updates",
+      "type": "topic",
+      "url": "/documentation/usernotifications/handling-communication-notifications-and-focus-status-updates"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/handling-notifications-and-notification-related-actions": {
+      "abstract": [
+        {
+          "text": "Respond to user interactions with the system’s notification interfaces, including handling your app’s custom actions.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/handling-notifications-and-notification-related-actions",
+      "kind": "article",
+      "role": "article",
+      "title": "Handling notifications and notification-related actions",
+      "type": "topic",
+      "url": "/documentation/usernotifications/handling-notifications-and-notification-related-actions"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/implementing-alert-push-notifications": {
+      "abstract": [
+        {
+          "text": "Add visible alert notifications to your app by using the UserNotifications framework.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/implementing-alert-push-notifications",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Implementing Alert Push Notifications",
+      "type": "topic",
+      "url": "/documentation/usernotifications/implementing-alert-push-notifications"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/implementing-background-push-notifications": {
+      "abstract": [
+        {
+          "text": "Add background notifications to your app by using the UserNotifications framework.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/implementing-background-push-notifications",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Implementing Background Push Notifications",
+      "type": "topic",
+      "url": "/documentation/usernotifications/implementing-background-push-notifications"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/implementing-communication-notifications": {
+      "abstract": [
+        {
+          "text": "Configure and display your app’s communication notifications by using intents.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/implementing-communication-notifications",
+      "kind": "article",
+      "role": "article",
+      "title": "Implementing communication notifications",
+      "type": "topic",
+      "url": "/documentation/usernotifications/implementing-communication-notifications"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/modifying-content-in-newly-delivered-notifications": {
+      "abstract": [
+        {
+          "text": "Modify the payload of a remote notification before it’s displayed on the user’s iOS device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/modifying-content-in-newly-delivered-notifications",
+      "kind": "article",
+      "role": "article",
+      "title": "Modifying content in newly delivered notifications",
+      "type": "topic",
+      "url": "/documentation/usernotifications/modifying-content-in-newly-delivered-notifications"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/scheduling-a-notification-locally-from-your-app": {
+      "abstract": [
+        {
+          "text": "Create and schedule notifications from your app when you want to get the user’s attention.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/scheduling-a-notification-locally-from-your-app",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Scheduling a notification locally from your app",
+      "type": "topic",
+      "url": "/documentation/usernotifications/scheduling-a-notification-locally-from-your-app"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/sending-push-notifications-using-command-line-tools": {
+      "abstract": [
+        {
+          "text": "Use basic macOS command-line tools to send push notifications to Apple Push Notification service (APNs).",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/sending-push-notifications-using-command-line-tools",
+      "kind": "article",
+      "role": "article",
+      "title": "Sending push notifications using command-line tools",
+      "type": "topic",
+      "url": "/documentation/usernotifications/sending-push-notifications-using-command-line-tools"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/sending-web-push-notifications-in-web-apps-and-browsers": {
+      "abstract": [
+        {
+          "text": "Update your web server and website to send push notifications that work in Safari, other browsers, and web apps, following cross-browser standards.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/sending-web-push-notifications-in-web-apps-and-browsers",
+      "kind": "article",
+      "role": "article",
+      "title": "Sending web push notifications in web apps and browsers",
+      "type": "topic",
+      "url": "/documentation/usernotifications/sending-web-push-notifications-in-web-apps-and-browsers"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/setting-up-a-remote-notification-server": {
+      "abstract": [
+        {
+          "text": "Generate notifications and push them to user devices.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/setting-up-a-remote-notification-server",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Setting up a remote notification server",
+      "type": "topic",
+      "url": "/documentation/usernotifications/setting-up-a-remote-notification-server"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/testing-notifications-using-the-push-notification-console": {
+      "abstract": [
+        {
+          "text": "Send test notifications and access delivery logs to test your app’s integration with Apple Push Notification service (APNs).",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/testing-notifications-using-the-push-notification-console",
+      "kind": "article",
+      "role": "article",
+      "title": "Testing notifications using the Push Notification Console",
+      "type": "topic",
+      "url": "/documentation/usernotifications/testing-notifications-using-the-push-notification-console"
+    },
+    "doc://com.apple.usernotifications/documentation/UserNotifications/usernotifications-constants": {
+      "abstract": [],
+      "identifier": "doc://com.apple.usernotifications/documentation/UserNotifications/usernotifications-constants",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "UserNotifications Constants",
+      "type": "topic",
+      "url": "/documentation/usernotifications/usernotifications-constants"
+    },
+    "https://developer.apple.com/design/human-interface-guidelines/ios/system-capabilities/notifications/": {
+      "identifier": "https://developer.apple.com/design/human-interface-guidelines/ios/system-capabilities/notifications/",
+      "title": "Human Interface Guidelines > Notifications",
+      "titleInlineContent": [
+        {
+          "text": "Human Interface Guidelines > Notifications",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/design/human-interface-guidelines/ios/system-capabilities/notifications/"
+    },
+    "https://www.w3.org/TR/push-api/": {
+      "identifier": "https://www.w3.org/TR/push-api/",
+      "title": "Push API",
+      "titleInlineContent": [
+        {
+          "text": "Push API",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://www.w3.org/TR/push-api/"
+    },
+    "media-4182210": {
+      "alt": "A notification interface displayed on the lock screen and on the Home screen of an iOS device.",
+      "identifier": "media-4182210",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/77222b2547b6bca98259cae756936c96/media-4182210@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/bbded47b8403179709770e735dcac1b0/media-4182210~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Essentials",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/Updates/UserNotifications",
+        "doc://com.apple.usernotifications/documentation/UserNotifications/asking-permission-to-use-notifications"
+      ],
+      "title": "Essentials"
+    },
+    {
+      "anchor": "Notification-management",
+      "identifiers": [
+        "doc://com.apple.usernotifications/documentation/UserNotifications/UNUserNotificationCenter",
+        "doc://com.apple.usernotifications/documentation/UserNotifications/UNUserNotificationCenterDelegate",
+        "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationSettings"
+      ],
+      "title": "Notification management"
+    },
+    {
+      "abstract": [
+        {
+          "text": "Generate notifications from your company’s servers, and deliver those notifications using APNs.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Remote-notifications",
+      "identifiers": [
+        "doc://com.apple.usernotifications/documentation/UserNotifications/setting-up-a-remote-notification-server",
+        "doc://com.apple.usernotifications/documentation/UserNotifications/sending-push-notifications-using-command-line-tools",
+        "doc://com.apple.usernotifications/documentation/UserNotifications/testing-notifications-using-the-push-notification-console"
+      ],
+      "title": "Remote notifications"
+    },
+    {
+      "abstract": [
+        {
+          "text": "Create delivery requests for local notifications, and access the content of delivered local and remote notifications.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Notification-requests",
+      "identifiers": [
+        "doc://com.apple.usernotifications/documentation/UserNotifications/scheduling-a-notification-locally-from-your-app",
+        "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationRequest",
+        "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotification"
+      ],
+      "title": "Notification requests"
+    },
+    {
+      "anchor": "Push-notifications-in-safari",
+      "identifiers": [
+        "doc://com.apple.usernotifications/documentation/UserNotifications/sending-web-push-notifications-in-web-apps-and-browsers"
+      ],
+      "title": "Push notifications in safari"
+    },
+    {
+      "abstract": [
+        {
+          "text": "Modify and examine the payload of a notification.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Notification-content",
+      "identifiers": [
+        "doc://com.apple.usernotifications/documentation/UserNotifications/implementing-communication-notifications",
+        "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationContentProviding",
+        "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationActionIcon",
+        "doc://com.apple.usernotifications/documentation/UserNotifications/UNMutableNotificationContent",
+        "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationContent",
+        "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationAttachment",
+        "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationSound",
+        "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationSoundName"
+      ],
+      "title": "Notification content"
+    },
+    {
+      "abstract": [
+        {
+          "text": "Define the trigger conditions for delivering notifications. Detect when a remote notification was delivered from APNs.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Triggers",
+      "identifiers": [
+        "doc://com.apple.usernotifications/documentation/UserNotifications/UNCalendarNotificationTrigger",
+        "doc://com.apple.usernotifications/documentation/UserNotifications/UNTimeIntervalNotificationTrigger",
+        "doc://com.apple.usernotifications/documentation/UserNotifications/UNLocationNotificationTrigger",
+        "doc://com.apple.usernotifications/documentation/UserNotifications/UNPushNotificationTrigger",
+        "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationTrigger"
+      ],
+      "title": "Triggers"
+    },
+    {
+      "abstract": [
+        {
+          "text": "Define the types of notifications that your app supports, and define how users can respond.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Notification-categories-and-user-actions",
+      "identifiers": [
+        "doc://com.apple.usernotifications/documentation/UserNotifications/declaring-your-actionable-notification-types",
+        "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationCategory",
+        "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationAction",
+        "doc://com.apple.usernotifications/documentation/UserNotifications/UNTextInputNotificationAction"
+      ],
+      "title": "Notification categories and user actions"
+    },
+    {
+      "anchor": "Notification-responses",
+      "identifiers": [
+        "doc://com.apple.usernotifications/documentation/UserNotifications/handling-notifications-and-notification-related-actions",
+        "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationResponse",
+        "doc://com.apple.usernotifications/documentation/UserNotifications/UNTextInputNotificationResponse"
+      ],
+      "title": "Notification responses"
+    },
+    {
+      "abstract": [
+        {
+          "text": "Use a notification service app extension to modify the content of a notification before it’s delivered to your app.",
+          "type": "text"
+        }
+      ],
+      "anchor": "Notification-service-app-extension",
+      "identifiers": [
+        "doc://com.apple.usernotifications/documentation/UserNotifications/modifying-content-in-newly-delivered-notifications",
+        "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationServiceExtension"
+      ],
+      "title": "Notification service app extension"
+    },
+    {
+      "anchor": "Entitlements",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/BundleResources/Entitlements/aps-environment",
+        "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.aps-environment"
+      ],
+      "title": "Entitlements"
+    },
+    {
+      "anchor": "Sample-code",
+      "identifiers": [
+        "doc://com.apple.usernotifications/documentation/UserNotifications/handling-communication-notifications-and-focus-status-updates",
+        "doc://com.apple.usernotifications/documentation/UserNotifications/implementing-alert-push-notifications",
+        "doc://com.apple.usernotifications/documentation/UserNotifications/implementing-background-push-notifications"
+      ],
+      "title": "Sample code"
+    },
+    {
+      "anchor": "Reference",
+      "identifiers": [
+        "doc://com.apple.usernotifications/documentation/UserNotifications/usernotifications-constants"
+      ],
+      "title": "Reference"
+    },
+    {
+      "anchor": "Classes",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationAttributedMessageContext"
+      ],
+      "title": "Classes"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Essentials",
+              "identifiers": [
+                "doc://com.apple.documentation/documentation/Updates/UserNotifications",
+                "doc://com.apple.usernotifications/documentation/UserNotifications/asking-permission-to-use-notifications"
+              ],
+              "title": "Essentials"
+            },
+            {
+              "anchor": "Notification-management",
+              "identifiers": [
+                "doc://com.apple.usernotifications/documentation/UserNotifications/UNUserNotificationCenter",
+                "doc://com.apple.usernotifications/documentation/UserNotifications/UNUserNotificationCenterDelegate",
+                "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationSettings"
+              ],
+              "title": "Notification management"
+            },
+            {
+              "abstract": [
+                {
+                  "text": "Generate notifications from your company’s servers, and deliver those notifications using APNs.",
+                  "type": "text"
+                }
+              ],
+              "anchor": "Remote-notifications",
+              "identifiers": [
+                "doc://com.apple.usernotifications/documentation/UserNotifications/setting-up-a-remote-notification-server",
+                "doc://com.apple.usernotifications/documentation/UserNotifications/sending-push-notifications-using-command-line-tools",
+                "doc://com.apple.usernotifications/documentation/UserNotifications/testing-notifications-using-the-push-notification-console"
+              ],
+              "title": "Remote notifications"
+            },
+            {
+              "abstract": [
+                {
+                  "text": "Create delivery requests for local notifications, and access the content of delivered local and remote notifications.",
+                  "type": "text"
+                }
+              ],
+              "anchor": "Notification-requests",
+              "identifiers": [
+                "doc://com.apple.usernotifications/documentation/UserNotifications/scheduling-a-notification-locally-from-your-app",
+                "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationRequest",
+                "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotification"
+              ],
+              "title": "Notification requests"
+            },
+            {
+              "anchor": "Push-notifications-in-safari",
+              "identifiers": [
+                "doc://com.apple.usernotifications/documentation/UserNotifications/sending-web-push-notifications-in-web-apps-and-browsers"
+              ],
+              "title": "Push notifications in safari"
+            },
+            {
+              "abstract": [
+                {
+                  "text": "Modify and examine the payload of a notification.",
+                  "type": "text"
+                }
+              ],
+              "anchor": "Notification-content",
+              "identifiers": [
+                "doc://com.apple.usernotifications/documentation/UserNotifications/implementing-communication-notifications",
+                "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationContentProviding",
+                "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationActionIcon",
+                "doc://com.apple.usernotifications/documentation/UserNotifications/UNMutableNotificationContent",
+                "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationContent",
+                "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationAttachment",
+                "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationSound",
+                "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationSoundName"
+              ],
+              "title": "Notification content"
+            },
+            {
+              "abstract": [
+                {
+                  "text": "Define the trigger conditions for delivering notifications. Detect when a remote notification was delivered from APNs.",
+                  "type": "text"
+                }
+              ],
+              "anchor": "Triggers",
+              "identifiers": [
+                "doc://com.apple.usernotifications/documentation/UserNotifications/UNCalendarNotificationTrigger",
+                "doc://com.apple.usernotifications/documentation/UserNotifications/UNTimeIntervalNotificationTrigger",
+                "doc://com.apple.usernotifications/documentation/UserNotifications/UNLocationNotificationTrigger",
+                "doc://com.apple.usernotifications/documentation/UserNotifications/UNPushNotificationTrigger",
+                "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationTrigger"
+              ],
+              "title": "Triggers"
+            },
+            {
+              "abstract": [
+                {
+                  "text": "Define the types of notifications that your app supports, and define how users can respond.",
+                  "type": "text"
+                }
+              ],
+              "anchor": "Notification-categories-and-user-actions",
+              "identifiers": [
+                "doc://com.apple.usernotifications/documentation/UserNotifications/declaring-your-actionable-notification-types",
+                "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationCategory",
+                "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationAction",
+                "doc://com.apple.usernotifications/documentation/UserNotifications/UNTextInputNotificationAction"
+              ],
+              "title": "Notification categories and user actions"
+            },
+            {
+              "anchor": "Notification-responses",
+              "identifiers": [
+                "doc://com.apple.usernotifications/documentation/UserNotifications/handling-notifications-and-notification-related-actions",
+                "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationResponse",
+                "doc://com.apple.usernotifications/documentation/UserNotifications/UNTextInputNotificationResponse"
+              ],
+              "title": "Notification responses"
+            },
+            {
+              "abstract": [
+                {
+                  "text": "Use a notification service app extension to modify the content of a notification before it’s delivered to your app.",
+                  "type": "text"
+                }
+              ],
+              "anchor": "Notification-service-app-extension",
+              "identifiers": [
+                "doc://com.apple.usernotifications/documentation/UserNotifications/modifying-content-in-newly-delivered-notifications",
+                "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationServiceExtension"
+              ],
+              "title": "Notification service app extension"
+            },
+            {
+              "anchor": "Entitlements",
+              "identifiers": [
+                "doc://com.apple.documentation/documentation/BundleResources/Entitlements/aps-environment",
+                "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.aps-environment"
+              ],
+              "title": "Entitlements"
+            },
+            {
+              "anchor": "Sample-code",
+              "identifiers": [
+                "doc://com.apple.usernotifications/documentation/UserNotifications/handling-communication-notifications-and-focus-status-updates",
+                "doc://com.apple.usernotifications/documentation/UserNotifications/implementing-alert-push-notifications",
+                "doc://com.apple.usernotifications/documentation/UserNotifications/implementing-background-push-notifications"
+              ],
+              "title": "Sample code"
+            },
+            {
+              "anchor": "Reference",
+              "identifiers": [
+                "doc://com.apple.usernotifications/documentation/UserNotifications/usernotifications-constants"
+              ],
+              "title": "Reference"
+            },
+            {
+              "anchor": "Classes",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.usernotifications/documentation/UserNotifications/UNNotificationAttributedMessageContext"
+              ],
+              "title": "Classes"
+            }
+          ]
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNUserNotificationCenter/title",
+          "value": "UNUserNotificationCenter"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNUserNotificationCenter/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UNUserNotificationCenter"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNUserNotificationCenter/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UNUserNotificationCenter"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNUserNotificationCenterDelegate/title",
+          "value": "UNUserNotificationCenterDelegate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNUserNotificationCenterDelegate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UNUserNotificationCenterDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNUserNotificationCenterDelegate/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UNUserNotificationCenterDelegate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNCalendarNotificationTrigger/title",
+          "value": "UNCalendarNotificationTrigger"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNCalendarNotificationTrigger/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UNCalendarNotificationTrigger"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNCalendarNotificationTrigger/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UNCalendarNotificationTrigger"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNNotificationSound/title",
+          "value": "UNNotificationSound"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNNotificationSound/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UNNotificationSound"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNNotificationSound/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UNNotificationSound"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNNotificationActionIcon/title",
+          "value": "UNNotificationActionIcon"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNNotificationActionIcon/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UNNotificationActionIcon"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNNotificationActionIcon/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UNNotificationActionIcon"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNTextInputNotificationAction/title",
+          "value": "UNTextInputNotificationAction"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNTextInputNotificationAction/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UNTextInputNotificationAction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNTextInputNotificationAction/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UNTextInputNotificationAction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNNotificationServiceExtension/title",
+          "value": "UNNotificationServiceExtension"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNNotificationServiceExtension/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UNNotificationServiceExtension"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNNotificationServiceExtension/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UNNotificationServiceExtension"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNNotificationSettings/title",
+          "value": "UNNotificationSettings"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNNotificationSettings/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UNNotificationSettings"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNNotificationSettings/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UNNotificationSettings"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNNotificationTrigger/title",
+          "value": "UNNotificationTrigger"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNNotificationTrigger/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UNNotificationTrigger"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNNotificationTrigger/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UNNotificationTrigger"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNNotificationRequest/title",
+          "value": "UNNotificationRequest"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNNotificationRequest/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UNNotificationRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNNotificationRequest/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UNNotificationRequest"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNNotificationAction/title",
+          "value": "UNNotificationAction"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNNotificationAction/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UNNotificationAction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNNotificationAction/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UNNotificationAction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNNotificationAttachment/title",
+          "value": "UNNotificationAttachment"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNNotificationAttachment/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UNNotificationAttachment"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNNotificationAttachment/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UNNotificationAttachment"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNNotification/title",
+          "value": "UNNotification"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNNotification/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UNNotification"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNNotification/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UNNotification"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNNotificationContent/title",
+          "value": "UNNotificationContent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNNotificationContent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UNNotificationContent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNNotificationContent/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UNNotificationContent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNNotificationSoundName/title",
+          "value": "UNNotificationSoundName"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNNotificationSoundName/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UNNotificationSoundName"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNNotificationSoundName/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UNNotificationSoundName"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNMutableNotificationContent/title",
+          "value": "UNMutableNotificationContent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNMutableNotificationContent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UNMutableNotificationContent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNMutableNotificationContent/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UNMutableNotificationContent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNNotificationCategory/title",
+          "value": "UNNotificationCategory"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNNotificationCategory/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UNNotificationCategory"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNNotificationCategory/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UNNotificationCategory"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNNotificationResponse/title",
+          "value": "UNNotificationResponse"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNNotificationResponse/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UNNotificationResponse"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNNotificationResponse/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UNNotificationResponse"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNNotificationAttributedMessageContext/title",
+          "value": "UNNotificationAttributedMessageContext"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNNotificationAttributedMessageContext/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UNNotificationAttributedMessageContext"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNNotificationAttributedMessageContext/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UNNotificationAttributedMessageContext"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNPushNotificationTrigger/title",
+          "value": "UNPushNotificationTrigger"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNPushNotificationTrigger/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UNPushNotificationTrigger"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNPushNotificationTrigger/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UNPushNotificationTrigger"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNLocationNotificationTrigger/title",
+          "value": "UNLocationNotificationTrigger"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNLocationNotificationTrigger/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UNLocationNotificationTrigger"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNLocationNotificationTrigger/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UNLocationNotificationTrigger"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNTimeIntervalNotificationTrigger/title",
+          "value": "UNTimeIntervalNotificationTrigger"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNTimeIntervalNotificationTrigger/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UNTimeIntervalNotificationTrigger"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNTimeIntervalNotificationTrigger/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UNTimeIntervalNotificationTrigger"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNTextInputNotificationResponse/title",
+          "value": "UNTextInputNotificationResponse"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNTextInputNotificationResponse/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UNTextInputNotificationResponse"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNTextInputNotificationResponse/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UNTextInputNotificationResponse"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNNotificationContentProviding/title",
+          "value": "UNNotificationContentProviding"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNNotificationContentProviding/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UNNotificationContentProviding"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.usernotifications~1documentation~1UserNotifications~1UNNotificationContentProviding/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "UNNotificationContentProviding"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/usernotifications"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/usernotifications"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

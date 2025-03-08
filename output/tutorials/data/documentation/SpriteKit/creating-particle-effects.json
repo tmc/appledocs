@@ -1,0 +1,762 @@
+{
+  "abstract": [
+    {
+      "text": "Add particle effects to your app by creating repeatable particles in Xcode’s editor, or in code.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.spritekit/documentation/SpriteKit",
+        "doc://com.apple.spritekit/documentation/SpriteKit/nodes-for-scene-building",
+        "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.spritekit/documentation/SpriteKit/creating-particle-effects"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "SpriteKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Creating Particle Effects"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Add special effects to your app, such as glittering or realistic fire with smoke, using particle effects. You create and configure particle effects using Xcode’s SpriteKit Particle Editor, or in code. A benefit of using the editor is that you can repeat the particles in different places across your app without duplicating the code.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Create-Emitters-with-the-Particle-Editor",
+          "level": 3,
+          "text": "Create Emitters with the Particle Editor",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In most cases, you never need to configure an emitter node directly in your game. Instead, you use Xcode to configure an emitter node’s properties. As you change the behavior of the emitter node, Xcode immediately provides you an updated visual effect. When complete, Xcode archives the configured emitter. Then, at runtime, your game uses this archive to instantiate a new emitter node.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Using Xcode to create emitter nodes has a few important advantages:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "It is the best way to learn the capabilities of the emitter class.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You can quickly experiment with new particle effects and see the results immediately.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "You separate the task of designing a particle effect from the programming task of using it. Your artists can work on new particle effects independent of your game code.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "For more information on using Xcode to create particle effects, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "http://help.apple.com/xcode/mac/current/#/dev9eed16018",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code shows how to load a particle effect that was created by Xcode. All particle effects are saved using Cocoa’s standard archiving mechanisms, so the code first creates a path to the smoke effect, and then loads the archive.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "tabs": [
+            {
+              "content": [
+                {
+                  "code": [
+                    "func newSmokeEmitter() -> SKEmitterNode? {",
+                    "    return SKEmitterNode(fileNamed: \"smoke.sks\")",
+                    "}"
+                  ],
+                  "syntax": "swift",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Swift"
+            },
+            {
+              "content": [
+                {
+                  "code": [
+                    "- (SKEmitterNode *) newSmokeEmitter",
+                    "{",
+                    "    NSString *smokePath = [[NSBundle mainBundle] pathForResource:@\"smoke\" ofType:@\"sks\"];",
+                    "    SKEmitterNode *smoke = [NSKeyedUnarchiver unarchiveObjectWithFile:smokePath];",
+                    "    return smoke;",
+                    "}"
+                  ],
+                  "syntax": "objc",
+                  "type": "codeListing"
+                }
+              ],
+              "title": "Obj-C"
+            }
+          ],
+          "type": "tabNavigator"
+        },
+        {
+          "anchor": "Configure-Particles-in-Code",
+          "level": 3,
+          "text": "Configure Particles in Code",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " class provides many properties for configuring an emitter node’s behavior. The Xcode emitter editor sets the same property values. You can also create and configure your own emitter, or you can take an emitter node created in the Particle Emitter Editor, load it, and change its property values.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When the emitter node is in a scene, it emits new particles. You use the following properties to define how many particles it creates:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleBirthRate",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " property specifies the number of particles that the emitter creates every second. For example, consider using the smoke effect in the previous code to show damage to a rocket ship. As the ship takes more damage, you can increase the birth rate of the emitter to add more smoke.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ",
+                      "type": "text"
+                    },
+                    {
+                      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/numParticlesToEmit",
+                      "isActive": true,
+                      "type": "reference"
+                    },
+                    {
+                      "text": " property specifies how many particles are created before the emitter turns itself off. You can also configure the node to emit an unlimited number of particles.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When a particle is created, its initial property values are determined by the properties of the emitter. For each of the particle’s properties, the emitter class declares up to four properties:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The average starting value for the property.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A random range for values of the property. Each time a new particle is emitted, a new random value is calculated within that range.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The rate at which the value changes over time, also known as the property’s ",
+                      "type": "text"
+                    },
+                    {
+                      "inlineContent": [
+                        {
+                          "text": "speed",
+                          "type": "text"
+                        }
+                      ],
+                      "type": "emphasis"
+                    },
+                    {
+                      "text": ". Not all properties have a speed property.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "An optional keyframe sequence.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The complete list of properties used to configure an emitter node is given in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following code shows how you might configure an emitter’s ",
+              "type": "text"
+            },
+            {
+              "code": "scale",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property. This is a simplified version of a node’s ",
+              "type": "text"
+            },
+            {
+              "code": "xScale",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "code": "yScale",
+              "type": "codeVoice"
+            },
+            {
+              "text": " properties, and determines how large the particle is.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "myEmitter.particleScale = 0.3;",
+            "myEmitter.particleScaleRange = 0.2;",
+            "myEmitter.particleScaleSpeed = -0.1;"
+          ],
+          "syntax": "objc",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When a new particle is created, its scale value is a random number from ",
+              "type": "text"
+            },
+            {
+              "code": "0.2",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to ",
+              "type": "text"
+            },
+            {
+              "code": "0.4",
+              "type": "codeVoice"
+            },
+            {
+              "text": ". The scale value then decreases at a rate of ",
+              "type": "text"
+            },
+            {
+              "code": "0.1",
+              "type": "codeVoice"
+            },
+            {
+              "text": " per second. So, for example, if a particular particle started at the average value, ",
+              "type": "text"
+            },
+            {
+              "code": "0.3",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", it would decrease from ",
+              "type": "text"
+            },
+            {
+              "code": "0.3",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to ",
+              "type": "text"
+            },
+            {
+              "code": "0",
+              "type": "codeVoice"
+            },
+            {
+              "text": " over a period of ",
+              "type": "text"
+            },
+            {
+              "code": "3",
+              "type": "codeVoice"
+            },
+            {
+              "text": " seconds.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit": {
+      "abstract": [
+        {
+          "text": "Add high-performance 2D content with smooth animations to your app, or create a game with a high-level set of 2D game-based tools.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "SpriteKit",
+      "type": "topic",
+      "url": "/documentation/spritekit"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode": {
+      "abstract": [
+        {
+          "text": "A source of various particle effects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKEmitterNode"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKEmitterNode"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKEmitterNode",
+      "type": "topic",
+      "url": "/documentation/spritekit/skemitternode"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/numParticlesToEmit": {
+      "abstract": [
+        {
+          "text": "The number of particles the emitter should emit before stopping.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "numParticlesToEmit"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/numParticlesToEmit",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "numParticlesToEmit"
+        }
+      ],
+      "role": "symbol",
+      "title": "numParticlesToEmit",
+      "type": "topic",
+      "url": "/documentation/spritekit/skemitternode/numparticlestoemit"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleBirthRate": {
+      "abstract": [
+        {
+          "text": "The rate at which new particles are created.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "particleBirthRate"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:14CoreFoundation7CGFloatV",
+          "text": "CGFloat"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/SKEmitterNode/particleBirthRate",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "particleBirthRate"
+        }
+      ],
+      "role": "symbol",
+      "title": "particleBirthRate",
+      "type": "topic",
+      "url": "/documentation/spritekit/skemitternode/particlebirthrate"
+    },
+    "doc://com.apple.spritekit/documentation/SpriteKit/nodes-for-scene-building": {
+      "abstract": [
+        {
+          "text": "Define the appearance or layout of scene content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.spritekit/documentation/SpriteKit/nodes-for-scene-building",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Nodes for Scene Building",
+      "type": "topic",
+      "url": "/documentation/spritekit/nodes-for-scene-building"
+    },
+    "http://help.apple.com/xcode/mac/current/#/dev9eed16018": {
+      "identifier": "http://help.apple.com/xcode/mac/current/#/dev9eed16018",
+      "title": "Add a particle emitter to your project",
+      "titleInlineContent": [
+        {
+          "text": "Add a particle emitter to your project",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "http://help.apple.com/xcode/mac/current/#/dev9eed16018"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "add",
+          "path": "/topicSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEmitterNode/title",
+          "value": "SKEmitterNode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEmitterNode/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKEmitterNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEmitterNode/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKEmitterNode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEmitterNode~1particleBirthRate/title",
+          "value": "particleBirthRate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEmitterNode~1particleBirthRate/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "particleBirthRate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEmitterNode~1numParticlesToEmit/title",
+          "value": "numParticlesToEmit"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.spritekit~1documentation~1SpriteKit~1SKEmitterNode~1numParticlesToEmit/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "numParticlesToEmit"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/spritekit/creating-particle-effects"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/spritekit/creating-particle-effects"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

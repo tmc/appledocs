@@ -1,0 +1,1119 @@
+{
+  "abstract": [
+    {
+      "text": "A specialized regular expression object that matches natural language text for predefined data patterns.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/strings_and_text"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/nsdatadetector"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1415665,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)NSDataDetector",
+    "fragments": [
+      {
+        "kind": "text",
+        "text": "class "
+      },
+      {
+        "kind": "identifier",
+        "text": "NSDataDetector"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "4.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "4.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.1",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.7",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "NSDataDetector"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "NSDataDetector"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsregularexpression",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)NSRegularExpression",
+              "text": "NSRegularExpression"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Find dates, addresses, links, phone numbers, and transit information in natural language text with ",
+              "type": "text"
+            },
+            {
+              "code": "NSDataDetector",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "code": "NSDataDetector",
+              "type": "codeVoice"
+            },
+            {
+              "text": " returns the results of matching content in ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nstextcheckingresult",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " objects. The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nstextcheckingresult",
+              "isActive": false,
+              "type": "reference"
+            },
+            {
+              "text": " objects that ",
+              "type": "text"
+            },
+            {
+              "code": "NSDataDetector",
+              "type": "codeVoice"
+            },
+            {
+              "text": " returns are different from those that ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsregularexpression",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " returns. The results are one of the data detector’s types and contain the corresponding properties. For example, results of type ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nstextcheckingresult/checkingtype/1416011-date",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " have a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nstextcheckingresult/1414289-date",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nstextcheckingresult/1418476-timezone",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nstextcheckingresult/1415044-duration",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "; and results of type ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nstextcheckingresult/checkingtype/1411725-link",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " have a ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nstextcheckingresult/1417843-url",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Don’t use ",
+                  "type": "text"
+                },
+                {
+                  "code": "NSDataDetector",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " to validate data. ",
+                  "type": "text"
+                },
+                {
+                  "code": "NSDataDetector",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " discards potential matches in case of uncertainty. Use a class specific to the type of data for validation instead. For example, attempt to instantiate a ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/url",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " object using ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/url/3126806-init",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " to validate a URL string. A valid URL string returns an instance of ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/url",
+                  "isActive": false,
+                  "type": "reference"
+                },
+                {
+                  "text": ", while an invalid URL string returns ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/objectivec/nil-2gl",
+                  "isActive": false,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "1661526",
+          "level": 3,
+          "text": "Examples",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following shows several graduated examples of using the ",
+              "type": "text"
+            },
+            {
+              "code": "NSDataDetector",
+              "type": "codeVoice"
+            },
+            {
+              "text": " class.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This code fragment creates a data detector that finds URL links and phone numbers. If an error occurs, it returns in ",
+              "type": "text"
+            },
+            {
+              "code": "error",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "   NSError *error = nil;",
+            "   NSDataDetector *detector = [NSDataDetector dataDetectorWithTypes:NSTextCheckingTypeLink|NSTextCheckingTypePhoneNumber",
+            "                                                              error:&error];"
+          ],
+          "metadata": {
+            "anchor": "2556953",
+            "title": "Listing 1"
+          },
+          "syntax": "occ",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "After creating the data detector instance, you can determine the number of matches within a range of a string using the ",
+              "type": "text"
+            },
+            {
+              "code": "NSRegularExpression",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsregularexpression/1414308-numberofmatches",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "   NSUInteger numberOfMatches = [detector numberOfMatchesInString:string",
+            "                                                          options:0",
+            "                                                            range:NSMakeRange(0, [string length])];"
+          ],
+          "metadata": {
+            "anchor": "2556954",
+            "title": "Listing 2"
+          },
+          "syntax": "occ",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If you’re interested only in the overall range of the first match, the ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsregularexpression/1414308-numberofmatches",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method provides it.  However, with data detectors, this is less likely than with regular expressions because clients are usually interested in additional information as well.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The additional information available depends on the type of the result.  For results of type ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nstextcheckingresult/checkingtype/1411725-link",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", it’s the ",
+              "type": "text"
+            },
+            {
+              "code": "URL",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property that’s significant.  For results of type ",
+              "type": "text"
+            },
+            {
+              "code": "NSTextCheckingTypePhoneNumber",
+              "type": "codeVoice"
+            },
+            {
+              "text": " , it’s the ",
+              "type": "text"
+            },
+            {
+              "code": "phoneNumber",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property instead. ",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsregularexpression/1412446-matches",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " method is similar to ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/nsregularexpression/1409838-firstmatch",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ", except that it returns all matches rather than only the first. The following code fragment finds all the matches for links and phone numbers in a string:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "   NSArray *matches = [detector matchesInString:string",
+            "                                        options:0",
+            "                                          range:NSMakeRange(0, [string length])];",
+            "   for (NSTextCheckingResult *match in matches) {",
+            "        NSRange matchRange = [match range];",
+            "        if ([match resultType] == NSTextCheckingTypeLink) {",
+            "            NSURL *url = [match URL];",
+            "        } else if ([match resultType] == NSTextCheckingTypePhoneNumber) {",
+            "            NSString *phoneNumber = [match phoneNumber];",
+            "        }",
+            "   }"
+          ],
+          "metadata": {
+            "anchor": "2556956",
+            "title": "Listing 3"
+          },
+          "syntax": "occ",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "code": "NSRegularExpression",
+              "type": "codeVoice"
+            },
+            {
+              "text": " block object enumerator is the most general and flexible of the matching methods.  It allows you to iterate through matches in a string, performing arbitrary actions on each as specified by the code in the block, and to stop partway through if desired. In the following code fragment, the iteration stops after finding a certain number of matches:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "   __block NSUInteger count = 0;",
+            "   [detector enumerateMatchesInString:string",
+            "                              options:0",
+            "                                range:NSMakeRange(0, [string length])",
+            "                           usingBlock:^(NSTextCheckingResult *match, NSMatchingFlags flags, BOOL *stop){",
+            "        NSRange matchRange = [match range];",
+            "        if ([match resultType] == NSTextCheckingTypeLink) {",
+            "            NSURL *url = [match URL];",
+            "        } else if ([match resultType] == NSTextCheckingTypePhoneNumber) {",
+            "            NSString *phoneNumber = [match phoneNumber];",
+            "        }",
+            "        if (++count >= 100) *stop = YES;",
+            "   }];"
+          ],
+          "metadata": {
+            "anchor": "2556959",
+            "title": "Listing 4"
+          },
+          "syntax": "occ",
+          "type": "codeListing"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "Only use ",
+                  "type": "text"
+                },
+                {
+                  "code": "NSDataDetector",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " on natural language text.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "If you expect text to be in a particular format, use an ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/formatter",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " or ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/valuetransformer",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " subclass instead. For instance, if you’re expecting a date field to be an ISO 8601 timestamp, use ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/dateformatter",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " to parse that into an ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/nsdate",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " object.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "If the text is in a machine-readable format, such as XML or JSON, extract the natural language text, such as by using ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/xmlparser",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " or ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/foundation/jsonserialization",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ", and match on that rather than attempt to match on the entire document.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/dateformatter": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/dateformatter",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "DateFormatter",
+      "type": "topic",
+      "url": "/documentation/foundation/dateformatter"
+    },
+    "doc://com.apple.documentation/documentation/foundation/formatter": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/formatter",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Formatter",
+      "type": "topic",
+      "url": "/documentation/foundation/formatter"
+    },
+    "doc://com.apple.documentation/documentation/foundation/jsonserialization": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/jsonserialization",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "JSONSerialization",
+      "type": "topic",
+      "url": "/documentation/foundation/jsonserialization"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdatadetector": {
+      "abstract": [
+        {
+          "text": "A specialized regular expression object that matches natural language text for predefined data patterns.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSDataDetector"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdatadetector",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSDataDetector",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdatadetector"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdatadetector#2556953": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdatadetector#2556953",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/foundation/nsdatadetector#2556953"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdatadetector#2556954": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdatadetector#2556954",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 2",
+      "type": "section",
+      "url": "/documentation/foundation/nsdatadetector#2556954"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdatadetector#2556956": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdatadetector#2556956",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 3",
+      "type": "section",
+      "url": "/documentation/foundation/nsdatadetector#2556956"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdatadetector#2556959": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdatadetector#2556959",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 4",
+      "type": "section",
+      "url": "/documentation/foundation/nsdatadetector#2556959"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdatadetector/1409829-init": {
+      "abstract": [
+        {
+          "text": "Initializes and returns a data detector instance.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "identifier",
+          "text": "types"
+        },
+        {
+          "kind": "text",
+          "text": ": NSTextCheckingTypes)"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdatadetector/1409829-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(types:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdatadetector/1409829-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdatadetector/1412372-checkingtypes": {
+      "abstract": [
+        {
+          "text": "Returns the checking types for the data detector.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "var "
+        },
+        {
+          "kind": "identifier",
+          "text": "checkingTypes"
+        },
+        {
+          "kind": "text",
+          "text": ": NSTextCheckingTypes"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdatadetector/1412372-checkingtypes",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "checkingTypes",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdatadetector/1412372-checkingtypes"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsdate": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsdate",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSDate",
+      "type": "topic",
+      "url": "/documentation/foundation/nsdate"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsnotfound": {
+      "abstract": [
+        {
+          "text": "A value indicating that a requested item couldn’t be found or doesn’t exist.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "let "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSNotFound"
+        },
+        {
+          "kind": "text",
+          "text": ": Int"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsnotfound",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSNotFound",
+      "type": "topic",
+      "url": "/documentation/foundation/nsnotfound"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsregularexpression": {
+      "abstract": [
+        {
+          "text": "An immutable representation of a compiled regular expression that you apply to Unicode strings.  ",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSRegularExpression"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsregularexpression",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSRegularExpression",
+      "type": "topic",
+      "url": "/documentation/foundation/nsregularexpression"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsregularexpression/1409838-firstmatch": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsregularexpression/1409838-firstmatch",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "firstMatch(in:options:range:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsregularexpression/1409838-firstmatch"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsregularexpression/1412446-matches": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsregularexpression/1412446-matches",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "matches(in:options:range:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsregularexpression/1412446-matches"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nsregularexpression/1414308-numberofmatches": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nsregularexpression/1414308-numberofmatches",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "numberOfMatches(in:options:range:)",
+      "type": "topic",
+      "url": "/documentation/foundation/nsregularexpression/1414308-numberofmatches"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nstextcheckingresult": {
+      "abstract": [
+        {
+          "text": "An occurrence of textual content found during the analysis of a block of text, such as when matching a regular expression.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSTextCheckingResult"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nstextcheckingresult",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSTextCheckingResult",
+      "type": "topic",
+      "url": "/documentation/foundation/nstextcheckingresult"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nstextcheckingresult/1414289-date": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nstextcheckingresult/1414289-date",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "date",
+      "type": "topic",
+      "url": "/documentation/foundation/nstextcheckingresult/1414289-date"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nstextcheckingresult/1415044-duration": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nstextcheckingresult/1415044-duration",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "duration",
+      "type": "topic",
+      "url": "/documentation/foundation/nstextcheckingresult/1415044-duration"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nstextcheckingresult/1417843-url": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nstextcheckingresult/1417843-url",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "url",
+      "type": "topic",
+      "url": "/documentation/foundation/nstextcheckingresult/1417843-url"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nstextcheckingresult/1418476-timezone": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nstextcheckingresult/1418476-timezone",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "timeZone",
+      "type": "topic",
+      "url": "/documentation/foundation/nstextcheckingresult/1418476-timezone"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nstextcheckingresult/checkingtype/1411725-link": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nstextcheckingresult/checkingtype/1411725-link",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "link",
+      "type": "topic",
+      "url": "/documentation/foundation/nstextcheckingresult/checkingtype/1411725-link"
+    },
+    "doc://com.apple.documentation/documentation/foundation/nstextcheckingresult/checkingtype/1416011-date": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/nstextcheckingresult/checkingtype/1416011-date",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "date",
+      "type": "topic",
+      "url": "/documentation/foundation/nstextcheckingresult/checkingtype/1416011-date"
+    },
+    "doc://com.apple.documentation/documentation/foundation/scanner": {
+      "abstract": [
+        {
+          "text": "A string parser that scans for substrings or characters in a character set, and for numeric values from decimal, hexadecimal, and floating-point representations.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "Scanner"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/foundation/scanner",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Scanner",
+      "type": "topic",
+      "url": "/documentation/foundation/scanner"
+    },
+    "doc://com.apple.documentation/documentation/foundation/strings_and_text": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/strings_and_text",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Strings and Text",
+      "type": "topic",
+      "url": "/documentation/foundation/strings_and_text"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "URL",
+      "type": "topic",
+      "url": "/documentation/foundation/url"
+    },
+    "doc://com.apple.documentation/documentation/foundation/url/3126806-init": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/url/3126806-init",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "init(string:)",
+      "type": "topic",
+      "url": "/documentation/foundation/url/3126806-init"
+    },
+    "doc://com.apple.documentation/documentation/foundation/valuetransformer": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/valuetransformer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "ValueTransformer",
+      "type": "topic",
+      "url": "/documentation/foundation/valuetransformer"
+    },
+    "doc://com.apple.documentation/documentation/foundation/xmlparser": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/xmlparser",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "XMLParser",
+      "type": "topic",
+      "url": "/documentation/foundation/xmlparser"
+    },
+    "doc://com.apple.documentation/documentation/objectivec/nil-2gl": {
+      "identifier": "doc://com.apple.documentation/documentation/objectivec/nil-2gl",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "nil",
+      "type": "topic",
+      "url": "/documentation/objectivec/nil-2gl"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsregularexpression"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/scanner",
+        "doc://com.apple.documentation/documentation/foundation/nsregularexpression",
+        "doc://com.apple.documentation/documentation/foundation/nstextcheckingresult",
+        "doc://com.apple.documentation/documentation/foundation/nsnotfound"
+      ],
+      "title": "Pattern Matching"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "1661536",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsdatadetector/1409829-init"
+      ],
+      "kind": "taskGroup",
+      "title": "Creating data detector instances"
+    },
+    {
+      "anchor": "1661566",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/foundation/nsdatadetector/1412372-checkingtypes"
+      ],
+      "kind": "taskGroup",
+      "title": "Getting the checking types"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/nsdatadetector"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "documentation/foundation/nsdatadetector"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

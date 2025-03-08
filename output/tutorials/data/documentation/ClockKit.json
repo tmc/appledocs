@@ -1,0 +1,747 @@
+{
+  "abstract": [
+    {
+      "text": "Display app-specific data on the clock face.",
+      "type": "text"
+    }
+  ],
+  "diffAvailability": {
+    "major": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.0",
+        "16.3 beta 2"
+      ]
+    },
+    "minor": {
+      "change": "modified",
+      "platform": "Xcode",
+      "versions": [
+        "16.2",
+        "16.3 beta 2"
+      ]
+    }
+  },
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.clockkit/documentation/ClockKit"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "ClockKit",
+    "modules": [
+      {
+        "name": "ClockKit"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "14.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "14.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "14.0",
+        "name": "Mac Catalyst"
+      },
+      {
+        "beta": false,
+        "introducedAt": "10.0",
+        "name": "watchOS"
+      }
+    ],
+    "role": "collection",
+    "roleHeading": "Framework",
+    "symbolKind": "module",
+    "title": "ClockKit"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "ClockKit-based complications are deprecated in watchOS 10 and later. Use ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.documentation/documentation/WidgetKit",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": " to create complications. For more information, see ",
+                  "type": "text"
+                },
+                {
+                  "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationDataSource#Migrating-to-WidgetKit",
+                  "isActive": true,
+                  "type": "reference"
+                },
+                {
+                  "text": ".",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use the ClockKit framework to implement complications for your app. ",
+              "type": "text"
+            },
+            {
+              "inlineContent": [
+                {
+                  "text": "Complications",
+                  "type": "text"
+                }
+              ],
+              "type": "emphasis"
+            },
+            {
+              "text": " are small interface elements that appear on a watch face and provide quick access to data that people frequently use. Your app defines complications using timeline entries that provide a template for the complication’s appearance and the date ClockKit displays it. The system updates the appearance of your complication based on the timeline.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "ClockKit defines the size and placement of the complications on each watch face. The following image depicts the layout of the Modular watch face, which has space for five different complications: one large and four small.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-3571054",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "ClockKit organizes complications into families based on their size and style, and provides a variety of templates for each family. Use the templates to display text, images, and graphical gauges.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Improve-your-app-with-complications",
+          "level": 3,
+          "text": "Improve your app with complications",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Complications provide a unique way to interact with your users. Consider creating complications, even if they only act as a launcher for your watchOS app. A complication on the active watch face provides:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Vital information when the user glances at their watch.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "A rapid launch of your app to a specific screen when the user taps on the complications.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The ability to perform background tasks, keeping your complication and app up to date.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When your app has a complication on the active watch face, watchOS tries to keep your watch app suspended in memory. The system can wake your app from the background quickly when the user wants to interact with it. ClockKit also wakes your app when the user taps your complication. If you use a user activity configuration, ClockKit passes the user activity to your app after waking it.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The system also gives apps with active complications more opportunities for background refresh tasks. You can use these tasks to keep the content of your watchOS app and your complications up to date and accurate.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.clockkit/documentation/ClockKit": {
+      "abstract": [
+        {
+          "text": "Display app-specific data on the clock face.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "ClockKit",
+      "type": "topic",
+      "url": "/documentation/clockkit"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/CLKAllComplicationFamilies": {
+      "abstract": [
+        {
+          "text": "Returns an array containing all possible values of the complication family enumeration.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "CLKAllComplicationFamilies"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKAllComplicationFamilies",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CLKAllComplicationFamilies",
+      "type": "topic",
+      "url": "/documentation/clockkit/clkallcomplicationfamilies"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationDataSource": {
+      "abstract": [
+        {
+          "text": "A protocol that provides ClockKit with information about your complication.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CLKComplicationDataSource"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationDataSource",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CLKComplicationDataSource"
+        }
+      ],
+      "role": "symbol",
+      "title": "CLKComplicationDataSource",
+      "type": "topic",
+      "url": "/documentation/clockkit/clkcomplicationdatasource"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationDataSource#Migrating-to-WidgetKit": {
+      "abstract": [],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationDataSource#Migrating-to-WidgetKit",
+      "kind": "section",
+      "title": "Migrating to WidgetKit",
+      "type": "topic",
+      "url": "/documentation/clockkit/clkcomplicationdatasource#Migrating-to-WidgetKit"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationDescriptor": {
+      "abstract": [
+        {
+          "text": "A descriptor that defines a complication and the families that it supports.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CLKComplicationDescriptor"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationDescriptor",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CLKComplicationDescriptor"
+        }
+      ],
+      "role": "symbol",
+      "title": "CLKComplicationDescriptor",
+      "type": "topic",
+      "url": "/documentation/clockkit/clkcomplicationdescriptor"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/CLKDefaultComplicationIdentifier": {
+      "abstract": [
+        {
+          "text": "An identifier representing a default complication.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CLKDefaultComplicationIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKDefaultComplicationIdentifier",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CLKDefaultComplicationIdentifier"
+        }
+      ],
+      "role": "symbol",
+      "title": "CLKDefaultComplicationIdentifier",
+      "type": "topic",
+      "url": "/documentation/clockkit/clkdefaultcomplicationidentifier"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/CLKWatchFaceLibrary": {
+      "abstract": [
+        {
+          "text": "An object for importing watch faces that the app provides.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CLKWatchFaceLibrary"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/CLKWatchFaceLibrary",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "CLKWatchFaceLibrary"
+        }
+      ],
+      "role": "symbol",
+      "title": "CLKWatchFaceLibrary",
+      "type": "topic",
+      "url": "/documentation/clockkit/clkwatchfacelibrary"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/deprecated-articles-and-symbols": {
+      "abstract": [],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/deprecated-articles-and-symbols",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Deprecated articles and symbols",
+      "type": "topic",
+      "url": "/documentation/clockkit/deprecated-articles-and-symbols"
+    },
+    "doc://com.apple.clockkit/documentation/ClockKit/sharing-an-apple-watch-face": {
+      "abstract": [
+        {
+          "text": "Distribute a customized watch face to Apple Watch users.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.clockkit/documentation/ClockKit/sharing-an-apple-watch-face",
+      "kind": "article",
+      "role": "article",
+      "title": "Sharing an Apple Watch face",
+      "type": "topic",
+      "url": "/documentation/clockkit/sharing-an-apple-watch-face"
+    },
+    "doc://com.apple.documentation/documentation/WidgetKit": {
+      "abstract": [
+        {
+          "text": "Extend the reach of your app by creating widgets, watch complications, Live Activities, and controls.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/WidgetKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "WidgetKit",
+      "type": "topic",
+      "url": "/documentation/WidgetKit"
+    },
+    "doc://com.apple.documentation/documentation/WidgetKit/Converting-A-ClockKit-App": {
+      "abstract": [
+        {
+          "text": "Leverage WidgetKit’s API to create watchOS complications using SwiftUI.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/WidgetKit/Converting-A-ClockKit-App",
+      "kind": "article",
+      "role": "article",
+      "title": "Migrating ClockKit complications to WidgetKit",
+      "type": "topic",
+      "url": "/documentation/WidgetKit/Converting-A-ClockKit-App"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "media-3571054": {
+      "alt": "An illustration showing the space for one large and four small complications on the Modular watch face.",
+      "identifier": "media-3571054",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b9baf9ed5945a94fd8aec91e7c443ba2/media-3571054@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/b62fc1399f291295308b79e173976dfa/media-3571054~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Migration-Support",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/WidgetKit/Converting-A-ClockKit-App",
+        "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationDataSource",
+        "doc://com.apple.clockkit/documentation/ClockKit/CLKDefaultComplicationIdentifier",
+        "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationDescriptor"
+      ],
+      "title": "Migration Support"
+    },
+    {
+      "anchor": "Face-Sharing",
+      "identifiers": [
+        "doc://com.apple.clockkit/documentation/ClockKit/sharing-an-apple-watch-face",
+        "doc://com.apple.clockkit/documentation/ClockKit/CLKWatchFaceLibrary"
+      ],
+      "title": "Face Sharing"
+    },
+    {
+      "anchor": "Deprecated",
+      "identifiers": [
+        "doc://com.apple.clockkit/documentation/ClockKit/deprecated-articles-and-symbols"
+      ],
+      "title": "Deprecated"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Migration-Support",
+              "identifiers": [
+                "doc://com.apple.documentation/documentation/WidgetKit/Converting-A-ClockKit-App",
+                "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationDataSource",
+                "doc://com.apple.clockkit/documentation/ClockKit/CLKDefaultComplicationIdentifier",
+                "doc://com.apple.clockkit/documentation/ClockKit/CLKComplicationDescriptor",
+                "doc://com.apple.clockkit/documentation/ClockKit/CLKAllComplicationFamilies"
+              ],
+              "title": "Migration Support"
+            },
+            {
+              "anchor": "Face-Sharing",
+              "identifiers": [
+                "doc://com.apple.clockkit/documentation/ClockKit/sharing-an-apple-watch-face",
+                "doc://com.apple.clockkit/documentation/ClockKit/CLKWatchFaceLibrary"
+              ],
+              "title": "Face Sharing"
+            },
+            {
+              "anchor": "Deprecated",
+              "identifiers": [
+                "doc://com.apple.clockkit/documentation/ClockKit/deprecated-articles-and-symbols"
+              ],
+              "title": "Deprecated"
+            }
+          ]
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKDefaultComplicationIdentifier/title",
+          "value": "CLKDefaultComplicationIdentifier"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKDefaultComplicationIdentifier/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLKDefaultComplicationIdentifier"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKWatchFaceLibrary/title",
+          "value": "CLKWatchFaceLibrary"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKWatchFaceLibrary/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLKWatchFaceLibrary"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKWatchFaceLibrary/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLKWatchFaceLibrary"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplicationDataSource/title",
+          "value": "CLKComplicationDataSource"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplicationDataSource/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLKComplicationDataSource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplicationDataSource/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLKComplicationDataSource"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplicationDescriptor/title",
+          "value": "CLKComplicationDescriptor"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplicationDescriptor/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLKComplicationDescriptor"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.clockkit~1documentation~1ClockKit~1CLKComplicationDescriptor/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "CLKComplicationDescriptor"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/clockkit"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/clockkit"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

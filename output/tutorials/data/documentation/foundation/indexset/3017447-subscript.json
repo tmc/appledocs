@@ -1,0 +1,361 @@
+{
+  "abstract": [
+    {
+      "text": "Accesses a contiguous subrange of the collection’s elements.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/foundation",
+        "doc://com.apple.documentation/documentation/foundation/collections",
+        "doc://com.apple.documentation/documentation/foundation/indexset"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.documentation/documentation/foundation/indexset/3017447-subscript"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 3017447,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "s:Slss5SliceVyxG11SubSequenceRtzrlEyACSny5IndexQzGcip::SYNTHESIZED::s:10Foundation8IndexSetV",
+    "fragments": [
+      {
+        "kind": "identifier",
+        "text": "subscript"
+      },
+      {
+        "kind": "text",
+        "text": "(Range<Index>) -> Slice<IndexSet>"
+      }
+    ],
+    "modules": [
+      {
+        "name": "Foundation"
+      }
+    ],
+    "parent": {
+      "title": "IndexSet"
+    },
+    "platforms": [
+      {
+        "current": "18.4",
+        "introducedAt": "7.0",
+        "name": "iOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "7.0",
+        "name": "iPadOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "13.4",
+        "name": "Mac Catalyst"
+      },
+      {
+        "current": "15.4",
+        "introducedAt": "10.9",
+        "name": "macOS"
+      },
+      {
+        "current": "18.4",
+        "introducedAt": "9.0",
+        "name": "tvOS"
+      },
+      {
+        "current": "2.4",
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      },
+      {
+        "current": "11.4",
+        "introducedAt": "2.0",
+        "name": "watchOS"
+      },
+      {
+        "current": "16.3",
+        "introducedAt": "11.4",
+        "name": "Xcode"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Subscript",
+    "symbolKind": "structsub",
+    "title": "subscript(_:)"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "Mac Catalyst",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "subscript"
+            },
+            {
+              "kind": "text",
+              "text": "("
+            },
+            {
+              "kind": "internalParam",
+              "text": "bounds"
+            },
+            {
+              "kind": "text",
+              "text": ": "
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Swift/Range",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:Sn",
+              "text": "Range"
+            },
+            {
+              "kind": "text",
+              "text": "<"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/indexset/index",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:10Foundation8IndexSetV0B0V",
+              "text": "Index"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            },
+            {
+              "kind": "text",
+              "text": ") -> "
+            },
+            {
+              "identifier": "doc://com.apple.Swift/documentation/Swift/Slice",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:s5SliceV",
+              "text": "Slice"
+            },
+            {
+              "kind": "text",
+              "text": "<"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/foundation/indexset",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "s:10Foundation8IndexSetV",
+              "text": "IndexSet"
+            },
+            {
+              "kind": "text",
+              "text": ">"
+            },
+            {
+              "kind": "text",
+              "text": " { "
+            },
+            {
+              "kind": "keyword",
+              "text": "get"
+            },
+            {
+              "kind": "text",
+              "text": " }"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "kind": "parameters",
+      "languages": [
+        "swift"
+      ],
+      "parameters": [
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "A range of the collection’s indices. The bounds of the range must be valid indices of the collection.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "bounds"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "anchor": "discussion",
+          "level": 2,
+          "text": "Discussion",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The accessed slice uses the same indices for the same elements as the original collection. Always use the slice’s ",
+              "type": "text"
+            },
+            {
+              "code": "startIndex",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property instead of assuming that its indices start at a particular value.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This example demonstrates getting a slice of an array of strings, finding the index of one of the strings in the slice, and then using that index in the original array.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let streets = [\"Adams\", \"Bryant\", \"Channing\", \"Douglas\", \"Evarts\"]",
+            "let streetsSlice = streets[2 ..< streets.endIndex]",
+            "print(streetsSlice)",
+            "// Prints \"[\"Channing\", \"Douglas\", \"Evarts\"]\"",
+            "",
+            "let index = streetsSlice.firstIndex(of: \"Evarts\")    // 4",
+            "print(streets[index!])",
+            "// Prints \"Evarts\""
+          ],
+          "metadata": {
+            "anchor": "3017448",
+            "title": "Listing 1"
+          },
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Complexity: O(1)",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.Swift/documentation/Swift/Range": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Range",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Range",
+      "type": "topic",
+      "url": "/documentation/swift/range"
+    },
+    "doc://com.apple.Swift/documentation/Swift/Slice": {
+      "identifier": "doc://com.apple.Swift/documentation/Swift/Slice",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Slice",
+      "type": "topic",
+      "url": "/documentation/swift/slice"
+    },
+    "doc://com.apple.documentation/documentation/foundation": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Foundation",
+      "type": "topic",
+      "url": "/documentation/foundation"
+    },
+    "doc://com.apple.documentation/documentation/foundation/collections": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/collections",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Collections",
+      "type": "topic",
+      "url": "/documentation/foundation/collections"
+    },
+    "doc://com.apple.documentation/documentation/foundation/indexset": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/indexset",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IndexSet",
+      "type": "topic",
+      "url": "/documentation/foundation/indexset"
+    },
+    "doc://com.apple.documentation/documentation/foundation/indexset/3017447-subscript#3017448": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/indexset/3017447-subscript#3017448",
+      "kind": "article",
+      "role": "codeListing",
+      "title": "Listing 1",
+      "type": "section",
+      "url": "/documentation/foundation/indexset/3017447-subscript#3017448"
+    },
+    "doc://com.apple.documentation/documentation/foundation/indexset/index": {
+      "identifier": "doc://com.apple.documentation/documentation/foundation/indexset/index",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IndexSet.Index",
+      "type": "topic",
+      "url": "/documentation/foundation/indexset/index"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variants": [
+    {
+      "paths": [
+        "documentation/foundation/indexset/3017447-subscript"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

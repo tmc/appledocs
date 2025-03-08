@@ -1,0 +1,394 @@
+{
+  "abstract": [
+    {
+      "text": "Configure your app so people can set it as the default translation app on their device.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.translationuiprovider/documentation/TranslationUIProvider"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.translationuiprovider/documentation/TranslationUIProvider/Preparing-your-app-to-be-the-default-translation-app"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "TranslationUIProvider"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Preparing your app to be the default translation app"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In iOS and iPadOS 18.4 and later, a person can select an app other than Translate to handle text translation.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your app provides translation service and you want it to optionally become the default translation app, you need to add an entitlement, access key, app extension, and a UI.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-the-Default-Translation-App-entitlement-to-your-project",
+          "level": 3,
+          "text": "Add the Default Translation App entitlement to your project",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Add the ",
+              "type": "text"
+            },
+            {
+              "code": "com.apple.developer.translation-app",
+              "type": "codeVoice"
+            },
+            {
+              "text": " entitlement to the ",
+              "type": "text"
+            },
+            {
+              "code": ".entitlements",
+              "type": "codeVoice"
+            },
+            {
+              "text": "",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "file in your app’s Xcode project. For instructions on how to add this",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "entitlement, see",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.translation-app",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-the-translation-provider-network-access-key-to-your-apps-Infoplist",
+          "level": 3,
+          "text": "Add the translation provider network access key to your app’s Info.plist",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "If your app needs to access the network in order to provide its translation services, you need to add the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "code": "com.apple.developer.translation-ui-provider.network-access",
+              "type": "codeVoice"
+            },
+            {
+              "text": " key to your app’s ",
+              "type": "text"
+            },
+            {
+              "code": "Info.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To do this, perform these steps:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Select your app’s ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "Info.plist",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": " file in the Xcode file navigator.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Add a new key and name it ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "com.apple.developer.translation-ui-provider.network-access",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Set the key type to Boolean.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "Set the key’s value to ",
+                      "type": "text"
+                    },
+                    {
+                      "code": "true",
+                      "type": "codeVoice"
+                    },
+                    {
+                      "text": ".",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "orderedList"
+        },
+        {
+          "anchor": "Add-a-TranslationUIProviderExtension-in-your-app",
+          "level": 3,
+          "text": "Add a TranslationUIProviderExtension in your app",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In the Xcode navigator, in your app’s target list, click the plus (+) and  search for Translation. Click next and follow the prompts to add the app extension for Translation to your project.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Provide-a-translation-UI-to-your-app",
+          "level": 3,
+          "text": "Provide a translation UI to your app",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The following example shows a typical workflow an app might adopt to present the translation UI to a person using their app:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "import SwiftUI",
+            "import TranslationUIProvider",
+            "",
+            "@main",
+            "class MyTranslationExtension: TranslationUIProviderExtension {",
+            "",
+            "    var body: some TranslationUIProviderExtensionScene {",
+            "        TranslationUIProviderSelectedTextScene { context in",
+            "            MyTranslationView(context: context)",
+            "        }",
+            "    }",
+            "}",
+            "",
+            "struct MyTranslationView: View {",
+            "    @State var context: TranslationUIProviderContext",
+            "    @State var translated: String = \"\"",
+            "",
+            "    init(context c: TranslationUIProviderContext) {",
+            "        context = c",
+            "    }",
+            "",
+            "    var body: some View {",
+            "        VStack(alignment: .leading) {",
+            "            Text(context.inputText ?? \"\")",
+            "            Text(translated)",
+            "            Button(action: translate) {",
+            "                Label(\"Translate\", systemImage: \"globe\")",
+            "            }",
+            "            Button(action: replaceText) {",
+            "                Text(\"Replace With Translation\")",
+            "            }",
+            "            .disabled(!context.allowsReplacement)",
+            "        }",
+            "    }",
+            "",
+            "    // Perform the translation, leaving the UI visible.",
+            "    private func translate() {",
+            "        if let toTranslate = context.inputText, !toTranslate.characters.isEmpty {",
+            "            // Call your own, custom translation API.",
+            "            translated = String(toTranslate.characters.reversed())",
+            "        }",
+            "    }",
+            "",
+            "    // Send the translation result back to the source text field, and exit.",
+            "    private func replaceText() {",
+            "        context.finish(replacingWithTranslation: AttributedString(translated))",
+            "    }",
+            "}",
+            ""
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.translation-app": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether an app can be the default translation app on someone’s device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.translation-app",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Translation",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Entitlements/com.apple.developer.translation-app"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.translationuiprovider/documentation/TranslationUIProvider": {
+      "abstract": [],
+      "identifier": "doc://com.apple.translationuiprovider/documentation/TranslationUIProvider",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "TranslationUIProvider",
+      "type": "topic",
+      "url": "/documentation/translationuiprovider"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/translationuiprovider/preparing-your-app-to-be-the-default-translation-app"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

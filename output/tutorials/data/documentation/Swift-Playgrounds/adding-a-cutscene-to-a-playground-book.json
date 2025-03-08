@@ -1,0 +1,448 @@
+{
+  "abstract": [
+    {
+      "text": "Create a subfolder, a manifest file, and cutscene metadata.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.Swift-Playgrounds/documentation/swift-playgrounds",
+        "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/playground-books",
+        "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/structuring-content-for-swift-playgrounds"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/adding-a-cutscene-to-a-playground-book"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Adding a Cutscene to a Playground Book"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can use cutscenes to show animated explanations or introductions to concepts",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "and scenarios. You place cutscenes alongside playground pages in a chapter.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-a-Subfolder-to-a-Chapter-Folder",
+          "level": 3,
+          "text": "Add a Subfolder to a Chapter Folder",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Add a cutscene by creating a new folder inside a chapter folder. The name of the",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "subfolder must end with the suffix .cutscenepage. Cutscene folders require two parts:",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "a manifest property list named ",
+              "type": "text"
+            },
+            {
+              "code": "Manifest.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", and a PrivateResources folder that",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "contains the HTML content of the cutscene.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Add-Cutscene-Resources",
+          "level": 3,
+          "text": "Add Cutscene Resources",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Create cutscenes in Swift Playgrounds by using HTML and any resources that you reference",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "in the HTML. The HTML you write for cutscenes can include CSS, JavaScript, and SVG",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "for animations. Your cutscene can also include media such as images, sound, and video.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Place all of the resources used in a cutscene in its PrivateResources folder.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "To localize a cutscene, enclose the cutscene files in a localization",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "folder, such as en.lproj for English, inside the PrivateResources folder.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Important",
+          "style": "important",
+          "type": "aside"
+        },
+        {
+          "anchor": "Add-the-Cutscene-Manifest",
+          "level": 3,
+          "text": "Add the Cutscene Manifest",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In Xcode, create a property list file called ",
+              "type": "text"
+            },
+            {
+              "code": "Manifest.plist",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in the cutscene subfolder.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Choose ",
+              "type": "text"
+            },
+            {
+              "code": "File > New > File",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", then choose the Property List template from ",
+              "type": "text"
+            },
+            {
+              "code": "iOS > Resources",
+              "type": "codeVoice"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Use the manifest property list to list a cutscene’s name and to reference the HTML",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "file that defines the cutscene.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The cutscene manifest property list has two keys:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "inlineContent": [
+                          {
+                            "text": "Required.",
+                            "type": "text"
+                          }
+                        ],
+                        "type": "strong"
+                      },
+                      {
+                        "text": " The path to the HTML file that contains the cutscene. The path is relative to the cutscene’s PrivateResources folder.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "CutsceneReference",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            },
+            {
+              "definition": {
+                "content": [
+                  {
+                    "inlineContent": [
+                      {
+                        "inlineContent": [
+                          {
+                            "text": "Required.",
+                            "type": "text"
+                          }
+                        ],
+                        "type": "strong"
+                      },
+                      {
+                        "text": " The name of the cutscene. Choose a name that will make sense to learners reading it in Swift Playgrounds.",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "term": {
+                "inlineContent": [
+                  {
+                    "code": "Name",
+                    "type": "codeVoice"
+                  }
+                ]
+              }
+            }
+          ],
+          "type": "termList"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/adding-a-chapter-to-a-playground-book": {
+      "abstract": [
+        {
+          "text": "Create a folder with a manifest that describes the chapter’s name and page order.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/adding-a-chapter-to-a-playground-book",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding a Chapter to a Playground Book",
+      "type": "topic",
+      "url": "/documentation/swift-playgrounds/adding-a-chapter-to-a-playground-book"
+    },
+    "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/adding-a-page-to-a-playground-book": {
+      "abstract": [
+        {
+          "text": "Create a subfolder, a manifest file, and a content file.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/adding-a-page-to-a-playground-book",
+      "kind": "article",
+      "role": "article",
+      "title": "Adding a Page to a Playground Book",
+      "type": "topic",
+      "url": "/documentation/swift-playgrounds/adding-a-page-to-a-playground-book"
+    },
+    "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/playground-books": {
+      "abstract": [
+        {
+          "text": "Create interactive Playground Book based learning experiences for the Swift Playgrounds app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/playground-books",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Playground Books",
+      "type": "topic",
+      "url": "/documentation/swift-playgrounds/playground-books"
+    },
+    "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/sharing-resources-in-a-playground-book": {
+      "abstract": [
+        {
+          "text": "Reuse common assets throughout a book to reduce its size.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/sharing-resources-in-a-playground-book",
+      "kind": "article",
+      "role": "article",
+      "title": "Sharing Resources in a Playground Book",
+      "type": "topic",
+      "url": "/documentation/swift-playgrounds/sharing-resources-in-a-playground-book"
+    },
+    "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/structuring-content-for-swift-playgrounds": {
+      "abstract": [
+        {
+          "text": "Add content to a playground book by creating new folders and property lists.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/structuring-content-for-swift-playgrounds",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Structuring Content for Swift Playgrounds",
+      "type": "topic",
+      "url": "/documentation/swift-playgrounds/structuring-content-for-swift-playgrounds"
+    },
+    "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/using-modules-to-share-code-in-a-playground-book": {
+      "abstract": [
+        {
+          "text": "In Swift Playgrounds 3.0 and later, make code available across multiple chapters to teach the value of reusable code.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/using-modules-to-share-code-in-a-playground-book",
+      "kind": "article",
+      "role": "article",
+      "title": "Using Modules to Share Code in a Playground Book",
+      "type": "topic",
+      "url": "/documentation/swift-playgrounds/using-modules-to-share-code-in-a-playground-book"
+    },
+    "doc://com.apple.Swift-Playgrounds/documentation/swift-playgrounds": {
+      "abstract": [
+        {
+          "text": "Learn to write apps, repurpose sample code, create, and share learning experiences in Swift Playgrounds.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.Swift-Playgrounds/documentation/swift-playgrounds",
+      "kind": "article",
+      "role": "collection",
+      "title": "Swift Playgrounds",
+      "type": "topic",
+      "url": "/documentation/swift-playgrounds"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Book-Structure",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/adding-a-chapter-to-a-playground-book",
+        "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/adding-a-page-to-a-playground-book",
+        "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/using-modules-to-share-code-in-a-playground-book",
+        "doc://com.apple.Swift-Playgrounds/documentation/Swift-Playgrounds/sharing-resources-in-a-playground-book"
+      ],
+      "title": "Book Structure"
+    }
+  ]
+}

@@ -1,0 +1,1853 @@
+{
+  "abstract": [
+    {
+      "text": "Stream media to a third-party device that a user selects in a system menu.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.devicediscoveryextension/documentation/DeviceDiscoveryExtension"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "DeviceDiscoveryExtension",
+    "modules": [
+      {
+        "name": "DeviceDiscoveryExtension"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "introducedAt": "16.0",
+        "name": "iOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "16.0",
+        "name": "iPadOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "15.0",
+        "name": "macOS"
+      },
+      {
+        "beta": false,
+        "introducedAt": "1.0",
+        "name": "visionOS"
+      }
+    ],
+    "role": "collection",
+    "roleHeading": "Framework",
+    "symbolKind": "module",
+    "title": "DeviceDiscoveryExtension"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Use DeviceDiscoveryExtension (DDE) to discover third-party media receivers to which your app can stream AV content.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When a user invokes your app’s media-streaming UI, you can offer a third-party, local-network, or Bluetooth device as a streaming destination in a route picker view (",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/AVKit/AVRoutePickerView",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": "). The figure below illustrates actors in the discovery process. As depicted in the System section, your app’s device discovery extension loads when the view displays.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "identifier": "media-4056835",
+              "type": "image"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Once the extension loads:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The extension runs in a system process and searches the local network and Bluetooth devices for a specific media receiver.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "When the extension finds the device, it returns the device to the system, which displays it in the picker view as an available option.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "text": "The user makes a selection and the system passes the chosen device to the app, which can then stream media to the device.",
+                      "type": "text"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Because DDE runs in a system sandbox, the extension doesn’t need to ask the user for local-network or Bluetooth permissions. The picker view displays discovered third-party devices and protocols in the same system menu as AirPlay, which provides a unified device-selection experience.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "To stream to a third-party device that you don’t manufacture, bundle your app with the device discovery extension that the manufacturer provides as part of its SDK.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.devicediscoveryextension/documentation/DeviceDiscoveryExtension": {
+      "abstract": [
+        {
+          "text": "Stream media to a third-party device that a user selects in a system menu.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicediscoveryextension/documentation/DeviceDiscoveryExtension",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "DeviceDiscoveryExtension",
+      "type": "topic",
+      "url": "/documentation/devicediscoveryextension"
+    },
+    "doc://com.apple.devicediscoveryextension/documentation/DeviceDiscoveryExtension/DDDevice": {
+      "abstract": [
+        {
+          "text": "An object that describes a discovered device of interest.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DDDevice"
+        }
+      ],
+      "identifier": "doc://com.apple.devicediscoveryextension/documentation/DeviceDiscoveryExtension/DDDevice",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DDDevice"
+        }
+      ],
+      "role": "symbol",
+      "title": "DDDevice",
+      "type": "topic",
+      "url": "/documentation/devicediscoveryextension/dddevice"
+    },
+    "doc://com.apple.devicediscoveryextension/documentation/DeviceDiscoveryExtension/DDDevice/Category-swift.enum": {
+      "abstract": [
+        {
+          "text": "An option that determines the icon for the device in the picker UI.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Category"
+        }
+      ],
+      "identifier": "doc://com.apple.devicediscoveryextension/documentation/DeviceDiscoveryExtension/DDDevice/Category-swift.enum",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Category"
+        }
+      ],
+      "role": "symbol",
+      "title": "DDDevice.Category",
+      "type": "topic",
+      "url": "/documentation/devicediscoveryextension/dddevice/category-swift.enum"
+    },
+    "doc://com.apple.devicediscoveryextension/documentation/DeviceDiscoveryExtension/DDDevice/Protocol-swift.enum": {
+      "abstract": [
+        {
+          "text": "An identifier for the manner in which an app interacts with a device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Protocol"
+        }
+      ],
+      "identifier": "doc://com.apple.devicediscoveryextension/documentation/DeviceDiscoveryExtension/DDDevice/Protocol-swift.enum",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Protocol"
+        }
+      ],
+      "role": "symbol",
+      "title": "DDDevice.Protocol",
+      "type": "topic",
+      "url": "/documentation/devicediscoveryextension/dddevice/protocol-swift.enum"
+    },
+    "doc://com.apple.devicediscoveryextension/documentation/DeviceDiscoveryExtension/DDDeviceCategoryToString(_:)": {
+      "abstract": [
+        {
+          "text": "Returns human-readable text for the specified identifier that describes a device’s category.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DDDeviceCategoryToString"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)DDDevice",
+          "text": "DDDevice"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@DDDeviceCategory",
+          "text": "Category"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.devicediscoveryextension/documentation/DeviceDiscoveryExtension/DDDeviceCategoryToString(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DDDeviceCategoryToString"
+        }
+      ],
+      "role": "symbol",
+      "title": "DDDeviceCategoryToString(_:)",
+      "type": "topic",
+      "url": "/documentation/devicediscoveryextension/dddevicecategorytostring(_:)"
+    },
+    "doc://com.apple.devicediscoveryextension/documentation/DeviceDiscoveryExtension/DDDeviceEvent": {
+      "abstract": [
+        {
+          "text": "An object that provides a device or communicates its change in status.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DDDeviceEvent"
+        }
+      ],
+      "identifier": "doc://com.apple.devicediscoveryextension/documentation/DeviceDiscoveryExtension/DDDeviceEvent",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DDDeviceEvent"
+        }
+      ],
+      "role": "symbol",
+      "title": "DDDeviceEvent",
+      "type": "topic",
+      "url": "/documentation/devicediscoveryextension/dddeviceevent"
+    },
+    "doc://com.apple.devicediscoveryextension/documentation/DeviceDiscoveryExtension/DDDeviceEvent/EventType-swift.enum": {
+      "abstract": [
+        {
+          "text": "Identifiers for the types of events that occur in the device discovery life cycle.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "EventType"
+        }
+      ],
+      "identifier": "doc://com.apple.devicediscoveryextension/documentation/DeviceDiscoveryExtension/DDDeviceEvent/EventType-swift.enum",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "EventType"
+        }
+      ],
+      "role": "symbol",
+      "title": "DDDeviceEvent.EventType",
+      "type": "topic",
+      "url": "/documentation/devicediscoveryextension/dddeviceevent/eventtype-swift.enum"
+    },
+    "doc://com.apple.devicediscoveryextension/documentation/DeviceDiscoveryExtension/DDDeviceMediaPlaybackStateToString(_:)": {
+      "abstract": [
+        {
+          "text": "Returns human-readable text for the specified media playback state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DDDeviceMediaPlaybackStateToString"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)DDDevice",
+          "text": "DDDevice"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@DDDeviceMediaPlaybackState",
+          "text": "MediaPlaybackState"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.devicediscoveryextension/documentation/DeviceDiscoveryExtension/DDDeviceMediaPlaybackStateToString(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DDDeviceMediaPlaybackStateToString"
+        }
+      ],
+      "role": "symbol",
+      "title": "DDDeviceMediaPlaybackStateToString(_:)",
+      "type": "topic",
+      "url": "/documentation/devicediscoveryextension/dddevicemediaplaybackstatetostring(_:)"
+    },
+    "doc://com.apple.devicediscoveryextension/documentation/DeviceDiscoveryExtension/DDDeviceProtocolString": {
+      "abstract": [
+        {
+          "text": "String values for the manner in which an app interacts with a device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DDDeviceProtocolString"
+        }
+      ],
+      "identifier": "doc://com.apple.devicediscoveryextension/documentation/DeviceDiscoveryExtension/DDDeviceProtocolString",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DDDeviceProtocolString"
+        }
+      ],
+      "role": "symbol",
+      "title": "DDDeviceProtocolString",
+      "type": "topic",
+      "url": "/documentation/devicediscoveryextension/dddeviceprotocolstring"
+    },
+    "doc://com.apple.devicediscoveryextension/documentation/DeviceDiscoveryExtension/DDDeviceProtocolToString(_:)": {
+      "abstract": [
+        {
+          "text": "Returns human-readable text for the specified protocol identifier.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DDDeviceProtocolToString"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)DDDevice",
+          "text": "DDDevice"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@DDDeviceProtocol",
+          "text": "Protocol"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.devicediscoveryextension/documentation/DeviceDiscoveryExtension/DDDeviceProtocolToString(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DDDeviceProtocolToString"
+        }
+      ],
+      "role": "symbol",
+      "title": "DDDeviceProtocolToString(_:)",
+      "type": "topic",
+      "url": "/documentation/devicediscoveryextension/dddeviceprotocoltostring(_:)"
+    },
+    "doc://com.apple.devicediscoveryextension/documentation/DeviceDiscoveryExtension/DDDeviceState": {
+      "abstract": [
+        {
+          "text": "A state that represents the level of user interaction with the device.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DDDeviceState"
+        }
+      ],
+      "identifier": "doc://com.apple.devicediscoveryextension/documentation/DeviceDiscoveryExtension/DDDeviceState",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DDDeviceState"
+        }
+      ],
+      "role": "symbol",
+      "title": "DDDeviceState",
+      "type": "topic",
+      "url": "/documentation/devicediscoveryextension/dddevicestate"
+    },
+    "doc://com.apple.devicediscoveryextension/documentation/DeviceDiscoveryExtension/DDDeviceStateToString(_:)": {
+      "abstract": [
+        {
+          "text": "Returns human-readable text for the specified identifier that describes a device’s status.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DDDeviceStateToString"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@DDDeviceState",
+          "text": "DDDeviceState"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.devicediscoveryextension/documentation/DeviceDiscoveryExtension/DDDeviceStateToString(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DDDeviceStateToString"
+        }
+      ],
+      "role": "symbol",
+      "title": "DDDeviceStateToString(_:)",
+      "type": "topic",
+      "url": "/documentation/devicediscoveryextension/dddevicestatetostring(_:)"
+    },
+    "doc://com.apple.devicediscoveryextension/documentation/DeviceDiscoveryExtension/DDDiscoveryExtension": {
+      "abstract": [
+        {
+          "text": "A specification that enables the framework to start and stop the extension’s discovery process.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DDDiscoveryExtension"
+        }
+      ],
+      "identifier": "doc://com.apple.devicediscoveryextension/documentation/DeviceDiscoveryExtension/DDDiscoveryExtension",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DDDiscoveryExtension"
+        }
+      ],
+      "role": "symbol",
+      "title": "DDDiscoveryExtension",
+      "type": "topic",
+      "url": "/documentation/devicediscoveryextension/dddiscoveryextension"
+    },
+    "doc://com.apple.devicediscoveryextension/documentation/DeviceDiscoveryExtension/DDDiscoveryExtensionConfiguration": {
+      "abstract": [
+        {
+          "text": "An object that manages the extension’s communication with the framework.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DDDiscoveryExtensionConfiguration"
+        }
+      ],
+      "identifier": "doc://com.apple.devicediscoveryextension/documentation/DeviceDiscoveryExtension/DDDiscoveryExtensionConfiguration",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DDDiscoveryExtensionConfiguration"
+        }
+      ],
+      "role": "symbol",
+      "title": "DDDiscoveryExtensionConfiguration",
+      "type": "topic",
+      "url": "/documentation/devicediscoveryextension/dddiscoveryextensionconfiguration"
+    },
+    "doc://com.apple.devicediscoveryextension/documentation/DeviceDiscoveryExtension/DDDiscoveryExtensionConfigurationProtocol": {
+      "abstract": [
+        {
+          "text": "A specification that provides a communication channel between the extension and the framework.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DDDiscoveryExtensionConfigurationProtocol"
+        }
+      ],
+      "identifier": "doc://com.apple.devicediscoveryextension/documentation/DeviceDiscoveryExtension/DDDiscoveryExtensionConfigurationProtocol",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DDDiscoveryExtensionConfigurationProtocol"
+        }
+      ],
+      "role": "symbol",
+      "title": "DDDiscoveryExtensionConfigurationProtocol",
+      "type": "topic",
+      "url": "/documentation/devicediscoveryextension/dddiscoveryextensionconfigurationprotocol"
+    },
+    "doc://com.apple.devicediscoveryextension/documentation/DeviceDiscoveryExtension/DDDiscoverySession": {
+      "abstract": [
+        {
+          "text": "An object that relays device discovery events from the extension to the system.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DDDiscoverySession"
+        }
+      ],
+      "identifier": "doc://com.apple.devicediscoveryextension/documentation/DeviceDiscoveryExtension/DDDiscoverySession",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DDDiscoverySession"
+        }
+      ],
+      "role": "symbol",
+      "title": "DDDiscoverySession",
+      "type": "topic",
+      "url": "/documentation/devicediscoveryextension/dddiscoverysession"
+    },
+    "doc://com.apple.devicediscoveryextension/documentation/DeviceDiscoveryExtension/DDError": {
+      "abstract": [
+        {
+          "text": "An error that the framework reports.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DDError"
+        }
+      ],
+      "identifier": "doc://com.apple.devicediscoveryextension/documentation/DeviceDiscoveryExtension/DDError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DDError"
+        }
+      ],
+      "role": "symbol",
+      "title": "DDError",
+      "type": "topic",
+      "url": "/documentation/devicediscoveryextension/dderror"
+    },
+    "doc://com.apple.devicediscoveryextension/documentation/DeviceDiscoveryExtension/DDError/Code": {
+      "abstract": [
+        {
+          "text": "Codes that identify errors that can occur during the framework’s use.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Code"
+        }
+      ],
+      "identifier": "doc://com.apple.devicediscoveryextension/documentation/DeviceDiscoveryExtension/DDError/Code",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Code"
+        }
+      ],
+      "role": "symbol",
+      "title": "DDError.Code",
+      "type": "topic",
+      "url": "/documentation/devicediscoveryextension/dderror/code"
+    },
+    "doc://com.apple.devicediscoveryextension/documentation/DeviceDiscoveryExtension/DDErrorDomain": {
+      "abstract": [
+        {
+          "text": "A unique error domain for the framework.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "let"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DDErrorDomain"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.devicediscoveryextension/documentation/DeviceDiscoveryExtension/DDErrorDomain",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DDErrorDomain"
+        }
+      ],
+      "role": "symbol",
+      "title": "DDErrorDomain",
+      "type": "topic",
+      "url": "/documentation/devicediscoveryextension/dderrordomain"
+    },
+    "doc://com.apple.devicediscoveryextension/documentation/DeviceDiscoveryExtension/DDErrorHandler": {
+      "abstract": [
+        {
+          "text": "A function that executes code you provide when an operation returns an error or completes successfully.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DDErrorHandler"
+        }
+      ],
+      "identifier": "doc://com.apple.devicediscoveryextension/documentation/DeviceDiscoveryExtension/DDErrorHandler",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DDErrorHandler"
+        }
+      ],
+      "role": "symbol",
+      "title": "DDErrorHandler",
+      "type": "topic",
+      "url": "/documentation/devicediscoveryextension/dderrorhandler"
+    },
+    "doc://com.apple.devicediscoveryextension/documentation/DeviceDiscoveryExtension/DDErrorOutType": {
+      "abstract": [
+        {
+          "text": "A type for framework functions that return error references.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DDErrorOutType"
+        }
+      ],
+      "identifier": "doc://com.apple.devicediscoveryextension/documentation/DeviceDiscoveryExtension/DDErrorOutType",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DDErrorOutType"
+        }
+      ],
+      "role": "symbol",
+      "title": "DDErrorOutType",
+      "type": "topic",
+      "url": "/documentation/devicediscoveryextension/dderrorouttype"
+    },
+    "doc://com.apple.devicediscoveryextension/documentation/DeviceDiscoveryExtension/DDEventHandler": {
+      "abstract": [
+        {
+          "text": "A function that the extension invokes to signal an event.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "typealias"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DDEventHandler"
+        }
+      ],
+      "identifier": "doc://com.apple.devicediscoveryextension/documentation/DeviceDiscoveryExtension/DDEventHandler",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DDEventHandler"
+        }
+      ],
+      "role": "symbol",
+      "title": "DDEventHandler",
+      "type": "topic",
+      "url": "/documentation/devicediscoveryextension/ddeventhandler"
+    },
+    "doc://com.apple.devicediscoveryextension/documentation/DeviceDiscoveryExtension/DDEventTypeToString(_:)": {
+      "abstract": [
+        {
+          "text": "Returns human-readable text for the specified event identifier.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "DDEventTypeToString"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)DDDeviceEvent",
+          "text": "DDDeviceEvent"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@DDEventType",
+          "text": "EventType"
+        },
+        {
+          "kind": "text",
+          "text": ") -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.devicediscoveryextension/documentation/DeviceDiscoveryExtension/DDEventTypeToString(_:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "DDEventTypeToString"
+        }
+      ],
+      "role": "symbol",
+      "title": "DDEventTypeToString(_:)",
+      "type": "topic",
+      "url": "/documentation/devicediscoveryextension/ddeventtypetostring(_:)"
+    },
+    "doc://com.apple.devicediscoveryextension/documentation/DeviceDiscoveryExtension/DD_EXTERN": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "DD_EXTERN"
+        }
+      ],
+      "identifier": "doc://com.apple.devicediscoveryextension/documentation/DeviceDiscoveryExtension/DD_EXTERN",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "DD_EXTERN",
+      "type": "topic",
+      "url": "/documentation/devicediscoveryextension/dd_extern"
+    },
+    "doc://com.apple.devicediscoveryextension/documentation/DeviceDiscoveryExtension/dd_os_ownership": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "dd_os_ownership"
+        }
+      ],
+      "identifier": "doc://com.apple.devicediscoveryextension/documentation/DeviceDiscoveryExtension/dd_os_ownership",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "dd_os_ownership",
+      "type": "topic",
+      "url": "/documentation/devicediscoveryextension/dd_os_ownership"
+    },
+    "doc://com.apple.devicediscoveryextension/documentation/DeviceDiscoveryExtension/devicediscoveryextension-enumerations": {
+      "abstract": [],
+      "identifier": "doc://com.apple.devicediscoveryextension/documentation/DeviceDiscoveryExtension/devicediscoveryextension-enumerations",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "DeviceDiscoveryExtension Enumerations",
+      "type": "topic",
+      "url": "/documentation/devicediscoveryextension/devicediscoveryextension-enumerations"
+    },
+    "doc://com.apple.devicediscoveryextension/documentation/DeviceDiscoveryExtension/discovering-a-third-party-media-streaming-device": {
+      "abstract": [
+        {
+          "text": "Build an extension that streams media to a server app in iOS or macOS.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.devicediscoveryextension/documentation/DeviceDiscoveryExtension/discovering-a-third-party-media-streaming-device",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Discovering a third-party media-streaming device",
+      "type": "topic",
+      "url": "/documentation/devicediscoveryextension/discovering-a-third-party-media-streaming-device"
+    },
+    "doc://com.apple.documentation/documentation/AVKit/AVRoutePickerView": {
+      "abstract": [
+        {
+          "text": "A view that presents a list of nearby media receivers.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "attribute",
+          "text": "@"
+        },
+        {
+          "kind": "attribute",
+          "preciseIdentifier": "s:ScM",
+          "text": "MainActor"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "AVRoutePickerView"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/AVKit/AVRoutePickerView",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "AVRoutePickerView",
+      "type": "topic",
+      "url": "/documentation/AVKit/AVRoutePickerView"
+    },
+    "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.media-device-discovery-extension": {
+      "abstract": [
+        {
+          "text": "An entitlement for an app extension that adds a specific third-party media receiver to a system device-picker UI.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.media-device-discovery-extension",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Media Device Discovery Extension",
+      "type": "topic",
+      "url": "/documentation/BundleResources/Entitlements/com.apple.developer.media-device-discovery-extension"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "media-4056835": {
+      "alt": "A flowchart with four boxes in a horizontal row from left to right, each labeled respectively: user, app, system, and third-party device. Lines that represent channels extend downward from each box. At the top of the user channel is the start of a continuous arrow that traces a path with switchbacks through all the channels. Multiple steps of the device discovery process are shown in this path with arrows that indicate the order in which they occur, from the user invoking it until the third-party device plays the media.",
+      "identifier": "media-4056835",
+      "type": "image",
+      "variants": [
+        {
+          "traits": [
+            "2x",
+            "light"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/1729cdc9d04d8250ae66a99bd7c12dfa/media-4056835@2x.png"
+        },
+        {
+          "traits": [
+            "2x",
+            "dark"
+          ],
+          "url": "https://docs-assets.developer.apple.com/published/f029fdaa960e9515b9c43a108617e9c0/media-4056835~dark@2x.png"
+        }
+      ]
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "topicSections": [
+    {
+      "anchor": "Essentials",
+      "identifiers": [
+        "doc://com.apple.devicediscoveryextension/documentation/DeviceDiscoveryExtension/discovering-a-third-party-media-streaming-device",
+        "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.media-device-discovery-extension"
+      ],
+      "title": "Essentials"
+    },
+    {
+      "anchor": "Extension",
+      "identifiers": [
+        "doc://com.apple.devicediscoveryextension/documentation/DeviceDiscoveryExtension/DDDiscoveryExtension",
+        "doc://com.apple.devicediscoveryextension/documentation/DeviceDiscoveryExtension/DDDiscoverySession",
+        "doc://com.apple.devicediscoveryextension/documentation/DeviceDiscoveryExtension/DDDiscoveryExtensionConfiguration",
+        "doc://com.apple.devicediscoveryextension/documentation/DeviceDiscoveryExtension/DDDiscoveryExtensionConfigurationProtocol"
+      ],
+      "title": "Extension"
+    },
+    {
+      "anchor": "Life-cycle",
+      "identifiers": [
+        "doc://com.apple.devicediscoveryextension/documentation/DeviceDiscoveryExtension/DDDeviceEvent",
+        "doc://com.apple.devicediscoveryextension/documentation/DeviceDiscoveryExtension/DDDeviceEvent/EventType-swift.enum",
+        "doc://com.apple.devicediscoveryextension/documentation/DeviceDiscoveryExtension/DDEventTypeToString(_:)",
+        "doc://com.apple.devicediscoveryextension/documentation/DeviceDiscoveryExtension/DDEventHandler"
+      ],
+      "title": "Life cycle"
+    },
+    {
+      "anchor": "Device-information",
+      "identifiers": [
+        "doc://com.apple.devicediscoveryextension/documentation/DeviceDiscoveryExtension/DDDevice",
+        "doc://com.apple.devicediscoveryextension/documentation/DeviceDiscoveryExtension/DDDevice/Category-swift.enum",
+        "doc://com.apple.devicediscoveryextension/documentation/DeviceDiscoveryExtension/DDDeviceState",
+        "doc://com.apple.devicediscoveryextension/documentation/DeviceDiscoveryExtension/DDDeviceCategoryToString(_:)",
+        "doc://com.apple.devicediscoveryextension/documentation/DeviceDiscoveryExtension/DDDeviceStateToString(_:)",
+        "doc://com.apple.devicediscoveryextension/documentation/DeviceDiscoveryExtension/DDDevice/Protocol-swift.enum",
+        "doc://com.apple.devicediscoveryextension/documentation/DeviceDiscoveryExtension/DDDeviceProtocolToString(_:)",
+        "doc://com.apple.devicediscoveryextension/documentation/DeviceDiscoveryExtension/DDDeviceProtocolString",
+        "doc://com.apple.devicediscoveryextension/documentation/DeviceDiscoveryExtension/DDDeviceMediaPlaybackStateToString(_:)"
+      ],
+      "title": "Device information"
+    },
+    {
+      "anchor": "Errors",
+      "identifiers": [
+        "doc://com.apple.devicediscoveryextension/documentation/DeviceDiscoveryExtension/DDError",
+        "doc://com.apple.devicediscoveryextension/documentation/DeviceDiscoveryExtension/DDError/Code",
+        "doc://com.apple.devicediscoveryextension/documentation/DeviceDiscoveryExtension/DDErrorHandler",
+        "doc://com.apple.devicediscoveryextension/documentation/DeviceDiscoveryExtension/DDErrorOutType",
+        "doc://com.apple.devicediscoveryextension/documentation/DeviceDiscoveryExtension/DDErrorDomain"
+      ],
+      "title": "Errors"
+    },
+    {
+      "anchor": "Reference",
+      "identifiers": [
+        "doc://com.apple.devicediscoveryextension/documentation/DeviceDiscoveryExtension/devicediscoveryextension-enumerations"
+      ],
+      "title": "Reference"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Essentials",
+              "identifiers": [
+                "doc://com.apple.devicediscoveryextension/documentation/DeviceDiscoveryExtension/discovering-a-third-party-media-streaming-device",
+                "doc://com.apple.documentation/documentation/BundleResources/Entitlements/com.apple.developer.media-device-discovery-extension"
+              ],
+              "title": "Essentials"
+            },
+            {
+              "anchor": "Extension",
+              "identifiers": [
+                "doc://com.apple.devicediscoveryextension/documentation/DeviceDiscoveryExtension/DDDiscoverySession"
+              ],
+              "title": "Extension"
+            },
+            {
+              "anchor": "Life-cycle",
+              "identifiers": [
+                "doc://com.apple.devicediscoveryextension/documentation/DeviceDiscoveryExtension/DDDeviceEvent",
+                "doc://com.apple.devicediscoveryextension/documentation/DeviceDiscoveryExtension/DDDeviceEvent/EventType-swift.enum",
+                "doc://com.apple.devicediscoveryextension/documentation/DeviceDiscoveryExtension/DDEventTypeToString(_:)",
+                "doc://com.apple.devicediscoveryextension/documentation/DeviceDiscoveryExtension/DDEventHandler"
+              ],
+              "title": "Life cycle"
+            },
+            {
+              "anchor": "Device-information",
+              "identifiers": [
+                "doc://com.apple.devicediscoveryextension/documentation/DeviceDiscoveryExtension/DDDevice",
+                "doc://com.apple.devicediscoveryextension/documentation/DeviceDiscoveryExtension/DDDevice/Category-swift.enum",
+                "doc://com.apple.devicediscoveryextension/documentation/DeviceDiscoveryExtension/DDDeviceState",
+                "doc://com.apple.devicediscoveryextension/documentation/DeviceDiscoveryExtension/DDDeviceCategoryToString(_:)",
+                "doc://com.apple.devicediscoveryextension/documentation/DeviceDiscoveryExtension/DDDeviceStateToString(_:)",
+                "doc://com.apple.devicediscoveryextension/documentation/DeviceDiscoveryExtension/DDDevice/Protocol-swift.enum",
+                "doc://com.apple.devicediscoveryextension/documentation/DeviceDiscoveryExtension/DDDeviceProtocolToString(_:)",
+                "doc://com.apple.devicediscoveryextension/documentation/DeviceDiscoveryExtension/DDDeviceProtocolString",
+                "doc://com.apple.devicediscoveryextension/documentation/DeviceDiscoveryExtension/DDDeviceMediaPlaybackStateToString(_:)"
+              ],
+              "title": "Device information"
+            },
+            {
+              "anchor": "Errors",
+              "identifiers": [
+                "doc://com.apple.devicediscoveryextension/documentation/DeviceDiscoveryExtension/DDError/Code",
+                "doc://com.apple.devicediscoveryextension/documentation/DeviceDiscoveryExtension/DDErrorHandler",
+                "doc://com.apple.devicediscoveryextension/documentation/DeviceDiscoveryExtension/DDErrorOutType",
+                "doc://com.apple.devicediscoveryextension/documentation/DeviceDiscoveryExtension/DDErrorDomain"
+              ],
+              "title": "Errors"
+            },
+            {
+              "anchor": "Reference",
+              "identifiers": [
+                "doc://com.apple.devicediscoveryextension/documentation/DeviceDiscoveryExtension/devicediscoveryextension-enumerations"
+              ],
+              "title": "Reference"
+            },
+            {
+              "anchor": "Macros",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.devicediscoveryextension/documentation/DeviceDiscoveryExtension/DD_EXTERN",
+                "doc://com.apple.devicediscoveryextension/documentation/DeviceDiscoveryExtension/dd_os_ownership"
+              ],
+              "title": "Macros"
+            }
+          ]
+        },
+        {
+          "op": "add",
+          "path": "/relationshipsSections",
+          "value": null
+        },
+        {
+          "op": "add",
+          "path": "/seeAlsoSections",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.devicediscoveryextension~1documentation~1DeviceDiscoveryExtension~1DDErrorDomain/title",
+          "value": "DDErrorDomain"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.devicediscoveryextension~1documentation~1DeviceDiscoveryExtension~1DDErrorDomain/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "DDErrorDomain"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.devicediscoveryextension~1documentation~1DeviceDiscoveryExtension~1DDErrorHandler/title",
+          "value": "DDErrorHandler"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.devicediscoveryextension~1documentation~1DeviceDiscoveryExtension~1DDErrorHandler/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "DDErrorHandler"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.devicediscoveryextension~1documentation~1DeviceDiscoveryExtension~1DDErrorHandler/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "DDErrorHandler"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.devicediscoveryextension~1documentation~1DeviceDiscoveryExtension~1DDEventTypeToString(_:)/title",
+          "value": "DDEventTypeToString"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.devicediscoveryextension~1documentation~1DeviceDiscoveryExtension~1DDEventTypeToString(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "DDEventTypeToString"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.devicediscoveryextension~1documentation~1DeviceDiscoveryExtension~1DDErrorOutType/title",
+          "value": "DDErrorOutType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.devicediscoveryextension~1documentation~1DeviceDiscoveryExtension~1DDErrorOutType/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "DDErrorOutType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.devicediscoveryextension~1documentation~1DeviceDiscoveryExtension~1DDErrorOutType/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "DDErrorOutType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.devicediscoveryextension~1documentation~1DeviceDiscoveryExtension~1DDDiscoverySession/title",
+          "value": "DDDiscoverySession"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.devicediscoveryextension~1documentation~1DeviceDiscoveryExtension~1DDDiscoverySession/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "DDDiscoverySession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.devicediscoveryextension~1documentation~1DeviceDiscoveryExtension~1DDDiscoverySession/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "DDDiscoverySession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.devicediscoveryextension~1documentation~1DeviceDiscoveryExtension~1DDEventHandler/title",
+          "value": "DDEventHandler"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.devicediscoveryextension~1documentation~1DeviceDiscoveryExtension~1DDEventHandler/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "DDEventHandler"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.devicediscoveryextension~1documentation~1DeviceDiscoveryExtension~1DDEventHandler/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "DDEventHandler"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.devicediscoveryextension~1documentation~1DeviceDiscoveryExtension~1DDDeviceMediaPlaybackStateToString(_:)/title",
+          "value": "DDDeviceMediaPlaybackStateToString"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.devicediscoveryextension~1documentation~1DeviceDiscoveryExtension~1DDDeviceMediaPlaybackStateToString(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "DDDeviceMediaPlaybackStateToString"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.devicediscoveryextension~1documentation~1DeviceDiscoveryExtension~1DDDeviceProtocolToString(_:)/title",
+          "value": "DDDeviceProtocolToString"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.devicediscoveryextension~1documentation~1DeviceDiscoveryExtension~1DDDeviceProtocolToString(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "DDDeviceProtocolToString"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.devicediscoveryextension~1documentation~1DeviceDiscoveryExtension~1DDDevice/title",
+          "value": "DDDevice"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.devicediscoveryextension~1documentation~1DeviceDiscoveryExtension~1DDDevice/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "DDDevice"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.devicediscoveryextension~1documentation~1DeviceDiscoveryExtension~1DDDevice/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "DDDevice"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.devicediscoveryextension~1documentation~1DeviceDiscoveryExtension~1DDDeviceEvent/title",
+          "value": "DDDeviceEvent"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.devicediscoveryextension~1documentation~1DeviceDiscoveryExtension~1DDDeviceEvent/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "DDDeviceEvent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.devicediscoveryextension~1documentation~1DeviceDiscoveryExtension~1DDDeviceEvent/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "DDDeviceEvent"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.devicediscoveryextension~1documentation~1DeviceDiscoveryExtension~1DDDeviceState/title",
+          "value": "DDDeviceState"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.devicediscoveryextension~1documentation~1DeviceDiscoveryExtension~1DDDeviceState/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "DDDeviceState"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.devicediscoveryextension~1documentation~1DeviceDiscoveryExtension~1DDDeviceState/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "DDDeviceState"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.devicediscoveryextension~1documentation~1DeviceDiscoveryExtension~1DDDeviceProtocolString/title",
+          "value": "DDDeviceProtocolString"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.devicediscoveryextension~1documentation~1DeviceDiscoveryExtension~1DDDeviceProtocolString/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "DDDeviceProtocolString"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.devicediscoveryextension~1documentation~1DeviceDiscoveryExtension~1DDDeviceProtocolString/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "DDDeviceProtocolString"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.devicediscoveryextension~1documentation~1DeviceDiscoveryExtension~1DDError~1Code/title",
+          "value": "DDErrorCode"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.devicediscoveryextension~1documentation~1DeviceDiscoveryExtension~1DDError~1Code/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "DDErrorCode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.devicediscoveryextension~1documentation~1DeviceDiscoveryExtension~1DDError~1Code/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "DDErrorCode"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.documentation~1documentation~1AVKit~1AVRoutePickerView/fragments",
+          "value": [
+            {
+              "kind": "keyword",
+              "text": "@interface"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "AVRoutePickerView"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:objc(cs)UIView",
+              "text": "UIView"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.devicediscoveryextension~1documentation~1DeviceDiscoveryExtension~1DDDevice~1Category-swift.enum/title",
+          "value": "DDDeviceCategory"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.devicediscoveryextension~1documentation~1DeviceDiscoveryExtension~1DDDevice~1Category-swift.enum/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "DDDeviceCategory"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.devicediscoveryextension~1documentation~1DeviceDiscoveryExtension~1DDDevice~1Category-swift.enum/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "DDDeviceCategory"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.devicediscoveryextension~1documentation~1DeviceDiscoveryExtension~1DDDeviceStateToString(_:)/title",
+          "value": "DDDeviceStateToString"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.devicediscoveryextension~1documentation~1DeviceDiscoveryExtension~1DDDeviceStateToString(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "DDDeviceStateToString"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.devicediscoveryextension~1documentation~1DeviceDiscoveryExtension~1DDDevice~1Protocol-swift.enum/title",
+          "value": "DDDeviceProtocol"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.devicediscoveryextension~1documentation~1DeviceDiscoveryExtension~1DDDevice~1Protocol-swift.enum/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "DDDeviceProtocol"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.devicediscoveryextension~1documentation~1DeviceDiscoveryExtension~1DDDevice~1Protocol-swift.enum/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "DDDeviceProtocol"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.devicediscoveryextension~1documentation~1DeviceDiscoveryExtension~1DDDeviceCategoryToString(_:)/title",
+          "value": "DDDeviceCategoryToString"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.devicediscoveryextension~1documentation~1DeviceDiscoveryExtension~1DDDeviceCategoryToString(_:)/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "DDDeviceCategoryToString"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.devicediscoveryextension~1documentation~1DeviceDiscoveryExtension~1DDDeviceEvent~1EventType-swift.enum/title",
+          "value": "DDEventType"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.devicediscoveryextension~1documentation~1DeviceDiscoveryExtension~1DDDeviceEvent~1EventType-swift.enum/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "DDEventType"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.devicediscoveryextension~1documentation~1DeviceDiscoveryExtension~1DDDeviceEvent~1EventType-swift.enum/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "DDEventType"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/devicediscoveryextension"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/devicediscoveryextension"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

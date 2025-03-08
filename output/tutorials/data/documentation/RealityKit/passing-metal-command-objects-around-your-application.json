@@ -1,0 +1,803 @@
+{
+  "abstract": [
+    {
+      "text": "Build a system that creates and passes Metal command objects to entities dispatching Metal compute shaders.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.RealityKit/documentation/RealityKit"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.RealityKit/documentation/RealityKit/passing-metal-command-objects-around-your-application"
+  },
+  "kind": "article",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "modules": [
+      {
+        "name": "RealityKit"
+      }
+    ],
+    "role": "article",
+    "roleHeading": "Article",
+    "title": "Passing Metal command objects around your application"
+  },
+  "primaryContentSections": [
+    {
+      "content": [
+        {
+          "anchor": "Overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "To dispatch a Metal compute shader function, you need a command queue, a command buffer, and a compute command encoder.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Creating these command objects comes at a cost, so avoid making them on demand whenever you need to dispatch a compute shader function (see ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/metal/gpu_devices_and_work_submission/setting_up_a_command_structure",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ").",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Instead, for single-threaded apps, employ a single command queue for the entirety of the application, as well as a single command buffer and compute command encoder for all compute commands that you dispatch in every frame.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/generating-interactive-geometry-with-realitykit",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " sample demonstrates one possible approach to managing the life cycle and injection of these command objects throughout an application.",
+              "type": "text"
+            },
+            {
+              "text": " ",
+              "type": "text"
+            },
+            {
+              "text": "Leverage RealityKit’s ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/realitykit/system",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " (ECS) to pass an ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/metal/mtlcommandbuffer",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and an ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/metal/mtlcomputecommandencoder",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to each entity dispatching compute shaders in every frame, while maintaining a single global ",
+              "type": "text"
+            },
+            {
+              "identifier": "https://developer.apple.com/documentation/metal/mtlcommandqueue",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " for the entire application.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "anchor": "Define-a-compute-system-protocol",
+          "level": 2,
+          "text": "Define a compute system protocol",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Start by creating a structure that contains the context necessary to dispatch compute shader functions in every frame:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "/// A structure containing the context a `ComputeSystem` needs to dispatch compute commands in every frame.",
+            "struct ComputeUpdateContext {",
+            "    /// The number of seconds elapsed since the last frame.",
+            "    let deltaTime: TimeInterval",
+            "    /// The command buffer for the current frame.",
+            "    let commandBuffer: MTLCommandBuffer",
+            "    /// The compute command encoder for the current frame.",
+            "    let computeEncoder: MTLComputeCommandEncoder",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can choose not to include the ",
+              "type": "text"
+            },
+            {
+              "code": "deltaTime",
+              "type": "codeVoice"
+            },
+            {
+              "text": " property in your structure, or you can add additional properties, such as ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/SceneUpdateContext",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Next, define a protocol with an update method that takes ",
+              "type": "text"
+            },
+            {
+              "code": "ComputeUpdateContext",
+              "type": "codeVoice"
+            },
+            {
+              "text": " as a parameter:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "/// A protocol that enables its adoptees to dispatch their own compute commands in every frame.",
+            "protocol ComputeSystem {",
+            "    @MainActor",
+            "    func update(computeContext: ComputeUpdateContext)",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Dispatch-compute-systems-with-RealityKits-ECS",
+          "level": 2,
+          "text": "Dispatch compute systems with RealityKit’s ECS",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Create a component that holds a ",
+              "type": "text"
+            },
+            {
+              "code": "ComputeSystem",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "/// A component that contains a `ComputeSystem`.",
+            "struct ComputeSystemComponent: Component {",
+            "    let computeSystem: ComputeSystem",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Then, create a custom ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/System",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " that finds all entities with a ",
+              "type": "text"
+            },
+            {
+              "code": "ComputeSystemComponent",
+              "type": "codeVoice"
+            },
+            {
+              "text": " in every frame and passes that frame’s ",
+              "type": "text"
+            },
+            {
+              "code": "ComputeUpdateContext",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to their ",
+              "type": "text"
+            },
+            {
+              "code": "ComputeSystem",
+              "type": "codeVoice"
+            },
+            {
+              "text": " instances:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "/// A class that updates the `ComputeSystem` of each `ComputeSystemComponent` with `ComputeUpdateContext` in every frame.",
+            "class ComputeDispatchSystem: System {",
+            "    /// The application's command queue.",
+            "    ///",
+            "    /// A single, global command queue to use throughout the entire application.",
+            "    static let commandQueue: MTLCommandQueue? = makeCommandQueue(labeled: \"Compute Dispatch System Command Queue\")",
+            "    ",
+            "    /// The query this system uses to get all entities with a `ComputeSystemComponent` in every frame.",
+            "    let query = EntityQuery(where: .has(ComputeSystemComponent.self))",
+            "    ",
+            "    required init(scene: Scene) { }",
+            "    ",
+            "    /// Updates all compute systems with the current frame's `ComputeUpdateContext`.",
+            "    func update(context: SceneUpdateContext) {",
+            "        // Get all entities with a `ComputeSystemComponent` in every frame.",
+            "        let computeSystemEntities = context.entities(matching: query, updatingSystemWhen: .rendering)",
+            "        ",
+            "        // Create the command buffer and compute encoder responsible for dispatching all compute commands this frame.",
+            "        guard let commandBuffer = Self.commandQueue?.makeCommandBuffer(),",
+            "              let computeEncoder = commandBuffer.makeComputeCommandEncoder() else {",
+            "            return",
+            "        }",
+            "        ",
+            "        // Enqueue the command buffer.",
+            "        commandBuffer.enqueue()",
+            "        ",
+            "        // Dispatch all compute systems to encode their compute commands.",
+            "        let computeContext = ComputeUpdateContext(deltaTime: context.deltaTime,",
+            "                                                  commandBuffer: commandBuffer,",
+            "                                                  computeEncoder: computeEncoder)",
+            "        for computeSystemEntity in computeSystemEntities {",
+            "            if let computeSystemComponent = computeSystemEntity.components[ComputeSystemComponent.self] {",
+            "                computeSystemComponent.computeSystem.update(computeContext: computeContext)",
+            "            }",
+            "        }",
+            "        ",
+            "        // Stop encoding compute commands and commit them to run on the GPU.",
+            "        computeEncoder.endEncoding()",
+            "        commandBuffer.commit()",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "In this example, a helper method assists in the creation of the Metal command queue:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "/// The device Metal selects as the default.",
+            "let metalDevice: MTLDevice? = MTLCreateSystemDefaultDevice()",
+            "",
+            "/// Makes a command queue with the given label.",
+            "func makeCommandQueue(labeled label: String) -> MTLCommandQueue? {",
+            "    guard let metalDevice, let queue = metalDevice.makeCommandQueue() else {",
+            "        return nil",
+            "    }",
+            "    queue.label = label",
+            "    return queue",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "anchor": "Create-a-custom-compute-system",
+          "level": 2,
+          "text": "Create a custom compute system",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can dispatch your compute shader functions in every frame by creating a custom ",
+              "type": "text"
+            },
+            {
+              "code": "ComputeSystem",
+              "type": "codeVoice"
+            },
+            {
+              "text": " and implementing its ",
+              "type": "text"
+            },
+            {
+              "code": "update",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "struct MyComputeSystem: ComputeSystem {",
+            "    func update(computeContext: ComputeUpdateContext) {",
+            "        // Dispatch compute shader functions here.",
+            "    }",
+            "}"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Be sure to register the ",
+              "type": "text"
+            },
+            {
+              "code": "ComputeDispatchSystem",
+              "type": "codeVoice"
+            },
+            {
+              "text": " so that the ",
+              "type": "text"
+            },
+            {
+              "code": "update",
+              "type": "codeVoice"
+            },
+            {
+              "text": " method fires every frame:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "ComputeDispatchSystem.registerSystem()"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Finally, attach your custom ",
+              "type": "text"
+            },
+            {
+              "code": "ComputeSystem",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to an entity with a ",
+              "type": "text"
+            },
+            {
+              "code": "ComputeSystemComponent",
+              "type": "codeVoice"
+            },
+            {
+              "text": ":",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "code": [
+            "let myComputeSystem = MyComputeSystem()",
+            "let myComputeEntity = Entity()",
+            "myComputeEntity.components.set(ComputeSystemComponent(computeSystem: myComputeSystem))"
+          ],
+          "syntax": "swift",
+          "type": "codeListing"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.RealityKit/documentation/RealityKit": {
+      "abstract": [
+        {
+          "text": "Simulate and render 3D content for use in your augmented reality apps.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "RealityKit",
+      "type": "topic",
+      "url": "/documentation/realitykit"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/Resource": {
+      "abstract": [
+        {
+          "text": "A shared resource you use to configure a component, like a material, mesh,",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "or texture.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Resource"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/Resource",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "Resource"
+        }
+      ],
+      "role": "symbol",
+      "title": "Resource",
+      "type": "topic",
+      "url": "/documentation/realitykit/resource"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/SceneUpdateContext": {
+      "abstract": [
+        {
+          "text": "An object that contains information about the scene to update.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "struct"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SceneUpdateContext"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/SceneUpdateContext",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SceneUpdateContext"
+        }
+      ],
+      "role": "symbol",
+      "title": "SceneUpdateContext",
+      "type": "topic",
+      "url": "/documentation/realitykit/sceneupdatecontext"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/System": {
+      "abstract": [
+        {
+          "text": "An object that affects multiple entities in every update of a RealityKit",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "scene.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "System"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/System",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "System"
+        }
+      ],
+      "role": "symbol",
+      "title": "System",
+      "type": "topic",
+      "url": "/documentation/realitykit/system"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/construct-an-immersive-environment-for-visionOS": {
+      "abstract": [
+        {
+          "text": "Build efficient custom worlds for your app.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/construct-an-immersive-environment-for-visionOS",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Construct an immersive environment for visionOS",
+      "type": "topic",
+      "url": "/documentation/realitykit/construct-an-immersive-environment-for-visionos"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/generating-interactive-geometry-with-realitykit": {
+      "abstract": [
+        {
+          "text": "Create an interactive mesh with low-level mesh and low-level texture.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/generating-interactive-geometry-with-realitykit",
+      "kind": "article",
+      "role": "sampleCode",
+      "title": "Generating interactive geometry with RealityKit",
+      "type": "topic",
+      "url": "/documentation/realitykit/generating-interactive-geometry-with-realitykit"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/improving-the-performance-of-a-realitykit-app": {
+      "abstract": [
+        {
+          "text": "Measure CPU and GPU utilization to find ways to improve your app’s performance.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/improving-the-performance-of-a-realitykit-app",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Improving the Performance of a RealityKit App",
+      "type": "topic",
+      "url": "/documentation/realitykit/improving-the-performance-of-a-realitykit-app"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/reducing-cpu-utilization-in-your-realitykit-app": {
+      "abstract": [
+        {
+          "text": "Target specific CPU metrics with adjustments to your app and its content.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/reducing-cpu-utilization-in-your-realitykit-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Reducing CPU Utilization in Your RealityKit App",
+      "type": "topic",
+      "url": "/documentation/realitykit/reducing-cpu-utilization-in-your-realitykit-app"
+    },
+    "doc://com.apple.RealityKit/documentation/RealityKit/reducing-gpu-utilization-in-your-realitykit-app": {
+      "abstract": [
+        {
+          "text": "Prevent the GPU from limiting your app’s frame rate by reducing the complexity of",
+          "type": "text"
+        },
+        {
+          "text": " ",
+          "type": "text"
+        },
+        {
+          "text": "your render.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.RealityKit/documentation/RealityKit/reducing-gpu-utilization-in-your-realitykit-app",
+      "kind": "article",
+      "role": "article",
+      "title": "Reducing GPU Utilization in Your RealityKit App",
+      "type": "topic",
+      "url": "/documentation/realitykit/reducing-gpu-utilization-in-your-realitykit-app"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "https://developer.apple.com/documentation/metal/gpu_devices_and_work_submission/setting_up_a_command_structure": {
+      "identifier": "https://developer.apple.com/documentation/metal/gpu_devices_and_work_submission/setting_up_a_command_structure",
+      "title": "Setting Up a Command Structure",
+      "titleInlineContent": [
+        {
+          "text": "Setting Up a Command Structure",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/metal/gpu_devices_and_work_submission/setting_up_a_command_structure"
+    },
+    "https://developer.apple.com/documentation/metal/mtlcommandbuffer": {
+      "identifier": "https://developer.apple.com/documentation/metal/mtlcommandbuffer",
+      "title": "MTLCommandBuffer",
+      "titleInlineContent": [
+        {
+          "code": "MTLCommandBuffer",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/metal/mtlcommandbuffer"
+    },
+    "https://developer.apple.com/documentation/metal/mtlcommandqueue": {
+      "identifier": "https://developer.apple.com/documentation/metal/mtlcommandqueue",
+      "title": "MTLCommandQueue",
+      "titleInlineContent": [
+        {
+          "code": "MTLCommandQueue",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/metal/mtlcommandqueue"
+    },
+    "https://developer.apple.com/documentation/metal/mtlcomputecommandencoder": {
+      "identifier": "https://developer.apple.com/documentation/metal/mtlcomputecommandencoder",
+      "title": "MTLComputeCommandEncoder",
+      "titleInlineContent": [
+        {
+          "code": "MTLComputeCommandEncoder",
+          "type": "codeVoice"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/metal/mtlcomputecommandencoder"
+    },
+    "https://developer.apple.com/documentation/realitykit/system": {
+      "identifier": "https://developer.apple.com/documentation/realitykit/system",
+      "title": "Entity Component System",
+      "titleInlineContent": [
+        {
+          "text": "Entity Component System",
+          "type": "text"
+        }
+      ],
+      "type": "link",
+      "url": "https://developer.apple.com/documentation/realitykit/system"
+    }
+  },
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "Performance-improvements",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.RealityKit/documentation/RealityKit/improving-the-performance-of-a-realitykit-app",
+        "doc://com.apple.RealityKit/documentation/RealityKit/reducing-gpu-utilization-in-your-realitykit-app",
+        "doc://com.apple.RealityKit/documentation/RealityKit/reducing-cpu-utilization-in-your-realitykit-app",
+        "doc://com.apple.RealityKit/documentation/RealityKit/construct-an-immersive-environment-for-visionOS",
+        "doc://com.apple.RealityKit/documentation/RealityKit/Resource"
+      ],
+      "title": "Performance improvements"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/realitykit/passing-metal-command-objects-around-your-application"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    }
+  ]
+}

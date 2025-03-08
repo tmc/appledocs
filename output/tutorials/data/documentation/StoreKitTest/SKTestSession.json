@@ -1,0 +1,3551 @@
+{
+  "abstract": [
+    {
+      "text": "The controls and environment configuration you use to test StoreKit transactions in Xcode.",
+      "type": "text"
+    }
+  ],
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.storekittest/documentation/StoreKitTest"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "swift",
+    "url": "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestSession"
+  },
+  "kind": "symbol",
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:objc(cs)SKTestSession",
+    "fragments": [
+      {
+        "kind": "keyword",
+        "text": "class"
+      },
+      {
+        "kind": "text",
+        "text": " "
+      },
+      {
+        "kind": "identifier",
+        "text": "SKTestSession"
+      }
+    ],
+    "modules": [
+      {
+        "name": "StoreKit Test"
+      }
+    ],
+    "navigatorTitle": [
+      {
+        "kind": "identifier",
+        "text": "SKTestSession"
+      }
+    ],
+    "platforms": [
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "iOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "iPadOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "Mac Catalyst",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "11.0",
+        "name": "macOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "14.0",
+        "name": "tvOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "1.0",
+        "name": "visionOS",
+        "unavailable": false
+      },
+      {
+        "beta": false,
+        "deprecated": false,
+        "introducedAt": "7.0",
+        "name": "watchOS",
+        "unavailable": false
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "class",
+    "title": "SKTestSession"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "swift"
+          ],
+          "platforms": [
+            "iOS",
+            "iPadOS",
+            "macOS",
+            "tvOS",
+            "visionOS",
+            "watchOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "SKTestSession"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "This class controls the settings that the server uses when it processes transactions. Run tests that reconfigure the environment serially, not concurrently, to avoid overwriting each other’s environment settings.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "content": [
+            {
+              "inlineContent": [
+                {
+                  "text": "",
+                  "type": "text"
+                },
+                {
+                  "text": " ",
+                  "type": "text"
+                },
+                {
+                  "text": "There’s a single instance of the test environment. All ",
+                  "type": "text"
+                },
+                {
+                  "code": "SKTestSession",
+                  "type": "codeVoice"
+                },
+                {
+                  "text": " instances control the same test environment.",
+                  "type": "text"
+                }
+              ],
+              "type": "paragraph"
+            }
+          ],
+          "name": "Note",
+          "style": "note",
+          "type": "aside"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "The test environment creates an ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestTransaction",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " instance each time your test code calls any method of ",
+              "type": "text"
+            },
+            {
+              "code": "SKTestSession",
+              "type": "codeVoice"
+            },
+            {
+              "text": " that affects in-app purchases, including:",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "items": [
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestSession/buyProduct(productIdentifier:)",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestSession/refundTransaction(identifier:)",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestSession/enableAutoRenewForTransaction(identifier:)",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestSession/disableAutoRenewForTransaction(identifier:)",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestSession/forceRenewalOfSubscription(productIdentifier:)",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestSession/expireSubscription(productIdentifier:)",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestSession/approveAskToBuyTransaction(identifier:)",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestSession/declineAskToBuyTransaction(identifier:)",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            },
+            {
+              "content": [
+                {
+                  "inlineContent": [
+                    {
+                      "identifier": "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestSession/resolveIssueForTransaction(identifier:)",
+                      "isActive": true,
+                      "type": "reference"
+                    }
+                  ],
+                  "type": "paragraph"
+                }
+              ]
+            }
+          ],
+          "type": "unorderedList"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "You can manage the transactions in the test environment. To get a list of all transactions in the test environment, call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestSession/allTransactions()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". To delete a single transaction, call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestSession/deleteTransaction(identifier:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". To delete all the transactions, call ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestSession/clearTransactions()",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ".",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Before automating a test session with ",
+              "type": "text"
+            },
+            {
+              "code": "SKTestSession",
+              "type": "codeVoice"
+            },
+            {
+              "text": ", you must create a StoreKit configuration file. For more information, see ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/Xcode/setting-up-storekit-testing-in-xcode",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " and ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestSession/init(configurationFileNamed:)",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": ". Set ",
+              "type": "text"
+            },
+            {
+              "identifier": "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestSession/disableDialogs",
+              "isActive": true,
+              "type": "reference"
+            },
+            {
+              "text": " to ",
+              "type": "text"
+            },
+            {
+              "code": "true",
+              "type": "codeVoice"
+            },
+            {
+              "text": " to run tests without showing test environment UI.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/Xcode/setting-up-storekit-testing-in-xcode": {
+      "abstract": [
+        {
+          "text": "Prepare your test environment to test in-app purchases with data you configure locally.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/Xcode/setting-up-storekit-testing-in-xcode",
+      "kind": "article",
+      "role": "article",
+      "title": "Setting up StoreKit Testing in Xcode",
+      "type": "topic",
+      "url": "/documentation/Xcode/setting-up-storekit-testing-in-xcode"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "abstract": [
+        {
+          "text": "",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "role": "overview",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    },
+    "doc://com.apple.storekittest/documentation/StoreKitTest": {
+      "abstract": [
+        {
+          "text": "Create and automate tests in Xcode for your app’s subscription and in-app purchase transactions, and SKAdNetwork implementations.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.storekittest/documentation/StoreKitTest",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "StoreKit Test",
+      "type": "topic",
+      "url": "/documentation/storekittest"
+    },
+    "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestSession": {
+      "abstract": [
+        {
+          "text": "The controls and environment configuration you use to test StoreKit transactions in Xcode.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKTestSession"
+        }
+      ],
+      "identifier": "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestSession",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKTestSession"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKTestSession",
+      "type": "topic",
+      "url": "/documentation/storekittest/sktestsession"
+    },
+    "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestSession/TimeRate-swift.enum": {
+      "abstract": [
+        {
+          "text": "The values for rates of time passing in the test environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "enum"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "TimeRate"
+        }
+      ],
+      "identifier": "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestSession/TimeRate-swift.enum",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "TimeRate"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKTestSession.TimeRate",
+      "type": "topic",
+      "url": "/documentation/storekittest/sktestsession/timerate-swift.enum"
+    },
+    "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestSession/allTransactions()": {
+      "abstract": [
+        {
+          "text": "Gets a list of all transactions in the test environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "allTransactions"
+        },
+        {
+          "kind": "text",
+          "text": "() -> ["
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SKTestTransaction",
+          "text": "SKTestTransaction"
+        },
+        {
+          "kind": "text",
+          "text": "]"
+        }
+      ],
+      "identifier": "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestSession/allTransactions()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "allTransactions"
+        }
+      ],
+      "role": "symbol",
+      "title": "allTransactions()",
+      "type": "topic",
+      "url": "/documentation/storekittest/sktestsession/alltransactions()"
+    },
+    "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestSession/approveAskToBuyTransaction(identifier:)": {
+      "abstract": [
+        {
+          "text": "Resolves an Ask to Buy test scenario by approving the transaction.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "approveAskToBuyTransaction"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "identifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestSession/approveAskToBuyTransaction(identifier:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "approveAskToBuyTransactionWithIdentifier:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "approveAskToBuyTransaction(identifier:)",
+      "type": "topic",
+      "url": "/documentation/storekittest/sktestsession/approveasktobuytransaction(identifier:)"
+    },
+    "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestSession/askToBuyEnabled": {
+      "abstract": [
+        {
+          "text": "A Boolean value that determines whether the testing environment simulates an Ask to Buy scenario.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "askToBuyEnabled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestSession/askToBuyEnabled",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "askToBuyEnabled"
+        }
+      ],
+      "role": "symbol",
+      "title": "askToBuyEnabled",
+      "type": "topic",
+      "url": "/documentation/storekittest/sktestsession/asktobuyenabled"
+    },
+    "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestSession/billingGracePeriodIsEnabled": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the test environment simulates a billing grace period for auto-renewable subscriptions.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "billingGracePeriodIsEnabled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestSession/billingGracePeriodIsEnabled",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "billingGracePeriodEnabled"
+        }
+      ],
+      "role": "symbol",
+      "title": "billingGracePeriodIsEnabled",
+      "type": "topic",
+      "url": "/documentation/storekittest/sktestsession/billinggraceperiodisenabled"
+    },
+    "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestSession/buyProduct(identifier:options:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "buyProduct"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "identifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit7ProductV",
+          "text": "Product"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit7ProductV2IDa",
+          "text": "ID"
+        },
+        {
+          "kind": "text",
+          "text": ", "
+        },
+        {
+          "kind": "externalParam",
+          "text": "options"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sh",
+          "text": "Set"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit7ProductV",
+          "text": "Product"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit7ProductV14PurchaseOptionV",
+          "text": "PurchaseOption"
+        },
+        {
+          "kind": "text",
+          "text": ">) "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:8StoreKit11TransactionV",
+          "text": "Transaction"
+        }
+      ],
+      "identifier": "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestSession/buyProduct(identifier:options:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "buyProduct(identifier:options:)",
+      "type": "topic",
+      "url": "/documentation/storekittest/sktestsession/buyproduct(identifier:options:)"
+    },
+    "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestSession/buyProduct(productIdentifier:)": {
+      "abstract": [
+        {
+          "text": "Simulates buying an in-app purchase or subscription outside the app.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "buyProduct"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "productIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestSession/buyProduct(productIdentifier:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "buyProductWithIdentifier:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "buyProduct(productIdentifier:)",
+      "type": "topic",
+      "url": "/documentation/storekittest/sktestsession/buyproduct(productidentifier:)"
+    },
+    "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestSession/clearTransactions()": {
+      "abstract": [
+        {
+          "text": "Removes all transactions from the test environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "clearTransactions"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestSession/clearTransactions()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "clearTransactions"
+        }
+      ],
+      "role": "symbol",
+      "title": "clearTransactions()",
+      "type": "topic",
+      "url": "/documentation/storekittest/sktestsession/cleartransactions()"
+    },
+    "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestSession/consentToPriceIncreaseForTransaction(identifier:)": {
+      "abstract": [
+        {
+          "text": "Simulates a user consenting to a price increase for an auto-renewable subscription.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "consentToPriceIncreaseForTransaction"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "identifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestSession/consentToPriceIncreaseForTransaction(identifier:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "consentToPriceIncreaseForTransactionWithIdentifier:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "consentToPriceIncreaseForTransaction(identifier:)",
+      "type": "topic",
+      "url": "/documentation/storekittest/sktestsession/consenttopriceincreasefortransaction(identifier:)"
+    },
+    "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestSession/declineAskToBuyTransaction(identifier:)": {
+      "abstract": [
+        {
+          "text": "Resolves an Ask to Buy test scenario by declining the transaction.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "declineAskToBuyTransaction"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "identifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestSession/declineAskToBuyTransaction(identifier:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "declineAskToBuyTransactionWithIdentifier:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "declineAskToBuyTransaction(identifier:)",
+      "type": "topic",
+      "url": "/documentation/storekittest/sktestsession/declineasktobuytransaction(identifier:)"
+    },
+    "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestSession/declinePriceIncreaseForTransaction(identifier:)": {
+      "abstract": [
+        {
+          "text": "Simulates a user canceling an auto-renewable subscription by disabling auto-renew.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "declinePriceIncreaseForTransaction"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "identifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestSession/declinePriceIncreaseForTransaction(identifier:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "declinePriceIncreaseForTransactionWithIdentifier:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "declinePriceIncreaseForTransaction(identifier:)",
+      "type": "topic",
+      "url": "/documentation/storekittest/sktestsession/declinepriceincreasefortransaction(identifier:)"
+    },
+    "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestSession/deleteTransaction(identifier:)": {
+      "abstract": [
+        {
+          "text": "Deletes a specific transaction from the test environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "deleteTransaction"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "identifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestSession/deleteTransaction(identifier:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "deleteTransactionWithIdentifier:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "deleteTransaction(identifier:)",
+      "type": "topic",
+      "url": "/documentation/storekittest/sktestsession/deletetransaction(identifier:)"
+    },
+    "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestSession/disableAutoRenewForTransaction(identifier:)": {
+      "abstract": [
+        {
+          "text": "Disables auto-renewing for an auto-renewable subscription in the test environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "disableAutoRenewForTransaction"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "identifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestSession/disableAutoRenewForTransaction(identifier:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "disableAutoRenewForTransactionWithIdentifier:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "disableAutoRenewForTransaction(identifier:)",
+      "type": "topic",
+      "url": "/documentation/storekittest/sktestsession/disableautorenewfortransaction(identifier:)"
+    },
+    "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestSession/disableDialogs": {
+      "abstract": [
+        {
+          "text": "A Boolean value that determines whether the testing environment disables dialogs during automated testing.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "disableDialogs"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestSession/disableDialogs",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "disableDialogs"
+        }
+      ],
+      "role": "symbol",
+      "title": "disableDialogs",
+      "type": "topic",
+      "url": "/documentation/storekittest/sktestsession/disabledialogs"
+    },
+    "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestSession/enableAutoRenewForTransaction(identifier:)": {
+      "abstract": [
+        {
+          "text": "Enables auto-renewing for an auto-renewable subscription in the test environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "enableAutoRenewForTransaction"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "identifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestSession/enableAutoRenewForTransaction(identifier:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "enableAutoRenewForTransactionWithIdentifier:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "enableAutoRenewForTransaction(identifier:)",
+      "type": "topic",
+      "url": "/documentation/storekittest/sktestsession/enableautorenewfortransaction(identifier:)"
+    },
+    "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestSession/expireSubscription(productIdentifier:)": {
+      "abstract": [
+        {
+          "text": "Causes the identified auto-renewable subscription to expire immediately in the test environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "expireSubscription"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "productIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestSession/expireSubscription(productIdentifier:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "expireSubscriptionWithProductIdentifier:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "expireSubscription(productIdentifier:)",
+      "type": "topic",
+      "url": "/documentation/storekittest/sktestsession/expiresubscription(productidentifier:)"
+    },
+    "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestSession/failTransactionsEnabled": {
+      "abstract": [
+        {
+          "text": "A Boolean value that determines whether transactions fail in the testing environment.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "failTransactionsEnabled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestSession/failTransactionsEnabled",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "failTransactionsEnabled"
+        }
+      ],
+      "role": "symbol",
+      "title": "failTransactionsEnabled",
+      "type": "topic",
+      "url": "/documentation/storekittest/sktestsession/failtransactionsenabled"
+    },
+    "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestSession/failureError": {
+      "abstract": [
+        {
+          "text": "The error code that transactions return when you enable failing transactions.",
+          "type": "text"
+        }
+      ],
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "failureError"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SC11SKErrorCodeLeV",
+          "text": "SKError"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@SKErrorCode",
+          "text": "Code"
+        }
+      ],
+      "identifier": "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestSession/failureError",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "failureError"
+        }
+      ],
+      "role": "symbol",
+      "title": "failureError",
+      "type": "topic",
+      "url": "/documentation/storekittest/sktestsession/failureerror"
+    },
+    "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestSession/forceRenewalOfSubscription(productIdentifier:)": {
+      "abstract": [
+        {
+          "text": "Ends the previous subscription period and begins the next period in the test environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "forceRenewalOfSubscription"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "productIdentifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestSession/forceRenewalOfSubscription(productIdentifier:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "forceRenewalOfSubscriptionWithProductIdentifier:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "forceRenewalOfSubscription(productIdentifier:)",
+      "type": "topic",
+      "url": "/documentation/storekittest/sktestsession/forcerenewalofsubscription(productidentifier:)"
+    },
+    "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestSession/init(configurationFileNamed:)": {
+      "abstract": [
+        {
+          "text": "Initializes the test session with the provided configuration file that you include in your application’s bundle.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "convenience"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "configurationFileNamed"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestSession/init(configurationFileNamed:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithConfigurationFileNamed:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(configurationFileNamed:)",
+      "type": "topic",
+      "url": "/documentation/storekittest/sktestsession/init(configurationfilenamed:)"
+    },
+    "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestSession/init(contentsOf:)": {
+      "abstract": [
+        {
+          "text": "Initializes the test session with a configuration file you provide through a URL.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "identifier",
+          "text": "init"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "contentsOf"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation3URLV",
+          "text": "URL"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestSession/init(contentsOf:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "initWithContentsOfURL:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "init(contentsOf:)",
+      "type": "topic",
+      "url": "/documentation/storekittest/sktestsession/init(contentsof:)"
+    },
+    "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestSession/interruptedPurchasesEnabled": {
+      "abstract": [
+        {
+          "text": "A Boolean value that determines whether the test environment simulates an interrupted purchase.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "interruptedPurchasesEnabled"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestSession/interruptedPurchasesEnabled",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "interruptedPurchasesEnabled"
+        }
+      ],
+      "role": "symbol",
+      "title": "interruptedPurchasesEnabled",
+      "type": "topic",
+      "url": "/documentation/storekittest/sktestsession/interruptedpurchasesenabled"
+    },
+    "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestSession/locale": {
+      "abstract": [
+        {
+          "text": "The value that determines the localization metadata the test environment uses.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "locale"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:10Foundation6LocaleV",
+          "text": "Locale"
+        }
+      ],
+      "identifier": "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestSession/locale",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "locale"
+        }
+      ],
+      "role": "symbol",
+      "title": "locale",
+      "type": "topic",
+      "url": "/documentation/storekittest/sktestsession/locale"
+    },
+    "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestSession/refundTransaction(identifier:)": {
+      "abstract": [
+        {
+          "text": "Simulates a refund for an in-app purchase that completes outside of the app.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "refundTransaction"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "identifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestSession/refundTransaction(identifier:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "refundTransactionWithIdentifier:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "refundTransaction(identifier:)",
+      "type": "topic",
+      "url": "/documentation/storekittest/sktestsession/refundtransaction(identifier:)"
+    },
+    "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestSession/requestPriceIncreaseConsentForTransaction(identifier:)": {
+      "abstract": [
+        {
+          "text": "Simulates a price increase that requires customer consent for an auto-renewable subscription.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "requestPriceIncreaseConsentForTransaction"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "identifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestSession/requestPriceIncreaseConsentForTransaction(identifier:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "requestPriceIncreaseConsentForTransactionWithIdentifier:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "requestPriceIncreaseConsentForTransaction(identifier:)",
+      "type": "topic",
+      "url": "/documentation/storekittest/sktestsession/requestpriceincreaseconsentfortransaction(identifier:)"
+    },
+    "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestSession/resetToDefaultState()": {
+      "abstract": [
+        {
+          "text": "Removes all property overrides and resets all test session settings to their default state.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "resetToDefaultState"
+        },
+        {
+          "kind": "text",
+          "text": "()"
+        }
+      ],
+      "identifier": "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestSession/resetToDefaultState()",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "resetToDefaultState"
+        }
+      ],
+      "role": "symbol",
+      "title": "resetToDefaultState()",
+      "type": "topic",
+      "url": "/documentation/storekittest/sktestsession/resettodefaultstate()"
+    },
+    "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestSession/resolveIssueForTransaction(identifier:)": {
+      "abstract": [
+        {
+          "text": "Simulates resolving an issue when you test interrupted purchases or billing retry scenarios.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "resolveIssueForTransaction"
+        },
+        {
+          "kind": "text",
+          "text": "("
+        },
+        {
+          "kind": "externalParam",
+          "text": "identifier"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Si",
+          "text": "Int"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestSession/resolveIssueForTransaction(identifier:)",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "resolveIssueForTransactionWithIdentifier:error:"
+        }
+      ],
+      "role": "symbol",
+      "title": "resolveIssueForTransaction(identifier:)",
+      "type": "topic",
+      "url": "/documentation/storekittest/sktestsession/resolveissuefortransaction(identifier:)"
+    },
+    "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestSession/setSimulatedError(_:forAPI:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "setSimulatedError"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "API"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "API"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:12StoreKitTest08FailableaB3APIP7FailureQa",
+          "text": "Failure"
+        },
+        {
+          "kind": "text",
+          "text": "?, "
+        },
+        {
+          "kind": "externalParam",
+          "text": "forAPI"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "API"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "keyword",
+          "text": "throws"
+        }
+      ],
+      "identifier": "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestSession/setSimulatedError(_:forAPI:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setSimulatedError(_:forAPI:)",
+      "type": "topic",
+      "url": "/documentation/storekittest/sktestsession/setsimulatederror(_:forapi:)"
+    },
+    "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestSession/shouldEnterBillingRetryOnRenewal": {
+      "abstract": [
+        {
+          "text": "A Boolean value that indicates whether the testing environment enters a billing retry state when an auto-renewable subscription renews.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "shouldEnterBillingRetryOnRenewal"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:Sb",
+          "text": "Bool"
+        }
+      ],
+      "identifier": "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestSession/shouldEnterBillingRetryOnRenewal",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "billingRetryOnRenewalEnabled"
+        }
+      ],
+      "role": "symbol",
+      "title": "shouldEnterBillingRetryOnRenewal",
+      "type": "topic",
+      "url": "/documentation/storekittest/sktestsession/shouldenterbillingretryonrenewal"
+    },
+    "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestSession/simulatedError(forAPI:)": {
+      "abstract": [],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "func"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "simulatedError"
+        },
+        {
+          "kind": "text",
+          "text": "<"
+        },
+        {
+          "kind": "genericParameter",
+          "text": "API"
+        },
+        {
+          "kind": "text",
+          "text": ">("
+        },
+        {
+          "kind": "externalParam",
+          "text": "forAPI"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "API"
+        },
+        {
+          "kind": "text",
+          "text": ") "
+        },
+        {
+          "kind": "keyword",
+          "text": "async"
+        },
+        {
+          "kind": "text",
+          "text": " -> "
+        },
+        {
+          "kind": "typeIdentifier",
+          "text": "API"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:12StoreKitTest08FailableaB3APIP7FailureQa",
+          "text": "Failure"
+        },
+        {
+          "kind": "text",
+          "text": "?"
+        }
+      ],
+      "identifier": "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestSession/simulatedError(forAPI:)",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "simulatedError(forAPI:)",
+      "type": "topic",
+      "url": "/documentation/storekittest/sktestsession/simulatederror(forapi:)"
+    },
+    "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestSession/storefront": {
+      "abstract": [
+        {
+          "text": "The three-letter code that represents the region associated with the App Store storefront.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "storefront"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SS",
+          "text": "String"
+        }
+      ],
+      "identifier": "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestSession/storefront",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "storefront"
+        }
+      ],
+      "role": "symbol",
+      "title": "storefront",
+      "type": "topic",
+      "url": "/documentation/storekittest/sktestsession/storefront"
+    },
+    "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestSession/timeRate-swift.property": {
+      "abstract": [
+        {
+          "text": "The rate at which time passes for subscriptions in the test environment as compared to real time.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "var"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "timeRate"
+        },
+        {
+          "kind": "text",
+          "text": ": "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:objc(cs)SKTestSession",
+          "text": "SKTestSession"
+        },
+        {
+          "kind": "text",
+          "text": "."
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "c:@E@SKTestTimeRate",
+          "text": "TimeRate"
+        }
+      ],
+      "identifier": "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestSession/timeRate-swift.property",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "timeRate"
+        }
+      ],
+      "role": "symbol",
+      "title": "timeRate",
+      "type": "topic",
+      "url": "/documentation/storekittest/sktestsession/timerate-swift.property"
+    },
+    "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestTransaction": {
+      "abstract": [
+        {
+          "text": "A transaction that occurs in the testing environment.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "class"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "SKTestTransaction"
+        }
+      ],
+      "identifier": "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestTransaction",
+      "kind": "symbol",
+      "navigatorTitle": [
+        {
+          "kind": "identifier",
+          "text": "SKTestTransaction"
+        }
+      ],
+      "role": "symbol",
+      "title": "SKTestTransaction",
+      "type": "topic",
+      "url": "/documentation/storekittest/sktesttransaction"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(cs)NSObject": {
+      "abstract": [
+        {
+          "text": "The root class of most Objective-C class hierarchies, from which subclasses inherit a basic interface to the runtime system and the ability to behave as Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "class "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObject"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObject",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobject"
+    },
+    "doc://com.externally.resolved.symbol/c:objc(pl)NSObject": {
+      "abstract": [
+        {
+          "text": "The group of methods that are fundamental to all Objective-C objects.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "protocol "
+        },
+        {
+          "kind": "identifier",
+          "text": "NSObjectProtocol"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "NSObjectProtocol",
+      "type": "topic",
+      "url": "/documentation/objectivec/nsobjectprotocol"
+    },
+    "doc://com.externally.resolved.symbol/s:SH": {
+      "abstract": [
+        {
+          "text": "A type that can be hashed into a `Hasher` to produce an integer hash value.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Hashable"
+        },
+        {
+          "kind": "text",
+          "text": " : "
+        },
+        {
+          "kind": "typeIdentifier",
+          "preciseIdentifier": "s:SQ",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SH",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Hashable",
+      "type": "topic",
+      "url": "/documentation/Swift/Hashable"
+    },
+    "doc://com.externally.resolved.symbol/s:SQ": {
+      "abstract": [
+        {
+          "text": "A type that can be compared for value equality.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Equatable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:SQ",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Equatable",
+      "type": "topic",
+      "url": "/documentation/Swift/Equatable"
+    },
+    "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP": {
+      "abstract": [
+        {
+          "text": "A type with a customized textual representation suitable for debugging purposes.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CustomDebugStringConvertible"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CustomDebugStringConvertible",
+      "type": "topic",
+      "url": "/documentation/Swift/CustomDebugStringConvertible"
+    },
+    "doc://com.externally.resolved.symbol/s:s7CVarArgP": {
+      "abstract": [
+        {
+          "text": "A type whose instances can be encoded, and appropriately passed, as elements of a C `va_list`.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "CVarArg"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "CVarArg",
+      "type": "topic",
+      "url": "/documentation/Swift/CVarArg"
+    },
+    "doc://com.externally.resolved.symbol/s:s8SendableP": {
+      "abstract": [
+        {
+          "text": "A thread-safe type whose values can be shared across arbitrary concurrent contexts without introducing a risk of data races.",
+          "type": "text"
+        }
+      ],
+      "fragments": [
+        {
+          "kind": "keyword",
+          "text": "protocol"
+        },
+        {
+          "kind": "text",
+          "text": " "
+        },
+        {
+          "kind": "identifier",
+          "text": "Sendable"
+        }
+      ],
+      "identifier": "doc://com.externally.resolved.symbol/s:s8SendableP",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "Sendable",
+      "type": "topic",
+      "url": "/documentation/Swift/Sendable"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    },
+    {
+      "identifiers": [
+        "doc://com.externally.resolved.symbol/s:s7CVarArgP",
+        "doc://com.externally.resolved.symbol/s:s28CustomDebugStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:s23CustomStringConvertibleP",
+        "doc://com.externally.resolved.symbol/s:SQ",
+        "doc://com.externally.resolved.symbol/s:SH",
+        "doc://com.externally.resolved.symbol/c:objc(pl)NSObject",
+        "doc://com.externally.resolved.symbol/s:s8SendableP"
+      ],
+      "kind": "relationships",
+      "title": "Conforms To",
+      "type": "conformsTo"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "anchor": "StoreKit-transaction-testing",
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/Xcode/setting-up-storekit-testing-in-xcode",
+        "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestTransaction"
+      ],
+      "title": "StoreKit transaction testing"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "Initializing-test-sessions",
+      "identifiers": [
+        "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestSession/init(configurationFileNamed:)",
+        "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestSession/init(contentsOf:)",
+        "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestSession/resetToDefaultState()"
+      ],
+      "title": "Initializing test sessions"
+    },
+    {
+      "anchor": "Configuring-the-test-environment",
+      "identifiers": [
+        "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestSession/storefront",
+        "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestSession/locale",
+        "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestSession/disableDialogs"
+      ],
+      "title": "Configuring the test environment"
+    },
+    {
+      "anchor": "Managing-transactions-in-the-test-environment",
+      "identifiers": [
+        "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestSession/allTransactions()",
+        "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestSession/deleteTransaction(identifier:)",
+        "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestSession/clearTransactions()"
+      ],
+      "title": "Managing transactions in the test environment"
+    },
+    {
+      "anchor": "Forcing-failed-transactions",
+      "identifiers": [
+        "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestSession/failTransactionsEnabled",
+        "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestSession/failureError"
+      ],
+      "title": "Forcing failed transactions"
+    },
+    {
+      "anchor": "Testing-interrupted-purchases",
+      "identifiers": [
+        "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestSession/interruptedPurchasesEnabled",
+        "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestSession/resolveIssueForTransaction(identifier:)"
+      ],
+      "title": "Testing interrupted purchases"
+    },
+    {
+      "anchor": "Testing-Ask-To-Buy-transactions",
+      "identifiers": [
+        "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestSession/askToBuyEnabled",
+        "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestSession/approveAskToBuyTransaction(identifier:)",
+        "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestSession/declineAskToBuyTransaction(identifier:)"
+      ],
+      "title": "Testing Ask To Buy transactions"
+    },
+    {
+      "anchor": "Testing-subscription-renewals",
+      "identifiers": [
+        "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestSession/timeRate-swift.property",
+        "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestSession/TimeRate-swift.enum",
+        "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestSession/enableAutoRenewForTransaction(identifier:)",
+        "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestSession/disableAutoRenewForTransaction(identifier:)",
+        "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestSession/forceRenewalOfSubscription(productIdentifier:)",
+        "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestSession/expireSubscription(productIdentifier:)"
+      ],
+      "title": "Testing subscription renewals"
+    },
+    {
+      "anchor": "Testing-billing-retry-and-grace-period",
+      "identifiers": [
+        "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestSession/billingGracePeriodIsEnabled",
+        "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestSession/shouldEnterBillingRetryOnRenewal",
+        "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestSession/resolveIssueForTransaction(identifier:)"
+      ],
+      "title": "Testing billing retry and grace period"
+    },
+    {
+      "anchor": "Testing-price-increase-consent",
+      "identifiers": [
+        "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestSession/requestPriceIncreaseConsentForTransaction(identifier:)",
+        "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestSession/consentToPriceIncreaseForTransaction(identifier:)",
+        "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestSession/declinePriceIncreaseForTransaction(identifier:)"
+      ],
+      "title": "Testing price increase consent"
+    },
+    {
+      "anchor": "Testing-externally-performed-transactions",
+      "identifiers": [
+        "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestSession/buyProduct(productIdentifier:)",
+        "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestSession/refundTransaction(identifier:)"
+      ],
+      "title": "Testing externally performed transactions"
+    },
+    {
+      "anchor": "Instance-Methods",
+      "identifiers": [
+        "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestSession/buyProduct(identifier:options:)",
+        "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestSession/setSimulatedError(_:forAPI:)",
+        "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestSession/simulatedError(forAPI:)"
+      ],
+      "title": "Instance Methods"
+    }
+  ],
+  "variantOverrides": [
+    {
+      "patch": [
+        {
+          "op": "replace",
+          "path": "/identifier/interfaceLanguage",
+          "value": "occ"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/platforms",
+          "value": [
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "14.0",
+              "name": "iOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "14.0",
+              "name": "iPadOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "14.0",
+              "name": "Mac Catalyst",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "11.0",
+              "name": "macOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "14.0",
+              "name": "tvOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "1.0",
+              "name": "visionOS",
+              "unavailable": false
+            },
+            {
+              "beta": false,
+              "deprecated": false,
+              "introducedAt": "7.0",
+              "name": "watchOS",
+              "unavailable": false
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/roleHeading",
+          "value": "Class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/title",
+          "value": "SKTestSession"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/symbolKind",
+          "value": "class"
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKTestSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/metadata/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKTestSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/hierarchy",
+          "value": {
+            "paths": [
+              [
+                "doc://com.apple.documentation/documentation/technologies",
+                "doc://com.apple.storekittest/documentation/StoreKitTest"
+              ]
+            ]
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/topicSections",
+          "value": [
+            {
+              "anchor": "Initializing-test-sessions",
+              "identifiers": [
+                "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestSession/init(configurationFileNamed:)",
+                "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestSession/init(contentsOf:)",
+                "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestSession/resetToDefaultState()"
+              ],
+              "title": "Initializing test sessions"
+            },
+            {
+              "anchor": "Configuring-the-test-environment",
+              "identifiers": [
+                "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestSession/storefront",
+                "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestSession/locale",
+                "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestSession/disableDialogs"
+              ],
+              "title": "Configuring the test environment"
+            },
+            {
+              "anchor": "Managing-transactions-in-the-test-environment",
+              "identifiers": [
+                "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestSession/allTransactions()",
+                "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestSession/deleteTransaction(identifier:)",
+                "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestSession/clearTransactions()"
+              ],
+              "title": "Managing transactions in the test environment"
+            },
+            {
+              "anchor": "Forcing-failed-transactions",
+              "identifiers": [
+                "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestSession/failTransactionsEnabled",
+                "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestSession/failureError"
+              ],
+              "title": "Forcing failed transactions"
+            },
+            {
+              "anchor": "Testing-interrupted-purchases",
+              "identifiers": [
+                "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestSession/interruptedPurchasesEnabled",
+                "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestSession/resolveIssueForTransaction(identifier:)"
+              ],
+              "title": "Testing interrupted purchases"
+            },
+            {
+              "anchor": "Testing-Ask-To-Buy-transactions",
+              "identifiers": [
+                "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestSession/askToBuyEnabled",
+                "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestSession/approveAskToBuyTransaction(identifier:)",
+                "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestSession/declineAskToBuyTransaction(identifier:)"
+              ],
+              "title": "Testing Ask To Buy transactions"
+            },
+            {
+              "anchor": "Testing-subscription-renewals",
+              "identifiers": [
+                "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestSession/timeRate-swift.property",
+                "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestSession/TimeRate-swift.enum",
+                "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestSession/enableAutoRenewForTransaction(identifier:)",
+                "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestSession/disableAutoRenewForTransaction(identifier:)",
+                "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestSession/forceRenewalOfSubscription(productIdentifier:)",
+                "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestSession/expireSubscription(productIdentifier:)"
+              ],
+              "title": "Testing subscription renewals"
+            },
+            {
+              "anchor": "Testing-billing-retry-and-grace-period",
+              "identifiers": [
+                "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestSession/billingGracePeriodIsEnabled",
+                "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestSession/shouldEnterBillingRetryOnRenewal",
+                "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestSession/resolveIssueForTransaction(identifier:)"
+              ],
+              "title": "Testing billing retry and grace period"
+            },
+            {
+              "anchor": "Testing-price-increase-consent",
+              "identifiers": [
+                "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestSession/requestPriceIncreaseConsentForTransaction(identifier:)",
+                "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestSession/consentToPriceIncreaseForTransaction(identifier:)",
+                "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestSession/declinePriceIncreaseForTransaction(identifier:)"
+              ],
+              "title": "Testing price increase consent"
+            },
+            {
+              "anchor": "Testing-externally-performed-transactions",
+              "identifiers": [
+                "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestSession/buyProduct(productIdentifier:)",
+                "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestSession/refundTransaction(identifier:)"
+              ],
+              "title": "Testing externally performed transactions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/relationshipsSections",
+          "value": [
+            {
+              "identifiers": [
+                "doc://com.externally.resolved.symbol/c:objc(cs)NSObject"
+              ],
+              "kind": "relationships",
+              "title": "Inherits From",
+              "type": "inheritsFrom"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/seeAlsoSections",
+          "value": [
+            {
+              "anchor": "StoreKit-transaction-testing",
+              "generated": true,
+              "identifiers": [
+                "doc://com.apple.storekittest/documentation/StoreKitTest/SKTestTransaction"
+              ],
+              "title": "StoreKit transaction testing"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/primaryContentSections/0",
+          "value": {
+            "declarations": [
+              {
+                "languages": [
+                  "occ"
+                ],
+                "platforms": [
+                  "iOS",
+                  "iPadOS",
+                  "macOS",
+                  "tvOS",
+                  "visionOS",
+                  "watchOS"
+                ],
+                "tokens": [
+                  {
+                    "kind": "keyword",
+                    "text": "@interface"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " "
+                  },
+                  {
+                    "kind": "identifier",
+                    "text": "SKTestSession"
+                  },
+                  {
+                    "kind": "text",
+                    "text": " : "
+                  },
+                  {
+                    "identifier": "doc://com.externally.resolved.symbol/c:objc(cs)NSObject",
+                    "kind": "typeIdentifier",
+                    "preciseIdentifier": "c:objc(cs)NSObject",
+                    "text": "NSObject"
+                  }
+                ]
+              }
+            ],
+            "kind": "declarations"
+          }
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekittest~1documentation~1StoreKitTest~1SKTestSession~1buyProduct(productIdentifier:)/title",
+          "value": "buyProductWithIdentifier:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekittest~1documentation~1StoreKitTest~1SKTestSession~1buyProduct(productIdentifier:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "buyProductWithIdentifier:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekittest~1documentation~1StoreKitTest~1SKTestSession~1declineAskToBuyTransaction(identifier:)/title",
+          "value": "declineAskToBuyTransactionWithIdentifier:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekittest~1documentation~1StoreKitTest~1SKTestSession~1declineAskToBuyTransaction(identifier:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "declineAskToBuyTransactionWithIdentifier:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekittest~1documentation~1StoreKitTest~1SKTestSession~1locale/title",
+          "value": "locale"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekittest~1documentation~1StoreKitTest~1SKTestSession~1locale/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "locale"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekittest~1documentation~1StoreKitTest~1SKTestSession~1allTransactions()/title",
+          "value": "allTransactions"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekittest~1documentation~1StoreKitTest~1SKTestSession~1allTransactions()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "allTransactions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekittest~1documentation~1StoreKitTest~1SKTestSession~1expireSubscription(productIdentifier:)/title",
+          "value": "expireSubscriptionWithProductIdentifier:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekittest~1documentation~1StoreKitTest~1SKTestSession~1expireSubscription(productIdentifier:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "expireSubscriptionWithProductIdentifier:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekittest~1documentation~1StoreKitTest~1SKTestSession~1billingGracePeriodIsEnabled/title",
+          "value": "billingGracePeriodEnabled"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekittest~1documentation~1StoreKitTest~1SKTestSession~1billingGracePeriodIsEnabled/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "billingGracePeriodEnabled"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekittest~1documentation~1StoreKitTest~1SKTestSession~1requestPriceIncreaseConsentForTransaction(identifier:)/title",
+          "value": "requestPriceIncreaseConsentForTransactionWithIdentifier:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekittest~1documentation~1StoreKitTest~1SKTestSession~1requestPriceIncreaseConsentForTransaction(identifier:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "requestPriceIncreaseConsentForTransactionWithIdentifier:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.externally.resolved.symbol~1c:objc(pl)NSObject/title",
+          "value": "NSObject"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekittest~1documentation~1StoreKitTest~1SKTestSession~1init(configurationFileNamed:)/title",
+          "value": "initWithConfigurationFileNamed:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekittest~1documentation~1StoreKitTest~1SKTestSession~1init(configurationFileNamed:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithConfigurationFileNamed:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekittest~1documentation~1StoreKitTest~1SKTestSession~1resetToDefaultState()/title",
+          "value": "resetToDefaultState"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekittest~1documentation~1StoreKitTest~1SKTestSession~1resetToDefaultState()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "resetToDefaultState"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekittest~1documentation~1StoreKitTest~1SKTestSession~1init(contentsOf:)/title",
+          "value": "initWithContentsOfURL:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekittest~1documentation~1StoreKitTest~1SKTestSession~1init(contentsOf:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "initWithContentsOfURL:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekittest~1documentation~1StoreKitTest~1SKTestSession~1declinePriceIncreaseForTransaction(identifier:)/title",
+          "value": "declinePriceIncreaseForTransactionWithIdentifier:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekittest~1documentation~1StoreKitTest~1SKTestSession~1declinePriceIncreaseForTransaction(identifier:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "declinePriceIncreaseForTransactionWithIdentifier:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekittest~1documentation~1StoreKitTest~1SKTestSession~1refundTransaction(identifier:)/title",
+          "value": "refundTransactionWithIdentifier:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekittest~1documentation~1StoreKitTest~1SKTestSession~1refundTransaction(identifier:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "refundTransactionWithIdentifier:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekittest~1documentation~1StoreKitTest~1SKTestSession~1shouldEnterBillingRetryOnRenewal/title",
+          "value": "billingRetryOnRenewalEnabled"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekittest~1documentation~1StoreKitTest~1SKTestSession~1shouldEnterBillingRetryOnRenewal/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "billingRetryOnRenewalEnabled"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekittest~1documentation~1StoreKitTest~1SKTestSession~1enableAutoRenewForTransaction(identifier:)/title",
+          "value": "enableAutoRenewForTransactionWithIdentifier:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekittest~1documentation~1StoreKitTest~1SKTestSession~1enableAutoRenewForTransaction(identifier:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "enableAutoRenewForTransactionWithIdentifier:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekittest~1documentation~1StoreKitTest~1SKTestSession~1disableDialogs/title",
+          "value": "disableDialogs"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekittest~1documentation~1StoreKitTest~1SKTestSession~1disableDialogs/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "disableDialogs"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekittest~1documentation~1StoreKitTest~1SKTestSession~1failTransactionsEnabled/title",
+          "value": "failTransactionsEnabled"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekittest~1documentation~1StoreKitTest~1SKTestSession~1failTransactionsEnabled/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "failTransactionsEnabled"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekittest~1documentation~1StoreKitTest~1SKTestTransaction/title",
+          "value": "SKTestTransaction"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekittest~1documentation~1StoreKitTest~1SKTestTransaction/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKTestTransaction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekittest~1documentation~1StoreKitTest~1SKTestTransaction/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKTestTransaction"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekittest~1documentation~1StoreKitTest~1SKTestSession~1storefront/title",
+          "value": "storefront"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekittest~1documentation~1StoreKitTest~1SKTestSession~1storefront/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "storefront"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekittest~1documentation~1StoreKitTest~1SKTestSession~1deleteTransaction(identifier:)/title",
+          "value": "deleteTransactionWithIdentifier:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekittest~1documentation~1StoreKitTest~1SKTestSession~1deleteTransaction(identifier:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "deleteTransactionWithIdentifier:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekittest~1documentation~1StoreKitTest~1SKTestSession~1consentToPriceIncreaseForTransaction(identifier:)/title",
+          "value": "consentToPriceIncreaseForTransactionWithIdentifier:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekittest~1documentation~1StoreKitTest~1SKTestSession~1consentToPriceIncreaseForTransaction(identifier:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "consentToPriceIncreaseForTransactionWithIdentifier:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekittest~1documentation~1StoreKitTest~1SKTestSession~1forceRenewalOfSubscription(productIdentifier:)/title",
+          "value": "forceRenewalOfSubscriptionWithProductIdentifier:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekittest~1documentation~1StoreKitTest~1SKTestSession~1forceRenewalOfSubscription(productIdentifier:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "forceRenewalOfSubscriptionWithProductIdentifier:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekittest~1documentation~1StoreKitTest~1SKTestSession/title",
+          "value": "SKTestSession"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekittest~1documentation~1StoreKitTest~1SKTestSession/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKTestSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekittest~1documentation~1StoreKitTest~1SKTestSession/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKTestSession"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekittest~1documentation~1StoreKitTest~1SKTestSession~1resolveIssueForTransaction(identifier:)/title",
+          "value": "resolveIssueForTransactionWithIdentifier:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekittest~1documentation~1StoreKitTest~1SKTestSession~1resolveIssueForTransaction(identifier:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "resolveIssueForTransactionWithIdentifier:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekittest~1documentation~1StoreKitTest~1SKTestSession~1TimeRate-swift.enum/title",
+          "value": "SKTestTimeRate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekittest~1documentation~1StoreKitTest~1SKTestSession~1TimeRate-swift.enum/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKTestTimeRate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekittest~1documentation~1StoreKitTest~1SKTestSession~1TimeRate-swift.enum/navigatorTitle",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "SKTestTimeRate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekittest~1documentation~1StoreKitTest~1SKTestSession~1clearTransactions()/title",
+          "value": "clearTransactions"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekittest~1documentation~1StoreKitTest~1SKTestSession~1clearTransactions()/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "clearTransactions"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekittest~1documentation~1StoreKitTest~1SKTestSession~1interruptedPurchasesEnabled/title",
+          "value": "interruptedPurchasesEnabled"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekittest~1documentation~1StoreKitTest~1SKTestSession~1interruptedPurchasesEnabled/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "interruptedPurchasesEnabled"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekittest~1documentation~1StoreKitTest~1SKTestSession~1disableAutoRenewForTransaction(identifier:)/title",
+          "value": "disableAutoRenewForTransactionWithIdentifier:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekittest~1documentation~1StoreKitTest~1SKTestSession~1disableAutoRenewForTransaction(identifier:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "disableAutoRenewForTransactionWithIdentifier:error:"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekittest~1documentation~1StoreKitTest~1SKTestSession~1askToBuyEnabled/title",
+          "value": "askToBuyEnabled"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekittest~1documentation~1StoreKitTest~1SKTestSession~1askToBuyEnabled/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "askToBuyEnabled"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekittest~1documentation~1StoreKitTest~1SKTestSession~1timeRate-swift.property/title",
+          "value": "timeRate"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekittest~1documentation~1StoreKitTest~1SKTestSession~1timeRate-swift.property/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "timeRate"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekittest~1documentation~1StoreKitTest~1SKTestSession~1failureError/title",
+          "value": "failureError"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekittest~1documentation~1StoreKitTest~1SKTestSession~1failureError/fragments",
+          "value": [
+            {
+              "kind": "identifier",
+              "text": "failureError"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekittest~1documentation~1StoreKitTest~1SKTestSession~1approveAskToBuyTransaction(identifier:)/title",
+          "value": "approveAskToBuyTransactionWithIdentifier:error:"
+        },
+        {
+          "op": "replace",
+          "path": "/references/doc:~1~1com.apple.storekittest~1documentation~1StoreKitTest~1SKTestSession~1approveAskToBuyTransaction(identifier:)/fragments",
+          "value": [
+            {
+              "kind": "text",
+              "text": "- "
+            },
+            {
+              "kind": "identifier",
+              "text": "approveAskToBuyTransactionWithIdentifier:error:"
+            }
+          ]
+        }
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "/documentation/storekittest/sktestsession"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "swift"
+        }
+      ]
+    },
+    {
+      "paths": [
+        "/documentation/storekittest/sktestsession"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}

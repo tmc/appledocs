@@ -1,0 +1,1545 @@
+{
+  "abstract": [
+    {
+      "text": "This class wraps a single sample buffer in an audio driver.",
+      "type": "text"
+    }
+  ],
+  "documentVersion": 0,
+  "hierarchy": {
+    "paths": [
+      [
+        "doc://com.apple.documentation/documentation/technologies",
+        "doc://com.apple.documentation/documentation/kernel",
+        "doc://com.apple.documentation/documentation/kernel/hardware_families",
+        "doc://com.apple.documentation/documentation/kernel/hardware_families/audio"
+      ]
+    ]
+  },
+  "identifier": {
+    "interfaceLanguage": "occ",
+    "url": "doc://com.apple.documentation/documentation/kernel/ioaudiostream"
+  },
+  "kind": "symbol",
+  "legacy_identifier": 1495606,
+  "legalNotices": {
+    "copyright": "Copyright &copy; 2025 Apple Inc. All rights reserved.",
+    "privacyPolicy": "https://www.apple.com/privacy/privacy-policy",
+    "termsOfUse": "https://www.apple.com/legal/internet-services/terms/site.html"
+  },
+  "metadata": {
+    "externalID": "c:@S@IOAudioStream",
+    "modules": [
+      {
+        "name": "Kernel"
+      }
+    ],
+    "platforms": [
+      {
+        "current": "15.4",
+        "introducedAt": "10.1",
+        "name": "macOS"
+      }
+    ],
+    "role": "symbol",
+    "roleHeading": "Class",
+    "symbolKind": "cl",
+    "title": "IOAudioStream"
+  },
+  "primaryContentSections": [
+    {
+      "declarations": [
+        {
+          "languages": [
+            "occ"
+          ],
+          "platforms": [
+            "macOS"
+          ],
+          "tokens": [
+            {
+              "kind": "keyword",
+              "text": "class"
+            },
+            {
+              "kind": "text",
+              "text": " "
+            },
+            {
+              "kind": "identifier",
+              "text": "IOAudioStream"
+            },
+            {
+              "kind": "text",
+              "text": " : "
+            },
+            {
+              "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice",
+              "kind": "typeIdentifier",
+              "preciseIdentifier": "c:@S@IOService",
+              "text": "IOService"
+            }
+          ]
+        }
+      ],
+      "kind": "declarations"
+    },
+    {
+      "content": [
+        {
+          "anchor": "overview",
+          "level": 2,
+          "text": "Overview",
+          "type": "heading"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "An IOAudioStream represents one hardware sample buffer as well as the direction of that buffer, the mix buffer that multiple clients mix into as well as a list of all of the formats to which this buffer can be set.",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "When an IOAudioEngine is created during init time in the driver, an IOAudioStream must be created for each sample buffer in the device. Typically, the sample buffer will be interleaved (or single channel), as a non-interleaved buffer should be divided into multiple single-channel buffers (and multiple IOAudioStreams).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        },
+        {
+          "inlineContent": [
+            {
+              "text": "Additionally, when an IOAudioStream is created it must have all of the possible formats (and allowed sample rates for each format) set and must have the currently set format specified (addAvailableFormat() and setFormat()).",
+              "type": "text"
+            }
+          ],
+          "type": "paragraph"
+        }
+      ],
+      "kind": "content"
+    }
+  ],
+  "references": {
+    "doc://com.apple.documentation/documentation/kernel": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel",
+      "kind": "symbol",
+      "role": "collection",
+      "title": "Kernel",
+      "type": "topic",
+      "url": "/documentation/kernel"
+    },
+    "doc://com.apple.documentation/documentation/kernel/hardware_families": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/hardware_families",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Hardware Families",
+      "type": "topic",
+      "url": "/documentation/kernel/hardware_families"
+    },
+    "doc://com.apple.documentation/documentation/kernel/hardware_families/audio": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/hardware_families/audio",
+      "kind": "article",
+      "role": "collectionGroup",
+      "title": "Audio",
+      "type": "topic",
+      "url": "/documentation/kernel/hardware_families/audio"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudiocontrol": {
+      "abstract": [
+        {
+          "text": "Represents any controllable attribute of an IOAudioDevice.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudiocontrol",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOAudioControl",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudiocontrol"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioengine": {
+      "abstract": [
+        {
+          "text": "Abstract base class for a single audio audio / I/O engine.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioengine",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOAudioEngine",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioengine"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudiolevelcontrol": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudiolevelcontrol",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOAudioLevelControl",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudiolevelcontrol"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioport": {
+      "abstract": [
+        {
+          "text": "Represents a logical or physical port or functional unit in an audio device.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioport",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOAudioPort",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioport"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudioselectorcontrol": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudioselectorcontrol",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOAudioSelectorControl",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudioselectorcontrol"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudiostream": {
+      "abstract": [
+        {
+          "text": "This class wraps a single sample buffer in an audio driver.",
+          "type": "text"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudiostream",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOAudioStream",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudiostream"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudiostream/1580015-addclient": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "addClient"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudiostream/1580015-addclient",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "addClient",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudiostream/1580015-addclient"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudiostream/1580016-free": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "free"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudiostream/1580016-free",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "free",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudiostream/1580016-free"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudiostream/1580017-stop": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "stop"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudiostream/1580017-stop",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "stop",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudiostream/1580017-stop"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudiostream/1580018-getstartingchannelid": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getStartingChannelID"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudiostream/1580018-getstartingchannelid",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getStartingChannelID",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudiostream/1580018-getstartingchannelid"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudiostream/1580019-getformatextension": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getFormatExtension"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudiostream/1580019-getformatextension",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getFormatExtension",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudiostream/1580019-getformatextension"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudiostream/1580020-unlockstreamforio": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "unlockStreamForIO"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudiostream/1580020-unlockstreamforio",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "unlockStreamForIO",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudiostream/1580020-unlockstreamforio"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudiostream/1580021-addavailableformat": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "addAvailableFormat"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudiostream/1580021-addavailableformat",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "addAvailableFormat",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudiostream/1580021-addavailableformat"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudiostream/1580022-getsamplebuffer": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getSampleBuffer"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudiostream/1580022-getsamplebuffer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getSampleBuffer",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudiostream/1580022-getsamplebuffer"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudiostream/1580023-getworkloop": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getWorkLoop"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudiostream/1580023-getworkloop",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getWorkLoop",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudiostream/1580023-getworkloop"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudiostream/1580024-getstreamavailable": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getStreamAvailable"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudiostream/1580024-getstreamavailable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getStreamAvailable",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudiostream/1580024-getstreamavailable"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudiostream/1580025-createformatfromdictionary": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "createFormatFromDictionary"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudiostream/1580025-createformatfromdictionary",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "createFormatFromDictionary",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudiostream/1580025-createformatfromdictionary"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudiostream/1580026-setiofunctionlist": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setIOFunctionList"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudiostream/1580026-setiofunctionlist",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setIOFunctionList",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudiostream/1580026-setiofunctionlist"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudiostream/1580027-createdictionaryfromformat": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "createDictionaryFromFormat"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudiostream/1580027-createdictionaryfromformat",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "createDictionaryFromFormat",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudiostream/1580027-createdictionaryfromformat"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudiostream/1580028-getsamplebuffersize": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getSampleBufferSize"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudiostream/1580028-getsamplebuffersize",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getSampleBufferSize",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudiostream/1580028-getsamplebuffersize"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudiostream/1580029-updatenumclients": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "updateNumClients"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudiostream/1580029-updatenumclients",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "updateNumClients",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudiostream/1580029-updatenumclients"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudiostream/1580030-numsampleframesperbufferchanged": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "numSampleFramesPerBufferChanged"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudiostream/1580030-numsampleframesperbufferchanged",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "numSampleFramesPerBufferChanged",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudiostream/1580030-numsampleframesperbufferchanged"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudiostream/1580031-setformataction": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "setFormatAction"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudiostream/1580031-setformataction",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setFormatAction",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudiostream/1580031-setformataction"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudiostream/1580032-clearavailableformats": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "clearAvailableFormats"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudiostream/1580032-clearavailableformats",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "clearAvailableFormats",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudiostream/1580032-clearavailableformats"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudiostream/1580033-setiofunction": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setIOFunction"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudiostream/1580033-setiofunction",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setIOFunction",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudiostream/1580033-setiofunction"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudiostream/1580034-removedefaultaudiocontrols": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeDefaultAudioControls"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudiostream/1580034-removedefaultaudiocontrols",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "removeDefaultAudioControls",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudiostream/1580034-removedefaultaudiocontrols"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudiostream/1580035-lockstreamforio": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "lockStreamForIO"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudiostream/1580035-lockstreamforio",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "lockStreamForIO",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudiostream/1580035-lockstreamforio"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudiostream/1580036-setsamplebuffer": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setSampleBuffer"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudiostream/1580036-setsamplebuffer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setSampleBuffer",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudiostream/1580036-setsamplebuffer"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudiostream/1580037-getmixbuffer": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getMixBuffer"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudiostream/1580037-getmixbuffer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getMixBuffer",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudiostream/1580037-getmixbuffer"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudiostream/1580038-setstreamavailable": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setStreamAvailable"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudiostream/1580038-setstreamavailable",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setStreamAvailable",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudiostream/1580038-setstreamavailable"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudiostream/1580039-adddefaultaudiocontrol": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "addDefaultAudioControl"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudiostream/1580039-adddefaultaudiocontrol",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "addDefaultAudioControl",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudiostream/1580039-adddefaultaudiocontrol"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudiostream/1580040-clipoutputsamples": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "clipOutputSamples"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudiostream/1580040-clipoutputsamples",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "clipOutputSamples",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudiostream/1580040-clipoutputsamples"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudiostream/1580041-processoutputsamples": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "processOutputSamples"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudiostream/1580041-processoutputsamples",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "processOutputSamples",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudiostream/1580041-processoutputsamples"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudiostream/1580042-setproperties": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setProperties"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudiostream/1580042-setproperties",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setProperties",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudiostream/1580042-setproperties"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudiostream/1580043-mixoutputsamples": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "mixOutputSamples"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudiostream/1580043-mixoutputsamples",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "mixOutputSamples",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudiostream/1580043-mixoutputsamples"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudiostream/1580044-hardwareformatchanged": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "hardwareFormatChanged"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudiostream/1580044-hardwareformatchanged",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "hardwareFormatChanged",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudiostream/1580044-hardwareformatchanged"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudiostream/1580045-readinputsamples": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "readInputSamples"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudiostream/1580045-readinputsamples",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "readInputSamples",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudiostream/1580045-readinputsamples"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudiostream/1580046-setformat": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setFormat"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudiostream/1580046-setformat",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setFormat",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudiostream/1580046-setformat"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudiostream/1580047-safelogerror": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "safeLogError"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudiostream/1580047-safelogerror",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "safeLogError",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudiostream/1580047-safelogerror"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudiostream/1580048-getdirection": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getDirection"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudiostream/1580048-getdirection",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getDirection",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudiostream/1580048-getdirection"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudiostream/1580049-getmaxnumchannels": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getMaxNumChannels"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudiostream/1580049-getmaxnumchannels",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getMaxNumChannels",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudiostream/1580049-getmaxnumchannels"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudiostream/1580050-getformat": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getFormat"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudiostream/1580050-getformat",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getFormat",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudiostream/1580050-getformat"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudiostream/1580051-getmetaclass": {
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getMetaClass"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudiostream/1580051-getmetaclass",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getMetaClass",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudiostream/1580051-getmetaclass"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudiostream/1580052-setstartingchannelnumber": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setStartingChannelNumber"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudiostream/1580052-setstartingchannelnumber",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setStartingChannelNumber",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudiostream/1580052-setstartingchannelnumber"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudiostream/1580053-resetclipinfo": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "resetClipInfo"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudiostream/1580053-resetclipinfo",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "resetClipInfo",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudiostream/1580053-resetclipinfo"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudiostream/1580054-getnumclients": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getNumClients"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudiostream/1580054-getnumclients",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getNumClients",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudiostream/1580054-getnumclients"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudiostream/1580055-setsamplelatency": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setSampleLatency"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudiostream/1580055-setsamplelatency",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setSampleLatency",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudiostream/1580055-setsamplelatency"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudiostream/1580056-clearsamplebuffer": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "clearSampleBuffer"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudiostream/1580056-clearsamplebuffer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "clearSampleBuffer",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudiostream/1580056-clearsamplebuffer"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudiostream/1580057-removeclient": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "removeClient"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudiostream/1580057-removeclient",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "removeClient",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudiostream/1580057-removeclient"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudiostream/1580058-clipifnecessary": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "clipIfNecessary"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudiostream/1580058-clipifnecessary",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "clipIfNecessary",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudiostream/1580058-clipifnecessary"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudiostream/1580059-validateformat": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "validateFormat"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudiostream/1580059-validateformat",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "validateFormat",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudiostream/1580059-validateformat"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudiostream/1580060-setdirection": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setDirection"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudiostream/1580060-setdirection",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setDirection",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudiostream/1580060-setdirection"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudiostream/1580061-getnumsampleframesread": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getNumSampleFramesRead"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudiostream/1580061-getnumsampleframesread",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getNumSampleFramesRead",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudiostream/1580061-getnumsampleframesread"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudiostream/1580062-setdefaultnumsampleframesread": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setDefaultNumSampleFramesRead"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudiostream/1580062-setdefaultnumsampleframesread",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setDefaultNumSampleFramesRead",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudiostream/1580062-setdefaultnumsampleframesread"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudiostream/1580063-getmixbuffersize": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "getMixBufferSize"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudiostream/1580063-getmixbuffersize",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "getMixBufferSize",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudiostream/1580063-getmixbuffersize"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudiostream/1580064-initwithaudioengine": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "initWithAudioEngine"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudiostream/1580064-initwithaudioengine",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "initWithAudioEngine",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudiostream/1580064-initwithaudioengine"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudiostream/1580065-setmixbuffer": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setMixBuffer"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudiostream/1580065-setmixbuffer",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setMixBuffer",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudiostream/1580065-setmixbuffer"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudiostream/1580066-setterminaltype": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setTerminalType"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudiostream/1580066-setterminaltype",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setTerminalType",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudiostream/1580066-setterminaltype"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudiostream/1580067-initkeys": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "+ "
+        },
+        {
+          "kind": "identifier",
+          "text": "initKeys"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudiostream/1580067-initkeys",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "initKeys",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudiostream/1580067-initkeys"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudiostream/3516531-addavailableformat": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "addAvailableFormat"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudiostream/3516531-addavailableformat",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "addAvailableFormat",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudiostream/3516531-addavailableformat"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudiostream/3516532-addavailableformat": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "addAvailableFormat"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudiostream/3516532-addavailableformat",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "addAvailableFormat",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudiostream/3516532-addavailableformat"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudiostream/3516533-addavailableformat": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "addAvailableFormat"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudiostream/3516533-addavailableformat",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "addAvailableFormat",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudiostream/3516533-addavailableformat"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudiostream/3516534-setformat": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setFormat"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudiostream/3516534-setformat",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setFormat",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudiostream/3516534-setformat"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudiostream/3516535-setformat": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setFormat"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudiostream/3516535-setformat",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setFormat",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudiostream/3516535-setformat"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudiostream/3516536-setformat": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setFormat"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudiostream/3516536-setformat",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setFormat",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudiostream/3516536-setformat"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudiostream/3516537-setformat": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "setFormat"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudiostream/3516537-setformat",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "setFormat",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudiostream/3516537-setformat"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudiostream/3516538-validateformat": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "validateFormat"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudiostream/3516538-validateformat",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "validateFormat",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudiostream/3516538-validateformat"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudiostream/3516539-validateformat": {
+      "deprecated": true,
+      "fragments": [
+        {
+          "kind": "text",
+          "text": "- "
+        },
+        {
+          "kind": "identifier",
+          "text": "validateFormat"
+        }
+      ],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudiostream/3516539-validateformat",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "validateFormat",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudiostream/3516539-validateformat"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioaudiotogglecontrol": {
+      "abstract": [],
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioaudiotogglecontrol",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOAudioToggleControl",
+      "type": "topic",
+      "url": "/documentation/kernel/ioaudiotogglecontrol"
+    },
+    "doc://com.apple.documentation/documentation/kernel/ioservice": {
+      "identifier": "doc://com.apple.documentation/documentation/kernel/ioservice",
+      "kind": "symbol",
+      "role": "symbol",
+      "title": "IOService",
+      "type": "topic",
+      "url": "/documentation/kernel/ioservice"
+    },
+    "doc://com.apple.documentation/documentation/technologies": {
+      "identifier": "doc://com.apple.documentation/documentation/technologies",
+      "kind": "technologies",
+      "title": "Technologies",
+      "type": "topic",
+      "url": "/documentation/technologies"
+    }
+  },
+  "relationshipsSections": [
+    {
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/ioservice"
+      ],
+      "kind": "relationships",
+      "title": "Inherits From",
+      "type": "inheritsFrom"
+    }
+  ],
+  "schemaVersion": {
+    "major": 0,
+    "minor": 3,
+    "patch": 0
+  },
+  "sections": [],
+  "seeAlsoSections": [
+    {
+      "generated": true,
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/ioaudiolevelcontrol",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioselectorcontrol",
+        "doc://com.apple.documentation/documentation/kernel/ioaudiotogglecontrol",
+        "doc://com.apple.documentation/documentation/kernel/ioaudiocontrol",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioengine",
+        "doc://com.apple.documentation/documentation/kernel/ioaudioport"
+      ],
+      "title": "Interfaces"
+    }
+  ],
+  "topicSections": [
+    {
+      "anchor": "2857657",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/ioaudiostream/1580021-addavailableformat",
+        "doc://com.apple.documentation/documentation/kernel/ioaudiostream/3516531-addavailableformat",
+        "doc://com.apple.documentation/documentation/kernel/ioaudiostream/3516532-addavailableformat",
+        "doc://com.apple.documentation/documentation/kernel/ioaudiostream/3516533-addavailableformat",
+        "doc://com.apple.documentation/documentation/kernel/ioaudiostream/1580015-addclient",
+        "doc://com.apple.documentation/documentation/kernel/ioaudiostream/1580039-adddefaultaudiocontrol",
+        "doc://com.apple.documentation/documentation/kernel/ioaudiostream/1580032-clearavailableformats",
+        "doc://com.apple.documentation/documentation/kernel/ioaudiostream/1580056-clearsamplebuffer",
+        "doc://com.apple.documentation/documentation/kernel/ioaudiostream/1580058-clipifnecessary",
+        "doc://com.apple.documentation/documentation/kernel/ioaudiostream/1580040-clipoutputsamples",
+        "doc://com.apple.documentation/documentation/kernel/ioaudiostream/1580016-free",
+        "doc://com.apple.documentation/documentation/kernel/ioaudiostream/1580048-getdirection",
+        "doc://com.apple.documentation/documentation/kernel/ioaudiostream/1580050-getformat",
+        "doc://com.apple.documentation/documentation/kernel/ioaudiostream/1580019-getformatextension",
+        "doc://com.apple.documentation/documentation/kernel/ioaudiostream/1580049-getmaxnumchannels",
+        "doc://com.apple.documentation/documentation/kernel/ioaudiostream/1580051-getmetaclass",
+        "doc://com.apple.documentation/documentation/kernel/ioaudiostream/1580037-getmixbuffer",
+        "doc://com.apple.documentation/documentation/kernel/ioaudiostream/1580063-getmixbuffersize",
+        "doc://com.apple.documentation/documentation/kernel/ioaudiostream/1580054-getnumclients",
+        "doc://com.apple.documentation/documentation/kernel/ioaudiostream/1580061-getnumsampleframesread",
+        "doc://com.apple.documentation/documentation/kernel/ioaudiostream/1580022-getsamplebuffer",
+        "doc://com.apple.documentation/documentation/kernel/ioaudiostream/1580028-getsamplebuffersize",
+        "doc://com.apple.documentation/documentation/kernel/ioaudiostream/1580018-getstartingchannelid",
+        "doc://com.apple.documentation/documentation/kernel/ioaudiostream/1580024-getstreamavailable",
+        "doc://com.apple.documentation/documentation/kernel/ioaudiostream/1580023-getworkloop",
+        "doc://com.apple.documentation/documentation/kernel/ioaudiostream/1580044-hardwareformatchanged",
+        "doc://com.apple.documentation/documentation/kernel/ioaudiostream/1580064-initwithaudioengine",
+        "doc://com.apple.documentation/documentation/kernel/ioaudiostream/1580035-lockstreamforio",
+        "doc://com.apple.documentation/documentation/kernel/ioaudiostream/1580043-mixoutputsamples",
+        "doc://com.apple.documentation/documentation/kernel/ioaudiostream/1580030-numsampleframesperbufferchanged",
+        "doc://com.apple.documentation/documentation/kernel/ioaudiostream/1580041-processoutputsamples",
+        "doc://com.apple.documentation/documentation/kernel/ioaudiostream/1580045-readinputsamples",
+        "doc://com.apple.documentation/documentation/kernel/ioaudiostream/1580057-removeclient",
+        "doc://com.apple.documentation/documentation/kernel/ioaudiostream/1580034-removedefaultaudiocontrols",
+        "doc://com.apple.documentation/documentation/kernel/ioaudiostream/1580053-resetclipinfo",
+        "doc://com.apple.documentation/documentation/kernel/ioaudiostream/1580047-safelogerror",
+        "doc://com.apple.documentation/documentation/kernel/ioaudiostream/1580062-setdefaultnumsampleframesread",
+        "doc://com.apple.documentation/documentation/kernel/ioaudiostream/1580060-setdirection",
+        "doc://com.apple.documentation/documentation/kernel/ioaudiostream/1580046-setformat",
+        "doc://com.apple.documentation/documentation/kernel/ioaudiostream/3516534-setformat",
+        "doc://com.apple.documentation/documentation/kernel/ioaudiostream/3516535-setformat",
+        "doc://com.apple.documentation/documentation/kernel/ioaudiostream/3516536-setformat",
+        "doc://com.apple.documentation/documentation/kernel/ioaudiostream/3516537-setformat",
+        "doc://com.apple.documentation/documentation/kernel/ioaudiostream/1580033-setiofunction",
+        "doc://com.apple.documentation/documentation/kernel/ioaudiostream/1580026-setiofunctionlist",
+        "doc://com.apple.documentation/documentation/kernel/ioaudiostream/1580065-setmixbuffer",
+        "doc://com.apple.documentation/documentation/kernel/ioaudiostream/1580042-setproperties",
+        "doc://com.apple.documentation/documentation/kernel/ioaudiostream/1580036-setsamplebuffer",
+        "doc://com.apple.documentation/documentation/kernel/ioaudiostream/1580055-setsamplelatency",
+        "doc://com.apple.documentation/documentation/kernel/ioaudiostream/1580052-setstartingchannelnumber",
+        "doc://com.apple.documentation/documentation/kernel/ioaudiostream/1580038-setstreamavailable",
+        "doc://com.apple.documentation/documentation/kernel/ioaudiostream/1580066-setterminaltype",
+        "doc://com.apple.documentation/documentation/kernel/ioaudiostream/1580017-stop",
+        "doc://com.apple.documentation/documentation/kernel/ioaudiostream/1580020-unlockstreamforio",
+        "doc://com.apple.documentation/documentation/kernel/ioaudiostream/1580029-updatenumclients",
+        "doc://com.apple.documentation/documentation/kernel/ioaudiostream/1580059-validateformat",
+        "doc://com.apple.documentation/documentation/kernel/ioaudiostream/3516538-validateformat",
+        "doc://com.apple.documentation/documentation/kernel/ioaudiostream/3516539-validateformat"
+      ],
+      "kind": "taskGroup",
+      "title": "Instance Methods"
+    },
+    {
+      "anchor": "2857658",
+      "identifiers": [
+        "doc://com.apple.documentation/documentation/kernel/ioaudiostream/1580027-createdictionaryfromformat",
+        "doc://com.apple.documentation/documentation/kernel/ioaudiostream/1580025-createformatfromdictionary",
+        "doc://com.apple.documentation/documentation/kernel/ioaudiostream/1580067-initkeys",
+        "doc://com.apple.documentation/documentation/kernel/ioaudiostream/1580031-setformataction"
+      ],
+      "kind": "taskGroup",
+      "title": "Type Methods"
+    }
+  ],
+  "variants": [
+    {
+      "paths": [
+        "documentation/kernel/ioaudiostream"
+      ],
+      "traits": [
+        {
+          "interfaceLanguage": "occ"
+        }
+      ]
+    }
+  ]
+}
